@@ -1,0 +1,11 @@
+﻿TODO ===
+
+Impliment Include Items in destination
+
+Fix first character of search not counting
+
+CONSIDER ===
+
+Mergins some options:
+	adding all entrance rando option to an entrance rado category that is hidden if entrance rando features are disable
+
