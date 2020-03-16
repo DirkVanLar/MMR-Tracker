@@ -66,7 +66,14 @@ namespace MMR_Tracker_V2
         {
             RandomizeOptions RandoOptionScreen = new RandomizeOptions();
             RandoOptionScreen.ShowDialog();
+            VersionHandeling.entranceRadnoEnabled = false;
+            foreach (var i in LogicObjects.Logic)
+            {
+                if (i.ItemSubType == "Entrance" && (i.RandomizedState == 0 || i.RandomizedState == 2) && VersionHandeling.isEntranceRando()) 
+                { VersionHandeling.entranceRadnoEnabled = true; }
+            }
             LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
+            ResizeObject();
             PrintToListBox();
         }
 
