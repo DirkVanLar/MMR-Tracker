@@ -299,12 +299,15 @@ namespace MMR_Tracker_V2
         public static void ResetInstance()
         {
             UnsavedChanges = false;
+            VersionHandeling.entranceRadnoEnabled = false;
             UndoList = new List<List<LogicObjects.LogicEntry>>();
             RedoList = new List<List<LogicObjects.LogicEntry>>();
             VersionHandeling.Version = 0;
             LogicObjects.Logic = new List<LogicObjects.LogicEntry>();
             LogicObjects.DicNameToID = new Dictionary<string, int>();
             LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
+            LogicObjects.MMRDictionary = new List<LogicObjects.LogicDic>();
+            LogicObjects.EntrancePairs = new Dictionary<int, int>();
         }
         public static string FileSelect(string title, string filter)
         {
@@ -318,7 +321,7 @@ namespace MMR_Tracker_V2
         }
         public static void UpdateNames (List<LogicObjects.LogicEntry> Logic)
         {
-            LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionHandeling.SwitchDictionary()));
+            LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionHandeling.SwitchDictionary()[0]));
             foreach (var entry in Logic)
             {
                foreach(var dicent in LogicObjects.MMRDictionary)

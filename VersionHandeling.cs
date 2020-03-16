@@ -51,39 +51,64 @@ namespace MMR_Tracker_V2
             return Version >= EntranceRandoVersion;
         }
 
-        public static string SwitchDictionary()
+        public static string[] SwitchDictionary()
         {
             string[] files = Directory.GetFiles(@"Dictionaries");
             Dictionary<int,string> dictionaries = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
-            int smallestentry = 0;
-            int largestentry = 0;
+            Dictionary<int, string> Pairs = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
+            int smallestDicEntry = 0;
+            int largestDicEntry = 0;
+            int smallestPairEntry = 0;
+            int largestPairEntry = 0;
             foreach (var i in files)
             {
-                var entry = i.Replace("Dictionaries\\MMRDICTIONARYV", "");
-                entry = entry.Replace(".csv", "");
-                int version = 0;
-                try { version = Int32.Parse(entry); }
-                catch { break; }
-                dictionaries.Add(version, i);
-                if (version > largestentry) { largestentry = version; }
-                if (smallestentry == 0) { smallestentry = largestentry; }
-                if (version < smallestentry) { smallestentry = version; }
+                if (i.Contains("MMRDICTIONARY")) 
+                {
+                    var entry = i.Replace("Dictionaries\\MMRDICTIONARYV", "");
+                    entry = entry.Replace(".csv", "");
+                    int version = 0;
+                    try { version = Int32.Parse(entry); }
+                    catch { continue; }
+                    dictionaries.Add(version, i);
+                    if (version > largestDicEntry) { largestDicEntry = version; }
+                    if (smallestDicEntry == 0) { smallestDicEntry = largestDicEntry; }
+                    if (version < smallestDicEntry) { smallestDicEntry = version; }
+                }
+                if (i.Contains("ENTRANCEPAIRS"))
+                {
+                    var entry = i.Replace("Dictionaries\\ENTRANCEPAIRSV", "");
+                    entry = entry.Replace(".csv", "");
+                    int version = 0;
+                    try { version = Int32.Parse(entry); }
+                    catch { continue; }
+                    Pairs.Add(version, i);
+                    if (version > largestPairEntry) { largestPairEntry = version; }
+                    if (smallestPairEntry == 0) { smallestPairEntry = largestPairEntry; }
+                    if (version < smallestPairEntry) { smallestPairEntry = version; }
+                }
+                
             }
 
-            string currentdictionary = "";
+            string[] currentdictionary = new string[2];
+            var index = 0;
 
-            if (dictionaries.ContainsKey(VersionHandeling.Version))
-            {
-                LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(dictionaries[Version]));
-                currentdictionary = dictionaries[Version];
-            }
+            if (dictionaries.ContainsKey(VersionHandeling.Version)) { index = Version; }
             else //If we are using a logic version that doesn't have a dictionary, use the dictioary with the closest version
-            {
-                int closest = dictionaries.Keys.Aggregate((x, y) => Math.Abs(x - Version) < Math.Abs(y - Version) ? x : y);
-                LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(dictionaries[closest]));
-                currentdictionary = dictionaries[closest];
-            }
-            Console.WriteLine(currentdictionary);
+            { index = dictionaries.Keys.Aggregate((x, y) => Math.Abs(x - Version) < Math.Abs(y - Version) ? x : y); }
+
+            currentdictionary[0] = dictionaries[index];
+
+            Console.WriteLine(currentdictionary[0]);
+
+            if (Pairs.ContainsKey(VersionHandeling.Version))
+            { index = Version; }
+            else //If we are using a logic version that doesn't have a Pair List, use the pair List with the closest version
+            { index = Pairs.Keys.Aggregate((x, y) => Math.Abs(x - Version) < Math.Abs(y - Version) ? x : y); }
+
+            currentdictionary[1] = Pairs[index];
+
+            Console.WriteLine(currentdictionary[1]);
+
             return currentdictionary;
         }
     }

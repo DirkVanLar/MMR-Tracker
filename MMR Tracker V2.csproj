@@ -103,6 +103,9 @@
     <EmbeddedResource Include="RandomizeOptions.resx">
       <DependentUpon>RandomizeOptions.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Dictionaries\ENTRANCEPAIRSV16.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Dictionaries\MMRDICTIONARYV13.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

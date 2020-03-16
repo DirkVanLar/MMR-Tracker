@@ -58,6 +58,7 @@
             this.entranceRandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useSongOfTimeInPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleEntranceRandoFeaturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includeItemLocationsAsDestinationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editRadnomizationOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importSpoilerLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.includeItemLocationsAsDestinationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.coupleEntrancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -335,7 +336,8 @@
             this.entranceRandoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useSongOfTimeInPathfinderToolStripMenuItem,
             this.toggleEntranceRandoFeaturesToolStripMenuItem,
-            this.includeItemLocationsAsDestinationToolStripMenuItem});
+            this.includeItemLocationsAsDestinationToolStripMenuItem,
+            this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
             this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
@@ -353,6 +355,13 @@
             this.toggleEntranceRandoFeaturesToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
             this.toggleEntranceRandoFeaturesToolStripMenuItem.Text = "Toggle Entrance Rando Features";
             this.toggleEntranceRandoFeaturesToolStripMenuItem.Click += new System.EventHandler(this.ToggleEntranceRandoFeaturesToolStripMenuItem_Click);
+            // 
+            // includeItemLocationsAsDestinationToolStripMenuItem
+            // 
+            this.includeItemLocationsAsDestinationToolStripMenuItem.Name = "includeItemLocationsAsDestinationToolStripMenuItem";
+            this.includeItemLocationsAsDestinationToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+            this.includeItemLocationsAsDestinationToolStripMenuItem.Text = "Include Item Locations as destination";
+            this.includeItemLocationsAsDestinationToolStripMenuItem.Click += new System.EventHandler(this.includeItemLocationsAsDestinationToolStripMenuItem_Click);
             // 
             // logicOptionsToolStripMenuItem
             // 
@@ -452,12 +461,12 @@
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // includeItemLocationsAsDestinationToolStripMenuItem
+            // coupleEntrancesToolStripMenuItem
             // 
-            this.includeItemLocationsAsDestinationToolStripMenuItem.Name = "includeItemLocationsAsDestinationToolStripMenuItem";
-            this.includeItemLocationsAsDestinationToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
-            this.includeItemLocationsAsDestinationToolStripMenuItem.Text = "Include Item Locations as destination";
-            this.includeItemLocationsAsDestinationToolStripMenuItem.Click += new System.EventHandler(this.includeItemLocationsAsDestinationToolStripMenuItem_Click);
+            this.coupleEntrancesToolStripMenuItem.Name = "coupleEntrancesToolStripMenuItem";
+            this.coupleEntrancesToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+            this.coupleEntrancesToolStripMenuItem.Text = "Couple Entrances";
+            this.coupleEntrancesToolStripMenuItem.Click += new System.EventHandler(this.coupleEntrancesToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 
@@ -543,6 +552,7 @@
         private System.Windows.Forms.ToolStripMenuItem miscOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showEntryNameToolTipToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem includeItemLocationsAsDestinationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem coupleEntrancesToolStripMenuItem;
     }
 }
 

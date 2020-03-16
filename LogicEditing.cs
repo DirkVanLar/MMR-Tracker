@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,19 +10,24 @@ namespace MMR_Tracker_V2
     class LogicEditing
     {
         public static bool StrictLogicHandeling = false;
+
+        public static bool CoupleEntrances = true;
         public static bool CreateLogic(List<LogicObjects.LogicEntry> LogicList, string LogicFileLocation, Dictionary<string, int> DicNameToID)
         {
             int SubCounter = 0;
             int idCounter = 0;
+            var VersionData = new string[2];
             LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
             foreach (string line in File.ReadAllLines(LogicFileLocation))
             {
                 if (line.StartsWith("-")) { SubCounter = 0; }
                 if (line.Contains("-version")) { 
                     VersionHandeling.Version = Int32.Parse(line.Replace("-version ", ""));
-                    VersionHandeling.SwitchDictionary();
+                    VersionData = VersionHandeling.SwitchDictionary();
+                    LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
+                    if (VersionHandeling.isEntranceRando())
+                    { VersionHandeling.entranceRadnoEnabled = true; }
                 }
-                if (VersionHandeling.isEntranceRando()) { VersionHandeling.entranceRadnoEnabled = true; }
                 switch (SubCounter)
                 {
                     case 0:
@@ -32,6 +38,7 @@ namespace MMR_Tracker_V2
                         LogicEntry1.IsFake = true;
                         LogicEntry1.SpoilerRandom = -2;
                         LogicEntry1.ListGroup = -1;
+                        LogicEntry1.EntrancePair = -1;
                         for (int i = 0; i < LogicObjects.MMRDictionary.Count; i++)
                         {
                             if (LogicObjects.MMRDictionary[i].DictionaryName == line.Substring(2))
@@ -66,12 +73,32 @@ namespace MMR_Tracker_V2
                         break;
                     case 4:
                         LogicList.Add(LogicEntry1);
+                        if (!LogicObjects.DicNameToID.ContainsKey(LogicEntry1.DictionaryName) && !LogicEntry1.IsFake)
+                        { LogicObjects.DicNameToID.Add(LogicEntry1.DictionaryName, LogicEntry1.ID); }
+                        
                         LogicEntry1 = new LogicObjects.LogicEntry();
                         idCounter++;
                         break;
                 }
                 SubCounter++;
             }
+
+            if (!VersionHandeling.isEntranceRando()) { return true; }
+
+            foreach(var i in File.ReadAllLines(VersionData[1]))
+            {
+                var j = i.Split(',');
+                if (LogicObjects.DicNameToID.ContainsKey(j[0]) && LogicObjects.DicNameToID.ContainsKey(j[1]))
+                {
+                    LogicObjects.EntrancePairs.Add(LogicObjects.DicNameToID[j[0]], LogicObjects.DicNameToID[j[1]]);
+                }
+            }
+
+            foreach (var i in LogicObjects.Logic)
+            {
+                if (LogicObjects.EntrancePairs.ContainsKey(i.ID)) { i.EntrancePair = LogicObjects.EntrancePairs[i.ID]; }
+            }
+
             return true;
         }
 
@@ -168,6 +195,7 @@ namespace MMR_Tracker_V2
         {
             if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
             {
+                CheckEntrancePair(CheckedObject, LogicObjects.Logic[CheckedObject.RandomizedItem], LogicObjects.Logic, false);
                 CheckedObject.Checked = false;
                 if (CheckedObject.RandomizedItem > -1) { LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = false; }
                 CheckedObject.RandomizedItem = -2;
@@ -181,6 +209,7 @@ namespace MMR_Tracker_V2
                 if (CheckedObject.SpoilerRandom > -2) { CheckedObject.RandomizedItem = CheckedObject.SpoilerRandom; }
                 if (CheckedObject.RandomizedItem < 0) { CheckedObject.RandomizedItem = -1; return true; }
                 LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = true;
+                CheckEntrancePair(CheckedObject, LogicObjects.Logic[CheckedObject.RandomizedItem], LogicObjects.Logic , true);
                 LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
                 return true;
             }
@@ -193,7 +222,9 @@ namespace MMR_Tracker_V2
             CheckedObject.RandomizedItem = LogicObjects.CurrentSelectedItem.ID;
             LogicObjects.Logic[LogicObjects.CurrentSelectedItem.ID].Aquired = true;
             LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
+            CheckEntrancePair(CheckedObject, LogicObjects.Logic[CheckedObject.RandomizedItem], LogicObjects.Logic, true);
             LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
+
             return true;
         }
 
@@ -224,6 +255,20 @@ namespace MMR_Tracker_V2
                     Logic[data.LocationID].SpoilerRandom = data.ItemID;
             }
             
+        }
+
+        public static void CheckEntrancePair(LogicObjects.LogicEntry Location, LogicObjects.LogicEntry item, List<LogicObjects.LogicEntry> logic, bool Checking)
+        {
+            if (!CoupleEntrances || Location.RandomizedItem < 0 || Location.EntrancePair < 0 || item.EntrancePair < 0) { return; }
+            var reverseLocation = item.EntrancePair;
+            var reverseItem = Location.EntrancePair;
+            //This is checking if the reverse entrance seems to have already been cheked and randomized to something
+            if ((logic[reverseLocation].Checked || logic[reverseLocation].RandomizedItem > -1 || logic[reverseItem].Aquired) && Checking) { return; }
+            //This checkes to see if the spoiler log conflicts with what the reverse check is trying to do
+            if (logic[reverseLocation].SpoilerRandom != reverseItem && logic[reverseLocation].SpoilerRandom > -1) { return; }
+            logic[reverseLocation].Checked = Checking;
+            logic[reverseLocation].RandomizedItem = (Checking) ? reverseItem : -2;
+            logic[reverseItem].Aquired = Checking;
         }
     }
 }

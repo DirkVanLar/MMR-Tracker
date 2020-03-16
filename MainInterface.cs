@@ -20,13 +20,9 @@ namespace MMR_Tracker_V2
         //Form Events---------------------------------------------------------------------------
         private void FRMTracker_Load(object sender, EventArgs e)
         {
-            stricterLogicHandelingToolStripMenuItem.Text = (LogicEditing.StrictLogicHandeling) ? "Disable Stricter Logic Handeling" : "Enable Stricter Logic Handeling";
-            toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
-            useSongOfTimeInPathfinderToolStripMenuItem.Text = (Pathfinding.UseSongOfTime) ? "Disable Song of Time in pathfinder" : "Enable Song of Time in pathfinder";
-            includeItemLocationsAsDestinationToolStripMenuItem.Text = (Pathfinding.IncludeItemLocations) ? "Exclude Item Locations As Destinations" : "Include Item Locations As Destinations";
             ResizeObject();
             entranceRandoToolStripMenuItem.Visible = false;
-            devToolStripMenuItem.Visible = true;
+            devToolStripMenuItem.Visible = false;
             optionsToolStripMenuItem.Visible = false;
             undoToolStripMenuItem.Visible = false;
             redoToolStripMenuItem.Visible = false;
@@ -39,6 +35,28 @@ namespace MMR_Tracker_V2
         }
 
         //Menu Strip---------------------------------------------------------------------------
+
+        private void coupleEntrancesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicEditing.CoupleEntrances = !LogicEditing.CoupleEntrances;
+            if (!LogicEditing.CoupleEntrances) { MessageBox.Show("Entrances will not uncouple automatically."); }
+            if (LogicEditing.CoupleEntrances)
+            {
+                Utility.UnsavedChanges = true;
+                Utility.SaveState(Utility.CloneLogicList(LogicObjects.Logic));
+                foreach (var entry in LogicObjects.Logic)
+                {
+                    if (entry.Checked && entry.EntrancePair > -1 && entry.RandomizedItem > -1)
+                    {
+                        LogicEditing.CheckEntrancePair(LogicObjects.Logic[entry.ID], LogicObjects.Logic[entry.RandomizedItem], LogicObjects.Logic, true);
+                    }
+                }
+                LogicEditing.CalculateItems(LogicObjects.Logic, true, true);
+                PrintToListBox();
+            }
+            FormatMenuItems();
+        }
+
         private void CreateDictionaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Utility.CreateDictionary();
@@ -56,7 +74,6 @@ namespace MMR_Tracker_V2
         {
             var spoilerLogImported = false;
             foreach (var entry in LogicObjects.Logic) { if (entry.SpoilerRandom > -2) { spoilerLogImported = true; break; } }
-
             if (spoilerLogImported)
             {
                 foreach (var entry in LogicObjects.Logic) { entry.SpoilerRandom = -2; }
@@ -67,7 +84,7 @@ namespace MMR_Tracker_V2
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(LogicObjects.Logic, file);
             }
-            importSpoilerLogToolStripMenuItem.Text = (spoilerLogImported) ? "Import Spoiler Log" : "Remove Spoiler Log";
+            FormatMenuItems();
         }
 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -124,6 +141,7 @@ namespace MMR_Tracker_V2
         {
             Utility.Redo();
             PrintToListBox();
+            FormatMenuItems();
         }
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,40 +152,40 @@ namespace MMR_Tracker_V2
         private void stricterLogicHandelingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicEditing.StrictLogicHandeling = !LogicEditing.StrictLogicHandeling;
-            stricterLogicHandelingToolStripMenuItem.Text = (LogicEditing.StrictLogicHandeling) ? "Disable Stricter Logic Handeling" : "Enable Stricter Logic Handeling";
+            FormatMenuItems();
         }
 
         private void showEntryNameToolTipToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Utility.ShowEntryNameTooltip = !Utility.ShowEntryNameTooltip;
-            showEntryNameToolTipToolStripMenuItem.Text = (Utility.ShowEntryNameTooltip) ? "Disable Entry Name ToolTip" : "Show Entry Name ToolTip";
+            FormatMenuItems();
         }
 
         private void ToggleEntranceRandoFeaturesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             VersionHandeling.entranceRadnoEnabled = !VersionHandeling.entranceRadnoEnabled;
-            toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
             ResizeObject();
             PrintToListBox();
-            Console.WriteLine("Entrance rando is " + VersionHandeling.entranceRadnoEnabled);
+            FormatMenuItems();
         }
 
         private void UndoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Utility.Undo();
             PrintToListBox();
+            FormatMenuItems();
         }
 
         private void useSongOfTimeInPathfinderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Pathfinding.UseSongOfTime = !Pathfinding.UseSongOfTime;
-            useSongOfTimeInPathfinderToolStripMenuItem.Text = (Pathfinding.UseSongOfTime) ? "Disable Song of Time in pathfinder" : "Enable Song of Time in pathfinder";
+            FormatMenuItems();
         }
 
         private void includeItemLocationsAsDestinationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Pathfinding.IncludeItemLocations = !Pathfinding.IncludeItemLocations;
-            includeItemLocationsAsDestinationToolStripMenuItem.Text = (Pathfinding.IncludeItemLocations) ? "Exclude Item Locations As Destinations" : "Include Item Locations As Destinations";
+            FormatMenuItems();
         }
 
         private void UpdateDisplayNamesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -581,7 +599,6 @@ namespace MMR_Tracker_V2
 
             int newWidth;
 
-
             foreach (var s in senderComboBox.Items)
             {
                 var json = JsonConvert.SerializeObject(s);
@@ -613,8 +630,7 @@ namespace MMR_Tracker_V2
             saveToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
             VersionHandeling.entranceRadnoEnabled = (VersionHandeling.isEntranceRando());
             toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
+            coupleEntrancesToolStripMenuItem.Text = (LogicEditing.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
         }
-
-        
     }
 }

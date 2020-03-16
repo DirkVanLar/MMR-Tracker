@@ -28,6 +28,8 @@ namespace MMR_Tracker_V2
                     PrintInfo();
                     break;
             }
+
+            DebugFunction = 0;
         }
         public void PrintLogicToListBox()
         {
@@ -44,6 +46,7 @@ namespace MMR_Tracker_V2
                 listBox1.Items.Add("Aquired: " + Logic[i].Aquired);
                 listBox1.Items.Add("Checked: " + Logic[i].Checked);
                 listBox1.Items.Add("Fake Item: " + Logic[i].IsFake);
+                listBox1.Items.Add("Entrance pair: " + Logic[i].EntrancePair);
 
                 if (Logic[i].RandomizedItem > -1) { listBox1.Items.Add("Random Item: " + Logic[Logic[i].RandomizedItem].DictionaryName); }
                 else if (Logic[i].RandomizedItem == -1) { listBox1.Items.Add("Random Item: Junk"); }
@@ -129,7 +132,7 @@ namespace MMR_Tracker_V2
             listBox1.Items.Add("This is usefull when you know what item is in a location but haven't actually");
             listBox1.Items.Add("        obtianed it such as if you see it in a shop or read about it in a hint.");
             listBox1.Items.Add("==================================================================");
-            listBox1.Items.Add("Entrance radnomizer Features:");
+            listBox1.Items.Add("Entrance Randomizer Features:");
             listBox1.Items.Add("This is only useful in versions with full entrance randomizer");
             listBox1.Items.Add("It will toggle the available entrances and path finder lists");
             listBox1.Items.Add("If this Feature is off, entrances will show up in the available items list.");
@@ -167,7 +170,7 @@ namespace MMR_Tracker_V2
         }
         private void ListBox1_DoubleClick(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex == 1) { System.Diagnostics.Process.Start("https://github.com/Thedrummonger"); }
+            if (listBox1.SelectedIndex == 1) { System.Diagnostics.Process.Start("https://github.com/Thedrummonger/MMR-Tracker"); }
             if (listBox1.SelectedIndex == 4) { System.Diagnostics.Process.Start("https://twitter.com/thedrummonger"); }
             if (listBox1.SelectedIndex == 7) { System.Diagnostics.Process.Start("https://github.com/ZoeyZolotova/mm-rando"); }
             if (listBox1.SelectedIndex == 8) { System.Diagnostics.Process.Start("https://discord.gg/TJZ4uCP"); }
