@@ -113,7 +113,7 @@ namespace MMR_Tracker_V2
             SaveFileDialog saveDic = new SaveFileDialog();
             saveDic.Filter = "CSV File (*.csv)|*.csv";
             saveDic.Title = "Save Dictionary File";
-            saveDic.FileName = "MMRDICTIONARY.csv";
+            saveDic.FileName = "MMRDICTIONARYV" + LogicVersion + ".csv";
             saveDic.ShowDialog();
             File.WriteAllLines(saveDic.FileName, csv);
         }
