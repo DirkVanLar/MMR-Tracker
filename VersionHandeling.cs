@@ -21,8 +21,15 @@ namespace MMR_Tracker_V2
             //Rando Version 1.8 = Logic Version 8
             //Rando Version 1.9 = Logic Version 13
             //Rando Version 1.10 = Logic Version 13
+            //Entrance Rando Dev Build 1.11.0.2 = Logic Version 16 (I used this to test entrance rando features)
             var EntAreaDict = new Dictionary<int, int>();
-            switch (Version)
+            var AreaDicVersion = 0;
+
+            if (!ValidVersions.Contains(Version) && !isEntranceRando())
+            { AreaDicVersion = ValidVersions.Aggregate((x, y) => Math.Abs(x - Version) < Math.Abs(y - Version) ? x : y); }
+            else { AreaDicVersion = Version; }
+
+            switch (AreaDicVersion)
             {
                 case 3:
                     EntAreaDict.Add(100, 99); //Woodfall Clear, Woodfall Entrance
