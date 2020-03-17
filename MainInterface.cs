@@ -546,7 +546,7 @@ namespace MMR_Tracker_V2
 
         public void CheckItemSelected(ListBox LB, bool FullCheck)
         {
-            if (TXTLocSearch.Text.ToLower() == "enabledev")
+            if (TXTLocSearch.Text.ToLower() == "enabledev" && LB == LBValidLocations && !FullCheck)
             {
                 devToolStripMenuItem.Visible = !devToolStripMenuItem.Visible;
                 TXTLocSearch.Clear();
