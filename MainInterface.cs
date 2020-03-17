@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -108,24 +109,10 @@ namespace MMR_Tracker_V2
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!Utility.PromptSave()) { return; }
+            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
             string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt)|*.txt");
             if (file == "") { return; }
-            Utility.ResetInstance();
-            LogicEditing.CreateLogic(LogicObjects.Logic, file, LogicObjects.DicNameToID);
-            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
-            if (!VersionHandeling.ValidVersions.Contains(VersionHandeling.Version))
-            {
-                DialogResult dialogResult = MessageBox.Show("This version of logic is not supported. Only official releases of versions 1.5 and up are supported. This may result in the tracker not funtioning Correctly. If you are using an official release and are seeing this message, Please update your tracker. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
-                if (dialogResult != DialogResult.Yes)
-                {
-                    Utility.ResetInstance();
-                }
-            }
-            Utility.SaveState(LogicObjects.Logic);
-            PrintToListBox();
-            ResizeObject();
-            FormatMenuItems();
+            CreateTrackerInstance(File.ReadAllLines(file));
         }
 
         private void PrintLogicObjectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -638,6 +625,43 @@ namespace MMR_Tracker_V2
             VersionHandeling.entranceRadnoEnabled = (VersionHandeling.isEntranceRando());
             toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
             coupleEntrancesToolStripMenuItem.Text = (LogicEditing.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
+        }
+
+        private void casualLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
+            System.Net.WebClient wc = new System.Net.WebClient();
+            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
+            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            CreateTrackerInstance(Lines);
+        }
+
+        public void CreateTrackerInstance(string[] Logic)
+        {
+            Utility.ResetInstance();
+            LogicEditing.CreateLogic(LogicObjects.Logic, Logic, LogicObjects.DicNameToID);
+            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
+            if (!VersionHandeling.ValidVersions.Contains(VersionHandeling.Version))
+            {
+                DialogResult dialogResult = MessageBox.Show("This version of logic is not supported. Only official releases of versions 1.5 and up are supported. This may result in the tracker not funtioning Correctly. If you are using an official release and are seeing this message, Please update your tracker. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes)
+                {
+                    Utility.ResetInstance();
+                }
+            }
+            Utility.SaveState(LogicObjects.Logic);
+            PrintToListBox();
+            ResizeObject();
+            FormatMenuItems();
+        }
+
+        private void glitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
+            System.Net.WebClient wc = new System.Net.WebClient();
+            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
+            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            CreateTrackerInstance(Lines);
         }
     }
 }

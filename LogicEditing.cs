@@ -12,13 +12,13 @@ namespace MMR_Tracker_V2
         public static bool StrictLogicHandeling = false;
 
         public static bool CoupleEntrances = true;
-        public static bool CreateLogic(List<LogicObjects.LogicEntry> LogicList, string LogicFileLocation, Dictionary<string, int> DicNameToID)
+        public static bool CreateLogic(List<LogicObjects.LogicEntry> LogicList, string[] LogicFile, Dictionary<string, int> DicNameToID)
         {
             int SubCounter = 0;
             int idCounter = 0;
             var VersionData = new string[2];
             LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
-            foreach (string line in File.ReadAllLines(LogicFileLocation))
+            foreach (string line in LogicFile)
             {
                 if (line.StartsWith("-")) { SubCounter = 0; }
                 if (line.Contains("-version")) { 

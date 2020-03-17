@@ -9,7 +9,7 @@ namespace MMR_Tracker_V2
     class VersionHandeling
     {
         public static int Version = 0; // The current verion of logic being used
-        public static int EntranceRandoVersion = 16; // The version of logic that entrance randomizer was implimented
+        public static int EntranceRandoVersion = 14; // The version of logic that entrance randomizer was implimented
         public static bool entranceRadnoEnabled = false; // Whether or not entrances should be seperated into their own colum
         public static List<int> ValidVersions = new List<int> { 3, 5, 6, 8, 13, 16 }; // Versions of logic used in main releases
 
