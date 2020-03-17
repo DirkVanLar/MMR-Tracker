@@ -1,6 +1,4 @@
 ﻿TODO ===
 
-Fix first character of search not counting
-
 CONSIDER ===
 

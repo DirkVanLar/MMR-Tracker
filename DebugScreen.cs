@@ -16,6 +16,7 @@ namespace MMR_Tracker_V2
 
         private void DebugScreen_Load(object sender, EventArgs e)
         {
+            this.Text = "Debug Screen";
             switch (DebugFunction)
             {
                 case 0:
@@ -33,6 +34,7 @@ namespace MMR_Tracker_V2
         }
         public void PrintLogicToListBox()
         {
+            this.Text = "Logic Object";
             List<LogicObjects.LogicEntry> Logic = LogicObjects.Logic;
             for (int i = 0; i < Logic.Count; i++)
             {
@@ -94,14 +96,15 @@ namespace MMR_Tracker_V2
         {
             this.Text = "Info";
             listBox1.Items.Add("Majoras Mask Randomizer Tracker");
-            listBox1.Items.Add("Tracker Github:  (Double Click)");
+            listBox1.Items.Add("Tracker Github: https://github.com/Thedrummonger/MMR-Tracker");
             listBox1.Items.Add("Version: 2.0");
             listBox1.Items.Add("By: Thedrummonger");
-            listBox1.Items.Add("Twitter: @thedrummonger https://twitter.com/thedrummonger (Double Click)");
+            listBox1.Items.Add("Twitter: @thedrummonger https://twitter.com/thedrummonger");
             listBox1.Items.Add("================For use with the Majoras Mask Randomizer================");
             listBox1.Items.Add("Majoras Mask Randomizer By: ZoeyZolotova");
-            listBox1.Items.Add("Randomizer Github: https://github.com/ZoeyZolotova/mm-rando (Double Click)");
-            listBox1.Items.Add("Randomizer Discord: https://discord.gg/TJZ4uCP (Double Click)");
+            listBox1.Items.Add("Randomizer Github: https://github.com/ZoeyZolotova/mm-rando");
+            listBox1.Items.Add("Randomizer Discord: https://discord.gg/TJZ4uCP");
+            listBox1.Items.Add("(Double click links to open them.)");
             listBox1.Items.Add("==================================================================");
             listBox1.Items.Add("General Use:");
             listBox1.Items.Add("You will start by importing the logic you used to generate your rom.");
@@ -127,7 +130,6 @@ namespace MMR_Tracker_V2
             listBox1.Items.Add("You can also filter by multiple words by seperating them with a ,. (Comma)");
             listBox1.Items.Add("So for example typing \"Clock,Wood\" will show only checks that contain both.");
             listBox1.Items.Add("        the word \"clock\" and the word \"wood\".");
-            listBox1.Items.Add("Advanced filtering using , and | only works with available Location/entrances");
             listBox1.Items.Add("==================================================================");
             listBox1.Items.Add("Setting Item vs Marking Item:");
             listBox1.Items.Add("The set item and set entrance button will mark an item/entrance as being at a");
@@ -135,15 +137,18 @@ namespace MMR_Tracker_V2
             listBox1.Items.Add("This is usefull when you know what item is in a location but haven't actually");
             listBox1.Items.Add("        obtianed it such as if you see it in a shop or read about it in a hint.");
             listBox1.Items.Add("==================================================================");
-            listBox1.Items.Add("Entrance Randomizer Features:");
-            listBox1.Items.Add("This is only useful in versions with full entrance randomizer");
-            listBox1.Items.Add("It will toggle the available entrances and path finder lists");
-            listBox1.Items.Add("If this Feature is off, entrances will show up in the available items list.");
-            listBox1.Items.Add("The path finder will show you the path from one entrance to another.");
-            listBox1.Items.Add("You will enter the last exit you came out of (or exit closest to you) along");
-            listBox1.Items.Add("        with the entrance you want to end up in front of.");
-            listBox1.Items.Add("It will not consider you actually going through the entrance you end up infront of.");
-            listBox1.Items.Add("==================================================================");
+            if ((VersionHandeling.isEntranceRando() && VersionHandeling.entranceRadnoEnabled) || VersionHandeling.Version == 0)
+            {
+                listBox1.Items.Add("Entrance Randomizer Features:");
+                if (VersionHandeling.Version == 0) { listBox1.Items.Add("These options are only available if entrances are randomized."); }
+                listBox1.Items.Add("It will toggle the available entrances and path finder lists");
+                listBox1.Items.Add("If this Feature is off, entrances will show up in the available items list.");
+                listBox1.Items.Add("The path finder will show you the path from one entrance to another.");
+                listBox1.Items.Add("You will enter the last exit you came out of (or exit closest to you) along");
+                listBox1.Items.Add("        with the entrance you want to end up in front of.");
+                listBox1.Items.Add("It will not consider you actually going through the entrance you end up infront of.");
+                listBox1.Items.Add("==================================================================");
+            }
             listBox1.Items.Add("Importing Spoiler log:");
             listBox1.Items.Add("This will allow you to import the spoiler log generated with your rom.");
             listBox1.Items.Add("After you have imoprted the spoiler log checking/marking a location will ");
@@ -173,10 +178,13 @@ namespace MMR_Tracker_V2
         }
         private void ListBox1_DoubleClick(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex == 1) { System.Diagnostics.Process.Start("https://github.com/Thedrummonger/MMR-Tracker"); }
-            if (listBox1.SelectedIndex == 4) { System.Diagnostics.Process.Start("https://twitter.com/thedrummonger"); }
-            if (listBox1.SelectedIndex == 7) { System.Diagnostics.Process.Start("https://github.com/ZoeyZolotova/mm-rando"); }
-            if (listBox1.SelectedIndex == 8) { System.Diagnostics.Process.Start("https://discord.gg/TJZ4uCP"); }
+            if (DebugFunction == 2) 
+            {
+                if (listBox1.SelectedIndex == 1) { System.Diagnostics.Process.Start("https://github.com/Thedrummonger/MMR-Tracker"); }
+                if (listBox1.SelectedIndex == 4) { System.Diagnostics.Process.Start("https://twitter.com/thedrummonger"); }
+                if (listBox1.SelectedIndex == 7) { System.Diagnostics.Process.Start("https://github.com/ZoeyZolotova/mm-rando"); }
+                if (listBox1.SelectedIndex == 8) { System.Diagnostics.Process.Start("https://discord.gg/TJZ4uCP"); }
+            }
         }
     }
 }
