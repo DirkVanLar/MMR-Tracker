@@ -12,8 +12,10 @@ namespace MMR_Tracker_V2
         public static bool StrictLogicHandeling = false;
 
         public static bool CoupleEntrances = true;
+
         public static bool CreateLogic(List<LogicObjects.LogicEntry> LogicList, string[] LogicFile, Dictionary<string, int> DicNameToID)
         {
+            LogicObjects.RawLogicText = LogicFile.ToList<string>();
             int SubCounter = 0;
             int idCounter = 0;
             var VersionData = new string[2];

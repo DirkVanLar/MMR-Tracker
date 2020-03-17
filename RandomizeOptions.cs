@@ -64,18 +64,24 @@ namespace MMR_Tracker_V2
         private void BtnSave_Click(object sender, EventArgs e)
         {
             string settingString = "";
-            foreach (ListViewItem item in listView1.Items)
+            foreach (var item in LogicObjects.Logic)
             {
-                var logic = LogicObjects.Logic[item.Index];
+                var logic = item;
 
                 int Setting = logic.RandomizedState;
                 if (logic.StartingItem) { Setting += 4; }
 
                 settingString += Setting.ToString();
             }
-            string[] Options = new string[2];
+            string[] Options = new string[2 + LogicObjects.RawLogicText.Count];
             Options[0] = settingString;
             Options[1] = VersionHandeling.Version.ToString();
+            var count = 2;
+            foreach(var i in LogicObjects.RawLogicText)
+            {
+                Options[count] = i;
+                count++;
+            }
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Settings (*.MMRTSET)|*.MMRTSET", FilterIndex = 1 };
             if (saveDialog.ShowDialog() == DialogResult.OK) { File.WriteAllLines(saveDialog.FileName, Options); }
             
@@ -84,7 +90,8 @@ namespace MMR_Tracker_V2
         private void BtnLoad_Click(object sender, EventArgs e)
         {
             string file = Utility.FileSelect("Select A Settings File", "MMR Tracker Settings (*.MMRTSET)|*.MMRTSET");
-            if (file == "") { return; }string[] options = File.ReadAllLines(file);
+            if (file == "") { return; }
+            string[] options = File.ReadAllLines(file);
             int Version = Int32.Parse(options[1]);
 
             if (VersionHandeling.Version != Version)
@@ -92,10 +99,10 @@ namespace MMR_Tracker_V2
                 MessageBox.Show("This settings file was not made using the current logic version.");
                 return;
             }
-            foreach(ListViewItem item in listView1.Items)
+            foreach(var item in LogicObjects.Logic)
             {
-                var logic = LogicObjects.Logic[item.Index];
-                int setting = Int32.Parse(options[0][item.Index].ToString());
+                var logic = item;
+                int setting = Int32.Parse(options[0][item.ID].ToString());
                 logic.StartingItem = setting > 3;
                 logic.RandomizedState = (setting > 3) ? setting - 4 : setting;
             }

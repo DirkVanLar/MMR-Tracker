@@ -308,6 +308,7 @@ namespace MMR_Tracker_V2
             LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
             LogicObjects.MMRDictionary = new List<LogicObjects.LogicDic>();
             LogicObjects.EntrancePairs = new Dictionary<int, int>();
+            LogicObjects.RawLogicText = new List<string>();
         }
         public static string FileSelect(string title, string filter)
         {
