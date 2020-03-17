@@ -272,5 +272,38 @@ namespace MMR_Tracker_V2
             logic[reverseLocation].RandomizedItem = (Checking) ? reverseItem : -2;
             logic[reverseItem].Aquired = Checking;
         }
+
+        public static void recreateLogic()
+        {
+            string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt)|*.txt");
+            if (file == "") { return; }
+
+            var OldLogic = Utility.CloneLogicList(LogicObjects.Logic);
+            LogicObjects.Logic = new List<LogicObjects.LogicEntry>();
+            LogicObjects.DicNameToID = new Dictionary<string, int>();
+            LogicObjects.EntrancePairs = new Dictionary<int, int>();
+            LogicObjects.RawLogicText = new List<string>();
+            VersionHandeling.Version = 0;
+
+            CreateLogic(LogicObjects.Logic, File.ReadAllLines(file), LogicObjects.DicNameToID);
+
+            var logic = LogicObjects.Logic;
+            foreach (var entry in OldLogic)
+            {
+                if (LogicObjects.DicNameToID.ContainsKey(entry.DictionaryName))
+                {
+                    var logicEntry = logic[LogicObjects.DicNameToID[entry.DictionaryName]];
+
+                    logicEntry.Aquired = entry.Aquired;
+                    logicEntry.Checked = entry.Checked;
+                    logicEntry.RandomizedItem = entry.RandomizedItem;
+                    logicEntry.SpoilerRandom = entry.SpoilerRandom;
+                    logicEntry.RandomizedState = entry.RandomizedState;
+                    logicEntry.StartingItem = entry.StartingItem;
+                }
+            }
+            CalculateItems(LogicObjects.Logic, true, true);
+            Utility.SaveState(LogicObjects.Logic);
+        }
     }
 }

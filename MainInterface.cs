@@ -37,6 +37,15 @@ namespace MMR_Tracker_V2
 
         //Menu Strip---------------------------------------------------------------------------
 
+        private void casualLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
+            System.Net.WebClient wc = new System.Net.WebClient();
+            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
+            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            CreateTrackerInstance(Lines);
+        }
+
         private void coupleEntrancesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicEditing.CoupleEntrances = !LogicEditing.CoupleEntrances;
@@ -76,6 +85,15 @@ namespace MMR_Tracker_V2
             LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
             ResizeObject();
             PrintToListBox();
+        }
+
+        private void glitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
+            System.Net.WebClient wc = new System.Net.WebClient();
+            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
+            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            CreateTrackerInstance(Lines);
         }
 
         private void ImportSpoilerLogToolStripMenuItem_Click(object sender, EventArgs e)
@@ -194,21 +212,20 @@ namespace MMR_Tracker_V2
             PrintToListBox();
         }
 
+        private void updateLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicEditing.recreateLogic();
+            PrintToListBox();
+            ResizeObject();
+            FormatMenuItems();
+        }
+
         //Text Boxes---------------------------------------------------------------------------
-        private void TXTLocSearch_TextChanged(object sender, EventArgs e)
-        {
-            PrintToListBox();
-        }
+        private void TXTLocSearch_TextChanged(object sender, EventArgs e) {  PrintToListBox();  }
 
-        private void TXTEntSearch_TextChanged(object sender, EventArgs e)
-        {
-            PrintToListBox();
-        }
+        private void TXTEntSearch_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
 
-        private void TXTCheckedSearch_TextChanged(object sender, EventArgs e)
-        {
-            PrintToListBox();
-        }
+        private void TXTCheckedSearch_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
 
         //List Boxes---------------------------------------------------------------------------
         private void LBValidLocations_DoubleClick(object sender, EventArgs e) { CheckItemSelected(LBValidLocations, true); }
@@ -292,8 +309,9 @@ namespace MMR_Tracker_V2
                     var ThisIsStupid = new LogicObjects.LogicEntry
                     { DisplayName = 
                         ((LogicObjects.Logic[stop.Entrance].DictionaryName == "EntranceSouthClockTownFromClockTowerInterior")?
-                        "Song of Time" : LogicObjects.Logic[stop.Entrance].LocationName) 
-                    + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName };
+                            "Song of Time" : 
+                            LogicObjects.Logic[stop.Entrance].LocationName
+                        ) + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName };
                     LBPathFinder.Items.Add(ThisIsStupid);
                 }
                 counter++;
@@ -630,15 +648,6 @@ namespace MMR_Tracker_V2
             coupleEntrancesToolStripMenuItem.Text = (LogicEditing.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
         }
 
-        private void casualLogicToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
-            System.Net.WebClient wc = new System.Net.WebClient();
-            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
-            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            CreateTrackerInstance(Lines);
-        }
-
         public void CreateTrackerInstance(string[] Logic)
         {
             Utility.ResetInstance();
@@ -653,15 +662,6 @@ namespace MMR_Tracker_V2
             PrintToListBox();
             ResizeObject();
             FormatMenuItems();
-        }
-
-        private void glitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
-            System.Net.WebClient wc = new System.Net.WebClient();
-            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
-            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            CreateTrackerInstance(Lines);
         }
     }
 }

@@ -54,6 +54,9 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.casualLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.glitchedLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entranceRandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useSongOfTimeInPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,9 +77,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.casualLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.glitchedLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.userLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -305,14 +306,14 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.LoadToolStripMenuItem_Click);
             // 
@@ -323,9 +324,30 @@
             this.glitchedLogicToolStripMenuItem,
             this.userLogicToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
+            // 
+            // casualLogicToolStripMenuItem
+            // 
+            this.casualLogicToolStripMenuItem.Name = "casualLogicToolStripMenuItem";
+            this.casualLogicToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.casualLogicToolStripMenuItem.Text = "Casual Logic";
+            this.casualLogicToolStripMenuItem.Click += new System.EventHandler(this.casualLogicToolStripMenuItem_Click);
+            // 
+            // glitchedLogicToolStripMenuItem
+            // 
+            this.glitchedLogicToolStripMenuItem.Name = "glitchedLogicToolStripMenuItem";
+            this.glitchedLogicToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.glitchedLogicToolStripMenuItem.Text = "Glitched Logic";
+            this.glitchedLogicToolStripMenuItem.Click += new System.EventHandler(this.glitchedLogicToolStripMenuItem_Click);
+            // 
+            // userLogicToolStripMenuItem
+            // 
+            this.userLogicToolStripMenuItem.Name = "userLogicToolStripMenuItem";
+            this.userLogicToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.userLogicToolStripMenuItem.Text = "User Logic";
+            this.userLogicToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -346,7 +368,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -384,7 +406,7 @@
             this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -413,9 +435,10 @@
             this.devToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createDictionaryToolStripMenuItem,
             this.printLogicObjectToolStripMenuItem,
-            this.updateDisplayNamesToolStripMenuItem});
+            this.updateDisplayNamesToolStripMenuItem,
+            this.updateLogicToolStripMenuItem});
             this.devToolStripMenuItem.Name = "devToolStripMenuItem";
-            this.devToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.devToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.devToolStripMenuItem.Text = "Dev";
             // 
             // createDictionaryToolStripMenuItem
@@ -444,7 +467,7 @@
             this.miscOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showEntryNameToolTipToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -475,26 +498,12 @@
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // casualLogicToolStripMenuItem
+            // updateLogicToolStripMenuItem
             // 
-            this.casualLogicToolStripMenuItem.Name = "casualLogicToolStripMenuItem";
-            this.casualLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.casualLogicToolStripMenuItem.Text = "Casual Logic";
-            this.casualLogicToolStripMenuItem.Click += new System.EventHandler(this.casualLogicToolStripMenuItem_Click);
-            // 
-            // glitchedLogicToolStripMenuItem
-            // 
-            this.glitchedLogicToolStripMenuItem.Name = "glitchedLogicToolStripMenuItem";
-            this.glitchedLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.glitchedLogicToolStripMenuItem.Text = "Glitched Logic";
-            this.glitchedLogicToolStripMenuItem.Click += new System.EventHandler(this.glitchedLogicToolStripMenuItem_Click);
-            // 
-            // userLogicToolStripMenuItem
-            // 
-            this.userLogicToolStripMenuItem.Name = "userLogicToolStripMenuItem";
-            this.userLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.userLogicToolStripMenuItem.Text = "User Logic";
-            this.userLogicToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
+            this.updateLogicToolStripMenuItem.Name = "updateLogicToolStripMenuItem";
+            this.updateLogicToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.updateLogicToolStripMenuItem.Text = "Update Logic";
+            this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.updateLogicToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 
@@ -584,6 +593,7 @@
         private System.Windows.Forms.ToolStripMenuItem casualLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem glitchedLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userLogicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateLogicToolStripMenuItem;
     }
 }
 
