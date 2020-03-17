@@ -104,6 +104,9 @@ namespace MMR_Tracker_V2
             listBox1.Items.Add("Randomizer Discord: https://discord.gg/TJZ4uCP (Double Click)");
             listBox1.Items.Add("==================================================================");
             listBox1.Items.Add("General Use:");
+            listBox1.Items.Add("You will start by importing the logic you used to generate your rom.");
+            listBox1.Items.Add("You can import a logic file or use the default Causal or Glitched Logic.");
+            listBox1.Items.Add("These are pulled directly from the dev branch of the github repository.");
             listBox1.Items.Add("The tracker will show you all available locations based on your logic and");
             listBox1.Items.Add("        obtained items.");
             listBox1.Items.Add("Double clicking a location will bring up the item select list.");
