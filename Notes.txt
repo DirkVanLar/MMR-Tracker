@@ -1,6 +1,7 @@
 ﻿TODO ===
 
-Fix first character of search not counting
+Add the Ability to save Radnomization Options with Logic
+	This file can be used when selecting logic and will auto apply settings
 
 CONSIDER ===
 

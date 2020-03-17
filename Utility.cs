@@ -350,9 +350,9 @@ namespace MMR_Tracker_V2
                 foreach (string subterm in subTerms)
                 {
                     if (subterm == "") { continue; }
-                    if (subterm.Substring(1) == "") { continue; }
                     if (subterm[0] == '#')
                     {
+                        if (subterm.Substring(1) == "") { continue; }
                         if (!logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower())) { valid = false; }
                     }
                     else
@@ -360,7 +360,7 @@ namespace MMR_Tracker_V2
                         if (!NameToCompare.ToLower().Contains(subterm.ToLower())) { valid = false; }
                     }
                 }
-                if (valid) { return valid; }
+                if (valid) { return true; }
             }
             return false;
         }
