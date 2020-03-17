@@ -110,9 +110,15 @@ namespace MMR_Tracker_V2
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
-            string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt)|*.txt");
+            string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
             if (file == "") { return; }
-            CreateTrackerInstance(File.ReadAllLines(file));
+
+            bool SettingsFile = file.EndsWith(".MMRTSET");
+            var lines = (SettingsFile) ? File.ReadAllLines(file).Skip(2) : File.ReadAllLines(file);
+
+            CreateTrackerInstance(lines.ToArray());
+
+            if (SettingsFile) { RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file)); }
         }
 
         private void PrintLogicObjectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -220,16 +226,7 @@ namespace MMR_Tracker_V2
         private void LBPathFinder_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, LBPathFinder); }
 
         //Buttons---------------------------------------------------------------------------
-        private void BTNSetItem_Click(object sender, EventArgs e)
-        {
-            if (TXTLocSearch.Text.ToLower() == "enabledev")
-            {
-                devToolStripMenuItem.Visible = !devToolStripMenuItem.Visible;
-                TXTLocSearch.Clear();
-                return;
-            }
-            CheckItemSelected(LBValidLocations, false);
-        }
+        private void BTNSetItem_Click(object sender, EventArgs e) { CheckItemSelected(LBValidLocations, false); }
 
         private void BTNSetEntrance_Click(object sender, EventArgs e) { CheckItemSelected(LBValidEntrances, false); }
 
@@ -549,6 +546,12 @@ namespace MMR_Tracker_V2
 
         public void CheckItemSelected(ListBox LB, bool FullCheck)
         {
+            if (TXTLocSearch.Text.ToLower() == "enabledev")
+            {
+                devToolStripMenuItem.Visible = !devToolStripMenuItem.Visible;
+                TXTLocSearch.Clear();
+                return;
+            }
             if ((LB.SelectedItem is LogicObjects.LogicEntry))
             {
                 var selectedIndex = LB.SelectedIndex;
