@@ -644,10 +644,7 @@ namespace MMR_Tracker_V2
             if (!VersionHandeling.ValidVersions.Contains(VersionHandeling.Version))
             {
                 DialogResult dialogResult = MessageBox.Show("This version of logic is not supported. Only official releases of versions 1.5 and up are supported. This may result in the tracker not funtioning Correctly. If you are using an official release and are seeing this message, Please update your tracker. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
-                if (dialogResult != DialogResult.Yes)
-                {
-                    Utility.ResetInstance();
-                }
+                if (dialogResult != DialogResult.Yes) { Utility.ResetInstance(); }
             }
             Utility.SaveState(LogicObjects.Logic);
             PrintToListBox();
