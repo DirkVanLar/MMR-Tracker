@@ -352,8 +352,8 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.entranceRandoToolStripMenuItem,
             this.logicOptionsToolStripMenuItem,
+            this.entranceRandoToolStripMenuItem,
             this.devToolStripMenuItem,
             this.miscOptionsToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
