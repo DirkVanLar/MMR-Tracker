@@ -1,7 +1,6 @@
 ﻿TODO ===
 
-Add the Ability to save Radnomization Options with Logic
-	This file can be used when selecting logic and will auto apply settings
+Add tracker setting to MMRTSET files
 
 CONSIDER ===
 

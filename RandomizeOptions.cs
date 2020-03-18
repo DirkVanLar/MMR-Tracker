@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
+using System.ComponentModel;
 
 namespace MMR_Tracker_V2
 {
@@ -109,7 +110,7 @@ namespace MMR_Tracker_V2
 
             if (VersionHandeling.Version != Version)
             {
-                MessageBox.Show("This settings file was not made using the current logic version.");
+                MessageBox.Show("This settings file was not made using the current logic version. Please resave your settings in the current logic version.");
                 return;
             }
             int counter = 0;
