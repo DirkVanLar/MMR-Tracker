@@ -333,14 +333,14 @@
             this.casualLogicToolStripMenuItem.Name = "casualLogicToolStripMenuItem";
             this.casualLogicToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.casualLogicToolStripMenuItem.Text = "Casual Logic";
-            this.casualLogicToolStripMenuItem.Click += new System.EventHandler(this.casualLogicToolStripMenuItem_Click);
+            this.casualLogicToolStripMenuItem.Click += new System.EventHandler(this.CasualLogicToolStripMenuItem_Click);
             // 
             // glitchedLogicToolStripMenuItem
             // 
             this.glitchedLogicToolStripMenuItem.Name = "glitchedLogicToolStripMenuItem";
             this.glitchedLogicToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.glitchedLogicToolStripMenuItem.Text = "Glitched Logic";
-            this.glitchedLogicToolStripMenuItem.Click += new System.EventHandler(this.glitchedLogicToolStripMenuItem_Click);
+            this.glitchedLogicToolStripMenuItem.Click += new System.EventHandler(this.GlitchedLogicToolStripMenuItem_Click);
             // 
             // userLogicToolStripMenuItem
             // 
@@ -376,7 +376,7 @@
             this.useSongOfTimeInPathfinderToolStripMenuItem.Name = "useSongOfTimeInPathfinderToolStripMenuItem";
             this.useSongOfTimeInPathfinderToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
             this.useSongOfTimeInPathfinderToolStripMenuItem.Text = "Use Song of Time in Pathfinder";
-            this.useSongOfTimeInPathfinderToolStripMenuItem.Click += new System.EventHandler(this.useSongOfTimeInPathfinderToolStripMenuItem_Click);
+            this.useSongOfTimeInPathfinderToolStripMenuItem.Click += new System.EventHandler(this.UseSongOfTimeInPathfinderToolStripMenuItem_Click);
             // 
             // toggleEntranceRandoFeaturesToolStripMenuItem
             // 
@@ -390,14 +390,14 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem.Name = "includeItemLocationsAsDestinationToolStripMenuItem";
             this.includeItemLocationsAsDestinationToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
             this.includeItemLocationsAsDestinationToolStripMenuItem.Text = "Include Item Locations as destination";
-            this.includeItemLocationsAsDestinationToolStripMenuItem.Click += new System.EventHandler(this.includeItemLocationsAsDestinationToolStripMenuItem_Click);
+            this.includeItemLocationsAsDestinationToolStripMenuItem.Click += new System.EventHandler(this.IncludeItemLocationsAsDestinationToolStripMenuItem_Click);
             // 
             // coupleEntrancesToolStripMenuItem
             // 
             this.coupleEntrancesToolStripMenuItem.Name = "coupleEntrancesToolStripMenuItem";
             this.coupleEntrancesToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
             this.coupleEntrancesToolStripMenuItem.Text = "Couple Entrances";
-            this.coupleEntrancesToolStripMenuItem.Click += new System.EventHandler(this.coupleEntrancesToolStripMenuItem_Click);
+            this.coupleEntrancesToolStripMenuItem.Click += new System.EventHandler(this.CoupleEntrancesToolStripMenuItem_Click);
             // 
             // logicOptionsToolStripMenuItem
             // 
@@ -428,7 +428,7 @@
             this.stricterLogicHandelingToolStripMenuItem.Name = "stricterLogicHandelingToolStripMenuItem";
             this.stricterLogicHandelingToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.stricterLogicHandelingToolStripMenuItem.Text = "Stricter Logic Handeling";
-            this.stricterLogicHandelingToolStripMenuItem.Click += new System.EventHandler(this.stricterLogicHandelingToolStripMenuItem_Click);
+            this.stricterLogicHandelingToolStripMenuItem.Click += new System.EventHandler(this.StricterLogicHandelingToolStripMenuItem_Click);
             // 
             // devToolStripMenuItem
             // 
@@ -475,7 +475,7 @@
             this.showEntryNameToolTipToolStripMenuItem.Name = "showEntryNameToolTipToolStripMenuItem";
             this.showEntryNameToolTipToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.showEntryNameToolTipToolStripMenuItem.Text = "Show Entry Name ToolTip";
-            this.showEntryNameToolTipToolStripMenuItem.Click += new System.EventHandler(this.showEntryNameToolTipToolStripMenuItem_Click);
+            this.showEntryNameToolTipToolStripMenuItem.Click += new System.EventHandler(this.ShowEntryNameToolTipToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -503,7 +503,7 @@
             this.updateLogicToolStripMenuItem.Name = "updateLogicToolStripMenuItem";
             this.updateLogicToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.updateLogicToolStripMenuItem.Text = "Update Logic";
-            this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.updateLogicToolStripMenuItem_Click);
+            this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 
