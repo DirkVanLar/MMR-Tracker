@@ -40,6 +40,11 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.chkShowRandom = new System.Windows.Forms.CheckBox();
+            this.chkShowUnrand = new System.Windows.Forms.CheckBox();
+            this.chkShowUnrandMan = new System.Windows.Forms.CheckBox();
+            this.chkShowJunk = new System.Windows.Forms.CheckBox();
+            this.chkShowStartingItems = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -149,11 +154,71 @@
             this.txtSearch.TabIndex = 8;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
+            // chkShowRandom
+            // 
+            this.chkShowRandom.AutoSize = true;
+            this.chkShowRandom.Location = new System.Drawing.Point(506, 325);
+            this.chkShowRandom.Name = "chkShowRandom";
+            this.chkShowRandom.Size = new System.Drawing.Size(115, 17);
+            this.chkShowRandom.TabIndex = 9;
+            this.chkShowRandom.Text = "Show Randomized";
+            this.chkShowRandom.UseVisualStyleBackColor = true;
+            this.chkShowRandom.CheckedChanged += new System.EventHandler(this.CHKShowRandom_CheckedChanged);
+            // 
+            // chkShowUnrand
+            // 
+            this.chkShowUnrand.AutoSize = true;
+            this.chkShowUnrand.Location = new System.Drawing.Point(506, 348);
+            this.chkShowUnrand.Name = "chkShowUnrand";
+            this.chkShowUnrand.Size = new System.Drawing.Size(129, 17);
+            this.chkShowUnrand.TabIndex = 10;
+            this.chkShowUnrand.Text = "Show UnRandomized";
+            this.chkShowUnrand.UseVisualStyleBackColor = true;
+            this.chkShowUnrand.CheckedChanged += new System.EventHandler(this.chkShowUnrand_CheckedChanged);
+            // 
+            // chkShowUnrandMan
+            // 
+            this.chkShowUnrandMan.AutoSize = true;
+            this.chkShowUnrandMan.Location = new System.Drawing.Point(506, 371);
+            this.chkShowUnrandMan.Name = "chkShowUnrandMan";
+            this.chkShowUnrandMan.Size = new System.Drawing.Size(132, 17);
+            this.chkShowUnrandMan.TabIndex = 11;
+            this.chkShowUnrandMan.Text = "Show UnRando (Man)";
+            this.chkShowUnrandMan.UseVisualStyleBackColor = true;
+            this.chkShowUnrandMan.CheckedChanged += new System.EventHandler(this.chkShowUnrandMan_CheckedChanged);
+            // 
+            // chkShowJunk
+            // 
+            this.chkShowJunk.AutoSize = true;
+            this.chkShowJunk.Location = new System.Drawing.Point(506, 394);
+            this.chkShowJunk.Name = "chkShowJunk";
+            this.chkShowJunk.Size = new System.Drawing.Size(115, 17);
+            this.chkShowJunk.TabIndex = 12;
+            this.chkShowJunk.Text = "Show Forced Junk";
+            this.chkShowJunk.UseVisualStyleBackColor = true;
+            this.chkShowJunk.CheckedChanged += new System.EventHandler(this.chkJunk_CheckedChanged);
+            // 
+            // chkShowStartingItems
+            // 
+            this.chkShowStartingItems.AutoSize = true;
+            this.chkShowStartingItems.Location = new System.Drawing.Point(506, 418);
+            this.chkShowStartingItems.Name = "chkShowStartingItems";
+            this.chkShowStartingItems.Size = new System.Drawing.Size(120, 17);
+            this.chkShowStartingItems.TabIndex = 13;
+            this.chkShowStartingItems.Text = "Show Starting Items";
+            this.chkShowStartingItems.UseVisualStyleBackColor = true;
+            this.chkShowStartingItems.CheckedChanged += new System.EventHandler(this.chkStartingItems_CheckedChanged);
+            // 
             // RandomizeOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 628);
+            this.Controls.Add(this.chkShowStartingItems);
+            this.Controls.Add(this.chkShowJunk);
+            this.Controls.Add(this.chkShowUnrandMan);
+            this.Controls.Add(this.chkShowUnrand);
+            this.Controls.Add(this.chkShowRandom);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
@@ -185,5 +250,10 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.CheckBox chkShowRandom;
+        private System.Windows.Forms.CheckBox chkShowUnrand;
+        private System.Windows.Forms.CheckBox chkShowUnrandMan;
+        private System.Windows.Forms.CheckBox chkShowJunk;
+        private System.Windows.Forms.CheckBox chkShowStartingItems;
     }
 }

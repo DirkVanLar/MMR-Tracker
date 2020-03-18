@@ -15,7 +15,25 @@ namespace MMR_Tracker_V2
 
         //Form Objects
 
-        private void RandomizeOptions_Load(object sender, EventArgs e) { WriteToListVeiw(); }
+        private void RandomizeOptions_Load(object sender, EventArgs e) 
+        {
+            chkShowRandom.Checked = true;
+            chkShowUnrand.Checked = true;
+            chkShowUnrandMan.Checked = true;
+            chkShowJunk.Checked = true;
+            chkShowStartingItems.Checked = true;
+            WriteToListVeiw(); 
+        }
+
+        private void CHKShowRandom_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
+
+        private void chkShowUnrand_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
+
+        private void chkShowUnrandMan_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
+
+        private void chkJunk_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
+
+        private void chkStartingItems_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
 
         private void BTNRandomized_Click(object sender, EventArgs e) { UpdateRandomOption(0); }
 
@@ -70,17 +88,9 @@ namespace MMR_Tracker_V2
         {
             foreach (ListViewItem selection in listView1.SelectedItems)
             {
-                if (option == 4)
-                {
-                    var logObj = LogicObjects.Logic[Int32.Parse(selection.Tag.ToString())];
-                    logObj.StartingItem = !logObj.StartingItem;
-                }
-                else
-                {
-                    int index = Int32.Parse(selection.Tag.ToString());
-                    LogicObjects.Logic[index].RandomizedState = option;
-                    //Console.WriteLine(index);
-                }
+                var entry = LogicObjects.Logic[Int32.Parse(selection.Tag.ToString())];
+                if (option == 4) { entry.StartingItem = !entry.StartingItem; }
+                else { entry.RandomizedState = option; }
             }
             WriteToListVeiw();
         }
@@ -93,7 +103,14 @@ namespace MMR_Tracker_V2
             listView1.FullRowSelect = true;
             foreach (var entry in logic)
             {
-                if (!entry.IsFake && Utility.FilterSearch(entry, txtSearch.Text, entry.DictionaryName))
+                bool chkValid = false;
+                if (entry.RandomizedState == 0 && chkShowRandom.Checked) { chkValid = true; }
+                if (entry.RandomizedState == 1 && chkShowUnrand.Checked) { chkValid = true; }
+                if (entry.RandomizedState == 2 && chkShowUnrandMan.Checked) { chkValid = true; }
+                if (entry.RandomizedState == 3 && chkShowJunk.Checked) { chkValid = true; }
+                if (entry.StartingItem && chkShowStartingItems.Checked) { chkValid = true; }
+
+                if (!entry.IsFake && chkValid && Utility.FilterSearch(entry, txtSearch.Text, entry.DictionaryName))
                 {
                     string[] row = { entry.DictionaryName, randomizedOptions[entry.RandomizedState], entry.StartingItem.ToString() };
                     ListViewItem listViewItem = new ListViewItem(row);
