@@ -31,10 +31,10 @@ namespace MMR_Tracker_V2
             string settingString = "";
             foreach (var item in LogicObjects.Logic)
             {
-                var logic = item;
+                if (item.IsFake) { continue; }
 
-                int Setting = logic.RandomizedState;
-                if (logic.StartingItem) { Setting += 4; }
+                int Setting = item.RandomizedState;
+                if (item.StartingItem) { Setting += 4; }
 
                 settingString += Setting.ToString();
             }
@@ -112,12 +112,14 @@ namespace MMR_Tracker_V2
                 MessageBox.Show("This settings file was not made using the current logic version.");
                 return;
             }
+            int counter = 0;
             foreach (var item in LogicObjects.Logic)
             {
-                var logic = item;
-                int setting = Int32.Parse(options[0][item.ID].ToString());
-                logic.StartingItem = setting > 3;
-                logic.RandomizedState = (setting > 3) ? setting - 4 : setting;
+                if (item.IsFake) { continue; }
+                int setting = Int32.Parse(options[0][counter].ToString());
+                item.StartingItem = setting > 3;
+                item.RandomizedState = (setting > 3) ? setting - 4 : setting;
+                counter++;
             }
         }
     }
