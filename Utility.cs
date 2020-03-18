@@ -239,10 +239,15 @@ namespace MMR_Tracker_V2
             return SpoilerData;
         }
         public static bool SaveInstance()
-        {
-            string[] Options = new string[2];
+        { 
+            string[] Options = new string[7];
             Options[0] = JsonConvert.SerializeObject(LogicObjects.Logic);
             Options[1] = VersionHandeling.Version.ToString();
+            Options[2] = "UseSOT:" + ((Pathfinding.UseSongOfTime) ? "1" : "0");
+            Options[3] = "IncludeItems:" + ((Pathfinding.IncludeItemLocations) ? "1" : "0");
+            Options[4] = "EntranceCouple:" + ((LogicEditing.CoupleEntrances) ? "1" : "0");
+            Options[5] = "StrictLogic:" + ((LogicEditing.StrictLogicHandeling) ? "1" : "0");
+            Options[6] = "ShowToolTip:" + ((Utility.ShowEntryNameTooltip) ? "1" : "0");
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
             File.WriteAllLines(saveDialog.FileName, Options);
@@ -253,6 +258,11 @@ namespace MMR_Tracker_V2
             string[] options = File.ReadAllLines(LogicFile);
             LogicObjects.Logic = JsonConvert.DeserializeObject<List<LogicObjects.LogicEntry>>(options[0]);
             VersionHandeling.Version = Int32.Parse(options[1]);
+            Pathfinding.UseSongOfTime = (options[2] == "UseSOT:1");
+            Pathfinding.IncludeItemLocations = (options[3] == "IncludeItems:1");
+            LogicEditing.CoupleEntrances = (options[4] == "EntranceCouple:1");
+            LogicEditing.StrictLogicHandeling = (options[5] == "StrictLogic:1");
+            Utility.ShowEntryNameTooltip = (options[6] == "ShowToolTip:1");
             VersionHandeling.entranceRadnoEnabled = (VersionHandeling.isEntranceRando());
             Console.WriteLine(options[1]);
             return true;

@@ -273,7 +273,7 @@ namespace MMR_Tracker_V2
             logic[reverseItem].Aquired = Checking;
         }
 
-        public static void recreateLogic()
+        public static void RecreateLogic()
         {
             string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt)|*.txt");
             if (file == "") { return; }

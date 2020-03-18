@@ -37,7 +37,7 @@ namespace MMR_Tracker_V2
 
         //Menu Strip---------------------------------------------------------------------------
 
-        private void casualLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CasualLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
             System.Net.WebClient wc = new System.Net.WebClient();
@@ -46,7 +46,7 @@ namespace MMR_Tracker_V2
             CreateTrackerInstance(Lines);
         }
 
-        private void coupleEntrancesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CoupleEntrancesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicEditing.CoupleEntrances = !LogicEditing.CoupleEntrances;
             if (!LogicEditing.CoupleEntrances) { MessageBox.Show("Entrances will not uncouple automatically."); }
@@ -87,7 +87,7 @@ namespace MMR_Tracker_V2
             PrintToListBox();
         }
 
-        private void glitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GlitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
             System.Net.WebClient wc = new System.Net.WebClient();
@@ -167,13 +167,13 @@ namespace MMR_Tracker_V2
             Utility.SaveInstance();
         }
 
-        private void stricterLogicHandelingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void StricterLogicHandelingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicEditing.StrictLogicHandeling = !LogicEditing.StrictLogicHandeling;
             FormatMenuItems();
         }
 
-        private void showEntryNameToolTipToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowEntryNameToolTipToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Utility.ShowEntryNameTooltip = !Utility.ShowEntryNameTooltip;
             FormatMenuItems();
@@ -194,13 +194,13 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
         }
 
-        private void useSongOfTimeInPathfinderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UseSongOfTimeInPathfinderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Pathfinding.UseSongOfTime = !Pathfinding.UseSongOfTime;
             FormatMenuItems();
         }
 
-        private void includeItemLocationsAsDestinationToolStripMenuItem_Click(object sender, EventArgs e)
+        private void IncludeItemLocationsAsDestinationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Pathfinding.IncludeItemLocations = !Pathfinding.IncludeItemLocations;
             FormatMenuItems();
@@ -212,9 +212,9 @@ namespace MMR_Tracker_V2
             PrintToListBox();
         }
 
-        private void updateLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UpdateLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LogicEditing.recreateLogic();
+            LogicEditing.RecreateLogic();
             PrintToListBox();
             ResizeObject();
             FormatMenuItems();
