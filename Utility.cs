@@ -222,6 +222,8 @@ namespace MMR_Tracker_V2
                 if (line.Contains("->"))
                 {
                     var linedata = line.Split(new string[] { "->" }, StringSplitOptions.None);
+                    linedata[0] = linedata[0].Replace("*", "");
+                    linedata[1] = linedata[1].Replace("*", "");
                     entry.LocationName = linedata[0].Trim();
                     entry.ItemName = linedata[1].Trim();
                     entry.LocationID = -2;

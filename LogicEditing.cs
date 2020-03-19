@@ -327,14 +327,14 @@ namespace MMR_Tracker_V2
                     item.Aquired = item.Available;
                     recalculate = true;
                 }
-                if (!item.IsFake && item.SpoilerRandom > -1 && item.Available != LogicObjects.Logic[item.SpoilerRandom].Aquired && Ignored.Contains(item.ID))
+                if (!item.IsFake && item.SpoilerRandom > -1 && item.Available != logic[item.SpoilerRandom].Aquired && !Ignored.Contains(item.ID))
                 {
-                    LogicObjects.Logic[item.SpoilerRandom].Aquired = item.Available;
+                    logic[item.SpoilerRandom].Aquired = item.Available;
                     recalculate = true;
                 }
 
             }
-            if (recalculate) { CalculateItems(logic, false, false); }
+            if (recalculate) { CheckSeed(logic, false, Ignored); }
         }
     }
 }
