@@ -58,26 +58,26 @@
             this.glitchedLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logicOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editRadnomizationOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importSpoilerLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stricterLogicHandelingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entranceRandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useSongOfTimeInPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleEntranceRandoFeaturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includeItemLocationsAsDestinationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.coupleEntrancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logicOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editRadnomizationOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importSpoilerLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stricterLogicHandelingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLogicObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateDisplayNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miscOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showEntryNameToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -360,6 +360,37 @@
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
+            // logicOptionsToolStripMenuItem
+            // 
+            this.logicOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editRadnomizationOptionsToolStripMenuItem,
+            this.importSpoilerLogToolStripMenuItem,
+            this.stricterLogicHandelingToolStripMenuItem});
+            this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.logicOptionsToolStripMenuItem.Text = "Logic Options";
+            // 
+            // editRadnomizationOptionsToolStripMenuItem
+            // 
+            this.editRadnomizationOptionsToolStripMenuItem.Name = "editRadnomizationOptionsToolStripMenuItem";
+            this.editRadnomizationOptionsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.editRadnomizationOptionsToolStripMenuItem.Text = "Edit Randomization Options";
+            this.editRadnomizationOptionsToolStripMenuItem.Click += new System.EventHandler(this.EditRadnomizationOptionsToolStripMenuItem_Click);
+            // 
+            // importSpoilerLogToolStripMenuItem
+            // 
+            this.importSpoilerLogToolStripMenuItem.Name = "importSpoilerLogToolStripMenuItem";
+            this.importSpoilerLogToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.importSpoilerLogToolStripMenuItem.Text = "Import Spoiler Log";
+            this.importSpoilerLogToolStripMenuItem.Click += new System.EventHandler(this.ImportSpoilerLogToolStripMenuItem_Click);
+            // 
+            // stricterLogicHandelingToolStripMenuItem
+            // 
+            this.stricterLogicHandelingToolStripMenuItem.Name = "stricterLogicHandelingToolStripMenuItem";
+            this.stricterLogicHandelingToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.stricterLogicHandelingToolStripMenuItem.Text = "Stricter Logic Handeling";
+            this.stricterLogicHandelingToolStripMenuItem.Click += new System.EventHandler(this.StricterLogicHandelingToolStripMenuItem_Click);
+            // 
             // entranceRandoToolStripMenuItem
             // 
             this.entranceRandoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -368,7 +399,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -399,37 +430,6 @@
             this.coupleEntrancesToolStripMenuItem.Text = "Couple Entrances";
             this.coupleEntrancesToolStripMenuItem.Click += new System.EventHandler(this.CoupleEntrancesToolStripMenuItem_Click);
             // 
-            // logicOptionsToolStripMenuItem
-            // 
-            this.logicOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editRadnomizationOptionsToolStripMenuItem,
-            this.importSpoilerLogToolStripMenuItem,
-            this.stricterLogicHandelingToolStripMenuItem});
-            this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.logicOptionsToolStripMenuItem.Text = "Logic Options";
-            // 
-            // editRadnomizationOptionsToolStripMenuItem
-            // 
-            this.editRadnomizationOptionsToolStripMenuItem.Name = "editRadnomizationOptionsToolStripMenuItem";
-            this.editRadnomizationOptionsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.editRadnomizationOptionsToolStripMenuItem.Text = "Edit Randomization Options";
-            this.editRadnomizationOptionsToolStripMenuItem.Click += new System.EventHandler(this.EditRadnomizationOptionsToolStripMenuItem_Click);
-            // 
-            // importSpoilerLogToolStripMenuItem
-            // 
-            this.importSpoilerLogToolStripMenuItem.Name = "importSpoilerLogToolStripMenuItem";
-            this.importSpoilerLogToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.importSpoilerLogToolStripMenuItem.Text = "Import Spoiler Log";
-            this.importSpoilerLogToolStripMenuItem.Click += new System.EventHandler(this.ImportSpoilerLogToolStripMenuItem_Click);
-            // 
-            // stricterLogicHandelingToolStripMenuItem
-            // 
-            this.stricterLogicHandelingToolStripMenuItem.Name = "stricterLogicHandelingToolStripMenuItem";
-            this.stricterLogicHandelingToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.stricterLogicHandelingToolStripMenuItem.Text = "Stricter Logic Handeling";
-            this.stricterLogicHandelingToolStripMenuItem.Click += new System.EventHandler(this.StricterLogicHandelingToolStripMenuItem_Click);
-            // 
             // devToolStripMenuItem
             // 
             this.devToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -438,7 +438,7 @@
             this.updateDisplayNamesToolStripMenuItem,
             this.updateLogicToolStripMenuItem});
             this.devToolStripMenuItem.Name = "devToolStripMenuItem";
-            this.devToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.devToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.devToolStripMenuItem.Text = "Dev";
             // 
             // createDictionaryToolStripMenuItem
@@ -462,12 +462,19 @@
             this.updateDisplayNamesToolStripMenuItem.Text = "Update Display Names";
             this.updateDisplayNamesToolStripMenuItem.Click += new System.EventHandler(this.UpdateDisplayNamesToolStripMenuItem_Click);
             // 
+            // updateLogicToolStripMenuItem
+            // 
+            this.updateLogicToolStripMenuItem.Name = "updateLogicToolStripMenuItem";
+            this.updateLogicToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.updateLogicToolStripMenuItem.Text = "Update Logic";
+            this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
+            // 
             // miscOptionsToolStripMenuItem
             // 
             this.miscOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showEntryNameToolTipToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -498,19 +505,13 @@
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // updateLogicToolStripMenuItem
-            // 
-            this.updateLogicToolStripMenuItem.Name = "updateLogicToolStripMenuItem";
-            this.updateLogicToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.updateLogicToolStripMenuItem.Text = "Update Logic";
-            this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
-            // 
             // FRMTracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(377, 586);
             this.Controls.Add(this.BTNFindPath);
             this.Controls.Add(this.LBPathFinder);
@@ -532,6 +533,7 @@
             this.Controls.Add(this.TXTEntSearch);
             this.Controls.Add(this.TXTLocSearch);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FRMTracker";
             this.Text = "MMR Tracker";

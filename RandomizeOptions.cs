@@ -22,6 +22,7 @@ namespace MMR_Tracker_V2
             chkShowUnrandMan.Checked = true;
             chkShowJunk.Checked = true;
             chkShowStartingItems.Checked = true;
+            txtSearch.Text = "";
             WriteToListVeiw(); 
         }
 
