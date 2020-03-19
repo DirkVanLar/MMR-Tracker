@@ -83,6 +83,12 @@
     <Compile Include="RandomizeOptions.Designer.cs">
       <DependentUpon>RandomizeOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="SeedChecker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeedChecker.Designer.cs">
+      <DependentUpon>SeedChecker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility.cs" />
     <Compile Include="VersionHandeling.cs" />
     <EmbeddedResource Include="DebugScreen.resx">
@@ -106,6 +112,9 @@
     </Compile>
     <EmbeddedResource Include="RandomizeOptions.resx">
       <DependentUpon>RandomizeOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeedChecker.resx">
+      <DependentUpon>SeedChecker.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Dictionaries\ENTRANCEPAIRSV16.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -1,6 +1,4 @@
 ﻿TODO ===
 
-Add tracker setting to MMRTSET files
-
 CONSIDER ===
 
