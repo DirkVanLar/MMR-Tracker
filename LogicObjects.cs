@@ -11,6 +11,7 @@ namespace MMR_Tracker_V2
         public static List<LogicObjects.LogicEntry> Logic = new List<LogicObjects.LogicEntry>();
         public static LogicObjects.LogicEntry CurrentSelectedItem = new LogicObjects.LogicEntry();
         public static List<string> RawLogicText = new List<string>();
+        public static List<LogicObjects.LogicEntry> selectedItems = new List<LogicObjects.LogicEntry>();
 
         public class LogicDic
         {
@@ -76,6 +77,15 @@ namespace MMR_Tracker_V2
             public string ItemName { get; set; } 
             public string LocationArea { get; set; } 
             public string DisplayName { get; set; } 
+            public override string ToString()
+            {
+                return DisplayName;
+            }
+        }
+        public class ListItem
+        {
+            public int ID { get; set; }
+            public string DisplayName { get; set; }
             public override string ToString()
             {
                 return DisplayName;

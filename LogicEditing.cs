@@ -310,5 +310,31 @@ namespace MMR_Tracker_V2
             CalculateItems(LogicObjects.Logic, true, true);
             Utility.SaveState(LogicObjects.Logic);
         }
+
+        public static void CheckSeed(List<LogicObjects.LogicEntry> logic, bool InitialRun, List<int> Ignored)
+        {
+            if (InitialRun) { ForceFreshCalculation(logic); }
+            bool recalculate = false;
+            foreach (var item in logic)
+            {
+                item.Available = RequirementsMet(item.Required, logic) && CondtionalsMet(item.Conditionals, logic);
+
+                int Special = SetAreaClear(item, logic);
+                if (Special == 2) { recalculate = true; }
+
+                if (item.Aquired != item.Available && Special == 0 && item.IsFake)
+                {
+                    item.Aquired = item.Available;
+                    recalculate = true;
+                }
+                if (!item.IsFake && item.SpoilerRandom > -1 && item.Available != LogicObjects.Logic[item.SpoilerRandom].Aquired && Ignored.Contains(item.ID))
+                {
+                    LogicObjects.Logic[item.SpoilerRandom].Aquired = item.Available;
+                    recalculate = true;
+                }
+
+            }
+            if (recalculate) { CalculateItems(logic, false, false); }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MMR_Tracker;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -58,7 +59,7 @@ namespace MMR_Tracker_V2
                 {
                     if (entry.Checked && entry.EntrancePair > -1 && entry.RandomizedItem > -1)
                     {
-                        LogicEditing.CheckEntrancePair(LogicObjects.Logic[entry.ID], LogicObjects.Logic[entry.RandomizedItem], LogicObjects.Logic, true);
+                        LogicEditing.CheckEntrancePair(LogicObjects.Logic[entry.ID], LogicObjects.Logic, true);
                     }
                 }
                 LogicEditing.CalculateItems(LogicObjects.Logic, true, true);
@@ -98,9 +99,8 @@ namespace MMR_Tracker_V2
 
         private void ImportSpoilerLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var spoilerLogImported = false;
-            foreach (var entry in LogicObjects.Logic) { if (entry.SpoilerRandom > -2) { spoilerLogImported = true; break; } }
-            if (spoilerLogImported)
+            
+            if (Utility.CheckforSpoilerLog(LogicObjects.Logic))
             {
                 foreach (var entry in LogicObjects.Logic) { entry.SpoilerRandom = -2; }
             }
@@ -631,9 +631,7 @@ namespace MMR_Tracker_V2
 
         public void FormatMenuItems()
         {
-            var spoilerLogImported = false;
-            foreach (var entry in LogicObjects.Logic) { if (entry.SpoilerRandom > -2) { spoilerLogImported = true; break; } }
-            importSpoilerLogToolStripMenuItem.Text = (spoilerLogImported) ? "Remove Spoiler Log" : "Import Spoiler Log";
+            importSpoilerLogToolStripMenuItem.Text = (Utility.CheckforSpoilerLog(LogicObjects.Logic)) ? "Remove Spoiler Log" : "Import Spoiler Log";
             useSongOfTimeInPathfinderToolStripMenuItem.Text = (Pathfinding.UseSongOfTime) ? "Disable Song of Time in pathfinder" : "Enable Song of Time in pathfinder";
             stricterLogicHandelingToolStripMenuItem.Text = (LogicEditing.StrictLogicHandeling) ? "Disable Stricter Logic Handeling" : "Enable Stricter Logic Handeling";
             showEntryNameToolTipToolStripMenuItem.Text = (Utility.ShowEntryNameTooltip) ? "Disable Entry Name ToolTip" : "Show Entry Name ToolTip";
@@ -662,6 +660,12 @@ namespace MMR_Tracker_V2
             PrintToListBox();
             ResizeObject();
             FormatMenuItems();
+        }
+
+        private void seedCheckerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SeedChecker SeedCheckerForm = new SeedChecker();
+            SeedCheckerForm.ShowDialog();
         }
     }
 }

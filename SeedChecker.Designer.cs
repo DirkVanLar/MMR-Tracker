@@ -45,6 +45,7 @@
             this.LBNeededItems.Name = "LBNeededItems";
             this.LBNeededItems.Size = new System.Drawing.Size(176, 186);
             this.LBNeededItems.TabIndex = 0;
+            this.LBNeededItems.DoubleClick += new System.EventHandler(this.LBNeededItems_DoubleClick);
             // 
             // LBResult
             // 
@@ -61,6 +62,7 @@
             this.LBIgnoredChecks.Name = "LBIgnoredChecks";
             this.LBIgnoredChecks.Size = new System.Drawing.Size(176, 186);
             this.LBIgnoredChecks.TabIndex = 2;
+            this.LBIgnoredChecks.DoubleClick += new System.EventHandler(this.LBIgnoredChecks_DoubleClick);
             // 
             // label1
             // 
@@ -88,6 +90,7 @@
             this.btnAddNeeded.TabIndex = 5;
             this.btnAddNeeded.Text = "Add";
             this.btnAddNeeded.UseVisualStyleBackColor = true;
+            this.btnAddNeeded.Click += new System.EventHandler(this.btnAddNeeded_Click);
             // 
             // btnAddIgnored
             // 
@@ -97,6 +100,7 @@
             this.btnAddIgnored.TabIndex = 6;
             this.btnAddIgnored.Text = "Add";
             this.btnAddIgnored.UseVisualStyleBackColor = true;
+            this.btnAddIgnored.Click += new System.EventHandler(this.btnAddIgnored_Click);
             // 
             // btnCheckSeed
             // 
@@ -106,6 +110,7 @@
             this.btnCheckSeed.TabIndex = 7;
             this.btnCheckSeed.Text = "CheckSeed";
             this.btnCheckSeed.UseVisualStyleBackColor = true;
+            this.btnCheckSeed.Click += new System.EventHandler(this.btnCheckSeed_Click);
             // 
             // SeedChecker
             // 

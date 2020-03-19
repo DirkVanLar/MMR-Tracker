@@ -375,5 +375,14 @@ namespace MMR_Tracker_V2
             }
             return false;
         }
+
+        public static bool CheckforSpoilerLog(List<LogicObjects.LogicEntry> Logic)
+        {
+            foreach(var i in Logic)
+            {
+                if (i.SpoilerRandom > -1) { return true; }
+            }
+            return false;
+        }
     }
 }
