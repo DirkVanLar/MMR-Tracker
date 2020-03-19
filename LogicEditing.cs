@@ -145,9 +145,8 @@ namespace MMR_Tracker_V2
         {
             if (InitialRun && (StrictLogicHandeling || ForceStrictLogicHandeling)){ ForceFreshCalculation(logic); }
             bool recalculate = false;
-            for (var i = 0; i < logic.Count; i++)
+            foreach (var item in logic)
             {
-                var item = logic[i];
                 item.Available = RequirementsMet(item.Required, logic) && CondtionalsMet(item.Conditionals, logic);
 
                 int Special = SetAreaClear(item, logic);
@@ -197,9 +196,12 @@ namespace MMR_Tracker_V2
         {
             if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
             {
-                CheckEntrancePair(CheckedObject, LogicObjects.Logic[CheckedObject.RandomizedItem], LogicObjects.Logic, false);
                 CheckedObject.Checked = false;
-                if (CheckedObject.RandomizedItem > -1) { LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = false; }
+                if (CheckedObject.RandomizedItem > -1) 
+                {
+                    CheckEntrancePair(CheckedObject, LogicObjects.Logic, false);
+                    LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = false; 
+                }
                 CheckedObject.RandomizedItem = -2;
                 LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
                 return true;
@@ -211,7 +213,7 @@ namespace MMR_Tracker_V2
                 if (CheckedObject.SpoilerRandom > -2) { CheckedObject.RandomizedItem = CheckedObject.SpoilerRandom; }
                 if (CheckedObject.RandomizedItem < 0) { CheckedObject.RandomizedItem = -1; return true; }
                 LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = true;
-                CheckEntrancePair(CheckedObject, LogicObjects.Logic[CheckedObject.RandomizedItem], LogicObjects.Logic , true);
+                CheckEntrancePair(CheckedObject, LogicObjects.Logic , true);
                 LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
                 return true;
             }
@@ -224,7 +226,7 @@ namespace MMR_Tracker_V2
             CheckedObject.RandomizedItem = LogicObjects.CurrentSelectedItem.ID;
             LogicObjects.Logic[LogicObjects.CurrentSelectedItem.ID].Aquired = true;
             LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
-            CheckEntrancePair(CheckedObject, LogicObjects.Logic[CheckedObject.RandomizedItem], LogicObjects.Logic, true);
+            CheckEntrancePair(CheckedObject, LogicObjects.Logic, true);
             LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
 
             return true;
@@ -259,13 +261,16 @@ namespace MMR_Tracker_V2
             
         }
 
-        public static void CheckEntrancePair(LogicObjects.LogicEntry Location, LogicObjects.LogicEntry item, List<LogicObjects.LogicEntry> logic, bool Checking)
+        public static void CheckEntrancePair(LogicObjects.LogicEntry Location, List<LogicObjects.LogicEntry> logic, bool Checking)
         {
-            if (!CoupleEntrances || Location.RandomizedItem < 0 || Location.EntrancePair < 0 || item.EntrancePair < 0) { return; }
+            if (!CoupleEntrances || Location.RandomizedItem < 0) { return; }
+            var item = logic[Location.RandomizedItem];
+            if (Location.EntrancePair < 0 || item.EntrancePair < 0) { return; }
             var reverseLocation = item.EntrancePair;
             var reverseItem = Location.EntrancePair;
             //This is checking if the reverse entrance seems to have already been cheked and randomized to something
-            if ((logic[reverseLocation].Checked || logic[reverseLocation].RandomizedItem > -1 || logic[reverseItem].Aquired) && Checking) { return; }
+            if ((logic[reverseLocation].Checked || (logic[reverseLocation].RandomizedItem > -1 && logic[reverseLocation].RandomizedItem != reverseItem) || logic[reverseItem].Aquired) && Checking)
+            { return; }
             //This checkes to see if the spoiler log conflicts with what the reverse check is trying to do
             if (logic[reverseLocation].SpoilerRandom != reverseItem && logic[reverseLocation].SpoilerRandom > -1) { return; }
             logic[reverseLocation].Checked = Checking;
