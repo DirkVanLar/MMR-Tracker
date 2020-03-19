@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A03F0B28-63B4-447C-BA1B-C7EEB2DA0D5D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>MMR_Tracker_V2</RootNamespace>
-    <AssemblyName>MMR Tracker V2</AssemblyName>
+    <RootNamespace>MMR_Tracker</RootNamespace>
+    <AssemblyName>MMR Tracker</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -102,6 +102,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RandomizeOptions.resx">
       <DependentUpon>RandomizeOptions.cs</DependentUpon>
