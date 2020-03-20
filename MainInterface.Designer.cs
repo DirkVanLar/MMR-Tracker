@@ -74,11 +74,12 @@
             this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miscOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showEntryNameToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showImportantItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -474,7 +475,8 @@
             // 
             this.miscOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showEntryNameToolTipToolStripMenuItem,
-            this.seedCheckerToolStripMenuItem});
+            this.seedCheckerToolStripMenuItem,
+            this.showImportantItemsToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
             this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
@@ -482,9 +484,16 @@
             // showEntryNameToolTipToolStripMenuItem
             // 
             this.showEntryNameToolTipToolStripMenuItem.Name = "showEntryNameToolTipToolStripMenuItem";
-            this.showEntryNameToolTipToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.showEntryNameToolTipToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.showEntryNameToolTipToolStripMenuItem.Text = "Show Entry Name ToolTip";
             this.showEntryNameToolTipToolStripMenuItem.Click += new System.EventHandler(this.ShowEntryNameToolTipToolStripMenuItem_Click);
+            // 
+            // seedCheckerToolStripMenuItem
+            // 
+            this.seedCheckerToolStripMenuItem.Name = "seedCheckerToolStripMenuItem";
+            this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.seedCheckerToolStripMenuItem.Text = "Seed Checker";
+            this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.seedCheckerToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -507,12 +516,11 @@
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // seedCheckerToolStripMenuItem
+            // showImportantItemsToolStripMenuItem
             // 
-            this.seedCheckerToolStripMenuItem.Name = "seedCheckerToolStripMenuItem";
-            this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
-            this.seedCheckerToolStripMenuItem.Text = "Seed Checker";
-            this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.seedCheckerToolStripMenuItem_Click);
+            this.showImportantItemsToolStripMenuItem.Name = "showImportantItemsToolStripMenuItem";
+            this.showImportantItemsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.showImportantItemsToolStripMenuItem.Text = "Show Important Items";
             // 
             // FRMTracker
             // 
@@ -606,6 +614,7 @@
         private System.Windows.Forms.ToolStripMenuItem userLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seedCheckerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showImportantItemsToolStripMenuItem;
     }
 }
 

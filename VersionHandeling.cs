@@ -11,7 +11,7 @@ namespace MMR_Tracker_V2
         public static int Version = 0; // The current verion of logic being used
         public static int EntranceRandoVersion = 14; // The version of logic that entrance randomizer was implimented
         public static bool entranceRadnoEnabled = false; // Whether or not entrances should be seperated into their own colum
-        public static List<int> ValidVersions = new List<int> { 3, 5, 6, 8, 13, 16 }; // Versions of logic used in main releases
+        public static List<int> ValidVersions = new List<int> { 8, 13, 16 }; // Versions of logic used in main releases
 
         public static Dictionary<int, int> AreaClearDictionary()
         {
@@ -21,7 +21,7 @@ namespace MMR_Tracker_V2
             //Rando Version 1.8 = Logic Version 8
             //Rando Version 1.9 = Logic Version 13
             //Rando Version 1.10 = Logic Version 13
-            //Entrance Rando Dev Build 1.11.0.2 = Logic Version 16 (I used this to test entrance rando features)
+            //Entrance Rando Dev Build 1.11.0.2 = Logic Version 16 (Used to test entrance rando features)
             var EntAreaDict = new Dictionary<int, int>();
             var AreaDicVersion = 0;
 

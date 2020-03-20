@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SeedChecker));
             this.LBNeededItems = new System.Windows.Forms.ListBox();
             this.LBResult = new System.Windows.Forms.ListBox();
             this.LBIgnoredChecks = new System.Windows.Forms.ListBox();
@@ -137,6 +138,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(564, 369);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnClear);

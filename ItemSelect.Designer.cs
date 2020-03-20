@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemSelect));
             this.LBItemSelect = new System.Windows.Forms.ListBox();
             this.BTNJunk = new System.Windows.Forms.Button();
             this.TXTSearch = new System.Windows.Forms.TextBox();
@@ -64,6 +65,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(290, 580);
             this.Controls.Add(this.TXTSearch);
             this.Controls.Add(this.BTNJunk);
