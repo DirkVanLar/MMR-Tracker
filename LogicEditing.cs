@@ -105,7 +105,7 @@ namespace MMR_Tracker_V2
                 bool aquired = (
                     item.Aquired || 
                     (item.RandomizedState == 1 && item.Available) || 
-                    item.StartingItem); // Is the item Aquired, Unrandomized and Available or a starting item.
+                    item.StartingItem); // Is the item Aquired, Unrandomized and Available, or a starting item.
                 if (!aquired) { return false; }
             }
             return true;
@@ -196,7 +196,6 @@ namespace MMR_Tracker_V2
                     LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = false; 
                 }
                 CheckedObject.RandomizedItem = -2;
-                LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
                 return true;
             }
             if (CheckedObject.SpoilerRandom > -2 || CheckedObject.RandomizedItem > -2 || CheckedObject.RandomizedState == 2)
@@ -207,20 +206,18 @@ namespace MMR_Tracker_V2
                 if (CheckedObject.RandomizedItem < 0) { CheckedObject.RandomizedItem = -1; return true; }
                 LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = true;
                 CheckEntrancePair(CheckedObject, LogicObjects.Logic , true);
-                LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
                 return true;
             }
-            LogicObjects.CurrentSelectedItem = CheckedObject; //Set the global CheckedObject to the Location selected in the list box
+            LogicObjects.CurrentSelectedItem = CheckedObject; //Set the global CurrentSelectedItem to the Location selected in the list box
             ItemSelect ItemSelectForm = new ItemSelect(); var dialogResult = ItemSelectForm.ShowDialog();
             if (dialogResult != DialogResult.OK) { LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry(); return false; }
             CheckedObject.Checked = true;
-            if (LogicObjects.CurrentSelectedItem.ID < 0) //At this point Current selected item has been changed to the selected item
+            if (LogicObjects.CurrentSelectedItem.ID < 0) //At this point CurrentSelectedItem has been changed to the selected item
             { CheckedObject.RandomizedItem = -1; LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry(); return true; }
             CheckedObject.RandomizedItem = LogicObjects.CurrentSelectedItem.ID;
             LogicObjects.Logic[LogicObjects.CurrentSelectedItem.ID].Aquired = true;
             LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
             CheckEntrancePair(CheckedObject, LogicObjects.Logic, true);
-            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
 
             return true;
         }

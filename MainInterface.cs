@@ -573,26 +573,30 @@ namespace MMR_Tracker_V2
                 TXTLocSearch.Clear();
                 return;
             }
-            if ((LB.SelectedItem is LogicObjects.LogicEntry))
+            foreach(var i in LB.SelectedItems)
             {
-                var selectedIndex = LB.SelectedIndex;
-                //We want to save logic at this point but don't want to comit to a full save state
-                var TempState = Utility.CloneLogicList(LogicObjects.Logic);
-                if (FullCheck)
+                if ((i is LogicObjects.LogicEntry))
                 {
-                    if (!LogicEditing.CheckObject(LB.SelectedItem as LogicObjects.LogicEntry)) { return; }
+                    //var selectedIndex = LB.SelectedIndex;
+                    //We want to save logic at this point but don't want to comit to a full save state
+                    var TempState = Utility.CloneLogicList(LogicObjects.Logic);
+                    if (FullCheck)
+                    {
+                        if (!LogicEditing.CheckObject(i as LogicObjects.LogicEntry)) { return; }
+                    }
+                    else
+                    {
+                        if (!LogicEditing.MarkObject(i as LogicObjects.LogicEntry)) { return; }
+                    }
+                    Utility.UnsavedChanges = true;
+                    //Now that we have successfully checked/Marked an object we can commit to a full save state
+                    Utility.SaveState(TempState);
+                    //if (selectedIndex < LB.Items.Count) { LB.SelectedIndex = selectedIndex; }
+                    //else { LB.SelectedIndex = LB.Items.Count - 1; }
                 }
-                else
-                {
-                    if (!LogicEditing.MarkObject(LB.SelectedItem as LogicObjects.LogicEntry)) { return; }
-                }
-                Utility.UnsavedChanges = true;
-                //Now that we have successfully checked/Marked an object we can commit to a full save state
-                Utility.SaveState(TempState);
-                PrintToListBox();
-                if (selectedIndex < LB.Items.Count) { LB.SelectedIndex = selectedIndex; }
-                else { LB.SelectedIndex = LB.Items.Count - 1; }
             }
+            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
+            PrintToListBox();
         }
 
         public void ShowtoolTip(MouseEventArgs e, ListBox lb)

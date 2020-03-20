@@ -75,11 +75,11 @@
             this.miscOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showEntryNameToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showImportantItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.showImportantItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -232,6 +232,7 @@
             this.LBValidLocations.FormattingEnabled = true;
             this.LBValidLocations.Location = new System.Drawing.Point(223, 38);
             this.LBValidLocations.Name = "LBValidLocations";
+            this.LBValidLocations.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBValidLocations.Size = new System.Drawing.Size(120, 95);
             this.LBValidLocations.TabIndex = 16;
             this.LBValidLocations.DoubleClick += new System.EventHandler(this.LBValidLocations_DoubleClick);
@@ -243,6 +244,7 @@
             this.LBValidEntrances.FormattingEnabled = true;
             this.LBValidEntrances.Location = new System.Drawing.Point(349, 38);
             this.LBValidEntrances.Name = "LBValidEntrances";
+            this.LBValidEntrances.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBValidEntrances.Size = new System.Drawing.Size(120, 95);
             this.LBValidEntrances.TabIndex = 17;
             this.LBValidEntrances.DoubleClick += new System.EventHandler(this.LBValidEntrances_DoubleClick);
@@ -254,6 +256,7 @@
             this.LBCheckedLocations.FormattingEnabled = true;
             this.LBCheckedLocations.Location = new System.Drawing.Point(223, 139);
             this.LBCheckedLocations.Name = "LBCheckedLocations";
+            this.LBCheckedLocations.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBCheckedLocations.Size = new System.Drawing.Size(120, 95);
             this.LBCheckedLocations.TabIndex = 18;
             this.LBCheckedLocations.DoubleClick += new System.EventHandler(this.LBCheckedLocations_DoubleClick);
@@ -369,7 +372,7 @@
             this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -401,7 +404,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -440,7 +443,7 @@
             this.updateDisplayNamesToolStripMenuItem,
             this.updateLogicToolStripMenuItem});
             this.devToolStripMenuItem.Name = "devToolStripMenuItem";
-            this.devToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.devToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.devToolStripMenuItem.Text = "Dev";
             // 
             // createDictionaryToolStripMenuItem
@@ -478,7 +481,7 @@
             this.seedCheckerToolStripMenuItem,
             this.showImportantItemsToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -494,6 +497,12 @@
             this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.seedCheckerToolStripMenuItem.Text = "Seed Checker";
             this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.seedCheckerToolStripMenuItem_Click);
+            // 
+            // showImportantItemsToolStripMenuItem
+            // 
+            this.showImportantItemsToolStripMenuItem.Name = "showImportantItemsToolStripMenuItem";
+            this.showImportantItemsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.showImportantItemsToolStripMenuItem.Text = "Show Important Items";
             // 
             // infoToolStripMenuItem
             // 
@@ -515,12 +524,6 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
-            // 
-            // showImportantItemsToolStripMenuItem
-            // 
-            this.showImportantItemsToolStripMenuItem.Name = "showImportantItemsToolStripMenuItem";
-            this.showImportantItemsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.showImportantItemsToolStripMenuItem.Text = "Show Important Items";
             // 
             // FRMTracker
             // 
