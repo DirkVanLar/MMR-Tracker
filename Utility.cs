@@ -386,5 +386,13 @@ namespace MMR_Tracker_V2
             }
             return false;
         }
+        public static bool CheckforFullSpoilerLog(List<LogicObjects.LogicEntry> Logic)
+        {
+            foreach (var i in Logic)
+            {
+                if (i.SpoilerRandom < 0 && !i.IsFake) { return false; }
+            }
+            return true;
+        }
     }
 }

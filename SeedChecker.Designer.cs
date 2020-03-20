@@ -36,6 +36,8 @@
             this.btnAddNeeded = new System.Windows.Forms.Button();
             this.btnAddIgnored = new System.Windows.Forms.Button();
             this.btnCheckSeed = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LBNeededItems
@@ -43,16 +45,16 @@
             this.LBNeededItems.FormattingEnabled = true;
             this.LBNeededItems.Location = new System.Drawing.Point(12, 31);
             this.LBNeededItems.Name = "LBNeededItems";
-            this.LBNeededItems.Size = new System.Drawing.Size(176, 186);
+            this.LBNeededItems.Size = new System.Drawing.Size(176, 329);
             this.LBNeededItems.TabIndex = 0;
             this.LBNeededItems.DoubleClick += new System.EventHandler(this.LBNeededItems_DoubleClick);
             // 
             // LBResult
             // 
             this.LBResult.FormattingEnabled = true;
-            this.LBResult.Location = new System.Drawing.Point(12, 223);
+            this.LBResult.Location = new System.Drawing.Point(376, 31);
             this.LBResult.Name = "LBResult";
-            this.LBResult.Size = new System.Drawing.Size(176, 186);
+            this.LBResult.Size = new System.Drawing.Size(176, 329);
             this.LBResult.TabIndex = 1;
             // 
             // LBIgnoredChecks
@@ -60,7 +62,7 @@
             this.LBIgnoredChecks.FormattingEnabled = true;
             this.LBIgnoredChecks.Location = new System.Drawing.Point(194, 31);
             this.LBIgnoredChecks.Name = "LBIgnoredChecks";
-            this.LBIgnoredChecks.Size = new System.Drawing.Size(176, 186);
+            this.LBIgnoredChecks.Size = new System.Drawing.Size(176, 329);
             this.LBIgnoredChecks.TabIndex = 2;
             this.LBIgnoredChecks.DoubleClick += new System.EventHandler(this.LBIgnoredChecks_DoubleClick);
             // 
@@ -104,19 +106,40 @@
             // 
             // btnCheckSeed
             // 
-            this.btnCheckSeed.Location = new System.Drawing.Point(195, 224);
+            this.btnCheckSeed.Location = new System.Drawing.Point(476, 7);
             this.btnCheckSeed.Name = "btnCheckSeed";
-            this.btnCheckSeed.Size = new System.Drawing.Size(175, 41);
+            this.btnCheckSeed.Size = new System.Drawing.Size(76, 23);
             this.btnCheckSeed.TabIndex = 7;
             this.btnCheckSeed.Text = "CheckSeed";
             this.btnCheckSeed.UseVisualStyleBackColor = true;
             this.btnCheckSeed.Click += new System.EventHandler(this.btnCheckSeed_Click);
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(427, 7);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(43, 23);
+            this.btnClear.TabIndex = 8;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(376, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Result";
+            // 
             // SeedChecker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 420);
+            this.ClientSize = new System.Drawing.Size(564, 369);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCheckSeed);
             this.Controls.Add(this.btnAddIgnored);
             this.Controls.Add(this.btnAddNeeded);
@@ -142,5 +165,7 @@
         private System.Windows.Forms.Button btnAddNeeded;
         private System.Windows.Forms.Button btnAddIgnored;
         private System.Windows.Forms.Button btnCheckSeed;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label label3;
     }
 }

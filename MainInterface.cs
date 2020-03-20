@@ -109,6 +109,7 @@ namespace MMR_Tracker_V2
                 string file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(LogicObjects.Logic, file);
+                if (!Utility.CheckforFullSpoilerLog(LogicObjects.Logic)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
             }
             FormatMenuItems();
         }

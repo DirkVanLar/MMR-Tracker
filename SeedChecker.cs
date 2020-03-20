@@ -68,21 +68,52 @@ namespace MMR_Tracker
 
         private void btnCheckSeed_Click(object sender, EventArgs e)
         {
-            if (!Utility.CheckforSpoilerLog(LogicObjects.Logic)) { MessageBox.Show("You have not imported a spoiler Log"); return; }
+            var logicCopy = Utility.CloneLogicList(LogicObjects.Logic);
+            if (!Utility.CheckforSpoilerLog(LogicObjects.Logic)) 
+            {
+                var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
+                if (file == "") { return; }
+                LogicEditing.WriteSpoilerLogToLogic(logicCopy, file);
+                if (!Utility.CheckforFullSpoilerLog(logicCopy)) 
+                    { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
+            }
+            else if (!Utility.CheckforFullSpoilerLog(LogicObjects.Logic))
+            { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
+
+            foreach(var entry in logicCopy) { if (entry.SpoilerRandom > -1) { entry.RandomizedItem = entry.SpoilerRandom; } }
+
             LBResult.Items.Clear();
             List<int> Ignored = new List<int>();
             foreach(var item in LBIgnoredChecks.Items)
             {
                 Ignored.Add((item as LogicObjects.ListItem).ID);
             }
-            var logicCopy = Utility.CloneLogicList(LogicObjects.Logic);
             LogicEditing.CheckSeed(logicCopy, true, Ignored);
-            foreach(var item in LBNeededItems.Items)
+            List<string> obtainable = new List<string>();
+            List<string> unobtainable = new List<string>();
+            foreach (var item in LBNeededItems.Items)
             {
                 var ListItem = item as LogicObjects.ListItem;
-                if (logicCopy[ListItem.ID].Aquired) { LBResult.Items.Add(ListItem.DisplayName + ": Obtainable"); }
-                else { LBResult.Items.Add(ListItem.DisplayName + ": Unobtainable"); }
+                if (logicCopy[ListItem.ID].Aquired) { obtainable.Add(ListItem.DisplayName); }
+                else { unobtainable.Add(ListItem.DisplayName); }
             }
+            if (unobtainable.Count > 0)
+            {
+                LBResult.Items.Add("Unobtainable ==============================");
+                foreach (var i in unobtainable) { LBResult.Items.Add(i); }
+            }
+            if (obtainable.Count > 0)
+            {
+                LBResult.Items.Add("Obtainable ==============================");
+                foreach(var i in obtainable) { LBResult.Items.Add(i); }
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            LBIgnoredChecks.Items.Clear();
+            LBNeededItems.Items.Clear();
+            LBResult.Items.Clear();
         }
     }
 }
