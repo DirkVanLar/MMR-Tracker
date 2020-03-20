@@ -249,15 +249,15 @@ namespace MMR_Tracker_V2
         public static bool LoadInstance(string LogicFile)
         {
             string[] options = File.ReadAllLines(LogicFile);
+            Console.WriteLine(options.Length);
             LogicObjects.Logic = JsonConvert.DeserializeObject<List<LogicObjects.LogicEntry>>(options[0]);
-            VersionHandeling.Version = Int32.Parse(options[1]);
-            Pathfinding.UseSongOfTime = (options[2] == "UseSOT:1");
-            Pathfinding.IncludeItemLocations = (options[3] == "IncludeItems:1");
-            LogicEditing.CoupleEntrances = (options[4] == "EntranceCouple:1");
-            LogicEditing.StrictLogicHandeling = (options[5] == "StrictLogic:1");
-            Utility.ShowEntryNameTooltip = (options[6] == "ShowToolTip:1");
+            if (options.Length > 1) { VersionHandeling.Version = Int32.Parse(options[1]); }
+            if (options.Length > 2) { Pathfinding.UseSongOfTime = (options[2] == "UseSOT:1"); }
+            if (options.Length > 3) { Pathfinding.IncludeItemLocations = (options[3] == "IncludeItems:1"); }
+            if (options.Length > 4) { LogicEditing.CoupleEntrances = (options[4] == "EntranceCouple:1"); }
+            if (options.Length > 5) { LogicEditing.StrictLogicHandeling = (options[5] == "StrictLogic:1"); }
+            if (options.Length > 6) { Utility.ShowEntryNameTooltip = (options[6] == "ShowToolTip:1"); }
             VersionHandeling.entranceRadnoEnabled = (VersionHandeling.isEntranceRando());
-            Console.WriteLine(options[1]);
             return true;
         }
         public static void SaveState(List<LogicObjects.LogicEntry> logic)

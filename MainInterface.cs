@@ -29,6 +29,7 @@ namespace MMR_Tracker_V2
             undoToolStripMenuItem.Visible = false;
             redoToolStripMenuItem.Visible = false;
             saveToolStripMenuItem.Visible = false;
+            Console.WriteLine("Hello");
         }
 
         private void FRMTracker_ResizeEnd(object sender, EventArgs e)
@@ -57,7 +58,7 @@ namespace MMR_Tracker_V2
                 Utility.SaveState(Utility.CloneLogicList(LogicObjects.Logic));
                 foreach (var entry in LogicObjects.Logic)
                 {
-                    if (entry.Checked && entry.EntrancePair > -1 && entry.RandomizedItem > -1)
+                    if (entry.Checked && entry.RandomizedItem > -1)
                     {
                         LogicEditing.CheckEntrancePair(LogicObjects.Logic[entry.ID], LogicObjects.Logic, true);
                     }
@@ -451,11 +452,11 @@ namespace MMR_Tracker_V2
             var logic = LogicObjects.Logic;
 
             var Unsortedlogic = new List<LogicObjects.LogicEntry>();
+            Dictionary<int, int> listGroups = new Dictionary<int, int>();
 
             foreach (var entry in LogicObjects.Logic)
             {
-                entry.ListGroup = -1;
-                entry.DisplayName = "ERROR";
+                entry.DisplayName = entry.DictionaryName;
                 if ((entry.Available || CHKShowAll.Checked) &&
                     !entry.IsFake &&
                     (entry.LocationName != "" && entry.LocationName != null) &&
@@ -471,13 +472,13 @@ namespace MMR_Tracker_V2
                     if ((entry.ItemSubType != "Entrance" || !VersionHandeling.entranceRadnoEnabled) &&
                         Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName))
                     {
-                        entry.ListGroup = 0;
+                        listGroups.Add(entry.ID, 0);
                         Unsortedlogic.Add(entry);
                     }
                     else if ((entry.ItemSubType == "Entrance" && VersionHandeling.entranceRadnoEnabled) &&
                         Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName))
                     {
-                        entry.ListGroup = 1;
+                        listGroups.Add(entry.ID, 1);
                         Unsortedlogic.Add(entry);
                     }
                 }
@@ -485,7 +486,7 @@ namespace MMR_Tracker_V2
                 {
                     entry.DisplayName = (entry.RandomizedItem > -1) ? logic[entry.RandomizedItem].ItemName + ": " + entry.LocationName : "Junk: " + entry.LocationName;
 
-                    entry.ListGroup = 2;
+                    listGroups.Add(entry.ID, 2);
                     if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName)) { Unsortedlogic.Add(entry); }
                 }
 
@@ -499,9 +500,10 @@ namespace MMR_Tracker_V2
 
             foreach (var entry in sortedlogic)
             {
-                if (entry.ListGroup == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea); }
-                if (entry.ListGroup == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea); }
-                if (entry.ListGroup == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea); }
+                if (!listGroups.ContainsKey(entry.ID)) { continue; }
+                if (listGroups[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea); }
+                if (listGroups[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea); }
+                if (listGroups[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea); }
             }
 
 

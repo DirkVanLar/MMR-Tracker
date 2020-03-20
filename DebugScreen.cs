@@ -46,7 +46,6 @@ namespace MMR_Tracker_V2
                 listBox1.Items.Add("Aquired: " + Logic[i].Aquired);
                 listBox1.Items.Add("Checked: " + Logic[i].Checked);
                 listBox1.Items.Add("Fake Item: " + Logic[i].IsFake);
-                listBox1.Items.Add("Entrance pair: " + Logic[i].EntrancePair);
 
                 if (Logic[i].RandomizedItem > -1) { listBox1.Items.Add("Random Item: " + Logic[Logic[i].RandomizedItem].DictionaryName); }
                 else if (Logic[i].RandomizedItem == -1) { listBox1.Items.Add("Random Item: Junk"); }

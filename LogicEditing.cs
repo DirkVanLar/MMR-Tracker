@@ -39,8 +39,6 @@ namespace MMR_Tracker_V2
                         LogicEntry1.RandomizedItem = -2;
                         LogicEntry1.IsFake = true;
                         LogicEntry1.SpoilerRandom = -2;
-                        LogicEntry1.ListGroup = -1;
-                        LogicEntry1.EntrancePair = -1;
                         for (int i = 0; i < LogicObjects.MMRDictionary.Count; i++)
                         {
                             if (LogicObjects.MMRDictionary[i].DictionaryName == line.Substring(2))
@@ -94,11 +92,6 @@ namespace MMR_Tracker_V2
                 {
                     LogicObjects.EntrancePairs.Add(LogicObjects.DicNameToID[j[0]], LogicObjects.DicNameToID[j[1]]);
                 }
-            }
-
-            foreach (var i in LogicObjects.Logic)
-            {
-                if (LogicObjects.EntrancePairs.ContainsKey(i.ID)) { i.EntrancePair = LogicObjects.EntrancePairs[i.ID]; }
             }
 
             return true;
@@ -273,9 +266,9 @@ namespace MMR_Tracker_V2
         {
             if (!CoupleEntrances || Location.RandomizedItem < 0) { return; }
             var item = logic[Location.RandomizedItem];
-            if (Location.EntrancePair < 0 || item.EntrancePair < 0) { return; }
-            var reverseLocation = item.EntrancePair;
-            var reverseItem = Location.EntrancePair;
+            if (!LogicObjects.EntrancePairs.ContainsKey(Location.ID) || !LogicObjects.EntrancePairs.ContainsKey(item.ID)) { return; }
+            var reverseLocation = LogicObjects.EntrancePairs[item.ID];
+            var reverseItem = LogicObjects.EntrancePairs[Location.ID];
             //This is checking if the reverse entrance seems to have already been cheked and randomized to something
             if ((logic[reverseLocation].Checked || (logic[reverseLocation].RandomizedItem > -1 && logic[reverseLocation].RandomizedItem != reverseItem) || logic[reverseItem].Aquired) && Checking)
             { return; }

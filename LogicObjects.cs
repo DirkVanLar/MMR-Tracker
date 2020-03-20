@@ -48,8 +48,6 @@ namespace MMR_Tracker_V2
             public string SpoilerLocation { get; set; } //The name of this location in the spoiler Log
             public string SpoilerItem { get; set; } //The name of this item in the spoiler log
             public int SpoilerRandom { get; set; } //The item the spoiler log says is in this location
-            public int EntrancePair { get; set; } //The id of the entrance that is the reverse of this entrance
-            public int ListGroup { get; set; } //The list this item should be displayed in
             public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
             public override string ToString()
             {
