@@ -650,7 +650,7 @@ namespace MMR_Tracker_V2
         public void CreateTrackerInstance(string[] Logic)
         {
             Utility.ResetInstance();
-            LogicEditing.CreateLogic(LogicObjects.Logic, Logic, LogicObjects.DicNameToID);
+            LogicEditing.CreateLogic(LogicObjects.Logic, Logic);
             LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
             if (!VersionHandeling.ValidVersions.Contains(VersionHandeling.Version))
             {

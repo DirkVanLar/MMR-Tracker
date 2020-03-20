@@ -80,13 +80,13 @@ namespace MMR_Tracker_V2
                         if (isEntRand) 
                         {
                             if (entry.DictionaryName == "Woodfall Temple access")
-                            { entry.LocationArea = "Woodfall"; entry.ItemSubType = "Entrance"; }
+                            { entry.LocationArea = "Dungeon Entrance"; entry.ItemSubType = "Dungeon Entrance"; }
                             if (entry.DictionaryName == "Snowhead Temple access")
-                            { entry.LocationArea = "Snowhead"; entry.ItemSubType = "Entrance"; }
+                            { entry.LocationArea = "Dungeon Entrance"; entry.ItemSubType = "Dungeon Entrance"; }
                             if (entry.DictionaryName == "Great Bay Temple access")
-                            { entry.LocationArea = "Great Bay Cape"; entry.ItemSubType = "Entrance"; }
+                            { entry.LocationArea = "Dungeon Entrance"; entry.ItemSubType = "Dungeon Entrance"; }
                             if (entry.DictionaryName == "Inverted Stone Tower Temple access")
-                            { entry.LocationArea = "Stone Tower"; entry.ItemSubType = "Entrance"; }
+                            { entry.LocationArea = "Dungeon Entrance"; entry.ItemSubType = "Dungeon Entrance"; }
                         } //Dungeon Entrance Rando is dumb
                     }
                     if (spoiler.ItemID == entry.ID)
@@ -178,26 +178,17 @@ namespace MMR_Tracker_V2
             if (isEntRand) { return SpoilerData; }
 
             //Fix Dungeon Entrances
-            List<string> entrance = new List<string>();
-            List<int> id = new List<int>();
+            Dictionary<string, int> EntIDMatch = new Dictionary<string, int>();
+            var entranceIDs = VersionHandeling.AreaClearDictionary();
+            foreach (LogicObjects.SpoilerData Thing in SpoilerData)
+            {
+                if (entranceIDs.ContainsValue(Thing.ItemID)) { EntIDMatch.Add(Thing.ItemName, Thing.ItemID); }
+            }
+            foreach (LogicObjects.SpoilerData Thing in SpoilerData) 
+            { 
+                if (EntIDMatch.ContainsKey(Thing.LocationName)) { Thing.LocationID = EntIDMatch[Thing.LocationName]; }
+            }
 
-            foreach (LogicObjects.SpoilerData Thing in SpoilerData)
-            {
-                if (Thing.ItemName == "Woodfall"|| Thing.ItemName == "Inverted Stone Tower" || Thing.ItemName == "Snowhead" || Thing.ItemName == "Great Bay")
-                {
-                    entrance.Add(Thing.ItemName);
-                    id.Add(Thing.ItemID);
-                }
-            }
-            foreach (LogicObjects.SpoilerData Thing in SpoilerData)
-            {
-                int counter = 0;
-                foreach(string X in entrance)
-                {
-                    if (X == Thing.LocationName){Thing.LocationID = id[counter];}
-                    counter++;
-                }
-            }
             return SpoilerData;
         }
         public static List<LogicObjects.SpoilerData> ReadTextSpoilerlog(string Path)
@@ -377,7 +368,6 @@ namespace MMR_Tracker_V2
             }
             return false;
         }
-
         public static bool CheckforSpoilerLog(List<LogicObjects.LogicEntry> Logic)
         {
             foreach(var i in Logic)

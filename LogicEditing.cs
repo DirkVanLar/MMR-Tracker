@@ -13,7 +13,7 @@ namespace MMR_Tracker_V2
 
         public static bool CoupleEntrances = true;
 
-        public static bool CreateLogic(List<LogicObjects.LogicEntry> LogicList, string[] LogicFile, Dictionary<string, int> DicNameToID)
+        public static bool CreateLogic(List<LogicObjects.LogicEntry> LogicList, string[] LogicFile)
         {
             LogicObjects.RawLogicText = LogicFile.ToList<string>();
             int SubCounter = 0;
@@ -258,7 +258,15 @@ namespace MMR_Tracker_V2
                 if (data.LocationID > -1 && data.ItemID > -2)
                     Logic[data.LocationID].SpoilerRandom = data.ItemID;
             }
-            
+
+            if (!VersionHandeling.isEntranceRando())//If dungeon entrances aren't randomized they don't show up in the spoiler log
+            {
+                var entranceIDs = VersionHandeling.AreaClearDictionary();
+                foreach(var i in Logic)
+                {
+                    if (i.ItemSubType == "Dungeon Entrance" && entranceIDs.ContainsValue(i.ID) && i.SpoilerRandom < 0) { i.SpoilerRandom = i.ID; }
+                }
+            }
         }
 
         public static void CheckEntrancePair(LogicObjects.LogicEntry Location, List<LogicObjects.LogicEntry> logic, bool Checking)
@@ -290,7 +298,7 @@ namespace MMR_Tracker_V2
             LogicObjects.RawLogicText = new List<string>();
             VersionHandeling.Version = 0;
 
-            CreateLogic(LogicObjects.Logic, File.ReadAllLines(file), LogicObjects.DicNameToID);
+            CreateLogic(LogicObjects.Logic, File.ReadAllLines(file));
 
             var logic = LogicObjects.Logic;
             foreach (var entry in OldLogic)
