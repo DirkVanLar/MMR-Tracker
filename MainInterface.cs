@@ -85,7 +85,25 @@ namespace MMR_Tracker_V2
 
             CreateTrackerInstance(lines.ToArray());
 
-            if (SettingsFile) { RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file)); }
+            if (SettingsFile) { 
+                RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file));
+                VersionHandeling.entranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.Logic);
+                VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.isEntranceRando());
+            }
+
+            if (VersionHandeling.isEntranceRando() && !SettingsFile)
+            {
+                foreach (var item in LogicObjects.Logic)
+                {
+                    if (item.ItemSubType == "Entrance") { item.RandomizedState = 1; }
+                    VersionHandeling.entranceRadnoEnabled = false;
+                    VersionHandeling.OverRideAutoEntranceRandoEnable = true;
+                }
+                LogicEditing.CalculateItems(LogicObjects.Logic, true, true);
+            }
+            PrintToListBox();
+            ResizeObject();
+            FormatMenuItems();
         }
 
         //Menu Strip => File => New---------------------------------------------------------------------------
@@ -97,6 +115,9 @@ namespace MMR_Tracker_V2
             string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
             string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             CreateTrackerInstance(Lines);
+            PrintToListBox();
+            ResizeObject();
+            FormatMenuItems();
         }
 
         private void GlitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
@@ -106,6 +127,9 @@ namespace MMR_Tracker_V2
             string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
             string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             CreateTrackerInstance(Lines);
+            PrintToListBox();
+            ResizeObject();
+            FormatMenuItems();
         }
 
         //Menu Strip => Options---------------------------------------------------------------------------
@@ -114,15 +138,19 @@ namespace MMR_Tracker_V2
 
         private void EditRadnomizationOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool EntrancesRandoBefore = Utility.CheckForRandomEntrances(LogicObjects.Logic);
             RandomizeOptions RandoOptionScreen = new RandomizeOptions();
             RandoOptionScreen.ShowDialog();
-            VersionHandeling.entranceRadnoEnabled = false;
-            foreach (var i in LogicObjects.Logic)
+            bool EntrancesRandoAfter = Utility.CheckForRandomEntrances(LogicObjects.Logic);
+
+            if(!VersionHandeling.OverRideAutoEntranceRandoEnable || (EntrancesRandoBefore != EntrancesRandoAfter))
             {
-                if (i.ItemSubType == "Entrance" && (i.RandomizedState == 0 || i.RandomizedState == 2) && VersionHandeling.isEntranceRando())
-                { VersionHandeling.entranceRadnoEnabled = true; }
+                VersionHandeling.entranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.Logic);
+                VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.isEntranceRando());
             }
+
             LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
+            FormatMenuItems();
             ResizeObject();
             PrintToListBox();
         }
@@ -161,6 +189,7 @@ namespace MMR_Tracker_V2
         private void ToggleEntranceRandoFeaturesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             VersionHandeling.entranceRadnoEnabled = !VersionHandeling.entranceRadnoEnabled;
+            VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.isEntranceRando());
             ResizeObject();
             PrintToListBox();
             FormatMenuItems();
@@ -408,9 +437,6 @@ namespace MMR_Tracker_V2
                 if (dialogResult != DialogResult.Yes) { Utility.ResetInstance(); }
             }
             Utility.SaveState(LogicObjects.Logic);
-            PrintToListBox();
-            ResizeObject();
-            FormatMenuItems();
         }
 
         public void FormatMenuItems()
@@ -425,7 +451,10 @@ namespace MMR_Tracker_V2
             undoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
             redoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
             saveToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
-            VersionHandeling.entranceRadnoEnabled = (VersionHandeling.isEntranceRando());
+            if (!VersionHandeling.OverRideAutoEntranceRandoEnable) { VersionHandeling.entranceRadnoEnabled = (VersionHandeling.isEntranceRando()); }
+            useSongOfTimeInPathfinderToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
+            includeItemLocationsAsDestinationToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
+            coupleEntrancesToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
             toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
             coupleEntrancesToolStripMenuItem.Text = (LogicEditing.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
             LBValidEntrances.SelectionMode = (LogicEditing.CoupleEntrances) ? SelectionMode.One : SelectionMode.MultiExtended;

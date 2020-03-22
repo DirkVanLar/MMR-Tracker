@@ -122,13 +122,17 @@ namespace MMR_Tracker_V2
             listBox1.Items.Add("Double Clicking an item in \"Checked locations\" will uncheck that location and");
             listBox1.Items.Add("        mark the corrisponding item as unobtained");
             listBox1.Items.Add("==================================================================");
-            listBox1.Items.Add("Pathfinder:");
-            listBox1.Items.Add("The path finder will show you the path from one entrance to another.");
-            listBox1.Items.Add("You will enter the last exit you came out of (or exit closest to you) along");
-            listBox1.Items.Add("        with the entrance you want to end up in front of.");
-            listBox1.Items.Add("It will generate a path that will put you in an area from which you can access");
-            listBox1.Items.Add("        The destination Entrance");
-            listBox1.Items.Add("==================================================================");
+            if ((VersionHandeling.isEntranceRando() && VersionHandeling.entranceRadnoEnabled) || VersionHandeling.Version == 0)
+            {
+                listBox1.Items.Add("Pathfinder:");
+                if (VersionHandeling.Version == 0) { listBox1.Items.Add("(This is only available if entrances are randomized.)"); }
+                listBox1.Items.Add("The path finder will show you the path from one entrance to another.");
+                listBox1.Items.Add("You will enter the last exit you came out of (or exit closest to you) along");
+                listBox1.Items.Add("        with the entrance you want to end up in front of.");
+                listBox1.Items.Add("It will generate a path that will put you in an area from which you can access");
+                listBox1.Items.Add("        The destination Entrance");
+                listBox1.Items.Add("==================================================================");
+            }
             listBox1.Items.Add("List Filtering:");
             listBox1.Items.Add("Typing in the text box above a list will filter the items in the list.");
             listBox1.Items.Add("You can filter by area by typing # at the beggining of your filter.");
@@ -162,15 +166,16 @@ namespace MMR_Tracker_V2
             listBox1.Items.Add("The location is not randomized but must be marked manually. It will still appear in");
             listBox1.Items.Add("        the tracker, but must be double clicked to be marked as obtained.");
             listBox1.Items.Add("4. Forced Junk");
-            listBox1.Items.Add("The lcoation is randomized but will never contain an item usefull to logic The");
+            listBox1.Items.Add("The location is randomized but will never contain an item usefull to logic The");
             listBox1.Items.Add("        location will simply not appear in the tracker.");
             listBox1.Items.Add("An item can also be marked as a starting item.");
             listBox1.Items.Add("This will make the tracker always consider the item obtained when calculating logic.");
+            listBox1.Items.Add("==================================================================");
             listBox1.Items.Add("Saving/Loading Randomization Options:");
             listBox1.Items.Add("You can save your options by clicking the save settings button");
             listBox1.Items.Add("This will create a .MMRTSET file that can be loaded by clicking Load Settings");
             listBox1.Items.Add("As mentioned above this .MMRTSET file can be use as logic as it will contain");
-            listBox1.Items.Add("        the the logic file the tracker last used.");
+            listBox1.Items.Add("        the the logic file the tracker is using when the setting file is created.");
             listBox1.Items.Add("==================================================================");
             listBox1.Items.Add("Importing Spoiler log:");
             listBox1.Items.Add("This will allow you to import the spoiler log generated with your rom.");
@@ -213,6 +218,15 @@ namespace MMR_Tracker_V2
             listBox1.Items.Add("Show Entry Name Tooltip:");
             listBox1.Items.Add("This will toggle the tooltip that displays the full name of an item when you ");
             listBox1.Items.Add("        mouse over an item in a list.");
+            listBox1.Items.Add("==================================================================");
+            listBox1.Items.Add("Seed Checker:");
+            listBox1.Items.Add("The seed checker will tell you if your seed can reach the selected items");
+            listBox1.Items.Add("        using your current logic.");
+            listBox1.Items.Add("You will be asked to provide the spoiler log for the seed you want to check");
+            listBox1.Items.Add("If a spoiler log is already imported into the tracker it will use that data.");
+            listBox1.Items.Add("Adding a location to the Checks Ignored list will check if the selected items");
+            listBox1.Items.Add("        are obtainable assuming you never do the selected checks. ");
+            listBox1.Items.Add("The seed checker will not reveal what items are on what checks.");
             listBox1.Items.Add("==================================================================");
         }
         private void ListBox1_DoubleClick(object sender, EventArgs e)

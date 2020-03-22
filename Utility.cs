@@ -233,7 +233,7 @@ namespace MMR_Tracker_V2
         }
         public static bool SaveInstance()
         { 
-            string[] Options = new string[7];
+            string[] Options = new string[9];
             Options[0] = JsonConvert.SerializeObject(LogicObjects.Logic);
             Options[1] = VersionHandeling.Version.ToString();
             Options[2] = "UseSOT:" + ((Pathfinding.UseSongOfTime) ? "1" : "0");
@@ -241,6 +241,8 @@ namespace MMR_Tracker_V2
             Options[4] = "EntranceCouple:" + ((LogicEditing.CoupleEntrances) ? "1" : "0");
             Options[5] = "StrictLogic:" + ((LogicEditing.StrictLogicHandeling) ? "1" : "0");
             Options[6] = "ShowToolTip:" + ((Utility.ShowEntryNameTooltip) ? "1" : "0");
+            Options[7] = "EntRadno:" + ((VersionHandeling.entranceRadnoEnabled) ? "1" : "0");
+            Options[8] = "AutoEntRand:" + ((VersionHandeling.OverRideAutoEntranceRandoEnable) ? "1" : "0");
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
             File.WriteAllLines(saveDialog.FileName, Options);
@@ -257,7 +259,8 @@ namespace MMR_Tracker_V2
             if (options.Length > 4) { LogicEditing.CoupleEntrances = (options[4] == "EntranceCouple:1"); }
             if (options.Length > 5) { LogicEditing.StrictLogicHandeling = (options[5] == "StrictLogic:1"); }
             if (options.Length > 6) { Utility.ShowEntryNameTooltip = (options[6] == "ShowToolTip:1"); }
-            VersionHandeling.entranceRadnoEnabled = (VersionHandeling.isEntranceRando());
+            if (options.Length > 7) { VersionHandeling.entranceRadnoEnabled = (options[7] == "EntRadno:1"); }
+            if (options.Length > 8) { VersionHandeling.OverRideAutoEntranceRandoEnable = (options[8] == "AutoEntRand:1"); }
             return true;
         }
         public static void SaveState(List<LogicObjects.LogicEntry> logic)
@@ -411,6 +414,15 @@ namespace MMR_Tracker_V2
                 if (i == '=') { occurences++; }
             }
             return (occurences >= 3);
+        }
+        public static bool CheckForRandomEntrances(List<LogicObjects.LogicEntry> logic)
+        {
+            foreach (var i in logic)
+            {
+                if (i.ItemSubType == "Entrance" && (i.RandomizedState == 0 || i.RandomizedState == 2) && VersionHandeling.isEntranceRando())
+                { return true; }
+            }
+            return false;
         }
     }
 }

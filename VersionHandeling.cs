@@ -11,6 +11,7 @@ namespace MMR_Tracker_V2
         public static int Version = 0; // The current verion of logic being used
         public static int EntranceRandoVersion = 14; // The version of logic that entrance randomizer was implimented
         public static bool entranceRadnoEnabled = false; // Whether or not entrances should be seperated into their own colum
+        public static bool OverRideAutoEntranceRandoEnable = false;
         public static List<int> ValidVersions = new List<int> { 8, 13, 16 }; // Versions of logic used in main releases
 
         public static Dictionary<int, int> AreaClearDictionary()
