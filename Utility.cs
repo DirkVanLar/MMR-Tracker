@@ -378,11 +378,16 @@ namespace MMR_Tracker_V2
         }
         public static bool CheckforFullSpoilerLog(List<LogicObjects.LogicEntry> Logic)
         {
+            bool fullLog = true;
             foreach (var i in Logic)
             {
-                if (i.SpoilerRandom < 0 && !i.IsFake) { return false; }
+                if (i.SpoilerRandom < 0 && !i.IsFake) 
+                {
+                    Console.WriteLine(i.DictionaryName + " Does not have SpoilerData");
+                    fullLog = false; 
+                }
             }
-            return true;
+            return fullLog;
         }
     }
 }

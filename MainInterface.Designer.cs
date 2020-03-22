@@ -75,7 +75,6 @@
             this.miscOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showEntryNameToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showImportantItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -270,6 +269,7 @@
             this.LBPathFinder.Name = "LBPathFinder";
             this.LBPathFinder.Size = new System.Drawing.Size(120, 95);
             this.LBPathFinder.TabIndex = 19;
+            this.LBPathFinder.DoubleClick += new System.EventHandler(this.LBPathFinder_DoubleClick);
             this.LBPathFinder.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBPathFinder_MouseMove);
             // 
             // BTNFindPath
@@ -478,8 +478,7 @@
             // 
             this.miscOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showEntryNameToolTipToolStripMenuItem,
-            this.seedCheckerToolStripMenuItem,
-            this.showImportantItemsToolStripMenuItem});
+            this.seedCheckerToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
             this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
@@ -497,12 +496,6 @@
             this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.seedCheckerToolStripMenuItem.Text = "Seed Checker";
             this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.seedCheckerToolStripMenuItem_Click);
-            // 
-            // showImportantItemsToolStripMenuItem
-            // 
-            this.showImportantItemsToolStripMenuItem.Name = "showImportantItemsToolStripMenuItem";
-            this.showImportantItemsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.showImportantItemsToolStripMenuItem.Text = "Show Important Items";
             // 
             // infoToolStripMenuItem
             // 
@@ -617,7 +610,6 @@
         private System.Windows.Forms.ToolStripMenuItem userLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seedCheckerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem showImportantItemsToolStripMenuItem;
     }
 }
 

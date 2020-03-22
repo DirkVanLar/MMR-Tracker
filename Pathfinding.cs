@@ -91,7 +91,7 @@ namespace MMR_Tracker_V2
             //For each point in our trimmed map 
             foreach(var point in map)
             {
-                if (point.CurrentExit == startinglocation && !ExitsSeenOriginal.Contains(point.Entrance))
+                if (point.CurrentExit == startinglocation && (!ExitsSeenOriginal.Contains(point.Entrance)))
                 {
                     if (CheckExitValid(map, point.ResultingExit, ExitsSeenCopy)) {
                         validExits.Add(point);

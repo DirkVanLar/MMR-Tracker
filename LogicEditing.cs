@@ -73,8 +73,6 @@ namespace MMR_Tracker_V2
                         break;
                     case 4:
                         LogicList.Add(LogicEntry1);
-                        if (!LogicObjects.DicNameToID.ContainsKey(LogicEntry1.DictionaryName) && !LogicEntry1.IsFake)
-                        { LogicObjects.DicNameToID.Add(LogicEntry1.DictionaryName, LogicEntry1.ID); }
                         
                         LogicEntry1 = new LogicObjects.LogicEntry();
                         idCounter++;
@@ -83,16 +81,8 @@ namespace MMR_Tracker_V2
                 SubCounter++;
             }
 
-            if (!VersionHandeling.isEntranceRando()) { return true; }
-
-            foreach(var i in File.ReadAllLines(VersionData[1]))
-            {
-                var j = i.Split(',');
-                if (LogicObjects.DicNameToID.ContainsKey(j[0]) && LogicObjects.DicNameToID.ContainsKey(j[1]))
-                {
-                    LogicObjects.EntrancePairs.Add(LogicObjects.DicNameToID[j[0]], LogicObjects.DicNameToID[j[1]]);
-                }
-            }
+            CreateDicNameToID(LogicObjects.DicNameToID, LogicObjects.Logic);
+            CreatedEntrancepairDcitionary(LogicObjects.EntrancePairs, LogicObjects.DicNameToID);
 
             return true;
         }
@@ -333,6 +323,28 @@ namespace MMR_Tracker_V2
 
             }
             if (recalculate) { CheckSeed(logic, false, Ignored); }
+        }
+
+        public static void CreatedEntrancepairDcitionary(Dictionary<int,int> entrancePairs, Dictionary<string, int> NameToID)
+        {
+            var VersionData = VersionHandeling.SwitchDictionary();
+            foreach (var i in File.ReadAllLines(VersionData[1]))
+            {
+                var j = i.Split(',');
+                if (NameToID.ContainsKey(j[0]) && NameToID.ContainsKey(j[1]))
+                {
+                    entrancePairs.Add(NameToID[j[0]], NameToID[j[1]]);
+                }
+            }
+        }
+
+        public static void CreateDicNameToID(Dictionary<string, int> NameToID, List<LogicObjects.LogicEntry> logic)
+        {
+            foreach(var LogicEntry1 in logic)
+            {
+                if (!NameToID.ContainsKey(LogicEntry1.DictionaryName) && !LogicEntry1.IsFake)
+                { NameToID.Add(LogicEntry1.DictionaryName, LogicEntry1.ID); }
+            }
         }
     }
 }

@@ -122,6 +122,8 @@ namespace MMR_Tracker_V2
             if (file == "") { return; }
             Utility.ResetInstance();
             Utility.LoadInstance(file);
+            LogicEditing.CreateDicNameToID(LogicObjects.DicNameToID, LogicObjects.Logic);
+            LogicEditing.CreatedEntrancepairDcitionary(LogicObjects.EntrancePairs, LogicObjects.DicNameToID);
             PrintToListBox();
             ResizeObject();
             FormatMenuItems();
@@ -167,6 +169,12 @@ namespace MMR_Tracker_V2
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Utility.SaveInstance();
+        }
+
+        private void seedCheckerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SeedChecker SeedCheckerForm = new SeedChecker();
+            SeedCheckerForm.ShowDialog();
         }
 
         private void StricterLogicHandelingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -236,6 +244,15 @@ namespace MMR_Tracker_V2
 
         private void LBCheckedLocations_DoubleClick(object sender, EventArgs e) { CheckItemSelected(LBCheckedLocations, true); }
 
+        private void LBPathFinder_DoubleClick(object sender, EventArgs e)
+        {
+            if (LBPathFinder.SelectedItem is LogicObjects.ListItem)
+            {
+                var item = LBPathFinder.SelectedItem as LogicObjects.ListItem;
+                PrintPaths(item.ID);
+            }
+        }
+
         private void LBValidLocations_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, LBValidLocations); }
 
         private void LBValidEntrances_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, LBValidEntrances); }
@@ -299,36 +316,272 @@ namespace MMR_Tracker_V2
                 }
                 return;
             }
-
-            //Print Paths
-            var sortedpaths = Pathfinding.paths.OrderBy(x => x.Count);
-            int counter = 1;
-            foreach (var path in sortedpaths)
-            {
-                LBPathFinder.Items.Add("Path: " + counter + " (" + path.Count + " Steps)");
-                foreach (var stop in path)
-                {
-                    var ThisIsStupid = new LogicObjects.LogicEntry
-                    { DisplayName = 
-                        ((LogicObjects.Logic[stop.Entrance].DictionaryName == "EntranceSouthClockTownFromClockTowerInterior")?
-                            "Song of Time" : 
-                            LogicObjects.Logic[stop.Entrance].LocationName
-                        ) + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName };
-                    LBPathFinder.Items.Add(ThisIsStupid);
-                }
-                counter++;
-                LBPathFinder.Items.Add("===============================");
-            }
+            PrintPaths(-1);
         }
 
         //Other---------------------------------------------------------------------------
         private void CHKShowAll_CheckedChanged(object sender, EventArgs e) { PrintToListBox(); }
 
-        private void CMBStart_DropDown(object sender, EventArgs e) { PrintToComboBox(true); adjustCMBWidth(sender); }
+        private void CMBStart_DropDown(object sender, EventArgs e) { PrintToComboBox(true); AdjustCMBWidth(sender); }
 
-        private void CMBEnd_DropDown(object sender, EventArgs e) { PrintToComboBox(false); adjustCMBWidth(sender); }
+        private void CMBEnd_DropDown(object sender, EventArgs e) { PrintToComboBox(false); AdjustCMBWidth(sender); }
 
         //Functions---------------------------------------------------------------------------
+        public void AdjustCMBWidth(object sender)
+        {
+            ComboBox senderComboBox = (ComboBox)sender;
+            int width = senderComboBox.DropDownWidth;
+            Graphics g = senderComboBox.CreateGraphics();
+            Font font = senderComboBox.Font;
+            int vertScrollBarWidth =
+                (senderComboBox.Items.Count > senderComboBox.MaxDropDownItems)
+                ? SystemInformation.VerticalScrollBarWidth : 0;
+
+            int newWidth;
+
+            foreach (var s in senderComboBox.Items)
+            {
+                var json = JsonConvert.SerializeObject(s);
+                var dictionary = JsonConvert.DeserializeObject<KeyValuePair<int, string>>(json);
+
+                newWidth = (int)g.MeasureString(dictionary.Value, font).Width
+                    + vertScrollBarWidth;
+                if (width < newWidth)
+                {
+                    width = newWidth;
+                }
+            }
+            senderComboBox.DropDownWidth = width;
+        }
+
+        public void CheckItemSelected(ListBox LB, bool FullCheck)
+        {
+            if (TXTLocSearch.Text.ToLower() == "enabledev" && LB == LBValidLocations && !FullCheck)
+            {
+                devToolStripMenuItem.Visible = !devToolStripMenuItem.Visible;
+                TXTLocSearch.Clear();
+                return;
+            }
+            foreach (var i in LB.SelectedItems)
+            {
+                if ((i is LogicObjects.LogicEntry))
+                {
+                    //var selectedIndex = LB.SelectedIndex;
+                    //We want to save logic at this point but don't want to comit to a full save state
+                    var TempState = Utility.CloneLogicList(LogicObjects.Logic);
+                    if (FullCheck)
+                    {
+                        if (!LogicEditing.CheckObject(i as LogicObjects.LogicEntry)) { return; }
+                    }
+                    else
+                    {
+                        if (!LogicEditing.MarkObject(i as LogicObjects.LogicEntry)) { return; }
+                    }
+                    Utility.UnsavedChanges = true;
+                    //Now that we have successfully checked/Marked an object we can commit to a full save state
+                    Utility.SaveState(TempState);
+                }
+                
+            }
+            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
+
+            int TopIndex = LB.TopIndex;
+            PrintToListBox();
+            LB.TopIndex = TopIndex;
+        }
+
+        public void CreateTrackerInstance(string[] Logic)
+        {
+            Utility.ResetInstance();
+            LogicEditing.CreateLogic(LogicObjects.Logic, Logic);
+            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
+            if (!VersionHandeling.ValidVersions.Contains(VersionHandeling.Version))
+            {
+                DialogResult dialogResult = MessageBox.Show("This version of logic is not supported. Only official releases of versions 1.8 and up are supported. This may result in the tracker not funtioning Correctly. If you are using an official release and are seeing this message, Please update your tracker. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes) { Utility.ResetInstance(); }
+            }
+            Utility.SaveState(LogicObjects.Logic);
+            PrintToListBox();
+            ResizeObject();
+            FormatMenuItems();
+        }
+
+        public void FormatMenuItems()
+        {
+            importSpoilerLogToolStripMenuItem.Text = (Utility.CheckforSpoilerLog(LogicObjects.Logic)) ? "Remove Spoiler Log" : "Import Spoiler Log";
+            useSongOfTimeInPathfinderToolStripMenuItem.Text = (Pathfinding.UseSongOfTime) ? "Disable Song of Time in pathfinder" : "Enable Song of Time in pathfinder";
+            stricterLogicHandelingToolStripMenuItem.Text = (LogicEditing.StrictLogicHandeling) ? "Disable Stricter Logic Handeling" : "Enable Stricter Logic Handeling";
+            showEntryNameToolTipToolStripMenuItem.Text = (Utility.ShowEntryNameTooltip) ? "Disable Entry Name ToolTip" : "Show Entry Name ToolTip";
+            includeItemLocationsAsDestinationToolStripMenuItem.Text = (Pathfinding.IncludeItemLocations) ? "Exclude Item Locations As Destinations" : "Include Item Locations As Destinations";
+            entranceRandoToolStripMenuItem.Visible = VersionHandeling.isEntranceRando();
+            optionsToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
+            undoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
+            redoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
+            saveToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
+            VersionHandeling.entranceRadnoEnabled = (VersionHandeling.isEntranceRando());
+            toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
+            coupleEntrancesToolStripMenuItem.Text = (LogicEditing.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
+        }
+
+        private void PrintPaths(int PathToPrint)
+        {
+            LBPathFinder.Items.Clear();
+            var sortedpaths = Pathfinding.paths.OrderBy(x => x.Count);
+
+            if (PathToPrint == -1 || Pathfinding.paths.ElementAtOrDefault(PathToPrint) == null)
+            {
+                int counter = 1;
+                foreach (var path in sortedpaths)
+                {
+                    var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", ID = counter - 1 };
+                    LBPathFinder.Items.Add(ListTitle);
+                    foreach (var stop in path)
+                    {
+                        var ListItem = new LogicObjects.ListItem
+                        {
+                            DisplayName =
+                            ((LogicObjects.Logic[stop.Entrance].DictionaryName == "EntranceSouthClockTownFromClockTowerInterior") ?
+                                "Song of Time" :
+                                LogicObjects.Logic[stop.Entrance].LocationName
+                            ) + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName,
+                            ID = counter - 1
+                        };
+                        LBPathFinder.Items.Add(ListItem);
+                    }
+                    counter++;
+                    LBPathFinder.Items.Add("===============================");
+                }
+            }
+            else
+            {
+                var path = sortedpaths.ToArray()[PathToPrint];
+                var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + (PathToPrint + 1) + " (" + path.Count + " Steps)", ID = -1 };
+                LBPathFinder.Items.Add(ListTitle);
+                foreach (var stop in path)
+                {
+                    var ThisIsStupid = new LogicObjects.ListItem
+                    {
+                        DisplayName =
+                        ((LogicObjects.Logic[stop.Entrance].DictionaryName == "EntranceSouthClockTownFromClockTowerInterior") ?
+                            "Song of Time" :
+                            LogicObjects.Logic[stop.Entrance].LocationName
+                        ) + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName,
+                        ID = -1
+                    };
+                    LBPathFinder.Items.Add(ThisIsStupid);
+                }
+                LBPathFinder.Items.Add("===============================");
+            }
+        }
+
+        public void PrintToComboBox(bool start)
+        {
+            var UnsortedPathfinder = new Dictionary<int, string>();
+            var UnsortedItemPathfinder = new Dictionary<int, string>();
+            foreach (var entry in LogicObjects.Logic)
+            {
+                if (entry.ItemSubType == "Entrance")
+                {
+                    if (entry.Aquired && start)
+                    { UnsortedPathfinder.Add(entry.ID, entry.ItemName); }
+                    if (entry.Available && !start)
+                    { UnsortedPathfinder.Add(entry.ID, entry.LocationName); }
+                }
+                if (Pathfinding.IncludeItemLocations && entry.ItemSubType != "Entrance" && !entry.IsFake && entry.Available && !start)
+                {
+                    UnsortedItemPathfinder.Add(entry.ID, (entry.RandomizedItem > -1) ? entry.LocationName + ": " + LogicObjects.Logic[entry.RandomizedItem].ItemName : entry.LocationName);
+                }
+            }
+            Dictionary<int, string> sortedPathfinder = UnsortedPathfinder.OrderBy(x => x.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            if (Pathfinding.IncludeItemLocations && !start)
+            {
+                Dictionary<int, string> ItemPathFinder = new Dictionary<int, string>();
+                Dictionary<int, string> sortedItemPathfinder = UnsortedItemPathfinder.OrderBy(x => x.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+                ItemPathFinder.Add(-2, "ENTRANCES =============================");
+                foreach (KeyValuePair<int, string> p in sortedPathfinder)
+                {
+                    ItemPathFinder.Add(p.Key, p.Value);
+                }
+                ItemPathFinder.Add(-1, "ITEM LOCATIONS =============================");
+                foreach (KeyValuePair<int, string> p in sortedItemPathfinder)
+                {
+                    ItemPathFinder.Add(p.Key, p.Value);
+                }
+                sortedPathfinder = ItemPathFinder;
+            }
+
+            ComboBox cmb = (start) ? CMBStart : CMBEnd;
+            cmb.DataSource = new BindingSource(sortedPathfinder, null);
+            cmb.DisplayMember = "Value";
+            cmb.ValueMember = "key";
+        }
+
+        public void PrintToListBox()
+        {
+            LBValidLocations.Items.Clear();
+            LBValidEntrances.Items.Clear();
+            LBCheckedLocations.Items.Clear();
+            var logic = LogicObjects.Logic;
+
+            var Unsortedlogic = new List<LogicObjects.LogicEntry>();
+            Dictionary<int, int> listGroups = new Dictionary<int, int>();
+
+            foreach (var entry in LogicObjects.Logic)
+            {
+                entry.DisplayName = entry.DictionaryName;
+                if ((entry.Available || CHKShowAll.Checked) &&
+                    !entry.IsFake &&
+                    (entry.LocationName != "" && entry.LocationName != null) &&
+                    !entry.Checked &&
+                    (entry.RandomizedState == 0 || entry.RandomizedState == 2))
+                {
+                    entry.DisplayName = (entry.RandomizedItem > -2) ? (
+                        (entry.RandomizedItem > -1) ?
+                        entry.LocationName + ": " + logic[entry.RandomizedItem].ItemName :
+                        entry.LocationName + ": JUNK") :
+                    entry.LocationName;
+
+                    if ((entry.ItemSubType != "Entrance" || !VersionHandeling.entranceRadnoEnabled) &&
+                        Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName))
+                    {
+                        listGroups.Add(entry.ID, 0);
+                        Unsortedlogic.Add(entry);
+                    }
+                    else if ((entry.ItemSubType == "Entrance" && VersionHandeling.entranceRadnoEnabled) &&
+                        Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName))
+                    {
+                        listGroups.Add(entry.ID, 1);
+                        Unsortedlogic.Add(entry);
+                    }
+                }
+                if (entry.Checked && !entry.IsFake && (entry.RandomizedState == 0 || entry.RandomizedState == 2))
+                {
+                    entry.DisplayName = (entry.RandomizedItem > -1) ? logic[entry.RandomizedItem].ItemName + ": " + entry.LocationName : "Junk: " + entry.LocationName;
+
+                    listGroups.Add(entry.ID, 2);
+                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName)) { Unsortedlogic.Add(entry); }
+                }
+
+            }
+
+            var sortedlogic = Unsortedlogic.OrderBy(x => x.LocationArea).ThenBy(x => x.DisplayName);
+
+            var lastLocArea = "";
+            var lastEntArea = "";
+            var lastChkArea = "";
+
+            foreach (var entry in sortedlogic)
+            {
+                if (!listGroups.ContainsKey(entry.ID)) { continue; }
+                if (listGroups[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea); }
+                if (listGroups[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea); }
+                if (listGroups[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea); }
+            }
+
+
+        }
+
         private void ResizeObject()
         {
             var UpperLeftLBL = label1;
@@ -444,69 +697,14 @@ namespace MMR_Tracker_V2
             LBPathFinder.Visible = location;
         }
 
-        public void PrintToListBox()
+        public void ShowtoolTip(MouseEventArgs e, ListBox lb)
         {
-            LBValidLocations.Items.Clear();
-            LBValidEntrances.Items.Clear();
-            LBCheckedLocations.Items.Clear();
-            var logic = LogicObjects.Logic;
-
-            var Unsortedlogic = new List<LogicObjects.LogicEntry>();
-            Dictionary<int, int> listGroups = new Dictionary<int, int>();
-
-            foreach (var entry in LogicObjects.Logic)
-            {
-                entry.DisplayName = entry.DictionaryName;
-                if ((entry.Available || CHKShowAll.Checked) &&
-                    !entry.IsFake &&
-                    (entry.LocationName != "" && entry.LocationName != null) &&
-                    !entry.Checked &&
-                    (entry.RandomizedState == 0 || entry.RandomizedState == 2))
-                {
-                    entry.DisplayName = (entry.RandomizedItem > -2) ? (
-                        (entry.RandomizedItem > -1) ?
-                        entry.LocationName + ": " + logic[entry.RandomizedItem].ItemName :
-                        entry.LocationName + ": JUNK") :
-                    entry.LocationName;
-
-                    if ((entry.ItemSubType != "Entrance" || !VersionHandeling.entranceRadnoEnabled) &&
-                        Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName))
-                    {
-                        listGroups.Add(entry.ID, 0);
-                        Unsortedlogic.Add(entry);
-                    }
-                    else if ((entry.ItemSubType == "Entrance" && VersionHandeling.entranceRadnoEnabled) &&
-                        Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName))
-                    {
-                        listGroups.Add(entry.ID, 1);
-                        Unsortedlogic.Add(entry);
-                    }
-                }
-                if (entry.Checked && !entry.IsFake && (entry.RandomizedState == 0 || entry.RandomizedState == 2))
-                {
-                    entry.DisplayName = (entry.RandomizedItem > -1) ? logic[entry.RandomizedItem].ItemName + ": " + entry.LocationName : "Junk: " + entry.LocationName;
-
-                    listGroups.Add(entry.ID, 2);
-                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName)) { Unsortedlogic.Add(entry); }
-                }
-
-            }
-
-            var sortedlogic = Unsortedlogic.OrderBy(x => x.LocationArea).ThenBy(x => x.DisplayName);
-
-            var lastLocArea = "";
-            var lastEntArea = "";
-            var lastChkArea = "";
-
-            foreach (var entry in sortedlogic)
-            {
-                if (!listGroups.ContainsKey(entry.ID)) { continue; }
-                if (listGroups[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea); }
-                if (listGroups[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea); }
-                if (listGroups[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea); }
-            }
-
-
+            if (!Utility.ShowEntryNameTooltip) { return; }
+            int index = lb.IndexFromPoint(e.Location);
+            if (index < 0) { return; }
+            string tip = lb.Items[index].ToString();
+            if (toolTip1.GetToolTip(lb) != tip && (lb.Items[index] is LogicObjects.LogicEntry))
+            { toolTip1.SetToolTip(lb, tip); }
         }
 
         private string WriteObject(LogicObjects.LogicEntry entry, ListBox lb, string lastArea)
@@ -520,159 +718,6 @@ namespace MMR_Tracker_V2
             }
             lb.Items.Add(entry);
             return (returnLastArea);
-        }
-
-        public void PrintToComboBox(bool start)
-        {
-            var UnsortedPathfinder = new Dictionary<int, string>();
-            var UnsortedItemPathfinder = new Dictionary<int, string>();
-            foreach (var entry in LogicObjects.Logic)
-            {
-                if (entry.ItemSubType == "Entrance")
-                {
-                    if (entry.Aquired && start)
-                    { UnsortedPathfinder.Add(entry.ID, entry.ItemName ); }
-                    if (entry.Available && !start)
-                    { UnsortedPathfinder.Add( entry.ID,entry.LocationName ); }
-                }
-                if (Pathfinding.IncludeItemLocations && entry.ItemSubType != "Entrance" && !entry.IsFake && entry.Available && !start)
-                {
-                    UnsortedItemPathfinder.Add(entry.ID, (entry.RandomizedItem > -1) ? entry.LocationName + ": " + LogicObjects.Logic[entry.RandomizedItem].ItemName : entry.LocationName  );
-                }
-            }
-            Dictionary<int,string> sortedPathfinder = UnsortedPathfinder.OrderBy(x => x.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
-
-            if (Pathfinding.IncludeItemLocations && !start)
-            {
-                Dictionary<int, string> ItemPathFinder = new Dictionary<int, string>();
-                Dictionary<int, string> sortedItemPathfinder = UnsortedItemPathfinder.OrderBy(x => x.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
-                ItemPathFinder.Add(-2, "ENTRANCES =============================");
-                foreach (KeyValuePair<int, string> p in sortedPathfinder)
-                {
-                    ItemPathFinder.Add(p.Key, p.Value);
-                }
-                ItemPathFinder.Add(-1, "ITEM LOCATIONS =============================");
-                foreach (KeyValuePair<int,string> p in sortedItemPathfinder)
-                {
-                    ItemPathFinder.Add(p.Key, p.Value);
-                }
-                sortedPathfinder = ItemPathFinder;
-            }
-
-            ComboBox cmb = (start) ? CMBStart : CMBEnd;
-            cmb.DataSource = new BindingSource(sortedPathfinder, null);
-            cmb.DisplayMember = "Value";
-            cmb.ValueMember = "key";
-        }
-
-        public void CheckItemSelected(ListBox LB, bool FullCheck)
-        {
-            if (TXTLocSearch.Text.ToLower() == "enabledev" && LB == LBValidLocations && !FullCheck)
-            {
-                devToolStripMenuItem.Visible = !devToolStripMenuItem.Visible;
-                TXTLocSearch.Clear();
-                return;
-            }
-            foreach(var i in LB.SelectedItems)
-            {
-                if ((i is LogicObjects.LogicEntry))
-                {
-                    //var selectedIndex = LB.SelectedIndex;
-                    //We want to save logic at this point but don't want to comit to a full save state
-                    var TempState = Utility.CloneLogicList(LogicObjects.Logic);
-                    if (FullCheck)
-                    {
-                        if (!LogicEditing.CheckObject(i as LogicObjects.LogicEntry)) { return; }
-                    }
-                    else
-                    {
-                        if (!LogicEditing.MarkObject(i as LogicObjects.LogicEntry)) { return; }
-                    }
-                    Utility.UnsavedChanges = true;
-                    //Now that we have successfully checked/Marked an object we can commit to a full save state
-                    Utility.SaveState(TempState);
-                    //if (selectedIndex < LB.Items.Count) { LB.SelectedIndex = selectedIndex; }
-                    //else { LB.SelectedIndex = LB.Items.Count - 1; }
-                }
-            }
-            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
-            PrintToListBox();
-        }
-
-        public void ShowtoolTip(MouseEventArgs e, ListBox lb)
-        {
-            if (!Utility.ShowEntryNameTooltip) { return; }
-            int index = lb.IndexFromPoint(e.Location);
-            if (index < 0) { return; }
-            string tip = lb.Items[index].ToString();
-            if (toolTip1.GetToolTip(lb) != tip && (lb.Items[index] is LogicObjects.LogicEntry))
-            { toolTip1.SetToolTip(lb, tip); }
-        }
-
-        public void adjustCMBWidth(object sender)
-        {
-            ComboBox senderComboBox = (ComboBox)sender;
-            int width = senderComboBox.DropDownWidth;
-            Graphics g = senderComboBox.CreateGraphics();
-            Font font = senderComboBox.Font;
-            int vertScrollBarWidth =
-                (senderComboBox.Items.Count > senderComboBox.MaxDropDownItems)
-                ? SystemInformation.VerticalScrollBarWidth : 0;
-
-            int newWidth;
-
-            foreach (var s in senderComboBox.Items)
-            {
-                var json = JsonConvert.SerializeObject(s);
-                var dictionary = JsonConvert.DeserializeObject<KeyValuePair<int, string>>(json);
-
-                newWidth = (int)g.MeasureString(dictionary.Value, font).Width
-                    + vertScrollBarWidth;
-                if (width < newWidth)
-                {
-                    width = newWidth;
-                }
-            }
-            senderComboBox.DropDownWidth = width;
-        }
-
-        public void FormatMenuItems()
-        {
-            importSpoilerLogToolStripMenuItem.Text = (Utility.CheckforSpoilerLog(LogicObjects.Logic)) ? "Remove Spoiler Log" : "Import Spoiler Log";
-            useSongOfTimeInPathfinderToolStripMenuItem.Text = (Pathfinding.UseSongOfTime) ? "Disable Song of Time in pathfinder" : "Enable Song of Time in pathfinder";
-            stricterLogicHandelingToolStripMenuItem.Text = (LogicEditing.StrictLogicHandeling) ? "Disable Stricter Logic Handeling" : "Enable Stricter Logic Handeling";
-            showEntryNameToolTipToolStripMenuItem.Text = (Utility.ShowEntryNameTooltip) ? "Disable Entry Name ToolTip" : "Show Entry Name ToolTip";
-            includeItemLocationsAsDestinationToolStripMenuItem.Text = (Pathfinding.IncludeItemLocations) ? "Exclude Item Locations As Destinations" : "Include Item Locations As Destinations";
-            entranceRandoToolStripMenuItem.Visible = VersionHandeling.isEntranceRando();
-            optionsToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
-            undoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
-            redoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
-            saveToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
-            VersionHandeling.entranceRadnoEnabled = (VersionHandeling.isEntranceRando());
-            toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
-            coupleEntrancesToolStripMenuItem.Text = (LogicEditing.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
-        }
-
-        public void CreateTrackerInstance(string[] Logic)
-        {
-            Utility.ResetInstance();
-            LogicEditing.CreateLogic(LogicObjects.Logic, Logic);
-            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
-            if (!VersionHandeling.ValidVersions.Contains(VersionHandeling.Version))
-            {
-                DialogResult dialogResult = MessageBox.Show("This version of logic is not supported. Only official releases of versions 1.8 and up are supported. This may result in the tracker not funtioning Correctly. If you are using an official release and are seeing this message, Please update your tracker. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
-                if (dialogResult != DialogResult.Yes) { Utility.ResetInstance(); }
-            }
-            Utility.SaveState(LogicObjects.Logic);
-            PrintToListBox();
-            ResizeObject();
-            FormatMenuItems();
-        }
-
-        private void seedCheckerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SeedChecker SeedCheckerForm = new SeedChecker();
-            SeedCheckerForm.ShowDialog();
         }
     }
 }
