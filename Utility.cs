@@ -389,5 +389,28 @@ namespace MMR_Tracker_V2
             }
             return fullLog;
         }
+        public static string CheckSOT(LogicObjects.Map stop)
+        {
+            var StartName = LogicObjects.Logic[stop.CurrentExit].DictionaryName;
+            var entName = LogicObjects.Logic[stop.Entrance].DictionaryName;
+            if (entName == "EntranceSouthClockTownFromClockTowerInterior")
+            {
+                if (StartName == "EntranceClockTowerInteriorFromBeforethePortaltoTermina" || StartName == "EntranceClockTowerInteriorFromSouthClockTown")
+                {
+                    return LogicObjects.Logic[stop.Entrance].LocationName;
+                }   
+                else { return "Song of Time"; }
+            }
+            return LogicObjects.Logic[stop.Entrance].LocationName; ;
+        }
+        public static bool IsDivider(string text)
+        {
+            int occurences = 0;
+            foreach(var i in text)
+            {
+                if (i == '=') { occurences++; }
+            }
+            return (occurences >= 3);
+        }
     }
 }

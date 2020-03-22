@@ -17,7 +17,6 @@ namespace MMR_Tracker_V2
 
         public static List<List<LogicObjects.Map>> FindLogicalEntranceConnections(List<LogicObjects.LogicEntry> logic)
         {
-            var songOfTime = (UseSongOfTime) ? "" : "EntranceSouthClockTownFromClockTowerInterior";
             var result = new List<List<LogicObjects.Map>> { new List<LogicObjects.Map>() , new List<LogicObjects.Map>() };
 
             var logicTemplate = Utility.CloneLogicList(logic);
@@ -44,7 +43,7 @@ namespace MMR_Tracker_V2
                         if (dummyEntry.Available && 
                             !dummyEntry.IsFake &&
                             (dummyEntry.ItemSubType == "Entrance" || IncludeItemLocations) && 
-                            dummyEntry.DictionaryName != songOfTime)
+                            CheckSOT(ExitToCheck,dummyEntry))
                         {
                             var newEntry = new LogicObjects.Map
                             {
@@ -125,6 +124,20 @@ namespace MMR_Tracker_V2
                 }
             }
             return good;
+        }
+
+        private static bool CheckSOT(LogicObjects.LogicEntry EntranceToCheck, LogicObjects.LogicEntry dummyEntry)
+        {
+            var songOfTime = (UseSongOfTime) ? "" : "EntranceSouthClockTownFromClockTowerInterior";
+            if (dummyEntry.DictionaryName == songOfTime)
+            {
+                if (EntranceToCheck.DictionaryName == "EntranceClockTowerInteriorFromBeforethePortaltoTermina" || EntranceToCheck.DictionaryName == "EntranceClockTowerInteriorFromSouthClockTown")
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            return true;
         }
     }
 }

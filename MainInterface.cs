@@ -23,96 +23,41 @@ namespace MMR_Tracker_V2
         private void FRMTracker_Load(object sender, EventArgs e)
         {
             ResizeObject();
-            entranceRandoToolStripMenuItem.Visible = false;
+            FormatMenuItems();
             devToolStripMenuItem.Visible = false;
-            optionsToolStripMenuItem.Visible = false;
-            undoToolStripMenuItem.Visible = false;
-            redoToolStripMenuItem.Visible = false;
-            saveToolStripMenuItem.Visible = false;
-            Console.WriteLine("Hello");
         }
 
-        private void FRMTracker_ResizeEnd(object sender, EventArgs e)
-        {
-            ResizeObject();
-        }
+        private void FRMTracker_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
 
         //Menu Strip---------------------------------------------------------------------------
 
-        private void CasualLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
-            System.Net.WebClient wc = new System.Net.WebClient();
-            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
-            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            CreateTrackerInstance(Lines);
+            DebugScreen DebugScreen = new DebugScreen();
+            Debugging.PrintLogicObject(LogicObjects.Logic);
+            DebugScreen.DebugFunction = 2;
+            DebugScreen.Show();
         }
 
-        private void CoupleEntrancesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RedoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LogicEditing.CoupleEntrances = !LogicEditing.CoupleEntrances;
-            if (!LogicEditing.CoupleEntrances) { MessageBox.Show("Entrances will not uncouple automatically."); }
-            if (LogicEditing.CoupleEntrances)
-            {
-                Utility.UnsavedChanges = true;
-                Utility.SaveState(Utility.CloneLogicList(LogicObjects.Logic));
-                foreach (var entry in LogicObjects.Logic)
-                {
-                    if (entry.Checked && entry.RandomizedItem > -1)
-                    {
-                        LogicEditing.CheckEntrancePair(LogicObjects.Logic[entry.ID], LogicObjects.Logic, true);
-                    }
-                }
-                LogicEditing.CalculateItems(LogicObjects.Logic, true, true);
-                PrintToListBox();
-            }
-            FormatMenuItems();
-        }
-
-        private void CreateDictionaryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Utility.CreateDictionary();
-        }
-
-        private void EditRadnomizationOptionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RandomizeOptions RandoOptionScreen = new RandomizeOptions();
-            RandoOptionScreen.ShowDialog();
-            VersionHandeling.entranceRadnoEnabled = false;
-            foreach (var i in LogicObjects.Logic)
-            {
-                if (i.ItemSubType == "Entrance" && (i.RandomizedState == 0 || i.RandomizedState == 2) && VersionHandeling.isEntranceRando()) 
-                { VersionHandeling.entranceRadnoEnabled = true; }
-            }
-            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
-            ResizeObject();
+            Utility.Redo();
             PrintToListBox();
-        }
-
-        private void GlitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
-            System.Net.WebClient wc = new System.Net.WebClient();
-            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
-            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            CreateTrackerInstance(Lines);
-        }
-
-        private void ImportSpoilerLogToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-            if (Utility.CheckforSpoilerLog(LogicObjects.Logic))
-            {
-                foreach (var entry in LogicObjects.Logic) { entry.SpoilerRandom = -2; }
-            }
-            else
-            {
-                string file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
-                if (file == "") { return; }
-                LogicEditing.WriteSpoilerLogToLogic(LogicObjects.Logic, file);
-                if (!Utility.CheckforFullSpoilerLog(LogicObjects.Logic)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
-            }
             FormatMenuItems();
+        }
+
+        private void UndoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utility.Undo();
+            PrintToListBox();
+            FormatMenuItems();
+        }
+
+        //Menu Strip => File---------------------------------------------------------------------------
+
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utility.SaveInstance();
         }
 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -143,38 +88,60 @@ namespace MMR_Tracker_V2
             if (SettingsFile) { RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file)); }
         }
 
-        private void PrintLogicObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        //Menu Strip => File => New---------------------------------------------------------------------------
+
+        private void CasualLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DebugScreen DebugScreen = new DebugScreen();
-            Debugging.PrintLogicObject(LogicObjects.Logic);
-            DebugScreen.DebugFunction = 1;
-            DebugScreen.Show();
+            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
+            System.Net.WebClient wc = new System.Net.WebClient();
+            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
+            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            CreateTrackerInstance(Lines);
         }
 
-        private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GlitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DebugScreen DebugScreen = new DebugScreen();
-            Debugging.PrintLogicObject(LogicObjects.Logic);
-            DebugScreen.DebugFunction = 2;
-            DebugScreen.Show();
+            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
+            System.Net.WebClient wc = new System.Net.WebClient();
+            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
+            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            CreateTrackerInstance(Lines);
         }
 
-        private void RedoToolStripMenuItem_Click(object sender, EventArgs e)
+        //Menu Strip => Options---------------------------------------------------------------------------
+
+        //Menu Strip => Options => Logic Options---------------------------------------------------------------------------
+
+        private void EditRadnomizationOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.Redo();
+            RandomizeOptions RandoOptionScreen = new RandomizeOptions();
+            RandoOptionScreen.ShowDialog();
+            VersionHandeling.entranceRadnoEnabled = false;
+            foreach (var i in LogicObjects.Logic)
+            {
+                if (i.ItemSubType == "Entrance" && (i.RandomizedState == 0 || i.RandomizedState == 2) && VersionHandeling.isEntranceRando())
+                { VersionHandeling.entranceRadnoEnabled = true; }
+            }
+            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
+            ResizeObject();
             PrintToListBox();
+        }
+
+        private void ImportSpoilerLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (Utility.CheckforSpoilerLog(LogicObjects.Logic))
+            {
+                foreach (var entry in LogicObjects.Logic) { entry.SpoilerRandom = -2; }
+            }
+            else
+            {
+                string file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
+                if (file == "") { return; }
+                LogicEditing.WriteSpoilerLogToLogic(LogicObjects.Logic, file);
+                if (!Utility.CheckforFullSpoilerLog(LogicObjects.Logic)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
+            }
             FormatMenuItems();
-        }
-
-        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Utility.SaveInstance();
-        }
-
-        private void seedCheckerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SeedChecker SeedCheckerForm = new SeedChecker();
-            SeedCheckerForm.ShowDialog();
         }
 
         private void StricterLogicHandelingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -183,9 +150,11 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
         }
 
-        private void ShowEntryNameToolTipToolStripMenuItem_Click(object sender, EventArgs e)
+        //Menu Strip => Options => Entrance Rando---------------------------------------------------------------------------
+
+        private void UseSongOfTimeInPathfinderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.ShowEntryNameTooltip = !Utility.ShowEntryNameTooltip;
+            Pathfinding.UseSongOfTime = !Pathfinding.UseSongOfTime;
             FormatMenuItems();
         }
 
@@ -197,23 +166,46 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
         }
 
-        private void UndoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Utility.Undo();
-            PrintToListBox();
-            FormatMenuItems();
-        }
-
-        private void UseSongOfTimeInPathfinderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Pathfinding.UseSongOfTime = !Pathfinding.UseSongOfTime;
-            FormatMenuItems();
-        }
-
         private void IncludeItemLocationsAsDestinationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Pathfinding.IncludeItemLocations = !Pathfinding.IncludeItemLocations;
             FormatMenuItems();
+        }
+
+        private void CoupleEntrancesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicEditing.CoupleEntrances = !LogicEditing.CoupleEntrances;
+            if (!LogicEditing.CoupleEntrances) { MessageBox.Show("Entrances will not uncouple automatically."); }
+            if (LogicEditing.CoupleEntrances)
+            {
+                Utility.UnsavedChanges = true;
+                Utility.SaveState(Utility.CloneLogicList(LogicObjects.Logic));
+                foreach (var entry in LogicObjects.Logic)
+                {
+                    if (entry.Checked && entry.RandomizedItem > -1)
+                    {
+                        LogicEditing.CheckEntrancePair(LogicObjects.Logic[entry.ID], LogicObjects.Logic, true);
+                    }
+                }
+                LogicEditing.CalculateItems(LogicObjects.Logic, true, true);
+                PrintToListBox();
+            }
+            FormatMenuItems();
+        }
+
+        //Menu Strip => Options => Dev---------------------------------------------------------------------------
+
+        private void CreateDictionaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utility.CreateDictionary();
+        }
+
+        private void PrintLogicObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DebugScreen DebugScreen = new DebugScreen();
+            Debugging.PrintLogicObject(LogicObjects.Logic);
+            DebugScreen.DebugFunction = 1;
+            DebugScreen.Show();
         }
 
         private void UpdateDisplayNamesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -228,6 +220,20 @@ namespace MMR_Tracker_V2
             PrintToListBox();
             ResizeObject();
             FormatMenuItems();
+        }
+
+        //Menu Strip => Options => MISC Options---------------------------------------------------------------------------
+
+        private void ShowEntryNameToolTipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utility.ShowEntryNameTooltip = !Utility.ShowEntryNameTooltip;
+            FormatMenuItems();
+        }
+
+        private void seedCheckerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SeedChecker SeedCheckerForm = new SeedChecker();
+            SeedCheckerForm.ShowDialog();
         }
 
         //Text Boxes---------------------------------------------------------------------------
@@ -251,6 +257,7 @@ namespace MMR_Tracker_V2
                 var item = LBPathFinder.SelectedItem as LogicObjects.ListItem;
                 PrintPaths(item.ID);
             }
+            else { PrintPaths(-1); }
         }
 
         private void LBValidLocations_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, LBValidLocations); }
@@ -421,6 +428,7 @@ namespace MMR_Tracker_V2
             VersionHandeling.entranceRadnoEnabled = (VersionHandeling.isEntranceRando());
             toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
             coupleEntrancesToolStripMenuItem.Text = (LogicEditing.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
+            LBValidEntrances.SelectionMode = (LogicEditing.CoupleEntrances) ? SelectionMode.One : SelectionMode.MultiExtended;
         }
 
         private void PrintPaths(int PathToPrint)
@@ -433,23 +441,16 @@ namespace MMR_Tracker_V2
                 int counter = 1;
                 foreach (var path in sortedpaths)
                 {
-                    var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", ID = counter - 1 };
-                    LBPathFinder.Items.Add(ListTitle);
+                    LBPathFinder.Items.Add(new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", ID = counter - 1 });
+                    var firstStop = true;
                     foreach (var stop in path)
                     {
-                        var ListItem = new LogicObjects.ListItem
-                        {
-                            DisplayName =
-                            ((LogicObjects.Logic[stop.Entrance].DictionaryName == "EntranceSouthClockTownFromClockTowerInterior") ?
-                                "Song of Time" :
-                                LogicObjects.Logic[stop.Entrance].LocationName
-                            ) + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName,
-                            ID = counter - 1
-                        };
-                        LBPathFinder.Items.Add(ListItem);
+                        var start = (firstStop) ? Utility.CheckSOT(stop) : LogicObjects.Logic[stop.Entrance].LocationName;
+                        var ListItem = new LogicObjects.ListItem{ DisplayName = start + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName, ID = counter - 1 };
+                        LBPathFinder.Items.Add(ListItem); firstStop = false;
                     }
+                    LBPathFinder.Items.Add(new LogicObjects.ListItem { DisplayName = "===============================", ID = counter - 1 });
                     counter++;
-                    LBPathFinder.Items.Add("===============================");
                 }
             }
             else
@@ -482,10 +483,7 @@ namespace MMR_Tracker_V2
             {
                 if (entry.ItemSubType == "Entrance")
                 {
-                    if (entry.Aquired && start)
-                    { UnsortedPathfinder.Add(entry.ID, entry.ItemName); }
-                    if (entry.Available && !start)
-                    { UnsortedPathfinder.Add(entry.ID, entry.LocationName); }
+                    if ((start) ? entry.Aquired : entry.Available) { UnsortedPathfinder.Add(entry.ID, (start) ? entry.ItemName : entry.LocationName); }
                 }
                 if (Pathfinding.IncludeItemLocations && entry.ItemSubType != "Entrance" && !entry.IsFake && entry.Available && !start)
                 {
@@ -702,9 +700,11 @@ namespace MMR_Tracker_V2
             if (!Utility.ShowEntryNameTooltip) { return; }
             int index = lb.IndexFromPoint(e.Location);
             if (index < 0) { return; }
+            if (!(lb.Items[index] is LogicObjects.LogicEntry || lb.Items[index] is LogicObjects.ListItem)) { return; }
             string tip = lb.Items[index].ToString();
-            if (toolTip1.GetToolTip(lb) != tip && (lb.Items[index] is LogicObjects.LogicEntry))
-            { toolTip1.SetToolTip(lb, tip); }
+            if (toolTip1.GetToolTip(lb) == tip) { return; }
+            if (Utility.IsDivider(tip)) { return; }
+            toolTip1.SetToolTip(lb, tip);
         }
 
         private string WriteObject(LogicObjects.LogicEntry entry, ListBox lb, string lastArea)
