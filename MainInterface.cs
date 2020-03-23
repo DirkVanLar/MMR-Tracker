@@ -598,15 +598,20 @@ namespace MMR_Tracker_V2
             var lastEntArea = "";
             var lastChkArea = "";
 
+            int AvalableLocations = 0;
+            int AvalableEntrances = 0;
+            int CheckedLocations = 0;
+
             foreach (var entry in sortedlogic)
             {
                 if (!listGroups.ContainsKey(entry.ID)) { continue; }
-                if (listGroups[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea); }
-                if (listGroups[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea); }
-                if (listGroups[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea); }
+                if (listGroups[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea); AvalableLocations++; }
+                if (listGroups[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea); AvalableEntrances++; }
+                if (listGroups[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea); CheckedLocations++; }
             }
-
-
+            label1.Text = "Available Locations: " + AvalableLocations;
+            label2.Text = "Checked locations: " + CheckedLocations;
+            label3.Text = "Available Entrances: " + AvalableEntrances;
         }
 
         private void ResizeObject()
@@ -747,6 +752,11 @@ namespace MMR_Tracker_V2
             }
             lb.Items.Add(entry);
             return (returnLastArea);
+        }
+
+        private void generatePlaythroughToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Debugging.GeneratePlaythrough(LogicObjects.Logic);
         }
     }
 }

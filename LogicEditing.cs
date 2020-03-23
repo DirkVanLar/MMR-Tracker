@@ -301,7 +301,7 @@ namespace MMR_Tracker_V2
 
         public static void CheckSeed(List<LogicObjects.LogicEntry> logic, bool InitialRun, List<int> Ignored)
         {
-            if (InitialRun) { ForceFreshCalculation(logic); }
+            if (InitialRun) { ForceFreshCalculation(logic);}
             bool recalculate = false;
             foreach (var item in logic)
             {
@@ -315,14 +315,13 @@ namespace MMR_Tracker_V2
                     item.Aquired = item.Available;
                     recalculate = true;
                 }
-                if (!item.IsFake && item.SpoilerRandom > -1 && item.Available != logic[item.SpoilerRandom].Aquired && !Ignored.Contains(item.ID))
+                if (!item.IsFake && item.RandomizedItem > -1 && item.Available != logic[item.RandomizedItem].Aquired && !Ignored.Contains(item.ID))
                 {
-                    logic[item.SpoilerRandom].Aquired = item.Available;
+                    logic[item.RandomizedItem].Aquired = item.Available;
                     recalculate = true;
                 }
-
             }
-            if (recalculate) { CheckSeed(logic, false, Ignored); }
+            if(recalculate) { CheckSeed(logic, false, Ignored); }
         }
 
         public static void CreatedEntrancepairDcitionary(Dictionary<int,int> entrancePairs, Dictionary<string, int> NameToID)

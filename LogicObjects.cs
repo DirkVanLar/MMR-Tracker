@@ -89,5 +89,11 @@ namespace MMR_Tracker_V2
                 return DisplayName;
             }
         }
+        public class sphere
+        {
+            public int sphereNumber { get; set; }
+            public LogicEntry Check { get; set; }
+            public List<int> ItemsUsed { get; set; }
+        }
     }
 }

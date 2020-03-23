@@ -69,6 +69,13 @@ namespace MMR_Tracker
         private void btnCheckSeed_Click(object sender, EventArgs e)
         {
             var logicCopy = Utility.CloneLogicList(LogicObjects.Logic);
+            foreach (var i in logicCopy)
+            {
+                i.Available = false;
+                i.Checked = false;
+                i.Aquired = false;
+                i.RandomizedState = 0;
+            }
             if (!Utility.CheckforSpoilerLog(LogicObjects.Logic)) 
             {
                 var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
@@ -94,6 +101,7 @@ namespace MMR_Tracker
             foreach (var item in LBNeededItems.Items)
             {
                 var ListItem = item as LogicObjects.ListItem;
+                Console.WriteLine(logicCopy[ListItem.ID].DictionaryName + " " + logicCopy[ListItem.ID].Aquired);
                 if (logicCopy[ListItem.ID].Aquired) { obtainable.Add(ListItem.DisplayName); }
                 else { unobtainable.Add(ListItem.DisplayName); }
             }
