@@ -96,7 +96,7 @@ namespace MMR_Tracker_V2
             {
                 usedItems.Add(list[i]);
                 var item = logic[list[i]];
-                bool aquired = (item.Aquired || item.StartingItem);
+                bool aquired = (item.Aquired || (item.RandomizedState == 1 && item.Available) || item.StartingItem);
                 if (!aquired) { return false; }
             }
             return true;

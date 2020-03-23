@@ -99,8 +99,8 @@ namespace MMR_Tracker_V2
                     VersionHandeling.entranceRadnoEnabled = false;
                     VersionHandeling.OverRideAutoEntranceRandoEnable = true;
                 }
-                LogicEditing.CalculateItems(LogicObjects.Logic, true);
             }
+            LogicEditing.CalculateItems(LogicObjects.Logic);
             PrintToListBox();
             ResizeObject();
             FormatMenuItems();
@@ -169,7 +169,23 @@ namespace MMR_Tracker_V2
                 LogicEditing.WriteSpoilerLogToLogic(LogicObjects.Logic, file);
                 if (!Utility.CheckforFullSpoilerLog(LogicObjects.Logic)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
             }
+
+            bool EntrancesRandoBefore = Utility.CheckForRandomEntrances(LogicObjects.Logic);
+            foreach (var i in LogicObjects.Logic)
+            {
+                if (i.SpoilerRandom != i.ID && (i.RandomizedState == 1 || i.RandomizedState == 2)) { i.RandomizedState = 0; }
+            }
+            bool EntrancesRandoAfter = Utility.CheckForRandomEntrances(LogicObjects.Logic);
+            if (!VersionHandeling.OverRideAutoEntranceRandoEnable || (EntrancesRandoBefore != EntrancesRandoAfter))
+            {
+                VersionHandeling.entranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.Logic);
+                VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.IsEntranceRando());
+            }
+
+            LogicEditing.CalculateItems(LogicObjects.Logic);
             FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
         }
 
         private void StricterLogicHandelingToolStripMenuItem_Click(object sender, EventArgs e)

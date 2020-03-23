@@ -70,6 +70,7 @@
             this.miscOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showEntryNameToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generatePlaythroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +80,6 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.generatePlaythroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -296,7 +296,7 @@
             this.redoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(377, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(404, 24);
             this.menuStrip1.TabIndex = 21;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -373,7 +373,7 @@
             this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -405,7 +405,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -443,7 +443,7 @@
             this.seedCheckerToolStripMenuItem,
             this.generatePlaythroughToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -459,6 +459,13 @@
             this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.seedCheckerToolStripMenuItem.Text = "Seed Checker";
             this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.SeedCheckerToolStripMenuItem_Click);
+            // 
+            // generatePlaythroughToolStripMenuItem
+            // 
+            this.generatePlaythroughToolStripMenuItem.Name = "generatePlaythroughToolStripMenuItem";
+            this.generatePlaythroughToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.generatePlaythroughToolStripMenuItem.Text = "Generate Playthrough";
+            this.generatePlaythroughToolStripMenuItem.Click += new System.EventHandler(this.GeneratePlaythroughToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -520,13 +527,6 @@
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // generatePlaythroughToolStripMenuItem
-            // 
-            this.generatePlaythroughToolStripMenuItem.Name = "generatePlaythroughToolStripMenuItem";
-            this.generatePlaythroughToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.generatePlaythroughToolStripMenuItem.Text = "Generate Playthrough";
-            this.generatePlaythroughToolStripMenuItem.Click += new System.EventHandler(this.GeneratePlaythroughToolStripMenuItem_Click);
-            // 
             // FRMTracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -534,7 +534,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(377, 586);
+            this.ClientSize = new System.Drawing.Size(404, 621);
             this.Controls.Add(this.BTNFindPath);
             this.Controls.Add(this.LBPathFinder);
             this.Controls.Add(this.LBCheckedLocations);
