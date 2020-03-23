@@ -37,7 +37,7 @@ namespace MMR_Tracker_V2
                     var dummyLogic = Utility.CloneLogicList(logicTemplate);
                     var ExitToCheck = dummyLogic[entry.RandomizedItem];
                     ExitToCheck.Aquired = true;
-                    LogicEditing.CalculateItems(dummyLogic, true, true);
+                    LogicEditing.CalculateItems(dummyLogic, true);
                     foreach(var dummyEntry in dummyLogic)
                     {
                         if (dummyEntry.Available && 

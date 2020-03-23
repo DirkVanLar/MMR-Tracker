@@ -24,6 +24,7 @@ namespace MMR_Tracker_V2
 
             }
         }
+
         public static void PrintLogicObject(List<LogicObjects.LogicEntry> Logic)
         {
             for (int i = 0; i < Logic.Count; i++)
@@ -104,16 +105,19 @@ namespace MMR_Tracker_V2
                 }
             }
 
-            CalculatePlaythrough(playLogic, Playthrough, 1, importantItems);
+            SwapAreaClearLogic(playLogic);
+            CalculatePlaythrough(playLogic, Playthrough, 0, importantItems);
 
-            int lastSphere = 0;
+            int lastSphere = -1;
             foreach(var i in Playthrough)
             {
                 if (i.sphereNumber != lastSphere) 
                 { 
-                    Console.WriteLine("Sphere: " + i.sphereNumber); lastSphere = i.sphereNumber;
+                    Console.WriteLine("Sphere: " + i.sphereNumber + " ====================================="); lastSphere = i.sphereNumber;
                 }
-                Console.WriteLine(i.Check.LocationName + " Contained " + playLogic[i.Check.RandomizedItem].ItemName);
+                string FakeText = (i.Check.IsFake) ? "obtained " : " obtained from ";
+                Console.WriteLine(logic[i.Check.RandomizedItem].ItemName + FakeText + i.Check.DictionaryName + " with:");
+                foreach (var n in i.ItemsUsed) { Console.WriteLine(logic[n].DictionaryName); }
                 if (playLogic[i.Check.RandomizedItem].DictionaryName == "Moon Access") { break; }
             }
 
@@ -127,14 +131,11 @@ namespace MMR_Tracker_V2
             {
                 List<int> UsedItems = new List<int>();
 
-                item.Available = (RequirementsMet(item.Required, logic, UsedItems) && CondtionalsMet(item.Conditionals, logic, UsedItems));
+                item.Available = (LogicEditing.RequirementsMet(item.Required, logic, UsedItems) && LogicEditing.CondtionalsMet(item.Conditionals, logic, UsedItems));
 
                 bool changed = false;
 
-                int Special = SetAreaClear(item, logic);
-                if (Special == 2) { recalculate = true; changed = true; }
-
-                if (item.Aquired != item.Available && Special == 0 && item.IsFake)
+                if (item.Aquired != item.Available && item.IsFake)
                 {
                     item.Aquired = item.Available;
                     recalculate = true;
@@ -148,9 +149,6 @@ namespace MMR_Tracker_V2
                 }
                 if (changed && ImportantItems.Contains(item.SpoilerRandom) && item.Available)
                 {
-                    Console.WriteLine(item.DictionaryName + " Was unlocked with:");
-                    foreach (var n in UsedItems) { Console.WriteLine(logic[n].DictionaryName); }
-
                     Playthrough.Add(new LogicObjects.sphere { sphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
                     RealItemObtained = true;
                 }
@@ -159,63 +157,22 @@ namespace MMR_Tracker_V2
             if (recalculate) { CalculatePlaythrough(logic, Playthrough, NewSphere, ImportantItems); }
         }
 
-        public static bool RequirementsMet(int[] list, List<LogicObjects.LogicEntry> logic, List<int> usedItems)
+        public static void SwapAreaClearLogic(List<LogicObjects.LogicEntry> logic)
         {
-            if (list == null) { return true; }
-            for (var i = 0; i < list.Length; i++)
+            var areaClearData = VersionHandeling.AreaClearDictionary();
+            var ReferenceLogic = Utility.CloneLogicList(logic);
+            foreach (var i in logic)
             {
-                usedItems.Add(list[i]);
-                var item = logic[list[i]];
-                bool aquired = ( item.Aquired || item.StartingItem );
-                if (!aquired) { return false; }
-            }
-            return true;
-        }
-
-        public static bool CondtionalsMet(int[][] list, List<LogicObjects.LogicEntry> logic, List<int> usedItems)
-        {
-            if (list == null) { return true; }
-            for (var i = 0; i < list.Length; i++) 
-            {
-                List<int> UsedItemsSet = new List<int>();
-                if (RequirementsMet(list[i], logic, UsedItemsSet)) 
-                { 
-                    foreach(var set in UsedItemsSet) { usedItems.Add(set); }
-                    return true; 
-                } 
-            }
-            return false;
-        }
-
-        public static int SetAreaClear(LogicObjects.LogicEntry item, List<LogicObjects.LogicEntry> logic)
-        {
-            //0 = Do nothing, 1 = Skip Fake Item logic ,2 = Skip Fake Item logic and recalculate logic
-            int recalculate = 0;
-
-            Dictionary<int, int> EntAreaDict = VersionHandeling.AreaClearDictionary();
-
-            if (EntAreaDict.ContainsKey(item.ID) && !VersionHandeling.isEntranceRando())
-            {
-                recalculate = 1;
-                var templeEntrance = EntAreaDict[item.ID];//What is the dungeon entrance in this area
-                var RandTempleEntrance = logic[templeEntrance].RandomizedItem;//What dungeon does this areas dungeon entrance lead to
-                var RandAreaClear = RandTempleEntrance < 0 ? -1 : EntAreaDict.FirstOrDefault(x => x.Value == RandTempleEntrance).Key;//What is the Area clear Value For That Dungeon
-                var RandClearLogic = RandAreaClear == -1 ? new LogicObjects.LogicEntry { ID = -1 } : logic[RandAreaClear]; //Get the full logic data for the area clear that we want to check the availability of.
-
-                //Set this areas clear value to the available value of the area we are cheking
-                if (RandClearLogic.ID > -1 && item.Aquired != RandClearLogic.Available)
+                if (areaClearData.ContainsKey(i.ID))
                 {
-                    item.Aquired = RandClearLogic.Available;
-                    recalculate = 2;
-                }
-                //If the temple data for an area is removed after the area clear is set, the clear needs to be set to false.
-                if (RandClearLogic.ID < 0 && item.Aquired)
-                {
-                    recalculate = 2;
-                    item.Aquired = false;
+                    var Dungeon = logic[areaClearData[i.ID]];
+                    if (Dungeon.RandomizedItem < 0) { return; }
+                    var DungoneRandItem = Dungeon.RandomizedItem;
+                    var RandomClear = areaClearData.FirstOrDefault(x => x.Value == DungoneRandItem).Key;
+                    logic[i.ID].Required = ReferenceLogic[RandomClear].Required;
+                    logic[i.ID].Conditionals = ReferenceLogic[RandomClear].Conditionals;
                 }
             }
-            return recalculate;
         }
 
     }

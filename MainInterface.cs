@@ -99,7 +99,7 @@ namespace MMR_Tracker_V2
                     VersionHandeling.entranceRadnoEnabled = false;
                     VersionHandeling.OverRideAutoEntranceRandoEnable = true;
                 }
-                LogicEditing.CalculateItems(LogicObjects.Logic, true, true);
+                LogicEditing.CalculateItems(LogicObjects.Logic, true);
             }
             PrintToListBox();
             ResizeObject();
@@ -216,7 +216,7 @@ namespace MMR_Tracker_V2
                         LogicEditing.CheckEntrancePair(LogicObjects.Logic[entry.ID], LogicObjects.Logic, true);
                     }
                 }
-                LogicEditing.CalculateItems(LogicObjects.Logic, true, true);
+                LogicEditing.CalculateItems(LogicObjects.Logic, true);
                 PrintToListBox();
             }
             FormatMenuItems();

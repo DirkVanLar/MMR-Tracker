@@ -87,24 +87,33 @@ namespace MMR_Tracker_V2
             return true;
         }
 
-        public static bool RequirementsMet(int[] list, List<LogicObjects.LogicEntry> logic)
+        public static bool RequirementsMet(int[] list, List<LogicObjects.LogicEntry> logic, List<int> usedItems = null)
         {
+            usedItems = usedItems ?? new List<int>();
             if (list == null) { return true; }
-            for (var i = 0; i < list.Length; i++){
+            for (var i = 0; i < list.Length; i++)
+            {
+                usedItems.Add(list[i]);
                 var item = logic[list[i]];
-                bool aquired = (
-                    item.Aquired || 
-                    (item.RandomizedState == 1 && item.Available) || 
-                    item.StartingItem); // Is the item Aquired, Unrandomized and Available, or a starting item.
+                bool aquired = (item.Aquired || item.StartingItem);
                 if (!aquired) { return false; }
             }
             return true;
         }
 
-        public static bool CondtionalsMet(int[][] list, List<LogicObjects.LogicEntry> logic)
+        public static bool CondtionalsMet(int[][] list, List<LogicObjects.LogicEntry> logic, List<int> usedItems = null)
         {
+            usedItems = usedItems ?? new List<int>();
             if (list == null) { return true; }
-            for (var i = 0; i < list.Length; i++){ if (RequirementsMet(list[i], logic)) { return true; } }
+            for (var i = 0; i < list.Length; i++)
+            {
+                List<int> UsedItemsSet = new List<int>();
+                if (RequirementsMet(list[i], logic, UsedItemsSet))
+                {
+                    foreach (var set in UsedItemsSet) { usedItems.Add(set); }
+                    return true;
+                }
+            }
             return false;
         }
 
@@ -124,7 +133,7 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public static void CalculateItems(List<LogicObjects.LogicEntry> logic, bool InitialRun = true, bool ForceStrictLogicHandeling = false)
+        public static void CalculateItems(List<LogicObjects.LogicEntry> logic, bool ForceStrictLogicHandeling = false, bool InitialRun = true)
         {
             if (InitialRun && (StrictLogicHandeling || ForceStrictLogicHandeling)){ ForceFreshCalculation(logic); }
             bool recalculate = false;
@@ -141,7 +150,7 @@ namespace MMR_Tracker_V2
                     recalculate = true;
                 }
             }
-            if (recalculate) { CalculateItems(logic, false); }
+            if (recalculate) { CalculateItems(logic, false, false); }
         }
 
         public static int SetAreaClear(LogicObjects.LogicEntry item, List<LogicObjects.LogicEntry> logic)
@@ -295,7 +304,7 @@ namespace MMR_Tracker_V2
                     logicEntry.StartingItem = entry.StartingItem;
                 }
             }
-            CalculateItems(LogicObjects.Logic, true, true);
+            CalculateItems(LogicObjects.Logic, true);
             Utility.SaveState(LogicObjects.Logic);
         }
 
