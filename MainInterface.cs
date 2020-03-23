@@ -149,7 +149,7 @@ namespace MMR_Tracker_V2
                 VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.isEntranceRando());
             }
 
-            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
+            LogicEditing.CalculateItems(LogicObjects.Logic);
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
@@ -419,7 +419,7 @@ namespace MMR_Tracker_V2
                 }
                 
             }
-            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
+            LogicEditing.CalculateItems(LogicObjects.Logic);
 
             int TopIndex = LB.TopIndex;
             PrintToListBox();
@@ -430,7 +430,7 @@ namespace MMR_Tracker_V2
         {
             Utility.ResetInstance();
             LogicEditing.CreateLogic(LogicObjects.Logic, Logic);
-            LogicEditing.CalculateItems(LogicObjects.Logic, true, false);
+            LogicEditing.CalculateItems(LogicObjects.Logic);
             if (!VersionHandeling.ValidVersions.Contains(VersionHandeling.Version))
             {
                 DialogResult dialogResult = MessageBox.Show("This version of logic is not supported. Only official releases of versions 1.8 and up are supported. This may result in the tracker not funtioning Correctly. If you are using an official release and are seeing this message, Please update your tracker. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);

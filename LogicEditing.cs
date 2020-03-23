@@ -124,7 +124,7 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public static void CalculateItems(List<LogicObjects.LogicEntry> logic, bool InitialRun, bool ForceStrictLogicHandeling)
+        public static void CalculateItems(List<LogicObjects.LogicEntry> logic, bool InitialRun = true, bool ForceStrictLogicHandeling = false)
         {
             if (InitialRun && (StrictLogicHandeling || ForceStrictLogicHandeling)){ ForceFreshCalculation(logic); }
             bool recalculate = false;
@@ -141,7 +141,7 @@ namespace MMR_Tracker_V2
                     recalculate = true;
                 }
             }
-            if (recalculate) { CalculateItems(logic, false, false); }
+            if (recalculate) { CalculateItems(logic, false); }
         }
 
         public static int SetAreaClear(LogicObjects.LogicEntry item, List<LogicObjects.LogicEntry> logic)
