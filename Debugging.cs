@@ -99,6 +99,7 @@ namespace MMR_Tracker_V2
                 i.Aquired = false;
                 i.RandomizedState = 0;
                 if (i.IsFake) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; i.LocationName = i.DictionaryName; i.ItemName = i.DictionaryName; }
+                if (i.RandomizedState == 1 && i.ID == i.SpoilerRandom) { i.IsFake = true; }
                 if (i.SpoilerRandom > -1) { i.RandomizedItem = i.SpoilerRandom; }
                 SpoilerToID.Add(i.SpoilerRandom, i.ID);
                 //Check for all items mentioned in the logic file
@@ -129,12 +130,15 @@ namespace MMR_Tracker_V2
                 if ((i.Check.DictionaryName == "Moon Access" && !VersionHandeling.isEntranceRando()) || 
                     playLogic[i.Check.RandomizedItem].DictionaryName == "EntranceMajorasLairFromTheMoon")
                 {
+                    importantItems.Add(i.Check.ID);
                     FindImportantItems(i, importantItems, Playthrough, SpoilerToID);
                     MajoraReachable = true;
                     break;
                 }
             }
             if (!MajoraReachable) { MessageBox.Show("Majora is not reachable in this seed! Playthrough could not be generated!"); return; }
+
+            Playthrough = Playthrough.OrderBy(x => x.sphereNumber).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
 
             List<string> PlaythroughString = new List<string>();
             int lastSphere = -1;
@@ -162,6 +166,8 @@ namespace MMR_Tracker_V2
         {
             bool RealItemObtained = false;
             bool recalculate = false;
+            List<LogicObjects.LogicEntry> itemCheckList = new List<LogicObjects.LogicEntry>();
+            List<LogicObjects.LogicEntry> FakeItemCheckList = new List<LogicObjects.LogicEntry>();
             foreach (var item in logic)
             {
                 List<int> UsedItems = new List<int>();
@@ -170,7 +176,7 @@ namespace MMR_Tracker_V2
                 bool changed = false;
                 if (!item.IsFake && item.SpoilerRandom > -1 && item.Available != logic[item.SpoilerRandom].Aquired)
                 {
-                    logic[item.SpoilerRandom].Aquired = item.Available;
+                    itemCheckList.Add(item);
                     recalculate = true;
                     changed = true;
                 }
@@ -179,6 +185,11 @@ namespace MMR_Tracker_V2
                     Playthrough.Add(new LogicObjects.sphere { sphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
                     RealItemObtained = true;
                 }
+            }
+
+            foreach(var item in itemCheckList)
+            {
+                logic[item.SpoilerRandom].Aquired = item.Available;
             }
 
             foreach (var item in logic)
@@ -189,7 +200,7 @@ namespace MMR_Tracker_V2
                 bool changed = false;
                 if (item.Aquired != item.Available && item.IsFake)
                 {
-                    item.Aquired = item.Available;
+                    FakeItemCheckList.Add(item);
                     recalculate = true;
                     changed = true;
                 }
@@ -200,6 +211,10 @@ namespace MMR_Tracker_V2
                 }
             }
 
+            foreach (var item in FakeItemCheckList)
+            {
+                item.Aquired = item.Available;
+            }
 
             int NewSphere = (RealItemObtained) ? sphere + 1 : sphere;
             if (recalculate) { CalculatePlaythrough(logic, Playthrough, NewSphere, ImportantItems); }

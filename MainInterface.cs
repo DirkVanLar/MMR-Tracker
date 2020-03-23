@@ -70,8 +70,8 @@ namespace MMR_Tracker_V2
             LogicEditing.CreateDicNameToID(LogicObjects.DicNameToID, LogicObjects.Logic);
             LogicEditing.CreatedEntrancepairDcitionary(LogicObjects.EntrancePairs, LogicObjects.DicNameToID);
             PrintToListBox();
-            ResizeObject();
             FormatMenuItems();
+            ResizeObject();
         }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
