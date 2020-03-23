@@ -52,6 +52,7 @@
             this.Name = "DebugScreen";
             this.Text = "DebugScreen";
             this.Load += new System.EventHandler(this.DebugScreen_Load);
+            this.ResizeEnd += new System.EventHandler(this.DebugScreen_ResizeEnd);
             this.ResumeLayout(false);
 
         }

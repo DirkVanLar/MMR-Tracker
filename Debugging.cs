@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
 {
@@ -78,7 +79,18 @@ namespace MMR_Tracker_V2
         public static void GeneratePlaythrough(List<LogicObjects.LogicEntry> logic)
         {
             List<LogicObjects.sphere> Playthrough = new List<LogicObjects.sphere>();
+            Dictionary<int, int> SpoilerToID = new Dictionary<int, int>();
             var playLogic = Utility.CloneLogicList(logic);
+
+            if (!Utility.CheckforSpoilerLog(playLogic))
+            {
+                var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
+                if (file == "") { return; }
+                LogicEditing.WriteSpoilerLogToLogic(playLogic, file);
+            }
+            if (!Utility.CheckforFullSpoilerLog(playLogic))
+            { MessageBox.Show("Not all items have spoiler data. Playthrough can not be generated. Ensure you are using the same version of logic used to generate your selected spoiler log"); return; }
+
             List<int> importantItems = new List<int>();
             foreach(var i in playLogic)
             {
@@ -88,7 +100,8 @@ namespace MMR_Tracker_V2
                 i.RandomizedState = 0;
                 if (i.IsFake) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; i.LocationName = i.DictionaryName; i.ItemName = i.DictionaryName; }
                 if (i.SpoilerRandom > -1) { i.RandomizedItem = i.SpoilerRandom; }
-                if (i.DictionaryName == "Moon Access")  { importantItems.Add(i.ID);  }
+                SpoilerToID.Add(i.SpoilerRandom, i.ID);
+                //Check for all items mentioned in the logic file
                 if (i.Required != null)
                 {
                     foreach (var k in i.Required)
@@ -103,24 +116,46 @@ namespace MMR_Tracker_V2
                         foreach (var k in j) { if (!importantItems.Contains(k)) { importantItems.Add(k); } }
                     }
                 }
+                if (i.DictionaryName == "Moon Access") { importantItems.Add(i.ID); }
             }
 
             SwapAreaClearLogic(playLogic);
             CalculatePlaythrough(playLogic, Playthrough, 0, importantItems);
 
-            int lastSphere = -1;
-            foreach(var i in Playthrough)
+            importantItems = new List<int>();
+            bool MajoraReachable = false;
+            foreach (var i in Playthrough)
             {
-                if (i.sphereNumber != lastSphere) 
-                { 
-                    Console.WriteLine("Sphere: " + i.sphereNumber + " ====================================="); lastSphere = i.sphereNumber;
+                if ((i.Check.DictionaryName == "Moon Access" && !VersionHandeling.isEntranceRando()) || 
+                    playLogic[i.Check.RandomizedItem].DictionaryName == "EntranceMajorasLairFromTheMoon")
+                {
+                    FindImportantItems(i, importantItems, Playthrough, SpoilerToID);
+                    MajoraReachable = true;
+                    break;
                 }
-                string FakeText = (i.Check.IsFake) ? "obtained " : " obtained from ";
-                Console.WriteLine(logic[i.Check.RandomizedItem].ItemName + FakeText + i.Check.DictionaryName + " with:");
-                foreach (var n in i.ItemsUsed) { Console.WriteLine(logic[n].DictionaryName); }
-                if (playLogic[i.Check.RandomizedItem].DictionaryName == "Moon Access") { break; }
             }
+            if (!MajoraReachable) { MessageBox.Show("Majora is not reachable in this seed! Playthrough could not be generated!"); return; }
 
+            List<string> PlaythroughString = new List<string>();
+            int lastSphere = -1;
+            foreach (var i in Playthrough)
+            {
+                if (!importantItems.Contains(i.Check.ID) || i.Check.IsFake) { continue; }
+                if (i.sphereNumber != lastSphere)
+                {
+                    PlaythroughString.Add("Sphere: " + i.sphereNumber + " ====================================="); lastSphere = i.sphereNumber;
+                }
+                PlaythroughString.Add("Check \"" + i.Check.LocationName + "\" to obtain \"" + playLogic[i.Check.RandomizedItem].ItemName+ "\"");
+                string items = "    Using Items: ";
+                foreach(var j in i.ItemsUsed) { items = items + playLogic[j].ItemName + ", "; }
+                if (items != "    Using Items: ") { PlaythroughString.Add(items); }
+
+            }
+            DebugScreen DebugScreen = new DebugScreen();
+            DebugScreen.Playthrough = PlaythroughString;
+            DebugScreen.DebugFunction = 3;
+            DebugScreen.Show();
+            DebugScreen.Playthrough = new List<string>();
         }
 
         public static void CalculatePlaythrough(List<LogicObjects.LogicEntry> logic, List<LogicObjects.sphere> Playthrough, int sphere, List<int> ImportantItems)
@@ -130,17 +165,9 @@ namespace MMR_Tracker_V2
             foreach (var item in logic)
             {
                 List<int> UsedItems = new List<int>();
-
                 item.Available = (LogicEditing.RequirementsMet(item.Required, logic, UsedItems) && LogicEditing.CondtionalsMet(item.Conditionals, logic, UsedItems));
 
                 bool changed = false;
-
-                if (item.Aquired != item.Available && item.IsFake)
-                {
-                    item.Aquired = item.Available;
-                    recalculate = true;
-                    changed = true;
-                }
                 if (!item.IsFake && item.SpoilerRandom > -1 && item.Available != logic[item.SpoilerRandom].Aquired)
                 {
                     logic[item.SpoilerRandom].Aquired = item.Available;
@@ -153,6 +180,27 @@ namespace MMR_Tracker_V2
                     RealItemObtained = true;
                 }
             }
+
+            foreach (var item in logic)
+            {
+                List<int> UsedItems = new List<int>();
+                item.Available = (LogicEditing.RequirementsMet(item.Required, logic, UsedItems) && LogicEditing.CondtionalsMet(item.Conditionals, logic, UsedItems));
+
+                bool changed = false;
+                if (item.Aquired != item.Available && item.IsFake)
+                {
+                    item.Aquired = item.Available;
+                    recalculate = true;
+                    changed = true;
+                }
+                if (changed && ImportantItems.Contains(item.SpoilerRandom) && item.Available)
+                {
+                    Playthrough.Add(new LogicObjects.sphere { sphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
+                    RealItemObtained = true;
+                }
+            }
+
+
             int NewSphere = (RealItemObtained) ? sphere + 1 : sphere;
             if (recalculate) { CalculatePlaythrough(logic, Playthrough, NewSphere, ImportantItems); }
         }
@@ -172,6 +220,22 @@ namespace MMR_Tracker_V2
                     logic[i.ID].Required = ReferenceLogic[RandomClear].Required;
                     logic[i.ID].Conditionals = ReferenceLogic[RandomClear].Conditionals;
                 }
+            }
+        }
+
+        public static void FindImportantItems(LogicObjects.sphere EntryToCheck, List<int> importantItems, List<LogicObjects.sphere> Playthrough, Dictionary<int, int> SpoilerToID)
+        {
+            foreach(var i in EntryToCheck.ItemsUsed)
+            {
+                var locToCheck = SpoilerToID[i];
+                if (importantItems.Contains(locToCheck)) { continue; }
+                importantItems.Add(locToCheck);
+                var NextLocation = new LogicObjects.sphere();
+                foreach(var j in Playthrough)
+                {
+                    if (j.Check.ID == locToCheck) { NextLocation = j; break; }
+                }
+                FindImportantItems(NextLocation, importantItems, Playthrough, SpoilerToID);
             }
         }
 

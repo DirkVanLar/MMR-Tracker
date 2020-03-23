@@ -8,6 +8,8 @@ namespace MMR_Tracker_V2
     public partial class DebugScreen : Form
     {
 
+        public static List<string> Playthrough = new List<string>();
+
         public int DebugFunction = 0;
         public DebugScreen()
         {
@@ -16,6 +18,7 @@ namespace MMR_Tracker_V2
 
         private void DebugScreen_Load(object sender, EventArgs e)
         {
+            resizeObject();
             this.Text = "Debug Screen";
             switch (DebugFunction)
             {
@@ -27,6 +30,9 @@ namespace MMR_Tracker_V2
                     break;
                 case 2:
                     PrintInfo();
+                    break;
+                case 3:
+                    PrintPlaythrough();
                     break;
             }
         }
@@ -229,6 +235,11 @@ namespace MMR_Tracker_V2
             listBox1.Items.Add("The seed checker will not reveal what items are on what checks.");
             listBox1.Items.Add("==================================================================");
         }
+        public void PrintPlaythrough()
+        {
+            this.Text = "Playthrough";
+            foreach(var i in Playthrough) { listBox1.Items.Add(i); }
+        }
         private void ListBox1_DoubleClick(object sender, EventArgs e)
         {
             if (DebugFunction == 2) 
@@ -238,6 +249,17 @@ namespace MMR_Tracker_V2
                 if (listBox1.SelectedIndex == 7) { System.Diagnostics.Process.Start("https://github.com/ZoeyZolotova/mm-rando"); }
                 if (listBox1.SelectedIndex == 8) { System.Diagnostics.Process.Start("https://discord.gg/TJZ4uCP"); }
             }
+        }
+
+        private void DebugScreen_ResizeEnd(object sender, EventArgs e)
+        {
+            resizeObject();
+        }
+
+        public void resizeObject()
+        {
+            listBox1.Height = this.Height - 60;
+            listBox1.Width = this.Width - 40;
         }
     }
 }
