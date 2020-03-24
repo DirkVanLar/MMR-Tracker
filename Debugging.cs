@@ -120,7 +120,7 @@ namespace MMR_Tracker_V2
                 if (i.DictionaryName == "Moon Access") { importantItems.Add(i.ID); }
             }
 
-            SwapAreaClearLogic(playLogic);
+            LogicEditing.SwapAreaClearLogic(playLogic);
             CalculatePlaythrough(playLogic, Playthrough, 0, importantItems);
 
             importantItems = new List<int>();
@@ -218,24 +218,6 @@ namespace MMR_Tracker_V2
 
             int NewSphere = (RealItemObtained) ? sphere + 1 : sphere;
             if (recalculate) { CalculatePlaythrough(logic, Playthrough, NewSphere, ImportantItems); }
-        }
-
-        public static void SwapAreaClearLogic(List<LogicObjects.LogicEntry> logic)
-        {
-            var areaClearData = VersionHandeling.AreaClearDictionary();
-            var ReferenceLogic = Utility.CloneLogicList(logic);
-            foreach (var i in logic)
-            {
-                if (areaClearData.ContainsKey(i.ID))
-                {
-                    var Dungeon = logic[areaClearData[i.ID]];
-                    if (Dungeon.RandomizedItem < 0) { return; }
-                    var DungoneRandItem = Dungeon.RandomizedItem;
-                    var RandomClear = areaClearData.FirstOrDefault(x => x.Value == DungoneRandItem).Key;
-                    logic[i.ID].Required = ReferenceLogic[RandomClear].Required;
-                    logic[i.ID].Conditionals = ReferenceLogic[RandomClear].Conditionals;
-                }
-            }
         }
 
         public static void FindImportantItems(LogicObjects.sphere EntryToCheck, List<int> importantItems, List<LogicObjects.sphere> Playthrough, Dictionary<int, int> SpoilerToID)

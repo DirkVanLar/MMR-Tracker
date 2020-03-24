@@ -36,6 +36,23 @@ namespace MMR_Tracker_V2
                     break;
             }
         }
+
+        private void ListBox1_DoubleClick(object sender, EventArgs e)
+        {
+            if (DebugFunction == 2)
+            {
+                if (listBox1.SelectedIndex == 1) { System.Diagnostics.Process.Start("https://github.com/Thedrummonger/MMR-Tracker"); }
+                if (listBox1.SelectedIndex == 4) { System.Diagnostics.Process.Start("https://twitter.com/thedrummonger"); }
+                if (listBox1.SelectedIndex == 7) { System.Diagnostics.Process.Start("https://github.com/ZoeyZolotova/mm-rando"); }
+                if (listBox1.SelectedIndex == 8) { System.Diagnostics.Process.Start("https://discord.gg/TJZ4uCP"); }
+            }
+        }
+
+        private void DebugScreen_ResizeEnd(object sender, EventArgs e)
+        {
+            resizeObject();
+        }
+
         public void PrintLogicToListBox()
         {
             this.Text = "Logic Object";
@@ -95,6 +112,7 @@ namespace MMR_Tracker_V2
                 }
             }
         }
+
         public void PrintInfo()
         {
             this.Text = "Info";
@@ -235,25 +253,11 @@ namespace MMR_Tracker_V2
             listBox1.Items.Add("The seed checker will not reveal what items are on what checks.");
             listBox1.Items.Add("==================================================================");
         }
+
         public void PrintPlaythrough()
         {
             this.Text = "Playthrough";
             foreach(var i in Playthrough) { listBox1.Items.Add(i); }
-        }
-        private void ListBox1_DoubleClick(object sender, EventArgs e)
-        {
-            if (DebugFunction == 2) 
-            {
-                if (listBox1.SelectedIndex == 1) { System.Diagnostics.Process.Start("https://github.com/Thedrummonger/MMR-Tracker"); }
-                if (listBox1.SelectedIndex == 4) { System.Diagnostics.Process.Start("https://twitter.com/thedrummonger"); }
-                if (listBox1.SelectedIndex == 7) { System.Diagnostics.Process.Start("https://github.com/ZoeyZolotova/mm-rando"); }
-                if (listBox1.SelectedIndex == 8) { System.Diagnostics.Process.Start("https://discord.gg/TJZ4uCP"); }
-            }
-        }
-
-        private void DebugScreen_ResizeEnd(object sender, EventArgs e)
-        {
-            resizeObject();
         }
 
         public void resizeObject()

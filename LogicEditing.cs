@@ -354,5 +354,23 @@ namespace MMR_Tracker_V2
                 { NameToID.Add(LogicEntry1.DictionaryName, LogicEntry1.ID); }
             }
         }
+
+        public static void SwapAreaClearLogic(List<LogicObjects.LogicEntry> logic)
+        {
+            var areaClearData = VersionHandeling.AreaClearDictionary();
+            var ReferenceLogic = Utility.CloneLogicList(logic);
+            foreach (var i in logic)
+            {
+                if (areaClearData.ContainsKey(i.ID))
+                {
+                    var Dungeon = logic[areaClearData[i.ID]];
+                    if (Dungeon.RandomizedItem < 0) { return; }
+                    var DungoneRandItem = Dungeon.RandomizedItem;
+                    var RandomClear = areaClearData.FirstOrDefault(x => x.Value == DungoneRandItem).Key;
+                    logic[i.ID].Required = ReferenceLogic[RandomClear].Required;
+                    logic[i.ID].Conditionals = ReferenceLogic[RandomClear].Conditionals;
+                }
+            }
+        }
     }
 }

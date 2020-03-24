@@ -424,5 +424,19 @@ namespace MMR_Tracker_V2
             }
             return false;
         }
+        public static Dictionary<int, int> CreateRandItemDic(List<LogicObjects.LogicEntry> logic, bool Spoiler = false) 
+        {
+            var spoilerDic = new Dictionary<int, int>();
+            foreach(var i in logic)
+            {
+                var value = (Spoiler) ? i.SpoilerRandom : i.RandomizedItem;
+                if (value > -2 && !spoilerDic.ContainsKey(value))
+                {
+                    spoilerDic.Add(value, i.ID);
+                }
+            }
+            return spoilerDic;
+        }
+
     }
 }
