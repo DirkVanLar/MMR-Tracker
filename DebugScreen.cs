@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
@@ -18,7 +17,7 @@ namespace MMR_Tracker_V2
 
         private void DebugScreen_Load(object sender, EventArgs e)
         {
-            resizeObject();
+            ResizeObject();
             this.Text = "Debug Screen";
             switch (DebugFunction)
             {
@@ -50,7 +49,7 @@ namespace MMR_Tracker_V2
 
         private void DebugScreen_ResizeEnd(object sender, EventArgs e)
         {
-            resizeObject();
+            ResizeObject();
         }
 
         public void PrintLogicToListBox()
@@ -146,7 +145,7 @@ namespace MMR_Tracker_V2
             listBox1.Items.Add("Double Clicking an item in \"Checked locations\" will uncheck that location and");
             listBox1.Items.Add("        mark the corrisponding item as unobtained");
             listBox1.Items.Add("==================================================================");
-            if ((VersionHandeling.isEntranceRando() && VersionHandeling.entranceRadnoEnabled) || VersionHandeling.Version == 0)
+            if ((VersionHandeling.IsEntranceRando() && VersionHandeling.entranceRadnoEnabled) || VersionHandeling.Version == 0)
             {
                 listBox1.Items.Add("Pathfinder:");
                 if (VersionHandeling.Version == 0) { listBox1.Items.Add("(This is only available if entrances are randomized.)"); }
@@ -211,7 +210,7 @@ namespace MMR_Tracker_V2
             listBox1.Items.Add("        bugs that occur involvolving circular dependencies in logic.");
             listBox1.Items.Add("You should never need to enable this, but it's worth a try if logic is being buggy.");
             listBox1.Items.Add("==================================================================");
-            if ((VersionHandeling.isEntranceRando() && VersionHandeling.entranceRadnoEnabled) || VersionHandeling.Version == 0)
+            if ((VersionHandeling.IsEntranceRando() && VersionHandeling.entranceRadnoEnabled) || VersionHandeling.Version == 0)
             {
                 listBox1.Items.Add("ENTRANCE RADNO:");
                 if (VersionHandeling.Version == 0) { listBox1.Items.Add("(These options are only available if entrances are randomized.)"); }
@@ -257,10 +256,10 @@ namespace MMR_Tracker_V2
         public void PrintPlaythrough()
         {
             this.Text = "Playthrough";
-            foreach(var i in Playthrough) { listBox1.Items.Add(i); }
+            foreach (var i in Playthrough) { listBox1.Items.Add(i); }
         }
 
-        public void resizeObject()
+        public void ResizeObject()
         {
             listBox1.Height = this.Height - 60;
             listBox1.Width = this.Width - 40;

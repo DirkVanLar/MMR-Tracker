@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.IO;
-using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
 {
@@ -15,7 +14,7 @@ namespace MMR_Tracker_V2
 
         //Form Objects
 
-        private void RandomizeOptions_Load(object sender, EventArgs e) 
+        private void RandomizeOptions_Load(object sender, EventArgs e)
         {
             chkShowRandom.Checked = true;
             chkShowUnrand.Checked = true;
@@ -23,18 +22,18 @@ namespace MMR_Tracker_V2
             chkShowJunk.Checked = true;
             chkShowStartingItems.Checked = true;
             txtSearch.Text = "";
-            WriteToListVeiw(); 
+            WriteToListVeiw();
         }
 
         private void CHKShowRandom_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
 
-        private void chkShowUnrand_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
+        private void ChkShowUnrand_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
 
-        private void chkShowUnrandMan_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
+        private void ChkShowUnrandMan_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
 
-        private void chkJunk_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
+        private void ChkJunk_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
 
-        private void chkStartingItems_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
+        private void ChkStartingItems_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
 
         private void BTNRandomized_Click(object sender, EventArgs e) { UpdateRandomOption(0); }
 
@@ -62,14 +61,14 @@ namespace MMR_Tracker_V2
             Options[0] = settingString;
             Options[1] = VersionHandeling.Version.ToString();
             var count = 2;
-            foreach(var i in LogicObjects.RawLogicText)
+            foreach (var i in LogicObjects.RawLogicText)
             {
                 Options[count] = i;
                 count++;
             }
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Settings (*.MMRTSET)|*.MMRTSET", FilterIndex = 1 };
             if (saveDialog.ShowDialog() == DialogResult.OK) { File.WriteAllLines(saveDialog.FileName, Options); }
-            
+
         }
 
         private void BtnLoad_Click(object sender, EventArgs e)
@@ -81,7 +80,7 @@ namespace MMR_Tracker_V2
             WriteToListVeiw();
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e) { WriteToListVeiw(); }
+        private void TxtSearch_TextChanged(object sender, EventArgs e) { WriteToListVeiw(); }
 
         //Functions
 
@@ -114,8 +113,7 @@ namespace MMR_Tracker_V2
                 if (!entry.IsFake && chkValid && Utility.FilterSearch(entry, txtSearch.Text, entry.DictionaryName))
                 {
                     string[] row = { entry.DictionaryName, randomizedOptions[entry.RandomizedState], entry.StartingItem.ToString() };
-                    ListViewItem listViewItem = new ListViewItem(row);
-                    listViewItem.Tag = entry.ID;
+                    ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };
                     listView1.Items.Add(listViewItem);
                 }
             }

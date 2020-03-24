@@ -93,7 +93,7 @@
             this.btnAddNeeded.TabIndex = 5;
             this.btnAddNeeded.Text = "Add";
             this.btnAddNeeded.UseVisualStyleBackColor = true;
-            this.btnAddNeeded.Click += new System.EventHandler(this.btnAddNeeded_Click);
+            this.btnAddNeeded.Click += new System.EventHandler(this.BtnAddNeeded_Click);
             // 
             // btnAddIgnored
             // 
@@ -103,7 +103,7 @@
             this.btnAddIgnored.TabIndex = 6;
             this.btnAddIgnored.Text = "Add";
             this.btnAddIgnored.UseVisualStyleBackColor = true;
-            this.btnAddIgnored.Click += new System.EventHandler(this.btnAddIgnored_Click);
+            this.btnAddIgnored.Click += new System.EventHandler(this.BtnAddIgnored_Click);
             // 
             // btnCheckSeed
             // 
@@ -113,7 +113,7 @@
             this.btnCheckSeed.TabIndex = 7;
             this.btnCheckSeed.Text = "CheckSeed";
             this.btnCheckSeed.UseVisualStyleBackColor = true;
-            this.btnCheckSeed.Click += new System.EventHandler(this.btnCheckSeed_Click);
+            this.btnCheckSeed.Click += new System.EventHandler(this.BtnCheckSeed_Click);
             // 
             // btnClear
             // 
@@ -123,7 +123,7 @@
             this.btnClear.TabIndex = 8;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // label3
             // 

@@ -153,7 +153,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(118, 20);
             this.txtSearch.TabIndex = 8;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.txtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
             // 
             // chkShowRandom
             // 
@@ -175,7 +175,7 @@
             this.chkShowUnrand.TabIndex = 10;
             this.chkShowUnrand.Text = "Show UnRandomized";
             this.chkShowUnrand.UseVisualStyleBackColor = true;
-            this.chkShowUnrand.CheckedChanged += new System.EventHandler(this.chkShowUnrand_CheckedChanged);
+            this.chkShowUnrand.CheckedChanged += new System.EventHandler(this.ChkShowUnrand_CheckedChanged);
             // 
             // chkShowUnrandMan
             // 
@@ -186,7 +186,7 @@
             this.chkShowUnrandMan.TabIndex = 11;
             this.chkShowUnrandMan.Text = "Show UnRando (Man)";
             this.chkShowUnrandMan.UseVisualStyleBackColor = true;
-            this.chkShowUnrandMan.CheckedChanged += new System.EventHandler(this.chkShowUnrandMan_CheckedChanged);
+            this.chkShowUnrandMan.CheckedChanged += new System.EventHandler(this.ChkShowUnrandMan_CheckedChanged);
             // 
             // chkShowJunk
             // 
@@ -197,7 +197,7 @@
             this.chkShowJunk.TabIndex = 12;
             this.chkShowJunk.Text = "Show Forced Junk";
             this.chkShowJunk.UseVisualStyleBackColor = true;
-            this.chkShowJunk.CheckedChanged += new System.EventHandler(this.chkJunk_CheckedChanged);
+            this.chkShowJunk.CheckedChanged += new System.EventHandler(this.ChkJunk_CheckedChanged);
             // 
             // chkShowStartingItems
             // 
@@ -208,7 +208,7 @@
             this.chkShowStartingItems.TabIndex = 13;
             this.chkShowStartingItems.Text = "Show Starting Items";
             this.chkShowStartingItems.UseVisualStyleBackColor = true;
-            this.chkShowStartingItems.CheckedChanged += new System.EventHandler(this.chkStartingItems_CheckedChanged);
+            this.chkShowStartingItems.CheckedChanged += new System.EventHandler(this.ChkStartingItems_CheckedChanged);
             // 
             // RandomizeOptions
             // 

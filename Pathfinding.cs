@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MMR_Tracker_V2
 {
@@ -17,7 +13,7 @@ namespace MMR_Tracker_V2
 
         public static List<List<LogicObjects.Map>> FindLogicalEntranceConnections(List<LogicObjects.LogicEntry> logic)
         {
-            var result = new List<List<LogicObjects.Map>> { new List<LogicObjects.Map>() , new List<LogicObjects.Map>() };
+            var result = new List<List<LogicObjects.Map>> { new List<LogicObjects.Map>(), new List<LogicObjects.Map>() };
 
             var logicTemplate = Utility.CloneLogicList(logic);
 
@@ -38,26 +34,26 @@ namespace MMR_Tracker_V2
                     var ExitToCheck = dummyLogic[entry.RandomizedItem];
                     ExitToCheck.Aquired = true;
                     LogicEditing.CalculateItems(dummyLogic, true);
-                    foreach(var dummyEntry in dummyLogic)
+                    foreach (var dummyEntry in dummyLogic)
                     {
-                        if (dummyEntry.Available && 
+                        if (dummyEntry.Available &&
                             !dummyEntry.IsFake &&
-                            (dummyEntry.ItemSubType == "Entrance" || IncludeItemLocations) && 
-                            CheckSOT(ExitToCheck,dummyEntry))
+                            (dummyEntry.ItemSubType == "Entrance" || IncludeItemLocations) &&
+                            CheckSOT(ExitToCheck, dummyEntry))
                         {
                             var newEntry = new LogicObjects.Map
                             {
                                 CurrentExit = ExitToCheck.ID,
                                 Entrance = dummyEntry.ID,
                                 ResultingExit = (dummyEntry.RandomizedItem > -1) ? dummyEntry.RandomizedItem : -2,
-                                isOwlWarp = (dummyEntry.LocationArea == "Owl Warp")
+                                IsOwlWarp = (dummyEntry.LocationArea == "Owl Warp")
                             };
                             result[0].Add(newEntry);
                             if (newEntry.ResultingExit > -1 && dummyEntry.ItemSubType == "Entrance") { result[1].Add(newEntry); }
                         }
                     }
                 }
-                
+
             }
             return result;
         }
@@ -71,11 +67,11 @@ namespace MMR_Tracker_V2
             List<int> ExitsSeenOriginal, //The same as exits seen but does not conatin entrance found during this execution of the function
             List<LogicObjects.Map> Path, //A list of exits you have taken to get to your current point
             bool InitialRun //Is this code being run from the original source (True) or from it's self (False)
-            ) 
+            )
         {
             if (InitialRun) { paths = new List<List<LogicObjects.Map>>(); }
             //There are no logical exits from majoras lair, this however is used to lock inaccesable exits
-            if(LogicObjects.Logic[startinglocation].DictionaryName == "EntranceMajorasLairFromTheMoon") { return; }
+            if (LogicObjects.Logic[startinglocation].DictionaryName == "EntranceMajorasLairFromTheMoon") { return; }
             //Make a copy to edit and pass to the next funtion
             var ExitsSeenCopy = JsonConvert.DeserializeObject<List<int>>(JsonConvert.SerializeObject(ExitsSeen));
             //The path finder will use this to ignore seen entrances in areas with new entrances and seen entrances
@@ -83,16 +79,17 @@ namespace MMR_Tracker_V2
             //A list of exits available to take
             var validExits = new List<LogicObjects.Map>();
 
-            foreach(var point in FullMap)
+            foreach (var point in FullMap)
             {
                 if (point.CurrentExit == startinglocation && point.Entrance == destination) { paths.Add(Path); }
             }
             //For each point in our trimmed map 
-            foreach(var point in map)
+            foreach (var point in map)
             {
                 if (point.CurrentExit == startinglocation && (!ExitsSeenOriginal.Contains(point.Entrance)))
                 {
-                    if (CheckExitValid(map, point.ResultingExit, ExitsSeenCopy)) {
+                    if (CheckExitValid(map, point.ResultingExit, ExitsSeenCopy))
+                    {
                         validExits.Add(point);
                         ExitsSeen.Add(point.Entrance);
                     }
@@ -115,8 +112,8 @@ namespace MMR_Tracker_V2
             TODO If there is only one new exit that we can see from this entrance, the pathfinder needs to know to only 
             check that exit in the future and skip the ones we've already seen. */
             var good = false;
-            foreach(var point in map)
-            {        
+            foreach (var point in map)
+            {
                 if (point.CurrentExit == startinglocation && !ExitsSeen.Contains(point.Entrance))
                 {
                     good = true;

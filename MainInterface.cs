@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -85,13 +84,14 @@ namespace MMR_Tracker_V2
 
             CreateTrackerInstance(lines.ToArray());
 
-            if (SettingsFile) { 
+            if (SettingsFile)
+            {
                 RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file));
                 VersionHandeling.entranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.Logic);
-                VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.isEntranceRando());
+                VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.IsEntranceRando());
             }
 
-            if (VersionHandeling.isEntranceRando() && !SettingsFile)
+            if (VersionHandeling.IsEntranceRando() && !SettingsFile)
             {
                 foreach (var item in LogicObjects.Logic)
                 {
@@ -143,10 +143,10 @@ namespace MMR_Tracker_V2
             RandoOptionScreen.ShowDialog();
             bool EntrancesRandoAfter = Utility.CheckForRandomEntrances(LogicObjects.Logic);
 
-            if(!VersionHandeling.OverRideAutoEntranceRandoEnable || (EntrancesRandoBefore != EntrancesRandoAfter))
+            if (!VersionHandeling.OverRideAutoEntranceRandoEnable || (EntrancesRandoBefore != EntrancesRandoAfter))
             {
                 VersionHandeling.entranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.Logic);
-                VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.isEntranceRando());
+                VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.IsEntranceRando());
             }
 
             LogicEditing.CalculateItems(LogicObjects.Logic);
@@ -189,7 +189,7 @@ namespace MMR_Tracker_V2
         private void ToggleEntranceRandoFeaturesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             VersionHandeling.entranceRadnoEnabled = !VersionHandeling.entranceRadnoEnabled;
-            VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.isEntranceRando());
+            VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.IsEntranceRando());
             ResizeObject();
             PrintToListBox();
             FormatMenuItems();
@@ -259,14 +259,14 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
         }
 
-        private void seedCheckerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SeedCheckerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SeedChecker SeedCheckerForm = new SeedChecker();
             SeedCheckerForm.ShowDialog();
         }
 
         //Text Boxes---------------------------------------------------------------------------
-        private void TXTLocSearch_TextChanged(object sender, EventArgs e) {  PrintToListBox();  }
+        private void TXTLocSearch_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
 
         private void TXTEntSearch_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
 
@@ -304,10 +304,10 @@ namespace MMR_Tracker_V2
 
         private void BTNFindPath_Click(object sender, EventArgs e)
         {
-            
+
             LBPathFinder.Items.Clear();
 
-            if (!(CMBStart.SelectedItem is KeyValuePair<int,string>) || !(CMBEnd.SelectedItem is KeyValuePair<int, string>)) { return; }
+            if (!(CMBStart.SelectedItem is KeyValuePair<int, string>) || !(CMBEnd.SelectedItem is KeyValuePair<int, string>)) { return; }
             var Startindex = Int32.Parse(CMBStart.SelectedValue.ToString());
             var DestIndex = Int32.Parse(CMBEnd.SelectedValue.ToString());
             if (Startindex < 0 || DestIndex < 0) { return; }
@@ -417,7 +417,7 @@ namespace MMR_Tracker_V2
                     //Now that we have successfully checked/Marked an object we can commit to a full save state
                     Utility.SaveState(TempState);
                 }
-                
+
             }
             LogicEditing.CalculateItems(LogicObjects.Logic);
 
@@ -446,12 +446,12 @@ namespace MMR_Tracker_V2
             stricterLogicHandelingToolStripMenuItem.Text = (LogicEditing.StrictLogicHandeling) ? "Disable Stricter Logic Handeling" : "Enable Stricter Logic Handeling";
             showEntryNameToolTipToolStripMenuItem.Text = (Utility.ShowEntryNameTooltip) ? "Disable Entry Name ToolTip" : "Show Entry Name ToolTip";
             includeItemLocationsAsDestinationToolStripMenuItem.Text = (Pathfinding.IncludeItemLocations) ? "Exclude Item Locations As Destinations" : "Include Item Locations As Destinations";
-            entranceRandoToolStripMenuItem.Visible = VersionHandeling.isEntranceRando();
+            entranceRandoToolStripMenuItem.Visible = VersionHandeling.IsEntranceRando();
             optionsToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
             undoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
             redoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
             saveToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
-            if (!VersionHandeling.OverRideAutoEntranceRandoEnable) { VersionHandeling.entranceRadnoEnabled = (VersionHandeling.isEntranceRando()); }
+            if (!VersionHandeling.OverRideAutoEntranceRandoEnable) { VersionHandeling.entranceRadnoEnabled = (VersionHandeling.IsEntranceRando()); }
             useSongOfTimeInPathfinderToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
             coupleEntrancesToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
@@ -475,7 +475,7 @@ namespace MMR_Tracker_V2
                     foreach (var stop in path)
                     {
                         var start = (firstStop) ? Utility.CheckSOT(stop) : LogicObjects.Logic[stop.Entrance].LocationName;
-                        var ListItem = new LogicObjects.ListItem{ DisplayName = start + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName, ID = counter - 1 };
+                        var ListItem = new LogicObjects.ListItem { DisplayName = start + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName, ID = counter - 1 };
                         LBPathFinder.Items.Add(ListItem); firstStop = false;
                     }
                     LBPathFinder.Items.Add(new LogicObjects.ListItem { DisplayName = "===============================", ID = counter - 1 });
@@ -754,7 +754,7 @@ namespace MMR_Tracker_V2
             return (returnLastArea);
         }
 
-        private void generatePlaythroughToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GeneratePlaythroughToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Debugging.GeneratePlaythrough(LogicObjects.Logic);
         }

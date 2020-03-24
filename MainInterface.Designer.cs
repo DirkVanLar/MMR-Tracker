@@ -458,7 +458,7 @@
             this.seedCheckerToolStripMenuItem.Name = "seedCheckerToolStripMenuItem";
             this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.seedCheckerToolStripMenuItem.Text = "Seed Checker";
-            this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.seedCheckerToolStripMenuItem_Click);
+            this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.SeedCheckerToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -525,7 +525,7 @@
             this.generatePlaythroughToolStripMenuItem.Name = "generatePlaythroughToolStripMenuItem";
             this.generatePlaythroughToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.generatePlaythroughToolStripMenuItem.Text = "Generate Playthrough";
-            this.generatePlaythroughToolStripMenuItem.Click += new System.EventHandler(this.generatePlaythroughToolStripMenuItem_Click);
+            this.generatePlaythroughToolStripMenuItem.Click += new System.EventHandler(this.GeneratePlaythroughToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 

@@ -51,7 +51,7 @@ namespace MMR_Tracker_V2
             {
                 if (line.Contains("-version"))
                 { LogicVersion = Int32.Parse(line.Replace("-version ", "")); }
-                else if ( line.StartsWith("-"))
+                else if (line.StartsWith("-"))
                 {
                     CDLogic.Add(new LogicObjects.LogicEntry { ID = counter, DictionaryName = line.Substring(2), IsFake = true });
                     counter++;
@@ -59,7 +59,7 @@ namespace MMR_Tracker_V2
             }
             bool isEntRand = LogicVersion < VersionHandeling.EntranceRandoVersion;
 
-            List<LogicObjects.SpoilerData> SpoilerLog = ReadHTMLSpoilerLog("", isEntRand) ;
+            List<LogicObjects.SpoilerData> SpoilerLog = ReadHTMLSpoilerLog("", isEntRand);
             if (SpoilerLog.Count == 0) { return; }
 
             //For each entry in your logic list, check each entry in your spoiler log to find the rest of the data
@@ -77,7 +77,7 @@ namespace MMR_Tracker_V2
                         if (entry.DictionaryName.Contains("Bottle:")) { entry.ItemSubType = "Bottle"; }
                         if (entry.DictionaryName.StartsWith("Entrance")) { entry.ItemSubType = "Entrance"; }
 
-                        if (isEntRand) 
+                        if (isEntRand)
                         {
                             if (entry.DictionaryName == "Woodfall Temple access")
                             { entry.LocationArea = "Dungeon Entrance"; entry.ItemSubType = "Dungeon Entrance"; }
@@ -98,7 +98,7 @@ namespace MMR_Tracker_V2
                 }
             }
 
-            List<string> csv = new List<string>{"DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem"};
+            List<string> csv = new List<string> { "DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem" };
             //Write this data to list of strings formated as lines of csv and write that to a text file
             foreach (LogicObjects.LogicEntry entry in CDLogic)
             {
@@ -110,10 +110,12 @@ namespace MMR_Tracker_V2
                 }
             }
 
-            SaveFileDialog saveDic = new SaveFileDialog();
-            saveDic.Filter = "CSV File (*.csv)|*.csv";
-            saveDic.Title = "Save Dictionary File";
-            saveDic.FileName = "MMRDICTIONARYV" + LogicVersion + ".csv";
+            SaveFileDialog saveDic = new SaveFileDialog
+            {
+                Filter = "CSV File (*.csv)|*.csv",
+                Title = "Save Dictionary File",
+                FileName = "MMRDICTIONARYV" + LogicVersion + ".csv"
+            };
             saveDic.ShowDialog();
             File.WriteAllLines(saveDic.FileName, csv);
         }
@@ -129,11 +131,13 @@ namespace MMR_Tracker_V2
 
             if (Path == "")
             {
-                OpenFileDialog SpoilerFile = new OpenFileDialog();
-                SpoilerFile.Title = "Select an HTML Spoiler Log";
-                SpoilerFile.Filter = "HTML Spoiler Log (*.html)|*.html";
-                SpoilerFile.FilterIndex = 1;
-                SpoilerFile.Multiselect = false;
+                OpenFileDialog SpoilerFile = new OpenFileDialog
+                {
+                    Title = "Select an HTML Spoiler Log",
+                    Filter = "HTML Spoiler Log (*.html)|*.html",
+                    FilterIndex = 1,
+                    Multiselect = false
+                };
                 if (SpoilerFile.ShowDialog() != DialogResult.OK) { return SpoilerData; }
                 Path = SpoilerFile.FileName;
             }
@@ -161,7 +165,7 @@ namespace MMR_Tracker_V2
                     X = X.Replace("</td>", "");
                     entry.LocationName = X;
                 }
-                if (line.Contains("<td class=\"spoiler itemname\"><span data-content=\"")|| line.Contains("<td class=\"spoiler itemname\"> <span data-content=\""))
+                if (line.Contains("<td class=\"spoiler itemname\"><span data-content=\"") || line.Contains("<td class=\"spoiler itemname\"> <span data-content=\""))
                 {
                     var X = line.Trim();
                     X = X.Replace("<td class=\"spoiler itemname\"> <span data-content=\"", "");
@@ -184,8 +188,8 @@ namespace MMR_Tracker_V2
             {
                 if (entranceIDs.ContainsValue(Thing.ItemID)) { EntIDMatch.Add(Thing.ItemName, Thing.ItemID); }
             }
-            foreach (LogicObjects.SpoilerData Thing in SpoilerData) 
-            { 
+            foreach (LogicObjects.SpoilerData Thing in SpoilerData)
+            {
                 if (EntIDMatch.ContainsKey(Thing.LocationName)) { Thing.LocationID = EntIDMatch[Thing.LocationName]; }
             }
 
@@ -198,16 +202,18 @@ namespace MMR_Tracker_V2
 
             if (Path == "")
             {
-                OpenFileDialog SpoilerFile = new OpenFileDialog();
-                SpoilerFile.Title = "Select A Logic File";
-                SpoilerFile.Filter = "Text Spoiler Log (*.txt)|*.txt";
-                SpoilerFile.FilterIndex = 1;
-                SpoilerFile.Multiselect = false;
+                OpenFileDialog SpoilerFile = new OpenFileDialog
+                {
+                    Title = "Select A Logic File",
+                    Filter = "Text Spoiler Log (*.txt)|*.txt",
+                    FilterIndex = 1,
+                    Multiselect = false
+                };
                 if (SpoilerFile.ShowDialog() != DialogResult.OK) { return SpoilerData; }
                 Path = SpoilerFile.FileName;
             }
             List<int> usedId = new List<int>();
-            foreach(string line in File.ReadLines(Path))
+            foreach (string line in File.ReadLines(Path))
             {
                 LogicObjects.SpoilerData entry = new LogicObjects.SpoilerData();
                 if (line.Contains("->"))
@@ -232,7 +238,7 @@ namespace MMR_Tracker_V2
             return SpoilerData;
         }
         public static bool SaveInstance()
-        { 
+        {
             string[] Options = new string[9];
             Options[0] = JsonConvert.SerializeObject(LogicObjects.Logic);
             Options[1] = VersionHandeling.Version.ToString();
@@ -296,7 +302,8 @@ namespace MMR_Tracker_V2
             {
                 DialogResult result = System.Windows.Forms.MessageBox.Show("Would you like to save?", "You have unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
                 if (result == DialogResult.Cancel) { return false; }
-                if (result == DialogResult.Yes) {
+                if (result == DialogResult.Yes)
+                {
                     if (!SaveInstance()) { return false; }
                 }
             }
@@ -318,20 +325,22 @@ namespace MMR_Tracker_V2
         }
         public static string FileSelect(string title, string filter)
         {
-            OpenFileDialog SelectedFile = new OpenFileDialog();
-            SelectedFile.Title = title;
-            SelectedFile.Filter = filter;
-            SelectedFile.FilterIndex = 1;
-            SelectedFile.Multiselect = false;
+            OpenFileDialog SelectedFile = new OpenFileDialog
+            {
+                Title = title,
+                Filter = filter,
+                FilterIndex = 1,
+                Multiselect = false
+            };
             if (SelectedFile.ShowDialog() != DialogResult.OK) { return ""; }
             return SelectedFile.FileName;
         }
-        public static void UpdateNames (List<LogicObjects.LogicEntry> Logic)
+        public static void UpdateNames(List<LogicObjects.LogicEntry> Logic)
         {
             LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionHandeling.SwitchDictionary()[0]));
             foreach (var entry in Logic)
             {
-               foreach(var dicent in LogicObjects.MMRDictionary)
+                foreach (var dicent in LogicObjects.MMRDictionary)
                 {
                     if (entry.DictionaryName == dicent.DictionaryName)
                     {
@@ -346,11 +355,11 @@ namespace MMR_Tracker_V2
                 }
             }
         }
-        public static bool FilterSearch (LogicObjects.LogicEntry logic, string searchTerm, string NameToCompare)
+        public static bool FilterSearch(LogicObjects.LogicEntry logic, string searchTerm, string NameToCompare)
         {
             if (searchTerm == "") { return true; }
             string[] searchTerms = searchTerm.Split('|');
-            foreach(string term in searchTerms)
+            foreach (string term in searchTerms)
             {
                 string[] subTerms = term.Split(',');
                 bool valid = true;
@@ -373,7 +382,7 @@ namespace MMR_Tracker_V2
         }
         public static bool CheckforSpoilerLog(List<LogicObjects.LogicEntry> Logic)
         {
-            foreach(var i in Logic)
+            foreach (var i in Logic)
             {
                 if (i.SpoilerRandom > -1) { return true; }
             }
@@ -384,10 +393,10 @@ namespace MMR_Tracker_V2
             bool fullLog = true;
             foreach (var i in Logic)
             {
-                if (i.SpoilerRandom < 0 && !i.IsFake) 
+                if (i.SpoilerRandom < 0 && !i.IsFake)
                 {
                     Console.WriteLine(i.DictionaryName + " Does not have SpoilerData");
-                    fullLog = false; 
+                    fullLog = false;
                 }
             }
             return fullLog;
@@ -401,7 +410,7 @@ namespace MMR_Tracker_V2
                 if (StartName == "EntranceClockTowerInteriorFromBeforethePortaltoTermina" || StartName == "EntranceClockTowerInteriorFromSouthClockTown")
                 {
                     return LogicObjects.Logic[stop.Entrance].LocationName;
-                }   
+                }
                 else { return "Song of Time"; }
             }
             return LogicObjects.Logic[stop.Entrance].LocationName; ;
@@ -409,7 +418,7 @@ namespace MMR_Tracker_V2
         public static bool IsDivider(string text)
         {
             int occurences = 0;
-            foreach(var i in text)
+            foreach (var i in text)
             {
                 if (i == '=') { occurences++; }
             }
@@ -419,15 +428,15 @@ namespace MMR_Tracker_V2
         {
             foreach (var i in logic)
             {
-                if (i.ItemSubType == "Entrance" && (i.RandomizedState == 0 || i.RandomizedState == 2) && VersionHandeling.isEntranceRando())
+                if (i.ItemSubType == "Entrance" && (i.RandomizedState == 0 || i.RandomizedState == 2) && VersionHandeling.IsEntranceRando())
                 { return true; }
             }
             return false;
         }
-        public static Dictionary<int, int> CreateRandItemDic(List<LogicObjects.LogicEntry> logic, bool Spoiler = false) 
+        public static Dictionary<int, int> CreateRandItemDic(List<LogicObjects.LogicEntry> logic, bool Spoiler = false)
         {
             var spoilerDic = new Dictionary<int, int>();
-            foreach(var i in logic)
+            foreach (var i in logic)
             {
                 var value = (Spoiler) ? i.SpoilerRandom : i.RandomizedItem;
                 if (value > -2 && !spoilerDic.ContainsKey(value))

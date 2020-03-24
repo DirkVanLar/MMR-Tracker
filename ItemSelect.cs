@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
@@ -27,7 +26,7 @@ namespace MMR_Tracker_V2
                 BTNJunk.Text = "Junk";
                 LBItemSelect.SelectionMode = SelectionMode.One;
             }
-            
+
             if (Function == 0) { ItemSelectList(); }
             if (Function == 1) { SeedCheckLocations(); }
             if (Function == 2) { SeedCheckItems(); }
@@ -42,7 +41,7 @@ namespace MMR_Tracker_V2
                 if (!LogicObjects.Logic[i].Aquired
                     && (!LogicObjects.Logic[i].IsFake)
                     && !Duplicates.Contains(LogicObjects.Logic[i].ItemName)
-                    && LogicObjects.Logic[i].ItemName != null 
+                    && LogicObjects.Logic[i].ItemName != null
                     && Utility.FilterSearch(LogicObjects.Logic[i], TXTSearch.Text, LogicObjects.Logic[i].DisplayName)
                     && (LogicObjects.CurrentSelectedItem.ItemSubType == LogicObjects.Logic[i].ItemSubType || LogicObjects.CurrentSelectedItem.ItemSubType == "ALL"))
                 {
@@ -58,7 +57,7 @@ namespace MMR_Tracker_V2
             LBItemSelect.Items.Clear();
             for (var i = 0; i < LogicObjects.Logic.Count; i++)
             {
-                LogicObjects.Logic[i].DisplayName = (LogicObjects.Logic[i].LocationName != null) ? LogicObjects.Logic[i].LocationName : LogicObjects.Logic[i].DictionaryName;
+                LogicObjects.Logic[i].DisplayName = LogicObjects.Logic[i].LocationName ?? LogicObjects.Logic[i].DictionaryName;
                 if (Utility.FilterSearch(LogicObjects.Logic[i], TXTSearch.Text, LogicObjects.Logic[i].DisplayName))
                 {
                     LBItemSelect.Items.Add(LogicObjects.Logic[i]);
@@ -71,7 +70,7 @@ namespace MMR_Tracker_V2
             LBItemSelect.Items.Clear();
             for (var i = 0; i < LogicObjects.Logic.Count; i++)
             {
-                LogicObjects.Logic[i].DisplayName = (LogicObjects.Logic[i].ItemName != null) ? LogicObjects.Logic[i].ItemName : LogicObjects.Logic[i].DictionaryName;
+                LogicObjects.Logic[i].DisplayName = LogicObjects.Logic[i].ItemName ?? LogicObjects.Logic[i].DictionaryName;
                 if (Utility.FilterSearch(LogicObjects.Logic[i], TXTSearch.Text, LogicObjects.Logic[i].DisplayName))
                 {
                     LBItemSelect.Items.Add(LogicObjects.Logic[i]);
@@ -111,16 +110,15 @@ namespace MMR_Tracker_V2
             }
             else
             {
-                LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
-                LogicObjects.CurrentSelectedItem.ID = -1;
+                LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry { ID = -1 };
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-            }  
+            }
         }
 
-        private void btnSelect_Click(object sender, EventArgs e)
+        private void BtnSelect_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

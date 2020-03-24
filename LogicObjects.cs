@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MMR_Tracker_V2
 {
@@ -60,7 +59,7 @@ namespace MMR_Tracker_V2
             public int CurrentExit { get; set; } //The exit you are curretly at
             public int Entrance { get; set; } //The entrance you can go through
             public int ResultingExit { get; set; } //The resulting exit you will end up at
-            public bool isOwlWarp { get; set; } //Is the entrance an owl warp
+            public bool IsOwlWarp { get; set; } //Is the entrance an owl warp
             public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
             public override string ToString()
             {
@@ -69,12 +68,12 @@ namespace MMR_Tracker_V2
         }
         public class SpoilerData
         {
-            public int LocationID { get; set; } 
-            public string LocationName { get; set; } 
-            public int ItemID { get; set; } 
-            public string ItemName { get; set; } 
-            public string LocationArea { get; set; } 
-            public string DisplayName { get; set; } 
+            public int LocationID { get; set; }
+            public string LocationName { get; set; }
+            public int ItemID { get; set; }
+            public string ItemName { get; set; }
+            public string LocationArea { get; set; }
+            public string DisplayName { get; set; }
             public override string ToString()
             {
                 return DisplayName;
@@ -89,9 +88,9 @@ namespace MMR_Tracker_V2
                 return DisplayName;
             }
         }
-        public class sphere
+        public class Sphere
         {
-            public int sphereNumber { get; set; }
+            public int SphereNumber { get; set; }
             public LogicEntry Check { get; set; }
             public List<int> ItemsUsed { get; set; }
         }

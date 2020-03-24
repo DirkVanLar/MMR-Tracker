@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json;
-using System.IO;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using System.IO;
 using System.Linq;
 
 namespace MMR_Tracker_V2
@@ -26,7 +25,7 @@ namespace MMR_Tracker_V2
             var EntAreaDict = new Dictionary<int, int>();
             var AreaDicVersion = 0;
 
-            if (!ValidVersions.Contains(Version) && !isEntranceRando())
+            if (!ValidVersions.Contains(Version) && !IsEntranceRando())
             { AreaDicVersion = ValidVersions.Aggregate((x, y) => Math.Abs(x - Version) < Math.Abs(y - Version) ? x : y); }
             else { AreaDicVersion = Version; }
 
@@ -38,13 +37,15 @@ namespace MMR_Tracker_V2
                     EntAreaDict.Add(108, 107); //GreatBay Clear, GreatBay Entrance
                     EntAreaDict.Add(113, 112); //Ikana Clear, StoneTower Entrance
                     break;
-                case 5: case 6:
+                case 5:
+                case 6:
                     EntAreaDict.Add(101, 100); //Woodfall Clear, Woodfall Entrance
                     EntAreaDict.Add(104, 103); //Snowhead Clear, Snowhead Entrance
                     EntAreaDict.Add(109, 108); //GreatBay Clear, GreatBay Entrance
                     EntAreaDict.Add(114, 113); //Ikana Clear, StoneTower Entrance
                     break;
-                case 8: case 13:
+                case 8:
+                case 13:
                     EntAreaDict.Add(105, 104); //Woodfall Clear, Woodfall Entrance
                     EntAreaDict.Add(108, 107); //Snowhead Clear, Snowhead Entrance
                     EntAreaDict.Add(113, 112); //GreatBay Clear, GreatBay Entrance
@@ -54,7 +55,7 @@ namespace MMR_Tracker_V2
             return EntAreaDict;
         }
 
-        public static bool isEntranceRando()
+        public static bool IsEntranceRando()
         {
             return Version >= EntranceRandoVersion;
         }
@@ -62,7 +63,7 @@ namespace MMR_Tracker_V2
         public static string[] SwitchDictionary()
         {
             string[] files = Directory.GetFiles(@"Dictionaries");
-            Dictionary<int,string> dictionaries = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
+            Dictionary<int, string> dictionaries = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
             Dictionary<int, string> Pairs = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
             int smallestDicEntry = 0;
             int largestDicEntry = 0;
@@ -70,7 +71,7 @@ namespace MMR_Tracker_V2
             int largestPairEntry = 0;
             foreach (var i in files)
             {
-                if (i.Contains("MMRDICTIONARY")) 
+                if (i.Contains("MMRDICTIONARY"))
                 {
                     var entry = i.Replace("Dictionaries\\MMRDICTIONARYV", "");
                     entry = entry.Replace(".csv", "");
@@ -94,7 +95,7 @@ namespace MMR_Tracker_V2
                     if (smallestPairEntry == 0) { smallestPairEntry = largestPairEntry; }
                     if (version < smallestPairEntry) { smallestPairEntry = version; }
                 }
-                
+
             }
 
             string[] currentdictionary = new string[2];

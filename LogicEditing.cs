@@ -23,11 +23,12 @@ namespace MMR_Tracker_V2
             foreach (string line in LogicFile)
             {
                 if (line.StartsWith("-")) { SubCounter = 0; }
-                if (line.Contains("-version")) { 
+                if (line.Contains("-version"))
+                {
                     VersionHandeling.Version = Int32.Parse(line.Replace("-version ", ""));
                     VersionData = VersionHandeling.SwitchDictionary();
                     LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
-                    if (VersionHandeling.isEntranceRando())
+                    if (VersionHandeling.IsEntranceRando())
                     { VersionHandeling.entranceRadnoEnabled = true; }
                 }
                 switch (SubCounter)
@@ -73,7 +74,7 @@ namespace MMR_Tracker_V2
                         break;
                     case 4:
                         LogicList.Add(LogicEntry1);
-                        
+
                         LogicEntry1 = new LogicObjects.LogicEntry();
                         idCounter++;
                         break;
@@ -135,7 +136,7 @@ namespace MMR_Tracker_V2
 
         public static void CalculateItems(List<LogicObjects.LogicEntry> logic, bool ForceStrictLogicHandeling = false, bool InitialRun = true)
         {
-            if (InitialRun && (StrictLogicHandeling || ForceStrictLogicHandeling)){ ForceFreshCalculation(logic); }
+            if (InitialRun && (StrictLogicHandeling || ForceStrictLogicHandeling)) { ForceFreshCalculation(logic); }
             bool recalculate = false;
             foreach (var item in logic)
             {
@@ -160,7 +161,7 @@ namespace MMR_Tracker_V2
 
             Dictionary<int, int> EntAreaDict = VersionHandeling.AreaClearDictionary();
 
-            if (EntAreaDict.ContainsKey(item.ID) && !VersionHandeling.isEntranceRando())
+            if (EntAreaDict.ContainsKey(item.ID) && !VersionHandeling.IsEntranceRando())
             {
                 recalculate = 1;
                 var templeEntrance = EntAreaDict[item.ID];//What is the dungeon entrance in this area
@@ -189,10 +190,10 @@ namespace MMR_Tracker_V2
             if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
             {
                 CheckedObject.Checked = false;
-                if (CheckedObject.RandomizedItem > -1) 
+                if (CheckedObject.RandomizedItem > -1)
                 {
                     CheckEntrancePair(CheckedObject, LogicObjects.Logic, false);
-                    LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = false; 
+                    LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = false;
                 }
                 CheckedObject.RandomizedItem = -2;
                 return true;
@@ -204,7 +205,7 @@ namespace MMR_Tracker_V2
                 if (CheckedObject.SpoilerRandom > -2) { CheckedObject.RandomizedItem = CheckedObject.SpoilerRandom; }
                 if (CheckedObject.RandomizedItem < 0) { CheckedObject.RandomizedItem = -1; return true; }
                 LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = true;
-                CheckEntrancePair(CheckedObject, LogicObjects.Logic , true);
+                CheckEntrancePair(CheckedObject, LogicObjects.Logic, true);
                 return true;
             }
             LogicObjects.CurrentSelectedItem = CheckedObject; //Set the global CurrentSelectedItem to the Location selected in the list box
@@ -240,18 +241,18 @@ namespace MMR_Tracker_V2
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
             if (path.Contains(".txt")) { SpoilerData = Utility.ReadTextSpoilerlog(path); }
-            else if (path.Contains(".html")){ SpoilerData = Utility.ReadHTMLSpoilerLog(path, VersionHandeling.isEntranceRando()); }
-            else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file.");return;}
-            foreach(LogicObjects.SpoilerData data in SpoilerData)
+            else if (path.Contains(".html")) { SpoilerData = Utility.ReadHTMLSpoilerLog(path, VersionHandeling.IsEntranceRando()); }
+            else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); Console.WriteLine(SpoilerData); return;  }
+            foreach (LogicObjects.SpoilerData data in SpoilerData)
             {
                 if (data.LocationID > -1 && data.ItemID > -2)
                     Logic[data.LocationID].SpoilerRandom = data.ItemID;
             }
 
-            if (!VersionHandeling.isEntranceRando())//If dungeon entrances aren't randomized they don't show up in the spoiler log
+            if (!VersionHandeling.IsEntranceRando())//If dungeon entrances aren't randomized they don't show up in the spoiler log
             {
                 var entranceIDs = VersionHandeling.AreaClearDictionary();
-                foreach(var i in Logic)
+                foreach (var i in Logic)
                 {
                     if (i.ItemSubType == "Dungeon Entrance" && entranceIDs.ContainsValue(i.ID) && i.SpoilerRandom < 0) { i.SpoilerRandom = i.ID; }
                 }
@@ -310,7 +311,7 @@ namespace MMR_Tracker_V2
 
         public static void CheckSeed(List<LogicObjects.LogicEntry> logic, bool InitialRun, List<int> Ignored)
         {
-            if (InitialRun) { ForceFreshCalculation(logic);}
+            if (InitialRun) { ForceFreshCalculation(logic); }
             bool recalculate = false;
             foreach (var item in logic)
             {
@@ -330,10 +331,10 @@ namespace MMR_Tracker_V2
                     recalculate = true;
                 }
             }
-            if(recalculate) { CheckSeed(logic, false, Ignored); }
+            if (recalculate) { CheckSeed(logic, false, Ignored); }
         }
 
-        public static void CreatedEntrancepairDcitionary(Dictionary<int,int> entrancePairs, Dictionary<string, int> NameToID)
+        public static void CreatedEntrancepairDcitionary(Dictionary<int, int> entrancePairs, Dictionary<string, int> NameToID)
         {
             var VersionData = VersionHandeling.SwitchDictionary();
             foreach (var i in File.ReadAllLines(VersionData[1]))
@@ -348,7 +349,7 @@ namespace MMR_Tracker_V2
 
         public static void CreateDicNameToID(Dictionary<string, int> NameToID, List<LogicObjects.LogicEntry> logic)
         {
-            foreach(var LogicEntry1 in logic)
+            foreach (var LogicEntry1 in logic)
             {
                 if (!NameToID.ContainsKey(LogicEntry1.DictionaryName) && !LogicEntry1.IsFake)
                 { NameToID.Add(LogicEntry1.DictionaryName, LogicEntry1.ID); }

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
@@ -78,7 +75,7 @@ namespace MMR_Tracker_V2
 
         public static void GeneratePlaythrough(List<LogicObjects.LogicEntry> logic)
         {
-            List<LogicObjects.sphere> Playthrough = new List<LogicObjects.sphere>();
+            List<LogicObjects.Sphere> Playthrough = new List<LogicObjects.Sphere>();
             Dictionary<int, int> SpoilerToID = new Dictionary<int, int>();
             var playLogic = Utility.CloneLogicList(logic);
 
@@ -92,7 +89,7 @@ namespace MMR_Tracker_V2
             { MessageBox.Show("Not all items have spoiler data. Playthrough can not be generated. Ensure you are using the same version of logic used to generate your selected spoiler log"); return; }
 
             List<int> importantItems = new List<int>();
-            foreach(var i in playLogic)
+            foreach (var i in playLogic)
             {
                 i.Available = false;
                 i.Checked = false;
@@ -127,7 +124,7 @@ namespace MMR_Tracker_V2
             bool MajoraReachable = false;
             foreach (var i in Playthrough)
             {
-                if ((i.Check.DictionaryName == "Moon Access" && !VersionHandeling.isEntranceRando()) || 
+                if ((i.Check.DictionaryName == "Moon Access" && !VersionHandeling.IsEntranceRando()) ||
                     playLogic[i.Check.RandomizedItem].DictionaryName == "EntranceMajorasLairFromTheMoon")
                 {
                     importantItems.Add(i.Check.ID);
@@ -138,20 +135,20 @@ namespace MMR_Tracker_V2
             }
             if (!MajoraReachable) { MessageBox.Show("Majora is not reachable in this seed! Playthrough could not be generated!"); return; }
 
-            Playthrough = Playthrough.OrderBy(x => x.sphereNumber).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
+            Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
 
             List<string> PlaythroughString = new List<string>();
             int lastSphere = -1;
             foreach (var i in Playthrough)
             {
                 if (!importantItems.Contains(i.Check.ID) || i.Check.IsFake) { continue; }
-                if (i.sphereNumber != lastSphere)
+                if (i.SphereNumber != lastSphere)
                 {
-                    PlaythroughString.Add("Sphere: " + i.sphereNumber + " ====================================="); lastSphere = i.sphereNumber;
+                    PlaythroughString.Add("Sphere: " + i.SphereNumber + " ====================================="); lastSphere = i.SphereNumber;
                 }
-                PlaythroughString.Add("Check \"" + i.Check.LocationName + "\" to obtain \"" + playLogic[i.Check.RandomizedItem].ItemName+ "\"");
+                PlaythroughString.Add("Check \"" + i.Check.LocationName + "\" to obtain \"" + playLogic[i.Check.RandomizedItem].ItemName + "\"");
                 string items = "    Using Items: ";
-                foreach(var j in i.ItemsUsed) { items = items + playLogic[j].ItemName + ", "; }
+                foreach (var j in i.ItemsUsed) { items = items + playLogic[j].ItemName + ", "; }
                 if (items != "    Using Items: ") { PlaythroughString.Add(items); }
 
             }
@@ -162,7 +159,7 @@ namespace MMR_Tracker_V2
             DebugScreen.Playthrough = new List<string>();
         }
 
-        public static void CalculatePlaythrough(List<LogicObjects.LogicEntry> logic, List<LogicObjects.sphere> Playthrough, int sphere, List<int> ImportantItems)
+        public static void CalculatePlaythrough(List<LogicObjects.LogicEntry> logic, List<LogicObjects.Sphere> Playthrough, int sphere, List<int> ImportantItems)
         {
             bool RealItemObtained = false;
             bool recalculate = false;
@@ -182,12 +179,12 @@ namespace MMR_Tracker_V2
                 }
                 if (changed && ImportantItems.Contains(item.SpoilerRandom) && item.Available)
                 {
-                    Playthrough.Add(new LogicObjects.sphere { sphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
+                    Playthrough.Add(new LogicObjects.Sphere { SphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
                     RealItemObtained = true;
                 }
             }
 
-            foreach(var item in itemCheckList)
+            foreach (var item in itemCheckList)
             {
                 logic[item.SpoilerRandom].Aquired = item.Available;
             }
@@ -206,7 +203,7 @@ namespace MMR_Tracker_V2
                 }
                 if (changed && ImportantItems.Contains(item.SpoilerRandom) && item.Available)
                 {
-                    Playthrough.Add(new LogicObjects.sphere { sphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
+                    Playthrough.Add(new LogicObjects.Sphere { SphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
                     RealItemObtained = true;
                 }
             }
@@ -220,15 +217,15 @@ namespace MMR_Tracker_V2
             if (recalculate) { CalculatePlaythrough(logic, Playthrough, NewSphere, ImportantItems); }
         }
 
-        public static void FindImportantItems(LogicObjects.sphere EntryToCheck, List<int> importantItems, List<LogicObjects.sphere> Playthrough, Dictionary<int, int> SpoilerToID)
+        public static void FindImportantItems(LogicObjects.Sphere EntryToCheck, List<int> importantItems, List<LogicObjects.Sphere> Playthrough, Dictionary<int, int> SpoilerToID)
         {
-            foreach(var i in EntryToCheck.ItemsUsed)
+            foreach (var i in EntryToCheck.ItemsUsed)
             {
                 var locToCheck = SpoilerToID[i];
                 if (importantItems.Contains(locToCheck)) { continue; }
                 importantItems.Add(locToCheck);
-                var NextLocation = new LogicObjects.sphere();
-                foreach(var j in Playthrough)
+                var NextLocation = new LogicObjects.Sphere();
+                foreach (var j in Playthrough)
                 {
                     if (j.Check.ID == locToCheck) { NextLocation = j; break; }
                 }

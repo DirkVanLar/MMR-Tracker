@@ -1,12 +1,6 @@
 ﻿using MMR_Tracker_V2;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MMR_Tracker
@@ -18,12 +12,12 @@ namespace MMR_Tracker
             InitializeComponent();
         }
 
-        private void btnAddNeeded_Click(object sender, EventArgs e)
+        private void BtnAddNeeded_Click(object sender, EventArgs e)
         {
             ItemSelect.Function = 2;
             ItemSelect ItemSelectForm = new ItemSelect(); var dialogResult = ItemSelectForm.ShowDialog();
             if (dialogResult != DialogResult.OK) { LogicObjects.selectedItems = new List<LogicObjects.LogicEntry>(); return; }
-            foreach(var item in LBNeededItems.Items)
+            foreach (var item in LBNeededItems.Items)
             {
                 var ListItem = item as LogicObjects.ListItem;
                 if (ListItem.ID == LogicObjects.CurrentSelectedItem.ID) { return; }
@@ -42,7 +36,7 @@ namespace MMR_Tracker
             LBNeededItems.Items.RemoveAt(LBNeededItems.SelectedIndex);
         }
 
-        private void btnAddIgnored_Click(object sender, EventArgs e)
+        private void BtnAddIgnored_Click(object sender, EventArgs e)
         {
             ItemSelect.Function = 1;
             ItemSelect ItemSelectForm = new ItemSelect(); var dialogResult = ItemSelectForm.ShowDialog();
@@ -66,7 +60,7 @@ namespace MMR_Tracker
             LBIgnoredChecks.Items.RemoveAt(LBIgnoredChecks.SelectedIndex);
         }
 
-        private void btnCheckSeed_Click(object sender, EventArgs e)
+        private void BtnCheckSeed_Click(object sender, EventArgs e)
         {
             var logicCopy = Utility.CloneLogicList(LogicObjects.Logic);
             foreach (var i in logicCopy)
@@ -76,22 +70,22 @@ namespace MMR_Tracker
                 i.Aquired = false;
                 i.RandomizedState = 0;
             }
-            if (!Utility.CheckforSpoilerLog(LogicObjects.Logic)) 
+            if (!Utility.CheckforSpoilerLog(LogicObjects.Logic))
             {
                 var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(logicCopy, file);
-                if (!Utility.CheckforFullSpoilerLog(logicCopy)) 
-                    { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
+                if (!Utility.CheckforFullSpoilerLog(logicCopy))
+                { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
             }
             else if (!Utility.CheckforFullSpoilerLog(LogicObjects.Logic))
             { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
 
-            foreach(var entry in logicCopy) { if (entry.SpoilerRandom > -1) { entry.RandomizedItem = entry.SpoilerRandom; } }
+            foreach (var entry in logicCopy) { if (entry.SpoilerRandom > -1) { entry.RandomizedItem = entry.SpoilerRandom; } }
 
             LBResult.Items.Clear();
             List<int> Ignored = new List<int>();
-            foreach(var item in LBIgnoredChecks.Items)
+            foreach (var item in LBIgnoredChecks.Items)
             {
                 Ignored.Add((item as LogicObjects.ListItem).ID);
             }
@@ -113,11 +107,11 @@ namespace MMR_Tracker
             if (obtainable.Count > 0)
             {
                 LBResult.Items.Add("Obtainable ==============================");
-                foreach(var i in obtainable) { LBResult.Items.Add(i); }
+                foreach (var i in obtainable) { LBResult.Items.Add(i); }
             }
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void BtnClear_Click(object sender, EventArgs e)
         {
             LBIgnoredChecks.Items.Clear();
             LBNeededItems.Items.Clear();
