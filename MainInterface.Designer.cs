@@ -233,7 +233,7 @@
             this.LBValidLocations.Location = new System.Drawing.Point(223, 38);
             this.LBValidLocations.Name = "LBValidLocations";
             this.LBValidLocations.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.LBValidLocations.Size = new System.Drawing.Size(120, 95);
+            this.LBValidLocations.Size = new System.Drawing.Size(75, 95);
             this.LBValidLocations.TabIndex = 16;
             this.LBValidLocations.DoubleClick += new System.EventHandler(this.LBValidLocations_DoubleClick);
             this.LBValidLocations.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBValidLocations_MouseMove);
@@ -242,10 +242,10 @@
             // 
             this.LBValidEntrances.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBValidEntrances.FormattingEnabled = true;
-            this.LBValidEntrances.Location = new System.Drawing.Point(349, 38);
+            this.LBValidEntrances.Location = new System.Drawing.Point(317, 38);
             this.LBValidEntrances.Name = "LBValidEntrances";
             this.LBValidEntrances.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.LBValidEntrances.Size = new System.Drawing.Size(120, 95);
+            this.LBValidEntrances.Size = new System.Drawing.Size(75, 95);
             this.LBValidEntrances.TabIndex = 17;
             this.LBValidEntrances.DoubleClick += new System.EventHandler(this.LBValidEntrances_DoubleClick);
             this.LBValidEntrances.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBValidEntrances_MouseMove);
@@ -257,7 +257,7 @@
             this.LBCheckedLocations.Location = new System.Drawing.Point(223, 139);
             this.LBCheckedLocations.Name = "LBCheckedLocations";
             this.LBCheckedLocations.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.LBCheckedLocations.Size = new System.Drawing.Size(120, 95);
+            this.LBCheckedLocations.Size = new System.Drawing.Size(75, 95);
             this.LBCheckedLocations.TabIndex = 18;
             this.LBCheckedLocations.DoubleClick += new System.EventHandler(this.LBCheckedLocations_DoubleClick);
             this.LBCheckedLocations.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBCheckedLocations_MouseMove);
@@ -266,9 +266,9 @@
             // 
             this.LBPathFinder.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBPathFinder.FormattingEnabled = true;
-            this.LBPathFinder.Location = new System.Drawing.Point(349, 139);
+            this.LBPathFinder.Location = new System.Drawing.Point(317, 139);
             this.LBPathFinder.Name = "LBPathFinder";
-            this.LBPathFinder.Size = new System.Drawing.Size(120, 95);
+            this.LBPathFinder.Size = new System.Drawing.Size(75, 95);
             this.LBPathFinder.TabIndex = 19;
             this.LBPathFinder.DoubleClick += new System.EventHandler(this.LBPathFinder_DoubleClick);
             this.LBPathFinder.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBPathFinder_MouseMove);

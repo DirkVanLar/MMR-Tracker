@@ -161,6 +161,7 @@ namespace MMR_Tracker_V2
 
         public static void CalculatePlaythrough(List<LogicObjects.LogicEntry> logic, List<LogicObjects.Sphere> Playthrough, int sphere, List<int> ImportantItems)
         {
+            Console.WriteLine("Shpere " + sphere);
             bool RealItemObtained = false;
             bool recalculate = false;
             List<LogicObjects.LogicEntry> itemCheckList = new List<LogicObjects.LogicEntry>();
@@ -189,6 +190,16 @@ namespace MMR_Tracker_V2
                 logic[item.SpoilerRandom].Aquired = item.Available;
             }
 
+            if (UnlockAllFake(logic, ImportantItems, sphere, Playthrough)) { recalculate = true; }
+
+            int NewSphere = (RealItemObtained) ? sphere + 1 : sphere;
+            if (recalculate) { CalculatePlaythrough(logic, Playthrough, NewSphere, ImportantItems); }
+        }
+
+        public static bool UnlockAllFake(List<LogicObjects.LogicEntry> logic, List<int> ImportantItems, int sphere, List<LogicObjects.Sphere> Playthrough)
+        {
+            Console.WriteLine("Unlocking all fake items");
+            var recalculate = false;
             foreach (var item in logic)
             {
                 List<int> UsedItems = new List<int>();
@@ -197,24 +208,18 @@ namespace MMR_Tracker_V2
                 bool changed = false;
                 if (item.Aquired != item.Available && item.IsFake)
                 {
-                    FakeItemCheckList.Add(item);
+                    item.Aquired = item.Available;
                     recalculate = true;
                     changed = true;
                 }
                 if (changed && ImportantItems.Contains(item.SpoilerRandom) && item.Available)
                 {
                     Playthrough.Add(new LogicObjects.Sphere { SphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
-                    RealItemObtained = true;
                 }
             }
-
-            foreach (var item in FakeItemCheckList)
-            {
-                item.Aquired = item.Available;
-            }
-
-            int NewSphere = (RealItemObtained) ? sphere + 1 : sphere;
-            if (recalculate) { CalculatePlaythrough(logic, Playthrough, NewSphere, ImportantItems); }
+            if (recalculate) { UnlockAllFake(logic, ImportantItems, sphere, Playthrough); }
+            Console.WriteLine(recalculate);
+            return recalculate;
         }
 
         public static void FindImportantItems(LogicObjects.Sphere EntryToCheck, List<int> importantItems, List<LogicObjects.Sphere> Playthrough, Dictionary<int, int> SpoilerToID)
