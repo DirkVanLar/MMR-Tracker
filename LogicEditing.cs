@@ -373,5 +373,26 @@ namespace MMR_Tracker_V2
                 }
             }
         }
+
+        public static List<int> FindRequirements(LogicObjects.LogicEntry Item, List<LogicObjects.LogicEntry> logic)
+        {
+            List<int> ImportantItems = new List<int>();
+            List<LogicObjects.Sphere> playthrough = new List<LogicObjects.Sphere>();
+            var LogicCopy = Utility.CloneLogicList(logic);
+            var ItemCopy = LogicCopy[Item.ID];
+            ForceFreshCalculation(LogicCopy);
+            foreach(var i in LogicCopy) 
+            {
+                ImportantItems.Add(i.ID);
+                if (i.IsFake)  { i.SpoilerRandom = i.ID; } 
+            }
+            Debugging.UnlockAllFake(LogicCopy, ImportantItems, 0, playthrough);
+            List<int> UsedItems = new List<int>();
+            bool isAvailable = (RequirementsMet(ItemCopy.Required, logic, UsedItems) && CondtionalsMet(ItemCopy.Conditionals, logic, UsedItems));
+            if (!isAvailable) { return new List<int>(); }
+            List<int> NeededItems = Debugging.ResolveFakeToRealItems(new LogicObjects.Sphere { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, logic);
+            NeededItems = NeededItems.Distinct().ToList();
+            return NeededItems;
+        }
     }
 }

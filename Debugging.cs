@@ -137,6 +137,14 @@ namespace MMR_Tracker_V2
 
             Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
 
+            foreach (var i in Playthrough) //Replace all fake items with the real items used to unlock those fake items
+            {
+                Console.WriteLine(i.Check.DictionaryName);
+                if (i.Check.IsFake && importantItems.Contains(i.Check.ID)) { continue; }
+                i.ItemsUsed = ResolveFakeToRealItems(i, Playthrough, logic);
+                i.ItemsUsed = i.ItemsUsed.Distinct().ToList();
+            }
+
             List<string> PlaythroughString = new List<string>();
             int lastSphere = -1;
             foreach (var i in Playthrough)
@@ -200,13 +208,11 @@ namespace MMR_Tracker_V2
 
         public static bool UnlockAllFake(List<LogicObjects.LogicEntry> logic, List<int> ImportantItems, int sphere, List<LogicObjects.Sphere> Playthrough)
         {
-            Console.WriteLine("Unlocking all fake items");
             var recalculate = false;
             foreach (var item in logic)
             {
                 List<int> UsedItems = new List<int>();
                 item.Available = (LogicEditing.RequirementsMet(item.Required, logic, UsedItems) && LogicEditing.CondtionalsMet(item.Conditionals, logic, UsedItems));
-
                 bool changed = false;
                 if (item.Aquired != item.Available && item.IsFake)
                 {
@@ -220,7 +226,6 @@ namespace MMR_Tracker_V2
                 }
             }
             if (recalculate) { UnlockAllFake(logic, ImportantItems, sphere, Playthrough); }
-            Console.WriteLine(recalculate);
             return recalculate;
         }
 
@@ -240,5 +245,24 @@ namespace MMR_Tracker_V2
             }
         }
 
+        public static List<int> ResolveFakeToRealItems(LogicObjects.Sphere item, List<LogicObjects.Sphere> Playthrough, List<LogicObjects.LogicEntry> logic)
+        {
+            var RealItems = new List<int>();
+            var New = new LogicObjects.Sphere();
+            foreach (var j in item.ItemsUsed)
+            {
+                if (!logic[j].IsFake) { RealItems.Add(j); }
+                else
+                {
+                    var NewItem = Playthrough.Where(i => i.Check.ID == j).FirstOrDefault();
+                    foreach (var k in ResolveFakeToRealItems(NewItem, Playthrough, logic))
+                    {
+                        RealItems.Add(k);
+                    }
+                }
+            }
+
+            return RealItems;
+        }
     }
 }

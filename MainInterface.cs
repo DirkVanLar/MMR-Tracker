@@ -780,5 +780,32 @@ namespace MMR_Tracker_V2
         {
             Debugging.GeneratePlaythrough(LogicObjects.Logic);
         }
+
+        private void WhatUnlockedThisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(this.ActiveControl == LBValidLocations);
+            Console.WriteLine(LBValidLocations.SelectedItem is LogicObjects.LogicEntry);
+
+            if ((this.ActiveControl == LBValidLocations) && LBValidLocations.SelectedItem is LogicObjects.LogicEntry)
+            {
+                LogicObjects.CurrentSelectedItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry;
+            }
+            else if ((this.ActiveControl == LBValidEntrances) && LBValidEntrances.SelectedItem is LogicObjects.LogicEntry)
+            {
+                LogicObjects.CurrentSelectedItem = LBValidEntrances.SelectedItem as LogicObjects.LogicEntry;
+            }
+            else
+            {
+                ItemSelect ItemSelectForm = new ItemSelect();
+                ItemSelect.Function = 3;
+                var dialogResult = ItemSelectForm.ShowDialog();
+                if (dialogResult != DialogResult.OK) { LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry(); return; }
+            }
+            var Requirements = LogicEditing.FindRequirements(LogicObjects.CurrentSelectedItem, LogicObjects.Logic);
+            LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
+            string message = "";
+            foreach(var i in Requirements) { message = message + LogicObjects.Logic[i].ItemName + "\n"; }
+            MessageBox.Show(message, "Unlocked with:");
+        }
     }
 }

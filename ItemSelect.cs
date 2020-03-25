@@ -16,7 +16,13 @@ namespace MMR_Tracker_V2
         private void ItemSelect_Load(object sender, EventArgs e)
         {
             this.ActiveControl = TXTSearch;
-            if (Function > 0)
+            if (Function == 3)
+            {
+                BTNJunk.Visible = false;
+                this.Height = this.Height - BTNJunk.Height;
+                LBItemSelect.SelectionMode = SelectionMode.One;
+            }
+            else if (Function > 0)
             {
                 BTNJunk.Text = "Select";
                 LBItemSelect.SelectionMode = SelectionMode.MultiExtended;
@@ -30,6 +36,7 @@ namespace MMR_Tracker_V2
             if (Function == 0) { ItemSelectList(); this.Text = "Item at " + LogicObjects.CurrentSelectedItem.LocationName; }
             if (Function == 1) { SeedCheckLocations(); this.Text = "Select a location"; }
             if (Function == 2) { SeedCheckItems(); this.Text = "Select an item"; }
+            if (Function == 3) { AvailableLocations(); this.Text = "Select a location"; }
         }
 
         private void ItemSelectList()
@@ -58,7 +65,7 @@ namespace MMR_Tracker_V2
             for (var i = 0; i < LogicObjects.Logic.Count; i++)
             {
                 LogicObjects.Logic[i].DisplayName = LogicObjects.Logic[i].LocationName ?? LogicObjects.Logic[i].DictionaryName;
-                if (Utility.FilterSearch(LogicObjects.Logic[i], TXTSearch.Text, LogicObjects.Logic[i].DisplayName))
+                if (Utility.FilterSearch(LogicObjects.Logic[i], TXTSearch.Text, LogicObjects.Logic[i].DisplayName) && !LogicObjects.Logic[i].IsFake)
                 {
                     LBItemSelect.Items.Add(LogicObjects.Logic[i]);
                 }
@@ -78,9 +85,22 @@ namespace MMR_Tracker_V2
             }
         }
 
+        private void AvailableLocations()
+        {
+            LBItemSelect.Items.Clear();
+            for (var i = 0; i < LogicObjects.Logic.Count; i++)
+            {
+                LogicObjects.Logic[i].DisplayName = LogicObjects.Logic[i].LocationName ?? LogicObjects.Logic[i].DictionaryName;
+                if (Utility.FilterSearch(LogicObjects.Logic[i], TXTSearch.Text, LogicObjects.Logic[i].DisplayName) && LogicObjects.Logic[i].Available && !LogicObjects.Logic[i].IsFake)
+                {
+                    LBItemSelect.Items.Add(LogicObjects.Logic[i]);
+                }
+            }
+        }
+
         private void LBItemSelect_DoubleClick(object sender, EventArgs e)
         {
-            if (Function > 0) 
+            if (Function > 0 && Function != 3) 
             {
                 foreach (var i in LBItemSelect.SelectedItems)
                 {
@@ -103,6 +123,7 @@ namespace MMR_Tracker_V2
             if (Function == 0) { ItemSelectList(); }
             if (Function == 1) { SeedCheckLocations(); }
             if (Function == 2) { SeedCheckItems(); }
+            if (Function == 3) { AvailableLocations(); }
         }
 
         private void BTNJunk_Click(object sender, EventArgs e)
