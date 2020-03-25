@@ -1,7 +1,7 @@
 Clock Town
-South Clock Town
-East Clock Town
 North Clock Town
+East Clock Town
+South Clock Town
 West Clock Town
 Stock Pot Inn
 Laundry Pool

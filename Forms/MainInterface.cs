@@ -572,9 +572,22 @@ namespace MMR_Tracker_V2
             LBValidEntrances.Items.Clear();
             LBCheckedLocations.Items.Clear();
             var logic = LogicObjects.Logic;
-
+            List<string> Groups = new List<string>();
             var Unsortedlogic = new List<LogicObjects.LogicEntry>();
             Dictionary<int, int> listGroups = new Dictionary<int, int>();
+
+            if (File.Exists(@"Dictionaries\Categories.txt"))
+            {
+                Groups = File.ReadAllLines(@"Dictionaries\Categories.txt").ToList();
+            }
+            else
+            {
+                foreach (var i in logic)
+                {
+                    if (!Groups.Contains(i.LocationArea)) { Groups.Add(i.LocationArea); }
+                }
+                Groups = Groups.OrderBy(q => q).ToList();
+            }
 
             foreach (var entry in LogicObjects.Logic)
             {
@@ -614,7 +627,8 @@ namespace MMR_Tracker_V2
 
             }
 
-            var sortedlogic = Unsortedlogic.OrderBy(x => x.LocationArea).ThenBy(x => x.DisplayName);
+            var sortedlogic = Unsortedlogic.OrderBy(x => Groups.IndexOf(x.LocationArea)).ThenBy(x => x.DisplayName);
+            //var sortedlogic = Unsortedlogic.OrderBy(x => x.LocationArea).ThenBy(x => x.DisplayName);
 
             var lastLocArea = "";
             var lastEntArea = "";

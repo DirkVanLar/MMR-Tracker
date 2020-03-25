@@ -190,10 +190,10 @@ namespace MMR_Tracker_V2
             if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
             {
                 CheckedObject.Checked = false;
-                if (CheckedObject.RandomizedItem > -1)
+                if (CheckedObject.RandomizedItem > -1 && CheckedObject.RandomizedItem < LogicObjects.Logic.Count)
                 {
-                    CheckEntrancePair(CheckedObject, LogicObjects.Logic, false);
                     LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = false;
+                    CheckEntrancePair(CheckedObject, LogicObjects.Logic, false);
                 }
                 CheckedObject.RandomizedItem = -2;
                 return true;
