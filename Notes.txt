@@ -1,6 +1,0 @@
-﻿TODO ===
-
-Make dungeon entrances still get added to spoiler data if they are missing from the spoiler log
-
-CONSIDER ===
-

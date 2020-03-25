@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>10_106247_moon_from_majoras_mask_render_majoras_mask_moon_WIL_icon.ico</ApplicationIcon>
+    <ApplicationIcon>Misc\10_106247_moon_from_majoras_mask_render_majoras_mask_moon_WIL_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -53,52 +53,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Debugging.cs" />
-    <Compile Include="DebugScreen.cs">
+    <Compile Include="Class Files\Debugging.cs" />
+    <Compile Include="Forms\DebugScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DebugScreen.Designer.cs">
+    <Compile Include="Forms\DebugScreen.Designer.cs">
       <DependentUpon>DebugScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="ItemSelect.cs">
+    <Compile Include="Forms\ItemSelect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ItemSelect.Designer.cs">
+    <Compile Include="Forms\ItemSelect.Designer.cs">
       <DependentUpon>ItemSelect.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogicEditing.cs" />
-    <Compile Include="LogicObjects.cs" />
-    <Compile Include="MainInterface.cs">
+    <Compile Include="Class Files\LogicEditing.cs" />
+    <Compile Include="Class Files\LogicObjects.cs" />
+    <Compile Include="Forms\MainInterface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainInterface.Designer.cs">
+    <Compile Include="Forms\MainInterface.Designer.cs">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pathfinding.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Class Files\Pathfinding.cs" />
+    <Compile Include="Class Files\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomizeOptions.cs">
+    <Compile Include="Forms\RandomizeOptions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RandomizeOptions.Designer.cs">
+    <Compile Include="Forms\RandomizeOptions.Designer.cs">
       <DependentUpon>RandomizeOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="SeedChecker.cs">
+    <Compile Include="Forms\SeedChecker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SeedChecker.Designer.cs">
+    <Compile Include="Forms\SeedChecker.Designer.cs">
       <DependentUpon>SeedChecker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utility.cs" />
-    <Compile Include="VersionHandeling.cs" />
-    <EmbeddedResource Include="DebugScreen.resx">
+    <Compile Include="Class Files\Utility.cs" />
+    <Compile Include="Class Files\VersionHandeling.cs" />
+    <EmbeddedResource Include="Forms\DebugScreen.resx">
       <DependentUpon>DebugScreen.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ItemSelect.resx">
+    <EmbeddedResource Include="Forms\ItemSelect.resx">
       <DependentUpon>ItemSelect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainInterface.resx">
+    <EmbeddedResource Include="Forms\MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -111,10 +111,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RandomizeOptions.resx">
+    <EmbeddedResource Include="Forms\RandomizeOptions.resx">
       <DependentUpon>RandomizeOptions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SeedChecker.resx">
+    <EmbeddedResource Include="Forms\SeedChecker.resx">
       <DependentUpon>SeedChecker.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Dictionaries\ENTRANCEPAIRSV16.csv">
@@ -129,7 +129,7 @@
     <None Include="Dictionaries\MMRDICTIONARYV8.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="packages.config" />
+    <None Include="Misc\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -141,11 +141,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Misc\App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="10_106247_moon_from_majoras_mask_render_majoras_mask_moon_WIL_icon.ico" />
-    <Content Include="Notes.txt" />
+    <Content Include="Dictionaries\Categories.txt" />
+    <Content Include="Misc\10_106247_moon_from_majoras_mask_render_majoras_mask_moon_WIL_icon.ico" />
+    <Content Include="Misc\Notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
