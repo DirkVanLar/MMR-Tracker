@@ -138,6 +138,7 @@ namespace MMR_Tracker_V2
 
         private void EditRadnomizationOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Utility.PromptSave()) { return; }
             bool EntrancesRandoBefore = Utility.CheckForRandomEntrances(LogicObjects.Logic);
             RandomizeOptions RandoOptionScreen = new RandomizeOptions();
             RandoOptionScreen.ShowDialog();
@@ -219,6 +220,7 @@ namespace MMR_Tracker_V2
 
         private void CoupleEntrancesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!LogicEditing.CoupleEntrances) { if (!Utility.PromptSave()) { return; } }
             LogicEditing.CoupleEntrances = !LogicEditing.CoupleEntrances;
             if (!LogicEditing.CoupleEntrances) { MessageBox.Show("Entrances will not uncouple automatically."); }
             if (LogicEditing.CoupleEntrances)
@@ -255,12 +257,14 @@ namespace MMR_Tracker_V2
 
         private void UpdateDisplayNamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Utility.PromptSave()) { return; }
             Utility.UpdateNames(LogicObjects.Logic);
             PrintToListBox();
         }
 
         private void UpdateLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Utility.PromptSave()) { return; }
             LogicEditing.RecreateLogic();
             PrintToListBox();
             ResizeObject();
@@ -414,27 +418,30 @@ namespace MMR_Tracker_V2
                 TXTLocSearch.Clear();
                 return;
             }
+            //var selectedIndex = LB.SelectedIndex;
+            //We want to save logic at this point but don't want to comit to a full save state
+            var TempState = Utility.CloneLogicList(LogicObjects.Logic);
+            bool ChangesMade = false;
             foreach (var i in LB.SelectedItems)
             {
                 if ((i is LogicObjects.LogicEntry))
                 {
-                    //var selectedIndex = LB.SelectedIndex;
-                    //We want to save logic at this point but don't want to comit to a full save state
-                    var TempState = Utility.CloneLogicList(LogicObjects.Logic);
-                    if (FullCheck)
-                    {
-                        if (!LogicEditing.CheckObject(i as LogicObjects.LogicEntry)) { return; }
+                    if (FullCheck) 
+                    { 
+                        if ((LB == LBValidLocations || LB == LBValidEntrances) && (i as LogicObjects.LogicEntry).Checked) { continue; }
+                        if (LB == LBCheckedLocations && !(i as LogicObjects.LogicEntry).Checked) { continue; }
+                        if (!LogicEditing.CheckObject(i as LogicObjects.LogicEntry)) { continue; }
+                        ChangesMade = true;
                     }
-                    else
-                    {
-                        if (!LogicEditing.MarkObject(i as LogicObjects.LogicEntry)) { return; }
+                    else { 
+                        if (!LogicEditing.MarkObject(i as LogicObjects.LogicEntry)) { continue; }
+                        ChangesMade = true;
                     }
-                    Utility.UnsavedChanges = true;
-                    //Now that we have successfully checked/Marked an object we can commit to a full save state
-                    Utility.SaveState(TempState);
                 }
-
             }
+            if (!ChangesMade) { return; }
+            Utility.UnsavedChanges = true;
+            Utility.SaveState(TempState); //Now that we have successfully checked/Marked an object we can commit to a full save state
             LogicEditing.CalculateItems(LogicObjects.Logic);
 
             int TopIndex = LB.TopIndex;
@@ -473,7 +480,6 @@ namespace MMR_Tracker_V2
             coupleEntrancesToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
             toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
             coupleEntrancesToolStripMenuItem.Text = (LogicEditing.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
-            LBValidEntrances.SelectionMode = (LogicEditing.CoupleEntrances) ? SelectionMode.One : SelectionMode.MultiExtended;
         }
 
         private void PrintPaths(int PathToPrint)

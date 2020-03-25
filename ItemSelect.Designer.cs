@@ -39,7 +39,7 @@
             this.LBItemSelect.FormattingEnabled = true;
             this.LBItemSelect.Location = new System.Drawing.Point(13, 39);
             this.LBItemSelect.Name = "LBItemSelect";
-            this.LBItemSelect.Size = new System.Drawing.Size(265, 485);
+            this.LBItemSelect.Size = new System.Drawing.Size(418, 485);
             this.LBItemSelect.TabIndex = 0;
             this.LBItemSelect.DoubleClick += new System.EventHandler(this.LBItemSelect_DoubleClick);
             // 
@@ -47,7 +47,7 @@
             // 
             this.BTNJunk.Location = new System.Drawing.Point(12, 530);
             this.BTNJunk.Name = "BTNJunk";
-            this.BTNJunk.Size = new System.Drawing.Size(265, 38);
+            this.BTNJunk.Size = new System.Drawing.Size(419, 38);
             this.BTNJunk.TabIndex = 1;
             this.BTNJunk.Text = "Junk Item";
             this.BTNJunk.UseVisualStyleBackColor = true;
@@ -57,7 +57,7 @@
             // 
             this.TXTSearch.Location = new System.Drawing.Point(13, 13);
             this.TXTSearch.Name = "TXTSearch";
-            this.TXTSearch.Size = new System.Drawing.Size(265, 20);
+            this.TXTSearch.Size = new System.Drawing.Size(418, 20);
             this.TXTSearch.TabIndex = 2;
             this.TXTSearch.TextChanged += new System.EventHandler(this.TXTSearch_TextChanged);
             // 
@@ -67,7 +67,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(290, 580);
+            this.ClientSize = new System.Drawing.Size(443, 580);
             this.Controls.Add(this.TXTSearch);
             this.Controls.Add(this.BTNJunk);
             this.Controls.Add(this.LBItemSelect);

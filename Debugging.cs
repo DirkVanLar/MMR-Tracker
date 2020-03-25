@@ -135,7 +135,7 @@ namespace MMR_Tracker_V2
             }
             if (!MajoraReachable) { MessageBox.Show("Majora is not reachable in this seed! Playthrough could not be generated!"); return; }
 
-            Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
+            Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
 
             List<string> PlaythroughString = new List<string>();
             int lastSphere = -1;
@@ -165,14 +165,16 @@ namespace MMR_Tracker_V2
             bool RealItemObtained = false;
             bool recalculate = false;
             List<LogicObjects.LogicEntry> itemCheckList = new List<LogicObjects.LogicEntry>();
-            List<LogicObjects.LogicEntry> FakeItemCheckList = new List<LogicObjects.LogicEntry>();
+            List<LogicObjects.LogicEntry> EntranceCheckList = new List<LogicObjects.LogicEntry>();
+            
+
             foreach (var item in logic)
             {
                 List<int> UsedItems = new List<int>();
                 item.Available = (LogicEditing.RequirementsMet(item.Required, logic, UsedItems) && LogicEditing.CondtionalsMet(item.Conditionals, logic, UsedItems));
 
                 bool changed = false;
-                if (!item.IsFake && item.SpoilerRandom > -1 && item.Available != logic[item.SpoilerRandom].Aquired)
+                if (!item.IsFake  && item.SpoilerRandom > -1 && item.Available != logic[item.SpoilerRandom].Aquired)
                 {
                     itemCheckList.Add(item);
                     recalculate = true;
@@ -184,15 +186,15 @@ namespace MMR_Tracker_V2
                     RealItemObtained = true;
                 }
             }
-
             foreach (var item in itemCheckList)
             {
                 logic[item.SpoilerRandom].Aquired = item.Available;
             }
 
-            if (UnlockAllFake(logic, ImportantItems, sphere, Playthrough)) { recalculate = true; }
-
             int NewSphere = (RealItemObtained) ? sphere + 1 : sphere;
+
+            if (UnlockAllFake(logic, ImportantItems, NewSphere, Playthrough)) { recalculate = true; }
+
             if (recalculate) { CalculatePlaythrough(logic, Playthrough, NewSphere, ImportantItems); }
         }
 

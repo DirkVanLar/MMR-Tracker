@@ -27,9 +27,9 @@ namespace MMR_Tracker_V2
                 LBItemSelect.SelectionMode = SelectionMode.One;
             }
 
-            if (Function == 0) { ItemSelectList(); }
-            if (Function == 1) { SeedCheckLocations(); }
-            if (Function == 2) { SeedCheckItems(); }
+            if (Function == 0) { ItemSelectList(); this.Text = "Item at " + LogicObjects.CurrentSelectedItem.LocationName; }
+            if (Function == 1) { SeedCheckLocations(); this.Text = "Select a location"; }
+            if (Function == 2) { SeedCheckItems(); this.Text = "Select an item"; }
         }
 
         private void ItemSelectList()
@@ -80,8 +80,17 @@ namespace MMR_Tracker_V2
 
         private void LBItemSelect_DoubleClick(object sender, EventArgs e)
         {
-            if (Function > 0) { return; }
-            if (LBItemSelect.SelectedItem is LogicObjects.LogicEntry)
+            if (Function > 0) 
+            {
+                foreach (var i in LBItemSelect.SelectedItems)
+                {
+                    var item = i as LogicObjects.LogicEntry;
+                    LogicObjects.selectedItems.Add(item);
+                }
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
             {
                 LogicObjects.CurrentSelectedItem = LBItemSelect.SelectedItem as LogicObjects.LogicEntry;
                 this.DialogResult = DialogResult.OK;
@@ -114,11 +123,6 @@ namespace MMR_Tracker_V2
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-        }
-
-        private void BtnSelect_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
