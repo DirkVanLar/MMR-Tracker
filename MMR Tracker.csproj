@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class Files\Debugging.cs" />
+    <Compile Include="Class Files\OOT Support.cs" />
     <Compile Include="Forms\DebugScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +128,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Dictionaries\MMRDICTIONARYV8.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Dictionaries\OOTRDICTIONARYV5.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Misc\packages.config" />

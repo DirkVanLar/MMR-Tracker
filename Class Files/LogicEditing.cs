@@ -25,7 +25,13 @@ namespace MMR_Tracker_V2
                 if (line.StartsWith("-")) { SubCounter = 0; }
                 if (line.Contains("-version"))
                 {
-                    VersionHandeling.Version = Int32.Parse(line.Replace("-version ", ""));
+                    string curLine = line;
+                    if (line.Contains("-versionOOT"))
+                    {
+                        OOT_Support.isOOT = true;
+                        curLine = line.Replace("versionOOT", "version");
+                    }
+                    VersionHandeling.Version = Int32.Parse(curLine.Replace("-version ", ""));
                     VersionData = VersionHandeling.SwitchDictionary();
                     LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
                     if (VersionHandeling.IsEntranceRando())

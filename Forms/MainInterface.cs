@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace MMR_Tracker_V2
         {
             ResizeObject();
             FormatMenuItems();
-            devToolStripMenuItem.Visible = false;
+            devToolStripMenuItem.Visible = Debugger.IsAttached;
         }
 
         private void FRMTracker_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
@@ -820,6 +821,11 @@ namespace MMR_Tracker_V2
             string message = "";
             foreach(var i in Requirements) { message = message + LogicObjects.Logic[i].ItemName + "\n"; }
             MessageBox.Show(message, "Unlocked with:");
+        }
+
+        private void createOOTFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OOT_Support.CreateOOTFiles();
         }
     }
 }

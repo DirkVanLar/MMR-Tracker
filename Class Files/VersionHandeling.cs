@@ -71,9 +71,11 @@ namespace MMR_Tracker_V2
             int largestPairEntry = 0;
             foreach (var i in files)
             {
-                if (i.Contains("MMRDICTIONARY"))
+                var dic = "MMRDICTIONARY";
+                if (OOT_Support.isOOT) { dic = "OOTRDICTIONARY"; }
+                if (i.Contains(dic))
                 {
-                    var entry = i.Replace("Dictionaries\\MMRDICTIONARYV", "");
+                    var entry = i.Replace("Dictionaries\\" + dic + "V", "");
                     entry = entry.Replace(".csv", "");
                     int version = 0;
                     try { version = Int32.Parse(entry); }

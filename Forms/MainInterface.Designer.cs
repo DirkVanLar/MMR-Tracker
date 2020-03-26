@@ -71,6 +71,7 @@
             this.showEntryNameToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generatePlaythroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +81,8 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oOTSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createOOTFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -469,6 +471,13 @@
             this.generatePlaythroughToolStripMenuItem.Text = "Generate Playthrough";
             this.generatePlaythroughToolStripMenuItem.Click += new System.EventHandler(this.GeneratePlaythroughToolStripMenuItem_Click);
             // 
+            // whatUnlockedThisToolStripMenuItem
+            // 
+            this.whatUnlockedThisToolStripMenuItem.Name = "whatUnlockedThisToolStripMenuItem";
+            this.whatUnlockedThisToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.whatUnlockedThisToolStripMenuItem.Text = "What Unlocked This?";
+            this.whatUnlockedThisToolStripMenuItem.Click += new System.EventHandler(this.WhatUnlockedThisToolStripMenuItem_Click);
+            // 
             // infoToolStripMenuItem
             // 
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
@@ -482,7 +491,8 @@
             this.createDictionaryToolStripMenuItem,
             this.printLogicObjectToolStripMenuItem,
             this.updateDisplayNamesToolStripMenuItem,
-            this.updateLogicToolStripMenuItem});
+            this.updateLogicToolStripMenuItem,
+            this.oOTSupportToolStripMenuItem});
             this.devToolStripMenuItem.Name = "devToolStripMenuItem";
             this.devToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.devToolStripMenuItem.Text = "Dev";
@@ -529,12 +539,20 @@
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // whatUnlockedThisToolStripMenuItem
+            // oOTSupportToolStripMenuItem
             // 
-            this.whatUnlockedThisToolStripMenuItem.Name = "whatUnlockedThisToolStripMenuItem";
-            this.whatUnlockedThisToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.whatUnlockedThisToolStripMenuItem.Text = "What Unlocked This?";
-            this.whatUnlockedThisToolStripMenuItem.Click += new System.EventHandler(this.WhatUnlockedThisToolStripMenuItem_Click);
+            this.oOTSupportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createOOTFilesToolStripMenuItem});
+            this.oOTSupportToolStripMenuItem.Name = "oOTSupportToolStripMenuItem";
+            this.oOTSupportToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.oOTSupportToolStripMenuItem.Text = "OOT Support";
+            // 
+            // createOOTFilesToolStripMenuItem
+            // 
+            this.createOOTFilesToolStripMenuItem.Name = "createOOTFilesToolStripMenuItem";
+            this.createOOTFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createOOTFilesToolStripMenuItem.Text = "Create OOT Files";
+            this.createOOTFilesToolStripMenuItem.Click += new System.EventHandler(this.createOOTFilesToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 
@@ -630,6 +648,8 @@
         private System.Windows.Forms.ToolStripMenuItem updateLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generatePlaythroughToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem whatUnlockedThisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oOTSupportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createOOTFilesToolStripMenuItem;
     }
 }
 
