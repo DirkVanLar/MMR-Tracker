@@ -219,8 +219,8 @@ namespace MMR_Tracker_V2
                 if (line.Contains("->"))
                 {
                     var linedata = line.Split(new string[] { "->" }, StringSplitOptions.None);
-                    linedata[0] = linedata[0].Replace("*", "");
-                    linedata[1] = linedata[1].Replace("*", "");
+                    linedata[0] = linedata[0].Replace("*", "");//Not sure if this is neccassary but I'm to
+                    linedata[1] = linedata[1].Replace("*", "");//lazy to check and it's not hurting anything
                     entry.LocationName = linedata[0].Trim();
                     entry.ItemName = linedata[1].Trim();
                     entry.LocationID = -2;
@@ -239,9 +239,11 @@ namespace MMR_Tracker_V2
         }
         public static bool SaveInstance()
         {
-            string[] Options = new string[9];
+            SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV", FilterIndex = 1 };
+            if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
+            string[] Options = new string[10];
             Options[0] = JsonConvert.SerializeObject(LogicObjects.Logic);
-            Options[1] = VersionHandeling.Version.ToString();
+            Options[1] = "version:" + VersionHandeling.Version.ToString();
             Options[2] = "UseSOT:" + ((Pathfinding.UseSongOfTime) ? "1" : "0");
             Options[3] = "IncludeItems:" + ((Pathfinding.IncludeItemLocations) ? "1" : "0");
             Options[4] = "EntranceCouple:" + ((LogicEditing.CoupleEntrances) ? "1" : "0");
@@ -249,17 +251,15 @@ namespace MMR_Tracker_V2
             Options[6] = "ShowToolTip:" + ((Utility.ShowEntryNameTooltip) ? "1" : "0");
             Options[7] = "EntRadno:" + ((VersionHandeling.entranceRadnoEnabled) ? "1" : "0");
             Options[8] = "AutoEntRand:" + ((VersionHandeling.OverRideAutoEntranceRandoEnable) ? "1" : "0");
-            SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV", FilterIndex = 1 };
-            if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
+            Options[9] = "OOTSave:" + ((OOT_Support.isOOT) ? "1" : "0");
             File.WriteAllLines(saveDialog.FileName, Options);
             return true;
         }
         public static bool LoadInstance(string LogicFile)
         {
             string[] options = File.ReadAllLines(LogicFile);
-            Console.WriteLine(options.Length);
             LogicObjects.Logic = JsonConvert.DeserializeObject<List<LogicObjects.LogicEntry>>(options[0]);
-            if (options.Length > 1) { VersionHandeling.Version = Int32.Parse(options[1]); }
+            if (options.Length > 1) { VersionHandeling.Version = Int32.Parse(options[1].Replace("version:","")); }
             if (options.Length > 2) { Pathfinding.UseSongOfTime = (options[2] == "UseSOT:1"); }
             if (options.Length > 3) { Pathfinding.IncludeItemLocations = (options[3] == "IncludeItems:1"); }
             if (options.Length > 4) { LogicEditing.CoupleEntrances = (options[4] == "EntranceCouple:1"); }
@@ -267,6 +267,7 @@ namespace MMR_Tracker_V2
             if (options.Length > 6) { Utility.ShowEntryNameTooltip = (options[6] == "ShowToolTip:1"); }
             if (options.Length > 7) { VersionHandeling.entranceRadnoEnabled = (options[7] == "EntRadno:1"); }
             if (options.Length > 8) { VersionHandeling.OverRideAutoEntranceRandoEnable = (options[8] == "AutoEntRand:1"); }
+            if (options.Length > 9) { OOT_Support.isOOT = (options[9] == "OOTSave:1"); }
             return true;
         }
         public static void SaveState(List<LogicObjects.LogicEntry> logic)
@@ -296,11 +297,11 @@ namespace MMR_Tracker_V2
                 RedoList.RemoveAt(lastItem);
             }
         }
-        public static bool PromptSave()
+        public static bool PromptSave(bool OnlyIfUnsaved = true)
         {
-            if (UnsavedChanges)
+            if (UnsavedChanges || !OnlyIfUnsaved)
             {
-                DialogResult result = System.Windows.Forms.MessageBox.Show("Would you like to save?", "You have unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show("Would you like to save?", "You have unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
                 if (result == DialogResult.Cancel) { return false; }
                 if (result == DialogResult.Yes)
                 {
@@ -380,40 +381,23 @@ namespace MMR_Tracker_V2
             }
             return false;
         }
-        public static bool CheckforSpoilerLog(List<LogicObjects.LogicEntry> Logic)
-        {
-            foreach (var i in Logic)
-            {
-                if (i.SpoilerRandom > -1) { return true; }
-            }
-            return false;
-        }
-        public static bool CheckforFullSpoilerLog(List<LogicObjects.LogicEntry> Logic)
+        public static bool CheckforSpoilerLog(List<LogicObjects.LogicEntry> Logic, bool full = false)
         {
             bool fullLog = true;
+            bool Spoiler = false;
             foreach (var i in Logic)
             {
-                if (i.SpoilerRandom < 0 && !i.IsFake)
-                {
-                    Console.WriteLine(i.DictionaryName + " Does not have SpoilerData");
+                if (i.SpoilerRandom > -1) 
+                { 
+                    Spoiler = true; 
+                }
+                if (i.SpoilerRandom < 0 && !i.IsFake) 
+                { 
                     fullLog = false;
+                    if (full) { Console.WriteLine(i.DictionaryName + " Does not have SpoilerData"); }
                 }
             }
-            return fullLog;
-        }
-        public static string CheckSOT(LogicObjects.Map stop)
-        {
-            var StartName = LogicObjects.Logic[stop.CurrentExit].DictionaryName;
-            var entName = LogicObjects.Logic[stop.Entrance].DictionaryName;
-            if (entName == "EntranceSouthClockTownFromClockTowerInterior")
-            {
-                if (StartName == "EntranceClockTowerInteriorFromBeforethePortaltoTermina" || StartName == "EntranceClockTowerInteriorFromSouthClockTown")
-                {
-                    return LogicObjects.Logic[stop.Entrance].LocationName;
-                }
-                else { return "Song of Time"; }
-            }
-            return LogicObjects.Logic[stop.Entrance].LocationName; ;
+            return (full) ? fullLog: Spoiler;
         }
         public static bool IsDivider(string text)
         {
@@ -422,14 +406,16 @@ namespace MMR_Tracker_V2
             {
                 if (i == '=') { occurences++; }
             }
-            return (occurences >= 3);
+            return (occurences >= 5);
         }
-        public static bool CheckForRandomEntrances(List<LogicObjects.LogicEntry> logic)
+        public static bool CheckForRandomEntrances(List<LogicObjects.LogicEntry> logic, int validEntranceCount = 6)
         {
+            if (!VersionHandeling.IsEntranceRando()) { return false; }
+            int count = 0;
             foreach (var i in logic)
             {
-                if (i.ItemSubType == "Entrance" && (i.RandomizedState == 0 || i.RandomizedState == 2) && VersionHandeling.IsEntranceRando())
-                { return true; }
+                if (i.ItemSubType == "Entrance" && (i.RandomizedState == 0 || i.RandomizedState == 2)) { count += 1; }
+                if (count >= validEntranceCount) { return true; }
             }
             return false;
         }

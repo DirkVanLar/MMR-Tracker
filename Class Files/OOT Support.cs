@@ -51,9 +51,15 @@ namespace MMR_Tracker_V2
                 }
                 info[1] = info[1].Trim();
 
-                string item = (Group == 2) ? info[0] : info[0].Replace("=", "<").Replace(">", "=");
+                string item = (Group == 2) ? info[0] : info[0].Replace("=", "<").Replace(">", "");
 
-                Dictionary.Add(string.Format("{0},{1},,,{2},{3},,{4}", info[0], info[0], (Group == 1) ? "Entrance" : (info[0].Contains("Medallion") || info[0].Contains("Sapphire") || info[0].Contains("Ruby") || info[0].Contains("Emerald")) ? "Boss Token" : "Item", info[0], item));
+                if (Group == 1)
+                {
+                    var rearrange = item.Split('<');
+                    item = rearrange[1].Trim() + " < " + rearrange[0].Trim();
+                }
+
+                    Dictionary.Add(string.Format("{0},{1},,,{2},{3},,{4}", info[0], info[0], (Group == 1) ? "Entrance" : (info[1].Contains("Medallion") || info[1].Contains("Sapphire") || info[1].Contains("Ruby") || info[1].Contains("Emerald")) ? "Boss Token" : "Item", info[0], item));
                 //Console.WriteLine(string.Format("{0},{1},,,{2},{3},,{4}", info[0], info[0], (Group == 1) ? "Entrance" : (info[0].Contains("Medallion") || info[0].Contains("Sapphire") || info[0].Contains("Ruby") || info[0].Contains("Emerald")) ? "Boss Token" : "Item", info[0], item));
             }
 

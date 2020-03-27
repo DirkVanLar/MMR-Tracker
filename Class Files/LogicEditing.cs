@@ -26,11 +26,10 @@ namespace MMR_Tracker_V2
                 if (line.Contains("-version"))
                 {
                     string curLine = line;
-                    if (line.Contains("-versionOOT"))
-                    {
-                        OOT_Support.isOOT = true;
-                        curLine = line.Replace("versionOOT", "version");
-                    }
+
+                    OOT_Support.isOOT = false;
+                    if (line.Contains("-versionOOT")) { OOT_Support.isOOT = true; curLine = line.Replace("versionOOT", "version"); }
+
                     VersionHandeling.Version = Int32.Parse(curLine.Replace("-version ", ""));
                     VersionData = VersionHandeling.SwitchDictionary();
                     LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
@@ -196,7 +195,7 @@ namespace MMR_Tracker_V2
             if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
             {
                 CheckedObject.Checked = false;
-                if (CheckedObject.RandomizedItem > -1 && CheckedObject.RandomizedItem < LogicObjects.Logic.Count)
+                if (CheckedObject.RandomizedItem > -1 && CheckedObject.RandomizedItem < LogicObjects.Logic.Count && !SameItemMultipleChecks(CheckedObject.RandomizedItem))
                 {
                     LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = false;
                     CheckEntrancePair(CheckedObject, LogicObjects.Logic, false);
@@ -342,6 +341,7 @@ namespace MMR_Tracker_V2
 
         public static void CreatedEntrancepairDcitionary(Dictionary<int, int> entrancePairs, Dictionary<string, int> NameToID)
         {
+            if (OOT_Support.isOOT) { return; }
             var VersionData = VersionHandeling.SwitchDictionary();
             foreach (var i in File.ReadAllLines(VersionData[1]))
             {
@@ -399,6 +399,18 @@ namespace MMR_Tracker_V2
             List<int> NeededItems = Debugging.ResolveFakeToRealItems(new LogicObjects.Sphere { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, logic);
             NeededItems = NeededItems.Distinct().ToList();
             return NeededItems;
+        }
+
+        public static bool SameItemMultipleChecks(int item)
+        {
+            if (item < 0 && !StrictLogicHandeling && !OOT_Support.isOOT) { return false; }
+            int count = 0;
+            foreach (var entry in LogicObjects.Logic)
+            {
+                if (entry.RandomizedItem == item && entry.Checked) { count += 1; }
+            }
+            Console.WriteLine(count);
+            return count > 1;
         }
     }
 }

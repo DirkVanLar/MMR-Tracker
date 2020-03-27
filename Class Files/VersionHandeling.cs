@@ -57,7 +57,7 @@ namespace MMR_Tracker_V2
 
         public static bool IsEntranceRando()
         {
-            return Version >= EntranceRandoVersion;
+            return (Version >= EntranceRandoVersion || OOT_Support.isOOT);
         }
 
         public static string[] SwitchDictionary()

@@ -78,11 +78,11 @@
             this.printLogicObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateDisplayNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oOTSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createOOTFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.oOTSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createOOTFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -376,7 +376,7 @@
             this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -408,7 +408,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -447,7 +447,7 @@
             this.generatePlaythroughToolStripMenuItem,
             this.whatUnlockedThisToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -525,6 +525,21 @@
             this.updateLogicToolStripMenuItem.Text = "Update Logic";
             this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
             // 
+            // oOTSupportToolStripMenuItem
+            // 
+            this.oOTSupportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createOOTFilesToolStripMenuItem});
+            this.oOTSupportToolStripMenuItem.Name = "oOTSupportToolStripMenuItem";
+            this.oOTSupportToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.oOTSupportToolStripMenuItem.Text = "OOT Support";
+            // 
+            // createOOTFilesToolStripMenuItem
+            // 
+            this.createOOTFilesToolStripMenuItem.Name = "createOOTFilesToolStripMenuItem";
+            this.createOOTFilesToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.createOOTFilesToolStripMenuItem.Text = "Create OOT Files";
+            this.createOOTFilesToolStripMenuItem.Click += new System.EventHandler(this.createOOTFilesToolStripMenuItem_Click);
+            // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
@@ -538,21 +553,6 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
-            // 
-            // oOTSupportToolStripMenuItem
-            // 
-            this.oOTSupportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createOOTFilesToolStripMenuItem});
-            this.oOTSupportToolStripMenuItem.Name = "oOTSupportToolStripMenuItem";
-            this.oOTSupportToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.oOTSupportToolStripMenuItem.Text = "OOT Support";
-            // 
-            // createOOTFilesToolStripMenuItem
-            // 
-            this.createOOTFilesToolStripMenuItem.Name = "createOOTFilesToolStripMenuItem";
-            this.createOOTFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.createOOTFilesToolStripMenuItem.Text = "Create OOT Files";
-            this.createOOTFilesToolStripMenuItem.Click += new System.EventHandler(this.createOOTFilesToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 
@@ -586,6 +586,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FRMTracker";
             this.Text = "MMR Tracker";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMTracker_FormClosing);
             this.Load += new System.EventHandler(this.FRMTracker_Load);
             this.ResizeEnd += new System.EventHandler(this.FRMTracker_ResizeEnd);
             this.menuStrip1.ResumeLayout(false);

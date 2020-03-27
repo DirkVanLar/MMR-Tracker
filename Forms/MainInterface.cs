@@ -29,6 +29,11 @@ namespace MMR_Tracker_V2
 
         private void FRMTracker_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
 
+        private void FRMTracker_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = !Utility.PromptSave();
+        }
+
         //Menu Strip---------------------------------------------------------------------------
 
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,7 +62,7 @@ namespace MMR_Tracker_V2
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utility.SaveInstance();
+            if (Utility.SaveInstance()) { Utility.UnsavedChanges = false; }
         }
 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -76,7 +81,7 @@ namespace MMR_Tracker_V2
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
+            if (!Utility.PromptSave()) { return; }
             string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
             if (file == "") { return; }
 
@@ -111,7 +116,7 @@ namespace MMR_Tracker_V2
 
         private void CasualLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
+            if (!Utility.PromptSave()) { return; }
             System.Net.WebClient wc = new System.Net.WebClient();
             string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
             string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
@@ -123,7 +128,7 @@ namespace MMR_Tracker_V2
 
         private void GlitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Utility.UnsavedChanges) { if (!Utility.PromptSave()) { return; } }
+            if (!Utility.PromptSave()) { return; }
             System.Net.WebClient wc = new System.Net.WebClient();
             string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
             string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
@@ -169,22 +174,21 @@ namespace MMR_Tracker_V2
                 string file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(LogicObjects.Logic, file);
-                if (!Utility.CheckforFullSpoilerLog(LogicObjects.Logic)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
+                if (!Utility.CheckforSpoilerLog(LogicObjects.Logic)) { MessageBox.Show("No spoiler data found!"); return; }
+                if (!Utility.CheckforSpoilerLog(LogicObjects.Logic, true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
+                bool EntrancesRandoBefore = Utility.CheckForRandomEntrances(LogicObjects.Logic);
+                foreach (var i in LogicObjects.Logic)
+                {
+                    if (i.SpoilerRandom != i.ID && i.SpoilerRandom > -1 && (i.RandomizedState == 1 || i.RandomizedState == 2)) { i.RandomizedState = 0; }
+                }
+                bool EntrancesRandoAfter = Utility.CheckForRandomEntrances(LogicObjects.Logic);
+                if (!VersionHandeling.OverRideAutoEntranceRandoEnable || (EntrancesRandoBefore != EntrancesRandoAfter))
+                {
+                    VersionHandeling.entranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.Logic);
+                    VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.IsEntranceRando());
+                }
+                LogicEditing.CalculateItems(LogicObjects.Logic);
             }
-
-            bool EntrancesRandoBefore = Utility.CheckForRandomEntrances(LogicObjects.Logic);
-            foreach (var i in LogicObjects.Logic)
-            {
-                if (i.SpoilerRandom != i.ID && (i.RandomizedState == 1 || i.RandomizedState == 2)) { i.RandomizedState = 0; }
-            }
-            bool EntrancesRandoAfter = Utility.CheckForRandomEntrances(LogicObjects.Logic);
-            if (!VersionHandeling.OverRideAutoEntranceRandoEnable || (EntrancesRandoBefore != EntrancesRandoAfter))
-            {
-                VersionHandeling.entranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.Logic);
-                VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.IsEntranceRando());
-            }
-
-            LogicEditing.CalculateItems(LogicObjects.Logic);
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
@@ -434,7 +438,8 @@ namespace MMR_Tracker_V2
                         if (!LogicEditing.CheckObject(i as LogicObjects.LogicEntry)) { continue; }
                         ChangesMade = true;
                     }
-                    else { 
+                    else 
+                    { 
                         if (!LogicEditing.MarkObject(i as LogicObjects.LogicEntry)) { continue; }
                         ChangesMade = true;
                     }
@@ -455,9 +460,14 @@ namespace MMR_Tracker_V2
             Utility.ResetInstance();
             LogicEditing.CreateLogic(LogicObjects.Logic, Logic);
             LogicEditing.CalculateItems(LogicObjects.Logic);
-            if (!VersionHandeling.ValidVersions.Contains(VersionHandeling.Version))
+            if (!VersionHandeling.ValidVersions.Contains(VersionHandeling.Version) && !OOT_Support.isOOT)
             {
                 DialogResult dialogResult = MessageBox.Show("This version of logic is not supported. Only official releases of versions 1.8 and up are supported. This may result in the tracker not funtioning Correctly. If you are using an official release and are seeing this message, Please update your tracker. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes) { Utility.ResetInstance(); }
+            }
+            if (OOT_Support.isOOT)
+            {
+                DialogResult dialogResult = MessageBox.Show("Support for the Ocarina of Time Randomizer is Limited. Many features will be disabled and core features might not work as intended. Do you wish to continue?", "OOT BETA", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Utility.ResetInstance(); }
             }
             Utility.SaveState(LogicObjects.Logic);
@@ -475,12 +485,22 @@ namespace MMR_Tracker_V2
             undoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
             redoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
             saveToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
-            if (!VersionHandeling.OverRideAutoEntranceRandoEnable) { VersionHandeling.entranceRadnoEnabled = (VersionHandeling.IsEntranceRando()); }
+            if (!VersionHandeling.OverRideAutoEntranceRandoEnable) { VersionHandeling.entranceRadnoEnabled = VersionHandeling.IsEntranceRando(); }
             useSongOfTimeInPathfinderToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
             coupleEntrancesToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
             toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
             coupleEntrancesToolStripMenuItem.Text = (LogicEditing.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
+
+            //OOT Handeling
+            importSpoilerLogToolStripMenuItem.Visible = !OOT_Support.isOOT;
+            useSongOfTimeInPathfinderToolStripMenuItem.Visible = !OOT_Support.isOOT && VersionHandeling.entranceRadnoEnabled;
+            includeItemLocationsAsDestinationToolStripMenuItem.Visible = !OOT_Support.isOOT && VersionHandeling.entranceRadnoEnabled;
+            coupleEntrancesToolStripMenuItem.Visible = !OOT_Support.isOOT && VersionHandeling.entranceRadnoEnabled;
+            generatePlaythroughToolStripMenuItem.Visible = !OOT_Support.isOOT;
+            seedCheckerToolStripMenuItem.Visible = !OOT_Support.isOOT;
+            whatUnlockedThisToolStripMenuItem.Visible = !OOT_Support.isOOT;
+
         }
 
         private void PrintPaths(int PathToPrint)
@@ -497,7 +517,7 @@ namespace MMR_Tracker_V2
                     var firstStop = true;
                     foreach (var stop in path)
                     {
-                        var start = (firstStop) ? Utility.CheckSOT(stop) : LogicObjects.Logic[stop.Entrance].LocationName;
+                        var start = (firstStop) ? Pathfinding.SetSOTName(stop) : LogicObjects.Logic[stop.Entrance].LocationName;
                         var ListItem = new LogicObjects.ListItem { DisplayName = start + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName, ID = counter - 1 };
                         LBPathFinder.Items.Add(ListItem); firstStop = false;
                     }
@@ -577,15 +597,15 @@ namespace MMR_Tracker_V2
             var Unsortedlogic = new List<LogicObjects.LogicEntry>();
             Dictionary<int, int> listGroups = new Dictionary<int, int>();
 
-            if (File.Exists(@"Dictionaries\Categories.txt"))
+            if (File.Exists(@"Dictionaries\Categories.txt") && !OOT_Support.isOOT)
             {
-                Groups = File.ReadAllLines(@"Dictionaries\Categories.txt").ToList();
+                Groups = File.ReadAllLines(@"Dictionaries\Categories.txt").Select(x => x.ToLower().Trim()).ToList();
             }
             else
             {
                 foreach (var i in logic)
                 {
-                    if (!Groups.Contains(i.LocationArea)) { Groups.Add(i.LocationArea); }
+                    if (i.LocationArea != null && !Groups.Contains(i.LocationArea)) { Groups.Add(i.LocationArea.ToLower().Trim()); }
                 }
                 Groups = Groups.OrderBy(q => q).ToList();
             }
@@ -628,7 +648,7 @@ namespace MMR_Tracker_V2
 
             }
 
-            var sortedlogic = Unsortedlogic.OrderBy(x => Groups.IndexOf(x.LocationArea)).ThenBy(x => x.DisplayName);
+            var sortedlogic = Unsortedlogic.OrderBy(x => Groups.IndexOf(x.LocationArea.ToLower().Trim())).ThenBy(x => x.DisplayName);
             //var sortedlogic = Unsortedlogic.OrderBy(x => x.LocationArea).ThenBy(x => x.DisplayName);
 
             var lastLocArea = "";

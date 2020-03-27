@@ -85,7 +85,7 @@ namespace MMR_Tracker_V2
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(playLogic, file);
             }
-            if (!Utility.CheckforFullSpoilerLog(playLogic))
+            if (!Utility.CheckforSpoilerLog(playLogic, true))
             { MessageBox.Show("Not all items have spoiler data. Playthrough can not be generated. Ensure you are using the same version of logic used to generate your selected spoiler log"); return; }
 
             List<int> importantItems = new List<int>();

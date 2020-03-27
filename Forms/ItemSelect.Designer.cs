@@ -40,6 +40,7 @@
             this.LBItemSelect.Location = new System.Drawing.Point(13, 39);
             this.LBItemSelect.Name = "LBItemSelect";
             this.LBItemSelect.Size = new System.Drawing.Size(418, 485);
+            this.LBItemSelect.Sorted = true;
             this.LBItemSelect.TabIndex = 0;
             this.LBItemSelect.DoubleClick += new System.EventHandler(this.LBItemSelect_DoubleClick);
             // 

@@ -75,10 +75,10 @@ namespace MMR_Tracker
                 var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(logicCopy, file);
-                if (!Utility.CheckforFullSpoilerLog(logicCopy))
+                if (!Utility.CheckforSpoilerLog(logicCopy, true))
                 { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
             }
-            else if (!Utility.CheckforFullSpoilerLog(LogicObjects.Logic))
+            else if (!Utility.CheckforSpoilerLog(LogicObjects.Logic, true))
             { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
 
             foreach (var entry in logicCopy) { if (entry.SpoilerRandom > -1) { entry.RandomizedItem = entry.SpoilerRandom; } }
