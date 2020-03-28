@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
 {
     public partial class RandomizeOptions : Form
     {
+        public static bool updating = false;
+        public List<int> CheckedItems = new List<int>();
         public RandomizeOptions()
         {
             InitializeComponent();
@@ -82,21 +85,39 @@ namespace MMR_Tracker_V2
 
         private void TxtSearch_TextChanged(object sender, EventArgs e) { WriteToListVeiw(); }
 
+        private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            if (updating) { return; }
+            var item = LogicObjects.Logic[Int32.Parse(e.Item.Tag.ToString())];
+            if (e.Item.Checked)
+            {
+                if (listBox1.Items.Contains(item)) { return; }
+                listBox1.Items.Add(item);
+            }
+            else
+            {
+                if (listBox1.Items.IndexOf(item) < 0) { return; }
+                listBox1.Items.RemoveAt(listBox1.Items.IndexOf(item));
+            }
+        }
+
         //Functions
 
         public void UpdateRandomOption(int option)
         {
-            foreach (ListViewItem selection in listView1.SelectedItems)
+            foreach (var selection in listBox1.Items)
             {
-                var entry = LogicObjects.Logic[Int32.Parse(selection.Tag.ToString())];
+                var entry = selection as LogicObjects.LogicEntry;
                 if (option == 4) { entry.StartingItem = !entry.StartingItem; }
                 else { entry.RandomizedState = option; }
             }
+            listBox1.Items.Clear();
             WriteToListVeiw();
         }
 
         public void WriteToListVeiw()
         {
+            updating = true;
             listView1.Items.Clear();
             var logic = LogicObjects.Logic;
             List<string> randomizedOptions = new List<string> { "Randomized", "Unrandomized", "Unrandomized (Manual)", "Forced Junk" };
@@ -117,6 +138,15 @@ namespace MMR_Tracker_V2
                     listView1.Items.Add(listViewItem);
                 }
             }
+            var checkedItems = listBox1.Items.Cast<LogicObjects.LogicEntry>().ToList();
+            foreach (ListViewItem i in listView1.Items)
+            {
+                if (checkedItems.Any(p => p.ID == Int32.Parse(i.Tag.ToString())))
+                {
+                    i.Checked = true;
+                }
+            }
+            updating = false;
         }
 
         public static void UpdateRandomOptionsFromFile(string[] options)

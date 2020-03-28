@@ -46,10 +46,13 @@
             this.chkShowUnrandMan = new System.Windows.Forms.CheckBox();
             this.chkShowJunk = new System.Windows.Forms.CheckBox();
             this.chkShowStartingItems = new System.Windows.Forms.CheckBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView1
             // 
+            this.listView1.CheckBoxes = true;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Entry,
             this.Randomized,
@@ -61,6 +64,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView1_ItemChecked);
             // 
             // Entry
             // 
@@ -129,9 +133,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(506, 161);
+            this.btnSave.Location = new System.Drawing.Point(506, 172);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(122, 62);
+            this.btnSave.Size = new System.Drawing.Size(122, 23);
             this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save Settings";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -139,9 +143,9 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(506, 229);
+            this.btnLoad.Location = new System.Drawing.Point(506, 201);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(122, 62);
+            this.btnLoad.Size = new System.Drawing.Size(122, 23);
             this.btnLoad.TabIndex = 7;
             this.btnLoad.Text = "Load Settings";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -149,66 +153,95 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(506, 298);
+            this.txtSearch.Location = new System.Drawing.Point(506, 240);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(118, 20);
+            this.txtSearch.Size = new System.Drawing.Size(122, 20);
             this.txtSearch.TabIndex = 8;
             this.txtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
             // 
             // chkShowRandom
             // 
             this.chkShowRandom.AutoSize = true;
-            this.chkShowRandom.Location = new System.Drawing.Point(506, 325);
+            this.chkShowRandom.BackColor = System.Drawing.Color.Transparent;
+            this.chkShowRandom.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkShowRandom.Location = new System.Drawing.Point(506, 266);
             this.chkShowRandom.Name = "chkShowRandom";
             this.chkShowRandom.Size = new System.Drawing.Size(115, 17);
             this.chkShowRandom.TabIndex = 9;
             this.chkShowRandom.Text = "Show Randomized";
-            this.chkShowRandom.UseVisualStyleBackColor = true;
+            this.chkShowRandom.UseVisualStyleBackColor = false;
             this.chkShowRandom.CheckedChanged += new System.EventHandler(this.CHKShowRandom_CheckedChanged);
             // 
             // chkShowUnrand
             // 
             this.chkShowUnrand.AutoSize = true;
-            this.chkShowUnrand.Location = new System.Drawing.Point(506, 348);
+            this.chkShowUnrand.BackColor = System.Drawing.Color.Transparent;
+            this.chkShowUnrand.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkShowUnrand.Location = new System.Drawing.Point(506, 289);
             this.chkShowUnrand.Name = "chkShowUnrand";
             this.chkShowUnrand.Size = new System.Drawing.Size(129, 17);
             this.chkShowUnrand.TabIndex = 10;
             this.chkShowUnrand.Text = "Show UnRandomized";
-            this.chkShowUnrand.UseVisualStyleBackColor = true;
+            this.chkShowUnrand.UseVisualStyleBackColor = false;
             this.chkShowUnrand.CheckedChanged += new System.EventHandler(this.ChkShowUnrand_CheckedChanged);
             // 
             // chkShowUnrandMan
             // 
             this.chkShowUnrandMan.AutoSize = true;
-            this.chkShowUnrandMan.Location = new System.Drawing.Point(506, 371);
+            this.chkShowUnrandMan.BackColor = System.Drawing.Color.Transparent;
+            this.chkShowUnrandMan.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkShowUnrandMan.Location = new System.Drawing.Point(506, 312);
             this.chkShowUnrandMan.Name = "chkShowUnrandMan";
             this.chkShowUnrandMan.Size = new System.Drawing.Size(132, 17);
             this.chkShowUnrandMan.TabIndex = 11;
             this.chkShowUnrandMan.Text = "Show UnRando (Man)";
-            this.chkShowUnrandMan.UseVisualStyleBackColor = true;
+            this.chkShowUnrandMan.UseVisualStyleBackColor = false;
             this.chkShowUnrandMan.CheckedChanged += new System.EventHandler(this.ChkShowUnrandMan_CheckedChanged);
             // 
             // chkShowJunk
             // 
             this.chkShowJunk.AutoSize = true;
-            this.chkShowJunk.Location = new System.Drawing.Point(506, 394);
+            this.chkShowJunk.BackColor = System.Drawing.Color.Transparent;
+            this.chkShowJunk.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkShowJunk.Location = new System.Drawing.Point(506, 335);
             this.chkShowJunk.Name = "chkShowJunk";
             this.chkShowJunk.Size = new System.Drawing.Size(115, 17);
             this.chkShowJunk.TabIndex = 12;
             this.chkShowJunk.Text = "Show Forced Junk";
-            this.chkShowJunk.UseVisualStyleBackColor = true;
+            this.chkShowJunk.UseVisualStyleBackColor = false;
             this.chkShowJunk.CheckedChanged += new System.EventHandler(this.ChkJunk_CheckedChanged);
             // 
             // chkShowStartingItems
             // 
             this.chkShowStartingItems.AutoSize = true;
-            this.chkShowStartingItems.Location = new System.Drawing.Point(506, 418);
+            this.chkShowStartingItems.BackColor = System.Drawing.Color.Transparent;
+            this.chkShowStartingItems.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkShowStartingItems.Location = new System.Drawing.Point(506, 359);
             this.chkShowStartingItems.Name = "chkShowStartingItems";
             this.chkShowStartingItems.Size = new System.Drawing.Size(120, 17);
             this.chkShowStartingItems.TabIndex = 13;
             this.chkShowStartingItems.Text = "Show Starting Items";
-            this.chkShowStartingItems.UseVisualStyleBackColor = true;
+            this.chkShowStartingItems.UseVisualStyleBackColor = false;
             this.chkShowStartingItems.CheckedChanged += new System.EventHandler(this.ChkStartingItems_CheckedChanged);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(506, 404);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 212);
+            this.listBox1.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(505, 388);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Selected Items";
             // 
             // RandomizeOptions
             // 
@@ -217,6 +250,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(636, 628);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.chkShowStartingItems);
             this.Controls.Add(this.chkShowJunk);
             this.Controls.Add(this.chkShowUnrandMan);
@@ -258,5 +293,7 @@
         private System.Windows.Forms.CheckBox chkShowUnrandMan;
         private System.Windows.Forms.CheckBox chkShowJunk;
         private System.Windows.Forms.CheckBox chkShowStartingItems;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

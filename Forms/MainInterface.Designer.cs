@@ -78,13 +78,13 @@
             this.printLogicObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateDisplayNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oOTSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createOOTFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dumbStuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.dumbStuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,7 +118,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(118, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 13);
@@ -128,7 +129,8 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(118, 68);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 13);
@@ -138,7 +140,8 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
             this.label3.Location = new System.Drawing.Point(118, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 13);
@@ -148,7 +151,8 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.ForeColor = System.Drawing.SystemColors.Control;
             this.label4.Location = new System.Drawing.Point(118, 120);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 13);
@@ -158,7 +162,8 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.ForeColor = System.Drawing.SystemColors.Control;
             this.label5.Location = new System.Drawing.Point(118, 146);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 13);
@@ -168,7 +173,8 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
             this.label6.Location = new System.Drawing.Point(118, 169);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 13);
@@ -200,7 +206,8 @@
             // CHKShowAll
             // 
             this.CHKShowAll.AutoSize = true;
-            this.CHKShowAll.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.CHKShowAll.BackColor = System.Drawing.Color.Transparent;
+            this.CHKShowAll.ForeColor = System.Drawing.SystemColors.Control;
             this.CHKShowAll.Location = new System.Drawing.Point(121, 203);
             this.CHKShowAll.Name = "CHKShowAll";
             this.CHKShowAll.Size = new System.Drawing.Size(67, 17);
@@ -529,6 +536,13 @@
             this.updateLogicToolStripMenuItem.Text = "Update Logic";
             this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
             // 
+            // logicEditorToolStripMenuItem
+            // 
+            this.logicEditorToolStripMenuItem.Name = "logicEditorToolStripMenuItem";
+            this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.logicEditorToolStripMenuItem.Text = "Logic Editor";
+            this.logicEditorToolStripMenuItem.Click += new System.EventHandler(this.logicEditorToolStripMenuItem_Click);
+            // 
             // oOTSupportToolStripMenuItem
             // 
             this.oOTSupportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -544,6 +558,13 @@
             this.createOOTFilesToolStripMenuItem.Text = "Create OOT Files";
             this.createOOTFilesToolStripMenuItem.Click += new System.EventHandler(this.createOOTFilesToolStripMenuItem_Click);
             // 
+            // dumbStuffToolStripMenuItem
+            // 
+            this.dumbStuffToolStripMenuItem.Name = "dumbStuffToolStripMenuItem";
+            this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.dumbStuffToolStripMenuItem.Text = "Dumb Stuff";
+            this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.dumbStuffToolStripMenuItem_Click);
+            // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
@@ -557,20 +578,6 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
-            // 
-            // dumbStuffToolStripMenuItem
-            // 
-            this.dumbStuffToolStripMenuItem.Name = "dumbStuffToolStripMenuItem";
-            this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.dumbStuffToolStripMenuItem.Text = "Dumb Stuff";
-            this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.dumbStuffToolStripMenuItem_Click);
-            // 
-            // logicEditorToolStripMenuItem
-            // 
-            this.logicEditorToolStripMenuItem.Name = "logicEditorToolStripMenuItem";
-            this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.logicEditorToolStripMenuItem.Text = "Logic Editor";
-            this.logicEditorToolStripMenuItem.Click += new System.EventHandler(this.logicEditorToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 
