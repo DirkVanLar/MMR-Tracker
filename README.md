@@ -1,9 +1,6 @@
 # MMR-Tracker
 An Item, Location and Entrance Tracker for the Majoras Mask Randomizer
 
-# MMR-Tracker
-An Item, Location and Entrance Tracker for the Majoras Mask Randomizer
-
 This is a location item and entrance tracker for the Majoras mask Randomizer
 
 Basic Functionality:
