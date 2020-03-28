@@ -34,6 +34,8 @@ namespace MMR_Tracker.Forms
         public static List<int> GoBackList = new List<int>();
         public static List<List<LogicObjects.LogicEntry>> UndoList = new List<List<LogicObjects.LogicEntry>>();
         public static List<List<LogicObjects.LogicEntry>> RedoList = new List<List<LogicObjects.LogicEntry>>();
+        public static bool UseSpoilerInDisplay = false;
+        public static bool UseDictionaryNameInSearch = false;
 
         public class RequiementConditional
         {
@@ -49,6 +51,7 @@ namespace MMR_Tracker.Forms
 
         private void LogicEditor_Load(object sender, EventArgs e)
         {
+            nudIndex.Value = 0;
             if (VersionHandeling.Version > 0)
             {
                 UsingTrackerLogic = true;
@@ -61,21 +64,23 @@ namespace MMR_Tracker.Forms
                 LogicList = new List<LogicObjects.LogicEntry>();
                 FormatForm();
             }
+            useLocationItemNamesToolStripMenuItem.Text = (UseDictionaryNameInSearch) ? "Use Location/Item Name" : "Use Dictionary Name";
+            displaySpoilerLogNamesToolStripMenuItem.Text = (UseSpoilerInDisplay) ? "Use Tracker names" : "Use Spoiler Log names";
             AssignUniqueItemnames(LogicList);
         }
 
-        private void FormatForm()
+        private void FormatForm(int StartAt = 0)
         {
             bool enabled = (LogicList.Count > 0);
             btnAddReq.Enabled = enabled;
             btnAddCond.Enabled = enabled;
             //button3.Enabled = false;
-            btnSave.Enabled = enabled;
+            saveLogicToolStripMenuItem.Visible = enabled;
             //button5.Enabled = false;
-            btnUpdate.Enabled = enabled;
+            applyToTrackerLogicToolStripMenuItem.Visible = enabled;
             btnRemoveReq.Enabled = enabled;
             btnRemoveCond.Enabled = enabled;
-            btnNewItem.Enabled = enabled;
+            newLogicToolStripMenuItem.Visible = enabled;
             btnGoTo.Enabled = enabled;
             btnBack.Enabled = enabled;
             nudIndex.Enabled = enabled;
@@ -91,24 +96,30 @@ namespace MMR_Tracker.Forms
             chkNeedNight1.Enabled = enabled;
             chkNeedNight2.Enabled = enabled;
             chkNeedNight3.Enabled = enabled;
-            btnUndo.Enabled = enabled;
-            btnRedo.Enabled = enabled;
+            undoToolStripMenuItem.Visible = enabled;
+            redoToolStripMenuItem.Visible = enabled;
             btnEditSelected.Enabled = enabled;
-            lIName.Text = "";
+            lblDicName.Text = "";
             lblLocName.Text = "";
             lblItemName.Text = "";
 
             if (enabled)
             {
-                WriteCurentItem(0);
+                WriteCurentItem(StartAt);
             }
 
+        }
+
+        private void LogicEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!PromptSave()) { e.Cancel = true; }
         }
 
         //Button
 
         private void BtnLoad_Click(object sender, EventArgs e)
         {
+            if (!PromptSave()) { return; }
             string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
             if (file == "") { return; }
             GoBackList = new List<int>();
@@ -117,7 +128,9 @@ namespace MMR_Tracker.Forms
             var lines = (SettingsFile) ? File.ReadAllLines(file).Skip(2) : File.ReadAllLines(file);
             LogicList = new List<LogicObjects.LogicEntry>();
             ReadLogicFile(lines.ToArray());
-            FormatForm();
+            AssignUniqueItemnames(LogicList);
+            if (LogicList.Count < Convert.ToInt32(nudIndex.Value)) { nudIndex.Value = LogicList.Count - 1; }
+            FormatForm(Convert.ToInt32(nudIndex.Value));
         }
 
         private void BtnGoTo_Click(object sender, EventArgs e)
@@ -138,7 +151,10 @@ namespace MMR_Tracker.Forms
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            LogicEditing.RecreateLogic(WriteLogicToArray());
+            if (Utility.PromptSave())
+            {
+                LogicEditing.RecreateLogic(WriteLogicToArray());
+            }
         }
 
         private void btnAddReq_Click(object sender, EventArgs e)
@@ -213,6 +229,7 @@ namespace MMR_Tracker.Forms
 
         private void btnNewLogic_Click(object sender, EventArgs e)
         {
+            if (!PromptSave()) { return; }
             LogicList = new List<LogicObjects.LogicEntry>();
             GoBackList = new List<int>();
             nudIndex.Value = 0;
@@ -238,10 +255,12 @@ namespace MMR_Tracker.Forms
             UnsavedChanges = true;
             SaveState();
             string name = Interaction.InputBox("Input New Item Name", "New Item", "");
+            if (name == "") { return; }
             LogicObjects.LogicEntry newEntry = new LogicObjects.LogicEntry { ID = LogicList.Count, DictionaryName = name, Required = null, Conditionals = null, AvailableOn = 0, NeededBy = 0 };
             LogicList.Add(newEntry);
             nudIndex.Value = (LogicList.Count - 1);
             WriteCurentItem(LogicList.Count - 1);
+            FormatForm();
         }
 
         private void btnEditSelected_Click(object sender, EventArgs e)
@@ -288,9 +307,24 @@ namespace MMR_Tracker.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveDialog = new SaveFileDialog { Filter = "Logic File (*.txt)|*.txt", FilterIndex = 1 };
-            if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
-            File.WriteAllLines(saveDialog.FileName, WriteLogicToArray());
+            if (SaveInstance())
+            {
+                UnsavedChanges = false;
+            }
+        }
+
+        private void useLocationItemNamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UseDictionaryNameInSearch = !UseDictionaryNameInSearch;
+            useLocationItemNamesToolStripMenuItem.Text = (UseDictionaryNameInSearch) ? "Use Location/Item Name" : "Use Dictionary Name";
+            WriteCurentItem(currentEntry.ID);
+        }
+
+        private void displaySpoilerLogNamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UseSpoilerInDisplay = !UseSpoilerInDisplay;
+            displaySpoilerLogNamesToolStripMenuItem.Text = (UseSpoilerInDisplay) ? "Use Tracker names" : "Use Spoiler Log names";
+            WriteCurentItem(currentEntry.ID);
         }
 
         //Other
@@ -300,7 +334,6 @@ namespace MMR_Tracker.Forms
             if (nudIndex.Value > LogicList.Count - 1) { nudIndex.Value = LogicList.Count - 1; return; }
             if (nudIndex.Value < 0) { nudIndex.Value = 0; return; }
             WriteCurentItem((int)nudIndex.Value);
-            Console.WriteLine(currentEntry.DictionaryName);
         }
 
         private void TimeCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -366,12 +399,25 @@ namespace MMR_Tracker.Forms
             PrintingItem = true;
             LBRequired.Items.Clear();
             LBConditional.Items.Clear();
-            var entry = LogicList[Index];
+            var entry = new LogicObjects.LogicEntry();
+            try
+            {
+                entry = LogicList[Index];
+            }
+            catch
+            {
+                FormatForm();
+                return;
+            }
+            
             currentEntry = entry;
             foreach (var i in entry.Required ?? new int[0])
             {
                 var ReqEntry = LogicList[i];
+
                 ReqEntry.DisplayName = ReqEntry.ItemName ?? ReqEntry.DictionaryName;
+                ReqEntry.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem ?? ReqEntry.DisplayName) : ReqEntry.DisplayName;
+                ReqEntry.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? ReqEntry.DictionaryName : ReqEntry.DisplayName;
                 LBRequired.Items.Add(ReqEntry);
             }
             foreach (var j in entry.Conditionals ?? new int[0][])
@@ -382,8 +428,13 @@ namespace MMR_Tracker.Forms
                 string addComma = "";
                 foreach (var i in j ?? new int[0])
                 {
-                    var ReqEntry = LogicList[i];
-                    Display = Display + addComma + (ReqEntry.ItemName ?? ReqEntry.DictionaryName);
+                    var ReqEntry = LogicList[i]; 
+
+                    string disName = ReqEntry.ItemName ?? ReqEntry.DictionaryName;
+                    disName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem ?? disName) : disName;
+                    disName = (LogicEditor.UseDictionaryNameInSearch) ? ReqEntry.DictionaryName : disName;
+
+                    Display = Display + addComma + disName;
                     addComma = ", ";
                     CondEntry.ItemIDs.Add(ReqEntry);
 
@@ -395,12 +446,10 @@ namespace MMR_Tracker.Forms
             string LocationName = entry.LocationName ?? "Fake Location";
             string ItemName = entry.ItemName ?? "Fake Item";
 
-            int length = 65;
-            if (DictionaryName.Length > length) { DictionaryName = DictionaryName.Substring(0, length) + "..."; }
-            if (LocationName.Length > length) { LocationName = LocationName.Substring(0, length) + "..."; }
-            if (ItemName.Length > length) { ItemName = ItemName.Substring(0, length) + "..."; }
+            LocationName = (UseSpoilerInDisplay) ? (entry.SpoilerLocation ?? LocationName) : LocationName;
+            ItemName = (UseSpoilerInDisplay) ? (entry.SpoilerItem ?? ItemName) : ItemName;
 
-            lIName.Text = DictionaryName;
+            lblDicName.Text = DictionaryName;
             lblLocName.Text = LocationName.ToString();
             lblItemName.Text = ItemName.ToString();
 
@@ -489,6 +538,36 @@ namespace MMR_Tracker.Forms
             return lines.ToArray();
         }
 
+        public bool PromptSave(bool OnlyIfUnsaved = true)
+        {
+            if (UnsavedChanges || !OnlyIfUnsaved)
+            {
+                DialogResult result = MessageBox.Show("Would you like to save?", "You have unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (result == DialogResult.Cancel) { return false; }
+                if (result == DialogResult.Yes)
+                {
+                    if (!SaveInstance()) { return false; }
+                }
+            }
+            return true;
+        }
+
+        public bool SaveInstance()
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog { Filter = "Logic File (*.txt)|*.txt", FilterIndex = 1 };
+            if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
+            var logicText = WriteLogicToArray().ToList();
+            StreamWriter LogicFile = new StreamWriter(File.Open(saveDialog.FileName, FileMode.Create));
+            for (int i = 0; i < logicText.Count; i++)
+            {
+                if (i == logicText.Count - 1) { LogicFile.Write(logicText[i]); break; }
+                LogicFile.WriteLine(logicText[i]);
+            }
+            LogicFile.Close();
+            UnsavedChanges = false;
+            return true;
+        }
+
         //Static Functions
 
         public static void ReadLogicFile(string[] LogicFile)
@@ -570,6 +649,7 @@ namespace MMR_Tracker.Forms
         public static void AssignUniqueItemnames(List<LogicObjects.LogicEntry> Logic)
         {
             List<string> usedLocationNames = new List<string>();
+            List<string> usedSpoilerNames = new List<string>();
             foreach (var LogicEntry1 in Logic)
             {
                 if (LogicEntry1.ItemName == null) { continue; }
@@ -581,6 +661,17 @@ namespace MMR_Tracker.Forms
                     number += 1;
                 }
                 usedLocationNames.Add(LogicEntry1.ItemName);
+
+                if (LogicEntry1.SpoilerItem != null) 
+                {
+                    originalName = LogicEntry1.SpoilerItem;
+                    while (usedSpoilerNames.Contains(LogicEntry1.SpoilerItem))
+                    {
+                        LogicEntry1.SpoilerItem = originalName + " (" + number.ToString() + ")";
+                        number += 1;
+                    }
+                    usedSpoilerNames.Add(LogicEntry1.SpoilerItem);
+                }
             }
         }
 

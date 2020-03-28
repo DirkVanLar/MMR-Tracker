@@ -266,6 +266,7 @@
             this.Controls.Add(this.BTNUnrando);
             this.Controls.Add(this.BTNRandomized);
             this.Controls.Add(this.listView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RandomizeOptions";
             this.Text = "RandomizeOptions";
             this.Load += new System.EventHandler(this.RandomizeOptions_Load);

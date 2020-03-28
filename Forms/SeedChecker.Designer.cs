@@ -157,6 +157,7 @@
             this.Controls.Add(this.LBIgnoredChecks);
             this.Controls.Add(this.LBResult);
             this.Controls.Add(this.LBNeededItems);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SeedChecker";
             this.Text = "SeedChecker";
             this.ResumeLayout(false);

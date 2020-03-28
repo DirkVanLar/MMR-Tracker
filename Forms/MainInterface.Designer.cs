@@ -69,22 +69,23 @@
             this.coupleEntrancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miscOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showEntryNameToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generatePlaythroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLogicObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateDisplayNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oOTSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createOOTFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumbStuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generatePlaythroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -302,6 +303,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.optionsToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.infoToolStripMenuItem,
             this.devToolStripMenuItem,
             this.undoToolStripMenuItem,
@@ -385,7 +387,7 @@
             this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -417,7 +419,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -451,12 +453,9 @@
             // miscOptionsToolStripMenuItem
             // 
             this.miscOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showEntryNameToolTipToolStripMenuItem,
-            this.seedCheckerToolStripMenuItem,
-            this.generatePlaythroughToolStripMenuItem,
-            this.whatUnlockedThisToolStripMenuItem});
+            this.showEntryNameToolTipToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -465,27 +464,6 @@
             this.showEntryNameToolTipToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.showEntryNameToolTipToolStripMenuItem.Text = "Show Entry Name ToolTip";
             this.showEntryNameToolTipToolStripMenuItem.Click += new System.EventHandler(this.ShowEntryNameToolTipToolStripMenuItem_Click);
-            // 
-            // seedCheckerToolStripMenuItem
-            // 
-            this.seedCheckerToolStripMenuItem.Name = "seedCheckerToolStripMenuItem";
-            this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.seedCheckerToolStripMenuItem.Text = "Seed Checker";
-            this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.SeedCheckerToolStripMenuItem_Click);
-            // 
-            // generatePlaythroughToolStripMenuItem
-            // 
-            this.generatePlaythroughToolStripMenuItem.Name = "generatePlaythroughToolStripMenuItem";
-            this.generatePlaythroughToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.generatePlaythroughToolStripMenuItem.Text = "Generate Playthrough";
-            this.generatePlaythroughToolStripMenuItem.Click += new System.EventHandler(this.GeneratePlaythroughToolStripMenuItem_Click);
-            // 
-            // whatUnlockedThisToolStripMenuItem
-            // 
-            this.whatUnlockedThisToolStripMenuItem.Name = "whatUnlockedThisToolStripMenuItem";
-            this.whatUnlockedThisToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.whatUnlockedThisToolStripMenuItem.Text = "What Unlocked This?";
-            this.whatUnlockedThisToolStripMenuItem.Click += new System.EventHandler(this.WhatUnlockedThisToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -500,8 +478,6 @@
             this.createDictionaryToolStripMenuItem,
             this.printLogicObjectToolStripMenuItem,
             this.updateDisplayNamesToolStripMenuItem,
-            this.updateLogicToolStripMenuItem,
-            this.logicEditorToolStripMenuItem,
             this.oOTSupportToolStripMenuItem,
             this.dumbStuffToolStripMenuItem});
             this.devToolStripMenuItem.Name = "devToolStripMenuItem";
@@ -529,32 +505,18 @@
             this.updateDisplayNamesToolStripMenuItem.Text = "Update Display Names";
             this.updateDisplayNamesToolStripMenuItem.Click += new System.EventHandler(this.UpdateDisplayNamesToolStripMenuItem_Click);
             // 
-            // updateLogicToolStripMenuItem
-            // 
-            this.updateLogicToolStripMenuItem.Name = "updateLogicToolStripMenuItem";
-            this.updateLogicToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.updateLogicToolStripMenuItem.Text = "Update Logic";
-            this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
-            // 
-            // logicEditorToolStripMenuItem
-            // 
-            this.logicEditorToolStripMenuItem.Name = "logicEditorToolStripMenuItem";
-            this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.logicEditorToolStripMenuItem.Text = "Logic Editor";
-            this.logicEditorToolStripMenuItem.Click += new System.EventHandler(this.logicEditorToolStripMenuItem_Click);
-            // 
             // oOTSupportToolStripMenuItem
             // 
             this.oOTSupportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createOOTFilesToolStripMenuItem});
             this.oOTSupportToolStripMenuItem.Name = "oOTSupportToolStripMenuItem";
             this.oOTSupportToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.oOTSupportToolStripMenuItem.Text = "OOT Support";
+            this.oOTSupportToolStripMenuItem.Text = "OOT Tools";
             // 
             // createOOTFilesToolStripMenuItem
             // 
             this.createOOTFilesToolStripMenuItem.Name = "createOOTFilesToolStripMenuItem";
-            this.createOOTFilesToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.createOOTFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.createOOTFilesToolStripMenuItem.Text = "Create OOT Files";
             this.createOOTFilesToolStripMenuItem.Click += new System.EventHandler(this.createOOTFilesToolStripMenuItem_Click);
             // 
@@ -562,22 +524,69 @@
             // 
             this.dumbStuffToolStripMenuItem.Name = "dumbStuffToolStripMenuItem";
             this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.dumbStuffToolStripMenuItem.Text = "Dumb Stuff";
+            this.dumbStuffToolStripMenuItem.Text = "Code Testing";
             this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.dumbStuffToolStripMenuItem_Click);
             // 
             // undoToolStripMenuItem
             // 
+            this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.undoToolStripMenuItem.Text = "Undo";
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.UndoToolStripMenuItem_Click);
             // 
             // redoToolStripMenuItem
             // 
+            this.redoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("redoToolStripMenuItem.Image")));
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.redoToolStripMenuItem.Text = "Redo";
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.seedCheckerToolStripMenuItem,
+            this.generatePlaythroughToolStripMenuItem,
+            this.whatUnlockedThisToolStripMenuItem,
+            this.logicEditorToolStripMenuItem,
+            this.updateLogicToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // seedCheckerToolStripMenuItem
+            // 
+            this.seedCheckerToolStripMenuItem.Name = "seedCheckerToolStripMenuItem";
+            this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.seedCheckerToolStripMenuItem.Text = "Seed Checker";
+            this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.SeedCheckerToolStripMenuItem_Click);
+            // 
+            // generatePlaythroughToolStripMenuItem
+            // 
+            this.generatePlaythroughToolStripMenuItem.Name = "generatePlaythroughToolStripMenuItem";
+            this.generatePlaythroughToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.generatePlaythroughToolStripMenuItem.Text = "Generate Playthrough";
+            this.generatePlaythroughToolStripMenuItem.Click += new System.EventHandler(this.GeneratePlaythroughToolStripMenuItem_Click);
+            // 
+            // whatUnlockedThisToolStripMenuItem
+            // 
+            this.whatUnlockedThisToolStripMenuItem.Name = "whatUnlockedThisToolStripMenuItem";
+            this.whatUnlockedThisToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.whatUnlockedThisToolStripMenuItem.Text = "What Unlocked This?";
+            this.whatUnlockedThisToolStripMenuItem.Click += new System.EventHandler(this.WhatUnlockedThisToolStripMenuItem_Click);
+            // 
+            // logicEditorToolStripMenuItem
+            // 
+            this.logicEditorToolStripMenuItem.Name = "logicEditorToolStripMenuItem";
+            this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.logicEditorToolStripMenuItem.Text = "Logic Editor";
+            this.logicEditorToolStripMenuItem.Click += new System.EventHandler(this.logicEditorToolStripMenuItem_Click);
+            // 
+            // updateLogicToolStripMenuItem
+            // 
+            this.updateLogicToolStripMenuItem.Name = "updateLogicToolStripMenuItem";
+            this.updateLogicToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.updateLogicToolStripMenuItem.Text = "Update Logic";
+            this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 
@@ -666,18 +675,19 @@
         private System.Windows.Forms.ToolStripMenuItem casualLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem glitchedLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userLogicToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem seedCheckerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem devToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createDictionaryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printLogicObjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateDisplayNamesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateLogicToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generatePlaythroughToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem whatUnlockedThisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oOTSupportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createOOTFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumbStuffToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem seedCheckerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generatePlaythroughToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem whatUnlockedThisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logicEditorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateLogicToolStripMenuItem;
     }
 }
 

@@ -63,7 +63,7 @@ namespace MMR_Tracker_V2
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Utility.SaveInstance()) { Utility.UnsavedChanges = false; }
+            Utility.SaveInstance();
         }
 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -75,9 +75,9 @@ namespace MMR_Tracker_V2
             Utility.LoadInstance(file);
             LogicEditing.CreateDicNameToID(LogicObjects.DicNameToID, LogicObjects.Logic);
             LogicEditing.CreatedEntrancepairDcitionary(LogicObjects.EntrancePairs, LogicObjects.DicNameToID);
-            PrintToListBox();
             FormatMenuItems();
             ResizeObject();
+            PrintToListBox();
         }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -268,26 +268,14 @@ namespace MMR_Tracker_V2
             PrintToListBox();
         }
 
-        private void UpdateLogicToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Utility.PromptSave()) { return; }
-            LogicEditing.RecreateLogic();
-            PrintToListBox();
-            ResizeObject();
-            FormatMenuItems();
-        }
-
         private void dumbStuffToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Console.WriteLine(((11 >> 0) & 1) == 1);
         }
 
-        private void logicEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void createOOTFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LogicEditor Editor = new LogicEditor();
-            Editor.ShowDialog();
-            PrintToListBox();
-            FormatMenuItems();
+            OOT_Support.CreateOOTFiles();
         }
 
         //Menu Strip => Options => MISC Options---------------------------------------------------------------------------
@@ -298,10 +286,62 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
         }
 
+        //Menu Strip => Tools---------------------------------------------------------------------------
+
         private void SeedCheckerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SeedChecker SeedCheckerForm = new SeedChecker();
             SeedCheckerForm.ShowDialog();
+        }
+
+        private void GeneratePlaythroughToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Debugging.GeneratePlaythrough(LogicObjects.Logic);
+        }
+
+        private void WhatUnlockedThisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(this.ActiveControl == LBValidLocations);
+            Console.WriteLine(LBValidLocations.SelectedItem is LogicObjects.LogicEntry);
+
+            if ((this.ActiveControl == LBValidLocations) && LBValidLocations.SelectedItem is LogicObjects.LogicEntry)
+            {
+                LogicObjects.CurrentSelectedItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry;
+            }
+            else if ((this.ActiveControl == LBValidEntrances) && LBValidEntrances.SelectedItem is LogicObjects.LogicEntry)
+            {
+                LogicObjects.CurrentSelectedItem = LBValidEntrances.SelectedItem as LogicObjects.LogicEntry;
+            }
+            else
+            {
+                ItemSelect ItemSelectForm = new ItemSelect();
+                ItemSelect.Function = 3;
+                var dialogResult = ItemSelectForm.ShowDialog();
+                if (dialogResult != DialogResult.OK) { LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry(); return; }
+            }
+            var Requirements = LogicEditing.FindRequirements(LogicObjects.CurrentSelectedItem, LogicObjects.Logic);
+            LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
+            string message = "";
+            foreach (var i in Requirements) { message = message + LogicObjects.Logic[i].ItemName + "\n"; }
+            MessageBox.Show(message, "Unlocked with:");
+        }
+
+        private void logicEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicEditor Editor = new LogicEditor();
+            Editor.ShowDialog();
+            PrintToListBox();
+            Utility.PromptSave();
+            FormatMenuItems();
+        }
+
+        private void UpdateLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Utility.PromptSave()) { return; }
+            LogicEditing.RecreateLogic();
+            PrintToListBox();
+            ResizeObject();
+            FormatMenuItems();
         }
 
         //Text Boxes---------------------------------------------------------------------------
@@ -414,11 +454,8 @@ namespace MMR_Tracker_V2
 
             int newWidth;
 
-            foreach (var s in senderComboBox.Items)
+            foreach (KeyValuePair<int, string> dictionary in senderComboBox.Items)
             {
-                var json = JsonConvert.SerializeObject(s);
-                var dictionary = JsonConvert.DeserializeObject<KeyValuePair<int, string>>(json);
-
                 newWidth = (int)g.MeasureString(dictionary.Value, font).Width
                     + vertScrollBarWidth;
                 if (width < newWidth)
@@ -499,6 +536,10 @@ namespace MMR_Tracker_V2
             undoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
             redoToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
             saveToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
+            seedCheckerToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
+            generatePlaythroughToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
+            whatUnlockedThisToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
+            updateLogicToolStripMenuItem.Visible = (VersionHandeling.Version > 0);
             if (!VersionHandeling.OverRideAutoEntranceRandoEnable) { VersionHandeling.entranceRadnoEnabled = VersionHandeling.IsEntranceRando(); }
             useSongOfTimeInPathfinderToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
@@ -511,9 +552,9 @@ namespace MMR_Tracker_V2
             useSongOfTimeInPathfinderToolStripMenuItem.Visible = !OOT_Support.isOOT && VersionHandeling.entranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = !OOT_Support.isOOT && VersionHandeling.entranceRadnoEnabled;
             coupleEntrancesToolStripMenuItem.Visible = !OOT_Support.isOOT && VersionHandeling.entranceRadnoEnabled;
-            generatePlaythroughToolStripMenuItem.Visible = !OOT_Support.isOOT;
-            seedCheckerToolStripMenuItem.Visible = !OOT_Support.isOOT;
-            whatUnlockedThisToolStripMenuItem.Visible = !OOT_Support.isOOT;
+            generatePlaythroughToolStripMenuItem.Visible = !OOT_Support.isOOT && (VersionHandeling.Version > 0);
+            seedCheckerToolStripMenuItem.Visible = !OOT_Support.isOOT && (VersionHandeling.Version > 0);
+            whatUnlockedThisToolStripMenuItem.Visible = !OOT_Support.isOOT && (VersionHandeling.Version > 0);
 
         }
 
@@ -823,43 +864,6 @@ namespace MMR_Tracker_V2
             }
             lb.Items.Add(entry);
             return (returnLastArea);
-        }
-
-        private void GeneratePlaythroughToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Debugging.GeneratePlaythrough(LogicObjects.Logic);
-        }
-
-        private void WhatUnlockedThisToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine(this.ActiveControl == LBValidLocations);
-            Console.WriteLine(LBValidLocations.SelectedItem is LogicObjects.LogicEntry);
-
-            if ((this.ActiveControl == LBValidLocations) && LBValidLocations.SelectedItem is LogicObjects.LogicEntry)
-            {
-                LogicObjects.CurrentSelectedItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry;
-            }
-            else if ((this.ActiveControl == LBValidEntrances) && LBValidEntrances.SelectedItem is LogicObjects.LogicEntry)
-            {
-                LogicObjects.CurrentSelectedItem = LBValidEntrances.SelectedItem as LogicObjects.LogicEntry;
-            }
-            else
-            {
-                ItemSelect ItemSelectForm = new ItemSelect();
-                ItemSelect.Function = 3;
-                var dialogResult = ItemSelectForm.ShowDialog();
-                if (dialogResult != DialogResult.OK) { LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry(); return; }
-            }
-            var Requirements = LogicEditing.FindRequirements(LogicObjects.CurrentSelectedItem, LogicObjects.Logic);
-            LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
-            string message = "";
-            foreach(var i in Requirements) { message = message + LogicObjects.Logic[i].ItemName + "\n"; }
-            MessageBox.Show(message, "Unlocked with:");
-        }
-
-        private void createOOTFilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OOT_Support.CreateOOTFiles();
         }
     }
 }

@@ -120,13 +120,36 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="undoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAFQSURBVDhPY6A68KzcJgplkgr+M8Z1H5sR1b6/ASpACvjPmNBzdG7Tuuc/YzoOtUIFiQMODftZ
+        EnuOrW7b+PpP9/YP/4EGnUybeHoxNpzYd2JmePPBIKhWCIhqPphcvfzBV5BmYnDjmqc/kvtP7Ypr2yMM
+        NYKBIa79SFPtysefQAoiWvcfAXkDG07qOzGraN6NO13b3v0HGQLVDgFxnYfLq1c8fAdSCBXCCoIb9iiB
+        DAG5JKxtfwBUGAJiu45lRzYfKIVycYKU/pOzQa5N7D0xAyqEAGlpZ1ihTJwgofdYP8iAlL5T86BCxIOG
+        hgam9ClnD7Zvefs/tvNwNVSYGPCfMbRmuzowKteCojxv5tUboeW7+aGSuEFc15F7BXOuPiiYfe1h9bIH
+        X7q2vv9fsuDWk+jOQyFQJfgB3AAgzpt5+WrqxFPrItoPGkKlBxwwMAAAPIbbIb554DEAAAAASUVORK5C
+        YII=
+</value>
+  </data>
+  <data name="redoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAFFSURBVDhPY6Ar8KzcJgplkgei2vc3xHUfm8HA8J8RKkQaiOk41Nq8/sVvoCGLGhoamKDCMPCf
+        MbJlX3BS/4mZaRNPL8aGE3qOnuze/uF/28bXfxJ7jq12aNjPAtYa17ZHOKn/9O6mtc9+gBQQg6uXP/ga
+        1XwwGWwzSHPXtnf/C+Zcu5Pce3I2yKnYcETr/iMgzbUrH3+Kaz/SBLYd5GyQzSDNoc0HFcGCOADIkOoV
+        D9/FdR4uhwoxMCT1nZgJMhVIz4IK4QSRzQdKY7uOZUO5EJAy4dQ8kAHx3Uf6oUI4QVraGVYoEwFiOw7X
+        dGx59z9t8tkDWKKGMAhoWC+QN+vqTWDU/E7sObE2sGGrGskJJabjSFjJwltPQDFRvezBl4LZ1x4WzLn6
+        IK7ryD2oEsIgonO/Seqk0+vzZl6+CtJMsgEDBBgYAGM33bJCrE/ZAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>132, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>49</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAMCAgcIBwYFBQUFBQUFBgUGBgYGBQUGBgYGBgUFBgYGBgYG

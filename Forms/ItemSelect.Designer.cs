@@ -82,6 +82,7 @@
             this.Controls.Add(this.TXTSearch);
             this.Controls.Add(this.BTNJunk);
             this.Controls.Add(this.LBItemSelect);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ItemSelect";
             this.Text = "ItemSelect";
             this.Load += new System.EventHandler(this.ItemSelect_Load);

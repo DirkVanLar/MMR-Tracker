@@ -253,6 +253,7 @@ namespace MMR_Tracker_V2
             Options[8] = "AutoEntRand:" + ((VersionHandeling.OverRideAutoEntranceRandoEnable) ? "1" : "0");
             Options[9] = "OOTSave:" + ((OOT_Support.isOOT) ? "1" : "0");
             File.WriteAllLines(saveDialog.FileName, Options);
+            UnsavedChanges = false;
             return true;
         }
         public static bool LoadInstance(string LogicFile)
