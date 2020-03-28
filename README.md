@@ -16,7 +16,9 @@ When entrance randomizer releases, the tracker will have a sperate box to keep t
 When checking an entrance, the tracker will automatically mark the entrance in reverse.
 You can use the pathfinder to show you available paths from one entrance to another.
 
-Extra Features:
+Extra Features: 
+The tracker conatins a number of not exactly tracker related tools for use with the randomzier.
+
 You can use the Seed Checker to check if your seed can obtain a number of selected items based on your logic.
 You can tell the seed checker to ignore certain checks you want to avoid.
 
