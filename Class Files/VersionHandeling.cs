@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMR_Tracker.Forms;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -60,7 +61,7 @@ namespace MMR_Tracker_V2
             return (Version >= EntranceRandoVersion || OOT_Support.isOOT);
         }
 
-        public static string[] SwitchDictionary()
+        public static string[] SwitchDictionary(int Currentversion)
         {
             string[] files = Directory.GetFiles(@"Dictionaries");
             Dictionary<int, string> dictionaries = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
@@ -72,7 +73,7 @@ namespace MMR_Tracker_V2
             foreach (var i in files)
             {
                 var dic = "MMRDICTIONARY";
-                if (OOT_Support.isOOT) { dic = "OOTRDICTIONARY"; }
+                if (OOT_Support.isOOT || LogicEditor.GetOOTDictionary) { dic = "OOTRDICTIONARY"; }
                 if (i.Contains(dic))
                 {
                     var entry = i.Replace("Dictionaries\\" + dic + "V", "");
@@ -103,18 +104,18 @@ namespace MMR_Tracker_V2
             string[] currentdictionary = new string[2];
             var index = 0;
 
-            if (dictionaries.ContainsKey(VersionHandeling.Version)) { index = Version; }
+            if (dictionaries.ContainsKey(Currentversion)) { index = Currentversion; }
             else //If we are using a logic version that doesn't have a dictionary, use the dictioary with the closest version
-            { index = dictionaries.Keys.Aggregate((x, y) => Math.Abs(x - Version) < Math.Abs(y - Version) ? x : y); }
+            { index = dictionaries.Keys.Aggregate((x, y) => Math.Abs(x - Currentversion) < Math.Abs(y - Currentversion) ? x : y); }
 
             currentdictionary[0] = dictionaries[index];
 
             Console.WriteLine(currentdictionary[0]);
 
-            if (Pairs.ContainsKey(VersionHandeling.Version))
-            { index = Version; }
+            if (Pairs.ContainsKey(Currentversion))
+            { index = Currentversion; }
             else //If we are using a logic version that doesn't have a Pair List, use the pair List with the closest version
-            { index = Pairs.Keys.Aggregate((x, y) => Math.Abs(x - Version) < Math.Abs(y - Version) ? x : y); }
+            { index = Pairs.Keys.Aggregate((x, y) => Math.Abs(x - Currentversion) < Math.Abs(y - Currentversion) ? x : y); }
 
             currentdictionary[1] = Pairs[index];
 

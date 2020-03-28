@@ -308,10 +308,10 @@ GS Gerudo Valley Pillar,GS Gerudo Valley Pillar,Skull Token,Gerudo Desert,Item,G
 Gerudo Fortress Rooftop Chest,Gerudo Fortress Rooftop Chest,Heart Piece,Gerudo Desert,Item,Gerudo Fortress Rooftop Chest,,
 Horseback Archery 1000 Points,Horseback Archery 1000 Points,Heart Piece,Gerudo Desert,Item,Horseback Archery 1000 Points,,
 Horseback Archery 1500 Points,Horseback Archery 1500 Points,Quiver Upgrade,Gerudo Desert,Item,Horseback Archery 1500 Points,,
-Gerudo Fortress North F1 Carpenter,Gerudo Fortress North F1 Carpenter,Gerudo Fortress Key,Gerudo Desert,Item,Gerudo Fortress North F1 Carpenter,,
-Gerudo Fortress North F2 Carpenter,Gerudo Fortress North F2 Carpenter,Gerudo Fortress Key,Gerudo Desert,Item,Gerudo Fortress North F2 Carpenter,,
-Gerudo Fortress South F1 Carpenter,Gerudo Fortress South F1 Carpenter,Gerudo Fortress Key,Gerudo Desert,Item,Gerudo Fortress South F1 Carpenter,,
-Gerudo Fortress South F2 Carpenter,Gerudo Fortress South F2 Carpenter,Gerudo Fortress Key,Gerudo Desert,Item,Gerudo Fortress South F2 Carpenter,,
+Gerudo Fortress North F1 Carpenter,Gerudo Fortress North F1 Carpenter,Gerudo Fortress Small Key,Gerudo Desert,Item,Gerudo Fortress North F1 Carpenter,,
+Gerudo Fortress North F2 Carpenter,Gerudo Fortress North F2 Carpenter,Gerudo Fortress Small Key,Gerudo Desert,Item,Gerudo Fortress North F2 Carpenter,,
+Gerudo Fortress South F1 Carpenter,Gerudo Fortress South F1 Carpenter,Gerudo Fortress Small Key,Gerudo Desert,Item,Gerudo Fortress South F1 Carpenter,,
+Gerudo Fortress South F2 Carpenter,Gerudo Fortress South F2 Carpenter,Gerudo Fortress Small Key,Gerudo Desert,Item,Gerudo Fortress South F2 Carpenter,,
 Gerudo Fortress Membership Card,Gerudo Fortress Membership Card,Gerudo Fortress Membership Card,Gerudo Desert,Item,Gerudo Fortress Membership Card,,
 GS Gerudo Fortress Archery Range,GS Gerudo Fortress Archery Range,Skull Token,Gerudo Desert,Item,GS Gerudo Fortress Archery Range,,
 GS Gerudo Fortress Top Floor,GS Gerudo Fortress Top Floor,Skull Token,Gerudo Desert,Item,GS Gerudo Fortress Top Floor,,
@@ -445,440 +445,440 @@ Lon Lon Tower Freestanding PoH,Lon Lon Tower Freestanding PoH,Heart Piece,Lon Lo
 LLR Tower Left Cow,LLR Tower Left Cow,Milk,Lon Lon Ranch,Item,LLR Tower Left Cow,,
 LLR Tower Right Cow,LLR Tower Right Cow,Milk,Lon Lon Ranch,Item,LLR Tower Right Cow,,
 Ganons Tower Boss Key Chest,Ganons Tower Boss Key Chest,Ganons Tower Boss Key,Ganons Tower,Item,Ganons Tower Boss Key Chest,,
-Kokiri Forest Storms Grotto Chest,Kokiri Forest Storms Grotto Chest,,,Item,Kokiri Forest Storms Grotto Chest,,
-Lost Woods Generic Grotto Chest,Lost Woods Generic Grotto Chest,,,Item,Lost Woods Generic Grotto Chest,,
-Deku Theater Skull Mask,Deku Theater Skull Mask,,,Item,Deku Theater Skull Mask,,
-Deku Theater Mask of Truth,Deku Theater Mask of Truth,,,Item,Deku Theater Mask of Truth,,
-LW Grotto Deku Scrub Arrows,LW Grotto Deku Scrub Arrows,,,Item,LW Grotto Deku Scrub Arrows,,
-LW Grotto Deku Scrub Deku Nut Upgrade,LW Grotto Deku Scrub Deku Nut Upgrade,,,Item,LW Grotto Deku Scrub Deku Nut Upgrade,,
-SFM Grotto Deku Scrub Red Potion,SFM Grotto Deku Scrub Red Potion,,,Item,SFM Grotto Deku Scrub Red Potion,,
-SFM Grotto Deku Scrub Green Potion,SFM Grotto Deku Scrub Green Potion,,,Item,SFM Grotto Deku Scrub Green Potion,,
-Wolfos Grotto Chest,Wolfos Grotto Chest,,,Item,Wolfos Grotto Chest,,
-LLR Grotto Deku Scrub Deku Nuts,LLR Grotto Deku Scrub Deku Nuts,,,Item,LLR Grotto Deku Scrub Deku Nuts,,
-LLR Grotto Deku Scrub Bombs,LLR Grotto Deku Scrub Bombs,,,Item,LLR Grotto Deku Scrub Bombs,,
-LLR Grotto Deku Scrub Arrows,LLR Grotto Deku Scrub Arrows,,,Item,LLR Grotto Deku Scrub Arrows,,
-Remote Southern Grotto Chest,Remote Southern Grotto Chest,,,Item,Remote Southern Grotto Chest,,
-Field Near Lake Outside Fence Grotto Chest,Field Near Lake Outside Fence Grotto Chest,,,Item,Field Near Lake Outside Fence Grotto Chest,,
-HF Grotto Deku Scrub Piece of Heart,HF Grotto Deku Scrub Piece of Heart,Heart Piece,,Item,HF Grotto Deku Scrub Piece of Heart,,
-GS Hyrule Field Near Gerudo Valley,GS Hyrule Field Near Gerudo Valley,Skull Token,,Item,GS Hyrule Field Near Gerudo Valley,,
-HF Grotto Cow,HF Grotto Cow,,,Item,HF Grotto Cow,,
-Field West Castle Town Grotto Chest,Field West Castle Town Grotto Chest,,,Item,Field West Castle Town Grotto Chest,,
-GS Hyrule Field near Kakariko,GS Hyrule Field near Kakariko,Skull Token,,Item,GS Hyrule Field near Kakariko,,
-Tektite Grotto Freestanding PoH,Tektite Grotto Freestanding PoH,Heart Piece,,Item,Tektite Grotto Freestanding PoH,,
-GS Hyrule Castle Grotto,GS Hyrule Castle Grotto,Skull Token,,Item,GS Hyrule Castle Grotto,,
-Redead Grotto Chest,Redead Grotto Chest,,,Item,Redead Grotto Chest,,
-Kakariko Back Grotto Chest,Kakariko Back Grotto Chest,,,Item,Kakariko Back Grotto Chest,,
-DMT Grotto Cow,DMT Grotto Cow,,,Item,DMT Grotto Cow,,
-Mountain Storms Grotto Chest,Mountain Storms Grotto Chest,,,Item,Mountain Storms Grotto Chest,,
-Goron Grotto Deku Scrub Deku Nuts,Goron Grotto Deku Scrub Deku Nuts,,,Item,Goron Grotto Deku Scrub Deku Nuts,,
-Goron Grotto Deku Scrub Bombs,Goron Grotto Deku Scrub Bombs,,,Item,Goron Grotto Deku Scrub Bombs,,
-Goron Grotto Deku Scrub Arrows,Goron Grotto Deku Scrub Arrows,,,Item,Goron Grotto Deku Scrub Arrows,,
-Top of Crater Grotto Chest,Top of Crater Grotto Chest,,,Item,Top of Crater Grotto Chest,,
-DMC Grotto Deku Scrub Deku Nuts,DMC Grotto Deku Scrub Deku Nuts,,,Item,DMC Grotto Deku Scrub Deku Nuts,,
-DMC Grotto Deku Scrub Bombs,DMC Grotto Deku Scrub Bombs,,,Item,DMC Grotto Deku Scrub Bombs,,
-DMC Grotto Deku Scrub Arrows,DMC Grotto Deku Scrub Arrows,,,Item,DMC Grotto Deku Scrub Arrows,,
-Zora River Plateau Open Grotto Chest,Zora River Plateau Open Grotto Chest,,,Item,Zora River Plateau Open Grotto Chest,,
-ZR Grotto Deku Scrub Red Potion,ZR Grotto Deku Scrub Red Potion,,,Item,ZR Grotto Deku Scrub Red Potion,,
-ZR Grotto Deku Scrub Green Potion,ZR Grotto Deku Scrub Green Potion,,,Item,ZR Grotto Deku Scrub Green Potion,,
-LH Grotto Deku Scrub Deku Nuts,LH Grotto Deku Scrub Deku Nuts,,,Item,LH Grotto Deku Scrub Deku Nuts,,
-LH Grotto Deku Scrub Bombs,LH Grotto Deku Scrub Bombs,,,Item,LH Grotto Deku Scrub Bombs,,
-LH Grotto Deku Scrub Arrows,LH Grotto Deku Scrub Arrows,,,Item,LH Grotto Deku Scrub Arrows,,
-Desert Grotto Deku Scrub Red Potion,Desert Grotto Deku Scrub Red Potion,,,Item,Desert Grotto Deku Scrub Red Potion,,
-Desert Grotto Deku Scrub Green Potion,Desert Grotto Deku Scrub Green Potion,,,Item,Desert Grotto Deku Scrub Green Potion,,
-Valley Grotto Deku Scrub Red Potion,Valley Grotto Deku Scrub Red Potion,,,Item,Valley Grotto Deku Scrub Red Potion,,
-Valley Grotto Deku Scrub Green Potion,Valley Grotto Deku Scrub Green Potion,,,Item,Valley Grotto Deku Scrub Green Potion,,
-Deku Tree Lobby Chest,Deku Tree Lobby Chest,,,Item,Deku Tree Lobby Chest,,
-Deku Tree Compass Chest,Deku Tree Compass Chest,,,Item,Deku Tree Compass Chest,,
-Deku Tree Compass Room Side Chest,Deku Tree Compass Room Side Chest,,,Item,Deku Tree Compass Room Side Chest,,
-Deku Tree Basement Chest,Deku Tree Basement Chest,,,Item,Deku Tree Basement Chest,,
-GS Deku Tree Compass Room,GS Deku Tree Compass Room,Skull Token,,Item,GS Deku Tree Compass Room,,
-GS Deku Tree Basement Vines,GS Deku Tree Basement Vines,Skull Token,,Item,GS Deku Tree Basement Vines,,
-GS Deku Tree Basement Gate,GS Deku Tree Basement Gate,Skull Token,,Item,GS Deku Tree Basement Gate,,
-GS Deku Tree Basement Back Room,GS Deku Tree Basement Back Room,Skull Token,,Item,GS Deku Tree Basement Back Room,,
-Deku Tree Slingshot Chest,Deku Tree Slingshot Chest,,,Item,Deku Tree Slingshot Chest,,
-Deku Tree Slingshot Room Side Chest,Deku Tree Slingshot Room Side Chest,,,Item,Deku Tree Slingshot Room Side Chest,,
-Queen Gohma Heart,Queen Gohma Heart,,,Item,Queen Gohma Heart,,
-Dodongos Cavern Map Chest,Dodongos Cavern Map Chest,,,Item,Dodongos Cavern Map Chest,,
-Dodongos Cavern Compass Chest,Dodongos Cavern Compass Chest,,,Item,Dodongos Cavern Compass Chest,,
-GS Dodongo's Cavern East Side Room,GS Dodongo's Cavern East Side Room,Skull Token,,Item,GS Dodongo's Cavern East Side Room,,
-GS Dodongo's Cavern Scarecrow,GS Dodongo's Cavern Scarecrow,Skull Token,,Item,GS Dodongo's Cavern Scarecrow,,
-DC Deku Scrub Deku Sticks,DC Deku Scrub Deku Sticks,,,Item,DC Deku Scrub Deku Sticks,,
-DC Deku Scrub Deku Shield,DC Deku Scrub Deku Shield,,,Item,DC Deku Scrub Deku Shield,,
-Dodongos Cavern Bomb Flower Platform,Dodongos Cavern Bomb Flower Platform,,,Item,Dodongos Cavern Bomb Flower Platform,,
-GS Dodongo's Cavern Vines Above Stairs,GS Dodongo's Cavern Vines Above Stairs,Skull Token,,Item,GS Dodongo's Cavern Vines Above Stairs,,
-DC Deku Scrub Deku Seeds,DC Deku Scrub Deku Seeds,,,Item,DC Deku Scrub Deku Seeds,,
-DC Deku Scrub Deku Nuts,DC Deku Scrub Deku Nuts,,,Item,DC Deku Scrub Deku Nuts,,
-Dodongos Cavern Bomb Bag Chest,Dodongos Cavern Bomb Bag Chest,,,Item,Dodongos Cavern Bomb Bag Chest,,
-Dodongos Cavern End of Bridge Chest,Dodongos Cavern End of Bridge Chest,,,Item,Dodongos Cavern End of Bridge Chest,,
-GS Dodongo's Cavern Alcove Above Stairs,GS Dodongo's Cavern Alcove Above Stairs,Skull Token,,Item,GS Dodongo's Cavern Alcove Above Stairs,,
-Chest Above King Dodongo,Chest Above King Dodongo,,,Item,Chest Above King Dodongo,,
-King Dodongo Heart,King Dodongo Heart,,,Item,King Dodongo Heart,,
-GS Dodongo's Cavern Back Room,GS Dodongo's Cavern Back Room,Skull Token,,Item,GS Dodongo's Cavern Back Room,,
-Boomerang Chest,Boomerang Chest,,,Item,Boomerang Chest,,
-GS Jabu Jabu Water Switch Room,GS Jabu Jabu Water Switch Room,Skull Token,,Item,GS Jabu Jabu Water Switch Room,,
-GS Jabu Jabu Lobby Basement Lower,GS Jabu Jabu Lobby Basement Lower,Skull Token,,Item,GS Jabu Jabu Lobby Basement Lower,,
-GS Jabu Jabu Lobby Basement Upper,GS Jabu Jabu Lobby Basement Upper,Skull Token,,Item,GS Jabu Jabu Lobby Basement Upper,,
-Jabu Deku Scrub Deku Nuts,Jabu Deku Scrub Deku Nuts,,,Item,Jabu Deku Scrub Deku Nuts,,
-Jabu Jabus Belly Map Chest,Jabu Jabus Belly Map Chest,,,Item,Jabu Jabus Belly Map Chest,,
-Jabu Jabus Belly Compass Chest,Jabu Jabus Belly Compass Chest,,,Item,Jabu Jabus Belly Compass Chest,,
-Barinade Heart,Barinade Heart,,,Item,Barinade Heart,,
-GS Jabu Jabu Near Boss,GS Jabu Jabu Near Boss,Skull Token,,Item,GS Jabu Jabu Near Boss,,
-Forest Temple First Chest,Forest Temple First Chest,,,Item,Forest Temple First Chest,,
-Forest Temple Chest Behind Lobby,Forest Temple Chest Behind Lobby,,,Item,Forest Temple Chest Behind Lobby,,
-GS Forest Temple First Room,GS Forest Temple First Room,Skull Token,,Item,GS Forest Temple First Room,,
-GS Forest Temple Lobby,GS Forest Temple Lobby,Skull Token,,Item,GS Forest Temple Lobby,,
-GS Forest Temple Outdoor West,GS Forest Temple Outdoor West,Skull Token,,Item,GS Forest Temple Outdoor West,,
-Forest Temple Outside Hookshot Chest,Forest Temple Outside Hookshot Chest,,,Item,Forest Temple Outside Hookshot Chest,,
-GS Forest Temple Outdoor East,GS Forest Temple Outdoor East,Skull Token,,Item,GS Forest Temple Outdoor East,,
-Forest Temple Well Chest,Forest Temple Well Chest,,,Item,Forest Temple Well Chest,,
-Forest Temple Map Chest,Forest Temple Map Chest,,,Item,Forest Temple Map Chest,,
-Forest Temple Falling Room Chest,Forest Temple Falling Room Chest,,,Item,Forest Temple Falling Room Chest,,
-Forest Temple Block Push Chest,Forest Temple Block Push Chest,,,Item,Forest Temple Block Push Chest,,
-Forest Temple Boss Key Chest,Forest Temple Boss Key Chest,,,Item,Forest Temple Boss Key Chest,,
-Forest Temple Floormaster Chest,Forest Temple Floormaster Chest,,,Item,Forest Temple Floormaster Chest,,
-Forest Temple Bow Chest,Forest Temple Bow Chest,,,Item,Forest Temple Bow Chest,,
-Forest Temple Red Poe Chest,Forest Temple Red Poe Chest,,,Item,Forest Temple Red Poe Chest,,
-Forest Temple Blue Poe Chest,Forest Temple Blue Poe Chest,,,Item,Forest Temple Blue Poe Chest,,
-Forest Temple Near Boss Chest,Forest Temple Near Boss Chest,,,Item,Forest Temple Near Boss Chest,,
-Phantom Ganon Heart,Phantom Ganon Heart,,,Item,Phantom Ganon Heart,,
-GS Forest Temple Basement,GS Forest Temple Basement,Skull Token,,Item,GS Forest Temple Basement,,
-Bottom of the Well Front Left Hidden Wall,Bottom of the Well Front Left Hidden Wall,,,Item,Bottom of the Well Front Left Hidden Wall,,
-Bottom of the Well Front Center Bombable,Bottom of the Well Front Center Bombable,,,Item,Bottom of the Well Front Center Bombable,,
-Bottom of the Well Right Bottom Hidden Wall,Bottom of the Well Right Bottom Hidden Wall,,,Item,Bottom of the Well Right Bottom Hidden Wall,,
-Bottom of the Well Center Large Chest,Bottom of the Well Center Large Chest,,,Item,Bottom of the Well Center Large Chest,,
-Bottom of the Well Center Small Chest,Bottom of the Well Center Small Chest,,,Item,Bottom of the Well Center Small Chest,,
-Bottom of the Well Back Left Bombable,Bottom of the Well Back Left Bombable,,,Item,Bottom of the Well Back Left Bombable,,
-Bottom of the Well Freestanding Key,Bottom of the Well Freestanding Key,,,Item,Bottom of the Well Freestanding Key,,
-Bottom of the Well Defeat Boss,Bottom of the Well Defeat Boss,,,Item,Bottom of the Well Defeat Boss,,
-Bottom of the Well Invisible Chest,Bottom of the Well Invisible Chest,,,Item,Bottom of the Well Invisible Chest,,
-Bottom of the Well Underwater Front Chest,Bottom of the Well Underwater Front Chest,,,Item,Bottom of the Well Underwater Front Chest,,
-Bottom of the Well Underwater Left Chest,Bottom of the Well Underwater Left Chest,,,Item,Bottom of the Well Underwater Left Chest,,
-Bottom of the Well Basement Chest,Bottom of the Well Basement Chest,,,Item,Bottom of the Well Basement Chest,,
-Bottom of the Well Locked Pits,Bottom of the Well Locked Pits,,,Item,Bottom of the Well Locked Pits,,
-Bottom of the Well Behind Right Grate,Bottom of the Well Behind Right Grate,,,Item,Bottom of the Well Behind Right Grate,,
-GS Well West Inner Room,GS Well West Inner Room,Skull Token,,Item,GS Well West Inner Room,,
-GS Well East Inner Room,GS Well East Inner Room,Skull Token,,Item,GS Well East Inner Room,,
-GS Well Like Like Cage,GS Well Like Like Cage,Skull Token,,Item,GS Well Like Like Cage,,
-Fire Temple Chest Near Boss,Fire Temple Chest Near Boss,,,Item,Fire Temple Chest Near Boss,,
-Fire Temple Fire Dancer Chest,Fire Temple Fire Dancer Chest,,,Item,Fire Temple Fire Dancer Chest,,
-Fire Temple Boss Key Chest,Fire Temple Boss Key Chest,,,Item,Fire Temple Boss Key Chest,,
-Volvagia Heart,Volvagia Heart,,,Item,Volvagia Heart,,
-GS Fire Temple Basement,GS Fire Temple Basement,Skull Token,,Item,GS Fire Temple Basement,,
-Fire Temple Big Lava Room Open Chest,Fire Temple Big Lava Room Open Chest,,,Item,Fire Temple Big Lava Room Open Chest,,
-Fire Temple Big Lava Room Bombable Chest,Fire Temple Big Lava Room Bombable Chest,,,Item,Fire Temple Big Lava Room Bombable Chest,,
-GS Fire Temple Song of Time Room,GS Fire Temple Song of Time Room,Skull Token,,Item,GS Fire Temple Song of Time Room,,
-Fire Temple Boulder Maze Lower Chest,Fire Temple Boulder Maze Lower Chest,,,Item,Fire Temple Boulder Maze Lower Chest,,
-Fire Temple Boulder Maze Upper Chest,Fire Temple Boulder Maze Upper Chest,,,Item,Fire Temple Boulder Maze Upper Chest,,
-Fire Temple Boulder Maze Side Room,Fire Temple Boulder Maze Side Room,,,Item,Fire Temple Boulder Maze Side Room,,
-Fire Temple Boulder Maze Bombable Pit,Fire Temple Boulder Maze Bombable Pit,,,Item,Fire Temple Boulder Maze Bombable Pit,,
-Fire Temple Scarecrow Chest,Fire Temple Scarecrow Chest,,,Item,Fire Temple Scarecrow Chest,,
-Fire Temple Map Chest,Fire Temple Map Chest,,,Item,Fire Temple Map Chest,,
-Fire Temple Compass Chest,Fire Temple Compass Chest,,,Item,Fire Temple Compass Chest,,
-GS Fire Temple Unmarked Bomb Wall,GS Fire Temple Unmarked Bomb Wall,Skull Token,,Item,GS Fire Temple Unmarked Bomb Wall,,
-GS Fire Temple East Tower Climb,GS Fire Temple East Tower Climb,Skull Token,,Item,GS Fire Temple East Tower Climb,,
-GS Fire Temple East Tower Top,GS Fire Temple East Tower Top,Skull Token,,Item,GS Fire Temple East Tower Top,,
-Fire Temple Highest Goron Chest,Fire Temple Highest Goron Chest,,,Item,Fire Temple Highest Goron Chest,,
-Fire Temple Megaton Hammer Chest,Fire Temple Megaton Hammer Chest,,,Item,Fire Temple Megaton Hammer Chest,,
-Ice Cavern Map Chest,Ice Cavern Map Chest,,,Item,Ice Cavern Map Chest,,
-Ice Cavern Compass Chest,Ice Cavern Compass Chest,,,Item,Ice Cavern Compass Chest,,
-Ice Cavern Iron Boots Chest,Ice Cavern Iron Boots Chest,,,Item,Ice Cavern Iron Boots Chest,,
-Ice Cavern Freestanding PoH,Ice Cavern Freestanding PoH,,,Item,Ice Cavern Freestanding PoH,,
-GS Ice Cavern Spinning Scythe Room,GS Ice Cavern Spinning Scythe Room,Skull Token,,Item,GS Ice Cavern Spinning Scythe Room,,
-GS Ice Cavern Heart Piece Room,GS Ice Cavern Heart Piece Room,Skull Token,,Item,GS Ice Cavern Heart Piece Room,,
-GS Ice Cavern Push Block Room,GS Ice Cavern Push Block Room,Skull Token,,Item,GS Ice Cavern Push Block Room,,
-Morpha Heart,Morpha Heart,,,Item,Morpha Heart,,
-Water Temple Map Chest,Water Temple Map Chest,,,Item,Water Temple Map Chest,,
-Water Temple Compass Chest,Water Temple Compass Chest,,,Item,Water Temple Compass Chest,,
-Water Temple Torches Chest,Water Temple Torches Chest,,,Item,Water Temple Torches Chest,,
-Water Temple Central Bow Target Chest,Water Temple Central Bow Target Chest,,,Item,Water Temple Central Bow Target Chest,,
-GS Water Temple South Basement,GS Water Temple South Basement,Skull Token,,Item,GS Water Temple South Basement,,
-Water Temple Boss Key Chest,Water Temple Boss Key Chest,,,Item,Water Temple Boss Key Chest,,
-GS Water Temple Near Boss Key Chest,GS Water Temple Near Boss Key Chest,Skull Token,,Item,GS Water Temple Near Boss Key Chest,,
-Water Temple Cracked Wall Chest,Water Temple Cracked Wall Chest,,,Item,Water Temple Cracked Wall Chest,,
-Water Temple Dragon Chest,Water Temple Dragon Chest,,,Item,Water Temple Dragon Chest,,
-Water Temple Central Pillar Chest,Water Temple Central Pillar Chest,,,Item,Water Temple Central Pillar Chest,,
-GS Water Temple Central Room,GS Water Temple Central Room,Skull Token,,Item,GS Water Temple Central Room,,
-Water Temple Dark Link Chest,Water Temple Dark Link Chest,,,Item,Water Temple Dark Link Chest,,
-Water Temple River Chest,Water Temple River Chest,,,Item,Water Temple River Chest,,
-GS Water Temple Serpent River,GS Water Temple Serpent River,Skull Token,,Item,GS Water Temple Serpent River,,
-GS Water Temple Falling Platform Room,GS Water Temple Falling Platform Room,Skull Token,,Item,GS Water Temple Falling Platform Room,,
-Shadow Temple Map Chest,Shadow Temple Map Chest,,,Item,Shadow Temple Map Chest,,
-Shadow Temple Hover Boots Chest,Shadow Temple Hover Boots Chest,,,Item,Shadow Temple Hover Boots Chest,,
-Shadow Temple Compass Chest,Shadow Temple Compass Chest,,,Item,Shadow Temple Compass Chest,,
-Shadow Temple Early Silver Rupee Chest,Shadow Temple Early Silver Rupee Chest,,,Item,Shadow Temple Early Silver Rupee Chest,,
-Shadow Temple Invisible Blades Visible Chest,Shadow Temple Invisible Blades Visible Chest,,,Item,Shadow Temple Invisible Blades Visible Chest,,
-Shadow Temple Invisible Blades Invisible Chest,Shadow Temple Invisible Blades Invisible Chest,,,Item,Shadow Temple Invisible Blades Invisible Chest,,
-Shadow Temple Falling Spikes Lower Chest,Shadow Temple Falling Spikes Lower Chest,,,Item,Shadow Temple Falling Spikes Lower Chest,,
-Shadow Temple Falling Spikes Upper Chest,Shadow Temple Falling Spikes Upper Chest,,,Item,Shadow Temple Falling Spikes Upper Chest,,
-Shadow Temple Falling Spikes Switch Chest,Shadow Temple Falling Spikes Switch Chest,,,Item,Shadow Temple Falling Spikes Switch Chest,,
-Shadow Temple Invisible Spikes Chest,Shadow Temple Invisible Spikes Chest,,,Item,Shadow Temple Invisible Spikes Chest,,
-Shadow Temple Freestanding Key,Shadow Temple Freestanding Key,,,Item,Shadow Temple Freestanding Key,,
-GS Shadow Temple Like Like Room,GS Shadow Temple Like Like Room,Skull Token,,Item,GS Shadow Temple Like Like Room,,
-GS Shadow Temple Crusher Room,GS Shadow Temple Crusher Room,Skull Token,,Item,GS Shadow Temple Crusher Room,,
-GS Shadow Temple Single Giant Pot,GS Shadow Temple Single Giant Pot,Skull Token,,Item,GS Shadow Temple Single Giant Pot,,
-Shadow Temple Wind Hint Chest,Shadow Temple Wind Hint Chest,,,Item,Shadow Temple Wind Hint Chest,,
-Shadow Temple After Wind Enemy Chest,Shadow Temple After Wind Enemy Chest,,,Item,Shadow Temple After Wind Enemy Chest,,
-Shadow Temple After Wind Hidden Chest,Shadow Temple After Wind Hidden Chest,,,Item,Shadow Temple After Wind Hidden Chest,,
-GS Shadow Temple Near Ship,GS Shadow Temple Near Ship,Skull Token,,Item,GS Shadow Temple Near Ship,,
-Shadow Temple Spike Walls Left Chest,Shadow Temple Spike Walls Left Chest,,,Item,Shadow Temple Spike Walls Left Chest,,
-Shadow Temple Boss Key Chest,Shadow Temple Boss Key Chest,,,Item,Shadow Temple Boss Key Chest,,
-Shadow Temple Hidden Floormaster Chest,Shadow Temple Hidden Floormaster Chest,,,Item,Shadow Temple Hidden Floormaster Chest,,
-Bongo Bongo Heart,Bongo Bongo Heart,,,Item,Bongo Bongo Heart,,
-GS Shadow Temple Triple Giant Pot,GS Shadow Temple Triple Giant Pot,Skull Token,,Item,GS Shadow Temple Triple Giant Pot,,
-Gerudo Training Grounds Lobby Left Chest,Gerudo Training Grounds Lobby Left Chest,,,Item,Gerudo Training Grounds Lobby Left Chest,,
-Gerudo Training Grounds Lobby Right Chest,Gerudo Training Grounds Lobby Right Chest,,,Item,Gerudo Training Grounds Lobby Right Chest,,
-Gerudo Training Grounds Stalfos Chest,Gerudo Training Grounds Stalfos Chest,,,Item,Gerudo Training Grounds Stalfos Chest,,
-Gerudo Training Grounds Beamos Chest,Gerudo Training Grounds Beamos Chest,,,Item,Gerudo Training Grounds Beamos Chest,,
-Gerudo Training Grounds Hidden Ceiling Chest,Gerudo Training Grounds Hidden Ceiling Chest,,,Item,Gerudo Training Grounds Hidden Ceiling Chest,,
-Gerudo Training Grounds Maze Path First Chest,Gerudo Training Grounds Maze Path First Chest,,,Item,Gerudo Training Grounds Maze Path First Chest,,
-Gerudo Training Grounds Maze Path Second Chest,Gerudo Training Grounds Maze Path Second Chest,,,Item,Gerudo Training Grounds Maze Path Second Chest,,
-Gerudo Training Grounds Maze Path Third Chest,Gerudo Training Grounds Maze Path Third Chest,,,Item,Gerudo Training Grounds Maze Path Third Chest,,
-Gerudo Training Grounds Maze Path Final Chest,Gerudo Training Grounds Maze Path Final Chest,,,Item,Gerudo Training Grounds Maze Path Final Chest,,
-Gerudo Training Grounds Maze Right Central Chest,Gerudo Training Grounds Maze Right Central Chest,,,Item,Gerudo Training Grounds Maze Right Central Chest,,
-Gerudo Training Grounds Maze Right Side Chest,Gerudo Training Grounds Maze Right Side Chest,,,Item,Gerudo Training Grounds Maze Right Side Chest,,
-Gerudo Training Grounds Freestanding Key,Gerudo Training Grounds Freestanding Key,,,Item,Gerudo Training Grounds Freestanding Key,,
-Gerudo Training Grounds Underwater Silver Rupee Chest,Gerudo Training Grounds Underwater Silver Rupee Chest,,,Item,Gerudo Training Grounds Underwater Silver Rupee Chest,,
-Gerudo Training Grounds Hammer Room Clear Chest,Gerudo Training Grounds Hammer Room Clear Chest,,,Item,Gerudo Training Grounds Hammer Room Clear Chest,,
-Gerudo Training Grounds Hammer Room Switch Chest,Gerudo Training Grounds Hammer Room Switch Chest,,,Item,Gerudo Training Grounds Hammer Room Switch Chest,,
-Gerudo Training Grounds Eye Statue Chest,Gerudo Training Grounds Eye Statue Chest,,,Item,Gerudo Training Grounds Eye Statue Chest,,
-Gerudo Training Grounds Near Scarecrow Chest,Gerudo Training Grounds Near Scarecrow Chest,,,Item,Gerudo Training Grounds Near Scarecrow Chest,,
-Gerudo Training Grounds Before Heavy Block Chest,Gerudo Training Grounds Before Heavy Block Chest,,,Item,Gerudo Training Grounds Before Heavy Block Chest,,
-Gerudo Training Grounds Heavy Block First Chest,Gerudo Training Grounds Heavy Block First Chest,,,Item,Gerudo Training Grounds Heavy Block First Chest,,
-Gerudo Training Grounds Heavy Block Second Chest,Gerudo Training Grounds Heavy Block Second Chest,,,Item,Gerudo Training Grounds Heavy Block Second Chest,,
-Gerudo Training Grounds Heavy Block Third Chest,Gerudo Training Grounds Heavy Block Third Chest,,,Item,Gerudo Training Grounds Heavy Block Third Chest,,
-Gerudo Training Grounds Heavy Block Fourth Chest,Gerudo Training Grounds Heavy Block Fourth Chest,,,Item,Gerudo Training Grounds Heavy Block Fourth Chest,,
-Spirit Temple Child Left Chest,Spirit Temple Child Left Chest,,,Item,Spirit Temple Child Left Chest,,
-Spirit Temple Child Right Chest,Spirit Temple Child Right Chest,,,Item,Spirit Temple Child Right Chest,,
-GS Spirit Temple Metal Fence,GS Spirit Temple Metal Fence,Skull Token,,Item,GS Spirit Temple Metal Fence,,
-Spirit Temple Child Climb East Chest,Spirit Temple Child Climb East Chest,,,Item,Spirit Temple Child Climb East Chest,,
-Spirit Temple Child Climb North Chest,Spirit Temple Child Climb North Chest,,,Item,Spirit Temple Child Climb North Chest,,
-GS Spirit Temple Bomb for Light Room,GS Spirit Temple Bomb for Light Room,Skull Token,,Item,GS Spirit Temple Bomb for Light Room,,
-Spirit Temple Compass Chest,Spirit Temple Compass Chest,,,Item,Spirit Temple Compass Chest,,
-Spirit Temple Early Adult Right Chest,Spirit Temple Early Adult Right Chest,,,Item,Spirit Temple Early Adult Right Chest,,
-Spirit Temple First Mirror Right Chest,Spirit Temple First Mirror Right Chest,,,Item,Spirit Temple First Mirror Right Chest,,
-Spirit Temple First Mirror Left Chest,Spirit Temple First Mirror Left Chest,,,Item,Spirit Temple First Mirror Left Chest,,
-GS Spirit Temple Boulder Room,GS Spirit Temple Boulder Room,Skull Token,,Item,GS Spirit Temple Boulder Room,,
-Spirit Temple Map Chest,Spirit Temple Map Chest,,,Item,Spirit Temple Map Chest,,
-Spirit Temple Sun Block Room Chest,Spirit Temple Sun Block Room Chest,,,Item,Spirit Temple Sun Block Room Chest,,
-Spirit Temple Statue Hand Chest,Spirit Temple Statue Hand Chest,,,Item,Spirit Temple Statue Hand Chest,,
-Spirit Temple NE Main Room Chest,Spirit Temple NE Main Room Chest,,,Item,Spirit Temple NE Main Room Chest,,
-GS Spirit Temple Hall to West Iron Knuckle,GS Spirit Temple Hall to West Iron Knuckle,Skull Token,,Item,GS Spirit Temple Hall to West Iron Knuckle,,
-GS Spirit Temple Lobby,GS Spirit Temple Lobby,Skull Token,,Item,GS Spirit Temple Lobby,,
-Silver Gauntlets Chest,Silver Gauntlets Chest,,,Item,Silver Gauntlets Chest,,
-Mirror Shield Chest,Mirror Shield Chest,,,Item,Mirror Shield Chest,,
-Spirit Temple Near Four Armos Chest,Spirit Temple Near Four Armos Chest,,,Item,Spirit Temple Near Four Armos Chest,,
-Spirit Temple Hallway Left Invisible Chest,Spirit Temple Hallway Left Invisible Chest,,,Item,Spirit Temple Hallway Left Invisible Chest,,
-Spirit Temple Hallway Right Invisible Chest,Spirit Temple Hallway Right Invisible Chest,,,Item,Spirit Temple Hallway Right Invisible Chest,,
-Spirit Temple Boss Key Chest,Spirit Temple Boss Key Chest,,,Item,Spirit Temple Boss Key Chest,,
-Spirit Temple Topmost Chest,Spirit Temple Topmost Chest,,,Item,Spirit Temple Topmost Chest,,
-Twinrova Heart,Twinrova Heart,,,Item,Twinrova Heart,,
-GC Deku Scrub Bombs,GC Deku Scrub Bombs,Skull Token,,Item,GC Deku Scrub Bombs,,
-GC Deku Scrub Arrows,GC Deku Scrub Arrows,Skull Token,,Item,GC Deku Scrub Arrows,,
-GC Deku Scrub Red Potion,GC Deku Scrub Red Potion,Skull Token,,Item,GC Deku Scrub Red Potion,,
-GC Deku Scrub Green Potion,GC Deku Scrub Green Potion,Skull Token,,Item,GC Deku Scrub Green Potion,,
-Ganons Castle Forest Trial Chest,Ganons Castle Forest Trial Chest,,,Item,Ganons Castle Forest Trial Chest,,
-Ganons Castle Water Trial Left Chest,Ganons Castle Water Trial Left Chest,,,Item,Ganons Castle Water Trial Left Chest,,
-Ganons Castle Water Trial Right Chest,Ganons Castle Water Trial Right Chest,,,Item,Ganons Castle Water Trial Right Chest,,
-Ganons Castle Shadow Trial First Chest,Ganons Castle Shadow Trial First Chest,,,Item,Ganons Castle Shadow Trial First Chest,,
-Ganons Castle Shadow Trial Second Chest,Ganons Castle Shadow Trial Second Chest,,,Item,Ganons Castle Shadow Trial Second Chest,,
-Ganons Castle Spirit Trial First Chest,Ganons Castle Spirit Trial First Chest,,,Item,Ganons Castle Spirit Trial First Chest,,
-Ganons Castle Spirit Trial Second Chest,Ganons Castle Spirit Trial Second Chest,,,Item,Ganons Castle Spirit Trial Second Chest,,
-Ganons Castle Light Trial First Left Chest,Ganons Castle Light Trial First Left Chest,,,Item,Ganons Castle Light Trial First Left Chest,,
-Ganons Castle Light Trial Second Left Chest,Ganons Castle Light Trial Second Left Chest,,,Item,Ganons Castle Light Trial Second Left Chest,,
-Ganons Castle Light Trial Third Left Chest,Ganons Castle Light Trial Third Left Chest,,,Item,Ganons Castle Light Trial Third Left Chest,,
-Ganons Castle Light Trial First Right Chest,Ganons Castle Light Trial First Right Chest,,,Item,Ganons Castle Light Trial First Right Chest,,
-Ganons Castle Light Trial Second Right Chest,Ganons Castle Light Trial Second Right Chest,,,Item,Ganons Castle Light Trial Second Right Chest,,
-Ganons Castle Light Trial Third Right Chest,Ganons Castle Light Trial Third Right Chest,,,Item,Ganons Castle Light Trial Third Right Chest,,
-Ganons Castle Light Trial Invisible Enemies Chest,Ganons Castle Light Trial Invisible Enemies Chest,,,Item,Ganons Castle Light Trial Invisible Enemies Chest,,
-Ganons Castle Light Trial Lullaby Chest,Ganons Castle Light Trial Lullaby Chest,,,Item,Ganons Castle Light Trial Lullaby Chest,,
-Deku Tree MQ Lobby Chest,Deku Tree MQ Lobby Chest,,,Item,Deku Tree MQ Lobby Chest,,Deku Tree MQ Lobby Chest
-Deku Tree MQ Slingshot Chest,Deku Tree MQ Slingshot Chest,,,Item,Deku Tree MQ Slingshot Chest,,Deku Tree MQ Slingshot Chest
-Deku Tree MQ Slingshot Room Back Chest,Deku Tree MQ Slingshot Room Back Chest,,,Item,Deku Tree MQ Slingshot Room Back Chest,,Deku Tree MQ Slingshot Room Back Chest
-Deku Tree MQ Basement Chest,Deku Tree MQ Basement Chest,,,Item,Deku Tree MQ Basement Chest,,Deku Tree MQ Basement Chest
-GS Deku Tree MQ Lobby,GS Deku Tree MQ Lobby,,,Item,GS Deku Tree MQ Lobby,,GS Deku Tree MQ Lobby
-Deku Tree MQ Compass Chest,Deku Tree MQ Compass Chest,,,Item,Deku Tree MQ Compass Chest,,Deku Tree MQ Compass Chest
-GS Deku Tree MQ Compass Room,GS Deku Tree MQ Compass Room,,,Item,GS Deku Tree MQ Compass Room,,GS Deku Tree MQ Compass Room
-Deku Tree MQ Before Spinning Log Chest,Deku Tree MQ Before Spinning Log Chest,,,Item,Deku Tree MQ Before Spinning Log Chest,,Deku Tree MQ Before Spinning Log Chest
-Deku Tree MQ After Spinning Log Chest,Deku Tree MQ After Spinning Log Chest,,,Item,Deku Tree MQ After Spinning Log Chest,,Deku Tree MQ After Spinning Log Chest
-GS Deku Tree MQ Basement Ceiling,GS Deku Tree MQ Basement Ceiling,,,Item,GS Deku Tree MQ Basement Ceiling,,GS Deku Tree MQ Basement Ceiling
-GS Deku Tree MQ Basement Back Room,GS Deku Tree MQ Basement Back Room,,,Item,GS Deku Tree MQ Basement Back Room,,GS Deku Tree MQ Basement Back Room
-DT MQ Deku Scrub Deku Shield,DT MQ Deku Scrub Deku Shield,,,Item,DT MQ Deku Scrub Deku Shield,,DT MQ Deku Scrub Deku Shield
-Dodongos Cavern MQ Map Chest,Dodongos Cavern MQ Map Chest,,,Item,Dodongos Cavern MQ Map Chest,,Dodongos Cavern MQ Map Chest
-Dodongos Cavern MQ Compass Chest,Dodongos Cavern MQ Compass Chest,,,Item,Dodongos Cavern MQ Compass Chest,,Dodongos Cavern MQ Compass Chest
-Dodongos Cavern MQ Larva Room Chest,Dodongos Cavern MQ Larva Room Chest,,,Item,Dodongos Cavern MQ Larva Room Chest,,Dodongos Cavern MQ Larva Room Chest
-Dodongos Cavern MQ Torch Puzzle Room Chest,Dodongos Cavern MQ Torch Puzzle Room Chest,,,Item,Dodongos Cavern MQ Torch Puzzle Room Chest,,Dodongos Cavern MQ Torch Puzzle Room Chest
-GS Dodongo's Cavern MQ Song of Time Block Room,GS Dodongo's Cavern MQ Song of Time Block Room,,,Item,GS Dodongo's Cavern MQ Song of Time Block Room,,GS Dodongo's Cavern MQ Song of Time Block Room
-GS Dodongo's Cavern MQ Larva Room,GS Dodongo's Cavern MQ Larva Room,,,Item,GS Dodongo's Cavern MQ Larva Room,,GS Dodongo's Cavern MQ Larva Room
-GS Dodongo's Cavern MQ Lizalfos Room,GS Dodongo's Cavern MQ Lizalfos Room,,,Item,GS Dodongo's Cavern MQ Lizalfos Room,,GS Dodongo's Cavern MQ Lizalfos Room
-DC MQ Deku Scrub Deku Sticks,DC MQ Deku Scrub Deku Sticks,,,Item,DC MQ Deku Scrub Deku Sticks,,DC MQ Deku Scrub Deku Sticks
-DC MQ Deku Scrub Deku Seeds,DC MQ Deku Scrub Deku Seeds,,,Item,DC MQ Deku Scrub Deku Seeds,,DC MQ Deku Scrub Deku Seeds
-DC MQ Deku Scrub Deku Shield,DC MQ Deku Scrub Deku Shield,,,Item,DC MQ Deku Scrub Deku Shield,,DC MQ Deku Scrub Deku Shield
-DC MQ Deku Scrub Red Potion,DC MQ Deku Scrub Red Potion,,,Item,DC MQ Deku Scrub Red Potion,,DC MQ Deku Scrub Red Potion
-Dodongos Cavern MQ Bomb Bag Chest,Dodongos Cavern MQ Bomb Bag Chest,,,Item,Dodongos Cavern MQ Bomb Bag Chest,,Dodongos Cavern MQ Bomb Bag Chest
-GS Dodongo's Cavern MQ Scrub Room,GS Dodongo's Cavern MQ Scrub Room,,,Item,GS Dodongo's Cavern MQ Scrub Room,,GS Dodongo's Cavern MQ Scrub Room
-Dodongos Cavern MQ Under Grave Chest,Dodongos Cavern MQ Under Grave Chest,,,Item,Dodongos Cavern MQ Under Grave Chest,,Dodongos Cavern MQ Under Grave Chest
-GS Dodongo's Cavern MQ Back Area,GS Dodongo's Cavern MQ Back Area,,,Item,GS Dodongo's Cavern MQ Back Area,,GS Dodongo's Cavern MQ Back Area
-Jabu Jabus Belly MQ Map Chest,Jabu Jabus Belly MQ Map Chest,,,Item,Jabu Jabus Belly MQ Map Chest,,Jabu Jabus Belly MQ Map Chest
-Jabu Jabus Belly MQ Entry Side Chest,Jabu Jabus Belly MQ Entry Side Chest,,,Item,Jabu Jabus Belly MQ Entry Side Chest,,Jabu Jabus Belly MQ Entry Side Chest
-Jabu Jabus Belly MQ Second Room Lower Chest,Jabu Jabus Belly MQ Second Room Lower Chest,,,Item,Jabu Jabus Belly MQ Second Room Lower Chest,,Jabu Jabus Belly MQ Second Room Lower Chest
-Jabu Jabus Belly MQ Second Room Upper Chest,Jabu Jabus Belly MQ Second Room Upper Chest,,,Item,Jabu Jabus Belly MQ Second Room Upper Chest,,Jabu Jabus Belly MQ Second Room Upper Chest
-Jabu Jabus Belly MQ Compass Chest,Jabu Jabus Belly MQ Compass Chest,,,Item,Jabu Jabus Belly MQ Compass Chest,,Jabu Jabus Belly MQ Compass Chest
-Jabu Jabus Belly MQ Basement South Chest,Jabu Jabus Belly MQ Basement South Chest,,,Item,Jabu Jabus Belly MQ Basement South Chest,,Jabu Jabus Belly MQ Basement South Chest
-Jabu Jabus Belly MQ Basement North Chest,Jabu Jabus Belly MQ Basement North Chest,,,Item,Jabu Jabus Belly MQ Basement North Chest,,Jabu Jabus Belly MQ Basement North Chest
-Jabu Jabus Belly MQ Boomerang Room Small Chest,Jabu Jabus Belly MQ Boomerang Room Small Chest,,,Item,Jabu Jabus Belly MQ Boomerang Room Small Chest,,Jabu Jabus Belly MQ Boomerang Room Small Chest
-MQ Boomerang Chest,MQ Boomerang Chest,,,Item,MQ Boomerang Chest,,MQ Boomerang Chest
-GS Jabu Jabu MQ Boomerang Room,GS Jabu Jabu MQ Boomerang Room,,,Item,GS Jabu Jabu MQ Boomerang Room,,GS Jabu Jabu MQ Boomerang Room
-Jabu Jabus Belly MQ Falling Like Like Room Chest,Jabu Jabus Belly MQ Falling Like Like Room Chest,,,Item,Jabu Jabus Belly MQ Falling Like Like Room Chest,,Jabu Jabus Belly MQ Falling Like Like Room Chest
-GS Jabu Jabu MQ Tailpasaran Room,GS Jabu Jabu MQ Tailpasaran Room,,,Item,GS Jabu Jabu MQ Tailpasaran Room,,GS Jabu Jabu MQ Tailpasaran Room
-GS Jabu Jabu MQ Invisible Enemies Room,GS Jabu Jabu MQ Invisible Enemies Room,,,Item,GS Jabu Jabu MQ Invisible Enemies Room,,GS Jabu Jabu MQ Invisible Enemies Room
-Jabu Jabus Belly MQ Cow,Jabu Jabus Belly MQ Cow,,,Item,Jabu Jabus Belly MQ Cow,,Jabu Jabus Belly MQ Cow
-Jabu Jabus Belly MQ Near Boss Chest,Jabu Jabus Belly MQ Near Boss Chest,,,Item,Jabu Jabus Belly MQ Near Boss Chest,,Jabu Jabus Belly MQ Near Boss Chest
-GS Jabu Jabu MQ Near Boss,GS Jabu Jabu MQ Near Boss,,,Item,GS Jabu Jabu MQ Near Boss,,GS Jabu Jabu MQ Near Boss
-Forest Temple MQ First Chest,Forest Temple MQ First Chest,,,Item,Forest Temple MQ First Chest,,Forest Temple MQ First Chest
-GS Forest Temple MQ First Hallway,GS Forest Temple MQ First Hallway,,,Item,GS Forest Temple MQ First Hallway,,GS Forest Temple MQ First Hallway
-Forest Temple MQ Chest Behind Lobby,Forest Temple MQ Chest Behind Lobby,,,Item,Forest Temple MQ Chest Behind Lobby,,Forest Temple MQ Chest Behind Lobby
-GS Forest Temple MQ Block Push Room,GS Forest Temple MQ Block Push Room,,,Item,GS Forest Temple MQ Block Push Room,,GS Forest Temple MQ Block Push Room
-Forest Temple MQ Boss Key Chest,Forest Temple MQ Boss Key Chest,,,Item,Forest Temple MQ Boss Key Chest,,Forest Temple MQ Boss Key Chest
-Forest Temple MQ Redead Chest,Forest Temple MQ Redead Chest,,,Item,Forest Temple MQ Redead Chest,,Forest Temple MQ Redead Chest
-GS Forest Temple MQ Outdoor West,GS Forest Temple MQ Outdoor West,,,Item,GS Forest Temple MQ Outdoor West,,GS Forest Temple MQ Outdoor West
-Forest Temple MQ Well Chest,Forest Temple MQ Well Chest,,,Item,Forest Temple MQ Well Chest,,Forest Temple MQ Well Chest
-GS Forest Temple MQ Outdoor East,GS Forest Temple MQ Outdoor East,,,Item,GS Forest Temple MQ Outdoor East,,GS Forest Temple MQ Outdoor East
-GS Forest Temple MQ Well,GS Forest Temple MQ Well,,,Item,GS Forest Temple MQ Well,,GS Forest Temple MQ Well
-Forest Temple MQ NE Outdoors Upper Chest,Forest Temple MQ NE Outdoors Upper Chest,,,Item,Forest Temple MQ NE Outdoors Upper Chest,,Forest Temple MQ NE Outdoors Upper Chest
-Forest Temple MQ NE Outdoors Lower Chest,Forest Temple MQ NE Outdoors Lower Chest,,,Item,Forest Temple MQ NE Outdoors Lower Chest,,Forest Temple MQ NE Outdoors Lower Chest
-Forest Temple MQ Bow Chest,Forest Temple MQ Bow Chest,,,Item,Forest Temple MQ Bow Chest,,Forest Temple MQ Bow Chest
-Forest Temple MQ Map Chest,Forest Temple MQ Map Chest,,,Item,Forest Temple MQ Map Chest,,Forest Temple MQ Map Chest
-Forest Temple MQ Compass Chest,Forest Temple MQ Compass Chest,,,Item,Forest Temple MQ Compass Chest,,Forest Temple MQ Compass Chest
-Forest Temple MQ Falling Room Chest,Forest Temple MQ Falling Room Chest,,,Item,Forest Temple MQ Falling Room Chest,,Forest Temple MQ Falling Room Chest
-Forest Temple MQ Near Boss Chest,Forest Temple MQ Near Boss Chest,,,Item,Forest Temple MQ Near Boss Chest,,Forest Temple MQ Near Boss Chest
-Bottom of the Well MQ Compass Chest,Bottom of the Well MQ Compass Chest,,,Item,Bottom of the Well MQ Compass Chest,,Bottom of the Well MQ Compass Chest
-Bottom of the Well MQ Map Chest,Bottom of the Well MQ Map Chest,,,Item,Bottom of the Well MQ Map Chest,,Bottom of the Well MQ Map Chest
-Bottom of the Well MQ Lens Chest,Bottom of the Well MQ Lens Chest,,,Item,Bottom of the Well MQ Lens Chest,,Bottom of the Well MQ Lens Chest
-Bottom of the Well MQ Dead Hand Freestanding Key,Bottom of the Well MQ Dead Hand Freestanding Key,,,Item,Bottom of the Well MQ Dead Hand Freestanding Key,,Bottom of the Well MQ Dead Hand Freestanding Key
-Bottom of the Well MQ East Inner Room Freestanding Key,Bottom of the Well MQ East Inner Room Freestanding Key,,,Item,Bottom of the Well MQ East Inner Room Freestanding Key,,Bottom of the Well MQ East Inner Room Freestanding Key
-GS Well MQ Basement,GS Well MQ Basement,,,Item,GS Well MQ Basement,,GS Well MQ Basement
-GS Well MQ West Inner Room,GS Well MQ West Inner Room,,,Item,GS Well MQ West Inner Room,,GS Well MQ West Inner Room
-GS Well MQ Coffin Room,GS Well MQ Coffin Room,,,Item,GS Well MQ Coffin Room,,GS Well MQ Coffin Room
-Fire Temple MQ Entrance Hallway Small Chest,Fire Temple MQ Entrance Hallway Small Chest,,,Item,Fire Temple MQ Entrance Hallway Small Chest,,Fire Temple MQ Entrance Hallway Small Chest
-Fire Temple MQ Chest Near Boss,Fire Temple MQ Chest Near Boss,,,Item,Fire Temple MQ Chest Near Boss,,Fire Temple MQ Chest Near Boss
-Fire Temple MQ Megaton Hammer Chest,Fire Temple MQ Megaton Hammer Chest,,,Item,Fire Temple MQ Megaton Hammer Chest,,Fire Temple MQ Megaton Hammer Chest
-Fire Temple MQ Map Chest,Fire Temple MQ Map Chest,,,Item,Fire Temple MQ Map Chest,,Fire Temple MQ Map Chest
-Fire Temple MQ Boss Key Chest,Fire Temple MQ Boss Key Chest,,,Item,Fire Temple MQ Boss Key Chest,,Fire Temple MQ Boss Key Chest
-Fire Temple MQ Big Lava Room Bombable Chest,Fire Temple MQ Big Lava Room Bombable Chest,,,Item,Fire Temple MQ Big Lava Room Bombable Chest,,Fire Temple MQ Big Lava Room Bombable Chest
-GS Fire Temple MQ Big Lava Room,GS Fire Temple MQ Big Lava Room,,,Item,GS Fire Temple MQ Big Lava Room,,GS Fire Temple MQ Big Lava Room
-Fire Temple MQ Maze Lower Chest,Fire Temple MQ Maze Lower Chest,,,Item,Fire Temple MQ Maze Lower Chest,,Fire Temple MQ Maze Lower Chest
-Fire Temple MQ Maze Side Room,Fire Temple MQ Maze Side Room,,,Item,Fire Temple MQ Maze Side Room,,Fire Temple MQ Maze Side Room
-Fire Temple MQ Maze Upper Chest,Fire Temple MQ Maze Upper Chest,,,Item,Fire Temple MQ Maze Upper Chest,,Fire Temple MQ Maze Upper Chest
-Fire Temple MQ Compass Chest,Fire Temple MQ Compass Chest,,,Item,Fire Temple MQ Compass Chest,,Fire Temple MQ Compass Chest
-GS Fire Temple MQ East Tower Top,GS Fire Temple MQ East Tower Top,,,Item,GS Fire Temple MQ East Tower Top,,GS Fire Temple MQ East Tower Top
-Fire Temple MQ Freestanding Key,Fire Temple MQ Freestanding Key,,,Item,Fire Temple MQ Freestanding Key,,Fire Temple MQ Freestanding Key
-Fire Temple MQ West Tower Top Chest,Fire Temple MQ West Tower Top Chest,,,Item,Fire Temple MQ West Tower Top Chest,,Fire Temple MQ West Tower Top Chest
-GS Fire Temple MQ Fire Wall Maze Side Room,GS Fire Temple MQ Fire Wall Maze Side Room,,,Item,GS Fire Temple MQ Fire Wall Maze Side Room,,GS Fire Temple MQ Fire Wall Maze Side Room
-GS Fire Temple MQ Fire Wall Maze Center,GS Fire Temple MQ Fire Wall Maze Center,,,Item,GS Fire Temple MQ Fire Wall Maze Center,,GS Fire Temple MQ Fire Wall Maze Center
-GS Fire Temple MQ Above Fire Wall Maze,GS Fire Temple MQ Above Fire Wall Maze,,,Item,GS Fire Temple MQ Above Fire Wall Maze,,GS Fire Temple MQ Above Fire Wall Maze
-Ice Cavern MQ Map Chest,Ice Cavern MQ Map Chest,,,Item,Ice Cavern MQ Map Chest,,Ice Cavern MQ Map Chest
-Ice Cavern MQ Iron Boots Chest,Ice Cavern MQ Iron Boots Chest,,,Item,Ice Cavern MQ Iron Boots Chest,,Ice Cavern MQ Iron Boots Chest
-GS Ice Cavern MQ Ice Block,GS Ice Cavern MQ Ice Block,,,Item,GS Ice Cavern MQ Ice Block,,GS Ice Cavern MQ Ice Block
-GS Ice Cavern MQ Scarecrow,GS Ice Cavern MQ Scarecrow,,,Item,GS Ice Cavern MQ Scarecrow,,GS Ice Cavern MQ Scarecrow
-Ice Cavern MQ Compass Chest,Ice Cavern MQ Compass Chest,,,Item,Ice Cavern MQ Compass Chest,,Ice Cavern MQ Compass Chest
-Ice Cavern MQ Freestanding PoH,Ice Cavern MQ Freestanding PoH,,,Item,Ice Cavern MQ Freestanding PoH,,Ice Cavern MQ Freestanding PoH
-GS Ice Cavern MQ Red Ice,GS Ice Cavern MQ Red Ice,,,Item,GS Ice Cavern MQ Red Ice,,GS Ice Cavern MQ Red Ice
-Water Temple MQ Map Chest,Water Temple MQ Map Chest,,,Item,Water Temple MQ Map Chest,,Water Temple MQ Map Chest
-Water Temple MQ Central Pillar Chest,Water Temple MQ Central Pillar Chest,,,Item,Water Temple MQ Central Pillar Chest,,Water Temple MQ Central Pillar Chest
-Water Temple MQ Compass Chest,Water Temple MQ Compass Chest,,,Item,Water Temple MQ Compass Chest,,Water Temple MQ Compass Chest
-Water Temple MQ Longshot Chest,Water Temple MQ Longshot Chest,,,Item,Water Temple MQ Longshot Chest,,Water Temple MQ Longshot Chest
-GS Water Temple MQ Lizalfos Hallway,GS Water Temple MQ Lizalfos Hallway,,,Item,GS Water Temple MQ Lizalfos Hallway,,GS Water Temple MQ Lizalfos Hallway
-GS Water Temple MQ Before Upper Water Switch,GS Water Temple MQ Before Upper Water Switch,,,Item,GS Water Temple MQ Before Upper Water Switch,,GS Water Temple MQ Before Upper Water Switch
-Water Temple MQ Boss Key Chest,Water Temple MQ Boss Key Chest,,,Item,Water Temple MQ Boss Key Chest,,Water Temple MQ Boss Key Chest
-GS Water Temple MQ Serpent River,GS Water Temple MQ Serpent River,,,Item,GS Water Temple MQ Serpent River,,GS Water Temple MQ Serpent River
-Water Temple MQ Freestanding Key,Water Temple MQ Freestanding Key,,,Item,Water Temple MQ Freestanding Key,,Water Temple MQ Freestanding Key
-GS Water Temple MQ South Basement,GS Water Temple MQ South Basement,,,Item,GS Water Temple MQ South Basement,,GS Water Temple MQ South Basement
-GS Water Temple MQ North Basement,GS Water Temple MQ North Basement,,,Item,GS Water Temple MQ North Basement,,GS Water Temple MQ North Basement
-Shadow Temple MQ Compass Chest,Shadow Temple MQ Compass Chest,,,Item,Shadow Temple MQ Compass Chest,,Shadow Temple MQ Compass Chest
-Shadow Temple MQ Hover Boots Chest,Shadow Temple MQ Hover Boots Chest,,,Item,Shadow Temple MQ Hover Boots Chest,,Shadow Temple MQ Hover Boots Chest
-Shadow Temple MQ Map Chest,Shadow Temple MQ Map Chest,,,Item,Shadow Temple MQ Map Chest,,Shadow Temple MQ Map Chest
-Shadow Temple MQ Early Gibdos Chest,Shadow Temple MQ Early Gibdos Chest,,,Item,Shadow Temple MQ Early Gibdos Chest,,Shadow Temple MQ Early Gibdos Chest
-Shadow Temple MQ Near Ship Invisible Chest,Shadow Temple MQ Near Ship Invisible Chest,,,Item,Shadow Temple MQ Near Ship Invisible Chest,,Shadow Temple MQ Near Ship Invisible Chest
-Shadow Temple MQ Invisible Blades Visible Chest,Shadow Temple MQ Invisible Blades Visible Chest,,,Item,Shadow Temple MQ Invisible Blades Visible Chest,,Shadow Temple MQ Invisible Blades Visible Chest
-Shadow Temple MQ Invisible Blades Invisible Chest,Shadow Temple MQ Invisible Blades Invisible Chest,,,Item,Shadow Temple MQ Invisible Blades Invisible Chest,,Shadow Temple MQ Invisible Blades Invisible Chest
-Shadow Temple MQ Beamos Silver Rupees Chest,Shadow Temple MQ Beamos Silver Rupees Chest,,,Item,Shadow Temple MQ Beamos Silver Rupees Chest,,Shadow Temple MQ Beamos Silver Rupees Chest
-Shadow Temple MQ Falling Spikes Lower Chest,Shadow Temple MQ Falling Spikes Lower Chest,,,Item,Shadow Temple MQ Falling Spikes Lower Chest,,Shadow Temple MQ Falling Spikes Lower Chest
-Shadow Temple MQ Falling Spikes Upper Chest,Shadow Temple MQ Falling Spikes Upper Chest,,,Item,Shadow Temple MQ Falling Spikes Upper Chest,,Shadow Temple MQ Falling Spikes Upper Chest
-Shadow Temple MQ Falling Spikes Switch Chest,Shadow Temple MQ Falling Spikes Switch Chest,,,Item,Shadow Temple MQ Falling Spikes Switch Chest,,Shadow Temple MQ Falling Spikes Switch Chest
-Shadow Temple MQ Invisible Spikes Chest,Shadow Temple MQ Invisible Spikes Chest,,,Item,Shadow Temple MQ Invisible Spikes Chest,,Shadow Temple MQ Invisible Spikes Chest
-Shadow Temple MQ Stalfos Room Chest,Shadow Temple MQ Stalfos Room Chest,,,Item,Shadow Temple MQ Stalfos Room Chest,,Shadow Temple MQ Stalfos Room Chest
-GS Shadow Temple MQ Crusher Room,GS Shadow Temple MQ Crusher Room,,,Item,GS Shadow Temple MQ Crusher Room,,GS Shadow Temple MQ Crusher Room
-Shadow Temple MQ Wind Hint Chest,Shadow Temple MQ Wind Hint Chest,,,Item,Shadow Temple MQ Wind Hint Chest,,Shadow Temple MQ Wind Hint Chest
-Shadow Temple MQ After Wind Enemy Chest,Shadow Temple MQ After Wind Enemy Chest,,,Item,Shadow Temple MQ After Wind Enemy Chest,,Shadow Temple MQ After Wind Enemy Chest
-Shadow Temple MQ After Wind Hidden Chest,Shadow Temple MQ After Wind Hidden Chest,,,Item,Shadow Temple MQ After Wind Hidden Chest,,Shadow Temple MQ After Wind Hidden Chest
-GS Shadow Temple MQ Wind Hint Room,GS Shadow Temple MQ Wind Hint Room,,,Item,GS Shadow Temple MQ Wind Hint Room,,GS Shadow Temple MQ Wind Hint Room
-GS Shadow Temple MQ After Wind,GS Shadow Temple MQ After Wind,,,Item,GS Shadow Temple MQ After Wind,,GS Shadow Temple MQ After Wind
-GS Shadow Temple MQ After Ship,GS Shadow Temple MQ After Ship,,,Item,GS Shadow Temple MQ After Ship,,GS Shadow Temple MQ After Ship
-GS Shadow Temple MQ Near Boss,GS Shadow Temple MQ Near Boss,,,Item,GS Shadow Temple MQ Near Boss,,GS Shadow Temple MQ Near Boss
-Shadow Temple MQ Spike Walls Left Chest,Shadow Temple MQ Spike Walls Left Chest,,,Item,Shadow Temple MQ Spike Walls Left Chest,,Shadow Temple MQ Spike Walls Left Chest
-Shadow Temple MQ Boss Key Chest,Shadow Temple MQ Boss Key Chest,,,Item,Shadow Temple MQ Boss Key Chest,,Shadow Temple MQ Boss Key Chest
-Shadow Temple MQ Bomb Flower Chest,Shadow Temple MQ Bomb Flower Chest,,,Item,Shadow Temple MQ Bomb Flower Chest,,Shadow Temple MQ Bomb Flower Chest
-Shadow Temple MQ Freestanding Key,Shadow Temple MQ Freestanding Key,,,Item,Shadow Temple MQ Freestanding Key,,Shadow Temple MQ Freestanding Key
-Gerudo Training Grounds MQ Lobby Left Chest,Gerudo Training Grounds MQ Lobby Left Chest,,,Item,Gerudo Training Grounds MQ Lobby Left Chest,,Gerudo Training Grounds MQ Lobby Left Chest
-Gerudo Training Grounds MQ Lobby Right Chest,Gerudo Training Grounds MQ Lobby Right Chest,,,Item,Gerudo Training Grounds MQ Lobby Right Chest,,Gerudo Training Grounds MQ Lobby Right Chest
-Gerudo Training Grounds MQ Hidden Ceiling Chest,Gerudo Training Grounds MQ Hidden Ceiling Chest,,,Item,Gerudo Training Grounds MQ Hidden Ceiling Chest,,Gerudo Training Grounds MQ Hidden Ceiling Chest
-Gerudo Training Grounds MQ Maze Path First Chest,Gerudo Training Grounds MQ Maze Path First Chest,,,Item,Gerudo Training Grounds MQ Maze Path First Chest,,Gerudo Training Grounds MQ Maze Path First Chest
-Gerudo Training Grounds MQ Maze Path Second Chest,Gerudo Training Grounds MQ Maze Path Second Chest,,,Item,Gerudo Training Grounds MQ Maze Path Second Chest,,Gerudo Training Grounds MQ Maze Path Second Chest
-Gerudo Training Grounds MQ Maze Path Third Chest,Gerudo Training Grounds MQ Maze Path Third Chest,,,Item,Gerudo Training Grounds MQ Maze Path Third Chest,,Gerudo Training Grounds MQ Maze Path Third Chest
-Gerudo Training Grounds MQ Dinolfos Chest,Gerudo Training Grounds MQ Dinolfos Chest,,,Item,Gerudo Training Grounds MQ Dinolfos Chest,,Gerudo Training Grounds MQ Dinolfos Chest
-Gerudo Training Grounds MQ Underwater Silver Rupee Chest,Gerudo Training Grounds MQ Underwater Silver Rupee Chest,,,Item,Gerudo Training Grounds MQ Underwater Silver Rupee Chest,,Gerudo Training Grounds MQ Underwater Silver Rupee Chest
-Gerudo Training Grounds MQ First Iron Knuckle Chest,Gerudo Training Grounds MQ First Iron Knuckle Chest,,,Item,Gerudo Training Grounds MQ First Iron Knuckle Chest,,Gerudo Training Grounds MQ First Iron Knuckle Chest
-Gerudo Training Grounds MQ Before Heavy Block Chest,Gerudo Training Grounds MQ Before Heavy Block Chest,,,Item,Gerudo Training Grounds MQ Before Heavy Block Chest,,Gerudo Training Grounds MQ Before Heavy Block Chest
-Gerudo Training Grounds MQ Heavy Block Chest,Gerudo Training Grounds MQ Heavy Block Chest,,,Item,Gerudo Training Grounds MQ Heavy Block Chest,,Gerudo Training Grounds MQ Heavy Block Chest
-Gerudo Training Grounds MQ Eye Statue Chest,Gerudo Training Grounds MQ Eye Statue Chest,,,Item,Gerudo Training Grounds MQ Eye Statue Chest,,Gerudo Training Grounds MQ Eye Statue Chest
-Gerudo Training Grounds MQ Second Iron Knuckle Chest,Gerudo Training Grounds MQ Second Iron Knuckle Chest,,,Item,Gerudo Training Grounds MQ Second Iron Knuckle Chest,,Gerudo Training Grounds MQ Second Iron Knuckle Chest
-Gerudo Training Grounds MQ Flame Circle Chest,Gerudo Training Grounds MQ Flame Circle Chest,,,Item,Gerudo Training Grounds MQ Flame Circle Chest,,Gerudo Training Grounds MQ Flame Circle Chest
-Gerudo Training Grounds MQ Maze Right Central Chest,Gerudo Training Grounds MQ Maze Right Central Chest,,,Item,Gerudo Training Grounds MQ Maze Right Central Chest,,Gerudo Training Grounds MQ Maze Right Central Chest
-Gerudo Training Grounds MQ Maze Right Side Chest,Gerudo Training Grounds MQ Maze Right Side Chest,,,Item,Gerudo Training Grounds MQ Maze Right Side Chest,,Gerudo Training Grounds MQ Maze Right Side Chest
-Gerudo Training Grounds MQ Ice Arrows Chest,Gerudo Training Grounds MQ Ice Arrows Chest,,,Item,Gerudo Training Grounds MQ Ice Arrows Chest,,Gerudo Training Grounds MQ Ice Arrows Chest
-Spirit Temple MQ Entrance Front Left Chest,Spirit Temple MQ Entrance Front Left Chest,,,Item,Spirit Temple MQ Entrance Front Left Chest,,Spirit Temple MQ Entrance Front Left Chest
-Spirit Temple MQ Entrance Back Left Chest,Spirit Temple MQ Entrance Back Left Chest,,,Item,Spirit Temple MQ Entrance Back Left Chest,,Spirit Temple MQ Entrance Back Left Chest
-Spirit Temple MQ Entrance Back Right Chest,Spirit Temple MQ Entrance Back Right Chest,,,Item,Spirit Temple MQ Entrance Back Right Chest,,Spirit Temple MQ Entrance Back Right Chest
-Spirit Temple MQ Child Center Chest,Spirit Temple MQ Child Center Chest,,,Item,Spirit Temple MQ Child Center Chest,,Spirit Temple MQ Child Center Chest
-Spirit Temple MQ Child Left Chest,Spirit Temple MQ Child Left Chest,,,Item,Spirit Temple MQ Child Left Chest,,Spirit Temple MQ Child Left Chest
-Spirit Temple MQ Map Chest,Spirit Temple MQ Map Chest,,,Item,Spirit Temple MQ Map Chest,,Spirit Temple MQ Map Chest
-Spirit Temple MQ Silver Block Hallway Chest,Spirit Temple MQ Silver Block Hallway Chest,,,Item,Spirit Temple MQ Silver Block Hallway Chest,,Spirit Temple MQ Silver Block Hallway Chest
-Spirit Temple MQ Child Climb South Chest,Spirit Temple MQ Child Climb South Chest,,,Item,Spirit Temple MQ Child Climb South Chest,,Spirit Temple MQ Child Climb South Chest
-Spirit Temple MQ Lower NE Main Room Chest,Spirit Temple MQ Lower NE Main Room Chest,,,Item,Spirit Temple MQ Lower NE Main Room Chest,,Spirit Temple MQ Lower NE Main Room Chest
-Spirit Temple MQ Upper NE Main Room Chest,Spirit Temple MQ Upper NE Main Room Chest,,,Item,Spirit Temple MQ Upper NE Main Room Chest,,Spirit Temple MQ Upper NE Main Room Chest
-Spirit Temple MQ Beamos Room Chest,Spirit Temple MQ Beamos Room Chest,,,Item,Spirit Temple MQ Beamos Room Chest,,Spirit Temple MQ Beamos Room Chest
-Spirit Temple MQ Ice Trap Chest,Spirit Temple MQ Ice Trap Chest,,,Item,Spirit Temple MQ Ice Trap Chest,,Spirit Temple MQ Ice Trap Chest
-Spirit Temple MQ Boss Key Chest,Spirit Temple MQ Boss Key Chest,,,Item,Spirit Temple MQ Boss Key Chest,,Spirit Temple MQ Boss Key Chest
-GS Spirit Temple MQ Iron Knuckle West,GS Spirit Temple MQ Iron Knuckle West,,,Item,GS Spirit Temple MQ Iron Knuckle West,,GS Spirit Temple MQ Iron Knuckle West
-GS Spirit Temple MQ Iron Knuckle North,GS Spirit Temple MQ Iron Knuckle North,,,Item,GS Spirit Temple MQ Iron Knuckle North,,GS Spirit Temple MQ Iron Knuckle North
-Spirit Temple MQ Child Climb North Chest,Spirit Temple MQ Child Climb North Chest,,,Item,Spirit Temple MQ Child Climb North Chest,,Spirit Temple MQ Child Climb North Chest
-Spirit Temple MQ Compass Chest,Spirit Temple MQ Compass Chest,,,Item,Spirit Temple MQ Compass Chest,,Spirit Temple MQ Compass Chest
-Spirit Temple MQ Sun Block Room Chest,Spirit Temple MQ Sun Block Room Chest,,,Item,Spirit Temple MQ Sun Block Room Chest,,Spirit Temple MQ Sun Block Room Chest
-GS Spirit Temple MQ Sun Block Room,GS Spirit Temple MQ Sun Block Room,,,Item,GS Spirit Temple MQ Sun Block Room,,GS Spirit Temple MQ Sun Block Room
-Spirit Temple MQ Lower Adult Left Chest,Spirit Temple MQ Lower Adult Left Chest,,,Item,Spirit Temple MQ Lower Adult Left Chest,,Spirit Temple MQ Lower Adult Left Chest
-Spirit Temple MQ Lower Adult Right Chest,Spirit Temple MQ Lower Adult Right Chest,,,Item,Spirit Temple MQ Lower Adult Right Chest,,Spirit Temple MQ Lower Adult Right Chest
-Spirit Temple MQ Entrance Front Right Chest,Spirit Temple MQ Entrance Front Right Chest,,,Item,Spirit Temple MQ Entrance Front Right Chest,,Spirit Temple MQ Entrance Front Right Chest
-GS Spirit Temple MQ Lower Adult Left,GS Spirit Temple MQ Lower Adult Left,,,Item,GS Spirit Temple MQ Lower Adult Left,,GS Spirit Temple MQ Lower Adult Left
-GS Spirit Temple MQ Lower Adult Right,GS Spirit Temple MQ Lower Adult Right,,,Item,GS Spirit Temple MQ Lower Adult Right,,GS Spirit Temple MQ Lower Adult Right
-Spirit Temple MQ Mirror Puzzle Invisible Chest,Spirit Temple MQ Mirror Puzzle Invisible Chest,,,Item,Spirit Temple MQ Mirror Puzzle Invisible Chest,,Spirit Temple MQ Mirror Puzzle Invisible Chest
-GC MQ Deku Scrub Bombs,GC MQ Deku Scrub Bombs,,,Item,GC MQ Deku Scrub Bombs,,GC MQ Deku Scrub Bombs
-GC MQ Deku Scrub Arrows,GC MQ Deku Scrub Arrows,,,Item,GC MQ Deku Scrub Arrows,,GC MQ Deku Scrub Arrows
-GC MQ Deku Scrub Red Potion,GC MQ Deku Scrub Red Potion,,,Item,GC MQ Deku Scrub Red Potion,,GC MQ Deku Scrub Red Potion
-GC MQ Deku Scrub Green Potion,GC MQ Deku Scrub Green Potion,,,Item,GC MQ Deku Scrub Green Potion,,GC MQ Deku Scrub Green Potion
-GC MQ Deku Scrub Deku Nuts,GC MQ Deku Scrub Deku Nuts,,,Item,GC MQ Deku Scrub Deku Nuts,,GC MQ Deku Scrub Deku Nuts
-Ganons Castle MQ Forest Trial First Chest,Ganons Castle MQ Forest Trial First Chest,,,Item,Ganons Castle MQ Forest Trial First Chest,,Ganons Castle MQ Forest Trial First Chest
-Ganons Castle MQ Forest Trial Second Chest,Ganons Castle MQ Forest Trial Second Chest,,,Item,Ganons Castle MQ Forest Trial Second Chest,,Ganons Castle MQ Forest Trial Second Chest
-Ganons Castle MQ Forest Trial Freestanding Key,Ganons Castle MQ Forest Trial Freestanding Key,,,Item,Ganons Castle MQ Forest Trial Freestanding Key,,Ganons Castle MQ Forest Trial Freestanding Key
-Ganons Castle MQ Water Trial Chest,Ganons Castle MQ Water Trial Chest,,,Item,Ganons Castle MQ Water Trial Chest,,Ganons Castle MQ Water Trial Chest
-Ganons Castle MQ Shadow Trial First Chest,Ganons Castle MQ Shadow Trial First Chest,,,Item,Ganons Castle MQ Shadow Trial First Chest,,Ganons Castle MQ Shadow Trial First Chest
-Ganons Castle MQ Shadow Trial Second Chest,Ganons Castle MQ Shadow Trial Second Chest,,,Item,Ganons Castle MQ Shadow Trial Second Chest,,Ganons Castle MQ Shadow Trial Second Chest
-Ganons Castle MQ Spirit Trial First Chest,Ganons Castle MQ Spirit Trial First Chest,,,Item,Ganons Castle MQ Spirit Trial First Chest,,Ganons Castle MQ Spirit Trial First Chest
-Ganons Castle MQ Spirit Trial Second Chest,Ganons Castle MQ Spirit Trial Second Chest,,,Item,Ganons Castle MQ Spirit Trial Second Chest,,Ganons Castle MQ Spirit Trial Second Chest
-Ganons Castle MQ Spirit Trial Sun Front Left Chest,Ganons Castle MQ Spirit Trial Sun Front Left Chest,,,Item,Ganons Castle MQ Spirit Trial Sun Front Left Chest,,Ganons Castle MQ Spirit Trial Sun Front Left Chest
-Ganons Castle MQ Spirit Trial Sun Back Left Chest,Ganons Castle MQ Spirit Trial Sun Back Left Chest,,,Item,Ganons Castle MQ Spirit Trial Sun Back Left Chest,,Ganons Castle MQ Spirit Trial Sun Back Left Chest
-Ganons Castle MQ Spirit Trial Golden Gauntlets Chest,Ganons Castle MQ Spirit Trial Golden Gauntlets Chest,,,Item,Ganons Castle MQ Spirit Trial Golden Gauntlets Chest,,Ganons Castle MQ Spirit Trial Golden Gauntlets Chest
-Ganons Castle MQ Spirit Trial Sun Back Right Chest,Ganons Castle MQ Spirit Trial Sun Back Right Chest,,,Item,Ganons Castle MQ Spirit Trial Sun Back Right Chest,,Ganons Castle MQ Spirit Trial Sun Back Right Chest
-Ganons Castle MQ Light Trial Lullaby Chest,Ganons Castle MQ Light Trial Lullaby Chest,,,Item,Ganons Castle MQ Light Trial Lullaby Chest,,Ganons Castle MQ Light Trial Lullaby Chest
+Kokiri Forest Storms Grotto Chest,Kokiri Forest Storms Grotto Chest,Red Rupee,Kokiri Forest,Item,Kokiri Forest Storms Grotto Chest,,
+Lost Woods Generic Grotto Chest,Lost Woods Generic Grotto Chest,Blue Rupee,Lost Woods,Item,Lost Woods Generic Grotto Chest,,
+Deku Theater Skull Mask,Deku Theater Skull Mask,Deku Stick Upgrade,Lost Woods,Item,Deku Theater Skull Mask,,
+Deku Theater Mask of Truth,Deku Theater Mask of Truth,Deku Nut Upgrade,Lost Woods,Item,Deku Theater Mask of Truth,,
+LW Grotto Deku Scrub Arrows,LW Grotto Deku Scrub Arrows,10 Arrows,Lost Woods,Item,LW Grotto Deku Scrub Arrows,,
+LW Grotto Deku Scrub Deku Nut Upgrade,LW Grotto Deku Scrub Deku Nut Upgrade,Deku Nut Upgrade,Lost Woods,Item,LW Grotto Deku Scrub Deku Nut Upgrade,,
+SFM Grotto Deku Scrub Red Potion,SFM Grotto Deku Scrub Red Potion,Red Potion,Lost Woods,Item,SFM Grotto Deku Scrub Red Potion,,
+SFM Grotto Deku Scrub Green Potion,SFM Grotto Deku Scrub Green Potion,Green Potion,Lost Woods,Item,SFM Grotto Deku Scrub Green Potion,,
+Wolfos Grotto Chest,Wolfos Grotto Chest,Purple Rupee,Lost Woods,Item,Wolfos Grotto Chest,,
+LLR Grotto Deku Scrub Deku Nuts,LLR Grotto Deku Scrub Deku Nuts,Deku Nuts,Lon Lon Ranch,Item,LLR Grotto Deku Scrub Deku Nuts,,
+LLR Grotto Deku Scrub Bombs,LLR Grotto Deku Scrub Bombs,5 Bombs,Lon Lon Ranch,Item,LLR Grotto Deku Scrub Bombs,,
+LLR Grotto Deku Scrub Arrows,LLR Grotto Deku Scrub Arrows,10 Arrows,Lon Lon Ranch,Item,LLR Grotto Deku Scrub Arrows,,
+Remote Southern Grotto Chest,Remote Southern Grotto Chest,,Hyrule Field,Item,Remote Southern Grotto Chest,,
+Field Near Lake Outside Fence Grotto Chest,Field Near Lake Outside Fence Grotto Chest,,Hyrule Field,Item,Field Near Lake Outside Fence Grotto Chest,,
+HF Grotto Deku Scrub Piece of Heart,HF Grotto Deku Scrub Piece of Heart,Heart Piece,Hyrule Field,Item,HF Grotto Deku Scrub Piece of Heart,,
+GS Hyrule Field Near Gerudo Valley,GS Hyrule Field Near Gerudo Valley,Skull Token,Hyrule Field,Item,GS Hyrule Field Near Gerudo Valley,,
+HF Grotto Cow,HF Grotto Cow,,Hyrule Field,Item,HF Grotto Cow,,
+Field West Castle Town Grotto Chest,Field West Castle Town Grotto Chest,,Hyrule Field,Item,Field West Castle Town Grotto Chest,,
+GS Hyrule Field near Kakariko,GS Hyrule Field near Kakariko,Skull Token,Hyrule Field,Item,GS Hyrule Field near Kakariko,,
+Tektite Grotto Freestanding PoH,Tektite Grotto Freestanding PoH,Heart Piece,Hyrule Field,Item,Tektite Grotto Freestanding PoH,,
+GS Hyrule Castle Grotto,GS Hyrule Castle Grotto,Skull Token,Hyrule Field,Item,GS Hyrule Castle Grotto,,
+Redead Grotto Chest,Redead Grotto Chest,,Kakariko Village,Item,Redead Grotto Chest,,
+Kakariko Back Grotto Chest,Kakariko Back Grotto Chest,,Kakariko Village,Item,Kakariko Back Grotto Chest,,
+DMT Grotto Cow,DMT Grotto Cow,Milk,Death Mountain,Item,DMT Grotto Cow,,
+Mountain Storms Grotto Chest,Mountain Storms Grotto Chest,,Death Mountain,Item,Mountain Storms Grotto Chest,,
+Goron Grotto Deku Scrub Deku Nuts,Goron Grotto Deku Scrub Deku Nuts,Deku Nuts,Death Mountain,Item,Goron Grotto Deku Scrub Deku Nuts,,
+Goron Grotto Deku Scrub Bombs,Goron Grotto Deku Scrub Bombs,5 Bombs,Death Mountain,Item,Goron Grotto Deku Scrub Bombs,,
+Goron Grotto Deku Scrub Arrows,Goron Grotto Deku Scrub Arrows,10 Arrows,Death Mountain,Item,Goron Grotto Deku Scrub Arrows,,
+Top of Crater Grotto Chest,Top of Crater Grotto Chest,,Death Mountain,Item,Top of Crater Grotto Chest,,
+DMC Grotto Deku Scrub Deku Nuts,DMC Grotto Deku Scrub Deku Nuts,Deku Nuts,Death Mountain,Item,DMC Grotto Deku Scrub Deku Nuts,,
+DMC Grotto Deku Scrub Bombs,DMC Grotto Deku Scrub Bombs,5 Bombs,Death Mountain,Item,DMC Grotto Deku Scrub Bombs,,
+DMC Grotto Deku Scrub Arrows,DMC Grotto Deku Scrub Arrows,10 Arrows,Death Mountain,Item,DMC Grotto Deku Scrub Arrows,,
+Zora River Plateau Open Grotto Chest,Zora River Plateau Open Grotto Chest,,Zora River,Item,Zora River Plateau Open Grotto Chest,,
+ZR Grotto Deku Scrub Red Potion,ZR Grotto Deku Scrub Red Potion,Red Potion,Zora River,Item,ZR Grotto Deku Scrub Red Potion,,
+ZR Grotto Deku Scrub Green Potion,ZR Grotto Deku Scrub Green Potion,Green Potion,Zora River,Item,ZR Grotto Deku Scrub Green Potion,,
+LH Grotto Deku Scrub Deku Nuts,LH Grotto Deku Scrub Deku Nuts,Deku Nuts,Lake Hylia,Item,LH Grotto Deku Scrub Deku Nuts,,
+LH Grotto Deku Scrub Bombs,LH Grotto Deku Scrub Bombs,5 Bombs,Lake Hylia,Item,LH Grotto Deku Scrub Bombs,,
+LH Grotto Deku Scrub Arrows,LH Grotto Deku Scrub Arrows,10 Arrows,Lake Hylia,Item,LH Grotto Deku Scrub Arrows,,
+Desert Grotto Deku Scrub Red Potion,Desert Grotto Deku Scrub Red Potion,Red Potion,Gerudo Desert,Item,Desert Grotto Deku Scrub Red Potion,,
+Desert Grotto Deku Scrub Green Potion,Desert Grotto Deku Scrub Green Potion,Green Potion,Gerudo Desert,Item,Desert Grotto Deku Scrub Green Potion,,
+Valley Grotto Deku Scrub Red Potion,Valley Grotto Deku Scrub Red Potion,Red Potion,Gerudo Desert,Item,Valley Grotto Deku Scrub Red Potion,,
+Valley Grotto Deku Scrub Green Potion,Valley Grotto Deku Scrub Green Potion,Green Potion,Deku Tree,Item,Valley Grotto Deku Scrub Green Potion,,
+Deku Tree Lobby Chest,Deku Tree Lobby Chest,,Deku Tree,Item,Deku Tree Lobby Chest,,
+Deku Tree Compass Chest,Deku Tree Compass Chest,Deku Tree Compass,Deku Tree,Item,Deku Tree Compass Chest,,
+Deku Tree Compass Room Side Chest,Deku Tree Compass Room Side Chest,,Deku Tree,Item,Deku Tree Compass Room Side Chest,,
+Deku Tree Basement Chest,Deku Tree Basement Chest,,Deku Tree,Item,Deku Tree Basement Chest,,
+GS Deku Tree Compass Room,GS Deku Tree Compass Room,Skull Token,Deku Tree,Item,GS Deku Tree Compass Room,,
+GS Deku Tree Basement Vines,GS Deku Tree Basement Vines,Skull Token,Deku Tree,Item,GS Deku Tree Basement Vines,,
+GS Deku Tree Basement Gate,GS Deku Tree Basement Gate,Skull Token,Deku Tree,Item,GS Deku Tree Basement Gate,,
+GS Deku Tree Basement Back Room,GS Deku Tree Basement Back Room,Skull Token,Deku Tree,Item,GS Deku Tree Basement Back Room,,
+Deku Tree Slingshot Chest,Deku Tree Slingshot Chest,Slingshot Upgrade,Deku Tree,Item,Deku Tree Slingshot Chest,,
+Deku Tree Slingshot Room Side Chest,Deku Tree Slingshot Room Side Chest,,Deku Tree,Item,Deku Tree Slingshot Room Side Chest,,
+Queen Gohma Heart,Queen Gohma Heart,Heart Container,Deku Tree,Item,Queen Gohma Heart,,
+Dodongos Cavern Map Chest,Dodongos Cavern Map Chest,Dodongos Cavern Map,Dodongos Cavern,Item,Dodongos Cavern Map Chest,,
+Dodongos Cavern Compass Chest,Dodongos Cavern Compass Chest,Dodongos Cavern Compass,Dodongos Cavern,Item,Dodongos Cavern Compass Chest,,
+GS Dodongo's Cavern East Side Room,GS Dodongo's Cavern East Side Room,Skull Token,Dodongos Cavern,Item,GS Dodongo's Cavern East Side Room,,
+GS Dodongo's Cavern Scarecrow,GS Dodongo's Cavern Scarecrow,Skull Token,Dodongos Cavern,Item,GS Dodongo's Cavern Scarecrow,,
+DC Deku Scrub Deku Sticks,DC Deku Scrub Deku Sticks,Deku Stick,Dodongos Cavern,Item,DC Deku Scrub Deku Sticks,,
+DC Deku Scrub Deku Shield,DC Deku Scrub Deku Shield,Deku Shield,Dodongos Cavern,Item,DC Deku Scrub Deku Shield,,
+Dodongos Cavern Bomb Flower Platform,Dodongos Cavern Bomb Flower Platform,,Dodongos Cavern,Item,Dodongos Cavern Bomb Flower Platform,,
+GS Dodongo's Cavern Vines Above Stairs,GS Dodongo's Cavern Vines Above Stairs,Skull Token,Dodongos Cavern,Item,GS Dodongo's Cavern Vines Above Stairs,,
+DC Deku Scrub Deku Seeds,DC Deku Scrub Deku Seeds,,Dodongos Cavern,Item,DC Deku Scrub Deku Seeds,,
+DC Deku Scrub Deku Nuts,DC Deku Scrub Deku Nuts,,Dodongos Cavern,Item,DC Deku Scrub Deku Nuts,,
+Dodongos Cavern Bomb Bag Chest,Dodongos Cavern Bomb Bag Chest,Bomb Bag Upgrade,Dodongos Cavern,Item,Dodongos Cavern Bomb Bag Chest,,
+Dodongos Cavern End of Bridge Chest,Dodongos Cavern End of Bridge Chest,,Dodongos Cavern,Item,Dodongos Cavern End of Bridge Chest,,
+GS Dodongo's Cavern Alcove Above Stairs,GS Dodongo's Cavern Alcove Above Stairs,Skull Token,Dodongos Cavern,Item,GS Dodongo's Cavern Alcove Above Stairs,,
+Chest Above King Dodongo,Chest Above King Dodongo,,Dodongos Cavern,Item,Chest Above King Dodongo,,
+King Dodongo Heart,King Dodongo Heart,Heart Container,Dodongos Cavern,Item,King Dodongo Heart,,
+GS Dodongo's Cavern Back Room,GS Dodongo's Cavern Back Room,Skull Token,Dodongos Cavern,Item,GS Dodongo's Cavern Back Room,,
+Boomerang Chest,Boomerang Chest,Boomerang,Jabu Jabus Belly,Item,Boomerang Chest,,
+GS Jabu Jabu Water Switch Room,GS Jabu Jabu Water Switch Room,Skull Token,Jabu Jabus Belly,Item,GS Jabu Jabu Water Switch Room,,
+GS Jabu Jabu Lobby Basement Lower,GS Jabu Jabu Lobby Basement Lower,Skull Token,Jabu Jabus Belly,Item,GS Jabu Jabu Lobby Basement Lower,,
+GS Jabu Jabu Lobby Basement Upper,GS Jabu Jabu Lobby Basement Upper,Skull Token,Jabu Jabus Belly,Item,GS Jabu Jabu Lobby Basement Upper,,
+Jabu Deku Scrub Deku Nuts,Jabu Deku Scrub Deku Nuts,,Jabu Jabus Belly,Item,Jabu Deku Scrub Deku Nuts,,
+Jabu Jabus Belly Map Chest,Jabu Jabus Belly Map Chest,Jabu Jabus Belly Map,Jabu Jabus Belly,Item,Jabu Jabus Belly Map Chest,,
+Jabu Jabus Belly Compass Chest,Jabu Jabus Belly Compass Chest,Jabu Jabus Belly Compass,Jabu Jabus Belly,Item,Jabu Jabus Belly Compass Chest,,
+Barinade Heart,Barinade Heart,Heart Container,Jabu Jabus Belly,Item,Barinade Heart,,
+GS Jabu Jabu Near Boss,GS Jabu Jabu Near Boss,Skull Token,Jabu Jabus Belly,Item,GS Jabu Jabu Near Boss,,
+Forest Temple First Chest,Forest Temple First Chest,Forest Temple Small Key,Forest Temple,Item,Forest Temple First Chest,,
+Forest Temple Chest Behind Lobby,Forest Temple Chest Behind Lobby,Forest Temple Small Key,Forest Temple,Item,Forest Temple Chest Behind Lobby,,
+GS Forest Temple First Room,GS Forest Temple First Room,Skull Token,Forest Temple,Item,GS Forest Temple First Room,,
+GS Forest Temple Lobby,GS Forest Temple Lobby,Skull Token,Forest Temple,Item,GS Forest Temple Lobby,,
+GS Forest Temple Outdoor West,GS Forest Temple Outdoor West,Skull Token,Forest Temple,Item,GS Forest Temple Outdoor West,,
+Forest Temple Outside Hookshot Chest,Forest Temple Outside Hookshot Chest,Recovery Heart,Forest Temple,Item,Forest Temple Outside Hookshot Chest,,
+GS Forest Temple Outdoor East,GS Forest Temple Outdoor East,Skull Token,Forest Temple,Item,GS Forest Temple Outdoor East,,
+Forest Temple Well Chest,Forest Temple Well Chest,Forest Temple Small Key,Forest Temple,Item,Forest Temple Well Chest,,
+Forest Temple Map Chest,Forest Temple Map Chest,Forest Temple Map,Forest Temple,Item,Forest Temple Map Chest,,
+Forest Temple Falling Room Chest,Forest Temple Falling Room Chest,10 Arrows,Forest Temple,Item,Forest Temple Falling Room Chest,,
+Forest Temple Block Push Chest,Forest Temple Block Push Chest,10 Arrows,Forest Temple,Item,Forest Temple Block Push Chest,,
+Forest Temple Boss Key Chest,Forest Temple Boss Key Chest,Forest Temple Boss Key,Forest Temple,Item,Forest Temple Boss Key Chest,,
+Forest Temple Floormaster Chest,Forest Temple Floormaster Chest,Forest Temple Small Key,Forest Temple,Item,Forest Temple Floormaster Chest,,
+Forest Temple Bow Chest,Forest Temple Bow Chest,Quiver Upgrade,Forest Temple,Item,Forest Temple Bow Chest,,
+Forest Temple Red Poe Chest,Forest Temple Red Poe Chest,Forest Temple Small Key,Forest Temple,Item,Forest Temple Red Poe Chest,,
+Forest Temple Blue Poe Chest,Forest Temple Blue Poe Chest,Forest Temple Compass,Forest Temple,Item,Forest Temple Blue Poe Chest,,
+Forest Temple Near Boss Chest,Forest Temple Near Boss Chest,10 Arrows,Forest Temple,Item,Forest Temple Near Boss Chest,,
+Phantom Ganon Heart,Phantom Ganon Heart,Heart Container,Forest Temple,Item,Phantom Ganon Heart,,
+GS Forest Temple Basement,GS Forest Temple Basement,Skull Token,Forest Temple,Item,GS Forest Temple Basement,,
+Bottom of the Well Front Left Hidden Wall,Bottom of the Well Front Left Hidden Wall,,Bottom of the Well,Item,Bottom of the Well Front Left Hidden Wall,,
+Bottom of the Well Front Center Bombable,Bottom of the Well Front Center Bombable,,Bottom of the Well,Item,Bottom of the Well Front Center Bombable,,
+Bottom of the Well Right Bottom Hidden Wall,Bottom of the Well Right Bottom Hidden Wall,,Bottom of the Well,Item,Bottom of the Well Right Bottom Hidden Wall,,
+Bottom of the Well Center Large Chest,Bottom of the Well Center Large Chest,,Bottom of the Well,Item,Bottom of the Well Center Large Chest,,
+Bottom of the Well Center Small Chest,Bottom of the Well Center Small Chest,,Bottom of the Well,Item,Bottom of the Well Center Small Chest,,
+Bottom of the Well Back Left Bombable,Bottom of the Well Back Left Bombable,,Bottom of the Well,Item,Bottom of the Well Back Left Bombable,,
+Bottom of the Well Freestanding Key,Bottom of the Well Freestanding Key,Bottom Of the Well Small Key,Bottom of the Well,Item,Bottom of the Well Freestanding Key,,
+Bottom of the Well Defeat Boss,Bottom of the Well Defeat Boss,Lens of Truth,Bottom of the Well,Item,Bottom of the Well Defeat Boss,,
+Bottom of the Well Invisible Chest,Bottom of the Well Invisible Chest,,Bottom of the Well,Item,Bottom of the Well Invisible Chest,,
+Bottom of the Well Underwater Front Chest,Bottom of the Well Underwater Front Chest,,Bottom of the Well,Item,Bottom of the Well Underwater Front Chest,,
+Bottom of the Well Underwater Left Chest,Bottom of the Well Underwater Left Chest,,Bottom of the Well,Item,Bottom of the Well Underwater Left Chest,,
+Bottom of the Well Basement Chest,Bottom of the Well Basement Chest,,Bottom of the Well,Item,Bottom of the Well Basement Chest,,
+Bottom of the Well Locked Pits,Bottom of the Well Locked Pits,,Bottom of the Well,Item,Bottom of the Well Locked Pits,,
+Bottom of the Well Behind Right Grate,Bottom of the Well Behind Right Grate,,Bottom of the Well,Item,Bottom of the Well Behind Right Grate,,
+GS Well West Inner Room,GS Well West Inner Room,Skull Token,Bottom of the Well,Item,GS Well West Inner Room,,
+GS Well East Inner Room,GS Well East Inner Room,Skull Token,Bottom of the Well,Item,GS Well East Inner Room,,
+GS Well Like Like Cage,GS Well Like Like Cage,Skull Token,Bottom of the Well,Item,GS Well Like Like Cage,,
+Fire Temple Chest Near Boss,Fire Temple Chest Near Boss,,Fire Temple,Item,Fire Temple Chest Near Boss,,
+Fire Temple Fire Dancer Chest,Fire Temple Fire Dancer Chest,,Fire Temple,Item,Fire Temple Fire Dancer Chest,,
+Fire Temple Boss Key Chest,Fire Temple Boss Key Chest,,Fire Temple,Item,Fire Temple Boss Key Chest,,
+Volvagia Heart,Volvagia Heart,Heart Container,Fire Temple,Item,Volvagia Heart,,
+GS Fire Temple Basement,GS Fire Temple Basement,Skull Token,Fire Temple,Item,GS Fire Temple Basement,,
+Fire Temple Big Lava Room Open Chest,Fire Temple Big Lava Room Open Chest,,Fire Temple,Item,Fire Temple Big Lava Room Open Chest,,
+Fire Temple Big Lava Room Bombable Chest,Fire Temple Big Lava Room Bombable Chest,,Fire Temple,Item,Fire Temple Big Lava Room Bombable Chest,,
+GS Fire Temple Song of Time Room,GS Fire Temple Song of Time Room,Skull Token,Fire Temple,Item,GS Fire Temple Song of Time Room,,
+Fire Temple Boulder Maze Lower Chest,Fire Temple Boulder Maze Lower Chest,,Fire Temple,Item,Fire Temple Boulder Maze Lower Chest,,
+Fire Temple Boulder Maze Upper Chest,Fire Temple Boulder Maze Upper Chest,,Fire Temple,Item,Fire Temple Boulder Maze Upper Chest,,
+Fire Temple Boulder Maze Side Room,Fire Temple Boulder Maze Side Room,,Fire Temple,Item,Fire Temple Boulder Maze Side Room,,
+Fire Temple Boulder Maze Bombable Pit,Fire Temple Boulder Maze Bombable Pit,,Fire Temple,Item,Fire Temple Boulder Maze Bombable Pit,,
+Fire Temple Scarecrow Chest,Fire Temple Scarecrow Chest,,Fire Temple,Item,Fire Temple Scarecrow Chest,,
+Fire Temple Map Chest,Fire Temple Map Chest,Fire Temple Map,Fire Temple,Item,Fire Temple Map Chest,,
+Fire Temple Compass Chest,Fire Temple Compass Chest,Fire Temple Compass,Fire Temple,Item,Fire Temple Compass Chest,,
+GS Fire Temple Unmarked Bomb Wall,GS Fire Temple Unmarked Bomb Wall,Skull Token,Fire Temple,Item,GS Fire Temple Unmarked Bomb Wall,,
+GS Fire Temple East Tower Climb,GS Fire Temple East Tower Climb,Skull Token,Fire Temple,Item,GS Fire Temple East Tower Climb,,
+GS Fire Temple East Tower Top,GS Fire Temple East Tower Top,Skull Token,Fire Temple,Item,GS Fire Temple East Tower Top,,
+Fire Temple Highest Goron Chest,Fire Temple Highest Goron Chest,,Fire Temple,Item,Fire Temple Highest Goron Chest,,
+Fire Temple Megaton Hammer Chest,Fire Temple Megaton Hammer Chest,Megaton Hammer,Fire Temple,Item,Fire Temple Megaton Hammer Chest,,
+Ice Cavern Map Chest,Ice Cavern Map Chest,Ice Cavern Map,Ice Cavern,Item,Ice Cavern Map Chest,,
+Ice Cavern Compass Chest,Ice Cavern Compass Chest,Ice Cavern Compass,Ice Cavern,Item,Ice Cavern Compass Chest,,
+Ice Cavern Iron Boots Chest,Ice Cavern Iron Boots Chest,Iron Boots,Ice Cavern,Item,Ice Cavern Iron Boots Chest,,
+Ice Cavern Freestanding PoH,Ice Cavern Freestanding PoH,Heart Piece,Ice Cavern,Item,Ice Cavern Freestanding PoH,,
+GS Ice Cavern Spinning Scythe Room,GS Ice Cavern Spinning Scythe Room,Skull Token,Ice Cavern,Item,GS Ice Cavern Spinning Scythe Room,,
+GS Ice Cavern Heart Piece Room,GS Ice Cavern Heart Piece Room,Skull Token,Ice Cavern,Item,GS Ice Cavern Heart Piece Room,,
+GS Ice Cavern Push Block Room,GS Ice Cavern Push Block Room,Skull Token,Ice Cavern,Item,GS Ice Cavern Push Block Room,,
+Morpha Heart,Morpha Heart,Heart Container,Water Temple,Item,Morpha Heart,,
+Water Temple Map Chest,Water Temple Map Chest,Water Temple Map,Water Temple,Item,Water Temple Map Chest,,
+Water Temple Compass Chest,Water Temple Compass Chest,Water Temple Compass,Water Temple,Item,Water Temple Compass Chest,,
+Water Temple Torches Chest,Water Temple Torches Chest,,Water Temple,Item,Water Temple Torches Chest,,
+Water Temple Central Bow Target Chest,Water Temple Central Bow Target Chest,,Water Temple,Item,Water Temple Central Bow Target Chest,,
+GS Water Temple South Basement,GS Water Temple South Basement,Skull Token,Water Temple,Item,GS Water Temple South Basement,,
+Water Temple Boss Key Chest,Water Temple Boss Key Chest,Water Temple Boss Key,Water Temple,Item,Water Temple Boss Key Chest,,
+GS Water Temple Near Boss Key Chest,GS Water Temple Near Boss Key Chest,Skull Token,Water Temple,Item,GS Water Temple Near Boss Key Chest,,
+Water Temple Cracked Wall Chest,Water Temple Cracked Wall Chest,,Water Temple,Item,Water Temple Cracked Wall Chest,,
+Water Temple Dragon Chest,Water Temple Dragon Chest,,Water Temple,Item,Water Temple Dragon Chest,,
+Water Temple Central Pillar Chest,Water Temple Central Pillar Chest,,Water Temple,Item,Water Temple Central Pillar Chest,,
+GS Water Temple Central Room,GS Water Temple Central Room,Skull Token,Water Temple,Item,GS Water Temple Central Room,,
+Water Temple Dark Link Chest,Water Temple Dark Link Chest,HookShot Upgrade,Water Temple,Item,Water Temple Dark Link Chest,,
+Water Temple River Chest,Water Temple River Chest,,Water Temple,Item,Water Temple River Chest,,
+GS Water Temple Serpent River,GS Water Temple Serpent River,Skull Token,Water Temple,Item,GS Water Temple Serpent River,,
+GS Water Temple Falling Platform Room,GS Water Temple Falling Platform Room,Skull Token,Water Temple,Item,GS Water Temple Falling Platform Room,,
+Shadow Temple Map Chest,Shadow Temple Map Chest,Shadow Temple Map,Shadow Temple,Item,Shadow Temple Map Chest,,
+Shadow Temple Hover Boots Chest,Shadow Temple Hover Boots Chest,Hover Boots,Shadow Temple,Item,Shadow Temple Hover Boots Chest,,
+Shadow Temple Compass Chest,Shadow Temple Compass Chest,Shadow Temple Compass,Shadow Temple,Item,Shadow Temple Compass Chest,,
+Shadow Temple Early Silver Rupee Chest,Shadow Temple Early Silver Rupee Chest,,Shadow Temple,Item,Shadow Temple Early Silver Rupee Chest,,
+Shadow Temple Invisible Blades Visible Chest,Shadow Temple Invisible Blades Visible Chest,,Shadow Temple,Item,Shadow Temple Invisible Blades Visible Chest,,
+Shadow Temple Invisible Blades Invisible Chest,Shadow Temple Invisible Blades Invisible Chest,,Shadow Temple,Item,Shadow Temple Invisible Blades Invisible Chest,,
+Shadow Temple Falling Spikes Lower Chest,Shadow Temple Falling Spikes Lower Chest,,Shadow Temple,Item,Shadow Temple Falling Spikes Lower Chest,,
+Shadow Temple Falling Spikes Upper Chest,Shadow Temple Falling Spikes Upper Chest,,Shadow Temple,Item,Shadow Temple Falling Spikes Upper Chest,,
+Shadow Temple Falling Spikes Switch Chest,Shadow Temple Falling Spikes Switch Chest,,Shadow Temple,Item,Shadow Temple Falling Spikes Switch Chest,,
+Shadow Temple Invisible Spikes Chest,Shadow Temple Invisible Spikes Chest,,Shadow Temple,Item,Shadow Temple Invisible Spikes Chest,,
+Shadow Temple Freestanding Key,Shadow Temple Freestanding Key,Shadow Temple Small Key,Shadow Temple,Item,Shadow Temple Freestanding Key,,
+GS Shadow Temple Like Like Room,GS Shadow Temple Like Like Room,Skull Token,Shadow Temple,Item,GS Shadow Temple Like Like Room,,
+GS Shadow Temple Crusher Room,GS Shadow Temple Crusher Room,Skull Token,Shadow Temple,Item,GS Shadow Temple Crusher Room,,
+GS Shadow Temple Single Giant Pot,GS Shadow Temple Single Giant Pot,Skull Token,Shadow Temple,Item,GS Shadow Temple Single Giant Pot,,
+Shadow Temple Wind Hint Chest,Shadow Temple Wind Hint Chest,,Shadow Temple,Item,Shadow Temple Wind Hint Chest,,
+Shadow Temple After Wind Enemy Chest,Shadow Temple After Wind Enemy Chest,,Shadow Temple,Item,Shadow Temple After Wind Enemy Chest,,
+Shadow Temple After Wind Hidden Chest,Shadow Temple After Wind Hidden Chest,,Shadow Temple,Item,Shadow Temple After Wind Hidden Chest,,
+GS Shadow Temple Near Ship,GS Shadow Temple Near Ship,Skull Token,Shadow Temple,Item,GS Shadow Temple Near Ship,,
+Shadow Temple Spike Walls Left Chest,Shadow Temple Spike Walls Left Chest,,Shadow Temple,Item,Shadow Temple Spike Walls Left Chest,,
+Shadow Temple Boss Key Chest,Shadow Temple Boss Key Chest,Shadow Temple Boss Key,Shadow Temple,Item,Shadow Temple Boss Key Chest,,
+Shadow Temple Hidden Floormaster Chest,Shadow Temple Hidden Floormaster Chest,,Shadow Temple,Item,Shadow Temple Hidden Floormaster Chest,,
+Bongo Bongo Heart,Bongo Bongo Heart,Heart Container,Shadow Temple,Item,Bongo Bongo Heart,,
+GS Shadow Temple Triple Giant Pot,GS Shadow Temple Triple Giant Pot,Skull Token,Shadow Temple,Item,GS Shadow Temple Triple Giant Pot,,
+Gerudo Training Grounds Lobby Left Chest,Gerudo Training Grounds Lobby Left Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Lobby Left Chest,,
+Gerudo Training Grounds Lobby Right Chest,Gerudo Training Grounds Lobby Right Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Lobby Right Chest,,
+Gerudo Training Grounds Stalfos Chest,Gerudo Training Grounds Stalfos Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Stalfos Chest,,
+Gerudo Training Grounds Beamos Chest,Gerudo Training Grounds Beamos Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Beamos Chest,,
+Gerudo Training Grounds Hidden Ceiling Chest,Gerudo Training Grounds Hidden Ceiling Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Hidden Ceiling Chest,,
+Gerudo Training Grounds Maze Path First Chest,Gerudo Training Grounds Maze Path First Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Maze Path First Chest,,
+Gerudo Training Grounds Maze Path Second Chest,Gerudo Training Grounds Maze Path Second Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Maze Path Second Chest,,
+Gerudo Training Grounds Maze Path Third Chest,Gerudo Training Grounds Maze Path Third Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Maze Path Third Chest,,
+Gerudo Training Grounds Maze Path Final Chest,Gerudo Training Grounds Maze Path Final Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Maze Path Final Chest,,
+Gerudo Training Grounds Maze Right Central Chest,Gerudo Training Grounds Maze Right Central Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Maze Right Central Chest,,
+Gerudo Training Grounds Maze Right Side Chest,Gerudo Training Grounds Maze Right Side Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Maze Right Side Chest,,
+Gerudo Training Grounds Freestanding Key,Gerudo Training Grounds Freestanding Key,Gerudo Training Grounds Small Key,Gerudo Training Grounds,Item,Gerudo Training Grounds Freestanding Key,,
+Gerudo Training Grounds Underwater Silver Rupee Chest,Gerudo Training Grounds Underwater Silver Rupee Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Underwater Silver Rupee Chest,,
+Gerudo Training Grounds Hammer Room Clear Chest,Gerudo Training Grounds Hammer Room Clear Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Hammer Room Clear Chest,,
+Gerudo Training Grounds Hammer Room Switch Chest,Gerudo Training Grounds Hammer Room Switch Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Hammer Room Switch Chest,,
+Gerudo Training Grounds Eye Statue Chest,Gerudo Training Grounds Eye Statue Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Eye Statue Chest,,
+Gerudo Training Grounds Near Scarecrow Chest,Gerudo Training Grounds Near Scarecrow Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Near Scarecrow Chest,,
+Gerudo Training Grounds Before Heavy Block Chest,Gerudo Training Grounds Before Heavy Block Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Before Heavy Block Chest,,
+Gerudo Training Grounds Heavy Block First Chest,Gerudo Training Grounds Heavy Block First Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Heavy Block First Chest,,
+Gerudo Training Grounds Heavy Block Second Chest,Gerudo Training Grounds Heavy Block Second Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Heavy Block Second Chest,,
+Gerudo Training Grounds Heavy Block Third Chest,Gerudo Training Grounds Heavy Block Third Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Heavy Block Third Chest,,
+Gerudo Training Grounds Heavy Block Fourth Chest,Gerudo Training Grounds Heavy Block Fourth Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds Heavy Block Fourth Chest,,
+Spirit Temple Child Left Chest,Spirit Temple Child Left Chest,,Spirit Temple,Item,Spirit Temple Child Left Chest,,
+Spirit Temple Child Right Chest,Spirit Temple Child Right Chest,,Spirit Temple,Item,Spirit Temple Child Right Chest,,
+GS Spirit Temple Metal Fence,GS Spirit Temple Metal Fence,Skull Token,Spirit Temple,Item,GS Spirit Temple Metal Fence,,
+Spirit Temple Child Climb East Chest,Spirit Temple Child Climb East Chest,,Spirit Temple,Item,Spirit Temple Child Climb East Chest,,
+Spirit Temple Child Climb North Chest,Spirit Temple Child Climb North Chest,,Spirit Temple,Item,Spirit Temple Child Climb North Chest,,
+GS Spirit Temple Bomb for Light Room,GS Spirit Temple Bomb for Light Room,Skull Token,Spirit Temple,Item,GS Spirit Temple Bomb for Light Room,,
+Spirit Temple Compass Chest,Spirit Temple Compass Chest,Spirit Temple Compass,Spirit Temple,Item,Spirit Temple Compass Chest,,
+Spirit Temple Early Adult Right Chest,Spirit Temple Early Adult Right Chest,,Spirit Temple,Item,Spirit Temple Early Adult Right Chest,,
+Spirit Temple First Mirror Right Chest,Spirit Temple First Mirror Right Chest,,Spirit Temple,Item,Spirit Temple First Mirror Right Chest,,
+Spirit Temple First Mirror Left Chest,Spirit Temple First Mirror Left Chest,,Spirit Temple,Item,Spirit Temple First Mirror Left Chest,,
+GS Spirit Temple Boulder Room,GS Spirit Temple Boulder Room,Skull Token,Spirit Temple,Item,GS Spirit Temple Boulder Room,,
+Spirit Temple Map Chest,Spirit Temple Map Chest,Spirit Temple Map,Spirit Temple,Item,Spirit Temple Map Chest,,
+Spirit Temple Sun Block Room Chest,Spirit Temple Sun Block Room Chest,,Spirit Temple,Item,Spirit Temple Sun Block Room Chest,,
+Spirit Temple Statue Hand Chest,Spirit Temple Statue Hand Chest,,Spirit Temple,Item,Spirit Temple Statue Hand Chest,,
+Spirit Temple NE Main Room Chest,Spirit Temple NE Main Room Chest,,Spirit Temple,Item,Spirit Temple NE Main Room Chest,,
+GS Spirit Temple Hall to West Iron Knuckle,GS Spirit Temple Hall to West Iron Knuckle,Skull Token,Spirit Temple,Item,GS Spirit Temple Hall to West Iron Knuckle,,
+GS Spirit Temple Lobby,GS Spirit Temple Lobby,Skull Token,Spirit Temple,Item,GS Spirit Temple Lobby,,
+Silver Gauntlets Chest,Silver Gauntlets Chest,Silver Gauntlets,Spirit Temple,Item,Silver Gauntlets Chest,,
+Mirror Shield Chest,Mirror Shield Chest,Mirror Shield,Spirit Temple,Item,Mirror Shield Chest,,
+Spirit Temple Near Four Armos Chest,Spirit Temple Near Four Armos Chest,,Spirit Temple,Item,Spirit Temple Near Four Armos Chest,,
+Spirit Temple Hallway Left Invisible Chest,Spirit Temple Hallway Left Invisible Chest,,Spirit Temple,Item,Spirit Temple Hallway Left Invisible Chest,,
+Spirit Temple Hallway Right Invisible Chest,Spirit Temple Hallway Right Invisible Chest,,Spirit Temple,Item,Spirit Temple Hallway Right Invisible Chest,,
+Spirit Temple Boss Key Chest,Spirit Temple Boss Key Chest,Spirit Temple Boss Key,Spirit Temple,Item,Spirit Temple Boss Key Chest,,
+Spirit Temple Topmost Chest,Spirit Temple Topmost Chest,,Spirit Temple,Item,Spirit Temple Topmost Chest,,
+Twinrova Heart,Twinrova Heart,Heart Container,Spirit Temple,Item,Twinrova Heart,,
+GC Deku Scrub Bombs,GC Deku Scrub Bombs,Skull Token,Ganons Castle,Item,GC Deku Scrub Bombs,,
+GC Deku Scrub Arrows,GC Deku Scrub Arrows,Skull Token,Ganons Castle,Item,GC Deku Scrub Arrows,,
+GC Deku Scrub Red Potion,GC Deku Scrub Red Potion,Skull Token,Ganons Castle,Item,GC Deku Scrub Red Potion,,
+GC Deku Scrub Green Potion,GC Deku Scrub Green Potion,Skull Token,Ganons Castle,Item,GC Deku Scrub Green Potion,,
+Ganons Castle Forest Trial Chest,Ganons Castle Forest Trial Chest,,Ganons Castle,Item,Ganons Castle Forest Trial Chest,,
+Ganons Castle Water Trial Left Chest,Ganons Castle Water Trial Left Chest,,Ganons Castle,Item,Ganons Castle Water Trial Left Chest,,
+Ganons Castle Water Trial Right Chest,Ganons Castle Water Trial Right Chest,,Ganons Castle,Item,Ganons Castle Water Trial Right Chest,,
+Ganons Castle Shadow Trial First Chest,Ganons Castle Shadow Trial First Chest,,Ganons Castle,Item,Ganons Castle Shadow Trial First Chest,,
+Ganons Castle Shadow Trial Second Chest,Ganons Castle Shadow Trial Second Chest,,Ganons Castle,Item,Ganons Castle Shadow Trial Second Chest,,
+Ganons Castle Spirit Trial First Chest,Ganons Castle Spirit Trial First Chest,,Ganons Castle,Item,Ganons Castle Spirit Trial First Chest,,
+Ganons Castle Spirit Trial Second Chest,Ganons Castle Spirit Trial Second Chest,,Ganons Castle,Item,Ganons Castle Spirit Trial Second Chest,,
+Ganons Castle Light Trial First Left Chest,Ganons Castle Light Trial First Left Chest,,Ganons Castle,Item,Ganons Castle Light Trial First Left Chest,,
+Ganons Castle Light Trial Second Left Chest,Ganons Castle Light Trial Second Left Chest,,Ganons Castle,Item,Ganons Castle Light Trial Second Left Chest,,
+Ganons Castle Light Trial Third Left Chest,Ganons Castle Light Trial Third Left Chest,,Ganons Castle,Item,Ganons Castle Light Trial Third Left Chest,,
+Ganons Castle Light Trial First Right Chest,Ganons Castle Light Trial First Right Chest,,Ganons Castle,Item,Ganons Castle Light Trial First Right Chest,,
+Ganons Castle Light Trial Second Right Chest,Ganons Castle Light Trial Second Right Chest,,Ganons Castle,Item,Ganons Castle Light Trial Second Right Chest,,
+Ganons Castle Light Trial Third Right Chest,Ganons Castle Light Trial Third Right Chest,,Ganons Castle,Item,Ganons Castle Light Trial Third Right Chest,,
+Ganons Castle Light Trial Invisible Enemies Chest,Ganons Castle Light Trial Invisible Enemies Chest,,Ganons Castle,Item,Ganons Castle Light Trial Invisible Enemies Chest,,
+Ganons Castle Light Trial Lullaby Chest,Ganons Castle Light Trial Lullaby Chest,,Ganons Castle,Item,Ganons Castle Light Trial Lullaby Chest,,
+Deku Tree MQ Lobby Chest,Deku Tree MQ Lobby Chest,,Deku Tree,Item,Deku Tree MQ Lobby Chest,,Deku Tree MQ Lobby Chest
+Deku Tree MQ Slingshot Chest,Deku Tree MQ Slingshot Chest,Slingshot Upgrade,Deku Tree,Item,Deku Tree MQ Slingshot Chest,,Deku Tree MQ Slingshot Chest
+Deku Tree MQ Slingshot Room Back Chest,Deku Tree MQ Slingshot Room Back Chest,,Deku Tree,Item,Deku Tree MQ Slingshot Room Back Chest,,Deku Tree MQ Slingshot Room Back Chest
+Deku Tree MQ Basement Chest,Deku Tree MQ Basement Chest,,Deku Tree,Item,Deku Tree MQ Basement Chest,,Deku Tree MQ Basement Chest
+GS Deku Tree MQ Lobby,GS Deku Tree MQ Lobby,Skull Token,Deku Tree,Item,GS Deku Tree MQ Lobby,,GS Deku Tree MQ Lobby
+Deku Tree MQ Compass Chest,Deku Tree MQ Compass Chest,,Deku Tree,Item,Deku Tree MQ Compass Chest,,Deku Tree MQ Compass Chest
+GS Deku Tree MQ Compass Room,GS Deku Tree MQ Compass Room,Skull Token,Deku Tree,Item,GS Deku Tree MQ Compass Room,,GS Deku Tree MQ Compass Room
+Deku Tree MQ Before Spinning Log Chest,Deku Tree MQ Before Spinning Log Chest,,Deku Tree,Item,Deku Tree MQ Before Spinning Log Chest,,Deku Tree MQ Before Spinning Log Chest
+Deku Tree MQ After Spinning Log Chest,Deku Tree MQ After Spinning Log Chest,,Deku Tree,Item,Deku Tree MQ After Spinning Log Chest,,Deku Tree MQ After Spinning Log Chest
+GS Deku Tree MQ Basement Ceiling,GS Deku Tree MQ Basement Ceiling,Skull Token,Deku Tree,Item,GS Deku Tree MQ Basement Ceiling,,GS Deku Tree MQ Basement Ceiling
+GS Deku Tree MQ Basement Back Room,GS Deku Tree MQ Basement Back Room,Skull Token,Deku Tree,Item,GS Deku Tree MQ Basement Back Room,,GS Deku Tree MQ Basement Back Room
+DT MQ Deku Scrub Deku Shield,DT MQ Deku Scrub Deku Shield,Deku Shield,Deku Tree,Item,DT MQ Deku Scrub Deku Shield,,DT MQ Deku Scrub Deku Shield
+Dodongos Cavern MQ Map Chest,Dodongos Cavern MQ Map Chest,,Dodongos Cavern,Item,Dodongos Cavern MQ Map Chest,,Dodongos Cavern MQ Map Chest
+Dodongos Cavern MQ Compass Chest,Dodongos Cavern MQ Compass Chest,,Dodongos Cavern,Item,Dodongos Cavern MQ Compass Chest,,Dodongos Cavern MQ Compass Chest
+Dodongos Cavern MQ Larva Room Chest,Dodongos Cavern MQ Larva Room Chest,,Dodongos Cavern,Item,Dodongos Cavern MQ Larva Room Chest,,Dodongos Cavern MQ Larva Room Chest
+Dodongos Cavern MQ Torch Puzzle Room Chest,Dodongos Cavern MQ Torch Puzzle Room Chest,,Dodongos Cavern,Item,Dodongos Cavern MQ Torch Puzzle Room Chest,,Dodongos Cavern MQ Torch Puzzle Room Chest
+GS Dodongo's Cavern MQ Song of Time Block Room,GS Dodongo's Cavern MQ Song of Time Block Room,Skull Token,Dodongos Cavern,Item,GS Dodongo's Cavern MQ Song of Time Block Room,,GS Dodongo's Cavern MQ Song of Time Block Room
+GS Dodongo's Cavern MQ Larva Room,GS Dodongo's Cavern MQ Larva Room,Skull Token,Dodongos Cavern,Item,GS Dodongo's Cavern MQ Larva Room,,GS Dodongo's Cavern MQ Larva Room
+GS Dodongo's Cavern MQ Lizalfos Room,GS Dodongo's Cavern MQ Lizalfos Room,Skull Token,Dodongos Cavern,Item,GS Dodongo's Cavern MQ Lizalfos Room,,GS Dodongo's Cavern MQ Lizalfos Room
+DC MQ Deku Scrub Deku Sticks,DC MQ Deku Scrub Deku Sticks,,Dodongos Cavern,Item,DC MQ Deku Scrub Deku Sticks,,DC MQ Deku Scrub Deku Sticks
+DC MQ Deku Scrub Deku Seeds,DC MQ Deku Scrub Deku Seeds,,Dodongos Cavern,Item,DC MQ Deku Scrub Deku Seeds,,DC MQ Deku Scrub Deku Seeds
+DC MQ Deku Scrub Deku Shield,DC MQ Deku Scrub Deku Shield,,Dodongos Cavern,Item,DC MQ Deku Scrub Deku Shield,,DC MQ Deku Scrub Deku Shield
+DC MQ Deku Scrub Red Potion,DC MQ Deku Scrub Red Potion,,Dodongos Cavern,Item,DC MQ Deku Scrub Red Potion,,DC MQ Deku Scrub Red Potion
+Dodongos Cavern MQ Bomb Bag Chest,Dodongos Cavern MQ Bomb Bag Chest,Bomb Bag Upgrade,Dodongos Cavern,Item,Dodongos Cavern MQ Bomb Bag Chest,,Dodongos Cavern MQ Bomb Bag Chest
+GS Dodongo's Cavern MQ Scrub Room,GS Dodongo's Cavern MQ Scrub Room,Skull Token,Dodongos Cavern,Item,GS Dodongo's Cavern MQ Scrub Room,,GS Dodongo's Cavern MQ Scrub Room
+Dodongos Cavern MQ Under Grave Chest,Dodongos Cavern MQ Under Grave Chest,,Dodongos Cavern,Item,Dodongos Cavern MQ Under Grave Chest,,Dodongos Cavern MQ Under Grave Chest
+GS Dodongo's Cavern MQ Back Area,GS Dodongo's Cavern MQ Back Area,Skull Token,Dodongos Cavern,Item,GS Dodongo's Cavern MQ Back Area,,GS Dodongo's Cavern MQ Back Area
+Jabu Jabus Belly MQ Map Chest,Jabu Jabus Belly MQ Map Chest,,Jabu Jabus Belly,Item,Jabu Jabus Belly MQ Map Chest,,Jabu Jabus Belly MQ Map Chest
+Jabu Jabus Belly MQ Entry Side Chest,Jabu Jabus Belly MQ Entry Side Chest,,Jabu Jabus Belly,Item,Jabu Jabus Belly MQ Entry Side Chest,,Jabu Jabus Belly MQ Entry Side Chest
+Jabu Jabus Belly MQ Second Room Lower Chest,Jabu Jabus Belly MQ Second Room Lower Chest,,Jabu Jabus Belly,Item,Jabu Jabus Belly MQ Second Room Lower Chest,,Jabu Jabus Belly MQ Second Room Lower Chest
+Jabu Jabus Belly MQ Second Room Upper Chest,Jabu Jabus Belly MQ Second Room Upper Chest,,Jabu Jabus Belly,Item,Jabu Jabus Belly MQ Second Room Upper Chest,,Jabu Jabus Belly MQ Second Room Upper Chest
+Jabu Jabus Belly MQ Compass Chest,Jabu Jabus Belly MQ Compass Chest,,Jabu Jabus Belly,Item,Jabu Jabus Belly MQ Compass Chest,,Jabu Jabus Belly MQ Compass Chest
+Jabu Jabus Belly MQ Basement South Chest,Jabu Jabus Belly MQ Basement South Chest,,Jabu Jabus Belly,Item,Jabu Jabus Belly MQ Basement South Chest,,Jabu Jabus Belly MQ Basement South Chest
+Jabu Jabus Belly MQ Basement North Chest,Jabu Jabus Belly MQ Basement North Chest,,Jabu Jabus Belly,Item,Jabu Jabus Belly MQ Basement North Chest,,Jabu Jabus Belly MQ Basement North Chest
+Jabu Jabus Belly MQ Boomerang Room Small Chest,Jabu Jabus Belly MQ Boomerang Room Small Chest,,Jabu Jabus Belly,Item,Jabu Jabus Belly MQ Boomerang Room Small Chest,,Jabu Jabus Belly MQ Boomerang Room Small Chest
+MQ Boomerang Chest,MQ Boomerang Chest,Boomerang,Jabu Jabus Belly,Item,MQ Boomerang Chest,,MQ Boomerang Chest
+GS Jabu Jabu MQ Boomerang Room,GS Jabu Jabu MQ Boomerang Room,Skull Token,Jabu Jabus Belly,Item,GS Jabu Jabu MQ Boomerang Room,,GS Jabu Jabu MQ Boomerang Room
+Jabu Jabus Belly MQ Falling Like Like Room Chest,Jabu Jabus Belly MQ Falling Like Like Room Chest,,Jabu Jabus Belly,Item,Jabu Jabus Belly MQ Falling Like Like Room Chest,,Jabu Jabus Belly MQ Falling Like Like Room Chest
+GS Jabu Jabu MQ Tailpasaran Room,GS Jabu Jabu MQ Tailpasaran Room,Skull Token,Jabu Jabus Belly,Item,GS Jabu Jabu MQ Tailpasaran Room,,GS Jabu Jabu MQ Tailpasaran Room
+GS Jabu Jabu MQ Invisible Enemies Room,GS Jabu Jabu MQ Invisible Enemies Room,Skull Token,Jabu Jabus Belly,Item,GS Jabu Jabu MQ Invisible Enemies Room,,GS Jabu Jabu MQ Invisible Enemies Room
+Jabu Jabus Belly MQ Cow,Jabu Jabus Belly MQ Cow,,Jabu Jabus Belly,Item,Jabu Jabus Belly MQ Cow,,Jabu Jabus Belly MQ Cow
+Jabu Jabus Belly MQ Near Boss Chest,Jabu Jabus Belly MQ Near Boss Chest,,Jabu Jabus Belly,Item,Jabu Jabus Belly MQ Near Boss Chest,,Jabu Jabus Belly MQ Near Boss Chest
+GS Jabu Jabu MQ Near Boss,GS Jabu Jabu MQ Near Boss,Skull Token,Jabu Jabus Belly,Item,GS Jabu Jabu MQ Near Boss,,GS Jabu Jabu MQ Near Boss
+Forest Temple MQ First Chest,Forest Temple MQ First Chest,,Forest Temple,Item,Forest Temple MQ First Chest,,Forest Temple MQ First Chest
+GS Forest Temple MQ First Hallway,GS Forest Temple MQ First Hallway,Skull Token,Forest Temple,Item,GS Forest Temple MQ First Hallway,,GS Forest Temple MQ First Hallway
+Forest Temple MQ Chest Behind Lobby,Forest Temple MQ Chest Behind Lobby,,Forest Temple,Item,Forest Temple MQ Chest Behind Lobby,,Forest Temple MQ Chest Behind Lobby
+GS Forest Temple MQ Block Push Room,GS Forest Temple MQ Block Push Room,Skull Token,Forest Temple,Item,GS Forest Temple MQ Block Push Room,,GS Forest Temple MQ Block Push Room
+Forest Temple MQ Boss Key Chest,Forest Temple MQ Boss Key Chest,,Forest Temple,Item,Forest Temple MQ Boss Key Chest,,Forest Temple MQ Boss Key Chest
+Forest Temple MQ Redead Chest,Forest Temple MQ Redead Chest,,Forest Temple,Item,Forest Temple MQ Redead Chest,,Forest Temple MQ Redead Chest
+GS Forest Temple MQ Outdoor West,GS Forest Temple MQ Outdoor West,Skull Token,Forest Temple,Item,GS Forest Temple MQ Outdoor West,,GS Forest Temple MQ Outdoor West
+Forest Temple MQ Well Chest,Forest Temple MQ Well Chest,,Forest Temple,Item,Forest Temple MQ Well Chest,,Forest Temple MQ Well Chest
+GS Forest Temple MQ Outdoor East,GS Forest Temple MQ Outdoor East,Skull Token,Forest Temple,Item,GS Forest Temple MQ Outdoor East,,GS Forest Temple MQ Outdoor East
+GS Forest Temple MQ Well,GS Forest Temple MQ Well,Skull Token,Forest Temple,Item,GS Forest Temple MQ Well,,GS Forest Temple MQ Well
+Forest Temple MQ NE Outdoors Upper Chest,Forest Temple MQ NE Outdoors Upper Chest,,Forest Temple,Item,Forest Temple MQ NE Outdoors Upper Chest,,Forest Temple MQ NE Outdoors Upper Chest
+Forest Temple MQ NE Outdoors Lower Chest,Forest Temple MQ NE Outdoors Lower Chest,,Forest Temple,Item,Forest Temple MQ NE Outdoors Lower Chest,,Forest Temple MQ NE Outdoors Lower Chest
+Forest Temple MQ Bow Chest,Forest Temple MQ Bow Chest,Quiver Upgrade,Forest Temple,Item,Forest Temple MQ Bow Chest,,Forest Temple MQ Bow Chest
+Forest Temple MQ Map Chest,Forest Temple MQ Map Chest,,Forest Temple,Item,Forest Temple MQ Map Chest,,Forest Temple MQ Map Chest
+Forest Temple MQ Compass Chest,Forest Temple MQ Compass Chest,,Forest Temple,Item,Forest Temple MQ Compass Chest,,Forest Temple MQ Compass Chest
+Forest Temple MQ Falling Room Chest,Forest Temple MQ Falling Room Chest,,Forest Temple,Item,Forest Temple MQ Falling Room Chest,,Forest Temple MQ Falling Room Chest
+Forest Temple MQ Near Boss Chest,Forest Temple MQ Near Boss Chest,,Forest Temple,Item,Forest Temple MQ Near Boss Chest,,Forest Temple MQ Near Boss Chest
+Bottom of the Well MQ Compass Chest,Bottom of the Well MQ Compass Chest,,Bottom of the Well,Item,Bottom of the Well MQ Compass Chest,,Bottom of the Well MQ Compass Chest
+Bottom of the Well MQ Map Chest,Bottom of the Well MQ Map Chest,,Bottom of the Well,Item,Bottom of the Well MQ Map Chest,,Bottom of the Well MQ Map Chest
+Bottom of the Well MQ Lens Chest,Bottom of the Well MQ Lens Chest,Lens of Truth,Bottom of the Well,Item,Bottom of the Well MQ Lens Chest,,Bottom of the Well MQ Lens Chest
+Bottom of the Well MQ Dead Hand Freestanding Key,Bottom of the Well MQ Dead Hand Freestanding Key,Bottom Of the Well Small Key,Bottom of the Well,Item,Bottom of the Well MQ Dead Hand Freestanding Key,,Bottom of the Well MQ Dead Hand Freestanding Key
+Bottom of the Well MQ East Inner Room Freestanding Key,Bottom of the Well MQ East Inner Room Freestanding Key,Bottom Of the Well Small Key,Bottom of the Well,Item,Bottom of the Well MQ East Inner Room Freestanding Key,,Bottom of the Well MQ East Inner Room Freestanding Key
+GS Well MQ Basement,GS Well MQ Basement,Skull Token,Bottom of the Well,Item,GS Well MQ Basement,,GS Well MQ Basement
+GS Well MQ West Inner Room,GS Well MQ West Inner Room,Skull Token,Bottom of the Well,Item,GS Well MQ West Inner Room,,GS Well MQ West Inner Room
+GS Well MQ Coffin Room,GS Well MQ Coffin Room,Skull Token,Bottom of the Well,Item,GS Well MQ Coffin Room,,GS Well MQ Coffin Room
+Fire Temple MQ Entrance Hallway Small Chest,Fire Temple MQ Entrance Hallway Small Chest,,Fire Temple,Item,Fire Temple MQ Entrance Hallway Small Chest,,Fire Temple MQ Entrance Hallway Small Chest
+Fire Temple MQ Chest Near Boss,Fire Temple MQ Chest Near Boss,,Fire Temple,Item,Fire Temple MQ Chest Near Boss,,Fire Temple MQ Chest Near Boss
+Fire Temple MQ Megaton Hammer Chest,Fire Temple MQ Megaton Hammer Chest,Megaton Hammer,Fire Temple,Item,Fire Temple MQ Megaton Hammer Chest,,Fire Temple MQ Megaton Hammer Chest
+Fire Temple MQ Map Chest,Fire Temple MQ Map Chest,,Fire Temple,Item,Fire Temple MQ Map Chest,,Fire Temple MQ Map Chest
+Fire Temple MQ Boss Key Chest,Fire Temple MQ Boss Key Chest,,Fire Temple,Item,Fire Temple MQ Boss Key Chest,,Fire Temple MQ Boss Key Chest
+Fire Temple MQ Big Lava Room Bombable Chest,Fire Temple MQ Big Lava Room Bombable Chest,,Fire Temple,Item,Fire Temple MQ Big Lava Room Bombable Chest,,Fire Temple MQ Big Lava Room Bombable Chest
+GS Fire Temple MQ Big Lava Room,GS Fire Temple MQ Big Lava Room,Skull Token,Fire Temple,Item,GS Fire Temple MQ Big Lava Room,,GS Fire Temple MQ Big Lava Room
+Fire Temple MQ Maze Lower Chest,Fire Temple MQ Maze Lower Chest,,Fire Temple,Item,Fire Temple MQ Maze Lower Chest,,Fire Temple MQ Maze Lower Chest
+Fire Temple MQ Maze Side Room,Fire Temple MQ Maze Side Room,,Fire Temple,Item,Fire Temple MQ Maze Side Room,,Fire Temple MQ Maze Side Room
+Fire Temple MQ Maze Upper Chest,Fire Temple MQ Maze Upper Chest,,Fire Temple,Item,Fire Temple MQ Maze Upper Chest,,Fire Temple MQ Maze Upper Chest
+Fire Temple MQ Compass Chest,Fire Temple MQ Compass Chest,,Fire Temple,Item,Fire Temple MQ Compass Chest,,Fire Temple MQ Compass Chest
+GS Fire Temple MQ East Tower Top,GS Fire Temple MQ East Tower Top,Skull Token,Fire Temple,Item,GS Fire Temple MQ East Tower Top,,GS Fire Temple MQ East Tower Top
+Fire Temple MQ Freestanding Key,Fire Temple MQ Freestanding Key,Fire Temple Small Key,Fire Temple,Item,Fire Temple MQ Freestanding Key,,Fire Temple MQ Freestanding Key
+Fire Temple MQ West Tower Top Chest,Fire Temple MQ West Tower Top Chest,,Fire Temple,Item,Fire Temple MQ West Tower Top Chest,,Fire Temple MQ West Tower Top Chest
+GS Fire Temple MQ Fire Wall Maze Side Room,GS Fire Temple MQ Fire Wall Maze Side Room,Skull Token,Fire Temple,Item,GS Fire Temple MQ Fire Wall Maze Side Room,,GS Fire Temple MQ Fire Wall Maze Side Room
+GS Fire Temple MQ Fire Wall Maze Center,GS Fire Temple MQ Fire Wall Maze Center,Skull Token,Fire Temple,Item,GS Fire Temple MQ Fire Wall Maze Center,,GS Fire Temple MQ Fire Wall Maze Center
+GS Fire Temple MQ Above Fire Wall Maze,GS Fire Temple MQ Above Fire Wall Maze,Skull Token,Fire Temple,Item,GS Fire Temple MQ Above Fire Wall Maze,,GS Fire Temple MQ Above Fire Wall Maze
+Ice Cavern MQ Map Chest,Ice Cavern MQ Map Chest,,Ice Cavern,Item,Ice Cavern MQ Map Chest,,Ice Cavern MQ Map Chest
+Ice Cavern MQ Iron Boots Chest,Ice Cavern MQ Iron Boots Chest,Iron Boots,Ice Cavern,Item,Ice Cavern MQ Iron Boots Chest,,Ice Cavern MQ Iron Boots Chest
+GS Ice Cavern MQ Ice Block,GS Ice Cavern MQ Ice Block,Skull Token,Ice Cavern,Item,GS Ice Cavern MQ Ice Block,,GS Ice Cavern MQ Ice Block
+GS Ice Cavern MQ Scarecrow,GS Ice Cavern MQ Scarecrow,Skull Token,Ice Cavern,Item,GS Ice Cavern MQ Scarecrow,,GS Ice Cavern MQ Scarecrow
+Ice Cavern MQ Compass Chest,Ice Cavern MQ Compass Chest,,Ice Cavern,Item,Ice Cavern MQ Compass Chest,,Ice Cavern MQ Compass Chest
+Ice Cavern MQ Freestanding PoH,Ice Cavern MQ Freestanding PoH,,Ice Cavern,Item,Ice Cavern MQ Freestanding PoH,,Ice Cavern MQ Freestanding PoH
+GS Ice Cavern MQ Red Ice,GS Ice Cavern MQ Red Ice,Skull Token,Ice Cavern,Item,GS Ice Cavern MQ Red Ice,,GS Ice Cavern MQ Red Ice
+Water Temple MQ Map Chest,Water Temple MQ Map Chest,,Water Temple,Item,Water Temple MQ Map Chest,,Water Temple MQ Map Chest
+Water Temple MQ Central Pillar Chest,Water Temple MQ Central Pillar Chest,,Water Temple,Item,Water Temple MQ Central Pillar Chest,,Water Temple MQ Central Pillar Chest
+Water Temple MQ Compass Chest,Water Temple MQ Compass Chest,,Water Temple,Item,Water Temple MQ Compass Chest,,Water Temple MQ Compass Chest
+Water Temple MQ Longshot Chest,Water Temple MQ Longshot Chest,HookShot Upgrade,Water Temple,Item,Water Temple MQ Longshot Chest,,Water Temple MQ Longshot Chest
+GS Water Temple MQ Lizalfos Hallway,GS Water Temple MQ Lizalfos Hallway,Skull Token,Water Temple,Item,GS Water Temple MQ Lizalfos Hallway,,GS Water Temple MQ Lizalfos Hallway
+GS Water Temple MQ Before Upper Water Switch,GS Water Temple MQ Before Upper Water Switch,Skull Token,Water Temple,Item,GS Water Temple MQ Before Upper Water Switch,,GS Water Temple MQ Before Upper Water Switch
+Water Temple MQ Boss Key Chest,Water Temple MQ Boss Key Chest,,Water Temple,Item,Water Temple MQ Boss Key Chest,,Water Temple MQ Boss Key Chest
+GS Water Temple MQ Serpent River,GS Water Temple MQ Serpent River,Skull Token,Water Temple,Item,GS Water Temple MQ Serpent River,,GS Water Temple MQ Serpent River
+Water Temple MQ Freestanding Key,Water Temple MQ Freestanding Key,Water Temple Small Key,Water Temple,Item,Water Temple MQ Freestanding Key,,Water Temple MQ Freestanding Key
+GS Water Temple MQ South Basement,GS Water Temple MQ South Basement,Skull Token,Water Temple,Item,GS Water Temple MQ South Basement,,GS Water Temple MQ South Basement
+GS Water Temple MQ North Basement,GS Water Temple MQ North Basement,Skull Token,Water Temple,Item,GS Water Temple MQ North Basement,,GS Water Temple MQ North Basement
+Shadow Temple MQ Compass Chest,Shadow Temple MQ Compass Chest,,Shadow Temple,Item,Shadow Temple MQ Compass Chest,,Shadow Temple MQ Compass Chest
+Shadow Temple MQ Hover Boots Chest,Shadow Temple MQ Hover Boots Chest,Hover Boots,Shadow Temple,Item,Shadow Temple MQ Hover Boots Chest,,Shadow Temple MQ Hover Boots Chest
+Shadow Temple MQ Map Chest,Shadow Temple MQ Map Chest,,Shadow Temple,Item,Shadow Temple MQ Map Chest,,Shadow Temple MQ Map Chest
+Shadow Temple MQ Early Gibdos Chest,Shadow Temple MQ Early Gibdos Chest,,Shadow Temple,Item,Shadow Temple MQ Early Gibdos Chest,,Shadow Temple MQ Early Gibdos Chest
+Shadow Temple MQ Near Ship Invisible Chest,Shadow Temple MQ Near Ship Invisible Chest,,Shadow Temple,Item,Shadow Temple MQ Near Ship Invisible Chest,,Shadow Temple MQ Near Ship Invisible Chest
+Shadow Temple MQ Invisible Blades Visible Chest,Shadow Temple MQ Invisible Blades Visible Chest,,Shadow Temple,Item,Shadow Temple MQ Invisible Blades Visible Chest,,Shadow Temple MQ Invisible Blades Visible Chest
+Shadow Temple MQ Invisible Blades Invisible Chest,Shadow Temple MQ Invisible Blades Invisible Chest,,Shadow Temple,Item,Shadow Temple MQ Invisible Blades Invisible Chest,,Shadow Temple MQ Invisible Blades Invisible Chest
+Shadow Temple MQ Beamos Silver Rupees Chest,Shadow Temple MQ Beamos Silver Rupees Chest,,Shadow Temple,Item,Shadow Temple MQ Beamos Silver Rupees Chest,,Shadow Temple MQ Beamos Silver Rupees Chest
+Shadow Temple MQ Falling Spikes Lower Chest,Shadow Temple MQ Falling Spikes Lower Chest,,Shadow Temple,Item,Shadow Temple MQ Falling Spikes Lower Chest,,Shadow Temple MQ Falling Spikes Lower Chest
+Shadow Temple MQ Falling Spikes Upper Chest,Shadow Temple MQ Falling Spikes Upper Chest,,Shadow Temple,Item,Shadow Temple MQ Falling Spikes Upper Chest,,Shadow Temple MQ Falling Spikes Upper Chest
+Shadow Temple MQ Falling Spikes Switch Chest,Shadow Temple MQ Falling Spikes Switch Chest,,Shadow Temple,Item,Shadow Temple MQ Falling Spikes Switch Chest,,Shadow Temple MQ Falling Spikes Switch Chest
+Shadow Temple MQ Invisible Spikes Chest,Shadow Temple MQ Invisible Spikes Chest,,Shadow Temple,Item,Shadow Temple MQ Invisible Spikes Chest,,Shadow Temple MQ Invisible Spikes Chest
+Shadow Temple MQ Stalfos Room Chest,Shadow Temple MQ Stalfos Room Chest,,Shadow Temple,Item,Shadow Temple MQ Stalfos Room Chest,,Shadow Temple MQ Stalfos Room Chest
+GS Shadow Temple MQ Crusher Room,GS Shadow Temple MQ Crusher Room,Skull Token,Shadow Temple,Item,GS Shadow Temple MQ Crusher Room,,GS Shadow Temple MQ Crusher Room
+Shadow Temple MQ Wind Hint Chest,Shadow Temple MQ Wind Hint Chest,,Shadow Temple,Item,Shadow Temple MQ Wind Hint Chest,,Shadow Temple MQ Wind Hint Chest
+Shadow Temple MQ After Wind Enemy Chest,Shadow Temple MQ After Wind Enemy Chest,,Shadow Temple,Item,Shadow Temple MQ After Wind Enemy Chest,,Shadow Temple MQ After Wind Enemy Chest
+Shadow Temple MQ After Wind Hidden Chest,Shadow Temple MQ After Wind Hidden Chest,,Shadow Temple,Item,Shadow Temple MQ After Wind Hidden Chest,,Shadow Temple MQ After Wind Hidden Chest
+GS Shadow Temple MQ Wind Hint Room,GS Shadow Temple MQ Wind Hint Room,Skull Token,Shadow Temple,Item,GS Shadow Temple MQ Wind Hint Room,,GS Shadow Temple MQ Wind Hint Room
+GS Shadow Temple MQ After Wind,GS Shadow Temple MQ After Wind,Skull Token,Shadow Temple,Item,GS Shadow Temple MQ After Wind,,GS Shadow Temple MQ After Wind
+GS Shadow Temple MQ After Ship,GS Shadow Temple MQ After Ship,Skull Token,Shadow Temple,Item,GS Shadow Temple MQ After Ship,,GS Shadow Temple MQ After Ship
+GS Shadow Temple MQ Near Boss,GS Shadow Temple MQ Near Boss,Skull Token,Shadow Temple,Item,GS Shadow Temple MQ Near Boss,,GS Shadow Temple MQ Near Boss
+Shadow Temple MQ Spike Walls Left Chest,Shadow Temple MQ Spike Walls Left Chest,,Shadow Temple,Item,Shadow Temple MQ Spike Walls Left Chest,,Shadow Temple MQ Spike Walls Left Chest
+Shadow Temple MQ Boss Key Chest,Shadow Temple MQ Boss Key Chest,,Shadow Temple,Item,Shadow Temple MQ Boss Key Chest,,Shadow Temple MQ Boss Key Chest
+Shadow Temple MQ Bomb Flower Chest,Shadow Temple MQ Bomb Flower Chest,,Shadow Temple,Item,Shadow Temple MQ Bomb Flower Chest,,Shadow Temple MQ Bomb Flower Chest
+Shadow Temple MQ Freestanding Key,Shadow Temple MQ Freestanding Key,,Shadow Temple,Item,Shadow Temple MQ Freestanding Key,,Shadow Temple MQ Freestanding Key
+Gerudo Training Grounds MQ Lobby Left Chest,Gerudo Training Grounds MQ Lobby Left Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Lobby Left Chest,,Gerudo Training Grounds MQ Lobby Left Chest
+Gerudo Training Grounds MQ Lobby Right Chest,Gerudo Training Grounds MQ Lobby Right Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Lobby Right Chest,,Gerudo Training Grounds MQ Lobby Right Chest
+Gerudo Training Grounds MQ Hidden Ceiling Chest,Gerudo Training Grounds MQ Hidden Ceiling Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Hidden Ceiling Chest,,Gerudo Training Grounds MQ Hidden Ceiling Chest
+Gerudo Training Grounds MQ Maze Path First Chest,Gerudo Training Grounds MQ Maze Path First Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Maze Path First Chest,,Gerudo Training Grounds MQ Maze Path First Chest
+Gerudo Training Grounds MQ Maze Path Second Chest,Gerudo Training Grounds MQ Maze Path Second Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Maze Path Second Chest,,Gerudo Training Grounds MQ Maze Path Second Chest
+Gerudo Training Grounds MQ Maze Path Third Chest,Gerudo Training Grounds MQ Maze Path Third Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Maze Path Third Chest,,Gerudo Training Grounds MQ Maze Path Third Chest
+Gerudo Training Grounds MQ Dinolfos Chest,Gerudo Training Grounds MQ Dinolfos Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Dinolfos Chest,,Gerudo Training Grounds MQ Dinolfos Chest
+Gerudo Training Grounds MQ Underwater Silver Rupee Chest,Gerudo Training Grounds MQ Underwater Silver Rupee Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Underwater Silver Rupee Chest,,Gerudo Training Grounds MQ Underwater Silver Rupee Chest
+Gerudo Training Grounds MQ First Iron Knuckle Chest,Gerudo Training Grounds MQ First Iron Knuckle Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ First Iron Knuckle Chest,,Gerudo Training Grounds MQ First Iron Knuckle Chest
+Gerudo Training Grounds MQ Before Heavy Block Chest,Gerudo Training Grounds MQ Before Heavy Block Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Before Heavy Block Chest,,Gerudo Training Grounds MQ Before Heavy Block Chest
+Gerudo Training Grounds MQ Heavy Block Chest,Gerudo Training Grounds MQ Heavy Block Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Heavy Block Chest,,Gerudo Training Grounds MQ Heavy Block Chest
+Gerudo Training Grounds MQ Eye Statue Chest,Gerudo Training Grounds MQ Eye Statue Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Eye Statue Chest,,Gerudo Training Grounds MQ Eye Statue Chest
+Gerudo Training Grounds MQ Second Iron Knuckle Chest,Gerudo Training Grounds MQ Second Iron Knuckle Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Second Iron Knuckle Chest,,Gerudo Training Grounds MQ Second Iron Knuckle Chest
+Gerudo Training Grounds MQ Flame Circle Chest,Gerudo Training Grounds MQ Flame Circle Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Flame Circle Chest,,Gerudo Training Grounds MQ Flame Circle Chest
+Gerudo Training Grounds MQ Maze Right Central Chest,Gerudo Training Grounds MQ Maze Right Central Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Maze Right Central Chest,,Gerudo Training Grounds MQ Maze Right Central Chest
+Gerudo Training Grounds MQ Maze Right Side Chest,Gerudo Training Grounds MQ Maze Right Side Chest,,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Maze Right Side Chest,,Gerudo Training Grounds MQ Maze Right Side Chest
+Gerudo Training Grounds MQ Ice Arrows Chest,Gerudo Training Grounds MQ Ice Arrows Chest,Ice Arrows,Gerudo Training Grounds,Item,Gerudo Training Grounds MQ Ice Arrows Chest,,Gerudo Training Grounds MQ Ice Arrows Chest
+Spirit Temple MQ Entrance Front Left Chest,Spirit Temple MQ Entrance Front Left Chest,,Spirit Temple,Item,Spirit Temple MQ Entrance Front Left Chest,,Spirit Temple MQ Entrance Front Left Chest
+Spirit Temple MQ Entrance Back Left Chest,Spirit Temple MQ Entrance Back Left Chest,,Spirit Temple,Item,Spirit Temple MQ Entrance Back Left Chest,,Spirit Temple MQ Entrance Back Left Chest
+Spirit Temple MQ Entrance Back Right Chest,Spirit Temple MQ Entrance Back Right Chest,,Spirit Temple,Item,Spirit Temple MQ Entrance Back Right Chest,,Spirit Temple MQ Entrance Back Right Chest
+Spirit Temple MQ Child Center Chest,Spirit Temple MQ Child Center Chest,,Spirit Temple,Item,Spirit Temple MQ Child Center Chest,,Spirit Temple MQ Child Center Chest
+Spirit Temple MQ Child Left Chest,Spirit Temple MQ Child Left Chest,,Spirit Temple,Item,Spirit Temple MQ Child Left Chest,,Spirit Temple MQ Child Left Chest
+Spirit Temple MQ Map Chest,Spirit Temple MQ Map Chest,,Spirit Temple,Item,Spirit Temple MQ Map Chest,,Spirit Temple MQ Map Chest
+Spirit Temple MQ Silver Block Hallway Chest,Spirit Temple MQ Silver Block Hallway Chest,,Spirit Temple,Item,Spirit Temple MQ Silver Block Hallway Chest,,Spirit Temple MQ Silver Block Hallway Chest
+Spirit Temple MQ Child Climb South Chest,Spirit Temple MQ Child Climb South Chest,,Spirit Temple,Item,Spirit Temple MQ Child Climb South Chest,,Spirit Temple MQ Child Climb South Chest
+Spirit Temple MQ Lower NE Main Room Chest,Spirit Temple MQ Lower NE Main Room Chest,,Spirit Temple,Item,Spirit Temple MQ Lower NE Main Room Chest,,Spirit Temple MQ Lower NE Main Room Chest
+Spirit Temple MQ Upper NE Main Room Chest,Spirit Temple MQ Upper NE Main Room Chest,,Spirit Temple,Item,Spirit Temple MQ Upper NE Main Room Chest,,Spirit Temple MQ Upper NE Main Room Chest
+Spirit Temple MQ Beamos Room Chest,Spirit Temple MQ Beamos Room Chest,,Spirit Temple,Item,Spirit Temple MQ Beamos Room Chest,,Spirit Temple MQ Beamos Room Chest
+Spirit Temple MQ Ice Trap Chest,Spirit Temple MQ Ice Trap Chest,,Spirit Temple,Item,Spirit Temple MQ Ice Trap Chest,,Spirit Temple MQ Ice Trap Chest
+Spirit Temple MQ Boss Key Chest,Spirit Temple MQ Boss Key Chest,,Spirit Temple,Item,Spirit Temple MQ Boss Key Chest,,Spirit Temple MQ Boss Key Chest
+GS Spirit Temple MQ Iron Knuckle West,GS Spirit Temple MQ Iron Knuckle West,Skull Token,Spirit Temple,Item,GS Spirit Temple MQ Iron Knuckle West,,GS Spirit Temple MQ Iron Knuckle West
+GS Spirit Temple MQ Iron Knuckle North,GS Spirit Temple MQ Iron Knuckle North,Skull Token,Spirit Temple,Item,GS Spirit Temple MQ Iron Knuckle North,,GS Spirit Temple MQ Iron Knuckle North
+Spirit Temple MQ Child Climb North Chest,Spirit Temple MQ Child Climb North Chest,,Spirit Temple,Item,Spirit Temple MQ Child Climb North Chest,,Spirit Temple MQ Child Climb North Chest
+Spirit Temple MQ Compass Chest,Spirit Temple MQ Compass Chest,,Spirit Temple,Item,Spirit Temple MQ Compass Chest,,Spirit Temple MQ Compass Chest
+Spirit Temple MQ Sun Block Room Chest,Spirit Temple MQ Sun Block Room Chest,,Spirit Temple,Item,Spirit Temple MQ Sun Block Room Chest,,Spirit Temple MQ Sun Block Room Chest
+GS Spirit Temple MQ Sun Block Room,GS Spirit Temple MQ Sun Block Room,Skull Token,Spirit Temple,Item,GS Spirit Temple MQ Sun Block Room,,GS Spirit Temple MQ Sun Block Room
+Spirit Temple MQ Lower Adult Left Chest,Spirit Temple MQ Lower Adult Left Chest,,Spirit Temple,Item,Spirit Temple MQ Lower Adult Left Chest,,Spirit Temple MQ Lower Adult Left Chest
+Spirit Temple MQ Lower Adult Right Chest,Spirit Temple MQ Lower Adult Right Chest,,Spirit Temple,Item,Spirit Temple MQ Lower Adult Right Chest,,Spirit Temple MQ Lower Adult Right Chest
+Spirit Temple MQ Entrance Front Right Chest,Spirit Temple MQ Entrance Front Right Chest,,Spirit Temple,Item,Spirit Temple MQ Entrance Front Right Chest,,Spirit Temple MQ Entrance Front Right Chest
+GS Spirit Temple MQ Lower Adult Left,GS Spirit Temple MQ Lower Adult Left,Skull Token,Spirit Temple,Item,GS Spirit Temple MQ Lower Adult Left,,GS Spirit Temple MQ Lower Adult Left
+GS Spirit Temple MQ Lower Adult Right,GS Spirit Temple MQ Lower Adult Right,Skull Token,Spirit Temple,Item,GS Spirit Temple MQ Lower Adult Right,,GS Spirit Temple MQ Lower Adult Right
+Spirit Temple MQ Mirror Puzzle Invisible Chest,Spirit Temple MQ Mirror Puzzle Invisible Chest,,Spirit Temple,Item,Spirit Temple MQ Mirror Puzzle Invisible Chest,,Spirit Temple MQ Mirror Puzzle Invisible Chest
+GC MQ Deku Scrub Bombs,GC MQ Deku Scrub Bombs,Skull Token,Ganons Castle,Item,GC MQ Deku Scrub Bombs,,GC MQ Deku Scrub Bombs
+GC MQ Deku Scrub Arrows,GC MQ Deku Scrub Arrows,Skull Token,Ganons Castle,Item,GC MQ Deku Scrub Arrows,,GC MQ Deku Scrub Arrows
+GC MQ Deku Scrub Red Potion,GC MQ Deku Scrub Red Potion,Skull Token,Ganons Castle,Item,GC MQ Deku Scrub Red Potion,,GC MQ Deku Scrub Red Potion
+GC MQ Deku Scrub Green Potion,GC MQ Deku Scrub Green Potion,Skull Token,Ganons Castle,Item,GC MQ Deku Scrub Green Potion,,GC MQ Deku Scrub Green Potion
+GC MQ Deku Scrub Deku Nuts,GC MQ Deku Scrub Deku Nuts,Skull Token,Ganons Castle,Item,GC MQ Deku Scrub Deku Nuts,,GC MQ Deku Scrub Deku Nuts
+Ganons Castle MQ Forest Trial First Chest,Ganons Castle MQ Forest Trial First Chest,,Ganons Castle,Item,Ganons Castle MQ Forest Trial First Chest,,Ganons Castle MQ Forest Trial First Chest
+Ganons Castle MQ Forest Trial Second Chest,Ganons Castle MQ Forest Trial Second Chest,,Ganons Castle,Item,Ganons Castle MQ Forest Trial Second Chest,,Ganons Castle MQ Forest Trial Second Chest
+Ganons Castle MQ Forest Trial Freestanding Key,Ganons Castle MQ Forest Trial Freestanding Key,Ganons Castle Small Key,Ganons Castle,Item,Ganons Castle MQ Forest Trial Freestanding Key,,Ganons Castle MQ Forest Trial Freestanding Key
+Ganons Castle MQ Water Trial Chest,Ganons Castle MQ Water Trial Chest,,Ganons Castle,Item,Ganons Castle MQ Water Trial Chest,,Ganons Castle MQ Water Trial Chest
+Ganons Castle MQ Shadow Trial First Chest,Ganons Castle MQ Shadow Trial First Chest,,Ganons Castle,Item,Ganons Castle MQ Shadow Trial First Chest,,Ganons Castle MQ Shadow Trial First Chest
+Ganons Castle MQ Shadow Trial Second Chest,Ganons Castle MQ Shadow Trial Second Chest,,Ganons Castle,Item,Ganons Castle MQ Shadow Trial Second Chest,,Ganons Castle MQ Shadow Trial Second Chest
+Ganons Castle MQ Spirit Trial First Chest,Ganons Castle MQ Spirit Trial First Chest,,Ganons Castle,Item,Ganons Castle MQ Spirit Trial First Chest,,Ganons Castle MQ Spirit Trial First Chest
+Ganons Castle MQ Spirit Trial Second Chest,Ganons Castle MQ Spirit Trial Second Chest,,Ganons Castle,Item,Ganons Castle MQ Spirit Trial Second Chest,,Ganons Castle MQ Spirit Trial Second Chest
+Ganons Castle MQ Spirit Trial Sun Front Left Chest,Ganons Castle MQ Spirit Trial Sun Front Left Chest,,Ganons Castle,Item,Ganons Castle MQ Spirit Trial Sun Front Left Chest,,Ganons Castle MQ Spirit Trial Sun Front Left Chest
+Ganons Castle MQ Spirit Trial Sun Back Left Chest,Ganons Castle MQ Spirit Trial Sun Back Left Chest,,Ganons Castle,Item,Ganons Castle MQ Spirit Trial Sun Back Left Chest,,Ganons Castle MQ Spirit Trial Sun Back Left Chest
+Ganons Castle MQ Spirit Trial Golden Gauntlets Chest,Ganons Castle MQ Spirit Trial Golden Gauntlets Chest,Strength Upgrade,Ganons Castle,Item,Ganons Castle MQ Spirit Trial Golden Gauntlets Chest,,Ganons Castle MQ Spirit Trial Golden Gauntlets Chest
+Ganons Castle MQ Spirit Trial Sun Back Right Chest,Ganons Castle MQ Spirit Trial Sun Back Right Chest,,Ganons Castle,Item,Ganons Castle MQ Spirit Trial Sun Back Right Chest,,Ganons Castle MQ Spirit Trial Sun Back Right Chest
+Ganons Castle MQ Light Trial Lullaby Chest,Ganons Castle MQ Light Trial Lullaby Chest,,Ganons Castle,Item,Ganons Castle MQ Light Trial Lullaby Chest,,Ganons Castle MQ Light Trial Lullaby Chest
 Outside Deku Tree => Deku Tree Lobby MQ,,MQ Deku Tree Lobby < Outside Deku Tree,,Entrance,Outside Deku Tree => Deku Tree Lobby MQ,,
 Death Mountain => Dodongos Cavern Beginning MQ,,MQ Dodongos Cavern Beginning < Death Mountain,,Entrance,Death Mountain => Dodongos Cavern Beginning MQ,,
 Zoras Fountain => Jabu Jabus Belly Beginning MQ,,MQ Jabu Jabus Belly Beginning < Zoras Fountain,,Entrance,Zoras Fountain => Jabu Jabus Belly Beginning MQ,,
@@ -897,27 +897,17 @@ AgeIndicatorAdult,,Adult,Age,AgeIndicator,,,
 Tycoon Wallet,,Wallet Upgrade,,,,,
 Prescription,,Prescription,,,,,
 Extra Biggorron Sword,,Biggorron Sword,,,,,
-Extra Bomb Bag,,Bomb Bag Upgrade,,,,,
-Extra Boomerang,,Boomerange,,,,,
 Extra Rutos Letter,,Rutos Letter,,,,,
-Extra Bow,,Quiver Upgrade,,,,,
 Extra Nut Upgrade,,Deku Nut Upgrade,,,,,
 Extra Stick Upgrade,,Deku Stick Upgrade,,,,,
 Extra Dins Fire,,Dins Fire,,,,,
 Extra Double Defense,,Double Defence,,,,,
 Extra Fire arrows,,Fire Arrows,,,,,
 Extra Goron Tunic,,Goron Tunic,,,,,
-Extra Hammer,,Megaton Hammer,,,,,
-Extra Hover boots,,Hover Boots,,,,,
-Extra Iron Boots,,Iron Boots,,,,,
 Extra Kokiri Sword,,Kokiri Sword,,,,,
-Extra Lens of Truth,,Lens of Truth,,,,,
 Extra Light Arrows,,Light Arrows,,,,,
 Extra Magic Meter,,Magic Meter Upgrade,,,,,
 Extra Mirror Shield,,Shield Upgrade,,,,,
-Extra HookShot,,HookShot Upgrade,,,,,
 Extra Scale,,Scale Upgrade,,,,,
-Extra Strength Upgrade,,Strength Upgrade,,,,,
 Extra Wallet Upgrade,,Wallet Upgrade,,,,,
-Extra Slingshot,,Slingshot Upgrade,,,,,
 Extra Zora Tunic,,Zora Tunic,,,,,

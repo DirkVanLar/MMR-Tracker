@@ -338,7 +338,7 @@ namespace MMR_Tracker_V2
         }
         public static void UpdateNames(List<LogicObjects.LogicEntry> Logic)
         {
-            LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionHandeling.SwitchDictionary()[0]));
+            LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionHandeling.SwitchDictionary(VersionHandeling.Version)[0]));
             foreach (var entry in Logic)
             {
                 foreach (var dicent in LogicObjects.MMRDictionary)

@@ -2,7 +2,7 @@
 
 namespace MMR_Tracker_V2
 {
-    class LogicObjects
+    public class LogicObjects
     {
         public static List<LogicObjects.LogicDic> MMRDictionary = new List<LogicDic>();
         public static Dictionary<int, int> EntrancePairs = new Dictionary<int, int>();
@@ -46,7 +46,9 @@ namespace MMR_Tracker_V2
             public string ItemSubType { get; set; } //The type of item it is
             public string SpoilerLocation { get; set; } //The name of this location in the spoiler Log
             public string SpoilerItem { get; set; } //The name of this item in the spoiler log
-            public int SpoilerRandom { get; set; } //The item the spoiler log says is in this location
+            public int SpoilerRandom { get; set; } //The item the spoiler log says is in this location //The name of this location in the spoiler Log
+            public int AvailableOn { get; set; } //When the Check is available
+            public int NeededBy { get; set; } //When the item is Needed
             public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
             public override string ToString()
             {

@@ -31,7 +31,7 @@ namespace MMR_Tracker_V2
                     if (line.Contains("-versionOOT")) { OOT_Support.isOOT = true; curLine = line.Replace("versionOOT", "version"); }
 
                     VersionHandeling.Version = Int32.Parse(curLine.Replace("-version ", ""));
-                    VersionData = VersionHandeling.SwitchDictionary();
+                    VersionData = VersionHandeling.SwitchDictionary(VersionHandeling.Version);
                     LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
                     if (VersionHandeling.IsEntranceRando())
                     { VersionHandeling.entranceRadnoEnabled = true; }
@@ -77,7 +77,11 @@ namespace MMR_Tracker_V2
                         }
                         LogicEntry1.Conditionals = Conditionals;
                         break;
+                    case 3:
+                        LogicEntry1.NeededBy = Convert.ToInt32(line);
+                        break;
                     case 4:
+                        LogicEntry1.AvailableOn = Convert.ToInt32(line);
                         LogicList.Add(LogicEntry1);
 
                         LogicEntry1 = new LogicObjects.LogicEntry();
@@ -281,10 +285,19 @@ namespace MMR_Tracker_V2
             logic[reverseItem].Aquired = Checking;
         }
 
-        public static void RecreateLogic()
+        public static void RecreateLogic(string[] LogicData = null)
         {
-            string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt)|*.txt");
-            if (file == "") { return; }
+            var LogicFile = LogicData;
+            bool SettingsFile = false;
+            string file = "";
+            if (LogicFile == null)
+            {
+                file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
+                if (file == "") { return; }
+
+                SettingsFile = file.EndsWith(".MMRTSET");
+                LogicFile = (SettingsFile) ? File.ReadAllLines(file).Skip(2).ToArray() : File.ReadAllLines(file);
+            }
 
             var OldLogic = Utility.CloneLogicList(LogicObjects.Logic);
             LogicObjects.Logic = new List<LogicObjects.LogicEntry>();
@@ -293,7 +306,7 @@ namespace MMR_Tracker_V2
             LogicObjects.RawLogicText = new List<string>();
             VersionHandeling.Version = 0;
 
-            CreateLogic(LogicObjects.Logic, File.ReadAllLines(file));
+            CreateLogic(LogicObjects.Logic, LogicFile);
 
             var logic = LogicObjects.Logic;
             foreach (var entry in OldLogic)
@@ -309,6 +322,12 @@ namespace MMR_Tracker_V2
                     logicEntry.RandomizedState = entry.RandomizedState;
                     logicEntry.StartingItem = entry.StartingItem;
                 }
+            }
+            if (SettingsFile)
+            {
+                RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file));
+                VersionHandeling.entranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.Logic);
+                VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.IsEntranceRando());
             }
             CalculateItems(LogicObjects.Logic, true);
             Utility.SaveState(LogicObjects.Logic);
@@ -342,7 +361,7 @@ namespace MMR_Tracker_V2
         public static void CreatedEntrancepairDcitionary(Dictionary<int, int> entrancePairs, Dictionary<string, int> NameToID)
         {
             if (OOT_Support.isOOT) { return; }
-            var VersionData = VersionHandeling.SwitchDictionary();
+            var VersionData = VersionHandeling.SwitchDictionary(VersionHandeling.Version);
             foreach (var i in File.ReadAllLines(VersionData[1]))
             {
                 var j = i.Split(',');

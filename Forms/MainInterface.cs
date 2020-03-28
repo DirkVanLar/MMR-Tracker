@@ -1,4 +1,5 @@
 ﻿using MMR_Tracker;
+using MMR_Tracker.Forms;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -273,6 +274,19 @@ namespace MMR_Tracker_V2
             LogicEditing.RecreateLogic();
             PrintToListBox();
             ResizeObject();
+            FormatMenuItems();
+        }
+
+        private void dumbStuffToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(((11 >> 0) & 1) == 1);
+        }
+
+        private void logicEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicEditor Editor = new LogicEditor();
+            Editor.ShowDialog();
+            PrintToListBox();
             FormatMenuItems();
         }
 

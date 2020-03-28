@@ -32,6 +32,7 @@
             this.LBItemSelect = new System.Windows.Forms.ListBox();
             this.BTNJunk = new System.Windows.Forms.Button();
             this.TXTSearch = new System.Windows.Forms.TextBox();
+            this.lbCheckItems = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // LBItemSelect
@@ -40,7 +41,6 @@
             this.LBItemSelect.Location = new System.Drawing.Point(13, 39);
             this.LBItemSelect.Name = "LBItemSelect";
             this.LBItemSelect.Size = new System.Drawing.Size(418, 485);
-            this.LBItemSelect.Sorted = true;
             this.LBItemSelect.TabIndex = 0;
             this.LBItemSelect.DoubleClick += new System.EventHandler(this.LBItemSelect_DoubleClick);
             // 
@@ -48,7 +48,7 @@
             // 
             this.BTNJunk.Location = new System.Drawing.Point(12, 530);
             this.BTNJunk.Name = "BTNJunk";
-            this.BTNJunk.Size = new System.Drawing.Size(419, 38);
+            this.BTNJunk.Size = new System.Drawing.Size(293, 38);
             this.BTNJunk.TabIndex = 1;
             this.BTNJunk.Text = "Junk Item";
             this.BTNJunk.UseVisualStyleBackColor = true;
@@ -62,6 +62,15 @@
             this.TXTSearch.TabIndex = 2;
             this.TXTSearch.TextChanged += new System.EventHandler(this.TXTSearch_TextChanged);
             // 
+            // lbCheckItems
+            // 
+            this.lbCheckItems.FormattingEnabled = true;
+            this.lbCheckItems.Location = new System.Drawing.Point(311, 530);
+            this.lbCheckItems.Name = "lbCheckItems";
+            this.lbCheckItems.Size = new System.Drawing.Size(120, 34);
+            this.lbCheckItems.TabIndex = 3;
+            this.lbCheckItems.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.LbCheckItems_ItemCheck);
+            // 
             // ItemSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -69,6 +78,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(443, 580);
+            this.Controls.Add(this.lbCheckItems);
             this.Controls.Add(this.TXTSearch);
             this.Controls.Add(this.BTNJunk);
             this.Controls.Add(this.LBItemSelect);
@@ -85,5 +95,6 @@
         private System.Windows.Forms.ListBox LBItemSelect;
         private System.Windows.Forms.Button BTNJunk;
         private System.Windows.Forms.TextBox TXTSearch;
+        private System.Windows.Forms.CheckedListBox lbCheckItems;
     }
 }

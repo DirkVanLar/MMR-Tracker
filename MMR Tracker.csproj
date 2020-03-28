@@ -36,6 +36,7 @@
     <ApplicationIcon>Misc\10_106247_moon_from_majoras_mask_render_majoras_mask_moon_WIL_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -69,6 +70,12 @@
     </Compile>
     <Compile Include="Class Files\LogicEditing.cs" />
     <Compile Include="Class Files\LogicObjects.cs" />
+    <Compile Include="Forms\LogicEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogicEditor.Designer.cs">
+      <DependentUpon>LogicEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainInterface.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemSelect.resx">
       <DependentUpon>ItemSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogicEditor.resx">
+      <DependentUpon>LogicEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>

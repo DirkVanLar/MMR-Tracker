@@ -83,6 +83,8 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.dumbStuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -492,7 +494,9 @@
             this.printLogicObjectToolStripMenuItem,
             this.updateDisplayNamesToolStripMenuItem,
             this.updateLogicToolStripMenuItem,
-            this.oOTSupportToolStripMenuItem});
+            this.logicEditorToolStripMenuItem,
+            this.oOTSupportToolStripMenuItem,
+            this.dumbStuffToolStripMenuItem});
             this.devToolStripMenuItem.Name = "devToolStripMenuItem";
             this.devToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.devToolStripMenuItem.Text = "Dev";
@@ -553,6 +557,20 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
+            // 
+            // dumbStuffToolStripMenuItem
+            // 
+            this.dumbStuffToolStripMenuItem.Name = "dumbStuffToolStripMenuItem";
+            this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.dumbStuffToolStripMenuItem.Text = "Dumb Stuff";
+            this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.dumbStuffToolStripMenuItem_Click);
+            // 
+            // logicEditorToolStripMenuItem
+            // 
+            this.logicEditorToolStripMenuItem.Name = "logicEditorToolStripMenuItem";
+            this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.logicEditorToolStripMenuItem.Text = "Logic Editor";
+            this.logicEditorToolStripMenuItem.Click += new System.EventHandler(this.logicEditorToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 
@@ -651,6 +669,8 @@
         private System.Windows.Forms.ToolStripMenuItem whatUnlockedThisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oOTSupportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createOOTFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dumbStuffToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logicEditorToolStripMenuItem;
     }
 }
 
