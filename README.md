@@ -1,8 +1,6 @@
 # MMR-Tracker
 An Item, Location and Entrance Tracker for the Majoras Mask Randomizer
 
-This is a location item and entrance tracker for the Majoras mask Randomizer
-
 Basic Functionality:
 You will supply this tracker the logic file used to generate your seed and it will show you every location that is available to check based on the logic and items you have obtained.
 Double clicking a location will ask you to select what item was found there, or you can import you html spoiler log to have this done automatically.
