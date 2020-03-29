@@ -9,7 +9,6 @@ namespace MMR_Tracker_V2
         public static Dictionary<string, int> DicNameToID = new Dictionary<string, int>();
         public static List<LogicObjects.LogicEntry> Logic = new List<LogicObjects.LogicEntry>();
         public static LogicObjects.LogicEntry CurrentSelectedItem = new LogicObjects.LogicEntry();
-        public static List<string> RawLogicText = new List<string>();
         public static List<LogicObjects.LogicEntry> selectedItems = new List<LogicObjects.LogicEntry>();
 
         public class LogicDic

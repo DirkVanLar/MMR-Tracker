@@ -18,6 +18,7 @@ namespace MMR_Tracker_V2
         public static bool Updating = false;
         public static List<int> CheckedItems = new List<int>();
         public static List<LogicObjects.LogicEntry> UsedLogic = new List<LogicObjects.LogicEntry>();
+        public bool ItemsReturned = false;
 
         //Form Items
 
@@ -26,6 +27,11 @@ namespace MMR_Tracker_V2
             this.ActiveControl = TXTSearch;
             lbCheckItems.Visible = false;
             BTNJunk.Width = LBItemSelect.Width;
+            if (Function != 7)
+            {
+                chkAddSeperate.Visible = false;
+                TXTSearch.Width = LBItemSelect.Width;
+            }
             RunFunction();
         }
 
@@ -41,11 +47,6 @@ namespace MMR_Tracker_V2
             {
                 CheckedItems.RemoveAt(CheckedItems.IndexOf(NewItem.ID));
             }
-            Console.WriteLine("============");
-            foreach (var i in CheckedItems)
-            {
-                Console.WriteLine(i);
-            }
         }
 
         private void LBItemSelect_DoubleClick(object sender, EventArgs e)
@@ -55,7 +56,6 @@ namespace MMR_Tracker_V2
 
         private void TXTSearch_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("Running Function " + Function);
             RunFunction();
         }
 
@@ -148,7 +148,6 @@ namespace MMR_Tracker_V2
             lbCheckItems.Items.Clear();
             for (var i = 0; i < CheckedItems.Count; i++)
             {
-                Console.WriteLine(CheckedItems[i]);
                 var item = UsedLogic[CheckedItems[i]];
                 item.DisplayName = item.LocationName ?? item.DictionaryName;
                 item.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (item.SpoilerLocation ?? item.DisplayName) : item.DisplayName;
@@ -164,10 +163,12 @@ namespace MMR_Tracker_V2
 
         private void ReturnItems()
         {
+            ItemsReturned = true;
             if (LBItemSelect.Visible)
             {
                 if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return; }
                 LogicObjects.CurrentSelectedItem = LBItemSelect.SelectedItem as LogicObjects.LogicEntry;
+                CheckedItems = new List<int>();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -178,10 +179,10 @@ namespace MMR_Tracker_V2
                     var item = UsedLogic[i];
                     LogicObjects.selectedItems.Add(item);
                 }
+                CheckedItems = new List<int>();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            CheckedItems = new List<int>();
         }
 
         private void RunFunction()
@@ -253,6 +254,17 @@ namespace MMR_Tracker_V2
                 this.Text = "Select a location";
                 LBItemSelect.Sorted = true;
             }
+            if (Function == 7) //Logic Editor Select Items (Conditionals)
+            {
+                UsedLogic = LogicEditor.LogicList;
+                BTNJunk.Text = "Select";
+                chkAddSeperate.Checked = LogicEditor.AddCondSeperatly;
+                UseCheckBox();
+                ShowAllAsItem();
+                RecheckItems();
+                this.Text = "Select a location";
+                LBItemSelect.Sorted = true;
+            }
             Updating = false;
         }
 
@@ -272,6 +284,22 @@ namespace MMR_Tracker_V2
                 var item = lbCheckItems.Items[i] as LogicObjects.LogicEntry;
                 if (CheckedItems.Contains(item.ID)) { lbCheckItems.SetItemChecked(i, true); }
             }
+        }
+
+        private void chkAddSeperate_CheckedChanged(object sender, EventArgs e)
+        {
+            LogicEditor.AddCondSeperatly = chkAddSeperate.Checked;
+            Console.WriteLine(LogicEditor.AddCondSeperatly);
+        }
+
+        private void ItemSelect_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!ItemsReturned) { LogicEditor.AddCondSeperatly = false; }
+            Updating = false;
+            UsedLogic = new List<LogicObjects.LogicEntry>();
+            Function = 0;
+            CheckedItems = new List<int>();
+            ItemsReturned = false;
         }
     }
 }

@@ -69,7 +69,19 @@
             this.coupleEntrancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miscOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showEntryNameToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generatePlaythroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.referencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ikanaWellMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.woodsOfMysteryRouteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bombersCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timedEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLogicObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,12 +92,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generatePlaythroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ocarinaSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -387,7 +394,7 @@
             this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -419,7 +426,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -455,7 +462,7 @@
             this.miscOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showEntryNameToolTipToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -464,82 +471,6 @@
             this.showEntryNameToolTipToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.showEntryNameToolTipToolStripMenuItem.Text = "Show Entry Name ToolTip";
             this.showEntryNameToolTipToolStripMenuItem.Click += new System.EventHandler(this.ShowEntryNameToolTipToolStripMenuItem_Click);
-            // 
-            // infoToolStripMenuItem
-            // 
-            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.infoToolStripMenuItem.Text = "Info";
-            this.infoToolStripMenuItem.Click += new System.EventHandler(this.InfoToolStripMenuItem_Click);
-            // 
-            // devToolStripMenuItem
-            // 
-            this.devToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createDictionaryToolStripMenuItem,
-            this.printLogicObjectToolStripMenuItem,
-            this.updateDisplayNamesToolStripMenuItem,
-            this.oOTSupportToolStripMenuItem,
-            this.dumbStuffToolStripMenuItem});
-            this.devToolStripMenuItem.Name = "devToolStripMenuItem";
-            this.devToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.devToolStripMenuItem.Text = "Dev";
-            // 
-            // createDictionaryToolStripMenuItem
-            // 
-            this.createDictionaryToolStripMenuItem.Name = "createDictionaryToolStripMenuItem";
-            this.createDictionaryToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.createDictionaryToolStripMenuItem.Text = "Create Dictionary";
-            this.createDictionaryToolStripMenuItem.Click += new System.EventHandler(this.CreateDictionaryToolStripMenuItem_Click);
-            // 
-            // printLogicObjectToolStripMenuItem
-            // 
-            this.printLogicObjectToolStripMenuItem.Name = "printLogicObjectToolStripMenuItem";
-            this.printLogicObjectToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.printLogicObjectToolStripMenuItem.Text = "Print Logic Object";
-            this.printLogicObjectToolStripMenuItem.Click += new System.EventHandler(this.PrintLogicObjectToolStripMenuItem_Click);
-            // 
-            // updateDisplayNamesToolStripMenuItem
-            // 
-            this.updateDisplayNamesToolStripMenuItem.Name = "updateDisplayNamesToolStripMenuItem";
-            this.updateDisplayNamesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.updateDisplayNamesToolStripMenuItem.Text = "Update Display Names";
-            this.updateDisplayNamesToolStripMenuItem.Click += new System.EventHandler(this.UpdateDisplayNamesToolStripMenuItem_Click);
-            // 
-            // oOTSupportToolStripMenuItem
-            // 
-            this.oOTSupportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createOOTFilesToolStripMenuItem});
-            this.oOTSupportToolStripMenuItem.Name = "oOTSupportToolStripMenuItem";
-            this.oOTSupportToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.oOTSupportToolStripMenuItem.Text = "OOT Tools";
-            // 
-            // createOOTFilesToolStripMenuItem
-            // 
-            this.createOOTFilesToolStripMenuItem.Name = "createOOTFilesToolStripMenuItem";
-            this.createOOTFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.createOOTFilesToolStripMenuItem.Text = "Create OOT Files";
-            this.createOOTFilesToolStripMenuItem.Click += new System.EventHandler(this.createOOTFilesToolStripMenuItem_Click);
-            // 
-            // dumbStuffToolStripMenuItem
-            // 
-            this.dumbStuffToolStripMenuItem.Name = "dumbStuffToolStripMenuItem";
-            this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.dumbStuffToolStripMenuItem.Text = "Code Testing";
-            this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.dumbStuffToolStripMenuItem_Click);
-            // 
-            // undoToolStripMenuItem
-            // 
-            this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
-            this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
-            this.undoToolStripMenuItem.Click += new System.EventHandler(this.UndoToolStripMenuItem_Click);
-            // 
-            // redoToolStripMenuItem
-            // 
-            this.redoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("redoToolStripMenuItem.Image")));
-            this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
-            this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -587,6 +518,138 @@
             this.updateLogicToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.updateLogicToolStripMenuItem.Text = "Update Logic";
             this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
+            // 
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.referencesToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.infoToolStripMenuItem.Text = "Info";
+            // 
+            // referencesToolStripMenuItem
+            // 
+            this.referencesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ikanaWellMapToolStripMenuItem,
+            this.woodsOfMysteryRouteToolStripMenuItem,
+            this.ocarinaSongsToolStripMenuItem,
+            this.bombersCodeToolStripMenuItem,
+            this.timedEventsToolStripMenuItem});
+            this.referencesToolStripMenuItem.Name = "referencesToolStripMenuItem";
+            this.referencesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.referencesToolStripMenuItem.Text = "References";
+            // 
+            // ikanaWellMapToolStripMenuItem
+            // 
+            this.ikanaWellMapToolStripMenuItem.Name = "ikanaWellMapToolStripMenuItem";
+            this.ikanaWellMapToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.ikanaWellMapToolStripMenuItem.Text = "Ikana Well Map";
+            this.ikanaWellMapToolStripMenuItem.Click += new System.EventHandler(this.ikanaWellMapToolStripMenuItem_Click);
+            // 
+            // woodsOfMysteryRouteToolStripMenuItem
+            // 
+            this.woodsOfMysteryRouteToolStripMenuItem.Name = "woodsOfMysteryRouteToolStripMenuItem";
+            this.woodsOfMysteryRouteToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.woodsOfMysteryRouteToolStripMenuItem.Text = "Woods of Mystery Route";
+            this.woodsOfMysteryRouteToolStripMenuItem.Click += new System.EventHandler(this.woodsOfMysteryRouteToolStripMenuItem_Click);
+            // 
+            // bombersCodeToolStripMenuItem
+            // 
+            this.bombersCodeToolStripMenuItem.Name = "bombersCodeToolStripMenuItem";
+            this.bombersCodeToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.bombersCodeToolStripMenuItem.Text = "Bombers Code";
+            this.bombersCodeToolStripMenuItem.Click += new System.EventHandler(this.bombersCodeToolStripMenuItem_Click);
+            // 
+            // timedEventsToolStripMenuItem
+            // 
+            this.timedEventsToolStripMenuItem.Name = "timedEventsToolStripMenuItem";
+            this.timedEventsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.timedEventsToolStripMenuItem.Text = "Lottery Number(s)";
+            this.timedEventsToolStripMenuItem.Click += new System.EventHandler(this.timedEventsToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.InfoToolStripMenuItem_Click);
+            // 
+            // devToolStripMenuItem
+            // 
+            this.devToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createDictionaryToolStripMenuItem,
+            this.printLogicObjectToolStripMenuItem,
+            this.updateDisplayNamesToolStripMenuItem,
+            this.oOTSupportToolStripMenuItem,
+            this.dumbStuffToolStripMenuItem});
+            this.devToolStripMenuItem.Name = "devToolStripMenuItem";
+            this.devToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.devToolStripMenuItem.Text = "Dev";
+            // 
+            // createDictionaryToolStripMenuItem
+            // 
+            this.createDictionaryToolStripMenuItem.Name = "createDictionaryToolStripMenuItem";
+            this.createDictionaryToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.createDictionaryToolStripMenuItem.Text = "Create Dictionary";
+            this.createDictionaryToolStripMenuItem.Click += new System.EventHandler(this.CreateDictionaryToolStripMenuItem_Click);
+            // 
+            // printLogicObjectToolStripMenuItem
+            // 
+            this.printLogicObjectToolStripMenuItem.Name = "printLogicObjectToolStripMenuItem";
+            this.printLogicObjectToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.printLogicObjectToolStripMenuItem.Text = "Print Logic Object";
+            this.printLogicObjectToolStripMenuItem.Click += new System.EventHandler(this.PrintLogicObjectToolStripMenuItem_Click);
+            // 
+            // updateDisplayNamesToolStripMenuItem
+            // 
+            this.updateDisplayNamesToolStripMenuItem.Name = "updateDisplayNamesToolStripMenuItem";
+            this.updateDisplayNamesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.updateDisplayNamesToolStripMenuItem.Text = "Update Display Names";
+            this.updateDisplayNamesToolStripMenuItem.Click += new System.EventHandler(this.UpdateDisplayNamesToolStripMenuItem_Click);
+            // 
+            // oOTSupportToolStripMenuItem
+            // 
+            this.oOTSupportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createOOTFilesToolStripMenuItem});
+            this.oOTSupportToolStripMenuItem.Name = "oOTSupportToolStripMenuItem";
+            this.oOTSupportToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.oOTSupportToolStripMenuItem.Text = "OOT Tools";
+            // 
+            // createOOTFilesToolStripMenuItem
+            // 
+            this.createOOTFilesToolStripMenuItem.Name = "createOOTFilesToolStripMenuItem";
+            this.createOOTFilesToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.createOOTFilesToolStripMenuItem.Text = "Create OOT Files";
+            this.createOOTFilesToolStripMenuItem.Click += new System.EventHandler(this.createOOTFilesToolStripMenuItem_Click);
+            // 
+            // dumbStuffToolStripMenuItem
+            // 
+            this.dumbStuffToolStripMenuItem.Name = "dumbStuffToolStripMenuItem";
+            this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.dumbStuffToolStripMenuItem.Text = "Code Testing";
+            this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.dumbStuffToolStripMenuItem_Click);
+            // 
+            // undoToolStripMenuItem
+            // 
+            this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
+            this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.undoToolStripMenuItem.Click += new System.EventHandler(this.UndoToolStripMenuItem_Click);
+            // 
+            // redoToolStripMenuItem
+            // 
+            this.redoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("redoToolStripMenuItem.Image")));
+            this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
+            // 
+            // ocarinaSongsToolStripMenuItem
+            // 
+            this.ocarinaSongsToolStripMenuItem.Name = "ocarinaSongsToolStripMenuItem";
+            this.ocarinaSongsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.ocarinaSongsToolStripMenuItem.Text = "Ocarina Songs";
+            this.ocarinaSongsToolStripMenuItem.Click += new System.EventHandler(this.ocarinaSongsToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 
@@ -688,6 +751,13 @@
         private System.Windows.Forms.ToolStripMenuItem whatUnlockedThisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logicEditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateLogicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem referencesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ikanaWellMapToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem woodsOfMysteryRouteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bombersCodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem timedEventsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ocarinaSongsToolStripMenuItem;
     }
 }
 

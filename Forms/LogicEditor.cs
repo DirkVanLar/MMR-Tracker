@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.Devices;
 
 namespace MMR_Tracker.Forms
 {
@@ -36,6 +37,10 @@ namespace MMR_Tracker.Forms
         public static List<List<LogicObjects.LogicEntry>> RedoList = new List<List<LogicObjects.LogicEntry>>();
         public static bool UseSpoilerInDisplay = false;
         public static bool UseDictionaryNameInSearch = false;
+        public static bool AddCondSeperatly = false;
+        public static ListBox LastSelectedListBox;
+        public static List<RequiementConditional> CopiedConditional = new List<RequiementConditional>();
+        public static List<LogicObjects.LogicEntry> CopiedRequirement = new List<LogicObjects.LogicEntry>();
 
         public class RequiementConditional
         {
@@ -153,7 +158,7 @@ namespace MMR_Tracker.Forms
         {
             if (Utility.PromptSave())
             {
-                LogicEditing.RecreateLogic(WriteLogicToArray());
+                LogicEditing.RecreateLogic(LogicEditing.WriteLogicToArray(LogicList, versionNumber, isOOT));
             }
         }
 
@@ -164,8 +169,11 @@ namespace MMR_Tracker.Forms
             ItemSelect Selector = new ItemSelect();
             ItemSelect.Function = 5;
             Selector.ShowDialog();
+            if (Selector.DialogResult != DialogResult.OK) { ItemSelect.Function = 0; return; }
+            if (LogicObjects.selectedItems.Count < 1) { ItemSelect.Function = 0;  return; }
             foreach (var i in LogicObjects.selectedItems)
             {
+                if (LBRequired.Items.Contains(i)) { continue; }
                 LBRequired.Items.Add(i);
             }
             LogicObjects.selectedItems = new List<LogicObjects.LogicEntry>();
@@ -190,19 +198,40 @@ namespace MMR_Tracker.Forms
             UnsavedChanges = true;
             SaveState();
             ItemSelect Selector = new ItemSelect();
-            ItemSelect.Function = 5;
+            ItemSelect.Function = 7;
             Selector.ShowDialog();
-            RequiementConditional entry = new RequiementConditional { ItemIDs = new List<LogicObjects.LogicEntry>() };
-            string Display = "";
-            string addComma = "";
-            foreach (var i in LogicObjects.selectedItems)
+            if (Selector.DialogResult != DialogResult.OK) { ItemSelect.Function = 0; return; }
+            if (LogicObjects.selectedItems.Count < 1) { ItemSelect.Function = 0; return; }
+            Console.WriteLine(AddCondSeperatly);
+            if (AddCondSeperatly)
             {
-                Display = Display + addComma + (i.ItemName ?? i.DictionaryName);
-                addComma = ", ";
-                entry.ItemIDs.Add(i);
+                foreach (var i in LogicObjects.selectedItems)
+                {
+                    var entry = new RequiementConditional { DisplayName = (i.ItemName ?? i.DictionaryName), ItemIDs = new List<LogicObjects.LogicEntry> { i } };
+                    if (LBConditional.Items.Contains(entry)) { continue; }
+                    LBConditional.Items.Add(entry);
+                }
             }
-            entry.DisplayName = Display;
-            LBConditional.Items.Add(entry);
+            else
+            {
+                RequiementConditional entry = new RequiementConditional { ItemIDs = new List<LogicObjects.LogicEntry>() };
+                string Display = "";
+                string addComma = "";
+                foreach (var i in LogicObjects.selectedItems)
+                {
+                    Display = Display + addComma + (i.ItemName ?? i.DictionaryName);
+                    addComma = ", ";
+                    entry.ItemIDs.Add(i);
+                }
+                entry.DisplayName = Display;
+                Console.WriteLine(entry.DisplayName == "");
+                Console.WriteLine(entry.ItemIDs.Count < 1);
+                if (entry.DisplayName == "" || entry.ItemIDs.Count < 1) { return; }
+                if (!LBConditional.Items.Contains(entry)) { LBConditional.Items.Add(entry); }
+                
+            }
+
+            AddCondSeperatly = false;
             LogicObjects.selectedItems = new List<LogicObjects.LogicEntry>();
             ItemSelect.Function = 0;
             updateReqAndCond();
@@ -223,6 +252,7 @@ namespace MMR_Tracker.Forms
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (!GoBackList.Any()) { return; }
+            nudIndex.Value = (GoBackList[GoBackList.Count - 1]);
             WriteCurentItem(GoBackList[GoBackList.Count - 1]);
             GoBackList.RemoveAt(GoBackList.Count - 1);
         }
@@ -259,8 +289,8 @@ namespace MMR_Tracker.Forms
             LogicObjects.LogicEntry newEntry = new LogicObjects.LogicEntry { ID = LogicList.Count, DictionaryName = name, Required = null, Conditionals = null, AvailableOn = 0, NeededBy = 0 };
             LogicList.Add(newEntry);
             nudIndex.Value = (LogicList.Count - 1);
-            WriteCurentItem(LogicList.Count - 1);
             FormatForm();
+            WriteCurentItem(LogicList.Count - 1);
         }
 
         private void btnEditSelected_Click(object sender, EventArgs e)
@@ -279,6 +309,11 @@ namespace MMR_Tracker.Forms
                     ItemSelect Selector = new ItemSelect();
                     ItemSelect.Function = 5;
                     Selector.ShowDialog();
+                    if (Selector.DialogResult != DialogResult.OK)
+                    {
+                        ItemSelect.Function = 0;
+                        return;
+                    }
                     RequiementConditional entry = new RequiementConditional { ItemIDs = new List<LogicObjects.LogicEntry>() };
                     string Display = "";
                     string addComma = "";
@@ -307,10 +342,7 @@ namespace MMR_Tracker.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (SaveInstance())
-            {
-                UnsavedChanges = false;
-            }
+            SaveInstance();
         }
 
         private void useLocationItemNamesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -327,6 +359,16 @@ namespace MMR_Tracker.Forms
             WriteCurentItem(currentEntry.ID);
         }
 
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            MoveItem(-1);
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            MoveItem(1);
+        }
+
         //Other
 
         private void NudIndex_ValueChanged(object sender, EventArgs e)
@@ -338,9 +380,9 @@ namespace MMR_Tracker.Forms
 
         private void TimeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (PrintingItem) { return; }
             UnsavedChanges = true;
             SaveState();
-            if (PrintingItem) { return; }
             WriteTimeDependecies(currentEntry);
         }
 
@@ -390,6 +432,16 @@ namespace MMR_Tracker.Forms
                 }
                 catch { }
             }
+        }
+
+        private void LBConditional_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LastSelectedListBox = LBConditional;
+        }
+
+        private void LBRequired_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LastSelectedListBox = LBRequired;
         }
 
         //Functions
@@ -502,42 +554,6 @@ namespace MMR_Tracker.Forms
             currentEntry.Conditionals = cond.ToArray();
         }
 
-        private string[] WriteLogicToArray()
-        {
-            List<string> lines = new List<string>();
-            lines.Add((isOOT) ? "-versionOOT " + versionNumber : "-version " + versionNumber);
-            foreach (var line in LogicList)
-            {
-                lines.Add("- " + line.DictionaryName);
-                string Req = "";
-                string Comma = "";
-                foreach (var i in line.Required ?? new int[0])
-                {
-                    Req = Req + Comma + i.ToString();
-                    Comma = ",";
-                }
-                lines.Add(Req);
-                string cond = "";
-                string colon = "";
-                foreach (var j in line.Conditionals ?? new int[0][])
-                {
-                    Req = "";
-                    Comma = "";
-                    foreach (var i in j ?? new int[0])
-                    {
-                        Req = Req + Comma + i.ToString();
-                        Comma = ",";
-                    }
-                    cond = cond + colon + Req;
-                    colon = ";";
-                }
-                lines.Add(cond);
-                lines.Add(line.NeededBy.ToString());
-                lines.Add(line.AvailableOn.ToString());
-            }
-            return lines.ToArray();
-        }
-
         public bool PromptSave(bool OnlyIfUnsaved = true)
         {
             if (UnsavedChanges || !OnlyIfUnsaved)
@@ -556,7 +572,7 @@ namespace MMR_Tracker.Forms
         {
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "Logic File (*.txt)|*.txt", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
-            var logicText = WriteLogicToArray().ToList();
+            var logicText = LogicEditing.WriteLogicToArray(LogicList, versionNumber, isOOT).ToList();
             StreamWriter LogicFile = new StreamWriter(File.Open(saveDialog.FileName, FileMode.Create));
             for (int i = 0; i < logicText.Count; i++)
             {
@@ -566,6 +582,18 @@ namespace MMR_Tracker.Forms
             LogicFile.Close();
             UnsavedChanges = false;
             return true;
+        }
+
+        public void MoveItem(int direction)
+        {
+            if (LastSelectedListBox.SelectedItem == null || LastSelectedListBox.SelectedIndex < 0 || LastSelectedListBox.SelectedItems.Count > 1) { return; }
+            int newIndex = LastSelectedListBox.SelectedIndex + direction;
+            if (newIndex < 0 || newIndex >= LastSelectedListBox.Items.Count) { return; }
+            object selected = LastSelectedListBox.SelectedItem;
+            LastSelectedListBox.Items.Remove(selected);
+            LastSelectedListBox.Items.Insert(newIndex, selected);
+            LastSelectedListBox.SetSelected(newIndex, true);
+            updateReqAndCond();
         }
 
         //Static Functions
@@ -601,6 +629,7 @@ namespace MMR_Tracker.Forms
                     case 0:
                         LogicEntry1.ID = idCounter;
                         LogicEntry1.DictionaryName = line.Substring(2);
+                        Console.WriteLine(LogicEntry1.DictionaryName);
                         LogicEntry1.Checked = false;
                         LogicEntry1.RandomizedItem = -2;
                         LogicEntry1.IsFake = true;
@@ -703,6 +732,57 @@ namespace MMR_Tracker.Forms
         {
             UndoList.Add(Utility.CloneLogicList(LogicList));
             RedoList = new List<List<LogicObjects.LogicEntry>>();
+        }
+
+        private void LBConditional_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.C && Control.ModifierKeys == Keys.Control)
+            {
+                if (LBConditional.SelectedItems.Count < 1) { return; }
+                CopiedConditional = new List<RequiementConditional>();
+                foreach (RequiementConditional i in LBConditional.SelectedItems)
+                {
+                    CopiedConditional.Add(i);
+                }
+                Clipboard.SetText(JsonConvert.SerializeObject(CopiedConditional));
+            }
+
+            if (e.KeyCode == Keys.V && Control.ModifierKeys == Keys.Control)
+            {
+                if (CopiedConditional.Count < 1) { return; }
+                UnsavedChanges = true;
+                foreach (RequiementConditional i in CopiedConditional)
+                {
+                    LBConditional.Items.Add(i);
+                }
+                updateReqAndCond();
+            }
+        }
+
+        private void LBRequired_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.C && Control.ModifierKeys == Keys.Control)
+            {
+                if (LBRequired.SelectedItems.Count < 1) { return; }
+                CopiedRequirement = new List<LogicObjects.LogicEntry>();
+                foreach (LogicObjects.LogicEntry i in LBRequired.SelectedItems)
+                {
+                    CopiedRequirement.Add(i);
+                }
+                Clipboard.SetText(JsonConvert.SerializeObject(CopiedRequirement));
+            }
+
+            if (e.KeyCode == Keys.V && Control.ModifierKeys == Keys.Control)
+            {
+                Console.WriteLine("Control V");
+                if (CopiedRequirement.Count < 1) { return; }
+                UnsavedChanges = true;
+                foreach (LogicObjects.LogicEntry i in CopiedRequirement)
+                {
+                    LBRequired.Items.Add(i);
+                }
+                updateReqAndCond();
+            }
         }
     }
 }

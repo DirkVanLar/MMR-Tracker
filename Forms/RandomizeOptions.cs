@@ -60,11 +60,12 @@ namespace MMR_Tracker_V2
 
                 settingString += Setting.ToString();
             }
-            string[] Options = new string[2 + LogicObjects.RawLogicText.Count];
+            var logictext = LogicEditing.WriteLogicToArray(LogicObjects.Logic, VersionHandeling.Version, OOT_Support.isOOT);
+            string[] Options = new string[2 + logictext.Length];
             Options[0] = settingString;
             Options[1] = VersionHandeling.Version.ToString();
             var count = 2;
-            foreach (var i in LogicObjects.RawLogicText)
+            foreach (var i in logictext)
             {
                 Options[count] = i;
                 count++;

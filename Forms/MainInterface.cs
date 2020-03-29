@@ -1,4 +1,5 @@
-﻿using MMR_Tracker;
+﻿using Microsoft.VisualBasic;
+using MMR_Tracker;
 using MMR_Tracker.Forms;
 using Newtonsoft.Json;
 using System;
@@ -8,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
@@ -36,14 +38,6 @@ namespace MMR_Tracker_V2
         }
 
         //Menu Strip---------------------------------------------------------------------------
-
-        private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DebugScreen DebugScreen = new DebugScreen();
-            Debugging.PrintLogicObject(LogicObjects.Logic);
-            DebugScreen.DebugFunction = 2;
-            DebugScreen.Show();
-        }
 
         private void RedoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -320,10 +314,10 @@ namespace MMR_Tracker_V2
                 if (dialogResult != DialogResult.OK) { LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry(); return; }
             }
             var Requirements = LogicEditing.FindRequirements(LogicObjects.CurrentSelectedItem, LogicObjects.Logic);
-            LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
             string message = "";
             foreach (var i in Requirements) { message = message + LogicObjects.Logic[i].ItemName + "\n"; }
-            MessageBox.Show(message, "Unlocked with:");
+            MessageBox.Show(message, LogicObjects.CurrentSelectedItem.LocationName +  " Was Unlocked with:");
+            LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
         }
 
         private void logicEditorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -331,7 +325,6 @@ namespace MMR_Tracker_V2
             LogicEditor Editor = new LogicEditor();
             Editor.ShowDialog();
             PrintToListBox();
-            Utility.PromptSave();
             FormatMenuItems();
         }
 
@@ -342,6 +335,70 @@ namespace MMR_Tracker_V2
             PrintToListBox();
             ResizeObject();
             FormatMenuItems();
+        }
+
+        //Menu strip => Info
+
+        private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DebugScreen DebugScreen = new DebugScreen();
+            Debugging.PrintLogicObject(LogicObjects.Logic);
+            DebugScreen.DebugFunction = 2;
+            DebugScreen.Show();
+        }
+
+        private void ikanaWellMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var request = WebRequest.Create("https://lh3.googleusercontent.com/C0lTSDAQVpM_AeYM_WAGsbFCXvOLHkrgw2pFjh5BGLKfyyIs-S8iUboYrapNpiHIYqEKdQTrLPSCkG-EBOztDKnhEfDNu-IqXspp5cjfmjumpEYqGb6u_-h0SpUsR28c41NljrXIJA");
+            Form form = new Form();
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
+            {
+                form.BackgroundImage = Bitmap.FromStream(stream);
+            }
+            form.Width = 500;
+            form.Height = 500;
+            form.BackgroundImageLayout = ImageLayout.Stretch;
+            form.Show();
+        }
+
+        private void woodsOfMysteryRouteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var request = WebRequest.Create("https://lh3.googleusercontent.com/proxy/8gIxid_8hpBIaLMW3IWcUTWw06VmSxt9EHr1U0YNqzrwji7xXQJAJATk212JvVYZqYFA6O9En8n71TeRCY6qzwKCc5VI1zVWAXoflzFphAMpSQl7T4KA");
+            Form form = new Form();
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
+            {
+                form.BackgroundImage = Bitmap.FromStream(stream);
+            }
+            form.Width = 500;
+            form.Height = 500;
+            form.BackgroundImageLayout = ImageLayout.Stretch;
+            form.Show();
+        }
+
+        private void bombersCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var text = (Utility.BomberCode == "") ? "Enter your bombers code below." : "Bomber code: \n" + Utility.BomberCode + "\nEnter a new code to change it.";
+            string name = Interaction.InputBox(text, "Bomber Code", "");
+            if (name != "") { Utility.BomberCode = name; }
+        }
+
+        private void timedEventsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var text = (Utility.LotteryNumber == "") ? "Enter your Lottery Number(s) below." : "Lottery Number(s): \n" + Utility.LotteryNumber + "\nEnter Lottery Number(s) to change it.";
+            string name = Interaction.InputBox(text, "Lottery Number(s)", "");
+            if (name != "") { Utility.LotteryNumber = name; }
+        }
+
+        private void ocarinaSongsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new Form();
+            form.BackgroundImage = Bitmap.FromFile(@"Forms\Ocarina Songs.PNG");
+            form.Width = 500;
+            form.Height = 500;
+            form.BackgroundImageLayout = ImageLayout.Stretch;
+            form.Show();
         }
 
         //Text Boxes---------------------------------------------------------------------------

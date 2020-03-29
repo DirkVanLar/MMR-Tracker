@@ -1,96 +1,96 @@
 -versionOOT 5
 - Adult Spawn => Temple of Time
-
+893
 
 0
 0
 - Child Spawn => Links House
-
+892
 
 0
 0
 - Bolero of Fire Warp => Death Mountain Crater Central Local
-
+923,259
 
 0
 0
 - Minuet of Forest Warp => Sacred Forest Meadow
-
+923,251
 
 0
 0
 - Nocturne of Shadow Warp => Shadow Temple Warp Region
-
+923,256
 
 0
 0
 - Prelude of Light Warp => Temple of Time
-
+923,254
 
 0
 0
 - Requiem of Spirit Warp => Desert Colossus
-
+923,253
 
 0
 0
 - Serenade of Water Warp => Lake Hylia
-
+261,923
 
 0
 0
 - Death Mountain Owl Flight => Kakariko Impa Ledge
-
+892,970
 
 0
 0
 - Lake Hylia Owl Flight => Hyrule Field
-
+892,967
 
 0
 0
 - Castle Grounds => Castle Town
 
-
+11;112;120;167
 0
 0
 - Castle Town => Castle Grounds
-
+969
 
 0
 0
 - Castle Town => Castle Town Entrance
-
+969
 
 0
 0
 - Castle Town => Temple of Time Exterior
-
+969
 
 0
 0
 - Castle Town Entrance => Castle Town
-
+969
 
 0
 0
 - Castle Town Entrance => Hyrule Field
-
+969
 
 0
 0
 - Darunias Chamber => Death Mountain Crater Lower Local
-
-
+973,893
+924,966
 0
 0
 - Death Mountain => Goron City
-
+971
 
 0
 0
 - Death Mountain => Kakariko Village Behind Gate
-
+971
 
 0
 0
@@ -4626,7 +4626,7 @@
 0
 - Any Stick
 
-
+281;334;368;503
 0
 0
 - Any Nuts
@@ -4656,12 +4656,12 @@
 0
 - Any Big Poe
 
-
+341;373
 0
 0
 - Any Bombchus
 
-
+317;344;345;346;347;361;544
 0
 0
 - Child Attack
@@ -4676,12 +4676,12 @@
 0
 - Cut Grass
 
-
+893;262;904;281;334;368;503;515;726;966
 0
 0
 - Can Change Age
 
-
+0;5;161
 0
 0
 - ### Moon Access with Game Completion requirements so it works with the playthrough Generator ###
@@ -4701,7 +4701,7 @@
 0
 - Setting Bombchus in Logic
 
-
+932
 0
 0
 - Setting Kokiri Forest Main Exit Accessability
@@ -4827,5 +4827,65 @@
 - (Reserved)
 
 
+0
+0
+- Explosives
+
+917;940
+0
+0
+- Access Lake Hylia
+
+7;27;36;59;82;149;215
+0
+0
+- Access Hyrule Field
+
+227;184;183;182;181;180;179;178;58;51;47;45;41;25;15
+0
+0
+- Castle Town Access
+
+10;14;55;95;100;96;101;103;104
+0
+0
+- Death Mountain Summit Access
+
+20;156;225;971,966;970,972,893
+0
+0
+- Death Mountain Access
+
+20;156;225;28;42;67;226
+0
+0
+- Any Hammer
+
+579;761
+0
+0
+- Access Goron City
+
+17;116;192;48,966
+0
+0
+- Death Mountain Crater Lower Access
+
+69;2;975,893,918;975,893,977
+0
+0
+- Death Mountain Crater Mid Access
+
+16;106;169;974,893,918;974,977,893;976,893,918
+0
+0
+- Death Mountain Crater Upper Access
+
+
+0
+0
+- Any Hover Boots
+
+795;604
 0
 0

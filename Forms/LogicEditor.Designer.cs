@@ -73,6 +73,8 @@
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -86,7 +88,9 @@
             this.LBRequired.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBRequired.Size = new System.Drawing.Size(249, 329);
             this.LBRequired.TabIndex = 0;
+            this.LBRequired.SelectedIndexChanged += new System.EventHandler(this.LBRequired_SelectedIndexChanged);
             this.LBRequired.DoubleClick += new System.EventHandler(this.LBRequired_DoubleClick);
+            this.LBRequired.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LBRequired_KeyDown);
             // 
             // LBConditional
             // 
@@ -97,7 +101,9 @@
             this.LBConditional.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBConditional.Size = new System.Drawing.Size(530, 329);
             this.LBConditional.TabIndex = 1;
+            this.LBConditional.SelectedIndexChanged += new System.EventHandler(this.LBConditional_SelectedIndexChanged);
             this.LBConditional.DoubleClick += new System.EventHandler(this.LBConditional_DoubleClick);
+            this.LBConditional.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LBConditional_KeyDown);
             // 
             // chkNeedDay1
             // 
@@ -553,6 +559,29 @@
             this.label7.TabIndex = 39;
             this.label7.Text = "Conditional Items";
             // 
+            // btnUp
+            // 
+            this.btnUp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUp.BackgroundImage")));
+            this.btnUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUp.Location = new System.Drawing.Point(762, 27);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(15, 15);
+            this.btnUp.TabIndex = 41;
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDown.BackgroundImage")));
+            this.btnDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDown.Location = new System.Drawing.Point(783, 27);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(15, 15);
+            this.btnDown.TabIndex = 42;
+            this.btnDown.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
             // LogicEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -560,6 +589,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(810, 495);
+            this.Controls.Add(this.btnDown);
+            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnEditSelected);
@@ -654,5 +685,7 @@
         private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnDown;
     }
 }

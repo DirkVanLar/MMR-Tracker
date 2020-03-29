@@ -15,7 +15,6 @@ namespace MMR_Tracker_V2
 
         public static bool CreateLogic(List<LogicObjects.LogicEntry> LogicList, string[] LogicFile)
         {
-            LogicObjects.RawLogicText = LogicFile.ToList<string>();
             int SubCounter = 0;
             int idCounter = 0;
             var VersionData = new string[2];
@@ -303,7 +302,6 @@ namespace MMR_Tracker_V2
             LogicObjects.Logic = new List<LogicObjects.LogicEntry>();
             LogicObjects.DicNameToID = new Dictionary<string, int>();
             LogicObjects.EntrancePairs = new Dictionary<int, int>();
-            LogicObjects.RawLogicText = new List<string>();
             VersionHandeling.Version = 0;
 
             CreateLogic(LogicObjects.Logic, LogicFile);
@@ -422,7 +420,8 @@ namespace MMR_Tracker_V2
 
         public static bool SameItemMultipleChecks(int item)
         {
-            if (item < 0 && !StrictLogicHandeling && !OOT_Support.isOOT) { return false; }
+            if (item < 0) { return false; }
+            if (!StrictLogicHandeling && !OOT_Support.isOOT) { return false; }
             int count = 0;
             foreach (var entry in LogicObjects.Logic)
             {
@@ -430,6 +429,42 @@ namespace MMR_Tracker_V2
             }
             Console.WriteLine(count);
             return count > 1;
+        }
+
+        public static string[] WriteLogicToArray(List<LogicObjects.LogicEntry> logic, int versionNumber, bool isOOT)
+        {
+            List<string> lines = new List<string>();
+            lines.Add((isOOT) ? "-versionOOT " + versionNumber : "-version " + versionNumber);
+            foreach (var line in logic)
+            {
+                lines.Add("- " + line.DictionaryName);
+                string Req = "";
+                string Comma = "";
+                foreach (var i in line.Required ?? new int[0])
+                {
+                    Req = Req + Comma + i.ToString();
+                    Comma = ",";
+                }
+                lines.Add(Req);
+                string cond = "";
+                string colon = "";
+                foreach (var j in line.Conditionals ?? new int[0][])
+                {
+                    Req = "";
+                    Comma = "";
+                    foreach (var i in j ?? new int[0])
+                    {
+                        Req = Req + Comma + i.ToString();
+                        Comma = ",";
+                    }
+                    cond = cond + colon + Req;
+                    colon = ";";
+                }
+                lines.Add(cond);
+                lines.Add(line.NeededBy.ToString());
+                lines.Add(line.AvailableOn.ToString());
+            }
+            return lines.ToArray();
         }
     }
 }
