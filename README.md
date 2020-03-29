@@ -30,3 +30,4 @@ Undo/ Redo functionality.
 The ability to go back to the last entry after using the "Go To" button.
 Displaying item and location names along with the logic name.
 A larger Conditionals window for viewing complex conditionals.
+Copy/Pasting entries.
