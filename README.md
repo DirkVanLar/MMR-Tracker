@@ -3,7 +3,7 @@ An Item, Location and Entrance Tracker for the Majoras Mask Randomizer
 
 ## Basic Functionality:
 You will supply this tracker the logic file used to generate your seed and it will show you every location that is available to check based on the logic and items you have obtained.
-Double clicking a location will ask you to select what item was found there, or you can import you html spoiler log to have this done automatically.
+Double clicking a location will ask you to select what item was found there, or you can import your html spoiler log to have this done automatically.
 If you know what item a location contains, you can set the location to display what item is located there without actually checking it.
 All checked locations will be displayed in a separate box displaying the location and item that was found there.
 
@@ -30,9 +30,15 @@ You can use the playthrough generator to create a guide that will tell you what 
 The tracker is equipped a feature complete Logic Editor.
 This logic editor features everything included with the editor found in the MM Randomizer plus a number of new features Including:
 Undo/ Redo functionality.
+
 The ability to go back to the last entry after using the "Go To" button.
+
 Displaying item and location names along with the logic name.
+
 A larger Conditionals window for viewing complex conditionals.
+
 Copy/Pasting entries.
+
 The ability to reorder fake items while auto updating values in other entries.
+
 The ability to rename fake items.
