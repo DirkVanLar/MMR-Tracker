@@ -29,6 +29,7 @@ You can use the playthrough generator to create a guide that will tell you what 
 #### Advanced Logic Editor
 The tracker is equipped a feature complete Logic Editor.
 This logic editor features everything included with the editor found in the MM Randomizer plus a number of new features Including:
+
 Undo/ Redo functionality.
 
 The ability to go back to the last entry after using the "Go To" button.
