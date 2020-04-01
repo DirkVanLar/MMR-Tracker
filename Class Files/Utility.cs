@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ namespace MMR_Tracker_V2
         public static List<List<LogicObjects.LogicEntry>> RedoList = new List<List<LogicObjects.LogicEntry>>();
         public static bool UnsavedChanges = false;
         public static bool ShowEntryNameTooltip = true;
+        public static bool UnradnomizeEntranesOnStartup = true;
         public static string BomberCode = "";
         public static string LotteryNumber = "";
 
@@ -463,6 +465,55 @@ namespace MMR_Tracker_V2
         {
             return (entry.RandomizedItem > -2) ? 1 : 0;
         } 
+        public static List<string> SeperateStringByMeasurement(ListBox container, string Measure, bool Indent)
+        {
+            Font font = container.Font;
+            int width = container.Width;
+            Graphics g = container.CreateGraphics();
+
+            if (IsDivider(Measure) || (int)g.MeasureString(Measure, font).Width < width) { return new List<string> { Measure }; }
+
+            List<string> ShortenedStrings = new List<string>();
+            string[] words = Measure.Split(' ');
+            string ShortenedString = "";
+            string indent = "    ";
+            foreach (string word in words)
+            {
+                string testString = ShortenedString + word + " ";
+                int Stringwidth = (int)g.MeasureString(testString, font).Width;
+                if (Stringwidth > width)
+                {
+                    ShortenedStrings.Add(ShortenedString);
+                    ShortenedString = indent + word + " ";
+                }
+                else
+                {
+                    ShortenedString = ShortenedString + word + " ";
+                }
+            }
+            ShortenedStrings.Add(ShortenedString);
+            return ShortenedStrings;
+        }
+        public static string CreateDivider(ListBox container, string DividerText = "")
+        {
+            Font font = container.Font;
+            int width = container.Width;
+            Graphics g = container.CreateGraphics();
+
+            int marks = 1;
+            string Divider = "";
+            while((int)g.MeasureString(Divider, font).Width <= width)
+            {
+                string Section = "";
+                for (var i = 0; i < marks; i++)
+                {
+                    Section = Section + "=";
+                }
+                Divider = Section + DividerText + Section;
+                marks++;
+            }
+            return Divider;
+        }
 
     }
 }

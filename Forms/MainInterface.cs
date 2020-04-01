@@ -25,9 +25,27 @@ namespace MMR_Tracker_V2
         //Form Events---------------------------------------------------------------------------
         private void FRMTracker_Load(object sender, EventArgs e)
         {
+            devToolStripMenuItem.Visible = Debugger.IsAttached;
+            if (!File.Exists("options.txt"))
+            {
+                var file = File.Create("options.txt");
+                FirstRun();
+                string[] options = new string[] { "ToolTips:" + ((Utility.ShowEntryNameTooltip) ? 1 : 0), "DisableEntrancesOnStartup:" + ((Utility.UnradnomizeEntranesOnStartup) ? 1 : 0) };
+                file.Close();
+                File.WriteAllLines("options.txt", options);
+            }
+            else
+            {
+                foreach(var line in File.ReadAllLines("options.txt")) 
+                {
+                    if (line.StartsWith("ToolTips:")) { Utility.ShowEntryNameTooltip = line.Contains("ToolTips:1"); }
+                    if (line.StartsWith("DisableEntrancesOnStartup:")) { Utility.UnradnomizeEntranesOnStartup = line.Contains("DisableEntrancesOnStartup:1"); }
+                    if (line.StartsWith("Dev:")) { devToolStripMenuItem.Visible = line.Contains("Dev:1"); }
+                }
+            }
+
             ResizeObject();
             FormatMenuItems();
-            devToolStripMenuItem.Visible = Debugger.IsAttached;
         }
 
         private void FRMTracker_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
@@ -92,7 +110,7 @@ namespace MMR_Tracker_V2
                 VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.IsEntranceRando());
             }
 
-            if (VersionHandeling.IsEntranceRando() && !SettingsFile)
+            if (VersionHandeling.IsEntranceRando() && !SettingsFile && Utility.UnradnomizeEntranesOnStartup)
             {
                 foreach (var item in LogicObjects.Logic)
                 {
@@ -878,7 +896,7 @@ namespace MMR_Tracker_V2
                 LBCheckedLocations.Width = FormWidth - 2;
                 LBCheckedLocations.Height = FormHalfHeight - UpperLeftLBL.Height - TXTCheckedSearch.Height - 8;
             }
-
+            PrintToListBox();
             this.Refresh();
 
         }
@@ -931,12 +949,34 @@ namespace MMR_Tracker_V2
             string returnLastArea = lastArea;
             if (entry.LocationArea != returnLastArea)
             {
-                if (returnLastArea != "") { lb.Items.Add("================================"); }
+                if (returnLastArea != "") { lb.Items.Add(Utility.CreateDivider(lb)); }
                 lb.Items.Add(entry.LocationArea.ToUpper() + ((Marked) ? " SET ITEMS" : "") + ":");
                 returnLastArea = entry.LocationArea;
             }
             lb.Items.Add(entry);
             return (returnLastArea);
+        }
+
+        public void FirstRun()
+        {
+            var firsttime = MessageBox.Show("Welcome to the Majoras Mask Randomizer Tracker by thedrummonger! It looks like this is your first time running the tracker. If that is the case select Yes, otherwise select No. (Keep an eye out, the following text boxes like to hide behind windows!)", "First Time Setup", MessageBoxButtons.YesNo);
+            if (firsttime == DialogResult.Yes) 
+            {
+                MessageBox.Show("Please Take this opportunity to familliarize yourself with how to use this tracker. There are many features that are not obvious or explained anywhere outside of the about page. This information can be accessed at any time by selecting 'Info' -> 'About'. Click OK to show the About Page. Once you have read through the information, close the window to return to setup.", "How to Use", MessageBoxButtons.OK);
+                DebugScreen DebugScreen = new DebugScreen();
+                Debugging.PrintLogicObject(LogicObjects.Logic);
+                DebugScreen.DebugFunction = 2;
+                DebugScreen.ShowDialog();
+            }
+
+            var DefaultSetting = MessageBox.Show("If you would like to change the default options, press Yes. Otherwise, press No. Selecting Cancel at an option prompt will leave it default. These can be changed later in the Options text document that will be created in your tracker folder. The can also be changed per instance in the options tab", "Default Setting", MessageBoxButtons.YesNo);
+            if (DefaultSetting != DialogResult.Yes) { return; }
+
+            var ShowToolTips = MessageBox.Show("Would you like to see tooltips that display the full name of an item when you mouse over it?", "Show Tool Tips", MessageBoxButtons.YesNoCancel);
+            if (ShowToolTips == DialogResult.No) { Utility.ShowEntryNameTooltip = false; }
+
+            var DisableEntrances = MessageBox.Show("Would you like the tracker to automatically mark entrances as unrandomized when creating an instance? This is usefull if you don't plan to use entrance randomizer often.", "Start with Entrance Rando", MessageBoxButtons.YesNoCancel);
+            if (DisableEntrances == DialogResult.No) { Utility.UnradnomizeEntranesOnStartup = false; }
         }
     }
 }

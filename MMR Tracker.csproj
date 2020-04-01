@@ -56,11 +56,11 @@
   <ItemGroup>
     <Compile Include="Class Files\Debugging.cs" />
     <Compile Include="Class Files\OOT Support.cs" />
-    <Compile Include="Forms\DebugScreen.cs">
+    <Compile Include="Forms\InformationDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DebugScreen.Designer.cs">
-      <DependentUpon>DebugScreen.cs</DependentUpon>
+    <Compile Include="Forms\InformationDisplay.Designer.cs">
+      <DependentUpon>InformationDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ItemSelect.cs">
       <SubType>Form</SubType>
@@ -99,8 +99,8 @@
     </Compile>
     <Compile Include="Class Files\Utility.cs" />
     <Compile Include="Class Files\VersionHandeling.cs" />
-    <EmbeddedResource Include="Forms\DebugScreen.resx">
-      <DependentUpon>DebugScreen.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\InformationDisplay.resx">
+      <DependentUpon>InformationDisplay.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemSelect.resx">
@@ -171,4 +171,9 @@
     <Content Include="Misc\Notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>; Move all assemblies and related files to lib folder
+ROBOCOPY "$(TargetDir) " "$(TargetDir)lib\ " /XF *.exe *.config *.manifest /XD lib Recources logs data /E /IS /MOVE
+if %25errorlevel%25 leq 4 exit 0 else exit %25errorlevel%25</PostBuildEvent>
+  </PropertyGroup>
 </Project>
