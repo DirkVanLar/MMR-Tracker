@@ -10,42 +10,42 @@
 0
 0
 - Bolero of Fire Warp => Death Mountain Crater Central Local
-923,259
+924,259
 
 0
 0
 - Minuet of Forest Warp => Sacred Forest Meadow
-923,251
+924,251
 
 0
 0
 - Nocturne of Shadow Warp => Shadow Temple Warp Region
-923,256
+924,256
 
 0
 0
 - Prelude of Light Warp => Temple of Time
-923,254
+924,254
 
 0
 0
 - Requiem of Spirit Warp => Desert Colossus
-923,253
+924,253
 
 0
 0
 - Serenade of Water Warp => Lake Hylia
-261,923
+261,924
 
 0
 0
 - Death Mountain Owl Flight => Kakariko Impa Ledge
-892,970
+892,963
 
 0
 0
 - Lake Hylia Owl Flight => Hyrule Field
-892,967
+892,960
 
 0
 0
@@ -55,147 +55,147 @@
 0
 0
 - Castle Town => Castle Grounds
-969
+962
 
 0
 0
 - Castle Town => Castle Town Entrance
-969
+962
 
 0
 0
 - Castle Town => Temple of Time Exterior
-969
+962
 
 0
 0
 - Castle Town Entrance => Castle Town
-969
+962
 
 0
 0
 - Castle Town Entrance => Hyrule Field
-969
+962
 
 0
 0
 - Darunias Chamber => Death Mountain Crater Lower Local
-973,893
-924,966
+969,893
+926,975
 0
 0
 - Death Mountain => Goron City
-971
+964
 
 0
 0
 - Death Mountain => Kakariko Village Behind Gate
-971
+964
 
 0
 0
 - Death Mountain Crater Lower Nearby => Darunias Chamber
-
+966
 
 0
 0
 - Death Mountain Crater Upper Nearby => Death Mountain Summit
-
+967
 
 0
 0
 - Death Mountain Summit => Death Mountain Crater Upper Local
-
+963
 
 0
 0
 - Desert Colossus => Haunted Wasteland Near Colossus
 
-
+6;31;81;105;177
 0
 0
 - Gerudo Fortress => Gerudo Valley Far Side
-
+968
 
 0
 0
 - Gerudo Fortress Outside Gate => Haunted Wasteland Near Fortress
 
-
+32;968,893,313;968,313,941,958
 0
 0
 - Gerudo Valley => Hyrule Field
-
+971
 
 0
 0
 - Gerudo Valley Far Side => Gerudo Fortress
-
+970
 
 0
 0
 - Gerudo Valley Lower Stream => Lake Hylia
 
-
+970;971;190
 0
 0
 - Goron City => Death Mountain
 
-
+969
 0
 0
 - Goron City Woods Warp => Lost Woods
 
-
+969,975;969,926;969,929,923;969,930
 0
 0
 - Graveyard => Kakariko Village
-
+972
 
 0
 0
 - Haunted Wasteland Near Colossus => Desert Colossus
 
-
+22;24,954,912;24,954,925;24,927,912;24,927,925
 0
 0
 - Haunted Wasteland Near Fortress => Gerudo Fortress Outside Gate
 
-
+24;22,957,912;22,957,925
 0
 0
 - Hyrule Field => Castle Town Entrance
-
+961
 
 0
 0
 - Hyrule Field => Gerudo Valley
-
+961
 
 0
 0
 - Hyrule Field => Kakariko Village
-
+961
 
 0
 0
 - Hyrule Field => Lake Hylia
-
+961
 
 0
 0
 - Hyrule Field => Lon Lon Ranch
-
+961
 
 0
 0
 - Hyrule Field => Lost Woods Bridge
-
+961
 
 0
 0
 - Hyrule Field => Zora River Front
-
+961
 
 0
 0
@@ -4434,7 +4434,7 @@
 
 0
 0
-- Desert Colossus => Spirit Temple Lobby MQ
+- Shadow Temple Warp Region => Shadow Temple Entryway MQ
 
 
 0
@@ -4450,7 +4450,7 @@
 0
 0
 - Ganons Castle Grounds => Ganons Castle
-
+893,952
 
 0
 0
@@ -4560,73 +4560,98 @@
 0
 0
 - LongShot
-
-
+893
+382,599;382,786;599,786
 0
 0
 - Silver Gautlets
-
-
+893
+400,665;400,681;400,871;665,681;665,871;681,871
 0
 0
 - Golden Gautlets
-
-
+893
+400,665,681;400,665,871;665,681,871;400,681,871
 0
 0
 - Golden Scale
 
-
+297;421;908
 0
 0
 - Any Bow
-
-
+893
+308;370;537;746
 0
 0
 - Any Bomb Bag
 
-
+337;395;509;714
 0
 0
 - Any Hookshot
-
-
+893
+382;599;786
 0
 0
 - Any SlingShot
-
-
+892
+496;692
 0
 0
 - Any Scale
 
-
+908;421;297
 0
 0
 - Any Shield
 
-
+379,893;504,892;556,893;666,893;702,892;907,893
 0
 0
 - Any Sword
 
+262;904;893
+0
+0
+- Any Magic
 
+410;411;906
 0
 0
 - Any Ocarina
 
-
+285;286
+0
+0
+- Any Hover Boots
+893
+795;604
 0
 0
 - Any Strength
 
-
+400;665;681;871
+0
+0
+- Any Lens
+923
+550;753
 0
 0
 - Any Stick
 
 281;334;368;503
+0
+0
+- Any Dins Fire
+
+327;900
+0
+0
+- Any Hammer
+893
+579;761
 0
 0
 - Any Nuts
@@ -4676,7 +4701,7 @@
 0
 - Cut Grass
 
-893;262;904;281;334;368;503;515;726;966
+893;262;904;281;334;368;503;515;726;975
 0
 0
 - Can Change Age
@@ -4701,15 +4726,15 @@
 0
 - Setting Bombchus in Logic
 
-932
+937
 0
 0
-- Setting Kokiri Forest Main Exit Accessability
+- Setting Kokiri Forest Main Exit Open
 
 
 0
 0
-- Setting Kokiri Forest Deku tree Accessability
+- Setting Kokiri Forest Deku tree Open
 
 
 0
@@ -4724,7 +4749,7 @@
 
 0
 0
-- Setting Zora Fountain Accessability
+- Setting King Zora Moved
 
 
 0
@@ -4734,22 +4759,22 @@
 
 0
 0
-- Setting Rainbow Bridge Accessability
+- Setting Rainbow Bridge Requirements
 
 
 0
 0
-- Setting Lens of Truth Everywhere
+- Setting Invisible Items Without Lens
 
 
 0
 0
-- Setting Lens of Wasteland
+- Setting Wasteland Without Lens
 
 
 0
 0
-- Setting Scarecrow Song
+- Setting Start with Scarecrow Song
 
 
 0
@@ -4759,79 +4784,19 @@
 
 0
 0
-- (Reserved)
+- Setting Reverse Wasteland
 
 
 0
 0
-- (Reserved)
+- Setting Entrance Rando
 
 
 0
 0
-- (Reserved)
+- ###Area Access###
 
 
-0
-0
-- (Reserved)
-
-
-0
-0
-- (Reserved)
-
-
-0
-0
-- (Reserved)
-
-
-0
-0
-- (Reserved)
-
-
-0
-0
-- (Reserved)
-
-
-0
-0
-- (Reserved)
-
-
-0
-0
-- (Reserved)
-
-
-0
-0
-- (Reserved)
-
-
-0
-0
-- (Reserved)
-
-
-0
-0
-- (Reserved)
-
-
-0
-0
-- (Reserved)
-
-
-0
-0
-- Explosives
-
-917;940
 0
 0
 - Access Lake Hylia
@@ -4844,48 +4809,73 @@
 227;184;183;182;181;180;179;178;58;51;47;45;41;25;15
 0
 0
-- Castle Town Access
+- Access Castle Town
 
 10;14;55;95;100;96;101;103;104
 0
 0
-- Death Mountain Summit Access
+- Access Death Mountain Summit
 
-20;156;225;971,966;970,972,893
+20;156;225;964,975;963,930,893
 0
 0
-- Death Mountain Access
+- Access Death Mountain
 
 20;156;225;28;42;67;226
 0
 0
-- Any Hammer
+- Access Death Mountain Crater Lower
 
-579;761
+69;2;966,893,918;966,893,925
+0
+0
+- Access Death Mountain Crater Mid
+
+16;106;169;965,893,918;965,925,893;967,893,918;965,413,941,893
+0
+0
+- Access Death Mountain Crater Upper
+
+966;232;21;965,941,893,413
+0
+0
+- Access Gerudo Fortress
+
+26;32,893;73;187;32,958,941,313,892
 0
 0
 - Access Goron City
 
-17;116;192;48,966
+17;116;192;48,975;48,930;48,929,923
 0
 0
-- Death Mountain Crater Lower Access
+- Access Gerudo Valley Fortress Side
 
-69;2;975,893,918;975,893,977
+23;86;191;971,912;971,260,893
 0
 0
-- Death Mountain Crater Mid Access
+- Access Gerudo Valley Field Side
 
-16;106;169;974,893,918;974,977,893;976,893,918
+970,892;970,912;970,260,893;34
 0
 0
-- Death Mountain Crater Upper Access
+- Access Graveyard
+
+40;107;168;170;198;231
+0
+0
+- Inaccessable
+973
+
+0
+0
+- ###Misc Fake Items###
 
 
 0
 0
-- Any Hover Boots
+- Explosives
 
-795;604
+917;945
 0
 0

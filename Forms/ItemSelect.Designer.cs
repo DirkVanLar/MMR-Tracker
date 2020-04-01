@@ -34,6 +34,8 @@
             this.TXTSearch = new System.Windows.Forms.TextBox();
             this.lbCheckItems = new System.Windows.Forms.CheckedListBox();
             this.chkAddSeperate = new System.Windows.Forms.CheckBox();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LBItemSelect
@@ -59,7 +61,7 @@
             // 
             this.TXTSearch.Location = new System.Drawing.Point(13, 13);
             this.TXTSearch.Name = "TXTSearch";
-            this.TXTSearch.Size = new System.Drawing.Size(239, 20);
+            this.TXTSearch.Size = new System.Drawing.Size(137, 20);
             this.TXTSearch.TabIndex = 2;
             this.TXTSearch.TextChanged += new System.EventHandler(this.TXTSearch_TextChanged);
             // 
@@ -83,6 +85,26 @@
             this.chkAddSeperate.UseVisualStyleBackColor = true;
             this.chkAddSeperate.CheckedChanged += new System.EventHandler(this.chkAddSeperate_CheckedChanged);
             // 
+            // btnUp
+            // 
+            this.btnUp.Location = new System.Drawing.Point(256, 530);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(31, 20);
+            this.btnUp.TabIndex = 5;
+            this.btnUp.Text = "UP";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Location = new System.Drawing.Point(256, 548);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(29, 20);
+            this.btnDown.TabIndex = 6;
+            this.btnDown.Text = "Down";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
             // ItemSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -90,6 +112,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(443, 580);
+            this.Controls.Add(this.btnDown);
+            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.chkAddSeperate);
             this.Controls.Add(this.lbCheckItems);
             this.Controls.Add(this.TXTSearch);
@@ -112,5 +136,7 @@
         private System.Windows.Forms.TextBox TXTSearch;
         private System.Windows.Forms.CheckedListBox lbCheckItems;
         private System.Windows.Forms.CheckBox chkAddSeperate;
+        private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnDown;
     }
 }

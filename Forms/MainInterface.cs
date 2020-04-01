@@ -701,6 +701,12 @@ namespace MMR_Tracker_V2
 
         public void PrintToListBox()
         {
+            var lbLocTop = LBValidLocations.TopIndex;
+            var lbEntTop = LBValidEntrances.TopIndex;
+            var lbCheckTop = LBCheckedLocations.TopIndex;
+            int TotalLoc = 0;
+            int TotalEnt = 0;
+            int totalchk = 0;
             LBValidLocations.Items.Clear();
             LBValidEntrances.Items.Clear();
             LBCheckedLocations.Items.Clear();
@@ -737,31 +743,38 @@ namespace MMR_Tracker_V2
                         entry.LocationName + ": JUNK") :
                     entry.LocationName;
 
-                    if ((entry.ItemSubType != "Entrance" || !VersionHandeling.entranceRadnoEnabled) &&
-                        Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName))
+                    if ((entry.ItemSubType != "Entrance" || !VersionHandeling.entranceRadnoEnabled))
                     {
-                        listGroups.Add(entry.ID, 0);
-                        Unsortedlogic.Add(entry);
+                        TotalLoc += 1;
+                        if (Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName))
+                        {
+                            listGroups.Add(entry.ID, 0);
+                            Unsortedlogic.Add(entry);
+                        }
                     }
-                    else if ((entry.ItemSubType == "Entrance" && VersionHandeling.entranceRadnoEnabled) &&
-                        Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName))
+                    else if ((entry.ItemSubType == "Entrance" && VersionHandeling.entranceRadnoEnabled))
                     {
-                        listGroups.Add(entry.ID, 1);
-                        Unsortedlogic.Add(entry);
+                        TotalEnt += 1;
+                        if (Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName))
+                        {
+                            listGroups.Add(entry.ID, 1);
+                            Unsortedlogic.Add(entry);
+                        }
                     }
                 }
                 if (entry.Checked && !entry.IsFake && (entry.RandomizedState == 0 || entry.RandomizedState == 2))
                 {
                     entry.DisplayName = (entry.RandomizedItem > -1) ? logic[entry.RandomizedItem].ItemName + ": " + entry.LocationName : "Junk: " + entry.LocationName;
-
-                    listGroups.Add(entry.ID, 2);
-                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName)) { Unsortedlogic.Add(entry); }
+                    totalchk += 1;
+                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName))
+                    {
+                        listGroups.Add(entry.ID, 2);
+                        Unsortedlogic.Add(entry); 
+                    }
                 }
-
             }
 
             var sortedlogic = Unsortedlogic.OrderBy(x => Groups.IndexOf(x.LocationArea.ToLower().Trim())).ThenBy(x => x.DisplayName);
-            //var sortedlogic = Unsortedlogic.OrderBy(x => x.LocationArea).ThenBy(x => x.DisplayName);
 
             var lastLocArea = "";
             var lastEntArea = "";
@@ -778,9 +791,12 @@ namespace MMR_Tracker_V2
                 if (listGroups[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea); AvalableEntrances++; }
                 if (listGroups[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea); CheckedLocations++; }
             }
-            label1.Text = "Available Locations: " + AvalableLocations;
-            label2.Text = "Checked locations: " + CheckedLocations;
-            label3.Text = "Available Entrances: " + AvalableEntrances;
+            label1.Text = "Available Locations: " + ((AvalableLocations == TotalLoc) ? AvalableLocations.ToString() : (AvalableLocations.ToString() + "/" + TotalLoc.ToString()));
+            label2.Text = "Checked locations: " + ((CheckedLocations == totalchk) ? CheckedLocations.ToString() : (CheckedLocations.ToString() + "/" + totalchk.ToString())); ;
+            label3.Text = "Available Entrances: " + ((AvalableEntrances == TotalEnt) ? AvalableEntrances.ToString() : (AvalableEntrances.ToString() + "/" + TotalEnt.ToString())); ;
+            LBValidLocations.TopIndex = lbLocTop;
+            LBValidEntrances.TopIndex = lbEntTop;
+            LBCheckedLocations.TopIndex = lbCheckTop;
         }
 
         private void ResizeObject()

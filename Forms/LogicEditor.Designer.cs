@@ -69,12 +69,14 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLocationItemNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displaySpoilerLogNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reorderLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
+            this.renameCurrentItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -502,7 +504,9 @@
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useLocationItemNamesToolStripMenuItem,
-            this.displaySpoilerLogNamesToolStripMenuItem});
+            this.displaySpoilerLogNamesToolStripMenuItem,
+            this.reorderLogicToolStripMenuItem,
+            this.renameCurrentItemToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -520,6 +524,13 @@
             this.displaySpoilerLogNamesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.displaySpoilerLogNamesToolStripMenuItem.Text = "Display Spoiler Log Names";
             this.displaySpoilerLogNamesToolStripMenuItem.Click += new System.EventHandler(this.displaySpoilerLogNamesToolStripMenuItem_Click);
+            // 
+            // reorderLogicToolStripMenuItem
+            // 
+            this.reorderLogicToolStripMenuItem.Name = "reorderLogicToolStripMenuItem";
+            this.reorderLogicToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.reorderLogicToolStripMenuItem.Text = "Reorder Logic";
+            this.reorderLogicToolStripMenuItem.Click += new System.EventHandler(this.reorderLogicToolStripMenuItem_Click);
             // 
             // undoToolStripMenuItem
             // 
@@ -581,6 +592,13 @@
             this.btnDown.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // renameCurrentItemToolStripMenuItem
+            // 
+            this.renameCurrentItemToolStripMenuItem.Name = "renameCurrentItemToolStripMenuItem";
+            this.renameCurrentItemToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.renameCurrentItemToolStripMenuItem.Text = "Rename Current Item";
+            this.renameCurrentItemToolStripMenuItem.Click += new System.EventHandler(this.renameCurrentItemToolStripMenuItem_Click);
             // 
             // LogicEditor
             // 
@@ -687,5 +705,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.ToolStripMenuItem reorderLogicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renameCurrentItemToolStripMenuItem;
     }
 }

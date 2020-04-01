@@ -24,23 +24,23 @@ namespace MMR_Tracker.Forms
         }
 
         public static List<LogicObjects.LogicEntry> LogicList = new List<LogicObjects.LogicEntry>();
+        public static List<LogicObjects.LogicEntry> CopiedRequirement = new List<LogicObjects.LogicEntry>();
         public static List<LogicObjects.LogicDic> EditorDictionary = new List<LogicObjects.LogicDic>();
+        public static List<List<LogicObjects.LogicEntry>> UndoList = new List<List<LogicObjects.LogicEntry>>();
+        public static List<List<LogicObjects.LogicEntry>> RedoList = new List<List<LogicObjects.LogicEntry>>();
+        public static List<RequiementConditional> CopiedConditional = new List<RequiementConditional>();
+        public static List<int> GoBackList = new List<int>();
+        public static LogicObjects.LogicEntry currentEntry = new LogicObjects.LogicEntry();
+        public static ListBox LastSelectedListBox;
         public static bool isOOT = false;
         public static bool GetOOTDictionary = false;
-        public static int versionNumber = 0;
-        public static LogicObjects.LogicEntry currentEntry = new LogicObjects.LogicEntry();
         public static bool PrintingItem = false;
         public static bool UsingTrackerLogic = false;
         public static bool UnsavedChanges = false;
-        public static List<int> GoBackList = new List<int>();
-        public static List<List<LogicObjects.LogicEntry>> UndoList = new List<List<LogicObjects.LogicEntry>>();
-        public static List<List<LogicObjects.LogicEntry>> RedoList = new List<List<LogicObjects.LogicEntry>>();
         public static bool UseSpoilerInDisplay = false;
         public static bool UseDictionaryNameInSearch = false;
         public static bool AddCondSeperatly = false;
-        public static ListBox LastSelectedListBox;
-        public static List<RequiementConditional> CopiedConditional = new List<RequiementConditional>();
-        public static List<LogicObjects.LogicEntry> CopiedRequirement = new List<LogicObjects.LogicEntry>();
+        public static int versionNumber = 0;
 
         public class RequiementConditional
         {
@@ -59,6 +59,7 @@ namespace MMR_Tracker.Forms
             nudIndex.Value = 0;
             if (VersionHandeling.Version > 0)
             {
+                isOOT = OOT_Support.isOOT;
                 UsingTrackerLogic = true;
                 versionNumber = VersionHandeling.Version;
                 LogicList = Utility.CloneLogicList(LogicObjects.Logic);
@@ -69,7 +70,7 @@ namespace MMR_Tracker.Forms
                 LogicList = new List<LogicObjects.LogicEntry>();
                 FormatForm();
             }
-            useLocationItemNamesToolStripMenuItem.Text = (UseDictionaryNameInSearch) ? "Use Location/Item Name" : "Use Dictionary Name";
+            useLocationItemNamesToolStripMenuItem.Text = (UseDictionaryNameInSearch) ? "Use Location/Item Name" : "Use Logic Name";
             displaySpoilerLogNamesToolStripMenuItem.Text = (UseSpoilerInDisplay) ? "Use Tracker names" : "Use Spoiler Log names";
             AssignUniqueItemnames(LogicList);
         }
@@ -103,6 +104,8 @@ namespace MMR_Tracker.Forms
             chkNeedNight3.Enabled = enabled;
             undoToolStripMenuItem.Visible = enabled;
             redoToolStripMenuItem.Visible = enabled;
+            renameCurrentItemToolStripMenuItem.Visible = enabled;
+            reorderLogicToolStripMenuItem.Visible = enabled;
             btnEditSelected.Enabled = enabled;
             lblDicName.Text = "";
             lblLocName.Text = "";
@@ -140,12 +143,13 @@ namespace MMR_Tracker.Forms
 
         private void BtnGoTo_Click(object sender, EventArgs e)
         {
+            ItemSelect Selector = new ItemSelect();
+            ItemSelect.Function = 4;
+            Selector.ShowDialog();
+            if (Selector.DialogResult != DialogResult.OK) { return; }
+            GoBackList.Add(currentEntry.ID);
             try
             {
-                GoBackList.Add(currentEntry.ID);
-                ItemSelect Selector = new ItemSelect();
-                ItemSelect.Function = 4;
-                Selector.ShowDialog();
                 nudIndex.Value = LogicObjects.CurrentSelectedItem.ID;
                 WriteCurentItem(LogicObjects.CurrentSelectedItem.ID);
                 LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
@@ -202,7 +206,6 @@ namespace MMR_Tracker.Forms
             Selector.ShowDialog();
             if (Selector.DialogResult != DialogResult.OK) { ItemSelect.Function = 0; return; }
             if (LogicObjects.selectedItems.Count < 1) { ItemSelect.Function = 0; return; }
-            Console.WriteLine(AddCondSeperatly);
             if (AddCondSeperatly)
             {
                 foreach (var i in LogicObjects.selectedItems)
@@ -224,8 +227,6 @@ namespace MMR_Tracker.Forms
                     entry.ItemIDs.Add(i);
                 }
                 entry.DisplayName = Display;
-                Console.WriteLine(entry.DisplayName == "");
-                Console.WriteLine(entry.ItemIDs.Count < 1);
                 if (entry.DisplayName == "" || entry.ItemIDs.Count < 1) { return; }
                 if (!LBConditional.Items.Contains(entry)) { LBConditional.Items.Add(entry); }
                 
@@ -286,10 +287,11 @@ namespace MMR_Tracker.Forms
             SaveState();
             string name = Interaction.InputBox("Input New Item Name", "New Item", "");
             if (name == "") { return; }
+            GoBackList.Add(currentEntry.ID);
             LogicObjects.LogicEntry newEntry = new LogicObjects.LogicEntry { ID = LogicList.Count, DictionaryName = name, Required = null, Conditionals = null, AvailableOn = 0, NeededBy = 0 };
             LogicList.Add(newEntry);
-            nudIndex.Value = (LogicList.Count - 1);
             FormatForm();
+            nudIndex.Value = (LogicList.Count - 1);
             WriteCurentItem(LogicList.Count - 1);
         }
 
@@ -348,7 +350,7 @@ namespace MMR_Tracker.Forms
         private void useLocationItemNamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UseDictionaryNameInSearch = !UseDictionaryNameInSearch;
-            useLocationItemNamesToolStripMenuItem.Text = (UseDictionaryNameInSearch) ? "Use Location/Item Name" : "Use Dictionary Name";
+            useLocationItemNamesToolStripMenuItem.Text = (UseDictionaryNameInSearch) ? "Use Location/Item Name" : "Use Logic Name";
             WriteCurentItem(currentEntry.ID);
         }
 
@@ -423,6 +425,7 @@ namespace MMR_Tracker.Forms
                     ItemSelect Selector = new ItemSelect();
                     ItemSelect.Function = 6;
                     Selector.ShowDialog();
+                    if (Selector.DialogResult != DialogResult.OK) { return; }
                     var index = LogicObjects.CurrentSelectedItem.ID;
                     GoBackList.Add(currentEntry.ID);
                     nudIndex.Value = index;
@@ -463,6 +466,7 @@ namespace MMR_Tracker.Forms
             }
             
             currentEntry = entry;
+            renameCurrentItemToolStripMenuItem.Visible = currentEntry.IsFake;
             foreach (var i in entry.Required ?? new int[0])
             {
                 var ReqEntry = LogicList[i];
@@ -619,8 +623,7 @@ namespace MMR_Tracker.Forms
                         curLine = line.Replace("versionOOT", "version");
                     }
                     versionNumber = Int32.Parse(curLine.Replace("-version ", ""));
-                    Console.WriteLine(versionNumber);
-                    VersionData = VersionHandeling.SwitchDictionary(versionNumber);
+                    VersionData = VersionHandeling.SwitchDictionary(versionNumber, isOOT);
                     GetOOTDictionary = false;
                     EditorDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
                 }
@@ -629,7 +632,6 @@ namespace MMR_Tracker.Forms
                     case 0:
                         LogicEntry1.ID = idCounter;
                         LogicEntry1.DictionaryName = line.Substring(2);
-                        Console.WriteLine(LogicEntry1.DictionaryName);
                         LogicEntry1.Checked = false;
                         LogicEntry1.RandomizedItem = -2;
                         LogicEntry1.IsFake = true;
@@ -774,7 +776,6 @@ namespace MMR_Tracker.Forms
 
             if (e.KeyCode == Keys.V && Control.ModifierKeys == Keys.Control)
             {
-                Console.WriteLine("Control V");
                 if (CopiedRequirement.Count < 1) { return; }
                 UnsavedChanges = true;
                 foreach (LogicObjects.LogicEntry i in CopiedRequirement)
@@ -783,6 +784,73 @@ namespace MMR_Tracker.Forms
                 }
                 updateReqAndCond();
             }
+        }
+
+        private void reorderLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ItemSelect Selector = new ItemSelect();
+            ItemSelect.Function = 8;
+            Selector.ShowDialog();
+            if(Selector.DialogResult != DialogResult.OK) { return; }
+            UnsavedChanges = true;
+            SaveState();
+            int counter = 0;
+            Dictionary<int, int> newOrder = new Dictionary<int, int>();
+            foreach(var i in LogicObjects.selectedItems)
+            {
+                if (i.ID != counter)
+                {
+                    newOrder.Add(i.ID, counter);
+                }
+                counter++;
+            }
+            foreach (var i in LogicObjects.selectedItems)
+            {
+                if (newOrder.ContainsKey(i.ID))
+                {
+                    Console.WriteLine("Item ID " + i.ID + " Became " + newOrder[i.ID]);
+                    i.ID = newOrder[i.ID];
+                }
+                if (i.Required != null)
+                {
+                    for (var j = 0; j < i.Required.Length; j++)
+                    {
+                        if (newOrder.ContainsKey(i.Required[j]))
+                        {
+                            Console.WriteLine("Requirment " + i.Required[j] + " Became " + newOrder[i.Required[j]]);
+                            i.Required[j] = newOrder[i.Required[j]];
+                        }
+                    }
+                }
+                if (i.Conditionals != null)
+                {
+                    for (var j = 0; j < i.Conditionals.Length; j++)
+                    {
+                        for (var k = 0; k < i.Conditionals[j].Length; k++)
+                        {
+                            if (newOrder.ContainsKey(i.Conditionals[j][k]))
+                            {
+                                Console.WriteLine("Conditional " + i.Conditionals[j][k] + " Became " + newOrder[i.Conditionals[j][k]]);
+                                i.Conditionals[j][k] = newOrder[i.Conditionals[j][k]];
+                            }
+                        }
+                    }
+                }
+            }
+            LogicList = Utility.CloneLogicList(LogicObjects.selectedItems);
+            LogicObjects.selectedItems = new List<LogicObjects.LogicEntry>();
+            WriteCurentItem(currentEntry.ID);
+        }
+
+        private void renameCurrentItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!currentEntry.IsFake) { MessageBox.Show("Only fake Items Can be Renamed"); return; }
+            UnsavedChanges = true;
+            SaveState();
+            string name = Interaction.InputBox("Input New Item Name", "New Item", currentEntry.DictionaryName);
+            if (name == "") { return; }
+            currentEntry.DictionaryName = name;
+            WriteCurentItem(currentEntry.ID);
         }
     }
 }

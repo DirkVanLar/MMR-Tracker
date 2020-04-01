@@ -19,6 +19,7 @@ namespace MMR_Tracker_V2
         public static List<int> CheckedItems = new List<int>();
         public static List<LogicObjects.LogicEntry> UsedLogic = new List<LogicObjects.LogicEntry>();
         public bool ItemsReturned = false;
+        public int lastRealItem = -1;
 
         //Form Items
 
@@ -30,6 +31,12 @@ namespace MMR_Tracker_V2
             if (Function != 7)
             {
                 chkAddSeperate.Visible = false;
+                TXTSearch.Width = LBItemSelect.Width;
+            }
+            if (Function != 8)
+            {
+                btnDown.Visible = false;
+                btnUp.Visible = false;
                 TXTSearch.Width = LBItemSelect.Width;
             }
             RunFunction();
@@ -159,11 +166,47 @@ namespace MMR_Tracker_V2
             }
         }
 
+        private void ShowAllAsDictionary()
+        {
+            lastRealItem = -1;
+            if (!LogicEditor.isOOT)
+            {
+                for (var i = 0; i < UsedLogic.Count; i++)
+                {
+                    if (!UsedLogic[i].IsFake) { lastRealItem = i; }
+                }
+            }
+            lbCheckItems.Items.Clear();
+            for (var i = 0; i < UsedLogic.Count; i++)
+            {
+                if (i > lastRealItem)
+                {
+                    UsedLogic[i].DisplayName = UsedLogic[i].DictionaryName;
+                    LBItemSelect.Items.Add(UsedLogic[i]);
+                }
+            }
+        }
+
         //Other Functions
 
         private void ReturnItems()
         {
             ItemsReturned = true;
+            if (Function == 8)
+            {
+                foreach (LogicObjects.LogicEntry i in UsedLogic)
+                {
+                    if (i.ID > lastRealItem) { break; }
+                    LogicObjects.selectedItems.Add(i);
+
+                }
+                foreach (LogicObjects.LogicEntry i in LBItemSelect.Items)
+                {
+                    LogicObjects.selectedItems.Add(i);
+                }
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
             if (LBItemSelect.Visible)
             {
                 if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return; }
@@ -265,6 +308,15 @@ namespace MMR_Tracker_V2
                 this.Text = "Select a location";
                 LBItemSelect.Sorted = true;
             }
+            if (Function == 8) //Logic Reordering
+            {
+                UsedLogic = LogicEditor.LogicList;
+                BTNJunk.Text = "Apply";
+                LBItemSelect.SelectionMode = SelectionMode.One;
+                UseUpDown();
+                ShowAllAsDictionary();
+                this.Text = "Move an item to reorder it in the logic file";
+            }
             Updating = false;
         }
 
@@ -275,6 +327,17 @@ namespace MMR_Tracker_V2
             lbCheckItems.Location = LBItemSelect.Location;
             lbCheckItems.Height = LBItemSelect.Height;
             lbCheckItems.Width = LBItemSelect.Width;
+        }
+
+        private void UseUpDown()
+        {
+            TXTSearch.Visible = false;
+            btnUp.Location = new Point(TXTSearch.Location.X, TXTSearch.Location.Y);
+            btnUp.Height = TXTSearch.Height;
+            btnUp.Width = (TXTSearch.Width / 2);
+            btnDown.Location = new Point((TXTSearch.Location.X + TXTSearch.Width / 2), TXTSearch.Location.Y);
+            btnDown.Height = TXTSearch.Height;
+            btnDown.Width = (TXTSearch.Width / 2);
         }
 
         private void RecheckItems()
@@ -295,11 +358,33 @@ namespace MMR_Tracker_V2
         private void ItemSelect_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!ItemsReturned) { LogicEditor.AddCondSeperatly = false; }
+            lastRealItem = -1;
             Updating = false;
             UsedLogic = new List<LogicObjects.LogicEntry>();
             Function = 0;
             CheckedItems = new List<int>();
             ItemsReturned = false;
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            MoveItem(-1);
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            MoveItem(1);
+        }
+
+        public void MoveItem(int direction)
+        {
+            if (LBItemSelect.SelectedItem == null || LBItemSelect.SelectedIndex < 0) { return; }
+            int newIndex = LBItemSelect.SelectedIndex + direction;
+            if (newIndex < 0 || newIndex >= LBItemSelect.Items.Count) { return; }
+            object selected = LBItemSelect.SelectedItem;
+            LBItemSelect.Items.Remove(selected);
+            LBItemSelect.Items.Insert(newIndex, selected);
+            LBItemSelect.SetSelected(newIndex, true);
         }
     }
 }

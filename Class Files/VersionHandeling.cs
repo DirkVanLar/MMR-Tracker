@@ -61,7 +61,7 @@ namespace MMR_Tracker_V2
             return (Version >= EntranceRandoVersion || OOT_Support.isOOT);
         }
 
-        public static string[] SwitchDictionary(int Currentversion)
+        public static string[] SwitchDictionary(int Currentversion, bool OOT = false)
         {
             string[] files = Directory.GetFiles(@"Dictionaries");
             Dictionary<int, string> dictionaries = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
@@ -73,7 +73,7 @@ namespace MMR_Tracker_V2
             foreach (var i in files)
             {
                 var dic = "MMRDICTIONARY";
-                if (OOT_Support.isOOT || LogicEditor.GetOOTDictionary) { dic = "OOTRDICTIONARY"; }
+                if (OOT) { dic = "OOTRDICTIONARY"; }
                 if (i.Contains(dic))
                 {
                     var entry = i.Replace("Dictionaries\\" + dic + "V", "");
