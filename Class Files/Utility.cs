@@ -362,7 +362,7 @@ namespace MMR_Tracker_V2
                 }
             }
         }
-        public static bool FilterSearch(LogicObjects.LogicEntry logic, string searchTerm, string NameToCompare)
+        public static bool FilterSearch(LogicObjects.LogicEntry logic, string searchTerm, string NameToCompare, LogicObjects.LogicEntry RandomizedItem = null)
         {
             if (searchTerm == "") { return true; }
             string[] searchTerms = searchTerm.Split('|');
@@ -377,6 +377,27 @@ namespace MMR_Tracker_V2
                     {
                         if (subterm.Substring(1) == "") { continue; }
                         if (!logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower())) { valid = false; }
+                    }
+                    else if (subterm[0] == '@')
+                    {
+                        if (subterm.Substring(1) == "") { continue; }
+                        if (!logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) { valid = false; }
+                    }
+                    else if (subterm[0] == '$')
+                    {
+                        if (subterm.Substring(1) == "" || logic.ItemName == null) { continue; }
+                        if (!logic.ItemName.ToLower().Contains(subterm.Substring(1).ToLower())) { valid = false; }
+                    }
+                    else if (subterm[0] == '%')
+                    {
+                        if (subterm.Substring(1) == "" || logic.LocationName == null) { continue; }
+                        if (!logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower())) { valid = false; }
+                    }
+                    else if (subterm[0] == '&')
+                    {
+                        if (subterm.Substring(1) == "") { continue; }
+                        if (RandomizedItem == null) { valid = false; }
+                        else if (!RandomizedItem.ItemName.ToLower().Contains(subterm.Substring(1).ToLower())) { valid = false; }
                     }
                     else
                     {
@@ -403,7 +424,7 @@ namespace MMR_Tracker_V2
                     if (full) { Console.WriteLine(i.DictionaryName + " Does not have SpoilerData"); }
                 }
             }
-            return (full) ? fullLog: Spoiler;
+            return (full) ? fullLog : Spoiler;
         }
         public static bool IsDivider(string text)
         {
@@ -438,6 +459,10 @@ namespace MMR_Tracker_V2
             }
             return spoilerDic;
         }
+        public static int BoolSorting(LogicObjects.LogicEntry entry)
+        {
+            return (entry.RandomizedItem > -2) ? 1 : 0;
+        } 
 
     }
 }

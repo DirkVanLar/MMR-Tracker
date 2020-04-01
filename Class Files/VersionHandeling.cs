@@ -63,7 +63,7 @@ namespace MMR_Tracker_V2
 
         public static string[] SwitchDictionary(int Currentversion, bool OOT = false)
         {
-            string[] files = Directory.GetFiles(@"Dictionaries");
+            string[] files = Directory.GetFiles(@"Recources");
             Dictionary<int, string> dictionaries = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
             Dictionary<int, string> Pairs = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
             int smallestDicEntry = 0;
@@ -76,7 +76,7 @@ namespace MMR_Tracker_V2
                 if (OOT) { dic = "OOTRDICTIONARY"; }
                 if (i.Contains(dic))
                 {
-                    var entry = i.Replace("Dictionaries\\" + dic + "V", "");
+                    var entry = i.Replace("Recources\\" + dic + "V", "");
                     entry = entry.Replace(".csv", "");
                     int version = 0;
                     try { version = Int32.Parse(entry); }
@@ -88,7 +88,7 @@ namespace MMR_Tracker_V2
                 }
                 if (i.Contains("ENTRANCEPAIRS"))
                 {
-                    var entry = i.Replace("Dictionaries\\ENTRANCEPAIRSV", "");
+                    var entry = i.Replace("Recources\\ENTRANCEPAIRSV", "");
                     entry = entry.Replace(".csv", "");
                     int version = 0;
                     try { version = Int32.Parse(entry); }

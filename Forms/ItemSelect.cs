@@ -68,6 +68,13 @@ namespace MMR_Tracker_V2
 
         private void BTNJunk_Click(object sender, EventArgs e)
         {
+            if (Function == 0)
+            {
+                ItemsReturned = true;
+                LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry { ID = -1 };
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
             ReturnItems();
         }
 

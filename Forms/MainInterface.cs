@@ -349,31 +349,29 @@ namespace MMR_Tracker_V2
 
         private void ikanaWellMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var request = WebRequest.Create("https://lh3.googleusercontent.com/C0lTSDAQVpM_AeYM_WAGsbFCXvOLHkrgw2pFjh5BGLKfyyIs-S8iUboYrapNpiHIYqEKdQTrLPSCkG-EBOztDKnhEfDNu-IqXspp5cjfmjumpEYqGb6u_-h0SpUsR28c41NljrXIJA");
+            string link = "https://lh3.googleusercontent.com/C0lTSDAQVpM_AeYM_WAGsbFCXvOLHkrgw2pFjh5BGLKfyyIs-S8iUboYrapNpiHIYqEKdQTrLPSCkG-EBOztDKnhEfDNu-IqXspp5cjfmjumpEYqGb6u_-h0SpUsR28c41NljrXIJA";
             Form form = new Form();
+            var request = WebRequest.Create(link);
             using (var response = request.GetResponse())
-            using (var stream = response.GetResponseStream())
-            {
-                form.BackgroundImage = Bitmap.FromStream(stream);
-            }
+            using (var stream = response.GetResponseStream()) { form.BackgroundImage = Bitmap.FromStream(stream); }
             form.Width = 500;
             form.Height = 500;
             form.BackgroundImageLayout = ImageLayout.Stretch;
+            form.Text = "Showing Web page: " + link;
             form.Show();
         }
 
         private void woodsOfMysteryRouteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var request = WebRequest.Create("https://lh3.googleusercontent.com/proxy/8gIxid_8hpBIaLMW3IWcUTWw06VmSxt9EHr1U0YNqzrwji7xXQJAJATk212JvVYZqYFA6O9En8n71TeRCY6qzwKCc5VI1zVWAXoflzFphAMpSQl7T4KA");
+            string link = "https://gamefaqs.gamespot.com/n64/197770-the-legend-of-zelda-majoras-mask/map/761?raw=1";
             Form form = new Form();
+            var request = WebRequest.Create(link);
             using (var response = request.GetResponse())
-            using (var stream = response.GetResponseStream())
-            {
-                form.BackgroundImage = Bitmap.FromStream(stream);
-            }
+            using (var stream = response.GetResponseStream()) { form.BackgroundImage = Bitmap.FromStream(stream); }
             form.Width = 500;
             form.Height = 500;
             form.BackgroundImageLayout = ImageLayout.Stretch;
+            form.Text = "Showing Web page: " + link;
             form.Show();
         }
 
@@ -394,7 +392,7 @@ namespace MMR_Tracker_V2
         private void ocarinaSongsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form form = new Form();
-            form.BackgroundImage = Bitmap.FromFile(@"Forms\Ocarina Songs.PNG");
+            form.BackgroundImage = Bitmap.FromFile(@"Recources\Ocarina Songs.PNG");
             form.Width = 500;
             form.Height = 500;
             form.BackgroundImageLayout = ImageLayout.Stretch;
@@ -715,9 +713,9 @@ namespace MMR_Tracker_V2
             var Unsortedlogic = new List<LogicObjects.LogicEntry>();
             Dictionary<int, int> listGroups = new Dictionary<int, int>();
 
-            if (File.Exists(@"Dictionaries\Categories.txt") && !OOT_Support.isOOT)
+            if (File.Exists(@"Recources\Categories.txt") && !OOT_Support.isOOT)
             {
-                Groups = File.ReadAllLines(@"Dictionaries\Categories.txt").Select(x => x.ToLower().Trim()).ToList();
+                Groups = File.ReadAllLines(@"Recources\Categories.txt").Select(x => x.ToLower().Trim()).ToList();
             }
             else
             {
@@ -731,7 +729,8 @@ namespace MMR_Tracker_V2
             foreach (var entry in LogicObjects.Logic)
             {
                 entry.DisplayName = entry.DictionaryName;
-                if ((entry.Available || CHKShowAll.Checked) &&
+                var RandomizedItem = (entry.RandomizedItem == -2) ? null : ((entry.RandomizedItem == -1) ? new LogicObjects.LogicEntry { DisplayName = "junk" } : LogicObjects.Logic[entry.RandomizedItem]);
+                if ((entry.Available || entry.RandomizedItem > -2 || CHKShowAll.Checked) &&
                     !entry.IsFake &&
                     (entry.LocationName != "" && entry.LocationName != null) &&
                     !entry.Checked &&
@@ -746,7 +745,7 @@ namespace MMR_Tracker_V2
                     if ((entry.ItemSubType != "Entrance" || !VersionHandeling.entranceRadnoEnabled))
                     {
                         TotalLoc += 1;
-                        if (Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName))
+                        if (Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName, RandomizedItem))
                         {
                             listGroups.Add(entry.ID, 0);
                             Unsortedlogic.Add(entry);
@@ -755,7 +754,7 @@ namespace MMR_Tracker_V2
                     else if ((entry.ItemSubType == "Entrance" && VersionHandeling.entranceRadnoEnabled))
                     {
                         TotalEnt += 1;
-                        if (Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName))
+                        if (Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName, RandomizedItem))
                         {
                             listGroups.Add(entry.ID, 1);
                             Unsortedlogic.Add(entry);
@@ -766,7 +765,7 @@ namespace MMR_Tracker_V2
                 {
                     entry.DisplayName = (entry.RandomizedItem > -1) ? logic[entry.RandomizedItem].ItemName + ": " + entry.LocationName : "Junk: " + entry.LocationName;
                     totalchk += 1;
-                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName))
+                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName, RandomizedItem))
                     {
                         listGroups.Add(entry.ID, 2);
                         Unsortedlogic.Add(entry); 
@@ -774,7 +773,7 @@ namespace MMR_Tracker_V2
                 }
             }
 
-            var sortedlogic = Unsortedlogic.OrderBy(x => Groups.IndexOf(x.LocationArea.ToLower().Trim())).ThenBy(x => x.DisplayName);
+            var sortedlogic = Unsortedlogic.OrderBy(x => Utility.BoolSorting(x)).ThenBy(x => Groups.IndexOf(x.LocationArea.ToLower().Trim())).ThenBy(x => x.DisplayName);
 
             var lastLocArea = "";
             var lastEntArea = "";
@@ -787,10 +786,11 @@ namespace MMR_Tracker_V2
             foreach (var entry in sortedlogic)
             {
                 if (!listGroups.ContainsKey(entry.ID)) { continue; }
-                if (listGroups[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea); AvalableLocations++; }
-                if (listGroups[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea); AvalableEntrances++; }
-                if (listGroups[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea); CheckedLocations++; }
+                if (listGroups[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.RandomizedItem > -2); AvalableLocations++; }
+                if (listGroups[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.RandomizedItem > -2); AvalableEntrances++; }
+                if (listGroups[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false); CheckedLocations++; }
             }
+
             label1.Text = "Available Locations: " + ((AvalableLocations == TotalLoc) ? AvalableLocations.ToString() : (AvalableLocations.ToString() + "/" + TotalLoc.ToString()));
             label2.Text = "Checked locations: " + ((CheckedLocations == totalchk) ? CheckedLocations.ToString() : (CheckedLocations.ToString() + "/" + totalchk.ToString())); ;
             label3.Text = "Available Entrances: " + ((AvalableEntrances == TotalEnt) ? AvalableEntrances.ToString() : (AvalableEntrances.ToString() + "/" + TotalEnt.ToString())); ;
@@ -926,13 +926,13 @@ namespace MMR_Tracker_V2
             toolTip1.SetToolTip(lb, tip);
         }
 
-        private string WriteObject(LogicObjects.LogicEntry entry, ListBox lb, string lastArea)
+        private string WriteObject(LogicObjects.LogicEntry entry, ListBox lb, string lastArea, bool Marked)
         {
             string returnLastArea = lastArea;
             if (entry.LocationArea != returnLastArea)
             {
                 if (returnLastArea != "") { lb.Items.Add("================================"); }
-                lb.Items.Add(entry.LocationArea.ToUpper() + ":");
+                lb.Items.Add(entry.LocationArea.ToUpper() + ((Marked) ? " SET ITEMS" : "") + ":");
                 returnLastArea = entry.LocationArea;
             }
             lb.Items.Add(entry);

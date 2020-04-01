@@ -128,19 +128,19 @@
     <EmbeddedResource Include="Forms\SeedChecker.resx">
       <DependentUpon>SeedChecker.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Dictionaries\ENTRANCEPAIRSV16.csv">
+    <None Include="Recources\ENTRANCEPAIRSV16.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Dictionaries\MMRDICTIONARYV13.csv">
+    <None Include="Recources\MMRDICTIONARYV13.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Dictionaries\MMRDICTIONARYV16.csv">
+    <None Include="Recources\MMRDICTIONARYV16.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Dictionaries\MMRDICTIONARYV8.csv">
+    <None Include="Recources\MMRDICTIONARYV8.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Dictionaries\OOTRDICTIONARYV5.csv">
+    <None Include="Recources\OOTRDICTIONARYV5.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Misc\packages.config" />
@@ -158,13 +158,13 @@
     <None Include="Misc\App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dictionaries\Categories.txt">
+    <Content Include="Recources\Categories.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Dictionaries\OOT Logic V5.2.txt">
+    <Content Include="Recources\OOT Logic V5.2.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Forms\Ocarina Songs.PNG">
+    <Content Include="Recources\Ocarina Songs.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Misc\10_106247_moon_from_majoras_mask_render_majoras_mask_moon_WIL_icon.ico" />
