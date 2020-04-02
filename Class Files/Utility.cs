@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Octokit;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -465,7 +467,7 @@ namespace MMR_Tracker_V2
         {
             return (entry.RandomizedItem > -2) ? 1 : 0;
         } 
-        public static List<string> SeperateStringByMeasurement(ListBox container, string Measure, bool Indent)
+        public static List<string> SeperateStringByMeasurement(ListBox container, string Measure, string indent = "    ")
         {
             Font font = container.Font;
             int width = container.Width;
@@ -476,7 +478,6 @@ namespace MMR_Tracker_V2
             List<string> ShortenedStrings = new List<string>();
             string[] words = Measure.Split(' ');
             string ShortenedString = "";
-            string indent = "    ";
             foreach (string word in words)
             {
                 string testString = ShortenedString + word + " ";
@@ -507,13 +508,57 @@ namespace MMR_Tracker_V2
                 string Section = "";
                 for (var i = 0; i < marks; i++)
                 {
-                    Section = Section + "=";
+                    Section += "=";
                 }
                 Divider = Section + DividerText + Section;
                 marks++;
             }
             return Divider;
         }
+        public static void CheckforOptionsFile()
+        {
+            if (!File.Exists("options.txt"))
+            {
+                var file = File.Create("options.txt");
+                if (!Debugging.ISDebugging || (Control.ModifierKeys == Keys.Shift))
+                {
+                    var firsttime = MessageBox.Show("Welcome to the Majoras Mask Randomizer Tracker by thedrummonger! It looks like this is your first time running the tracker. If that is the case select Yes, otherwise select No. (Keep an eye out, the following text boxes like to hide behind windows!)", "First Time Setup", MessageBoxButtons.YesNo);
+                    if (firsttime == DialogResult.Yes)
+                    {
+                        MessageBox.Show("Please Take this opportunity to familliarize yourself with how to use this tracker. There are many features that are not obvious or explained anywhere outside of the about page. This information can be accessed at any time by selecting 'Info' -> 'About'. Click OK to show the About Page. Once you have read through the information, close the window to return to setup.", "How to Use", MessageBoxButtons.OK);
+                        DebugScreen DebugScreen = new DebugScreen();
+                        Debugging.PrintLogicObject(LogicObjects.Logic);
+                        DebugScreen.DebugFunction = 2;
+                        DebugScreen.ShowDialog();
+                    }
 
+                    var DefaultSetting = MessageBox.Show("If you would like to change the default options, press Yes. Otherwise, press No. Selecting Cancel at an option prompt will leave it default. These can be changed later in the Options text document that will be created in your tracker folder. The can also be changed per instance in the options tab", "Default Setting", MessageBoxButtons.YesNo);
+                    if (DefaultSetting != DialogResult.Yes) { return; }
+
+                    var ShowToolTips = MessageBox.Show("Would you like to see tooltips that display the full name of an item when you mouse over it?", "Show Tool Tips", MessageBoxButtons.YesNoCancel);
+                    if (ShowToolTips == DialogResult.No) { Utility.ShowEntryNameTooltip = false; }
+
+                    var DisableEntrances = MessageBox.Show("Would you like the tracker to automatically mark entrances as unrandomized when creating an instance? This is usefull if you don't plan to use entrance randomizer often.", "Start with Entrance Rando", MessageBoxButtons.YesNoCancel);
+                    if (DisableEntrances == DialogResult.No) { Utility.UnradnomizeEntranesOnStartup = false; }
+
+                    var UpdateCheck = MessageBox.Show("Would you like the tracker to notify you when a newer version has been released?", "Check For Updates", MessageBoxButtons.YesNoCancel);
+                    if (UpdateCheck == DialogResult.No) { VersionHandeling.CheckForUpdate = false; }
+                }
+                string[] options = new string[] { "ToolTips:" + ((Utility.ShowEntryNameTooltip) ? 1 : 0), "DisableEntrancesOnStartup:" + ((Utility.UnradnomizeEntranesOnStartup) ? 1 : 0), "CheckForUpdates:" + ((VersionHandeling.CheckForUpdate) ? 1 : 0) };
+                file.Close();
+                File.WriteAllLines("options.txt", options);
+            }
+            else
+            {
+                foreach (var line in File.ReadAllLines("options.txt"))
+                {
+                    if (line.StartsWith("ToolTips:")) { Utility.ShowEntryNameTooltip = line.Contains("ToolTips:1"); }
+                    if (line.StartsWith("DisableEntrancesOnStartup:")) { Utility.UnradnomizeEntranesOnStartup = line.Contains("DisableEntrancesOnStartup:1"); }
+                    if (line.StartsWith("CheckForUpdates:")) { VersionHandeling.CheckForUpdate = line.Contains("CheckForUpdates:1"); }
+                    if (line.StartsWith("Dev:")) { Debugging.ISDebugging = line.Contains("Dev:1"); }
+                }
+            }
+
+        }
     }
 }

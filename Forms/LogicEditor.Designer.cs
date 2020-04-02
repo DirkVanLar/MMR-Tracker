@@ -296,7 +296,7 @@
             this.btnAddReq.TabIndex = 16;
             this.btnAddReq.Text = "Add Required";
             this.btnAddReq.UseVisualStyleBackColor = true;
-            this.btnAddReq.Click += new System.EventHandler(this.btnAddReq_Click);
+            this.btnAddReq.Click += new System.EventHandler(this.BtnAddReq_Click);
             // 
             // btnAddCond
             // 
@@ -306,7 +306,7 @@
             this.btnAddCond.TabIndex = 17;
             this.btnAddCond.Text = "Add Conditional";
             this.btnAddCond.UseVisualStyleBackColor = true;
-            this.btnAddCond.Click += new System.EventHandler(this.btnAddCond_Click);
+            this.btnAddCond.Click += new System.EventHandler(this.BtnAddCond_Click);
             // 
             // btnRemoveReq
             // 
@@ -316,7 +316,7 @@
             this.btnRemoveReq.TabIndex = 22;
             this.btnRemoveReq.Text = "Remove Selected";
             this.btnRemoveReq.UseVisualStyleBackColor = true;
-            this.btnRemoveReq.Click += new System.EventHandler(this.btnRemoveReq_Click);
+            this.btnRemoveReq.Click += new System.EventHandler(this.BtnRemoveReq_Click);
             // 
             // btnRemoveCond
             // 
@@ -326,7 +326,7 @@
             this.btnRemoveCond.TabIndex = 23;
             this.btnRemoveCond.Text = "Remove Selected";
             this.btnRemoveCond.UseVisualStyleBackColor = true;
-            this.btnRemoveCond.Click += new System.EventHandler(this.btnRemoveCond_Click);
+            this.btnRemoveCond.Click += new System.EventHandler(this.BtnRemoveCond_Click);
             // 
             // label1
             // 
@@ -382,7 +382,7 @@
             this.btnBack.TabIndex = 29;
             this.btnBack.Text = "Go Back";
             this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
             // btnGoTo
             // 
@@ -438,7 +438,7 @@
             this.btnEditSelected.TabIndex = 36;
             this.btnEditSelected.Text = "Edit Selected";
             this.btnEditSelected.UseVisualStyleBackColor = true;
-            this.btnEditSelected.Click += new System.EventHandler(this.btnEditSelected_Click);
+            this.btnEditSelected.Click += new System.EventHandler(this.BtnEditSelected_Click);
             // 
             // menuStrip1
             // 
@@ -470,14 +470,14 @@
             this.saveLogicToolStripMenuItem.Name = "saveLogicToolStripMenuItem";
             this.saveLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.saveLogicToolStripMenuItem.Text = "Save Logic";
-            this.saveLogicToolStripMenuItem.Click += new System.EventHandler(this.btnSave_Click);
+            this.saveLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // applyToTrackerLogicToolStripMenuItem
             // 
             this.applyToTrackerLogicToolStripMenuItem.Name = "applyToTrackerLogicToolStripMenuItem";
             this.applyToTrackerLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.applyToTrackerLogicToolStripMenuItem.Text = "Apply Logic to Tracker";
-            this.applyToTrackerLogicToolStripMenuItem.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.applyToTrackerLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // loadLogicToolStripMenuItem
             // 
@@ -491,14 +491,14 @@
             this.newLogicToolStripMenuItem.Name = "newLogicToolStripMenuItem";
             this.newLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.newLogicToolStripMenuItem.Text = "New Logic";
-            this.newLogicToolStripMenuItem.Click += new System.EventHandler(this.btnNewLogic_Click);
+            this.newLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnNewLogic_Click);
             // 
             // newItemToolStripMenuItem
             // 
             this.newItemToolStripMenuItem.Name = "newItemToolStripMenuItem";
             this.newItemToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.newItemToolStripMenuItem.Text = "New Item";
-            this.newItemToolStripMenuItem.Click += new System.EventHandler(this.btnNewItem_Click);
+            this.newItemToolStripMenuItem.Click += new System.EventHandler(this.BtnNewItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -516,35 +516,35 @@
             this.useLocationItemNamesToolStripMenuItem.Name = "useLocationItemNamesToolStripMenuItem";
             this.useLocationItemNamesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.useLocationItemNamesToolStripMenuItem.Text = "Use Location/Item Names";
-            this.useLocationItemNamesToolStripMenuItem.Click += new System.EventHandler(this.useLocationItemNamesToolStripMenuItem_Click);
+            this.useLocationItemNamesToolStripMenuItem.Click += new System.EventHandler(this.UseLocationItemNamesToolStripMenuItem_Click);
             // 
             // displaySpoilerLogNamesToolStripMenuItem
             // 
             this.displaySpoilerLogNamesToolStripMenuItem.Name = "displaySpoilerLogNamesToolStripMenuItem";
             this.displaySpoilerLogNamesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.displaySpoilerLogNamesToolStripMenuItem.Text = "Display Spoiler Log Names";
-            this.displaySpoilerLogNamesToolStripMenuItem.Click += new System.EventHandler(this.displaySpoilerLogNamesToolStripMenuItem_Click);
+            this.displaySpoilerLogNamesToolStripMenuItem.Click += new System.EventHandler(this.DisplaySpoilerLogNamesToolStripMenuItem_Click);
             // 
             // reorderLogicToolStripMenuItem
             // 
             this.reorderLogicToolStripMenuItem.Name = "reorderLogicToolStripMenuItem";
             this.reorderLogicToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.reorderLogicToolStripMenuItem.Text = "Reorder Logic";
-            this.reorderLogicToolStripMenuItem.Click += new System.EventHandler(this.reorderLogicToolStripMenuItem_Click);
+            this.reorderLogicToolStripMenuItem.Click += new System.EventHandler(this.ReorderLogicToolStripMenuItem_Click);
             // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.undoToolStripMenuItem.Text = "Undo";
-            this.undoToolStripMenuItem.Click += new System.EventHandler(this.btnUndo_Click);
+            this.undoToolStripMenuItem.Click += new System.EventHandler(this.BtnUndo_Click);
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.redoToolStripMenuItem.Text = "Redo";
-            this.redoToolStripMenuItem.Click += new System.EventHandler(this.btnRedo_Click);
+            this.redoToolStripMenuItem.Click += new System.EventHandler(this.BtnRedo_Click);
             // 
             // label6
             // 
@@ -579,7 +579,7 @@
             this.btnUp.Size = new System.Drawing.Size(15, 15);
             this.btnUp.TabIndex = 41;
             this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            this.btnUp.Click += new System.EventHandler(this.BtnUp_Click);
             // 
             // btnDown
             // 
@@ -591,14 +591,14 @@
             this.btnDown.TabIndex = 42;
             this.btnDown.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            this.btnDown.Click += new System.EventHandler(this.BtnDown_Click);
             // 
             // renameCurrentItemToolStripMenuItem
             // 
             this.renameCurrentItemToolStripMenuItem.Name = "renameCurrentItemToolStripMenuItem";
             this.renameCurrentItemToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.renameCurrentItemToolStripMenuItem.Text = "Rename Current Item";
-            this.renameCurrentItemToolStripMenuItem.Click += new System.EventHandler(this.renameCurrentItemToolStripMenuItem_Click);
+            this.renameCurrentItemToolStripMenuItem.Click += new System.EventHandler(this.RenameCurrentItemToolStripMenuItem_Click);
             // 
             // LogicEditor
             // 

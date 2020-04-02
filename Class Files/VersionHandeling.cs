@@ -1,8 +1,11 @@
 ﻿using MMR_Tracker.Forms;
+using Octokit;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
 {
@@ -12,7 +15,10 @@ namespace MMR_Tracker_V2
         public static int EntranceRandoVersion = 14; // The version of logic that entrance randomizer was implimented
         public static bool entranceRadnoEnabled = false; // Whether or not entrances should be seperated into their own colum
         public static bool OverRideAutoEntranceRandoEnable = false;
+        public static bool CheckForUpdate = true;
         public static List<int> ValidVersions = new List<int> { 8, 13, 16 }; // Versions of logic used in main releases
+
+        public static decimal trackerVersion = 1.7m;
 
         public static Dictionary<int, int> AreaClearDictionary()
         {
@@ -122,6 +128,29 @@ namespace MMR_Tracker_V2
             Console.WriteLine(currentdictionary[1]);
 
             return currentdictionary;
+        }
+
+        public static bool GetLatestTrackerVersion()
+        {
+            var client = new GitHubClient(new ProductHeaderValue("MMR-Tracker"));
+            var releases = client.Repository.Release.GetAll("Thedrummonger", "MMR-Tracker");
+            var Latest = releases.Result[0];
+
+            decimal LatestVersion = 0;
+
+            try { LatestVersion = Convert.ToDecimal(Latest.TagName.Replace("V", "")); }
+            catch { Console.WriteLine("Latest Github Release Tag was malformed"); }
+
+            if (trackerVersion < LatestVersion && CheckForUpdate)
+            {
+                if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Console.WriteLine("Tracker Out of Date. Latest Version: " + Latest.TagName + " Current Version V" + trackerVersion); }
+                else
+                {
+                    var Download = MessageBox.Show("Your tracker version V"+ trackerVersion + " is out of Date! Would you like to download the latest version " + Latest.TagName + "?", "Tracker Out of Date", MessageBoxButtons.YesNo);
+                    if (Download == DialogResult.Yes) { { Process.Start(Latest.HtmlUrl); return true; } }
+                }
+            }
+            return false;
         }
     }
 }

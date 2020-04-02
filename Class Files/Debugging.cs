@@ -7,6 +7,7 @@ namespace MMR_Tracker_V2
 {
     class Debugging
     {
+        public static bool ISDebugging = false;
         public static void PrintDictionatry()
         {
             for (int i = 0; i < LogicObjects.MMRDictionary.Count; i++)
@@ -173,7 +174,6 @@ namespace MMR_Tracker_V2
             bool RealItemObtained = false;
             bool recalculate = false;
             List<LogicObjects.LogicEntry> itemCheckList = new List<LogicObjects.LogicEntry>();
-            List<LogicObjects.LogicEntry> EntranceCheckList = new List<LogicObjects.LogicEntry>();
             
 
             foreach (var item in logic)

@@ -135,7 +135,7 @@ namespace MMR_Tracker_V2
             this.Text = "Info";
             Lines.Add("Majoras Mask Randomizer Tracker");
             Lines.Add("Tracker Github: https://github.com/Thedrummonger/MMR-Tracker");
-            Lines.Add("Version: 2.0");
+            Lines.Add("Version: " + VersionHandeling.trackerVersion);
             Lines.Add("By: Thedrummonger");
             Lines.Add("Contact: bigmuffthedrummonger@gmail.com");
             Lines.Add(Utility.CreateDivider(listBox1, "For use with the Majoras Mask Randomizer"));
@@ -286,7 +286,7 @@ namespace MMR_Tracker_V2
 
             foreach (var i in Lines)
             {
-                foreach (var j in Utility.SeperateStringByMeasurement(listBox1, i, true))
+                foreach (var j in Utility.SeperateStringByMeasurement(listBox1, i))
                 {
                     listBox1.Items.Add(j);
                 }

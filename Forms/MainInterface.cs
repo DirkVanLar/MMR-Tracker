@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using MMR_Tracker;
 using MMR_Tracker.Forms;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using Octokit;
 
 namespace MMR_Tracker_V2
 {
@@ -25,25 +25,9 @@ namespace MMR_Tracker_V2
         //Form Events---------------------------------------------------------------------------
         private void FRMTracker_Load(object sender, EventArgs e)
         {
-            devToolStripMenuItem.Visible = Debugger.IsAttached;
-            if (!File.Exists("options.txt"))
-            {
-                var file = File.Create("options.txt");
-                FirstRun();
-                string[] options = new string[] { "ToolTips:" + ((Utility.ShowEntryNameTooltip) ? 1 : 0), "DisableEntrancesOnStartup:" + ((Utility.UnradnomizeEntranesOnStartup) ? 1 : 0) };
-                file.Close();
-                File.WriteAllLines("options.txt", options);
-            }
-            else
-            {
-                foreach(var line in File.ReadAllLines("options.txt")) 
-                {
-                    if (line.StartsWith("ToolTips:")) { Utility.ShowEntryNameTooltip = line.Contains("ToolTips:1"); }
-                    if (line.StartsWith("DisableEntrancesOnStartup:")) { Utility.UnradnomizeEntranesOnStartup = line.Contains("DisableEntrancesOnStartup:1"); }
-                    if (line.StartsWith("Dev:")) { devToolStripMenuItem.Visible = line.Contains("Dev:1"); }
-                }
-            }
-
+            Debugging.ISDebugging = (Control.ModifierKeys == Keys.Control) ? (!Debugger.IsAttached) : (Debugger.IsAttached);
+            Utility.CheckforOptionsFile();
+            if (VersionHandeling.GetLatestTrackerVersion()) { this.Close(); }
             ResizeObject();
             FormatMenuItems();
         }
@@ -280,12 +264,12 @@ namespace MMR_Tracker_V2
             PrintToListBox();
         }
 
-        private void dumbStuffToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DumbStuffToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Console.WriteLine(((11 >> 0) & 1) == 1);
         }
 
-        private void createOOTFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CreateOOTFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OOT_Support.CreateOOTFiles();
         }
@@ -338,7 +322,7 @@ namespace MMR_Tracker_V2
             LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
         }
 
-        private void logicEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LogicEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicEditor Editor = new LogicEditor();
             Editor.ShowDialog();
@@ -365,7 +349,7 @@ namespace MMR_Tracker_V2
             DebugScreen.Show();
         }
 
-        private void ikanaWellMapToolStripMenuItem_Click(object sender, EventArgs e)
+        private void IkanaWellMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string link = "https://lh3.googleusercontent.com/C0lTSDAQVpM_AeYM_WAGsbFCXvOLHkrgw2pFjh5BGLKfyyIs-S8iUboYrapNpiHIYqEKdQTrLPSCkG-EBOztDKnhEfDNu-IqXspp5cjfmjumpEYqGb6u_-h0SpUsR28c41NljrXIJA";
             Form form = new Form();
@@ -379,7 +363,7 @@ namespace MMR_Tracker_V2
             form.Show();
         }
 
-        private void woodsOfMysteryRouteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void WoodsOfMysteryRouteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string link = "https://gamefaqs.gamespot.com/n64/197770-the-legend-of-zelda-majoras-mask/map/761?raw=1";
             Form form = new Form();
@@ -393,27 +377,29 @@ namespace MMR_Tracker_V2
             form.Show();
         }
 
-        private void bombersCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BombersCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var text = (Utility.BomberCode == "") ? "Enter your bombers code below." : "Bomber code: \n" + Utility.BomberCode + "\nEnter a new code to change it.";
             string name = Interaction.InputBox(text, "Bomber Code", "");
             if (name != "") { Utility.BomberCode = name; }
         }
 
-        private void timedEventsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TimedEventsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var text = (Utility.LotteryNumber == "") ? "Enter your Lottery Number(s) below." : "Lottery Number(s): \n" + Utility.LotteryNumber + "\nEnter Lottery Number(s) to change it.";
             string name = Interaction.InputBox(text, "Lottery Number(s)", "");
             if (name != "") { Utility.LotteryNumber = name; }
         }
 
-        private void ocarinaSongsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OcarinaSongsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form form = new Form();
-            form.BackgroundImage = Bitmap.FromFile(@"Recources\Ocarina Songs.PNG");
-            form.Width = 500;
-            form.Height = 500;
-            form.BackgroundImageLayout = ImageLayout.Stretch;
+            Form form = new Form
+            {
+                BackgroundImage = Bitmap.FromFile(@"Recources\Ocarina Songs.PNG"),
+                Width = 500,
+                Height = 500,
+                BackgroundImageLayout = ImageLayout.Stretch
+            };
             form.Show();
         }
 
@@ -543,7 +529,8 @@ namespace MMR_Tracker_V2
         {
             if (TXTLocSearch.Text.ToLower() == "enabledev" && LB == LBValidLocations && !FullCheck)
             {
-                devToolStripMenuItem.Visible = !devToolStripMenuItem.Visible;
+                Debugging.ISDebugging = !Debugging.ISDebugging;
+                FormatMenuItems();
                 TXTLocSearch.Clear();
                 return;
             }
@@ -619,6 +606,7 @@ namespace MMR_Tracker_V2
             coupleEntrancesToolStripMenuItem.Visible = VersionHandeling.entranceRadnoEnabled;
             toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
             coupleEntrancesToolStripMenuItem.Text = (LogicEditing.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
+            devToolStripMenuItem.Visible = Debugging.ISDebugging;
 
             //OOT Handeling
             importSpoilerLogToolStripMenuItem.Visible = !OOT_Support.isOOT;
@@ -955,28 +943,6 @@ namespace MMR_Tracker_V2
             }
             lb.Items.Add(entry);
             return (returnLastArea);
-        }
-
-        public void FirstRun()
-        {
-            var firsttime = MessageBox.Show("Welcome to the Majoras Mask Randomizer Tracker by thedrummonger! It looks like this is your first time running the tracker. If that is the case select Yes, otherwise select No. (Keep an eye out, the following text boxes like to hide behind windows!)", "First Time Setup", MessageBoxButtons.YesNo);
-            if (firsttime == DialogResult.Yes) 
-            {
-                MessageBox.Show("Please Take this opportunity to familliarize yourself with how to use this tracker. There are many features that are not obvious or explained anywhere outside of the about page. This information can be accessed at any time by selecting 'Info' -> 'About'. Click OK to show the About Page. Once you have read through the information, close the window to return to setup.", "How to Use", MessageBoxButtons.OK);
-                DebugScreen DebugScreen = new DebugScreen();
-                Debugging.PrintLogicObject(LogicObjects.Logic);
-                DebugScreen.DebugFunction = 2;
-                DebugScreen.ShowDialog();
-            }
-
-            var DefaultSetting = MessageBox.Show("If you would like to change the default options, press Yes. Otherwise, press No. Selecting Cancel at an option prompt will leave it default. These can be changed later in the Options text document that will be created in your tracker folder. The can also be changed per instance in the options tab", "Default Setting", MessageBoxButtons.YesNo);
-            if (DefaultSetting != DialogResult.Yes) { return; }
-
-            var ShowToolTips = MessageBox.Show("Would you like to see tooltips that display the full name of an item when you mouse over it?", "Show Tool Tips", MessageBoxButtons.YesNoCancel);
-            if (ShowToolTips == DialogResult.No) { Utility.ShowEntryNameTooltip = false; }
-
-            var DisableEntrances = MessageBox.Show("Would you like the tracker to automatically mark entrances as unrandomized when creating an instance? This is usefull if you don't plan to use entrance randomizer often.", "Start with Entrance Rando", MessageBoxButtons.YesNoCancel);
-            if (DisableEntrances == DialogResult.No) { Utility.UnradnomizeEntranesOnStartup = false; }
         }
     }
 }

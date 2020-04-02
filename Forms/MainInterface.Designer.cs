@@ -510,7 +510,7 @@
             this.logicEditorToolStripMenuItem.Name = "logicEditorToolStripMenuItem";
             this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.logicEditorToolStripMenuItem.Text = "Logic Editor";
-            this.logicEditorToolStripMenuItem.Click += new System.EventHandler(this.logicEditorToolStripMenuItem_Click);
+            this.logicEditorToolStripMenuItem.Click += new System.EventHandler(this.LogicEditorToolStripMenuItem_Click);
             // 
             // updateLogicToolStripMenuItem
             // 
@@ -545,28 +545,28 @@
             this.ikanaWellMapToolStripMenuItem.Name = "ikanaWellMapToolStripMenuItem";
             this.ikanaWellMapToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.ikanaWellMapToolStripMenuItem.Text = "Ikana Well Map";
-            this.ikanaWellMapToolStripMenuItem.Click += new System.EventHandler(this.ikanaWellMapToolStripMenuItem_Click);
+            this.ikanaWellMapToolStripMenuItem.Click += new System.EventHandler(this.IkanaWellMapToolStripMenuItem_Click);
             // 
             // woodsOfMysteryRouteToolStripMenuItem
             // 
             this.woodsOfMysteryRouteToolStripMenuItem.Name = "woodsOfMysteryRouteToolStripMenuItem";
             this.woodsOfMysteryRouteToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.woodsOfMysteryRouteToolStripMenuItem.Text = "Woods of Mystery Route";
-            this.woodsOfMysteryRouteToolStripMenuItem.Click += new System.EventHandler(this.woodsOfMysteryRouteToolStripMenuItem_Click);
+            this.woodsOfMysteryRouteToolStripMenuItem.Click += new System.EventHandler(this.WoodsOfMysteryRouteToolStripMenuItem_Click);
             // 
             // bombersCodeToolStripMenuItem
             // 
             this.bombersCodeToolStripMenuItem.Name = "bombersCodeToolStripMenuItem";
             this.bombersCodeToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.bombersCodeToolStripMenuItem.Text = "Bombers Code";
-            this.bombersCodeToolStripMenuItem.Click += new System.EventHandler(this.bombersCodeToolStripMenuItem_Click);
+            this.bombersCodeToolStripMenuItem.Click += new System.EventHandler(this.BombersCodeToolStripMenuItem_Click);
             // 
             // timedEventsToolStripMenuItem
             // 
             this.timedEventsToolStripMenuItem.Name = "timedEventsToolStripMenuItem";
             this.timedEventsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.timedEventsToolStripMenuItem.Text = "Lottery Number(s)";
-            this.timedEventsToolStripMenuItem.Click += new System.EventHandler(this.timedEventsToolStripMenuItem_Click);
+            this.timedEventsToolStripMenuItem.Click += new System.EventHandler(this.TimedEventsToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -621,14 +621,14 @@
             this.createOOTFilesToolStripMenuItem.Name = "createOOTFilesToolStripMenuItem";
             this.createOOTFilesToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.createOOTFilesToolStripMenuItem.Text = "Create OOT Files";
-            this.createOOTFilesToolStripMenuItem.Click += new System.EventHandler(this.createOOTFilesToolStripMenuItem_Click);
+            this.createOOTFilesToolStripMenuItem.Click += new System.EventHandler(this.CreateOOTFilesToolStripMenuItem_Click);
             // 
             // dumbStuffToolStripMenuItem
             // 
             this.dumbStuffToolStripMenuItem.Name = "dumbStuffToolStripMenuItem";
             this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.dumbStuffToolStripMenuItem.Text = "Code Testing";
-            this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.dumbStuffToolStripMenuItem_Click);
+            this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.DumbStuffToolStripMenuItem_Click);
             // 
             // undoToolStripMenuItem
             // 
@@ -649,7 +649,7 @@
             this.ocarinaSongsToolStripMenuItem.Name = "ocarinaSongsToolStripMenuItem";
             this.ocarinaSongsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.ocarinaSongsToolStripMenuItem.Text = "Ocarina Songs";
-            this.ocarinaSongsToolStripMenuItem.Click += new System.EventHandler(this.ocarinaSongsToolStripMenuItem_Click);
+            this.ocarinaSongsToolStripMenuItem.Click += new System.EventHandler(this.OcarinaSongsToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 

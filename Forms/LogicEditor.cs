@@ -158,7 +158,7 @@ namespace MMR_Tracker.Forms
             catch { }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void BtnUpdate_Click(object sender, EventArgs e)
         {
             if (Utility.PromptSave())
             {
@@ -166,7 +166,7 @@ namespace MMR_Tracker.Forms
             }
         }
 
-        private void btnAddReq_Click(object sender, EventArgs e)
+        private void BtnAddReq_Click(object sender, EventArgs e)
         {
             UnsavedChanges = true;
             SaveState();
@@ -182,10 +182,10 @@ namespace MMR_Tracker.Forms
             }
             LogicObjects.selectedItems = new List<LogicObjects.LogicEntry>();
             ItemSelect.Function = 0;
-            updateReqAndCond();
+            UpdateReqAndCond();
         }
 
-        private void btnRemoveReq_Click(object sender, EventArgs e)
+        private void BtnRemoveReq_Click(object sender, EventArgs e)
         {
             UnsavedChanges = true;
             SaveState();
@@ -194,10 +194,10 @@ namespace MMR_Tracker.Forms
                 int idx = LBRequired.SelectedIndices[x];
                 LBRequired.Items.RemoveAt(idx);
             }
-            updateReqAndCond();
+            UpdateReqAndCond();
         }
 
-        private void btnAddCond_Click(object sender, EventArgs e)
+        private void BtnAddCond_Click(object sender, EventArgs e)
         {
             UnsavedChanges = true;
             SaveState();
@@ -235,10 +235,10 @@ namespace MMR_Tracker.Forms
             AddCondSeperatly = false;
             LogicObjects.selectedItems = new List<LogicObjects.LogicEntry>();
             ItemSelect.Function = 0;
-            updateReqAndCond();
+            UpdateReqAndCond();
         }
 
-        private void btnRemoveCond_Click(object sender, EventArgs e)
+        private void BtnRemoveCond_Click(object sender, EventArgs e)
         {
             UnsavedChanges = true;
             SaveState();
@@ -247,10 +247,10 @@ namespace MMR_Tracker.Forms
                 int idx = LBConditional.SelectedIndices[x];
                 LBConditional.Items.RemoveAt(idx);
             }
-            updateReqAndCond();
+            UpdateReqAndCond();
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
             if (!GoBackList.Any()) { return; }
             nudIndex.Value = (GoBackList[GoBackList.Count - 1]);
@@ -258,7 +258,7 @@ namespace MMR_Tracker.Forms
             GoBackList.RemoveAt(GoBackList.Count - 1);
         }
 
-        private void btnNewLogic_Click(object sender, EventArgs e)
+        private void BtnNewLogic_Click(object sender, EventArgs e)
         {
             if (!PromptSave()) { return; }
             LogicList = new List<LogicObjects.LogicEntry>();
@@ -269,19 +269,19 @@ namespace MMR_Tracker.Forms
             FormatForm();
         }
 
-        private void btnUndo_Click(object sender, EventArgs e)
+        private void BtnUndo_Click(object sender, EventArgs e)
         {
             Undo();
             WriteCurentItem(currentEntry.ID);
         }
 
-        private void btnRedo_Click(object sender, EventArgs e)
+        private void BtnRedo_Click(object sender, EventArgs e)
         {
             Redo();
             WriteCurentItem(currentEntry.ID);
         }
 
-        private void btnNewItem_Click(object sender, EventArgs e)
+        private void BtnNewItem_Click(object sender, EventArgs e)
         {
             UnsavedChanges = true;
             SaveState();
@@ -295,7 +295,7 @@ namespace MMR_Tracker.Forms
             WriteCurentItem(LogicList.Count - 1);
         }
 
-        private void btnEditSelected_Click(object sender, EventArgs e)
+        private void BtnEditSelected_Click(object sender, EventArgs e)
         {
             UnsavedChanges = true;
             SaveState();
@@ -337,36 +337,36 @@ namespace MMR_Tracker.Forms
                     LogicObjects.selectedItems = new List<LogicObjects.LogicEntry>();
                     ItemSelect.Function = 0;
                     LBConditional.Refresh();
-                    updateReqAndCond();
+                    UpdateReqAndCond();
                 }
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             SaveInstance();
         }
 
-        private void useLocationItemNamesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UseLocationItemNamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UseDictionaryNameInSearch = !UseDictionaryNameInSearch;
             useLocationItemNamesToolStripMenuItem.Text = (UseDictionaryNameInSearch) ? "Use Location/Item Name" : "Use Logic Name";
             WriteCurentItem(currentEntry.ID);
         }
 
-        private void displaySpoilerLogNamesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DisplaySpoilerLogNamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UseSpoilerInDisplay = !UseSpoilerInDisplay;
             displaySpoilerLogNamesToolStripMenuItem.Text = (UseSpoilerInDisplay) ? "Use Tracker names" : "Use Spoiler Log names";
             WriteCurentItem(currentEntry.ID);
         }
 
-        private void btnUp_Click(object sender, EventArgs e)
+        private void BtnUp_Click(object sender, EventArgs e)
         {
             MoveItem(-1);
         }
 
-        private void btnDown_Click(object sender, EventArgs e)
+        private void BtnDown_Click(object sender, EventArgs e)
         {
             MoveItem(1);
         }
@@ -454,7 +454,7 @@ namespace MMR_Tracker.Forms
             PrintingItem = true;
             LBRequired.Items.Clear();
             LBConditional.Items.Clear();
-            var entry = new LogicObjects.LogicEntry();
+            LogicObjects.LogicEntry entry;
             try
             {
                 entry = LogicList[Index];
@@ -464,7 +464,7 @@ namespace MMR_Tracker.Forms
                 FormatForm();
                 return;
             }
-            
+
             currentEntry = entry;
             renameCurrentItemToolStripMenuItem.Visible = currentEntry.IsFake;
             foreach (var i in entry.Required ?? new int[0])
@@ -478,8 +478,7 @@ namespace MMR_Tracker.Forms
             }
             foreach (var j in entry.Conditionals ?? new int[0][])
             {
-                var CondEntry = new RequiementConditional();
-                CondEntry.ItemIDs = new List<LogicObjects.LogicEntry>();
+                var CondEntry = new RequiementConditional { ItemIDs = new List<LogicObjects.LogicEntry>() };
                 string Display = "";
                 string addComma = "";
                 foreach (var i in j ?? new int[0])
@@ -541,7 +540,7 @@ namespace MMR_Tracker.Forms
             if (chkNeedNight3.Checked) { entry.NeededBy += 32; };
         }
 
-        public void updateReqAndCond()
+        public void UpdateReqAndCond()
         {
             List<int> req = new List<int>();
             foreach (var i in LBRequired.Items) { req.Add((i as LogicObjects.LogicEntry).ID); }
@@ -597,7 +596,7 @@ namespace MMR_Tracker.Forms
             LastSelectedListBox.Items.Remove(selected);
             LastSelectedListBox.Items.Insert(newIndex, selected);
             LastSelectedListBox.SetSelected(newIndex, true);
-            updateReqAndCond();
+            UpdateReqAndCond();
         }
 
         //Static Functions
@@ -757,7 +756,7 @@ namespace MMR_Tracker.Forms
                 {
                     LBConditional.Items.Add(i);
                 }
-                updateReqAndCond();
+                UpdateReqAndCond();
             }
         }
 
@@ -782,11 +781,11 @@ namespace MMR_Tracker.Forms
                 {
                     LBRequired.Items.Add(i);
                 }
-                updateReqAndCond();
+                UpdateReqAndCond();
             }
         }
 
-        private void reorderLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReorderLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ItemSelect Selector = new ItemSelect();
             ItemSelect.Function = 8;
@@ -842,7 +841,7 @@ namespace MMR_Tracker.Forms
             WriteCurentItem(currentEntry.ID);
         }
 
-        private void renameCurrentItemToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RenameCurrentItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!currentEntry.IsFake) { MessageBox.Show("Only fake Items Can be Renamed"); return; }
             UnsavedChanges = true;
