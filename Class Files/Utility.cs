@@ -523,7 +523,7 @@ namespace MMR_Tracker_V2
                 var file = File.Create("options.txt");
                 if (!Debugging.ISDebugging || (Control.ModifierKeys == Keys.Shift))
                 {
-                    var firsttime = MessageBox.Show("Welcome to the Majoras Mask Randomizer Tracker by thedrummonger! It looks like this is your first time running the tracker. If that is the case select Yes, otherwise select No. (Keep an eye out, the following text boxes like to hide behind windows!)", "First Time Setup", MessageBoxButtons.YesNo);
+                    var firsttime = MessageBox.Show("Welcome to the Majoras Mask Randomizer Tracker by thedrummonger! It looks like this is your first time running the tracker. If that is the case select Yes, otherwise select No.", "First Time Setup", MessageBoxButtons.YesNo);
                     if (firsttime == DialogResult.Yes)
                     {
                         MessageBox.Show("Please Take this opportunity to familliarize yourself with how to use this tracker. There are many features that are not obvious or explained anywhere outside of the about page. This information can be accessed at any time by selecting 'Info' -> 'About'. Click OK to show the About Page. Once you have read through the information, close the window to return to setup.", "How to Use", MessageBoxButtons.OK);

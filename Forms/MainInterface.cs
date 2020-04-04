@@ -571,14 +571,15 @@ namespace MMR_Tracker_V2
             Utility.ResetInstance();
             LogicEditing.CreateLogic(LogicObjects.Logic, Logic);
             LogicEditing.CalculateItems(LogicObjects.Logic);
-            if (!VersionHandeling.ValidVersions.Contains(VersionHandeling.Version) && !OOT_Support.isOOT)
-            {
-                DialogResult dialogResult = MessageBox.Show("This version of logic is not supported. Only official releases of versions 1.8 and up are supported. This may result in the tracker not funtioning Correctly. If you are using an official release and are seeing this message, Please update your tracker. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
-                if (dialogResult != DialogResult.Yes) { Utility.ResetInstance(); }
-            }
+
             if (OOT_Support.isOOT)
             {
                 DialogResult dialogResult = MessageBox.Show("Support for the Ocarina of Time Randomizer is Limited. Many features will be disabled and core features might not work as intended. Do you wish to continue?", "OOT BETA", MessageBoxButtons.YesNo);
+                if (dialogResult != DialogResult.Yes) { Utility.ResetInstance(); }
+            }
+            else if (!VersionHandeling.ValidVersions.Contains(VersionHandeling.Version))
+            {
+                DialogResult dialogResult = MessageBox.Show("This version of logic is not supported. Only official releases of versions 1.8 and up are supported. This may result in the tracker not funtioning Correctly. If you are using an official release and are seeing this message, Please update your tracker. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Utility.ResetInstance(); }
             }
             Utility.SaveState(LogicObjects.Logic);

@@ -336,7 +336,6 @@ namespace MMR_Tracker_V2
 
         public static void CreatedEntrancepairDcitionary(Dictionary<int, int> entrancePairs, Dictionary<string, int> NameToID)
         {
-            if (OOT_Support.isOOT) { return; }
             var VersionData = VersionHandeling.SwitchDictionary(VersionHandeling.Version);
             foreach (var i in File.ReadAllLines(VersionData[1]))
             {
@@ -398,8 +397,7 @@ namespace MMR_Tracker_V2
 
         public static bool SameItemMultipleChecks(int item)
         {
-            if (item < 0) { return false; }
-            if (!StrictLogicHandeling && !OOT_Support.isOOT) { return false; }
+            if (item < 0 || !StrictLogicHandeling) { return false; }
             int count = 0;
             foreach (var entry in LogicObjects.Logic)
             {
