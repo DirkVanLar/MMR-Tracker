@@ -134,19 +134,32 @@ namespace MMR_Tracker_V2
         {
             var client = new GitHubClient(new ProductHeaderValue("MMR-Tracker"));
             var releases = client.Repository.Release.GetAll("Thedrummonger", "MMR-Tracker");
-            var Latest = releases.Result[0];
-
+            Release Latest = new Release();
             decimal LatestVersion = 0;
 
-            try { LatestVersion = Convert.ToDecimal(Latest.TagName.Replace("V", "")); }
-            catch { Console.WriteLine("Latest Github Release Tag was malformed"); }
+            foreach(var i in releases.Result)
+            {
+                try 
+                { 
+                    var TryVersion = Convert.ToDecimal(i.TagName.Replace("V", ""));
+                    LatestVersion = TryVersion;
+                    Latest = i;
+                    break;
+                }
+                catch 
+                { 
+                    Console.WriteLine($"Github Release Tag {i.TagName} was malformed"); 
+                }
+            }
+            
+            if (Latest == null || LatestVersion == 0) { return false; }
 
             if (trackerVersion < LatestVersion && CheckForUpdate)
             {
-                if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Console.WriteLine("Tracker Out of Date. Latest Version: " + Latest.TagName + " Current Version V" + trackerVersion); }
+                if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Console.WriteLine($"Tracker Out of Date. Latest Version: { Latest.TagName } Current Version V{ trackerVersion }"); }
                 else
                 {
-                    var Download = MessageBox.Show("Your tracker version V"+ trackerVersion + " is out of Date! Would you like to download the latest version " + Latest.TagName + "?", "Tracker Out of Date", MessageBoxButtons.YesNo);
+                    var Download = MessageBox.Show($"Your tracker version V{ trackerVersion } is out of Date! Would you like to download the latest version { Latest.TagName } ?", "Tracker Out of Date", MessageBoxButtons.YesNo);
                     if (Download == DialogResult.Yes) { { Process.Start(Latest.HtmlUrl); return true; } }
                 }
             }

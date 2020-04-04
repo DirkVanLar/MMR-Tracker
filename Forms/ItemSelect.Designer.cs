@@ -73,6 +73,7 @@
             this.lbCheckItems.Size = new System.Drawing.Size(120, 19);
             this.lbCheckItems.TabIndex = 3;
             this.lbCheckItems.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.LbCheckItems_ItemCheck);
+            this.lbCheckItems.SelectedIndexChanged += new System.EventHandler(this.lbCheckItems_SelectedIndexChanged);
             // 
             // chkAddSeperate
             // 

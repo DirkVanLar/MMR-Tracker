@@ -20,7 +20,6 @@ namespace MMR_Tracker_V2
                 Console.WriteLine("Item Type: " + LogicObjects.MMRDictionary[i].ItemSubType);
                 Console.WriteLine("Spoiler Location: " + LogicObjects.MMRDictionary[i].SpoilerLocation);
                 Console.WriteLine("Spoiler Name: " + LogicObjects.MMRDictionary[i].SpoilerItem);
-
             }
         }
 
@@ -43,10 +42,29 @@ namespace MMR_Tracker_V2
                 Console.WriteLine("Spoiler Log Location name: " + Logic[i].SpoilerLocation);
                 Console.WriteLine("Spoiler Log Item name: " + Logic[i].SpoilerItem);
                 Console.WriteLine("Spoiler Log Randomized Item: " + Logic[i].SpoilerRandom);
-                if (Logic[i].RandomizedState == 0) { Console.WriteLine("Randomized State: Randomized"); }
-                if (Logic[i].RandomizedState == 1) { Console.WriteLine("Randomized State: Unrandomized"); }
-                if (Logic[i].RandomizedState == 2) { Console.WriteLine("Randomized State: Forced Fake"); }
-                if (Logic[i].RandomizedState == 3) { Console.WriteLine("Randomized State: Forced Junk"); }
+                if (Logic[i].RandomizedState() == 0) { Console.WriteLine("Randomized State: Randomized"); }
+                if (Logic[i].RandomizedState() == 1) { Console.WriteLine("Randomized State: Unrandomized"); }
+                if (Logic[i].RandomizedState() == 2) { Console.WriteLine("Randomized State: Forced Fake"); }
+                if (Logic[i].RandomizedState() == 3) { Console.WriteLine("Randomized State: Forced Junk"); }
+
+                Console.WriteLine("Starting Item: " + Logic[i].StartingItem());
+
+                string av = "Available On: ";
+                if (((Logic[i].AvailableOn >> 0) & 1) == 1) { av += "Day 1, "; }
+                if (((Logic[i].AvailableOn >> 2) & 1) == 1) { av += "Day 2, "; }
+                if (((Logic[i].AvailableOn >> 4) & 1) == 1) { av += "Day 3, "; }
+                if (((Logic[i].AvailableOn >> 1) & 1) == 1) { av += "Night 1, "; }
+                if (((Logic[i].AvailableOn >> 3) & 1) == 1) { av += "Night 2, "; }
+                if (((Logic[i].AvailableOn >> 5) & 1) == 1) { av += "Night 3, "; }
+                Console.WriteLine(av);
+                av = "Needed By: ";
+                if (((Logic[i].NeededBy >> 0) & 1) == 1) { av += "Day 1, "; }
+                if (((Logic[i].NeededBy >> 2) & 1) == 1) { av += "Day 2, "; }
+                if (((Logic[i].NeededBy >> 4) & 1) == 1) { av += "Day 3, "; }
+                if (((Logic[i].NeededBy >> 1) & 1) == 1) { av += "Night 1, "; }
+                if (((Logic[i].NeededBy >> 3) & 1) == 1) { av += "Night 2, "; }
+                if (((Logic[i].NeededBy >> 5) & 1) == 1) { av += "Night 3, "; }
+                Console.WriteLine(av);
 
                 var test2 = Logic[i].Required;
                 if (test2 == null) { Console.WriteLine("NO REQUIREMENTS"); }
@@ -55,7 +73,7 @@ namespace MMR_Tracker_V2
                     Console.WriteLine("Required");
                     for (int j = 0; j < test2.Length; j++)
                     {
-                        Console.WriteLine(test2[j]);
+                        Console.WriteLine(Logic[test2[j]].ItemName ?? Logic[test2[j]].DictionaryName);
                     }
                 }
                 var test3 = Logic[i].Conditionals;
@@ -67,7 +85,7 @@ namespace MMR_Tracker_V2
                         Console.WriteLine("Conditional " + j);
                         for (int k = 0; k < test3[j].Length; k++)
                         {
-                            Console.WriteLine(test3[j][k]);
+                            Console.WriteLine(Logic[test3[j][k]].ItemName ?? Logic[test3[j][k]].DictionaryName);
                         }
                     }
                 }
@@ -76,7 +94,7 @@ namespace MMR_Tracker_V2
 
         public static void GeneratePlaythrough(List<LogicObjects.LogicEntry> logic)
         {
-            List<LogicObjects.Sphere> Playthrough = new List<LogicObjects.Sphere>();
+            List<LogicObjects.PlaythroughItem> Playthrough = new List<LogicObjects.PlaythroughItem>();
             Dictionary<int, int> SpoilerToID = new Dictionary<int, int>();
             var playLogic = Utility.CloneLogicList(logic);
 
@@ -95,9 +113,9 @@ namespace MMR_Tracker_V2
                 i.Available = false;
                 i.Checked = false;
                 i.Aquired = false;
-                i.RandomizedState = 0;
+                i.Options = 0;
                 if (i.IsFake) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; i.LocationName = i.DictionaryName; i.ItemName = i.DictionaryName; }
-                if (i.RandomizedState == 1 && i.ID == i.SpoilerRandom) { i.IsFake = true; }
+                if (i.Options == 1 && i.ID == i.SpoilerRandom) { i.IsFake = true; }
                 if (i.SpoilerRandom > -1) { i.RandomizedItem = i.SpoilerRandom; }
                 SpoilerToID.Add(i.SpoilerRandom, i.ID);
                 //Check for all items mentioned in the logic file
@@ -168,7 +186,7 @@ namespace MMR_Tracker_V2
             DebugScreen.Playthrough = new List<string>();
         }
 
-        public static void CalculatePlaythrough(List<LogicObjects.LogicEntry> logic, List<LogicObjects.Sphere> Playthrough, int sphere, List<int> ImportantItems)
+        public static void CalculatePlaythrough(List<LogicObjects.LogicEntry> logic, List<LogicObjects.PlaythroughItem> Playthrough, int sphere, List<int> ImportantItems)
         {
             Console.WriteLine("Shpere " + sphere);
             bool RealItemObtained = false;
@@ -190,7 +208,7 @@ namespace MMR_Tracker_V2
                 }
                 if (changed && ImportantItems.Contains(item.SpoilerRandom) && item.Available)
                 {
-                    Playthrough.Add(new LogicObjects.Sphere { SphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
+                    Playthrough.Add(new LogicObjects.PlaythroughItem { SphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
                     RealItemObtained = true;
                 }
             }
@@ -206,7 +224,7 @@ namespace MMR_Tracker_V2
             if (recalculate) { CalculatePlaythrough(logic, Playthrough, NewSphere, ImportantItems); }
         }
 
-        public static bool UnlockAllFake(List<LogicObjects.LogicEntry> logic, List<int> ImportantItems, int sphere, List<LogicObjects.Sphere> Playthrough)
+        public static bool UnlockAllFake(List<LogicObjects.LogicEntry> logic, List<int> ImportantItems, int sphere, List<LogicObjects.PlaythroughItem> Playthrough)
         {
             var recalculate = false;
             foreach (var item in logic)
@@ -222,21 +240,21 @@ namespace MMR_Tracker_V2
                 }
                 if (changed && ImportantItems.Contains(item.SpoilerRandom) && item.Available)
                 {
-                    Playthrough.Add(new LogicObjects.Sphere { SphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
+                    Playthrough.Add(new LogicObjects.PlaythroughItem { SphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
                 }
             }
             if (recalculate) { UnlockAllFake(logic, ImportantItems, sphere, Playthrough); }
             return recalculate;
         }
 
-        public static void FindImportantItems(LogicObjects.Sphere EntryToCheck, List<int> importantItems, List<LogicObjects.Sphere> Playthrough, Dictionary<int, int> SpoilerToID)
+        public static void FindImportantItems(LogicObjects.PlaythroughItem EntryToCheck, List<int> importantItems, List<LogicObjects.PlaythroughItem> Playthrough, Dictionary<int, int> SpoilerToID)
         {
             foreach (var i in EntryToCheck.ItemsUsed)
             {
                 var locToCheck = SpoilerToID[i];
                 if (importantItems.Contains(locToCheck)) { continue; }
                 importantItems.Add(locToCheck);
-                var NextLocation = new LogicObjects.Sphere();
+                var NextLocation = new LogicObjects.PlaythroughItem();
                 foreach (var j in Playthrough)
                 {
                     if (j.Check.ID == locToCheck) { NextLocation = j; break; }
@@ -245,10 +263,10 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public static List<int> ResolveFakeToRealItems(LogicObjects.Sphere item, List<LogicObjects.Sphere> Playthrough, List<LogicObjects.LogicEntry> logic)
+        public static List<int> ResolveFakeToRealItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic)
         {
             var RealItems = new List<int>();
-            var New = new LogicObjects.Sphere();
+            var New = new LogicObjects.PlaythroughItem();
             foreach (var j in item.ItemsUsed)
             {
                 if (!logic[j].IsFake) { RealItems.Add(j); }
@@ -263,6 +281,98 @@ namespace MMR_Tracker_V2
             }
 
             return RealItems;
+        }
+
+        public static bool VerifyCustomRandoCode()
+        {
+            var playLogic = Utility.CloneLogicList(LogicObjects.Logic);
+            if (!Utility.CheckforSpoilerLog(playLogic))
+            {
+                var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
+                if (file == "") { return false; }
+                LogicEditing.WriteSpoilerLogToLogic(playLogic, file);
+            }
+            if (!Utility.CheckforSpoilerLog(playLogic, true))
+            { MessageBox.Show("Not all items have spoiler data. Playthrough can not be generated. Ensure you are using the same version of logic used to generate your selected spoiler log"); return false; }
+
+            bool good = true;
+
+            foreach(var i in playLogic)
+            {
+                if (i.DictionaryName == "EntranceTheMoonFromClockTowerRooftop")
+                {
+                    if(playLogic[i.SpoilerRandom].DictionaryName != "EntranceMajorasLairFromTheMoon")
+                    {
+                        Console.WriteLine("Majoras lair was not placed at Clock tower -> Moon!");
+                        good = false;
+                    }
+                }
+                if (i.DictionaryName == "EntranceSouthClockTownFromClockTowerRooftop")
+                {
+                    if (playLogic[i.SpoilerRandom].DictionaryName != "EntranceSouthClockTownFromClockTowerRooftop")
+                    {
+                        Console.WriteLine("Clock tower roof to sct was Randomized!");
+                        good = false;
+                    }
+                }
+                if (i.DictionaryName == "EntranceIkanaGraveyardFromDay3Grave")
+                {
+                    if (playLogic[i.SpoilerRandom].DictionaryName != "EntranceIkanaGraveyardFromDay3Grave")
+                    {
+                        Console.WriteLine("Dampes house to graveyard from grave was Randomized!");
+                        good = false;
+                    }
+                }
+                if (i.DictionaryName == "EntranceDampesHouseFromIkanaGraveyardGrave")
+                {
+                    if (playLogic[i.SpoilerRandom].DictionaryName == "EntranceDampesHouseFromIkanaGraveyardGrave")
+                    {
+                        Console.WriteLine("Graveyard grave to dampes house was unrandomized!");
+                        good = false;
+                    }
+                }
+                if (i.DictionaryName == "EntranceClockTowerRooftopFromSouthClockTown")
+                {
+                    if (playLogic[i.SpoilerRandom].DictionaryName == "EntranceClockTowerRooftopFromSouthClockTown")
+                    {
+                        Console.WriteLine("SCT to clock tower roof was unrandomized!");
+                        good = false;
+                    }
+                }
+                if (i.DictionaryName == "EntranceGrottoPalaceStraightFromDekuPalaceA")
+                {
+                    if (playLogic[i.SpoilerRandom].DictionaryName != "EntranceGrottoPalaceStraightFromDekuPalaceA")
+                    {
+                        Console.WriteLine("Straight grotto from palace A was randomized!");
+                        good = false;
+                    }
+                }
+                if (i.DictionaryName == "EntranceGrottoPalaceStraightFromDekuPalaceB")
+                {
+                    if (playLogic[i.SpoilerRandom].DictionaryName != "EntranceGrottoPalaceStraightFromDekuPalaceB")
+                    {
+                        Console.WriteLine("Straight grotto from palace B was randomized!");
+                        good = false;
+                    }
+                }
+                if (i.DictionaryName == "EntranceGrottoPalaceVinesFromDekuPalaceLower")
+                {
+                    if (playLogic[i.SpoilerRandom].DictionaryName != "EntranceGrottoPalaceVinesFromDekuPalaceLower")
+                    {
+                        Console.WriteLine("Vine Grotto from palace lower was randomized!");
+                        good = false;
+                    }
+                }
+                if (i.DictionaryName == "EntranceGrottoPalaceVinesFromDekuPalaceUpper")
+                {
+                    if (playLogic[i.SpoilerRandom].DictionaryName != "EntranceGrottoPalaceVinesFromDekuPalaceUpper")
+                    {
+                        Console.WriteLine("Vine Grotto from palace lower was randomized!");
+                        good = false;
+                    }
+                }
+            }
+            return good;
         }
     }
 }

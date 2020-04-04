@@ -25,7 +25,7 @@ namespace MMR_Tracker.Forms
 
         public static List<LogicObjects.LogicEntry> LogicList = new List<LogicObjects.LogicEntry>();
         public static List<LogicObjects.LogicEntry> CopiedRequirement = new List<LogicObjects.LogicEntry>();
-        public static List<LogicObjects.LogicDic> EditorDictionary = new List<LogicObjects.LogicDic>();
+        public static List<LogicObjects.LogicDictionaryEntry> EditorDictionary = new List<LogicObjects.LogicDictionaryEntry>();
         public static List<List<LogicObjects.LogicEntry>> UndoList = new List<List<LogicObjects.LogicEntry>>();
         public static List<List<LogicObjects.LogicEntry>> RedoList = new List<List<LogicObjects.LogicEntry>>();
         public static List<RequiementConditional> CopiedConditional = new List<RequiementConditional>();
@@ -624,7 +624,7 @@ namespace MMR_Tracker.Forms
                     versionNumber = Int32.Parse(curLine.Replace("-version ", ""));
                     VersionData = VersionHandeling.SwitchDictionary(versionNumber, isOOT);
                     GetOOTDictionary = false;
-                    EditorDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
+                    EditorDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
                 }
                 switch (SubCounter)
                 {

@@ -46,8 +46,6 @@
             this.chkShowUnrandMan = new System.Windows.Forms.CheckBox();
             this.chkShowJunk = new System.Windows.Forms.CheckBox();
             this.chkShowStartingItems = new System.Windows.Forms.CheckBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView1
@@ -224,25 +222,6 @@
             this.chkShowStartingItems.UseVisualStyleBackColor = false;
             this.chkShowStartingItems.CheckedChanged += new System.EventHandler(this.ChkStartingItems_CheckedChanged);
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(506, 404);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 212);
-            this.listBox1.TabIndex = 14;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(505, 388);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 13);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Selected Items";
-            // 
             // RandomizeOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -250,8 +229,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(636, 628);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.chkShowStartingItems);
             this.Controls.Add(this.chkShowJunk);
             this.Controls.Add(this.chkShowUnrandMan);
@@ -294,7 +271,5 @@
         private System.Windows.Forms.CheckBox chkShowUnrandMan;
         private System.Windows.Forms.CheckBox chkShowJunk;
         private System.Windows.Forms.CheckBox chkShowStartingItems;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label1;
     }
 }

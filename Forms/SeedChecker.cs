@@ -68,7 +68,7 @@ namespace MMR_Tracker
                 i.Available = false;
                 i.Checked = false;
                 i.Aquired = false;
-                i.RandomizedState = 0;
+                i.Options = 0;
             }
             if (!Utility.CheckforSpoilerLog(LogicObjects.Logic))
             {

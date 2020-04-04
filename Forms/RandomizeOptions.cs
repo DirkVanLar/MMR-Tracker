@@ -9,7 +9,7 @@ namespace MMR_Tracker_V2
     public partial class RandomizeOptions : Form
     {
         public static bool updating = false;
-        public List<int> CheckedItems = new List<int>();
+        public List<LogicObjects.LogicEntry> CheckedItems = new List<LogicObjects.LogicEntry>();
         public RandomizeOptions()
         {
             InitializeComponent();
@@ -55,8 +55,7 @@ namespace MMR_Tracker_V2
             {
                 if (item.IsFake) { continue; }
 
-                int Setting = item.RandomizedState;
-                if (item.StartingItem) { Setting += 4; }
+                int Setting = item.Options;
 
                 settingString += Setting.ToString();
             }
@@ -92,13 +91,13 @@ namespace MMR_Tracker_V2
             var item = LogicObjects.Logic[Int32.Parse(e.Item.Tag.ToString())];
             if (e.Item.Checked)
             {
-                if (listBox1.Items.Contains(item)) { return; }
-                listBox1.Items.Add(item);
+                if (CheckedItems.Contains(item)) { return; }
+                CheckedItems.Add(item);
             }
             else
             {
-                if (listBox1.Items.IndexOf(item) < 0) { return; }
-                listBox1.Items.RemoveAt(listBox1.Items.IndexOf(item));
+                if (CheckedItems.IndexOf(item) < 0) { return; }
+                CheckedItems.RemoveAt(CheckedItems.IndexOf(item));
             }
         }
 
@@ -106,13 +105,23 @@ namespace MMR_Tracker_V2
 
         public void UpdateRandomOption(int option)
         {
-            foreach (var selection in listBox1.Items)
+            foreach (var selection in CheckedItems)
             {
                 var entry = selection as LogicObjects.LogicEntry;
-                if (option == 4) { entry.StartingItem = !entry.StartingItem; }
-                else { entry.RandomizedState = option; }
+
+                if (option == 4)
+                {
+                    if (entry.StartingItem()) { entry.Options -= 4; }
+                    else { entry.Options += 4; }
+                }
+                else
+                {
+                    if (entry.StartingItem()) { entry.Options = option + 4; }
+                    else { entry.Options = option; }
+                }
+
             }
-            listBox1.Items.Clear();
+            CheckedItems = new List<LogicObjects.LogicEntry>();
             WriteToListVeiw();
         }
 
@@ -123,23 +132,30 @@ namespace MMR_Tracker_V2
             var logic = LogicObjects.Logic;
             List<string> randomizedOptions = new List<string> { "Randomized", "Unrandomized", "Unrandomized (Manual)", "Forced Junk" };
             listView1.FullRowSelect = true;
+            Console.WriteLine("========================================================================================");
             foreach (var entry in logic)
             {
+                if (entry.ID < 10)
+                {
+                    Console.WriteLine(entry.DisplayName);
+                    Console.WriteLine(entry.RandomizedState());
+                    Console.WriteLine(entry.StartingItem());
+                }
                 bool chkValid = false;
-                if (entry.RandomizedState == 0 && chkShowRandom.Checked) { chkValid = true; }
-                if (entry.RandomizedState == 1 && chkShowUnrand.Checked) { chkValid = true; }
-                if (entry.RandomizedState == 2 && chkShowUnrandMan.Checked) { chkValid = true; }
-                if (entry.RandomizedState == 3 && chkShowJunk.Checked) { chkValid = true; }
-                if (entry.StartingItem && chkShowStartingItems.Checked) { chkValid = true; }
+                if (entry.RandomizedState() == 0 && chkShowRandom.Checked) { chkValid = true; }
+                if (entry.RandomizedState() == 1 && chkShowUnrand.Checked) { chkValid = true; }
+                if (entry.RandomizedState() == 2 && chkShowUnrandMan.Checked) { chkValid = true; }
+                if (entry.RandomizedState() == 3 && chkShowJunk.Checked) { chkValid = true; }
+                if (entry.StartingItem() && chkShowStartingItems.Checked) { chkValid = true; }
 
                 if (!entry.IsFake && chkValid && Utility.FilterSearch(entry, txtSearch.Text, entry.DictionaryName))
                 {
-                    string[] row = { entry.DictionaryName, randomizedOptions[entry.RandomizedState], entry.StartingItem.ToString() };
+                    string[] row = { entry.DictionaryName, randomizedOptions[entry.RandomizedState()], entry.StartingItem().ToString() };
                     ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };
                     listView1.Items.Add(listViewItem);
                 }
             }
-            var checkedItems = listBox1.Items.Cast<LogicObjects.LogicEntry>().ToList();
+            var checkedItems = CheckedItems.Cast<LogicObjects.LogicEntry>().ToList();
             foreach (ListViewItem i in listView1.Items)
             {
                 if (checkedItems.Any(p => p.ID == Int32.Parse(i.Tag.ToString())))
@@ -165,8 +181,7 @@ namespace MMR_Tracker_V2
             {
                 if (item.IsFake) { continue; }
                 int setting = Int32.Parse(options[0][counter].ToString());
-                item.StartingItem = setting > 3;
-                item.RandomizedState = (setting > 3) ? setting - 4 : setting;
+                item.Options = setting;
                 counter++;
             }
         }

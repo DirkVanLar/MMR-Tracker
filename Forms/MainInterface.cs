@@ -98,7 +98,7 @@ namespace MMR_Tracker_V2
             {
                 foreach (var item in LogicObjects.Logic)
                 {
-                    if (item.ItemSubType == "Entrance") { item.RandomizedState = 1; }
+                    if (item.IsEntrance()) { item.Options = 1; }
                     VersionHandeling.entranceRadnoEnabled = false;
                     VersionHandeling.OverRideAutoEntranceRandoEnable = true;
                 }
@@ -176,7 +176,7 @@ namespace MMR_Tracker_V2
                 bool EntrancesRandoBefore = Utility.CheckForRandomEntrances(LogicObjects.Logic);
                 foreach (var i in LogicObjects.Logic)
                 {
-                    if (i.SpoilerRandom != i.ID && i.SpoilerRandom > -1 && (i.RandomizedState == 1 || i.RandomizedState == 2)) { i.RandomizedState = 0; }
+                    if (i.SpoilerRandom != i.ID && i.SpoilerRandom > -1 && (i.Options == 1 || i.Options == 2)) { i.Options = 0; }
                 }
                 bool EntrancesRandoAfter = Utility.CheckForRandomEntrances(LogicObjects.Logic);
                 if (!VersionHandeling.OverRideAutoEntranceRandoEnable || (EntrancesRandoBefore != EntrancesRandoAfter))
@@ -464,7 +464,7 @@ namespace MMR_Tracker_V2
             var maps = Pathfinding.FindLogicalEntranceConnections(LogicObjects.Logic);
             var Fullmap = maps[0]; //A map of all available exit from each entrance
             var ResultMap = maps[1]; //A map of all available entrances from each exit as long as the result of that entrance is known
-            Pathfinding.Findpath(ResultMap, Fullmap, startinglocation.ID, destination.ID, new List<int>(), new List<int>(), new List<LogicObjects.Map>(), true);
+            Pathfinding.Findpath(ResultMap, Fullmap, startinglocation.ID, destination.ID, new List<int>(), new List<int>(), new List<LogicObjects.MapPoint>(), true);
             LBPathFinder.Items.Clear();
 
             if (Pathfinding.paths.Count == 0)
@@ -633,7 +633,7 @@ namespace MMR_Tracker_V2
                     var firstStop = true;
                     foreach (var stop in path)
                     {
-                        var start = (firstStop) ? Pathfinding.SetSOTName(stop) : LogicObjects.Logic[stop.Entrance].LocationName;
+                        var start = (firstStop) ? Pathfinding.SetSOTName(stop) : LogicObjects.Logic[stop.EntranceToTake].LocationName;
                         var ListItem = new LogicObjects.ListItem { DisplayName = start + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName, ID = counter - 1 };
                         LBPathFinder.Items.Add(ListItem); firstStop = false;
                     }
@@ -651,9 +651,9 @@ namespace MMR_Tracker_V2
                     var ThisIsStupid = new LogicObjects.ListItem
                     {
                         DisplayName =
-                        ((LogicObjects.Logic[stop.Entrance].DictionaryName == "EntranceSouthClockTownFromClockTowerInterior") ?
+                        ((LogicObjects.Logic[stop.EntranceToTake].DictionaryName == "EntranceSouthClockTownFromClockTowerInterior") ?
                             "Song of Time" :
-                            LogicObjects.Logic[stop.Entrance].LocationName
+                            LogicObjects.Logic[stop.EntranceToTake].LocationName
                         ) + " => " + LogicObjects.Logic[stop.ResultingExit].ItemName,
                         ID = -1
                     };
@@ -669,7 +669,7 @@ namespace MMR_Tracker_V2
             var UnsortedItemPathfinder = new Dictionary<int, string>();
             foreach (var entry in LogicObjects.Logic)
             {
-                if (entry.ItemSubType == "Entrance")
+                if (entry.IsEntrance())
                 {
                     if ((start) ? entry.Aquired : entry.Available) { UnsortedPathfinder.Add(entry.ID, (start) ? entry.ItemName : entry.LocationName); }
                 }
@@ -711,75 +711,65 @@ namespace MMR_Tracker_V2
             int TotalLoc = 0;
             int TotalEnt = 0;
             int totalchk = 0;
-            LBValidLocations.Items.Clear();
-            LBValidEntrances.Items.Clear();
-            LBCheckedLocations.Items.Clear();
-            var logic = LogicObjects.Logic;
-            List<string> Groups = new List<string>();
-            var Unsortedlogic = new List<LogicObjects.LogicEntry>();
-            Dictionary<int, int> listGroups = new Dictionary<int, int>();
+            List<LogicObjects.LogicEntry> logic = LogicObjects.Logic;
+            List<LogicObjects.LogicEntry> ListBoxItems = new List<LogicObjects.LogicEntry>();
+            Dictionary<string,int> Groups = new Dictionary<string, int>();
+            Dictionary<int, int> ListBoxAssignments = new Dictionary<int, int>();
 
-            if (File.Exists(@"Recources\Categories.txt") && !OOT_Support.isOOT)
+            if (File.Exists(@"Recources\Categories.txt"))
             {
-                Groups = File.ReadAllLines(@"Recources\Categories.txt").Select(x => x.ToLower().Trim()).ToList();
-            }
-            else
-            {
-                foreach (var i in logic)
-                {
-                    if (i.LocationArea != null && !Groups.Contains(i.LocationArea)) { Groups.Add(i.LocationArea.ToLower().Trim()); }
-                }
-                Groups = Groups.OrderBy(q => q).ToList();
+                Groups = File.ReadAllLines(@"Recources\Categories.txt")
+                    .Select(x => x.ToLower().Trim()).Distinct()
+                    .Select((value, index) => new { value, index })
+                    .ToDictionary(pair => pair.value, pair => pair.index);
             }
 
             foreach (var entry in LogicObjects.Logic)
             {
-                entry.DisplayName = entry.DictionaryName;
-                var RandomizedItem = (entry.RandomizedItem == -2) ? null : ((entry.RandomizedItem == -1) ? new LogicObjects.LogicEntry { DisplayName = "junk" } : LogicObjects.Logic[entry.RandomizedItem]);
-                if ((entry.Available || entry.RandomizedItem > -2 || CHKShowAll.Checked) &&
-                    !entry.IsFake &&
-                    (entry.LocationName != "" && entry.LocationName != null) &&
-                    !entry.Checked &&
-                    (entry.RandomizedState == 0 || entry.RandomizedState == 2))
-                {
-                    entry.DisplayName = (entry.RandomizedItem > -2) ? (
-                        (entry.RandomizedItem > -1) ?
-                        entry.LocationName + ": " + logic[entry.RandomizedItem].ItemName :
-                        entry.LocationName + ": JUNK") :
-                    entry.LocationName;
+                if (entry.IsFake || entry.Unrandomized() || entry.ForceJunk()) { continue; }
 
-                    if ((entry.ItemSubType != "Entrance" || !VersionHandeling.entranceRadnoEnabled))
+                entry.DisplayName = entry.DictionaryName;
+                if ((entry.Available || entry.HasRandomItem() || CHKShowAll.Checked) && (entry.LocationName != "" && entry.LocationName != null) && !entry.Checked)
+                {
+                    entry.DisplayName = entry.HasRandomItem() ? ($"{entry.LocationName}: {entry.RandomizedEntry(true).ItemName}") : entry.LocationName;
+
+                    if ((!entry.IsEntrance() || !VersionHandeling.entranceRadnoEnabled))
                     {
                         TotalLoc += 1;
-                        if (Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName, RandomizedItem))
+                        if (Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName, entry.RandomizedEntry(true)))
                         {
-                            listGroups.Add(entry.ID, 0);
-                            Unsortedlogic.Add(entry);
+                            ListBoxAssignments.Add(entry.ID, 0);
+                            ListBoxItems.Add(entry);
                         }
                     }
-                    else if ((entry.ItemSubType == "Entrance" && VersionHandeling.entranceRadnoEnabled))
+                    else if ((entry.IsEntrance() && VersionHandeling.entranceRadnoEnabled))
                     {
                         TotalEnt += 1;
-                        if (Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName, RandomizedItem))
+                        if (Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName, entry.RandomizedEntry(true)))
                         {
-                            listGroups.Add(entry.ID, 1);
-                            Unsortedlogic.Add(entry);
+                            ListBoxAssignments.Add(entry.ID, 1);
+                            ListBoxItems.Add(entry);
                         }
                     }
                 }
-                if (entry.Checked && !entry.IsFake && (entry.RandomizedState == 0 || entry.RandomizedState == 2))
+                if (entry.Checked)
                 {
-                    entry.DisplayName = (entry.RandomizedItem > -1) ? logic[entry.RandomizedItem].ItemName + ": " + entry.LocationName : "Junk: " + entry.LocationName;
+                    entry.DisplayName = entry.HasRandomItem() ? $"{entry.RandomizedEntry(true).ItemName}: {entry.LocationName}" : $"Nothing: {entry.LocationName}";
                     totalchk += 1;
-                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName, RandomizedItem))
+                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName, entry.RandomizedEntry(true)))
                     {
-                        listGroups.Add(entry.ID, 2);
-                        Unsortedlogic.Add(entry); 
+                        ListBoxAssignments.Add(entry.ID, 2);
+                        ListBoxItems.Add(entry); 
                     }
                 }
             }
 
-            var sortedlogic = Unsortedlogic.OrderBy(x => Utility.BoolSorting(x)).ThenBy(x => Groups.IndexOf(x.LocationArea.ToLower().Trim())).ThenBy(x => x.DisplayName);
+            ListBoxItems = ListBoxItems
+                .OrderBy(x => Utility.BoolToInt(x.IsEntrance()))
+                .ThenBy(x => Utility.BoolToInt(x.HasRandomItem()))
+                .ThenBy(x => (Groups.ContainsKey(x.LocationArea.ToLower().Trim()) ? Groups[x.LocationArea.ToLower().Trim()] : ListBoxItems.Count() + 1))
+                .ThenBy(x => x.LocationArea)
+                .ThenBy(x => x.DisplayName).ToList();
 
             var lastLocArea = "";
             var lastEntArea = "";
@@ -789,12 +779,16 @@ namespace MMR_Tracker_V2
             int AvalableEntrances = 0;
             int CheckedLocations = 0;
 
-            foreach (var entry in sortedlogic)
+            LBValidLocations.Items.Clear();
+            LBValidEntrances.Items.Clear();
+            LBCheckedLocations.Items.Clear();
+
+            foreach (var entry in ListBoxItems)
             {
-                if (!listGroups.ContainsKey(entry.ID)) { continue; }
-                if (listGroups[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.RandomizedItem > -2); AvalableLocations++; }
-                if (listGroups[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.RandomizedItem > -2); AvalableEntrances++; }
-                if (listGroups[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false); CheckedLocations++; }
+                if (!ListBoxAssignments.ContainsKey(entry.ID)) { continue; }
+                if (ListBoxAssignments[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.HasRandomItem()); AvalableLocations++; }
+                if (ListBoxAssignments[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.HasRandomItem()); AvalableEntrances++; }
+                if (ListBoxAssignments[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false); CheckedLocations++; }
             }
 
             label1.Text = "Available Locations: " + ((AvalableLocations == TotalLoc) ? AvalableLocations.ToString() : (AvalableLocations.ToString() + "/" + TotalLoc.ToString()));
@@ -926,10 +920,10 @@ namespace MMR_Tracker_V2
             int index = lb.IndexFromPoint(e.Location);
             if (index < 0) { return; }
             if (!(lb.Items[index] is LogicObjects.LogicEntry || lb.Items[index] is LogicObjects.ListItem)) { return; }
-            string tip = lb.Items[index].ToString();
-            if (toolTip1.GetToolTip(lb) == tip) { return; }
-            if (Utility.IsDivider(tip)) { return; }
-            toolTip1.SetToolTip(lb, tip);
+            string DisplayName = lb.Items[index].ToString();
+            if (toolTip1.GetToolTip(lb) == DisplayName) { return; }
+            if (Utility.IsDivider(DisplayName)) { return; }
+            toolTip1.SetToolTip(lb, DisplayName);
         }
 
         private string WriteObject(LogicObjects.LogicEntry entry, ListBox lb, string lastArea, bool Marked)
@@ -938,11 +932,21 @@ namespace MMR_Tracker_V2
             if (entry.LocationArea != returnLastArea)
             {
                 if (returnLastArea != "") { lb.Items.Add(Utility.CreateDivider(lb)); }
-                lb.Items.Add(entry.LocationArea.ToUpper() + ((Marked) ? " SET ITEMS" : "") + ":");
+
+                string Header = entry.LocationArea.ToUpper();
+                if (Marked && entry.IsEntrance()) { Header += " SET EXITS"; }
+                else if (Marked && !entry.IsEntrance()) { Header += " SET ITEMS"; }
+                else if (entry.IsEntrance()) { Header += " ENTRANCES"; }
+                lb.Items.Add(Header + ":");
                 returnLastArea = entry.LocationArea;
             }
             lb.Items.Add(entry);
             return (returnLastArea);
+        }
+
+        private void verifyCustomRandoCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Code " + (Debugging.VerifyCustomRandoCode() ? "Worked" : "Faled"));
         }
     }
 }

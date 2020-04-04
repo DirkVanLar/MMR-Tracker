@@ -331,7 +331,7 @@ namespace MMR_Tracker_V2
             LogicObjects.Logic = new List<LogicObjects.LogicEntry>();
             LogicObjects.DicNameToID = new Dictionary<string, int>();
             LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
-            LogicObjects.MMRDictionary = new List<LogicObjects.LogicDic>();
+            LogicObjects.MMRDictionary = new List<LogicObjects.LogicDictionaryEntry>();
             LogicObjects.EntrancePairs = new Dictionary<int, int>();
         }
         public static string FileSelect(string title, string filter)
@@ -348,7 +348,7 @@ namespace MMR_Tracker_V2
         }
         public static void UpdateNames(List<LogicObjects.LogicEntry> Logic)
         {
-            LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDic>>(Utility.ConvertCsvFileToJsonObject(VersionHandeling.SwitchDictionary(VersionHandeling.Version, OOT_Support.isOOT)[0]));
+            LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionHandeling.SwitchDictionary(VersionHandeling.Version, OOT_Support.isOOT)[0]));
             foreach (var entry in Logic)
             {
                 foreach (var dicent in LogicObjects.MMRDictionary)
@@ -432,6 +432,7 @@ namespace MMR_Tracker_V2
         }
         public static bool IsDivider(string text)
         {
+            if (text == null || text == "") { return false; }
             int occurences = 0;
             foreach (var i in text)
             {
@@ -445,7 +446,7 @@ namespace MMR_Tracker_V2
             int count = 0;
             foreach (var i in logic)
             {
-                if (i.ItemSubType == "Entrance" && (i.RandomizedState == 0 || i.RandomizedState == 2)) { count += 1; }
+                if (i.IsEntrance() && (i.Options == 0 || i.Options == 2)) { count += 1; }
                 if (count >= validEntranceCount) { return true; }
             }
             return false;
@@ -463,9 +464,9 @@ namespace MMR_Tracker_V2
             }
             return spoilerDic;
         }
-        public static int BoolSorting(LogicObjects.LogicEntry entry)
+        public static int BoolToInt(bool Bool, bool FalseFirst = true)
         {
-            return (entry.RandomizedItem > -2) ? 1 : 0;
+            return Bool ? (FalseFirst ? 1 : 0 ) : (FalseFirst ? 0 : 1);
         } 
         public static List<string> SeperateStringByMeasurement(ListBox container, string Measure, string indent = "    ")
         {
@@ -544,6 +545,9 @@ namespace MMR_Tracker_V2
                     var UpdateCheck = MessageBox.Show("Would you like the tracker to notify you when a newer version has been released?", "Check For Updates", MessageBoxButtons.YesNoCancel);
                     if (UpdateCheck == DialogResult.No) { VersionHandeling.CheckForUpdate = false; }
                 }
+
+                if (Debugging.ISDebugging) { Utility.UnradnomizeEntranesOnStartup = false; }
+
                 string[] options = new string[] { "ToolTips:" + ((Utility.ShowEntryNameTooltip) ? 1 : 0), "DisableEntrancesOnStartup:" + ((Utility.UnradnomizeEntranesOnStartup) ? 1 : 0), "CheckForUpdates:" + ((VersionHandeling.CheckForUpdate) ? 1 : 0) };
                 file.Close();
                 File.WriteAllLines("options.txt", options);
