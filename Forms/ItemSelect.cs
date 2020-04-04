@@ -42,20 +42,6 @@ namespace MMR_Tracker_V2
             RunFunction();
         }
 
-        private void LbCheckItems_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            if (Updating) { return; }
-            var NewItem = lbCheckItems.Items[e.Index] as LogicObjects.LogicEntry;
-            if (e.NewValue == CheckState.Checked)
-            {
-                CheckedItems.Add(NewItem.ID);
-            }
-            else
-            {
-                CheckedItems.RemoveAt(CheckedItems.IndexOf(NewItem.ID));
-            }
-        }
-
         private void LBItemSelect_DoubleClick(object sender, EventArgs e)
         {
             ReturnItems();
@@ -76,6 +62,20 @@ namespace MMR_Tracker_V2
                 this.Close();
             }
             ReturnItems();
+        }
+
+        private void lbCheckItems_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            if (Updating) { return; }
+            var NewItem = e.Item.Tag as LogicObjects.LogicEntry;
+            if (e.Item.Checked)
+            {
+                CheckedItems.Add(NewItem.ID);
+            }
+            else
+            {
+                CheckedItems.RemoveAt(CheckedItems.IndexOf(NewItem.ID));
+            }
         }
 
         //List Populating
@@ -108,7 +108,10 @@ namespace MMR_Tracker_V2
                 UsedLogic[i].DisplayName = UsedLogic[i].LocationName ?? UsedLogic[i].DictionaryName;
                 if (Utility.FilterSearch(UsedLogic[i], TXTSearch.Text, UsedLogic[i].DisplayName) && !UsedLogic[i].IsFake)
                 {
-                    lbCheckItems.Items.Add(UsedLogic[i]);
+                    ListViewItem item = new ListViewItem();
+                    item.Text = UsedLogic[i].ToString(); // Or whatever display text you need
+                    item.Tag = UsedLogic[i];
+                    lbCheckItems.Items.Add(item);
                 }
             }
         }
@@ -152,7 +155,10 @@ namespace MMR_Tracker_V2
                 UsedLogic[i].DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? UsedLogic[i].DictionaryName : UsedLogic[i].DisplayName;
                 if (Utility.FilterSearch(UsedLogic[i], TXTSearch.Text, UsedLogic[i].DisplayName))
                 {
-                    lbCheckItems.Items.Add(UsedLogic[i]);
+                    ListViewItem item = new ListViewItem();
+                    item.Text = UsedLogic[i].ToString(); // Or whatever display text you need
+                    item.Tag = UsedLogic[i];
+                    lbCheckItems.Items.Add(item);
                 }
             }
         }
@@ -351,8 +357,8 @@ namespace MMR_Tracker_V2
         {
             for (var i = 0; i < lbCheckItems.Items.Count; i++)
             {
-                var item = lbCheckItems.Items[i] as LogicObjects.LogicEntry;
-                if (CheckedItems.Contains(item.ID)) { lbCheckItems.SetItemChecked(i, true); }
+                var item = lbCheckItems.Items[i].Tag as LogicObjects.LogicEntry;
+                if (CheckedItems.Contains(item.ID)) { lbCheckItems.Items[i].Checked = true; }
             }
         }
 
@@ -392,34 +398,6 @@ namespace MMR_Tracker_V2
             LBItemSelect.Items.Remove(selected);
             LBItemSelect.Items.Insert(newIndex, selected);
             LBItemSelect.SetSelected(newIndex, true);
-        }
-
-        List<int> listBox2_selectionhistory = new List<int>();
-
-        private void lbCheckItems_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int actualcount = listBox2_selectionhistory.Count;
-            if (actualcount == 1)
-            {
-                if (Control.ModifierKeys == Keys.Shift)
-                {
-                    int lastindex = listBox2_selectionhistory[0];
-                    int currentindex = lbCheckItems.SelectedIndex;
-                    int upper = Math.Max(lastindex, currentindex);
-                    int lower = Math.Min(lastindex, currentindex);
-                    for (int i = lower; i < upper; i++)
-                    {
-                        lbCheckItems.SetItemCheckState(i, CheckState.Checked);
-                    }
-                }
-                listBox2_selectionhistory.Clear();
-                listBox2_selectionhistory.Add(lbCheckItems.SelectedIndex);
-            }
-            else
-            {
-                listBox2_selectionhistory.Clear();
-                listBox2_selectionhistory.Add(lbCheckItems.SelectedIndex);
-            }
         }
     }
 }

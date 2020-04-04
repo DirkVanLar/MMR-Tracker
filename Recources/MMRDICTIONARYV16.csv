@@ -431,15 +431,15 @@ EntranceGrottoGossipSwampFromTerminaField,Termina > Swamp Gossip,Swamp Gossip < 
 EntranceGrottoGossipCanyonFromTerminaField,Termina > Canyon Gossip,Canyon Gossip < Termina,Termina Field,Entrance,EntranceGrottoGossipCanyonFromTerminaField,EntranceGrottoGossipCanyonFromTerminaField
 EntranceGrottoGossipMountainFromTerminaField,Termina > Mountain Gossip,Mountain Gossip < Termina,Termina Field,Entrance,EntranceGrottoGossipMountainFromTerminaField,EntranceGrottoGossipMountainFromTerminaField
 EntranceGrottoHotSpringWaterFromTwinIslands,Twin Island > HSW Grotto,HSW Grotto < Termina,Twin Islands,Entrance,EntranceGrottoHotSpringWaterFromTwinIslands,EntranceGrottoHotSpringWaterFromTwinIslands
-EntranceGrottoPalaceStraightFromDekuPalaceA,,Palace Straight Grotto < Deku Palace A,Deku Palace,Entrance,EntranceGrottoPalaceStraightFromDekuPalaceA,EntranceGrottoPalaceStraightFromDekuPalaceA
+EntranceGrottoPalaceStraightFromDekuPalaceA,,Palace Straight Grotto < Palace Garden East,Deku Palace,Entrance,EntranceGrottoPalaceStraightFromDekuPalaceA,EntranceGrottoPalaceStraightFromDekuPalaceA
 EntranceGrottoDodongoFromTerminaField,Termina > Dodongo Grotto,Dodongo Grotto < Termina,Termina Field,Entrance,EntranceGrottoDodongoFromTerminaField,EntranceGrottoDodongoFromTerminaField
-EntranceGrottoPalaceVinesFromDekuPalaceLower,,Palace Vine Grotto < Deku Palace Low,Deku Palace,Entrance,EntranceGrottoPalaceVinesFromDekuPalaceLower,EntranceGrottoPalaceVinesFromDekuPalaceLower
+EntranceGrottoPalaceVinesFromDekuPalaceLower,,Palace Vine Grotto < Palace Garden East,Deku Palace,Entrance,EntranceGrottoPalaceVinesFromDekuPalaceLower,EntranceGrottoPalaceVinesFromDekuPalaceLower
 EntranceGrottoDekuMerchantFromTerminaField,Termina > Deku Grotto,Deku Grotto < Termina,Termina Field,Entrance,EntranceGrottoDekuMerchantFromTerminaField,EntranceGrottoDekuMerchantFromTerminaField
 EntranceGrottoBioBabaFromTerminaField,Termina > Bio Baba Grotto,Bio Baba Grotto < Termina,Termina Field,Entrance,EntranceGrottoBioBabaFromTerminaField,EntranceGrottoBioBabaFromTerminaField
 EntranceGrottoBeanSellerFromDekuPalace,Deku Palace > Bean Seller Grotto,Bean Seller Grotto < Deku Palace,Deku Palace,Entrance,EntranceGrottoBeanSellerFromDekuPalace,EntranceGrottoBeanSellerFromDekuPalace
 EntranceGrottoPeahatFromTerminaField,Termina > Peahat Grotto,Peahat Grotto < Termina,Termina Field,Entrance,EntranceGrottoPeahatFromTerminaField,EntranceGrottoPeahatFromTerminaField
-EntranceGrottoPalaceStraightFromDekuPalaceB,,Palace Straight Grotto < Deku Palace B,Deku Palace,Entrance,EntranceGrottoPalaceStraightFromDekuPalaceB,EntranceGrottoPalaceStraightFromDekuPalaceB
-EntranceGrottoPalaceVinesFromDekuPalaceUpper,,Palace Vine Grotto < Deku Palace Up,Deku Palace,Entrance,EntranceGrottoPalaceVinesFromDekuPalaceUpper,EntranceGrottoPalaceVinesFromDekuPalaceUpper
+EntranceGrottoPalaceStraightFromDekuPalaceB,,Palace Straight Grotto < Palace Garden West,Deku Palace,Entrance,EntranceGrottoPalaceStraightFromDekuPalaceB,EntranceGrottoPalaceStraightFromDekuPalaceB
+EntranceGrottoPalaceVinesFromDekuPalaceUpper,,Palace Vine Grotto < Palace Garden West,Deku Palace,Entrance,EntranceGrottoPalaceVinesFromDekuPalaceUpper,EntranceGrottoPalaceVinesFromDekuPalaceUpper
 EntranceGrottoLensCaveFromGoronVillage,Goron Village > Lens Cave,Lens Cave < Goron Village,Goron Village,Entrance,EntranceGrottoLensCaveFromGoronVillage,EntranceGrottoLensCaveFromGoronVillage
 EntranceIkanaCanyonFromRoadtoIkana,Ikana Road > Ikana,Ikana < Ikana Road,Road to Ikana,Entrance,EntranceIkanaCanyonFromRoadtoIkana,EntranceIkanaCanyonFromRoadtoIkana
 EntranceIkanaCanyonFromPoeHut,Poe Hut > Ikana,Ikana < Poe Hut,Interior,Entrance,EntranceIkanaCanyonFromPoeHut,EntranceIkanaCanyonFromPoeHut
@@ -527,7 +527,7 @@ EntranceDekuPalaceFromDekuShrine,Deku Shrine > Deku Palace,Deku Palace < Deku Sh
 EntranceDekuPalaceFromSouthernSwampUpper,Swamp > Deku Palace Upper,Deku Palace < Swamp Upper,Southern Swamp,Entrance,EntranceDekuPalaceFromSouthernSwampUpper,EntranceDekuPalaceFromSouthernSwampUpper
 EntranceDekuPalaceGardenWestFromPalaceVinesGrotto,Palace Vine Grotto > Garden West,Deku Palace < Palace Vine Grotto West,Grottos,Entrance,EntranceDekuPalaceGardenWestFromPalaceVinesGrotto,EntranceDekuPalaceGardenWestFromPalaceVinesGrotto
 EntranceDekuPalaceGardenWestFromPalaceStraightGrotto,Palace Garden Grotto > Garden West,Deku Palace < Palace Garden Grotto West,Grottos,Entrance,EntranceDekuPalaceGardenWestFromPalaceStraightGrotto,EntranceDekuPalaceGardenWestFromPalaceStraightGrotto
-EntranceDekuPalaceGardenEastFromPalaceStraightGrotto,Palace Garden Grotto > Garden East,Deku Palace < Palace Vine Grotto East,Grottos,Entrance,EntranceDekuPalaceGardenEastFromPalaceStraightGrotto,EntranceDekuPalaceGardenEastFromPalaceStraightGrotto
+EntranceDekuPalaceGardenEastFromPalaceStraightGrotto,Palace Garden Grotto > Garden East,Deku Palace < Palace Garden Grotto East,Grottos,Entrance,EntranceDekuPalaceGardenEastFromPalaceStraightGrotto,EntranceDekuPalaceGardenEastFromPalaceStraightGrotto
 EntranceDekuPalaceGardenEastFromBeanSellerGrotto,Bean Seller Grotto > Deku palace,Deku Palace < Bean seller Grotto,Grottos,Entrance,EntranceDekuPalaceGardenEastFromBeanSellerGrotto,EntranceDekuPalaceGardenEastFromBeanSellerGrotto
 EntranceDekuPalaceGardenEastFromPalaceVinesGrotto,Palace Vine Grotto > Garden East,Deku Palace < Palace Vine grotto East,Grottos,Entrance,EntranceDekuPalaceGardenEastFromPalaceVinesGrotto,EntranceDekuPalaceGardenEastFromPalaceVinesGrotto
 EntranceMountainSmithyFromMountainVillage,Mountain Village > Smithy,Mountain Smithy < Mountain Smithy,Mountain Village,Entrance,EntranceMountainSmithyFromMountainVillage,EntranceMountainSmithyFromMountainVillage
@@ -713,13 +713,13 @@ EntranceSouthClockTownFromOwlStatue,Owl Warp > SCT,SCT < Owl Warp,Owl Warp,Entra
 EntranceLaundryPoolFromSouthClockTown,SCT > Laundry pool,Laundry Pool < SCT,South Clock Town,Entrance,EntranceLaundryPoolFromSouthClockTown,EntranceLaundryPoolFromSouthClockTown
 EntranceLaundryPoolFromKafeisHideout,Kafei > Laundry pool,Laundry Pool < Kafei,Interior,Entrance,EntranceLaundryPoolFromKafeisHideout,EntranceLaundryPoolFromKafeisHideout
 EntranceStoneTowerInvertedFromStoneTowerTempleInverted,ISTT > Inverted Stone Tower,Inverted Stone Tower < ISTT,Stone Tower,Entrance,EntranceStoneTowerInvertedFromStoneTowerTempleInverted,EntranceStoneTowerInvertedFromStoneTowerTempleInverted
-Great Bay Owl,Great Bay Warp,Great Bay Owl,Great Bay Coast,Owl Statue,Great Bay Owl Statue,Great Bay Owl
-Zora Cape Owl,Zora Cape Warp,Zora Cape Owl,Zora Cape,Owl Statue,Zora Cape Owl Statue,Zora Cape Owl
-Snowhead Owl,Snowhead Warp,Snowhead Owl,Snowhead,Owl Statue,Snowhead Owl Statue,Snowhead Owl
-Mountain Village Owl,Mountain Village Warp,Mountain Village Owl,Mountain Village,Owl Statue,Mountain Village Owl Statue,Mountain Village Owl
-Clock Town Owl,Clock Town Warp,Clock Town Owl,South Clock Town,Owl Statue,Clock Town Owl Statue,Clock Town Owl
-Milk Road Owl,Milk Road Warp,Milk Road Owl,Milk Road,Owl Statue,Milk Road Owl Statue,Milk Road Owl
-Woodfall Owl,Woodfall Owl Warp,Woodfall Owl,Woodfall,Owl Statue,Woodfall Owl Statue,Woodfall Owl
-Southern Swamp Owl,Southern Swamp Warp,Southern Swamp Owl,Southern Swamp,Owl Statue,Southern Swamp Owl Statue,Southern Swamp Owl
-Ikana Canyon Owl,Ikana Canyon Warp,Ikana Canyon Owl,Ikana Canyon,Owl Statue,Ikana Canyon Owl Statue,Ikana Canyon Owl
-Stone Tower Owl,Stone Tower Warp,Stone Tower Owl,Stone Tower,Owl Statue,Stone Tower Owl Statue,Stone Tower Owl
+Great Bay Owl,Activate Great Bay Owl,Great Bay Owl,Great Bay Coast,Owl Statue,Great Bay Owl Statue,Great Bay Owl
+Zora Cape Owl,Activate Zora Cape Owl,Zora Cape Owl,Zora Cape,Owl Statue,Zora Cape Owl Statue,Zora Cape Owl
+Snowhead Owl,Activate Snowhead Owl,Snowhead Owl,Snowhead,Owl Statue,Snowhead Owl Statue,Snowhead Owl
+Mountain Village Owl,Activate Mountain Village Owl,Mountain Village Owl,Mountain Village,Owl Statue,Mountain Village Owl Statue,Mountain Village Owl
+Clock Town Owl,Activate Clock Town Owl,Clock Town Owl,South Clock Town,Owl Statue,Clock Town Owl Statue,Clock Town Owl
+Milk Road Owl,Activate Milk Road Owl,Milk Road Owl,Milk Road,Owl Statue,Milk Road Owl Statue,Milk Road Owl
+Woodfall Owl,Activate Woodfall Owl,Woodfall Owl,Woodfall,Owl Statue,Woodfall Owl Statue,Woodfall Owl
+Southern Swamp Owl,Activate Southern Swamp Owl,Southern Swamp Owl,Southern Swamp,Owl Statue,Southern Swamp Owl Statue,Southern Swamp Owl
+Ikana Canyon Owl,Activate Ikana Canyon Owl,Ikana Canyon Owl,Ikana Canyon,Owl Statue,Ikana Canyon Owl Statue,Ikana Canyon Owl
+Stone Tower Owl,Activate Stone Tower Owl,Stone Tower Owl,Stone Tower,Owl Statue,Stone Tower Owl Statue,Stone Tower Owl

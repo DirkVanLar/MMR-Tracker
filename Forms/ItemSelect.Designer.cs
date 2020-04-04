@@ -32,10 +32,10 @@
             this.LBItemSelect = new System.Windows.Forms.ListBox();
             this.BTNJunk = new System.Windows.Forms.Button();
             this.TXTSearch = new System.Windows.Forms.TextBox();
-            this.lbCheckItems = new System.Windows.Forms.CheckedListBox();
             this.chkAddSeperate = new System.Windows.Forms.CheckBox();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
+            this.lbCheckItems = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // LBItemSelect
@@ -65,20 +65,10 @@
             this.TXTSearch.TabIndex = 2;
             this.TXTSearch.TextChanged += new System.EventHandler(this.TXTSearch_TextChanged);
             // 
-            // lbCheckItems
-            // 
-            this.lbCheckItems.FormattingEnabled = true;
-            this.lbCheckItems.Location = new System.Drawing.Point(311, 539);
-            this.lbCheckItems.Name = "lbCheckItems";
-            this.lbCheckItems.Size = new System.Drawing.Size(120, 19);
-            this.lbCheckItems.TabIndex = 3;
-            this.lbCheckItems.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.LbCheckItems_ItemCheck);
-            this.lbCheckItems.SelectedIndexChanged += new System.EventHandler(this.lbCheckItems_SelectedIndexChanged);
-            // 
             // chkAddSeperate
             // 
             this.chkAddSeperate.AutoSize = true;
-            this.chkAddSeperate.Location = new System.Drawing.Point(256, 15);
+            this.chkAddSeperate.Location = new System.Drawing.Point(256, 16);
             this.chkAddSeperate.Name = "chkAddSeperate";
             this.chkAddSeperate.Size = new System.Drawing.Size(175, 17);
             this.chkAddSeperate.TabIndex = 4;
@@ -106,6 +96,18 @@
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
+            // lbCheckItems
+            // 
+            this.lbCheckItems.CheckBoxes = true;
+            this.lbCheckItems.HideSelection = false;
+            this.lbCheckItems.Location = new System.Drawing.Point(335, 530);
+            this.lbCheckItems.Name = "lbCheckItems";
+            this.lbCheckItems.Size = new System.Drawing.Size(62, 40);
+            this.lbCheckItems.TabIndex = 7;
+            this.lbCheckItems.UseCompatibleStateImageBehavior = false;
+            this.lbCheckItems.View = System.Windows.Forms.View.List;
+            this.lbCheckItems.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lbCheckItems_ItemChecked);
+            // 
             // ItemSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -113,10 +115,10 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(443, 580);
+            this.Controls.Add(this.lbCheckItems);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.chkAddSeperate);
-            this.Controls.Add(this.lbCheckItems);
             this.Controls.Add(this.TXTSearch);
             this.Controls.Add(this.BTNJunk);
             this.Controls.Add(this.LBItemSelect);
@@ -135,9 +137,9 @@
         private System.Windows.Forms.ListBox LBItemSelect;
         private System.Windows.Forms.Button BTNJunk;
         private System.Windows.Forms.TextBox TXTSearch;
-        private System.Windows.Forms.CheckedListBox lbCheckItems;
         private System.Windows.Forms.CheckBox chkAddSeperate;
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.ListView lbCheckItems;
     }
 }
