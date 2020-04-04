@@ -200,1007 +200,1007 @@
 0
 0
 - Kakariko Village => Graveyard
-
+976
 
 0
 0
 - Kakariko Village => Hyrule Field
-
+976
 
 0
 0
 - Kakariko Village Behind Gate => Death Mountain
-
+976
 
 0
 0
 - Kokiri Forest => Lost Woods
-
+977
 
 0
 0
 - Kokiri Forest => Lost Woods Bridge From Forest
-
+977
 
 0
 0
 - Lake Hylia => Hyrule Field
-
+960
 
 0
 0
 - Lake Hylia => Zoras Domain
-
+960
 
 0
 0
 - Lon Lon Ranch => Hyrule Field
 
-
+37;124;151;159;216
 0
 0
 - Lost Woods => Goron City Woods Warp
-
+978
 
 0
 0
 - Lost Woods => Zora River
-
+978
 
 0
 0
 - Lost Woods Beyond Mido => Sacred Forest Meadow Entryway
-
+978
 
 0
 0
 - Lost Woods Bridge => Hyrule Field
 
-
+38;44
 0
 0
 - Lost Woods Bridge => Kokiri Forest
 
-
+38;44
 0
 0
 - Lost Woods Forest Exit => Kokiri Forest
-
+978
 
 0
 0
 - Sacred Forest Meadow Entryway => Lost Woods Beyond Mido
-
+979
 
 0
 0
 - Temple of Time Exterior => Castle Town
 
-
+13;160
 0
 0
 - Zora River => Lost Woods
-
+980
 
 0
 0
 - Zora River Behind Waterfall => Zoras Domain
-
+980
 
 0
 0
 - Zora River Front => Hyrule Field
-
+980
 
 0
 0
 - Zoras Domain => Lake Hylia
-
+981
 
 0
 0
 - Zoras Domain => Zora River Behind Waterfall
-
+981
 
 0
 0
 - Zoras Domain Behind King Zora => Zoras Fountain
-
+981
 
 0
 0
 - Zoras Fountain => Zoras Domain Behind King Zora
-
+982
 
 0
 0
 - Bottom of the Well => Kakariko Village
 
-
+76;886
 0
 0
 - Death Mountain => Dodongos Cavern Beginning
-
+964
 
 0
 0
 - Deku Tree Lobby => Outside Deku Tree
 
-
+879;78
 0
 0
 - Desert Colossus => Spirit Temple Lobby
-
+983
 
 0
 0
 - Dodongos Cavern Beginning => Death Mountain
 
-
+880;64
 0
 0
 - Fire Temple Entrance => Fire Temple Lower
-
+965
 
 0
 0
 - Fire Temple Lower => Fire Temple Entrance
 
-
+883;68
 0
 0
 - Forest Temple Entrance Ledge => Forest Temple Lobby
-
+979
 
 0
 0
 - Forest Temple Lobby => Forest Temple Entrance Ledge
 
-
+70;882
 0
 0
 - Gerudo Fortress => Gerudo Training Grounds Lobby
-
+968
 
 0
 0
 - Gerudo Training Grounds Lobby => Gerudo Fortress
 
-
+72;888
 0
 0
 - Ice Cavern Beginning => Zoras Fountain Ice Ledge
 
-
+884;84
 0
 0
 - Jabu Jabus Belly Beginning => Zoras Fountain
 
-
+83;881
 0
 0
 - Kakariko Village => Bottom of the Well
-
+976
 
 0
 0
 - Lake Hylia => Water Temple Lobby
-
+960
 
 0
 0
 - Outside Deku Tree => Deku Tree Lobby
-
+977
 
 0
 0
 - Shadow Temple Entryway => Shadow Temple Warp Region
 
-
+887;80
 0
 0
 - Shadow Temple Warp Region => Shadow Temple Entryway
-
+972
 
 0
 0
 - Spirit Temple Lobby => Desert Colossus From Spirit Lobby
 
-
+889;66
 0
 0
 - Water Temple Lobby => Lake Hylia
 
-
+77;885
 0
 0
 - Zoras Fountain => Jabu Jabus Belly Beginning
-
+982
 
 0
 0
 - Zoras Fountain Ice Ledge => Ice Cavern Beginning
-
+982
 
 0
 0
 - Carpenter Boss House => Kakariko Village
-
+130
 
 0
 0
 - Carpenter Tent => Gerudo Valley Far Side
-
+114
 
 0
 0
 - Castle Town => Castle Town Bazaar
-
+962
 
 0
 0
 - Castle Town => Castle Town Bombchu Bowling
-
+962
 
 0
 0
 - Castle Town => Castle Town Mask Shop
-
+962
 
 0
 0
 - Castle Town => Castle Town Potion Shop
-
+962
 
 0
 0
 - Castle Town => Castle Town Shooting Gallery
-
+962
 
 0
 0
 - Castle Town => Castle Town Treasure Chest Game
-
+962
 
 0
 0
 - Castle Town Back Alley => Castle Town Bombchu Shop
-
+962
 
 0
 0
 - Castle Town Back Alley => Castle Town Man in Green House
-
+962
 
 0
 0
 - Castle Town Bazaar => Castle Town
-
+87
 
 0
 0
 - Castle Town Bombchu Bowling => Castle Town
-
+88
 
 0
 0
 - Castle Town Bombchu Shop => Castle Town Back Alley
-
+93
 
 0
 0
 - Castle Town Entrance => Castle Town Rupee Room
 
-
+12;33;102
 0
 0
 - Castle Town Man in Green House => Castle Town Back Alley
-
+94
 
 0
 0
 - Castle Town Mask Shop => Castle Town
-
+89
 
 0
 0
 - Castle Town Potion Shop => Castle Town
-
+90
 
 0
 0
 - Castle Town Rupee Room => Castle Town Entrance
-
+98
 
 0
 0
 - Castle Town Shooting Gallery => Castle Town
-
+91
 
 0
 0
 - Castle Town Treasure Chest Game => Castle Town
-
+92
 
 0
 0
 - Colossus Fairy => Desert Colossus
-
+110
 
 0
 0
 - Crater Fairy => Death Mountain Crater Lower Local
-
+108
 
 0
 0
 - Dampes House => Graveyard
-
+117
 
 0
 0
 - Death Mountain Crater Lower Nearby => Crater Fairy
-
+966
 
 0
 0
 - Death Mountain Summit => Mountain Summit Fairy
-
+963
 
 0
 0
 - Desert Colossus => Colossus Fairy
-
+983
 
 0
 0
 - Fishing Hole => Lake Hylia Fishing Island
-
+148
 
 0
 0
 - Ganons Castle Fairy => Castle Grounds
-
+113
 
 0
 0
 - Ganons Castle Grounds => Ganons Castle Fairy
 
-
+11;112;120;167
 0
 0
 - Gerudo Valley Far Side => Carpenter Tent
-
+970
 
 0
 0
 - Goron City => Goron Shop
-
+969
 
 0
 0
 - Goron Shop => Goron City
-
+115
 
 0
 0
 - Graveyard => Dampes House
-
+972
 
 0
 0
 - House of Skulltula => Kakariko Village
-
+131
 
 0
 0
 - House of Twins => Kokiri Forest
-
+140
 
 0
 0
 - Hyrule Castle Fairy => Castle Grounds
-
+121
 
 0
 0
 - Hyrule Castle Grounds => Hyrule Castle Fairy
 
-
+11;120;167
 0
 0
 - Impas House => Kakariko Village
-
+132
 
 0
 0
 - Impas House Back => Kakariko Impa Ledge
-
+126
 
 0
 0
 - Ingo Barn => Lon Lon Ranch
-
+152
 
 0
 0
 - Kakariko Bazaar => Kakariko Village
-
+133
 
 0
 0
 - Kakariko Impa Ledge => Impas House Back
-
+976
 
 0
 0
 - Kakariko Potion Shop Back => Kakariko Village Backyard
 
-
+134;137
 0
 0
 - Kakariko Potion Shop Front => Kakariko Village
 
-
+134;137
 0
 0
 - Kakariko Shooting Gallery => Kakariko Village
-
+135
 
 0
 0
 - Kakariko Village => Carpenter Boss House
-
+976
 
 0
 0
 - Kakariko Village => House of Skulltula
-
+976
 
 0
 0
 - Kakariko Village => Impas House
-
+976
 
 0
 0
 - Kakariko Village => Kakariko Bazaar
-
+976
 
 0
 0
 - Kakariko Village => Kakariko Potion Shop Front
-
+976
 
 0
 0
 - Kakariko Village => Kakariko Shooting Gallery
-
+976
 
 0
 0
 - Kakariko Village => Windmill
-
+976
 
 0
 0
 - Kakariko Village Backyard => Kakariko Potion Shop Back
-
+976
 
 0
 0
 - Kakariko Village Backyard => Odd Medicine Building
-
+976
 
 0
 0
 - Know It All House => Kokiri Forest
-
+141
 
 0
 0
 - Kokiri Forest => House of Twins
-
+977
 
 0
 0
 - Kokiri Forest => Know It All House
-
+977
 
 0
 0
 - Kokiri Forest => Kokiri Shop
-
+977
 
 0
 0
 - Kokiri Forest => Links House
-
+977
 
 0
 0
 - Kokiri Forest => Mido House
-
+977
 
 0
 0
 - Kokiri Forest => Saria House
-
+977
 
 0
 0
 - Kokiri Shop => Kokiri Forest
-
+142
 
 0
 0
 - Lake Hylia => Lake Hylia Lab
-
+960
 
 0
 0
 - Lake Hylia Fishing Island => Fishing Hole
-
+960
 
 0
 0
 - Lake Hylia Lab => Lake Hylia
-
+147
 
 0
 0
 - Links House => Kokiri Forest
 
-
+1;143
 0
 0
 - Lon Lon Corner Tower => Lon Lon Ranch
-
+153
 
 0
 0
 - Lon Lon Ranch => Ingo Barn
-
+984
 
 0
 0
 - Lon Lon Ranch => Lon Lon Corner Tower
-
+984
 
 0
 0
 - Lon Lon Ranch => Talon House
-
+984
 
 0
 0
 - Mido House => Kokiri Forest
-
+144
 
 0
 0
 - Mountain Summit Fairy => Death Mountain Summit
-
+109
 
 0
 0
 - Odd Medicine Building => Kakariko Village Backyard
-
+138
 
 0
 0
 - Saria House => Kokiri Forest
-
+145
 
 0
 0
 - Talon House => Lon Lon Ranch
-
+154
 
 0
 0
 - Temple of Time => Temple of Time Exterior
 
-
+5;161
 0
 0
 - Temple of Time Exterior => Temple of Time
 
-
+160;13
 0
 0
 - Windmill => Kakariko Village
-
+136
 
 0
 0
 - Zora Shop => Zoras Domain
-
+164
 
 0
 0
 - Zoras Domain => Zora Shop
-
+981
 
 0
 0
 - Zoras Fountain => Zoras Fountain Fairy
-
+982
 
 0
 0
 - Zoras Fountain Fairy => Zoras Fountain
-
+165
 
 0
 0
 - Castle Storms Grotto => Castle Grounds
-
+199
 
 0
 0
 - Composer Grave => Graveyard
-
+194
 
 0
 0
 - DMC Hammer Grotto => Death Mountain Crater Lower Local
-
+172
 
 0
 0
 - Dampes Grave => Graveyard
-
+195
 
 0
 0
 - Death Mountain => Mountain Storms Grotto
-
+964
 
 0
 0
 - Death Mountain Crater Lower Nearby => DMC Hammer Grotto
-
+966
 
 0
 0
 - Death Mountain Crater Upper Nearby => Top of Crater Grotto
-
+967
 
 0
 0
 - Death Mountain Summit => Mountain Bombable Grotto
-
+963
 
 0
 0
 - Deku Theater => Lost Woods Beyond Mido
-
+219
 
 0
 0
 - Desert Colossus => Desert Colossus Grotto
-
+983
 
 0
 0
 - Desert Colossus Grotto => Desert Colossus
-
+176
 
 0
 0
 - Field Far West Castle Town Grotto => Hyrule Field
-
+200
 
 0
 0
 - Field Kakariko Grotto => Hyrule Field
-
+201
 
 0
 0
 - Field Near Lake Inside Fence Grotto => Hyrule Field
-
+202
 
 0
 0
 - Field Near Lake Outside Fence Grotto => Hyrule Field
-
+203
 
 0
 0
 - Field North Lon Lon Grotto => Hyrule Field
-
+204
 
 0
 0
 - Field Valley Grotto => Hyrule Field
-
+205
 
 0
 0
 - Field West Castle Town Grotto => Hyrule Field
-
+206
 
 0
 0
 - Front of Meadow Grotto => Sacred Forest Meadow Entryway
-
+230
 
 0
 0
 - Gerudo Fortress => Gerudo Fortress Storms Grotto
-
+968
 
 0
 0
 - Gerudo Fortress Storms Grotto => Gerudo Fortress
-
+186
 
 0
 0
 - Gerudo Valley Far Side => Gerudo Valley Storms Grotto
-
+970
 
 0
 0
 - Gerudo Valley Grotto Ledge => Gerudo Valley Octorok Grotto
-
+971
 
 0
 0
 - Gerudo Valley Octorok Grotto => Gerudo Valley Grotto Ledge
-
+189
 
 0
 0
 - Gerudo Valley Storms Grotto => Gerudo Valley Far Side
-
+188
 
 0
 0
 - Goron City Grotto => Goron City Grotto Platform
-
+193
 
 0
 0
 - Goron City Grotto Platform => Goron City Grotto
-
+969
 
 0
 0
 - Graveyard => Composer Grave
-
+972
 
 0
 0
 - Graveyard => Dampes Grave
-
+972
 
 0
 0
 - Graveyard => Heart Piece Grave
-
+972
 
 0
 0
 - Graveyard => Shield Grave
-
+972
 
 0
 0
 - Heart Piece Grave => Graveyard
-
+196
 
 0
 0
 - Hyrule Castle Grounds => Castle Storms Grotto
 
-
+11;120;167
 0
 0
 - Hyrule Field => Field Far West Castle Town Grotto
-
+961
 
 0
 0
 - Hyrule Field => Field Kakariko Grotto
-
+961
 
 0
 0
 - Hyrule Field => Field Near Lake Inside Fence Grotto
-
+961
 
 0
 0
 - Hyrule Field => Field Near Lake Outside Fence Grotto
-
+961
 
 0
 0
 - Hyrule Field => Field North Lon Lon Grotto
-
+961
 
 0
 0
 - Hyrule Field => Field Valley Grotto
-
+961
 
 0
 0
 - Hyrule Field => Field West Castle Town Grotto
-
+961
 
 0
 0
 - Hyrule Field => Remote Southern Grotto
-
+961
 
 0
 0
 - Kakariko Back Grotto => Kakariko Village Backyard
-
+211
 
 0
 0
 - Kakariko Bombable Grotto => Kakariko Village
-
+210
 
 0
 0
 - Kakariko Village => Kakariko Bombable Grotto
-
+976
 
 0
 0
 - Kakariko Village Backyard => Kakariko Back Grotto
-
+976
 
 0
 0
 - Kokiri Forest => Kokiri Forest Storms Grotto
-
+977
 
 0
 0
 - Kokiri Forest Storms Grotto => Kokiri Forest
-
+212
 
 0
 0
 - Lake Hylia => Lake Hylia Grotto
-
+960
 
 0
 0
 - Lake Hylia Grotto => Lake Hylia
-
+214
 
 0
 0
 - Lon Lon Grotto => Lon Lon Ranch
-
+217
 
 0
 0
 - Lon Lon Ranch => Lon Lon Grotto
-
+984
 
 0
 0
 - Lost Woods => Lost Woods Generic Grotto
-
+978
 
 0
 0
 - Lost Woods Beyond Mido => Deku Theater
-
+978
 
 0
 0
 - Lost Woods Beyond Mido => Lost Woods Sales Grotto
-
+978
 
 0
 0
 - Lost Woods Generic Grotto => Lost Woods
-
+218
 
 0
 0
 - Lost Woods Sales Grotto => Lost Woods Beyond Mido
-
+220
 
 0
 0
 - Meadow Fairy Grotto => Sacred Forest Meadow
-
+228
 
 0
 0
 - Meadow Storms Grotto => Sacred Forest Meadow
-
+229
 
 0
 0
 - Mountain Bombable Grotto => Death Mountain Summit
-
+174
 
 0
 0
 - Mountain Storms Grotto => Death Mountain
-
+171
 
 0
 0
 - Remote Southern Grotto => Hyrule Field
-
+207
 
 0
 0
 - Sacred Forest Meadow => Meadow Fairy Grotto
-
+979
 
 0
 0
 - Sacred Forest Meadow => Meadow Storms Grotto
-
+979
 
 0
 0
 - Sacred Forest Meadow Entryway => Front of Meadow Grotto
-
+979
 
 0
 0
 - Shield Grave => Graveyard
-
+197
 
 0
 0
 - Top of Crater Grotto => Death Mountain Crater Upper Local
-
+173
 
 0
 0
 - Zora River => Zora River Plateau Bombable Grotto
-
+980
 
 0
 0
 - Zora River => Zora River Plateau Open Grotto
-
+980
 
 0
 0
 - Zora River => Zora River Storms Grotto
-
+980
 
 0
 0
 - Zora River Plateau Bombable Grotto => Zora River
-
+233
 
 0
 0
 - Zora River Plateau Open Grotto => Zora River
-
+234
 
 0
 0
 - Zora River Storms Grotto => Zora River
-
+235
 
 0
 0
 - Zoras Domain => Zoras Domain Storms Grotto
-
+981
 
 0
 0
 - Zoras Domain Storms Grotto => Zoras Domain
-
+239
 
 0
 0
@@ -4451,7 +4451,7 @@
 0
 - Ganons Castle Grounds => Ganons Castle
 893,952
-
+11;112
 0
 0
 - Ganons Castle Grounds => Ganons Castle MQ
@@ -4877,5 +4877,50 @@
 - Explosives
 
 917;945
+0
+0
+- Kakariko Access
+
+30;35;63;85;118;122;125;128;129;162;209
+0
+0
+- Kokiri Forest Access
+
+52;53;119;139;146;150;155;158;213
+0
+0
+- Lost Woods Access
+
+29;43;56;221;54;175
+0
+0
+- Sacred Forest Access
+
+3;50;185;223;224
+0
+0
+- Zora River Access
+
+39;49;60;236;237;238
+0
+0
+- Zora Domain Access
+
+46;57;62;163;240
+0
+0
+- Zora Fountain Access
+
+61;74;75;166
+0
+0
+- Desert Collosus Access
+
+6;31;81;105;177
+0
+0
+- Lon Lon Access
+
+37;124;151;159;216
 0
 0
