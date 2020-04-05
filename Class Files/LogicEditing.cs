@@ -390,7 +390,7 @@ namespace MMR_Tracker_V2
             List<int> UsedItems = new List<int>();
             bool isAvailable = (RequirementsMet(ItemCopy.Required, logic, UsedItems) && CondtionalsMet(ItemCopy.Conditionals, logic, UsedItems));
             if (!isAvailable) { return new List<int>(); }
-            List<int> NeededItems = Debugging.ResolveFakeToRealItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, logic);
+            List<int> NeededItems = Utility.ResolveFakeToRealItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, logic);
             NeededItems = NeededItems.Distinct().ToList();
             return NeededItems;
         }

@@ -418,11 +418,13 @@ namespace MMR_Tracker_V2
             bool Spoiler = false;
             foreach (var i in Logic)
             {
+                if (i.IsFake) { continue; }
                 if (i.SpoilerRandom > -1) 
                 { 
-                    Spoiler = true; 
+                    Spoiler = true;
+                    if (!full) { Console.WriteLine(i.DictionaryName + " Had SpoilerData"); }
                 }
-                if (i.SpoilerRandom < 0 && !i.IsFake) 
+                if (i.SpoilerRandom < 0) 
                 { 
                     fullLog = false;
                     if (full) { Console.WriteLine(i.DictionaryName + " Does not have SpoilerData"); }
@@ -527,7 +529,7 @@ namespace MMR_Tracker_V2
                     if (firsttime == DialogResult.Yes)
                     {
                         MessageBox.Show("Please Take this opportunity to familliarize yourself with how to use this tracker. There are many features that are not obvious or explained anywhere outside of the about page. This information can be accessed at any time by selecting 'Info' -> 'About'. Click OK to show the About Page. Once you have read through the information, close the window to return to setup.", "How to Use", MessageBoxButtons.OK);
-                        DebugScreen DebugScreen = new DebugScreen();
+                        InformationDisplay DebugScreen = new InformationDisplay();
                         Debugging.PrintLogicObject(LogicObjects.Logic);
                         DebugScreen.DebugFunction = 2;
                         DebugScreen.ShowDialog();
@@ -563,6 +565,25 @@ namespace MMR_Tracker_V2
                 }
             }
 
+        }
+        public static List<int> ResolveFakeToRealItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic)
+        {
+            var RealItems = new List<int>();
+            var New = new LogicObjects.PlaythroughItem();
+            foreach (var j in item.ItemsUsed)
+            {
+                if (!logic[j].IsFake) { RealItems.Add(j); }
+                else
+                {
+                    var NewItem = Playthrough.Where(i => i.Check.ID == j).FirstOrDefault();
+                    foreach (var k in ResolveFakeToRealItems(NewItem, Playthrough, logic))
+                    {
+                        RealItems.Add(k);
+                    }
+                }
+            }
+
+            return RealItems;
         }
     }
 }

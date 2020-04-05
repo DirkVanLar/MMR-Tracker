@@ -126,7 +126,7 @@ namespace MMR_Tracker_V2
         {
             if (UnRand0Manual1Either2 == 0) { return entry.Options == 1; }
             if (UnRand0Manual1Either2 == 1) { return entry.Options == 2; }
-            if (UnRand0Manual1Either2 == 0) { return entry.Options == 1 || entry.Options == 2; }
+            if (UnRand0Manual1Either2 == 2) { return entry.Options == 1 || entry.Options == 2; }
             return false;
         }
         public static bool Randomized(this LogicObjects.LogicEntry entry)
@@ -139,7 +139,8 @@ namespace MMR_Tracker_V2
         }
         public static int RandomizedState(this LogicObjects.LogicEntry entry)
         {
-            return (entry.Options > 3) ? entry.Options - 4 : entry.Options;
+            int option = entry.Options;
+            return (entry.Options > 3) ? option - 4 : option;
         }
         public static bool StartingItem(this LogicObjects.LogicEntry entry)
         {

@@ -251,7 +251,7 @@ namespace MMR_Tracker_V2
 
         private void PrintLogicObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DebugScreen DebugScreen = new DebugScreen();
+            InformationDisplay DebugScreen = new InformationDisplay();
             Debugging.PrintLogicObject(LogicObjects.Logic);
             DebugScreen.DebugFunction = 1;
             DebugScreen.Show();
@@ -266,7 +266,7 @@ namespace MMR_Tracker_V2
 
         private void DumbStuffToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(((11 >> 0) & 1) == 1);
+            Debugging.TestDumbStuff();
         }
 
         private void CreateOOTFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -343,7 +343,7 @@ namespace MMR_Tracker_V2
 
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DebugScreen DebugScreen = new DebugScreen();
+            InformationDisplay DebugScreen = new InformationDisplay();
             Debugging.PrintLogicObject(LogicObjects.Logic);
             DebugScreen.DebugFunction = 2;
             DebugScreen.Show();

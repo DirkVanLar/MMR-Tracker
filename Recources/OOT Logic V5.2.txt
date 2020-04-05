@@ -81,7 +81,7 @@
 0
 - Darunias Chamber => Death Mountain Crater Lower Local
 969,893
-926,975
+926,984
 0
 0
 - Death Mountain => Goron City
@@ -146,7 +146,7 @@
 0
 - Goron City Woods Warp => Lost Woods
 
-969,975;969,926;969,929,923;969,930
+969,984;969,926;969,929,923;969,930
 0
 0
 - Graveyard => Kakariko Village
@@ -200,27 +200,27 @@
 0
 0
 - Kakariko Village => Graveyard
-976
+973
 
 0
 0
 - Kakariko Village => Hyrule Field
-976
+973
 
 0
 0
 - Kakariko Village Behind Gate => Death Mountain
-976
+973
 
 0
 0
 - Kokiri Forest => Lost Woods
-977
+974
 
 0
 0
 - Kokiri Forest => Lost Woods Bridge From Forest
-977
+974
 
 0
 0
@@ -240,17 +240,17 @@
 0
 0
 - Lost Woods => Goron City Woods Warp
-978
+975
 
 0
 0
 - Lost Woods => Zora River
-978
+975
 
 0
 0
 - Lost Woods Beyond Mido => Sacred Forest Meadow Entryway
-978
+975
 
 0
 0
@@ -265,12 +265,12 @@
 0
 0
 - Lost Woods Forest Exit => Kokiri Forest
-978
+975
 
 0
 0
 - Sacred Forest Meadow Entryway => Lost Woods Beyond Mido
-979
+977
 
 0
 0
@@ -280,37 +280,37 @@
 0
 0
 - Zora River => Lost Woods
-980
+976
 
 0
 0
 - Zora River Behind Waterfall => Zoras Domain
-980
+976
 
 0
 0
 - Zora River Front => Hyrule Field
-980
+976
 
 0
 0
 - Zoras Domain => Lake Hylia
-981
+978
 
 0
 0
 - Zoras Domain => Zora River Behind Waterfall
-981
+978
 
 0
 0
 - Zoras Domain Behind King Zora => Zoras Fountain
-981
+978
 
 0
 0
 - Zoras Fountain => Zoras Domain Behind King Zora
-982
+979
 
 0
 0
@@ -330,7 +330,7 @@
 0
 0
 - Desert Colossus => Spirit Temple Lobby
-983
+980
 
 0
 0
@@ -350,7 +350,7 @@
 0
 0
 - Forest Temple Entrance Ledge => Forest Temple Lobby
-979
+977
 
 0
 0
@@ -380,7 +380,7 @@
 0
 0
 - Kakariko Village => Bottom of the Well
-976
+973
 
 0
 0
@@ -390,7 +390,7 @@
 0
 0
 - Outside Deku Tree => Deku Tree Lobby
-977
+974
 
 0
 0
@@ -415,12 +415,12 @@
 0
 0
 - Zoras Fountain => Jabu Jabus Belly Beginning
-982
+979
 
 0
 0
 - Zoras Fountain Ice Ledge => Ice Cavern Beginning
-982
+979
 
 0
 0
@@ -550,7 +550,7 @@
 0
 0
 - Desert Colossus => Colossus Fairy
-983
+980
 
 0
 0
@@ -630,7 +630,7 @@
 0
 0
 - Kakariko Impa Ledge => Impas House Back
-976
+973
 
 0
 0
@@ -650,47 +650,47 @@
 0
 0
 - Kakariko Village => Carpenter Boss House
-976
+973
 
 0
 0
 - Kakariko Village => House of Skulltula
-976
+973
 
 0
 0
 - Kakariko Village => Impas House
-976
+973
 
 0
 0
 - Kakariko Village => Kakariko Bazaar
-976
+973
 
 0
 0
 - Kakariko Village => Kakariko Potion Shop Front
-976
+973
 
 0
 0
 - Kakariko Village => Kakariko Shooting Gallery
-976
+973
 
 0
 0
 - Kakariko Village => Windmill
-976
+973
 
 0
 0
 - Kakariko Village Backyard => Kakariko Potion Shop Back
-976
+973
 
 0
 0
 - Kakariko Village Backyard => Odd Medicine Building
-976
+973
 
 0
 0
@@ -700,32 +700,32 @@
 0
 0
 - Kokiri Forest => House of Twins
-977
+974
 
 0
 0
 - Kokiri Forest => Know It All House
-977
+974
 
 0
 0
 - Kokiri Forest => Kokiri Shop
-977
+974
 
 0
 0
 - Kokiri Forest => Links House
-977
+974
 
 0
 0
 - Kokiri Forest => Mido House
-977
+974
 
 0
 0
 - Kokiri Forest => Saria House
-977
+974
 
 0
 0
@@ -760,17 +760,17 @@
 0
 0
 - Lon Lon Ranch => Ingo Barn
-984
+981
 
 0
 0
 - Lon Lon Ranch => Lon Lon Corner Tower
-984
+981
 
 0
 0
 - Lon Lon Ranch => Talon House
-984
+981
 
 0
 0
@@ -820,12 +820,12 @@
 0
 0
 - Zoras Domain => Zora Shop
-981
+978
 
 0
 0
 - Zoras Fountain => Zoras Fountain Fairy
-982
+979
 
 0
 0
@@ -880,7 +880,7 @@
 0
 0
 - Desert Colossus => Desert Colossus Grotto
-983
+980
 
 0
 0
@@ -1050,17 +1050,17 @@
 0
 0
 - Kakariko Village => Kakariko Bombable Grotto
-976
+973
 
 0
 0
 - Kakariko Village Backyard => Kakariko Back Grotto
-976
+973
 
 0
 0
 - Kokiri Forest => Kokiri Forest Storms Grotto
-977
+974
 
 0
 0
@@ -1085,22 +1085,22 @@
 0
 0
 - Lon Lon Ranch => Lon Lon Grotto
-984
+981
 
 0
 0
 - Lost Woods => Lost Woods Generic Grotto
-978
+975
 
 0
 0
 - Lost Woods Beyond Mido => Deku Theater
-978
+975
 
 0
 0
 - Lost Woods Beyond Mido => Lost Woods Sales Grotto
-978
+975
 
 0
 0
@@ -1140,17 +1140,17 @@
 0
 0
 - Sacred Forest Meadow => Meadow Fairy Grotto
-979
+977
 
 0
 0
 - Sacred Forest Meadow => Meadow Storms Grotto
-979
+977
 
 0
 0
 - Sacred Forest Meadow Entryway => Front of Meadow Grotto
-979
+977
 
 0
 0
@@ -1165,17 +1165,17 @@
 0
 0
 - Zora River => Zora River Plateau Bombable Grotto
-980
+976
 
 0
 0
 - Zora River => Zora River Plateau Open Grotto
-980
+976
 
 0
 0
 - Zora River => Zora River Storms Grotto
-980
+976
 
 0
 0
@@ -1195,7 +1195,7 @@
 0
 0
 - Zoras Domain => Zoras Domain Storms Grotto
-981
+978
 
 0
 0
@@ -4701,7 +4701,7 @@
 0
 - Cut Grass
 
-893;262;904;281;334;368;503;515;726;975
+893;262;904;281;334;368;503;515;726;984
 0
 0
 - Can Change Age
@@ -4709,14 +4709,14 @@
 0;5;161
 0
 0
-- ### Moon Access with Game Completion requirements so it works with the playthrough Generator ###
+- ### MMRTGameClear entry for compatibility with the playthrough generator ###
 
 
 0
 0
-- Moon Access
-
-
+- MMRTGameClear
+445
+890,893,905,916,923;893,905,916,923,891
 0
 0
 - ### User Settings ###
@@ -4816,7 +4816,7 @@
 0
 - Access Death Mountain Summit
 
-20;156;225;964,975;963,930,893
+20;156;225;964,984;963,930,893
 0
 0
 - Access Death Mountain
@@ -4846,7 +4846,7 @@
 0
 - Access Goron City
 
-17;116;192;48,975;48,930;48,929,923
+17;116;192;48,984;48,930;48,929,923
 0
 0
 - Access Gerudo Valley Fortress Side
@@ -4864,8 +4864,53 @@
 40;107;168;170;198;231
 0
 0
+- Access Kakariko
+
+30;35;63;85;118;122;125;128;129;162;209
+0
+0
+- Access Kokiri Forest
+
+52;53;119;139;146;150;155;158;213
+0
+0
+- Access Lost Woods
+
+29;43;56;221;54;175
+0
+0
+- Access Zora River
+
+39;49;60;236;237;238
+0
+0
+- Access Sacred Forest Meadow
+
+3;50;185;223;224
+0
+0
+- Access Zora Domain
+
+46;57;62;163;240
+0
+0
+- Access Zora Fountain
+
+61;74;75;166
+0
+0
+- Access Desert Collosus
+
+6;31;81;105;177
+0
+0
+- Access Lon Lon Ranch
+
+37;124;151;159;216
+0
+0
 - Inaccessable
-973
+982
 
 0
 0
@@ -4877,50 +4922,5 @@
 - Explosives
 
 917;945
-0
-0
-- Kakariko Access
-
-30;35;63;85;118;122;125;128;129;162;209
-0
-0
-- Kokiri Forest Access
-
-52;53;119;139;146;150;155;158;213
-0
-0
-- Lost Woods Access
-
-29;43;56;221;54;175
-0
-0
-- Sacred Forest Access
-
-3;50;185;223;224
-0
-0
-- Zora River Access
-
-39;49;60;236;237;238
-0
-0
-- Zora Domain Access
-
-46;57;62;163;240
-0
-0
-- Zora Fountain Access
-
-61;74;75;166
-0
-0
-- Desert Collosus Access
-
-6;31;81;105;177
-0
-0
-- Lon Lon Access
-
-37;124;151;159;216
 0
 0

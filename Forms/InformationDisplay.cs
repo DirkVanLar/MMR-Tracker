@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
 {
-    public partial class DebugScreen : Form
+    public partial class InformationDisplay : Form
     {
 
         public static List<string> Playthrough = new List<string>();
 
         public int DebugFunction = 0;
-        public DebugScreen()
+        public InformationDisplay()
         {
             InitializeComponent();
         }

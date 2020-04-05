@@ -1,6 +1,6 @@
 ﻿namespace MMR_Tracker_V2
 {
-    partial class DebugScreen
+    partial class InformationDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DebugScreen));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InformationDisplay));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 

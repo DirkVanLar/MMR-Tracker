@@ -26,8 +26,7 @@ namespace MMR_Tracker_V2
             //Rando Version 1.6 = Logic Version 5
             //Rando Version 1.7 = Logic Version 6
             //Rando Version 1.8 = Logic Version 8
-            //Rando Version 1.9 = Logic Version 13
-            //Rando Version 1.10 = Logic Version 13
+            //Rando Version 1.9 - 1.11 = Logic Version 13
             //Entrance Rando Dev Build 1.11.0.2 = Logic Version 16 (Used to test entrance rando features)
             var EntAreaDict = new Dictionary<int, int>();
             var AreaDicVersion = 0;
