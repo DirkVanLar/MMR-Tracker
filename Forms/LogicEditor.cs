@@ -23,15 +23,22 @@ namespace MMR_Tracker.Forms
             InitializeComponent();
         }
 
+        //Main Lists
         public static List<LogicObjects.LogicEntry> LogicList = new List<LogicObjects.LogicEntry>();
-        public static List<LogicObjects.LogicEntry> CopiedRequirement = new List<LogicObjects.LogicEntry>();
         public static List<LogicObjects.LogicDictionaryEntry> EditorDictionary = new List<LogicObjects.LogicDictionaryEntry>();
+
+        //Utility Lists
+        public static List<LogicObjects.LogicEntry> CopiedRequirement = new List<LogicObjects.LogicEntry>();
+        public static List<RequiementConditional> CopiedConditional = new List<RequiementConditional>();
         public static List<List<LogicObjects.LogicEntry>> UndoList = new List<List<LogicObjects.LogicEntry>>();
         public static List<List<LogicObjects.LogicEntry>> RedoList = new List<List<LogicObjects.LogicEntry>>();
-        public static List<RequiementConditional> CopiedConditional = new List<RequiementConditional>();
+
+        //Entry management
         public static List<int> GoBackList = new List<int>();
         public static LogicObjects.LogicEntry currentEntry = new LogicObjects.LogicEntry();
         public static ListBox LastSelectedListBox;
+
+        //Other Variables
         public static bool isOOT = false;
         public static bool GetOOTDictionary = false;
         public static bool PrintingItem = false;
@@ -390,24 +397,24 @@ namespace MMR_Tracker.Forms
 
         private void LBRequired_DoubleClick(object sender, EventArgs e)
         {
-            if (LBRequired.SelectedItem is LogicObjects.LogicEntry)
+            try
             {
-                try
+                if (LBRequired.SelectedItem is LogicObjects.LogicEntry)
                 {
                     var index = (LBRequired.SelectedItem as LogicObjects.LogicEntry).ID;
                     GoBackList.Add(currentEntry.ID);
                     nudIndex.Value = index;
                     WriteCurentItem(index);
                 }
-                catch { }
             }
+            catch { }
         }
 
         private void LBConditional_DoubleClick(object sender, EventArgs e)
         {
-            if (LBConditional.SelectedItem is RequiementConditional)
+            try
             {
-                try
+                if (LBConditional.SelectedItem is RequiementConditional)
                 {
                     var item = (LBConditional.SelectedItem as RequiementConditional);
                     if (item.ItemIDs.Count < 2)
@@ -433,8 +440,8 @@ namespace MMR_Tracker.Forms
                     LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
                     ItemSelect.Function = 0;
                 }
-                catch { }
             }
+            catch { }
         }
 
         private void LBConditional_SelectedIndexChanged(object sender, EventArgs e)

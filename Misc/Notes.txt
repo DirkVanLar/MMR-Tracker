@@ -1,13 +1,4 @@
 ﻿TODO ===
 
-Sort checks even further so hat areas in the same region are grouped together.
-Regions should be:
-Clocktown
-Ranch/Termina
-Swamp
-Mountains
-Oceans
-Canyon
-
 CONSIDER ===
 
