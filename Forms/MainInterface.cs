@@ -264,10 +264,7 @@ namespace MMR_Tracker_V2
             PrintToListBox();
         }
 
-        private void DumbStuffToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Debugging.TestDumbStuff();
-        }
+        private void DumbStuffToolStripMenuItem_Click(object sender, EventArgs e) { Debugging.TestDumbStuff(); }
 
         private void CreateOOTFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -608,6 +605,8 @@ namespace MMR_Tracker_V2
             toggleEntranceRandoFeaturesToolStripMenuItem.Text = (VersionHandeling.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
             coupleEntrancesToolStripMenuItem.Text = (LogicEditing.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
             devToolStripMenuItem.Visible = Debugging.ISDebugging;
+            seperateMarkedItemsToolStripMenuItem.Text = (Utility.MoveMarkedToBottom) ? "Don't Seperate Marked Items" : "Seperate Marked Items";
+
 
             //OOT Handeling
             importSpoilerLogToolStripMenuItem.Visible = !OOT_Support.isOOT;
@@ -767,7 +766,7 @@ namespace MMR_Tracker_V2
 
             ListBoxItems = ListBoxItems
                 .OrderBy(x => Utility.BoolToInt(x.IsEntrance()))
-                .ThenBy(x => Utility.BoolToInt(x.HasRandomItem()))
+                .ThenBy(x => Utility.BoolToInt(x.HasRandomItem() && Utility.MoveMarkedToBottom))
                 .ThenBy(x => (Groups.ContainsKey(x.LocationArea.ToLower().Trim()) ? Groups[x.LocationArea.ToLower().Trim()] : ListBoxItems.Count() + 1))
                 .ThenBy(x => x.LocationArea)
                 .ThenBy(x => x.DisplayName).ToList();
@@ -948,6 +947,13 @@ namespace MMR_Tracker_V2
         private void verifyCustomRandoCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Code " + (Debugging.VerifyCustomRandoCode() ? "Worked" : "Faled"));
+        }
+
+        private void seperateMarkedItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utility.MoveMarkedToBottom = !Utility.MoveMarkedToBottom;
+            FormatMenuItems();
+            PrintToListBox();
         }
     }
 }

@@ -90,10 +90,11 @@
             this.oOTSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createOOTFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumbStuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verifyCustomRandoCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.verifyCustomRandoCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.seperateMarkedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -395,7 +396,7 @@
             this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -427,7 +428,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -461,9 +462,10 @@
             // miscOptionsToolStripMenuItem
             // 
             this.miscOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showEntryNameToolTipToolStripMenuItem});
+            this.showEntryNameToolTipToolStripMenuItem,
+            this.seperateMarkedItemsToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -639,6 +641,13 @@
             this.dumbStuffToolStripMenuItem.Text = "Code Testing";
             this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.DumbStuffToolStripMenuItem_Click);
             // 
+            // verifyCustomRandoCodeToolStripMenuItem
+            // 
+            this.verifyCustomRandoCodeToolStripMenuItem.Name = "verifyCustomRandoCodeToolStripMenuItem";
+            this.verifyCustomRandoCodeToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.verifyCustomRandoCodeToolStripMenuItem.Text = "Verify Custom Rando Code";
+            this.verifyCustomRandoCodeToolStripMenuItem.Click += new System.EventHandler(this.verifyCustomRandoCodeToolStripMenuItem_Click);
+            // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
@@ -653,12 +662,12 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // verifyCustomRandoCodeToolStripMenuItem
+            // seperateMarkedItemsToolStripMenuItem
             // 
-            this.verifyCustomRandoCodeToolStripMenuItem.Name = "verifyCustomRandoCodeToolStripMenuItem";
-            this.verifyCustomRandoCodeToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.verifyCustomRandoCodeToolStripMenuItem.Text = "Verify Custom Rando Code";
-            this.verifyCustomRandoCodeToolStripMenuItem.Click += new System.EventHandler(this.verifyCustomRandoCodeToolStripMenuItem_Click);
+            this.seperateMarkedItemsToolStripMenuItem.Name = "seperateMarkedItemsToolStripMenuItem";
+            this.seperateMarkedItemsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.seperateMarkedItemsToolStripMenuItem.Text = "Seperate Marked Items";
+            this.seperateMarkedItemsToolStripMenuItem.Click += new System.EventHandler(this.seperateMarkedItemsToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 
@@ -768,6 +777,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ocarinaSongsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verifyCustomRandoCodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem seperateMarkedItemsToolStripMenuItem;
     }
 }
 

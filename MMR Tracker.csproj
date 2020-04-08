@@ -137,6 +137,9 @@
     <None Include="Recources\MMRDICTIONARYV13.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Recources\MMRDICTIONARYV14.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Recources\MMRDICTIONARYV16.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

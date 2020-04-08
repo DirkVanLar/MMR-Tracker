@@ -1,4 +1,8 @@
 ﻿TODO ===
 
+Seperate Tingle maps into their own category
+
+Disable adding SET ITEMS to the location header if seperating set items is not enabled
+
 CONSIDER ===
 

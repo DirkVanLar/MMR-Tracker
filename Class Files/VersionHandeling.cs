@@ -12,11 +12,11 @@ namespace MMR_Tracker_V2
     class VersionHandeling
     {
         public static int Version = 0; // The current verion of logic being used
-        public static int EntranceRandoVersion = 14; // The version of logic that entrance randomizer was implimented
+        public static int EntranceRandoVersion = 16; // The version of logic that entrance randomizer was implimented
         public static bool entranceRadnoEnabled = false; // Whether or not entrances should be seperated into their own colum
         public static bool OverRideAutoEntranceRandoEnable = false;
         public static bool CheckForUpdate = true;
-        public static List<int> ValidVersions = new List<int> { 8, 13, 16 }; // Versions of logic used in main releases
+        public static List<int> ValidVersions = new List<int> { 8, 13, 14, 16 }; // Versions of logic used in main releases
 
         public static decimal trackerVersion = 1.7m;
 
@@ -56,6 +56,12 @@ namespace MMR_Tracker_V2
                     EntAreaDict.Add(108, 107); //Snowhead Clear, Snowhead Entrance
                     EntAreaDict.Add(113, 112); //GreatBay Clear, GreatBay Entrance
                     EntAreaDict.Add(118, 117); //Ikana Clear, StoneTower Entrance
+                    break;
+                case 14:
+                    EntAreaDict.Add(107, 106); //Woodfall Clear, Woodfall Entrance
+                    EntAreaDict.Add(110, 109); //Snowhead Clear, Snowhead Entrance
+                    EntAreaDict.Add(115, 114); //GreatBay Clear, GreatBay Entrance
+                    EntAreaDict.Add(120, 119); //Ikana Clear, StoneTower Entrance
                     break;
             }
             return EntAreaDict;

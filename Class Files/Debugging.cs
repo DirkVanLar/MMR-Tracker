@@ -147,7 +147,7 @@ namespace MMR_Tracker_V2
                 if (i.ID == GameClear) { importantItems.Add(i.ID); }
             }
 
-            LogicEditing.SwapAreaClearLogic(playLogic);
+            SwapAreaClearLogic(playLogic);
             MarkAreaClearAsEntry(playLogic);
             CalculatePlaythrough(playLogic, Playthrough, 0, importantItems);
 
@@ -321,25 +321,18 @@ namespace MMR_Tracker_V2
                 }
                 else
                 {
-                    var C1 = (playLogic.Where(x => x.DictionaryName == "Woodfall clear").First().ID);
-                    var C2 = (playLogic.Where(x => x.DictionaryName == "Snowhead clear").First().ID);
-                    var C3 = (playLogic.Where(x => x.DictionaryName == "Great Bay clear").First().ID);
-                    var C4 = (playLogic.Where(x => x.DictionaryName == "Ikana clear").First().ID);
-                    var C5 = (playLogic.Where(x => x.DictionaryName == "Oath to Order").First().ID);
-                    playLogic[AccessMajora].Required = new int[] { C1, C2, C3, C4, C5 };
+                    playLogic[AccessMajora].Required = new int[] { playLogic.Where(x => x.DictionaryName == "Moon Access").First().ID };
                 }
 
                 playLogic[GameClear].Required = new int[] { AccessMajora };
 
-                playLogic[GameClear].Conditionals = new int[3][];
+                playLogic[GameClear].Conditionals = new int[2][];
                 playLogic[GameClear].Conditionals[0] = new int[] { StunMajora, DamageMajora };
 
                 var FD = playLogic.Where(x => x.DictionaryName == "Fierce Deity's Mask").First().ID;
-                var M1 = playLogic.Where(x => x.DictionaryName == "Great Fairy Magic Meter").First().ID;
-                var M2 = playLogic.Where(x => x.DictionaryName == "Great Fairy Extended Magic").First().ID;
+                var M1 = playLogic.Where(x => x.DictionaryName == "Magic Meter").First().ID;
 
                 playLogic[GameClear].Conditionals[1] = new int[] { FD, M1 };
-                playLogic[GameClear].Conditionals[2] = new int[] { FD, M2 };
             }
             catch
             {
@@ -351,6 +344,7 @@ namespace MMR_Tracker_V2
 
         public static void MarkAreaClearAsEntry(List<LogicObjects.LogicEntry> Logic)
         {
+
             var EntAreaDict = VersionHandeling.AreaClearDictionary();
             LogicObjects.LogicEntry Default = new LogicObjects.LogicEntry();
             var WoodFallClear = Logic.Find(x => x.DictionaryName == "Woodfall clear") ?? Default;
@@ -362,15 +356,51 @@ namespace MMR_Tracker_V2
             SnowheadClear.IsFake = false;
             GreatBayClear.IsFake = false;
             IkanaClear.IsFake = false;
+            //Set the area clear name to their defualt
+            WoodFallClear.LocationName = "Defeat Odolwa";
+            WoodFallClear.ItemName = "Odolwas Remians";
+            SnowheadClear.LocationName = "Defeat Goht";
+            SnowheadClear.ItemName = "Gohts Remians";
+            GreatBayClear.LocationName = "Defeat Gyrog";
+            GreatBayClear.ItemName = "Gyrogs Remians";
+            IkanaClear.LocationName = "Defeat Twinmold";
+            IkanaClear.ItemName = "Twinmolds Remians";
+            //Find the name of the randomized area clear
+            var newWoodfallLocation = (WoodFallClear.RandomizedAreaClear(Logic, EntAreaDict) ?? WoodFallClear).LocationName;
+            var newWoodfallItem = (WoodFallClear.RandomizedAreaClear(Logic, EntAreaDict) ?? WoodFallClear).ItemName;
+            var newSnowheadLocation = (SnowheadClear.RandomizedAreaClear(Logic, EntAreaDict) ?? SnowheadClear).LocationName;
+            var newSnowheadItem = (SnowheadClear.RandomizedAreaClear(Logic, EntAreaDict) ?? SnowheadClear).ItemName;
+            var newGreatBayLocation = (GreatBayClear.RandomizedAreaClear(Logic, EntAreaDict) ?? GreatBayClear).LocationName;
+            var newGreatBayItem = (GreatBayClear.RandomizedAreaClear(Logic, EntAreaDict) ?? GreatBayClear).ItemName;
+            var newIkanaLocation = (IkanaClear.RandomizedAreaClear(Logic, EntAreaDict) ?? IkanaClear).LocationName;
+            var newIkanaItem = (IkanaClear.RandomizedAreaClear(Logic, EntAreaDict) ?? IkanaClear).ItemName;
+            //Set the randomized area clear name to the original area clear
+            WoodFallClear.LocationName = newWoodfallLocation;
+            WoodFallClear.ItemName = newWoodfallItem;
+            SnowheadClear.LocationName = newSnowheadLocation;
+            SnowheadClear.ItemName = newSnowheadItem;
+            GreatBayClear.LocationName = newGreatBayLocation;
+            GreatBayClear.ItemName = newGreatBayItem;
+            IkanaClear.LocationName = newIkanaLocation;
+            IkanaClear.ItemName = newIkanaItem;
+        }
 
-            (WoodFallClear.RandomizedAreaClear(Logic, EntAreaDict) ?? WoodFallClear).LocationName = "Defeat Odolwa";
-            (WoodFallClear.RandomizedAreaClear(Logic, EntAreaDict) ?? WoodFallClear).ItemName = "Odolwas Remians";
-            (SnowheadClear.RandomizedAreaClear(Logic, EntAreaDict) ?? SnowheadClear).LocationName = "Defeat Goht";
-            (SnowheadClear.RandomizedAreaClear(Logic, EntAreaDict) ?? SnowheadClear).ItemName = "Gohts Remians";
-            (GreatBayClear.RandomizedAreaClear(Logic, EntAreaDict) ?? GreatBayClear).LocationName = "Defeat Gyrog";
-            (GreatBayClear.RandomizedAreaClear(Logic, EntAreaDict) ?? GreatBayClear).ItemName = "Gyrogs Remians";
-            (IkanaClear.RandomizedAreaClear(Logic, EntAreaDict) ?? IkanaClear).LocationName = "Defeat Twinmold";
-            (IkanaClear.RandomizedAreaClear(Logic, EntAreaDict) ?? IkanaClear).ItemName = "Twinmolds Remians";
+        public static void SwapAreaClearLogic(List<LogicObjects.LogicEntry> logic)
+        {
+            var areaClearData = VersionHandeling.AreaClearDictionary();
+            var ReferenceLogic = Utility.CloneLogicList(logic);
+            foreach (var i in logic)
+            {
+                if (areaClearData.ContainsKey(i.ID))
+                {
+                    var Dungeon = logic[areaClearData[i.ID]];
+                    if (Dungeon.RandomizedItem < 0) { return; }
+                    var DungoneRandItem = Dungeon.RandomizedItem;
+                    var RandomClear = areaClearData.FirstOrDefault(x => x.Value == DungoneRandItem).Key;
+                    logic[i.ID].Required = ReferenceLogic[RandomClear].Required;
+                    logic[i.ID].Conditionals = ReferenceLogic[RandomClear].Conditionals;
+                }
+            }
         }
 
         public static bool VerifyCustomRandoCode()

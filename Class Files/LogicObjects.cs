@@ -103,6 +103,8 @@ namespace MMR_Tracker_V2
         }
         public static LogicObjects.LogicEntry RandomizedAreaClear(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> logic, Dictionary<int, int> EntAreaDict)
         {
+            //Finds the area clear related to the dungeon that is randomized to the current area.
+            //If woodfall entrane leads to snowhead and you pass this function woodfall clear it will return snowhead clear.
             if (!EntAreaDict.ContainsKey(entry.ID)) { return null; }
             var templeEntrance = EntAreaDict[entry.ID];//What is the dungeon entrance in this area
             var RandTempleEntrance = logic[templeEntrance].RandomizedItem;//What dungeon does this areas dungeon entrance lead to

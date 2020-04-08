@@ -152,7 +152,6 @@ namespace MMR_Tracker_V2
 
                 int Special = SetAreaClear(item, logic);
                 if (Special == 2) { recalculate = true; }
-
                 if (item.Aquired != item.Available && item.IsFake && Special == 0)
                 {
                     item.Aquired = item.Available;
@@ -170,8 +169,8 @@ namespace MMR_Tracker_V2
             var RandClearLogic = ClearLogic.RandomizedAreaClear(logic, EntAreaDict);
             if (RandClearLogic == null && ClearLogic.Aquired) { ClearLogic.Aquired = false; return 2; }
             if (RandClearLogic == null) { return 1; }
-            if (ClearLogic.Aquired != RandClearLogic.Available) { ClearLogic.Aquired = RandClearLogic.Available; }
-            return 2;
+            if (ClearLogic.Aquired != RandClearLogic.Available) { ClearLogic.Aquired = RandClearLogic.Available; return 2; }
+            return 1;
         }
 
         public static bool CheckObject(LogicObjects.LogicEntry CheckedObject)
@@ -231,7 +230,7 @@ namespace MMR_Tracker_V2
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
             if (path.Contains(".txt")) { SpoilerData = Utility.ReadTextSpoilerlog(path); }
             else if (path.Contains(".html")) { SpoilerData = Utility.ReadHTMLSpoilerLog(path, VersionHandeling.IsEntranceRando()); }
-            else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); Console.WriteLine(SpoilerData); return;  }
+            else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return;  }
             foreach (LogicObjects.SpoilerData data in SpoilerData)
             {
                 if (data.LocationID > -1 && data.ItemID > -2)
@@ -356,29 +355,15 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public static void SwapAreaClearLogic(List<LogicObjects.LogicEntry> logic)
-        {
-            var areaClearData = VersionHandeling.AreaClearDictionary();
-            var ReferenceLogic = Utility.CloneLogicList(logic);
-            foreach (var i in logic)
-            {
-                if (areaClearData.ContainsKey(i.ID))
-                {
-                    var Dungeon = logic[areaClearData[i.ID]];
-                    if (Dungeon.RandomizedItem < 0) { return; }
-                    var DungoneRandItem = Dungeon.RandomizedItem;
-                    var RandomClear = areaClearData.FirstOrDefault(x => x.Value == DungoneRandItem).Key;
-                    logic[i.ID].Required = ReferenceLogic[RandomClear].Required;
-                    logic[i.ID].Conditionals = ReferenceLogic[RandomClear].Conditionals;
-                }
-            }
-        }
-
         public static List<int> FindRequirements(LogicObjects.LogicEntry Item, List<LogicObjects.LogicEntry> logic)
         {
             List<int> ImportantItems = new List<int>();
             List<LogicObjects.PlaythroughItem> playthrough = new List<LogicObjects.PlaythroughItem>();
             var LogicCopy = Utility.CloneLogicList(logic);
+            foreach(var i in LogicCopy)
+            {
+                if (i.Unrandomized()) { i.IsFake = true; }
+            }
             var ItemCopy = LogicCopy[Item.ID];
             ForceFreshCalculation(LogicCopy);
             foreach(var i in LogicCopy) 
@@ -388,9 +373,9 @@ namespace MMR_Tracker_V2
             }
             Debugging.UnlockAllFake(LogicCopy, ImportantItems, 0, playthrough);
             List<int> UsedItems = new List<int>();
-            bool isAvailable = (RequirementsMet(ItemCopy.Required, logic, UsedItems) && CondtionalsMet(ItemCopy.Conditionals, logic, UsedItems));
+            bool isAvailable = (RequirementsMet(ItemCopy.Required, LogicCopy, UsedItems) && CondtionalsMet(ItemCopy.Conditionals, LogicCopy, UsedItems));
             if (!isAvailable) { return new List<int>(); }
-            List<int> NeededItems = Utility.ResolveFakeToRealItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, logic);
+            List<int> NeededItems = Utility.ResolveFakeToRealItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy);
             NeededItems = NeededItems.Distinct().ToList();
             return NeededItems;
         }

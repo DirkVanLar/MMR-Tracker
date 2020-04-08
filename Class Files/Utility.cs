@@ -17,6 +17,7 @@ namespace MMR_Tracker_V2
         public static List<List<LogicObjects.LogicEntry>> RedoList = new List<List<LogicObjects.LogicEntry>>();
         public static bool UnsavedChanges = false;
         public static bool ShowEntryNameTooltip = true;
+        public static bool MoveMarkedToBottom = false;
         public static bool UnradnomizeEntranesOnStartup = true;
         public static string BomberCode = "";
         public static string LotteryNumber = "";
@@ -247,19 +248,22 @@ namespace MMR_Tracker_V2
         {
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
-            string[] Options = new string[12];
-            Options[0] = JsonConvert.SerializeObject(LogicObjects.Logic);
-            Options[1] = "version:" + VersionHandeling.Version.ToString();
-            Options[2] = "UseSOT:" + ((Pathfinding.UseSongOfTime) ? "1" : "0");
-            Options[3] = "IncludeItems:" + ((Pathfinding.IncludeItemLocations) ? "1" : "0");
-            Options[4] = "EntranceCouple:" + ((LogicEditing.CoupleEntrances) ? "1" : "0");
-            Options[5] = "StrictLogic:" + ((LogicEditing.StrictLogicHandeling) ? "1" : "0");
-            Options[6] = "ShowToolTip:" + ((Utility.ShowEntryNameTooltip) ? "1" : "0");
-            Options[7] = "EntRadno:" + ((VersionHandeling.entranceRadnoEnabled) ? "1" : "0");
-            Options[8] = "AutoEntRand:" + ((VersionHandeling.OverRideAutoEntranceRandoEnable) ? "1" : "0");
-            Options[9] = "OOTSave:" + ((OOT_Support.isOOT) ? "1" : "0");
-            Options[10] = "BomberCode:" + Utility.BomberCode;
-            Options[11] = "LotteryNumber:" + Utility.BomberCode;
+            string[] Options = new string[] 
+            {
+                JsonConvert.SerializeObject(LogicObjects.Logic),
+                "version:" + VersionHandeling.Version.ToString(),
+                "UseSOT:" + ((Pathfinding.UseSongOfTime) ? "1" : "0"),
+                "IncludeItems:" + ((Pathfinding.IncludeItemLocations) ? "1" : "0"),
+                "EntranceCouple:" + ((LogicEditing.CoupleEntrances) ? "1" : "0"),
+                "StrictLogic:" + ((LogicEditing.StrictLogicHandeling) ? "1" : "0"),
+                "ShowToolTip:" + ((Utility.ShowEntryNameTooltip) ? "1" : "0"),
+                "EntRadno:" + ((VersionHandeling.entranceRadnoEnabled) ? "1" : "0"),
+                "AutoEntRand:" + ((VersionHandeling.OverRideAutoEntranceRandoEnable) ? "1" : "0"),
+                "OOTSave:" + ((OOT_Support.isOOT) ? "1" : "0"),
+                "BomberCode:" + Utility.BomberCode,
+                "LotteryNumber:" + Utility.LotteryNumber,
+                "SeperateMarked:" + Utility.MoveMarkedToBottom
+            };
             File.WriteAllLines(saveDialog.FileName, Options);
             UnsavedChanges = false;
             return true;
@@ -277,8 +281,9 @@ namespace MMR_Tracker_V2
             if (options.Length > 7) { VersionHandeling.entranceRadnoEnabled = (options[7] == "EntRadno:1"); }
             if (options.Length > 8) { VersionHandeling.OverRideAutoEntranceRandoEnable = (options[8] == "AutoEntRand:1"); }
             if (options.Length > 9) { OOT_Support.isOOT = (options[9] == "OOTSave:1"); }
-            if (options.Length > 10) { Utility.BomberCode = (options[9].Replace("BomberCode:", "")); }
-            if (options.Length > 11) { Utility.BomberCode = (options[9].Replace("LotteryNumber:", "")); }
+            if (options.Length > 10) { Utility.BomberCode = (options[10].Replace("BomberCode:", "")); }
+            if (options.Length > 11) { Utility.LotteryNumber = (options[11].Replace("LotteryNumber:", "")); }
+            if (options.Length > 12) { Utility.MoveMarkedToBottom = (options[12] == "SeperateMarked:1"); }
             return true;
         }
         public static void SaveState(List<LogicObjects.LogicEntry> logic)
@@ -540,6 +545,9 @@ namespace MMR_Tracker_V2
 
                     var ShowToolTips = MessageBox.Show("Would you like to see tooltips that display the full name of an item when you mouse over it?", "Show Tool Tips", MessageBoxButtons.YesNoCancel);
                     if (ShowToolTips == DialogResult.No) { Utility.ShowEntryNameTooltip = false; }
+
+                    var SeperateMArkedItems = MessageBox.Show("Would you like Marked locations to be moved to the bottom of the list?", "Show Tool Tips", MessageBoxButtons.YesNoCancel);
+                    if (ShowToolTips == DialogResult.Yes) { Utility.MoveMarkedToBottom = true; }
 
                     var DisableEntrances = MessageBox.Show("Would you like the tracker to automatically mark entrances as unrandomized when creating an instance? This is usefull if you don't plan to use entrance randomizer often.", "Start with Entrance Rando", MessageBoxButtons.YesNoCancel);
                     if (DisableEntrances == DialogResult.No) { Utility.UnradnomizeEntranesOnStartup = false; }
