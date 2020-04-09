@@ -646,7 +646,7 @@
             this.verifyCustomRandoCodeToolStripMenuItem.Name = "verifyCustomRandoCodeToolStripMenuItem";
             this.verifyCustomRandoCodeToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.verifyCustomRandoCodeToolStripMenuItem.Text = "Verify Custom Rando Code";
-            this.verifyCustomRandoCodeToolStripMenuItem.Click += new System.EventHandler(this.verifyCustomRandoCodeToolStripMenuItem_Click);
+            this.verifyCustomRandoCodeToolStripMenuItem.Click += new System.EventHandler(this.VerifyCustomRandoCodeToolStripMenuItem_Click);
             // 
             // undoToolStripMenuItem
             // 

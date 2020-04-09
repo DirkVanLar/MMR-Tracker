@@ -7,17 +7,13 @@ namespace MMR_Tracker_V2
     {
         public static List<List<LogicObjects.MapPoint>> paths = new List<List<LogicObjects.MapPoint>>();
 
-        public static bool UseSongOfTime = false;
-
-        public static bool IncludeItemLocations = false;
-
-        public static List<List<LogicObjects.MapPoint>> FindLogicalEntranceConnections(List<LogicObjects.LogicEntry> logic)
+        public static List<List<LogicObjects.MapPoint>> FindLogicalEntranceConnections(LogicObjects.TrackerInstance Instance)
         {
             var result = new List<List<LogicObjects.MapPoint>> { new List<LogicObjects.MapPoint>(), new List<LogicObjects.MapPoint>() };
 
-            var logicTemplate = Utility.CloneLogicList(logic);
+            var logicTemplate = Utility.CloneLogicInstance(Instance);
 
-            foreach (LogicObjects.LogicEntry entry in logicTemplate)
+            foreach (LogicObjects.LogicEntry entry in logicTemplate.Logic)
             {
                 if (entry.IsEntrance())
                 {
@@ -26,20 +22,20 @@ namespace MMR_Tracker_V2
                 }
             }
 
-            foreach (LogicObjects.LogicEntry entry in logic)
+            foreach (LogicObjects.LogicEntry entry in Instance.Logic)
             {
                 if (entry.RandomizedItem > -1 && entry.IsEntrance() && entry.Checked)
                 {
-                    var dummyLogic = Utility.CloneLogicList(logicTemplate);
-                    var ExitToCheck = dummyLogic[entry.RandomizedItem];
+                    var dummyLogic = Utility.CloneLogicInstance(logicTemplate);
+                    var ExitToCheck = dummyLogic.Logic[entry.RandomizedItem];
                     ExitToCheck.Aquired = true;
                     LogicEditing.CalculateItems(dummyLogic, true);
-                    foreach (var dummyEntry in dummyLogic)
+                    foreach (var dummyEntry in dummyLogic.Logic)
                     {
                         if (dummyEntry.Available &&
                             !dummyEntry.IsFake &&
-                            (dummyEntry.IsEntrance() || IncludeItemLocations) &&
-                            CheckSOT(ExitToCheck, dummyEntry))
+                            (dummyEntry.IsEntrance() || dummyLogic.Options.IncludeItemLocations) &&
+                            CheckSOT(dummyLogic, ExitToCheck, dummyEntry))
                         {
                             var newEntry = new LogicObjects.MapPoint
                             {
@@ -58,6 +54,7 @@ namespace MMR_Tracker_V2
         }
 
         public static void Findpath(
+            LogicObjects.TrackerInstance Instance,
             List<LogicObjects.MapPoint> map, //A map of all available entrances from each exit as long as the result of that entrance is known
             List<LogicObjects.MapPoint> FullMap, //A map of all available exit from each entrance
             int startinglocation, //The ID of the last exit you came from
@@ -70,7 +67,7 @@ namespace MMR_Tracker_V2
         {
             if (InitialRun) { paths = new List<List<LogicObjects.MapPoint>>(); }
             //There are no logical exits from majoras lair, this however is used to lock inaccesable exits
-            if (LogicObjects.Logic[startinglocation].DictionaryName == "EntranceMajorasLairFromTheMoon") { return; }
+            if (Instance.Logic[startinglocation].DictionaryName == "EntranceMajorasLairFromTheMoon") { return; }
             //Make a copy to edit and pass to the next funtion
             var ExitsSeenCopy = JsonConvert.DeserializeObject<List<int>>(JsonConvert.SerializeObject(ExitsSeen));
             //The path finder will use this to ignore seen entrances in areas with new entrances and seen entrances
@@ -99,7 +96,7 @@ namespace MMR_Tracker_V2
             {
                 var UpdatedPath = JsonConvert.DeserializeObject<List<LogicObjects.MapPoint>>(JsonConvert.SerializeObject(Path));
                 UpdatedPath.Add(exit);
-                Findpath(map, FullMap, exit.ResultingExit, destination, ExitsSeenCopy, ExitsSeenOriginalCopy, UpdatedPath, false);
+                Findpath(Instance, map, FullMap, exit.ResultingExit, destination, ExitsSeenCopy, ExitsSeenOriginalCopy, UpdatedPath, false);
             }
         }
 
@@ -122,9 +119,9 @@ namespace MMR_Tracker_V2
             return good;
         }
 
-        private static bool CheckSOT(LogicObjects.LogicEntry EntranceToCheck, LogicObjects.LogicEntry dummyEntry)
+        private static bool CheckSOT(LogicObjects.TrackerInstance Instance, LogicObjects.LogicEntry EntranceToCheck, LogicObjects.LogicEntry dummyEntry)
         {
-            var songOfTime = (UseSongOfTime) ? "" : "EntranceSouthClockTownFromClockTowerInterior";
+            var songOfTime = (Instance.Options.UseSongOfTime) ? "" : "EntranceSouthClockTownFromClockTowerInterior";
             if (dummyEntry.DictionaryName == songOfTime)
             {
                 if (EntranceToCheck.DictionaryName == "EntranceClockTowerInteriorFromBeforethePortaltoTermina" || EntranceToCheck.DictionaryName == "EntranceClockTowerInteriorFromSouthClockTown")
@@ -135,19 +132,19 @@ namespace MMR_Tracker_V2
             }
             return true;
         }
-        public static string SetSOTName(LogicObjects.MapPoint stop)
+        public static string SetSOTName(LogicObjects.TrackerInstance Instance, LogicObjects.MapPoint stop)
         {
-            var StartName = LogicObjects.Logic[stop.CurrentExit].DictionaryName;
-            var entName = LogicObjects.Logic[stop.EntranceToTake].DictionaryName;
+            var StartName = Instance.Logic[stop.CurrentExit].DictionaryName;
+            var entName = Instance.Logic[stop.EntranceToTake].DictionaryName;
             if (entName == "EntranceSouthClockTownFromClockTowerInterior")
             {
                 if (StartName == "EntranceClockTowerInteriorFromBeforethePortaltoTermina" || StartName == "EntranceClockTowerInteriorFromSouthClockTown")
                 {
-                    return LogicObjects.Logic[stop.EntranceToTake].LocationName;
+                    return Instance.Logic[stop.EntranceToTake].LocationName;
                 }
                 else { return "Song of Time"; }
             }
-            return LogicObjects.Logic[stop.EntranceToTake].LocationName; ;
+            return Instance.Logic[stop.EntranceToTake].LocationName; ;
         }
     }
 }

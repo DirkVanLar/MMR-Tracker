@@ -25,7 +25,7 @@ namespace MMR_Tracker_V2
                     this.Close();
                     break;
                 case 1:
-                    PrintLogicToListBox();
+                    PrintLogicToListBox(LogicObjects.MainTrackerInstance);
                     break;
                 case 2:
                     PrintInfo();
@@ -66,10 +66,10 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public void PrintLogicToListBox()
+        public void PrintLogicToListBox(LogicObjects.TrackerInstance Instance)
         {
             this.Text = "Logic Object";
-            List<LogicObjects.LogicEntry> Logic = LogicObjects.Logic;
+            List<LogicObjects.LogicEntry> Logic = Instance.Logic;
             for (int i = 0; i < Logic.Count; i++)
             {
                 listBox1.Items.Add("---------------------------------------");
@@ -139,6 +139,7 @@ namespace MMR_Tracker_V2
 
         public void PrintInfo()
         {
+            var instance = LogicObjects.MainTrackerInstance;
             listBox1.Items.Clear();
             List<string> Lines = new List<string>();
             this.Text = "Info";
@@ -166,10 +167,10 @@ namespace MMR_Tracker_V2
             Lines.Add("The location will be moved to \"Checked locations\" and display what item it contained.");
             Lines.Add("Double Clicking an item in \"Checked locations\" will uncheck that location and mark the corrisponding item as unobtained");
             Lines.Add(Utility.CreateDivider(listBox1));
-            if ((VersionHandeling.IsEntranceRando() && VersionHandeling.entranceRadnoEnabled) || VersionHandeling.Version == 0)
+            if ((instance.IsEntranceRando() && instance.Options.entranceRadnoEnabled) || instance.Version == 0)
             {
                 Lines.Add("Pathfinder:");
-                if (VersionHandeling.Version == 0) { Lines.Add("(This is only available if entrances are randomized.)"); }
+                if (instance.Version == 0) { Lines.Add("(This is only available if entrances are randomized.)"); }
                 Lines.Add("The path finder will show you the path from one entrance to another.");
                 Lines.Add("You will enter the last exit you came out of (or exit closest to you) along with the entrance you want to end up in front of.");
                 Lines.Add("It will generate a path that will put you in an area from which you can access the destination Entrance");
@@ -223,10 +224,10 @@ namespace MMR_Tracker_V2
             Lines.Add("This option might make your logic calculations a bit slower, but will prevent rare bugs that occur involvolving circular dependencies in logic.");
             Lines.Add("You should never need to enable this, but it's worth a try if logic is being buggy.");
             Lines.Add(Utility.CreateDivider(listBox1));
-            if ((VersionHandeling.IsEntranceRando() && VersionHandeling.entranceRadnoEnabled) || VersionHandeling.Version == 0)
+            if ((instance.IsEntranceRando() && instance.Options.entranceRadnoEnabled) || instance.Version == 0)
             {
                 Lines.Add("ENTRANCE RADNO:");
-                if (VersionHandeling.Version == 0) { Lines.Add("(These options are only available if entrances are randomized.)"); }
+                if (instance.Version == 0) { Lines.Add("(These options are only available if entrances are randomized.)"); }
                 Lines.Add(Utility.CreateDivider(listBox1));
                 Lines.Add("Use Song Of Time In Path finder:");
                 Lines.Add("By default using song of time is not considered in the pathfinder");

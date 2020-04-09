@@ -1,4 +1,5 @@
-﻿using MMR_Tracker.Forms;
+﻿using MMR_Tracker.Class_Files;
+using MMR_Tracker.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -57,7 +58,7 @@ namespace MMR_Tracker_V2
             if (Function == 0)
             {
                 ItemsReturned = true;
-                LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry { ID = -1 };
+                Tools.CurrentSelectedItem = new LogicObjects.LogicEntry { ID = -1 };
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -92,7 +93,7 @@ namespace MMR_Tracker_V2
                     && !Duplicates.Contains(UsedLogic[i].ItemName)
                     && UsedLogic[i].ItemName != null
                     && Utility.FilterSearch(UsedLogic[i], TXTSearch.Text, UsedLogic[i].DisplayName)
-                    && (LogicObjects.CurrentSelectedItem.ItemSubType == UsedLogic[i].ItemSubType || LogicObjects.CurrentSelectedItem.ItemSubType == "ALL"))
+                    && (Tools.CurrentSelectedItem.ItemSubType == UsedLogic[i].ItemSubType || Tools.CurrentSelectedItem.ItemSubType == "ALL"))
                 {
                     UsedLogic[i].DisplayName = UsedLogic[i].ItemName;
                     LBItemSelect.Items.Add(UsedLogic[i]);
@@ -134,7 +135,7 @@ namespace MMR_Tracker_V2
         private void ShowAllAsLocation()
         {
             LBItemSelect.Items.Clear();
-            for (var i = 0; i < LogicEditor.LogicList.Count; i++)
+            for (var i = 0; i < LogicEditor.EditorInstance.Logic.Count; i++)
             {
                 UsedLogic[i].DisplayName = UsedLogic[i].LocationName ?? UsedLogic[i].DictionaryName;
                 UsedLogic[i].DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (UsedLogic[i].SpoilerLocation ?? UsedLogic[i].DisplayName) : UsedLogic[i].DisplayName;
@@ -183,7 +184,7 @@ namespace MMR_Tracker_V2
         private void ShowAllAsDictionary()
         {
             lastRealItem = -1;
-            if (!LogicEditor.isOOT)
+            if (!LogicEditor.EditorInstance.IsOOT())
             {
                 for (var i = 0; i < UsedLogic.Count; i++)
                 {
@@ -211,12 +212,12 @@ namespace MMR_Tracker_V2
                 foreach (LogicObjects.LogicEntry i in UsedLogic)
                 {
                     if (i.ID > lastRealItem) { break; }
-                    LogicObjects.selectedItems.Add(i);
+                    Tools.CurrentselectedItems.Add(i);
 
                 }
                 foreach (LogicObjects.LogicEntry i in LBItemSelect.Items)
                 {
-                    LogicObjects.selectedItems.Add(i);
+                    Tools.CurrentselectedItems.Add(i);
                 }
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -224,7 +225,7 @@ namespace MMR_Tracker_V2
             if (LBItemSelect.Visible)
             {
                 if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return; }
-                LogicObjects.CurrentSelectedItem = LBItemSelect.SelectedItem as LogicObjects.LogicEntry;
+                Tools.CurrentSelectedItem = LBItemSelect.SelectedItem as LogicObjects.LogicEntry;
                 CheckedItems = new List<int>();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -234,7 +235,7 @@ namespace MMR_Tracker_V2
                 foreach (var i in CheckedItems)
                 {
                     var item = UsedLogic[i];
-                    LogicObjects.selectedItems.Add(item);
+                    Tools.CurrentselectedItems.Add(item);
                 }
                 CheckedItems = new List<int>();
                 this.DialogResult = DialogResult.OK;
@@ -247,16 +248,16 @@ namespace MMR_Tracker_V2
             Updating = true;
             if (Function == 0) //Main Tracker select Item
             {
-                UsedLogic = LogicObjects.Logic;
+                UsedLogic = LogicObjects.MainTrackerInstance.Logic;
                 BTNJunk.Text = "Junk";
                 LBItemSelect.SelectionMode = SelectionMode.One;
                 ShowUnusedRealAsItem(); 
-                this.Text = "Item at " + LogicObjects.CurrentSelectedItem.LocationName;
+                this.Text = "Item at " + Tools.CurrentSelectedItem.LocationName;
                 LBItemSelect.Sorted = true;
             }
             if (Function == 1) //Seed Checker ignored Real Location Select
             {
-                UsedLogic = LogicObjects.Logic;
+                UsedLogic = LogicObjects.MainTrackerInstance.Logic;
                 BTNJunk.Text = "Select";
                 UseCheckBox();
                 ShowRealAsLocation();
@@ -266,7 +267,7 @@ namespace MMR_Tracker_V2
             }
             if (Function == 2) //Seed Checker Item Select
             {
-                UsedLogic = LogicObjects.Logic;
+                UsedLogic = LogicObjects.MainTrackerInstance.Logic;
                 BTNJunk.Text = "Select";
                 UseCheckBox();
                 ShowAllAsItem();
@@ -276,7 +277,7 @@ namespace MMR_Tracker_V2
             }
             if (Function == 3) //What Unlocked This? Show Available Real Locations
             {
-                UsedLogic = LogicObjects.Logic;
+                UsedLogic = LogicObjects.MainTrackerInstance.Logic;
                 BTNJunk.Visible = false;
                 this.Height = this.Height - BTNJunk.Height;
                 LBItemSelect.SelectionMode = SelectionMode.One;
@@ -286,7 +287,7 @@ namespace MMR_Tracker_V2
             }
             if (Function == 4) //Logic Editor Go to Check
             {
-                UsedLogic = LogicEditor.LogicList;
+                UsedLogic = LogicEditor.EditorInstance.Logic;
                 BTNJunk.Text = "Select";
                 LBItemSelect.SelectionMode = SelectionMode.One;
                 ShowAllAsLocation(); 
@@ -294,7 +295,7 @@ namespace MMR_Tracker_V2
             }
             if (Function == 5) //Logic Editor Select Items
             {
-                UsedLogic = LogicEditor.LogicList;
+                UsedLogic = LogicEditor.EditorInstance.Logic;
                 BTNJunk.Text = "Select";
                 UseCheckBox();
                 ShowAllAsItem();
@@ -304,7 +305,7 @@ namespace MMR_Tracker_V2
             }
             if (Function == 6) //Logic Editor Go to List Item
             {
-                UsedLogic = LogicEditor.LogicList;
+                UsedLogic = LogicEditor.EditorInstance.Logic;
                 BTNJunk.Text = "Select";
                 LBItemSelect.SelectionMode = SelectionMode.One;
                 ShowAllCheckedItem();
@@ -313,7 +314,7 @@ namespace MMR_Tracker_V2
             }
             if (Function == 7) //Logic Editor Select Items (Conditionals)
             {
-                UsedLogic = LogicEditor.LogicList;
+                UsedLogic = LogicEditor.EditorInstance.Logic;
                 BTNJunk.Text = "Select";
                 chkAddSeperate.Checked = LogicEditor.AddCondSeperatly;
                 UseCheckBox();
@@ -324,7 +325,7 @@ namespace MMR_Tracker_V2
             }
             if (Function == 8) //Logic Reordering
             {
-                UsedLogic = LogicEditor.LogicList;
+                UsedLogic = LogicEditor.EditorInstance.Logic;
                 BTNJunk.Text = "Apply";
                 LBItemSelect.SelectionMode = SelectionMode.One;
                 UseUpDown();

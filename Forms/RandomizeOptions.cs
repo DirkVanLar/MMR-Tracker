@@ -51,7 +51,7 @@ namespace MMR_Tracker_V2
         private void BtnSave_Click(object sender, EventArgs e)
         {
             string settingString = "";
-            foreach (var item in LogicObjects.Logic)
+            foreach (var item in LogicObjects.MainTrackerInstance.Logic)
             {
                 if (item.IsFake) { continue; }
 
@@ -59,10 +59,10 @@ namespace MMR_Tracker_V2
 
                 settingString += Setting.ToString();
             }
-            var logictext = LogicEditing.WriteLogicToArray(LogicObjects.Logic, VersionHandeling.Version, OOT_Support.isOOT);
+            var logictext = LogicEditing.WriteLogicToArray(LogicObjects.MainTrackerInstance);
             string[] Options = new string[2 + logictext.Length];
             Options[0] = settingString;
-            Options[1] = VersionHandeling.Version.ToString();
+            Options[1] = LogicObjects.MainTrackerInstance.Version.ToString();
             var count = 2;
             foreach (var i in logictext)
             {
@@ -79,7 +79,7 @@ namespace MMR_Tracker_V2
             string file = Utility.FileSelect("Select A Settings File", "MMR Tracker Settings (*.MMRTSET)|*.MMRTSET");
             if (file == "") { return; }
             string[] options = File.ReadAllLines(file);
-            UpdateRandomOptionsFromFile(options);
+            UpdateRandomOptionsFromFile(options, LogicObjects.MainTrackerInstance);
             WriteToListVeiw();
         }
 
@@ -88,7 +88,7 @@ namespace MMR_Tracker_V2
         private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (updating) { return; }
-            var item = LogicObjects.Logic[Int32.Parse(e.Item.Tag.ToString())];
+            var item = LogicObjects.MainTrackerInstance.Logic[Int32.Parse(e.Item.Tag.ToString())];
             if (e.Item.Checked)
             {
                 if (CheckedItems.Contains(item)) { return; }
@@ -129,7 +129,7 @@ namespace MMR_Tracker_V2
         {
             updating = true;
             listView1.Items.Clear();
-            var logic = LogicObjects.Logic;
+            var logic = LogicObjects.MainTrackerInstance.Logic;
             List<string> randomizedOptions = new List<string> { "Randomized", "Unrandomized", "Unrandomized (Manual)", "Forced Junk" };
             listView1.FullRowSelect = true;
             Console.WriteLine("========================================================================================");
@@ -166,18 +166,18 @@ namespace MMR_Tracker_V2
             updating = false;
         }
 
-        public static void UpdateRandomOptionsFromFile(string[] options)
+        public static void UpdateRandomOptionsFromFile(string[] options, LogicObjects.TrackerInstance Instance)
         {
 
             int Version = Int32.Parse(options[1]);
 
-            if (VersionHandeling.Version != Version)
+            if (Instance.Version != Version)
             {
                 MessageBox.Show("This settings file was not made using the current logic version. Please resave your settings in the current logic version.");
                 return;
             }
             int counter = 0;
-            foreach (var item in LogicObjects.Logic)
+            foreach (var item in Instance.Logic)
             {
                 if (item.IsFake) { continue; }
                 int setting = Int32.Parse(options[0][counter].ToString());

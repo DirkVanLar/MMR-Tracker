@@ -59,6 +59,8 @@
   <ItemGroup>
     <Compile Include="Class Files\Debugging.cs" />
     <Compile Include="Class Files\OOT Support.cs" />
+    <Compile Include="Class Files\PlaythroughGenerator.cs" />
+    <Compile Include="Class Files\Tools.cs" />
     <Compile Include="Forms\InformationDisplay.cs">
       <SubType>Form</SubType>
     </Compile>

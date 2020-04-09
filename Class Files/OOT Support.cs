@@ -10,7 +10,6 @@ namespace MMR_Tracker_V2
 {
     class OOT_Support
     {
-        public static bool isOOT = false;
         public static void CreateOOTFiles()
         {
             var file = Utility.FileSelect("Select OOTR Spoiler Log", "Logic File (*.json)|*.json");

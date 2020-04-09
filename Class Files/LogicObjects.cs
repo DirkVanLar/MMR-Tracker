@@ -5,13 +5,42 @@ namespace MMR_Tracker_V2
 {
     public class LogicObjects
     {
-        public static List<LogicObjects.LogicDictionaryEntry> MMRDictionary = new List<LogicDictionaryEntry>();
-        public static Dictionary<int, int> EntrancePairs = new Dictionary<int, int>();
-        public static Dictionary<string, int> DicNameToID = new Dictionary<string, int>();
-        public static List<LogicObjects.LogicEntry> Logic = new List<LogicObjects.LogicEntry>();
-        public static LogicObjects.LogicEntry CurrentSelectedItem = new LogicObjects.LogicEntry();
-        public static List<LogicObjects.LogicEntry> selectedItems = new List<LogicObjects.LogicEntry>();
+        public static TrackerInstance MainTrackerInstance = new TrackerInstance();
+        public class TrackerInstance
+        {
+            public List<LogicEntry> Logic { get; set; } = new List<LogicEntry>();
+            public List<LogicDictionaryEntry> LogicDictionary { get; set; } = new List<LogicDictionaryEntry>();
+            public Dictionary<int, int> EntrancePairs { get; set; } = new Dictionary<int, int>();
+            public Dictionary<string, int> DicNameToID { get; set; } = new Dictionary<string, int>();
+            public Dictionary<int, int> EntranceAreaDic { get; set; } = new Dictionary<int, int>();
+            public Options Options { get; set; } = new Options();
+            public int Version { get; set; } = 0;
+            public int Game { get; set; } = 0;
+            public string[] RawLogicFile { get; set; }
+            public bool UnsavedChanges { get; set; } = false;
+            public List<List<LogicEntry>> UndoList { get; set; } = new List<List<LogicEntry>>();
+            public List<List<LogicEntry>> RedoList { get; set; } = new List<List<LogicEntry>>();
+        }
 
+        public class Options
+        {
+            //Logic Options
+            public bool StrictLogicHandeling { get; set; } = false;
+            //Entrance rando Options
+            public bool entranceRadnoEnabled { get; set; } = false;
+            public bool OverRideAutoEntranceRandoEnable { get; set; } = false;
+            public bool CoupleEntrances { get; set; } = true;
+            public bool UnradnomizeEntranesOnStartup { get; set; } = true;
+            public bool UseSongOfTime { get; set; } = false;
+            public bool IncludeItemLocations { get; set; } = false;
+            //UI Options
+            public bool MoveMarkedToBottom { get; set; } = false;
+            public bool ShowEntryNameTooltip { get; set; } = true;
+            public string BomberCode { get; set; } = "";
+            public string LotteryNumber { get; set; } = "";
+            //Misc Options
+            public bool CheckForUpdate { get; set; } = true;
+        }
         public class LogicDictionaryEntry
         {
             public string DictionaryName { get; set; } //The name the logic file uses for the item
@@ -87,29 +116,28 @@ namespace MMR_Tracker_V2
         {
             return entry.ItemSubType == "Entrance";
         }
-        public static LogicObjects.LogicEntry RandomizedEntry(this LogicObjects.LogicEntry entry, bool ReturnJunkAsItem = false, List<LogicObjects.LogicEntry> logic = null)
+        public static LogicObjects.LogicEntry RandomizedEntry(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool ReturnJunkAsItem = false )
         {
-            if (logic == null) { logic = LogicObjects.Logic; }
             if (ReturnJunkAsItem && entry.HasJunkRandomItem()) { return new LogicObjects.LogicEntry { ID = -1, DictionaryName = "Junk", DisplayName = "Junk", LocationName = "Junk", ItemName = "Junk" }; }
-            if (!entry.HasRealRandomItem() || entry.RandomizedItem >= logic.Count) { return null; }
-            return logic[entry.RandomizedItem];
+            if (!entry.HasRealRandomItem() || entry.RandomizedItem >= Instance.Logic.Count) { return null; }
+            return Instance.Logic[entry.RandomizedItem];
         }
-        public static LogicObjects.LogicEntry PairedEntry(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> logic, bool RandomizedItem = false, Dictionary<int, int> Pairs = null)
+        public static LogicObjects.LogicEntry PairedEntry(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool RandomizedItem = false)
         {
-            if (Pairs == null) { Pairs = LogicObjects.EntrancePairs; }
+            var Pairs = Instance.EntrancePairs;
             int ID = (RandomizedItem) ? entry.RandomizedItem : entry.ID;
-            if (Pairs.ContainsKey(ID) && Pairs[ID] < logic.Count) { return logic[Pairs[ID]]; }
+            if (Pairs.ContainsKey(ID) && Pairs[ID] < Instance.Logic.Count) { return Instance.Logic[Pairs[ID]]; }
             return null;
         }
-        public static LogicObjects.LogicEntry RandomizedAreaClear(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> logic, Dictionary<int, int> EntAreaDict)
+        public static LogicObjects.LogicEntry RandomizedAreaClear(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
             //Finds the area clear related to the dungeon that is randomized to the current area.
             //If woodfall entrane leads to snowhead and you pass this function woodfall clear it will return snowhead clear.
-            if (!EntAreaDict.ContainsKey(entry.ID)) { return null; }
-            var templeEntrance = EntAreaDict[entry.ID];//What is the dungeon entrance in this area
-            var RandTempleEntrance = logic[templeEntrance].RandomizedItem;//What dungeon does this areas dungeon entrance lead to
-            var RandAreaClear = RandTempleEntrance < 0 ? -1 : EntAreaDict.FirstOrDefault(x => x.Value == RandTempleEntrance).Key;//What is the Area clear Value For That Dungeon
-            var RandClearLogic = RandAreaClear == -1 ? null : logic[RandAreaClear]; //Get the full logic data for the area clear that we want to check the availability of.
+            if (!Instance.EntranceAreaDic.ContainsKey(entry.ID)) { return null; }
+            var templeEntrance = Instance.EntranceAreaDic[entry.ID];//What is the dungeon entrance in this area
+            var RandTempleEntrance = Instance.Logic[templeEntrance].RandomizedItem;//What dungeon does this areas dungeon entrance lead to
+            var RandAreaClear = RandTempleEntrance < 0 ? -1 : Instance.EntranceAreaDic.FirstOrDefault(x => x.Value == RandTempleEntrance).Key;//What is the Area clear Value For That Dungeon
+            var RandClearLogic = RandAreaClear == -1 ? null : Instance.Logic[RandAreaClear]; //Get the full logic data for the area clear that we want to check the availability of.
             return RandClearLogic;
         }
         public static bool HasRandomItem(this LogicObjects.LogicEntry entry)
@@ -147,6 +175,19 @@ namespace MMR_Tracker_V2
         public static bool StartingItem(this LogicObjects.LogicEntry entry)
         {
             return (entry.Options > 3);
+        }
+
+        public static bool IsEntranceRando(this LogicObjects.TrackerInstance Instance)
+        {
+            return Instance.Version >= VersionHandeling.EntranceRandoVersion || Instance.Game == 1;
+        }
+        public static bool IsMM(this LogicObjects.TrackerInstance Instance)
+        {
+            return Instance.Game == 0;
+        }
+        public static bool IsOOT(this LogicObjects.TrackerInstance Instance)
+        {
+            return Instance.Game == 1;
         }
     }
 }

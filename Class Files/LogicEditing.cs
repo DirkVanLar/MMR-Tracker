@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MMR_Tracker.Class_Files;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,32 +10,32 @@ namespace MMR_Tracker_V2
 {
     class LogicEditing
     {
-        public static bool StrictLogicHandeling = false;
-
-        public static bool CoupleEntrances = true;
-
-        public static bool CreateLogic(List<LogicObjects.LogicEntry> LogicList, string[] LogicFile)
+        public static bool CreateTrackerInstanceLogic(LogicObjects.TrackerInstance instance)
         {
+            /* Sets the following:
+             * Version
+             * Game
+             * Logic
+             * LogicDictionary
+             * Name to ID Dictionary
+             * Entrance pair Dictionary
+             */
+            Console.WriteLine("Populating Logic File");
+            int[] version = VersionHandeling.GetVersion(instance.RawLogicFile); //Returns [0] The logic Version, [1] The game this logic file is for
+            instance.Version = version[0];
+            instance.Game = version[1];
+            string[] VersionData = VersionHandeling.SwitchDictionary(instance); //Returns [0] Path To Dictionary, [1] path to Entrance Pairs
+            instance.EntranceAreaDic = VersionHandeling.AreaClearDictionary(instance.Version);
             int SubCounter = 0;
             int idCounter = 0;
-            var VersionData = new string[2];
             LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
-            foreach (string line in LogicFile)
+            if (VersionData.Count() > 0)
+            {
+                instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
+            }
+            foreach (string line in instance.RawLogicFile)
             {
                 if (line.StartsWith("-")) { SubCounter = 0; }
-                if (line.Contains("-version"))
-                {
-                    string curLine = line;
-
-                    OOT_Support.isOOT = false;
-                    if (line.Contains("-versionOOT")) { OOT_Support.isOOT = true; curLine = line.Replace("versionOOT", "version"); }
-
-                    VersionHandeling.Version = Int32.Parse(curLine.Replace("-version ", ""));
-                    VersionData = VersionHandeling.SwitchDictionary(VersionHandeling.Version, OOT_Support.isOOT);
-                    LogicObjects.MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
-                    if (VersionHandeling.IsEntranceRando())
-                    { VersionHandeling.entranceRadnoEnabled = true; }
-                }
                 switch (SubCounter)
                 {
                     case 0:
@@ -44,12 +45,12 @@ namespace MMR_Tracker_V2
                         LogicEntry1.RandomizedItem = -2;
                         LogicEntry1.IsFake = true;
                         LogicEntry1.SpoilerRandom = -2;
-                        for (int i = 0; i < LogicObjects.MMRDictionary.Count; i++)
+                        for (int i = 0; i < instance.LogicDictionary.Count; i++)
                         {
-                            if (LogicObjects.MMRDictionary[i].DictionaryName == line.Substring(2))
+                            if (instance.LogicDictionary[i].DictionaryName == line.Substring(2))
                             {
                                 LogicEntry1.IsFake = false;
-                                var dicent = LogicObjects.MMRDictionary[i];
+                                var dicent = instance.LogicDictionary[i];
                                 LogicEntry1.ItemName = (dicent.ItemName == "") ? null : dicent.ItemName;
                                 LogicEntry1.LocationName = (dicent.LocationName == "") ? null : dicent.LocationName;
                                 LogicEntry1.LocationArea = (dicent.LocationArea == "") ? "Misc" : dicent.LocationArea;
@@ -81,7 +82,7 @@ namespace MMR_Tracker_V2
                         break;
                     case 4:
                         LogicEntry1.AvailableOn = Convert.ToInt32(line);
-                        LogicList.Add(LogicEntry1);
+                        instance.Logic.Add(LogicEntry1);
 
                         LogicEntry1 = new LogicObjects.LogicEntry();
                         idCounter++;
@@ -89,9 +90,9 @@ namespace MMR_Tracker_V2
                 }
                 SubCounter++;
             }
-
-            CreateDicNameToID(LogicObjects.DicNameToID, LogicObjects.Logic);
-            CreatedEntrancepairDcitionary(LogicObjects.EntrancePairs, LogicObjects.DicNameToID);
+            CreateDicNameToID(instance.DicNameToID, instance.Logic);
+            if (VersionData.Count() > 0) { CreatedEntrancepairDcitionary(instance.EntrancePairs, instance.DicNameToID, VersionData); }
+            
 
             return true;
         }
@@ -142,15 +143,15 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public static void CalculateItems(List<LogicObjects.LogicEntry> logic, bool ForceStrictLogicHandeling = false, bool InitialRun = true)
+        public static void CalculateItems(LogicObjects.TrackerInstance Instance, bool ForceStrictLogicHendeling = false, bool InitialRun = true)
         {
-            if (InitialRun && (StrictLogicHandeling || ForceStrictLogicHandeling)) { ForceFreshCalculation(logic); }
+            if (InitialRun && (Instance.Options.StrictLogicHandeling || ForceStrictLogicHendeling)) { ForceFreshCalculation(Instance.Logic); }
             bool recalculate = false;
-            foreach (var item in logic)
+            foreach (var item in Instance.Logic)
             {
-                item.Available = RequirementsMet(item.Required, logic) && CondtionalsMet(item.Conditionals, logic);
+                item.Available = RequirementsMet(item.Required, Instance.Logic) && CondtionalsMet(item.Conditionals, Instance.Logic);
 
-                int Special = SetAreaClear(item, logic);
+                int Special = SetAreaClear(item, Instance);
                 if (Special == 2) { recalculate = true; }
                 if (item.Aquired != item.Available && item.IsFake && Special == 0)
                 {
@@ -158,30 +159,30 @@ namespace MMR_Tracker_V2
                     recalculate = true;
                 }
             }
-            if (recalculate) { CalculateItems(logic, false, false); }
+            if (recalculate) { CalculateItems(Instance, false, false); }
         }
 
-        public static int SetAreaClear(LogicObjects.LogicEntry ClearLogic, List<LogicObjects.LogicEntry> logic)
+        public static int SetAreaClear(LogicObjects.LogicEntry ClearLogic, LogicObjects.TrackerInstance Instance)
         {
             //0 = do nothing, 1 = Skip Fake item calculation, 2 = Skip Fake item calculation and recalculate logic
-            Dictionary<int, int> EntAreaDict = VersionHandeling.AreaClearDictionary();
-            if (VersionHandeling.IsEntranceRando() || !EntAreaDict.ContainsKey(ClearLogic.ID)) { return 0; }
-            var RandClearLogic = ClearLogic.RandomizedAreaClear(logic, EntAreaDict);
+            Dictionary<int, int> EntAreaDict = VersionHandeling.AreaClearDictionary(LogicObjects.MainTrackerInstance.Version);
+            if (LogicObjects.MainTrackerInstance.IsEntranceRando() || !EntAreaDict.ContainsKey(ClearLogic.ID)) { return 0; }
+            var RandClearLogic = ClearLogic.RandomizedAreaClear(Instance);
             if (RandClearLogic == null && ClearLogic.Aquired) { ClearLogic.Aquired = false; return 2; }
             if (RandClearLogic == null) { return 1; }
             if (ClearLogic.Aquired != RandClearLogic.Available) { ClearLogic.Aquired = RandClearLogic.Available; return 2; }
             return 1;
         }
 
-        public static bool CheckObject(LogicObjects.LogicEntry CheckedObject)
+        public static bool CheckObject(LogicObjects.LogicEntry CheckedObject, LogicObjects.TrackerInstance Instance)
         {
             if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
             {
                 CheckedObject.Checked = false;
-                if (CheckedObject.RandomizedItem > -1 && CheckedObject.RandomizedItem < LogicObjects.Logic.Count && !SameItemMultipleChecks(CheckedObject.RandomizedItem))
+                if (CheckedObject.RandomizedItem > -1 && CheckedObject.RandomizedItem < Instance.Logic.Count && !Tools.SameItemMultipleChecks(CheckedObject.RandomizedItem, Instance))
                 {
-                    LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = false;
-                    CheckEntrancePair(CheckedObject, LogicObjects.Logic, false);
+                    Instance.Logic[CheckedObject.RandomizedItem].Aquired = false;
+                    CheckEntrancePair(CheckedObject, Instance, false);
                 }
                 CheckedObject.RandomizedItem = -2;
                 return true;
@@ -192,20 +193,20 @@ namespace MMR_Tracker_V2
                 if (CheckedObject.Options == 2) { CheckedObject.RandomizedItem = CheckedObject.ID; }
                 if (CheckedObject.SpoilerRandom > -2) { CheckedObject.RandomizedItem = CheckedObject.SpoilerRandom; }
                 if (CheckedObject.RandomizedItem < 0) { CheckedObject.RandomizedItem = -1; return true; }
-                LogicObjects.Logic[CheckedObject.RandomizedItem].Aquired = true;
-                CheckEntrancePair(CheckedObject, LogicObjects.Logic, true);
+                Instance.Logic[CheckedObject.RandomizedItem].Aquired = true;
+                CheckEntrancePair(CheckedObject, Instance, true);
                 return true;
             }
-            LogicObjects.CurrentSelectedItem = CheckedObject; //Set the global CurrentSelectedItem to the Location selected in the list box
+            Tools.CurrentSelectedItem = CheckedObject; //Set the global CurrentSelectedItem to the Location selected in the list box
             ItemSelect ItemSelectForm = new ItemSelect(); var dialogResult = ItemSelectForm.ShowDialog();
-            if (dialogResult != DialogResult.OK) { LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry(); return false; }
+            if (dialogResult != DialogResult.OK) { Tools.CurrentSelectedItem = new LogicObjects.LogicEntry(); return false; }
             CheckedObject.Checked = true;
-            if (LogicObjects.CurrentSelectedItem.ID < 0) //At this point CurrentSelectedItem has been changed to the selected item
-            { CheckedObject.RandomizedItem = -1; LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry(); return true; }
-            CheckedObject.RandomizedItem = LogicObjects.CurrentSelectedItem.ID;
-            LogicObjects.Logic[LogicObjects.CurrentSelectedItem.ID].Aquired = true;
-            LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
-            CheckEntrancePair(CheckedObject, LogicObjects.Logic, true);
+            if (Tools.CurrentSelectedItem.ID < 0) //At this point CurrentSelectedItem has been changed to the selected item
+            { CheckedObject.RandomizedItem = -1; Tools.CurrentSelectedItem = new LogicObjects.LogicEntry(); return true; }
+            CheckedObject.RandomizedItem = Tools.CurrentSelectedItem.ID;
+            Instance.Logic[Tools.CurrentSelectedItem.ID].Aquired = true;
+            Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
+            CheckEntrancePair(CheckedObject, Instance, true);
 
             return true;
         }
@@ -215,46 +216,46 @@ namespace MMR_Tracker_V2
             if (CheckedObject.RandomizedItem > -2) { CheckedObject.RandomizedItem = -2; return true; }
             if (CheckedObject.SpoilerRandom > -2) { CheckedObject.RandomizedItem = CheckedObject.SpoilerRandom; return true; }
             if (CheckedObject.Options == 2) { CheckedObject.RandomizedItem = CheckedObject.ID; return true; }
-            LogicObjects.CurrentSelectedItem = CheckedObject;
+            Tools.CurrentSelectedItem = CheckedObject;
             ItemSelect ItemSelectForm = new ItemSelect(); var dialogResult = ItemSelectForm.ShowDialog();
-            if (dialogResult != DialogResult.OK) { LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry(); return false; }
-            if (LogicObjects.CurrentSelectedItem.ID < 0)
-            { CheckedObject.RandomizedItem = -1; LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry(); return true; }
-            CheckedObject.RandomizedItem = LogicObjects.CurrentSelectedItem.ID;
-            LogicObjects.CurrentSelectedItem = new LogicObjects.LogicEntry();
+            if (dialogResult != DialogResult.OK) { Tools.CurrentSelectedItem = new LogicObjects.LogicEntry(); return false; }
+            if (Tools.CurrentSelectedItem.ID < 0)
+            { CheckedObject.RandomizedItem = -1; Tools.CurrentSelectedItem = new LogicObjects.LogicEntry(); return true; }
+            CheckedObject.RandomizedItem = Tools.CurrentSelectedItem.ID;
+            Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
             return true;
         }
 
-        public static void WriteSpoilerLogToLogic(List<LogicObjects.LogicEntry> Logic, string path)
+        public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
-            if (path.Contains(".txt")) { SpoilerData = Utility.ReadTextSpoilerlog(path); }
-            else if (path.Contains(".html")) { SpoilerData = Utility.ReadHTMLSpoilerLog(path, VersionHandeling.IsEntranceRando()); }
+            if (path.Contains(".txt")) { SpoilerData = Tools.ReadTextSpoilerlog(path, Instance); }
+            else if (path.Contains(".html")) { SpoilerData = Tools.ReadHTMLSpoilerLog(path, Instance.Version); }
             else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return;  }
             foreach (LogicObjects.SpoilerData data in SpoilerData)
             {
                 if (data.LocationID > -1 && data.ItemID > -2)
-                    Logic[data.LocationID].SpoilerRandom = data.ItemID;
+                    Instance.Logic[data.LocationID].SpoilerRandom = data.ItemID;
             }
 
-            if (!VersionHandeling.IsEntranceRando())//If dungeon entrances aren't randomized they don't show up in the spoiler log
+            if (!Instance.IsEntranceRando())//If dungeon entrances aren't randomized they don't show up in the spoiler log
             {
-                var entranceIDs = VersionHandeling.AreaClearDictionary();
-                foreach (var i in Logic)
+                var entranceIDs = VersionHandeling.AreaClearDictionary(Instance.Version);
+                foreach (var i in Instance.Logic)
                 {
                     if (i.ItemSubType == "Dungeon Entrance" && entranceIDs.ContainsValue(i.ID) && i.SpoilerRandom < 0) { i.SpoilerRandom = i.ID; }
                 }
             }
         }
 
-        public static void CheckEntrancePair(LogicObjects.LogicEntry Location, List<LogicObjects.LogicEntry> logic, bool Checking)
+        public static void CheckEntrancePair(LogicObjects.LogicEntry Location, LogicObjects.TrackerInstance Instance, bool Checking)
         {
-            if (!CoupleEntrances || !Location.HasRealRandomItem() || !Location.IsEntrance()) { return; }
-            var reverseLocation = Location.PairedEntry(logic, true);
-            var reverseItem = Location.PairedEntry(logic);
+            if (!Instance.Options.CoupleEntrances || !Location.HasRealRandomItem() || !Location.IsEntrance()) { return; }
+            var reverseLocation = Location.PairedEntry(Instance, true);
+            var reverseItem = Location.PairedEntry(Instance);
             if (reverseItem == null || reverseLocation == null) return;
             //is the reverse entrance already checked and randomized to something
-            if ((reverseLocation.Checked || (reverseLocation.HasRealRandomItem() && reverseLocation.RandomizedEntry() != reverseItem) || reverseItem.Aquired) && Checking) { return; }
+            if ((reverseLocation.Checked || (reverseLocation.HasRealRandomItem() && reverseLocation.RandomizedEntry(Instance) != reverseItem) || reverseItem.Aquired) && Checking) { return; }
             //Does the spoiler log conflict with what the reverse check is trying to do
             if (reverseLocation.SpoilerRandom != reverseItem.ID && reverseLocation.SpoilerRandom > -1 && Checking) { return; }
             reverseLocation.Checked = Checking;
@@ -262,7 +263,7 @@ namespace MMR_Tracker_V2
             reverseItem.Aquired = Checking;
         }
 
-        public static void RecreateLogic(string[] LogicData = null)
+        public static void RecreateLogic(LogicObjects.TrackerInstance Instance, string[] LogicData = null)
         {
             var LogicFile = LogicData;
             bool SettingsFile = false;
@@ -276,20 +277,22 @@ namespace MMR_Tracker_V2
                 LogicFile = (SettingsFile) ? File.ReadAllLines(file).Skip(2).ToArray() : File.ReadAllLines(file);
             }
 
-            var OldLogic = Utility.CloneLogicList(LogicObjects.Logic);
-            LogicObjects.Logic = new List<LogicObjects.LogicEntry>();
-            LogicObjects.DicNameToID = new Dictionary<string, int>();
-            LogicObjects.EntrancePairs = new Dictionary<int, int>();
-            VersionHandeling.Version = 0;
+            var OldLogic = Utility.CloneLogicList(Instance.Logic);
+            Console.WriteLine(Instance.Logic.Count());
+            Instance.Logic = new List<LogicObjects.LogicEntry>();
+            Instance.DicNameToID = new Dictionary<string, int>();
+            Instance.EntrancePairs = new Dictionary<int, int>();
+            Instance.Version = 0;
+            Instance.RawLogicFile = LogicFile;
+            LogicEditing.CreateTrackerInstanceLogic(Instance);
+            Console.WriteLine(Instance.Logic.Count());
 
-            CreateLogic(LogicObjects.Logic, LogicFile);
-
-            var logic = LogicObjects.Logic;
+            var logic = Instance.Logic;
             foreach (var entry in OldLogic)
             {
-                if (LogicObjects.DicNameToID.ContainsKey(entry.DictionaryName))
+                if (Instance.DicNameToID.ContainsKey(entry.DictionaryName))
                 {
-                    var logicEntry = logic[LogicObjects.DicNameToID[entry.DictionaryName]];
+                    var logicEntry = logic[Instance.DicNameToID[entry.DictionaryName]];
 
                     logicEntry.Aquired = entry.Aquired;
                     logicEntry.Checked = entry.Checked;
@@ -300,42 +303,16 @@ namespace MMR_Tracker_V2
             }
             if (SettingsFile)
             {
-                RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file));
-                VersionHandeling.entranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.Logic);
-                VersionHandeling.OverRideAutoEntranceRandoEnable = (VersionHandeling.entranceRadnoEnabled != VersionHandeling.IsEntranceRando());
+                RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file), Instance);
             }
-            CalculateItems(LogicObjects.Logic, true);
-            Utility.SaveState(LogicObjects.Logic);
+            Instance.Options.entranceRadnoEnabled = Utility.CheckForRandomEntrances(Instance);
+            Instance.Options.OverRideAutoEntranceRandoEnable = (Instance.Options.entranceRadnoEnabled != Instance.IsEntranceRando());
+            CalculateItems(Instance, true);
+            Tools.SaveState(Instance);
         }
 
-        public static void CheckSeed(List<LogicObjects.LogicEntry> logic, bool InitialRun, List<int> Ignored)
+        public static void CreatedEntrancepairDcitionary(Dictionary<int, int> entrancePairs, Dictionary<string, int> NameToID, string[] VersionData)
         {
-            if (InitialRun) { ForceFreshCalculation(logic); }
-            bool recalculate = false;
-            foreach (var item in logic)
-            {
-                item.Available = RequirementsMet(item.Required, logic) && CondtionalsMet(item.Conditionals, logic);
-
-                int Special = SetAreaClear(item, logic);
-                if (Special == 2) { recalculate = true; }
-
-                if (item.Aquired != item.Available && Special == 0 && item.IsFake)
-                {
-                    item.Aquired = item.Available;
-                    recalculate = true;
-                }
-                if (!item.IsFake && item.RandomizedItem > -1 && item.Available != logic[item.RandomizedItem].Aquired && !Ignored.Contains(item.ID))
-                {
-                    logic[item.RandomizedItem].Aquired = item.Available;
-                    recalculate = true;
-                }
-            }
-            if (recalculate) { CheckSeed(logic, false, Ignored); }
-        }
-
-        public static void CreatedEntrancepairDcitionary(Dictionary<int, int> entrancePairs, Dictionary<string, int> NameToID)
-        {
-            var VersionData = VersionHandeling.SwitchDictionary(VersionHandeling.Version);
             foreach (var i in File.ReadAllLines(VersionData[1]))
             {
                 var j = i.Split(',');
@@ -355,48 +332,11 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public static List<int> FindRequirements(LogicObjects.LogicEntry Item, List<LogicObjects.LogicEntry> logic)
-        {
-            List<int> ImportantItems = new List<int>();
-            List<LogicObjects.PlaythroughItem> playthrough = new List<LogicObjects.PlaythroughItem>();
-            var LogicCopy = Utility.CloneLogicList(logic);
-            foreach(var i in LogicCopy)
-            {
-                if (i.Unrandomized()) { i.IsFake = true; }
-            }
-            var ItemCopy = LogicCopy[Item.ID];
-            ForceFreshCalculation(LogicCopy);
-            foreach(var i in LogicCopy) 
-            {
-                ImportantItems.Add(i.ID);
-                if (i.IsFake)  { i.SpoilerRandom = i.ID; } 
-            }
-            Debugging.UnlockAllFake(LogicCopy, ImportantItems, 0, playthrough);
-            List<int> UsedItems = new List<int>();
-            bool isAvailable = (RequirementsMet(ItemCopy.Required, LogicCopy, UsedItems) && CondtionalsMet(ItemCopy.Conditionals, LogicCopy, UsedItems));
-            if (!isAvailable) { return new List<int>(); }
-            List<int> NeededItems = Utility.ResolveFakeToRealItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy);
-            NeededItems = NeededItems.Distinct().ToList();
-            return NeededItems;
-        }
-
-        public static bool SameItemMultipleChecks(int item)
-        {
-            if (item < 0 || !StrictLogicHandeling) { return false; }
-            int count = 0;
-            foreach (var entry in LogicObjects.Logic)
-            {
-                if (entry.RandomizedItem == item && entry.Checked) { count += 1; }
-            }
-            Console.WriteLine(count);
-            return count > 1;
-        }
-
-        public static string[] WriteLogicToArray(List<LogicObjects.LogicEntry> logic, int versionNumber, bool isOOT)
+        public static string[] WriteLogicToArray(LogicObjects.TrackerInstance Instance)
         {
             List<string> lines = new List<string>();
-            lines.Add((isOOT) ? "-versionOOT " + versionNumber : "-version " + versionNumber);
-            foreach (var line in logic)
+            lines.Add((Instance.IsOOT()) ? "-versionOOT " + Instance.Version : "-version " + Instance.Version);
+            foreach (var line in Instance.Logic)
             {
                 lines.Add("- " + line.DictionaryName);
                 string Req = "";
