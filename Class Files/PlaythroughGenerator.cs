@@ -255,7 +255,7 @@ namespace MMR_Tracker.Class_Files
         public static void MarkAreaClearAsEntry(LogicObjects.TrackerInstance instance)
         {
 
-            var EntAreaDict = VersionHandeling.AreaClearDictionary(instance.Version);
+            var EntAreaDict = instance.EntranceAreaDic;
             LogicObjects.LogicEntry Default = new LogicObjects.LogicEntry();
             var WoodFallClear = instance.Logic.Find(x => x.DictionaryName == "Woodfall clear") ?? Default;
             var SnowheadClear = instance.Logic.Find(x => x.DictionaryName == "Snowhead clear") ?? Default;
@@ -297,7 +297,7 @@ namespace MMR_Tracker.Class_Files
 
         public static void SwapAreaClearLogic(LogicObjects.TrackerInstance Instance)
         {
-            var areaClearData = VersionHandeling.AreaClearDictionary(Instance.Version);
+            var areaClearData = Instance.EntranceAreaDic;
             var ReferenceLogic = Utility.CloneLogicList(Instance.Logic);
             foreach (var i in Instance.Logic)
             {

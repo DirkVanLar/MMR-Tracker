@@ -132,7 +132,7 @@ namespace MMR_Tracker.Forms
             var lines = (SettingsFile) ? File.ReadAllLines(file).Skip(2) : File.ReadAllLines(file);
             EditorInstance = new LogicObjects.TrackerInstance();
             EditorInstance.RawLogicFile = lines.ToArray();
-            LogicEditing.CreateTrackerInstanceLogic(EditorInstance);
+            LogicEditing.PopulateTrackerInstance(EditorInstance);
 
             AssignUniqueItemnames(EditorInstance.Logic);
             if (EditorInstance.Logic.Count < Convert.ToInt32(nudIndex.Value)) { nudIndex.Value = EditorInstance.Logic.Count - 1; }

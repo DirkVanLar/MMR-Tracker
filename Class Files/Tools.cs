@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MMR_Tracker.Forms;
 
 namespace MMR_Tracker.Class_Files
 {
     class Tools
     {
+        //Used to pass Logic items between forms
         public static LogicObjects.LogicEntry CurrentSelectedItem = new LogicObjects.LogicEntry();
         public static List<LogicObjects.LogicEntry> CurrentselectedItems = new List<LogicObjects.LogicEntry>();
 
@@ -45,16 +47,10 @@ namespace MMR_Tracker.Class_Files
             if (file == "") { return; }
 
             LogicObjects.TrackerInstance CDLogic = new LogicObjects.TrackerInstance();
-            //Create a logic list out of the logic file with only ID and dictionary name. Set IsFake to true.
-
-            //=== Template for Creating a logic instance ========================================================================================================
             int LogicVersion = VersionHandeling.GetVersion(File.ReadAllLines(file))[0];
-            LogicEditing.CreateTrackerInstanceLogic(CDLogic);
-            //====================================================================================================================================================
+            LogicEditing.PopulateTrackerInstance(CDLogic);
 
-            bool isEntRand = LogicVersion < VersionHandeling.EntranceRandoVersion;
-
-            List<LogicObjects.SpoilerData> SpoilerLog = Tools.ReadHTMLSpoilerLog("", LogicVersion);
+            List<LogicObjects.SpoilerData> SpoilerLog = Tools.ReadHTMLSpoilerLog("", CDLogic);
             if (SpoilerLog.Count == 0) { return; }
 
             //For each entry in your logic list, check each entry in your spoiler log to find the rest of the data
@@ -72,7 +68,7 @@ namespace MMR_Tracker.Class_Files
                         if (entry.DictionaryName.Contains("Bottle:")) { entry.ItemSubType = "Bottle"; }
                         if (entry.DictionaryName.StartsWith("Entrance")) { entry.ItemSubType = "Entrance"; }
 
-                        if (isEntRand)
+                        if (!CDLogic.IsEntranceRando())
                         {
                             if (entry.DictionaryName == "Woodfall Temple access")
                             { entry.LocationArea = "Dungeon Entrance"; entry.ItemSubType = "Dungeon Entrance"; }
@@ -155,7 +151,7 @@ namespace MMR_Tracker.Class_Files
             }
             return SpoilerData;
         }
-        public static List<LogicObjects.SpoilerData> ReadHTMLSpoilerLog(string Path, int Version)
+        public static List<LogicObjects.SpoilerData> ReadHTMLSpoilerLog(string Path, LogicObjects.TrackerInstance Instance)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
 
@@ -209,11 +205,11 @@ namespace MMR_Tracker.Class_Files
                 if (line.Contains("<h2>Item Locations</h2>")) { break; }
             }
 
-            if (Version >= VersionHandeling.EntranceRandoVersion) { return SpoilerData; }
+            if (Instance.IsEntranceRando()) { return SpoilerData; }
 
             //Fix Dungeon Entrances
             Dictionary<string, int> EntIDMatch = new Dictionary<string, int>();
-            var entranceIDs = VersionHandeling.AreaClearDictionary(Version);
+            var entranceIDs = Instance.EntranceAreaDic;
             foreach (LogicObjects.SpoilerData Thing in SpoilerData)
             {
                 if (entranceIDs.ContainsValue(Thing.ItemID)) { EntIDMatch.Add(Thing.ItemName, Thing.ItemID); }
@@ -230,20 +226,25 @@ namespace MMR_Tracker.Class_Files
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
             Instance.UnsavedChanges = false;
-            string[] Options = new string[] { JsonConvert.SerializeObject(Instance) };
-            File.WriteAllLines(saveDialog.FileName, Options);
+            //Clear the undo and redo list because otherwise the save file is massive
+            var SaveInstance = Utility.CloneLogicInstance(Instance);
+            SaveInstance.UndoList.Clear();
+            SaveInstance.RedoList.Clear();
+            File.WriteAllText(saveDialog.FileName, JsonConvert.SerializeObject(SaveInstance));
             return true;
         }
-        public static bool LoadInstance(string LogicFile, LogicObjects.TrackerInstance Instance)
+        public static bool LoadInstance(string LogicFile)
         {
-            string[] options = File.ReadAllLines(LogicFile);
-            Instance = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(options[0]);
+            LogicObjects.MainTrackerInstance = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(LogicFile));
             return true;
         }
-        public static void SaveState(LogicObjects.TrackerInstance Instance)
+        public static void SaveState(LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicEntry> Logic = null )
         {
-            Instance.UndoList.Add(Utility.CloneLogicList(Instance.Logic));
+            if (Logic == null) { Logic = Instance.Logic; }
+            Instance.UndoList.Add(Utility.CloneLogicList(Logic));
+            if (Instance.UndoList.Count() > 50) { Instance.UndoList.RemoveAt(0); }
             Instance.RedoList = new List<List<LogicObjects.LogicEntry>>();
+            //(Application.OpenForms["FRMTracker"] as FRMTracker).EnableUndoRedo(true, false);
         }
         public static void Undo(LogicObjects.TrackerInstance Instance)
         {
@@ -387,7 +388,7 @@ namespace MMR_Tracker.Class_Files
         public static void CreateTrackerInstance(LogicObjects.TrackerInstance Instance, string[] RawLogic)
         {
             Instance.RawLogicFile = RawLogic;
-            LogicEditing.CreateTrackerInstanceLogic(Instance);
+            LogicEditing.PopulateTrackerInstance(Instance);
             LogicEditing.CalculateItems(Instance);
 
 
@@ -411,7 +412,6 @@ namespace MMR_Tracker.Class_Files
                     if (i.Contains("CheckForUpdates:0")) { Instance.Options.CheckForUpdate = false; }
                 }
             }
-            Tools.SaveState(Instance);
         }
     }
 }

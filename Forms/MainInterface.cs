@@ -70,7 +70,7 @@ namespace MMR_Tracker_V2
             string file = Utility.FileSelect("Select A Save File", "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV");
             if (file == "") { return; }
             LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
-            Tools.LoadInstance(file, LogicObjects.MainTrackerInstance);
+            Tools.LoadInstance(file);
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
@@ -547,9 +547,7 @@ namespace MMR_Tracker_V2
                 TXTLocSearch.Clear();
                 return;
             }
-            //var selectedIndex = LB.SelectedIndex;
-            //We want to save logic at this point but don't want to comit to a full save state
-            var TempState = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
+            var Templogic = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic); //We want to save logic at this point but don't want to comit to a full save state
             bool ChangesMade = false;
             foreach (var i in LB.SelectedItems)
             {
@@ -570,8 +568,8 @@ namespace MMR_Tracker_V2
                 }
             }
             if (!ChangesMade) { return; }
+            Tools.SaveState(LogicObjects.MainTrackerInstance, Templogic); //Now that we have successfully checked/Marked an object we can commit to a full save state
             LogicObjects.MainTrackerInstance.UnsavedChanges = true;
-            Tools.SaveState(LogicObjects.MainTrackerInstance); //Now that we have successfully checked/Marked an object we can commit to a full save state
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
 
             int TopIndex = LB.TopIndex;
@@ -603,6 +601,8 @@ namespace MMR_Tracker_V2
             coupleEntrancesToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
             devToolStripMenuItem.Visible = Debugging.ISDebugging;
             seperateMarkedItemsToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom) ? "Don't Seperate Marked Items" : "Seperate Marked Items";
+            undoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.UndoList.Any();
+            redoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.RedoList.Any();
 
 
             //OOT Handeling
@@ -614,6 +614,12 @@ namespace MMR_Tracker_V2
             seedCheckerToolStripMenuItem.Visible = !LogicObjects.MainTrackerInstance.IsOOT() && (LogicObjects.MainTrackerInstance.Version > 0);
             whatUnlockedThisToolStripMenuItem.Visible = !LogicObjects.MainTrackerInstance.IsOOT() && (LogicObjects.MainTrackerInstance.Version > 0);
 
+        }
+
+        public void EnableUndoRedo(bool undo, bool redo)
+        {
+            undoToolStripMenuItem.Enabled = undo;
+            redoToolStripMenuItem.Enabled = redo;
         }
 
         private void PrintPaths(int PathToPrint)

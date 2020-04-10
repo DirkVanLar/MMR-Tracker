@@ -10,16 +10,20 @@ namespace MMR_Tracker_V2
 {
     class LogicEditing
     {
-        public static bool CreateTrackerInstanceLogic(LogicObjects.TrackerInstance instance)
+        public static bool PopulateTrackerInstance(LogicObjects.TrackerInstance instance)
         {
-            /* Sets the following:
+            /* Sets the Values of the follwing using the data in instance.RawLogicFile
              * Version
              * Game
+             * Entrance Area Dictionary
              * Logic
              * LogicDictionary
              * Name to ID Dictionary
              * Entrance pair Dictionary
              */
+            instance.Logic.Clear();
+            instance.DicNameToID.Clear();
+            instance.EntrancePairs.Clear();
             Console.WriteLine("Populating Logic File");
             int[] version = VersionHandeling.GetVersion(instance.RawLogicFile); //Returns [0] The logic Version, [1] The game this logic file is for
             instance.Version = version[0];
@@ -165,7 +169,7 @@ namespace MMR_Tracker_V2
         public static int SetAreaClear(LogicObjects.LogicEntry ClearLogic, LogicObjects.TrackerInstance Instance)
         {
             //0 = do nothing, 1 = Skip Fake item calculation, 2 = Skip Fake item calculation and recalculate logic
-            Dictionary<int, int> EntAreaDict = VersionHandeling.AreaClearDictionary(LogicObjects.MainTrackerInstance.Version);
+            Dictionary<int, int> EntAreaDict = Instance.EntranceAreaDic;
             if (LogicObjects.MainTrackerInstance.IsEntranceRando() || !EntAreaDict.ContainsKey(ClearLogic.ID)) { return 0; }
             var RandClearLogic = ClearLogic.RandomizedAreaClear(Instance);
             if (RandClearLogic == null && ClearLogic.Aquired) { ClearLogic.Aquired = false; return 2; }
@@ -230,7 +234,7 @@ namespace MMR_Tracker_V2
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
             if (path.Contains(".txt")) { SpoilerData = Tools.ReadTextSpoilerlog(path, Instance); }
-            else if (path.Contains(".html")) { SpoilerData = Tools.ReadHTMLSpoilerLog(path, Instance.Version); }
+            else if (path.Contains(".html")) { SpoilerData = Tools.ReadHTMLSpoilerLog(path, Instance); }
             else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return;  }
             foreach (LogicObjects.SpoilerData data in SpoilerData)
             {
@@ -240,7 +244,7 @@ namespace MMR_Tracker_V2
 
             if (!Instance.IsEntranceRando())//If dungeon entrances aren't randomized they don't show up in the spoiler log
             {
-                var entranceIDs = VersionHandeling.AreaClearDictionary(Instance.Version);
+                var entranceIDs = Instance.EntranceAreaDic;
                 foreach (var i in Instance.Logic)
                 {
                     if (i.ItemSubType == "Dungeon Entrance" && entranceIDs.ContainsValue(i.ID) && i.SpoilerRandom < 0) { i.SpoilerRandom = i.ID; }
@@ -278,14 +282,8 @@ namespace MMR_Tracker_V2
             }
 
             var OldLogic = Utility.CloneLogicList(Instance.Logic);
-            Console.WriteLine(Instance.Logic.Count());
-            Instance.Logic = new List<LogicObjects.LogicEntry>();
-            Instance.DicNameToID = new Dictionary<string, int>();
-            Instance.EntrancePairs = new Dictionary<int, int>();
-            Instance.Version = 0;
             Instance.RawLogicFile = LogicFile;
-            LogicEditing.CreateTrackerInstanceLogic(Instance);
-            Console.WriteLine(Instance.Logic.Count());
+            LogicEditing.PopulateTrackerInstance(Instance);
 
             var logic = Instance.Logic;
             foreach (var entry in OldLogic)
