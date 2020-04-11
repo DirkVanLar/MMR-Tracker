@@ -355,7 +355,7 @@ namespace MMR_Tracker.Class_Files
                 File.WriteAllLines("options.txt", options);
             }
         }
-        public static List<int> ResolveFakeToRealItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic)
+        public static List<int> ResolveFakeToRealItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic, bool initialRun = false)
         {
             var RealItems = new List<int>();
             var New = new LogicObjects.PlaythroughItem();
@@ -365,6 +365,7 @@ namespace MMR_Tracker.Class_Files
                 else
                 {
                     var NewItem = Playthrough.Where(i => i.Check.ID == j).FirstOrDefault();
+                    
                     foreach (var k in ResolveFakeToRealItems(NewItem, Playthrough, logic))
                     {
                         RealItems.Add(k);

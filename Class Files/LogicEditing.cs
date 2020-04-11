@@ -10,6 +10,7 @@ namespace MMR_Tracker_V2
 {
     class LogicEditing
     {
+
         public static bool PopulateTrackerInstance(LogicObjects.TrackerInstance instance)
         {
             /* Sets the Values of the follwing using the data in instance.RawLogicFile

@@ -6,6 +6,7 @@ namespace MMR_Tracker_V2
     public class LogicObjects
     {
         public static TrackerInstance MainTrackerInstance = new TrackerInstance();
+
         public class TrackerInstance
         {
             public List<LogicEntry> Logic { get; set; } = new List<LogicEntry>();
@@ -188,6 +189,10 @@ namespace MMR_Tracker_V2
         public static bool IsOOT(this LogicObjects.TrackerInstance Instance)
         {
             return Instance.Game == 1;
+        }
+        public static bool IsWarpSong(this LogicObjects.LogicEntry entry)
+        {
+            return (entry.LocationArea == "Owl Warp");
         }
     }
 }

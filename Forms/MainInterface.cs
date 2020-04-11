@@ -300,7 +300,7 @@ namespace MMR_Tracker_V2
         private void SeedCheckerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SeedChecker SeedCheckerForm = new SeedChecker();
-            SeedCheckerForm.ShowDialog();
+            SeedCheckerForm.Show();
         }
 
         private void GeneratePlaythroughToolStripMenuItem_Click(object sender, EventArgs e)
@@ -350,6 +350,12 @@ namespace MMR_Tracker_V2
             PrintToListBox();
             ResizeObject();
             FormatMenuItems();
+        }
+
+        private void popoutPathfinderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PathFinder Poputpathfinder = new PathFinder();
+            Poputpathfinder.Show();
         }
 
         //Menu strip => Info
@@ -466,41 +472,36 @@ namespace MMR_Tracker_V2
             var destination = LogicObjects.MainTrackerInstance.Logic[DestIndex];
             LBPathFinder.Items.Add("Finding Path.....");
             LBPathFinder.Items.Add("Please Wait");
-            LBPathFinder.Items.Add("");
-            LBPathFinder.Items.Add("This could take up to 20");
-            LBPathFinder.Items.Add("seconds depending on how");
-            LBPathFinder.Items.Add("complete your map is and");
-            LBPathFinder.Items.Add("the speed of your PC!");
             LBPathFinder.Refresh();
-            Console.WriteLine(Startindex);
-            Console.WriteLine(DestIndex);
-            var maps = Pathfinding.FindLogicalEntranceConnections(LogicObjects.MainTrackerInstance);
+            var maps = PathFinder.FindLogicalEntranceConnections(LogicObjects.MainTrackerInstance, startinglocation);
             var Fullmap = maps[0]; //A map of all available exit from each entrance
             var ResultMap = maps[1]; //A map of all available entrances from each exit as long as the result of that entrance is known
-            Pathfinding.Findpath(LogicObjects.MainTrackerInstance, ResultMap, Fullmap, startinglocation.ID, destination.ID, new List<int>(), new List<int>(), new List<LogicObjects.MapPoint>(), true);
+            PathFinder.Findpath(LogicObjects.MainTrackerInstance, ResultMap, Fullmap, startinglocation.ID, destination.ID, new List<int>(), new List<int>(), new List<LogicObjects.MapPoint>(), true);
             LBPathFinder.Items.Clear();
 
-            if (Pathfinding.paths.Count == 0)
+            if (PathFinder.paths.Count == 0)
             {
                 LBPathFinder.Items.Add("No Path Found!");
                 LBPathFinder.Items.Add("");
-                LBPathFinder.Items.Add("This path finder is still in beta");
-                LBPathFinder.Items.Add("And can be buggy.");
-                LBPathFinder.Items.Add("If you believe this is an error");
-                LBPathFinder.Items.Add("try navigating to a different entrance");
-                LBPathFinder.Items.Add("close to your destination or try a");
-                LBPathFinder.Items.Add("different starting point.");
+                
+                foreach(var i in Utility.SeperateStringByMeasurement(LBPathFinder, "This path finder is still in beta and may not always work as intended.", ""))
+                {
+                    LBPathFinder.Items.Add(i);
+                }
+                LBPathFinder.Items.Add("");
                 if (!LogicObjects.MainTrackerInstance.Options.UseSongOfTime)
                 {
-                    LBPathFinder.Items.Add("");
-                    LBPathFinder.Items.Add("It may also be the case that the only");
-                    LBPathFinder.Items.Add("path to your destination is by use of");
-                    LBPathFinder.Items.Add("the Song of Time.");
-                    LBPathFinder.Items.Add("By default Song of Time is ignored in");
-                    LBPathFinder.Items.Add("the path finder.");
-                    LBPathFinder.Items.Add("You can enable the use of Song of");
-                    LBPathFinder.Items.Add("Time in entrance rando options.");
+                    foreach(var i in Utility.SeperateStringByMeasurement(LBPathFinder, "Your destination may not be reachable without song of time. The use of Song of Time is not considered by default. To enable Song of Time toggle it in the options menu", ""))
+                    {
+                        LBPathFinder.Items.Add(i);
+                    }
                 }
+                LBPathFinder.Items.Add("");
+                foreach( var i in Utility.SeperateStringByMeasurement(LBPathFinder, "If you believe this is an error try navigating to a different entrance close to your destination or try a different starting point.", ""))
+                {
+                    LBPathFinder.Items.Add(i);
+                }
+                
                 return;
             }
             PrintPaths(-1);
@@ -593,6 +594,7 @@ namespace MMR_Tracker_V2
             generatePlaythroughToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
             updateLogicToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
+            popoutPathfinderToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.IsEntranceRando());
             if (!LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable) { LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled = LogicObjects.MainTrackerInstance.IsEntranceRando(); }
             useSongOfTimeInPathfinderToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
@@ -625,9 +627,9 @@ namespace MMR_Tracker_V2
         private void PrintPaths(int PathToPrint)
         {
             LBPathFinder.Items.Clear();
-            var sortedpaths = Pathfinding.paths.OrderBy(x => x.Count);
+            var sortedpaths = PathFinder.paths.OrderBy(x => x.Count);
 
-            if (PathToPrint == -1 || Pathfinding.paths.ElementAtOrDefault(PathToPrint) == null)
+            if (PathToPrint == -1 || PathFinder.paths.ElementAtOrDefault(PathToPrint) == null)
             {
                 int counter = 1;
                 foreach (var path in sortedpaths)
@@ -636,7 +638,7 @@ namespace MMR_Tracker_V2
                     var firstStop = true;
                     foreach (var stop in path)
                     {
-                        var start = (firstStop) ? Pathfinding.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
+                        var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
                         var ListItem = new LogicObjects.ListItem { DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName, ID = counter - 1 };
                         LBPathFinder.Items.Add(ListItem); firstStop = false;
                     }
