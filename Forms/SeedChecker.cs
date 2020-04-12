@@ -63,26 +63,26 @@ namespace MMR_Tracker
 
         private void BtnCheckSeed_Click(object sender, EventArgs e)
         {
-            var logicCopy = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
-            foreach (var i in logicCopy)
+            var logicCopy = Utility.CloneLogicInstance(LogicObjects.MainTrackerInstance);
+            foreach (var i in logicCopy.Logic)
             {
                 i.Available = false;
                 i.Checked = false;
                 i.Aquired = false;
                 i.Options = 0;
             }
-            if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic))
+            if (!Utility.CheckforSpoilerLog(logicCopy.Logic))
             {
                 var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
                 if (file == "") { return; }
-                LogicEditing.WriteSpoilerLogToLogic(LogicObjects.MainTrackerInstance, file);
-                if (!Utility.CheckforSpoilerLog(logicCopy, true))
+                LogicEditing.WriteSpoilerLogToLogic(logicCopy, file);
+                if (!Utility.CheckforSpoilerLog(logicCopy.Logic, true))
                 { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
             }
-            else if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic, true))
+            else if (!Utility.CheckforSpoilerLog(logicCopy.Logic, true))
             { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
 
-            foreach (var entry in logicCopy) { if (entry.SpoilerRandom > -1) { entry.RandomizedItem = entry.SpoilerRandom; } }
+            foreach (var entry in logicCopy.Logic) { if (entry.SpoilerRandom > -1) { entry.RandomizedItem = entry.SpoilerRandom; } }
 
             LBResult.Items.Clear();
             List<int> Ignored = new List<int>();
@@ -90,14 +90,14 @@ namespace MMR_Tracker
             {
                 Ignored.Add((item as LogicObjects.ListItem).ID);
             }
-            CheckSeed(LogicObjects.MainTrackerInstance, true, Ignored);
+            CheckSeed(logicCopy, true, Ignored);
             List<string> obtainable = new List<string>();
             List<string> unobtainable = new List<string>();
             foreach (var item in LBNeededItems.Items)
             {
                 var ListItem = item as LogicObjects.ListItem;
-                Console.WriteLine(logicCopy[ListItem.ID].DictionaryName + " " + logicCopy[ListItem.ID].Aquired);
-                if (logicCopy[ListItem.ID].Aquired) { obtainable.Add(ListItem.DisplayName); }
+                Console.WriteLine(logicCopy.Logic[ListItem.ID].DictionaryName + " " + logicCopy.Logic[ListItem.ID].Aquired);
+                if (logicCopy.Logic[ListItem.ID].Aquired) { obtainable.Add(ListItem.DisplayName); }
                 else { unobtainable.Add(ListItem.DisplayName); }
             }
             if (unobtainable.Count > 0)
@@ -126,7 +126,7 @@ namespace MMR_Tracker
             foreach (var item in Instance.Logic)
             {
                 item.Available = LogicEditing.RequirementsMet(item.Required, Instance.Logic) && LogicEditing.CondtionalsMet(item.Conditionals, Instance.Logic);
-
+                Console.WriteLine($"{item.DictionaryName} Avalable {item.Available}");
                 int Special = LogicEditing.SetAreaClear(item, Instance);
                 if (Special == 2) { recalculate = true; }
 

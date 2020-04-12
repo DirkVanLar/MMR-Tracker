@@ -120,7 +120,7 @@ namespace MMR_Tracker_V2
                 if (i.SpoilerRandom < 0) 
                 { 
                     fullLog = false;
-                    //if (full) { Console.WriteLine(i.DictionaryName + " Does not have SpoilerData"); }
+                    if (full) { Console.WriteLine(i.DictionaryName + " Does not have SpoilerData"); }
                 }
             }
             return (full) ? fullLog : Spoiler;
