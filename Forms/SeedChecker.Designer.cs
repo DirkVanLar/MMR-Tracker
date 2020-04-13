@@ -39,6 +39,8 @@
             this.btnCheckSeed = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.chkShowObtainable = new System.Windows.Forms.CheckBox();
+            this.chkShowUnobtainable = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // LBNeededItems
@@ -46,24 +48,25 @@
             this.LBNeededItems.FormattingEnabled = true;
             this.LBNeededItems.Location = new System.Drawing.Point(12, 31);
             this.LBNeededItems.Name = "LBNeededItems";
-            this.LBNeededItems.Size = new System.Drawing.Size(176, 329);
+            this.LBNeededItems.Size = new System.Drawing.Size(126, 329);
             this.LBNeededItems.TabIndex = 0;
             this.LBNeededItems.DoubleClick += new System.EventHandler(this.LBNeededItems_DoubleClick);
             // 
             // LBResult
             // 
             this.LBResult.FormattingEnabled = true;
-            this.LBResult.Location = new System.Drawing.Point(376, 31);
+            this.LBResult.HorizontalScrollbar = true;
+            this.LBResult.Location = new System.Drawing.Point(276, 31);
             this.LBResult.Name = "LBResult";
-            this.LBResult.Size = new System.Drawing.Size(176, 329);
+            this.LBResult.Size = new System.Drawing.Size(276, 303);
             this.LBResult.TabIndex = 1;
             // 
             // LBIgnoredChecks
             // 
             this.LBIgnoredChecks.FormattingEnabled = true;
-            this.LBIgnoredChecks.Location = new System.Drawing.Point(194, 31);
+            this.LBIgnoredChecks.Location = new System.Drawing.Point(144, 31);
             this.LBIgnoredChecks.Name = "LBIgnoredChecks";
-            this.LBIgnoredChecks.Size = new System.Drawing.Size(176, 329);
+            this.LBIgnoredChecks.Size = new System.Drawing.Size(126, 329);
             this.LBIgnoredChecks.TabIndex = 2;
             this.LBIgnoredChecks.DoubleClick += new System.EventHandler(this.LBIgnoredChecks_DoubleClick);
             // 
@@ -83,7 +86,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(191, 12);
+            this.label2.Location = new System.Drawing.Point(141, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 4;
@@ -91,7 +94,7 @@
             // 
             // btnAddNeeded
             // 
-            this.btnAddNeeded.Location = new System.Drawing.Point(147, 7);
+            this.btnAddNeeded.Location = new System.Drawing.Point(97, 7);
             this.btnAddNeeded.Name = "btnAddNeeded";
             this.btnAddNeeded.Size = new System.Drawing.Size(41, 23);
             this.btnAddNeeded.TabIndex = 5;
@@ -101,7 +104,7 @@
             // 
             // btnAddIgnored
             // 
-            this.btnAddIgnored.Location = new System.Drawing.Point(329, 7);
+            this.btnAddIgnored.Location = new System.Drawing.Point(229, 7);
             this.btnAddIgnored.Name = "btnAddIgnored";
             this.btnAddIgnored.Size = new System.Drawing.Size(41, 23);
             this.btnAddIgnored.TabIndex = 6;
@@ -121,9 +124,9 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(427, 7);
+            this.btnClear.Location = new System.Drawing.Point(505, 338);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(43, 23);
+            this.btnClear.Size = new System.Drawing.Size(47, 23);
             this.btnClear.TabIndex = 8;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -134,11 +137,39 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(376, 12);
+            this.label3.Location = new System.Drawing.Point(276, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 9;
             this.label3.Text = "Result";
+            // 
+            // chkShowObtainable
+            // 
+            this.chkShowObtainable.AutoSize = true;
+            this.chkShowObtainable.BackColor = System.Drawing.Color.Transparent;
+            this.chkShowObtainable.Checked = true;
+            this.chkShowObtainable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowObtainable.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkShowObtainable.Location = new System.Drawing.Point(276, 342);
+            this.chkShowObtainable.Name = "chkShowObtainable";
+            this.chkShowObtainable.Size = new System.Drawing.Size(107, 17);
+            this.chkShowObtainable.TabIndex = 10;
+            this.chkShowObtainable.Text = "Show Obtainable";
+            this.chkShowObtainable.UseVisualStyleBackColor = false;
+            // 
+            // chkShowUnobtainable
+            // 
+            this.chkShowUnobtainable.AutoSize = true;
+            this.chkShowUnobtainable.BackColor = System.Drawing.Color.Transparent;
+            this.chkShowUnobtainable.Checked = true;
+            this.chkShowUnobtainable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowUnobtainable.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkShowUnobtainable.Location = new System.Drawing.Point(380, 342);
+            this.chkShowUnobtainable.Name = "chkShowUnobtainable";
+            this.chkShowUnobtainable.Size = new System.Drawing.Size(119, 17);
+            this.chkShowUnobtainable.TabIndex = 11;
+            this.chkShowUnobtainable.Text = "Show Unobtainable";
+            this.chkShowUnobtainable.UseVisualStyleBackColor = false;
             // 
             // SeedChecker
             // 
@@ -147,6 +178,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(564, 369);
+            this.Controls.Add(this.chkShowUnobtainable);
+            this.Controls.Add(this.chkShowObtainable);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCheckSeed);
@@ -177,5 +210,7 @@
         private System.Windows.Forms.Button btnCheckSeed;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox chkShowObtainable;
+        private System.Windows.Forms.CheckBox chkShowUnobtainable;
     }
 }

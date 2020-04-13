@@ -100,12 +100,12 @@ namespace MMR_Tracker
                 if (logicCopy.Logic[ListItem.ID].Aquired) { obtainable.Add(ListItem.DisplayName); }
                 else { unobtainable.Add(ListItem.DisplayName); }
             }
-            if (unobtainable.Count > 0)
+            if (unobtainable.Count > 0 && chkShowUnobtainable.Checked)
             {
                 LBResult.Items.Add("Unobtainable ==============================");
                 foreach (var i in unobtainable) { LBResult.Items.Add(i); }
             }
-            if (obtainable.Count > 0)
+            if (obtainable.Count > 0 && chkShowObtainable.Checked)
             {
                 LBResult.Items.Add("Obtainable ==============================");
                 foreach (var i in obtainable) { LBResult.Items.Add(i); }
