@@ -177,7 +177,6 @@ namespace MMR_Tracker_V2
         {
             return (entry.Options > 3);
         }
-
         public static bool IsEntranceRando(this LogicObjects.TrackerInstance Instance)
         {
             return Instance.Version >= VersionHandeling.EntranceRandoVersion || Instance.Game == 1;
@@ -193,6 +192,10 @@ namespace MMR_Tracker_V2
         public static bool IsWarpSong(this LogicObjects.LogicEntry entry)
         {
             return (entry.LocationArea == "Owl Warp");
+        }
+        public static bool AppearsInListbox(this LogicObjects.LogicEntry entry)
+        {
+            return (entry.Randomized() || entry.Unrandomized(1));
         }
     }
 }

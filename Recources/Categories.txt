@@ -51,6 +51,7 @@ Ikana Castle
 Stone Tower
 Stone Tower Temple
 Stone Tower Temple Fairies
+Tingle Map
 Misc
 Bottle Catch
 Dungeon Entrance

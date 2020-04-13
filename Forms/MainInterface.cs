@@ -23,7 +23,6 @@ namespace MMR_Tracker_V2
             InitializeComponent();
         }
 
-        //Object Events
         //Form Events---------------------------------------------------------------------------
         private void FRMTracker_Load(object sender, EventArgs e)
         {
@@ -134,8 +133,6 @@ namespace MMR_Tracker_V2
             ResizeObject();
             FormatMenuItems();
         }
-
-        //Menu Strip => Options---------------------------------------------------------------------------
 
         //Menu Strip => Options => Logic Options---------------------------------------------------------------------------
 
@@ -592,8 +589,6 @@ namespace MMR_Tracker_V2
             coupleEntrancesToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
             devToolStripMenuItem.Visible = Debugging.ISDebugging;
             seperateMarkedItemsToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom) ? "Don't Seperate Marked Items" : "Seperate Marked Items";
-            undoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.UndoList.Any();
-            redoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.RedoList.Any();
 
 
             //MM specific Controls
@@ -605,12 +600,6 @@ namespace MMR_Tracker_V2
             seedCheckerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
             whatUnlockedThisToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
 
-        }
-
-        public void EnableUndoRedo(bool undo, bool redo)
-        {
-            undoToolStripMenuItem.Enabled = undo;
-            redoToolStripMenuItem.Enabled = redo;
         }
 
         private void PrintPaths(int PathToPrint)
@@ -922,14 +911,15 @@ namespace MMR_Tracker_V2
 
         private string WriteObject(LogicObjects.LogicEntry entry, ListBox lb, string lastArea, bool Marked)
         {
+            bool ShowMarked = (Marked && LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom);
             string returnLastArea = lastArea;
             if (entry.LocationArea != returnLastArea)
             {
                 if (returnLastArea != "") { lb.Items.Add(Utility.CreateDivider(lb)); }
 
                 string Header = entry.LocationArea.ToUpper();
-                if (Marked && entry.IsEntrance()) { Header += " SET EXITS"; }
-                else if (Marked && !entry.IsEntrance()) { Header += " SET ITEMS"; }
+                if (ShowMarked && entry.IsEntrance()) { Header += " SET EXITS"; }
+                else if (ShowMarked && !entry.IsEntrance()) { Header += " SET ITEMS"; }
                 else if (entry.IsEntrance()) { Header += " ENTRANCES"; }
                 lb.Items.Add(Header + ":");
                 returnLastArea = entry.LocationArea;

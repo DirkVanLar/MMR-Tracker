@@ -229,12 +229,12 @@ Odolwa Heart Container,Odolwa Heart Container,Heart Container,Woodfall Temple,It
 Goht Heart Container,Goht Heart Container,Heart Container,Snowhead Temple,Item,Goht Heart Container,Heart Container
 Gyorg Heart Container,Gyorg Heart Container,Heart Container,Great Bay Temple,Item,Gyorg Heart Container,Heart Container
 Twinmold Heart Container,Twinmold Heart Container,Heart Container,Stone Tower Temple,Item,Twinmold Heart Container,Heart Container
-Map: Clock Town,Clock Town Map Purchase,Map of Clock Town,North Clock Town,Item,Clock Town Map Purchase,Map of Clock Town
-Map: Woodfall,Woodfall Map Purchase,Map of Woodfall,Road to Southern Swamp,Item,Woodfall Map Purchase,Map of Woodfall
-Map: Snowhead,Snowhead Map Purchase,Map of Snowhead,Road to Southern Swamp,Item,Snowhead Map Purchase,Map of Snowhead
-Map: Romani Ranch,Romani Ranch Map Purchase,Map of Romani Ranch,Milk Road,Item,Romani Ranch Map Purchase,Map of Romani Ranch
-Map: Great Bay,Great Bay Map Purchase,Map of Great Bay,Milk Road,Item,Great Bay Map Purchase,Map of Great Bay
-Map: Stone Tower,Stone Tower Map Purchase,Map of Stone Tower,Great Bay Coast,Item,Stone Tower Map Purchase,Map of Stone Tower
+Map: Clock Town,Clock Town Map Purchase,Map of Clock Town,Tingle Map,Item,Clock Town Map Purchase,Map of Clock Town
+Map: Woodfall,Woodfall Map Purchase,Map of Woodfall,Tingle Map,Item,Woodfall Map Purchase,Map of Woodfall
+Map: Snowhead,Snowhead Map Purchase,Map of Snowhead,Tingle Map,Item,Snowhead Map Purchase,Map of Snowhead
+Map: Romani Ranch,Romani Ranch Map Purchase,Map of Romani Ranch,Tingle Map,Item,Romani Ranch Map Purchase,Map of Romani Ranch
+Map: Great Bay,Great Bay Map Purchase,Map of Great Bay,Tingle Map,Item,Great Bay Map Purchase,Map of Great Bay
+Map: Stone Tower,Stone Tower Map Purchase,Map of Stone Tower,Tingle Map,Item,Stone Tower Map Purchase,Map of Stone Tower
 Goron Racetrack Grotto,Goron Racetrack Grotto,Bombchu,Twin Islands,Item,Goron Racetrack Grotto,Bombchu
 Ikana Scrub 200r,Canyon Scrub Trade,Gold Rupee,Ikana Canyon,Item,Canyon Scrub Trade,Gold Rupee
 Deku Trial HP,Deku Trial Bonus,Piece of Heart,The Moon,Item,Deku Trial Bonus,Piece of Heart
@@ -614,7 +614,7 @@ EntranceWoodfallFromWoodfallTempleExit,Woodfall Prison > Woodfall,Woodfall < Woo
 EntranceWoodfallFromOwlStatue,Owl Warp > Woodfall,Woodfall < Owl Warp,Owl Warp,Entrance,EntranceWoodfallFromOwlStatue,EntranceWoodfallFromOwlStatue
 EntranceZoraTrialFromTheMoon,Moon > Zora trial,Zora Trial < Moon,The Moon,Entrance,EntranceZoraTrialFromTheMoon,EntranceZoraTrialFromTheMoon
 EntranceZoraTrialFromZoraTrial,Zora Trial > Void Out,Zora Trial < Void,The Moon,Entrance,EntranceZoraTrialFromZoraTrial,EntranceZoraTrialFromZoraTrial
-EntranceGoronVillageFromPathtoGoronVillage,Twin Island > goron Village,Goron Village < Twin island,Twin Islands,Entrance,EntranceGoronVillageFromPathtoGoronVillage,EntranceGoronVillageFromPathtoGoronVillage
+EntranceGoronVillageFromPathtoGoronVillage,Twin Island > Goron Village,Goron Village < Twin island,Twin Islands,Entrance,EntranceGoronVillageFromPathtoGoronVillage,EntranceGoronVillageFromPathtoGoronVillage
 EntranceGoronVillageFromGoronShrine,Goron Shrine > Goron Village,Goron Village < Goron Shrine,Goron Village,Entrance,EntranceGoronVillageFromGoronShrine,EntranceGoronVillageFromGoronShrine
 EntranceGoronVillageFromLonePeakShrine,Lens Cave > Goron Village,Goron Village < Lens cave,Grottos,Entrance,EntranceGoronVillageFromLensCave,EntranceGoronVillageFromLonePeakShrine
 EntranceGreatBayTempleFromZoraCape,Zora Cape > Great Bay Temple,Great Bay Temple < Zora cape,Zora Cape,Entrance,EntranceGreatBayTempleFromZoraCape,EntranceGreatBayTempleFromZoraCape

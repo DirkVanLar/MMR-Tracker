@@ -43,7 +43,7 @@ namespace MMR_Tracker_V2
         }
         public static LogicObjects.TrackerInstance CloneTrackerInstance(LogicObjects.TrackerInstance instance)
         {
-            //Create a deep copy of a logic object by converting it to a json and coverting it back.
+            //Create a deep copy of a tracker object by converting it to a json and coverting it back.
             //I have no idea why this works and it seems silly but whatever.
             return JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(JsonConvert.SerializeObject(instance));
         }
@@ -120,7 +120,7 @@ namespace MMR_Tracker_V2
                 if (i.SpoilerRandom < 0) 
                 { 
                     fullLog = false;
-                    if (full) { Console.WriteLine(i.DictionaryName + " Does not have SpoilerData"); }
+                    //if (full) { Console.WriteLine(i.DictionaryName + " Does not have SpoilerData"); }
                 }
             }
             return (full) ? fullLog : Spoiler;
@@ -141,7 +141,7 @@ namespace MMR_Tracker_V2
             int count = 0;
             foreach (var i in Instance.Logic)
             {
-                if (i.IsEntrance() && (i.Options == 0 || i.Options == 2)) { count += 1; }
+                if (i.IsEntrance() && i.AppearsInListbox()) { count += 1; }
                 if (count >= validEntranceCount) { return true; }
             }
             return false;
