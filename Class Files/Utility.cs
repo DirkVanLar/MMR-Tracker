@@ -41,7 +41,7 @@ namespace MMR_Tracker_V2
             //I have no idea why this works and it seems silly but whatever.
             return JsonConvert.DeserializeObject<List<LogicObjects.LogicEntry>>(JsonConvert.SerializeObject(logic));
         }
-        public static LogicObjects.TrackerInstance CloneLogicInstance(LogicObjects.TrackerInstance instance)
+        public static LogicObjects.TrackerInstance CloneTrackerInstance(LogicObjects.TrackerInstance instance)
         {
             //Create a deep copy of a logic object by converting it to a json and coverting it back.
             //I have no idea why this works and it seems silly but whatever.

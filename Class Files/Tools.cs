@@ -227,16 +227,42 @@ namespace MMR_Tracker.Class_Files
             if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
             Instance.UnsavedChanges = false;
             //Clear the undo and redo list because otherwise the save file is massive
-            var SaveInstance = Utility.CloneLogicInstance(Instance);
+            var SaveInstance = Utility.CloneTrackerInstance(Instance);
             SaveInstance.UndoList.Clear();
             SaveInstance.RedoList.Clear();
             File.WriteAllText(saveDialog.FileName, JsonConvert.SerializeObject(SaveInstance));
             return true;
         }
-        public static bool LoadInstance(string LogicFile)
+        public static void LoadInstance()
         {
-            LogicObjects.MainTrackerInstance = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(LogicFile));
-            return true;
+            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
+            string file = Utility.FileSelect("Select A Save File", "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV");
+            if (file == "") { return; }
+            var backup = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
+            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
+            //Try to load the save file with the new system. If that fails try wth the old system. If that fails restore the current instance and show an error.
+            try { LogicObjects.MainTrackerInstance = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file)); }
+            catch 
+            {
+                try
+                {
+                    string[] options = File.ReadAllLines(file);
+                    LogicObjects.MainTrackerInstance.Logic = JsonConvert.DeserializeObject<List<LogicObjects.LogicEntry>>(options[0]);
+                    if (options.Length > 1) { LogicObjects.MainTrackerInstance.Version = Int32.Parse(options[1].Replace("version:", "")); }
+                    else
+                    {
+                        MessageBox.Show("Save File Invalid!");
+                        LogicObjects.MainTrackerInstance = backup;
+                    }
+                    return;
+                }
+                catch
+                {
+                    MessageBox.Show("Save File Invalid!");
+                    LogicObjects.MainTrackerInstance = backup;
+                }
+            }
+            return;
         }
         public static void SaveState(LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicEntry> Logic = null )
         {
@@ -283,10 +309,14 @@ namespace MMR_Tracker.Class_Files
         }
         public static void UpdateNames(LogicObjects.TrackerInstance Instance)
         {
-            var MMRDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionHandeling.SwitchDictionary(Instance)[0]));
+            string[] VersionData = VersionHandeling.SwitchDictionary(Instance);
+            if (VersionData.Count() > 0)
+            {
+                Instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
+            }
             foreach (var entry in Instance.Logic)
             {
-                foreach (var dicent in MMRDictionary)
+                foreach (var dicent in Instance.LogicDictionary)
                 {
                     if (entry.DictionaryName == dicent.DictionaryName)
                     {
@@ -320,9 +350,11 @@ namespace MMR_Tracker.Class_Files
             {
                 List<string> options = new List<string>(); 
                 var file = File.Create("options.txt");
+                file.Close();
+
                 if (!Debugging.ISDebugging || (Control.ModifierKeys == Keys.Shift))
                 {
-                    var firsttime = MessageBox.Show("Welcome to the Majoras Mask Randomizer Tracker by thedrummonger! It looks like this is your first time running the tracker. If that is the case select Yes, otherwise select No.", "First Time Setup", MessageBoxButtons.YesNo);
+                    var firsttime = MessageBox.Show("Welcome to the Majoras Mask Randomizer Tracker by thedrummonger! It looks like this is your first time running the tracker. If so select Yes. Otherwise, select No.", "First Time Setup", MessageBoxButtons.YesNo);
                     if (firsttime == DialogResult.Yes)
                     {
                         MessageBox.Show("Please Take this opportunity to familliarize yourself with how to use this tracker. There are many features that are not obvious or explained anywhere outside of the about page. This information can be accessed at any time by selecting 'Info' -> 'About'. Click OK to show the About Page. Once you have read through the information, close the window to return to setup.", "How to Use", MessageBoxButtons.OK);
@@ -332,30 +364,36 @@ namespace MMR_Tracker.Class_Files
                     }
 
                     var DefaultSetting = MessageBox.Show("If you would like to change the default options, press Yes. Otherwise, press No. Selecting Cancel at an option prompt will leave it default. These can be changed later in the Options text document that will be created in your tracker folder. The can also be changed per instance in the options tab", "Default Setting", MessageBoxButtons.YesNo);
-                    if (DefaultSetting != DialogResult.Yes) { return; }
+                    if (DefaultSetting == DialogResult.Yes) 
+                    {
+                        var ShowToolTips = MessageBox.Show("Would you like to see tooltips that display the full name of an item when you mouse over it?", "Show Tool Tips", MessageBoxButtons.YesNoCancel);
+                        if (ShowToolTips == DialogResult.No) { options.Add("ToolTips:0"); }
+                        else { options.Add("ToolTips:1"); }
 
-                    var ShowToolTips = MessageBox.Show("Would you like to see tooltips that display the full name of an item when you mouse over it?", "Show Tool Tips", MessageBoxButtons.YesNoCancel);
-                    if (ShowToolTips == DialogResult.No) { options.Add("ToolTips:0"); }
-                    else { options.Add("ToolTips:1"); }
+                        var SeperateMArkedItems = MessageBox.Show("Would you like Marked locations to be moved to the bottom of the list?", "Show Tool Tips", MessageBoxButtons.YesNoCancel);
+                        if (SeperateMArkedItems == DialogResult.Yes) { options.Add("SeperateMarked:1"); }
+                        else { options.Add("SeperateMarked:0"); }
 
-                    var SeperateMArkedItems = MessageBox.Show("Would you like Marked locations to be moved to the bottom of the list?", "Show Tool Tips", MessageBoxButtons.YesNoCancel);
-                    if (ShowToolTips == DialogResult.Yes) { options.Add("SeperateMarked:1"); }
-                    else { options.Add("SeperateMarked:0"); }
+                        var DisableEntrances = MessageBox.Show("Would you like the tracker to automatically mark entrances as unrandomized when creating an instance? This is usefull if you don't plan to use entrance randomizer often.", "Start with Entrance Rando", MessageBoxButtons.YesNoCancel);
+                        if (DisableEntrances == DialogResult.No) { options.Add("DisableEntrancesOnStartup:0"); }
+                        else { options.Add("DisableEntrancesOnStartup:1"); }
 
-                    var DisableEntrances = MessageBox.Show("Would you like the tracker to automatically mark entrances as unrandomized when creating an instance? This is usefull if you don't plan to use entrance randomizer often.", "Start with Entrance Rando", MessageBoxButtons.YesNoCancel);
-                    if (DisableEntrances == DialogResult.No) { options.Add("DisableEntrancesOnStartup:0"); }
-                    else { options.Add("DisableEntrancesOnStartup:1"); }
-
-                    var UpdateCheck = MessageBox.Show("Would you like the tracker to notify you when a newer version has been released?", "Check For Updates", MessageBoxButtons.YesNoCancel);
-                    if (UpdateCheck == DialogResult.No) { options.Add("CheckForUpdates:0"); }
-                    else { options.Add("CheckForUpdates:1"); }
+                        var UpdateCheck = MessageBox.Show("Would you like the tracker to notify you when a newer version has been released?", "Check For Updates", MessageBoxButtons.YesNoCancel);
+                        if (UpdateCheck == DialogResult.No) { options.Add("CheckForUpdates:0"); }
+                        else { options.Add("CheckForUpdates:1"); }
+                    }
                 }
-                
-                file.Close();
+                else
+                {
+                    options.Add("ToolTips:1");
+                    options.Add("SeperateMarked:0");
+                    options.Add("DisableEntrancesOnStartup:0");
+                    options.Add("CheckForUpdates:0");
+                }
                 File.WriteAllLines("options.txt", options);
             }
         }
-        public static List<int> ResolveFakeToRealItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic, bool initialRun = false)
+        public static List<int> ResolveFakeToRealItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic)
         {
             var RealItems = new List<int>();
             var New = new LogicObjects.PlaythroughItem();
@@ -365,14 +403,9 @@ namespace MMR_Tracker.Class_Files
                 else
                 {
                     var NewItem = Playthrough.Where(i => i.Check.ID == j).FirstOrDefault();
-                    
-                    foreach (var k in ResolveFakeToRealItems(NewItem, Playthrough, logic))
-                    {
-                        RealItems.Add(k);
-                    }
+                    foreach (var k in ResolveFakeToRealItems(NewItem, Playthrough, logic)) { RealItems.Add(k); }
                 }
             }
-
             return RealItems;
         }
         public static bool SameItemMultipleChecks(int item, LogicObjects.TrackerInstance Instance)

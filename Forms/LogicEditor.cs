@@ -59,7 +59,7 @@ namespace MMR_Tracker.Forms
             nudIndex.Value = 0;
             if (LogicObjects.MainTrackerInstance.Version > 0)
             {
-                EditorInstance = Utility.CloneLogicInstance(LogicObjects.MainTrackerInstance);
+                EditorInstance = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
                 FormatForm();
             }
             else

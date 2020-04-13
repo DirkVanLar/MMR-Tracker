@@ -66,11 +66,7 @@ namespace MMR_Tracker_V2
 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-            string file = Utility.FileSelect("Select A Save File", "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV");
-            if (file == "") { return; }
-            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
-            Tools.LoadInstance(file);
+            Tools.LoadInstance();
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
@@ -483,25 +479,18 @@ namespace MMR_Tracker_V2
             {
                 LBPathFinder.Items.Add("No Path Found!");
                 LBPathFinder.Items.Add("");
-                
-                foreach(var i in Utility.SeperateStringByMeasurement(LBPathFinder, "This path finder is still in beta and may not always work as intended.", ""))
-                {
-                    LBPathFinder.Items.Add(i);
-                }
+
+                foreach (var i in Utility.SeperateStringByMeasurement(LBPathFinder, "This path finder is still in beta and may not always work as intended.", "")) { LBPathFinder.Items.Add(i); }
                 LBPathFinder.Items.Add("");
                 if (!LogicObjects.MainTrackerInstance.Options.UseSongOfTime)
                 {
-                    foreach(var i in Utility.SeperateStringByMeasurement(LBPathFinder, "Your destination may not be reachable without song of time. The use of Song of Time is not considered by default. To enable Song of Time toggle it in the options menu", ""))
-                    {
-                        LBPathFinder.Items.Add(i);
-                    }
+                    var sotT = "Your destination may not be reachable without song of time. The use of Song of Time is not considered by default. To enable Song of Time toggle it in the options menu";
+                    foreach (var i in Utility.SeperateStringByMeasurement(LBPathFinder, sotT, "")) { LBPathFinder.Items.Add(i); }
                 }
                 LBPathFinder.Items.Add("");
-                foreach( var i in Utility.SeperateStringByMeasurement(LBPathFinder, "If you believe this is an error try navigating to a different entrance close to your destination or try a different starting point.", ""))
-                {
-                    LBPathFinder.Items.Add(i);
-                }
-                
+                var ErrT = "If you believe this is an error try navigating to a different entrance close to your destination or try a different starting point.";
+                foreach (var i in Utility.SeperateStringByMeasurement(LBPathFinder, ErrT, "")) { LBPathFinder.Items.Add(i); }
+
                 return;
             }
             PrintPaths(-1);
@@ -607,14 +596,14 @@ namespace MMR_Tracker_V2
             redoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.RedoList.Any();
 
 
-            //OOT Handeling
-            importSpoilerLogToolStripMenuItem.Visible = !LogicObjects.MainTrackerInstance.IsOOT();
-            useSongOfTimeInPathfinderToolStripMenuItem.Visible = !LogicObjects.MainTrackerInstance.IsOOT() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
-            includeItemLocationsAsDestinationToolStripMenuItem.Visible = !LogicObjects.MainTrackerInstance.IsOOT() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
-            coupleEntrancesToolStripMenuItem.Visible = !LogicObjects.MainTrackerInstance.IsOOT() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
-            generatePlaythroughToolStripMenuItem.Visible = !LogicObjects.MainTrackerInstance.IsOOT() && (LogicObjects.MainTrackerInstance.Version > 0);
-            seedCheckerToolStripMenuItem.Visible = !LogicObjects.MainTrackerInstance.IsOOT() && (LogicObjects.MainTrackerInstance.Version > 0);
-            whatUnlockedThisToolStripMenuItem.Visible = !LogicObjects.MainTrackerInstance.IsOOT() && (LogicObjects.MainTrackerInstance.Version > 0);
+            //MM specific Controls
+            importSpoilerLogToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM();
+            useSongOfTimeInPathfinderToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
+            includeItemLocationsAsDestinationToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
+            coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
+            generatePlaythroughToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
+            seedCheckerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
+            whatUnlockedThisToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
 
         }
 

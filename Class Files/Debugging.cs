@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMR_Tracker.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -88,7 +89,10 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-
+            foreach(var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.IsFake))
+            {
+                if (PathFinder.NotAreaAccess(i, LogicObjects.MainTrackerInstance.Logic)) { Console.WriteLine($"{i.DictionaryName} is not an access item"); }
+            }
         }
     }
 }

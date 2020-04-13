@@ -54,23 +54,18 @@ namespace MMR_Tracker.Forms
             {
                 LBPathFinder.Items.Add("No Path Found!");
                 LBPathFinder.Items.Add("");
-                LBPathFinder.Items.Add("This path finder is still in beta");
-                LBPathFinder.Items.Add("And can be buggy.");
-                LBPathFinder.Items.Add("If you believe this is an error");
-                LBPathFinder.Items.Add("try navigating to a different entrance");
-                LBPathFinder.Items.Add("close to your destination or try a");
-                LBPathFinder.Items.Add("different starting point.");
+
+                foreach (var i in Utility.SeperateStringByMeasurement(LBPathFinder, "This path finder is still in beta and may not always work as intended.", "")) { LBPathFinder.Items.Add(i); }
+                LBPathFinder.Items.Add("");
                 if (!LogicObjects.MainTrackerInstance.Options.UseSongOfTime)
                 {
-                    LBPathFinder.Items.Add("");
-                    LBPathFinder.Items.Add("It may also be the case that the only");
-                    LBPathFinder.Items.Add("path to your destination is by use of");
-                    LBPathFinder.Items.Add("the Song of Time.");
-                    LBPathFinder.Items.Add("By default Song of Time is ignored in");
-                    LBPathFinder.Items.Add("the path finder.");
-                    LBPathFinder.Items.Add("You can enable the use of Song of");
-                    LBPathFinder.Items.Add("Time in entrance rando options.");
+                    var sotT = "Your destination may not be reachable without song of time. The use of Song of Time is not considered by default. To enable Song of Time toggle it in the options menu";
+                    foreach (var i in Utility.SeperateStringByMeasurement(LBPathFinder, sotT, "")) { LBPathFinder.Items.Add(i); }
                 }
+                LBPathFinder.Items.Add("");
+                var ErrT = "If you believe this is an error try navigating to a different entrance close to your destination or try a different starting point.";
+                foreach (var i in Utility.SeperateStringByMeasurement(LBPathFinder, ErrT, "")) { LBPathFinder.Items.Add(i); }
+
                 return;
             }
             PrintPaths(-1);
@@ -208,7 +203,7 @@ namespace MMR_Tracker.Forms
 
         public static List<List<LogicObjects.MapPoint>> FindLogicalEntranceConnections(LogicObjects.TrackerInstance Instance, LogicObjects.LogicEntry startinglocation)
         {
-            //Result[0] = All connections that have been checked and have a radnomized item, Result[1] = All connections regardless of if they have been checked.
+            //Result[0] = A map of all available exit from each entrance, Result[1] = A map of all available entrances from each exit as long as the result of that entrance is known.
             var result = new List<List<LogicObjects.MapPoint>> { new List<LogicObjects.MapPoint>(), new List<LogicObjects.MapPoint>() };
 
             var logicTemplate = new LogicObjects.TrackerInstance
@@ -225,7 +220,7 @@ namespace MMR_Tracker.Forms
                 {
                     CurrentExit = startinglocation.ID,
                     EntranceToTake = OwlEntry.ID,
-                    ResultingExit = (OwlEntry.RandomizedItem > -1) ? OwlEntry.RandomizedItem : -2
+                    ResultingExit = OwlEntry.RandomizedItem
                 };
                 result[0].Add(newEntry);
                 if (newEntry.ResultingExit > -1) { result[1].Add(newEntry); }
@@ -236,24 +231,19 @@ namespace MMR_Tracker.Forms
             {
                 var ExitToCheck = logicTemplate.Logic[entry.RandomizedItem];
                 ExitToCheck.Aquired = true;
-                LogicEditing.CalculateItems(logicTemplate, true);
+                LogicEditing.CalculateItems(logicTemplate);
                 foreach (var dummyEntry in logicTemplate.Logic.Where(x => EntranceConnectionValid(x, ExitToCheck, logicTemplate)))
                 {
                     var newEntry = new LogicObjects.MapPoint
                     {
                         CurrentExit = ExitToCheck.ID,
                         EntranceToTake = dummyEntry.ID,
-                        ResultingExit = (dummyEntry.RandomizedItem > -1) ? dummyEntry.RandomizedItem : -2
+                        ResultingExit = dummyEntry.RandomizedItem
                     };
                     result[0].Add(newEntry);
-                    if (newEntry.ResultingExit > -1 && dummyEntry.IsEntrance()) { result[1].Add(newEntry); }
+                    if (newEntry.ResultingExit > -1) { result[1].Add(newEntry); }
                 }
                 UnmarkEntrances(logicTemplate.Logic);
-            }
-            var l = Instance.Logic;
-            foreach (var i in result[1])
-            {
-                Console.WriteLine($"{l[i.CurrentExit].ItemName} => {l[i.EntranceToTake].LocationName} => {l[i.ResultingExit].ItemName}");
             }
             return result;
         }
@@ -262,7 +252,7 @@ namespace MMR_Tracker.Forms
         {
             foreach (LogicObjects.LogicEntry Entry in Logic)
             {
-                if (Entry.IsEntrance())
+                if (Entry.IsEntrance() || (Entry.IsFake && !NotAreaAccess(Entry, Logic)))
                 {
                     Entry.Aquired = false;
                     Entry.Available = false;
@@ -275,18 +265,18 @@ namespace MMR_Tracker.Forms
             return (x.Available && !x.IsFake && !x.IsWarpSong() && (x.IsEntrance() || lt.Options.IncludeItemLocations) && NotSOT(lt, ExitToCheck, x));
         }
 
-        public static void Findpath(
-            LogicObjects.TrackerInstance Instance,
-            List<LogicObjects.MapPoint> map, //A map of all available entrances from each exit as long as the result of that entrance is known
-            List<LogicObjects.MapPoint> FullMap, //A map of all available exit from each entrance
-            int startinglocation, //The ID of the last exit you came from
-            int destination, //The ID of the entrance you want to reach
-            List<int> ExitsSeen, //The IDs of each entrance you have seen in the current area as well as all surrounding areas
-            List<int> ExitsSeenOriginal, //The same as exits seen but does not conatain entrance found during this execution of the function through the CheckExitValid fucntion
-            List<LogicObjects.MapPoint> Path, //A list of exits you have taken to get to your current point
-            bool InitialRun = false //Is this code being run from the original source (True) or from it's self (False)
-            )
+        public static void Findpath(LogicObjects.TrackerInstance Instance, List<LogicObjects.MapPoint> map, List<LogicObjects.MapPoint> FullMap, int startinglocation, int destination, List<int> ExitsSeen, List<int> ExitsSeenOriginal, List<LogicObjects.MapPoint> Path, bool InitialRun = false)
         {
+            #region
+            //map               :A map of all available entrances from each exit as long as the result of that entrance is known
+            //FullMap           :A map of all available exit from each entrance
+            //startinglocation  :The ID of the last exit you came from
+            //destination       :The ID of the entrance you want to reach
+            //ExitsSeen         :The IDs of each entrance you have seen in the current area as well as all surrounding areas
+            //ExitsSeenOriginal :The same as exits seen but does not conatain entrance found during this execution of the function through the CheckExitValid fucntion
+            //Path              :A list of exits you have taken to get to your current point
+            //InitialRun        :Is this code being run from the original source (True) or from it's self (False)
+            #endregion
             if (InitialRun) { paths = new List<List<LogicObjects.MapPoint>>(); }
             //There are no available exits from majoras lair, this however is used to lock inaccesable exits
             if (Instance.Logic[startinglocation].DictionaryName == "EntranceMajorasLairFromTheMoon") { return; }
@@ -303,10 +293,12 @@ namespace MMR_Tracker.Forms
             //For each point in our trimmed map 
             foreach (var point in map.Where(x => x.CurrentExit == startinglocation))
             {
+                #region
                 /*The ExitsSeenOriginal check ensures that the exit we are taking has not been accessable from 
                 from a previous exit we have actually been to.
                 Then Check to see if taking this exit contains exits we haven't seen before.
                  */
+                #endregion
                 if (!ExitsSeenOriginal.Contains(point.EntranceToTake) && CheckExitValid(map, point.ResultingExit, ExitsSeenCopy))
                 {
                     validExits.Add(point);
@@ -368,6 +360,30 @@ namespace MMR_Tracker.Forms
                 else { return "Song of Time"; }
             }
             return Instance.Logic[stop.EntranceToTake].LocationName; ;
+        }
+
+        public static bool NotAreaAccess(LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
+        {
+            //Attempts to check if a fake item details area access. If the fake item can be unlocked with only real item entries it should be detailing an it
+            //And shouldn't need to be unaquired for the pathfinder
+            var Reqdef = new int[0];
+            var Condef = new int[0][];
+            foreach (var i in entry.Required ?? Reqdef)
+            {
+                var reqEntry = Logic[i];
+                if (reqEntry.IsFake || reqEntry.IsEntrance()) { return false; }
+            }
+            foreach (var h in entry.Conditionals ?? Condef)
+            {
+                var RealEntry = true;
+                foreach (var i in h)
+                {
+                    var CondEntry = Logic[i];
+                    if (CondEntry.IsFake || CondEntry.IsEntrance()) { RealEntry = false; }
+                }
+                if (RealEntry) { return true; }
+            }
+            return false;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MMR_Tracker.Class_Files
         {
             List<LogicObjects.PlaythroughItem> Playthrough = new List<LogicObjects.PlaythroughItem>();
             Dictionary<int, int> SpoilerToID = new Dictionary<int, int>();
-            var playLogic = Utility.CloneLogicInstance(Instance);
+            var playLogic = Utility.CloneTrackerInstance(Instance);
             var GameClear = GetGameClearEntry(playLogic.Logic, Instance.IsEntranceRando());
 
             if (GameClear < 0) { MessageBox.Show("Could not find game clear requirements. Playthrough can not be generated."); return; }

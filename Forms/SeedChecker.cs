@@ -63,7 +63,7 @@ namespace MMR_Tracker
 
         private void BtnCheckSeed_Click(object sender, EventArgs e)
         {
-            var logicCopy = Utility.CloneLogicInstance(LogicObjects.MainTrackerInstance);
+            var logicCopy = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
             foreach (var i in logicCopy.Logic)
             {
                 i.Available = false;
