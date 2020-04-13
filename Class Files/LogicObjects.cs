@@ -97,6 +97,7 @@ namespace MMR_Tracker_V2
         public class ListItem
         {
             public int ID { get; set; }
+            public int Identifier { get; set; }
             public string DisplayName { get; set; }
             public override string ToString()
             {

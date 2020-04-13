@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Octokit;
 using Newtonsoft.Json;
 using MMR_Tracker.Class_Files;
+using System.Threading.Tasks;
 
 namespace MMR_Tracker_V2
 {
@@ -434,9 +435,10 @@ namespace MMR_Tracker_V2
             if (LBPathFinder.SelectedItem is LogicObjects.ListItem)
             {
                 var item = LBPathFinder.SelectedItem as LogicObjects.ListItem;
-                PrintPaths(item.ID);
+                var partition = item.Identifier;
+                PrintPaths(item.ID, partition);
             }
-            else { PrintPaths(-1); }
+            else { return; }
         }
 
         private void LBValidLocations_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, LBValidLocations); }
@@ -452,9 +454,10 @@ namespace MMR_Tracker_V2
 
         private void BTNSetEntrance_Click(object sender, EventArgs e) { CheckItemSelected(LBValidEntrances, false); }
 
-        private void BTNFindPath_Click(object sender, EventArgs e)
+        private async void BTNFindPath_Click(object sender, EventArgs e)
         {
-
+            int partition = PathFinder.paths.Count();
+            PathFinder.paths.Add(new List<List<LogicObjects.MapPoint>>());
             LBPathFinder.Items.Clear();
 
             if (!(CMBStart.SelectedItem is KeyValuePair<int, string>) || !(CMBEnd.SelectedItem is KeyValuePair<int, string>)) { return; }
@@ -466,10 +469,9 @@ namespace MMR_Tracker_V2
             LBPathFinder.Items.Add("Finding Path.....");
             LBPathFinder.Items.Add("Please Wait");
             LBPathFinder.Refresh();
-            var maps = PathFinder.FindLogicalEntranceConnections(LogicObjects.MainTrackerInstance, startinglocation);
-            var Fullmap = maps[0]; //A map of all available exit from each entrance
-            var ResultMap = maps[1]; //A map of all available entrances from each exit as long as the result of that entrance is known
-            PathFinder.Findpath(LogicObjects.MainTrackerInstance, ResultMap, Fullmap, startinglocation.ID, destination.ID, new List<int>(), new List<int>(), new List<LogicObjects.MapPoint>(), true);
+
+            await Task.Run(() => PathFinder.calculatepath(Startindex, DestIndex, partition));
+
             LBPathFinder.Items.Clear();
 
             if (PathFinder.paths.Count == 0)
@@ -490,7 +492,7 @@ namespace MMR_Tracker_V2
 
                 return;
             }
-            PrintPaths(-1);
+            PrintPaths(-1, partition);
         }
 
         //Other---------------------------------------------------------------------------
@@ -602,32 +604,32 @@ namespace MMR_Tracker_V2
 
         }
 
-        private void PrintPaths(int PathToPrint)
+        private void PrintPaths(int PathToPrint, int partition)
         {
             LBPathFinder.Items.Clear();
-            var sortedpaths = PathFinder.paths.OrderBy(x => x.Count);
+            var sortedpaths = PathFinder.paths[partition].OrderBy(x => x.Count);
 
-            if (PathToPrint == -1 || PathFinder.paths.ElementAtOrDefault(PathToPrint) == null)
+            if (PathToPrint == -1 || PathFinder.paths[partition].ElementAtOrDefault(PathToPrint) == null)
             {
                 int counter = 1;
                 foreach (var path in sortedpaths)
                 {
-                    LBPathFinder.Items.Add(new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", ID = counter - 1 });
+                    LBPathFinder.Items.Add(new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", ID = counter - 1, Identifier = partition });
                     var firstStop = true;
                     foreach (var stop in path)
                     {
                         var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
-                        var ListItem = new LogicObjects.ListItem { DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName, ID = counter - 1 };
+                        var ListItem = new LogicObjects.ListItem { DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName, ID = counter - 1, Identifier = partition };
                         LBPathFinder.Items.Add(ListItem); firstStop = false;
                     }
-                    LBPathFinder.Items.Add(new LogicObjects.ListItem { DisplayName = "===============================", ID = counter - 1 });
+                    LBPathFinder.Items.Add(new LogicObjects.ListItem { DisplayName = "===============================", ID = counter - 1, Identifier = partition });
                     counter++;
                 }
             }
             else
             {
                 var path = sortedpaths.ToArray()[PathToPrint];
-                var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + (PathToPrint + 1) + " (" + path.Count + " Steps)", ID = -1 };
+                var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + (PathToPrint + 1) + " (" + path.Count + " Steps)", ID = -1, Identifier = partition };
                 LBPathFinder.Items.Add(ListTitle);
                 foreach (var stop in path)
                 {
@@ -638,7 +640,8 @@ namespace MMR_Tracker_V2
                             "Song of Time" :
                             LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName
                         ) + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
-                        ID = -1
+                        ID = -1,
+                        Identifier = partition
                     };
                     LBPathFinder.Items.Add(ThisIsStupid);
                 }
