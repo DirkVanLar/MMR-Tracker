@@ -676,7 +676,7 @@
             this.popoutPathfinderToolStripMenuItem.Name = "popoutPathfinderToolStripMenuItem";
             this.popoutPathfinderToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.popoutPathfinderToolStripMenuItem.Text = "Popout Pathfinder";
-            this.popoutPathfinderToolStripMenuItem.Click += new System.EventHandler(this.popoutPathfinderToolStripMenuItem_Click);
+            this.popoutPathfinderToolStripMenuItem.Click += new System.EventHandler(this.PopoutPathfinderToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 

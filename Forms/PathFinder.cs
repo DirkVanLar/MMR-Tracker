@@ -36,16 +36,17 @@ namespace MMR_Tracker.Forms
             if (Startindex < 0 || DestIndex < 0) { return; }
             LBPathFinder.Items.Add("Finding Path.....");
             LBPathFinder.Items.Add("Please Wait");
-            LBPathFinder.Items.Add("");
-            LBPathFinder.Items.Add("This could take up to 20");
-            LBPathFinder.Items.Add("seconds depending on how");
-            LBPathFinder.Items.Add("complete your map is and");
-            LBPathFinder.Items.Add("the speed of your PC!");
             LBPathFinder.Refresh();
 
-            await Task.Run(() => PathFinder.calculatepath(Startindex, DestIndex, partition));
+            bool DestinationAtStarting = await Task.Run(() => PathFinder.Calculatepath(Startindex, DestIndex, partition));
 
             LBPathFinder.Items.Clear();
+
+            if (DestinationAtStarting)
+            {
+                foreach (var i in Utility.SeperateStringByMeasurement(LBPathFinder, "Your destination is available from your starting area.", "")) { LBPathFinder.Items.Add(i); }
+                return;
+            }
 
             if (PathFinder.paths.Count == 0)
             {
@@ -68,14 +69,18 @@ namespace MMR_Tracker.Forms
             PrintPaths(-1, partition);
         }
 
-        public static void calculatepath(int Startindex, int DestIndex, int PathPartition)
+        public static bool Calculatepath(int Startindex, int DestIndex, int PathPartition)
         {
             var startinglocation = LogicObjects.MainTrackerInstance.Logic[Startindex];
             var destination = LogicObjects.MainTrackerInstance.Logic[DestIndex];
             var maps = FindLogicalEntranceConnections(LogicObjects.MainTrackerInstance, startinglocation);
             var Fullmap = maps[0]; //A map of all available exit from each entrance
             var ResultMap = maps[1]; //A map of all available entrances from each exit as long as the result of that entrance is known
+
+            if (Fullmap.Find(x => x.CurrentExit == startinglocation.ID && x.EntranceToTake == destination.ID) != null) { return true; }
+
             Findpath(LogicObjects.MainTrackerInstance, ResultMap, Fullmap, startinglocation.ID, destination.ID, new List<int>(), new List<int>(), new List<LogicObjects.MapPoint>(), PathPartition, true);
+            return false;
         }
 
         private void CMBStart_DropDown(object sender, EventArgs e)
@@ -157,22 +162,33 @@ namespace MMR_Tracker.Forms
         private void PrintPaths(int PathToPrint, int partition)
         {
             LBPathFinder.Items.Clear();
-            var sortedpaths = paths[partition].OrderBy(x => x.Count);
+            var sortedpaths = PathFinder.paths[partition].OrderBy(x => x.Count);
 
-            if (PathToPrint == -1 || paths[partition].ElementAtOrDefault(PathToPrint) == null)
+            if (PathToPrint == -1 || PathFinder.paths[partition].ElementAtOrDefault(PathToPrint) == null)
             {
                 int counter = 1;
                 foreach (var path in sortedpaths)
                 {
-                    LBPathFinder.Items.Add(new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", ID = counter - 1 , Identifier = partition });
+                    var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", ID = counter - 1, Identifier = partition };
+                    LBPathFinder.Items.Add(ListTitle);
                     var firstStop = true;
                     foreach (var stop in path)
                     {
-                        var start = (firstStop) ? SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
-                        var ListItem = new LogicObjects.ListItem { DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName, ID = counter - 1, Identifier = partition };
+                        var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
+                        var ListItem = new LogicObjects.ListItem
+                        {
+                            DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
+                            ID = counter - 1,
+                            Identifier = partition
+                        };
                         LBPathFinder.Items.Add(ListItem); firstStop = false;
                     }
-                    LBPathFinder.Items.Add(new LogicObjects.ListItem { DisplayName = "===============================", ID = counter - 1, Identifier = partition });
+                    LBPathFinder.Items.Add(new LogicObjects.ListItem
+                    {
+                        DisplayName = "===============================",
+                        ID = counter - 1,
+                        Identifier = partition
+                    });
                     counter++;
                 }
             }
@@ -181,21 +197,25 @@ namespace MMR_Tracker.Forms
                 var path = sortedpaths.ToArray()[PathToPrint];
                 var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + (PathToPrint + 1) + " (" + path.Count + " Steps)", ID = -1, Identifier = partition };
                 LBPathFinder.Items.Add(ListTitle);
+                var firstStop = true;
                 foreach (var stop in path)
                 {
-                    var ThisIsStupid = new LogicObjects.ListItem
+                    var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
+                    var ListItem = new LogicObjects.ListItem
                     {
-                        DisplayName =
-                        ((LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].DictionaryName == "EntranceSouthClockTownFromClockTowerInterior") ?
-                            "Song of Time" :
-                            LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName
-                        ) + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
+                        DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
                         ID = -1,
                         Identifier = partition
                     };
-                    LBPathFinder.Items.Add(ThisIsStupid);
+                    LBPathFinder.Items.Add(ListItem);
+                    firstStop = false;
                 }
-                LBPathFinder.Items.Add("===============================");
+                LBPathFinder.Items.Add(new LogicObjects.ListItem
+                {
+                    DisplayName = "===============================",
+                    ID = -1,
+                    Identifier = partition
+                });
             }
         }
 
@@ -239,6 +259,8 @@ namespace MMR_Tracker.Forms
             foreach (LogicObjects.LogicEntry entry in Instance.Logic.Where(x => x.RandomizedItem > -1 && x.IsEntrance() && x.Checked))
             {
                 var ExitToCheck = logicTemplate.Logic[entry.RandomizedItem];
+                //There are no valid exits from majoras lair. Logic uses it to make sure innaccessable exits don't lock something needed to beat the game.
+                if (ExitToCheck.DictionaryName == "EntranceMajorasLairFromTheMoon") { continue; }
                 ExitToCheck.Aquired = true;
                 LogicEditing.CalculateItems(logicTemplate);
                 foreach (var dummyEntry in logicTemplate.Logic.Where(x => EntranceConnectionValid(x, ExitToCheck, logicTemplate)))
@@ -274,45 +296,41 @@ namespace MMR_Tracker.Forms
             return (x.Available && !x.IsFake && !x.IsWarpSong() && (x.IsEntrance() || lt.Options.IncludeItemLocations) && NotSOT(lt, ExitToCheck, x));
         }
 
-        public static void Findpath(LogicObjects.TrackerInstance Instance, List<LogicObjects.MapPoint> map, List<LogicObjects.MapPoint> FullMap, int startinglocation, int destination, List<int> ExitsSeen, List<int> ExitsSeenOriginal, List<LogicObjects.MapPoint> Path, int PathPartition, bool InitialRun = false)
+        public static void Findpath(LogicObjects.TrackerInstance Instance, List<LogicObjects.MapPoint> map, List<LogicObjects.MapPoint> FullMap, int startinglocation, int destination, List<int> ExitsKnown, List<int> ExitsVisited, List<LogicObjects.MapPoint> Path, int PathPartition, bool InitialRun = false)
         {
             #region
             //map               :A map of all available entrances from each exit as long as the result of that entrance is known
             //FullMap           :A map of all available exit from each entrance
             //startinglocation  :The ID of the last exit you came from
             //destination       :The ID of the entrance you want to reach
-            //ExitsSeen         :The IDs of each entrance you have seen in the current area as well as all surrounding areas
-            //ExitsSeenOriginal :The same as exits seen but does not conatain entrance found during this execution of the function through the CheckExitValid fucntion
+            //ExitsKnown        :The IDs of each entrance we've seen from areas we've been to and areas we've scanned using the NewExitsInResultingArea function
+            //ExitsSeenOriginal :The IDs of each entrance we've seen from area we have actually been to or could have been to earlier in the path
             //Path              :A list of exits you have taken to get to your current point
             //PathPartition     :The index of the global paths variable where this path will be stored
             //InitialRun        :Is this code being run from the original source (True) or from it's self (False)
             #endregion
             if (InitialRun) { paths[PathPartition] = new List<List<LogicObjects.MapPoint>>(); }
-            //There are no available exits from majoras lair, this however is used to lock inaccesable exits
-            if (Instance.Logic[startinglocation].DictionaryName == "EntranceMajorasLairFromTheMoon") { return; }
             //Make a copy to edit and pass to the next funtion
-            var ExitsSeenCopy = JsonConvert.DeserializeObject<List<int>>(JsonConvert.SerializeObject(ExitsSeen));
-            //The path finder will use this to ignore seen entrances in areas with new entrances and seen entrances
-            var ExitsSeenOriginalCopy = JsonConvert.DeserializeObject<List<int>>(JsonConvert.SerializeObject(ExitsSeen));
+            var ExitsKnownCopy = JsonConvert.DeserializeObject<List<int>>(JsonConvert.SerializeObject(ExitsKnown));
+            var ExitsVisitedCopy = JsonConvert.DeserializeObject<List<int>>(JsonConvert.SerializeObject(ExitsKnown));
             //A list of exits available to take
             var validExits = new List<LogicObjects.MapPoint>();
 
             //If we can reach our destination from this point, add the path we took to get here to the valid paths list.
             if (FullMap.Find(x => x.CurrentExit == startinglocation && x.EntranceToTake == destination) != null) { paths[PathPartition].Add(Path); }
 
-            //For each point in our trimmed map 
+            //For each exit from our current location
             foreach (var point in map.Where(x => x.CurrentExit == startinglocation))
             {
                 #region
-                /*The ExitsSeenOriginal check ensures that the exit we are taking has not been accessable from 
-                from a previous exit we have actually been to.
-                Then Check to see if taking this exit contains exits we haven't seen before.
-                 */
+                /*Check that the exit we are taking has not been accessable from a previous exit we have actually been to or seen earlier in the path.
+                Then Check to see if taking this exit contains exits we haven't seen before.*/
                 #endregion
-                if (!ExitsSeenOriginal.Contains(point.EntranceToTake) && CheckExitValid(map, point.ResultingExit, ExitsSeenCopy))
+                if (!ExitsVisited.Contains(point.EntranceToTake) && NewExitsInResultingArea(map, point.ResultingExit, ExitsKnownCopy))
                 {
                     validExits.Add(point);
-                    ExitsSeen.Add(point.EntranceToTake);
+                    ExitsKnownCopy.Add(point.EntranceToTake);
+                    ExitsVisitedCopy.Add(point.EntranceToTake);
                 }
             }
             //Pick the first entrance in the valid exits list, rerun the function with the resulting exit as the starting location
@@ -320,15 +338,13 @@ namespace MMR_Tracker.Forms
             {
                 var UpdatedPath = JsonConvert.DeserializeObject<List<LogicObjects.MapPoint>>(JsonConvert.SerializeObject(Path));
                 UpdatedPath.Add(exit);
-                Findpath(Instance, map, FullMap, exit.ResultingExit, destination, ExitsSeenCopy, ExitsSeenOriginalCopy, UpdatedPath, PathPartition);
+                Findpath(Instance, map, FullMap, exit.ResultingExit, destination, ExitsKnownCopy, ExitsVisitedCopy, UpdatedPath, PathPartition);
             }
         }
 
-        public static bool CheckExitValid(List<LogicObjects.MapPoint> map, int startinglocation, List<int> ExitsSeen)
+        public static bool NewExitsInResultingArea(List<LogicObjects.MapPoint> map, int startinglocation, List<int> ExitsSeen)
         {
-            /* This checks all of the exits in the area we would go to if we took this exit. If we have seen all of these exits
-            Before or there is no need to take this exit.
-            */
+            // This checks all of the exits in the area we would go to if we took this exit. If we have seen all of these exits before there is no need to take this exit.
             var good = false;
             foreach (var point in map.Where(x => x.CurrentExit == startinglocation))
             {
