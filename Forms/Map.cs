@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MMR_Tracker
 {
-    public partial class Form1 : Form
+    public partial class Map : Form
     {
-        public Form1()
+        public Map()
         {
             InitializeComponent();
         }
@@ -31,9 +31,9 @@ namespace MMR_Tracker
             this.goronShrine = new System.Windows.Forms.Button();
             this.ikana = new System.Windows.Forms.Button();
             this.stoneTower = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.locations = new System.Windows.Forms.CheckBox();
+            this.entrances = new System.Windows.Forms.CheckBox();
+            this.checkedLocations = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // clockTown
@@ -47,15 +47,16 @@ namespace MMR_Tracker
             this.clockTown.Size = new System.Drawing.Size(32, 50);
             this.clockTown.TabIndex = 0;
             this.clockTown.UseVisualStyleBackColor = false;
+            this.clockTown.Click += new System.EventHandler(this.clockTown_Click);
             // 
             // termina
             // 
             this.termina.BackColor = System.Drawing.Color.Transparent;
             this.termina.FlatAppearance.BorderSize = 0;
             this.termina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.termina.Location = new System.Drawing.Point(283, 137);
+            this.termina.Location = new System.Drawing.Point(264, 137);
             this.termina.Name = "termina";
-            this.termina.Size = new System.Drawing.Size(97, 79);
+            this.termina.Size = new System.Drawing.Size(116, 79);
             this.termina.TabIndex = 1;
             this.termina.UseVisualStyleBackColor = false;
             // 
@@ -81,6 +82,7 @@ namespace MMR_Tracker
             this.woodfall.Size = new System.Drawing.Size(97, 66);
             this.woodfall.TabIndex = 3;
             this.woodfall.UseVisualStyleBackColor = false;
+            this.woodfall.Click += new System.EventHandler(this.woodfall_Click);
             // 
             // dekuPalace
             // 
@@ -170,53 +172,53 @@ namespace MMR_Tracker
             this.stoneTower.TabIndex = 12;
             this.stoneTower.UseVisualStyleBackColor = false;
             // 
-            // checkBox1
+            // locations
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.BackColor = System.Drawing.Color.Transparent;
-            this.checkBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.checkBox1.Location = new System.Drawing.Point(12, 8);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(72, 17);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "Locations";
-            this.checkBox1.UseVisualStyleBackColor = false;
+            this.locations.AutoSize = true;
+            this.locations.BackColor = System.Drawing.Color.Transparent;
+            this.locations.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.locations.Location = new System.Drawing.Point(12, -3);
+            this.locations.Name = "locations";
+            this.locations.Size = new System.Drawing.Size(104, 24);
+            this.locations.TabIndex = 13;
+            this.locations.Text = "Locations";
+            this.locations.UseVisualStyleBackColor = false;
             // 
-            // checkBox2
+            // entrances
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.BackColor = System.Drawing.Color.Transparent;
-            this.checkBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.checkBox2.Location = new System.Drawing.Point(90, 8);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(74, 17);
-            this.checkBox2.TabIndex = 14;
-            this.checkBox2.Text = "Entrances";
-            this.checkBox2.UseVisualStyleBackColor = false;
+            this.entrances.AutoSize = true;
+            this.entrances.BackColor = System.Drawing.Color.Transparent;
+            this.entrances.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.entrances.Location = new System.Drawing.Point(112, -3);
+            this.entrances.Name = "entrances";
+            this.entrances.Size = new System.Drawing.Size(108, 24);
+            this.entrances.TabIndex = 14;
+            this.entrances.Text = "Entrances";
+            this.entrances.UseVisualStyleBackColor = false;
             // 
-            // checkBox3
+            // checkedLocations
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.BackColor = System.Drawing.Color.Transparent;
-            this.checkBox3.ForeColor = System.Drawing.Color.White;
-            this.checkBox3.Location = new System.Drawing.Point(168, 8);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(118, 17);
-            this.checkBox3.TabIndex = 15;
-            this.checkBox3.Text = "Checked Locations";
-            this.checkBox3.UseVisualStyleBackColor = false;
+            this.checkedLocations.AutoSize = true;
+            this.checkedLocations.BackColor = System.Drawing.Color.Transparent;
+            this.checkedLocations.ForeColor = System.Drawing.Color.White;
+            this.checkedLocations.Location = new System.Drawing.Point(217, -3);
+            this.checkedLocations.Name = "checkedLocations";
+            this.checkedLocations.Size = new System.Drawing.Size(171, 24);
+            this.checkedLocations.TabIndex = 15;
+            this.checkedLocations.Text = "Checked Locations";
+            this.checkedLocations.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // Map
             // 
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.BackgroundImage = global::MMR_Tracker.Properties.Resources.Termina;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(620, 361);
-            this.Controls.Add(this.checkBox3);
+            this.ClientSize = new System.Drawing.Size(614, 344);
+            this.Controls.Add(this.checkedLocations);
             this.Controls.Add(this.snowhead);
             this.Controls.Add(this.mountainVillage);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.entrances);
+            this.Controls.Add(this.locations);
             this.Controls.Add(this.stoneTower);
             this.Controls.Add(this.ikana);
             this.Controls.Add(this.goronShrine);
@@ -227,15 +229,32 @@ namespace MMR_Tracker
             this.Controls.Add(this.romaniRanch);
             this.Controls.Add(this.clockTown);
             this.Controls.Add(this.termina);
-            this.Name = "Form1";
+            this.Name = "Map";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-
-        private void romaniRanch_Click(object sender, EventArgs e)
+        private void clockTown_Click(object sender, EventArgs e)
         {
+            if ((ModifierKeys & Keys.Control)!= Keys.Control)
+            {
+                if(locations.Checked == true)
+                {MainInterface.TXTLocSearch.text = "#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
+                if (entrances.Checked == true)
+                {MainInterface.TXTEntSearch.text = "#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
+                if (checkedLocations.Checked == true)
+                {MainInterface.TXTCheckedSearch.text = "#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
+            }
+            else
+            {
+                if (locations.Checked == true)
+                { MainInterface.TXTLocSearch.text = MainInterface.TXTLocSearch.text + ",#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
+                if (entrances.Checked == true)
+                { MainInterface.TXTEntSearch.text = MainInterface.TXTEntSearch.text + ",#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
+                if (checkedLocations.Checked == true)
+                { MainInterface.TXTCheckedSearch.text = MainInterface.TXTCheckedSearch.text + ",#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
 
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MMR_Tracker
 {
-    partial class Form1
+    partial class Map
     {
         /// <summary>
         /// Required designer variable.
@@ -32,8 +32,8 @@
         private System.Windows.Forms.Button goronShrine;
         private System.Windows.Forms.Button ikana;
         private System.Windows.Forms.Button stoneTower;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox locations;
+        private System.Windows.Forms.CheckBox entrances;
+        private System.Windows.Forms.CheckBox checkedLocations;
     }
 }
