@@ -47,7 +47,7 @@ namespace MMR_Tracker.Class_Files
             if (file == "") { return; }
 
             LogicObjects.TrackerInstance CDLogic = new LogicObjects.TrackerInstance();
-            int LogicVersion = VersionHandeling.GetVersion(File.ReadAllLines(file))[0];
+            int LogicVersion = VersionHandeling.GetVersionFromLogicFile(File.ReadAllLines(file))[0];
             LogicEditing.PopulateTrackerInstance(CDLogic);
 
             List<LogicObjects.SpoilerData> SpoilerLog = Tools.ReadHTMLSpoilerLog("", CDLogic);

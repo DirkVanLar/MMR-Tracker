@@ -26,7 +26,7 @@ namespace MMR_Tracker_V2
             instance.DicNameToID.Clear();
             instance.EntrancePairs.Clear();
             Console.WriteLine("Populating Logic File");
-            int[] version = VersionHandeling.GetVersion(instance.RawLogicFile); //Returns [0] The logic Version, [1] The game this logic file is for
+            int[] version = VersionHandeling.GetVersionFromLogicFile(instance.RawLogicFile); //Returns [0] The logic Version, [1] The game this logic file is for
             instance.Version = version[0];
             instance.Game = version[1];
             string[] VersionData = VersionHandeling.SwitchDictionary(instance); //Returns [0] Path To Dictionary, [1] path to Entrance Pairs
