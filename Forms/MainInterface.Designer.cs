@@ -76,6 +76,8 @@
             this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.popoutPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FilterMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.referencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ikanaWellMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,7 +97,6 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.popoutPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -491,7 +492,8 @@
             this.whatUnlockedThisToolStripMenuItem,
             this.logicEditorToolStripMenuItem,
             this.updateLogicToolStripMenuItem,
-            this.popoutPathfinderToolStripMenuItem});
+            this.popoutPathfinderToolStripMenuItem,
+            this.FilterMapToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -530,6 +532,20 @@
             this.updateLogicToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.updateLogicToolStripMenuItem.Text = "Update Logic";
             this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
+            // 
+            // popoutPathfinderToolStripMenuItem
+            // 
+            this.popoutPathfinderToolStripMenuItem.Name = "popoutPathfinderToolStripMenuItem";
+            this.popoutPathfinderToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.popoutPathfinderToolStripMenuItem.Text = "Popout Pathfinder";
+            this.popoutPathfinderToolStripMenuItem.Click += new System.EventHandler(this.PopoutPathfinderToolStripMenuItem_Click);
+            // 
+            // FilterMapToolStripMenuItem
+            // 
+            this.FilterMapToolStripMenuItem.Name = "FilterMapToolStripMenuItem";
+            this.FilterMapToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.FilterMapToolStripMenuItem.Text = "Filter Map";
+            this.FilterMapToolStripMenuItem.Click += new System.EventHandler(this.FilterMapToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -671,13 +687,6 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // popoutPathfinderToolStripMenuItem
-            // 
-            this.popoutPathfinderToolStripMenuItem.Name = "popoutPathfinderToolStripMenuItem";
-            this.popoutPathfinderToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.popoutPathfinderToolStripMenuItem.Text = "Popout Pathfinder";
-            this.popoutPathfinderToolStripMenuItem.Click += new System.EventHandler(this.PopoutPathfinderToolStripMenuItem_Click);
-            // 
             // FRMTracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -721,10 +730,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox TXTLocSearch;
-        private System.Windows.Forms.TextBox TXTEntSearch;
-        private System.Windows.Forms.TextBox TXTCheckedSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -788,6 +793,10 @@
         private System.Windows.Forms.ToolStripMenuItem verifyCustomRandoCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seperateMarkedItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem popoutPathfinderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FilterMapToolStripMenuItem;
+        public System.Windows.Forms.TextBox TXTLocSearch;
+        public System.Windows.Forms.TextBox TXTEntSearch;
+        public System.Windows.Forms.TextBox TXTCheckedSearch;
     }
 }
 
