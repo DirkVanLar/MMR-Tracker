@@ -76,6 +76,7 @@
             this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.popoutPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.referencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ikanaWellMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,7 +96,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.popoutPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FilterMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -337,14 +338,14 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.LoadToolStripMenuItem_Click);
             // 
@@ -355,7 +356,7 @@
             this.glitchedLogicToolStripMenuItem,
             this.userLogicToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
@@ -397,7 +398,7 @@
             this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -429,7 +430,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -466,7 +467,7 @@
             this.showEntryNameToolTipToolStripMenuItem,
             this.seperateMarkedItemsToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -491,7 +492,8 @@
             this.whatUnlockedThisToolStripMenuItem,
             this.logicEditorToolStripMenuItem,
             this.updateLogicToolStripMenuItem,
-            this.popoutPathfinderToolStripMenuItem});
+            this.popoutPathfinderToolStripMenuItem,
+            this.FilterMapToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -530,6 +532,13 @@
             this.updateLogicToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.updateLogicToolStripMenuItem.Text = "Update Logic";
             this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
+            // 
+            // popoutPathfinderToolStripMenuItem
+            // 
+            this.popoutPathfinderToolStripMenuItem.Name = "popoutPathfinderToolStripMenuItem";
+            this.popoutPathfinderToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.popoutPathfinderToolStripMenuItem.Text = "Popout Pathfinder";
+            this.popoutPathfinderToolStripMenuItem.Click += new System.EventHandler(this.PopoutPathfinderToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -671,12 +680,12 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // popoutPathfinderToolStripMenuItem
+            // FilterMapToolStripMenuItem
             // 
-            this.popoutPathfinderToolStripMenuItem.Name = "popoutPathfinderToolStripMenuItem";
-            this.popoutPathfinderToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.popoutPathfinderToolStripMenuItem.Text = "Popout Pathfinder";
-            this.popoutPathfinderToolStripMenuItem.Click += new System.EventHandler(this.PopoutPathfinderToolStripMenuItem_Click);
+            this.FilterMapToolStripMenuItem.Name = "FilterMapToolStripMenuItem";
+            this.FilterMapToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.FilterMapToolStripMenuItem.Text = "Filter Map";
+            this.FilterMapToolStripMenuItem.Click += new System.EventHandler(this.FilterMapToolStripMenuItem_Click);
             // 
             // FRMTracker
             // 
@@ -788,6 +797,7 @@
         private System.Windows.Forms.ToolStripMenuItem verifyCustomRandoCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seperateMarkedItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem popoutPathfinderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FilterMapToolStripMenuItem;
     }
 }
 
