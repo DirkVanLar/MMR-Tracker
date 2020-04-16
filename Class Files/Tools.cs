@@ -447,18 +447,5 @@ namespace MMR_Tracker.Class_Files
                 }
             }
         }
-        //Defining properties so i can edit between forms ~mitchell (yes i probably broke it)
-        public static class LocSearchbx
-        {
-            public static string TextData { get; set; }
-        }
-        public static class EntSearchbx
-        {
-            public static string TextData { get; set; }
-        }
-        public static class CkedSearchbx
-        {
-            public static string TextData { get; set; }
-        }
     }
 }

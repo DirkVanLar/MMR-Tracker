@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
 {
     public partial class InformationDisplay : Form
     {
+
+        public int LBX;
+        public int LBY;
 
         public static List<string> Playthrough = new List<string>();
 
@@ -17,8 +22,8 @@ namespace MMR_Tracker_V2
 
         private void DebugScreen_Load(object sender, EventArgs e)
         {
-            ResizeObject();
-            this.Text = "Debug Screen";
+            LBX = listBox1.Location.X;
+            LBY = listBox1.Location.Y;
             switch (DebugFunction)
             {
                 case 0:
@@ -34,6 +39,7 @@ namespace MMR_Tracker_V2
                     PrintPlaythrough();
                     break;
             }
+            ResizeObject();
         }
 
         private void ListBox1_DoubleClick(object sender, EventArgs e)
@@ -50,20 +56,7 @@ namespace MMR_Tracker_V2
         private void DebugScreen_ResizeEnd(object sender, EventArgs e)
         {
             ResizeObject();
-            Console.WriteLine(DebugFunction);
-            switch (DebugFunction)
-            {
-                case 0:
-                    this.Close();
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    PrintInfo();
-                    break;
-                case 3:
-                    break;
-            }
+            if (this.Text == "Info") { PrintInfo(); }
         }
 
         public void PrintLogicToListBox(LogicObjects.TrackerInstance Instance)
@@ -230,16 +223,16 @@ namespace MMR_Tracker_V2
                 if (instance.Version == 0) { Lines.Add("(These options are only available if entrances are randomized.)"); }
                 Lines.Add(Utility.CreateDivider(listBox1));
                 Lines.Add("Use Song Of Time In Path finder:");
-                Lines.Add("By default using song of time is not considered in the pathfinder");
-                Lines.Add("Clicking this will toggle Using Song Of time in the Pathfinder");
+                Lines.Add("By default using song of time is not considered in the pathfinder. Clicking this will toggle Using Song Of time in the Pathfinder");
                 Lines.Add(Utility.CreateDivider(listBox1));
                 Lines.Add("Include Item locations as destination:");
-                Lines.Add("This option will add Item locations to the destination Combo box");
+                Lines.Add("This option will add Item locations to the destination Combo box.");
                 Lines.Add("By selecting an item location as your destination the pathfinder will attempt to find a path that will garantee you access to the chosen Check.");
                 Lines.Add(Utility.CreateDivider(listBox1));
                 Lines.Add("Toggle Entrance Rando Features:");
                 Lines.Add("This will toggle the available entrances and path finder lists");
                 Lines.Add("If this Feature is off, entrances will show up in the available items list.");
+                Lines.Add("The pathfinder can still be accessed using the popout pathfinder.");
                 Lines.Add(Utility.CreateDivider(listBox1));
                 Lines.Add("Couple Entrances:");
                 Lines.Add("This option will assume that an entrance is the same both ways");
@@ -291,6 +284,10 @@ namespace MMR_Tracker_V2
             Lines.Add("This will let you swamp the logic you're currently using.");
             Lines.Add("The tracker will attempt to preserve your check location/entrances and what they contained, however this may not always work if the changes in logic are to drastic.");
             Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Popout Pathfinder:");
+            Lines.Add("This will open a new window containing the pathfinder.");
+            Lines.Add("Multiple of these pathfinders can be open at once allowing you to keep track of multiple paths.");
+            Lines.Add(Utility.CreateDivider(listBox1));
 
             foreach (var i in Lines)
             {
@@ -310,8 +307,34 @@ namespace MMR_Tracker_V2
 
         public void ResizeObject()
         {
-            listBox1.Height = this.Height - 60;
-            listBox1.Width = this.Width - 40;
+            Console.WriteLine(this.Text);
+            if (this.Text == "Playthrough")
+            {
+                listBox1.Height = this.Height - 60 - menuStrip1.Height;
+                listBox1.Width = this.Width - 40;
+            }
+            else
+            {
+                listBox1.Location = new Point(LBX, LBY - menuStrip1.Height);
+                menuStrip1.Visible = false;
+                listBox1.Height = this.Height - 60;
+                listBox1.Width = this.Width - 40;
+            }
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.Text == "Playthrough") 
+            {
+                var text = new List<string>();
+                SaveFileDialog saveDialog = new SaveFileDialog { Filter = "Playthrough (*.txt)|*.txt", FilterIndex = 1 };
+                if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+                foreach(string i in listBox1.Items)
+                {
+                    text.Add(i);
+                }
+                File.WriteAllLines(saveDialog.FileName, text);
+            }
         }
     }
 }
