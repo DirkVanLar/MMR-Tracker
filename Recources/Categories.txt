@@ -50,6 +50,7 @@ Beneath the Well
 Ikana Castle
 Stone Tower
 Stone Tower Temple
+Inverted Stone Tower Temple
 Stone Tower Temple Fairies
 Tingle Map
 Misc
