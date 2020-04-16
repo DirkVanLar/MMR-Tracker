@@ -16,30 +16,30 @@ namespace MMR_Tracker
         {
             InitializeComponent();
         }
-
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Map));
             this.clockTown = new System.Windows.Forms.Button();
-            this.termina = new System.Windows.Forms.Button();
-            this.romaniRanch = new System.Windows.Forms.Button();
-            this.woodfall = new System.Windows.Forms.Button();
-            this.dekuPalace = new System.Windows.Forms.Button();
-            this.zoraCape = new System.Windows.Forms.Button();
-            this.greatBayCoast = new System.Windows.Forms.Button();
-            this.snowhead = new System.Windows.Forms.Button();
-            this.mountainVillage = new System.Windows.Forms.Button();
-            this.goronShrine = new System.Windows.Forms.Button();
-            this.ikana = new System.Windows.Forms.Button();
-            this.stoneTower = new System.Windows.Forms.Button();
             this.locations = new System.Windows.Forms.CheckBox();
             this.entrances = new System.Windows.Forms.CheckBox();
             this.checkedLocations = new System.Windows.Forms.CheckBox();
+            this.Termina = new System.Windows.Forms.Button();
+            this.Ranch = new System.Windows.Forms.Button();
+            this.Coast = new System.Windows.Forms.Button();
+            this.GreatBay = new System.Windows.Forms.Button();
+            this.Mountain = new System.Windows.Forms.Button();
+            this.Snowhead = new System.Windows.Forms.Button();
+            this.StoneTower = new System.Windows.Forms.Button();
+            this.Ikana = new System.Windows.Forms.Button();
+            this.Swamp = new System.Windows.Forms.Button();
+            this.Woodfall = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // clockTown
             // 
             this.clockTown.BackColor = System.Drawing.Color.Transparent;
             this.clockTown.FlatAppearance.BorderSize = 0;
+            this.clockTown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clockTown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clockTown.ForeColor = System.Drawing.SystemColors.ControlText;
             this.clockTown.Location = new System.Drawing.Point(309, 147);
@@ -47,130 +47,6 @@ namespace MMR_Tracker
             this.clockTown.Size = new System.Drawing.Size(32, 50);
             this.clockTown.TabIndex = 0;
             this.clockTown.UseVisualStyleBackColor = false;
-            this.clockTown.Click += new System.EventHandler(this.clockTown_Click);
-            // 
-            // termina
-            // 
-            this.termina.BackColor = System.Drawing.Color.Transparent;
-            this.termina.FlatAppearance.BorderSize = 0;
-            this.termina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.termina.Location = new System.Drawing.Point(264, 137);
-            this.termina.Name = "termina";
-            this.termina.Size = new System.Drawing.Size(116, 79);
-            this.termina.TabIndex = 1;
-            this.termina.UseVisualStyleBackColor = false;
-            // 
-            // romaniRanch
-            // 
-            this.romaniRanch.BackColor = System.Drawing.Color.Transparent;
-            this.romaniRanch.FlatAppearance.BorderSize = 0;
-            this.romaniRanch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.romaniRanch.Location = new System.Drawing.Point(217, 189);
-            this.romaniRanch.Name = "romaniRanch";
-            this.romaniRanch.Size = new System.Drawing.Size(97, 66);
-            this.romaniRanch.TabIndex = 2;
-            this.romaniRanch.UseVisualStyleBackColor = false;
-            this.romaniRanch.Click += new System.EventHandler(this.romaniRanch_Click);
-            // 
-            // woodfall
-            // 
-            this.woodfall.BackColor = System.Drawing.Color.Transparent;
-            this.woodfall.FlatAppearance.BorderSize = 0;
-            this.woodfall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.woodfall.Location = new System.Drawing.Point(320, 231);
-            this.woodfall.Name = "woodfall";
-            this.woodfall.Size = new System.Drawing.Size(97, 66);
-            this.woodfall.TabIndex = 3;
-            this.woodfall.UseVisualStyleBackColor = false;
-            this.woodfall.Click += new System.EventHandler(this.woodfall_Click);
-            // 
-            // dekuPalace
-            // 
-            this.dekuPalace.BackColor = System.Drawing.Color.Transparent;
-            this.dekuPalace.FlatAppearance.BorderSize = 0;
-            this.dekuPalace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dekuPalace.Location = new System.Drawing.Point(264, 294);
-            this.dekuPalace.Name = "dekuPalace";
-            this.dekuPalace.Size = new System.Drawing.Size(97, 66);
-            this.dekuPalace.TabIndex = 4;
-            this.dekuPalace.UseVisualStyleBackColor = false;
-            // 
-            // zoraCape
-            // 
-            this.zoraCape.BackColor = System.Drawing.Color.Transparent;
-            this.zoraCape.FlatAppearance.BorderSize = 0;
-            this.zoraCape.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.zoraCape.Location = new System.Drawing.Point(26, 166);
-            this.zoraCape.Name = "zoraCape";
-            this.zoraCape.Size = new System.Drawing.Size(136, 89);
-            this.zoraCape.TabIndex = 5;
-            this.zoraCape.UseVisualStyleBackColor = false;
-            // 
-            // greatBayCoast
-            // 
-            this.greatBayCoast.BackColor = System.Drawing.Color.Transparent;
-            this.greatBayCoast.FlatAppearance.BorderSize = 0;
-            this.greatBayCoast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.greatBayCoast.Location = new System.Drawing.Point(26, 72);
-            this.greatBayCoast.Name = "greatBayCoast";
-            this.greatBayCoast.Size = new System.Drawing.Size(136, 93);
-            this.greatBayCoast.TabIndex = 6;
-            this.greatBayCoast.UseVisualStyleBackColor = false;
-            // 
-            // snowhead
-            // 
-            this.snowhead.BackColor = System.Drawing.Color.Transparent;
-            this.snowhead.FlatAppearance.BorderSize = 0;
-            this.snowhead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.snowhead.Location = new System.Drawing.Point(217, 12);
-            this.snowhead.Name = "snowhead";
-            this.snowhead.Size = new System.Drawing.Size(144, 64);
-            this.snowhead.TabIndex = 7;
-            this.snowhead.UseVisualStyleBackColor = false;
-            // 
-            // mountainVillage
-            // 
-            this.mountainVillage.BackColor = System.Drawing.Color.Transparent;
-            this.mountainVillage.FlatAppearance.BorderSize = 0;
-            this.mountainVillage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mountainVillage.Location = new System.Drawing.Point(301, 47);
-            this.mountainVillage.Name = "mountainVillage";
-            this.mountainVillage.Size = new System.Drawing.Size(136, 94);
-            this.mountainVillage.TabIndex = 8;
-            this.mountainVillage.UseVisualStyleBackColor = false;
-            // 
-            // goronShrine
-            // 
-            this.goronShrine.BackColor = System.Drawing.Color.Transparent;
-            this.goronShrine.FlatAppearance.BorderSize = 0;
-            this.goronShrine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.goronShrine.Location = new System.Drawing.Point(433, 27);
-            this.goronShrine.Name = "goronShrine";
-            this.goronShrine.Size = new System.Drawing.Size(130, 58);
-            this.goronShrine.TabIndex = 10;
-            this.goronShrine.UseVisualStyleBackColor = false;
-            // 
-            // ikana
-            // 
-            this.ikana.BackColor = System.Drawing.Color.Transparent;
-            this.ikana.FlatAppearance.BorderSize = 0;
-            this.ikana.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ikana.Location = new System.Drawing.Point(433, 160);
-            this.ikana.Name = "ikana";
-            this.ikana.Size = new System.Drawing.Size(85, 56);
-            this.ikana.TabIndex = 11;
-            this.ikana.UseVisualStyleBackColor = false;
-            // 
-            // stoneTower
-            // 
-            this.stoneTower.BackColor = System.Drawing.Color.Transparent;
-            this.stoneTower.FlatAppearance.BorderSize = 0;
-            this.stoneTower.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stoneTower.Location = new System.Drawing.Point(472, 91);
-            this.stoneTower.Name = "stoneTower";
-            this.stoneTower.Size = new System.Drawing.Size(136, 60);
-            this.stoneTower.TabIndex = 12;
-            this.stoneTower.UseVisualStyleBackColor = false;
             // 
             // locations
             // 
@@ -179,7 +55,7 @@ namespace MMR_Tracker
             this.locations.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.locations.Location = new System.Drawing.Point(12, -3);
             this.locations.Name = "locations";
-            this.locations.Size = new System.Drawing.Size(104, 24);
+            this.locations.Size = new System.Drawing.Size(72, 17);
             this.locations.TabIndex = 13;
             this.locations.Text = "Locations";
             this.locations.UseVisualStyleBackColor = false;
@@ -191,7 +67,7 @@ namespace MMR_Tracker
             this.entrances.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.entrances.Location = new System.Drawing.Point(112, -3);
             this.entrances.Name = "entrances";
-            this.entrances.Size = new System.Drawing.Size(108, 24);
+            this.entrances.Size = new System.Drawing.Size(74, 17);
             this.entrances.TabIndex = 14;
             this.entrances.Text = "Entrances";
             this.entrances.UseVisualStyleBackColor = false;
@@ -203,58 +79,194 @@ namespace MMR_Tracker
             this.checkedLocations.ForeColor = System.Drawing.Color.White;
             this.checkedLocations.Location = new System.Drawing.Point(217, -3);
             this.checkedLocations.Name = "checkedLocations";
-            this.checkedLocations.Size = new System.Drawing.Size(171, 24);
+            this.checkedLocations.Size = new System.Drawing.Size(69, 17);
             this.checkedLocations.TabIndex = 15;
-            this.checkedLocations.Text = "Checked Locations";
+            this.checkedLocations.Text = "Checked";
             this.checkedLocations.UseVisualStyleBackColor = false;
+            // 
+            // Termina
+            // 
+            this.Termina.BackColor = System.Drawing.Color.Transparent;
+            this.Termina.FlatAppearance.BorderSize = 0;
+            this.Termina.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Termina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Termina.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Termina.Location = new System.Drawing.Point(232, 132);
+            this.Termina.Name = "Termina";
+            this.Termina.Size = new System.Drawing.Size(169, 87);
+            this.Termina.TabIndex = 16;
+            this.Termina.UseVisualStyleBackColor = false;
+            // 
+            // Ranch
+            // 
+            this.Ranch.BackColor = System.Drawing.Color.Transparent;
+            this.Ranch.FlatAppearance.BorderSize = 0;
+            this.Ranch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Ranch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Ranch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Ranch.Location = new System.Drawing.Point(232, 195);
+            this.Ranch.Name = "Ranch";
+            this.Ranch.Size = new System.Drawing.Size(80, 48);
+            this.Ranch.TabIndex = 17;
+            this.Ranch.UseVisualStyleBackColor = false;
+            // 
+            // Coast
+            // 
+            this.Coast.BackColor = System.Drawing.Color.Transparent;
+            this.Coast.FlatAppearance.BorderSize = 0;
+            this.Coast.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Coast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Coast.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Coast.Location = new System.Drawing.Point(12, 147);
+            this.Coast.Name = "Coast";
+            this.Coast.Size = new System.Drawing.Size(214, 132);
+            this.Coast.TabIndex = 18;
+            this.Coast.UseVisualStyleBackColor = false;
+            // 
+            // GreatBay
+            // 
+            this.GreatBay.BackColor = System.Drawing.Color.Transparent;
+            this.GreatBay.FlatAppearance.BorderSize = 0;
+            this.GreatBay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GreatBay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GreatBay.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.GreatBay.Location = new System.Drawing.Point(22, 54);
+            this.GreatBay.Name = "GreatBay";
+            this.GreatBay.Size = new System.Drawing.Size(102, 87);
+            this.GreatBay.TabIndex = 19;
+            this.GreatBay.UseVisualStyleBackColor = false;
+            // 
+            // Mountain
+            // 
+            this.Mountain.BackColor = System.Drawing.Color.Transparent;
+            this.Mountain.FlatAppearance.BorderSize = 0;
+            this.Mountain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Mountain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Mountain.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Mountain.Location = new System.Drawing.Point(297, 12);
+            this.Mountain.Name = "Mountain";
+            this.Mountain.Size = new System.Drawing.Size(255, 114);
+            this.Mountain.TabIndex = 20;
+            this.Mountain.UseVisualStyleBackColor = false;
+            // 
+            // Snowhead
+            // 
+            this.Snowhead.BackColor = System.Drawing.Color.Transparent;
+            this.Snowhead.FlatAppearance.BorderSize = 0;
+            this.Snowhead.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Snowhead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Snowhead.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Snowhead.Location = new System.Drawing.Point(232, 12);
+            this.Snowhead.Name = "Snowhead";
+            this.Snowhead.Size = new System.Drawing.Size(131, 66);
+            this.Snowhead.TabIndex = 21;
+            this.Snowhead.UseVisualStyleBackColor = false;
+            // 
+            // StoneTower
+            // 
+            this.StoneTower.BackColor = System.Drawing.Color.Transparent;
+            this.StoneTower.FlatAppearance.BorderSize = 0;
+            this.StoneTower.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.StoneTower.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StoneTower.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.StoneTower.Location = new System.Drawing.Point(465, 78);
+            this.StoneTower.Name = "StoneTower";
+            this.StoneTower.Size = new System.Drawing.Size(125, 72);
+            this.StoneTower.TabIndex = 22;
+            this.StoneTower.UseVisualStyleBackColor = false;
+            // 
+            // Ikana
+            // 
+            this.Ikana.BackColor = System.Drawing.Color.Transparent;
+            this.Ikana.FlatAppearance.BorderSize = 0;
+            this.Ikana.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Ikana.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Ikana.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Ikana.Location = new System.Drawing.Point(420, 147);
+            this.Ikana.Name = "Ikana";
+            this.Ikana.Size = new System.Drawing.Size(92, 69);
+            this.Ikana.TabIndex = 23;
+            this.Ikana.UseVisualStyleBackColor = false;
+            // 
+            // Swamp
+            // 
+            this.Swamp.BackColor = System.Drawing.Color.Transparent;
+            this.Swamp.FlatAppearance.BorderSize = 0;
+            this.Swamp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Swamp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Swamp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Swamp.Location = new System.Drawing.Point(267, 216);
+            this.Swamp.Name = "Swamp";
+            this.Swamp.Size = new System.Drawing.Size(147, 116);
+            this.Swamp.TabIndex = 24;
+            this.Swamp.UseVisualStyleBackColor = false;
+            // 
+            // Woodfall
+            // 
+            this.Woodfall.BackColor = System.Drawing.Color.Transparent;
+            this.Woodfall.FlatAppearance.BorderSize = 0;
+            this.Woodfall.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Woodfall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Woodfall.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Woodfall.Location = new System.Drawing.Point(318, 225);
+            this.Woodfall.Name = "Woodfall";
+            this.Woodfall.Size = new System.Drawing.Size(45, 37);
+            this.Woodfall.TabIndex = 25;
+            this.Woodfall.UseVisualStyleBackColor = false;
             // 
             // Map
             // 
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.AccessibleDescription = "";
+            this.AccessibleName = "";
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::MMR_Tracker.Properties.Resources.Termina;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(614, 344);
+            this.Controls.Add(this.Woodfall);
+            this.Controls.Add(this.Ranch);
+            this.Controls.Add(this.Swamp);
+            this.Controls.Add(this.Ikana);
+            this.Controls.Add(this.StoneTower);
+            this.Controls.Add(this.Snowhead);
+            this.Controls.Add(this.Mountain);
+            this.Controls.Add(this.GreatBay);
+            this.Controls.Add(this.Coast);
             this.Controls.Add(this.checkedLocations);
-            this.Controls.Add(this.snowhead);
-            this.Controls.Add(this.mountainVillage);
             this.Controls.Add(this.entrances);
             this.Controls.Add(this.locations);
-            this.Controls.Add(this.stoneTower);
-            this.Controls.Add(this.ikana);
-            this.Controls.Add(this.goronShrine);
-            this.Controls.Add(this.greatBayCoast);
-            this.Controls.Add(this.zoraCape);
-            this.Controls.Add(this.dekuPalace);
-            this.Controls.Add(this.woodfall);
-            this.Controls.Add(this.romaniRanch);
             this.Controls.Add(this.clockTown);
-            this.Controls.Add(this.termina);
+            this.Controls.Add(this.Termina);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Map";
+            this.Text = "Filter Map";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-        private void clockTown_Click(object sender, EventArgs e)
+        public void Tracker(Form MainInterface)
         {
-            if ((ModifierKeys & Keys.Control)!= Keys.Control)
-            {
-                if(locations.Checked == true)
-                {MainInterface.TXTLocSearch.text = "#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
-                if (entrances.Checked == true)
-                {MainInterface.TXTEntSearch.text = "#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
-                if (checkedLocations.Checked == true)
-                {MainInterface.TXTCheckedSearch.text = "#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
-            }
-            else
-            {
-                if (locations.Checked == true)
-                { MainInterface.TXTLocSearch.text = MainInterface.TXTLocSearch.text + ",#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
-                if (entrances.Checked == true)
-                { MainInterface.TXTEntSearch.text = MainInterface.TXTEntSearch.text + ",#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
-                if (checkedLocations.Checked == true)
-                { MainInterface.TXTCheckedSearch.text = MainInterface.TXTCheckedSearch.text + ",#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
-
-            }
         }
-    }
+            //public void clockTown_Click(object sender, EventArgs e)
+            //{
+            //    if ((ModifierKeys & Keys.Control) != Keys.Control)
+            //    {
+            //        if (locations.Checked == true)
+            //        { MainInterface.TXTLocSearch.text = "#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
+            //        if (entrances.Checked == true)
+            //        { MainInterface.TXTEntSearch.text = "#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
+            //        if (checkedLocations.Checked == true)
+            //        { MainInterface.TXTCheckedSearch.text = "#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
+            //    }
+            //    else
+            //    {
+            //        if (locations.Checked == true)
+            //        { MainInterface.TXTLocSearch.text = MainInterface.TXTLocSearch.text + ",#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
+            //        if (entrances.Checked == true)
+            //        { MainInterface.TXTEntSearch.text = MainInterface.TXTEntSearch.text + ",#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
+            //        if (checkedLocations.Checked == true)
+            //        { MainInterface.TXTCheckedSearch.text = MainInterface.TXTCheckedSearch.text + ",#NorthClockTown,#SouthClockTown,#EastClockTown,#WestClockTown"; }
+
+            //    }
+            //}
+        }
 }

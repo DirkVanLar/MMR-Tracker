@@ -351,7 +351,12 @@ namespace MMR_Tracker_V2
             PathFinder Poputpathfinder = new PathFinder();
             Poputpathfinder.Show();
         }
-
+        private void FilterMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Map FilterMap = new Map();
+            FilterMap.Tracker(this);
+            FilterMap.Show();
+        }
         //Menu strip => Info---------------------------------------------------------------------------
 
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -949,5 +954,7 @@ namespace MMR_Tracker_V2
             lb.Items.Add(entry);
             return (returnLastArea);
         }
+
+
     }
 }

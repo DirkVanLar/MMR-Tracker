@@ -21,19 +21,18 @@
         }
 
         private System.Windows.Forms.Button clockTown;
-        private System.Windows.Forms.Button termina;
-        private System.Windows.Forms.Button romaniRanch;
-        private System.Windows.Forms.Button woodfall;
-        private System.Windows.Forms.Button dekuPalace;
-        private System.Windows.Forms.Button zoraCape;
-        private System.Windows.Forms.Button greatBayCoast;
-        private System.Windows.Forms.Button snowhead;
-        private System.Windows.Forms.Button mountainVillage;
-        private System.Windows.Forms.Button goronShrine;
-        private System.Windows.Forms.Button ikana;
-        private System.Windows.Forms.Button stoneTower;
         private System.Windows.Forms.CheckBox locations;
         private System.Windows.Forms.CheckBox entrances;
         private System.Windows.Forms.CheckBox checkedLocations;
+        private System.Windows.Forms.Button Termina;
+        private System.Windows.Forms.Button Ranch;
+        private System.Windows.Forms.Button Coast;
+        private System.Windows.Forms.Button GreatBay;
+        private System.Windows.Forms.Button Mountain;
+        private System.Windows.Forms.Button Snowhead;
+        private System.Windows.Forms.Button StoneTower;
+        private System.Windows.Forms.Button Ikana;
+        private System.Windows.Forms.Button Swamp;
+        private System.Windows.Forms.Button Woodfall;
     }
 }
