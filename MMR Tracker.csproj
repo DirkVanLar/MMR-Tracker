@@ -61,6 +61,12 @@
     <Compile Include="Class Files\OOT Support.cs" />
     <Compile Include="Class Files\PlaythroughGenerator.cs" />
     <Compile Include="Class Files\Tools.cs" />
+    <Compile Include="Forms\Map.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Map.Designer.cs">
+      <DependentUpon>Map.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InformationDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Map.resx">
+      <DependentUpon>Map.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PathFinder.resx">
       <DependentUpon>PathFinder.cs</DependentUpon>
@@ -186,6 +195,7 @@
     </Content>
     <Content Include="Misc\10_106247_moon_from_majoras_mask_render_majoras_mask_moon_WIL_icon.ico" />
     <Content Include="Misc\Notes.txt" />
+    <None Include="Recources\Termina.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
