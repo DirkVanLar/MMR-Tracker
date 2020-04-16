@@ -176,6 +176,7 @@ namespace MMR_Tracker_V2
             Lines.Add("You can filter by Location Name by typing $ at the beggining of your filter.");
             Lines.Add("You can filter by Item Name by typing % at the beggining of your filter.");
             Lines.Add("You can filter by The Item Name of the randomized Item found in a location by typing & at the beggining of your filter.");
+            Lines.Add("Typing ! at the beggining of your serach will invert the filter, showing only things that don't match the search.");
             Lines.Add("You can filter multiple things at once by seperating them with a |. (Pipe) (located below the backspace key on most keyboards)");
             Lines.Add("For example typing \"Clock|Wood\" will show all checks that contain the word \"Clock\" as well as all checks that contain \"Wood\".");
             Lines.Add("You can also filter by multiple words by seperating them with a ,. (Comma)");

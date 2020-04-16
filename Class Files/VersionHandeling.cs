@@ -14,7 +14,7 @@ namespace MMR_Tracker_V2
         public static int EntranceRandoVersion = 16; // The version of logic that entrance randomizer was implimented
         public static List<int> ValidVersions = new List<int> { 8, 13, 14, 16 }; // Versions of logic used in main releases
 
-        public static decimal trackerVersion = 1.7m;
+        public static string trackerVersion = "V1.8";
 
         public static Dictionary<int, int> AreaClearDictionary(int LogicVer)
         {
@@ -136,43 +136,47 @@ namespace MMR_Tracker_V2
             var CheckForUpdate = false;
             if (File.Exists("options.txt"))
             {
-                foreach(var file in File.ReadAllLines("options.txt"))
+                foreach (var file in File.ReadAllLines("options.txt"))
                 {
                     if (file.Contains("CheckForUpdates:1")) { CheckForUpdate = true; }
                 }
             }
-            if (!CheckForUpdate) { return false; }
+            if (!CheckForUpdate && (Control.ModifierKeys != Keys.Shift)) { return false; }
 
             var client = new GitHubClient(new ProductHeaderValue("MMR-Tracker"));
             var releases = client.Repository.Release.GetAll("Thedrummonger", "MMR-Tracker");
-            Release Latest = new Release();
-            decimal LatestVersion = 0;
+            var lateset = releases.Result[0];
 
-            foreach(var i in releases.Result)
-            {
-                try 
-                { 
-                    var TryVersion = Convert.ToDecimal(i.TagName.Replace("V", ""));
-                    LatestVersion = TryVersion;
-                    Latest = i;
-                    break;
-                }
-                catch 
-                { 
-                    Console.WriteLine($"Github Release Tag {i.TagName} was malformed"); 
-                }
-            }
-            
-            if (Latest == null || LatestVersion == 0) { return false; }
+            Console.WriteLine($"Latest Version: { lateset.TagName } Current Version { trackerVersion }");
 
-            if (trackerVersion < LatestVersion)
+            if (VersionHandeling.CompareVersions(lateset.TagName, trackerVersion))
             {
-                if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Console.WriteLine($"Tracker Out of Date. Latest Version: { Latest.TagName } Current Version V{ trackerVersion }"); }
+                if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Console.WriteLine($"Tracker Out of Date. Latest Version: { lateset.TagName } Current Version { trackerVersion }"); }
                 else
                 {
-                    var Download = MessageBox.Show($"Your tracker version V{ trackerVersion } is out of Date! Would you like to download the latest version { Latest.TagName } ?", "Tracker Out of Date", MessageBoxButtons.YesNo);
-                    if (Download == DialogResult.Yes) { { Process.Start(Latest.HtmlUrl); return true; } }
+                    var Download = MessageBox.Show($"Your tracker version V{ trackerVersion } is out of Date! Would you like to download the latest version { lateset.TagName } ?", "Tracker Out of Date", MessageBoxButtons.YesNo);
+                    if (Download == DialogResult.Yes) { { Process.Start(lateset.HtmlUrl); return true; } }
                 }
+            }
+            return false;
+        }
+
+        public static bool CompareVersions(string V1, string V2)
+        {
+            List<int> Version1;
+            List<int> Version2;
+            try
+            {
+                Version1 = V1.Replace("V", "").Split('.').Select(x => Convert.ToInt32(x)).ToList();
+                Version2 = V2.Replace("V", "").Split('.').Select(x => Convert.ToInt32(x)).ToList();
+            }
+            catch { return false; }
+
+            for (var i = 0; i < Version1.Count(); i++)
+            {
+                if (i >= Version2.Count()) { Version2.Add(0); }
+                if (Version1[i] > Version2[i]) { return true; }
+                if (Version1[i] < Version2[i]) { return false; }
             }
             return false;
         }

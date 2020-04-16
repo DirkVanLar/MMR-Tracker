@@ -67,38 +67,46 @@ namespace MMR_Tracker_V2
             {
                 string[] subTerms = term.Split(',');
                 bool valid = true;
-                foreach (string subterm in subTerms)
+                foreach (string i in subTerms)
                 {
+                    bool Inverse = false;
+                    var subterm = i;
+                    if (subterm == "") { continue; }
+                    if (subterm[0] == '!')
+                    {
+                        Inverse = true;
+                        subterm = subterm.Substring(1);
+                    }
                     if (subterm == "") { continue; }
                     if (subterm[0] == '#')
                     {
                         if (subterm.Substring(1) == "") { continue; }
-                        if (!logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower())) { valid = false; }
+                        if (!logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower()) == !Inverse) { valid = false; }
                     }
                     else if (subterm[0] == '@')
                     {
                         if (subterm.Substring(1) == "") { continue; }
-                        if (!logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) { valid = false; }
+                        if ((!logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) == !Inverse) { valid = false; }
                     }
                     else if (subterm[0] == '$')
                     {
                         if (subterm.Substring(1) == "" || logic.ItemName == null) { continue; }
-                        if (!logic.ItemName.ToLower().Contains(subterm.Substring(1).ToLower())) { valid = false; }
+                        if (!logic.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == !Inverse) { valid = false; }
                     }
                     else if (subterm[0] == '%')
                     {
                         if (subterm.Substring(1) == "" || logic.LocationName == null) { continue; }
-                        if (!logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower())) { valid = false; }
+                        if (!logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower()) == !Inverse) { valid = false; }
                     }
                     else if (subterm[0] == '&')
                     {
                         if (subterm.Substring(1) == "") { continue; }
                         if (RandomizedItem == null) { valid = false; }
-                        else if (!RandomizedItem.ItemName.ToLower().Contains(subterm.Substring(1).ToLower())) { valid = false; }
+                        else if (!RandomizedItem.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == !Inverse) { valid = false; }
                     }
                     else
                     {
-                        if (!NameToCompare.ToLower().Contains(subterm.ToLower())) { valid = false; }
+                        if (!NameToCompare.ToLower().Contains(subterm.ToLower()) == !Inverse) { valid = false; }
                     }
                 }
                 if (valid) { return true; }
