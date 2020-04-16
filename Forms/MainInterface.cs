@@ -354,7 +354,6 @@ namespace MMR_Tracker_V2
         private void FilterMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Map FilterMap = new Map();
-            FilterMap.Tracker(this);
             FilterMap.Show();
         }
         //Menu strip => Info---------------------------------------------------------------------------

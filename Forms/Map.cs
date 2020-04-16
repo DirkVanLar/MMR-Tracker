@@ -39,6 +39,7 @@ namespace MMR_Tracker
             // 
             this.clockTown.BackColor = System.Drawing.Color.Transparent;
             this.clockTown.FlatAppearance.BorderSize = 0;
+            this.clockTown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clockTown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clockTown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clockTown.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -88,6 +89,7 @@ namespace MMR_Tracker
             // 
             this.Termina.BackColor = System.Drawing.Color.Transparent;
             this.Termina.FlatAppearance.BorderSize = 0;
+            this.Termina.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Termina.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Termina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Termina.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -101,6 +103,7 @@ namespace MMR_Tracker
             // 
             this.Ranch.BackColor = System.Drawing.Color.Transparent;
             this.Ranch.FlatAppearance.BorderSize = 0;
+            this.Ranch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Ranch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Ranch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Ranch.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -114,6 +117,7 @@ namespace MMR_Tracker
             // 
             this.Coast.BackColor = System.Drawing.Color.Transparent;
             this.Coast.FlatAppearance.BorderSize = 0;
+            this.Coast.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Coast.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Coast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Coast.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -127,6 +131,7 @@ namespace MMR_Tracker
             // 
             this.GreatBay.BackColor = System.Drawing.Color.Transparent;
             this.GreatBay.FlatAppearance.BorderSize = 0;
+            this.GreatBay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.GreatBay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.GreatBay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GreatBay.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -140,6 +145,7 @@ namespace MMR_Tracker
             // 
             this.Mountain.BackColor = System.Drawing.Color.Transparent;
             this.Mountain.FlatAppearance.BorderSize = 0;
+            this.Mountain.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Mountain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Mountain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Mountain.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -153,6 +159,7 @@ namespace MMR_Tracker
             // 
             this.Snowhead.BackColor = System.Drawing.Color.Transparent;
             this.Snowhead.FlatAppearance.BorderSize = 0;
+            this.Snowhead.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Snowhead.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Snowhead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Snowhead.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -166,6 +173,7 @@ namespace MMR_Tracker
             // 
             this.StoneTower.BackColor = System.Drawing.Color.Transparent;
             this.StoneTower.FlatAppearance.BorderSize = 0;
+            this.StoneTower.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.StoneTower.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.StoneTower.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StoneTower.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -179,6 +187,7 @@ namespace MMR_Tracker
             // 
             this.Ikana.BackColor = System.Drawing.Color.Transparent;
             this.Ikana.FlatAppearance.BorderSize = 0;
+            this.Ikana.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Ikana.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Ikana.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Ikana.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -192,6 +201,7 @@ namespace MMR_Tracker
             // 
             this.Swamp.BackColor = System.Drawing.Color.Transparent;
             this.Swamp.FlatAppearance.BorderSize = 0;
+            this.Swamp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Swamp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Swamp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Swamp.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -205,6 +215,7 @@ namespace MMR_Tracker
             // 
             this.Woodfall.BackColor = System.Drawing.Color.Transparent;
             this.Woodfall.FlatAppearance.BorderSize = 0;
+            this.Woodfall.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Woodfall.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Woodfall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Woodfall.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -242,9 +253,6 @@ namespace MMR_Tracker
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-        public void Tracker(Form MainInterface)
-        {
         }
             //public void clockTown_Click(object sender, EventArgs e)
             //{
