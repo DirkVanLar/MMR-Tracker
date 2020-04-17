@@ -27,6 +27,7 @@ namespace MMR_Tracker_V2
             InitializeComponent();
         }
 
+        #region Form Objects
         //Form Events---------------------------------------------------------------------------
         private void FRMTracker_Load(object sender, EventArgs e)
         {
@@ -35,7 +36,6 @@ namespace MMR_Tracker_V2
             if (VersionHandeling.GetLatestTrackerVersion()) { this.Close(); }
             ResizeObject();
             FormatMenuItems();
-            CreateMenu();
         }
 
         private void FRMTracker_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
@@ -480,6 +480,8 @@ namespace MMR_Tracker_V2
         private void LBValidLocations_MouseUp(object sender, MouseEventArgs e)
         {
             int index = LBValidLocations.IndexFromPoint(e.Location);
+            if (index < 0) { return; }
+            if (!(LBValidLocations.Items[index] is LogicObjects.LogicEntry)) { return; }
             if (e.Button == MouseButtons.Middle)
             {
                 if ((ModifierKeys & Keys.Control) != Keys.Control) { LBValidLocations.SelectedItems.Clear(); }
@@ -491,12 +493,15 @@ namespace MMR_Tracker_V2
                 LBValidLocations.SelectedItems.Clear();
                 LBValidLocations.SetSelected(index, true);
                 this.ActiveControl = LBValidLocations;
+
             }
         }
 
         private void LBValidEntrances_MouseUp(object sender, MouseEventArgs e)
         {
             int index = LBValidEntrances.IndexFromPoint(e.Location);
+            if (index < 0) { return; }
+            if (!(LBValidEntrances.Items[index] is LogicObjects.LogicEntry)) { return; }
             if (e.Button == MouseButtons.Middle)
             {
                 if ((ModifierKeys & Keys.Control) != Keys.Control) { LBValidEntrances.SelectedItems.Clear(); }
@@ -568,7 +573,348 @@ namespace MMR_Tracker_V2
 
         private void CMBEnd_DropDown(object sender, EventArgs e) { PrintToComboBox(false); AdjustCMBWidth(sender); }
 
-        //Functions---------------------------------------------------------------------------
+        #endregion Form Objects
+        //Context Menu Functions---------------------------------------------------------------------------
+        private void CreateMenu()
+        {
+            ContextMenuStrip LocationContextMenu = new ContextMenuStrip();
+            LocationContextMenu.Opening += LocationContextMenu_Opening;
+            ToolStripItem WhatUnlcoked = LocationContextMenu.Items.Add("What Unlocked This?");
+            WhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBValidLocations); };
+            if (LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.Options.IncludeItemLocations)
+            {
+                ToolStripItem NavigateHere = LocationContextMenu.Items.Add("Navigate to this check");
+                NavigateHere.Click += (sender, e) => { RunMenuItems(5, LBValidLocations); };
+            }
+            ToolStripItem Filter = LocationContextMenu.Items.Add("Filter at this Location");
+            Filter.Click += (sender, e) => { RunMenuItems(3, LBValidLocations); };
+            ToolStripItem GroupFilter = LocationContextMenu.Items.Add("Filter at Locations near this area");
+            GroupFilter.Click += (sender, e) => { RunMenuItems(4, LBValidLocations); };
+            ToolStripItem Check = LocationContextMenu.Items.Add("Check This Item");
+            Check.Click += (sender, e) => { RunMenuItems(1, LBValidLocations); };
+            ToolStripItem Mark = LocationContextMenu.Items.Add("Mark This Item");
+            Mark.Click += (sender, e) => { RunMenuItems(2, LBValidLocations); };
+            LBValidLocations.ContextMenuStrip = LocationContextMenu;
+
+
+            ContextMenuStrip EntranceContextMenu = new ContextMenuStrip();
+            EntranceContextMenu.Opening += EntranceContextMenu_Opening;
+            ToolStripItem EWhatUnlcoked = EntranceContextMenu.Items.Add("What Unlocked This?");
+            EWhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBValidEntrances); };
+
+            if (LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled)
+            {
+                ToolStripItem ENavigateHere = EntranceContextMenu.Items.Add("Navigate to this entrace");
+                ENavigateHere.Click += (sender, e) => { RunMenuItems(5, LBValidEntrances); };
+            }
+            ToolStripItem EFilter = EntranceContextMenu.Items.Add("Filter at this Location");
+            EFilter.Click += (sender, e) => { RunMenuItems(3, LBValidEntrances); };
+            ToolStripItem EGroupFilter = EntranceContextMenu.Items.Add("Filter at Locations near this area");
+            EGroupFilter.Click += (sender, e) => { RunMenuItems(4, LBValidEntrances); };
+            ToolStripItem ECheck = EntranceContextMenu.Items.Add("Check This Item");
+            ECheck.Click += (sender, e) => { RunMenuItems(1, LBValidEntrances); };
+            ToolStripItem EMark = EntranceContextMenu.Items.Add("Mark This Item");
+            EMark.Click += (sender, e) => { RunMenuItems(2, LBValidEntrances); };
+            LBValidEntrances.ContextMenuStrip = EntranceContextMenu;
+        }
+
+        private void EntranceContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var index = LBValidEntrances.IndexFromPoint(LBValidEntrances.PointToClient(Cursor.Position));
+            if (index < 0) { e.Cancel = true; }
+            if (!(LBValidEntrances.Items[index] is LogicObjects.LogicEntry)) { e.Cancel = true; }
+        }
+
+        private void LocationContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var index = LBValidLocations.IndexFromPoint(LBValidLocations.PointToClient(Cursor.Position));
+            if (index < 0) { e.Cancel = true; }
+            if (!(LBValidLocations.Items[index] is LogicObjects.LogicEntry)) { e.Cancel = true; }
+        }
+
+        private void RunMenuItems(int Function, ListBox ActiveListBox)
+        {
+            var ActiveItem = new LogicObjects.LogicEntry();
+            if ((ActiveListBox == LBValidLocations) && LBValidLocations.SelectedItem is LogicObjects.LogicEntry)
+            {
+                ActiveItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry;
+            }
+            else if ((ActiveListBox == LBValidEntrances) && LBValidEntrances.SelectedItem is LogicObjects.LogicEntry)
+            {
+                ActiveItem = LBValidEntrances.SelectedItem as LogicObjects.LogicEntry;
+            }
+            else { return; }
+
+            if (Function == 0) { Tools.CurrentSelectedItem = ActiveItem; Tools.WhatUnlockedThis(); }
+            if (Function == 1) { CheckItemSelected(ActiveListBox, true); }
+            if (Function == 2) { CheckItemSelected(ActiveListBox, false); }
+            if (Function == 3)
+            {
+                TextBox SearchBox = (ActiveListBox == LBValidLocations) ? TXTLocSearch : TXTEntSearch;
+                SearchBox.Text = "=#" + ActiveItem.LocationArea;
+            }
+            if (Function == 4)
+            {
+                TextBox SearchBox = (ActiveListBox == LBValidLocations) ? TXTLocSearch : TXTEntSearch;
+                List<Map.LocationArea> LocationDic = new List<Map.LocationArea>();
+                Map MapUtils = new Map();
+                MapUtils.setLocationDic(LocationDic);
+                foreach (var i in LocationDic)
+                {
+                    bool found = false;
+                    foreach (var j in i.SubAreas)
+                    {
+                        if (ActiveItem.LocationArea.ToLower() == j.Replace("#", "").ToLower()) { found = true; }
+                    }
+                    if (found)
+                    {
+                        SearchBox.Text = MapUtils.CreateFilter(0, i.SubAreas);
+                        return;
+                    }
+                }
+            }
+            if (Function == 5)
+            {
+                Dictionary<int, string> sortedPathfinder = new Dictionary<int, string>();
+                sortedPathfinder.Add(ActiveItem.ID, ActiveItem.LocationName);
+                CMBEnd.DataSource = new BindingSource(sortedPathfinder, null);
+                CMBEnd.DisplayMember = "Value";
+                CMBEnd.ValueMember = "key";
+                CMBEnd.SelectedIndex = 0;
+            }
+
+        }
+
+        // List/combo Box Functions---------------------------------------------------------------------------
+
+        public void PrintToListBox()
+        {
+            var lbLocTop = LBValidLocations.TopIndex;
+            var lbEntTop = LBValidEntrances.TopIndex;
+            var lbCheckTop = LBCheckedLocations.TopIndex;
+            int TotalLoc = 0;
+            int TotalEnt = 0;
+            int totalchk = 0;
+            List<LogicObjects.LogicEntry> logic = LogicObjects.MainTrackerInstance.Logic;
+            List<LogicObjects.LogicEntry> ListBoxItems = new List<LogicObjects.LogicEntry>();
+            Dictionary<string, int> Groups = new Dictionary<string, int>();
+            Dictionary<int, int> ListBoxAssignments = new Dictionary<int, int>();
+
+            if (File.Exists(@"Recources\Categories.txt"))
+            {
+                Groups = File.ReadAllLines(@"Recources\Categories.txt")
+                    .Select(x => x.ToLower().Trim()).Distinct()
+                    .Select((value, index) => new { value, index })
+                    .ToDictionary(pair => pair.value, pair => pair.index);
+            }
+
+            foreach (var entry in LogicObjects.MainTrackerInstance.Logic)
+            {
+                if (entry.IsFake || entry.Unrandomized() || entry.ForceJunk()) { continue; }
+
+                entry.DisplayName = entry.DictionaryName;
+                if ((entry.Available || entry.HasRandomItem() || CHKShowAll.Checked) && (entry.LocationName != "" && entry.LocationName != null) && !entry.Checked)
+                {
+                    entry.DisplayName = entry.HasRandomItem() ? ($"{entry.LocationName}: {entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}") : entry.LocationName;
+
+                    if ((!entry.IsEntrance() || !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled))
+                    {
+                        TotalLoc += 1;
+                        if (Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
+                        {
+                            ListBoxAssignments.Add(entry.ID, 0);
+                            ListBoxItems.Add(entry);
+                        }
+                    }
+                    else if ((entry.IsEntrance() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled))
+                    {
+                        TotalEnt += 1;
+                        if (Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
+                        {
+                            ListBoxAssignments.Add(entry.ID, 1);
+                            ListBoxItems.Add(entry);
+                        }
+                    }
+                }
+                if (entry.Checked)
+                {
+                    entry.DisplayName = entry.HasRandomItem() ? $"{entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}: {entry.LocationName}" : $"Nothing: {entry.LocationName}";
+                    totalchk += 1;
+                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
+                    {
+                        ListBoxAssignments.Add(entry.ID, 2);
+                        ListBoxItems.Add(entry);
+                    }
+                }
+            }
+
+            ListBoxItems = ListBoxItems
+                .OrderBy(x => Utility.BoolToInt(x.IsEntrance()))
+                .ThenBy(x => Utility.BoolToInt(x.HasRandomItem() && LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom))
+                .ThenBy(x => (Groups.ContainsKey(x.LocationArea.ToLower().Trim()) ? Groups[x.LocationArea.ToLower().Trim()] : ListBoxItems.Count() + 1))
+                .ThenBy(x => x.LocationArea)
+                .ThenBy(x => x.DisplayName).ToList();
+
+            var lastLocArea = "";
+            var lastEntArea = "";
+            var lastChkArea = "";
+
+            int AvalableLocations = 0;
+            int AvalableEntrances = 0;
+            int CheckedLocations = 0;
+
+            LBValidLocations.Items.Clear();
+            LBValidEntrances.Items.Clear();
+            LBCheckedLocations.Items.Clear();
+
+            foreach (var entry in ListBoxItems)
+            {
+                if (!ListBoxAssignments.ContainsKey(entry.ID)) { continue; }
+                if (ListBoxAssignments[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.HasRandomItem()); AvalableLocations++; }
+                if (ListBoxAssignments[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.HasRandomItem()); AvalableEntrances++; }
+                if (ListBoxAssignments[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false); CheckedLocations++; }
+            }
+
+            label1.Text = "Available Locations: " + ((AvalableLocations == TotalLoc) ? AvalableLocations.ToString() : (AvalableLocations.ToString() + "/" + TotalLoc.ToString()));
+            label2.Text = "Checked locations: " + ((CheckedLocations == totalchk) ? CheckedLocations.ToString() : (CheckedLocations.ToString() + "/" + totalchk.ToString())); ;
+            label3.Text = "Available Entrances: " + ((AvalableEntrances == TotalEnt) ? AvalableEntrances.ToString() : (AvalableEntrances.ToString() + "/" + TotalEnt.ToString())); ;
+            LBValidLocations.TopIndex = lbLocTop;
+            LBValidEntrances.TopIndex = lbEntTop;
+            LBCheckedLocations.TopIndex = lbCheckTop;
+        }
+
+        private string WriteObject(LogicObjects.LogicEntry entry, ListBox lb, string lastArea, bool Marked)
+        {
+            bool ShowMarked = (Marked && LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom);
+            string returnLastArea = lastArea;
+            if (entry.LocationArea != returnLastArea)
+            {
+                if (returnLastArea != "") { lb.Items.Add(Utility.CreateDivider(lb)); }
+
+                string Header = entry.LocationArea.ToUpper();
+                if (ShowMarked && entry.IsEntrance()) { Header += " SET EXITS"; }
+                else if (ShowMarked && !entry.IsEntrance()) { Header += " SET ITEMS"; }
+                else if (entry.IsEntrance()) { Header += " ENTRANCES"; }
+                lb.Items.Add(Header + ":");
+                returnLastArea = entry.LocationArea;
+            }
+            lb.Items.Add(entry);
+            return (returnLastArea);
+        }
+
+        private void PrintPaths(int PathToPrint, int partition)
+        {
+            LBPathFinder.Items.Clear();
+            var sortedpaths = PathFinder.paths[partition].OrderBy(x => x.Count);
+
+            if (PathToPrint == -1 || PathFinder.paths[partition].ElementAtOrDefault(PathToPrint) == null)
+            {
+                int counter = 1;
+                foreach (var path in sortedpaths)
+                {
+                    var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", ID = counter - 1, Identifier = partition };
+                    LBPathFinder.Items.Add(ListTitle);
+                    var firstStop = true;
+                    foreach (var stop in path)
+                    {
+                        var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
+                        var ListItem = new LogicObjects.ListItem
+                        {
+                            DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
+                            ID = counter - 1,
+                            Identifier = partition
+                        };
+                        LBPathFinder.Items.Add(ListItem); firstStop = false;
+                    }
+                    LBPathFinder.Items.Add(new LogicObjects.ListItem
+                    {
+                        DisplayName = "===============================",
+                        ID = counter - 1,
+                        Identifier = partition
+                    });
+                    counter++;
+                }
+            }
+            else
+            {
+                var path = sortedpaths.ToArray()[PathToPrint];
+                var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + (PathToPrint + 1) + " (" + path.Count + " Steps)", ID = -1, Identifier = partition };
+                LBPathFinder.Items.Add(ListTitle);
+                var firstStop = true;
+                foreach (var stop in path)
+                {
+                    var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
+                    var ListItem = new LogicObjects.ListItem
+                    {
+                        DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
+                        ID = -1,
+                        Identifier = partition
+                    };
+                    LBPathFinder.Items.Add(ListItem);
+                    firstStop = false;
+                }
+                LBPathFinder.Items.Add(new LogicObjects.ListItem
+                {
+                    DisplayName = "===============================",
+                    ID = -1,
+                    Identifier = partition
+                });
+            }
+        }
+
+        public void ShowtoolTip(MouseEventArgs e, ListBox lb)
+        {
+            if (!LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip) { return; }
+            int index = lb.IndexFromPoint(e.Location);
+            if (index < 0) { return; }
+            if (!(lb.Items[index] is LogicObjects.LogicEntry || lb.Items[index] is LogicObjects.ListItem)) { return; }
+            string DisplayName = lb.Items[index].ToString();
+            if (toolTip1.GetToolTip(lb) == DisplayName) { return; }
+            if (Utility.IsDivider(DisplayName)) { return; }
+            toolTip1.SetToolTip(lb, DisplayName);
+        }
+
+        public void PrintToComboBox(bool start)
+        {
+            var UnsortedPathfinder = new Dictionary<int, string>();
+            var UnsortedItemPathfinder = new Dictionary<int, string>();
+            foreach (var entry in LogicObjects.MainTrackerInstance.Logic)
+            {
+                if (entry.IsEntrance())
+                {
+                    if ((start) ? entry.Aquired : entry.Available) { UnsortedPathfinder.Add(entry.ID, (start) ? entry.ItemName : entry.LocationName); }
+                }
+                if (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations && entry.ItemSubType != "Entrance" && !entry.IsFake && entry.Available && !start)
+                {
+                    UnsortedItemPathfinder.Add(entry.ID, (entry.RandomizedItem > -1) ? entry.LocationName + ": " + LogicObjects.MainTrackerInstance.Logic[entry.RandomizedItem].ItemName : entry.LocationName);
+                }
+            }
+            Dictionary<int, string> sortedPathfinder = UnsortedPathfinder.OrderBy(x => x.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            if (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations && !start)
+            {
+                Dictionary<int, string> ItemPathFinder = new Dictionary<int, string>();
+                Dictionary<int, string> sortedItemPathfinder = UnsortedItemPathfinder.OrderBy(x => x.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+                ItemPathFinder.Add(-2, "ENTRANCES =============================");
+                foreach (KeyValuePair<int, string> p in sortedPathfinder)
+                {
+                    ItemPathFinder.Add(p.Key, p.Value);
+                }
+                ItemPathFinder.Add(-1, "ITEM LOCATIONS =============================");
+                foreach (KeyValuePair<int, string> p in sortedItemPathfinder)
+                {
+                    ItemPathFinder.Add(p.Key, p.Value);
+                }
+                sortedPathfinder = ItemPathFinder;
+            }
+
+            ComboBox cmb = (start) ? CMBStart : CMBEnd;
+            cmb.DataSource = new BindingSource(sortedPathfinder, null);
+            cmb.DisplayMember = "Value";
+            cmb.ValueMember = "key";
+        }
+
+        //Other Functions---------------------------------------------------------------------------
         public void AdjustCMBWidth(object sender)
         {
             ComboBox senderComboBox = (ComboBox)sender;
@@ -663,6 +1009,7 @@ namespace MMR_Tracker_V2
             devToolStripMenuItem.Visible = Debugging.ISDebugging;
             seperateMarkedItemsToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom) ? "Don't Seperate Marked Items" : "Seperate Marked Items";
 
+            CreateMenu();
 
             //MM specific Controls
             importSpoilerLogToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM();
@@ -673,203 +1020,6 @@ namespace MMR_Tracker_V2
             seedCheckerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
             whatUnlockedThisToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
 
-        }
-
-        private void PrintPaths(int PathToPrint, int partition)
-        {
-            LBPathFinder.Items.Clear();
-            var sortedpaths = PathFinder.paths[partition].OrderBy(x => x.Count);
-
-            if (PathToPrint == -1 || PathFinder.paths[partition].ElementAtOrDefault(PathToPrint) == null)
-            {
-                int counter = 1;
-                foreach (var path in sortedpaths)
-                {
-                    var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", ID = counter - 1, Identifier = partition };
-                    LBPathFinder.Items.Add(ListTitle);
-                    var firstStop = true;
-                    foreach (var stop in path)
-                    {
-                        var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
-                        var ListItem = new LogicObjects.ListItem
-                        {
-                            DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
-                            ID = counter - 1,
-                            Identifier = partition
-                        };
-                        LBPathFinder.Items.Add(ListItem); firstStop = false;
-                    }
-                    LBPathFinder.Items.Add(new LogicObjects.ListItem
-                    {
-                        DisplayName = "===============================",
-                        ID = counter - 1,
-                        Identifier = partition
-                    });
-                    counter++;
-                }
-            }
-            else
-            {
-                var path = sortedpaths.ToArray()[PathToPrint];
-                var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + (PathToPrint + 1) + " (" + path.Count + " Steps)", ID = -1, Identifier = partition };
-                LBPathFinder.Items.Add(ListTitle);
-                var firstStop = true;
-                foreach (var stop in path)
-                {
-                    var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
-                    var ListItem = new LogicObjects.ListItem
-                    {
-                        DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
-                        ID = -1,
-                        Identifier = partition
-                    };
-                    LBPathFinder.Items.Add(ListItem);
-                    firstStop = false;
-                }
-                LBPathFinder.Items.Add(new LogicObjects.ListItem
-                {
-                    DisplayName = "===============================",
-                    ID = -1,
-                    Identifier = partition
-                });
-            }
-        }
-
-        public void PrintToComboBox(bool start)
-        {
-            var UnsortedPathfinder = new Dictionary<int, string>();
-            var UnsortedItemPathfinder = new Dictionary<int, string>();
-            foreach (var entry in LogicObjects.MainTrackerInstance.Logic)
-            {
-                if (entry.IsEntrance())
-                {
-                    if ((start) ? entry.Aquired : entry.Available) { UnsortedPathfinder.Add(entry.ID, (start) ? entry.ItemName : entry.LocationName); }
-                }
-                if (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations && entry.ItemSubType != "Entrance" && !entry.IsFake && entry.Available && !start)
-                {
-                    UnsortedItemPathfinder.Add(entry.ID, (entry.RandomizedItem > -1) ? entry.LocationName + ": " + LogicObjects.MainTrackerInstance.Logic[entry.RandomizedItem].ItemName : entry.LocationName);
-                }
-            }
-            Dictionary<int, string> sortedPathfinder = UnsortedPathfinder.OrderBy(x => x.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
-
-            if (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations && !start)
-            {
-                Dictionary<int, string> ItemPathFinder = new Dictionary<int, string>();
-                Dictionary<int, string> sortedItemPathfinder = UnsortedItemPathfinder.OrderBy(x => x.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
-                ItemPathFinder.Add(-2, "ENTRANCES =============================");
-                foreach (KeyValuePair<int, string> p in sortedPathfinder)
-                {
-                    ItemPathFinder.Add(p.Key, p.Value);
-                }
-                ItemPathFinder.Add(-1, "ITEM LOCATIONS =============================");
-                foreach (KeyValuePair<int, string> p in sortedItemPathfinder)
-                {
-                    ItemPathFinder.Add(p.Key, p.Value);
-                }
-                sortedPathfinder = ItemPathFinder;
-            }
-
-            ComboBox cmb = (start) ? CMBStart : CMBEnd;
-            cmb.DataSource = new BindingSource(sortedPathfinder, null);
-            cmb.DisplayMember = "Value";
-            cmb.ValueMember = "key";
-        }
-
-        public void PrintToListBox()
-        {
-            var lbLocTop = LBValidLocations.TopIndex;
-            var lbEntTop = LBValidEntrances.TopIndex;
-            var lbCheckTop = LBCheckedLocations.TopIndex;
-            int TotalLoc = 0;
-            int TotalEnt = 0;
-            int totalchk = 0;
-            List<LogicObjects.LogicEntry> logic = LogicObjects.MainTrackerInstance.Logic;
-            List<LogicObjects.LogicEntry> ListBoxItems = new List<LogicObjects.LogicEntry>();
-            Dictionary<string,int> Groups = new Dictionary<string, int>();
-            Dictionary<int, int> ListBoxAssignments = new Dictionary<int, int>();
-
-            if (File.Exists(@"Recources\Categories.txt"))
-            {
-                Groups = File.ReadAllLines(@"Recources\Categories.txt")
-                    .Select(x => x.ToLower().Trim()).Distinct()
-                    .Select((value, index) => new { value, index })
-                    .ToDictionary(pair => pair.value, pair => pair.index);
-            }
-
-            foreach (var entry in LogicObjects.MainTrackerInstance.Logic)
-            {
-                if (entry.IsFake || entry.Unrandomized() || entry.ForceJunk()) { continue; }
-
-                entry.DisplayName = entry.DictionaryName;
-                if ((entry.Available || entry.HasRandomItem() || CHKShowAll.Checked) && (entry.LocationName != "" && entry.LocationName != null) && !entry.Checked)
-                {
-                    entry.DisplayName = entry.HasRandomItem() ? ($"{entry.LocationName}: {entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}") : entry.LocationName;
-
-                    if ((!entry.IsEntrance() || !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled))
-                    {
-                        TotalLoc += 1;
-                        if (Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
-                        {
-                            ListBoxAssignments.Add(entry.ID, 0);
-                            ListBoxItems.Add(entry);
-                        }
-                    }
-                    else if ((entry.IsEntrance() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled))
-                    {
-                        TotalEnt += 1;
-                        if (Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
-                        {
-                            ListBoxAssignments.Add(entry.ID, 1);
-                            ListBoxItems.Add(entry);
-                        }
-                    }
-                }
-                if (entry.Checked)
-                {
-                    entry.DisplayName = entry.HasRandomItem() ? $"{entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}: {entry.LocationName}" : $"Nothing: {entry.LocationName}";
-                    totalchk += 1;
-                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
-                    {
-                        ListBoxAssignments.Add(entry.ID, 2);
-                        ListBoxItems.Add(entry); 
-                    }
-                }
-            }
-
-            ListBoxItems = ListBoxItems
-                .OrderBy(x => Utility.BoolToInt(x.IsEntrance()))
-                .ThenBy(x => Utility.BoolToInt(x.HasRandomItem() && LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom))
-                .ThenBy(x => (Groups.ContainsKey(x.LocationArea.ToLower().Trim()) ? Groups[x.LocationArea.ToLower().Trim()] : ListBoxItems.Count() + 1))
-                .ThenBy(x => x.LocationArea)
-                .ThenBy(x => x.DisplayName).ToList();
-
-            var lastLocArea = "";
-            var lastEntArea = "";
-            var lastChkArea = "";
-
-            int AvalableLocations = 0;
-            int AvalableEntrances = 0;
-            int CheckedLocations = 0;
-
-            LBValidLocations.Items.Clear();
-            LBValidEntrances.Items.Clear();
-            LBCheckedLocations.Items.Clear();
-
-            foreach (var entry in ListBoxItems)
-            {
-                if (!ListBoxAssignments.ContainsKey(entry.ID)) { continue; }
-                if (ListBoxAssignments[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.HasRandomItem()); AvalableLocations++; }
-                if (ListBoxAssignments[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.HasRandomItem()); AvalableEntrances++; }
-                if (ListBoxAssignments[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false); CheckedLocations++; }
-            }
-
-            label1.Text = "Available Locations: " + ((AvalableLocations == TotalLoc) ? AvalableLocations.ToString() : (AvalableLocations.ToString() + "/" + TotalLoc.ToString()));
-            label2.Text = "Checked locations: " + ((CheckedLocations == totalchk) ? CheckedLocations.ToString() : (CheckedLocations.ToString() + "/" + totalchk.ToString())); ;
-            label3.Text = "Available Entrances: " + ((AvalableEntrances == TotalEnt) ? AvalableEntrances.ToString() : (AvalableEntrances.ToString() + "/" + TotalEnt.ToString())); ;
-            LBValidLocations.TopIndex = lbLocTop;
-            LBValidEntrances.TopIndex = lbEntTop;
-            LBCheckedLocations.TopIndex = lbCheckTop;
-            CreateMenu();
         }
 
         private void ResizeObject()
@@ -987,120 +1137,10 @@ namespace MMR_Tracker_V2
             LBPathFinder.Visible = location;
         }
 
-        public void ShowtoolTip(MouseEventArgs e, ListBox lb)
-        {
-            if (!LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip) { return; }
-            int index = lb.IndexFromPoint(e.Location);
-            if (index < 0) { return; }
-            if (!(lb.Items[index] is LogicObjects.LogicEntry || lb.Items[index] is LogicObjects.ListItem)) { return; }
-            string DisplayName = lb.Items[index].ToString();
-            if (toolTip1.GetToolTip(lb) == DisplayName) { return; }
-            if (Utility.IsDivider(DisplayName)) { return; }
-            toolTip1.SetToolTip(lb, DisplayName);
-        }
-
-        private string WriteObject(LogicObjects.LogicEntry entry, ListBox lb, string lastArea, bool Marked)
-        {
-            bool ShowMarked = (Marked && LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom);
-            string returnLastArea = lastArea;
-            if (entry.LocationArea != returnLastArea)
-            {
-                if (returnLastArea != "") { lb.Items.Add(Utility.CreateDivider(lb)); }
-
-                string Header = entry.LocationArea.ToUpper();
-                if (ShowMarked && entry.IsEntrance()) { Header += " SET EXITS"; }
-                else if (ShowMarked && !entry.IsEntrance()) { Header += " SET ITEMS"; }
-                else if (entry.IsEntrance()) { Header += " ENTRANCES"; }
-                lb.Items.Add(Header + ":");
-                returnLastArea = entry.LocationArea;
-            }
-            lb.Items.Add(entry);
-            return (returnLastArea);
-        }
-
         private static void FireEvents(bool TrackerUpdated = true, bool LocationCheck = true)
         {
             if (LocationCheck) { LocationChecked(null, null); }
             if (TrackerUpdated) { TrackerUpdate(null, null); }
-        }
-
-        private void CreateMenu()
-        {
-            ContextMenuStrip btnRClick = new ContextMenuStrip();
-            ToolStripItem WhatUnlcoked = btnRClick.Items.Add("What Unlocked This?");
-            WhatUnlcoked.Click += (sender, e) => 
-            {
-                RunMenuItems(0);
-            };
-            ToolStripItem Filter = btnRClick.Items.Add("Filter at this Location");
-            Filter.Click += (sender, e) =>
-            {
-                RunMenuItems(3);
-            };
-            ToolStripItem GroupFilter = btnRClick.Items.Add("Filter at Locations near this area");
-            GroupFilter.Click += (sender, e) =>
-            {
-                RunMenuItems(4);
-            };
-            ToolStripItem Check = btnRClick.Items.Add("Check This Item");
-            Check.Click += (sender, e) =>
-            {
-                RunMenuItems(1);
-            };
-            ToolStripItem Mark = btnRClick.Items.Add("Mark This Item");
-            Mark.Click += (sender, e) =>
-            {
-                RunMenuItems(2);
-            };
-            LBValidLocations.ContextMenuStrip = btnRClick;
-            LBValidEntrances.ContextMenuStrip = btnRClick;
-        }
-
-        private void RunMenuItems(int Function)
-        {
-            var ActiveItem = new LogicObjects.LogicEntry();
-            var ActiveListBox = new ListBox();
-            if ((this.ActiveControl == LBValidLocations) && LBValidLocations.SelectedItem is LogicObjects.LogicEntry)
-            {
-                ActiveItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry;
-                ActiveListBox = LBValidLocations;
-            }
-            else if ((this.ActiveControl == LBValidEntrances) && LBValidEntrances.SelectedItem is LogicObjects.LogicEntry)
-            {
-                ActiveItem = LBValidEntrances.SelectedItem as LogicObjects.LogicEntry;
-                ActiveListBox = LBValidEntrances;
-            }
-            else { return; }
-
-            if (Function == 0) { Tools.CurrentSelectedItem = ActiveItem; Tools.WhatUnlockedThis(); }
-            if (Function == 1) { CheckItemSelected(ActiveListBox, true); }
-            if (Function == 2) { CheckItemSelected(ActiveListBox, false); }
-            if (Function == 3)
-            {
-                TextBox SearchBox = (ActiveListBox == LBValidLocations) ? TXTLocSearch : TXTEntSearch;
-                SearchBox.Text = "=#" + ActiveItem.LocationArea;
-            }
-            if (Function == 4)
-            {
-                TextBox SearchBox = (ActiveListBox == LBValidLocations) ? TXTLocSearch : TXTEntSearch;
-                List<Map.LocationArea> LocationDic = new List<Map.LocationArea>();
-                Map MapUtils = new Map();
-                MapUtils.setLocationDic(LocationDic);
-                foreach (var i in LocationDic)
-                {
-                    bool found = false;
-                    foreach(var j in i.SubAreas)
-                    {
-                        if (ActiveItem.LocationArea.ToLower() == j.Replace("#", "").ToLower()) { found = true; }
-                    }
-                    if (found)
-                    {
-                        SearchBox.Text = MapUtils.CreateFilter(0, i.SubAreas);
-                        return;
-                    }
-                }
-            }
-
         }
 
     }
