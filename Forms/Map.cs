@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MMR_Tracker.Class_Files;
+using MMR_Tracker.Forms;
 using MMR_Tracker_V2;
 
 namespace MMR_Tracker
@@ -18,9 +20,16 @@ namespace MMR_Tracker
         public Map()
         {
             InitializeComponent();
+            MainInterface.TrackerUpdate += LogicEditing_LogicChanged;
         }
 
-        public FRMTracker MainInterface;
+        private void LogicEditing_LogicChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("Trigger");
+            //Map_Load(null, null);
+        }
+
+        public MainInterface MainInterfaceInstance;
         private ContextMenuStrip btnRClick;
         public Dictionary<string, string[]> LocationDic = new Dictionary<string, string[]>(){
             {"ClockTown", new string[] {"#North Clock Town", "#South Clock Town", "#East Clock Town", "#West Clock Town", "#Stock Pot Inn", "#Laundry Pool", "#Beneath Clocktown" } },
@@ -62,10 +71,10 @@ namespace MMR_Tracker
             else if (EntrancesInItemBox && !entrances.Checked && locations.Checked) { useFilter = filtersOnlyItem; }
             else { useFilter = filters; }
 
-            if (checkedLocations.Checked) { WriteFilter(filters, MainInterface.TXTCheckedSearch); }
-            if (entrances.Checked && EntrancesInItemBox) { WriteFilter(useFilter, MainInterface.TXTLocSearch); }
-            else if (entrances.Checked && !EntrancesInItemBox) { WriteFilter(useFilter, MainInterface.TXTEntSearch); }
-            if (locations.Checked) { WriteFilter(useFilter, MainInterface.TXTLocSearch); }
+            if (checkedLocations.Checked) { WriteFilter(filters, MainInterfaceInstance.TXTCheckedSearch); }
+            if (entrances.Checked && EntrancesInItemBox) { WriteFilter(useFilter, MainInterfaceInstance.TXTLocSearch); }
+            else if (entrances.Checked && !EntrancesInItemBox) { WriteFilter(useFilter, MainInterfaceInstance.TXTEntSearch); }
+            if (locations.Checked) { WriteFilter(useFilter, MainInterfaceInstance.TXTLocSearch); }
         }
 
         public string CreateFilter(int Both0Entrance1Item2, string[] Filters)
@@ -96,10 +105,10 @@ namespace MMR_Tracker
                     if (!LogicObjects.MainTrackerInstance.IsEntranceRando() && i == 1) { continue; }
                     ToolStripItem ContextMenui = btnRClick.Items.Add(Filters[i]);
                     bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando();
-                    if (i == 2) { ContextMenui.Click += (sender, e) => { MainInterface.TXTCheckedSearch.Text = ""; }; }
-                    if (i == 1 && EntrancesInItemBox) { ContextMenui.Click += (sender, e) => { MainInterface.TXTLocSearch.Text = ""; }; }
-                    else if (i == 1 && !EntrancesInItemBox) { ContextMenui.Click += (sender, e) => { MainInterface.TXTEntSearch.Text = ""; }; }
-                    if (i == 0) { ContextMenui.Click += (sender, e) => { MainInterface.TXTLocSearch.Text = ""; }; }
+                    if (i == 2) { ContextMenui.Click += (sender, e) => { MainInterfaceInstance.TXTCheckedSearch.Text = ""; }; }
+                    if (i == 1 && EntrancesInItemBox) { ContextMenui.Click += (sender, e) => { MainInterfaceInstance.TXTLocSearch.Text = ""; }; }
+                    else if (i == 1 && !EntrancesInItemBox) { ContextMenui.Click += (sender, e) => { MainInterfaceInstance.TXTEntSearch.Text = ""; }; }
+                    if (i == 0) { ContextMenui.Click += (sender, e) => { MainInterfaceInstance.TXTLocSearch.Text = ""; }; }
                 }
             }
             else
@@ -183,10 +192,10 @@ namespace MMR_Tracker
         private void Clear_Click(object sender, EventArgs e)
         {
             bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando();
-            if (checkedLocations.Checked) { MainInterface.TXTCheckedSearch.Text = ""; }
-            if (entrances.Checked && EntrancesInItemBox) { MainInterface.TXTLocSearch.Text = ""; }
-            else if (entrances.Checked && !EntrancesInItemBox) { MainInterface.TXTEntSearch.Text = ""; }
-            if (locations.Checked) { MainInterface.TXTLocSearch.Text = ""; }
+            if (checkedLocations.Checked) { MainInterfaceInstance.TXTCheckedSearch.Text = ""; }
+            if (entrances.Checked && EntrancesInItemBox) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
+            else if (entrances.Checked && !EntrancesInItemBox) { MainInterfaceInstance.TXTEntSearch.Text = ""; }
+            if (locations.Checked) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
         }
 
         private void Map_Load(object sender, EventArgs e)
@@ -205,6 +214,7 @@ namespace MMR_Tracker
             this.Clear.ContextMenuStrip = CreateMenu(new string[] { "Locations", "Entrances", "Checked Items" }, true);
             this.ContextMenuStrip = CreateMenu(new string[] { "" }, true, true);
             this.entrances.Visible = LogicObjects.MainTrackerInstance.IsEntranceRando();
+            Console.WriteLine(LogicObjects.MainTrackerInstance.IsEntranceRando());
         }
 
         public void AddExtraToMisc()

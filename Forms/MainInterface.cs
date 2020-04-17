@@ -17,9 +17,12 @@ using System.Threading.Tasks;
 
 namespace MMR_Tracker_V2
 {
-    public partial class FRMTracker : Form
+    public partial class MainInterface : Form
     {
-        public FRMTracker()
+        public static event EventHandler LocationChecked = delegate { };
+        public static event EventHandler TrackerUpdate = delegate { };
+
+        public MainInterface()
         {
             InitializeComponent();
         }
@@ -48,6 +51,7 @@ namespace MMR_Tracker_V2
             Tools.Redo(LogicObjects.MainTrackerInstance);
             PrintToListBox();
             FormatMenuItems();
+            FireEvents();
         }
 
         private void UndoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -55,6 +59,7 @@ namespace MMR_Tracker_V2
             Tools.Undo(LogicObjects.MainTrackerInstance);
             PrintToListBox();
             FormatMenuItems();
+            FireEvents();
         }
 
         //Menu Strip => File---------------------------------------------------------------------------
@@ -70,6 +75,7 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
+            FireEvents();
         }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -107,6 +113,7 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
+            FireEvents();
         }
 
         //Menu Strip => File => New---------------------------------------------------------------------------
@@ -122,6 +129,7 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
+            FireEvents();
         }
 
         private void GlitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
@@ -135,6 +143,7 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
+            FireEvents();
         }
 
         //Menu Strip => Options => Logic Options---------------------------------------------------------------------------
@@ -357,7 +366,7 @@ namespace MMR_Tracker_V2
         private void FilterMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Map FilterMap = new Map();
-            FilterMap.MainInterface = this;
+            FilterMap.MainInterfaceInstance = this;
             FilterMap.Show();
         }
         //Menu strip => Info---------------------------------------------------------------------------
@@ -572,6 +581,8 @@ namespace MMR_Tracker_V2
             Tools.SaveState(LogicObjects.MainTrackerInstance, Templogic); //Now that we have successfully checked/Marked an object we can commit to a full save state
             LogicObjects.MainTrackerInstance.UnsavedChanges = true;
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+
+            FireEvents(false);
 
             int TopIndex = LB.TopIndex;
             PrintToListBox();
@@ -959,6 +970,12 @@ namespace MMR_Tracker_V2
             }
             lb.Items.Add(entry);
             return (returnLastArea);
+        }
+
+        private static void FireEvents(bool TrackerUpdated = true, bool LocationCheck = true)
+        {
+            if (LocationCheck) { LocationChecked(null, null); }
+            if (TrackerUpdated) { TrackerUpdate(null, null); }
         }
 
     }

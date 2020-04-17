@@ -1,6 +1,6 @@
 ﻿namespace MMR_Tracker_V2
 {
-    partial class FRMTracker
+    partial class MainInterface
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRMTracker));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainInterface));
             this.TXTLocSearch = new System.Windows.Forms.TextBox();
             this.TXTEntSearch = new System.Windows.Forms.TextBox();
             this.TXTCheckedSearch = new System.Windows.Forms.TextBox();

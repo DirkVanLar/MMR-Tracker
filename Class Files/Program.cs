@@ -13,7 +13,7 @@ namespace MMR_Tracker_V2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FRMTracker());
+            Application.Run(new MainInterface());
 
         }
     }

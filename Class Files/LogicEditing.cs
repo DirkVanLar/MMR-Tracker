@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -97,7 +98,6 @@ namespace MMR_Tracker_V2
             }
             CreateDicNameToID(instance.DicNameToID, instance.Logic);
             if (VersionData.Count() > 0) { CreatedEntrancepairDcitionary(instance.EntrancePairs, instance.DicNameToID, VersionData); }
-            
 
             return true;
         }
@@ -189,7 +189,7 @@ namespace MMR_Tracker_V2
                     Instance.Logic[CheckedObject.RandomizedItem].Aquired = false;
                     CheckEntrancePair(CheckedObject, Instance, false);
                 }
-                CheckedObject.RandomizedItem = -2;
+                CheckedObject.RandomizedItem = -2; 
                 return true;
             }
             if (CheckedObject.SpoilerRandom > -2 || CheckedObject.RandomizedItem > -2 || CheckedObject.Options == 2)
