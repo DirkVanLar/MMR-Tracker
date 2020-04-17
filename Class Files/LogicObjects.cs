@@ -180,7 +180,9 @@ namespace MMR_Tracker_V2
         }
         public static bool IsEntranceRando(this LogicObjects.TrackerInstance Instance)
         {
-            return Instance.Version >= VersionHandeling.EntranceRandoVersion || Instance.Game == 1;
+            if (Instance.IsMM()) { return Instance.Version >= VersionHandeling.EntranceRandoVersion; }
+            if (Instance.IsOOT()) { return true; }
+            return false;
         }
         public static bool IsMM(this LogicObjects.TrackerInstance Instance)
         {
