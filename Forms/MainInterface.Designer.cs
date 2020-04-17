@@ -264,6 +264,7 @@
             this.LBValidLocations.TabIndex = 16;
             this.LBValidLocations.DoubleClick += new System.EventHandler(this.LBValidLocations_DoubleClick);
             this.LBValidLocations.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBValidLocations_MouseMove);
+            this.LBValidLocations.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LBValidLocations_MouseUp);
             // 
             // LBValidEntrances
             // 
@@ -276,6 +277,7 @@
             this.LBValidEntrances.TabIndex = 17;
             this.LBValidEntrances.DoubleClick += new System.EventHandler(this.LBValidEntrances_DoubleClick);
             this.LBValidEntrances.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBValidEntrances_MouseMove);
+            this.LBValidEntrances.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LBValidEntrances_MouseUp);
             // 
             // LBCheckedLocations
             // 

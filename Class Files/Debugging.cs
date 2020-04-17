@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -93,7 +94,8 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-
+            ItemDisplay id = new ItemDisplay();
+            id.Show();
         }
 
     }

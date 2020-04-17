@@ -447,5 +447,13 @@ namespace MMR_Tracker.Class_Files
                 }
             }
         }
+        public static void WhatUnlockedThis()
+        {
+            var Requirements = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic);
+            string message = "";
+            foreach (var i in Requirements) { message = message + LogicObjects.MainTrackerInstance.Logic[i].ItemName + "\n"; }
+            MessageBox.Show(message, Tools.CurrentSelectedItem.LocationName + " Was Unlocked with:");
+            Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
+        }
     }
 }

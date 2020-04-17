@@ -317,7 +317,6 @@ namespace MMR_Tracker_V2
         {
             Console.WriteLine(this.ActiveControl == LBValidLocations);
             Console.WriteLine(LBValidLocations.SelectedItem is LogicObjects.LogicEntry);
-
             if ((this.ActiveControl == LBValidLocations) && LBValidLocations.SelectedItem is LogicObjects.LogicEntry)
             {
                 Tools.CurrentSelectedItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry;
@@ -333,11 +332,7 @@ namespace MMR_Tracker_V2
                 var dialogResult = ItemSelectForm.ShowDialog();
                 if (dialogResult != DialogResult.OK) { Tools.CurrentSelectedItem = new LogicObjects.LogicEntry(); return; }
             }
-            var Requirements = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic);
-            string message = "";
-            foreach (var i in Requirements) { message = message + LogicObjects.MainTrackerInstance.Logic[i].ItemName + "\n"; }
-            MessageBox.Show(message, Tools.CurrentSelectedItem.LocationName +  " Was Unlocked with:");
-            Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
+            Tools.WhatUnlockedThis();
         }
 
         private void LogicEditorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -480,6 +475,42 @@ namespace MMR_Tracker_V2
         private void LBCheckedLocations_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, LBCheckedLocations); }
 
         private void LBPathFinder_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, LBPathFinder); }
+
+        private void LBValidLocations_MouseUp(object sender, MouseEventArgs e)
+        {
+            int index = LBValidLocations.IndexFromPoint(e.Location);
+            if (e.Button == MouseButtons.Middle)
+            {
+                if ((ModifierKeys & Keys.Control) != Keys.Control) { LBValidLocations.SelectedItems.Clear(); }
+                LBValidLocations.SetSelected(index, true);
+                CheckItemSelected(LBValidLocations, false);
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                if (index < 0) { return; }
+                if (!(LBValidLocations.Items[index] is LogicObjects.LogicEntry)) { return; }
+                Tools.CurrentSelectedItem = LBValidLocations.Items[index] as LogicObjects.LogicEntry;
+                Tools.WhatUnlockedThis();
+            }
+        }
+
+        private void LBValidEntrances_MouseUp(object sender, MouseEventArgs e)
+        {
+            int index = LBValidEntrances.IndexFromPoint(e.Location);
+            if (e.Button == MouseButtons.Middle)
+            {
+                if ((ModifierKeys & Keys.Control) != Keys.Control) { LBValidEntrances.SelectedItems.Clear(); }
+                LBValidEntrances.SetSelected(index, true);
+                CheckItemSelected(LBValidEntrances, false);
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                if (index < 0) { return; }
+                if (!(LBValidEntrances.Items[index] is LogicObjects.LogicEntry)) { return; }
+                Tools.CurrentSelectedItem = LBValidEntrances.Items[index] as LogicObjects.LogicEntry;
+                Tools.WhatUnlockedThis();
+            }
+        }
 
         //Buttons---------------------------------------------------------------------------
         private void BTNSetItem_Click(object sender, EventArgs e) { CheckItemSelected(LBValidLocations, false); }
@@ -992,5 +1023,6 @@ namespace MMR_Tracker_V2
             if (LocationCheck) { LocationChecked(null, null); }
             if (TrackerUpdated) { TrackerUpdate(null, null); }
         }
+
     }
 }
