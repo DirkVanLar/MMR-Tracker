@@ -32,7 +32,7 @@ namespace MMR_Tracker
         private void Map_Load(object sender, EventArgs e)
         {
             clearContextMenuStrips();
-            setLocationDic();
+            setLocationDic(LocationDic);
             AddUnusedToMisc();
             foreach (var i in LocationDic)
             {
@@ -59,34 +59,34 @@ namespace MMR_Tracker
         public MainInterface MainInterfaceInstance;
         private ContextMenuStrip btnRClick;
         public List<LocationArea> LocationDic = new List<LocationArea>();
-        public void setLocationDic()
+        public void setLocationDic(List<LocationArea> Result)
         {
-            LocationDic = new List<LocationArea>();
-            LocationDic.Add(new LocationArea { locationArea = "ClockTown", Btn = clockTown, SubAreas = new string[] 
+            Result.Clear();
+            Result.Add(new LocationArea { locationArea = "ClockTown", Btn = clockTown, SubAreas = new string[] 
             { "#North Clock Town", "#South Clock Town", "#East Clock Town", "#West Clock Town", "#Stock Pot Inn", "#Laundry Pool", "#Beneath Clocktown" } });
-            LocationDic.Add(new LocationArea { locationArea = "Termina", Btn = Termina, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "Termina", Btn = Termina, SubAreas = new string[] 
             { "#Termina Field", "#Astral Observatory" } });
-            LocationDic.Add(new LocationArea { locationArea = "Ranch", Btn = Ranch, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "Ranch", Btn = Ranch, SubAreas = new string[] 
             { "#Milk Road", "#Romani Ranch" } });
-            LocationDic.Add(new LocationArea { locationArea = "Swamp", Btn = Swamp, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "Swamp", Btn = Swamp, SubAreas = new string[] 
             { "#Road to Southern Swamp", "#Southern Swamp", "#Swamp Skull House", "#Deku Palace" }});
-            LocationDic.Add(new LocationArea { locationArea = "Woodfall", Btn = Woodfall, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "Woodfall", Btn = Woodfall, SubAreas = new string[] 
             { "#Woodfall", "#Woodfall Temple", "#Woodfall Temple Fairies", "#Dungeon Entrance, Woodfall" } });
-            LocationDic.Add(new LocationArea { locationArea = "Ikana", Btn = Ikana, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "Ikana", Btn = Ikana, SubAreas = new string[] 
             { "#Road to Ikana", "#Ikana Canyon", "#Secret Shrine", "#Beneath the Well", "#Ikana Castle", "#Ikana Graveyard" } });
-            LocationDic.Add(new LocationArea { locationArea = "StoneTower", Btn = StoneTower, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "StoneTower", Btn = StoneTower, SubAreas = new string[] 
             { "#Stone Tower", "#Stone Tower Temple", "#Inverted Stone Tower Temple", "#Stone Tower Temple Fairies", "#Dungeon Entrance, Stone Tower" } });
-            LocationDic.Add(new LocationArea { locationArea = "Mountain", Btn = Mountain, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "Mountain", Btn = Mountain, SubAreas = new string[] 
             { "#Path to Mountain Village", "#Mountain Village", "#Twin Islands", "#Goron Village" } });
-            LocationDic.Add(new LocationArea { locationArea = "Snowhead", Btn = Snowhead, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "Snowhead", Btn = Snowhead, SubAreas = new string[] 
             { "#Path to Snowhead", "#Snowhead", "#Snowhead Temple", "#Snowhead Temple Fairies", "#Dungeon Entrance, Snowhead" } });
-            LocationDic.Add(new LocationArea { locationArea = "Moon", Btn = Moon, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "Moon", Btn = Moon, SubAreas = new string[] 
             { "#The Moon" } });
-            LocationDic.Add(new LocationArea { locationArea = "Coast", Btn = Coast, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "Coast", Btn = Coast, SubAreas = new string[] 
             { "#Zora Cape", "#Zora Hall", "#Great Bay Cape", "#Great Bay Temple", "#Great Bay Temple Fairies", "#Dungeon Entrance, Great Bay" }});
-            LocationDic.Add(new LocationArea { locationArea = "Misc", Btn = Misc, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "Misc", Btn = Misc, SubAreas = new string[] 
             { "#Misc" } });
-            LocationDic.Add(new LocationArea { locationArea = "GreatBay", Btn = GreatBay, SubAreas = new string[] 
+            Result.Add(new LocationArea { locationArea = "GreatBay", Btn = GreatBay, SubAreas = new string[] 
             { "#Great Bay Coast", "#Pinnacle Rock", "#Ocean Skull House", "#Pirate Fortress", "#Pirates' Fortress Exterior", "#Pirates' Fortress Interior", "#Pirates' Fortress Sewer" } });
         }
 
@@ -135,7 +135,7 @@ namespace MMR_Tracker
         public ContextMenuStrip CreateMenu(string[] Filters, bool ClearMe = false, bool Return = false)
         {
             btnRClick = new ContextMenuStrip();
-            this.ContextMenuStrip = btnRClick;
+            //this.ContextMenuStrip = btnRClick;
             if (Return) { return btnRClick; }
             if (ClearMe)
             {

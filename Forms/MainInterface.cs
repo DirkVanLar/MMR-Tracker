@@ -35,6 +35,7 @@ namespace MMR_Tracker_V2
             if (VersionHandeling.GetLatestTrackerVersion()) { this.Close(); }
             ResizeObject();
             FormatMenuItems();
+            CreateMenu();
         }
 
         private void FRMTracker_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
@@ -487,10 +488,9 @@ namespace MMR_Tracker_V2
             }
             else if (e.Button == MouseButtons.Right)
             {
-                if (index < 0) { return; }
-                if (!(LBValidLocations.Items[index] is LogicObjects.LogicEntry)) { return; }
-                Tools.CurrentSelectedItem = LBValidLocations.Items[index] as LogicObjects.LogicEntry;
-                Tools.WhatUnlockedThis();
+                LBValidLocations.SelectedItems.Clear();
+                LBValidLocations.SetSelected(index, true);
+                this.ActiveControl = LBValidLocations;
             }
         }
 
@@ -505,10 +505,9 @@ namespace MMR_Tracker_V2
             }
             else if (e.Button == MouseButtons.Right)
             {
-                if (index < 0) { return; }
-                if (!(LBValidEntrances.Items[index] is LogicObjects.LogicEntry)) { return; }
-                Tools.CurrentSelectedItem = LBValidEntrances.Items[index] as LogicObjects.LogicEntry;
-                Tools.WhatUnlockedThis();
+                LBValidEntrances.SelectedItems.Clear();
+                LBValidEntrances.SetSelected(index, true);
+                this.ActiveControl = LBValidEntrances;
             }
         }
 
@@ -870,6 +869,7 @@ namespace MMR_Tracker_V2
             LBValidLocations.TopIndex = lbLocTop;
             LBValidEntrances.TopIndex = lbEntTop;
             LBCheckedLocations.TopIndex = lbCheckTop;
+            CreateMenu();
         }
 
         private void ResizeObject()
@@ -1022,6 +1022,85 @@ namespace MMR_Tracker_V2
         {
             if (LocationCheck) { LocationChecked(null, null); }
             if (TrackerUpdated) { TrackerUpdate(null, null); }
+        }
+
+        private void CreateMenu()
+        {
+            ContextMenuStrip btnRClick = new ContextMenuStrip();
+            ToolStripItem WhatUnlcoked = btnRClick.Items.Add("What Unlocked This?");
+            WhatUnlcoked.Click += (sender, e) => 
+            {
+                RunMenuItems(0);
+            };
+            ToolStripItem Filter = btnRClick.Items.Add("Filter at this Location");
+            Filter.Click += (sender, e) =>
+            {
+                RunMenuItems(3);
+            };
+            ToolStripItem GroupFilter = btnRClick.Items.Add("Filter at Locations near this area");
+            GroupFilter.Click += (sender, e) =>
+            {
+                RunMenuItems(4);
+            };
+            ToolStripItem Check = btnRClick.Items.Add("Check This Item");
+            Check.Click += (sender, e) =>
+            {
+                RunMenuItems(1);
+            };
+            ToolStripItem Mark = btnRClick.Items.Add("Mark This Item");
+            Mark.Click += (sender, e) =>
+            {
+                RunMenuItems(2);
+            };
+            LBValidLocations.ContextMenuStrip = btnRClick;
+            LBValidEntrances.ContextMenuStrip = btnRClick;
+        }
+
+        private void RunMenuItems(int Function)
+        {
+            var ActiveItem = new LogicObjects.LogicEntry();
+            var ActiveListBox = new ListBox();
+            if ((this.ActiveControl == LBValidLocations) && LBValidLocations.SelectedItem is LogicObjects.LogicEntry)
+            {
+                ActiveItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry;
+                ActiveListBox = LBValidLocations;
+            }
+            else if ((this.ActiveControl == LBValidEntrances) && LBValidEntrances.SelectedItem is LogicObjects.LogicEntry)
+            {
+                ActiveItem = LBValidEntrances.SelectedItem as LogicObjects.LogicEntry;
+                ActiveListBox = LBValidEntrances;
+            }
+            else { return; }
+
+            if (Function == 0) { Tools.CurrentSelectedItem = ActiveItem; Tools.WhatUnlockedThis(); }
+            if (Function == 1) { CheckItemSelected(ActiveListBox, true); }
+            if (Function == 2) { CheckItemSelected(ActiveListBox, false); }
+            if (Function == 3)
+            {
+                TextBox SearchBox = (ActiveListBox == LBValidLocations) ? TXTLocSearch : TXTEntSearch;
+                SearchBox.Text = "=#" + ActiveItem.LocationArea;
+            }
+            if (Function == 4)
+            {
+                TextBox SearchBox = (ActiveListBox == LBValidLocations) ? TXTLocSearch : TXTEntSearch;
+                List<Map.LocationArea> LocationDic = new List<Map.LocationArea>();
+                Map MapUtils = new Map();
+                MapUtils.setLocationDic(LocationDic);
+                foreach (var i in LocationDic)
+                {
+                    bool found = false;
+                    foreach(var j in i.SubAreas)
+                    {
+                        if (ActiveItem.LocationArea.ToLower() == j.Replace("#", "").ToLower()) { found = true; }
+                    }
+                    if (found)
+                    {
+                        SearchBox.Text = MapUtils.CreateFilter(0, i.SubAreas);
+                        return;
+                    }
+                }
+            }
+
         }
 
     }
