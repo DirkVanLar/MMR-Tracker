@@ -92,19 +92,21 @@ namespace MMR_Tracker_V2
                 LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = (LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled != LogicObjects.MainTrackerInstance.IsEntranceRando());
             }
 
+            Console.WriteLine("Settings Entrance: " + LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup);
+             
             if (LogicObjects.MainTrackerInstance.IsEntranceRando() && !SettingsFile && LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup)
             {
+                LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled = false;
+                LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = true;
                 foreach (var item in LogicObjects.MainTrackerInstance.Logic)
                 {
                     if (item.IsEntrance()) { item.Options = 1; }
-                    LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled = false;
-                    LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = true;
                 }
             }
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
-            PrintToListBox();
-            ResizeObject();
             FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
         }
 
         //Menu Strip => File => New---------------------------------------------------------------------------
@@ -117,9 +119,9 @@ namespace MMR_Tracker_V2
             string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
             Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
-            PrintToListBox();
-            ResizeObject();
             FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
         }
 
         private void GlitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
@@ -130,9 +132,9 @@ namespace MMR_Tracker_V2
             string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
             Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
-            PrintToListBox();
-            ResizeObject();
             FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
         }
 
         //Menu Strip => Options => Logic Options---------------------------------------------------------------------------
@@ -352,6 +354,12 @@ namespace MMR_Tracker_V2
             Poputpathfinder.Show();
         }
 
+        private void FilterMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Map FilterMap = new Map();
+            FilterMap.MainInterface = this;
+            FilterMap.Show();
+        }
         //Menu strip => Info---------------------------------------------------------------------------
 
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -587,7 +595,10 @@ namespace MMR_Tracker_V2
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
             updateLogicToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
             popoutPathfinderToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.IsEntranceRando());
-            if (!LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable) { LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled = LogicObjects.MainTrackerInstance.IsEntranceRando(); }
+            if (!LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable) 
+            {
+                LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled = LogicObjects.MainTrackerInstance.IsEntranceRando(); 
+            }
             useSongOfTimeInPathfinderToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
             coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
@@ -949,5 +960,6 @@ namespace MMR_Tracker_V2
             lb.Items.Add(entry);
             return (returnLastArea);
         }
+
     }
 }
