@@ -440,6 +440,21 @@ namespace MMR_Tracker_V2
 
         private void TXTCheckedSearch_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
 
+        private void TXTLocSearch_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle) { TXTLocSearch.Clear(); }
+        }
+
+        private void TXTEntSearch_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle) { TXTEntSearch.Clear(); }
+        }
+
+        private void TXTCheckedSearch_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle) { TXTCheckedSearch.Clear(); }
+        }
+
         //List Boxes---------------------------------------------------------------------------
         private void LBValidLocations_DoubleClick(object sender, EventArgs e) { CheckItemSelected(LBValidLocations, true); }
 
@@ -977,6 +992,5 @@ namespace MMR_Tracker_V2
             if (LocationCheck) { LocationChecked(null, null); }
             if (TrackerUpdated) { TrackerUpdate(null, null); }
         }
-
     }
 }

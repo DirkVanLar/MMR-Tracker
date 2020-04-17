@@ -108,6 +108,7 @@
             this.TXTLocSearch.Size = new System.Drawing.Size(100, 20);
             this.TXTLocSearch.TabIndex = 0;
             this.TXTLocSearch.TextChanged += new System.EventHandler(this.TXTLocSearch_TextChanged);
+            this.TXTLocSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXTLocSearch_MouseClick);
             // 
             // TXTEntSearch
             // 
@@ -117,6 +118,7 @@
             this.TXTEntSearch.Size = new System.Drawing.Size(100, 20);
             this.TXTEntSearch.TabIndex = 1;
             this.TXTEntSearch.TextChanged += new System.EventHandler(this.TXTEntSearch_TextChanged);
+            this.TXTEntSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXTEntSearch_MouseClick);
             // 
             // TXTCheckedSearch
             // 
@@ -126,6 +128,7 @@
             this.TXTCheckedSearch.Size = new System.Drawing.Size(100, 20);
             this.TXTCheckedSearch.TabIndex = 2;
             this.TXTCheckedSearch.TextChanged += new System.EventHandler(this.TXTCheckedSearch_TextChanged);
+            this.TXTCheckedSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXTCheckedSearch_MouseClick);
             // 
             // label1
             // 
@@ -687,7 +690,7 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // FRMTracker
+            // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -717,7 +720,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "FRMTracker";
+            this.Name = "MainInterface";
             this.Text = "MMR Tracker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMTracker_FormClosing);
             this.Load += new System.EventHandler(this.FRMTracker_Load);

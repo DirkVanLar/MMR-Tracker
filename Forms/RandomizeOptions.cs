@@ -185,5 +185,10 @@ namespace MMR_Tracker_V2
                 counter++;
             }
         }
+
+        private void txtSearch_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle) { txtSearch.Clear(); }
+        }
     }
 }

@@ -26,31 +26,70 @@ namespace MMR_Tracker
         private void LogicEditing_LogicChanged(object sender, EventArgs e)
         {
             Console.WriteLine("Trigger");
-            //Map_Load(null, null);
+            Map_Load(null, null);
+        }
+
+        private void Map_Load(object sender, EventArgs e)
+        {
+            clearContextMenuStrips();
+            setLocationDic();
+            AddUnusedToMisc();
+            foreach (var i in LocationDic)
+            {
+                try
+                {
+                    Button btn = i.Btn;
+                    btn.ContextMenuStrip = CreateMenu(i.SubAreas);
+                }
+                catch { }
+            }
+            this.Clear.ContextMenuStrip = CreateMenu(new string[] { "Locations", "Entrances", "Checked Items" }, true);
+            this.ContextMenuStrip = CreateMenu(new string[] { "" }, true, true);
+            this.entrances.Visible = LogicObjects.MainTrackerInstance.IsEntranceRando();
+            Console.WriteLine(LogicObjects.MainTrackerInstance.IsEntranceRando());
+        }
+
+        public class LocationArea
+        {
+            public string locationArea { get; set; }
+            public string[] SubAreas { get; set; }
+            public Button Btn { get; set; }
         }
 
         public MainInterface MainInterfaceInstance;
         private ContextMenuStrip btnRClick;
-        public Dictionary<string, string[]> LocationDic = new Dictionary<string, string[]>(){
-            {"ClockTown", new string[] {"#North Clock Town", "#South Clock Town", "#East Clock Town", "#West Clock Town", "#Stock Pot Inn", "#Laundry Pool", "#Beneath Clocktown" } },
-            {"Termina", new string[] { "#Termina Field", "#Astral Observatory" } },
-            {"Ranch", new string[] { "#Milk Road", "#Romani Ranch" } },
-            {"Swamp", new string[] { "#Road to Southern Swamp", "#Southern Swamp", "#Swamp Skull House", "#Deku Palace" } },
-            {"Woodfall",new string[] { "#Woodfall", "#Woodfall Temple", "#Woodfall Temple Fairies", "#Dungeon Entrance, Woodfall" } },
-            {"Ikana",new string[]{ "#Road to Ikana", "#Ikana Canyon", "#Secret Shrine", "#Beneath the Well", "#Ikana Castle", "#Ikana Graveyard" } },
-            {"StoneTower",new string[]{ "#Stone Tower", "#Stone Tower Temple", "#Inverted Stone Tower Temple", "#Stone Tower Temple Fairies", "#Dungeon Entrance, Stone Tower" } },
-            {"Mountain",new string[]{ "#Path to Mountain Village", "#Mountain Village", "#Twin Islands", "#Goron Village" } },
-            {"Snowhead",new string[]{ "#Path to Snowhead", "#Snowhead", "#Snowhead Temple", "#Snowhead Temple Fairies", "#Dungeon Entrance, Snowhead" } },
-            {"GreatBay",new string[]{ "#Great Bay Coast", "#Pinnacle Rock", "#Ocean Skull House", "#Pirate Fortress", "#Pirates' Fortress Exterior", "#Pirates' Fortress Interior", "#Pirates' Fortress Sewer" } },
-            {"Moon",new string[]{ "#The Moon" } },
-            {"Coast",new string[]{ "#Zora Cape", "#Zora Hall", "#Great Bay Cape", "#Great Bay Temple", "#Great Bay Temple Fairies", "#Dungeon Entrance, Great Bay" } },
-            {"Misc",new string[]{ "#Misc" } }
-        };
+        public List<LocationArea> LocationDic = new List<LocationArea>();
+        public void setLocationDic()
+        {
+            LocationDic = new List<LocationArea>();
+            LocationDic.Add(new LocationArea { locationArea = "ClockTown", Btn = clockTown, SubAreas = new string[] 
+            { "#North Clock Town", "#South Clock Town", "#East Clock Town", "#West Clock Town", "#Stock Pot Inn", "#Laundry Pool", "#Beneath Clocktown" } });
+            LocationDic.Add(new LocationArea { locationArea = "Termina", Btn = Termina, SubAreas = new string[] 
+            { "#Termina Field", "#Astral Observatory" } });
+            LocationDic.Add(new LocationArea { locationArea = "Ranch", Btn = Ranch, SubAreas = new string[] 
+            { "#Milk Road", "#Romani Ranch" } });
+            LocationDic.Add(new LocationArea { locationArea = "Swamp", Btn = Swamp, SubAreas = new string[] 
+            { "#Road to Southern Swamp", "#Southern Swamp", "#Swamp Skull House", "#Deku Palace" }});
+            LocationDic.Add(new LocationArea { locationArea = "Woodfall", Btn = Woodfall, SubAreas = new string[] 
+            { "#Woodfall", "#Woodfall Temple", "#Woodfall Temple Fairies", "#Dungeon Entrance, Woodfall" } });
+            LocationDic.Add(new LocationArea { locationArea = "Ikana", Btn = Ikana, SubAreas = new string[] 
+            { "#Road to Ikana", "#Ikana Canyon", "#Secret Shrine", "#Beneath the Well", "#Ikana Castle", "#Ikana Graveyard" } });
+            LocationDic.Add(new LocationArea { locationArea = "StoneTower", Btn = StoneTower, SubAreas = new string[] 
+            { "#Stone Tower", "#Stone Tower Temple", "#Inverted Stone Tower Temple", "#Stone Tower Temple Fairies", "#Dungeon Entrance, Stone Tower" } });
+            LocationDic.Add(new LocationArea { locationArea = "Mountain", Btn = Mountain, SubAreas = new string[] 
+            { "#Path to Mountain Village", "#Mountain Village", "#Twin Islands", "#Goron Village" } });
+            LocationDic.Add(new LocationArea { locationArea = "Snowhead", Btn = Snowhead, SubAreas = new string[] 
+            { "#Path to Snowhead", "#Snowhead", "#Snowhead Temple", "#Snowhead Temple Fairies", "#Dungeon Entrance, Snowhead" } });
+            LocationDic.Add(new LocationArea { locationArea = "Moon", Btn = Moon, SubAreas = new string[] 
+            { "#The Moon" } });
+            LocationDic.Add(new LocationArea { locationArea = "Coast", Btn = Coast, SubAreas = new string[] 
+            { "#Zora Cape", "#Zora Hall", "#Great Bay Cape", "#Great Bay Temple", "#Great Bay Temple Fairies", "#Dungeon Entrance, Great Bay" }});
+            LocationDic.Add(new LocationArea { locationArea = "Misc", Btn = Misc, SubAreas = new string[] 
+            { "#Misc" } });
+            LocationDic.Add(new LocationArea { locationArea = "GreatBay", Btn = GreatBay, SubAreas = new string[] 
+            { "#Great Bay Coast", "#Pinnacle Rock", "#Ocean Skull House", "#Pirate Fortress", "#Pirates' Fortress Exterior", "#Pirates' Fortress Interior", "#Pirates' Fortress Sewer" } });
+        }
 
-        /* For adding a new area
-         * Create a new String array that contains each area label in the area your want to create
-         * Run the ProcessFilters function and pass the String array
-         */
         #region Static Function
         public void WriteFilter(string FilterTest, TextBox txt)
         {
@@ -123,106 +162,11 @@ namespace MMR_Tracker
             return btnRClick;
         }
 
-        #endregion Static Function
-
-        private void ClockTown_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["ClockTown"]);
-        }
-
-        private void Termina_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["Termina"]);
-        }
-
-        private void Ranch_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["Ranch"]);
-        }
-
-        private void Swamp_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["Swamp"]);
-        }
-
-        private void Woodfall_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["Woodfall"]);
-        }
-
-        private void Ikana_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["Ikana"]);
-        }
-
-        private void StoneTower_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["StoneTower"]);
-        }
-
-        private void Mountain_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["Mountain"]);
-        }
-
-        private void Snowhead_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["Snowhead"]);
-        }
-
-        private void GreatBay_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["GreatBay"]);
-        }
-
-        private void Moon_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["Moon"]);
-        }
-
-        private void Coast_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["Coast"]);
-        }
-
-        private void Misc_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic["Misc"]);
-        }
-
-        private void Clear_Click(object sender, EventArgs e)
-        {
-            bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando();
-            if (checkedLocations.Checked) { MainInterfaceInstance.TXTCheckedSearch.Text = ""; }
-            if (entrances.Checked && EntrancesInItemBox) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
-            else if (entrances.Checked && !EntrancesInItemBox) { MainInterfaceInstance.TXTEntSearch.Text = ""; }
-            if (locations.Checked) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
-        }
-
-        private void Map_Load(object sender, EventArgs e)
-        {
-            AddExtraToMisc();
-            foreach (var i in LocationDic)
-            {
-                try 
-                { 
-                    string name = i.Key;
-                    Button btn = this.Controls.Find(name, false).FirstOrDefault() as Button;
-                    btn.ContextMenuStrip = CreateMenu(i.Value);
-                }
-                catch { }
-            }
-            this.Clear.ContextMenuStrip = CreateMenu(new string[] { "Locations", "Entrances", "Checked Items" }, true);
-            this.ContextMenuStrip = CreateMenu(new string[] { "" }, true, true);
-            this.entrances.Visible = LogicObjects.MainTrackerInstance.IsEntranceRando();
-            Console.WriteLine(LogicObjects.MainTrackerInstance.IsEntranceRando());
-        }
-
-        public void AddExtraToMisc()
+        public void AddUnusedToMisc()
         {
             List<string> Groups = new List<string>();
-            List<string> Assignedlocations = LocationDic.SelectMany(x => x.Value).ToList();
             List<string> ValidLocations = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake).Select(x => x.LocationArea).Distinct().Select(x => "#" + x).ToList();
+            List<string> Assignedlocations = LocationDic.SelectMany(x => x.SubAreas).ToList();
 
             if (File.Exists(@"Recources\Categories.txt"))
             {
@@ -236,7 +180,91 @@ namespace MMR_Tracker
             {
                 if (!Assignedlocations.Contains(i) && ValidLocations.Contains(i)) { NewMisc.Add(i); Console.WriteLine(i); }
             }
-            LocationDic["Misc"] = NewMisc.ToArray();
+            LocationDic.Find(x => x.locationArea == "Misc").SubAreas = NewMisc.ToArray();
+        }
+
+        public void clearContextMenuStrips()
+        {
+            foreach (var i in LocationDic)
+            {
+                i.Btn.ContextMenuStrip.Items.Clear();
+            }
+        }
+
+        #endregion Static Function
+
+        private void ClockTown_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "ClockTown").SubAreas);
+        }
+
+        private void Termina_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "Termina").SubAreas);
+        }
+
+        private void Ranch_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "Ranch").SubAreas);
+        }
+
+        private void Swamp_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "Swamp").SubAreas);
+        }
+
+        private void Woodfall_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "Woodfall").SubAreas);
+        }
+
+        private void Ikana_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "Ikana").SubAreas);
+        }
+
+        private void StoneTower_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "StoneTower").SubAreas);
+        }
+
+        private void Mountain_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "Mountain").SubAreas);
+        }
+
+        private void Snowhead_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "Snowhead").SubAreas);
+        }
+
+        private void GreatBay_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "GreatBay").SubAreas);
+        }
+
+        private void Moon_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "Moon").SubAreas);
+        }
+
+        private void Coast_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "Coast").SubAreas);
+        }
+
+        private void Misc_Click(object sender, EventArgs e)
+        {
+            ProcessFilters(LocationDic.Find(x => x.locationArea == "Misc").SubAreas);
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando();
+            if (checkedLocations.Checked) { MainInterfaceInstance.TXTCheckedSearch.Text = ""; }
+            if (entrances.Checked && EntrancesInItemBox) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
+            else if (entrances.Checked && !EntrancesInItemBox) { MainInterfaceInstance.TXTEntSearch.Text = ""; }
+            if (locations.Checked) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
         }
     }
 }

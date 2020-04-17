@@ -401,5 +401,10 @@ namespace MMR_Tracker_V2
             LBItemSelect.Items.Insert(newIndex, selected);
             LBItemSelect.SetSelected(newIndex, true);
         }
+
+        private void TXTSearch_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle) { TXTSearch.Clear(); }
+        }
     }
 }
