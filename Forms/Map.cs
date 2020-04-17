@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +12,19 @@ using MMR_Tracker_V2;
 
 namespace MMR_Tracker
 {
+    
     public partial class Map : Form
     {
+        public Map()
+        {
+            InitializeComponent();
+        }
+
         public FRMTracker MainInterface;
-        public bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando();
         private ContextMenuStrip btnRClick;
         public Dictionary<string, string[]> LocationDic = new Dictionary<string, string[]>(){
-            {"ClockTown", new string[] {"#North Clock Town", "#South Clock Town", "#East Clock Town", "#West Clock Town" } },
-            {"Termina", new string[] {"#Termina"} },
+            {"ClockTown", new string[] {"#North Clock Town", "#South Clock Town", "#East Clock Town", "#West Clock Town", "#Stock Pot Inn", "#Laundry Pool", "#Beneath Clocktown" } },
+            {"Termina", new string[] { "#Termina Field", "#Astral Observatory" } },
             {"Ranch", new string[] { "#Milk Road", "#Romani Ranch" } },
             {"Swamp", new string[] { "#Road to Southern Swamp", "#Southern Swamp", "#Swamp Skull House", "#Deku Palace" } },
             {"Woodfall",new string[] { "#Woodfall", "#Woodfall Temple", "#Woodfall Temple Fairies", "#Dungeon Entrance, Woodfall" } },
@@ -31,10 +37,6 @@ namespace MMR_Tracker
             {"Coast",new string[]{ "#Zora Cape", "#Zora Hall", "#Great Bay Cape", "#Great Bay Temple", "#Great Bay Temple Fairies", "#Dungeon Entrance, Great Bay" } },
             {"Misc",new string[]{ "#Misc" } }
         };
-    public Map()
-        {
-            InitializeComponent();
-        }
 
         /* For adding a new area
          * Create a new String array that contains each area label in the area your want to create
@@ -51,6 +53,7 @@ namespace MMR_Tracker
 
         public void ProcessFilters(string[] Filters)
         {
+            bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando();
             string filters = CreateFilter(0, Filters);
             string filtersOnlyEntrance = CreateFilter(1, Filters);
             string filtersOnlyItem = CreateFilter(2, Filters);
@@ -72,34 +75,39 @@ namespace MMR_Tracker
             foreach(var i in Filters)
             {
                 string CurFilter = filter;
-                if (Both0Entrance1Item2 == 0) { filter += Seperator + i; }
-                if (Both0Entrance1Item2 == 1) { filter += Seperator + i + ",@Entrance"; }
-                if (Both0Entrance1Item2 == 2) { filter += Seperator + i + ",!@Entrance"; }
+                if (Both0Entrance1Item2 == 0) { filter += Seperator + "=" + i; }
+                if (Both0Entrance1Item2 == 1) { filter += Seperator + "=" + i + ",@Entrance"; }
+                if (Both0Entrance1Item2 == 2) { filter += Seperator + "=" + i + ",!@Entrance"; }
                 Seperator = "|";
             }
             Console.WriteLine(filter);
             return filter;
         }
-        public ContextMenuStrip CreateMenu(string[] Filters, bool ClearMe = false)
+
+        public ContextMenuStrip CreateMenu(string[] Filters, bool ClearMe = false, bool Return = false)
         {
             btnRClick = new ContextMenuStrip();
             this.ContextMenuStrip = btnRClick;
+            if (Return) { return btnRClick; }
             if (ClearMe)
             {
-                btnRClick.Items.Clear();
+                for(var i = 0; i < Filters.Length; i++)
+                {
+                    if (!LogicObjects.MainTrackerInstance.IsEntranceRando() && i == 1) { continue; }
+                    ToolStripItem ContextMenui = btnRClick.Items.Add(Filters[i]);
+                    bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando();
+                    if (i == 2) { ContextMenui.Click += (sender, e) => { MainInterface.TXTCheckedSearch.Text = ""; }; }
+                    if (i == 1 && EntrancesInItemBox) { ContextMenui.Click += (sender, e) => { MainInterface.TXTLocSearch.Text = ""; }; }
+                    else if (i == 1 && !EntrancesInItemBox) { ContextMenui.Click += (sender, e) => { MainInterface.TXTEntSearch.Text = ""; }; }
+                    if (i == 0) { ContextMenui.Click += (sender, e) => { MainInterface.TXTLocSearch.Text = ""; }; }
+                }
             }
             else
             {
                 foreach (string i in Filters)
                 {
-                    string[] j = new string[] { i.Replace("#", "") };
                     ToolStripItem ContextMenui = btnRClick.Items.Add(i.Replace("#", ""));
-                    ContextMenui.Click += (sender, e) =>
-                    {
-                        ProcessFilters(j);
-                        btnRClick.Hide();
-                        btnRClick.Items.Clear();
-                    };
+                    ContextMenui.Click += (sender, e) => { ProcessFilters(new string[] { i }); };
                 }
             }
             return btnRClick;
@@ -174,6 +182,7 @@ namespace MMR_Tracker
 
         private void Clear_Click(object sender, EventArgs e)
         {
+            bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando();
             if (checkedLocations.Checked) { MainInterface.TXTCheckedSearch.Text = ""; }
             if (entrances.Checked && EntrancesInItemBox) { MainInterface.TXTLocSearch.Text = ""; }
             else if (entrances.Checked && !EntrancesInItemBox) { MainInterface.TXTEntSearch.Text = ""; }
@@ -182,24 +191,41 @@ namespace MMR_Tracker
 
         private void Map_Load(object sender, EventArgs e)
         {
-            if (EntrancesInItemBox) { this.entrances.Visible = true; }
-            else { this.entrances.Visible = false; }
-            this.clockTown.ContextMenuStrip = CreateMenu(LocationDic["ClockTown"]);
-            this.clockTown.ContextMenuStrip = CreateMenu(LocationDic["ClockTown"]);
-            this.Termina.ContextMenuStrip = CreateMenu(LocationDic["Termina"]);
-            this.Ranch.ContextMenuStrip = CreateMenu(LocationDic["Ranch"]);
-            this.Coast.ContextMenuStrip = CreateMenu(LocationDic["Coast"]);
-            this.GreatBay.ContextMenuStrip = CreateMenu(LocationDic["GreatBay"]);
-            this.Mountain.ContextMenuStrip = CreateMenu(LocationDic["Mountain"]);
-            this.Snowhead.ContextMenuStrip = CreateMenu(LocationDic["Snowhead"]);
-            this.StoneTower.ContextMenuStrip = CreateMenu(LocationDic["StoneTower"]);
-            this.Ikana.ContextMenuStrip = CreateMenu(LocationDic["Ikana"]);
-            this.Swamp.ContextMenuStrip = CreateMenu(LocationDic["Swamp"]);
-            this.Woodfall.ContextMenuStrip = CreateMenu(LocationDic["Woodfall"]);
-            this.Moon.ContextMenuStrip = CreateMenu(LocationDic["Moon"]);
-            this.Misc.ContextMenuStrip = CreateMenu(LocationDic["Misc"]);
-            this.Clear.ContextMenuStrip = CreateMenu(new string[] { "" }, true);
-            this.ContextMenuStrip = CreateMenu(new string[] { "" }, true);
+            AddExtraToMisc();
+            foreach (var i in LocationDic)
+            {
+                try 
+                { 
+                    string name = i.Key;
+                    Button btn = this.Controls.Find(name, false).FirstOrDefault() as Button;
+                    btn.ContextMenuStrip = CreateMenu(i.Value);
+                }
+                catch { }
+            }
+            this.Clear.ContextMenuStrip = CreateMenu(new string[] { "Locations", "Entrances", "Checked Items" }, true);
+            this.ContextMenuStrip = CreateMenu(new string[] { "" }, true, true);
+            this.entrances.Visible = LogicObjects.MainTrackerInstance.IsEntranceRando();
+        }
+
+        public void AddExtraToMisc()
+        {
+            List<string> Groups = new List<string>();
+            List<string> Assignedlocations = LocationDic.SelectMany(x => x.Value).ToList();
+            List<string> ValidLocations = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake).Select(x => x.LocationArea).Distinct().Select(x => "#" + x).ToList();
+
+            if (File.Exists(@"Recources\Categories.txt"))
+            {
+                Groups = File.ReadAllLines(@"Recources\Categories.txt")
+                    .Select(x => x.Trim())
+                    .Select(x => "#" + x).ToList();
+            }
+
+            List<string> NewMisc = new List<string> { "#Misc" };
+            foreach (var i in Groups)
+            {
+                if (!Assignedlocations.Contains(i) && ValidLocations.Contains(i)) { NewMisc.Add(i); Console.WriteLine(i); }
+            }
+            LocationDic["Misc"] = NewMisc.ToArray();
         }
     }
 }
