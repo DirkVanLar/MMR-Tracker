@@ -16,9 +16,20 @@ namespace MMR_Tracker
         public FRMTracker MainInterface;
         public bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando();
         private ContextMenuStrip btnRClick;
-        public Dictionary<string, string[]> TLocations = new Dictionary<string, string[]>(){
+        public Dictionary<string, string[]> LocationDic = new Dictionary<string, string[]>(){
             {"ClockTown", new string[] {"#North Clock Town", "#South Clock Town", "#East Clock Town", "#West Clock Town" } },
-            {"Termina", new string[] {"#Termina"} }
+            {"Termina", new string[] {"#Termina"} },
+            {"Ranch", new string[] { "#Milk Road", "#Romani Ranch" } },
+            {"Swamp", new string[] { "#Road to Southern Swamp", "#Southern Swamp", "#Swamp Skull House", "#Deku Palace" } },
+            {"Woodfall",new string[] { "#Woodfall", "#Woodfall Temple", "#Woodfall Temple Fairies", "#Dungeon Entrance, Woodfall" } },
+            {"Ikana",new string[]{ "#Road to Ikana", "#Ikana Canyon", "#Secret Shrine", "#Beneath the Well", "#Ikana Castle", "#Ikana Graveyard" } },
+            {"StoneTower",new string[]{ "#Stone Tower", "#Stone Tower Temple", "#Inverted Stone Tower Temple", "#Stone Tower Temple Fairies", "#Dungeon Entrance, Stone Tower" } },
+            {"Mountain",new string[]{ "#Path to Mountain Village", "#Mountain Village", "#Twin Islands", "#Goron Village" } },
+            {"Snowhead",new string[]{ "#Path to Snowhead", "#Snowhead", "#Snowhead Temple", "#Snowhead Temple Fairies", "#Dungeon Entrance, Snowhead" } },
+            {"GreatBay",new string[]{ "#Great Bay Coast", "#Pinnacle Rock", "#Ocean Skull House", "#Pirate Fortress", "#Pirates' Fortress Exterior", "#Pirates' Fortress Interior", "#Pirates' Fortress Sewer" } },
+            {"Moon",new string[]{ "#The Moon" } },
+            {"Coast",new string[]{ "#Zora Cape", "#Zora Hall", "#Great Bay Cape", "#Great Bay Temple", "#Great Bay Temple Fairies", "#Dungeon Entrance, Great Bay" } },
+            {"Misc",new string[]{ "#Misc" } }
         };
     public Map()
         {
@@ -69,270 +80,96 @@ namespace MMR_Tracker
             Console.WriteLine(filter);
             return filter;
         }
-        public void CreateMenu(string[] Filters)
+        public ContextMenuStrip CreateMenu(string[] Filters, bool ClearMe = false)
         {
             btnRClick = new ContextMenuStrip();
             this.ContextMenuStrip = btnRClick;
-            foreach (string i in Filters)
+            if (ClearMe)
             {
-                string[] j = new string[] { i };
-                ToolStripItem ContextMenui = btnRClick.Items.Add(i);
-                ContextMenui.Click += (sender, e) =>
-                {
-                    ProcessFilters(j);
-                    btnRClick.Hide();
-                    btnRClick.Items.Clear();
-                };
+                btnRClick.Items.Clear();
             }
-            //btnRClick.Show(Cursor.Position.X, Cursor.Position.Y);
+            else
+            {
+                foreach (string i in Filters)
+                {
+                    string[] j = new string[] { i.Replace("#", "") };
+                    ToolStripItem ContextMenui = btnRClick.Items.Add(i.Replace("#", ""));
+                    ContextMenui.Click += (sender, e) =>
+                    {
+                        ProcessFilters(j);
+                        btnRClick.Hide();
+                        btnRClick.Items.Clear();
+                    };
+                }
+            }
+            return btnRClick;
         }
 
         #endregion Static Function
 
-        private void ClockTown_MouseClick(object sender, MouseEventArgs e)
+        private void ClockTown_Click(object sender, EventArgs e)
         {
-        switch (e.Button) {
-            case MouseButtons.Left:
-                ProcessFilters(TLocations["ClockTown"]);
-                break;
-            case MouseButtons.Right:
-                CreateMenu(TLocations["ClockTown"]);
-                break;
-            }
+            ProcessFilters(LocationDic["ClockTown"]);
         }
 
-        private void Termina_Click(object sender, MouseEventArgs e)
+        private void Termina_Click(object sender, EventArgs e)
         {
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(TLocations["Termina"]);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(TLocations["Termina"]);
-                    break;
-            }
+            ProcessFilters(LocationDic["Termina"]);
         }
 
-        private void Ranch_Click(object sender, MouseEventArgs e)
+        private void Ranch_Click(object sender, EventArgs e)
         {
-            string[] Filters = new string[]
-            {
-                "#Milk Road",
-                "#Romani Ranch"
-            };
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(Filters);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(Filters);
-                    break;
-            }
+            ProcessFilters(LocationDic["Ranch"]);
         }
 
-        private void Swamp_Click(object sender, MouseEventArgs e)
+        private void Swamp_Click(object sender, EventArgs e)
         {
-            string[] Filters = new string[]
-            {
-                "#Road to Southern Swamp",
-                "#Southern Swamp",
-                "#Swamp Skull House",
-                "#Deku Palace"
-            };
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(Filters);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(Filters);
-                    break;
-            }
+            ProcessFilters(LocationDic["Swamp"]);
         }
 
-        private void Woodfall_Click(object sender, MouseEventArgs e)
+        private void Woodfall_Click(object sender, EventArgs e)
         {
-            string[] Filters = new string[]
-            {
-                "#Woodfall",
-                "#Woodfall Temple",
-                "#Woodfall Temple Fairies",
-                "#Dungeon Entrance, Woodfall"
-            };
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(Filters);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(Filters);
-                    break;
-            }
+            ProcessFilters(LocationDic["Woodfall"]);
         }
 
-        private void Ikana_Click(object sender, MouseEventArgs e)
+        private void Ikana_Click(object sender, EventArgs e)
         {
-            string[] Filters = new string[]
-            {
-                "#Road to Ikana",
-                "#Ikana Canyon",
-                "#Secret Shrine",
-                "#Beneath the Well",
-                "#Ikana Castle",
-                "#Ikana Graveyard"
-            };
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(Filters);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(Filters);
-                    break;
-            }
+            ProcessFilters(LocationDic["Ikana"]);
         }
 
-        private void StoneTower_Click(object sender, MouseEventArgs e)
+        private void StoneTower_Click(object sender, EventArgs e)
         {
-            string[] Filters = new string[]
-            {
-                "#Stone Tower",
-                "#Stone Tower Temple",
-                "#Inverted Stone Tower Temple",
-                "#Stone Tower Temple Fairies",
-                "#Dungeon Entrance, Stone Tower"
-            };
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(Filters);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(Filters);
-                    break;
-            }
+            ProcessFilters(LocationDic["StoneTower"]);
         }
 
-        private void Mountain_Click(object sender, MouseEventArgs e)
+        private void Mountain_Click(object sender, EventArgs e)
         {
-            string[] Filters = new string[]
-            {
-                "#Path to Mountain Village",
-                "#Mountain Village",
-                "#Twin Islands",
-                "#Goron Village"
-            };
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(Filters);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(Filters);
-                    break;
-            }
+            ProcessFilters(LocationDic["Mountain"]);
         }
 
-        private void Snowhead_Click(object sender, MouseEventArgs e)
+        private void Snowhead_Click(object sender, EventArgs e)
         {
-            string[] Filters = new string[]
-            {
-                "#Path to Snowhead",
-                "#Snowhead",
-                "#Snowhead Temple",
-                "#Snowhead Temple Fairies",
-                "#Dungeon Entrance, Snowhead"
-            };
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(Filters);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(Filters);
-                    break;
-            }
+            ProcessFilters(LocationDic["Snowhead"]);
         }
 
-        private void GreatBay_Click(object sender, MouseEventArgs e)
+        private void GreatBay_Click(object sender, EventArgs e)
         {
-            string[] Filters = new string[]
-            {
-                "#Great Bay Coast",
-                "#Pinnacle Rock",
-                "#Ocean Skull House",
-                "#Pirate Fortress",
-                "#Pirates' Fortress Exterior",
-                "#Pirates' Fortress Interior",
-                "#Pirates' Fortress Sewer"
-            };
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(Filters);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(Filters);
-                    break;
-            }
+            ProcessFilters(LocationDic["GreatBay"]);
         }
 
-        private void Moon_Click(object sender, MouseEventArgs e)
+        private void Moon_Click(object sender, EventArgs e)
         {
-        string[] Filters = new string[]
-        {
-            "#The Moon"
-        };
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(Filters);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(Filters);
-                    break;
-            }
+            ProcessFilters(LocationDic["Moon"]);
         }
 
-        private void Coast_Click(object sender, MouseEventArgs e)
+        private void Coast_Click(object sender, EventArgs e)
         {
-            string[] Filters = new string[]
-            {
-                "#Zora Cape",
-                "#Zora Hall",
-                "#Great Bay Cape",
-                "#Great Bay Temple",
-                "#Great Bay Temple Fairies",
-                "#Dungeon Entrance, Great Bay"
-            };
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(Filters);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(Filters);
-                    break;
-            }
+            ProcessFilters(LocationDic["Coast"]);
         }
 
-        private void Misc_Click(object sender, MouseEventArgs e)
+        private void Misc_Click(object sender, EventArgs e)
         {
-            string[] Filters = new string[]
-            {
-                "#Misc"
-            };
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    ProcessFilters(Filters);
-                    break;
-                case MouseButtons.Right:
-                    CreateMenu(Filters);
-                    break;
-            }
+            ProcessFilters(LocationDic["Misc"]);
         }
 
         private void Clear_Click(object sender, EventArgs e)
@@ -347,6 +184,22 @@ namespace MMR_Tracker
         {
             if (EntrancesInItemBox) { this.entrances.Visible = true; }
             else { this.entrances.Visible = false; }
+            this.clockTown.ContextMenuStrip = CreateMenu(LocationDic["ClockTown"]);
+            this.clockTown.ContextMenuStrip = CreateMenu(LocationDic["ClockTown"]);
+            this.Termina.ContextMenuStrip = CreateMenu(LocationDic["Termina"]);
+            this.Ranch.ContextMenuStrip = CreateMenu(LocationDic["Ranch"]);
+            this.Coast.ContextMenuStrip = CreateMenu(LocationDic["Coast"]);
+            this.GreatBay.ContextMenuStrip = CreateMenu(LocationDic["GreatBay"]);
+            this.Mountain.ContextMenuStrip = CreateMenu(LocationDic["Mountain"]);
+            this.Snowhead.ContextMenuStrip = CreateMenu(LocationDic["Snowhead"]);
+            this.StoneTower.ContextMenuStrip = CreateMenu(LocationDic["StoneTower"]);
+            this.Ikana.ContextMenuStrip = CreateMenu(LocationDic["Ikana"]);
+            this.Swamp.ContextMenuStrip = CreateMenu(LocationDic["Swamp"]);
+            this.Woodfall.ContextMenuStrip = CreateMenu(LocationDic["Woodfall"]);
+            this.Moon.ContextMenuStrip = CreateMenu(LocationDic["Moon"]);
+            this.Misc.ContextMenuStrip = CreateMenu(LocationDic["Misc"]);
+            this.Clear.ContextMenuStrip = CreateMenu(new string[] { "" }, true);
+            this.ContextMenuStrip = CreateMenu(new string[] { "" }, true);
         }
     }
 }

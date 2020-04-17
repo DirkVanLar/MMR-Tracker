@@ -71,7 +71,7 @@
             this.clockTown.Size = new System.Drawing.Size(32, 50);
             this.clockTown.TabIndex = 0;
             this.clockTown.UseVisualStyleBackColor = false;
-            this.clockTown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ClockTown_MouseClick);
+            this.clockTown.Click += new System.EventHandler(this.ClockTown_Click);
             // 
             // locations
             // 
@@ -82,7 +82,7 @@
             this.locations.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.locations.Location = new System.Drawing.Point(12, -3);
             this.locations.Name = "locations";
-            this.locations.Size = new System.Drawing.Size(104, 24);
+            this.locations.Size = new System.Drawing.Size(72, 17);
             this.locations.TabIndex = 13;
             this.locations.Text = "Locations";
             this.locations.UseVisualStyleBackColor = false;
@@ -94,7 +94,7 @@
             this.entrances.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.entrances.Location = new System.Drawing.Point(208, -3);
             this.entrances.Name = "entrances";
-            this.entrances.Size = new System.Drawing.Size(108, 24);
+            this.entrances.Size = new System.Drawing.Size(74, 17);
             this.entrances.TabIndex = 14;
             this.entrances.Text = "Entrances";
             this.entrances.UseVisualStyleBackColor = false;
@@ -106,7 +106,7 @@
             this.checkedLocations.ForeColor = System.Drawing.Color.White;
             this.checkedLocations.Location = new System.Drawing.Point(113, -3);
             this.checkedLocations.Name = "checkedLocations";
-            this.checkedLocations.Size = new System.Drawing.Size(98, 24);
+            this.checkedLocations.Size = new System.Drawing.Size(69, 17);
             this.checkedLocations.TabIndex = 15;
             this.checkedLocations.Text = "Checked";
             this.checkedLocations.UseVisualStyleBackColor = false;
@@ -124,7 +124,7 @@
             this.Termina.Size = new System.Drawing.Size(169, 87);
             this.Termina.TabIndex = 16;
             this.Termina.UseVisualStyleBackColor = false;
-            this.Termina.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Termina_Click);
+            this.Termina.Click += new System.EventHandler(this.Termina_Click);
             // 
             // Ranch
             // 
@@ -139,7 +139,7 @@
             this.Ranch.Size = new System.Drawing.Size(80, 48);
             this.Ranch.TabIndex = 17;
             this.Ranch.UseVisualStyleBackColor = false;
-            this.Ranch.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Ranch_Click);
+            this.Ranch.Click += new System.EventHandler(this.Ranch_Click);
             // 
             // Coast
             // 
@@ -154,7 +154,7 @@
             this.Coast.Size = new System.Drawing.Size(214, 132);
             this.Coast.TabIndex = 18;
             this.Coast.UseVisualStyleBackColor = false;
-            this.Coast.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Coast_Click);
+            this.Coast.Click += new System.EventHandler(this.Coast_Click);
             // 
             // GreatBay
             // 
@@ -169,7 +169,7 @@
             this.GreatBay.Size = new System.Drawing.Size(102, 87);
             this.GreatBay.TabIndex = 19;
             this.GreatBay.UseVisualStyleBackColor = false;
-            this.GreatBay.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GreatBay_Click);
+            this.GreatBay.Click += new System.EventHandler(this.GreatBay_Click);
             // 
             // Mountain
             // 
@@ -184,7 +184,7 @@
             this.Mountain.Size = new System.Drawing.Size(255, 114);
             this.Mountain.TabIndex = 20;
             this.Mountain.UseVisualStyleBackColor = false;
-            this.Mountain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Mountain_Click);
+            this.Mountain.Click += new System.EventHandler(this.Mountain_Click);
             // 
             // Snowhead
             // 
@@ -199,7 +199,7 @@
             this.Snowhead.Size = new System.Drawing.Size(131, 66);
             this.Snowhead.TabIndex = 21;
             this.Snowhead.UseVisualStyleBackColor = false;
-            this.Snowhead.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Snowhead_Click);
+            this.Snowhead.Click += new System.EventHandler(this.Snowhead_Click);
             // 
             // StoneTower
             // 
@@ -214,7 +214,7 @@
             this.StoneTower.Size = new System.Drawing.Size(125, 72);
             this.StoneTower.TabIndex = 22;
             this.StoneTower.UseVisualStyleBackColor = false;
-            this.StoneTower.MouseClick += new System.Windows.Forms.MouseEventHandler(this.StoneTower_Click);
+            this.StoneTower.Click += new System.EventHandler(this.StoneTower_Click);
             // 
             // Ikana
             // 
@@ -229,7 +229,7 @@
             this.Ikana.Size = new System.Drawing.Size(92, 69);
             this.Ikana.TabIndex = 23;
             this.Ikana.UseVisualStyleBackColor = false;
-            this.Ikana.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Ikana_Click);
+            this.Ikana.Click += new System.EventHandler(this.Ikana_Click);
             // 
             // Swamp
             // 
@@ -244,7 +244,7 @@
             this.Swamp.Size = new System.Drawing.Size(147, 116);
             this.Swamp.TabIndex = 24;
             this.Swamp.UseVisualStyleBackColor = false;
-            this.Swamp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Swamp_Click);
+            this.Swamp.Click += new System.EventHandler(this.Swamp_Click);
             // 
             // Woodfall
             // 
@@ -259,7 +259,7 @@
             this.Woodfall.Size = new System.Drawing.Size(45, 37);
             this.Woodfall.TabIndex = 25;
             this.Woodfall.UseVisualStyleBackColor = false;
-            this.Woodfall.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Woodfall_Click);
+            this.Woodfall.Click += new System.EventHandler(this.Woodfall_Click);
             // 
             // Moon
             // 
@@ -274,7 +274,7 @@
             this.Moon.Size = new System.Drawing.Size(52, 46);
             this.Moon.TabIndex = 26;
             this.Moon.UseVisualStyleBackColor = false;
-            this.Moon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Moon_Click);
+            this.Moon.Click += new System.EventHandler(this.Moon_Click);
             // 
             // Clear
             // 
@@ -294,7 +294,7 @@
             this.Misc.TabIndex = 28;
             this.Misc.Text = "Misc";
             this.Misc.UseVisualStyleBackColor = true;
-            this.Misc.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Misc_Click);
+            this.Misc.Click += new System.EventHandler(this.Misc_Click);
             // 
             // Map
             // 
