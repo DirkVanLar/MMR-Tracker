@@ -115,6 +115,7 @@ namespace MMR_Tracker
             {
                 foreach (string i in Filters)
                 {
+                    string[] j = new string[] { i };
                     ToolStripItem ContextMenui = btnRClick.Items.Add(i.Replace("#", ""));
                     ContextMenui.Click += (sender, e) => { ProcessFilters(new string[] { i }); };
                 }
