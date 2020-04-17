@@ -53,6 +53,9 @@
             this.Ikana = new System.Windows.Forms.Button();
             this.Swamp = new System.Windows.Forms.Button();
             this.Woodfall = new System.Windows.Forms.Button();
+            this.Moon = new System.Windows.Forms.Button();
+            this.Clear = new System.Windows.Forms.Button();
+            this.Misc = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // clockTown
@@ -68,12 +71,14 @@
             this.clockTown.Size = new System.Drawing.Size(32, 50);
             this.clockTown.TabIndex = 0;
             this.clockTown.UseVisualStyleBackColor = false;
-            this.clockTown.Click += new System.EventHandler(this.clockTown_Click);
+            this.clockTown.Click += new System.EventHandler(this.ClockTown_Click);
             // 
             // locations
             // 
             this.locations.AutoSize = true;
-            this.locations.BackColor = System.Drawing.Color.Transparent;
+            this.locations.BackColor = System.Drawing.Color.Black;
+            this.locations.Checked = true;
+            this.locations.CheckState = System.Windows.Forms.CheckState.Checked;
             this.locations.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.locations.Location = new System.Drawing.Point(12, -3);
             this.locations.Name = "locations";
@@ -85,9 +90,9 @@
             // entrances
             // 
             this.entrances.AutoSize = true;
-            this.entrances.BackColor = System.Drawing.Color.Transparent;
+            this.entrances.BackColor = System.Drawing.Color.Black;
             this.entrances.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.entrances.Location = new System.Drawing.Point(112, -3);
+            this.entrances.Location = new System.Drawing.Point(208, -3);
             this.entrances.Name = "entrances";
             this.entrances.Size = new System.Drawing.Size(74, 17);
             this.entrances.TabIndex = 14;
@@ -97,9 +102,9 @@
             // checkedLocations
             // 
             this.checkedLocations.AutoSize = true;
-            this.checkedLocations.BackColor = System.Drawing.Color.Transparent;
+            this.checkedLocations.BackColor = System.Drawing.Color.Black;
             this.checkedLocations.ForeColor = System.Drawing.Color.White;
-            this.checkedLocations.Location = new System.Drawing.Point(217, -3);
+            this.checkedLocations.Location = new System.Drawing.Point(113, -3);
             this.checkedLocations.Name = "checkedLocations";
             this.checkedLocations.Size = new System.Drawing.Size(69, 17);
             this.checkedLocations.TabIndex = 15;
@@ -256,6 +261,41 @@
             this.Woodfall.UseVisualStyleBackColor = false;
             this.Woodfall.Click += new System.EventHandler(this.Woodfall_Click);
             // 
+            // Moon
+            // 
+            this.Moon.BackColor = System.Drawing.Color.Transparent;
+            this.Moon.FlatAppearance.BorderSize = 0;
+            this.Moon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Moon.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Moon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Moon.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Moon.Location = new System.Drawing.Point(550, 286);
+            this.Moon.Name = "Moon";
+            this.Moon.Size = new System.Drawing.Size(52, 46);
+            this.Moon.TabIndex = 26;
+            this.Moon.UseVisualStyleBackColor = false;
+            this.Moon.Click += new System.EventHandler(this.Moon_Click);
+            // 
+            // Clear
+            // 
+            this.Clear.Location = new System.Drawing.Point(448, 295);
+            this.Clear.Name = "Clear";
+            this.Clear.Size = new System.Drawing.Size(64, 28);
+            this.Clear.TabIndex = 27;
+            this.Clear.Text = "Clear";
+            this.Clear.UseVisualStyleBackColor = true;
+            this.Clear.Click += new System.EventHandler(this.Clear_Click);
+            // 
+            // Misc
+            // 
+            this.Misc.Location = new System.Drawing.Point(22, 295);
+            this.Misc.Name = "Misc";
+            this.Misc.Size = new System.Drawing.Size(64, 28);
+            this.Misc.TabIndex = 28;
+            this.Misc.Text = "Misc";
+            this.Misc.UseVisualStyleBackColor = true;
+            this.Misc.Click += new System.EventHandler(this.Misc_Click);
+            // 
             // Map
             // 
             this.AccessibleDescription = "";
@@ -264,6 +304,11 @@
             this.BackgroundImage = global::MMR_Tracker.Properties.Resources.Termina;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(614, 344);
+            this.Controls.Add(this.entrances);
+            this.Controls.Add(this.Misc);
+            this.Controls.Add(this.Clear);
+            this.Controls.Add(this.Moon);
+            this.Controls.Add(this.checkedLocations);
             this.Controls.Add(this.Woodfall);
             this.Controls.Add(this.Ranch);
             this.Controls.Add(this.Swamp);
@@ -273,17 +318,21 @@
             this.Controls.Add(this.Mountain);
             this.Controls.Add(this.GreatBay);
             this.Controls.Add(this.Coast);
-            this.Controls.Add(this.checkedLocations);
-            this.Controls.Add(this.entrances);
             this.Controls.Add(this.locations);
             this.Controls.Add(this.clockTown);
             this.Controls.Add(this.Termina);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Map";
             this.Text = "Filter Map";
+            this.Load += new System.EventHandler(this.Map_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+        private System.Windows.Forms.Button Moon;
+        private System.Windows.Forms.Button Clear;
+        private System.Windows.Forms.Button Misc;
     }
 }
