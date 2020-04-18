@@ -85,7 +85,7 @@ namespace MMR_Tracker.Forms
             Images.Add("GiantsMask", GetImage(4, 17));
             Images.Add("FierceDeityMask", GetImage(5, 17));
             //Quest Items
-            Images.Add("Kokiri Sword", GetImage(0, 20));
+            Images.Add("KokiriSword", GetImage(0, 20));
             Images.Add("RazorSword", GetImage(1, 20));
             Images.Add("GildedSword", GetImage(2, 20));
             Images.Add("HeroShield", GetImage(4, 20));
@@ -95,6 +95,12 @@ namespace MMR_Tracker.Forms
             Images.Add("GyorgsRemains", GetImage(2, 21));
             Images.Add("TwimoldsRemains", GetImage(3, 21));
             Images.Add("BombersNotebook", GetImage(5, 21));
+            Images.Add("Map", GetImage(0, 22));
+            Images.Add("Compass", GetImage(1, 22));
+            Images.Add("BossKey", GetImage(2, 22));
+            Images.Add("SmallKey", GetImage(3, 22));
+            Images.Add("SkullToken", GetImage(4, 22));
+
         }
         public static Bitmap GetImage(int Column, int Row)
         {

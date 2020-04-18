@@ -583,6 +583,7 @@ namespace MMR_Tracker_V2
         #region Context Menu
         private void CreateMenu()
         {
+            //LBValidLocations List Box
             ContextMenuStrip LocationContextMenu = new ContextMenuStrip();
             LocationContextMenu.Opening += LocationContextMenu_Opening;
             ToolStripItem WhatUnlcoked = LocationContextMenu.Items.Add("What Unlocked This?");
@@ -602,15 +603,14 @@ namespace MMR_Tracker_V2
             Mark.Click += (sender, e) => { RunMenuItems(2, LBValidLocations); };
             LBValidLocations.ContextMenuStrip = LocationContextMenu;
 
-
+            //LBValidEntrances List Box
             ContextMenuStrip EntranceContextMenu = new ContextMenuStrip();
             EntranceContextMenu.Opening += EntranceContextMenu_Opening;
             ToolStripItem EWhatUnlcoked = EntranceContextMenu.Items.Add("What Unlocked This?");
             EWhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBValidEntrances); };
-
             if (LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled)
             {
-                ToolStripItem ENavigateHere = EntranceContextMenu.Items.Add("Navigate to this entrace");
+                ToolStripItem ENavigateHere = EntranceContextMenu.Items.Add("Navigate to this entrance");
                 ENavigateHere.Click += (sender, e) => { RunMenuItems(5, LBValidEntrances); };
             }
             ToolStripItem EFilter = EntranceContextMenu.Items.Add("Filter at this Location");
@@ -622,43 +622,51 @@ namespace MMR_Tracker_V2
             ToolStripItem EMark = EntranceContextMenu.Items.Add("Mark This Item");
             EMark.Click += (sender, e) => { RunMenuItems(2, LBValidEntrances); };
             LBValidEntrances.ContextMenuStrip = EntranceContextMenu;
+
+            //Set Item Button
+            ContextMenuStrip SetItemMenu = new ContextMenuStrip();
+            ToolStripItem ItemSetAll = SetItemMenu.Items.Add("Set Only");
+            ItemSetAll.Click += (sender, e) => { CheckItemSelected(LBValidLocations, false, 1); };
+            ToolStripItem ItemUnSetAll = SetItemMenu.Items.Add("Unset Only");
+            ItemUnSetAll.Click += (sender, e) => { CheckItemSelected(LBValidLocations, false, 2); };
+            BTNSetItem.ContextMenuStrip = SetItemMenu;
+
+            //Set Entrance Button
+            ContextMenuStrip SetLocationMenu = new ContextMenuStrip();
+            ToolStripItem EntranceSetAll = SetLocationMenu.Items.Add("Set Only");
+            EntranceSetAll.Click += (sender, e) => { CheckItemSelected(LBValidEntrances, false, 1); };
+            ToolStripItem EntranceUnSetAll = SetLocationMenu.Items.Add("Unset Only");
+            EntranceUnSetAll.Click += (sender, e) => { CheckItemSelected(LBValidEntrances, false, 2); };
+            BTNSetEntrance.ContextMenuStrip = SetLocationMenu;
         }
 
         private void EntranceContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var index = LBValidEntrances.IndexFromPoint(LBValidEntrances.PointToClient(Cursor.Position));
-            if (index < 0) { e.Cancel = true; }
+            if (index < 0) { e.Cancel = true; return; }
             if (!(LBValidEntrances.Items[index] is LogicObjects.LogicEntry)) { e.Cancel = true; }
         }
 
         private void LocationContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var index = LBValidLocations.IndexFromPoint(LBValidLocations.PointToClient(Cursor.Position));
-            if (index < 0) { e.Cancel = true; }
+            if (index < 0) { e.Cancel = true; return; }
             if (!(LBValidLocations.Items[index] is LogicObjects.LogicEntry)) { e.Cancel = true; }
         }
 
         private void RunMenuItems(int Function, ListBox ActiveListBox)
         {
-            var ActiveItem = new LogicObjects.LogicEntry();
+            LogicObjects.LogicEntry ActiveItem;
             if ((ActiveListBox == LBValidLocations) && LBValidLocations.SelectedItem is LogicObjects.LogicEntry)
-            {
-                ActiveItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry;
-            }
+            { ActiveItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry; }
             else if ((ActiveListBox == LBValidEntrances) && LBValidEntrances.SelectedItem is LogicObjects.LogicEntry)
-            {
-                ActiveItem = LBValidEntrances.SelectedItem as LogicObjects.LogicEntry;
-            }
+            { ActiveItem = LBValidEntrances.SelectedItem as LogicObjects.LogicEntry; }
             else { return; }
 
             if (Function == 0) { Tools.CurrentSelectedItem = ActiveItem; Tools.WhatUnlockedThis(); }
             if (Function == 1) { CheckItemSelected(ActiveListBox, true); }
             if (Function == 2) { CheckItemSelected(ActiveListBox, false); }
-            if (Function == 3)
-            {
-                TextBox SearchBox = (ActiveListBox == LBValidLocations) ? TXTLocSearch : TXTEntSearch;
-                SearchBox.Text = "=#" + ActiveItem.LocationArea;
-            }
+            if (Function == 3) { ((ActiveListBox == LBValidLocations) ? TXTLocSearch : TXTEntSearch).Text = "=#" + ActiveItem.LocationArea; }
             if (Function == 4)
             {
                 TextBox SearchBox = (ActiveListBox == LBValidLocations) ? TXTLocSearch : TXTEntSearch;
@@ -667,28 +675,23 @@ namespace MMR_Tracker_V2
                 MapUtils.setLocationDic(LocationDic);
                 foreach (var i in LocationDic)
                 {
-                    bool found = false;
                     foreach (var j in i.SubAreas)
                     {
-                        if (ActiveItem.LocationArea.ToLower() == j.Replace("#", "").ToLower()) { found = true; }
-                    }
-                    if (found)
-                    {
-                        SearchBox.Text = MapUtils.CreateFilter(0, i.SubAreas);
-                        return;
+                        if (ActiveItem.LocationArea.ToLower() == j.Replace("#", "").ToLower())
+                        {
+                            SearchBox.Text = MapUtils.CreateFilter(0, i.SubAreas);
+                            return;
+                        }
                     }
                 }
             }
             if (Function == 5)
             {
-                Dictionary<int, string> sortedPathfinder = new Dictionary<int, string>();
-                sortedPathfinder.Add(ActiveItem.ID, ActiveItem.LocationName);
-                CMBEnd.DataSource = new BindingSource(sortedPathfinder, null);
+                CMBEnd.DataSource = new BindingSource(new Dictionary<int, string> { { ActiveItem.ID, ActiveItem.LocationName } }, null);
                 CMBEnd.DisplayMember = "Value";
                 CMBEnd.ValueMember = "key";
                 CMBEnd.SelectedIndex = 0;
             }
-
         }
         #endregion Context Menu
         // List/combo Box Functions---------------------------------------------------------------------------
@@ -928,26 +931,21 @@ namespace MMR_Tracker_V2
             int width = senderComboBox.DropDownWidth;
             Graphics g = senderComboBox.CreateGraphics();
             Font font = senderComboBox.Font;
-            int vertScrollBarWidth =
-                (senderComboBox.Items.Count > senderComboBox.MaxDropDownItems)
-                ? SystemInformation.VerticalScrollBarWidth : 0;
+            int vertScrollBarWidth = (senderComboBox.Items.Count > senderComboBox.MaxDropDownItems) ? SystemInformation.VerticalScrollBarWidth : 0;
 
             int newWidth;
 
             foreach (KeyValuePair<int, string> dictionary in senderComboBox.Items)
             {
-                newWidth = (int)g.MeasureString(dictionary.Value, font).Width
-                    + vertScrollBarWidth;
-                if (width < newWidth)
-                {
-                    width = newWidth;
-                }
+                newWidth = (int)g.MeasureString(dictionary.Value, font).Width + vertScrollBarWidth;
+                if (width < newWidth) { width = newWidth; }
             }
             senderComboBox.DropDownWidth = width;
         }
 
-        public void CheckItemSelected(ListBox LB, bool FullCheck)
+        public void CheckItemSelected(ListBox LB, bool FullCheck, int SetFunction = 0)
         {
+            //Set Function: 0 = none, 1 = Always Set, 2 = Always Unset
             if (TXTLocSearch.Text.ToLower() == "enabledev" && LB == LBValidLocations && !FullCheck)
             {
                 Debugging.ISDebugging = !Debugging.ISDebugging;
@@ -970,6 +968,13 @@ namespace MMR_Tracker_V2
                     }
                     else 
                     { 
+                        if (SetFunction != 0)
+                        {
+                            bool set = (SetFunction == 1) ? true : false;
+                            if ((i as LogicObjects.LogicEntry).RandomizedItem > -1 && set) { continue; }
+                            if ((i as LogicObjects.LogicEntry).RandomizedItem < 0 && !set) { continue; }
+                        }
+
                         if (!LogicEditing.MarkObject(i as LogicObjects.LogicEntry)) { continue; }
                         ChangesMade = true;
                     }
