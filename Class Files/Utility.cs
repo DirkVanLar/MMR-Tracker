@@ -1,11 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Octokit;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2

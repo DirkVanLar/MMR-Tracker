@@ -10,8 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
-using Octokit;
-using Newtonsoft.Json;
 using MMR_Tracker.Class_Files;
 using System.Threading.Tasks;
 
@@ -29,6 +27,7 @@ namespace MMR_Tracker_V2
 
         #region Form Objects
         //Form Events---------------------------------------------------------------------------
+        #region Form Events
         private void FRMTracker_Load(object sender, EventArgs e)
         {
             Debugging.ISDebugging = (Control.ModifierKeys == Keys.Control) ? (!Debugger.IsAttached) : (Debugger.IsAttached);
@@ -44,9 +43,9 @@ namespace MMR_Tracker_V2
         {
             e.Cancel = !Tools.PromptSave(LogicObjects.MainTrackerInstance);
         }
-
+        #endregion Form Events
         //Menu Strip---------------------------------------------------------------------------
-
+        #region Form Events
         private void RedoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Tools.Redo(LogicObjects.MainTrackerInstance);
@@ -62,9 +61,9 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             FireEvents();
         }
-
+        #endregion Form Events
         //Menu Strip => File---------------------------------------------------------------------------
-
+        #region File
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Tools.SaveInstance(LogicObjects.MainTrackerInstance);
@@ -116,9 +115,9 @@ namespace MMR_Tracker_V2
             PrintToListBox();
             FireEvents();
         }
-
+        #endregion File
         //Menu Strip => File => New---------------------------------------------------------------------------
-
+        #region New
         private void CasualLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
@@ -146,9 +145,9 @@ namespace MMR_Tracker_V2
             PrintToListBox();
             FireEvents();
         }
-
+        #endregion New
         //Menu Strip => Options => Logic Options---------------------------------------------------------------------------
-
+        #region Logic Options
         private void EditRadnomizationOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
@@ -206,9 +205,9 @@ namespace MMR_Tracker_V2
             LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling = !LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling;
             FormatMenuItems();
         }
-
+        #endregion Logic Options
         //Menu Strip => Options => Entrance Rando---------------------------------------------------------------------------
-
+        #region Entrance Rando
         private void UseSongOfTimeInPathfinderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicObjects.MainTrackerInstance.Options.UseSongOfTime = !LogicObjects.MainTrackerInstance.Options.UseSongOfTime;
@@ -251,9 +250,9 @@ namespace MMR_Tracker_V2
             }
             FormatMenuItems();
         }
-
+        #endregion Entrance Rando
         //Menu Strip => Options => Dev---------------------------------------------------------------------------
-
+        #region Dev
         private void CreateDictionaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Tools.CreateDictionary();
@@ -285,9 +284,9 @@ namespace MMR_Tracker_V2
         {
             
         }
-
+        #endregion Dev
         //Menu Strip => Options => MISC Options---------------------------------------------------------------------------
-
+        #region MISC Options
         private void ShowEntryNameToolTipToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip = !LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip;
@@ -300,9 +299,9 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             PrintToListBox();
         }
-
+        #endregion MISC Options
         //Menu Strip => Tools---------------------------------------------------------------------------
-
+        #region Tools
         private void SeedCheckerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SeedChecker SeedCheckerForm = new SeedChecker();
@@ -365,8 +364,9 @@ namespace MMR_Tracker_V2
             FilterMap.MainInterfaceInstance = this;
             FilterMap.Show();
         }
+        #endregion Tools
         //Menu strip => Info---------------------------------------------------------------------------
-
+        #region Info
         private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InformationDisplay DebugScreen = new InformationDisplay();
@@ -428,8 +428,9 @@ namespace MMR_Tracker_V2
             };
             form.Show();
         }
-
+        #endregion Info
         //Text Boxes---------------------------------------------------------------------------
+        #region Text Boxes
         private void TXTLocSearch_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
 
         private void TXTEntSearch_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
@@ -450,8 +451,9 @@ namespace MMR_Tracker_V2
         {
             if (e.Button == MouseButtons.Middle) { TXTCheckedSearch.Clear(); }
         }
-
+        #endregion Text Boxes
         //List Boxes---------------------------------------------------------------------------
+        #region List Boxes
         private void LBValidLocations_DoubleClick(object sender, EventArgs e) { CheckItemSelected(LBValidLocations, true); }
 
         private void LBValidEntrances_DoubleClick(object sender, EventArgs e) { CheckItemSelected(LBValidEntrances, true); }
@@ -515,8 +517,9 @@ namespace MMR_Tracker_V2
                 this.ActiveControl = LBValidEntrances;
             }
         }
-
+        #endregion List Boxes
         //Buttons---------------------------------------------------------------------------
+        #region Buttons
         private void BTNSetItem_Click(object sender, EventArgs e) { CheckItemSelected(LBValidLocations, false); }
 
         private void BTNSetEntrance_Click(object sender, EventArgs e) { CheckItemSelected(LBValidEntrances, false); }
@@ -565,16 +568,19 @@ namespace MMR_Tracker_V2
             }
             PrintPaths(-1, partition);
         }
-
+        #endregion Buttons
         //Other---------------------------------------------------------------------------
+        #region Other
         private void CHKShowAll_CheckedChanged(object sender, EventArgs e) { PrintToListBox(); }
 
         private void CMBStart_DropDown(object sender, EventArgs e) { PrintToComboBox(true); AdjustCMBWidth(sender); }
 
         private void CMBEnd_DropDown(object sender, EventArgs e) { PrintToComboBox(false); AdjustCMBWidth(sender); }
-
+        #endregion Other
         #endregion Form Objects
+        #region Functions
         //Context Menu Functions---------------------------------------------------------------------------
+        #region Context Menu
         private void CreateMenu()
         {
             ContextMenuStrip LocationContextMenu = new ContextMenuStrip();
@@ -684,9 +690,9 @@ namespace MMR_Tracker_V2
             }
 
         }
-
+        #endregion Context Menu
         // List/combo Box Functions---------------------------------------------------------------------------
-
+        #region List/combo Box
         public void PrintToListBox()
         {
             var lbLocTop = LBValidLocations.TopIndex;
@@ -913,8 +919,9 @@ namespace MMR_Tracker_V2
             cmb.DisplayMember = "Value";
             cmb.ValueMember = "key";
         }
-
+        #endregion List/combo Box
         //Other Functions---------------------------------------------------------------------------
+        #region Other Functions
         public void AdjustCMBWidth(object sender)
         {
             ComboBox senderComboBox = (ComboBox)sender;
@@ -1142,6 +1149,7 @@ namespace MMR_Tracker_V2
             if (LocationCheck) { LocationChecked(null, null); }
             if (TrackerUpdated) { TrackerUpdate(null, null); }
         }
-
+        #endregion Other Functions
+        #endregion Functions
     }
 }

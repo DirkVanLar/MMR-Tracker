@@ -1,12 +1,6 @@
 ﻿using MMR_Tracker.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
 {

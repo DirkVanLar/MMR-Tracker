@@ -1,5 +1,4 @@
-﻿using MMR_Tracker.Forms;
-using Octokit;
+﻿using Octokit;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
