@@ -107,12 +107,10 @@ namespace MMR_Tracker_V2
         {
             usedItems = usedItems ?? new List<int>();
             if (list == null) { return true; }
-            for (var i = 0; i < list.Length; i++)
+            foreach(var i in list)
             {
-                usedItems.Add(list[i]);
-                var item = logic[list[i]];
-                bool aquired = (item.Aquired || (item.Unrandomized() && item.Available) || item.StartingItem());
-                if (!aquired) { return false; }
+                usedItems.Add(i);
+                if (!logic[i].Useable()) { return false; }
             }
             return true;
         }
@@ -121,10 +119,10 @@ namespace MMR_Tracker_V2
         {
             usedItems = usedItems ?? new List<int>();
             if (list == null) { return true; }
-            for (var i = 0; i < list.Length; i++)
+            foreach(var i in list)
             {
                 List<int> UsedItemsSet = new List<int>();
-                if (RequirementsMet(list[i], logic, UsedItemsSet))
+                if (RequirementsMet(i, logic, UsedItemsSet))
                 {
                     foreach (var set in UsedItemsSet) { usedItems.Add(set); }
                     return true;
@@ -136,7 +134,7 @@ namespace MMR_Tracker_V2
         public static void ForceFreshCalculation(List<LogicObjects.LogicEntry> logic)
         {
             //This makes logic calculate fake items from scratch. This is used to prevent a bug where two fake items
-            //can be unlocked by each other. In this case they will never go from being availabe to unavailabe
+            //can be unlocked by each other. In this case they will never change from availabe to unavailabe
             //even if they are actually unavailable. This is only used in the pathfinder but the option to use it all the
             //time is availbe through a toggle in the options menu.
             foreach (var entry in logic)
@@ -159,6 +157,7 @@ namespace MMR_Tracker_V2
 
                 int Special = SetAreaClear(item, Instance);
                 if (Special == 2) { recalculate = true; }
+
                 if (item.Aquired != item.Available && item.IsFake && Special == 0)
                 {
                     item.Aquired = item.Available;
@@ -172,7 +171,7 @@ namespace MMR_Tracker_V2
         {
             //0 = do nothing, 1 = Skip Fake item calculation, 2 = Skip Fake item calculation and recalculate logic
             Dictionary<int, int> EntAreaDict = Instance.EntranceAreaDic;
-            if (LogicObjects.MainTrackerInstance.EntranceRando || !EntAreaDict.ContainsKey(ClearLogic.ID)) { return 0; }
+            if (EntAreaDict.Count == 0 || !EntAreaDict.ContainsKey(ClearLogic.ID)) { return 0; }
             var RandClearLogic = ClearLogic.RandomizedAreaClear(Instance);
             if (RandClearLogic == null && ClearLogic.Aquired) { ClearLogic.Aquired = false; return 2; }
             if (RandClearLogic == null) { return 1; }
@@ -256,12 +255,12 @@ namespace MMR_Tracker_V2
 
         public static void CheckEntrancePair(LogicObjects.LogicEntry Location, LogicObjects.TrackerInstance Instance, bool Checking)
         {
-            if (!Instance.Options.CoupleEntrances || !Location.HasRealRandomItem() || !Location.IsEntrance()) { return; }
+            if (!Instance.Options.CoupleEntrances || !Location.HasRandomItem(true) || !Location.IsEntrance()) { return; }
             var reverseLocation = Location.PairedEntry(Instance, true);
             var reverseItem = Location.PairedEntry(Instance);
             if (reverseItem == null || reverseLocation == null) return;
             //is the reverse entrance already checked and randomized to something
-            if ((reverseLocation.Checked || (reverseLocation.HasRealRandomItem() && reverseLocation.RandomizedEntry(Instance) != reverseItem) || reverseItem.Aquired) && Checking) { return; }
+            if ((reverseLocation.Checked || (reverseLocation.HasRandomItem(true) && reverseLocation.RandomizedEntry(Instance) != reverseItem) || reverseItem.Aquired) && Checking) { return; }
             //Does the spoiler log conflict with what the reverse check is trying to do
             if (reverseLocation.SpoilerRandom != reverseItem.ID && reverseLocation.SpoilerRandom > -1 && Checking) { return; }
             reverseLocation.Checked = Checking;

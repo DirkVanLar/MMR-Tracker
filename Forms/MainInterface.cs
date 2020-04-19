@@ -720,12 +720,12 @@ namespace MMR_Tracker_V2
 
             foreach (var entry in LogicObjects.MainTrackerInstance.Logic)
             {
-                if (entry.IsFake || entry.Unrandomized() || entry.ForceJunk()) { continue; }
+                if (!entry.AppearsInListbox()) { continue; }
 
                 entry.DisplayName = entry.DictionaryName;
-                if ((entry.Available || entry.HasRandomItem() || CHKShowAll.Checked) && (entry.LocationName != "" && entry.LocationName != null) && !entry.Checked)
+                if ((entry.Available || entry.HasRandomItem(false) || CHKShowAll.Checked) && (entry.LocationName != "" && entry.LocationName != null) && !entry.Checked)
                 {
-                    entry.DisplayName = entry.HasRandomItem() ? ($"{entry.LocationName}: {entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}") : entry.LocationName;
+                    entry.DisplayName = entry.HasRandomItem(false) ? ($"{entry.LocationName}: {entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}") : entry.LocationName;
 
                     if ((!entry.IsEntrance() || !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled))
                     {
@@ -748,7 +748,7 @@ namespace MMR_Tracker_V2
                 }
                 if (entry.Checked)
                 {
-                    entry.DisplayName = entry.HasRandomItem() ? $"{entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}: {entry.LocationName}" : $"Nothing: {entry.LocationName}";
+                    entry.DisplayName = entry.HasRandomItem(false) ? $"{entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}: {entry.LocationName}" : $"Nothing: {entry.LocationName}";
                     totalchk += 1;
                     if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
                     {
@@ -760,7 +760,7 @@ namespace MMR_Tracker_V2
 
             ListBoxItems = ListBoxItems
                 .OrderBy(x => Utility.BoolToInt(x.IsEntrance()))
-                .ThenBy(x => Utility.BoolToInt(x.HasRandomItem() && LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom))
+                .ThenBy(x => Utility.BoolToInt(x.HasRandomItem(false) && LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom))
                 .ThenBy(x => (Groups.ContainsKey(x.LocationArea.ToLower().Trim()) ? Groups[x.LocationArea.ToLower().Trim()] : ListBoxItems.Count() + 1))
                 .ThenBy(x => x.LocationArea)
                 .ThenBy(x => x.DisplayName).ToList();
@@ -780,8 +780,8 @@ namespace MMR_Tracker_V2
             foreach (var entry in ListBoxItems)
             {
                 if (!ListBoxAssignments.ContainsKey(entry.ID)) { continue; }
-                if (ListBoxAssignments[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.HasRandomItem()); AvalableLocations++; }
-                if (ListBoxAssignments[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.HasRandomItem()); AvalableEntrances++; }
+                if (ListBoxAssignments[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.HasRandomItem(false)); AvalableLocations++; }
+                if (ListBoxAssignments[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.HasRandomItem(false)); AvalableEntrances++; }
                 if (ListBoxAssignments[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false); CheckedLocations++; }
             }
 

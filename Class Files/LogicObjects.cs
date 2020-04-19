@@ -126,8 +126,9 @@ namespace MMR_Tracker_V2
         }
         public static LogicObjects.LogicEntry RandomizedEntry(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool ReturnJunkAsItem = false )
         {
-            if (ReturnJunkAsItem && entry.HasJunkRandomItem()) { return new LogicObjects.LogicEntry { ID = -1, DictionaryName = "Junk", DisplayName = "Junk", LocationName = "Junk", ItemName = "Junk" }; }
-            if (!entry.HasRealRandomItem() || entry.RandomizedItem >= Instance.Logic.Count) { return null; }
+            if (ReturnJunkAsItem && entry.HasRandomItem(false) && !entry.HasRandomItem(true)) 
+            { return new LogicObjects.LogicEntry { ID = -1, DictionaryName = "Junk", DisplayName = "Junk", LocationName = "Junk", ItemName = "Junk" }; }
+            if (!entry.HasRandomItem(true) || entry.RandomizedItem >= Instance.Logic.Count) { return null; }
             return Instance.Logic[entry.RandomizedItem];
         }
         public static LogicObjects.LogicEntry PairedEntry(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool RandomizedItem = false)
@@ -140,7 +141,7 @@ namespace MMR_Tracker_V2
         public static LogicObjects.LogicEntry RandomizedAreaClear(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
             //Finds the area clear related to the dungeon that is randomized to the current area.
-            //If woodfall entrane leads to snowhead and you pass this function woodfall clear it will return snowhead clear.
+            //If woodfall entrance leads to snowhead and you pass this function woodfall clear it will return snowhead clear.
             if (!Instance.EntranceAreaDic.ContainsKey(entry.ID)) { return null; }
             var templeEntrance = Instance.EntranceAreaDic[entry.ID];//What is the dungeon entrance in this area
             var RandTempleEntrance = Instance.Logic[templeEntrance].RandomizedItem;//What dungeon does this areas dungeon entrance lead to
@@ -148,17 +149,9 @@ namespace MMR_Tracker_V2
             var RandClearLogic = RandAreaClear == -1 ? null : Instance.Logic[RandAreaClear]; //Get the full logic data for the area clear that we want to check the availability of.
             return RandClearLogic;
         }
-        public static bool HasRandomItem(this LogicObjects.LogicEntry entry)
+        public static bool HasRandomItem(this LogicObjects.LogicEntry entry, bool RealItem)
         {
-            return entry.RandomizedItem > -2;
-        }
-        public static bool HasRealRandomItem(this LogicObjects.LogicEntry entry)
-        {
-            return entry.RandomizedItem > -1;
-        }
-        public static bool HasJunkRandomItem(this LogicObjects.LogicEntry entry)
-        {
-            return entry.RandomizedItem == -1;
+            return (RealItem) ? entry.RandomizedItem > -1 : entry.RandomizedItem > -2;
         }
         public static bool Unrandomized(this LogicObjects.LogicEntry entry, int UnRand0Manual1Either2 = 0)
         {
@@ -170,10 +163,6 @@ namespace MMR_Tracker_V2
         public static bool Randomized(this LogicObjects.LogicEntry entry)
         {
             return entry.Options == 0;
-        }
-        public static bool ForceJunk(this LogicObjects.LogicEntry entry)
-        {
-            return entry.Options == 3;
         }
         public static int RandomizedState(this LogicObjects.LogicEntry entry)
         {
@@ -198,11 +187,15 @@ namespace MMR_Tracker_V2
         }
         public static bool AppearsInListbox(this LogicObjects.LogicEntry entry)
         {
-            return (entry.Randomized() || entry.Unrandomized(1));
+            return (entry.Randomized() || entry.Unrandomized(1)) && !entry.IsFake;
         }
-        public static LogicObjects.LogicEntry GetItemLocation(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
+        public static bool Useable(this LogicObjects.LogicEntry entry)
         {
-            return Instance.Logic.Find(x => x.RandomizedItem == entry.ID);
+            return (entry.Aquired || entry.StartingItem() || (entry.Unrandomized() && entry.Available));
+        }
+        public static LogicObjects.LogicEntry GetItemLocation(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
+        {
+            return Logic.Find(x => x.RandomizedItem == entry.ID);
         }
     }
 }

@@ -160,7 +160,7 @@ namespace MMR_Tracker.Forms
         {
             var CurentImage = Images[Image];
             LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == Logicname);
-            if (Entry != null && !Entry.Aquired && !Entry.StartingItem() && !(Entry.Unrandomized() && Entry.Available)) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
+            if (Entry != null && !Entry.Useable()) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
             var PB = new PictureBox
             {
                 BorderStyle = BorderStyle.Fixed3D,
@@ -174,7 +174,7 @@ namespace MMR_Tracker.Forms
             Controls.Add(PB);
             PB.Click += (s, ee) => filterRegularItem(Entry);
 
-            if (Entry == null || Entry.GetItemLocation(LogicObjects.MainTrackerInstance) == null || Entry.Aquired) { return; }
+            if (Entry == null || Entry.GetItemLocation(LogicObjects.MainTrackerInstance.Logic) == null || Entry.Aquired) { return; }
 
             Label lb = new Label();
             lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
@@ -196,9 +196,9 @@ namespace MMR_Tracker.Forms
             foreach (KeyValuePair<string, string> i in Logicnames)
             {
                 LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == i.Key);
-                if (Entry != null && (Entry.Aquired || Entry.StartingItem() || (Entry.Unrandomized() && Entry.Available))) { CountNumber = i.Value; }
+                if (Entry != null && Entry.Useable()) { CountNumber = i.Value; }
                 if (Entry != null) { AllEntries.Add(Entry); }
-                if (Entry != null && Entry.GetItemLocation(LogicObjects.MainTrackerInstance) != null & !Entry.Aquired) { Itemmarked = true; }
+                if (Entry != null && Entry.GetItemLocation(LogicObjects.MainTrackerInstance.Logic ) != null & !Entry.Aquired) { Itemmarked = true; }
             }
             Console.WriteLine(Itemmarked);
             if (CountNumber == "") { CurentImage = new Bitmap(GreyImage(CurentImage)); }
@@ -232,8 +232,8 @@ namespace MMR_Tracker.Forms
             var CurentImage = Images[Image];
             var Instance = LogicObjects.MainTrackerInstance;
             var log = Instance.Logic;
-            int Obtained = log.Where(x => ItemNames.Contains(x.ItemName) && (x.Aquired || x.StartingItem() || (x.Unrandomized() && x.Available))).Count();
-            int Seen = log.Where(x => x.HasRealRandomItem() && ItemNames.Contains(x.RandomizedEntry(Instance).ItemName) && !x.Checked).Count();
+            int Obtained = log.Where(x => ItemNames.Contains(x.ItemName) && x.Useable()).Count();
+            int Seen = log.Where(x => x.HasRandomItem(true) && ItemNames.Contains(x.RandomizedEntry(Instance).ItemName) && !x.Checked).Count();
             int TotalNumber = Seen + Obtained;
             string Display = "";
 
@@ -277,7 +277,7 @@ namespace MMR_Tracker.Forms
         public void filterRegularItem(LogicObjects.LogicEntry e)
         {
             if (e == null) { return; }
-            var itemLocation = e.GetItemLocation(LogicObjects.MainTrackerInstance);
+            var itemLocation = e.GetItemLocation(LogicObjects.MainTrackerInstance.Logic);
             if (itemLocation == null) { return; }
             if (itemLocation.Checked && e.Aquired)
             {
@@ -299,7 +299,7 @@ namespace MMR_Tracker.Forms
             if (f.Count == 0) { return; }
             foreach (var i in f)
             {
-                var itemLocation = i.GetItemLocation(LogicObjects.MainTrackerInstance);
+                var itemLocation = i.GetItemLocation(LogicObjects.MainTrackerInstance.Logic);
                 if (itemLocation != null)
                 {
                     if (itemLocation.Checked && i.Aquired) { CheckedListFilter += (CheckedListFilter == "" ? "" : "|") + $"&{i.ItemName}"; }
@@ -321,8 +321,8 @@ namespace MMR_Tracker.Forms
         {
             if (h.Count() == 0) { return; }
             var log = LogicObjects.MainTrackerInstance;
-            var Checked = log.Logic.Where(x => x.HasRealRandomItem() && h.Contains(x.RandomizedEntry(log).ItemName) && x.Checked);
-            var Marked = log.Logic.Where(x => x.HasRealRandomItem() && h.Contains(x.RandomizedEntry(log).ItemName) && !x.Checked);
+            var Checked = log.Logic.Where(x => x.HasRandomItem(true) && h.Contains(x.RandomizedEntry(log).ItemName) && x.Checked);
+            var Marked = log.Logic.Where(x => x.HasRandomItem(true) && h.Contains(x.RandomizedEntry(log).ItemName) && !x.Checked);
             var itemFilter = "";
             var CheckedFilter = "";
             if (Marked.Count() > 0)

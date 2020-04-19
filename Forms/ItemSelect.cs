@@ -89,6 +89,7 @@ namespace MMR_Tracker_V2
             {
                 if (!UsedLogic[i].Aquired
                     && (!UsedLogic[i].IsFake)
+                    && (UsedLogic[i].GetItemLocation(UsedLogic) == null)
                     && (!UsedLogic[i].Unrandomized(2))
                     && !Duplicates.Contains(UsedLogic[i].ItemName)
                     && UsedLogic[i].ItemName != null
