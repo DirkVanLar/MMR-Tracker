@@ -80,6 +80,7 @@ namespace MMR_Tracker_V2
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.fileToolStripMenuItem.HideDropDown();
             if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
             string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
             if (file == "") { return; }
