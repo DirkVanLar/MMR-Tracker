@@ -263,22 +263,23 @@
             // 
             // Moon
             // 
+            this.Moon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Moon.BackColor = System.Drawing.Color.Transparent;
             this.Moon.FlatAppearance.BorderSize = 0;
             this.Moon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Moon.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Moon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Moon.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Moon.Location = new System.Drawing.Point(550, 286);
+            this.Moon.Location = new System.Drawing.Point(545, 295);
             this.Moon.Name = "Moon";
-            this.Moon.Size = new System.Drawing.Size(52, 46);
+            this.Moon.Size = new System.Drawing.Size(63, 54);
             this.Moon.TabIndex = 26;
             this.Moon.UseVisualStyleBackColor = false;
             this.Moon.Click += new System.EventHandler(this.Moon_Click);
             // 
             // Clear
             // 
-            this.Clear.Location = new System.Drawing.Point(448, 295);
+            this.Clear.Location = new System.Drawing.Point(448, 318);
             this.Clear.Name = "Clear";
             this.Clear.Size = new System.Drawing.Size(64, 28);
             this.Clear.TabIndex = 27;
@@ -288,7 +289,7 @@
             // 
             // Misc
             // 
-            this.Misc.Location = new System.Drawing.Point(22, 295);
+            this.Misc.Location = new System.Drawing.Point(22, 318);
             this.Misc.Name = "Misc";
             this.Misc.Size = new System.Drawing.Size(64, 28);
             this.Misc.TabIndex = 28;
@@ -303,7 +304,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::MMR_Tracker.Properties.Resources.Termina;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(614, 361);
+            this.ClientSize = new System.Drawing.Size(620, 361);
             this.Controls.Add(this.entrances);
             this.Controls.Add(this.Misc);
             this.Controls.Add(this.Clear);
