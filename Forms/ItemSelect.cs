@@ -184,7 +184,7 @@ namespace MMR_Tracker_V2
         private void ShowAllAsDictionary()
         {
             lastRealItem = -1;
-            if (!LogicEditor.EditorInstance.IsOOT())
+            if (LogicEditor.EditorInstance.IsMM())
             {
                 for (var i = 0; i < UsedLogic.Count; i++)
                 {

@@ -160,7 +160,7 @@ namespace MMR_Tracker_V2
             Lines.Add("The location will be moved to \"Checked locations\" and display what item it contained.");
             Lines.Add("Double Clicking an item in \"Checked locations\" will uncheck that location and mark the corrisponding item as unobtained");
             Lines.Add(Utility.CreateDivider(listBox1));
-            if ((instance.IsEntranceRando() && instance.Options.entranceRadnoEnabled) || instance.Version == 0)
+            if ((instance.EntranceRando && instance.Options.entranceRadnoEnabled) || instance.Version == 0)
             {
                 Lines.Add("Pathfinder:");
                 if (instance.Version == 0) { Lines.Add("(This is only available if entrances are randomized.)"); }
@@ -218,7 +218,7 @@ namespace MMR_Tracker_V2
             Lines.Add("This option might make your logic calculations a bit slower, but will prevent rare bugs that occur involvolving circular dependencies in logic.");
             Lines.Add("You should never need to enable this, but it's worth a try if logic is being buggy.");
             Lines.Add(Utility.CreateDivider(listBox1));
-            if ((instance.IsEntranceRando() && instance.Options.entranceRadnoEnabled) || instance.Version == 0)
+            if ((instance.EntranceRando && instance.Options.entranceRadnoEnabled) || instance.Version == 0)
             {
                 Lines.Add("ENTRANCE RADNO:");
                 if (instance.Version == 0) { Lines.Add("(These options are only available if entrances are randomized.)"); }

@@ -11,12 +11,11 @@ namespace MMR_Tracker_V2
     class VersionHandeling
     {
         //Logic Version Handeling
-        public static int EntranceRandoVersion = 16; // The version of logic that entrance randomizer was implimented
         public static List<int> ValidVersions = new List<int> { 8, 13, 14, 16 }; // Versions of logic used in main releases
 
         public static string trackerVersion = "V1.8";
 
-        public static Dictionary<int, int> AreaClearDictionary(int LogicVer)
+        public static Dictionary<int, int> AreaClearDictionary(LogicObjects.TrackerInstance Instance)
         {
             //Rando Version 1.5 = Logic Version 3
             //Rando Version 1.6 = Logic Version 5
@@ -26,47 +25,33 @@ namespace MMR_Tracker_V2
             //Entrance Rando Dev Build 1.11.0.2 = Logic Version 16 (Used to test entrance rando features)
             var EntAreaDict = new Dictionary<int, int>();
 
-            var AreaDicVersion = 0;
+            if (!Instance.IsMM()) { return EntAreaDict; }
+            Console.WriteLine("Game Was MM");
 
-            if (!ValidVersions.Contains(LogicVer))
-            { AreaDicVersion = ValidVersions.Aggregate((x, y) => Math.Abs(x - LogicVer) < Math.Abs(y - LogicVer) ? x : y); }
-            else { AreaDicVersion = LogicVer; }
+            var WoodfallClear = Instance.Logic.Find(x => x.DictionaryName == "Woodfall clear");
+            var WoodfallAccess = Instance.Logic.Find(x => x.DictionaryName == "Woodfall Temple access" && !x.IsFake);
+            if (WoodfallAccess == null || WoodfallClear == null) { return new Dictionary<int, int>(); }
+            EntAreaDict.Add(WoodfallClear.ID, WoodfallAccess.ID);
 
-            switch (AreaDicVersion)
-            {
-                case 3:
-                    EntAreaDict.Add(100, 99); //Woodfall Clear, Woodfall Entrance
-                    EntAreaDict.Add(103, 102); //Snowhead Clear, Snowhead Entrance
-                    EntAreaDict.Add(108, 107); //GreatBay Clear, GreatBay Entrance
-                    EntAreaDict.Add(113, 112); //Ikana Clear, StoneTower Entrance
-                    break;
-                case 5:
-                case 6:
-                    EntAreaDict.Add(101, 100); //Woodfall Clear, Woodfall Entrance
-                    EntAreaDict.Add(104, 103); //Snowhead Clear, Snowhead Entrance
-                    EntAreaDict.Add(109, 108); //GreatBay Clear, GreatBay Entrance
-                    EntAreaDict.Add(114, 113); //Ikana Clear, StoneTower Entrance
-                    break;
-                case 8:
-                case 13:
-                    EntAreaDict.Add(105, 104); //Woodfall Clear, Woodfall Entrance
-                    EntAreaDict.Add(108, 107); //Snowhead Clear, Snowhead Entrance
-                    EntAreaDict.Add(113, 112); //GreatBay Clear, GreatBay Entrance
-                    EntAreaDict.Add(118, 117); //Ikana Clear, StoneTower Entrance
-                    break;
-                case 14:
-                    EntAreaDict.Add(107, 106); //Woodfall Clear, Woodfall Entrance
-                    EntAreaDict.Add(110, 109); //Snowhead Clear, Snowhead Entrance
-                    EntAreaDict.Add(115, 114); //GreatBay Clear, GreatBay Entrance
-                    EntAreaDict.Add(120, 119); //Ikana Clear, StoneTower Entrance
-                    break;
-            }
+            var SnowheadClear = Instance.Logic.Find(x => x.DictionaryName == "Snowhead clear");
+            var SnowheadAccess = Instance.Logic.Find(x => x.DictionaryName == "Snowhead Temple access" && !x.IsFake);
+            if (SnowheadAccess == null || SnowheadClear == null) { return new Dictionary<int, int>(); }
+            EntAreaDict.Add(SnowheadClear.ID, SnowheadAccess.ID);
+
+            var GreatBayClear = Instance.Logic.Find(x => x.DictionaryName == "Great Bay clear");
+            var GreatBayAccess = Instance.Logic.Find(x => x.DictionaryName == "Great Bay Temple access" && !x.IsFake);
+            if (GreatBayAccess == null || GreatBayClear == null) { return new Dictionary<int, int>(); }
+            EntAreaDict.Add(GreatBayClear.ID, GreatBayAccess.ID);
+
+            var StoneTowerClear = Instance.Logic.Find(x => x.DictionaryName == "Ikana clear");
+            var StoneTowerAccess = Instance.Logic.Find(x => x.DictionaryName == "Inverted Stone Tower Temple access" && !x.IsFake);
+            if (StoneTowerAccess == null || StoneTowerClear == null) { return new Dictionary<int, int>(); }
+            EntAreaDict.Add(StoneTowerClear.ID, StoneTowerAccess.ID);
             return EntAreaDict;
         }
 
         public static string[] SwitchDictionary(LogicObjects.TrackerInstance Instance)
         {
-            var Game = Instance.Game;
             var Currentversion = Instance.Version;
 
             string[] files = Directory.GetFiles(@"Recources");
@@ -78,9 +63,7 @@ namespace MMR_Tracker_V2
             int largestPairEntry = 0;
             foreach (var i in files)
             {
-                var dic = "";
-                if (Instance.IsMM()) { dic = "MMRDICTIONARY"; }
-                if (Instance.IsOOT()) { dic = "OOTRDICTIONARY"; }
+                var dic = Instance.Game + "DICTIONARY";
                 if (i.Contains(dic))
                 {
                     var entry = i.Replace("Recources\\" + dic + "V", "");
@@ -131,17 +114,22 @@ namespace MMR_Tracker_V2
             return currentdictionary;
         }
 
-        public static int[] GetVersionFromLogicFile(string[] LogicFile)
+        public static LogicObjects.VersionInfo GetVersionFromLogicFile(string[] LogicFile)
         {
             //[0] Version, [1] Game (0 = MM, 1 = OOT)
-            int[] version = new int[] { 0, 0 };
+            LogicObjects.VersionInfo version = new LogicObjects.VersionInfo { Version = 0, Gamecode = "MMR" };
             if (LogicFile[0].Contains("-version"))
             {
-                string line = LogicFile[0];
-                if (line.Contains("-versionOOT")) { version[1] = 1; line = line.Replace("versionOOT", "version"); }
-                if (line.Contains("-versionWW")) { version[1] = 2; line = line.Replace("versionWW", "version"); } //These are just examples
-                if (line.Contains("-versionTP")) { version[1] = 3; line = line.Replace("versionTP", "version"); } //These games are not supported
-                version[0] = Int32.Parse(line.Replace("-version ", ""));
+                if (!LogicFile[0].Contains("-version "))
+                {
+                    var i = LogicFile[0].Split(' ');
+                    version.Gamecode = i[0].Replace("-version", "");
+                }
+                var j = LogicFile[0].Split(' ');
+                if (j.Count() > 1)
+                {
+                    version.Version = Convert.ToInt32(j[1]);
+                }
             }
             return version;
         }
