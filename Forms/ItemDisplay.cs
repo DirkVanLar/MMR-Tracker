@@ -1,6 +1,9 @@
-﻿using System;
+﻿using MMR_Tracker_V2;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MMR_Tracker.Forms
@@ -11,9 +14,16 @@ namespace MMR_Tracker.Forms
         public ItemDisplay()
         {
             InitializeComponent();
+            MainInterface.LocationChecked += MainInterface_LocationChecked;
+        }
+
+        private void MainInterface_LocationChecked(object sender, EventArgs e)
+        {
+            DisplayImages();
         }
         public void SetItemImages()
         {
+            Images.Clear();
             //Equip Items
             Images.Add("Ocarina", GetImage(0, 2));
             Images.Add("Bow", GetImage(1, 2));
@@ -99,19 +109,139 @@ namespace MMR_Tracker.Forms
             Images.Add("Compass", GetImage(1, 22));
             Images.Add("BossKey", GetImage(2, 22));
             Images.Add("SmallKey", GetImage(3, 22));
+            //Fairies/Skulls
             Images.Add("SkullToken", GetImage(4, 22));
+            Images.Add("OceanSkullToken", GetImage(4, 25));
+            Images.Add("SwampSkullToken", GetImage(5, 25));
+            Images.Add("ClockTownFairy", GetImage(5, 22));
+            Images.Add("StoneTowerFairy", GetImage(2, 12));
+            Images.Add("GreatBayFairy", GetImage(3, 12));
+            Images.Add("SnowheadFairy", GetImage(4, 12));
+            Images.Add("WoodfallFairy", GetImage(5, 12));
 
         }
+        public void DisplayImages()
+        {
+            Controls.Clear();
+
+            int Spacing = 48;
+            Dictionary<string, string> ProgressiveItem;
+
+            DrawItem("Ocarina", Spacing, "Ocarina of Time", 0, 0);
+            ProgressiveItem = new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } };
+            DrawProgressiveItem("Bow", Spacing, ProgressiveItem, 0, 1, Brushes.LimeGreen);
+            DrawItem("FireArrow", Spacing, "Fire Arrow", 0, 2);
+            DrawItem("IceArrow", Spacing, "Ice Arrow", 0, 3);
+            DrawItem("LightArrow", Spacing, "Light Arrow", 0, 4);
+            ProgressiveItem = new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } };
+            DrawProgressiveItem("Bombs", Spacing, ProgressiveItem, 0, 5, Brushes.LimeGreen);
+
+
+
+            //SwampStrayFairy
+            DrawCountableItem("WoodfallFairy", Spacing, "Woodfall Stray Fairy", 12, 0, Brushes.LimeGreen);
+            DrawCountableItem("SwampSkullToken", Spacing, "Swamp Skulltula Spirit", 12, 1, Brushes.Black);
+
+        }
+
+        public void DrawItem(string Image, int Spacing, string Logicname, int row, int colomn)
+        {
+            var CurentImage = Images[Image];
+            LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == Logicname);
+            if (Entry != null && !Entry.Aquired && !Entry.StartingItem() && !(Entry.Unrandomized() && Entry.Available)) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
+            var PB = new PictureBox
+            {
+                BorderStyle = BorderStyle.Fixed3D,
+                Image = CurentImage,
+                Width = Spacing,
+                Height = Spacing,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Location = PostionItem(row, colomn, Spacing),
+                BackColor = Color.Transparent
+            };
+            Controls.Add(PB);
+        }
+        public void DrawProgressiveItem(string Image, int Spacing, Dictionary<string,string> Logicnames, int row, int colomn, Brush TextColor)
+        {
+            var CurentImage = Images[Image];
+            string CountNumber = "";
+            foreach(KeyValuePair<string,string> i in Logicnames)
+            {
+                LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == i.Key);
+                if (Entry != null && (Entry.Aquired || Entry.StartingItem() || (Entry.Unrandomized() && Entry.Available))) { CountNumber = i.Value; }
+            }
+            if (CountNumber == "") { CurentImage = new Bitmap(GreyImage(CurentImage)); }
+            var PB = new PictureBox
+            {
+                BorderStyle = BorderStyle.Fixed3D,
+                Image = CurentImage,
+                Width = Spacing,
+                Height = Spacing,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Location = PostionItem(row, colomn, Spacing),
+                BackColor = Color.Transparent
+            };
+            Controls.Add(PB);
+            var newFont = new Font("Arial", 12, FontStyle.Bold);
+            PB.Paint += new PaintEventHandler((sender, e) =>
+            {
+                e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+                e.Graphics.DrawString(CountNumber, newFont, TextColor, 0, 0);
+            });
+        }
+        public void DrawCountableItem(string Image, int Spacing, string ItemName, int row, int colomn, Brush TextColor)
+        {
+            var CurentImage = Images[Image];
+            int CountNumber = LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName == ItemName && (x.Aquired || x.StartingItem() || (x.Unrandomized() && x.Available))).Count();
+            if (CountNumber < 1) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
+            var StringCountNumber = (CountNumber < 1) ? "" : CountNumber.ToString();
+            var PB = new PictureBox
+            {
+                BorderStyle = BorderStyle.Fixed3D,
+                Image = CurentImage,
+                Width = Spacing,
+                Height = Spacing,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Location = PostionItem(row, colomn, Spacing),
+                BackColor = Color.Transparent
+            };
+            Controls.Add(PB);
+            var newFont = new Font("Arial", 12, FontStyle.Bold);
+            PB.Paint += new PaintEventHandler((sender, e) =>
+            {
+                e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+                e.Graphics.DrawString(StringCountNumber, newFont, TextColor, 0, 0);
+            });
+        }
+
         public static Bitmap GetImage(int Column, int Row)
         {
             Bitmap source = new Bitmap(@"Recources\Nintendo 64 - The Legend of Zelda Majoras Mask - Item Icons.png");
             return source.Clone(new System.Drawing.Rectangle(Column * 32, Row * 32, 32, 32), source.PixelFormat);
         }
+        public Point PostionItem(int Row, int Columb, int Spacing)
+        {
+            return new Point(Columb * Spacing, Row * Spacing);
+        }
+        public Bitmap GreyImage(Bitmap image)
+        {
+            Bitmap grayScale = new Bitmap(image.Width, image.Height);
 
+            for (Int32 y = 0; y < grayScale.Height; y++)
+                for (Int32 x = 0; x < grayScale.Width; x++)
+                {
+                    Color c = image.GetPixel(x, y);
+
+                    Int32 gs = (Int32)(c.R * 0.3 + c.G * 0.59 + c.B * 0.11);
+
+                    grayScale.SetPixel(x, y, Color.FromArgb(gs, gs, gs));
+                }
+            return grayScale;
+        }
         private void ItemDisplay_Load(object sender, EventArgs e)
         {
             SetItemImages();
-
+            DisplayImages();
         }
     }
 }
