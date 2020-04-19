@@ -64,6 +64,7 @@
             this.TXTSearch.Size = new System.Drawing.Size(137, 20);
             this.TXTSearch.TabIndex = 2;
             this.TXTSearch.TextChanged += new System.EventHandler(this.TXTSearch_TextChanged);
+            this.TXTSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXTSearch_MouseUp);
             // 
             // chkAddSeperate
             // 

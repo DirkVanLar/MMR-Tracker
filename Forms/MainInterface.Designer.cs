@@ -1,6 +1,6 @@
 ﻿namespace MMR_Tracker_V2
 {
-    partial class FRMTracker
+    partial class MainInterface
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRMTracker));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainInterface));
             this.TXTLocSearch = new System.Windows.Forms.TextBox();
             this.TXTEntSearch = new System.Windows.Forms.TextBox();
             this.TXTCheckedSearch = new System.Windows.Forms.TextBox();
@@ -108,6 +108,7 @@
             this.TXTLocSearch.Size = new System.Drawing.Size(100, 20);
             this.TXTLocSearch.TabIndex = 0;
             this.TXTLocSearch.TextChanged += new System.EventHandler(this.TXTLocSearch_TextChanged);
+            this.TXTLocSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXTLocSearch_MouseClick);
             // 
             // TXTEntSearch
             // 
@@ -117,6 +118,7 @@
             this.TXTEntSearch.Size = new System.Drawing.Size(100, 20);
             this.TXTEntSearch.TabIndex = 1;
             this.TXTEntSearch.TextChanged += new System.EventHandler(this.TXTEntSearch_TextChanged);
+            this.TXTEntSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXTEntSearch_MouseClick);
             // 
             // TXTCheckedSearch
             // 
@@ -126,6 +128,7 @@
             this.TXTCheckedSearch.Size = new System.Drawing.Size(100, 20);
             this.TXTCheckedSearch.TabIndex = 2;
             this.TXTCheckedSearch.TextChanged += new System.EventHandler(this.TXTCheckedSearch_TextChanged);
+            this.TXTCheckedSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXTCheckedSearch_MouseClick);
             // 
             // label1
             // 
@@ -254,31 +257,33 @@
             // 
             this.LBValidLocations.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBValidLocations.FormattingEnabled = true;
-            this.LBValidLocations.Location = new System.Drawing.Point(223, 38);
+            this.LBValidLocations.Location = new System.Drawing.Point(12, 258);
             this.LBValidLocations.Name = "LBValidLocations";
             this.LBValidLocations.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBValidLocations.Size = new System.Drawing.Size(75, 95);
             this.LBValidLocations.TabIndex = 16;
             this.LBValidLocations.DoubleClick += new System.EventHandler(this.LBValidLocations_DoubleClick);
             this.LBValidLocations.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBValidLocations_MouseMove);
+            this.LBValidLocations.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LBValidLocations_MouseUp);
             // 
             // LBValidEntrances
             // 
             this.LBValidEntrances.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBValidEntrances.FormattingEnabled = true;
-            this.LBValidEntrances.Location = new System.Drawing.Point(317, 38);
+            this.LBValidEntrances.Location = new System.Drawing.Point(106, 258);
             this.LBValidEntrances.Name = "LBValidEntrances";
             this.LBValidEntrances.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBValidEntrances.Size = new System.Drawing.Size(75, 95);
             this.LBValidEntrances.TabIndex = 17;
             this.LBValidEntrances.DoubleClick += new System.EventHandler(this.LBValidEntrances_DoubleClick);
             this.LBValidEntrances.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBValidEntrances_MouseMove);
+            this.LBValidEntrances.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LBValidEntrances_MouseUp);
             // 
             // LBCheckedLocations
             // 
             this.LBCheckedLocations.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBCheckedLocations.FormattingEnabled = true;
-            this.LBCheckedLocations.Location = new System.Drawing.Point(223, 139);
+            this.LBCheckedLocations.Location = new System.Drawing.Point(12, 359);
             this.LBCheckedLocations.Name = "LBCheckedLocations";
             this.LBCheckedLocations.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBCheckedLocations.Size = new System.Drawing.Size(75, 95);
@@ -290,7 +295,7 @@
             // 
             this.LBPathFinder.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBPathFinder.FormattingEnabled = true;
-            this.LBPathFinder.Location = new System.Drawing.Point(317, 139);
+            this.LBPathFinder.Location = new System.Drawing.Point(106, 359);
             this.LBPathFinder.Name = "LBPathFinder";
             this.LBPathFinder.Size = new System.Drawing.Size(75, 95);
             this.LBPathFinder.TabIndex = 19;
@@ -321,7 +326,7 @@
             this.redoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(404, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(304, 24);
             this.menuStrip1.TabIndex = 21;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -687,14 +692,14 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // FRMTracker
+            // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(404, 621);
+            this.ClientSize = new System.Drawing.Size(304, 461);
             this.Controls.Add(this.BTNFindPath);
             this.Controls.Add(this.LBPathFinder);
             this.Controls.Add(this.LBCheckedLocations);
@@ -717,7 +722,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "FRMTracker";
+            this.Name = "MainInterface";
             this.Text = "MMR Tracker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FRMTracker_FormClosing);
             this.Load += new System.EventHandler(this.FRMTracker_Load);

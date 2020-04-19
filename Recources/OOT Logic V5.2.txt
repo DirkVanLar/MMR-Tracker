@@ -1,4 +1,4 @@
--versionOOT 5
+-versionOOTR 5
 - Adult Spawn => Temple of Time
 893
 
@@ -1210,282 +1210,282 @@
 0
 0
 - Queen Gohma
-
+1009
 
 0
 0
 - King Dodongo
-
+1010
 
 0
 0
 - Barinade
-
+1011
 
 0
 0
 - Phantom Ganon
-
+1012
 
 0
 0
 - Volvagia
-
+1013
 
 0
 0
 - Morpha
-
+1014
 
 0
 0
 - Bongo Bongo
-
+1016
 
 0
 0
 - Twinrova
-
+1018
 
 0
 0
 - Song from Saria
-
+977
 
 0
 0
 - Sheik Forest Song
-
+977
 
 0
 0
 - Song from Ocarina of Time
-
+961,242,243,244
 
 0
 0
 - Sheik at Colossus
-
+980
 
 0
 0
 - Sheik at Temple
-
+1021
 
 0
 0
 - Impa at Castle
-
+1022,892
 
 0
 0
 - Sheik in Kakariko
-
+893
 
 0
 0
 - Song at Windmill
-
+1023
 
 0
 0
 - Song from Composer Grave
-
+194
 
 0
 0
 - Sheik in Crater
-
+965,893
 
 0
 0
 - Song from Malon
-
+981
 
 0
 0
 - Sheik in Ice Cavern
-
+1019
 
 0
 0
 - Kokiri Sword Chest
-
+974
 
 0
 0
 - GS Kokiri Know It All House
-
+974
 
 0
 0
 - GS Kokiri Bean Patch
-
+974
 
 0
 0
 - GS Kokiri House of Twins
-
+974
 
 0
 0
 - Links House Cow
-
+143
 
 0
 0
 - Mido Chest Top Left
-
+144
 
 0
 0
 - Mido Chest Top Right
-
+144
 
 0
 0
 - Mido Chest Bottom Left
-
+144
 
 0
 0
 - Mido Chest Bottom Right
-
+144
 
 0
 0
 - Kokiri Shop Item 5
-
+142
 
 0
 0
 - Kokiri Shop Item 6
-
+142
 
 0
 0
 - Kokiri Shop Item 7
-
+142
 
 0
 0
 - Kokiri Shop Item 8
-
+142
 
 0
 0
 - Skull Kid
-
+975
 
 0
 0
 - Ocarina Memory Game
-
+975
 
 0
 0
 - Target in Woods
-
+975
 
 0
 0
 - LW Deku Scrub Deku Stick Upgrade
-
+975
 
 0
 0
 - GS Lost Woods Bean Patch Near Bridge
-
+975
 
 0
 0
 - LW Deku Scrub Deku Nuts
-
+975
 
 0
 0
 - LW Deku Scrub Deku Sticks
-
+975
 
 0
 0
 - GS Lost Woods Above Stage
-
+975
 
 0
 0
 - GS Lost Woods Bean Patch Near Stage
-
+975
 
 0
 0
 - GS Sacred Forest Meadow
-
+977
 
 0
 0
 - Gift from Saria
-
+977
 
 0
 0
 - Ocarina of Time
-
+961,242,243,244
 
 0
 0
 - Underwater Bottle
-
+960,920
 
 0
 0
 - Lake Hylia Sun
-
+1025,960
 
 0
 0
 - Lake Hylia Freestanding PoH
-
+960
 
 0
 0
 - GS Lake Hylia Bean Patch
-
+960
 
 0
 0
 - GS Lake Hylia Lab Wall
-
+960
 
 0
 0
 - GS Lake Hylia Small Island
-
+960
 
 0
 0
 - GS Lake Hylia Giant Tree
-
+960
 
 0
 0
 - Diving in the Lab
-
+147
 
 0
 0
 - GS Lab Underwater Crate
-
+147
 
 0
 0
 - Child Fishing
-
+148
 
 0
 0
 - Adult Fishing
-
+148
 
 0
 0
@@ -4922,5 +4922,210 @@
 - Explosives
 
 917;945
+0
+0
+- Kokiri Shop Item 1
+
+
+0
+0
+- Kokiri Shop Item 2
+
+
+0
+0
+- Kokiri Shop Item 3
+
+
+0
+0
+- Kokiri Shop Item 4
+
+
+0
+0
+- Castle Town Potion Shop Item 1
+
+
+0
+0
+- Castle Town Potion Shop Item 2
+
+
+0
+0
+- Castle Town Potion Shop Item 3
+
+
+0
+0
+- Castle Town Potion Shop Item 4
+
+
+0
+0
+- Bombchu Shop Item 1
+
+
+0
+0
+- Bombchu Shop Item 2
+
+
+0
+0
+- Bombchu Shop Item 3
+
+
+0
+0
+- Bombchu Shop Item 4
+
+
+0
+0
+- Kakariko Potion Shop Item 1
+
+
+0
+0
+- Kakariko Potion Shop Item 2
+
+
+0
+0
+- Kakariko Potion Shop Item 3
+
+
+0
+0
+- Kakariko Potion Shop Item 4
+
+
+0
+0
+- Goron Shop Item 1
+
+
+0
+0
+- Goron Shop Item 2
+
+
+0
+0
+- Goron Shop Item 3
+
+
+0
+0
+- Goron Shop Item 4
+
+
+0
+0
+- Zora Shop Item 1
+
+
+0
+0
+- Zora Shop Item 2
+
+
+0
+0
+- Zora Shop Item 3
+
+
+0
+0
+- Zora Shop Item 4
+
+
+0
+0
+- Any Deku Tree
+
+78;879
+0
+0
+- Any Dodongos Cavern
+
+880;64
+0
+0
+- Any Jabu Jabus Belly
+
+83;881
+0
+0
+- Any Forest Temple
+
+70;882
+0
+0
+- Any Fire Temple
+
+68;883
+0
+0
+- Any Water Temple
+
+77;885
+0
+0
+- Any Bottom of the Well
+
+76;886
+0
+0
+- Any Shadow Temple
+
+80;887
+0
+0
+- Any Gerudo Training Grounds
+
+72;888
+0
+0
+- Any Spirit Temple
+
+66;889
+0
+0
+- Any Ice Cavern
+
+84;884
+0
+0
+- Any Ganons Castle
+
+891;890
+0
+0
+- Access Temple of Time
+
+0;5;161
+0
+0
+- Access Hyrule Castle
+
+11;112;120;167
+0
+0
+- Access Windmill
+
+136;195,893
+0
+0
+- Access Links House
+
+143;1
+0
+0
+- Use Fire Arrow
+916,923
+902;288
 0
 0

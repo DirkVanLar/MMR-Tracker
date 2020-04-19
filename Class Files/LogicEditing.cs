@@ -26,11 +26,10 @@ namespace MMR_Tracker_V2
             instance.DicNameToID.Clear();
             instance.EntrancePairs.Clear();
             Console.WriteLine("Populating Logic File");
-            int[] version = VersionHandeling.GetVersionFromLogicFile(instance.RawLogicFile); //Returns [0] The logic Version, [1] The game this logic file is for
-            instance.Version = version[0];
-            instance.Game = version[1];
+            LogicObjects.VersionInfo version = VersionHandeling.GetVersionFromLogicFile(instance.RawLogicFile); //Returns [0] The logic Version, [1] The game this logic file is for
+            instance.Version = version.Version;
+            instance.Game = version.Gamecode;
             string[] VersionData = VersionHandeling.SwitchDictionary(instance); //Returns [0] Path To Dictionary, [1] path to Entrance Pairs
-            instance.EntranceAreaDic = VersionHandeling.AreaClearDictionary(instance.Version);
             int SubCounter = 0;
             int idCounter = 0;
             LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
@@ -95,9 +94,11 @@ namespace MMR_Tracker_V2
                 }
                 SubCounter++;
             }
+
+            instance.EntranceRando = instance.IsEntranceRando();
+            instance.EntranceAreaDic = VersionHandeling.AreaClearDictionary(instance);
             CreateDicNameToID(instance.DicNameToID, instance.Logic);
             if (VersionData.Count() > 0) { CreatedEntrancepairDcitionary(instance.EntrancePairs, instance.DicNameToID, VersionData); }
-            
 
             return true;
         }
@@ -171,7 +172,7 @@ namespace MMR_Tracker_V2
         {
             //0 = do nothing, 1 = Skip Fake item calculation, 2 = Skip Fake item calculation and recalculate logic
             Dictionary<int, int> EntAreaDict = Instance.EntranceAreaDic;
-            if (LogicObjects.MainTrackerInstance.IsEntranceRando() || !EntAreaDict.ContainsKey(ClearLogic.ID)) { return 0; }
+            if (LogicObjects.MainTrackerInstance.EntranceRando || !EntAreaDict.ContainsKey(ClearLogic.ID)) { return 0; }
             var RandClearLogic = ClearLogic.RandomizedAreaClear(Instance);
             if (RandClearLogic == null && ClearLogic.Aquired) { ClearLogic.Aquired = false; return 2; }
             if (RandClearLogic == null) { return 1; }
@@ -189,7 +190,7 @@ namespace MMR_Tracker_V2
                     Instance.Logic[CheckedObject.RandomizedItem].Aquired = false;
                     CheckEntrancePair(CheckedObject, Instance, false);
                 }
-                CheckedObject.RandomizedItem = -2;
+                CheckedObject.RandomizedItem = -2; 
                 return true;
             }
             if (CheckedObject.SpoilerRandom > -2 || CheckedObject.RandomizedItem > -2 || CheckedObject.Options == 2)
@@ -243,7 +244,7 @@ namespace MMR_Tracker_V2
                     Instance.Logic[data.LocationID].SpoilerRandom = data.ItemID;
             }
 
-            if (!Instance.IsEntranceRando())//If dungeon entrances aren't randomized they don't show up in the spoiler log
+            if (!Instance.EntranceRando)//If dungeon entrances aren't randomized they don't show up in the spoiler log
             {
                 var entranceIDs = Instance.EntranceAreaDic;
                 foreach (var i in Instance.Logic)
@@ -305,7 +306,7 @@ namespace MMR_Tracker_V2
                 RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file), Instance);
             }
             Instance.Options.entranceRadnoEnabled = Utility.CheckForRandomEntrances(Instance);
-            Instance.Options.OverRideAutoEntranceRandoEnable = (Instance.Options.entranceRadnoEnabled != Instance.IsEntranceRando());
+            Instance.Options.OverRideAutoEntranceRandoEnable = (Instance.Options.entranceRadnoEnabled != Instance.EntranceRando);
             CalculateItems(Instance, true);
             Tools.SaveState(Instance);
         }
@@ -334,7 +335,7 @@ namespace MMR_Tracker_V2
         public static string[] WriteLogicToArray(LogicObjects.TrackerInstance Instance)
         {
             List<string> lines = new List<string>();
-            lines.Add((Instance.IsOOT()) ? "-versionOOT " + Instance.Version : "-version " + Instance.Version);
+            lines.Add((Instance.IsMM()) ? "-version " + Instance.Version : "-version" + Instance.Game + " " + Instance.Version);
             foreach (var line in Instance.Logic)
             {
                 lines.Add("- " + line.DictionaryName);

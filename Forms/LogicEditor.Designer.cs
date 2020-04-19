@@ -70,13 +70,13 @@
             this.useLocationItemNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displaySpoilerLogNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reorderLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameCurrentItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
-            this.renameCurrentItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -265,14 +265,14 @@
             // 
             // nudIndex
             // 
-            this.nudIndex.Location = new System.Drawing.Point(632, 379);
+            this.nudIndex.Location = new System.Drawing.Point(597, 379);
             this.nudIndex.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
             this.nudIndex.Name = "nudIndex";
-            this.nudIndex.Size = new System.Drawing.Size(38, 20);
+            this.nudIndex.Size = new System.Drawing.Size(73, 20);
             this.nudIndex.TabIndex = 14;
             this.nudIndex.ValueChanged += new System.EventHandler(this.NudIndex_ValueChanged);
             // 
@@ -532,6 +532,13 @@
             this.reorderLogicToolStripMenuItem.Text = "Reorder Logic";
             this.reorderLogicToolStripMenuItem.Click += new System.EventHandler(this.ReorderLogicToolStripMenuItem_Click);
             // 
+            // renameCurrentItemToolStripMenuItem
+            // 
+            this.renameCurrentItemToolStripMenuItem.Name = "renameCurrentItemToolStripMenuItem";
+            this.renameCurrentItemToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.renameCurrentItemToolStripMenuItem.Text = "Rename Current Item";
+            this.renameCurrentItemToolStripMenuItem.Click += new System.EventHandler(this.RenameCurrentItemToolStripMenuItem_Click);
+            // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
@@ -593,13 +600,6 @@
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.BtnDown_Click);
             // 
-            // renameCurrentItemToolStripMenuItem
-            // 
-            this.renameCurrentItemToolStripMenuItem.Name = "renameCurrentItemToolStripMenuItem";
-            this.renameCurrentItemToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.renameCurrentItemToolStripMenuItem.Text = "Rename Current Item";
-            this.renameCurrentItemToolStripMenuItem.Click += new System.EventHandler(this.RenameCurrentItemToolStripMenuItem_Click);
-            // 
             // LogicEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -644,11 +644,13 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "LogicEditor";
             this.Text = "LogicEditor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogicEditor_FormClosing);
             this.Load += new System.EventHandler(this.LogicEditor_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LogicEditor_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

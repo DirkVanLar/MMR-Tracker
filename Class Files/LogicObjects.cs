@@ -16,9 +16,10 @@ namespace MMR_Tracker_V2
             public Dictionary<int, int> EntranceAreaDic { get; set; } = new Dictionary<int, int>();
             public Options Options { get; set; } = new Options();
             public int Version { get; set; } = 0;
-            public int Game { get; set; } = 0;
+            public string Game { get; set; } = "MMR";
             public string[] RawLogicFile { get; set; }
             public bool UnsavedChanges { get; set; } = false;
+            public bool EntranceRando { get; set; } = false;
             public List<List<LogicEntry>> UndoList { get; set; } = new List<List<LogicEntry>>();
             public List<List<LogicEntry>> RedoList { get; set; } = new List<List<LogicEntry>>();
         }
@@ -110,6 +111,11 @@ namespace MMR_Tracker_V2
             public LogicEntry Check { get; set; }
             public List<int> ItemsUsed { get; set; }
         }
+        public class VersionInfo
+        {
+            public int Version { get; set; }
+            public string Gamecode { get; set; }
+        }
     }
 
     public static class Extentions
@@ -180,17 +186,11 @@ namespace MMR_Tracker_V2
         }
         public static bool IsEntranceRando(this LogicObjects.TrackerInstance Instance)
         {
-            if (Instance.IsMM()) { return Instance.Version >= VersionHandeling.EntranceRandoVersion; }
-            if (Instance.IsOOT()) { return true; }
-            return false;
+            return (Instance.Logic.Where(x => x.ItemSubType == "Entrance").Count() > 0);
         }
         public static bool IsMM(this LogicObjects.TrackerInstance Instance)
         {
-            return Instance.Game == 0;
-        }
-        public static bool IsOOT(this LogicObjects.TrackerInstance Instance)
-        {
-            return Instance.Game == 1;
+            return Instance.Game == "MMR";
         }
         public static bool IsWarpSong(this LogicObjects.LogicEntry entry)
         {

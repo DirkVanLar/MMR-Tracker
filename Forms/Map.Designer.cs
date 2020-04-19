@@ -303,7 +303,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::MMR_Tracker.Properties.Resources.Termina;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(614, 344);
+            this.ClientSize = new System.Drawing.Size(614, 361);
             this.Controls.Add(this.entrances);
             this.Controls.Add(this.Misc);
             this.Controls.Add(this.Clear);
@@ -321,11 +321,12 @@
             this.Controls.Add(this.locations);
             this.Controls.Add(this.clockTown);
             this.Controls.Add(this.Termina);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(500, 300);
             this.Name = "Map";
             this.Text = "Filter Map";
             this.Load += new System.EventHandler(this.Map_Load);
+            this.Resize += new System.EventHandler(this.Map_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 

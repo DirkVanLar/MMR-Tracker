@@ -1,11 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Octokit;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
@@ -157,7 +153,7 @@ namespace MMR_Tracker_V2
         }
         public static bool CheckForRandomEntrances(LogicObjects.TrackerInstance Instance, int validEntranceCount = 6)
         {
-            if (!Instance.IsEntranceRando()) { return false; }
+            if (!Instance.EntranceRando) { return false; }
             int count = 0;
             foreach (var i in Instance.Logic)
             {

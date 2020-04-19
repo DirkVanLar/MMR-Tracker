@@ -1,18 +1,11 @@
 ﻿using MMR_Tracker_V2;
-using MMR_Tracker.Forms;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.Devices;
 using MMR_Tracker.Class_Files;
 
 namespace MMR_Tracker.Forms
@@ -743,6 +736,12 @@ namespace MMR_Tracker.Forms
             if (name == "") { return; }
             currentEntry.DictionaryName = name;
             WriteCurentItem(currentEntry.ID);
+        }
+
+        private void LogicEditor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.PageUp && nudIndex.Value + 1 < EditorInstance.Logic.Count()) { nudIndex.Value += 1; }
+            if (e.KeyCode == Keys.PageDown && nudIndex.Value > 0) { nudIndex.Value -= 1; }
         }
     }
 }

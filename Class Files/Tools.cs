@@ -4,10 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MMR_Tracker.Forms;
 
 namespace MMR_Tracker.Class_Files
 {
@@ -47,7 +44,7 @@ namespace MMR_Tracker.Class_Files
             if (file == "") { return; }
 
             LogicObjects.TrackerInstance CDLogic = new LogicObjects.TrackerInstance();
-            int LogicVersion = VersionHandeling.GetVersionFromLogicFile(File.ReadAllLines(file))[0];
+            int LogicVersion = VersionHandeling.GetVersionFromLogicFile(File.ReadAllLines(file)).Version;
             LogicEditing.PopulateTrackerInstance(CDLogic);
 
             List<LogicObjects.SpoilerData> SpoilerLog = Tools.ReadHTMLSpoilerLog("", CDLogic);
@@ -68,7 +65,7 @@ namespace MMR_Tracker.Class_Files
                         if (entry.DictionaryName.Contains("Bottle:")) { entry.ItemSubType = "Bottle"; }
                         if (entry.DictionaryName.StartsWith("Entrance")) { entry.ItemSubType = "Entrance"; }
 
-                        if (!CDLogic.IsEntranceRando())
+                        if (!CDLogic.EntranceRando)
                         {
                             if (entry.DictionaryName == "Woodfall Temple access")
                             { entry.LocationArea = "Dungeon Entrance"; entry.ItemSubType = "Dungeon Entrance"; }
@@ -205,7 +202,7 @@ namespace MMR_Tracker.Class_Files
                 if (line.Contains("<h2>Item Locations</h2>")) { break; }
             }
 
-            if (Instance.IsEntranceRando()) { return SpoilerData; }
+            if (Instance.EntranceRando) { return SpoilerData; }
 
             //Fix Dungeon Entrances
             Dictionary<string, int> EntIDMatch = new Dictionary<string, int>();
@@ -262,6 +259,7 @@ namespace MMR_Tracker.Class_Files
                     LogicObjects.MainTrackerInstance = backup;
                 }
             }
+            LogicObjects.MainTrackerInstance.EntranceRando = LogicObjects.MainTrackerInstance.IsEntranceRando();
             return;
         }
         public static void SaveState(LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicEntry> Logic = null )
@@ -426,9 +424,9 @@ namespace MMR_Tracker.Class_Files
             LogicEditing.CalculateItems(Instance);
 
 
-            if (Instance.IsOOT())
+            if (!Instance.IsMM())
             {
-                DialogResult dialogResult = MessageBox.Show("Support for the Ocarina of Time Randomizer is Limited. Many features will be disabled and core features might not work as intended. Do you wish to continue?", "OOT BETA", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("This logic file was created for the Majoras Mask Randomizer. While this tracker can support other games, support is very Limited. Many features will be disabled and core features might not work as intended. Do you wish to continue?", "Other Randomizer", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }
             }
             else if (!VersionHandeling.ValidVersions.Contains(Instance.Version))
@@ -446,6 +444,14 @@ namespace MMR_Tracker.Class_Files
                     if (i.Contains("CheckForUpdates:0")) { Instance.Options.CheckForUpdate = false; }
                 }
             }
+        }
+        public static void WhatUnlockedThis()
+        {
+            var Requirements = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic);
+            string message = "";
+            foreach (var i in Requirements) { message = message + LogicObjects.MainTrackerInstance.Logic[i].ItemName + "\n"; }
+            MessageBox.Show(message, Tools.CurrentSelectedItem.LocationName + " Was Unlocked with:");
+            Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
         }
     }
 }

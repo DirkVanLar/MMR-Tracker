@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MMR_Tracker_V2;
 using System.Windows.Forms;
 
@@ -15,7 +13,7 @@ namespace MMR_Tracker.Class_Files
             List<LogicObjects.PlaythroughItem> Playthrough = new List<LogicObjects.PlaythroughItem>();
             Dictionary<int, int> SpoilerToID = new Dictionary<int, int>();
             var playLogic = Utility.CloneTrackerInstance(Instance);
-            var GameClear = GetGameClearEntry(playLogic.Logic, Instance.IsEntranceRando());
+            var GameClear = GetGameClearEntry(playLogic.Logic, Instance.EntranceRando);
 
             if (GameClear < 0) { MessageBox.Show("Could not find game clear requirements. Playthrough can not be generated."); return; }
 

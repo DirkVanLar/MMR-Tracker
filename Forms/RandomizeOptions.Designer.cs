@@ -156,6 +156,7 @@
             this.txtSearch.Size = new System.Drawing.Size(122, 20);
             this.txtSearch.TabIndex = 8;
             this.txtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
+            this.txtSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.txtSearch_MouseUp);
             // 
             // chkShowRandom
             // 

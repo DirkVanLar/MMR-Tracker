@@ -184,7 +184,7 @@ namespace MMR_Tracker_V2
         private void ShowAllAsDictionary()
         {
             lastRealItem = -1;
-            if (!LogicEditor.EditorInstance.IsOOT())
+            if (LogicEditor.EditorInstance.IsMM())
             {
                 for (var i = 0; i < UsedLogic.Count; i++)
                 {
@@ -400,6 +400,11 @@ namespace MMR_Tracker_V2
             LBItemSelect.Items.Remove(selected);
             LBItemSelect.Items.Insert(newIndex, selected);
             LBItemSelect.SetSelected(newIndex, true);
+        }
+
+        private void TXTSearch_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle) { TXTSearch.Clear(); }
         }
     }
 }

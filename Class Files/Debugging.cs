@@ -1,14 +1,14 @@
 ﻿using MMR_Tracker.Forms;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
+using System.Windows.Controls;
 
 namespace MMR_Tracker_V2
 {
     class Debugging
     {
         public static bool ISDebugging = false;
+
 
         public static void PrintLogicObject(List<LogicObjects.LogicEntry> Logic, int start = -1, int end = -1)
         {
@@ -89,7 +89,10 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
+            ItemDisplay id = new ItemDisplay();
+            id.Show();
 
         }
+
     }
 }
