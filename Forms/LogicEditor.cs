@@ -737,5 +737,11 @@ namespace MMR_Tracker.Forms
             currentEntry.DictionaryName = name;
             WriteCurentItem(currentEntry.ID);
         }
+
+        private void LogicEditor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.PageUp && nudIndex.Value + 1 < EditorInstance.Logic.Count()) { nudIndex.Value += 1; }
+            if (e.KeyCode == Keys.PageDown && nudIndex.Value > 0) { nudIndex.Value -= 1; }
+        }
     }
 }

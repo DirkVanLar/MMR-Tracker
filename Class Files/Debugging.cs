@@ -1,6 +1,7 @@
 ﻿using MMR_Tracker.Forms;
 using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace MMR_Tracker_V2
 {
@@ -90,6 +91,7 @@ namespace MMR_Tracker_V2
         {
             ItemDisplay id = new ItemDisplay();
             id.Show();
+
         }
 
     }

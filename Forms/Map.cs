@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -41,6 +42,7 @@ namespace MMR_Tracker
             this.ContextMenuStrip = CreateMenu(new string[] { "" }, true, true);
             this.entrances.Visible = LogicObjects.MainTrackerInstance.IsEntranceRando();
             Console.WriteLine(LogicObjects.MainTrackerInstance.IsEntranceRando());
+            OriginalSize = this.Size;
         }
 
         public class LocationArea
@@ -259,6 +261,35 @@ namespace MMR_Tracker
             if (entrances.Checked && EntrancesInItemBox) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
             else if (entrances.Checked && !EntrancesInItemBox) { MainInterfaceInstance.TXTEntSearch.Text = ""; }
             if (locations.Checked) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
+        }
+
+        public Size OriginalSize;
+
+        public void ResizeButton(Rectangle originalSize, Button btn)
+        {
+            float xRatio = (float)(this.Width) / (float)(OriginalSize.Width);
+            float yRatio = (float)(this.Height - 39) / (float)(OriginalSize.Height - 39);
+
+            int newX = (int)(originalSize.X * xRatio);
+            int newY = (int)(originalSize.Y * yRatio);
+            int newWidth = (int)(originalSize.Width * yRatio);
+            int newHeight = (int)(originalSize.Height * yRatio);
+
+            Console.WriteLine(this.Width);
+            Console.WriteLine(this.Height - 39);
+
+            btn.Location = new Point(newX, newY);
+            btn.Size = new Size(newWidth, newHeight);
+        }
+
+        private void Map_Resize(object sender, EventArgs e)
+        {
+            foreach (Button ctrl in LocationDic.Select(x => x.Btn))
+            {
+                ResizeButton(new Rectangle(ctrl.Location.X, ctrl.Location.Y, ctrl.Width, ctrl.Height), ctrl);
+            }
+            ResizeButton(new Rectangle(Clear.Location.X, Clear.Location.Y, Clear.Width, Clear.Height), Clear);
+            OriginalSize = this.Size;
         }
     }
 }
