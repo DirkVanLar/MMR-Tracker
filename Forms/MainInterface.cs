@@ -421,7 +421,7 @@ namespace MMR_Tracker_V2
         {
             Form form = new Form
             {
-                BackgroundImage = Bitmap.FromFile(@"Recources\Ocarina Songs.PNG"),
+                BackgroundImage = Bitmap.FromFile(@"Recources\Images\Ocarina Songs.PNG"),
                 Width = 500,
                 Height = 500,
                 BackgroundImageLayout = ImageLayout.Stretch
@@ -709,9 +709,9 @@ namespace MMR_Tracker_V2
             Dictionary<string, int> Groups = new Dictionary<string, int>();
             Dictionary<int, int> ListBoxAssignments = new Dictionary<int, int>();
 
-            if (File.Exists(@"Recources\Categories.txt"))
+            if (File.Exists(@"Recources\Other Files\Categories.txt"))
             {
-                Groups = File.ReadAllLines(@"Recources\Categories.txt")
+                Groups = File.ReadAllLines(@"Recources\Other Files\Categories.txt")
                     .Select(x => x.ToLower().Trim()).Distinct()
                     .Select((value, index) => new { value, index })
                     .ToDictionary(pair => pair.value, pair => pair.index);
@@ -1032,6 +1032,7 @@ namespace MMR_Tracker_V2
             seedCheckerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
             whatUnlockedThisToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
             FilterMapToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
+            itemTrackerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0) && Debugging.ISDebugging;
 
         }
 
@@ -1156,6 +1157,14 @@ namespace MMR_Tracker_V2
             if (TrackerUpdated) { TrackerUpdate(null, null); }
         }
         #endregion Other Functions
+
         #endregion Functions
+
+        private void itemTrackerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ItemDisplay id = new ItemDisplay();
+            id.MainInterfaceInstance = this;
+            id.Show();
+        }
     }
 }

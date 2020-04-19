@@ -2,15 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Shapes;
 
 namespace MMR_Tracker.Forms
 {
     public partial class ItemDisplay : Form
     {
         public static Dictionary<string, Bitmap> Images = new Dictionary<string, Bitmap>();
+        public MainInterface MainInterfaceInstance;
         public ItemDisplay()
         {
             InitializeComponent();
@@ -50,6 +54,10 @@ namespace MMR_Tracker.Forms
             Images.Add("MamaLetter", GetImage(0, 7));
             Images.Add("KafeiLetter", GetImage(1, 7));
             Images.Add("Pendant", GetImage(2, 7));
+            Images.Add("Magic", GetImage(3, 7));
+            Images.Add("HeartPiece", GetImage(4, 7));
+            Images.Add("HeartContainer", GetImage(5, 7));
+            Images.Add("DoubleDefence", InvertImage(GetImage(5, 7)));
             //Bottled Stuff
             Images.Add("Bottle", GetImage(0, 9));
             Images.Add("RedPotion", GetImage(1, 9));
@@ -118,33 +126,37 @@ namespace MMR_Tracker.Forms
             Images.Add("GreatBayFairy", GetImage(3, 12));
             Images.Add("SnowheadFairy", GetImage(4, 12));
             Images.Add("WoodfallFairy", GetImage(5, 12));
+            Images.Add("Song", GetImage(3, 24));
 
         }
         public void DisplayImages()
         {
             Controls.Clear();
 
-            int Spacing = 48;
-            Dictionary<string, string> ProgressiveItem;
+            int ItemsOnScreen = 6;
 
-            DrawItem("Ocarina", Spacing, "Ocarina of Time", 0, 0);
-            ProgressiveItem = new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } };
-            DrawProgressiveItem("Bow", Spacing, ProgressiveItem, 0, 1, Brushes.LimeGreen);
-            DrawItem("FireArrow", Spacing, "Fire Arrow", 0, 2);
-            DrawItem("IceArrow", Spacing, "Ice Arrow", 0, 3);
-            DrawItem("LightArrow", Spacing, "Light Arrow", 0, 4);
-            ProgressiveItem = new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } };
-            DrawProgressiveItem("Bombs", Spacing, ProgressiveItem, 0, 5, Brushes.LimeGreen);
+            int Spacing = (this.Width - 16) / ItemsOnScreen;
 
-
-
-            //SwampStrayFairy
-            DrawCountableItem("WoodfallFairy", Spacing, "Woodfall Stray Fairy", 12, 0, Brushes.LimeGreen);
-            DrawCountableItem("SwampSkullToken", Spacing, "Swamp Skulltula Spirit", 12, 1, Brushes.Black);
-
+            DrawItem("Ocarina", "Ocarina of Time", 0, 0, Spacing);
+            DrawProgressiveItem("Bow", new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } }, 0, 1, Spacing);
+            DrawItem("FireArrow", "Fire Arrow", 0, 2, Spacing);
+            DrawItem("IceArrow", "Ice Arrow", 0, 3, Spacing);
+            DrawItem("LightArrow", "Light Arrow", 0, 4, Spacing);
+            DrawProgressiveItem("Bombs", new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } }, 1, 0, Spacing);
+            DrawCountableItem("Bombchus", new List<string> { "10 Bombchu", "5 Bombchu", "Bombchu" }, 1, 1, Spacing);
+            DrawCountableItem("DekuSticks", new List<string> { "Deku Stick" }, 1, 2, Spacing);
+            DrawCountableItem("DekuNuts", new List<string> { "10 Deku Nuts", "Deku Nuts" }, 1, 3, Spacing);
+            DrawCountableItem("MagicBeans", new List<string> { "Magic Bean", "Any Magic Bean" }, 1, 4, Spacing);
+            DrawCountableItem("PowderKeg", new List<string> { "Powder Keg" }, 2, 0, Spacing);
+            DrawItem("PictoBox", "Pictobox", 2, 1, Spacing);
+            DrawItem("LensOfTruth", "Lens of Truth", 2, 2, Spacing);
+            DrawItem("HookShot", "Hookshot", 2, 3, Spacing);
+            DrawItem("GreatFairySword", "Great Fairy's Sword", 2, 4, Spacing);
+            DrawCountableItem("Bottle", new List<string> { "Bottle with Red Potion", "Bottle with Milk", "Bottle with Gold Dust", "Empty Bottle" , "Bottle with Chateau Romani" }, 0, 5, Spacing, true);
+            DrawProgressiveItem("Song", new Dictionary<string, string> { { "Song of Soaring", "Soaring" } }, 3, 3, Spacing);
         }
 
-        public void DrawItem(string Image, int Spacing, string Logicname, int row, int colomn)
+        public void DrawItem(string Image, string Logicname, int row, int colomn, int Spacing)
         {
             var CurentImage = Images[Image];
             LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == Logicname);
@@ -160,17 +172,37 @@ namespace MMR_Tracker.Forms
                 BackColor = Color.Transparent
             };
             Controls.Add(PB);
+            PB.Click += (s, ee) => filterRegularItem(Entry);
+
+            if (Entry == null || Entry.GetItemLocation(LogicObjects.MainTrackerInstance) == null || Entry.Aquired) { return; }
+
+            Label lb = new Label();
+            lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
+            lb.BackColor = Color.Black;
+            lb.ForeColor = Color.White;
+            lb.Text = "X";
+            lb.AutoSize = true;
+            lb.Font = new Font("Arial", Spacing / 6);
+            Controls.Add(lb);
+            lb.Click += (s, ee) => filterRegularItem(Entry);
+            lb.BringToFront();
         }
-        public void DrawProgressiveItem(string Image, int Spacing, Dictionary<string,string> Logicnames, int row, int colomn, Brush TextColor)
+        public void DrawProgressiveItem(string Image, Dictionary<string, string> Logicnames, int row, int colomn, int Spacing)
         {
             var CurentImage = Images[Image];
             string CountNumber = "";
-            foreach(KeyValuePair<string,string> i in Logicnames)
+            List<LogicObjects.LogicEntry> AllEntries = new List<LogicObjects.LogicEntry>();
+            bool Itemmarked = false;
+            foreach (KeyValuePair<string, string> i in Logicnames)
             {
                 LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == i.Key);
                 if (Entry != null && (Entry.Aquired || Entry.StartingItem() || (Entry.Unrandomized() && Entry.Available))) { CountNumber = i.Value; }
+                if (Entry != null) { AllEntries.Add(Entry); }
+                if (Entry != null && Entry.GetItemLocation(LogicObjects.MainTrackerInstance) != null & !Entry.Aquired) { Itemmarked = true; }
             }
+            Console.WriteLine(Itemmarked);
             if (CountNumber == "") { CurentImage = new Bitmap(GreyImage(CurentImage)); }
+            if (CountNumber == "" && Itemmarked) { CountNumber = "X"; }
             var PB = new PictureBox
             {
                 BorderStyle = BorderStyle.Fixed3D,
@@ -182,19 +214,41 @@ namespace MMR_Tracker.Forms
                 BackColor = Color.Transparent
             };
             Controls.Add(PB);
-            var newFont = new Font("Arial", 12, FontStyle.Bold);
-            PB.Paint += new PaintEventHandler((sender, e) =>
-            {
-                e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-                e.Graphics.DrawString(CountNumber, newFont, TextColor, 0, 0);
-            });
+            PB.Click += (s, ee) => FilterProgressiveItem(AllEntries);
+
+            Label lb = new Label();
+            lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
+            lb.BackColor = Color.Black;
+            lb.ForeColor = Color.White;
+            lb.Text = CountNumber;
+            lb.AutoSize = true;
+            lb.Font = new Font("Arial", Spacing / 6);
+            Controls.Add(lb);
+            lb.Click += (s, ee) => FilterProgressiveItem(AllEntries);
+            lb.BringToFront();
         }
-        public void DrawCountableItem(string Image, int Spacing, string ItemName, int row, int colomn, Brush TextColor)
+        public void DrawCountableItem(string Image, List<string> ItemNames, int row, int colomn, int Spacing, bool ShowCount = false)
         {
             var CurentImage = Images[Image];
-            int CountNumber = LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName == ItemName && (x.Aquired || x.StartingItem() || (x.Unrandomized() && x.Available))).Count();
-            if (CountNumber < 1) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
-            var StringCountNumber = (CountNumber < 1) ? "" : CountNumber.ToString();
+            var Instance = LogicObjects.MainTrackerInstance;
+            var log = Instance.Logic;
+            int Obtained = log.Where(x => ItemNames.Contains(x.ItemName) && (x.Aquired || x.StartingItem() || (x.Unrandomized() && x.Available))).Count();
+            int Seen = log.Where(x => x.HasRealRandomItem() && ItemNames.Contains(x.RandomizedEntry(Instance).ItemName) && !x.Checked).Count();
+            int TotalNumber = Seen + Obtained;
+            string Display = "";
+
+            Console.WriteLine(Obtained);
+
+            if (Obtained < 1) { CurentImage = GreyImage(CurentImage); }
+            if (ShowCount && TotalNumber > 0) 
+            {
+                Display = (TotalNumber > Obtained) ? $"{Obtained.ToString()}/{TotalNumber.ToString()}" : TotalNumber.ToString();
+            }
+            else if(Seen > 0 && Obtained < 1)
+            {
+                Display = "X";
+            }
+
             var PB = new PictureBox
             {
                 BorderStyle = BorderStyle.Fixed3D,
@@ -206,17 +260,94 @@ namespace MMR_Tracker.Forms
                 BackColor = Color.Transparent
             };
             Controls.Add(PB);
-            var newFont = new Font("Arial", 12, FontStyle.Bold);
-            PB.Paint += new PaintEventHandler((sender, e) =>
+            PB.Click += (s, ee) => FilterMultipleItems(ItemNames);
+
+            Label lb = new Label();
+            lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
+            lb.BackColor = Color.Black;
+            lb.ForeColor = Color.White;
+            lb.Text = Display;
+            lb.AutoSize = true;
+            lb.Font = new Font("Arial", Spacing / 6);
+            Controls.Add(lb);
+            lb.Click += (s, ee) => FilterMultipleItems(ItemNames);
+            lb.BringToFront();
+        }
+
+        public void filterRegularItem(LogicObjects.LogicEntry e)
+        {
+            if (e == null) { return; }
+            var itemLocation = e.GetItemLocation(LogicObjects.MainTrackerInstance);
+            if (itemLocation == null) { return; }
+            if (itemLocation.Checked && e.Aquired)
             {
-                e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
-                e.Graphics.DrawString(StringCountNumber, newFont, TextColor, 0, 0);
-            });
+                if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTCheckedSearch.Text = $"&{e.ItemName}"; }
+                else { MainInterfaceInstance.TXTCheckedSearch.Text += (MainInterfaceInstance.TXTCheckedSearch.Text == "" ? "" : "|") + $"&{e.ItemName}"; }
+            }
+            else
+            {
+                if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTLocSearch.Text = $"&{e.ItemName}"; }
+                else { MainInterfaceInstance.TXTLocSearch.Text += (MainInterfaceInstance.TXTLocSearch.Text == "" ? "" : "|") + $"&{e.ItemName}"; }
+
+            }
+        }
+        public void FilterProgressiveItem(List<LogicObjects.LogicEntry> f)
+        {
+            if (f == null) { return; }
+            string ItemListFilter = "";
+            string CheckedListFilter = "";
+            if (f.Count == 0) { return; }
+            foreach (var i in f)
+            {
+                var itemLocation = i.GetItemLocation(LogicObjects.MainTrackerInstance);
+                if (itemLocation != null)
+                {
+                    if (itemLocation.Checked && i.Aquired) { CheckedListFilter += (CheckedListFilter == "" ? "" : "|") + $"&{i.ItemName}"; }
+                    else { ItemListFilter += (ItemListFilter == "" ? "" : "|") + $"&{i.ItemName}"; }
+                }
+            }
+            if (ItemListFilter != "")
+            {
+                if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTLocSearch.Text = ItemListFilter; }
+                else { MainInterfaceInstance.TXTLocSearch.Text += (MainInterfaceInstance.TXTLocSearch.Text == "" ? "" : "|") + ItemListFilter; }
+            }
+            if (CheckedListFilter != "")
+            {
+                if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTCheckedSearch.Text = CheckedListFilter; }
+                else { MainInterfaceInstance.TXTCheckedSearch.Text += (MainInterfaceInstance.TXTCheckedSearch.Text == "" ? "" : "|") + CheckedListFilter; }
+            }
+        }
+        public void FilterMultipleItems(List<string> h)
+        {
+            if (h.Count() == 0) { return; }
+            var log = LogicObjects.MainTrackerInstance;
+            var Checked = log.Logic.Where(x => x.HasRealRandomItem() && h.Contains(x.RandomizedEntry(log).ItemName) && x.Checked);
+            var Marked = log.Logic.Where(x => x.HasRealRandomItem() && h.Contains(x.RandomizedEntry(log).ItemName) && !x.Checked);
+            var itemFilter = "";
+            var CheckedFilter = "";
+            if (Marked.Count() > 0)
+            {
+                foreach(var i in Marked)
+                {
+                    itemFilter += (itemFilter == "" ? "" : "|") + $"&{i.RandomizedEntry(log).ItemName}";
+                }
+                if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTLocSearch.Text = itemFilter; }
+                else { MainInterfaceInstance.TXTLocSearch.Text += (MainInterfaceInstance.TXTLocSearch.Text == "" ? "" : "|") + itemFilter; }
+            }
+            if (Checked.Count() > 0)
+            {
+                foreach (var i in Checked)
+                {
+                    CheckedFilter += (CheckedFilter == "" ? "" : "|") + $"&{i.RandomizedEntry(log).ItemName}";
+                }
+                if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTCheckedSearch.Text = CheckedFilter; }
+                else { MainInterfaceInstance.TXTCheckedSearch.Text += (MainInterfaceInstance.TXTCheckedSearch.Text == "" ? "" : "|") + CheckedFilter; }
+            }
         }
 
         public static Bitmap GetImage(int Column, int Row)
         {
-            Bitmap source = new Bitmap(@"Recources\Nintendo 64 - The Legend of Zelda Majoras Mask - Item Icons.png");
+            Bitmap source = new Bitmap(@"Recources\Images\Nintendo 64 - The Legend of Zelda Majoras Mask - Item Icons.png");
             return source.Clone(new System.Drawing.Rectangle(Column * 32, Row * 32, 32, 32), source.PixelFormat);
         }
         public Point PostionItem(int Row, int Columb, int Spacing)
@@ -238,9 +369,29 @@ namespace MMR_Tracker.Forms
                 }
             return grayScale;
         }
+
+        public Bitmap InvertImage(Bitmap pic)
+        {
+            for (int y = 0; (y <= (pic.Height - 1)); y++)
+            {
+                for (int x = 0; (x <= (pic.Width - 1)); x++)
+                {
+                    Color inv = pic.GetPixel(x, y);
+                    if (inv.R == 0 && inv.G == 0 && inv.B == 0) { continue; }
+                    inv = Color.FromArgb(255, (255 - inv.R), (255 - inv.G), (255 - inv.B));
+                    pic.SetPixel(x, y, inv);
+                }
+            }
+            return pic;
+        }
         private void ItemDisplay_Load(object sender, EventArgs e)
         {
             SetItemImages();
+            DisplayImages();
+        }
+
+        private void ItemDisplay_Resize(object sender, EventArgs e)
+        {
             DisplayImages();
         }
     }

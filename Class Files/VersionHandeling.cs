@@ -26,7 +26,6 @@ namespace MMR_Tracker_V2
             var EntAreaDict = new Dictionary<int, int>();
 
             if (!Instance.IsMM()) { return EntAreaDict; }
-            Console.WriteLine("Game Was MM");
 
             var WoodfallClear = Instance.Logic.Find(x => x.DictionaryName == "Woodfall clear");
             var WoodfallAccess = Instance.Logic.Find(x => x.DictionaryName == "Woodfall Temple access" && !x.IsFake);
@@ -54,7 +53,7 @@ namespace MMR_Tracker_V2
         {
             var Currentversion = Instance.Version;
 
-            string[] files = Directory.GetFiles(@"Recources");
+            string[] files = Directory.GetFiles(@"Recources\Dictionaries");
             Dictionary<int, string> dictionaries = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
             Dictionary<int, string> Pairs = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
             int smallestDicEntry = 0;
@@ -66,7 +65,7 @@ namespace MMR_Tracker_V2
                 var dic = Instance.Game + "DICTIONARY";
                 if (i.Contains(dic))
                 {
-                    var entry = i.Replace("Recources\\" + dic + "V", "");
+                    var entry = i.Replace("Recources\\Dictionaries\\" + dic + "V", "");
                     entry = entry.Replace(".csv", "");
                     int version = 0;
                     try { version = Int32.Parse(entry); }
@@ -76,9 +75,14 @@ namespace MMR_Tracker_V2
                     if (smallestDicEntry == 0) { smallestDicEntry = largestDicEntry; }
                     if (version < smallestDicEntry) { smallestDicEntry = version; }
                 }
-                if (i.Contains("ENTRANCEPAIRS"))
+            }
+            files = Directory.GetFiles(@"Recources\Other Files");
+            foreach (var i in files)
+            {
+                var dic = Instance.Game + "ENTRANCEPAIRS";
+                if (i.Contains(dic))
                 {
-                    var entry = i.Replace("Recources\\ENTRANCEPAIRSV", "");
+                    var entry = i.Replace("Recources\\Other Files\\" + dic + "V", "");
                     entry = entry.Replace(".csv", "");
                     int version = 0;
                     try { version = Int32.Parse(entry); }
@@ -88,26 +92,39 @@ namespace MMR_Tracker_V2
                     if (smallestPairEntry == 0) { smallestPairEntry = largestPairEntry; }
                     if (version < smallestPairEntry) { smallestPairEntry = version; }
                 }
-
             }
 
             string[] currentdictionary = new string[2];
             var index = 0;
 
-            if (dictionaries.ContainsKey(Currentversion)) { index = Currentversion; }
-            else //If we are using a logic version that doesn't have a dictionary, use the dictioary with the closest version
-            { index = dictionaries.Keys.Aggregate((x, y) => Math.Abs(x - Currentversion) < Math.Abs(y - Currentversion) ? x : y); }
+            if (dictionaries.Count() == 0)
+            {
+                currentdictionary[0] = "";
+            }
+            else
+            {
+                if (dictionaries.ContainsKey(Currentversion)) { index = Currentversion; }
+                else //If we are using a logic version that doesn't have a dictionary, use the dictioary with the closest version
+                { index = dictionaries.Keys.Aggregate((x, y) => Math.Abs(x - Currentversion) < Math.Abs(y - Currentversion) ? x : y); }
 
-            currentdictionary[0] = dictionaries[index];
+                currentdictionary[0] = dictionaries[index];
+            }
 
             Console.WriteLine(currentdictionary[0]);
 
-            if (Pairs.ContainsKey(Currentversion))
-            { index = Currentversion; }
-            else //If we are using a logic version that doesn't have a Pair List, use the pair List with the closest version
-            { index = Pairs.Keys.Aggregate((x, y) => Math.Abs(x - Currentversion) < Math.Abs(y - Currentversion) ? x : y); }
+            if (Pairs.Count() == 0)
+            {
+                currentdictionary[1] = "";
+            }
+            else
+            {
+                if (Pairs.ContainsKey(Currentversion))
+                { index = Currentversion; }
+                else //If we are using a logic version that doesn't have a Pair List, use the pair List with the closest version
+                { index = Pairs.Keys.Aggregate((x, y) => Math.Abs(x - Currentversion) < Math.Abs(y - Currentversion) ? x : y); }
 
-            currentdictionary[1] = Pairs[index];
+                currentdictionary[1] = Pairs[index];
+            }
 
             Console.WriteLine(currentdictionary[1]);
 

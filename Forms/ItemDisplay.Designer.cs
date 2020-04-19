@@ -41,6 +41,7 @@
             this.Name = "ItemDisplay";
             this.Text = "ItemDisplay";
             this.Load += new System.EventHandler(this.ItemDisplay_Load);
+            this.Resize += new System.EventHandler(this.ItemDisplay_Resize);
             this.ResumeLayout(false);
 
         }

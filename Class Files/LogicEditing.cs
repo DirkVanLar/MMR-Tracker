@@ -33,7 +33,7 @@ namespace MMR_Tracker_V2
             int SubCounter = 0;
             int idCounter = 0;
             LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
-            if (VersionData.Count() > 0)
+            if (VersionData.Count() > 0 && VersionData[0] != "")
             {
                 instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
             }
@@ -98,7 +98,7 @@ namespace MMR_Tracker_V2
             instance.EntranceRando = instance.IsEntranceRando();
             instance.EntranceAreaDic = VersionHandeling.AreaClearDictionary(instance);
             CreateDicNameToID(instance.DicNameToID, instance.Logic);
-            if (VersionData.Count() > 0) { CreatedEntrancepairDcitionary(instance.EntrancePairs, instance.DicNameToID, VersionData); }
+            if (VersionData.Count() > 1 && VersionData[1] != "") { CreatedEntrancepairDcitionary(instance.EntrancePairs, instance.DicNameToID, VersionData); }
 
             return true;
         }
@@ -284,6 +284,7 @@ namespace MMR_Tracker_V2
             }
 
             var OldLogic = Utility.CloneLogicList(Instance.Logic);
+            var Backup = Utility.CloneTrackerInstance(Instance);
             Instance.RawLogicFile = LogicFile;
             LogicEditing.PopulateTrackerInstance(Instance);
 

@@ -163,9 +163,9 @@ namespace MMR_Tracker
             List<string> ValidLocations = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake).Select(x => x.LocationArea).Distinct().Select(x => "#" + x).ToList();
             List<string> Assignedlocations = LocationDic.SelectMany(x => x.SubAreas).ToList();
 
-            if (File.Exists(@"Recources\Categories.txt"))
+            if (File.Exists(@"Recources\Other Files\Categories.txt"))
             {
-                Groups = File.ReadAllLines(@"Recources\Categories.txt")
+                Groups = File.ReadAllLines(@"Recources\Other Files\Categories.txt")
                     .Select(x => x.Trim())
                     .Select(x => "#" + x).ToList();
             }

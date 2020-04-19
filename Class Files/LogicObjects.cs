@@ -200,5 +200,9 @@ namespace MMR_Tracker_V2
         {
             return (entry.Randomized() || entry.Unrandomized(1));
         }
+        public static LogicObjects.LogicEntry GetItemLocation(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
+        {
+            return Instance.Logic.Find(x => x.RandomizedItem == entry.ID);
+        }
     }
 }

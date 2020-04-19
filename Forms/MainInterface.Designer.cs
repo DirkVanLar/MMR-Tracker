@@ -97,6 +97,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.itemTrackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -498,7 +499,8 @@
             this.logicEditorToolStripMenuItem,
             this.updateLogicToolStripMenuItem,
             this.popoutPathfinderToolStripMenuItem,
-            this.FilterMapToolStripMenuItem});
+            this.FilterMapToolStripMenuItem,
+            this.itemTrackerToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -692,6 +694,13 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
+            // itemTrackerToolStripMenuItem
+            // 
+            this.itemTrackerToolStripMenuItem.Name = "itemTrackerToolStripMenuItem";
+            this.itemTrackerToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.itemTrackerToolStripMenuItem.Text = "Item Tracker";
+            this.itemTrackerToolStripMenuItem.Click += new System.EventHandler(this.itemTrackerToolStripMenuItem_Click);
+            // 
             // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -802,6 +811,7 @@
         public System.Windows.Forms.TextBox TXTLocSearch;
         public System.Windows.Forms.TextBox TXTEntSearch;
         public System.Windows.Forms.TextBox TXTCheckedSearch;
+        private System.Windows.Forms.ToolStripMenuItem itemTrackerToolStripMenuItem;
     }
 }
 
