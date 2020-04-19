@@ -78,6 +78,7 @@
             this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.popoutPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FilterMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemTrackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.referencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ikanaWellMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,14 +91,11 @@
             this.createDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLogicObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateDisplayNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oOTSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createOOTFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumbStuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verifyCustomRandoCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.itemTrackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -554,6 +552,13 @@
             this.FilterMapToolStripMenuItem.Text = "Filter Map";
             this.FilterMapToolStripMenuItem.Click += new System.EventHandler(this.FilterMapToolStripMenuItem_Click);
             // 
+            // itemTrackerToolStripMenuItem
+            // 
+            this.itemTrackerToolStripMenuItem.Name = "itemTrackerToolStripMenuItem";
+            this.itemTrackerToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.itemTrackerToolStripMenuItem.Text = "Item Tracker";
+            this.itemTrackerToolStripMenuItem.Click += new System.EventHandler(this.itemTrackerToolStripMenuItem_Click);
+            // 
             // infoToolStripMenuItem
             // 
             this.infoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -623,7 +628,6 @@
             this.createDictionaryToolStripMenuItem,
             this.printLogicObjectToolStripMenuItem,
             this.updateDisplayNamesToolStripMenuItem,
-            this.oOTSupportToolStripMenuItem,
             this.dumbStuffToolStripMenuItem,
             this.verifyCustomRandoCodeToolStripMenuItem});
             this.devToolStripMenuItem.Name = "devToolStripMenuItem";
@@ -650,21 +654,6 @@
             this.updateDisplayNamesToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.updateDisplayNamesToolStripMenuItem.Text = "Update Display Names";
             this.updateDisplayNamesToolStripMenuItem.Click += new System.EventHandler(this.UpdateDisplayNamesToolStripMenuItem_Click);
-            // 
-            // oOTSupportToolStripMenuItem
-            // 
-            this.oOTSupportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createOOTFilesToolStripMenuItem});
-            this.oOTSupportToolStripMenuItem.Name = "oOTSupportToolStripMenuItem";
-            this.oOTSupportToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.oOTSupportToolStripMenuItem.Text = "OOT Tools";
-            // 
-            // createOOTFilesToolStripMenuItem
-            // 
-            this.createOOTFilesToolStripMenuItem.Name = "createOOTFilesToolStripMenuItem";
-            this.createOOTFilesToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.createOOTFilesToolStripMenuItem.Text = "Create OOT Files";
-            this.createOOTFilesToolStripMenuItem.Click += new System.EventHandler(this.CreateOOTFilesToolStripMenuItem_Click);
             // 
             // dumbStuffToolStripMenuItem
             // 
@@ -693,13 +682,6 @@
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
-            // 
-            // itemTrackerToolStripMenuItem
-            // 
-            this.itemTrackerToolStripMenuItem.Name = "itemTrackerToolStripMenuItem";
-            this.itemTrackerToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.itemTrackerToolStripMenuItem.Text = "Item Tracker";
-            this.itemTrackerToolStripMenuItem.Click += new System.EventHandler(this.itemTrackerToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -788,8 +770,6 @@
         private System.Windows.Forms.ToolStripMenuItem createDictionaryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printLogicObjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateDisplayNamesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem oOTSupportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createOOTFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumbStuffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seedCheckerToolStripMenuItem;

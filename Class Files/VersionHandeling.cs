@@ -133,7 +133,6 @@ namespace MMR_Tracker_V2
 
         public static LogicObjects.VersionInfo GetVersionFromLogicFile(string[] LogicFile)
         {
-            //[0] Version, [1] Game (0 = MM, 1 = OOT)
             LogicObjects.VersionInfo version = new LogicObjects.VersionInfo { Version = 0, Gamecode = "MMR" };
             if (LogicFile[0].Contains("-version"))
             {
