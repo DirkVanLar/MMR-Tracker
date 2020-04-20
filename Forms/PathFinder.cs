@@ -323,13 +323,14 @@ namespace MMR_Tracker.Forms
                 /*Check that the exit we are taking has not been accessable from a previous exit we have actually been to or seen earlier in the path.
                 Then Check to see if taking this exit contains exits we haven't seen before.*/
                 #endregion
-                if (!ExitsVisited.Contains(point.EntranceToTake) && NewExitsInResultingArea(map, point.ResultingExit, ExitsKnownCopy))
+                if (!ExitsVisited.Contains(point.EntranceToTake) && ScanExitResults(map, point.ResultingExit, ExitsKnownCopy))
                 {
                     validExits.Add(point);
                     ExitsKnownCopy.Add(point.EntranceToTake);
                     ExitsVisitedCopy.Add(point.EntranceToTake);
                 }
             }
+
             //Pick the first entrance in the valid exits list, rerun the function with the resulting exit as the starting location
             foreach (var exit in validExits)
             {
@@ -339,7 +340,7 @@ namespace MMR_Tracker.Forms
             }
         }
 
-        public static bool NewExitsInResultingArea(List<LogicObjects.MapPoint> map, int startinglocation, List<int> ExitsSeen)
+        public static bool ScanExitResults(List<LogicObjects.MapPoint> map, int startinglocation, List<int> ExitsSeen)
         {
             // This checks all of the exits in the area we would go to if we took this exit. If we have seen all of these exits before there is no need to take this exit.
             var good = false;

@@ -239,13 +239,10 @@ namespace MMR_Tracker_V2
                     Instance.Logic[data.LocationID].SpoilerRandom = data.ItemID;
             }
 
-            if (!Instance.EntranceRando)//If dungeon entrances aren't randomized they don't show up in the spoiler log
+            var entranceIDs = Instance.EntranceAreaDic;
+            foreach (var i in Instance.Logic.Where(x => x.ItemSubType == "Dungeon Entrance" && entranceIDs.ContainsValue(x.ID) && x.SpoilerRandom < 0))
             {
-                var entranceIDs = Instance.EntranceAreaDic;
-                foreach (var i in Instance.Logic)
-                {
-                    if (i.ItemSubType == "Dungeon Entrance" && entranceIDs.ContainsValue(i.ID) && i.SpoilerRandom < 0) { i.SpoilerRandom = i.ID; }
-                }
+                i.SpoilerRandom = i.ID;
             }
         }
 

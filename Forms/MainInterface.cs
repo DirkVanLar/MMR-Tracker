@@ -182,18 +182,17 @@ namespace MMR_Tracker_V2
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(instance, file);
                 if (!Utility.CheckforSpoilerLog(instance.Logic)) { MessageBox.Show("No spoiler data found!"); return; }
-                if (!Utility.CheckforSpoilerLog(instance.Logic, true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
+                else if (!Utility.CheckforSpoilerLog(instance.Logic, true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
+
                 bool EntrancesRandoBefore = Utility.CheckForRandomEntrances(instance);
-                foreach (var i in LogicObjects.MainTrackerInstance.Logic)
-                {
-                    if (i.SpoilerRandom != i.ID && i.SpoilerRandom > -1 && (i.Options == 1 || i.Options == 2)) { i.Options = 0; }
-                }
+                Utility.FixSpoilerInconsistency(LogicObjects.MainTrackerInstance);
                 bool EntrancesRandoAfter = Utility.CheckForRandomEntrances(instance);
                 if (!instance.Options.OverRideAutoEntranceRandoEnable || (EntrancesRandoBefore != EntrancesRandoAfter))
                 {
-                    instance.Options.EntranceRadnoEnabled = Utility.CheckForRandomEntrances(instance);
+                    instance.Options.EntranceRadnoEnabled = EntrancesRandoAfter;
                     instance.Options.OverRideAutoEntranceRandoEnable = (instance.Options.EntranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
                 }
+
                 LogicEditing.CalculateItems(instance);
             }
             FormatMenuItems();

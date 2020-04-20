@@ -251,7 +251,7 @@ namespace MMR_Tracker.Class_Files
                         MessageBox.Show("Save File Invalid!");
                         LogicObjects.MainTrackerInstance = backup;
                     }
-                    return;
+                    Console.WriteLine("Here");
                 }
                 catch
                 {
@@ -259,7 +259,12 @@ namespace MMR_Tracker.Class_Files
                     LogicObjects.MainTrackerInstance = backup;
                 }
             }
+            //Extra saftey checks for older save files
             LogicObjects.MainTrackerInstance.EntranceRando = LogicObjects.MainTrackerInstance.IsEntranceRando();
+            if (LogicObjects.MainTrackerInstance.LogicVersion == 0)
+            {
+                LogicObjects.MainTrackerInstance.LogicVersion = VersionHandeling.GetVersionFromLogicFile(LogicObjects.MainTrackerInstance.RawLogicFile).Version;
+            }
             return;
         }
         public static void SaveState(LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicEntry> Logic = null )
