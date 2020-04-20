@@ -364,6 +364,14 @@ namespace MMR_Tracker_V2
             FilterMap.MainInterfaceInstance = this;
             FilterMap.Show();
         }
+
+        private void itemTrackerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ItemDisplay id = new ItemDisplay();
+            id.MainInterfaceInstance = this;
+            id.Show();
+
+        }
         #endregion Tools
         //Menu strip => Info---------------------------------------------------------------------------
         #region Info
@@ -1032,7 +1040,7 @@ namespace MMR_Tracker_V2
             seedCheckerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             whatUnlockedThisToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             FilterMapToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            itemTrackerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0) && Debugging.ISDebugging;
+            itemTrackerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
 
         }
 
@@ -1159,12 +1167,5 @@ namespace MMR_Tracker_V2
         #endregion Other Functions
 
         #endregion Functions
-
-        private void itemTrackerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ItemDisplay id = new ItemDisplay();
-            id.MainInterfaceInstance = this;
-            id.Show();
-        }
     }
 }

@@ -195,6 +195,9 @@
     <Content Include="Misc\unnamed.jpg" />
     <Content Include="Misc\10_106247_moon_from_majoras_mask_render_majoras_mask_moon_WIL_icon.ico" />
     <Content Include="Misc\Notes.txt" />
+    <Content Include="Recources\Images\Moon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Recources\Images\Nintendo 64 - The Legend of Zelda Majoras Mask - Item Icons.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

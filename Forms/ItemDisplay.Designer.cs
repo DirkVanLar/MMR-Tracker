@@ -38,10 +38,12 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(240, 473);
+            this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ItemDisplay";
             this.Text = "ItemDisplay";
             this.Load += new System.EventHandler(this.ItemDisplay_Load);
-            this.Resize += new System.EventHandler(this.ItemDisplay_Resize);
+            this.ResizeEnd += new System.EventHandler(this.ItemDisplay_Resize);
             this.ResumeLayout(false);
 
         }
