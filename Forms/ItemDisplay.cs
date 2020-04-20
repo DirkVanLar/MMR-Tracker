@@ -15,6 +15,10 @@ namespace MMR_Tracker.Forms
     {
         public static Dictionary<string, Bitmap> Images = new Dictionary<string, Bitmap>();
         public MainInterface MainInterfaceInstance;
+
+        public int ItemsOnScreen = 6;
+
+        public int[] Position = new int[] { 0, 0 };
         public ItemDisplay()
         {
             InitializeComponent();
@@ -133,31 +137,49 @@ namespace MMR_Tracker.Forms
         {
             Controls.Clear();
 
-            int ItemsOnScreen = 6;
-
             int Spacing = (this.Width - 16) / ItemsOnScreen;
+            Position[0] = 0;
+            Position[1] = 0;
 
-            DrawItem("Ocarina", "Ocarina of Time", 0, 0, Spacing);
-            DrawProgressiveItem("Bow", new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } }, 0, 1, Spacing);
-            DrawItem("FireArrow", "Fire Arrow", 0, 2, Spacing);
-            DrawItem("IceArrow", "Ice Arrow", 0, 3, Spacing);
-            DrawItem("LightArrow", "Light Arrow", 0, 4, Spacing);
-            DrawProgressiveItem("Bombs", new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } }, 1, 0, Spacing);
-            DrawCountableItem("Bombchus", new List<string> { "10 Bombchu", "5 Bombchu", "Bombchu" }, 1, 1, Spacing);
-            DrawCountableItem("DekuSticks", new List<string> { "Deku Stick" }, 1, 2, Spacing);
-            DrawCountableItem("DekuNuts", new List<string> { "10 Deku Nuts", "Deku Nuts" }, 1, 3, Spacing);
-            DrawCountableItem("MagicBeans", new List<string> { "Magic Bean", "Any Magic Bean" }, 1, 4, Spacing);
-            DrawCountableItem("PowderKeg", new List<string> { "Powder Keg" }, 2, 0, Spacing);
-            DrawItem("PictoBox", "Pictobox", 2, 1, Spacing);
-            DrawItem("LensOfTruth", "Lens of Truth", 2, 2, Spacing);
-            DrawItem("HookShot", "Hookshot", 2, 3, Spacing);
-            DrawItem("GreatFairySword", "Great Fairy's Sword", 2, 4, Spacing);
-            DrawCountableItem("Bottle", new List<string> { "Bottle with Red Potion", "Bottle with Milk", "Bottle with Gold Dust", "Empty Bottle" , "Bottle with Chateau Romani" }, 0, 5, Spacing, true);
-            DrawProgressiveItem("Song", new Dictionary<string, string> { { "Song of Soaring", "Soaring" } }, 3, 3, Spacing);
+            DrawItem("Ocarina", "Ocarina of Time", Spacing);
+            DrawProgressiveItem("Bow", new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } }, Spacing);
+            DrawItem("FireArrow", "Fire Arrow", Spacing);
+            DrawItem("IceArrow", "Ice Arrow", Spacing);
+            DrawItem("LightArrow", "Light Arrow", Spacing);
+            DrawProgressiveItem("Bombs", new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } }, Spacing);
+            DrawCountableItem("Bombchus", new List<string> { "10 Bombchu", "5 Bombchu", "Bombchu" }, Spacing);
+            DrawCountableItem("DekuSticks", new List<string> { "Deku Stick" }, Spacing);
+            DrawCountableItem("DekuNuts", new List<string> { "10 Deku Nuts", "Deku Nuts" }, Spacing);
+            DrawCountableItem("MagicBeans", new List<string> { "Magic Bean", "Any Magic Bean" }, Spacing);
+            DrawCountableItem("PowderKeg", new List<string> { "Powder Keg" }, Spacing);
+            DrawItem("PictoBox", "Pictobox", Spacing);
+            DrawItem("LensOfTruth", "Lens of Truth", Spacing);
+            DrawItem("HookShot", "Hookshot", Spacing);
+            DrawItem("GreatFairySword", "Great Fairy's Sword", Spacing);
+            DrawCountableItem("Bottle", new List<string> { "Bottle with Red Potion", "Bottle with Milk", "Bottle with Gold Dust", "Empty Bottle" , "Bottle with Chateau Romani" }, Spacing, true);
+            DrawProgressiveItem("Song", new Dictionary<string, string> { { "Song of Soaring", "Soaring" } }, Spacing);
+        }
+        public void Increaseposition()
+        {
+            int row = Position[0];
+            int colomn = Position[1];
+
+            colomn++;
+            if (colomn >= ItemsOnScreen)
+            {
+                colomn = 0;
+                row++;
+            }
+            Position[0] = row;
+            Position[1] = colomn;
+
         }
 
-        public void DrawItem(string Image, string Logicname, int row, int colomn, int Spacing)
+        public void DrawItem(string Image, string Logicname, int Spacing)
         {
+            int row = Position[0];
+            int colomn = Position[1];
+            Increaseposition();
             var CurentImage = Images[Image];
             LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == Logicname);
             if (Entry != null && !Entry.Useable()) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
@@ -187,8 +209,11 @@ namespace MMR_Tracker.Forms
             lb.Click += (s, ee) => filterRegularItem(Entry);
             lb.BringToFront();
         }
-        public void DrawProgressiveItem(string Image, Dictionary<string, string> Logicnames, int row, int colomn, int Spacing)
+        public void DrawProgressiveItem(string Image, Dictionary<string, string> Logicnames, int Spacing)
         {
+            int row = Position[0];
+            int colomn = Position[1];
+            Increaseposition();
             var CurentImage = Images[Image];
             string CountNumber = "";
             List<LogicObjects.LogicEntry> AllEntries = new List<LogicObjects.LogicEntry>();
@@ -227,8 +252,11 @@ namespace MMR_Tracker.Forms
             lb.Click += (s, ee) => FilterProgressiveItem(AllEntries);
             lb.BringToFront();
         }
-        public void DrawCountableItem(string Image, List<string> ItemNames, int row, int colomn, int Spacing, bool ShowCount = false)
+        public void DrawCountableItem(string Image, List<string> ItemNames, int Spacing, bool ShowCount = false)
         {
+            int row = Position[0];
+            int colomn = Position[1];
+            Increaseposition();
             var CurentImage = Images[Image];
             var Instance = LogicObjects.MainTrackerInstance;
             var log = Instance.Logic;
