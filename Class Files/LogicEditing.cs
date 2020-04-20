@@ -27,9 +27,9 @@ namespace MMR_Tracker_V2
             instance.EntrancePairs.Clear();
             Console.WriteLine("Populating Logic File");
             LogicObjects.VersionInfo version = VersionHandeling.GetVersionFromLogicFile(instance.RawLogicFile); //Returns [0] The logic Version, [1] The game this logic file is for
-            instance.Version = version.Version;
-            instance.Game = version.Gamecode;
-            string[] VersionData = VersionHandeling.SwitchDictionary(instance); //Returns [0] Path To Dictionary, [1] path to Entrance Pairs
+            instance.LogicVersion = version.Version;
+            instance.GameCode = version.Gamecode;
+            string[] VersionData = VersionHandeling.GetDictionaryPath(instance); //Returns [0] Path To Dictionary, [1] path to Entrance Pairs
             int SubCounter = 0;
             int idCounter = 0;
             LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
@@ -49,21 +49,17 @@ namespace MMR_Tracker_V2
                         LogicEntry1.RandomizedItem = -2;
                         LogicEntry1.IsFake = true;
                         LogicEntry1.SpoilerRandom = -2;
-                        for (int i = 0; i < instance.LogicDictionary.Count; i++)
-                        {
-                            if (instance.LogicDictionary[i].DictionaryName == line.Substring(2))
-                            {
-                                LogicEntry1.IsFake = false;
-                                var dicent = instance.LogicDictionary[i];
-                                LogicEntry1.ItemName = (dicent.ItemName == "") ? null : dicent.ItemName;
-                                LogicEntry1.LocationName = (dicent.LocationName == "") ? null : dicent.LocationName;
-                                LogicEntry1.LocationArea = (dicent.LocationArea == "") ? "Misc" : dicent.LocationArea;
-                                LogicEntry1.ItemSubType = (dicent.ItemSubType == "") ? "Item" : dicent.ItemSubType;
-                                LogicEntry1.SpoilerLocation = (dicent.SpoilerLocation == "") ? LogicEntry1.LocationName : dicent.SpoilerLocation;
-                                LogicEntry1.SpoilerItem = (dicent.SpoilerItem == "") ? LogicEntry1.ItemName : dicent.SpoilerItem;
-                                break;
-                            }
-                        }
+
+                        var DicEntry = instance.LogicDictionary.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
+                        if (DicEntry == null) { break; }
+
+                        LogicEntry1.IsFake = false;
+                        LogicEntry1.ItemName = (DicEntry.ItemName == "") ? null : DicEntry.ItemName;
+                        LogicEntry1.LocationName = (DicEntry.LocationName == "") ? null : DicEntry.LocationName;
+                        LogicEntry1.LocationArea = (DicEntry.LocationArea == "") ? "Misc" : DicEntry.LocationArea;
+                        LogicEntry1.ItemSubType = (DicEntry.ItemSubType == "") ? "Item" : DicEntry.ItemSubType;
+                        LogicEntry1.SpoilerLocation = (DicEntry.SpoilerLocation == "") ? LogicEntry1.LocationName : DicEntry.SpoilerLocation;
+                        LogicEntry1.SpoilerItem = (DicEntry.SpoilerItem == "") ? LogicEntry1.ItemName : DicEntry.SpoilerItem;
                         break;
                     case 1:
                         if (line == null || line == "") { LogicEntry1.Required = null; break; }
@@ -86,8 +82,8 @@ namespace MMR_Tracker_V2
                         break;
                     case 4:
                         LogicEntry1.AvailableOn = Convert.ToInt32(line);
+                        //Push Data to the instance
                         instance.Logic.Add(LogicEntry1);
-
                         LogicEntry1 = new LogicObjects.LogicEntry();
                         idCounter++;
                         break;
@@ -305,8 +301,8 @@ namespace MMR_Tracker_V2
             {
                 RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file), Instance);
             }
-            Instance.Options.entranceRadnoEnabled = Utility.CheckForRandomEntrances(Instance);
-            Instance.Options.OverRideAutoEntranceRandoEnable = (Instance.Options.entranceRadnoEnabled != Instance.EntranceRando);
+            Instance.Options.EntranceRadnoEnabled = Utility.CheckForRandomEntrances(Instance);
+            Instance.Options.OverRideAutoEntranceRandoEnable = (Instance.Options.EntranceRadnoEnabled != Instance.EntranceRando);
             CalculateItems(Instance, true);
             Tools.SaveState(Instance);
         }
@@ -335,7 +331,7 @@ namespace MMR_Tracker_V2
         public static string[] WriteLogicToArray(LogicObjects.TrackerInstance Instance)
         {
             List<string> lines = new List<string>();
-            lines.Add((Instance.IsMM()) ? "-version " + Instance.Version : "-version" + Instance.Game + " " + Instance.Version);
+            lines.Add((Instance.IsMM()) ? "-version " + Instance.LogicVersion : "-version" + Instance.GameCode + " " + Instance.LogicVersion);
             foreach (var line in Instance.Logic)
             {
                 lines.Add("- " + line.DictionaryName);

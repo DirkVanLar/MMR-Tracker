@@ -174,7 +174,7 @@ namespace MMR_Tracker.Forms
             Controls.Add(PB);
             PB.Click += (s, ee) => filterRegularItem(Entry);
 
-            if (Entry == null || Entry.GetItemLocation(LogicObjects.MainTrackerInstance.Logic) == null || Entry.Aquired) { return; }
+            if (Entry == null || Entry.GetItemsNewLocation(LogicObjects.MainTrackerInstance.Logic) == null || Entry.Aquired) { return; }
 
             Label lb = new Label();
             lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
@@ -198,7 +198,7 @@ namespace MMR_Tracker.Forms
                 LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == i.Key);
                 if (Entry != null && Entry.Useable()) { CountNumber = i.Value; }
                 if (Entry != null) { AllEntries.Add(Entry); }
-                if (Entry != null && Entry.GetItemLocation(LogicObjects.MainTrackerInstance.Logic ) != null & !Entry.Aquired) { Itemmarked = true; }
+                if (Entry != null && Entry.GetItemsNewLocation(LogicObjects.MainTrackerInstance.Logic ) != null & !Entry.Aquired) { Itemmarked = true; }
             }
             Console.WriteLine(Itemmarked);
             if (CountNumber == "") { CurentImage = new Bitmap(GreyImage(CurentImage)); }
@@ -277,7 +277,7 @@ namespace MMR_Tracker.Forms
         public void filterRegularItem(LogicObjects.LogicEntry e)
         {
             if (e == null) { return; }
-            var itemLocation = e.GetItemLocation(LogicObjects.MainTrackerInstance.Logic);
+            var itemLocation = e.GetItemsNewLocation(LogicObjects.MainTrackerInstance.Logic);
             if (itemLocation == null) { return; }
             if (itemLocation.Checked && e.Aquired)
             {
@@ -299,7 +299,7 @@ namespace MMR_Tracker.Forms
             if (f.Count == 0) { return; }
             foreach (var i in f)
             {
-                var itemLocation = i.GetItemLocation(LogicObjects.MainTrackerInstance.Logic);
+                var itemLocation = i.GetItemsNewLocation(LogicObjects.MainTrackerInstance.Logic);
                 if (itemLocation != null)
                 {
                     if (itemLocation.Checked && i.Aquired) { CheckedListFilter += (CheckedListFilter == "" ? "" : "|") + $"&{i.ItemName}"; }

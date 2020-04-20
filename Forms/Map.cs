@@ -96,7 +96,7 @@ namespace MMR_Tracker
 
         public void ProcessFilters(string[] Filters)
         {
-            bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.EntranceRando;
+            bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.EntranceRando;
             string filters = CreateFilter(0, Filters);
             string filtersOnlyEntrance = CreateFilter(1, Filters);
             string filtersOnlyItem = CreateFilter(2, Filters);
@@ -138,7 +138,7 @@ namespace MMR_Tracker
                 {
                     if (!LogicObjects.MainTrackerInstance.EntranceRando && i == 1) { continue; }
                     ToolStripItem ContextMenui = btnRClick.Items.Add(Filters[i]);
-                    bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.EntranceRando;
+                    bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.EntranceRando;
                     if (i == 2) { ContextMenui.Click += (sender, e) => { MainInterfaceInstance.TXTCheckedSearch.Text = ""; }; }
                     if (i == 1 && EntrancesInItemBox) { ContextMenui.Click += (sender, e) => { MainInterfaceInstance.TXTLocSearch.Text = ""; }; }
                     else if (i == 1 && !EntrancesInItemBox) { ContextMenui.Click += (sender, e) => { MainInterfaceInstance.TXTEntSearch.Text = ""; }; }
@@ -255,7 +255,7 @@ namespace MMR_Tracker
 
         private void Clear_Click(object sender, EventArgs e)
         {
-            bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.EntranceRando;
+            bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.EntranceRando;
             if (checkedLocations.Checked) { MainInterfaceInstance.TXTCheckedSearch.Text = ""; }
             if (entrances.Checked && EntrancesInItemBox) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
             else if (entrances.Checked && !EntrancesInItemBox) { MainInterfaceInstance.TXTEntSearch.Text = ""; }

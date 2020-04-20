@@ -15,8 +15,8 @@ namespace MMR_Tracker_V2
             public Dictionary<string, int> DicNameToID { get; set; } = new Dictionary<string, int>();
             public Dictionary<int, int> EntranceAreaDic { get; set; } = new Dictionary<int, int>();
             public Options Options { get; set; } = new Options();
-            public int Version { get; set; } = 0;
-            public string Game { get; set; } = "MMR";
+            public int LogicVersion { get; set; } = 0;
+            public string GameCode { get; set; } = "MMR";
             public string[] RawLogicFile { get; set; }
             public bool UnsavedChanges { get; set; } = false;
             public bool EntranceRando { get; set; } = false;
@@ -29,7 +29,7 @@ namespace MMR_Tracker_V2
             //Logic Options
             public bool StrictLogicHandeling { get; set; } = false;
             //Entrance rando Options
-            public bool entranceRadnoEnabled { get; set; } = false;
+            public bool EntranceRadnoEnabled { get; set; } = false;
             public bool OverRideAutoEntranceRandoEnable { get; set; } = false;
             public bool CoupleEntrances { get; set; } = true;
             public bool UnradnomizeEntranesOnStartup { get; set; } = true;
@@ -179,7 +179,7 @@ namespace MMR_Tracker_V2
         }
         public static bool IsMM(this LogicObjects.TrackerInstance Instance)
         {
-            return Instance.Game == "MMR";
+            return Instance.GameCode == "MMR";
         }
         public static bool IsWarpSong(this LogicObjects.LogicEntry entry)
         {
@@ -193,7 +193,7 @@ namespace MMR_Tracker_V2
         {
             return (entry.Aquired || entry.StartingItem() || (entry.Unrandomized() && entry.Available));
         }
-        public static LogicObjects.LogicEntry GetItemLocation(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
+        public static LogicObjects.LogicEntry GetItemsNewLocation(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
         {
             return Logic.Find(x => x.RandomizedItem == entry.ID);
         }

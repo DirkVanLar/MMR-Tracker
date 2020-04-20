@@ -89,7 +89,7 @@ namespace MMR_Tracker_V2
             {
                 if (!UsedLogic[i].Aquired
                     && (!UsedLogic[i].IsFake)
-                    && (UsedLogic[i].GetItemLocation(UsedLogic) == null)
+                    && (UsedLogic[i].GetItemsNewLocation(UsedLogic) == null)
                     && (!UsedLogic[i].Unrandomized(2))
                     && !Duplicates.Contains(UsedLogic[i].ItemName)
                     && UsedLogic[i].ItemName != null
@@ -112,7 +112,7 @@ namespace MMR_Tracker_V2
                 if (Utility.FilterSearch(UsedLogic[i], TXTSearch.Text, UsedLogic[i].DisplayName) && !UsedLogic[i].IsFake)
                 {
                     ListViewItem item = new ListViewItem();
-                    item.Text = UsedLogic[i].ToString(); // Or whatever display text you need
+                    item.Text = UsedLogic[i].ToString();
                     item.Tag = UsedLogic[i];
                     lbCheckItems.Items.Add(item);
                 }
@@ -159,7 +159,7 @@ namespace MMR_Tracker_V2
                 if (Utility.FilterSearch(UsedLogic[i], TXTSearch.Text, UsedLogic[i].DisplayName))
                 {
                     ListViewItem item = new ListViewItem();
-                    item.Text = UsedLogic[i].ToString(); // Or whatever display text you need
+                    item.Text = UsedLogic[i].ToString();
                     item.Tag = UsedLogic[i];
                     lbCheckItems.Items.Add(item);
                 }

@@ -50,7 +50,7 @@ namespace MMR_Tracker.Forms
         private void LogicEditor_Load(object sender, EventArgs e)
         {
             nudIndex.Value = 0;
-            if (LogicObjects.MainTrackerInstance.Version > 0)
+            if (LogicObjects.MainTrackerInstance.LogicVersion > 0)
             {
                 EditorInstance = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
                 FormatForm();
