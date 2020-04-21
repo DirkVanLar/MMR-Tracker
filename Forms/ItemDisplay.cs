@@ -140,8 +140,8 @@ namespace MMR_Tracker.Forms
             Images.Add("Milk", GetImage(0, 10));
             Images.Add("Fish", GetImage(2, 10));
             Images.Add("Bug", GetImage(3, 10));
-            Images.Add("BigPoe", GetImage(5, 10));
-            Images.Add("SmallPoe", GetImage(0, 11));
+            Images.Add("SmallPoe", GetImage(5, 10));
+            Images.Add("BigPoe", GetImage(0, 11));
             Images.Add("Water", GetImage(1, 11));
             Images.Add("HotSpringWater", GetImage(2, 11));
             Images.Add("ZoraEgg", GetImage(3, 11));
@@ -200,13 +200,13 @@ namespace MMR_Tracker.Forms
             Images.Add("Song", GetImage(3, 24));
             Images.Add("SongTime", ReshadeImage(GetImage(3, 24), -200, -20, 100));
             Images.Add("SongHealing", ReshadeImage(GetImage(3, 24), 100, 0, 50));
-            Images.Add("SongEpona", ReshadeImage(GetImage(3, 24), 100, 20, -20));
+            Images.Add("SongEpona", ReshadeImage(GetImage(3, 24), 100, 20, -60));
             Images.Add("SongStorms", ReshadeImage(GetImage(3, 24), 64, 64, 128));
             Images.Add("SongSoaring", ReshadeImage(GetImage(3, 24), 32, 0, 0));
             Images.Add("Sonata", ReshadeImage(GetImage(3, 24), -50, 32, -50));
             Images.Add("Lullaby", ReshadeImage(GetImage(3, 24), 64, -64, -32));
             Images.Add("BossaNova", ReshadeImage(GetImage(3, 24), -200, 50, 100));
-            Images.Add("Elegy", ReshadeImage(GetImage(3, 24), 100, 0, -50));
+            Images.Add("Elegy", ReshadeImage(GetImage(3, 24), 100, 80, 0));
             Images.Add("Oath", ReshadeImage(GetImage(3, 24), 20, -50, 100));
 
             Images.Add("Error", GetImage(2, 24));
@@ -253,7 +253,7 @@ namespace MMR_Tracker.Forms
             DrawItem("SwampDeed", "Swamp Title Deed", Spacing);
 
             DrawCountableItem("Bottle", new List<string> { "Bottle with Red Potion", "Bottle with Milk", "Bottle with Gold Dust", "Empty Bottle", "Bottle with Chateau Romani" }, Spacing, true);
-            DrawCountableItem("Milk", new List<string> { "Milk" }, Spacing);
+            DrawCountableItem("Milk", new List<string> { "Milk", "Bottle with Milk" }, Spacing);
             DrawItem("GoldDust", "Goron Race Bottle", Spacing);
             DrawItem("SeaHorse", "Seahorse", Spacing);
             DrawCountableItem("Chateau", new List<string> { "Chateau Romani", "Bottle with Chateau Romani" }, Spacing);
