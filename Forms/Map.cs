@@ -266,7 +266,7 @@ namespace MMR_Tracker
 
         public void ResizeButton(Rectangle originalSize, Button btn)
         {
-            float xRatio = (float)(this.Width) / (float)(OriginalSize.Width);
+            float xRatio = (float)(this.Width - 8) / (float)(OriginalSize.Width - 8);
             float yRatio = (float)(this.Height - 39) / (float)(OriginalSize.Height - 39);
 
             int newX = (int)(originalSize.X * xRatio);
@@ -274,7 +274,7 @@ namespace MMR_Tracker
             int newWidth = (int)(originalSize.Width * yRatio);
             int newHeight = (int)(originalSize.Height * yRatio);
 
-            Console.WriteLine(this.Width);
+            Console.WriteLine(this.Width - 8);
             Console.WriteLine(this.Height - 39);
 
             btn.Location = new Point(newX, newY);
