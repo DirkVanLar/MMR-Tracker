@@ -263,7 +263,6 @@
             // 
             // Moon
             // 
-            this.Moon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Moon.BackColor = System.Drawing.Color.Transparent;
             this.Moon.FlatAppearance.BorderSize = 0;
             this.Moon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
