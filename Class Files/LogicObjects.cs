@@ -67,6 +67,7 @@ namespace MMR_Tracker_V2
             public int RandomizedItem { get; set; } //The random Item that was placed at the location
             public bool IsFake { get; set; } //Whether or not the entry is a logic shortcut aka "Fake Item"
             public int Options { get; set; } //Whether or not the location is randomized, unrandomized or forced Junk and whether or not it's a starting Item
+            public bool Starred { get; set; } = false; //Whether the check has been starred
             public string LocationArea { get; set; } //The General Area the location is in
             public string ItemSubType { get; set; } //The type of item it is
             public string SpoilerLocation { get; set; } //The name of this location in the spoiler Log

@@ -135,12 +135,6 @@ namespace MMR_Tracker_V2
             Console.WriteLine("========================================================================================");
             foreach (var entry in logic)
             {
-                if (entry.ID < 10)
-                {
-                    Console.WriteLine(entry.DisplayName);
-                    Console.WriteLine(entry.RandomizedState());
-                    Console.WriteLine(entry.StartingItem());
-                }
                 bool chkValid = false;
                 if (entry.RandomizedState() == 0 && chkShowRandom.Checked) { chkValid = true; }
                 if (entry.RandomizedState() == 1 && chkShowUnrand.Checked) { chkValid = true; }

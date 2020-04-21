@@ -251,7 +251,6 @@ namespace MMR_Tracker.Class_Files
                         MessageBox.Show("Save File Invalid!");
                         LogicObjects.MainTrackerInstance = backup;
                     }
-                    Console.WriteLine("Here");
                 }
                 catch
                 {
@@ -419,7 +418,6 @@ namespace MMR_Tracker.Class_Files
             {
                 if (entry.RandomizedItem == item && entry.Checked) { count += 1; }
             }
-            Console.WriteLine(count);
             return count > 1;
         }
         public static void CreateTrackerInstance(LogicObjects.TrackerInstance Instance, string[] RawLogic)

@@ -98,8 +98,6 @@ namespace MMR_Tracker_V2
                 LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.MainTrackerInstance);
                 LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
             }
-
-            Console.WriteLine("Settings Entrance: " + LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup);
              
             if (LogicObjects.MainTrackerInstance.EntranceRando && !SettingsFile && LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup)
             {
@@ -315,8 +313,6 @@ namespace MMR_Tracker_V2
 
         private void WhatUnlockedThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(this.ActiveControl == LBValidLocations);
-            Console.WriteLine(LBValidLocations.SelectedItem is LogicObjects.LogicEntry);
             if ((this.ActiveControl == LBValidLocations) && LBValidLocations.SelectedItem is LogicObjects.LogicEntry)
             {
                 Tools.CurrentSelectedItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry;
@@ -609,6 +605,8 @@ namespace MMR_Tracker_V2
             Check.Click += (sender, e) => { RunMenuItems(1, LBValidLocations); };
             ToolStripItem Mark = LocationContextMenu.Items.Add("Mark This Item");
             Mark.Click += (sender, e) => { RunMenuItems(2, LBValidLocations); };
+            ToolStripItem Star = LocationContextMenu.Items.Add("Star This Item");
+            Star.Click += (sender, e) => { StarItemSelected(LBValidLocations); };
             LBValidLocations.ContextMenuStrip = LocationContextMenu;
 
             //LBValidEntrances List Box
@@ -629,6 +627,8 @@ namespace MMR_Tracker_V2
             ECheck.Click += (sender, e) => { RunMenuItems(1, LBValidEntrances); };
             ToolStripItem EMark = EntranceContextMenu.Items.Add("Mark This Item");
             EMark.Click += (sender, e) => { RunMenuItems(2, LBValidEntrances); };
+            ToolStripItem EStar = EntranceContextMenu.Items.Add("Star This Item");
+            EStar.Click += (sender, e) => { StarItemSelected(LBValidEntrances); };
             LBValidEntrances.ContextMenuStrip = EntranceContextMenu;
 
             //Set Item Button
@@ -637,6 +637,12 @@ namespace MMR_Tracker_V2
             ItemSetAll.Click += (sender, e) => { CheckItemSelected(LBValidLocations, false, 1); };
             ToolStripItem ItemUnSetAll = SetItemMenu.Items.Add("Unset Only");
             ItemUnSetAll.Click += (sender, e) => { CheckItemSelected(LBValidLocations, false, 2); };
+            ToolStripItem ItemToggleStar = SetItemMenu.Items.Add("Toggle Star");
+            ItemToggleStar.Click += (sender, e) => { StarItemSelected(LBValidLocations); };
+            ToolStripItem ItemStar = SetItemMenu.Items.Add("Star");
+            ItemStar.Click += (sender, e) => { StarItemSelected(LBValidLocations, 1); };
+            ToolStripItem ItemUnStar = SetItemMenu.Items.Add("Unstar");
+            ItemUnStar.Click += (sender, e) => { StarItemSelected(LBValidLocations, 2); };
             BTNSetItem.ContextMenuStrip = SetItemMenu;
 
             //Set Entrance Button
@@ -645,6 +651,12 @@ namespace MMR_Tracker_V2
             EntranceSetAll.Click += (sender, e) => { CheckItemSelected(LBValidEntrances, false, 1); };
             ToolStripItem EntranceUnSetAll = SetLocationMenu.Items.Add("Unset Only");
             EntranceUnSetAll.Click += (sender, e) => { CheckItemSelected(LBValidEntrances, false, 2); };
+            ToolStripItem EntranceToggleStar = SetLocationMenu.Items.Add("Toggle Star");
+            EntranceToggleStar.Click += (sender, e) => { StarItemSelected(LBValidEntrances); };
+            ToolStripItem EntranceStar = SetLocationMenu.Items.Add("Star");
+            EntranceStar.Click += (sender, e) => { StarItemSelected(LBValidEntrances, 1); };
+            ToolStripItem EntranceUnStar = SetLocationMenu.Items.Add("Unstar");
+            EntranceUnStar.Click += (sender, e) => { StarItemSelected(LBValidEntrances, 2); };
             BTNSetEntrance.ContextMenuStrip = SetLocationMenu;
         }
 
@@ -727,13 +739,14 @@ namespace MMR_Tracker_V2
 
             foreach (var entry in LogicObjects.MainTrackerInstance.Logic)
             {
+
                 if (!entry.AppearsInListbox()) { continue; }
 
                 entry.DisplayName = entry.DictionaryName;
                 if ((entry.Available || entry.HasRandomItem(false) || CHKShowAll.Checked) && (entry.LocationName != "" && entry.LocationName != null) && !entry.Checked)
                 {
                     entry.DisplayName = entry.HasRandomItem(false) ? ($"{entry.LocationName}: {entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}") : entry.LocationName;
-
+                    entry.DisplayName += (entry.Starred) ? "*" : "";
                     if ((!entry.IsEntrance() || !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled))
                     {
                         TotalLoc += 1;
@@ -756,6 +769,7 @@ namespace MMR_Tracker_V2
                 if (entry.Checked)
                 {
                     entry.DisplayName = entry.HasRandomItem(false) ? $"{entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}: {entry.LocationName}" : $"Nothing: {entry.LocationName}";
+                    entry.DisplayName += (entry.Starred) ? "*" : "";
                     totalchk += 1;
                     if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
                     {
@@ -995,6 +1009,23 @@ namespace MMR_Tracker_V2
 
             FireEvents(false);
 
+            int TopIndex = LB.TopIndex;
+            PrintToListBox();
+            LB.TopIndex = TopIndex;
+        }
+
+        public void StarItemSelected(ListBox LB, int SetFunction = 0)
+        {
+            foreach (var i in LB.SelectedItems)
+            {
+                if ((i is LogicObjects.LogicEntry))
+                {
+                    var j = i as LogicObjects.LogicEntry;
+                    if (SetFunction == 0) { j.Starred = !j.Starred; }
+                    if (SetFunction == 1) { j.Starred = true; }
+                    if (SetFunction == 2) { j.Starred = false; }
+                }
+            }
             int TopIndex = LB.TopIndex;
             PrintToListBox();
             LB.TopIndex = TopIndex;

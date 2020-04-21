@@ -25,7 +25,6 @@ namespace MMR_Tracker_V2
             instance.Logic.Clear();
             instance.DicNameToID.Clear();
             instance.EntrancePairs.Clear();
-            Console.WriteLine("Populating Logic File");
             LogicObjects.VersionInfo version = VersionHandeling.GetVersionFromLogicFile(instance.RawLogicFile); //Returns [0] The logic Version, [1] The game this logic file is for
             instance.LogicVersion = version.Version;
             instance.GameCode = version.Gamecode;
@@ -292,6 +291,7 @@ namespace MMR_Tracker_V2
                     logicEntry.RandomizedItem = entry.RandomizedItem;
                     logicEntry.SpoilerRandom = entry.SpoilerRandom;
                     logicEntry.Options = entry.Options;
+                    logicEntry.Starred = entry.Starred;
                 }
             }
             if (SettingsFile)

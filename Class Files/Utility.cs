@@ -112,6 +112,13 @@ namespace MMR_Tracker_V2
                         else if (!RandomizedItem.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == !Inverse) { valid = false; }
                         if (Perfect && logic.ItemName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
+                    else if (subterm[0] == '*')
+                    {
+                        if (subterm.Substring(1) == "") { continue; }
+                        if (!NameToCompare.ToLower().Contains(subterm.Substring(1).ToLower()) == !Inverse) { valid = false; }
+                        if (Perfect && NameToCompare.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
+                        if (!logic.Starred) { valid = false; }
+                    }
                     else
                     {
                         if (!NameToCompare.ToLower().Contains(subterm.ToLower()) == !Inverse) { valid = false; }
