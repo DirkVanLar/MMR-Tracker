@@ -26,7 +26,6 @@ namespace MMR_Tracker_V2
             var EntAreaDict = new Dictionary<int, int>();
 
             if (!Instance.IsMM()) { return EntAreaDict; }
-            Console.WriteLine("Game Was MM");
 
             var WoodfallClear = Instance.Logic.Find(x => x.DictionaryName == "Woodfall clear");
             var WoodfallAccess = Instance.Logic.Find(x => x.DictionaryName == "Woodfall Temple access" && !x.IsFake);
@@ -47,67 +46,81 @@ namespace MMR_Tracker_V2
             var StoneTowerAccess = Instance.Logic.Find(x => x.DictionaryName == "Inverted Stone Tower Temple access" && !x.IsFake);
             if (StoneTowerAccess == null || StoneTowerClear == null) { return new Dictionary<int, int>(); }
             EntAreaDict.Add(StoneTowerClear.ID, StoneTowerAccess.ID);
+
             return EntAreaDict;
         }
 
-        public static string[] SwitchDictionary(LogicObjects.TrackerInstance Instance)
+        public static string[] GetDictionaryPath(LogicObjects.TrackerInstance Instance)
         {
-            var Currentversion = Instance.Version;
-
-            string[] files = Directory.GetFiles(@"Recources");
-            Dictionary<int, string> dictionaries = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
-            Dictionary<int, string> Pairs = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
+            var Currentversion = Instance.LogicVersion;
+            //Get the dictionary
             int smallestDicEntry = 0;
             int largestDicEntry = 0;
-            int smallestPairEntry = 0;
-            int largestPairEntry = 0;
+            Dictionary<int, string> dictionaries = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
+            var dic = Instance.GameCode + "DICTIONARY";
+            string[] files = Directory.GetFiles(@"Recources\Dictionaries").Where(x => x.Contains(dic)).ToArray();
             foreach (var i in files)
             {
-                var dic = Instance.Game + "DICTIONARY";
-                if (i.Contains(dic))
-                {
-                    var entry = i.Replace("Recources\\" + dic + "V", "");
-                    entry = entry.Replace(".csv", "");
-                    int version = 0;
-                    try { version = Int32.Parse(entry); }
-                    catch { continue; }
-                    dictionaries.Add(version, i);
-                    if (version > largestDicEntry) { largestDicEntry = version; }
-                    if (smallestDicEntry == 0) { smallestDicEntry = largestDicEntry; }
-                    if (version < smallestDicEntry) { smallestDicEntry = version; }
-                }
-                if (i.Contains("ENTRANCEPAIRS"))
-                {
-                    var entry = i.Replace("Recources\\ENTRANCEPAIRSV", "");
-                    entry = entry.Replace(".csv", "");
-                    int version = 0;
-                    try { version = Int32.Parse(entry); }
-                    catch { continue; }
-                    Pairs.Add(version, i);
-                    if (version > largestPairEntry) { largestPairEntry = version; }
-                    if (smallestPairEntry == 0) { smallestPairEntry = largestPairEntry; }
-                    if (version < smallestPairEntry) { smallestPairEntry = version; }
-                }
-
+                var entry = i.Replace("Recources\\Dictionaries\\" + dic + "V", "");
+                entry = entry.Replace(".csv", "");
+                int version = 0;
+                try { version = Int32.Parse(entry); }
+                catch { continue; }
+                dictionaries.Add(version, i);
+                if (version > largestDicEntry) { largestDicEntry = version; }
+                if (smallestDicEntry == 0) { smallestDicEntry = largestDicEntry; }
+                if (version < smallestDicEntry) { smallestDicEntry = version; }
+            }
+            //Get the entrance pair list
+            int smallestPairEntry = 0;
+            int largestPairEntry = 0;
+            Dictionary<int, string> Pairs = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
+            dic = Instance.GameCode + "ENTRANCEPAIRS";
+            files = Directory.GetFiles(@"Recources\Other Files").Where(x => x.Contains(dic)).ToArray();
+            foreach (var i in files)
+            {
+                var entry = i.Replace("Recources\\Other Files\\" + dic + "V", "");
+                entry = entry.Replace(".csv", "");
+                int version = 0;
+                try { version = Int32.Parse(entry); }
+                catch { continue; }
+                Pairs.Add(version, i);
+                if (version > largestPairEntry) { largestPairEntry = version; }
+                if (smallestPairEntry == 0) { smallestPairEntry = largestPairEntry; }
+                if (version < smallestPairEntry) { smallestPairEntry = version; }
             }
 
             string[] currentdictionary = new string[2];
             var index = 0;
 
-            if (dictionaries.ContainsKey(Currentversion)) { index = Currentversion; }
-            else //If we are using a logic version that doesn't have a dictionary, use the dictioary with the closest version
-            { index = dictionaries.Keys.Aggregate((x, y) => Math.Abs(x - Currentversion) < Math.Abs(y - Currentversion) ? x : y); }
+            if (dictionaries.Count() == 0)
+            {
+                currentdictionary[0] = "";
+            }
+            else
+            {
+                if (dictionaries.ContainsKey(Currentversion)) { index = Currentversion; }
+                else //If we are using a logic version that doesn't have a dictionary, use the dictioary with the closest version
+                { index = dictionaries.Keys.Aggregate((x, y) => Math.Abs(x - Currentversion) < Math.Abs(y - Currentversion) ? x : y); }
 
-            currentdictionary[0] = dictionaries[index];
+                currentdictionary[0] = dictionaries[index];
+            }
 
             Console.WriteLine(currentdictionary[0]);
 
-            if (Pairs.ContainsKey(Currentversion))
-            { index = Currentversion; }
-            else //If we are using a logic version that doesn't have a Pair List, use the pair List with the closest version
-            { index = Pairs.Keys.Aggregate((x, y) => Math.Abs(x - Currentversion) < Math.Abs(y - Currentversion) ? x : y); }
+            if (Pairs.Count() == 0)
+            {
+                currentdictionary[1] = "";
+            }
+            else
+            {
+                if (Pairs.ContainsKey(Currentversion))
+                { index = Currentversion; }
+                else //If we are using a logic version that doesn't have a Pair List, use the pair List with the closest version
+                { index = Pairs.Keys.Aggregate((x, y) => Math.Abs(x - Currentversion) < Math.Abs(y - Currentversion) ? x : y); }
 
-            currentdictionary[1] = Pairs[index];
+                currentdictionary[1] = Pairs[index];
+            }
 
             Console.WriteLine(currentdictionary[1]);
 
@@ -116,7 +129,6 @@ namespace MMR_Tracker_V2
 
         public static LogicObjects.VersionInfo GetVersionFromLogicFile(string[] LogicFile)
         {
-            //[0] Version, [1] Game (0 = MM, 1 = OOT)
             LogicObjects.VersionInfo version = new LogicObjects.VersionInfo { Version = 0, Gamecode = "MMR" };
             if (LogicFile[0].Contains("-version"))
             {
@@ -148,8 +160,7 @@ namespace MMR_Tracker_V2
             if (!CheckForUpdate && (Control.ModifierKeys != Keys.Shift)) { return false; }
 
             var client = new GitHubClient(new ProductHeaderValue("MMR-Tracker"));
-            var releases = client.Repository.Release.GetAll("Thedrummonger", "MMR-Tracker");
-            var lateset = releases.Result[0];
+            var lateset = client.Repository.Release.GetLatest("Thedrummonger", "MMR-Tracker").Result;
 
             Console.WriteLine($"Latest Version: { lateset.TagName } Current Version { trackerVersion }");
 
@@ -158,7 +169,7 @@ namespace MMR_Tracker_V2
                 if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Console.WriteLine($"Tracker Out of Date. Latest Version: { lateset.TagName } Current Version { trackerVersion }"); }
                 else
                 {
-                    var Download = MessageBox.Show($"Your tracker version V{ trackerVersion } is out of Date! Would you like to download the latest version { lateset.TagName } ?", "Tracker Out of Date", MessageBoxButtons.YesNo);
+                    var Download = MessageBox.Show($"Your tracker version { trackerVersion } is out of Date. Would you like to download the latest version { lateset.TagName }?", "Tracker Out of Date", MessageBoxButtons.YesNo);
                     if (Download == DialogResult.Yes) { { Process.Start(lateset.HtmlUrl); return true; } }
                 }
             }

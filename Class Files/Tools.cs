@@ -245,13 +245,13 @@ namespace MMR_Tracker.Class_Files
                 {
                     string[] options = File.ReadAllLines(file);
                     LogicObjects.MainTrackerInstance.Logic = JsonConvert.DeserializeObject<List<LogicObjects.LogicEntry>>(options[0]);
-                    if (options.Length > 1) { LogicObjects.MainTrackerInstance.Version = Int32.Parse(options[1].Replace("version:", "")); }
+                    if (options.Length > 1) { LogicObjects.MainTrackerInstance.LogicVersion = Int32.Parse(options[1].Replace("version:", "")); }
                     else
                     {
                         MessageBox.Show("Save File Invalid!");
                         LogicObjects.MainTrackerInstance = backup;
                     }
-                    return;
+                    Console.WriteLine("Here");
                 }
                 catch
                 {
@@ -259,7 +259,12 @@ namespace MMR_Tracker.Class_Files
                     LogicObjects.MainTrackerInstance = backup;
                 }
             }
+            //Extra saftey checks for older save files
             LogicObjects.MainTrackerInstance.EntranceRando = LogicObjects.MainTrackerInstance.IsEntranceRando();
+            if (LogicObjects.MainTrackerInstance.LogicVersion == 0)
+            {
+                LogicObjects.MainTrackerInstance.LogicVersion = VersionHandeling.GetVersionFromLogicFile(LogicObjects.MainTrackerInstance.RawLogicFile).Version;
+            }
             return;
         }
         public static void SaveState(LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicEntry> Logic = null )
@@ -307,7 +312,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static void UpdateNames(LogicObjects.TrackerInstance Instance)
         {
-            string[] VersionData = VersionHandeling.SwitchDictionary(Instance);
+            string[] VersionData = VersionHandeling.GetDictionaryPath(Instance);
             if (VersionData.Count() > 0)
             {
                 Instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
@@ -429,7 +434,7 @@ namespace MMR_Tracker.Class_Files
                 DialogResult dialogResult = MessageBox.Show("This logic file was created for the Majoras Mask Randomizer. While this tracker can support other games, support is very Limited. Many features will be disabled and core features might not work as intended. Do you wish to continue?", "Other Randomizer", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }
             }
-            else if (!VersionHandeling.ValidVersions.Contains(Instance.Version))
+            else if (!VersionHandeling.ValidVersions.Contains(Instance.LogicVersion))
             {
                 DialogResult dialogResult = MessageBox.Show("This version of logic is not supported. Only official releases of versions 1.8 and up are supported. This may result in the tracker not funtioning Correctly. If you are using an official release and are seeing this message, Please update your tracker. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }

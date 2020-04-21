@@ -95,15 +95,15 @@ namespace MMR_Tracker_V2
             if (SettingsFile)
             {
                 RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file), LogicObjects.MainTrackerInstance);
-                LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.MainTrackerInstance);
-                LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = (LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
+                LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.MainTrackerInstance);
+                LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
             }
 
             Console.WriteLine("Settings Entrance: " + LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup);
              
             if (LogicObjects.MainTrackerInstance.EntranceRando && !SettingsFile && LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup)
             {
-                LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled = false;
+                LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = false;
                 LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = true;
                 foreach (var item in LogicObjects.MainTrackerInstance.Logic)
                 {
@@ -159,8 +159,8 @@ namespace MMR_Tracker_V2
 
             if (!LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable || (EntrancesRandoBefore != EntrancesRandoAfter))
             {
-                LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.MainTrackerInstance);
-                LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = (LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
+                LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.MainTrackerInstance);
+                LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
             }
 
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
@@ -182,18 +182,17 @@ namespace MMR_Tracker_V2
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(instance, file);
                 if (!Utility.CheckforSpoilerLog(instance.Logic)) { MessageBox.Show("No spoiler data found!"); return; }
-                if (!Utility.CheckforSpoilerLog(instance.Logic, true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
+                else if (!Utility.CheckforSpoilerLog(instance.Logic, true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
+
                 bool EntrancesRandoBefore = Utility.CheckForRandomEntrances(instance);
-                foreach (var i in LogicObjects.MainTrackerInstance.Logic)
-                {
-                    if (i.SpoilerRandom != i.ID && i.SpoilerRandom > -1 && (i.Options == 1 || i.Options == 2)) { i.Options = 0; }
-                }
+                Utility.FixSpoilerInconsistency(LogicObjects.MainTrackerInstance);
                 bool EntrancesRandoAfter = Utility.CheckForRandomEntrances(instance);
                 if (!instance.Options.OverRideAutoEntranceRandoEnable || (EntrancesRandoBefore != EntrancesRandoAfter))
                 {
-                    instance.Options.entranceRadnoEnabled = Utility.CheckForRandomEntrances(instance);
-                    instance.Options.OverRideAutoEntranceRandoEnable = (instance.Options.entranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
+                    instance.Options.EntranceRadnoEnabled = EntrancesRandoAfter;
+                    instance.Options.OverRideAutoEntranceRandoEnable = (instance.Options.EntranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
                 }
+
                 LogicEditing.CalculateItems(instance);
             }
             FormatMenuItems();
@@ -217,8 +216,8 @@ namespace MMR_Tracker_V2
 
         private void ToggleEntranceRandoFeaturesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled = !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
-            LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = (LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
+            LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
+            LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
             ResizeObject();
             PrintToListBox();
             FormatMenuItems();
@@ -365,6 +364,14 @@ namespace MMR_Tracker_V2
             FilterMap.MainInterfaceInstance = this;
             FilterMap.Show();
         }
+
+        private void itemTrackerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ItemDisplay id = new ItemDisplay();
+            id.MainInterfaceInstance = this;
+            id.Show();
+
+        }
         #endregion Tools
         //Menu strip => Info---------------------------------------------------------------------------
         #region Info
@@ -422,7 +429,7 @@ namespace MMR_Tracker_V2
         {
             Form form = new Form
             {
-                BackgroundImage = Bitmap.FromFile(@"Recources\Ocarina Songs.PNG"),
+                BackgroundImage = Bitmap.FromFile(@"Recources\Images\Ocarina Songs.PNG"),
                 Width = 500,
                 Height = 500,
                 BackgroundImageLayout = ImageLayout.Stretch
@@ -589,7 +596,7 @@ namespace MMR_Tracker_V2
             LocationContextMenu.Opening += LocationContextMenu_Opening;
             ToolStripItem WhatUnlcoked = LocationContextMenu.Items.Add("What Unlocked This?");
             WhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBValidLocations); };
-            if (LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled && LogicObjects.MainTrackerInstance.Options.IncludeItemLocations)
+            if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.Options.IncludeItemLocations)
             {
                 ToolStripItem NavigateHere = LocationContextMenu.Items.Add("Navigate to this check");
                 NavigateHere.Click += (sender, e) => { RunMenuItems(5, LBValidLocations); };
@@ -609,7 +616,7 @@ namespace MMR_Tracker_V2
             EntranceContextMenu.Opening += EntranceContextMenu_Opening;
             ToolStripItem EWhatUnlcoked = EntranceContextMenu.Items.Add("What Unlocked This?");
             EWhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBValidEntrances); };
-            if (LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled)
+            if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled)
             {
                 ToolStripItem ENavigateHere = EntranceContextMenu.Items.Add("Navigate to this entrance");
                 ENavigateHere.Click += (sender, e) => { RunMenuItems(5, LBValidEntrances); };
@@ -710,9 +717,9 @@ namespace MMR_Tracker_V2
             Dictionary<string, int> Groups = new Dictionary<string, int>();
             Dictionary<int, int> ListBoxAssignments = new Dictionary<int, int>();
 
-            if (File.Exists(@"Recources\Categories.txt"))
+            if (File.Exists(@"Recources\Other Files\Categories.txt"))
             {
-                Groups = File.ReadAllLines(@"Recources\Categories.txt")
+                Groups = File.ReadAllLines(@"Recources\Other Files\Categories.txt")
                     .Select(x => x.ToLower().Trim()).Distinct()
                     .Select((value, index) => new { value, index })
                     .ToDictionary(pair => pair.value, pair => pair.index);
@@ -720,14 +727,14 @@ namespace MMR_Tracker_V2
 
             foreach (var entry in LogicObjects.MainTrackerInstance.Logic)
             {
-                if (entry.IsFake || entry.Unrandomized() || entry.ForceJunk()) { continue; }
+                if (!entry.AppearsInListbox()) { continue; }
 
                 entry.DisplayName = entry.DictionaryName;
-                if ((entry.Available || entry.HasRandomItem() || CHKShowAll.Checked) && (entry.LocationName != "" && entry.LocationName != null) && !entry.Checked)
+                if ((entry.Available || entry.HasRandomItem(false) || CHKShowAll.Checked) && (entry.LocationName != "" && entry.LocationName != null) && !entry.Checked)
                 {
-                    entry.DisplayName = entry.HasRandomItem() ? ($"{entry.LocationName}: {entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}") : entry.LocationName;
+                    entry.DisplayName = entry.HasRandomItem(false) ? ($"{entry.LocationName}: {entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}") : entry.LocationName;
 
-                    if ((!entry.IsEntrance() || !LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled))
+                    if ((!entry.IsEntrance() || !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled))
                     {
                         TotalLoc += 1;
                         if (Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
@@ -736,7 +743,7 @@ namespace MMR_Tracker_V2
                             ListBoxItems.Add(entry);
                         }
                     }
-                    else if ((entry.IsEntrance() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled))
+                    else if ((entry.IsEntrance() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled))
                     {
                         TotalEnt += 1;
                         if (Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
@@ -748,7 +755,7 @@ namespace MMR_Tracker_V2
                 }
                 if (entry.Checked)
                 {
-                    entry.DisplayName = entry.HasRandomItem() ? $"{entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}: {entry.LocationName}" : $"Nothing: {entry.LocationName}";
+                    entry.DisplayName = entry.HasRandomItem(false) ? $"{entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}: {entry.LocationName}" : $"Nothing: {entry.LocationName}";
                     totalchk += 1;
                     if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
                     {
@@ -760,7 +767,7 @@ namespace MMR_Tracker_V2
 
             ListBoxItems = ListBoxItems
                 .OrderBy(x => Utility.BoolToInt(x.IsEntrance()))
-                .ThenBy(x => Utility.BoolToInt(x.HasRandomItem() && LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom))
+                .ThenBy(x => Utility.BoolToInt(x.HasRandomItem(false) && LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom))
                 .ThenBy(x => (Groups.ContainsKey(x.LocationArea.ToLower().Trim()) ? Groups[x.LocationArea.ToLower().Trim()] : ListBoxItems.Count() + 1))
                 .ThenBy(x => x.LocationArea)
                 .ThenBy(x => x.DisplayName).ToList();
@@ -780,8 +787,8 @@ namespace MMR_Tracker_V2
             foreach (var entry in ListBoxItems)
             {
                 if (!ListBoxAssignments.ContainsKey(entry.ID)) { continue; }
-                if (ListBoxAssignments[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.HasRandomItem()); AvalableLocations++; }
-                if (ListBoxAssignments[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.HasRandomItem()); AvalableEntrances++; }
+                if (ListBoxAssignments[entry.ID] == 0) { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.HasRandomItem(false)); AvalableLocations++; }
+                if (ListBoxAssignments[entry.ID] == 1) { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.HasRandomItem(false)); AvalableEntrances++; }
                 if (ListBoxAssignments[entry.ID] == 2) { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false); CheckedLocations++; }
             }
 
@@ -1001,23 +1008,23 @@ namespace MMR_Tracker_V2
             showEntryNameToolTipToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip) ? "Disable Entry Name ToolTip" : "Show Entry Name ToolTip";
             includeItemLocationsAsDestinationToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations) ? "Exclude Item Locations As Destinations" : "Include Item Locations As Destinations";
             entranceRandoToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.EntranceRando;
-            optionsToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
-            undoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
-            redoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
-            saveToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
-            seedCheckerToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
-            generatePlaythroughToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
-            whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
-            updateLogicToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.Version > 0);
+            optionsToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            undoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            redoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            saveToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            seedCheckerToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            generatePlaythroughToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            updateLogicToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             popoutPathfinderToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.EntranceRando);
             if (!LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable) 
             {
-                LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled = LogicObjects.MainTrackerInstance.EntranceRando; 
+                LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = LogicObjects.MainTrackerInstance.EntranceRando; 
             }
-            useSongOfTimeInPathfinderToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
-            includeItemLocationsAsDestinationToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
-            coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
-            toggleEntranceRandoFeaturesToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
+            useSongOfTimeInPathfinderToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
+            includeItemLocationsAsDestinationToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
+            coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
+            toggleEntranceRandoFeaturesToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
             coupleEntrancesToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
             devToolStripMenuItem.Visible = Debugging.ISDebugging;
             seperateMarkedItemsToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom) ? "Don't Seperate Marked Items" : "Seperate Marked Items";
@@ -1026,13 +1033,14 @@ namespace MMR_Tracker_V2
 
             //MM specific Controls
             importSpoilerLogToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM();
-            useSongOfTimeInPathfinderToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
-            includeItemLocationsAsDestinationToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
-            coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled;
-            generatePlaythroughToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
-            seedCheckerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
-            whatUnlockedThisToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
-            FilterMapToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.Version > 0);
+            useSongOfTimeInPathfinderToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
+            includeItemLocationsAsDestinationToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
+            coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
+            generatePlaythroughToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            seedCheckerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            whatUnlockedThisToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            FilterMapToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            itemTrackerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
 
         }
 
@@ -1053,11 +1061,11 @@ namespace MMR_Tracker_V2
             var locX = 2;
             var locY = 2 + Menuhieght;
 
-            if (LogicObjects.MainTrackerInstance.Version == 0)
+            if (LogicObjects.MainTrackerInstance.LogicVersion == 0)
             {
                 SetObjectVisibility(false, false);
             }
-            else if (LogicObjects.MainTrackerInstance.Options.entranceRadnoEnabled)
+            else if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled)
             {
                 SetObjectVisibility(true, true);
                 UpperLeftLBL.Location = new Point(locX, locY + 2);
@@ -1157,6 +1165,7 @@ namespace MMR_Tracker_V2
             if (TrackerUpdated) { TrackerUpdate(null, null); }
         }
         #endregion Other Functions
+
         #endregion Functions
     }
 }

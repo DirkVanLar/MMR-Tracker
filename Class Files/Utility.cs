@@ -151,16 +151,37 @@ namespace MMR_Tracker_V2
             }
             return (occurences >= 5);
         }
-        public static bool CheckForRandomEntrances(LogicObjects.TrackerInstance Instance, int validEntranceCount = 6)
+        public static bool CheckForRandomEntrances(LogicObjects.TrackerInstance Instance, bool Spoiler = false, int validEntranceCount = 6)
         {
             if (!Instance.EntranceRando) { return false; }
             int count = 0;
             foreach (var i in Instance.Logic)
             {
-                if (i.IsEntrance() && i.AppearsInListbox()) { count += 1; }
+                if (!Spoiler && i.IsEntrance() && i.AppearsInListbox()) { count += 1; }
+                if (Spoiler && i.IsEntrance() && i.SpoilerRandom != i.ID && i.SpoilerRandom > -1) { count += 1; }
                 if (count >= validEntranceCount) { return true; }
             }
             return false;
+        }
+        public static void FixSpoilerInconsistency(LogicObjects.TrackerInstance Instance)
+        {
+            DialogResult DR = new DialogResult();
+            var RandoOptionsContradictSpoiler = false;
+            foreach (var i in Instance.Logic)
+            {
+                if (i.Unrandomized(2) && i.SpoilerRandom != i.ID && i.SpoilerRandom > -1) { RandoOptionsContradictSpoiler = true; }
+            }
+            if (RandoOptionsContradictSpoiler)
+            {
+                var AttemptFix = MessageBox.Show("You have marked items as unrandomized that are are radnomized according to your spoiler log. Would you like the tracker to attempt to correct this? This may leave items unrandomized that were simply place vanilla which could spoil your seed.", "Randomization Option Inconsistency", MessageBoxButtons.YesNo);
+                if (AttemptFix == DialogResult.Yes)
+                {
+                    foreach (var i in Instance.Logic)
+                    {
+                        if (i.Unrandomized(2) && i.SpoilerRandom != i.ID && i.SpoilerRandom > -1) { i.Options = (i.StartingItem()) ? 4 : 0; }
+                    }
+                }
+            }
         }
         public static int BoolToInt(bool Bool, bool FalseFirst = true)
         {

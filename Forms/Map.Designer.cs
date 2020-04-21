@@ -322,6 +322,7 @@
             this.Controls.Add(this.locations);
             this.Controls.Add(this.clockTown);
             this.Controls.Add(this.Termina);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(500, 300);
             this.Name = "Map";

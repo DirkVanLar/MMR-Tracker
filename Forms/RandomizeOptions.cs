@@ -62,7 +62,7 @@ namespace MMR_Tracker_V2
             var logictext = LogicEditing.WriteLogicToArray(LogicObjects.MainTrackerInstance);
             string[] Options = new string[2 + logictext.Length];
             Options[0] = settingString;
-            Options[1] = LogicObjects.MainTrackerInstance.Version.ToString();
+            Options[1] = LogicObjects.MainTrackerInstance.LogicVersion.ToString();
             var count = 2;
             foreach (var i in logictext)
             {
@@ -171,7 +171,7 @@ namespace MMR_Tracker_V2
 
             int Version = Int32.Parse(options[1]);
 
-            if (Instance.Version != Version)
+            if (Instance.LogicVersion != Version)
             {
                 MessageBox.Show("This settings file was not made using the current logic version. Please resave your settings in the current logic version.");
                 return;
