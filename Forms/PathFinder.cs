@@ -239,6 +239,8 @@ namespace MMR_Tracker.Forms
             };
             UnmarkEntrances(logicTemplate.Logic);
 
+            AddRequirementstoClocktower(logicTemplate);
+
             //Add all available owl warps as valid exits from our starting point.
             foreach (LogicObjects.LogicEntry OwlEntry in Instance.Logic.Where(x => x.IsWarpSong() && x.Available))
             {
@@ -290,7 +292,7 @@ namespace MMR_Tracker.Forms
 
         public static bool EntranceConnectionValid(LogicObjects.LogicEntry x, LogicObjects.LogicEntry ExitToCheck, LogicObjects.TrackerInstance lt)
         {
-            return (x.Available && !x.IsFake && !x.IsWarpSong() && (x.IsEntrance() || lt.Options.IncludeItemLocations) && NotSOT(lt, ExitToCheck, x));
+            return (x.Available && !x.IsFake && !x.IsWarpSong() && (x.IsEntrance() || lt.Options.IncludeItemLocations));
         }
 
         public static void Findpath(LogicObjects.TrackerInstance Instance, List<LogicObjects.MapPoint> map, List<LogicObjects.MapPoint> FullMap, int startinglocation, int destination, List<int> ExitsKnown, List<int> ExitsVisited, List<LogicObjects.MapPoint> Path, int PathPartition, bool InitialRun = false)
@@ -343,32 +345,28 @@ namespace MMR_Tracker.Forms
         public static bool ScanExitResults(List<LogicObjects.MapPoint> map, int startinglocation, List<int> ExitsSeen)
         {
             // This checks all of the exits in the area we would go to if we took this exit. If we have seen all of these exits before there is no need to take this exit.
-            var good = false;
+            var Newexits = false;
             foreach (var point in map.Where(x => x.CurrentExit == startinglocation))
             {
                 if (!ExitsSeen.Contains(point.EntranceToTake))
                 {
-                    good = true;
+                    Newexits = true;
                     ExitsSeen.Add(point.EntranceToTake);
                 }
             }
-            return good;
+            return Newexits;
         }
 
-        private static bool NotSOT(LogicObjects.TrackerInstance Instance, LogicObjects.LogicEntry EntranceToCheck, LogicObjects.LogicEntry dummyEntry)
+        private static void AddRequirementstoClocktower(LogicObjects.TrackerInstance Instance)
         {
-            //true = Not Song of Time, false = Song of Time
-            if (Instance.Options.UseSongOfTime) { return true; }
-            var songOfTime = "EntranceSouthClockTownFromClockTowerInterior";
-            if (dummyEntry.DictionaryName == songOfTime)
-            {
-                if (EntranceToCheck.DictionaryName == "EntranceClockTowerInteriorFromBeforethePortaltoTermina" || EntranceToCheck.DictionaryName == "EntranceClockTowerInteriorFromSouthClockTown")
-                {
-                    return true;
-                }
-                else { return false; }
-            }
-            return true;
+            var ClockTowerToClockTown = Instance.Logic.Find(x => x.DictionaryName == "EntranceSouthClockTownFromClockTowerInterior");
+            var ClockTownToClockTower = Instance.Logic.Find(x => x.DictionaryName == "EntranceClockTowerInteriorFromSouthClockTown");
+            var LostWoodsToTermina = Instance.Logic.Find(x => x.DictionaryName == "EntranceClockTowerInteriorFromBeforethePortaltoTermina");
+            if (ClockTowerToClockTown == null || ClockTowerToClockTown == null || ClockTowerToClockTown == null || Instance.Options.UseSongOfTime) { return; }
+            var Conditionals = (ClockTowerToClockTown.Conditionals != null) ? ClockTowerToClockTown.Conditionals.ToList() : new List<int[]>();
+            Conditionals.Add(new int[] { ClockTownToClockTower.ID });
+            Conditionals.Add(new int[] { LostWoodsToTermina.ID });
+            ClockTowerToClockTown.Conditionals = Conditionals.ToArray();
         }
 
         public static string SetSOTName(LogicObjects.TrackerInstance Instance, LogicObjects.MapPoint stop)
@@ -388,7 +386,7 @@ namespace MMR_Tracker.Forms
 
         public static bool NotAreaAccess(LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
         {
-            //Attempts to check if a fake item details area access. If the fake item can be unlocked with only real item entries it should be detailing an it
+            //Attempts to check if a fake item details area access. If the fake item can be unlocked with only real item entries it should represent access to an area
             //And shouldn't need to be unaquired for the pathfinder
             var Reqdef = new int[0];
             var Condef = new int[0][];

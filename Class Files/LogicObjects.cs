@@ -155,14 +155,14 @@ namespace MMR_Tracker_V2
         }
         public static bool Unrandomized(this LogicObjects.LogicEntry entry, int UnRand0Manual1Either2 = 0)
         {
-            if (UnRand0Manual1Either2 == 0) { return entry.Options == 1; }
-            if (UnRand0Manual1Either2 == 1) { return entry.Options == 2; }
-            if (UnRand0Manual1Either2 == 2) { return entry.Options == 1 || entry.Options == 2; }
+            if (UnRand0Manual1Either2 == 0) { return entry.RandomizedState() == 1; }
+            if (UnRand0Manual1Either2 == 1) { return entry.RandomizedState() == 2; }
+            if (UnRand0Manual1Either2 == 2) { return entry.RandomizedState() == 1 || entry.RandomizedState() == 2; }
             return false;
         }
         public static bool Randomized(this LogicObjects.LogicEntry entry)
         {
-            return entry.Options == 0;
+            return entry.RandomizedState() == 0;
         }
         public static int RandomizedState(this LogicObjects.LogicEntry entry)
         {
@@ -175,7 +175,7 @@ namespace MMR_Tracker_V2
         }
         public static bool IsEntranceRando(this LogicObjects.TrackerInstance Instance)
         {
-            return (Instance.Logic.Where(x => x.ItemSubType == "Entrance").Count() > 0);
+            return (Instance.Logic.Where(x => x.IsEntrance()).Count() > 0);
         }
         public static bool IsMM(this LogicObjects.TrackerInstance Instance)
         {

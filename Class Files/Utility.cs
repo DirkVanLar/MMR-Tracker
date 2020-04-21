@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
@@ -155,17 +156,16 @@ namespace MMR_Tracker_V2
         {
             if (!Instance.EntranceRando) { return false; }
             int count = 0;
-            foreach (var i in Instance.Logic)
+            foreach (var i in Instance.Logic.Where(x => x.IsEntrance()))
             {
-                if (!Spoiler && i.IsEntrance() && i.AppearsInListbox()) { count += 1; }
-                if (Spoiler && i.IsEntrance() && i.SpoilerRandom != i.ID && i.SpoilerRandom > -1) { count += 1; }
+                if (!Spoiler && i.AppearsInListbox()) { count += 1; }
+                if (Spoiler && i.SpoilerRandom != i.ID && i.SpoilerRandom > -1) { count += 1; }
                 if (count >= validEntranceCount) { return true; }
             }
             return false;
         }
         public static void FixSpoilerInconsistency(LogicObjects.TrackerInstance Instance)
         {
-            DialogResult DR = new DialogResult();
             var RandoOptionsContradictSpoiler = false;
             foreach (var i in Instance.Logic)
             {

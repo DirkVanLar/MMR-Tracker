@@ -188,10 +188,10 @@ namespace MMR_Tracker_V2
                 CheckedObject.RandomizedItem = -2; 
                 return true;
             }
-            if (CheckedObject.SpoilerRandom > -2 || CheckedObject.RandomizedItem > -2 || CheckedObject.Options == 2)
+            if (CheckedObject.SpoilerRandom > -2 || CheckedObject.RandomizedItem > -2 || CheckedObject.RandomizedState() == 2)
             {
                 CheckedObject.Checked = true;
-                if (CheckedObject.Options == 2) { CheckedObject.RandomizedItem = CheckedObject.ID; }
+                if (CheckedObject.RandomizedState() == 2) { CheckedObject.RandomizedItem = CheckedObject.ID; }
                 if (CheckedObject.SpoilerRandom > -2) { CheckedObject.RandomizedItem = CheckedObject.SpoilerRandom; }
                 if (CheckedObject.RandomizedItem < 0) { CheckedObject.RandomizedItem = -1; return true; }
                 Instance.Logic[CheckedObject.RandomizedItem].Aquired = true;
@@ -216,7 +216,7 @@ namespace MMR_Tracker_V2
         {
             if (CheckedObject.RandomizedItem > -2) { CheckedObject.RandomizedItem = -2; return true; }
             if (CheckedObject.SpoilerRandom > -2) { CheckedObject.RandomizedItem = CheckedObject.SpoilerRandom; return true; }
-            if (CheckedObject.Options == 2) { CheckedObject.RandomizedItem = CheckedObject.ID; return true; }
+            if (CheckedObject.RandomizedState() == 2) { CheckedObject.RandomizedItem = CheckedObject.ID; return true; }
             Tools.CurrentSelectedItem = CheckedObject;
             ItemSelect ItemSelectForm = new ItemSelect(); var dialogResult = ItemSelectForm.ShowDialog();
             if (dialogResult != DialogResult.OK) { Tools.CurrentSelectedItem = new LogicObjects.LogicEntry(); return false; }
