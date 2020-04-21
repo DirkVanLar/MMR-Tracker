@@ -376,6 +376,10 @@ namespace MMR_Tracker.Class_Files
                         if (SeperateMArkedItems == DialogResult.Yes) { options.Add("SeperateMarked:1"); }
                         else { options.Add("SeperateMarked:0"); }
 
+                        var MiddleClickFunction = MessageBox.Show("Would you like Middle Click to star a location instead of Setting it? Staring a location will allow you to mark it as important so you can easily refrence it later. Setting a location will add what item or entrance is placed at that location. (Yes: Star, No: Set)", "Star or Set", MessageBoxButtons.YesNoCancel);
+                        if (MiddleClickFunction == DialogResult.Yes) { options.Add("MiddleClickFunction:1"); }
+                        else { options.Add("MiddleClickFunction:0"); }
+
                         var DisableEntrances = MessageBox.Show("Would you like the tracker to automatically mark entrances as unrandomized when creating an instance? This is usefull if you don't plan to use entrance randomizer often.", "Start with Entrance Rando", MessageBoxButtons.YesNoCancel);
                         if (DisableEntrances == DialogResult.No) { options.Add("DisableEntrancesOnStartup:0"); }
                         else { options.Add("DisableEntrancesOnStartup:1"); }
@@ -445,6 +449,7 @@ namespace MMR_Tracker.Class_Files
                     if (i.Contains("SeperateMarked:1")) { Instance.Options.MoveMarkedToBottom = true; }
                     if (i.Contains("DisableEntrancesOnStartup:0")) { Instance.Options.UnradnomizeEntranesOnStartup = false; }
                     if (i.Contains("CheckForUpdates:0")) { Instance.Options.CheckForUpdate = false; }
+                    if (i.Contains("MiddleClickFunction:1")) { Instance.Options.MiddleClickStarNotMark = true; }
                 }
             }
         }

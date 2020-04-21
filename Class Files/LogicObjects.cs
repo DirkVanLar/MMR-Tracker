@@ -38,6 +38,7 @@ namespace MMR_Tracker_V2
             //UI Options
             public bool MoveMarkedToBottom { get; set; } = false;
             public bool ShowEntryNameTooltip { get; set; } = true;
+            public bool MiddleClickStarNotMark { get; set; } = false;
             public string BomberCode { get; set; } = "";
             public string LotteryNumber { get; set; } = "";
             //Misc Options

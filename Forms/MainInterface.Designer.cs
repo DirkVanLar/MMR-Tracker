@@ -96,6 +96,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.changeMiddleClickToStarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -402,7 +403,7 @@
             this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -434,7 +435,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -469,22 +470,23 @@
             // 
             this.miscOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showEntryNameToolTipToolStripMenuItem,
-            this.seperateMarkedItemsToolStripMenuItem});
+            this.seperateMarkedItemsToolStripMenuItem,
+            this.changeMiddleClickToStarToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
             // 
             this.showEntryNameToolTipToolStripMenuItem.Name = "showEntryNameToolTipToolStripMenuItem";
-            this.showEntryNameToolTipToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.showEntryNameToolTipToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.showEntryNameToolTipToolStripMenuItem.Text = "Show Entry Name ToolTip";
             this.showEntryNameToolTipToolStripMenuItem.Click += new System.EventHandler(this.ShowEntryNameToolTipToolStripMenuItem_Click);
             // 
             // seperateMarkedItemsToolStripMenuItem
             // 
             this.seperateMarkedItemsToolStripMenuItem.Name = "seperateMarkedItemsToolStripMenuItem";
-            this.seperateMarkedItemsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.seperateMarkedItemsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.seperateMarkedItemsToolStripMenuItem.Text = "Seperate Marked Items";
             this.seperateMarkedItemsToolStripMenuItem.Click += new System.EventHandler(this.seperateMarkedItemsToolStripMenuItem_Click);
             // 
@@ -683,6 +685,13 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
+            // changeMiddleClickToStarToolStripMenuItem
+            // 
+            this.changeMiddleClickToStarToolStripMenuItem.Name = "changeMiddleClickToStarToolStripMenuItem";
+            this.changeMiddleClickToStarToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.changeMiddleClickToStarToolStripMenuItem.Text = "Change middle click to star";
+            this.changeMiddleClickToStarToolStripMenuItem.Click += new System.EventHandler(this.changeMiddleClickToStarToolStripMenuItem_Click);
+            // 
             // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -793,6 +802,7 @@
         public System.Windows.Forms.TextBox TXTEntSearch;
         public System.Windows.Forms.TextBox TXTCheckedSearch;
         private System.Windows.Forms.ToolStripMenuItem itemTrackerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeMiddleClickToStarToolStripMenuItem;
     }
 }
 

@@ -297,6 +297,12 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             PrintToListBox();
         }
+        private void changeMiddleClickToStarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark = !LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark;
+            FormatMenuItems();
+            PrintToListBox();
+        }
         #endregion MISC Options
         //Menu Strip => Tools---------------------------------------------------------------------------
         #region Tools
@@ -492,7 +498,9 @@ namespace MMR_Tracker_V2
             {
                 if ((ModifierKeys & Keys.Control) != Keys.Control) { LBValidLocations.SelectedItems.Clear(); }
                 LBValidLocations.SetSelected(index, true);
-                CheckItemSelected(LBValidLocations, false);
+                if (LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark) { StarItemSelected(LBValidLocations); }
+                else { CheckItemSelected(LBValidLocations, false); }
+                
             }
             else if (e.Button == MouseButtons.Right)
             {
@@ -512,7 +520,8 @@ namespace MMR_Tracker_V2
             {
                 if ((ModifierKeys & Keys.Control) != Keys.Control) { LBValidEntrances.SelectedItems.Clear(); }
                 LBValidEntrances.SetSelected(index, true);
-                CheckItemSelected(LBValidEntrances, false);
+                if (LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark) { StarItemSelected(LBValidEntrances); }
+                else { CheckItemSelected(LBValidEntrances, false); }
             }
             else if (e.Button == MouseButtons.Right)
             {
@@ -1038,6 +1047,7 @@ namespace MMR_Tracker_V2
             stricterLogicHandelingToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling) ? "Disable Stricter Logic Handeling" : "Enable Stricter Logic Handeling";
             showEntryNameToolTipToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip) ? "Disable Entry Name ToolTip" : "Show Entry Name ToolTip";
             includeItemLocationsAsDestinationToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations) ? "Exclude Item Locations As Destinations" : "Include Item Locations As Destinations";
+            changeMiddleClickToStarToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark) ? "Make Middle Click Set Item" : "Make Middle Click Star Item";
             entranceRandoToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.EntranceRando;
             optionsToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             undoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
@@ -1198,5 +1208,6 @@ namespace MMR_Tracker_V2
         #endregion Other Functions
 
         #endregion Functions
+
     }
 }
