@@ -291,17 +291,103 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
         }
 
-        private void seperateMarkedItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SeperateMarkedItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom = !LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom;
             FormatMenuItems();
             PrintToListBox();
         }
-        private void changeMiddleClickToStarToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void ChangeMiddleClickToStarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark = !LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark;
             FormatMenuItems();
             PrintToListBox();
+        }
+
+        private void ChangeFontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form fontSelect = new Form();
+            fontSelect.FormBorderStyle = FormBorderStyle.FixedSingle;
+            fontSelect.Text = "Font";
+            fontSelect.Width = (220);
+            fontSelect.Height = (112);
+            Bitmap Moon = Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap;
+            IntPtr Hicon = Moon.GetHicon();
+            Icon newIcon = Icon.FromHandle(Hicon);
+            fontSelect.Icon = newIcon;
+            //Font Size lable
+            Label lbSize = new Label();
+            lbSize.Text = "Font Size:";
+            lbSize.Location = new Point(2, 2);
+            lbSize.AutoSize = true;
+            lbSize.Parent = fontSelect;
+            fontSelect.Controls.Add(lbSize);
+            //Font Size Selector
+            NumericUpDown Size = new NumericUpDown();
+            Size.Location = new Point(lbSize.Width + 6, 2);
+            Size.Width += 20;
+            Size.Parent = fontSelect;
+            Size.DecimalPlaces = 2;
+            Size.Value = (decimal)LogicObjects.MainTrackerInstance.Options.FormFont.Size;
+            Size.ValueChanged += (s, ea) =>
+            {
+                var currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
+                LogicObjects.MainTrackerInstance.Options.FormFont = new Font(currentFont.FontFamily, (float)Size.Value, FontStyle.Regular);
+                LBValidLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+                LBValidEntrances.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+                LBCheckedLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+                LBPathFinder.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+                ResizeObject();
+            };
+            fontSelect.Controls.Add(Size);
+            //Font Style Lable
+            Label lbFont = new Label();
+            lbFont.Text = "Font Style:";
+            lbFont.Location = new Point(2, Size.Height + 2);
+            lbFont.AutoSize = true;
+            lbFont.Parent = fontSelect;
+            fontSelect.Controls.Add(lbFont);
+            //Create list of available fonts and find currently used Font
+            List<string> FontStyles = new List<string>();
+            int CurIndex = -1;
+            foreach (FontFamily font in System.Drawing.FontFamily.Families)
+            {
+                FontStyles.Add(font.Name);
+                if (font.Name == LogicObjects.MainTrackerInstance.Options.FormFont.FontFamily.Name) { CurIndex = FontStyles.Count - 1; }
+            }
+            //Font Style Selector
+            ComboBox cmbStyle = new ComboBox();
+            cmbStyle.Location = new Point(lbSize.Width + 6, Size.Height + 2);
+            cmbStyle.Parent = fontSelect;
+            cmbStyle.DataSource = FontStyles;
+            cmbStyle.Width = Size.Width;
+            if (CurIndex > 0) { cmbStyle.SelectedIndex = CurIndex; }
+            cmbStyle.SelectedIndexChanged += (s, ea) =>
+            {
+                var currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
+                LogicObjects.MainTrackerInstance.Options.FormFont = new Font(cmbStyle.SelectedItem.ToString(), currentFont.Size, FontStyle.Regular);
+                LBValidLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+                LBValidEntrances.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+                LBCheckedLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+                LBPathFinder.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+                ResizeObject();
+            };
+            fontSelect.Controls.Add(cmbStyle);
+            //Default button
+            Button Default = new Button();
+            Default.Text = "Set to Default";
+            Default.Location = new Point(2, Size.Height + 4 + cmbStyle.Height);
+            Default.Width = lbSize.Width + Size.Width + 5;
+            Default.Click += (s, ea) =>
+            {
+                var currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
+                LogicObjects.MainTrackerInstance.Options.FormFont = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular);
+                PrintToListBox();
+                ResizeObject();
+            };
+            fontSelect.Controls.Add(Default);
+            fontSelect.Show();
         }
         #endregion MISC Options
         //Menu Strip => Tools---------------------------------------------------------------------------
@@ -367,7 +453,7 @@ namespace MMR_Tracker_V2
             FilterMap.Show();
         }
 
-        private void itemTrackerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ItemTrackerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ItemDisplay id = new ItemDisplay();
             id.MainInterfaceInstance = this;
@@ -441,94 +527,73 @@ namespace MMR_Tracker_V2
         #endregion Info
         //Text Boxes---------------------------------------------------------------------------
         #region Text Boxes
-        private void TXTLocSearch_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
+        private void TXT_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
 
-        private void TXTEntSearch_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
-
-        private void TXTCheckedSearch_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
-
-        private void TXTLocSearch_MouseClick(object sender, MouseEventArgs e)
+        private void TXT_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Middle) { TXTLocSearch.Clear(); }
-        }
-
-        private void TXTEntSearch_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle) { TXTEntSearch.Clear(); }
-        }
-
-        private void TXTCheckedSearch_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle) { TXTCheckedSearch.Clear(); }
+            var TB = sender as TextBox;
+            if (e.Button == MouseButtons.Middle) { TB.Clear(); }
         }
         #endregion Text Boxes
         //List Boxes---------------------------------------------------------------------------
         #region List Boxes
-        private void LBValidLocations_DoubleClick(object sender, EventArgs e) { CheckItemSelected(LBValidLocations, true); }
-
-        private void LBValidEntrances_DoubleClick(object sender, EventArgs e) { CheckItemSelected(LBValidEntrances, true); }
-
-        private void LBCheckedLocations_DoubleClick(object sender, EventArgs e) { CheckItemSelected(LBCheckedLocations, true); }
-
-        private void LBPathFinder_DoubleClick(object sender, EventArgs e)
-        {
-            if (LBPathFinder.SelectedItem is LogicObjects.ListItem)
+        private void LB_DoubleClick(object sender, EventArgs e) 
+        { 
+            if (sender as ListBox == LBPathFinder)
             {
-                var item = LBPathFinder.SelectedItem as LogicObjects.ListItem;
-                var partition = item.Identifier;
-                PrintPaths(item.ID, partition);
+                if (LBPathFinder.SelectedItem is LogicObjects.ListItem)
+                {
+                    var item = LBPathFinder.SelectedItem as LogicObjects.ListItem;
+                    var partition = item.Identifier;
+                    PrintPaths(item.ID, partition);
+                }
+                else { return; }
             }
-            else { return; }
+            else
+            {
+                CheckItemSelected(sender as ListBox, true);
+            }
         }
 
-        private void LBValidLocations_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, LBValidLocations); }
+        private void LB_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, sender as ListBox); }
 
-        private void LBValidEntrances_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, LBValidEntrances); }
-
-        private void LBCheckedLocations_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, LBCheckedLocations); }
-
-        private void LBPathFinder_MouseMove(object sender, MouseEventArgs e) { ShowtoolTip(e, LBPathFinder); }
-
-        private void LBValidLocations_MouseUp(object sender, MouseEventArgs e)
+        private void LB_MouseUp(object sender, MouseEventArgs e)
         {
-            int index = LBValidLocations.IndexFromPoint(e.Location);
+            var LB = sender as ListBox;
+            int index = LB.IndexFromPoint(e.Location);
             if (index < 0) { return; }
-            if (!(LBValidLocations.Items[index] is LogicObjects.LogicEntry)) { return; }
+            if (!(LB.Items[index] is LogicObjects.LogicEntry)) { return; }
             if (e.Button == MouseButtons.Middle)
             {
-                if ((ModifierKeys & Keys.Control) != Keys.Control) { LBValidLocations.SelectedItems.Clear(); }
-                LBValidLocations.SetSelected(index, true);
-                if (LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark) { StarItemSelected(LBValidLocations); }
-                else { CheckItemSelected(LBValidLocations, false); }
+                if ((ModifierKeys & Keys.Control) != Keys.Control) { LB.SelectedItems.Clear(); }
+                LB.SetSelected(index, true);
+                if (LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark || LB == LBCheckedLocations) { StarItemSelected(LB); }
+                else { CheckItemSelected(LB, false); }
                 
             }
             else if (e.Button == MouseButtons.Right)
             {
-                LBValidLocations.SelectedItems.Clear();
-                LBValidLocations.SetSelected(index, true);
-                this.ActiveControl = LBValidLocations;
+                LB.SelectedItems.Clear();
+                LB.SetSelected(index, true);
+                this.ActiveControl = LB;
 
             }
         }
 
-        private void LBValidEntrances_MouseUp(object sender, MouseEventArgs e)
+        private void LB_DrawItem(object sender, DrawItemEventArgs e)
         {
-            int index = LBValidEntrances.IndexFromPoint(e.Location);
-            if (index < 0) { return; }
-            if (!(LBValidEntrances.Items[index] is LogicObjects.LogicEntry)) { return; }
-            if (e.Button == MouseButtons.Middle)
+            var LB = sender as ListBox;
+            if (e.Index < 0) { return; }
+            e.DrawBackground();
+            Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
+            if (LB.Items[e.Index] is LogicObjects.LogicEntry item)
             {
-                if ((ModifierKeys & Keys.Control) != Keys.Control) { LBValidEntrances.SelectedItems.Clear(); }
-                LBValidEntrances.SetSelected(index, true);
-                if (LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark) { StarItemSelected(LBValidEntrances); }
-                else { CheckItemSelected(LBValidEntrances, false); }
+                if (item.HasRandomItem(false) && !item.Available && item.Starred) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold | FontStyle.Strikeout); }
+                else if (item.Starred) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
+                else if (item.HasRandomItem(false) && !item.Available) { F = new Font(F.FontFamily, F.Size, FontStyle.Strikeout); }
             }
-            else if (e.Button == MouseButtons.Right)
-            {
-                LBValidEntrances.SelectedItems.Clear();
-                LBValidEntrances.SetSelected(index, true);
-                this.ActiveControl = LBValidEntrances;
-            }
+            e.Graphics.DrawString(LB.Items[e.Index].ToString(), F, Brushes.Black, e.Bounds);
+            e.DrawFocusRectangle();
         }
         #endregion List Boxes
         //Buttons---------------------------------------------------------------------------
@@ -598,7 +663,7 @@ namespace MMR_Tracker_V2
         {
             //LBValidLocations List Box
             ContextMenuStrip LocationContextMenu = new ContextMenuStrip();
-            LocationContextMenu.Opening += LocationContextMenu_Opening;
+            LocationContextMenu.Opening += (sender, e) => ContextMenu_Opening(LBValidLocations, e);
             ToolStripItem WhatUnlcoked = LocationContextMenu.Items.Add("What Unlocked This?");
             WhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBValidLocations); };
             if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.Options.IncludeItemLocations)
@@ -620,7 +685,7 @@ namespace MMR_Tracker_V2
 
             //LBValidEntrances List Box
             ContextMenuStrip EntranceContextMenu = new ContextMenuStrip();
-            EntranceContextMenu.Opening += EntranceContextMenu_Opening;
+            EntranceContextMenu.Opening += (sender, e) => ContextMenu_Opening(LBValidEntrances, e);
             ToolStripItem EWhatUnlcoked = EntranceContextMenu.Items.Add("What Unlocked This?");
             EWhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBValidEntrances); };
             if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled)
@@ -639,6 +704,24 @@ namespace MMR_Tracker_V2
             ToolStripItem EStar = EntranceContextMenu.Items.Add("Star This Item");
             EStar.Click += (sender, e) => { StarItemSelected(LBValidEntrances); };
             LBValidEntrances.ContextMenuStrip = EntranceContextMenu;
+
+            //LBCheckedLocations List Box
+            ContextMenuStrip CheckContextMenu = new ContextMenuStrip();
+            CheckContextMenu.Opening += (sender, e) => ContextMenu_Opening(LBCheckedLocations, e);
+            if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled)
+            {
+                ToolStripItem ENavigateHere = CheckContextMenu.Items.Add("Navigate to this entrance");
+                ENavigateHere.Click += (sender, e) => { RunMenuItems(5, LBCheckedLocations); };
+            }
+            ToolStripItem CFilter = CheckContextMenu.Items.Add("Filter at this Location");
+            CFilter.Click += (sender, e) => { RunMenuItems(3, LBCheckedLocations); };
+            ToolStripItem CGroupFilter = CheckContextMenu.Items.Add("Filter at Locations near this area");
+            CGroupFilter.Click += (sender, e) => { RunMenuItems(4, LBCheckedLocations); };
+            ToolStripItem CCheck = CheckContextMenu.Items.Add("Un Check This Item");
+            CCheck.Click += (sender, e) => { RunMenuItems(1, LBCheckedLocations); };
+            ToolStripItem CStar = CheckContextMenu.Items.Add("Star This Item");
+            CStar.Click += (sender, e) => { StarItemSelected(LBCheckedLocations); };
+            LBCheckedLocations.ContextMenuStrip = CheckContextMenu;
 
             //Set Item Button
             ContextMenuStrip SetItemMenu = new ContextMenuStrip();
@@ -669,11 +752,12 @@ namespace MMR_Tracker_V2
             BTNSetEntrance.ContextMenuStrip = SetLocationMenu;
         }
 
-        private void EntranceContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        private void ContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var index = LBValidEntrances.IndexFromPoint(LBValidEntrances.PointToClient(Cursor.Position));
+            var LB = sender as ListBox; 
+            var index = LB.IndexFromPoint(LB.PointToClient(Cursor.Position));
             if (index < 0) { e.Cancel = true; return; }
-            if (!(LBValidEntrances.Items[index] is LogicObjects.LogicEntry)) { e.Cancel = true; }
+            if (!(LB.Items[index] is LogicObjects.LogicEntry)) { e.Cancel = true; }
         }
 
         private void LocationContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -690,15 +774,26 @@ namespace MMR_Tracker_V2
             { ActiveItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry; }
             else if ((ActiveListBox == LBValidEntrances) && LBValidEntrances.SelectedItem is LogicObjects.LogicEntry)
             { ActiveItem = LBValidEntrances.SelectedItem as LogicObjects.LogicEntry; }
+            else if ((ActiveListBox == LBCheckedLocations) && LBCheckedLocations.SelectedItem is LogicObjects.LogicEntry)
+            { ActiveItem = LBCheckedLocations.SelectedItem as LogicObjects.LogicEntry; }
             else { return; }
 
             if (Function == 0) { Tools.CurrentSelectedItem = ActiveItem; Tools.WhatUnlockedThis(); }
             if (Function == 1) { CheckItemSelected(ActiveListBox, true); }
             if (Function == 2) { CheckItemSelected(ActiveListBox, false); }
-            if (Function == 3) { ((ActiveListBox == LBValidLocations) ? TXTLocSearch : TXTEntSearch).Text = "=#" + ActiveItem.LocationArea; }
+            if (Function == 3) 
+            { 
+                if ((ActiveListBox == LBValidLocations)) { TXTLocSearch.Text = "=#" + ActiveItem.LocationArea; }
+                else if ((ActiveListBox == LBValidEntrances)) { TXTEntSearch.Text = "=#" + ActiveItem.LocationArea; }
+                else if ((ActiveListBox == LBCheckedLocations)) { TXTCheckedSearch.Text = "=#" + ActiveItem.LocationArea; }
+            }
             if (Function == 4)
             {
-                TextBox SearchBox = (ActiveListBox == LBValidLocations) ? TXTLocSearch : TXTEntSearch;
+                TextBox SearchBox;
+                if ((ActiveListBox == LBValidLocations)) { SearchBox = TXTLocSearch; }
+                else if ((ActiveListBox == LBValidEntrances)) { SearchBox = TXTEntSearch; }
+                else if ((ActiveListBox == LBCheckedLocations)) { SearchBox = TXTCheckedSearch; }
+                else { return; }
                 List<Map.LocationArea> LocationDic = new List<Map.LocationArea>();
                 Map MapUtils = new Map();
                 MapUtils.setLocationDic(LocationDic);
@@ -727,6 +822,9 @@ namespace MMR_Tracker_V2
         #region List/combo Box
         public void PrintToListBox()
         {
+            LBValidLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+            LBValidEntrances.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+            LBCheckedLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
             var lbLocTop = LBValidLocations.TopIndex;
             var lbEntTop = LBValidEntrances.TopIndex;
             var lbCheckTop = LBCheckedLocations.TopIndex;
@@ -844,6 +942,7 @@ namespace MMR_Tracker_V2
 
         private void PrintPaths(int PathToPrint, int partition)
         {
+            LBPathFinder.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
             LBPathFinder.Items.Clear();
             var sortedpaths = PathFinder.paths[partition].OrderBy(x => x.Count);
 
@@ -953,6 +1052,7 @@ namespace MMR_Tracker_V2
             cmb.DisplayMember = "Value";
             cmb.ValueMember = "key";
         }
+
         #endregion List/combo Box
         //Other Functions---------------------------------------------------------------------------
         #region Other Functions
@@ -1205,6 +1305,7 @@ namespace MMR_Tracker_V2
             if (LocationCheck) { LocationChecked(null, null); }
             if (TrackerUpdated) { TrackerUpdate(null, null); }
         }
+
         #endregion Other Functions
 
         #endregion Functions

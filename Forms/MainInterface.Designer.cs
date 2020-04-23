@@ -70,6 +70,8 @@
             this.miscOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showEntryNameToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seperateMarkedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeMiddleClickToStarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generatePlaythroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,7 +98,6 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.changeMiddleClickToStarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,8 +108,8 @@
             this.TXTLocSearch.Name = "TXTLocSearch";
             this.TXTLocSearch.Size = new System.Drawing.Size(100, 20);
             this.TXTLocSearch.TabIndex = 0;
-            this.TXTLocSearch.TextChanged += new System.EventHandler(this.TXTLocSearch_TextChanged);
-            this.TXTLocSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXTLocSearch_MouseClick);
+            this.TXTLocSearch.TextChanged += new System.EventHandler(this.TXT_TextChanged);
+            this.TXTLocSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXT_MouseClick);
             // 
             // TXTEntSearch
             // 
@@ -117,8 +118,8 @@
             this.TXTEntSearch.Name = "TXTEntSearch";
             this.TXTEntSearch.Size = new System.Drawing.Size(100, 20);
             this.TXTEntSearch.TabIndex = 1;
-            this.TXTEntSearch.TextChanged += new System.EventHandler(this.TXTEntSearch_TextChanged);
-            this.TXTEntSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXTEntSearch_MouseClick);
+            this.TXTEntSearch.TextChanged += new System.EventHandler(this.TXT_TextChanged);
+            this.TXTEntSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXT_MouseClick);
             // 
             // TXTCheckedSearch
             // 
@@ -127,8 +128,8 @@
             this.TXTCheckedSearch.Name = "TXTCheckedSearch";
             this.TXTCheckedSearch.Size = new System.Drawing.Size(100, 20);
             this.TXTCheckedSearch.TabIndex = 2;
-            this.TXTCheckedSearch.TextChanged += new System.EventHandler(this.TXTCheckedSearch_TextChanged);
-            this.TXTCheckedSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXTCheckedSearch_MouseClick);
+            this.TXTCheckedSearch.TextChanged += new System.EventHandler(this.TXT_TextChanged);
+            this.TXTCheckedSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXT_MouseClick);
             // 
             // label1
             // 
@@ -256,51 +257,60 @@
             // LBValidLocations
             // 
             this.LBValidLocations.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.LBValidLocations.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBValidLocations.FormattingEnabled = true;
             this.LBValidLocations.Location = new System.Drawing.Point(12, 258);
             this.LBValidLocations.Name = "LBValidLocations";
             this.LBValidLocations.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBValidLocations.Size = new System.Drawing.Size(75, 95);
             this.LBValidLocations.TabIndex = 16;
-            this.LBValidLocations.DoubleClick += new System.EventHandler(this.LBValidLocations_DoubleClick);
-            this.LBValidLocations.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBValidLocations_MouseMove);
-            this.LBValidLocations.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LBValidLocations_MouseUp);
+            this.LBValidLocations.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LB_DrawItem);
+            this.LBValidLocations.DoubleClick += new System.EventHandler(this.LB_DoubleClick);
+            this.LBValidLocations.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LB_MouseMove);
+            this.LBValidLocations.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LB_MouseUp);
             // 
             // LBValidEntrances
             // 
             this.LBValidEntrances.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.LBValidEntrances.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBValidEntrances.FormattingEnabled = true;
             this.LBValidEntrances.Location = new System.Drawing.Point(106, 258);
             this.LBValidEntrances.Name = "LBValidEntrances";
             this.LBValidEntrances.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBValidEntrances.Size = new System.Drawing.Size(75, 95);
             this.LBValidEntrances.TabIndex = 17;
-            this.LBValidEntrances.DoubleClick += new System.EventHandler(this.LBValidEntrances_DoubleClick);
-            this.LBValidEntrances.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBValidEntrances_MouseMove);
-            this.LBValidEntrances.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LBValidEntrances_MouseUp);
+            this.LBValidEntrances.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LB_DrawItem);
+            this.LBValidEntrances.DoubleClick += new System.EventHandler(this.LB_DoubleClick);
+            this.LBValidEntrances.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LB_MouseMove);
+            this.LBValidEntrances.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LB_MouseUp);
             // 
             // LBCheckedLocations
             // 
             this.LBCheckedLocations.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.LBCheckedLocations.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBCheckedLocations.FormattingEnabled = true;
             this.LBCheckedLocations.Location = new System.Drawing.Point(12, 359);
             this.LBCheckedLocations.Name = "LBCheckedLocations";
             this.LBCheckedLocations.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBCheckedLocations.Size = new System.Drawing.Size(75, 95);
             this.LBCheckedLocations.TabIndex = 18;
-            this.LBCheckedLocations.DoubleClick += new System.EventHandler(this.LBCheckedLocations_DoubleClick);
-            this.LBCheckedLocations.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBCheckedLocations_MouseMove);
+            this.LBCheckedLocations.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LB_DrawItem);
+            this.LBCheckedLocations.DoubleClick += new System.EventHandler(this.LB_DoubleClick);
+            this.LBCheckedLocations.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LB_MouseMove);
+            this.LBCheckedLocations.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LB_MouseUp);
             // 
             // LBPathFinder
             // 
             this.LBPathFinder.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.LBPathFinder.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBPathFinder.FormattingEnabled = true;
             this.LBPathFinder.Location = new System.Drawing.Point(106, 359);
             this.LBPathFinder.Name = "LBPathFinder";
             this.LBPathFinder.Size = new System.Drawing.Size(75, 95);
             this.LBPathFinder.TabIndex = 19;
-            this.LBPathFinder.DoubleClick += new System.EventHandler(this.LBPathFinder_DoubleClick);
-            this.LBPathFinder.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBPathFinder_MouseMove);
+            this.LBPathFinder.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LB_DrawItem);
+            this.LBPathFinder.DoubleClick += new System.EventHandler(this.LB_DoubleClick);
+            this.LBPathFinder.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LB_MouseMove);
             // 
             // BTNFindPath
             // 
@@ -403,7 +413,7 @@
             this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -435,7 +445,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -471,9 +481,10 @@
             this.miscOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showEntryNameToolTipToolStripMenuItem,
             this.seperateMarkedItemsToolStripMenuItem,
-            this.changeMiddleClickToStarToolStripMenuItem});
+            this.changeMiddleClickToStarToolStripMenuItem,
+            this.changeFontToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -488,7 +499,21 @@
             this.seperateMarkedItemsToolStripMenuItem.Name = "seperateMarkedItemsToolStripMenuItem";
             this.seperateMarkedItemsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.seperateMarkedItemsToolStripMenuItem.Text = "Seperate Marked Items";
-            this.seperateMarkedItemsToolStripMenuItem.Click += new System.EventHandler(this.seperateMarkedItemsToolStripMenuItem_Click);
+            this.seperateMarkedItemsToolStripMenuItem.Click += new System.EventHandler(this.SeperateMarkedItemsToolStripMenuItem_Click);
+            // 
+            // changeMiddleClickToStarToolStripMenuItem
+            // 
+            this.changeMiddleClickToStarToolStripMenuItem.Name = "changeMiddleClickToStarToolStripMenuItem";
+            this.changeMiddleClickToStarToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.changeMiddleClickToStarToolStripMenuItem.Text = "Change middle click to star";
+            this.changeMiddleClickToStarToolStripMenuItem.Click += new System.EventHandler(this.ChangeMiddleClickToStarToolStripMenuItem_Click);
+            // 
+            // changeFontToolStripMenuItem
+            // 
+            this.changeFontToolStripMenuItem.Name = "changeFontToolStripMenuItem";
+            this.changeFontToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.changeFontToolStripMenuItem.Text = "Change Font";
+            this.changeFontToolStripMenuItem.Click += new System.EventHandler(this.ChangeFontToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -559,7 +584,7 @@
             this.itemTrackerToolStripMenuItem.Name = "itemTrackerToolStripMenuItem";
             this.itemTrackerToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.itemTrackerToolStripMenuItem.Text = "Item Tracker";
-            this.itemTrackerToolStripMenuItem.Click += new System.EventHandler(this.itemTrackerToolStripMenuItem_Click);
+            this.itemTrackerToolStripMenuItem.Click += new System.EventHandler(this.ItemTrackerToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -685,13 +710,6 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // changeMiddleClickToStarToolStripMenuItem
-            // 
-            this.changeMiddleClickToStarToolStripMenuItem.Name = "changeMiddleClickToStarToolStripMenuItem";
-            this.changeMiddleClickToStarToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.changeMiddleClickToStarToolStripMenuItem.Text = "Change middle click to star";
-            this.changeMiddleClickToStarToolStripMenuItem.Click += new System.EventHandler(this.changeMiddleClickToStarToolStripMenuItem_Click);
-            // 
             // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -721,6 +739,7 @@
             this.Controls.Add(this.TXTLocSearch);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainInterface";
@@ -803,6 +822,7 @@
         public System.Windows.Forms.TextBox TXTCheckedSearch;
         private System.Windows.Forms.ToolStripMenuItem itemTrackerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeMiddleClickToStarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeFontToolStripMenuItem;
     }
 }
 
