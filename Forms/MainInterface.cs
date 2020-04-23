@@ -312,10 +312,7 @@ namespace MMR_Tracker_V2
             fontSelect.Text = "Font";
             fontSelect.Width = (220);
             fontSelect.Height = (112);
-            Bitmap Moon = Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap;
-            IntPtr Hicon = Moon.GetHicon();
-            Icon newIcon = Icon.FromHandle(Hicon);
-            fontSelect.Icon = newIcon;
+            try { fontSelect.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon()); } catch { }
             //Font Size lable
             Label lbSize = new Label();
             lbSize.Text = "Font Size:";
@@ -334,10 +331,10 @@ namespace MMR_Tracker_V2
             {
                 var currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
                 LogicObjects.MainTrackerInstance.Options.FormFont = new Font(currentFont.FontFamily, (float)Size.Value, FontStyle.Regular);
-                LBValidLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
-                LBValidEntrances.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
-                LBCheckedLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
-                LBPathFinder.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+                LBValidLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
+                LBValidEntrances.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
+                LBCheckedLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
+                LBPathFinder.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
                 ResizeObject();
             };
             fontSelect.Controls.Add(Size);
@@ -383,6 +380,9 @@ namespace MMR_Tracker_V2
             {
                 var currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
                 LogicObjects.MainTrackerInstance.Options.FormFont = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular);
+                currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
+                try { cmbStyle.SelectedIndex = cmbStyle.Items.IndexOf(currentFont.FontFamily.Name); } catch { }
+                Size.Value = (decimal)LogicObjects.MainTrackerInstance.Options.FormFont.Size;
                 PrintToListBox();
                 ResizeObject();
             };
@@ -592,7 +592,11 @@ namespace MMR_Tracker_V2
                 else if (item.Starred) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
                 else if (item.HasRandomItem(false) && !item.Available) { F = new Font(F.FontFamily, F.Size, FontStyle.Strikeout); }
             }
-            e.Graphics.DrawString(LB.Items[e.Index].ToString(), F, Brushes.Black, e.Bounds);
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+            { e.Graphics.DrawString(LB.Items[e.Index].ToString(), F, Brushes.White, e.Bounds); }
+            else
+            { e.Graphics.DrawString(LB.Items[e.Index].ToString(), F, Brushes.Black, e.Bounds); }
+                
             e.DrawFocusRectangle();
         }
         #endregion List Boxes
@@ -710,7 +714,7 @@ namespace MMR_Tracker_V2
             CheckContextMenu.Opening += (sender, e) => ContextMenu_Opening(LBCheckedLocations, e);
             if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled)
             {
-                ToolStripItem ENavigateHere = CheckContextMenu.Items.Add("Navigate to this entrance");
+                ToolStripItem ENavigateHere = CheckContextMenu.Items.Add("Navigate to this check");
                 ENavigateHere.Click += (sender, e) => { RunMenuItems(5, LBCheckedLocations); };
             }
             ToolStripItem CFilter = CheckContextMenu.Items.Add("Filter at this Location");
@@ -758,13 +762,6 @@ namespace MMR_Tracker_V2
             var index = LB.IndexFromPoint(LB.PointToClient(Cursor.Position));
             if (index < 0) { e.Cancel = true; return; }
             if (!(LB.Items[index] is LogicObjects.LogicEntry)) { e.Cancel = true; }
-        }
-
-        private void LocationContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            var index = LBValidLocations.IndexFromPoint(LBValidLocations.PointToClient(Cursor.Position));
-            if (index < 0) { e.Cancel = true; return; }
-            if (!(LBValidLocations.Items[index] is LogicObjects.LogicEntry)) { e.Cancel = true; }
         }
 
         private void RunMenuItems(int Function, ListBox ActiveListBox)
@@ -822,9 +819,9 @@ namespace MMR_Tracker_V2
         #region List/combo Box
         public void PrintToListBox()
         {
-            LBValidLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
-            LBValidEntrances.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
-            LBCheckedLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+            LBValidLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
+            LBValidEntrances.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
+            LBCheckedLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
             var lbLocTop = LBValidLocations.TopIndex;
             var lbEntTop = LBValidEntrances.TopIndex;
             var lbCheckTop = LBCheckedLocations.TopIndex;
@@ -942,7 +939,7 @@ namespace MMR_Tracker_V2
 
         private void PrintPaths(int PathToPrint, int partition)
         {
-            LBPathFinder.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
+            LBPathFinder.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
             LBPathFinder.Items.Clear();
             var sortedpaths = PathFinder.paths[partition].OrderBy(x => x.Count);
 
@@ -1309,6 +1306,5 @@ namespace MMR_Tracker_V2
         #endregion Other Functions
 
         #endregion Functions
-
     }
 }

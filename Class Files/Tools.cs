@@ -14,7 +14,7 @@ namespace MMR_Tracker.Class_Files
         public static LogicObjects.LogicEntry CurrentSelectedItem = new LogicObjects.LogicEntry();
         public static List<LogicObjects.LogicEntry> CurrentselectedItems = new List<LogicObjects.LogicEntry>();
 
-        public static List<int> FindRequirements(LogicObjects.LogicEntry Item, List<LogicObjects.LogicEntry> logic)
+        public static List<int>[] FindRequirements(LogicObjects.LogicEntry Item, List<LogicObjects.LogicEntry> logic)
         {
             List<int> ImportantItems = new List<int>();
             List<LogicObjects.PlaythroughItem> playthrough = new List<LogicObjects.PlaythroughItem>();
@@ -33,10 +33,11 @@ namespace MMR_Tracker.Class_Files
             PlaythroughGenerator.UnlockAllFake(LogicCopy, ImportantItems, 0, playthrough);
             List<int> UsedItems = new List<int>();
             bool isAvailable = (LogicEditing.RequirementsMet(ItemCopy.Required, LogicCopy, UsedItems) && LogicEditing.CondtionalsMet(ItemCopy.Conditionals, LogicCopy, UsedItems));
-            if (!isAvailable) { return new List<int>(); }
+            if (!isAvailable) { return new List<int>[] { new List<int>(), new List<int>() }; }
             List<int> NeededItems = Tools.ResolveFakeToRealItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy);
+            List<int> FakeItems = Tools.FindAllFakeItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy);
             NeededItems = NeededItems.Distinct().ToList();
-            return NeededItems;
+            return new List<int>[]{ NeededItems, FakeItems};
         }
         public static void CreateDictionary()
         {
@@ -408,11 +409,26 @@ namespace MMR_Tracker.Class_Files
                 if (!logic[j].IsFake) { RealItems.Add(j); }
                 else
                 {
-                    var NewItem = Playthrough.Where(i => i.Check.ID == j).FirstOrDefault();
+                    var NewItem = Playthrough.Find(i => i.Check.ID == j);
                     foreach (var k in ResolveFakeToRealItems(NewItem, Playthrough, logic)) { RealItems.Add(k); }
                 }
             }
             return RealItems;
+        }
+        public static List<int> FindAllFakeItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic)
+        {
+            var FakeItems = new List<int>();
+            var New = new LogicObjects.PlaythroughItem();
+            foreach (var j in item.ItemsUsed)
+            {
+                if (logic[j].IsFake)
+                {
+                    FakeItems.Add(j);
+                    var NewItem = Playthrough.Find(i => i.Check.ID == j);
+                    foreach (var k in FindAllFakeItems(NewItem, Playthrough, logic)) { FakeItems.Add(k); }
+                }
+            }
+            return FakeItems;
         }
         public static bool SameItemMultipleChecks(int item, LogicObjects.TrackerInstance Instance)
         {
@@ -455,9 +471,17 @@ namespace MMR_Tracker.Class_Files
         }
         public static void WhatUnlockedThis()
         {
-            var Requirements = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic);
-            string message = "";
+            var Requirements = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic)[0];
+            var FakeItems = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic)[1];
+            string message = "Real items used:\n";
+            if (Requirements.Count == 0)
+            {
+                MessageBox.Show("Nothing is needed to check this location.", Tools.CurrentSelectedItem.LocationName + " Was Unlocked with:");
+                return;
+            }
             foreach (var i in Requirements) { message = message + LogicObjects.MainTrackerInstance.Logic[i].ItemName + "\n"; }
+            message = message + "\nFake Items Used:\n";
+            foreach (var i in FakeItems) { message = message + LogicObjects.MainTrackerInstance.Logic[i].DictionaryName + "\n"; }
             MessageBox.Show(message, Tools.CurrentSelectedItem.LocationName + " Was Unlocked with:");
             Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
         }
