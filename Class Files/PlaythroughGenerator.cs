@@ -25,7 +25,7 @@ namespace MMR_Tracker.Class_Files
             }
 
             if (!Utility.CheckforSpoilerLog(playLogic.Logic, true))
-            { MessageBox.Show("Not all items have spoiler data. Playthrough can not be generated. Ensure you are using the same version of logic used to generate your selected spoiler log"); return; }
+            { MessageBox.Show("Not all items have spoiler data. Playthrough may not generate correctly. Ensure you are using the same version of logic used to generate your selected spoiler log"); }
 
             List<int> importantItems = new List<int>();
             foreach (var i in playLogic.Logic)
@@ -177,11 +177,7 @@ namespace MMR_Tracker.Class_Files
                 var locToCheck = SpoilerToID[i];
                 if (importantItems.Contains(locToCheck)) { continue; }
                 importantItems.Add(locToCheck);
-                var NextLocation = new LogicObjects.PlaythroughItem();
-                foreach (var j in Playthrough)
-                {
-                    if (j.Check.ID == locToCheck) { NextLocation = j; break; }
-                }
+                var NextLocation =  Playthrough.Find(j => j.Check.ID == locToCheck) ?? new LogicObjects.PlaythroughItem();
                 FindImportantItems(NextLocation, importantItems, Playthrough, SpoilerToID);
             }
         }

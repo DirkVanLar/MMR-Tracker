@@ -38,6 +38,9 @@ namespace MMR_Tracker_V2
                 case 3:
                     PrintPlaythrough();
                     break;
+                case 4:
+                    WhatUnlockedThis();
+                    break;
             }
             ResizeObject();
         }
@@ -303,6 +306,11 @@ namespace MMR_Tracker_V2
         public void PrintPlaythrough()
         {
             this.Text = "Playthrough";
+            foreach (var i in Playthrough) { listBox1.Items.Add(i); }
+        }
+
+        public void WhatUnlockedThis()
+        {
             foreach (var i in Playthrough) { listBox1.Items.Add(i); }
         }
 

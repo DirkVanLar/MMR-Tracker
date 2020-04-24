@@ -120,6 +120,13 @@ namespace MMR_Tracker_V2
             public int Version { get; set; }
             public string Gamecode { get; set; }
         }
+        public class ItemUnlockData
+        {
+            public List<LogicObjects.PlaythroughItem> playthrough { get; set; } = new List<LogicObjects.PlaythroughItem>();
+            public List<int> ResolvedRealItems { get; set; } = new List<int>();
+            public List<int> FakeItems { get; set; } = new List<int>();
+            public List<int> UsedItems { get; set; } = new List<int>();
+        }
     }
 
     public static class Extentions
