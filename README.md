@@ -24,7 +24,13 @@ You can use the Seed Checker to check if your seed can obtain a number of select
 You can tell the seed checker to ignore certain checks you want to avoid.
 
 #### Playthrough Generator
-You can use the playthrough generator to create a guide that will tell you what items you need to obtain, where they are, and in what order you need to obtain them to beat the game.
+You can use the playthrough generator to create a guide that will tell you what items you need to obtain, where they are, and in what order you need to obtain them to beat the game. You can define what constitutes "Beating the game" by adding a fake item to your logic called MMRTGameClear and setting it to require what is neccesary to beat the game.
+
+#### Visual Item Tracker
+A visual display of what items you have obtained.
+
+#### Map filter
+An interactable map that will filter the tracker based on the area of the map you click on.
 
 #### Advanced Logic Editor
 The tracker is equipped a feature complete Logic Editor.
