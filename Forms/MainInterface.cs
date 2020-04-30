@@ -846,28 +846,35 @@ namespace MMR_Tracker_V2
 
                 if (!entry.AppearsInListbox()) { continue; }
 
-                entry.DisplayName = entry.DictionaryName;
-                if ((entry.Available || entry.HasRandomItem(false) || CHKShowAll.Checked) && (entry.LocationName != "" && entry.LocationName != null) && !entry.Checked)
+                if ((!entry.IsEntrance() || !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled))
                 {
-                    entry.DisplayName = entry.HasRandomItem(false) ? ($"{entry.LocationName}: {entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}") : entry.LocationName;
-                    entry.DisplayName += (entry.Starred) ? "*" : "";
-                    if ((!entry.IsEntrance() || !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled))
+                    var filtertxt = TXTLocSearch.Text;
+                    if ((entry.Available || entry.HasRandomItem(false) || CHKShowAll.Checked || filtertxt.StartsWith("^")) && (entry.LocationName != "" && entry.LocationName != null) && !entry.Checked)
                     {
+                        entry.DisplayName = entry.HasRandomItem(false) ? ($"{entry.LocationName}: {entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}") : entry.LocationName;
+                        entry.DisplayName += (entry.Starred) ? "*" : "";
                         TotalLoc += 1;
-                        if (Utility.FilterSearch(entry, TXTLocSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
+                        if (Utility.FilterSearch(entry, filtertxt, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
                         {
                             ListBoxAssignments.Add(entry.ID, 0);
                             ListBoxItems.Add(entry);
                         }
                     }
-                    else if ((entry.IsEntrance() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled))
+                }
+                else if ((entry.IsEntrance() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled))
+                {
+                    var filtertxt = TXTEntSearch.Text;
+                    if ((entry.Available || entry.HasRandomItem(false) || CHKShowAll.Checked || filtertxt.StartsWith("^")) && (entry.LocationName != "" && entry.LocationName != null) && !entry.Checked)
                     {
+                        entry.DisplayName = entry.HasRandomItem(false) ? ($"{entry.LocationName}: {entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true).ItemName}") : entry.LocationName;
+                        entry.DisplayName += (entry.Starred) ? "*" : "";
                         TotalEnt += 1;
-                        if (Utility.FilterSearch(entry, TXTEntSearch.Text, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
+                        if (Utility.FilterSearch(entry, filtertxt, entry.DisplayName, entry.RandomizedEntry(LogicObjects.MainTrackerInstance, true)))
                         {
                             ListBoxAssignments.Add(entry.ID, 1);
                             ListBoxItems.Add(entry);
                         }
+
                     }
                 }
                 if (entry.Checked)

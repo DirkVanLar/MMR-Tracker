@@ -59,6 +59,11 @@ namespace MMR_Tracker_V2
         public static bool FilterSearch(LogicObjects.LogicEntry logic, string searchTerm, string NameToCompare, LogicObjects.LogicEntry RandomizedItem = null)
         {
             if (searchTerm == "") { return true; }
+            if (searchTerm[0] == '^')
+            {
+                searchTerm = searchTerm.Substring(1);
+                if (searchTerm == "") { return true; }
+            }
             string[] searchTerms = searchTerm.Split('|');
             foreach (string term in searchTerms)
             {
@@ -84,38 +89,44 @@ namespace MMR_Tracker_V2
                     if (subterm[0] == '#')
                     {
                         if (subterm.Substring(1) == "") { continue; }
-                        if (!logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower()) == !Inverse) { valid = false; }
+                        if (logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && logic.LocationArea.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
                     else if (subterm[0] == '@')
                     {
                         if (subterm.Substring(1) == "") { continue; }
-                        if ((!logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) == !Inverse) { valid = false; }
+                        if ((logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
                         if (Perfect && logic.ItemSubType.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
+                    }
+                    else if (subterm[0] == '~')
+                    {
+                        if (subterm.Substring(1) == "") { continue; }
+                        if ((logic.DictionaryName.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
+                        if (Perfect && logic.DictionaryName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
                     else if (subterm[0] == '$')
                     {
                         if (subterm.Substring(1) == "" || logic.ItemName == null) { continue; }
-                        if (!logic.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == !Inverse) { valid = false; }
+                        if (logic.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && logic.ItemName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
                     else if (subterm[0] == '%')
                     {
                         if (subterm.Substring(1) == "" || logic.LocationName == null) { continue; }
-                        if (!logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower()) == !Inverse) { valid = false; }
+                        if (logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && logic.LocationName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
                     else if (subterm[0] == '&')
                     {
                         if (subterm.Substring(1) == "") { continue; }
                         if (RandomizedItem == null) { valid = false; }
-                        else if (!RandomizedItem.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == !Inverse) { valid = false; }
+                        else if (RandomizedItem.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && logic.ItemName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
                     else if (subterm[0] == '*')
                     {
                         if (subterm.Substring(1) == "") { continue; }
-                        if (!NameToCompare.ToLower().Contains(subterm.Substring(1).ToLower()) == !Inverse) { valid = false; }
+                        if (NameToCompare.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && NameToCompare.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                         if (!logic.Starred) { valid = false; }
                     }
