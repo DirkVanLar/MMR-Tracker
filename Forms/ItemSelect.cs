@@ -87,6 +87,7 @@ namespace MMR_Tracker_V2
             List<string> Duplicates = new List<string>();
             for (var i = 0; i < UsedLogic.Count; i++)
             {
+                UsedLogic[i].DisplayName = UsedLogic[i].ItemName ?? UsedLogic[i].DictionaryName;
                 if (!UsedLogic[i].Aquired
                     && (!UsedLogic[i].IsFake)
                     && (UsedLogic[i].GetItemsNewLocation(UsedLogic) == null)
@@ -96,7 +97,6 @@ namespace MMR_Tracker_V2
                     && Utility.FilterSearch(UsedLogic[i], TXTSearch.Text, UsedLogic[i].DisplayName)
                     && (Tools.CurrentSelectedItem.ItemSubType == UsedLogic[i].ItemSubType || Tools.CurrentSelectedItem.ItemSubType == "ALL"))
                 {
-                    UsedLogic[i].DisplayName = UsedLogic[i].ItemName;
                     LBItemSelect.Items.Add(UsedLogic[i]);
                     Duplicates.Add(UsedLogic[i].ItemName);
                 }

@@ -53,6 +53,8 @@ namespace MMR_Tracker_V2
                 if (listBox1.SelectedItem.ToString().Contains("https://github.com/ZoeyZolotova/mm-rando")) { System.Diagnostics.Process.Start("https://github.com/ZoeyZolotova/mm-rando"); }
                 if (listBox1.SelectedItem.ToString().Contains("https://discord.gg/TJZ4uCP")) { System.Diagnostics.Process.Start("https://discord.gg/TJZ4uCP"); }
                 if (listBox1.SelectedItem.ToString().Contains("bigmuffthedrummonger@gmail.com"))  { System.Diagnostics.Process.Start("mailto:bigmuffthedrummonger@gmail.com"); }
+                if (listBox1.SelectedItem.ToString().Contains("(Click here for latest release)")) { System.Diagnostics.Process.Start("https://github.com/Thedrummonger/MMR-Tracker/releases"); }
+                
             }
         }
 
@@ -139,15 +141,19 @@ namespace MMR_Tracker_V2
             listBox1.Items.Clear();
             List<string> Lines = new List<string>();
             this.Text = "Info";
-            Lines.Add("Majoras Mask Randomizer Tracker");
+            Lines.Add(Utility.CreateDivider(listBox1, "Majoras Mask Randomizer Tracker"));
             Lines.Add("Tracker Github: https://github.com/Thedrummonger/MMR-Tracker");
-            Lines.Add("Version: " + VersionHandeling.trackerVersion);
+            Lines.Add("Version: " + VersionHandeling.trackerVersion + " (Click here for latest release)");
             Lines.Add("By: Thedrummonger");
             Lines.Add("Contact: bigmuffthedrummonger@gmail.com");
             Lines.Add(Utility.CreateDivider(listBox1, "For use with the Majoras Mask Randomizer"));
             Lines.Add("Majoras Mask Randomizer By: ZoeyZolotova");
             Lines.Add("Randomizer Github: https://github.com/ZoeyZolotova/mm-rando");
             Lines.Add("Randomizer Discord: https://discord.gg/TJZ4uCP");
+            Lines.Add(Utility.CreateDivider(listBox1, "Credit to:"));
+            Lines.Add("Xy172: Map Filter and bug testing");
+            Lines.Add("ZoeyZolotova and the Majoras mask rando team: The majoras mask randomizer");
+            Lines.Add("ColbyDude: Ripping A majority of the item tracker Icons");
             Lines.Add("(Double click links to open them.)");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Importing Logic:");
@@ -174,22 +180,36 @@ namespace MMR_Tracker_V2
             }
             Lines.Add("List Filtering:");
             Lines.Add("Typing in the text box above a list will filter the items in the list.");
+            Lines.Add("You can use certain symbols to further refine your search. Only one symbol can be used per search term.");
             Lines.Add("You can filter by area by typing # at the beggining of your filter.");
-            Lines.Add("You can filter by Item Type (Bottle, Entrance, item etc) by typing @ at the beggining of your filter.");
-            Lines.Add("You can filter by Location Name by typing $ at the beggining of your filter.");
+            Lines.Add("You can filter by logic name (The name used in the logic file) by typing ~ at the beggining of your filter.");
             Lines.Add("You can filter by Item Name by typing % at the beggining of your filter.");
-            Lines.Add("You can filter by The Item Name of the randomized Item found in a location by typing & at the beggining of your filter.");
-            Lines.Add("Typing ! at the beggining of your serach will invert the filter, showing only things that don't match the search.");
-            Lines.Add("You can filter multiple things at once by seperating them with a |. (Pipe) (located below the backspace key on most keyboards)");
+            Lines.Add("You can filter by Location Name by typing $ at the beggining of your filter.");
+            Lines.Add("You can filter by Item Type (Bottle, Entrance, item etc) by typing @ at the beggining of your filter.");
+            Lines.Add("You can filter by The Item Name of the randomized Item found in a location by typing _ at the beggining of your filter.");
+            Lines.Add("Typing * at the beggining of your search will show things that match your search and are starred. Typing ** as your search will show you all starred entries.");
+            Lines.Add("Typing ! at the beggining of your search will invert the filter, showing only things that don't match the search.");
+            Lines.Add("Typing = at the beggining of your search will show only things that match your search exactly.");
+            Lines.Add("Unlike other symbols ! and = can be used alongside other symbols as long as they are at the beggining of a term. ! and = do nothing when used together.");
+            Lines.Add("Adding ^ to the begging of your search string will cause the corrisopnding list box to show all checks reguardless of whether they are available as long as they match the filter.");
+            Lines.Add("You can filter multiple things at once by seperating them with a |. (Pipe, located below the backspace key on most keyboards)");
             Lines.Add("For example typing \"Clock|Wood\" will show all checks that contain the word \"Clock\" as well as all checks that contain \"Wood\".");
-            Lines.Add("You can also filter by multiple words by seperating them with a ,. (Comma)");
-            Lines.Add("For example typing \"Clock,Wood\" will show only checks that contain both. the word \"clock\" and the word \"wood\".");
+            Lines.Add("You can also filter by multiple words by seperating them with a &.");
+            Lines.Add("For example typing \"Clock&Wood\" will show only checks that contain both. the word \"clock\" and the word \"wood\".");
             Lines.Add("These methods can be combined in the same search.");
-            Lines.Add("For example typing \"#Clock|Wood,fairy\" in the search box will show all entries who area contains the word \"Clock\" or display name contains both the words \"Wood\" and \"Fairy\".");
+            Lines.Add("For example typing \"#Clock|Wood&fairy\" in the search box will show all entries who area contains the word \"Clock\" or display name contains both the words \"Wood\" and \"Fairy\".");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Setting Item vs Marking Item:");
             Lines.Add("The set item and set entrance button will mark an item/entrance as being at a location without actually marking that item/entrance as being obtained.");
             Lines.Add("This is usefull when you know what item is in a location but haven't actually obtianed it such as if you see it in a shop or read about it in a hint.");
+            Lines.Add("Marked items will always appear in your list even if they aren't available. If they aren't available, the text will have a strike through.");
+            Lines.Add("You can middle click an item to set it quickly as long as the middle click function is set to set item in Options -> Misc Options.");
+            Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Starring an item:");
+            Lines.Add("Starring an item is only used to indicate the entry should be kept in mind, it has no effect on the entry logically.");
+            Lines.Add("Starred items will be noted with a * after the text and will be bolded.");
+            Lines.Add("Starred items will always appear in your list even if they aren't available. If they aren't available, the text will have a strike through.");
+            Lines.Add("You can middle click an item to Star it quickly as long as the middle click function is set to star item in Options -> Misc Options.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("OPTIONS MENU:");
             Lines.Add(Utility.CreateDivider(listBox1));
@@ -239,7 +259,7 @@ namespace MMR_Tracker_V2
                 Lines.Add("The pathfinder can still be accessed using the popout pathfinder.");
                 Lines.Add(Utility.CreateDivider(listBox1));
                 Lines.Add("Couple Entrances:");
-                Lines.Add("This option will assume that an entrance is the same both ways");
+                Lines.Add("This option will make the tracker assume that an entrance is the same both ways");
                 Lines.Add("For example if (Ikana > Sakon) Leads to (NCT < Mayor) Then it will assume (NCT > Mayor) Leads to (Ikana < Sakon)");
                 Lines.Add("If this option is enabled when you mark an entrance it will automatcially mark the entrance in reverse as well assuming it's not a one way.");
                 Lines.Add(Utility.CreateDivider(listBox1));
@@ -248,6 +268,9 @@ namespace MMR_Tracker_V2
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Show Entry Name Tooltip:");
             Lines.Add("This will toggle the tooltip that displays the full name of an item when you mouse over an item in a list.");
+            Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Seperate marked items:");
+            Lines.Add("If this option is enabled, set/marked items will be moved to the bottom of the list box.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Tools:");
             Lines.Add(Utility.CreateDivider(listBox1));
@@ -262,7 +285,7 @@ namespace MMR_Tracker_V2
             Lines.Add("The play through generator will show you all of the items you need to obtain to beat the game along with what order you need to obtain them.");
             Lines.Add("You will be asked to provide the spoiler log which will be used to generate the playthrough");
             Lines.Add("If a spoiler log is already imported into the tracker it will use that data.");
-            Lines.Add("If the spoiler log is not able to assign all checks data, a playthrough will not be generated.");
+            Lines.Add("The playthrough generator will use the logic entry \"MMRTGameClear\" to determine what constitutes beating the game. If this entry does not exist in your logic it will be created using default rquirements");
             Lines.Add("This will spoil your seed! only use this if you already know where items are or don't care to be spoiled.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("What Unlocked This:");
@@ -271,7 +294,7 @@ namespace MMR_Tracker_V2
             Lines.Add("If it can't find that information it will you ask you to imput an item from a list of avalable items.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Logic Editor:");
-            Lines.Add("This is and advanced version of the logic editor found in the majoras mask randomizer.");
+            Lines.Add("This is an advanced version of the logic editor found in the majoras mask randomizer.");
             Lines.Add("It containes all of features present in that editor plus a number of new features including:");
             Lines.Add("-Undo / Redo functionality.");
             Lines.Add("-The ability to go back to the last entry after using the \"Go To\" button.");
@@ -285,8 +308,20 @@ namespace MMR_Tracker_V2
             Lines.Add("Once you've made your changes you can save the logic to a file or apply it directly to the tracker.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Update Logic:");
-            Lines.Add("This will let you swamp the logic you're currently using.");
+            Lines.Add("This will let you swap the logic you're currently using.");
             Lines.Add("The tracker will attempt to preserve your check location/entrances and what they contained, however this may not always work if the changes in logic are to drastic.");
+            Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Filter Map:");
+            Lines.Add("This will display a map of termina that can be clicked on to filter the tracker by the selected area.");
+            Lines.Add("Right clicking an area will allow you to filter by specific sub areas in that location.");
+            Lines.Add("Holding control will add the selected filter to your current filter instead of overwriting it.");
+            Lines.Add("Use the Locations, entrances and Checked check boxes to determine which list boxes will be filtered .");
+            Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Item Tracker:");
+            Lines.Add("The item tracker will give you a visual display of what items you have obtained.");
+            Lines.Add("Items will be greyed out until they are obtained. Some items such as boss remains will become active once they become available.");
+            Lines.Add("The moon icon in the bottom left will become active when the Game is beatable (Go mode). This is determined the same way the pathfinder determined game clear.");
+            Lines.Add("NOTE: this feature is currently in beta and will cause the tracker to lag slightly when displayed. While it is noticable it does not inhibit functionalty in any way. ");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Popout Pathfinder:");
             Lines.Add("This will open a new window containing the pathfinder.");

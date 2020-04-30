@@ -58,6 +58,7 @@ namespace MMR_Tracker_V2
         }
         public static bool FilterSearch(LogicObjects.LogicEntry logic, string searchTerm, string NameToCompare, LogicObjects.LogicEntry RandomizedItem = null)
         {
+            if (NameToCompare == null) { NameToCompare = logic.DictionaryName; }
             if (searchTerm == "") { return true; }
             if (searchTerm[0] == '^')
             {
@@ -67,7 +68,7 @@ namespace MMR_Tracker_V2
             string[] searchTerms = searchTerm.Split('|');
             foreach (string term in searchTerms)
             {
-                string[] subTerms = term.Split(',');
+                string[] subTerms = term.Split('&');
                 bool valid = true;
                 foreach (string i in subTerms)
                 {
@@ -116,7 +117,7 @@ namespace MMR_Tracker_V2
                         if (logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && logic.LocationName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
-                    else if (subterm[0] == '&')
+                    else if (subterm[0] == '_')
                     {
                         if (subterm.Substring(1) == "") { continue; }
                         if (RandomizedItem == null) { valid = false; }
