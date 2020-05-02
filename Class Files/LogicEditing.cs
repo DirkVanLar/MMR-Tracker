@@ -36,8 +36,10 @@ namespace MMR_Tracker_V2
             {
                 instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
             }
+            var NextLine = 1;
             foreach (string line in instance.RawLogicFile)
             {
+                if (NextLine == 1) { NextLine++; continue; }
                 if (line.StartsWith("-")) { SubCounter = 0; }
                 switch (SubCounter)
                 {
@@ -53,6 +55,9 @@ namespace MMR_Tracker_V2
                         if (DicEntry == null) { break; }
 
                         LogicEntry1.IsFake = false;
+                        LogicEntry1.IsTrick = false;
+                        LogicEntry1.TrickEnabled = true;
+                        LogicEntry1.TrickToolTip = "";
                         LogicEntry1.ItemName = (DicEntry.ItemName == "") ? null : DicEntry.ItemName;
                         LogicEntry1.LocationName = (DicEntry.LocationName == "") ? null : DicEntry.LocationName;
                         LogicEntry1.LocationArea = (DicEntry.LocationArea == "") ? "Misc" : DicEntry.LocationArea;
@@ -81,12 +86,22 @@ namespace MMR_Tracker_V2
                         break;
                     case 4:
                         LogicEntry1.AvailableOn = Convert.ToInt32(line);
-                        //Push Data to the instance
-                        instance.Logic.Add(LogicEntry1);
-                        LogicEntry1 = new LogicObjects.LogicEntry();
-                        idCounter++;
+                        break;
+                    case 5:
+                        LogicEntry1.IsTrick = (line.StartsWith(";"));
+                        LogicEntry1.TrickEnabled = true;
+                        LogicEntry1.TrickToolTip = (line.Length > 1) ? line.Substring(1) : "No Tooltip Available";
+                        if (LogicEntry1.IsTrick) { Console.WriteLine($"Trick {LogicEntry1.DictionaryName} Found. ToolTip =  { LogicEntry1.TrickToolTip }"); }
                         break;
                 }
+                if ((NextLine) >= instance.RawLogicFile.Count() || instance.RawLogicFile[NextLine].StartsWith("-"))
+                {
+                    //Push Data to the instance
+                    instance.Logic.Add(LogicEntry1);
+                    LogicEntry1 = new LogicObjects.LogicEntry();
+                    idCounter++;
+                }
+                NextLine++;
                 SubCounter++;
             }
 
@@ -116,6 +131,7 @@ namespace MMR_Tracker_V2
             if (list == null) { return true; }
             foreach(var i in list)
             {
+                if (Array.Exists(i, x => !logic[x].TrickEnabled && logic[x].IsTrick)) { continue; }
                 List<int> UsedItemsSet = new List<int>();
                 if (RequirementsMet(i, logic, UsedItemsSet))
                 {

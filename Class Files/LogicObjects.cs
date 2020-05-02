@@ -78,6 +78,9 @@ namespace MMR_Tracker_V2
             public int SpoilerRandom { get; set; } //The item the spoiler log says is in this location //The name of this location in the spoiler Log
             public int AvailableOn { get; set; } //When the Check is available
             public int NeededBy { get; set; } //When the item is Needed
+            public bool IsTrick { get; set; }
+            public bool TrickEnabled { get; set; }
+            public string TrickToolTip { get; set; }
             public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
             public override string ToString()
             {
