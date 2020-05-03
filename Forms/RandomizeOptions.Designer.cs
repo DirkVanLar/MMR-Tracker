@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RandomizeOptions));
             this.listView1 = new System.Windows.Forms.ListView();
             this.Entry = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Randomized = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Starting = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TrickEnabled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BTNRandomized = new System.Windows.Forms.Button();
             this.BTNUnrando = new System.Windows.Forms.Button();
             this.BTNUnrandMan = new System.Windows.Forms.Button();
@@ -48,10 +50,16 @@
             this.chkShowStartingItems = new System.Windows.Forms.CheckBox();
             this.chkShowDisabledTricks = new System.Windows.Forms.CheckBox();
             this.chkShowEnabledTricks = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnToggleTricks = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.TrickEnabled = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtCustomItemString = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtJunkItemString = new System.Windows.Forms.TextBox();
+            this.btnApplyString = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // listView1
@@ -65,6 +73,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(12, 12);
             this.listView1.Name = "listView1";
+            this.listView1.ShowItemToolTips = true;
             this.listView1.Size = new System.Drawing.Size(697, 603);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -85,6 +94,11 @@
             // 
             this.Starting.Text = "Starting Item";
             this.Starting.Width = 75;
+            // 
+            // TrickEnabled
+            // 
+            this.TrickEnabled.Text = "Trick Enabled";
+            this.TrickEnabled.Width = 86;
             // 
             // BTNRandomized
             // 
@@ -159,7 +173,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(720, 266);
+            this.txtSearch.Location = new System.Drawing.Point(720, 274);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(153, 20);
             this.txtSearch.TabIndex = 8;
@@ -171,7 +185,7 @@
             this.chkShowRandom.AutoSize = true;
             this.chkShowRandom.BackColor = System.Drawing.Color.Transparent;
             this.chkShowRandom.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkShowRandom.Location = new System.Drawing.Point(719, 311);
+            this.chkShowRandom.Location = new System.Drawing.Point(720, 322);
             this.chkShowRandom.Name = "chkShowRandom";
             this.chkShowRandom.Size = new System.Drawing.Size(115, 17);
             this.chkShowRandom.TabIndex = 9;
@@ -184,7 +198,7 @@
             this.chkShowUnrand.AutoSize = true;
             this.chkShowUnrand.BackColor = System.Drawing.Color.Transparent;
             this.chkShowUnrand.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkShowUnrand.Location = new System.Drawing.Point(719, 334);
+            this.chkShowUnrand.Location = new System.Drawing.Point(720, 345);
             this.chkShowUnrand.Name = "chkShowUnrand";
             this.chkShowUnrand.Size = new System.Drawing.Size(129, 17);
             this.chkShowUnrand.TabIndex = 10;
@@ -197,7 +211,7 @@
             this.chkShowUnrandMan.AutoSize = true;
             this.chkShowUnrandMan.BackColor = System.Drawing.Color.Transparent;
             this.chkShowUnrandMan.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkShowUnrandMan.Location = new System.Drawing.Point(719, 357);
+            this.chkShowUnrandMan.Location = new System.Drawing.Point(720, 368);
             this.chkShowUnrandMan.Name = "chkShowUnrandMan";
             this.chkShowUnrandMan.Size = new System.Drawing.Size(132, 17);
             this.chkShowUnrandMan.TabIndex = 11;
@@ -210,7 +224,7 @@
             this.chkShowJunk.AutoSize = true;
             this.chkShowJunk.BackColor = System.Drawing.Color.Transparent;
             this.chkShowJunk.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkShowJunk.Location = new System.Drawing.Point(719, 380);
+            this.chkShowJunk.Location = new System.Drawing.Point(720, 391);
             this.chkShowJunk.Name = "chkShowJunk";
             this.chkShowJunk.Size = new System.Drawing.Size(115, 17);
             this.chkShowJunk.TabIndex = 12;
@@ -223,7 +237,7 @@
             this.chkShowStartingItems.AutoSize = true;
             this.chkShowStartingItems.BackColor = System.Drawing.Color.Transparent;
             this.chkShowStartingItems.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkShowStartingItems.Location = new System.Drawing.Point(719, 404);
+            this.chkShowStartingItems.Location = new System.Drawing.Point(720, 415);
             this.chkShowStartingItems.Name = "chkShowStartingItems";
             this.chkShowStartingItems.Size = new System.Drawing.Size(120, 17);
             this.chkShowStartingItems.TabIndex = 13;
@@ -236,7 +250,7 @@
             this.chkShowDisabledTricks.AutoSize = true;
             this.chkShowDisabledTricks.BackColor = System.Drawing.Color.Transparent;
             this.chkShowDisabledTricks.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkShowDisabledTricks.Location = new System.Drawing.Point(720, 464);
+            this.chkShowDisabledTricks.Location = new System.Drawing.Point(720, 474);
             this.chkShowDisabledTricks.Name = "chkShowDisabledTricks";
             this.chkShowDisabledTricks.Size = new System.Drawing.Size(129, 17);
             this.chkShowDisabledTricks.TabIndex = 15;
@@ -249,7 +263,7 @@
             this.chkShowEnabledTricks.AutoSize = true;
             this.chkShowEnabledTricks.BackColor = System.Drawing.Color.Transparent;
             this.chkShowEnabledTricks.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkShowEnabledTricks.Location = new System.Drawing.Point(720, 440);
+            this.chkShowEnabledTricks.Location = new System.Drawing.Point(720, 450);
             this.chkShowEnabledTricks.Name = "chkShowEnabledTricks";
             this.chkShowEnabledTricks.Size = new System.Drawing.Size(127, 17);
             this.chkShowEnabledTricks.TabIndex = 14;
@@ -257,22 +271,22 @@
             this.chkShowEnabledTricks.UseVisualStyleBackColor = false;
             this.chkShowEnabledTricks.CheckedChanged += new System.EventHandler(this.chkShowEnabledTricks_CheckedChanged);
             // 
-            // button1
+            // btnToggleTricks
             // 
-            this.button1.Location = new System.Drawing.Point(720, 160);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(153, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Toggle Trick";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnToggleTricks.Location = new System.Drawing.Point(719, 160);
+            this.btnToggleTricks.Name = "btnToggleTricks";
+            this.btnToggleTricks.Size = new System.Drawing.Size(153, 23);
+            this.btnToggleTricks.TabIndex = 16;
+            this.btnToggleTricks.Text = "Toggle Trick";
+            this.btnToggleTricks.UseVisualStyleBackColor = true;
+            this.btnToggleTricks.Click += new System.EventHandler(this.btnToggleTricks_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(716, 295);
+            this.label1.Location = new System.Drawing.Point(717, 306);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 13);
             this.label1.TabIndex = 17;
@@ -283,16 +297,69 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(717, 424);
+            this.label2.Location = new System.Drawing.Point(717, 434);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 18;
             this.label2.Text = "Tricks";
             // 
-            // TrickEnabled
+            // txtCustomItemString
             // 
-            this.TrickEnabled.Text = "Trick Enabled";
-            this.TrickEnabled.Width = 86;
+            this.txtCustomItemString.Location = new System.Drawing.Point(720, 527);
+            this.txtCustomItemString.Name = "txtCustomItemString";
+            this.txtCustomItemString.Size = new System.Drawing.Size(153, 20);
+            this.txtCustomItemString.TabIndex = 19;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(717, 511);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Custom Item String";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.ForeColor = System.Drawing.SystemColors.Control;
+            this.label4.Location = new System.Drawing.Point(717, 550);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 13);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Force Junk String";
+            // 
+            // txtJunkItemString
+            // 
+            this.txtJunkItemString.Location = new System.Drawing.Point(720, 566);
+            this.txtJunkItemString.Name = "txtJunkItemString";
+            this.txtJunkItemString.Size = new System.Drawing.Size(153, 20);
+            this.txtJunkItemString.TabIndex = 21;
+            // 
+            // btnApplyString
+            // 
+            this.btnApplyString.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApplyString.Location = new System.Drawing.Point(719, 592);
+            this.btnApplyString.Name = "btnApplyString";
+            this.btnApplyString.Size = new System.Drawing.Size(153, 23);
+            this.btnApplyString.TabIndex = 23;
+            this.btnApplyString.Text = "Apply Custom Item Strings";
+            this.btnApplyString.UseVisualStyleBackColor = true;
+            this.btnApplyString.Click += new System.EventHandler(this.btnApplyString_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.ForeColor = System.Drawing.SystemColors.Control;
+            this.label5.Location = new System.Drawing.Point(717, 258);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Filter";
             // 
             // RandomizeOptions
             // 
@@ -300,10 +367,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(879, 628);
+            this.ClientSize = new System.Drawing.Size(883, 628);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnApplyString);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtJunkItemString);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtCustomItemString);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnToggleTricks);
             this.Controls.Add(this.chkShowDisabledTricks);
             this.Controls.Add(this.chkShowEnabledTricks);
             this.Controls.Add(this.chkShowStartingItems);
@@ -351,8 +424,15 @@
         private System.Windows.Forms.ColumnHeader TrickEnabled;
         private System.Windows.Forms.CheckBox chkShowDisabledTricks;
         private System.Windows.Forms.CheckBox chkShowEnabledTricks;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnToggleTricks;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtCustomItemString;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtJunkItemString;
+        private System.Windows.Forms.Button btnApplyString;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

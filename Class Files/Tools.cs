@@ -522,5 +522,35 @@ namespace MMR_Tracker.Class_Files
             }
             return Message;
         }
+        public static List<int> ParseSettingString(string c)
+        {
+            var result = new List<int>();
+            if (string.IsNullOrWhiteSpace(c))
+            {
+                return result;
+            }
+            try
+            {
+                result.Clear();
+                string[] Sections = c.Split('-');
+                int[] NewSections = new int[13];
+                if (Sections.Length != NewSections.Length) { return null; }
+                for (int i = 0; i < 13; i++)
+                {
+                    if (Sections[12 - i] != "") { NewSections[i] = Convert.ToInt32(Sections[12 - i], 16); }
+                }
+                for (int i = 0; i < 32 * 13; i++)
+                {
+                    int j = i / 32;
+                    int k = i % 32;
+                    if (((NewSections[j] >> k) & 1) > 0) { result.Add(i); }
+                }
+            }
+            catch
+            {
+                return null;
+            }
+            return result;
+        }
     }
 }

@@ -26,6 +26,12 @@ namespace MMR_Tracker_V2
             chkShowUnrandMan.Checked = true;
             chkShowJunk.Checked = true;
             chkShowStartingItems.Checked = true;
+            chkShowDisabledTricks.Checked = true;
+            chkShowEnabledTricks.Checked = true;
+            listView1.Columns[0].Width = 400;
+            listView1.Columns[1].Width = 100;
+            listView1.Columns[2].Width = 85;
+            listView1.Columns[3].Width = 80;
             txtSearch.Text = "";
             WriteToListVeiw();
         }
@@ -156,7 +162,9 @@ namespace MMR_Tracker_V2
             listView1.FullRowSelect = true;
             Console.WriteLine("========================================================================================");
 
-            if (chkShowRandom.Checked || chkShowUnrand.Checked || chkShowUnrandMan.Checked || chkShowJunk.Checked || chkShowStartingItems.Checked)
+            
+
+            if (ShowingRandOptions())
             {
                 ListViewItem RandomITemHeader = new ListViewItem("RANDOMIZED ITEMS ===============================================================================") { Tag = -1 };
                 listView1.Items.Add(RandomITemHeader);
@@ -179,7 +187,7 @@ namespace MMR_Tracker_V2
                     listView1.Items.Add(listViewItem);
                 }
             }
-            if (chkShowEnabledTricks.Checked || chkShowDisabledTricks.Checked)
+            if (ShowingTrickOptions())
             {
                 ListViewItem TrickHeader = new ListViewItem("TRICKS ===============================================================================") { Tag = -1 };
                 listView1.Items.Add(TrickHeader);
@@ -196,6 +204,7 @@ namespace MMR_Tracker_V2
                     string[] row = {
                         entry.DictionaryName, "", "", entry.TrickEnabled.ToString() };
                     ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };
+                    listViewItem.ToolTipText = entry.TrickToolTip;
                     listView1.Items.Add(listViewItem);
                 }
             }
@@ -207,6 +216,29 @@ namespace MMR_Tracker_V2
                     i.Checked = true;
                 }
             }
+
+            if (ShowingRandOptions() && !ShowingTrickOptions())
+            {
+                listView1.Columns[0].Width = 480;
+                listView1.Columns[1].Width = 100;
+                listView1.Columns[2].Width = 85;
+                listView1.Columns[3].Width = 0;
+            }
+            else if (!ShowingRandOptions() && ShowingTrickOptions())
+            {
+                listView1.Columns[0].Width = 585;
+                listView1.Columns[1].Width = 0;
+                listView1.Columns[2].Width = 0;
+                listView1.Columns[3].Width = 80;
+            }
+            else
+            {
+                listView1.Columns[0].Width = 400;
+                listView1.Columns[1].Width = 100;
+                listView1.Columns[2].Width = 85;
+                listView1.Columns[3].Width = 80;
+            }
+
             updating = false;
         }
 
@@ -225,9 +257,98 @@ namespace MMR_Tracker_V2
             WriteToListVeiw();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnToggleTricks_Click(object sender, EventArgs e)
         {
             UpdateRandomOption(5);
+        }
+
+        private void btnApplyString_Click(object sender, EventArgs e)
+        {
+            var CustomItemList = Tools.ParseSettingString(txtCustomItemString.Text);
+            var ForceJunkList = Tools.ParseSettingString(txtJunkItemString.Text);
+
+            if (CustomItemList == null) { label3.Text = "Custom Item String (INVALID!)"; }
+            else
+            {
+                label3.Text = "Custom Item String";
+                var Counter = 0;
+                var MI = LogicObjects.MainTrackerInstance.Logic;
+                foreach (var i in MI)
+                {
+                    if (!i.IsFake && i.ItemSubType != "Dungeon Entrance")
+                    {
+                        if (CustomItemList.Contains(Counter))
+                        {
+                            i.Options = (i.StartingItem()) ? 4 : 0;
+                        }
+                        else
+                        {
+                            i.Options = (i.StartingItem()) ? 5 : 1;
+                        }
+                        Counter++;
+                    }
+                }
+            }
+            if (ForceJunkList == null) { label4.Text = "Force Junk String (INVALID!)"; }
+            else
+            {
+                label4.Text = "Force Junk String";
+                var Counter = 0;
+                var MI = LogicObjects.MainTrackerInstance.Logic;
+                foreach (var i in MI)
+                {
+                    if (!i.IsFake && i.ItemSubType != "Dungeon Entrance")
+                    {
+                        if (ForceJunkList.Contains(Counter) && i.Randomized())
+                        {
+                            i.Options = (i.StartingItem()) ? 7 : 3;
+                        }
+                        Counter++;
+                    }
+                }
+            }
+            WriteToListVeiw();
+        }
+
+        private bool ShowingRandOptions()
+        {
+            if(!(chkShowRandom.Checked || chkShowUnrand.Checked || chkShowUnrandMan.Checked || chkShowJunk.Checked || chkShowStartingItems.Checked)) { return false; }
+
+            var logic = LogicObjects.MainTrackerInstance.Logic;
+            foreach (var entry in logic)
+            {
+                bool chkValid = false;
+                if (entry.RandomizedState() == 0 && chkShowRandom.Checked) { chkValid = true; }
+                if (entry.RandomizedState() == 1 && chkShowUnrand.Checked) { chkValid = true; }
+                if (entry.RandomizedState() == 2 && chkShowUnrandMan.Checked) { chkValid = true; }
+                if (entry.RandomizedState() == 3 && chkShowJunk.Checked) { chkValid = true; }
+                if (entry.StartingItem() && chkShowStartingItems.Checked) { chkValid = true; }
+
+                if (!entry.IsFake && chkValid && Utility.FilterSearch(entry, txtSearch.Text, entry.DictionaryName))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool ShowingTrickOptions()
+        {
+            if (!(chkShowEnabledTricks.Checked || chkShowDisabledTricks.Checked)) { return false; }
+
+            var logic = LogicObjects.MainTrackerInstance.Logic;
+            foreach (var entry in logic.Where(x => x.IsFake && x.IsTrick))
+            {
+                bool chkValid = false;
+                if (entry.TrickEnabled && chkShowEnabledTricks.Checked) { chkValid = true; }
+                if (!entry.TrickEnabled && chkShowDisabledTricks.Checked) { chkValid = true; }
+
+                if (chkValid && Utility.FilterSearch(entry, txtSearch.Text, entry.DictionaryName))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
