@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MMR_Tracker.Class_Files;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -50,36 +52,53 @@ namespace MMR_Tracker_V2
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            string settingString = "";
-            foreach (var item in LogicObjects.MainTrackerInstance.Logic)
+            var template = new LogicObjects.TrackerInstance();
+            template.RawLogicFile = LogicObjects.MainTrackerInstance.RawLogicFile;
+            LogicEditing.PopulateTrackerInstance(template);
+            foreach (var i in template.Logic)
             {
-                if (item.IsFake) { continue; }
-
-                int Setting = item.Options;
-
-                settingString += Setting.ToString();
+                var main = LogicObjects.MainTrackerInstance.Logic[i.ID];
+                i.Options = main.Options;
+                i.TrickEnabled = main.TrickEnabled;
             }
-            var logictext = LogicEditing.WriteLogicToArray(LogicObjects.MainTrackerInstance);
-            string[] Options = new string[2 + logictext.Length];
-            Options[0] = settingString;
-            Options[1] = LogicObjects.MainTrackerInstance.LogicVersion.ToString();
-            var count = 2;
-            foreach (var i in logictext)
-            {
-                Options[count] = i;
-                count++;
-            }
-            SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Settings (*.MMRTSET)|*.MMRTSET", FilterIndex = 1 };
-            if (saveDialog.ShowDialog() == DialogResult.OK) { File.WriteAllLines(saveDialog.FileName, Options); }
-
+            Tools.SaveInstance(template);
         }
 
         private void BtnLoad_Click(object sender, EventArgs e)
         {
-            string file = Utility.FileSelect("Select A Settings File", "MMR Tracker Settings (*.MMRTSET)|*.MMRTSET");
+            string file = Utility.FileSelect("Select A Save File", "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV");
             if (file == "") { return; }
-            string[] options = File.ReadAllLines(file);
-            UpdateRandomOptionsFromFile(options, LogicObjects.MainTrackerInstance);
+            var template = new LogicObjects.TrackerInstance();
+            try { template = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file)); }
+            catch
+            {
+                try
+                {
+                    string[] options = File.ReadAllLines(file);
+                    template.Logic = JsonConvert.DeserializeObject<List<LogicObjects.LogicEntry>>(options[0]);
+                    if (options.Length > 1) { template.LogicVersion = Int32.Parse(options[1].Replace("version:", "")); }
+                    else
+                    {
+                        MessageBox.Show("Save File Invalid!");
+                        return;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Save File Invalid!");
+                    return;
+                }
+            }
+
+            foreach(var i in LogicObjects.MainTrackerInstance.Logic)
+            {
+                var TemplateData = template.Logic.Find(x => x.DictionaryName == i.DictionaryName);
+                if (TemplateData != null)
+                {
+                    i.Options = TemplateData.Options;
+                    i.TrickEnabled = TemplateData.TrickEnabled;
+                }
+            }
             WriteToListVeiw();
         }
 
@@ -88,6 +107,7 @@ namespace MMR_Tracker_V2
         private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (updating) { return; }
+            if (Int32.Parse(e.Item.Tag.ToString()) == -1) { e.Item.Checked = false; return; }
             var item = LogicObjects.MainTrackerInstance.Logic[Int32.Parse(e.Item.Tag.ToString())];
             if (e.Item.Checked)
             {
@@ -108,18 +128,20 @@ namespace MMR_Tracker_V2
             foreach (var selection in CheckedItems)
             {
                 var entry = selection as LogicObjects.LogicEntry;
-
-                if (option == 4)
+                if (option == 5 && entry.IsTrick && entry.IsFake)
+                {
+                    entry.TrickEnabled = !entry.TrickEnabled;
+                }
+                else if (option == 4 && !entry.IsFake)
                 {
                     if (entry.StartingItem()) { entry.Options -= 4; }
                     else { entry.Options += 4; }
                 }
-                else
+                else if (!entry.IsFake)
                 {
                     if (entry.StartingItem()) { entry.Options = option + 4; }
                     else { entry.Options = option; }
                 }
-
             }
             CheckedItems = new List<LogicObjects.LogicEntry>();
             WriteToListVeiw();
@@ -133,6 +155,13 @@ namespace MMR_Tracker_V2
             List<string> randomizedOptions = new List<string> { "Randomized", "Unrandomized", "Unrandomized (Manual)", "Forced Junk" };
             listView1.FullRowSelect = true;
             Console.WriteLine("========================================================================================");
+
+            if (chkShowRandom.Checked || chkShowUnrand.Checked || chkShowUnrandMan.Checked || chkShowJunk.Checked || chkShowStartingItems.Checked)
+            {
+                ListViewItem RandomITemHeader = new ListViewItem("RANDOMIZED ITEMS ===============================================================================") { Tag = -1 };
+                listView1.Items.Add(RandomITemHeader);
+            }
+
             foreach (var entry in logic)
             {
                 bool chkValid = false;
@@ -144,7 +173,28 @@ namespace MMR_Tracker_V2
 
                 if (!entry.IsFake && chkValid && Utility.FilterSearch(entry, txtSearch.Text, entry.DictionaryName))
                 {
-                    string[] row = { entry.DictionaryName, randomizedOptions[entry.RandomizedState()], entry.StartingItem().ToString() };
+                    string[] row = { 
+                        entry.DictionaryName, randomizedOptions[entry.RandomizedState()], entry.StartingItem().ToString(), "" };
+                    ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };
+                    listView1.Items.Add(listViewItem);
+                }
+            }
+            if (chkShowEnabledTricks.Checked || chkShowDisabledTricks.Checked)
+            {
+                ListViewItem TrickHeader = new ListViewItem("TRICKS ===============================================================================") { Tag = -1 };
+                listView1.Items.Add(TrickHeader);
+            }
+
+            foreach (var entry in logic.Where(x => x.IsFake && x.IsTrick))
+            {
+                bool chkValid = false;
+                if (entry.TrickEnabled && chkShowEnabledTricks.Checked) { chkValid = true; }
+                if (!entry.TrickEnabled && chkShowDisabledTricks.Checked) { chkValid = true; }
+
+                if (chkValid && Utility.FilterSearch(entry, txtSearch.Text, entry.DictionaryName))
+                {
+                    string[] row = {
+                        entry.DictionaryName, "", "", entry.TrickEnabled.ToString() };
                     ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };
                     listView1.Items.Add(listViewItem);
                 }
@@ -160,29 +210,24 @@ namespace MMR_Tracker_V2
             updating = false;
         }
 
-        public static void UpdateRandomOptionsFromFile(string[] options, LogicObjects.TrackerInstance Instance)
-        {
-
-            int Version = Int32.Parse(options[1]);
-
-            if (Instance.LogicVersion != Version)
-            {
-                MessageBox.Show("This settings file was not made using the current logic version. Please resave your settings in the current logic version.");
-                return;
-            }
-            int counter = 0;
-            foreach (var item in Instance.Logic)
-            {
-                if (item.IsFake) { continue; }
-                int setting = Int32.Parse(options[0][counter].ToString());
-                item.Options = setting;
-                counter++;
-            }
-        }
-
         private void txtSearch_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Middle) { txtSearch.Clear(); }
+        }
+
+        private void chkShowEnabledTricks_CheckedChanged(object sender, EventArgs e)
+        {
+            WriteToListVeiw();
+        }
+
+        private void chkShowDisabledTricks_CheckedChanged(object sender, EventArgs e)
+        {
+            WriteToListVeiw();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UpdateRandomOption(5);
         }
     }
 }

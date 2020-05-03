@@ -251,12 +251,14 @@ namespace MMR_Tracker.Class_Files
                     {
                         MessageBox.Show("Save File Invalid!");
                         LogicObjects.MainTrackerInstance = backup;
+                        return;
                     }
                 }
                 catch
                 {
                     MessageBox.Show("Save File Invalid!");
                     LogicObjects.MainTrackerInstance = backup;
+                    return;
                 }
             }
             //Extra saftey checks for older save files

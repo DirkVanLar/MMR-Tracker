@@ -279,19 +279,31 @@ namespace MMR_Tracker_V2
         public static void RecreateLogic(LogicObjects.TrackerInstance Instance, string[] LogicData = null)
         {
             var LogicFile = LogicData;
-            bool SettingsFile = false;
-            string file = "";
+            var saveFile = false;
+            LogicObjects.TrackerInstance template = null;
             if (LogicFile == null)
             {
-                file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
+                string file = "";
+                file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSAV)|*.txt;*.MMRTSAV");
                 if (file == "") { return; }
 
-                SettingsFile = file.EndsWith(".MMRTSET");
-                LogicFile = (SettingsFile) ? File.ReadAllLines(file).Skip(2).ToArray() : File.ReadAllLines(file);
+                saveFile = file.EndsWith(".MMRTSAV");
+                string[] SaveFileRawLogicFile = null;
+                if (saveFile)
+                {
+                    try { template = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file)); }
+                    catch
+                    {
+                        MessageBox.Show("Save File Not Valid.");
+                        return;
+                    }
+                    SaveFileRawLogicFile = template.RawLogicFile;
+                }
+
+                LogicFile = (saveFile) ? SaveFileRawLogicFile : File.ReadAllLines(file);
             }
 
             var OldLogic = Utility.CloneLogicList(Instance.Logic);
-            var Backup = Utility.CloneTrackerInstance(Instance);
             Instance.RawLogicFile = LogicFile;
             LogicEditing.PopulateTrackerInstance(Instance);
 
@@ -306,13 +318,28 @@ namespace MMR_Tracker_V2
                     logicEntry.Checked = entry.Checked;
                     logicEntry.RandomizedItem = entry.RandomizedItem;
                     logicEntry.SpoilerRandom = entry.SpoilerRandom;
-                    logicEntry.Options = entry.Options;
                     logicEntry.Starred = entry.Starred;
+                    logicEntry.Options = entry.Options;
+                    logicEntry.TrickEnabled = entry.TrickEnabled;
                 }
             }
-            if (SettingsFile)
+            if (saveFile)
             {
-                RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file), Instance);
+                var Options = MessageBox.Show("Would you like to import the general tracker options from this save file?", "Options", MessageBoxButtons.YesNo);
+                if (Options == DialogResult.Yes) { LogicObjects.MainTrackerInstance.Options = template.Options; }
+                var RandOptions = MessageBox.Show("Would you like to import the Item Randomization options from this save file?", "Randomization Options", MessageBoxButtons.YesNo);
+                if (RandOptions == DialogResult.Yes)
+                {
+                    foreach (var i in LogicObjects.MainTrackerInstance.Logic)
+                    {
+                        var TemplateData = template.Logic.Find(x => x.DictionaryName == i.DictionaryName);
+                        if (TemplateData != null)
+                        {
+                            i.Options = TemplateData.Options;
+                            i.TrickEnabled = TemplateData.TrickEnabled;
+                        }
+                    }
+                }
             }
             Instance.Options.EntranceRadnoEnabled = Utility.CheckForRandomEntrances(Instance);
             Instance.Options.OverRideAutoEntranceRandoEnable = (Instance.Options.EntranceRadnoEnabled != Instance.EntranceRando);

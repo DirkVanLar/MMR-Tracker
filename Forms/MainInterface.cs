@@ -12,6 +12,7 @@ using System.Net;
 using System.Windows.Forms;
 using MMR_Tracker.Class_Files;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace MMR_Tracker_V2
 {
@@ -82,24 +83,49 @@ namespace MMR_Tracker_V2
         {
             this.fileToolStripMenuItem.HideDropDown();
             if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-            string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
+            string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSAV)|*.txt;*.MMRTSAV");
             if (file == "") { return; }
 
-            bool SettingsFile = file.EndsWith(".MMRTSET");
-            var lines = (SettingsFile) ? File.ReadAllLines(file).Skip(2) : File.ReadAllLines(file);
+            var saveFile = file.EndsWith(".MMRTSAV");
+            string[] SaveFileRawLogicFile = null;
+            LogicObjects.TrackerInstance template = null;
+            if (saveFile)
+            {
+                try { template = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file)); }
+                catch
+                {
+                    MessageBox.Show("Save File Not Valid.");
+                    return;
+                }
+                SaveFileRawLogicFile = template.RawLogicFile;
+            }
+
+            var lines = (saveFile) ? SaveFileRawLogicFile : File.ReadAllLines(file);
 
             LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
 
             Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, lines.ToArray());
 
-            if (SettingsFile)
+            if (saveFile)
             {
-                RandomizeOptions.UpdateRandomOptionsFromFile(File.ReadAllLines(file), LogicObjects.MainTrackerInstance);
-                LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = Utility.CheckForRandomEntrances(LogicObjects.MainTrackerInstance);
-                LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
+                var Options = MessageBox.Show("Would you like to import the general tracker options from this save file?", "Options", MessageBoxButtons.YesNo);
+                if (Options == DialogResult.Yes) { LogicObjects.MainTrackerInstance.Options = template.Options; }
+                var RandOptions = MessageBox.Show("Would you like to import the Item Randomization options from this save file?", "Randomization Options", MessageBoxButtons.YesNo);
+                if (RandOptions == DialogResult.Yes)
+                {
+                    foreach (var i in LogicObjects.MainTrackerInstance.Logic)
+                    {
+                        var TemplateData = template.Logic.Find(x => x.DictionaryName == i.DictionaryName);
+                        if (TemplateData != null)
+                        {
+                            i.Options = TemplateData.Options;
+                            i.TrickEnabled = TemplateData.TrickEnabled;
+                        }
+                    }
+                }
             }
              
-            if (LogicObjects.MainTrackerInstance.EntranceRando && !SettingsFile && LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup)
+            if (LogicObjects.MainTrackerInstance.EntranceRando && !saveFile && LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup)
             {
                 LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = false;
                 LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = true;
