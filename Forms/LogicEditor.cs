@@ -34,6 +34,7 @@ namespace MMR_Tracker.Forms
         public static bool UseSpoilerInDisplay = false;
         public static bool UseDictionaryNameInSearch = false;
         public static bool AddCondSeperatly = false;
+        public static bool NudUpdateing = false;
 
         public class RequiementConditional
         {
@@ -244,9 +245,11 @@ namespace MMR_Tracker.Forms
         private void BtnBack_Click(object sender, EventArgs e)
         {
             if (!GoBackList.Any()) { return; }
+            NudUpdateing = true;
             nudIndex.Value = (GoBackList[GoBackList.Count - 1]);
             WriteCurentItem(GoBackList[GoBackList.Count - 1]);
             GoBackList.RemoveAt(GoBackList.Count - 1);
+            NudUpdateing = false;
         }
 
         private void BtnNewLogic_Click(object sender, EventArgs e)
@@ -279,7 +282,7 @@ namespace MMR_Tracker.Forms
             string name = Interaction.InputBox("Input New Item Name", "New Item", "");
             if (name == "") { return; }
             GoBackList.Add(currentEntry.ID);
-            LogicObjects.LogicEntry newEntry = new LogicObjects.LogicEntry { ID = EditorInstance.Logic.Count, DictionaryName = name, Required = null, Conditionals = null, AvailableOn = 0, NeededBy = 0 };
+            LogicObjects.LogicEntry newEntry = new LogicObjects.LogicEntry { ID = EditorInstance.Logic.Count, DictionaryName = name, IsFake = true, Required = null, Conditionals = null, AvailableOn = 0, NeededBy = 0 };
             EditorInstance.Logic.Add(newEntry);
             FormatForm();
             nudIndex.Value = (EditorInstance.Logic.Count - 1);
@@ -335,6 +338,7 @@ namespace MMR_Tracker.Forms
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
+            this.fileToolStripMenuItem.HideDropDown();
             SaveInstance();
         }
 
@@ -368,13 +372,19 @@ namespace MMR_Tracker.Forms
         {
             if (nudIndex.Value > EditorInstance.Logic.Count - 1) { nudIndex.Value = EditorInstance.Logic.Count - 1; return; }
             if (nudIndex.Value < 0) { nudIndex.Value = 0; return; }
+            if (currentEntry.ID + 1 != (int)nudIndex.Value && currentEntry.ID - 1 != (int)nudIndex.Value && !NudUpdateing)  
+            {
+                Console.WriteLine("Value Manually Entered");
+                GoBackList.Add(currentEntry.ID); 
+            }
+
             WriteCurentItem((int)nudIndex.Value);
         }
 
         private void TimeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (PrintingItem) { return; }
-           EditorInstance.UnsavedChanges = true;
+            EditorInstance.UnsavedChanges = true;
             Tools.SaveState(EditorInstance);
             WriteTimeDependecies(currentEntry);
         }
@@ -458,6 +468,8 @@ namespace MMR_Tracker.Forms
 
             currentEntry = entry;
             renameCurrentItemToolStripMenuItem.Visible = currentEntry.IsFake;
+            deleteCurrentItemToolStripMenuItem.Visible = currentEntry.IsFake;
+            setTrickToolTipToolStripMenuItem.Visible = currentEntry.IsTrick;
             foreach (var i in entry.Required ?? new int[0])
             {
                 var ReqEntry = EditorInstance.Logic[i];
@@ -511,6 +523,11 @@ namespace MMR_Tracker.Forms
             chkNeedNight1.Checked = (((entry.NeededBy >> 1) & 1) == 1);
             chkNeedNight2.Checked = (((entry.NeededBy >> 3) & 1) == 1);
             chkNeedNight3.Checked = (((entry.NeededBy >> 5) & 1) == 1);
+            chkIsTrick.Checked = entry.IsTrick;
+            chkIsTrick.Enabled = entry.IsFake;
+
+            nudIndex.Value = currentEntry.ID;
+
             PrintingItem = false;
         }
 
@@ -562,11 +579,11 @@ namespace MMR_Tracker.Forms
             return true;
         }
 
-        public bool SaveInstance()
+        public bool SaveInstance(bool UseTrickData = true)
         {
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "Logic File (*.txt)|*.txt", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
-            var logicText = LogicEditing.WriteLogicToArray(EditorInstance).ToList();
+            var logicText = LogicEditing.WriteLogicToArray(EditorInstance, UseTrickData).ToList();
             StreamWriter LogicFile = new StreamWriter(File.Open(saveDialog.FileName, FileMode.Create));
             for (int i = 0; i < logicText.Count; i++)
             {
@@ -742,6 +759,161 @@ namespace MMR_Tracker.Forms
         {
             if (e.KeyCode == Keys.PageUp && nudIndex.Value + 1 < EditorInstance.Logic.Count()) { nudIndex.Value += 1; }
             if (e.KeyCode == Keys.PageDown && nudIndex.Value > 0) { nudIndex.Value -= 1; }
+        }
+
+        private void chkIsTrick_CheckedChanged(object sender, EventArgs e)
+        {
+            if (PrintingItem) { return; }
+            EditorInstance.UnsavedChanges = true;
+            Tools.SaveState(EditorInstance);
+            currentEntry.IsTrick = chkIsTrick.Checked;
+            setTrickToolTipToolStripMenuItem.Visible = currentEntry.IsTrick;
+        }
+
+        private void setTrickToolTipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string CurTT = (currentEntry.TrickToolTip == "No Tooltip Available") ? "" : currentEntry.TrickToolTip;
+            var text = (CurTT == "") ? "No tooltip set, enter tooltip below." : "Current Tooltip: \n\"" + CurTT + "\"\nEnter a new tooltip below to change it.";
+            string name = Interaction.InputBox(text, $"{currentEntry.DictionaryName} Trick Tooltip", CurTT);
+            if (name != "") { currentEntry.TrickToolTip = name; }
+        }
+
+        private void deleteCurrentItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<LogicObjects.LogicEntry> Inuse = new List<LogicObjects.LogicEntry>();
+            foreach (var i in EditorInstance.Logic)
+            {
+                if (i.Required != null)
+                {
+                    for (var j = 0; j < i.Required.Length; j++)
+                    {
+                        if (i.Required[j] == currentEntry.ID) { Inuse.Add(i); }
+                    }
+                }
+                if (i.Conditionals != null)
+                {
+                    for (var j = 0; j < i.Conditionals.Length; j++)
+                    {
+                        for (var k = 0; k < i.Conditionals[j].Length; k++)
+                        {
+                            if (i.Conditionals[j][k] == currentEntry.ID && !Array.Exists(Inuse.ToArray(), x => x.ID == i.ID)) { Inuse.Add(i); }
+                        }
+                    }
+                }
+            }
+
+            if (Inuse.Count() > 0)
+            {
+                string Usage = $"Unable to delete {currentEntry.DictionaryName} Because it is a requirement or conditional in the following entries:\n\n";
+                foreach(var i in Inuse) { Usage = Usage + $"{i.DictionaryName}\n"; }
+                MessageBox.Show(Usage, "Item In Use", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var Confirm = MessageBox.Show($"Are you sure you wish to delete the {currentEntry.DictionaryName} entry?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (Confirm == DialogResult.No) { return; }
+
+            EditorInstance.Logic.RemoveAt(currentEntry.ID);
+            int counter = 0;
+            Dictionary<int, int> newOrder = new Dictionary<int, int>();
+            foreach (var i in EditorInstance.Logic)
+            {
+                if (i.ID != counter)
+                {
+                    newOrder.Add(i.ID, counter);
+                }
+                counter++;
+            }
+            foreach (var i in EditorInstance.Logic)
+            {
+                if (newOrder.ContainsKey(i.ID))
+                {
+                    Console.WriteLine("Item ID " + i.ID + " Became " + newOrder[i.ID]);
+                    i.ID = newOrder[i.ID];
+                }
+                if (i.Required != null)
+                {
+                    for (var j = 0; j < i.Required.Length; j++)
+                    {
+                        if (newOrder.ContainsKey(i.Required[j]))
+                        {
+                            Console.WriteLine("Requirment " + i.Required[j] + " Became " + newOrder[i.Required[j]]);
+                            i.Required[j] = newOrder[i.Required[j]];
+                        }
+                    }
+                }
+                if (i.Conditionals != null)
+                {
+                    for (var j = 0; j < i.Conditionals.Length; j++)
+                    {
+                        for (var k = 0; k < i.Conditionals[j].Length; k++)
+                        {
+                            if (newOrder.ContainsKey(i.Conditionals[j][k]))
+                            {
+                                Console.WriteLine("Conditional " + i.Conditionals[j][k] + " Became " + newOrder[i.Conditionals[j][k]]);
+                                i.Conditionals[j][k] = newOrder[i.Conditionals[j][k]];
+                            }
+                        }
+                    }
+                }
+            }
+            WriteCurentItem((currentEntry.ID >= EditorInstance.Logic.Count) ? EditorInstance.Logic.Count - 1 : currentEntry.ID);
+        }
+
+        private void saveLogicWothoutTrickDataLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveInstance(false);
+        }
+
+        private void whatIsThisUsedInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<LogicObjects.LogicEntry> Inuse = new List<LogicObjects.LogicEntry>();
+            foreach (var i in EditorInstance.Logic)
+            {
+                if (i.Required != null)
+                {
+                    for (var j = 0; j < i.Required.Length; j++)
+                    {
+                        if (i.Required[j] == currentEntry.ID) { Inuse.Add(i); }
+                    }
+                }
+                if (i.Conditionals != null)
+                {
+                    for (var j = 0; j < i.Conditionals.Length; j++)
+                    {
+                        for (var k = 0; k < i.Conditionals[j].Length; k++)
+                        {
+                            if (i.Conditionals[j][k] == currentEntry.ID && !Array.Exists(Inuse.ToArray(), x => x.ID == i.ID)) { Inuse.Add(i); }
+                        }
+                    }
+                }
+            }
+
+            if (Inuse.Count() > 0)
+            {
+                try
+                {
+                    ItemSelect.CheckedItems = new List<int>();
+                    foreach (var i in Inuse)
+                    {
+                        ItemSelect.CheckedItems.Add(i.ID);
+                    }
+                    ItemSelect Selector = new ItemSelect();
+                    ItemSelect.Function = 9;
+                    Selector.Title = $"{currentEntry.DictionaryName} Is used in the following entries:\n\n";
+                    Selector.ShowDialog();
+                    if (Selector.DialogResult != DialogResult.OK) { return; }
+                    var index = Tools.CurrentSelectedItem.ID;
+                    GoBackList.Add(currentEntry.ID);
+                    nudIndex.Value = index;
+                    WriteCurentItem(index);
+                    Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
+                    ItemSelect.Function = 0;
+                    return;
+                }
+                catch { }
+            }
+            MessageBox.Show($"{currentEntry.DictionaryName} Is not used in any entries", "No entries found", MessageBoxButtons.OK);
         }
     }
 }

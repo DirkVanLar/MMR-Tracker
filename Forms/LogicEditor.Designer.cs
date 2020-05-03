@@ -77,6 +77,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
+            this.chkIsTrick = new System.Windows.Forms.CheckBox();
+            this.deleteCurrentItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setTrickToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveLogicWithTrickDataDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.whatIsThisUsedInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -467,6 +473,9 @@
             // 
             // saveLogicToolStripMenuItem
             // 
+            this.saveLogicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveLogicWithTrickDataDefaultToolStripMenuItem,
+            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem});
             this.saveLogicToolStripMenuItem.Name = "saveLogicToolStripMenuItem";
             this.saveLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.saveLogicToolStripMenuItem.Text = "Save Logic";
@@ -506,7 +515,10 @@
             this.useLocationItemNamesToolStripMenuItem,
             this.displaySpoilerLogNamesToolStripMenuItem,
             this.reorderLogicToolStripMenuItem,
-            this.renameCurrentItemToolStripMenuItem});
+            this.renameCurrentItemToolStripMenuItem,
+            this.deleteCurrentItemToolStripMenuItem,
+            this.setTrickToolTipToolStripMenuItem,
+            this.whatIsThisUsedInToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -600,6 +612,54 @@
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.BtnDown_Click);
             // 
+            // chkIsTrick
+            // 
+            this.chkIsTrick.AutoSize = true;
+            this.chkIsTrick.BackColor = System.Drawing.Color.Transparent;
+            this.chkIsTrick.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkIsTrick.Location = new System.Drawing.Point(696, 27);
+            this.chkIsTrick.Name = "chkIsTrick";
+            this.chkIsTrick.Size = new System.Drawing.Size(61, 17);
+            this.chkIsTrick.TabIndex = 43;
+            this.chkIsTrick.Text = "Is Trick";
+            this.chkIsTrick.UseVisualStyleBackColor = false;
+            this.chkIsTrick.CheckedChanged += new System.EventHandler(this.chkIsTrick_CheckedChanged);
+            // 
+            // deleteCurrentItemToolStripMenuItem
+            // 
+            this.deleteCurrentItemToolStripMenuItem.Name = "deleteCurrentItemToolStripMenuItem";
+            this.deleteCurrentItemToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.deleteCurrentItemToolStripMenuItem.Text = "Delete Current Item";
+            this.deleteCurrentItemToolStripMenuItem.Click += new System.EventHandler(this.deleteCurrentItemToolStripMenuItem_Click);
+            // 
+            // setTrickToolTipToolStripMenuItem
+            // 
+            this.setTrickToolTipToolStripMenuItem.Name = "setTrickToolTipToolStripMenuItem";
+            this.setTrickToolTipToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.setTrickToolTipToolStripMenuItem.Text = "Set Trick ToolTip";
+            this.setTrickToolTipToolStripMenuItem.Click += new System.EventHandler(this.setTrickToolTipToolStripMenuItem_Click);
+            // 
+            // saveLogicWithTrickDataDefaultToolStripMenuItem
+            // 
+            this.saveLogicWithTrickDataDefaultToolStripMenuItem.Name = "saveLogicWithTrickDataDefaultToolStripMenuItem";
+            this.saveLogicWithTrickDataDefaultToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.saveLogicWithTrickDataDefaultToolStripMenuItem.Text = "Save Logic With Trick Data (Default)";
+            this.saveLogicWithTrickDataDefaultToolStripMenuItem.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // saveLogicWothoutTrickDataLegacyToolStripMenuItem
+            // 
+            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Name = "saveLogicWothoutTrickDataLegacyToolStripMenuItem";
+            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Text = "Save Logic Without Trick Data (Legacy)";
+            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Click += new System.EventHandler(this.saveLogicWothoutTrickDataLegacyToolStripMenuItem_Click);
+            // 
+            // whatIsThisUsedInToolStripMenuItem
+            // 
+            this.whatIsThisUsedInToolStripMenuItem.Name = "whatIsThisUsedInToolStripMenuItem";
+            this.whatIsThisUsedInToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.whatIsThisUsedInToolStripMenuItem.Text = "What is this used in?";
+            this.whatIsThisUsedInToolStripMenuItem.Click += new System.EventHandler(this.whatIsThisUsedInToolStripMenuItem_Click);
+            // 
             // LogicEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -607,6 +667,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(810, 495);
+            this.Controls.Add(this.chkIsTrick);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.label7);
@@ -709,5 +770,11 @@
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.ToolStripMenuItem reorderLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem renameCurrentItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteCurrentItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setTrickToolTipToolStripMenuItem;
+        private System.Windows.Forms.CheckBox chkIsTrick;
+        private System.Windows.Forms.ToolStripMenuItem saveLogicWithTrickDataDefaultToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveLogicWothoutTrickDataLegacyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem whatIsThisUsedInToolStripMenuItem;
     }
 }

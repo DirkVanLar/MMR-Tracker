@@ -21,6 +21,7 @@ namespace MMR_Tracker_V2
         public static List<LogicObjects.LogicEntry> UsedLogic = new List<LogicObjects.LogicEntry>();
         public bool ItemsReturned = false;
         public int lastRealItem = -1;
+        public string Title = "";
 
         //Form Items
 
@@ -332,6 +333,15 @@ namespace MMR_Tracker_V2
                 UseUpDown();
                 ShowAllAsDictionary();
                 this.Text = "Move an item to reorder it in the logic file";
+            }
+            if (Function == 9) //Logic Editor Go to List Item
+            {
+                UsedLogic = LogicEditor.EditorInstance.Logic;
+                BTNJunk.Text = "Select";
+                LBItemSelect.SelectionMode = SelectionMode.One;
+                ShowAllCheckedItem();
+                this.Text = Title;
+                LBItemSelect.Sorted = true;
             }
             Updating = false;
         }
