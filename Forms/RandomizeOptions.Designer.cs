@@ -60,6 +60,8 @@
             this.btnApplyString = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.chkRandomState = new System.Windows.Forms.CheckBox();
+            this.chkTricks = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -126,7 +128,7 @@
             this.BTNUnrandMan.Name = "BTNUnrandMan";
             this.BTNUnrandMan.Size = new System.Drawing.Size(153, 23);
             this.BTNUnrandMan.TabIndex = 3;
-            this.BTNUnrandMan.Text = "Unrandomized Manual";
+            this.BTNUnrandMan.Text = "Unrandomized (Manual)";
             this.BTNUnrandMan.UseVisualStyleBackColor = true;
             this.BTNUnrandMan.Click += new System.EventHandler(this.BTNUnrandMan_Click);
             // 
@@ -361,6 +363,30 @@
             this.label5.TabIndex = 24;
             this.label5.Text = "Filter";
             // 
+            // chkRandomState
+            // 
+            this.chkRandomState.AutoSize = true;
+            this.chkRandomState.BackColor = System.Drawing.Color.Transparent;
+            this.chkRandomState.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkRandomState.Location = new System.Drawing.Point(817, 306);
+            this.chkRandomState.Name = "chkRandomState";
+            this.chkRandomState.Size = new System.Drawing.Size(15, 14);
+            this.chkRandomState.TabIndex = 25;
+            this.chkRandomState.UseVisualStyleBackColor = false;
+            this.chkRandomState.CheckedChanged += new System.EventHandler(this.chkRandomState_CheckedChanged);
+            // 
+            // chkTricks
+            // 
+            this.chkTricks.AutoSize = true;
+            this.chkTricks.BackColor = System.Drawing.Color.Transparent;
+            this.chkTricks.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkTricks.Location = new System.Drawing.Point(759, 434);
+            this.chkTricks.Name = "chkTricks";
+            this.chkTricks.Size = new System.Drawing.Size(15, 14);
+            this.chkTricks.TabIndex = 26;
+            this.chkTricks.UseVisualStyleBackColor = false;
+            this.chkTricks.CheckedChanged += new System.EventHandler(this.chkTricks_CheckedChanged);
+            // 
             // RandomizeOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -368,6 +394,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(883, 628);
+            this.Controls.Add(this.chkTricks);
+            this.Controls.Add(this.chkRandomState);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnApplyString);
             this.Controls.Add(this.label4);
@@ -434,5 +462,7 @@
         private System.Windows.Forms.Button btnApplyString;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.CheckBox chkRandomState;
+        private System.Windows.Forms.CheckBox chkTricks;
     }
 }

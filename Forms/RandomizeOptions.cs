@@ -11,6 +11,7 @@ namespace MMR_Tracker_V2
     public partial class RandomizeOptions : Form
     {
         public static bool updating = false;
+        public static bool PauseListview = false;
         public List<LogicObjects.LogicEntry> CheckedItems = new List<LogicObjects.LogicEntry>();
         public RandomizeOptions()
         {
@@ -127,6 +128,97 @@ namespace MMR_Tracker_V2
             }
         }
 
+        private void txtSearch_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle) { txtSearch.Clear(); }
+        }
+
+        private void chkShowEnabledTricks_CheckedChanged(object sender, EventArgs e)
+        {
+            WriteToListVeiw();
+        }
+
+        private void chkShowDisabledTricks_CheckedChanged(object sender, EventArgs e)
+        {
+            WriteToListVeiw();
+        }
+
+        private void btnToggleTricks_Click(object sender, EventArgs e)
+        {
+            UpdateRandomOption(5);
+        }
+
+        private void btnApplyString_Click(object sender, EventArgs e)
+        {
+            var CustomItemList = Tools.ParseSettingString(txtCustomItemString.Text);
+            var ForceJunkList = Tools.ParseSettingString(txtJunkItemString.Text);
+
+            if (CustomItemList == null) { label3.Text = "Custom Item String (INVALID!)"; }
+            else
+            {
+                label3.Text = "Custom Item String";
+                var Counter = 0;
+                var MI = LogicObjects.MainTrackerInstance.Logic;
+                foreach (var i in MI)
+                {
+                    if (!i.IsFake && i.ItemSubType != "Dungeon Entrance")
+                    {
+                        if (CustomItemList.Contains(Counter))
+                        {
+                            i.Options = (i.StartingItem()) ? 4 : 0;
+                        }
+                        else
+                        {
+                            i.Options = (i.StartingItem()) ? 5 : 1;
+                        }
+                        Counter++;
+                    }
+                }
+            }
+            if (ForceJunkList == null) { label4.Text = "Force Junk String (INVALID!)"; }
+            else
+            {
+                label4.Text = "Force Junk String";
+                var Counter = 0;
+                var MI = LogicObjects.MainTrackerInstance.Logic;
+                foreach (var i in MI)
+                {
+                    if (!i.IsFake && i.ItemSubType != "Dungeon Entrance")
+                    {
+                        if (ForceJunkList.Contains(Counter) && i.Randomized())
+                        {
+                            i.Options = (i.StartingItem()) ? 7 : 3;
+                        }
+                        Counter++;
+                    }
+                }
+            }
+            WriteToListVeiw();
+        }
+
+        private void chkRandomState_CheckedChanged(object sender, EventArgs e)
+        {
+            if (updating) { return; }
+            PauseListview = true;
+            chkShowRandom.Checked = chkRandomState.Checked;
+            chkShowUnrand.Checked = chkRandomState.Checked;
+            chkShowUnrandMan.Checked = chkRandomState.Checked;
+            chkShowJunk.Checked = chkRandomState.Checked;
+            chkShowStartingItems.Checked = chkRandomState.Checked;
+            PauseListview = false;
+            WriteToListVeiw();
+        }
+
+        private void chkTricks_CheckedChanged(object sender, EventArgs e)
+        {
+            if (updating) { return; }
+            PauseListview = true;
+            chkShowDisabledTricks.Checked = chkTricks.Checked;
+            chkShowEnabledTricks.Checked = chkTricks.Checked;
+            PauseListview = false;
+            WriteToListVeiw();
+        }
+
         //Functions
 
         public void UpdateRandomOption(int option)
@@ -155,12 +247,13 @@ namespace MMR_Tracker_V2
 
         public void WriteToListVeiw()
         {
+            if (PauseListview) { return; }
             updating = true;
             listView1.Items.Clear();
+            CheckfullchkState();
             var logic = LogicObjects.MainTrackerInstance.Logic;
             List<string> randomizedOptions = new List<string> { "Randomized", "Unrandomized", "Unrandomized (Manual)", "Forced Junk" };
             listView1.FullRowSelect = true;
-            Console.WriteLine("========================================================================================");
 
             
 
@@ -242,74 +335,6 @@ namespace MMR_Tracker_V2
             updating = false;
         }
 
-        private void txtSearch_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Middle) { txtSearch.Clear(); }
-        }
-
-        private void chkShowEnabledTricks_CheckedChanged(object sender, EventArgs e)
-        {
-            WriteToListVeiw();
-        }
-
-        private void chkShowDisabledTricks_CheckedChanged(object sender, EventArgs e)
-        {
-            WriteToListVeiw();
-        }
-
-        private void btnToggleTricks_Click(object sender, EventArgs e)
-        {
-            UpdateRandomOption(5);
-        }
-
-        private void btnApplyString_Click(object sender, EventArgs e)
-        {
-            var CustomItemList = Tools.ParseSettingString(txtCustomItemString.Text);
-            var ForceJunkList = Tools.ParseSettingString(txtJunkItemString.Text);
-
-            if (CustomItemList == null) { label3.Text = "Custom Item String (INVALID!)"; }
-            else
-            {
-                label3.Text = "Custom Item String";
-                var Counter = 0;
-                var MI = LogicObjects.MainTrackerInstance.Logic;
-                foreach (var i in MI)
-                {
-                    if (!i.IsFake && i.ItemSubType != "Dungeon Entrance")
-                    {
-                        if (CustomItemList.Contains(Counter))
-                        {
-                            i.Options = (i.StartingItem()) ? 4 : 0;
-                        }
-                        else
-                        {
-                            i.Options = (i.StartingItem()) ? 5 : 1;
-                        }
-                        Counter++;
-                    }
-                }
-            }
-            if (ForceJunkList == null) { label4.Text = "Force Junk String (INVALID!)"; }
-            else
-            {
-                label4.Text = "Force Junk String";
-                var Counter = 0;
-                var MI = LogicObjects.MainTrackerInstance.Logic;
-                foreach (var i in MI)
-                {
-                    if (!i.IsFake && i.ItemSubType != "Dungeon Entrance")
-                    {
-                        if (ForceJunkList.Contains(Counter) && i.Randomized())
-                        {
-                            i.Options = (i.StartingItem()) ? 7 : 3;
-                        }
-                        Counter++;
-                    }
-                }
-            }
-            WriteToListVeiw();
-        }
-
         private bool ShowingRandOptions()
         {
             if(!(chkShowRandom.Checked || chkShowUnrand.Checked || chkShowUnrandMan.Checked || chkShowJunk.Checked || chkShowStartingItems.Checked)) { return false; }
@@ -349,6 +374,38 @@ namespace MMR_Tracker_V2
                 }
             }
             return false;
+        }
+
+        private void CheckfullchkState()
+        {
+            bool allcheck = (chkShowRandom.Checked && chkShowUnrand.Checked && chkShowUnrandMan.Checked && chkShowJunk.Checked && chkShowStartingItems.Checked);
+            bool someChecked = (chkShowRandom.Checked || chkShowUnrand.Checked || chkShowUnrandMan.Checked || chkShowJunk.Checked || chkShowStartingItems.Checked);
+            if (allcheck)
+            {
+                chkRandomState.CheckState = CheckState.Checked;
+            }
+            else if (someChecked)
+            {
+                chkRandomState.CheckState = CheckState.Indeterminate;
+            }
+            else
+            {
+                chkRandomState.CheckState = CheckState.Unchecked;
+            }
+            allcheck = (chkShowEnabledTricks.Checked && chkShowDisabledTricks.Checked);
+            someChecked = (chkShowEnabledTricks.Checked || chkShowDisabledTricks.Checked);
+            if (allcheck)
+            {
+                chkTricks.CheckState = CheckState.Checked;
+            }
+            else if (someChecked)
+            {
+                chkTricks.CheckState = CheckState.Indeterminate;
+            }
+            else
+            {
+                chkTricks.CheckState = CheckState.Unchecked;
+            }
         }
     }
 }
