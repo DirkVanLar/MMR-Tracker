@@ -250,7 +250,7 @@ namespace MMR_Tracker_V2
             else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return;  }
             foreach (LogicObjects.SpoilerData data in SpoilerData)
             {
-                if (data.LocationID > -1 && data.ItemID > -2)
+                if (data.LocationID > -1 && data.ItemID > -2 && data.LocationID < Instance.Logic.Count && data.ItemID < Instance.Logic.Count)
                     Instance.Logic[data.LocationID].SpoilerRandom = data.ItemID;
             }
 

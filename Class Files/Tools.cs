@@ -10,6 +10,8 @@ namespace MMR_Tracker.Class_Files
 {
     class Tools
     {
+        public static event EventHandler UpdateListBox = delegate { };
+
         //Used to pass Logic items between forms
         public static LogicObjects.LogicEntry CurrentSelectedItem = new LogicObjects.LogicEntry();
         public static List<LogicObjects.LogicEntry> CurrentselectedItems = new List<LogicObjects.LogicEntry>();
@@ -551,6 +553,19 @@ namespace MMR_Tracker.Class_Files
                 return null;
             }
             return result;
+        }
+
+        public static void ManageNetData(List<LogicObjects.NetData> Data)
+        {
+            foreach(var i in Data)
+            {
+                if (LogicObjects.MainTrackerInstance.Logic.ElementAt(i.ID) != null && !LogicObjects.MainTrackerInstance.Logic[i.ID].Checked)
+                {
+                    LogicEditing.CheckObject(LogicObjects.MainTrackerInstance.Logic[i.ID], LogicObjects.MainTrackerInstance);
+                }
+            }
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            UpdateListBox(null, null);
         }
     }
 }

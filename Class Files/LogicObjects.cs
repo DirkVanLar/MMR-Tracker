@@ -46,16 +46,6 @@ namespace MMR_Tracker_V2
             //Misc Options
             public bool CheckForUpdate { get; set; } = true;
         }
-        public class LogicDictionaryEntry
-        {
-            public string DictionaryName { get; set; } //The name the logic file uses for the item
-            public string LocationName { get; set; } //The name that will be displayed as the location you check
-            public string ItemName { get; set; } //The name that will be displayed as the item you recieve
-            public string LocationArea { get; set; } //The General Area the location is in
-            public string ItemSubType { get; set; } //The type of item it is
-            public string SpoilerLocation { get; set; } //The name of this location in the spoiler Log
-            public string SpoilerItem { get; set; } //The name of this item in the spoiler log
-        }
         public class LogicEntry
         {
             public int ID { get; set; } //The id of the item. Will match the id used in the Logic file
@@ -87,7 +77,16 @@ namespace MMR_Tracker_V2
                 return DisplayName;
             }
         }
-
+        public class LogicDictionaryEntry
+        {
+            public string DictionaryName { get; set; } //The name the logic file uses for the item
+            public string LocationName { get; set; } //The name that will be displayed as the location you check
+            public string ItemName { get; set; } //The name that will be displayed as the item you recieve
+            public string LocationArea { get; set; } //The General Area the location is in
+            public string ItemSubType { get; set; } //The type of item it is
+            public string SpoilerLocation { get; set; } //The name of this location in the spoiler Log
+            public string SpoilerItem { get; set; } //The name of this item in the spoiler log
+        }
         public class MapPoint
         {
             public int CurrentExit { get; set; } //The exit you are curretly at
@@ -129,6 +128,12 @@ namespace MMR_Tracker_V2
             public List<int> ResolvedRealItems { get; set; } = new List<int>();
             public List<int> FakeItems { get; set; } = new List<int>();
             public List<int> UsedItems { get; set; } = new List<int>();
+        }
+        public class NetData
+        {
+            public int ID { get; set; }
+            public int RandomizedItem { get; set; }
+            public bool Checked { get; set; }
         }
     }
 

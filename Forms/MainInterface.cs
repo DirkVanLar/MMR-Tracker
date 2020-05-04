@@ -24,6 +24,12 @@ namespace MMR_Tracker_V2
         public MainInterface()
         {
             InitializeComponent();
+            Tools.UpdateListBox += Tools_UpdateListBox;
+        }
+
+        private void Tools_UpdateListBox(object sender, EventArgs e)
+        {
+            PrintToListBox();
         }
 
         #region Form Objects
@@ -1335,6 +1341,8 @@ namespace MMR_Tracker_V2
             if (LocationCheck) { LocationChecked(null, null); }
             if (TrackerUpdated) { TrackerUpdate(null, null); }
         }
+
+
 
         #endregion Other Functions
 
