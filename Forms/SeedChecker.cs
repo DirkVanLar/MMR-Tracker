@@ -21,11 +21,11 @@ namespace MMR_Tracker
             foreach (var item in LBNeededItems.Items)
             {
                 var ListItem = item as LogicObjects.ListItem;
-                if (ListItem.ID == Tools.CurrentSelectedItem.ID) { return; }
+                if (ListItem.PathID == Tools.CurrentSelectedItem.ID) { return; }
             }
             foreach (var i in Tools.CurrentselectedItems)
             {
-                LBNeededItems.Items.Add(new LogicObjects.ListItem { DisplayName = i.DisplayName, ID = i.ID });
+                LBNeededItems.Items.Add(new LogicObjects.ListItem { DisplayName = i.DisplayName, PathID = i.ID });
             }
             Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
             ItemSelect.Function = 0;
@@ -45,11 +45,11 @@ namespace MMR_Tracker
             foreach (var item in LBIgnoredChecks.Items)
             {
                 var ListItem = item as LogicObjects.ListItem;
-                if (ListItem.ID == Tools.CurrentSelectedItem.ID) { return; }
+                if (ListItem.PathID == Tools.CurrentSelectedItem.ID) { return; }
             }
             foreach (var i in Tools.CurrentselectedItems)
             {
-                LBIgnoredChecks.Items.Add(new LogicObjects.ListItem { DisplayName = i.DisplayName, ID = i.ID });
+                LBIgnoredChecks.Items.Add(new LogicObjects.ListItem { DisplayName = i.DisplayName, PathID = i.ID });
             }
             Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
             ItemSelect.Function = 0;
@@ -88,7 +88,7 @@ namespace MMR_Tracker
             List<int> Ignored = new List<int>();
             foreach (var item in LBIgnoredChecks.Items)
             {
-                Ignored.Add((item as LogicObjects.ListItem).ID);
+                Ignored.Add((item as LogicObjects.ListItem).PathID);
             }
             CheckSeed(logicCopy, true, Ignored);
             List<string> obtainable = new List<string>();
@@ -96,8 +96,8 @@ namespace MMR_Tracker
             foreach (var item in LBNeededItems.Items)
             {
                 var ListItem = item as LogicObjects.ListItem;
-                Console.WriteLine(logicCopy.Logic[ListItem.ID].DictionaryName + " " + logicCopy.Logic[ListItem.ID].Aquired);
-                if (logicCopy.Logic[ListItem.ID].Aquired) { obtainable.Add(ListItem.DisplayName); }
+                Console.WriteLine(logicCopy.Logic[ListItem.PathID].DictionaryName + " " + logicCopy.Logic[ListItem.PathID].Aquired);
+                if (logicCopy.Logic[ListItem.PathID].Aquired) { obtainable.Add(ListItem.DisplayName); }
                 else { unobtainable.Add(ListItem.DisplayName); }
             }
             if (unobtainable.Count > 0 && chkShowUnobtainable.Checked)

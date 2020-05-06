@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class Files\Debugging.cs" />
+    <Compile Include="Class Files\NetCode.cs" />
     <Compile Include="Class Files\PlaythroughGenerator.cs" />
     <Compile Include="Class Files\Tools.cs" />
     <Compile Include="Forms\ItemDisplay.cs">

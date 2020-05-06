@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace MMR_Tracker_V2
 {
@@ -68,9 +69,11 @@ namespace MMR_Tracker_V2
             public int SpoilerRandom { get; set; } //The item the spoiler log says is in this location //The name of this location in the spoiler Log
             public int AvailableOn { get; set; } //When the Check is available
             public int NeededBy { get; set; } //When the item is Needed
-            public bool IsTrick { get; set; }
-            public bool TrickEnabled { get; set; }
-            public string TrickToolTip { get; set; }
+            public bool IsTrick { get; set; } //Whether or not the entry is a trick
+            public bool TrickEnabled { get; set; } //Whether or not the trick is enabled
+            public string TrickToolTip { get; set; } //The tool tip describing what the trick is
+            public int ItemBelongedToPlayer { get; set; } = -1; //(Future proofing for multi world) What player the item at this check belonged to
+            public int ItemCameFromPlayer { get; set; } = -1; //(Future proofing for multi world) What the player this item came from
             public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
             public override string ToString()
             {
@@ -103,8 +106,12 @@ namespace MMR_Tracker_V2
         }
         public class ListItem
         {
-            public int ID { get; set; }
-            public int Identifier { get; set; }
+            public LogicObjects.LogicEntry LocationEntry { get; set; }
+            public LogicObjects.LogicEntry ItemEntry { get; set; }
+            public int PathID { get; set; }
+            public int PathPartition { get; set; }
+            public int Container { get; set; }
+            public Font Font { get; set; }
             public string DisplayName { get; set; }
             public override string ToString()
             {

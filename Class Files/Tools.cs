@@ -453,7 +453,7 @@ namespace MMR_Tracker.Class_Files
 
             if (!Instance.IsMM())
             {
-                DialogResult dialogResult = MessageBox.Show("This logic file was created for the Majoras Mask Randomizer. While this tracker can support other games, support is very Limited. Many features will be disabled and core features might not work as intended. Do you wish to continue?", "Other Randomizer", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("This logic file was NOT created for the Majoras Mask Randomizer. While this tracker can support other games, support is very Limited. Many features will be disabled and core features might not work as intended. Do you wish to continue?", "Other Randomizer", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }
             }
             else if (!VersionHandeling.ValidVersions.Contains(Instance.LogicVersion))

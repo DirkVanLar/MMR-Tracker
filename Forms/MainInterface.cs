@@ -576,8 +576,8 @@ namespace MMR_Tracker_V2
                 if (LBPathFinder.SelectedItem is LogicObjects.ListItem)
                 {
                     var item = LBPathFinder.SelectedItem as LogicObjects.ListItem;
-                    var partition = item.Identifier;
-                    PrintPaths(item.ID, partition);
+                    var partition = item.PathPartition;
+                    PrintPaths(item.PathID, partition);
                 }
                 else { return; }
             }
@@ -987,7 +987,7 @@ namespace MMR_Tracker_V2
                 int counter = 1;
                 foreach (var path in sortedpaths)
                 {
-                    var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", ID = counter - 1, Identifier = partition };
+                    var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", PathID = counter - 1, PathPartition = partition };
                     LBPathFinder.Items.Add(ListTitle);
                     var firstStop = true;
                     foreach (var stop in path)
@@ -996,16 +996,16 @@ namespace MMR_Tracker_V2
                         var ListItem = new LogicObjects.ListItem
                         {
                             DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
-                            ID = counter - 1,
-                            Identifier = partition
+                            PathID = counter - 1,
+                            PathPartition = partition
                         };
                         LBPathFinder.Items.Add(ListItem); firstStop = false;
                     }
                     LBPathFinder.Items.Add(new LogicObjects.ListItem
                     {
                         DisplayName = "===============================",
-                        ID = counter - 1,
-                        Identifier = partition
+                        PathID = counter - 1,
+                        PathPartition = partition
                     });
                     counter++;
                 }
@@ -1013,7 +1013,7 @@ namespace MMR_Tracker_V2
             else
             {
                 var path = sortedpaths.ToArray()[PathToPrint];
-                var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + (PathToPrint + 1) + " (" + path.Count + " Steps)", ID = -1, Identifier = partition };
+                var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + (PathToPrint + 1) + " (" + path.Count + " Steps)", PathID = -1, PathPartition = partition };
                 LBPathFinder.Items.Add(ListTitle);
                 var firstStop = true;
                 foreach (var stop in path)
@@ -1022,8 +1022,8 @@ namespace MMR_Tracker_V2
                     var ListItem = new LogicObjects.ListItem
                     {
                         DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
-                        ID = -1,
-                        Identifier = partition
+                        PathID = -1,
+                        PathPartition = partition
                     };
                     LBPathFinder.Items.Add(ListItem);
                     firstStop = false;
@@ -1031,8 +1031,8 @@ namespace MMR_Tracker_V2
                 LBPathFinder.Items.Add(new LogicObjects.ListItem
                 {
                     DisplayName = "===============================",
-                    ID = -1,
-                    Identifier = partition
+                    PathID = -1,
+                    PathPartition = partition
                 });
             }
         }
