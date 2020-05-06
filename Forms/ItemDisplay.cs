@@ -1,4 +1,5 @@
-﻿using MMR_Tracker_V2;
+﻿using MMR_Tracker.Class_Files;
+using MMR_Tracker_V2;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -36,6 +37,7 @@ namespace MMR_Tracker.Forms
         {
             InitializeComponent();
             MainInterface.LocationChecked += MainInterface_LocationChecked;
+            Tools.NetDataProcessed += MainInterface_LocationChecked;
         }
 
         //Picture Utils

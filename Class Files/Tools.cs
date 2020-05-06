@@ -10,7 +10,7 @@ namespace MMR_Tracker.Class_Files
 {
     class Tools
     {
-        public static event EventHandler UpdateListBox = delegate { };
+        public static event EventHandler NetDataProcessed = delegate { };
 
         //Used to pass Logic items between forms
         public static LogicObjects.LogicEntry CurrentSelectedItem = new LogicObjects.LogicEntry();
@@ -568,7 +568,7 @@ namespace MMR_Tracker.Class_Files
                 }
             }
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
-            UpdateListBox(null, null);
+            NetDataProcessed(null, null);
         }
     }
 }

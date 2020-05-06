@@ -24,7 +24,7 @@ namespace MMR_Tracker_V2
         public MainInterface()
         {
             InitializeComponent();
-            Tools.UpdateListBox += Tools_UpdateListBox;
+            Tools.NetDataProcessed += Tools_UpdateListBox;
         }
 
         private void Tools_UpdateListBox(object sender, EventArgs e)
