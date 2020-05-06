@@ -1,4 +1,5 @@
 ﻿using MMR_Tracker.Class_Files;
+using MMR_Tracker.Forms;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -94,7 +95,8 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-
+            OnlinePlay net = new OnlinePlay();
+            net.Show();
         }
     }
 }

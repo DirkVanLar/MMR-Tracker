@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class Files\Debugging.cs" />
-    <Compile Include="Class Files\NetCode.cs" />
     <Compile Include="Class Files\PlaythroughGenerator.cs" />
     <Compile Include="Class Files\Tools.cs" />
     <Compile Include="Forms\ItemDisplay.cs">
@@ -100,6 +99,12 @@
       <DependentUpon>MainInterface.cs</DependentUpon>
     </Compile>
     <Compile Include="Class Files\Program.cs" />
+    <Compile Include="Forms\OnlinePlay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OnlinePlay.Designer.cs">
+      <DependentUpon>OnlinePlay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PathFinder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Map.resx">
       <DependentUpon>Map.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OnlinePlay.resx">
+      <DependentUpon>OnlinePlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PathFinder.resx">
       <DependentUpon>PathFinder.cs</DependentUpon>
