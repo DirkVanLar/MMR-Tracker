@@ -177,6 +177,14 @@ namespace MMR_Tracker_V2
             FireEvents();
         }
         #endregion New
+        //Menu Strip => Options---------------------------------------------------------------------------
+        #region Online Play Options
+        private void onlinePlayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnlinePlay net = new OnlinePlay();
+            net.Show();
+        }
+        #endregion Online Play Options
         //Menu Strip => Options => Logic Options---------------------------------------------------------------------------
         #region Logic Options
         private void EditRadnomizationOptionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1341,8 +1349,6 @@ namespace MMR_Tracker_V2
             if (LocationCheck) { LocationChecked(null, null); }
             if (TrackerUpdated) { TrackerUpdate(null, null); }
         }
-
-
 
         #endregion Other Functions
 

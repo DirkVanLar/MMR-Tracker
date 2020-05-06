@@ -554,13 +554,16 @@ namespace MMR_Tracker.Class_Files
             }
             return result;
         }
-
         public static void ManageNetData(List<LogicObjects.NetData> Data)
         {
             foreach(var i in Data)
             {
                 if (LogicObjects.MainTrackerInstance.Logic.ElementAt(i.ID) != null && !LogicObjects.MainTrackerInstance.Logic[i.ID].Checked)
                 {
+                    if (!LogicObjects.MainTrackerInstance.Logic[i.ID].HasRandomItem(true) && LogicObjects.MainTrackerInstance.Logic[i.ID].SpoilerRandom < 0)
+                    {
+                        LogicObjects.MainTrackerInstance.Logic[i.ID].RandomizedItem = i.RandomizedItem;
+                    }
                     LogicEditing.CheckObject(LogicObjects.MainTrackerInstance.Logic[i.ID], LogicObjects.MainTrackerInstance);
                 }
             }

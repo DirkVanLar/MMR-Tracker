@@ -17,6 +17,16 @@ namespace MMR_Tracker.Forms
 {
     public partial class OnlinePlay : Form
     {
+        public class IPDATA
+        {
+            public IPAddress IP { get; set; }
+            public int PORT { get; set; }
+            public string DisplayName { get; set; }
+            public override string ToString()
+            {
+                return DisplayName;
+            }
+        }
         public OnlinePlay()
         {
             InitializeComponent();
@@ -26,7 +36,8 @@ namespace MMR_Tracker.Forms
         public static bool Listening = false;
         public static bool Sending = false;
         public static bool Updating = false;
-        public static List<IPAddress> IPS = new List<IPAddress>();
+        public static int PortNumber = 2112;
+        public static List<IPDATA> IPS = new List<IPDATA>();
         public static Socket listener;
 
         //Sending Data
@@ -41,81 +52,116 @@ namespace MMR_Tracker.Forms
             return ClipboardNetData;
         }
 
-        public static void StartClient(string M)
+        public static void StartClient(string M, IPDATA ip)
         {
-            byte[] bytes = new byte[1024];
-
-            foreach (var ip in IPS)
+            try
             {
-                try
-                {
-                    // Connect to a Remote server  
-                    // Get Host IP Address that is used to establish a connection  
-                    // In this case, we get one IP address of localhost that is IP : 127.0.0.1  
-                    // If a host has multiple addresses, you will get a list of addresses  
-                    IPHostEntry host = Dns.GetHostEntry("localhost");
-                    IPAddress ipAddress = host.AddressList[0];
-                    //IPAddress ipAddress = IPAddress.Parse("192.168.1.1");
-                    //IPAddress ipAddress = ip;
-                    IPEndPoint remoteEP = new IPEndPoint(ipAddress, 11000);
-
-                    // Create a TCP/IP  socket.    
-                    Socket sender = new Socket(ipAddress.AddressFamily,
-                        SocketType.Stream, ProtocolType.Tcp);
-
-                    // Connect the socket to the remote endpoint. Catch any errors.    
-                    try
-                    {
-                        // Connect to Remote EndPoint  
-                        sender.Connect(remoteEP);
-
-                        Console.WriteLine("Socket connected to {0}",
-                            sender.RemoteEndPoint.ToString());
-
-                        // Encode the data string into a byte array.    
-                        byte[] msg = Encoding.ASCII.GetBytes($"{M}<EOF>");
-
-                        // Send the data through the socket.    
-                        int bytesSent = sender.Send(msg);
-
-                        // Receive the response from the remote device.    
-                        int bytesRec = sender.Receive(bytes);
-                        Console.WriteLine("Echoed test = {0}",
-                            Encoding.ASCII.GetString(bytes, 0, bytesRec));
-
-                        // Release the socket.    
-                        sender.Shutdown(SocketShutdown.Both);
-                        sender.Close();
-
-                    }
-                    catch (ArgumentNullException ane)
-                    {
-                        Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
-                    }
-                    catch (SocketException se)
-                    {
-                        Console.WriteLine("SocketException : {0}", se.ToString());
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Unexpected exception : {0}", e.ToString());
-                    }
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.ToString());
-                }
+                //IPEndPoint ipEndPoint = new IPEndPoint(ip, 8000);
+                IPEndPoint ipEndPoint = new IPEndPoint(ip.IP, ip.PORT);
+                //Console.WriteLine("Starting: Creating Socket object");
+                Socket sender = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                sender.Connect(ipEndPoint);
+                Console.WriteLine("Successfully connected to {0}", sender.RemoteEndPoint);
+                string sendingMessage = M;
+                //string sendingMessage = "Hello World Socket Test";
+                //Console.WriteLine("Creating message:{0}", sendingMessage);
+                byte[] forwardMessage = Encoding.Default.GetBytes(sendingMessage);
+                sender.Send(forwardMessage);
+                //int totalBytesReceived = sender.Receive(receivedBytes);
+                //Console.WriteLine("Message provided from server: {0}", Encoding.ASCII.GetString(receivedBytes, 0, totalBytesReceived));
+                sender.Shutdown(SocketShutdown.Both);
+                sender.Close();
+            }
+            catch (ArgumentNullException ane)
+            {
+                Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
+            }
+            catch (SocketException se)
+            {
+                Console.WriteLine("SocketException : {0}", se.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected exception : {0}", e.ToString());
             }
         }
 
         private async void MainInterface_LocationChecked(object sender, EventArgs e)
         {
-            string message = JsonConvert.SerializeObject(createNetData());
-            await Task.Run(() => StartClient(message));
+            if (!Sending) { return; }
+            Console.WriteLine("Logic updated");
+            string m = JsonConvert.SerializeObject(createNetData());
+            foreach (var ip in IPS)
+            { 
+                await Task.Run(() => StartClient(m, ip)); 
+            }
         }
 
         //RecievingData
+
+        public static string RecieveData()
+        {
+            try
+            {
+                //Console.WriteLine("Starting: Creating Socket object");
+                listener = new Socket(AddressFamily.InterNetwork,
+                SocketType.Stream,
+                ProtocolType.Tcp);
+                listener.Bind(new IPEndPoint(IPAddress.Any, PortNumber));
+                listener.Listen(10);
+
+                //Console.WriteLine("Waiting for connection on port 2112");
+                Socket socket = listener.Accept();
+                string receivedValue = string.Empty;
+                /*
+                while (true)
+                {
+                    Console.WriteLine(socket.Available);
+                    if (socket.Available > 0)
+                    {
+                        do
+                        {
+                            var receivedBytes = new byte[socket.Available];
+                            socket.Receive(receivedBytes);
+                            Console.WriteLine("Receiving...");
+                            receivedValue += Encoding.Default.GetString(receivedBytes);
+                        } while (socket.Available > 0);
+                        break;
+                    }
+                }
+                */
+                byte[] bytes = null;
+                int counter = 0;
+                while (counter < 1024)
+                {
+                    counter++;
+                    bytes = new byte[socket.Available];
+                    int bytesRec = socket.Receive(bytes);
+                    receivedValue += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                    if (receivedValue.IndexOf("]") > -1)
+                    {
+                        break;
+                    }
+                }
+
+                Console.WriteLine("Received value: {0}", receivedValue);
+                Console.WriteLine(counter);
+                //string replyValue = "Message successfully received.";
+                //byte[] replyMessage = Encoding.Default.GetBytes(replyValue);
+                //socket.Send(replyMessage);
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+
+                listener.Close();
+                return receivedValue;
+            }
+            catch (Exception e)
+            {
+                listener.Close();
+                Console.WriteLine($"Errored: { e.ToString()}");
+                return "";
+            }
+        }
 
         public static async void startServer()
         {
@@ -123,9 +169,8 @@ namespace MMR_Tracker.Forms
             Listening = true;
             while (Listening)
             {
-                string Logic = await Task.Run(() => Listenfordata());
-
-                Logic = Logic.Replace("<EOF>", "");
+                Console.WriteLine("About to Recieve data");
+                string Logic = await Task.Run(() => RecieveData());
                 Console.WriteLine(Logic);
 
                 List<LogicObjects.NetData> NetData = new List<LogicObjects.NetData>();
@@ -143,69 +188,14 @@ namespace MMR_Tracker.Forms
             return;
         }
 
-        public static string Listenfordata()
-        {
-            // Get Host IP Address that is used to establish a connection  
-            // In this case, we get one IP address of localhost that is IP : 127.0.0.1  
-            // If a host has multiple addresses, you will get a list of addresses  
-            IPHostEntry host = Dns.GetHostEntry("localhost");
-            IPAddress ipAddress = host.AddressList[0];
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
-
-            try
-            {
-
-                // Create a Socket that will use Tcp protocol      
-                listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-                // A Socket must be associated with an endpoint using the Bind method  
-                listener.Bind(localEndPoint);
-                // Specify how many requests a Socket can listen before it gives Server busy response.  
-                // We will listen 10 requests at a time  
-                listener.Listen(10);
-
-                Console.WriteLine("Waiting for a connection...");
-                Socket handler = listener.Accept();
-                Console.WriteLine("Data Recieved");
-
-                // Incoming data from the client.    
-                string data = null;
-                byte[] bytes = null;
-
-                while (true)
-                {
-                    bytes = new byte[1024];
-                    int bytesRec = handler.Receive(bytes);
-                    data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    if (data.IndexOf("<EOF>") > -1)
-                    {
-                        break;
-                    }
-                }
-
-                listener.Close();
-
-                Console.WriteLine("Text received : {0}", data);
-
-                byte[] msg = Encoding.ASCII.GetBytes(data);
-                //handler.Send(msg);
-                handler.Shutdown(SocketShutdown.Both);
-                handler.Close();
-                return data;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Errored: { e.ToString()}");
-                return "";
-            }
-
-        }
-
         //Controls
 
         private void btnAddIP_Click_1(object sender, EventArgs e)
         {
-            IPAddress NewIP;
-            try { NewIP = IPAddress.Parse(txtIP.Text); } catch { MessageBox.Show("IP Address not valid"); return; }
+            IPDATA NewIP = new IPDATA();
+            try { NewIP.IP = IPAddress.Parse(txtIP.Text); } catch { MessageBox.Show("IP Address not valid"); return; }
+            NewIP.PORT = (int)NudPort.Value;
+            NewIP.DisplayName = $"{NewIP.IP}:{NewIP.PORT}";
             IPS.Add(NewIP);
             updateLB();
         }
@@ -214,7 +204,7 @@ namespace MMR_Tracker.Forms
         {
             foreach (var i in LBIPAdresses.SelectedItems)
             {
-                IPS.RemoveAt(IPS.IndexOf(i as IPAddress));
+                IPS.RemoveAt(IPS.IndexOf(i as IPDATA));
             }
             updateLB();
         }
@@ -230,7 +220,7 @@ namespace MMR_Tracker.Forms
             else
             {
                 Listening = false;
-                listener.Close();
+                try { listener.Close(); } catch { }
             }
         }
 
@@ -247,6 +237,9 @@ namespace MMR_Tracker.Forms
             updateLB();
             chkListenForData.Checked = Listening;
             chkSendData.Checked = Sending;
+            txtPulbicIP.Text = new WebClient().DownloadString("http://icanhazip.com");
+            NudYourPort.Value = PortNumber;
+            NudPort.Value = PortNumber;
             Updating = false;
         }
 
@@ -254,6 +247,18 @@ namespace MMR_Tracker.Forms
         {
             LBIPAdresses.Items.Clear();
             foreach (var i in IPS) { LBIPAdresses.Items.Add(i); }
+        }
+
+        private void NudYourPort_ValueChanged(object sender, EventArgs e)
+        {
+            PortNumber = (int)NudYourPort.Value;
+            Listening = false;
+            try { listener.Close(); } catch { }
+            if (chkListenForData.Checked)
+            {
+                startServer();
+                Console.WriteLine("Server Started");
+            }
         }
     }
 }
