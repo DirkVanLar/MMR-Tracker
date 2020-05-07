@@ -37,7 +37,7 @@ namespace MMR_Tracker.Forms
         {
             InitializeComponent();
             MainInterface.LocationChecked += MainInterface_LocationChecked;
-            Tools.NetDataProcessed += MainInterface_LocationChecked;
+            OnlinePlay.NetDataProcessed += MainInterface_LocationChecked;
         }
 
         //Picture Utils

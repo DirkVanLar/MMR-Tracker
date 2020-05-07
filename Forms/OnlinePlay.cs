@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -27,16 +28,37 @@ namespace MMR_Tracker.Forms
                 return DisplayName;
             }
         }
+        public class IPDATASerializable
+        {
+            public string IP { get; set; }
+            public int PORT { get; set; }
+        }
+        public class MMRTpacket
+        {
+            public int PlayerID { get; set; }
+            public string IP { get; set; }
+            public int Port { get; set; }
+            public List<LogicObjects.NetData> LogicData { get; set; }
+
+        }
         public OnlinePlay()
         {
             InitializeComponent();
             MainInterface.LocationChecked += MainInterface_LocationChecked;
         }
 
+        public static event EventHandler NetDataProcessed = delegate { };
+        public static event Action<MMRTpacket> TriggerAddRemoteToIPList = delegate { };
+
         public static bool Listening = false;
         public static bool Sending = false;
         public static bool Updating = false;
+        public static bool FormOpen = false;
+        public static IPAddress MyIP;
         public static int PortNumber = 2112;
+        public static bool AllowCheckingItems = true;
+        public static bool AllowAutoPortForward = false;
+        public static bool AutoAddIncomingConnections = false;
         public static List<IPDATA> IPS = new List<IPDATA>();
         public static Socket listener;
         public static string localIP = Dns.GetHostName();
@@ -45,14 +67,19 @@ namespace MMR_Tracker.Forms
 
         //Sending Data
 
-        public static List<LogicObjects.NetData> createNetData()
+        public static MMRTpacket createNetData()
         {
             List<LogicObjects.NetData> ClipboardNetData = new List<LogicObjects.NetData>();
-            foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && x.HasRandomItem(true) && x.RandomizedEntry(LogicObjects.MainTrackerInstance).Aquired))
+            foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && x.HasRandomItem(true)))
             {
                 ClipboardNetData.Add(new LogicObjects.NetData { ID = i.ID, Checked = i.Checked, RandomizedItem = i.RandomizedItem });
             }
-            return ClipboardNetData;
+            MMRTpacket Pack = new MMRTpacket();
+            Pack.LogicData = ClipboardNetData;
+            Pack.IP = MyIP.ToString();
+            Pack.Port = PortNumber;
+            Pack.PlayerID = 0;
+            return Pack;
         }
 
         public static void StartClient(string M, IPDATA ip)
@@ -141,7 +168,7 @@ namespace MMR_Tracker.Forms
                     bytes = new byte[socket.Available];
                     int bytesRec = socket.Receive(bytes);
                     receivedValue += Encoding.ASCII.GetString(bytes, 0, bytesRec);
-                    if (receivedValue.IndexOf("]") > -1)
+                    if (receivedValue.IndexOf("]}") > -1)
                     {
                         break;
                     }
@@ -177,19 +204,80 @@ namespace MMR_Tracker.Forms
                 string Logic = await Task.Run(() => RecieveData());
                 Console.WriteLine(Logic);
 
-                List<LogicObjects.NetData> NetData = new List<LogicObjects.NetData>();
+                MMRTpacket NetData = new MMRTpacket();
                 if (Logic != "")
                 {
                     try
                     {
-                        NetData = JsonConvert.DeserializeObject<List<LogicObjects.NetData>>(Logic);
-                        Tools.ManageNetData(NetData);
+                        NetData = JsonConvert.DeserializeObject<MMRTpacket>(Logic);
+                        ManageNetData(NetData);
                     }
                     catch { Console.WriteLine("Data Invalid"); }
                 }
             }
+            DeletePort(PortNumber);
             Console.WriteLine("Server Shutting Down");
             return;
+        }
+
+        //Port Handeling
+
+        private void NudYourPort_ValueChanged(object sender, EventArgs e)
+        {
+            DeletePort(PortNumber);
+            PortNumber = (int)NudYourPort.Value;
+            Listening = false;
+            try { listener.Close(); } catch { }
+            if (chkListenForData.Checked)
+            {
+                startServer();
+                Console.WriteLine("Server Started");
+
+            }
+        }
+
+        private void OnlinePlay_Closing(object sender, EventArgs e)
+        {
+            DeletePort(PortNumber);
+            FormOpen = false;
+        }
+
+        public static void AddPort(int port)
+        {
+            if (!AllowAutoPortForward) { return; }
+            // Opening up TCP Port
+            mappings.Add(port, "TCP", port, localIP, true, "MMRTracker");
+        }
+
+        public static void DeletePort(int port)
+        {
+            if (!AllowAutoPortForward) { return; }
+            // Remove TCP forwarding for Port
+            mappings.Remove(port, "TCP");
+        }
+
+        //Options
+        private void allowFullCheckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AllowCheckingItems = !AllowCheckingItems;
+            allowFullCheckToolStripMenuItem.Name = (AllowCheckingItems) ? "Disallow Full Check" : "Allow Full Check";
+        }
+
+        private void allowAutoPortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AllowAutoPortForward = !AllowAutoPortForward;
+            allowAutoPortToolStripMenuItem.Name = (AllowAutoPortForward) ? "Disallow Auto Port Forward" : "Allow Auto Port Forward";
+        }
+
+        private void autoAddIncomingIPsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AutoAddIncomingConnections = !AutoAddIncomingConnections;
+            autoAddIncomingIPsToolStripMenuItem.Name = (AutoAddIncomingConnections) ? "Don't Add Incoming IPs" : "Auto Add Incoming IPs";
+        }
+
+        private void copyNetDataToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(JsonConvert.SerializeObject(createNetData()));
         }
 
         //Controls
@@ -238,12 +326,17 @@ namespace MMR_Tracker.Forms
         private void OnlinePlay_Load(object sender, EventArgs e)
         {
             Updating = true;
+            FormOpen = true;
             updateLB();
             chkListenForData.Checked = Listening;
             chkSendData.Checked = Sending;
-            txtPulbicIP.Text = new WebClient().DownloadString("http://icanhazip.com");
+            var MyIPString = new WebClient().DownloadString("http://icanhazip.com").Trim();
+            Console.WriteLine(MyIPString);
+            MyIP = IPAddress.Parse(MyIPString);
+            txtPulbicIP.Text = MyIP.ToString();
             NudYourPort.Value = PortNumber;
             NudPort.Value = PortNumber;
+            TriggerAddRemoteToIPList += OnlinePlay_TriggerAddRemoteToIPList;
             Updating = false;
         }
 
@@ -253,33 +346,93 @@ namespace MMR_Tracker.Forms
             foreach (var i in IPS) { LBIPAdresses.Items.Add(i); }
         }
 
-        private void NudYourPort_ValueChanged(object sender, EventArgs e)
+        public static void ManageNetData(MMRTpacket Data)
         {
-            DeletePort(PortNumber);
-            PortNumber = (int)NudYourPort.Value;
-            Listening = false;
-            try { listener.Close(); } catch { }
-            if (chkListenForData.Checked)
+            if (AutoAddIncomingConnections && IPS.FindIndex(f => f.IP.ToString() == Data.IP) < 0)
             {
-                startServer();
-                Console.WriteLine("Server Started");
-
+                TriggerAddRemoteToIPList(Data);
             }
-        }
-        private void OnlinePlay_Closing(object sender, EventArgs e)
-        {
-            DeletePort(PortNumber);
-        }
-        public static void AddPort(int port)
-        {
-            // Opening up TCP Port
-            mappings.Add(port, "TCP", port, localIP, true, "MMRTracker");
-        }
-        public static void DeletePort(int port)
-        {
-            // Remove TCP forwarding for Port
-            mappings.Remove(port, "TCP");
+
+            foreach (var i in Data.LogicData)
+            {
+                if (LogicObjects.MainTrackerInstance.Logic.ElementAt(i.ID) != null && !LogicObjects.MainTrackerInstance.Logic[i.ID].Checked)
+                {
+                    var entry = LogicObjects.MainTrackerInstance.Logic[i.ID];
+
+                    if (entry.HasRandomItem(true) || entry.SpoilerRandom > -1)
+                    {
+                        if (!AllowCheckingItems || i.Checked == false)
+                        {
+                            LogicEditing.MarkObject(entry);
+                        }
+                        else
+                        {
+                            LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance);
+                        }
+                    }
+                    else
+                    {
+                        LogicObjects.MainTrackerInstance.Logic[i.ID].RandomizedItem = i.RandomizedItem;
+                        if (AllowCheckingItems && i.Checked)
+                        {
+                            LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance);
+                        }
+                    }
+                }
+            }
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            NetDataProcessed(null, null);
         }
 
+        private void OnlinePlay_TriggerAddRemoteToIPList(MMRTpacket Data)
+        {
+            IPDATA NewIP = new IPDATA();
+            try { NewIP.IP = IPAddress.Parse(Data.IP); } catch { return; }
+            NewIP.PORT = Data.Port;
+            NewIP.DisplayName = $"{NewIP.IP}:{NewIP.PORT}";
+            IPS.Add(NewIP);
+            updateLB();
+        }
+
+        private void saveIPListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker IP List (*.MMRTIP)|*.MMRTIP", FilterIndex = 1 };
+            if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+
+            List<IPDATASerializable> SaveIPS = new List<IPDATASerializable> { new IPDATASerializable { IP = MyIP.ToString(), PORT = PortNumber } };
+            foreach(var i in IPS)
+            {
+                SaveIPS.Add(new IPDATASerializable { IP = i.IP.ToString(), PORT = i.PORT });
+            }
+
+            File.WriteAllText(saveDialog.FileName, JsonConvert.SerializeObject(SaveIPS));
+        }
+
+        private void loadIPListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string file = Utility.FileSelect("Select An IP List", "MMR Tracker IP List (*.MMRTIP)|*.MMRTIP");
+            if (file == "") { return; }
+            List<IPDATASerializable> LoadData = new List<IPDATASerializable>();
+            Console.WriteLine($"File Found");
+            try { LoadData = JsonConvert.DeserializeObject<List<IPDATASerializable>>(File.ReadAllText(file)); }
+            catch
+            {
+                MessageBox.Show("File Invalid!");
+                return;
+            }
+            Console.WriteLine($"File Valid");
+            foreach (var i in LoadData)
+            {
+                Console.WriteLine($"Checking {i.IP.Trim()}");
+                if (i.IP != MyIP.ToString() && IPS.FindIndex(f => f.IP.ToString() == i.IP) < 0)
+                {
+                    IPAddress NIP;
+                    try { NIP = IPAddress.Parse(i.IP.Trim()); } catch { Console.WriteLine($"{i.IP.Trim()} Invalid"); continue; }
+                    IPS.Add(new IPDATA { IP = NIP, PORT = i.PORT, DisplayName = $"{NIP}:{i.PORT}" });
+                    Console.WriteLine($"{i.IP.Trim()} Added");
+                }
+            }
+            updateLB();
+        }
     }
 }
