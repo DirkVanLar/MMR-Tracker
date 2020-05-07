@@ -65,6 +65,7 @@
             this.LBIPAdresses.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBIPAdresses.Size = new System.Drawing.Size(211, 277);
             this.LBIPAdresses.TabIndex = 0;
+            this.LBIPAdresses.DoubleClick += new System.EventHandler(this.btnRemoveIP_Click);
             // 
             // btnAddIP
             // 
