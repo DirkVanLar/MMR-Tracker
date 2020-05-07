@@ -39,6 +39,9 @@ namespace MMR_Tracker.Forms
         public static int PortNumber = 2112;
         public static List<IPDATA> IPS = new List<IPDATA>();
         public static Socket listener;
+        public static string localIP = Dns.GetHostName();
+        public static NATUPNPLib.UPnPNATClass upnpnat = new NATUPNPLib.UPnPNATClass();
+        public static NATUPNPLib.IStaticPortMappingCollection mappings = upnpnat.StaticPortMappingCollection;
 
         //Sending Data
 
@@ -165,6 +168,7 @@ namespace MMR_Tracker.Forms
 
         public static async void startServer()
         {
+            AddPort(PortNumber);
             if (Listening) { MessageBox.Show("Net client already started!"); return; }
             Listening = true;
             while (Listening)
@@ -251,6 +255,7 @@ namespace MMR_Tracker.Forms
 
         private void NudYourPort_ValueChanged(object sender, EventArgs e)
         {
+            DeletePort(PortNumber);
             PortNumber = (int)NudYourPort.Value;
             Listening = false;
             try { listener.Close(); } catch { }
@@ -258,7 +263,23 @@ namespace MMR_Tracker.Forms
             {
                 startServer();
                 Console.WriteLine("Server Started");
+
             }
         }
+        private void OnlinePlay_Closing(object sender, EventArgs e)
+        {
+            DeletePort(PortNumber);
+        }
+        public static void AddPort(int port)
+        {
+            // Opening up TCP Port
+            mappings.Add(port, "TCP", port, localIP, true, "MMRTracker");
+        }
+        public static void DeletePort(int port)
+        {
+            // Remove TCP forwarding for Port
+            mappings.Remove(port, "TCP");
+        }
+
     }
 }
