@@ -61,7 +61,7 @@ namespace MMR_Tracker.Forms
         public static bool AutoAddIncomingConnections = false;
         public static List<IPDATA> IPS = new List<IPDATA>();
         public static Socket listener;
-        public static string localIP = Dns.GetHostName();
+        public static string ThisPC = Dns.GetHostName();
         public static NATUPNPLib.UPnPNATClass upnpnat = new NATUPNPLib.UPnPNATClass();
         public static NATUPNPLib.IStaticPortMappingCollection mappings = upnpnat.StaticPortMappingCollection;
 
@@ -246,12 +246,11 @@ namespace MMR_Tracker.Forms
         {
             if (!AllowAutoPortForward) { return; }
             // Opening up TCP Port
-            mappings.Add(port, "TCP", port, localIP, true, "MMRTracker");
+            mappings.Add(port, "TCP", port, ThisPC, true, "MMRTracker");
         }
 
         public static void DeletePort(int port)
         {
-            if (!AllowAutoPortForward) { return; }
             // Remove TCP forwarding for Port
             mappings.Remove(port, "TCP");
         }

@@ -2,3 +2,5 @@
 
 CONSIDER ===
 
+Use open.nat if NATUPNPlib Doesn't work
+
