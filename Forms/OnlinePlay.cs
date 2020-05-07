@@ -168,9 +168,9 @@ namespace MMR_Tracker.Forms
 
         public static async void startServer()
         {
-            AddPort(PortNumber);
             if (Listening) { MessageBox.Show("Net client already started!"); return; }
             Listening = true;
+            AddPort(PortNumber);
             while (Listening)
             {
                 Console.WriteLine("About to Recieve data");
