@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -61,9 +62,6 @@ namespace MMR_Tracker.Forms
         public static bool AutoAddIncomingConnections = false;
         public static List<IPDATA> IPS = new List<IPDATA>();
         public static Socket listener;
-        public static string ThisPC = Dns.GetHostName();
-        public static NATUPNPLib.UPnPNATClass upnpnat = new NATUPNPLib.UPnPNATClass();
-        public static NATUPNPLib.IStaticPortMappingCollection mappings = upnpnat.StaticPortMappingCollection;
 
         //Sending Data
 
@@ -133,33 +131,14 @@ namespace MMR_Tracker.Forms
         {
             try
             {
-                //Console.WriteLine("Starting: Creating Socket object");
                 listener = new Socket(AddressFamily.InterNetwork,
                 SocketType.Stream,
                 ProtocolType.Tcp);
                 listener.Bind(new IPEndPoint(IPAddress.Any, PortNumber));
                 listener.Listen(10);
-
-                //Console.WriteLine("Waiting for connection on port 2112");
                 Socket socket = listener.Accept();
+                
                 string receivedValue = string.Empty;
-                /*
-                while (true)
-                {
-                    Console.WriteLine(socket.Available);
-                    if (socket.Available > 0)
-                    {
-                        do
-                        {
-                            var receivedBytes = new byte[socket.Available];
-                            socket.Receive(receivedBytes);
-                            Console.WriteLine("Receiving...");
-                            receivedValue += Encoding.Default.GetString(receivedBytes);
-                        } while (socket.Available > 0);
-                        break;
-                    }
-                }
-                */
                 byte[] bytes = null;
                 int counter = 0;
                 while (counter < 1024)
@@ -197,7 +176,6 @@ namespace MMR_Tracker.Forms
         {
             if (Listening) { MessageBox.Show("Net client already started!"); return; }
             Listening = true;
-            AddPort(PortNumber);
             while (Listening)
             {
                 Console.WriteLine("About to Recieve data");
@@ -215,7 +193,6 @@ namespace MMR_Tracker.Forms
                     catch { Console.WriteLine("Data Invalid"); }
                 }
             }
-            DeletePort(PortNumber);
             Console.WriteLine("Server Shutting Down");
             return;
         }
@@ -224,54 +201,26 @@ namespace MMR_Tracker.Forms
 
         private void NudYourPort_ValueChanged(object sender, EventArgs e)
         {
-            DeletePort(PortNumber);
             PortNumber = (int)NudYourPort.Value;
-            Listening = false;
-            try { listener.Close(); } catch { }
-            if (chkListenForData.Checked)
-            {
-                startServer();
-                Console.WriteLine("Server Started");
-
-            }
+            chkListenForData.Checked = false;
         }
 
         private void OnlinePlay_Closing(object sender, EventArgs e)
         {
-            DeletePort(PortNumber);
             FormOpen = false;
-        }
-
-        public static void AddPort(int port)
-        {
-            if (!AllowAutoPortForward) { return; }
-            // Opening up TCP Port
-            mappings.Add(port, "TCP", port, ThisPC, true, "MMRTracker");
-        }
-
-        public static void DeletePort(int port)
-        {
-            // Remove TCP forwarding for Port
-            mappings.Remove(port, "TCP");
         }
 
         //Options
         private void allowFullCheckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AllowCheckingItems = !AllowCheckingItems;
-            allowFullCheckToolStripMenuItem.Name = (AllowCheckingItems) ? "Disallow Full Check" : "Allow Full Check";
-        }
-
-        private void allowAutoPortToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AllowAutoPortForward = !AllowAutoPortForward;
-            allowAutoPortToolStripMenuItem.Name = (AllowAutoPortForward) ? "Disallow Auto Port Forward" : "Allow Auto Port Forward";
+            allowFullCheckToolStripMenuItem.Text = (AllowCheckingItems) ? "Disallow Full Check" : "Allow Full Check";
         }
 
         private void autoAddIncomingIPsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AutoAddIncomingConnections = !AutoAddIncomingConnections;
-            autoAddIncomingIPsToolStripMenuItem.Name = (AutoAddIncomingConnections) ? "Don't Add Incoming IPs" : "Auto Add Incoming IPs";
+            autoAddIncomingIPsToolStripMenuItem.Text = (AutoAddIncomingConnections) ? "Don't Add Incoming IPs" : "Auto Add Incoming IPs";
         }
 
         private void copyNetDataToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -305,11 +254,13 @@ namespace MMR_Tracker.Forms
             if (Updating) { return; }
             if (chkListenForData.Checked)
             {
+                NudYourPort.Enabled = false;
                 startServer();
                 Console.WriteLine("Server Started");
             }
             else
             {
+                NudYourPort.Enabled = true;
                 Listening = false;
                 try { listener.Close(); } catch { }
             }
@@ -336,6 +287,8 @@ namespace MMR_Tracker.Forms
             NudYourPort.Value = PortNumber;
             NudPort.Value = PortNumber;
             TriggerAddRemoteToIPList += OnlinePlay_TriggerAddRemoteToIPList;
+            allowFullCheckToolStripMenuItem.Text = (AllowCheckingItems) ? "Disallow Full Check" : "Allow Full Check";
+            autoAddIncomingIPsToolStripMenuItem.Text = (AutoAddIncomingConnections) ? "Don't Add Incoming IPs" : "Auto Add Incoming IPs";
             Updating = false;
         }
 
@@ -432,6 +385,13 @@ namespace MMR_Tracker.Forms
                 }
             }
             updateLB();
+        }
+
+        private void portForwardingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InformationDisplay DebugScreen = new InformationDisplay();
+            DebugScreen.DebugFunction = 5;
+            DebugScreen.Show();
         }
     }
 }

@@ -41,13 +41,16 @@ namespace MMR_Tracker_V2
                 case 4:
                     WhatUnlockedThis();
                     break;
+                case 5:
+                    ShowIPHelp();
+                    break;
             }
             ResizeObject();
         }
 
         private void ListBox1_DoubleClick(object sender, EventArgs e)
         {
-            if (DebugFunction == 2)
+            if (this.Text == "Info")
             {
                 if (listBox1.SelectedItem.ToString().Contains("https://github.com/Thedrummonger/MMR-Tracker")) { System.Diagnostics.Process.Start("https://github.com/Thedrummonger/MMR-Tracker"); }
                 if (listBox1.SelectedItem.ToString().Contains("https://github.com/ZoeyZolotova/mm-rando")) { System.Diagnostics.Process.Start("https://github.com/ZoeyZolotova/mm-rando"); }
@@ -56,12 +59,19 @@ namespace MMR_Tracker_V2
                 if (listBox1.SelectedItem.ToString().Contains("(Click here for latest release)")) { System.Diagnostics.Process.Start("https://github.com/Thedrummonger/MMR-Tracker/releases"); }
                 
             }
+            if (this.Text == "Online Play Help")
+            {
+                if (listBox1.SelectedItem.ToString().Contains("https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/")) { System.Diagnostics.Process.Start("https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/"); }
+                if (listBox1.SelectedItem.ToString().Contains("https://github.com/kaklakariada/portmapper")) { System.Diagnostics.Process.Start("https://github.com/kaklakariada/portmapper"); }
+
+            }
         }
 
         private void DebugScreen_ResizeEnd(object sender, EventArgs e)
         {
             ResizeObject();
             if (this.Text == "Info") { PrintInfo(); }
+            if (this.Text == "Online Play Help") { ShowIPHelp(); }
         }
 
         public void PrintLogicToListBox(LogicObjects.TrackerInstance Instance)
@@ -378,6 +388,25 @@ namespace MMR_Tracker_V2
                     text.Add(i);
                 }
                 File.WriteAllLines(saveDialog.FileName, text);
+            }
+        }
+
+        public void ShowIPHelp()
+        {
+            this.Text = "Online Play Help";
+            listBox1.Items.Clear();
+            List<string> Lines = new List<string>();
+            Lines.Add(Utility.CreateDivider(listBox1, "Port Forwarding"));
+            Lines.Add("In order for your tracker to recieve data, you must have the port you selected under \"Your port\" forwarded to your PC in your router.");
+            Lines.Add("For information on how to accomplish this visit this link https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/.");
+            Lines.Add("If your router supports UPNP, other external programs can be used acomplish this.");
+            Lines.Add("We recomend https://github.com/kaklakariada/portmapper as it was used to test this application.");
+            foreach (var i in Lines)
+            {
+                foreach (var j in Utility.SeperateStringByMeasurement(listBox1, i))
+                {
+                    listBox1.Items.Add(j);
+                }
             }
         }
     }

@@ -45,13 +45,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveIPListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadIPListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allowFullCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allowAutoPortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoAddIncomingIPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyNetDataToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.portForwardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.NudPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudYourPort)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -232,7 +233,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.optionsToolStripMenuItem});
+            this.optionsToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(228, 24);
@@ -248,30 +250,29 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.allowFullCheckToolStripMenuItem,
-            this.allowAutoPortToolStripMenuItem,
-            this.autoAddIncomingIPsToolStripMenuItem,
-            this.copyNetDataToClipboardToolStripMenuItem});
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.optionsToolStripMenuItem.Text = "Options";
-            // 
             // saveIPListToolStripMenuItem
             // 
             this.saveIPListToolStripMenuItem.Name = "saveIPListToolStripMenuItem";
-            this.saveIPListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveIPListToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.saveIPListToolStripMenuItem.Text = "Save IP List";
             this.saveIPListToolStripMenuItem.Click += new System.EventHandler(this.saveIPListToolStripMenuItem_Click);
             // 
             // loadIPListToolStripMenuItem
             // 
             this.loadIPListToolStripMenuItem.Name = "loadIPListToolStripMenuItem";
-            this.loadIPListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadIPListToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.loadIPListToolStripMenuItem.Text = "Load IP List";
             this.loadIPListToolStripMenuItem.Click += new System.EventHandler(this.loadIPListToolStripMenuItem_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allowFullCheckToolStripMenuItem,
+            this.autoAddIncomingIPsToolStripMenuItem,
+            this.copyNetDataToClipboardToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.optionsToolStripMenuItem.Text = "Options";
             // 
             // allowFullCheckToolStripMenuItem
             // 
@@ -279,13 +280,6 @@
             this.allowFullCheckToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.allowFullCheckToolStripMenuItem.Text = "Allow Full Check";
             this.allowFullCheckToolStripMenuItem.Click += new System.EventHandler(this.allowFullCheckToolStripMenuItem_Click);
-            // 
-            // allowAutoPortToolStripMenuItem
-            // 
-            this.allowAutoPortToolStripMenuItem.Name = "allowAutoPortToolStripMenuItem";
-            this.allowAutoPortToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-            this.allowAutoPortToolStripMenuItem.Text = "Allow Auto Port";
-            this.allowAutoPortToolStripMenuItem.Click += new System.EventHandler(this.allowAutoPortToolStripMenuItem_Click);
             // 
             // autoAddIncomingIPsToolStripMenuItem
             // 
@@ -300,6 +294,21 @@
             this.copyNetDataToClipboardToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.copyNetDataToClipboardToolStripMenuItem.Text = "Copy Net Data to Clipboard";
             this.copyNetDataToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyNetDataToClipboardToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.portForwardingToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // portForwardingToolStripMenuItem
+            // 
+            this.portForwardingToolStripMenuItem.Name = "portForwardingToolStripMenuItem";
+            this.portForwardingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.portForwardingToolStripMenuItem.Text = "Port Forwarding";
+            this.portForwardingToolStripMenuItem.Click += new System.EventHandler(this.portForwardingToolStripMenuItem_Click);
             // 
             // OnlinePlay
             // 
@@ -359,8 +368,9 @@
         private System.Windows.Forms.ToolStripMenuItem loadIPListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allowFullCheckToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem allowAutoPortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoAddIncomingIPsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyNetDataToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem portForwardingToolStripMenuItem;
     }
 }
