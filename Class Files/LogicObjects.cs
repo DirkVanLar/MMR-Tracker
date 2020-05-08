@@ -108,6 +108,7 @@ namespace MMR_Tracker_V2
         {
             public LogicObjects.LogicEntry LocationEntry { get; set; }
             public LogicObjects.LogicEntry ItemEntry { get; set; }
+            public string Header { get; set; }
             public int PathID { get; set; }
             public int PathPartition { get; set; }
             public int Container { get; set; }
