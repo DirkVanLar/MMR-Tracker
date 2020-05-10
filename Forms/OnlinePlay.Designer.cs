@@ -50,13 +50,13 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allowFullCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoAddIncomingIPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyNetDataToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onlyAcceptDataFromSendingListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sYNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendingDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.requestDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fullSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.onlyAcceptDataFromSendingListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyNetDataToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.NudPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudYourPort)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -294,19 +294,12 @@
             this.autoAddIncomingIPsToolStripMenuItem.Text = "Auto Add Incoming IPs";
             this.autoAddIncomingIPsToolStripMenuItem.Click += new System.EventHandler(this.autoAddIncomingIPsToolStripMenuItem_Click);
             // 
-            // copyNetDataToClipboardToolStripMenuItem
+            // onlyAcceptDataFromSendingListToolStripMenuItem
             // 
-            this.copyNetDataToClipboardToolStripMenuItem.Name = "copyNetDataToClipboardToolStripMenuItem";
-            this.copyNetDataToClipboardToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
-            this.copyNetDataToClipboardToolStripMenuItem.Text = "Copy Net Data to Clipboard";
-            this.copyNetDataToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyNetDataToClipboardToolStripMenuItem_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.portForwardingToolStripMenuItem_Click);
+            this.onlyAcceptDataFromSendingListToolStripMenuItem.Name = "onlyAcceptDataFromSendingListToolStripMenuItem";
+            this.onlyAcceptDataFromSendingListToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.onlyAcceptDataFromSendingListToolStripMenuItem.Text = "Only accept data from sending list";
+            this.onlyAcceptDataFromSendingListToolStripMenuItem.Click += new System.EventHandler(this.onlyAcceptDataFromSendingListToolStripMenuItem_Click);
             // 
             // sYNCToolStripMenuItem
             // 
@@ -322,30 +315,37 @@
             // sendingDataToolStripMenuItem
             // 
             this.sendingDataToolStripMenuItem.Name = "sendingDataToolStripMenuItem";
-            this.sendingDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sendingDataToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.sendingDataToolStripMenuItem.Text = "Sending Data";
             this.sendingDataToolStripMenuItem.Click += new System.EventHandler(this.sendingDataToolStripMenuItem_Click);
             // 
             // requestDataToolStripMenuItem
             // 
             this.requestDataToolStripMenuItem.Name = "requestDataToolStripMenuItem";
-            this.requestDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.requestDataToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.requestDataToolStripMenuItem.Text = "Request Data";
             this.requestDataToolStripMenuItem.Click += new System.EventHandler(this.requestDataToolStripMenuItem_Click);
             // 
             // fullSyncToolStripMenuItem
             // 
             this.fullSyncToolStripMenuItem.Name = "fullSyncToolStripMenuItem";
-            this.fullSyncToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fullSyncToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.fullSyncToolStripMenuItem.Text = "Full Sync";
             this.fullSyncToolStripMenuItem.Click += new System.EventHandler(this.fullSyncToolStripMenuItem_Click);
             // 
-            // onlyAcceptDataFromSendingListToolStripMenuItem
+            // copyNetDataToClipboardToolStripMenuItem
             // 
-            this.onlyAcceptDataFromSendingListToolStripMenuItem.Name = "onlyAcceptDataFromSendingListToolStripMenuItem";
-            this.onlyAcceptDataFromSendingListToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
-            this.onlyAcceptDataFromSendingListToolStripMenuItem.Text = "Only accept data from sending list";
-            this.onlyAcceptDataFromSendingListToolStripMenuItem.Click += new System.EventHandler(this.onlyAcceptDataFromSendingListToolStripMenuItem_Click);
+            this.copyNetDataToClipboardToolStripMenuItem.Name = "copyNetDataToClipboardToolStripMenuItem";
+            this.copyNetDataToClipboardToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.copyNetDataToClipboardToolStripMenuItem.Text = "Copy Net Data to Clipboard";
+            this.copyNetDataToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyNetDataToClipboardToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.portForwardingToolStripMenuItem_Click);
             // 
             // OnlinePlay
             // 
@@ -373,6 +373,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "OnlinePlay";
             this.Text = "OnlinePlay";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnlinePlay_FormClosing);
             this.Load += new System.EventHandler(this.OnlinePlay_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NudPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudYourPort)).EndInit();

@@ -37,8 +37,7 @@ namespace MMR_Tracker.Forms
         public class MMRTpacket
         {
             public int PlayerID { get; set; }
-            public string IP { get; set; }
-            public int Port { get; set; }
+            public IPDATASerializable IPData { get; set; }
             public int RequestingUpdate { get; set; } = 0; //0= Sending Only, 1= Requesting Only, 2 = Both
             public List<LogicObjects.NetData> LogicData { get; set; }
 
@@ -77,8 +76,8 @@ namespace MMR_Tracker.Forms
             }
             MMRTpacket Pack = new MMRTpacket();
             Pack.LogicData = ClipboardNetData;
-            Pack.IP = MyIP.ToString();
-            Pack.Port = PortNumber;
+            Pack.IPData.IP = MyIP.ToString();
+            Pack.IPData.PORT = PortNumber;
             Pack.PlayerID = 0;
             Pack.RequestingUpdate = Type;
             return Pack;
@@ -146,7 +145,7 @@ namespace MMR_Tracker.Forms
                 listener.Bind(new IPEndPoint(IPAddress.Any, PortNumber));
                 listener.Listen(10);
                 Socket socket = listener.Accept();
-                
+                Console.WriteLine("Data Recieved.");
                 string receivedValue = string.Empty;
                 byte[] bytes = null;
                 int counter = 0;
@@ -162,8 +161,7 @@ namespace MMR_Tracker.Forms
                     }
                 }
 
-                Console.WriteLine("Received value: {0}", receivedValue);
-                Console.WriteLine(counter);
+                Console.WriteLine("Received value: {0}. Size: {1}", receivedValue, counter);
                 //string replyValue = "Message successfully received.";
                 //byte[] replyMessage = Encoding.Default.GetBytes(replyValue);
                 //socket.Send(replyMessage);
@@ -176,7 +174,7 @@ namespace MMR_Tracker.Forms
             catch (Exception e)
             {
                 listener.Close();
-                Console.WriteLine($"Errored: { e.ToString()}");
+                Console.WriteLine($"Errored: { e.ToString() }");
                 return "";
             }
         }
@@ -187,7 +185,7 @@ namespace MMR_Tracker.Forms
             Listening = true;
             while (Listening)
             {
-                Console.WriteLine("About to Recieve data");
+                Console.WriteLine("Listening for data...");
                 string Logic = await Task.Run(() => RecieveData());
                 Console.WriteLine(Logic);
 
@@ -198,8 +196,9 @@ namespace MMR_Tracker.Forms
                     {
                         NetData = JsonConvert.DeserializeObject<MMRTpacket>(Logic);
                         ManageNetData(NetData);
+                        Console.WriteLine($"Data Processed");
                     }
-                    catch { Console.WriteLine("Data Invalid"); }
+                    catch (Exception e) { Console.WriteLine($"Data Invalid: {e}"); }
                 }
             }
             Console.WriteLine("Server Shutting Down");
@@ -214,7 +213,7 @@ namespace MMR_Tracker.Forms
             chkListenForData.Checked = false;
         }
 
-        private void OnlinePlay_Closing(object sender, EventArgs e)
+        private void OnlinePlay_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormOpen = false;
         }
@@ -334,19 +333,20 @@ namespace MMR_Tracker.Forms
 
         public static void ManageNetData(MMRTpacket Data)
         {
-            if (StrictIP && IPS.FindIndex(f => f.IP.ToString() == Data.IP) < 0) { return; }
-                
-            if (AutoAddIncomingConnections && IPS.FindIndex(f => f.IP.ToString() == Data.IP) < 0)
+            var IPInSendingList = IPS.FindIndex(f => f.IP.ToString() == Data.IPData.IP) > -1;
+
+            if (!IPInSendingList)
             {
-                TriggerAddRemoteToIPList(Data);
+                if (StrictIP) { return; }
+                if (AutoAddIncomingConnections) { TriggerAddRemoteToIPList(Data); }
             }
 
-            if (Data.RequestingUpdate !=0 && IPS.FindIndex(f => f.IP.ToString() == Data.IP) > -1)
+            if (Data.RequestingUpdate !=0 && IPInSendingList)
             {
                 try
                 {
-                    IPAddress NIP = IPAddress.Parse(Data.IP);
-                    SendData(new List<IPDATA> { new IPDATA { IP = NIP, PORT = Data.Port } });
+                    IPAddress NIP = IPAddress.Parse(Data.IPData.IP);
+                    SendData(new List<IPDATA> { new IPDATA { IP = NIP, PORT = Data.IPData.PORT } }, 0);
                 }
                 catch { }
             }
@@ -390,8 +390,8 @@ namespace MMR_Tracker.Forms
         private void OnlinePlay_TriggerAddRemoteToIPList(MMRTpacket Data)
         {
             IPDATA NewIP = new IPDATA();
-            try { NewIP.IP = IPAddress.Parse(Data.IP); } catch { return; }
-            NewIP.PORT = Data.Port;
+            try { NewIP.IP = IPAddress.Parse(Data.IPData.IP); } catch { return; }
+            NewIP.PORT = Data.IPData.PORT;
             NewIP.DisplayName = $"{NewIP.IP}:{NewIP.PORT}";
             IPS.Add(NewIP);
             updateLB();
@@ -416,7 +416,6 @@ namespace MMR_Tracker.Forms
             string file = Utility.FileSelect("Select An IP List", "MMR Tracker IP List (*.MMRTIP)|*.MMRTIP");
             if (file == "") { return; }
             List<IPDATASerializable> LoadData = new List<IPDATASerializable>();
-            Console.WriteLine($"File Found");
             try { LoadData = JsonConvert.DeserializeObject<List<IPDATASerializable>>(File.ReadAllText(file)); }
             catch
             {
