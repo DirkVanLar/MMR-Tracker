@@ -947,7 +947,7 @@ namespace MMR_Tracker_V2
                     var Name = createDisplayName(false, entry, mi);
                     var LBItem = new LogicObjects.ListItem() { Container = 2, LocationEntry = entry, ItemEntry = entry.RandomizedEntry(mi, true), DisplayName = Name, Header = entry.LocationArea };
                     TotalEnt++;
-                    if (entry.IsEntrance() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && Utility.FilterSearch(entry, TXTLocSearch.Text, Name))
+                    if (entry.IsEntrance() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && Utility.FilterSearch(entry, TXTEntSearch.Text, Name))
                     {
                         ListItems.Add(LBItem);
                     }
@@ -957,7 +957,7 @@ namespace MMR_Tracker_V2
                     var Name = createDisplayName(true, entry, mi);
                     var LBItem = new LogicObjects.ListItem() { Container = 3, LocationEntry = entry, ItemEntry = entry.RandomizedEntry(mi, true), DisplayName = Name, Header = entry.LocationArea };
                     totalchk++;
-                    if (Utility.FilterSearch(entry, TXTLocSearch.Text, Name))
+                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, Name))
                     {
                         ListItems.Add(LBItem);
                     }

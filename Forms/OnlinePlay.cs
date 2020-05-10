@@ -315,7 +315,10 @@ namespace MMR_Tracker.Forms
                     {
                         if (!AllowCheckingItems || i.Checked == false)
                         {
-                            LogicEditing.MarkObject(entry);
+                            if (entry.RandomizedItem < 0)
+                            {
+                                LogicEditing.MarkObject(entry);
+                            }
                         }
                         else
                         {
