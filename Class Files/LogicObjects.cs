@@ -139,9 +139,9 @@ namespace MMR_Tracker_V2
         }
         public class NetData
         {
-            public int ID { get; set; }
-            public int RandomizedItem { get; set; }
-            public bool Checked { get; set; }
+            public int ID { get; set; } //Check ID
+            public int RI { get; set; } //Check Randomized Item
+            public bool Ch { get; set; } //Whether the check is checked
         }
     }
 

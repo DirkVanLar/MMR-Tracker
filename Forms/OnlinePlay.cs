@@ -37,7 +37,7 @@ namespace MMR_Tracker.Forms
         public class MMRTpacket
         {
             public int PlayerID { get; set; }
-            public IPDATASerializable IPData { get; set; }
+            public IPDATASerializable IPData { get; set; } = new IPDATASerializable();
             public int RequestingUpdate { get; set; } = 0; //0= Sending Only, 1= Requesting Only, 2 = Both
             public List<LogicObjects.NetData> LogicData { get; set; }
 
@@ -72,7 +72,7 @@ namespace MMR_Tracker.Forms
             List<LogicObjects.NetData> ClipboardNetData = new List<LogicObjects.NetData>();
             foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && x.HasRandomItem(true)))
             {
-                ClipboardNetData.Add(new LogicObjects.NetData { ID = i.ID, Checked = i.Checked, RandomizedItem = i.RandomizedItem });
+                ClipboardNetData.Add(new LogicObjects.NetData { ID = i.ID, Ch = i.Checked, RI = i.RandomizedItem });
             }
             MMRTpacket Pack = new MMRTpacket();
             Pack.LogicData = ClipboardNetData;
@@ -361,7 +361,7 @@ namespace MMR_Tracker.Forms
 
                     if (entry.HasRandomItem(true) || entry.SpoilerRandom > -1)
                     {
-                        if (!AllowCheckingItems || i.Checked == false)
+                        if (!AllowCheckingItems || i.Ch == false)
                         {
                             if (entry.RandomizedItem < 0)
                             {
@@ -375,8 +375,8 @@ namespace MMR_Tracker.Forms
                     }
                     else
                     {
-                        LogicObjects.MainTrackerInstance.Logic[i.ID].RandomizedItem = i.RandomizedItem;
-                        if (AllowCheckingItems && i.Checked)
+                        LogicObjects.MainTrackerInstance.Logic[i.ID].RandomizedItem = i.RI;
+                        if (AllowCheckingItems && i.Ch)
                         {
                             LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance);
                         }
