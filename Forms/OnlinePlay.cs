@@ -39,6 +39,7 @@ namespace MMR_Tracker.Forms
             public int PlayerID { get; set; }
             public string IP { get; set; }
             public int Port { get; set; }
+            public int RequestingUpdate { get; set; } = 0; //0= Sending Only, 1= Requesting Only, 2 = Both
             public List<LogicObjects.NetData> LogicData { get; set; }
 
         }
@@ -46,6 +47,7 @@ namespace MMR_Tracker.Forms
         {
             InitializeComponent();
             MainInterface.LocationChecked += MainInterface_LocationChecked;
+            TriggerAddRemoteToIPList += OnlinePlay_TriggerAddRemoteToIPList;
         }
 
         public static event EventHandler NetDataProcessed = delegate { };
@@ -60,12 +62,13 @@ namespace MMR_Tracker.Forms
         public static bool AllowCheckingItems = true;
         public static bool AllowAutoPortForward = false;
         public static bool AutoAddIncomingConnections = false;
+        public static bool StrictIP = false;
         public static List<IPDATA> IPS = new List<IPDATA>();
         public static Socket listener;
 
         //Sending Data
 
-        public static MMRTpacket createNetData()
+        public static MMRTpacket createNetData(int Type)
         {
             List<LogicObjects.NetData> ClipboardNetData = new List<LogicObjects.NetData>();
             foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && x.HasRandomItem(true)))
@@ -77,6 +80,7 @@ namespace MMR_Tracker.Forms
             Pack.IP = MyIP.ToString();
             Pack.Port = PortNumber;
             Pack.PlayerID = 0;
+            Pack.RequestingUpdate = Type;
             return Pack;
         }
 
@@ -114,15 +118,20 @@ namespace MMR_Tracker.Forms
             }
         }
 
-        private async void MainInterface_LocationChecked(object sender, EventArgs e)
+        public async static void SendData(List<IPDATA> SendList, int TYPE = 0)
         {
-            if (!Sending) { return; }
-            Console.WriteLine("Logic updated");
-            string m = JsonConvert.SerializeObject(createNetData());
-            foreach (var ip in IPS)
-            { 
-                await Task.Run(() => StartClient(m, ip)); 
+            if (!Sending && TYPE != 1) { return; }
+            string m = JsonConvert.SerializeObject(createNetData(TYPE));
+            foreach (var ip in SendList)
+            {
+                await Task.Run(() => StartClient(m, ip));
             }
+        }
+
+        private void MainInterface_LocationChecked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Logic updated");
+            SendData(IPS);
         }
 
         //RecievingData
@@ -225,7 +234,29 @@ namespace MMR_Tracker.Forms
 
         private void copyNetDataToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(JsonConvert.SerializeObject(createNetData()));
+            Clipboard.SetText(JsonConvert.SerializeObject(createNetData(0)));
+        }
+
+        private void sendingDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SendData(IPS);
+        }
+
+        private void requestDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SendData(IPS, 1);
+        }
+
+        private void fullSyncToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SendData(IPS, 2);
+        }
+
+        private void portForwardingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InformationDisplay DebugScreen = new InformationDisplay();
+            DebugScreen.DebugFunction = 5;
+            DebugScreen.Show();
         }
 
         //Controls
@@ -276,6 +307,7 @@ namespace MMR_Tracker.Forms
         private void OnlinePlay_Load(object sender, EventArgs e)
         {
             Updating = true;
+
             FormOpen = true;
             updateLB();
             chkListenForData.Checked = Listening;
@@ -286,9 +318,11 @@ namespace MMR_Tracker.Forms
             txtPulbicIP.Text = MyIP.ToString();
             NudYourPort.Value = PortNumber;
             NudPort.Value = PortNumber;
-            TriggerAddRemoteToIPList += OnlinePlay_TriggerAddRemoteToIPList;
             allowFullCheckToolStripMenuItem.Text = (AllowCheckingItems) ? "Disallow Full Check" : "Allow Full Check";
             autoAddIncomingIPsToolStripMenuItem.Text = (AutoAddIncomingConnections) ? "Don't Add Incoming IPs" : "Auto Add Incoming IPs";
+            onlyAcceptDataFromSendingListToolStripMenuItem.Text = (StrictIP) ? "Accept data from any IP" : "Only accept data from sending list";
+            copyNetDataToClipboardToolStripMenuItem.Visible = Debugging.ISDebugging;
+
             Updating = false;
         }
 
@@ -300,10 +334,24 @@ namespace MMR_Tracker.Forms
 
         public static void ManageNetData(MMRTpacket Data)
         {
+            if (StrictIP && IPS.FindIndex(f => f.IP.ToString() == Data.IP) < 0) { return; }
+                
             if (AutoAddIncomingConnections && IPS.FindIndex(f => f.IP.ToString() == Data.IP) < 0)
             {
                 TriggerAddRemoteToIPList(Data);
             }
+
+            if (Data.RequestingUpdate !=0 && IPS.FindIndex(f => f.IP.ToString() == Data.IP) > -1)
+            {
+                try
+                {
+                    IPAddress NIP = IPAddress.Parse(Data.IP);
+                    SendData(new List<IPDATA> { new IPDATA { IP = NIP, PORT = Data.Port } });
+                }
+                catch { }
+            }
+
+            if (Data.RequestingUpdate == 1) { return; }
 
             foreach (var i in Data.LogicData)
             {
@@ -390,11 +438,10 @@ namespace MMR_Tracker.Forms
             updateLB();
         }
 
-        private void portForwardingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void onlyAcceptDataFromSendingListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            InformationDisplay DebugScreen = new InformationDisplay();
-            DebugScreen.DebugFunction = 5;
-            DebugScreen.Show();
+            StrictIP = !StrictIP;
+            onlyAcceptDataFromSendingListToolStripMenuItem.Text = (StrictIP) ? "Accept data from any IP" : "Only accept data from sending list";
         }
     }
 }

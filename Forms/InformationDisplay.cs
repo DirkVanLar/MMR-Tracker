@@ -57,13 +57,25 @@ namespace MMR_Tracker_V2
                 if (listBox1.SelectedItem.ToString().Contains("https://discord.gg/TJZ4uCP")) { System.Diagnostics.Process.Start("https://discord.gg/TJZ4uCP"); }
                 if (listBox1.SelectedItem.ToString().Contains("bigmuffthedrummonger@gmail.com"))  { System.Diagnostics.Process.Start("mailto:bigmuffthedrummonger@gmail.com"); }
                 if (listBox1.SelectedItem.ToString().Contains("(Click here for latest release)")) { System.Diagnostics.Process.Start("https://github.com/Thedrummonger/MMR-Tracker/releases"); }
-                
+                if (listBox1.SelectedItem.ToString().Contains("(Click here to open the online play help page)"))
+                {
+                    InformationDisplay DebugScreen = new InformationDisplay();
+                    DebugScreen.DebugFunction = 5;
+                    DebugScreen.Show();
+                }
+
             }
             if (this.Text == "Online Play Help")
             {
                 if (listBox1.SelectedItem.ToString().Contains("https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/")) { System.Diagnostics.Process.Start("https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/"); }
                 if (listBox1.SelectedItem.ToString().Contains("https://github.com/kaklakariada/portmapper")) { System.Diagnostics.Process.Start("https://github.com/kaklakariada/portmapper"); }
-
+                if (listBox1.SelectedItem.ToString().Contains("https://kb.netgear.com/20878/Finding-your-IP-address-without-using-the-command-prompt")) { System.Diagnostics.Process.Start("https://kb.netgear.com/20878/Finding-your-IP-address-without-using-the-command-prompt"); }
+                if (listBox1.SelectedItem.ToString().Contains("(Click here to open the about page)"))
+                {
+                    InformationDisplay DebugScreen = new InformationDisplay();
+                    DebugScreen.DebugFunction = 2;
+                    DebugScreen.Show();
+                }
             }
         }
 
@@ -337,6 +349,12 @@ namespace MMR_Tracker_V2
             Lines.Add("This will open a new window containing the pathfinder.");
             Lines.Add("Multiple of these pathfinders can be open at once allowing you to keep track of multiple paths.");
             Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Online Play:");
+            Lines.Add("Online play allows you to sync items you check and mark in your tracker with others over the net.");
+            Lines.Add("This is usefull for co-op or online playthroughs where items or knowlege are shared.");
+            Lines.Add("More information can be found in the Online play help page.");
+            Lines.Add("(Click here to open the online play help page)");
+            Lines.Add(Utility.CreateDivider(listBox1));
 
             foreach (var i in Lines)
             {
@@ -395,12 +413,44 @@ namespace MMR_Tracker_V2
         {
             this.Text = "Online Play Help";
             listBox1.Items.Clear();
-            List<string> Lines = new List<string>();
-            Lines.Add(Utility.CreateDivider(listBox1, "Port Forwarding"));
-            Lines.Add("In order for your tracker to recieve data, you must have the port you selected under \"Your port\" forwarded to your PC in your router.");
-            Lines.Add("For information on how to accomplish this visit this link https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/.");
-            Lines.Add("If your router supports UPNP, other external programs can be used acomplish this.");
-            Lines.Add("We recomend https://github.com/kaklakariada/portmapper as it was used to test this application.");
+            List<string> Lines = new List<string>
+            {
+                Utility.CreateDivider(listBox1, "Port Forwarding"),
+                "Here I will do my best to outline the basic information you will need to setup online play. You will however still be expected to have at least a basic understanding of the terms and concepts detailed below.",
+                "",
+                "In order for your tracker to recieve data, you must have the port you selected under \"Your port\" forwarded to your PC in your router.",
+                "For information on how to accomplish this visit this link https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/.",
+                "",
+                "If your router supports UPNP, other external programs can be used acomplish this.",
+                "We recomend https://github.com/kaklakariada/portmapper as it was used to test this application.",
+                "",
+                Utility.CreateDivider(listBox1, "Local Play"),
+                "In order to play with people on you local network, you will need to use their local ip. This is different than the IP listed in \"Your IP\". Information on how to find this can be found here\"https://kb.netgear.com/20878/Finding-your-IP-address-without-using-the-command-prompt\".",
+                "",
+                "If you want to add an external player to your group, you will need everyone on your local network to assign a different port to their tracker. Each of these ports will then need to be forwarded to each corresponding computer. The external player can then use your public IP address with the corresponding port for each person.",
+                "",
+                Utility.CreateDivider(listBox1, "Adding IP Addresses"),
+                "You will need to add the Public IP address of everyone you want to send data to. Their public IP address will be listed in the \"Your IP\" Field of the Online play form.",
+                "",
+                "They will need to provide you this address along with the port they have selected in \"Your port\". You will enter this data in the \"Ipaddress\" and \"Port\" field and click \"Add IP\"",
+                "",
+                "By default you will be able to recieve data from any IP address that has you in their send list. You can select the \"Only accept data from sending list\" option to only allow data from those in your send list.",
+                "",
+                Utility.CreateDivider(listBox1, "Sending and Recieving data"),
+                "Whenever you update an entry in your tracker by checking or marking it, you tracker information will be sent to everyone in your send list as long as they have \"Listen for data\" selected and you have \"Send data\" selected",
+                "",
+                "By only selecting listen for data, you will recieve updates from others, but will not send updates of your own.",
+                "By only selecting Send, you will send updates to others, but will not recieve updates from anyone.",
+                "",
+                Utility.CreateDivider(listBox1, "Other options"),
+                "By default, net data will mirror the state (Checked or marked) of the data you receive. If you only want net data to mark entries regardless of if they were full checked in the net data, you can select \"Disallow Full Check\" in options. This is a recommended setting for co-op runs since you don't actually obtain the item the other player receives, but want to keep track of it. Net data will never be able to uncheck or unmark an item regardless of any option, this is by design.",
+                "",
+                "Selecting \"Auto Add Incoming IPs\" will add any IP you receive data from to your sending list if it's not there already. This option is useless if used in conjunction with \"Only accept data from sending list\", which is pretty self explanatory. This setting could potentially be dangerous as it could allow an unknown third party to add themselves to your group. It is recommended that you only enable this during setup.",
+                "",
+                Utility.CreateDivider(listBox1, "DISCLAIMER!"),
+                "This application does NOT send any information to any device other those you select. As always you can check the source code or email the developers with any questions or concerns. Links to this information can be found in the about page",
+                "(Click here to open the about page)"
+            };
             foreach (var i in Lines)
             {
                 foreach (var j in Utility.SeperateStringByMeasurement(listBox1, i))

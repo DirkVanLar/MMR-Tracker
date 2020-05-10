@@ -52,7 +52,11 @@
             this.autoAddIncomingIPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyNetDataToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.portForwardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sYNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendingDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.requestDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fullSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onlyAcceptDataFromSendingListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.NudPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudYourPort)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -269,6 +273,8 @@
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allowFullCheckToolStripMenuItem,
             this.autoAddIncomingIPsToolStripMenuItem,
+            this.onlyAcceptDataFromSendingListToolStripMenuItem,
+            this.sYNCToolStripMenuItem,
             this.copyNetDataToClipboardToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
@@ -277,38 +283,69 @@
             // allowFullCheckToolStripMenuItem
             // 
             this.allowFullCheckToolStripMenuItem.Name = "allowFullCheckToolStripMenuItem";
-            this.allowFullCheckToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.allowFullCheckToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.allowFullCheckToolStripMenuItem.Text = "Allow Full Check";
             this.allowFullCheckToolStripMenuItem.Click += new System.EventHandler(this.allowFullCheckToolStripMenuItem_Click);
             // 
             // autoAddIncomingIPsToolStripMenuItem
             // 
             this.autoAddIncomingIPsToolStripMenuItem.Name = "autoAddIncomingIPsToolStripMenuItem";
-            this.autoAddIncomingIPsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.autoAddIncomingIPsToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.autoAddIncomingIPsToolStripMenuItem.Text = "Auto Add Incoming IPs";
             this.autoAddIncomingIPsToolStripMenuItem.Click += new System.EventHandler(this.autoAddIncomingIPsToolStripMenuItem_Click);
             // 
             // copyNetDataToClipboardToolStripMenuItem
             // 
             this.copyNetDataToClipboardToolStripMenuItem.Name = "copyNetDataToClipboardToolStripMenuItem";
-            this.copyNetDataToClipboardToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.copyNetDataToClipboardToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.copyNetDataToClipboardToolStripMenuItem.Text = "Copy Net Data to Clipboard";
             this.copyNetDataToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyNetDataToClipboardToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.portForwardingToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.portForwardingToolStripMenuItem_Click);
             // 
-            // portForwardingToolStripMenuItem
+            // sYNCToolStripMenuItem
             // 
-            this.portForwardingToolStripMenuItem.Name = "portForwardingToolStripMenuItem";
-            this.portForwardingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.portForwardingToolStripMenuItem.Text = "Port Forwarding";
-            this.portForwardingToolStripMenuItem.Click += new System.EventHandler(this.portForwardingToolStripMenuItem_Click);
+            this.sYNCToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sendingDataToolStripMenuItem,
+            this.requestDataToolStripMenuItem,
+            this.fullSyncToolStripMenuItem});
+            this.sYNCToolStripMenuItem.Name = "sYNCToolStripMenuItem";
+            this.sYNCToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.sYNCToolStripMenuItem.Text = "SYNC";
+            this.sYNCToolStripMenuItem.Click += new System.EventHandler(this.fullSyncToolStripMenuItem_Click);
+            // 
+            // sendingDataToolStripMenuItem
+            // 
+            this.sendingDataToolStripMenuItem.Name = "sendingDataToolStripMenuItem";
+            this.sendingDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sendingDataToolStripMenuItem.Text = "Sending Data";
+            this.sendingDataToolStripMenuItem.Click += new System.EventHandler(this.sendingDataToolStripMenuItem_Click);
+            // 
+            // requestDataToolStripMenuItem
+            // 
+            this.requestDataToolStripMenuItem.Name = "requestDataToolStripMenuItem";
+            this.requestDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.requestDataToolStripMenuItem.Text = "Request Data";
+            this.requestDataToolStripMenuItem.Click += new System.EventHandler(this.requestDataToolStripMenuItem_Click);
+            // 
+            // fullSyncToolStripMenuItem
+            // 
+            this.fullSyncToolStripMenuItem.Name = "fullSyncToolStripMenuItem";
+            this.fullSyncToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fullSyncToolStripMenuItem.Text = "Full Sync";
+            this.fullSyncToolStripMenuItem.Click += new System.EventHandler(this.fullSyncToolStripMenuItem_Click);
+            // 
+            // onlyAcceptDataFromSendingListToolStripMenuItem
+            // 
+            this.onlyAcceptDataFromSendingListToolStripMenuItem.Name = "onlyAcceptDataFromSendingListToolStripMenuItem";
+            this.onlyAcceptDataFromSendingListToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.onlyAcceptDataFromSendingListToolStripMenuItem.Text = "Only accept data from sending list";
+            this.onlyAcceptDataFromSendingListToolStripMenuItem.Click += new System.EventHandler(this.onlyAcceptDataFromSendingListToolStripMenuItem_Click);
             // 
             // OnlinePlay
             // 
@@ -371,6 +408,10 @@
         private System.Windows.Forms.ToolStripMenuItem autoAddIncomingIPsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyNetDataToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem portForwardingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sYNCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sendingDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem requestDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fullSyncToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem onlyAcceptDataFromSendingListToolStripMenuItem;
     }
 }
