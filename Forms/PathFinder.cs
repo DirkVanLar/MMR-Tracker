@@ -45,7 +45,7 @@ namespace MMR_Tracker.Forms
                 return;
             }
 
-            if (PathFinder.paths.Count == 0)
+            if (PathFinder.paths[partition].Count == 0)
             {
                 LBPathFinder.Items.Add("No Path Found!");
                 LBPathFinder.Items.Add("");

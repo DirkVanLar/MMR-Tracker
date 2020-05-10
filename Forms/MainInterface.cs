@@ -672,7 +672,7 @@ namespace MMR_Tracker_V2
                 return;
             }
 
-            if (PathFinder.paths.Count == 0)
+            if (PathFinder.paths[partition].Count == 0)
             {
                 LBPathFinder.Items.Add("No Path Found!");
                 LBPathFinder.Items.Add("");
@@ -700,6 +700,40 @@ namespace MMR_Tracker_V2
         private void CMBStart_DropDown(object sender, EventArgs e) { PrintToComboBox(true); AdjustCMBWidth(sender); }
 
         private void CMBEnd_DropDown(object sender, EventArgs e) { PrintToComboBox(false); AdjustCMBWidth(sender); }
+
+        private void DestinationLabel_DoubleClick(object sender, EventArgs e)
+        {
+            LogicObjects.LogicEntry newStart = null;
+            LogicObjects.LogicEntry newDest = null;
+            try
+            {
+                int DestIndex = Int32.Parse(CMBEnd.SelectedValue.ToString());
+                newStart = LogicObjects.MainTrackerInstance.Logic[DestIndex].PairedEntry(LogicObjects.MainTrackerInstance);
+            }
+            catch { }
+            try
+            {
+                int StartIndex = Int32.Parse(CMBStart.SelectedValue.ToString());
+                newDest = LogicObjects.MainTrackerInstance.Logic[StartIndex].PairedEntry(LogicObjects.MainTrackerInstance);
+            }
+            catch { }
+            try
+            {
+                CMBStart.DataSource = new BindingSource(new Dictionary<int, string> { { newStart.ID, newStart.ItemName } }, null);
+                CMBStart.DisplayMember = "Value";
+                CMBStart.ValueMember = "key";
+                CMBStart.SelectedIndex = 0;
+            }
+            catch { }
+            try
+            {
+                CMBEnd.DataSource = new BindingSource(new Dictionary<int, string> { { newDest.ID, newDest.LocationName } }, null);
+                CMBEnd.DisplayMember = "Value";
+                CMBEnd.ValueMember = "key";
+                CMBEnd.SelectedIndex = 0;
+            }
+            catch { }
+        }
         #endregion Other
         #endregion Form Objects
         #region Functions
@@ -1373,39 +1407,5 @@ namespace MMR_Tracker_V2
         #endregion Other Functions
 
         #endregion Functions
-
-        private void DestinationLabel_DoubleClick(object sender, EventArgs e)
-        {
-            LogicObjects.LogicEntry newStart = null;
-            LogicObjects.LogicEntry newDest = null;
-            try 
-            {
-                int DestIndex = Int32.Parse(CMBEnd.SelectedValue.ToString());
-                newStart = LogicObjects.MainTrackerInstance.Logic[DestIndex].PairedEntry(LogicObjects.MainTrackerInstance);
-            } 
-            catch { }
-            try 
-            {
-                int StartIndex = Int32.Parse(CMBStart.SelectedValue.ToString());
-                newDest = LogicObjects.MainTrackerInstance.Logic[StartIndex].PairedEntry(LogicObjects.MainTrackerInstance);
-            } 
-            catch { }
-            try
-            {
-                CMBStart.DataSource = new BindingSource(new Dictionary<int, string> { { newStart.ID, newStart.ItemName } }, null);
-                CMBStart.DisplayMember = "Value";
-                CMBStart.ValueMember = "key";
-                CMBStart.SelectedIndex = 0;
-            } 
-            catch { }
-            try
-            {
-                CMBEnd.DataSource = new BindingSource(new Dictionary<int, string> { { newDest.ID, newDest.LocationName } }, null);
-                CMBEnd.DisplayMember = "Value";
-                CMBEnd.ValueMember = "key";
-                CMBEnd.SelectedIndex = 0;
-            }
-            catch { }
-        }
     }
 }
