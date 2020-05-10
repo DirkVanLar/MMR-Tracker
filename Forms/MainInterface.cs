@@ -523,6 +523,7 @@ namespace MMR_Tracker_V2
             form.Height = 500;
             form.BackgroundImageLayout = ImageLayout.Stretch;
             form.Text = "Showing Web page: " + link;
+            form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
             form.Show();
         }
 
@@ -537,6 +538,7 @@ namespace MMR_Tracker_V2
             form.Height = 500;
             form.BackgroundImageLayout = ImageLayout.Stretch;
             form.Text = "Showing Web page: " + link;
+            form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
             form.Show();
         }
 
@@ -547,7 +549,7 @@ namespace MMR_Tracker_V2
             if (name != "") { LogicObjects.MainTrackerInstance.Options.BomberCode = name; }
         }
 
-        private void TimedEventsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LotteryNumbersStripMenuItem_Click(object sender, EventArgs e)
         {
             var text = (LogicObjects.MainTrackerInstance.Options.LotteryNumber == "") ? "Enter your Lottery Number(s) below." : "Lottery Number(s): \n" + LogicObjects.MainTrackerInstance.Options.LotteryNumber + "\nEnter Lottery Number(s) to change it.";
             string name = Interaction.InputBox(text, "Lottery Number(s)", "");
@@ -556,15 +558,59 @@ namespace MMR_Tracker_V2
 
         private void OcarinaSongsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form form = new Form
+            try
             {
-                BackgroundImage = Bitmap.FromFile(@"Recources\Images\Ocarina Songs.PNG"),
-                Width = 500,
-                Height = 500,
-                BackgroundImageLayout = ImageLayout.Stretch
-            };
+                Form form = new Form
+                {
+                    BackgroundImage = Bitmap.FromFile(@"Recources\Images\Ocarina Songs.PNG"),
+                    Width = 500,
+                    Height = 500,
+                    BackgroundImageLayout = ImageLayout.Stretch
+                };
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Recourse not available. Redownload the tracker and isnure you extract all of the contents.");
+            }
+        }
+
+        private void indexWarpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form form = new Form
+                {
+                    BackgroundImage = Bitmap.FromFile(@"Recources\Images\IndexWarp.PNG"),
+                    Width = 250,
+                    Height = 400,
+                    BackgroundImageLayout = ImageLayout.Stretch
+                };
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Recourse not available. Redownload the tracker and isnure you extract all of the contents.");
+            }
+        }
+
+        private void zoraTrialMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string link = "https://cdn.discordapp.com/attachments/547922736257957914/598641931484135483/unknown.png";
+            Form form = new Form();
+            var request = WebRequest.Create(link);
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream()) { form.BackgroundImage = Bitmap.FromStream(stream); }
+            form.Width = 500;
+            form.Height = 500;
+            form.BackgroundImageLayout = ImageLayout.Stretch;
+            form.Text = "Showing Web page: " + link;
+            form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
             form.Show();
         }
+
         #endregion Info
         //Text Boxes---------------------------------------------------------------------------
         #region Text Boxes
@@ -1407,5 +1453,6 @@ namespace MMR_Tracker_V2
         #endregion Other Functions
 
         #endregion Functions
+
     }
 }
