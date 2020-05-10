@@ -11,8 +11,6 @@ namespace MMR_Tracker_V2
     class VersionHandeling
     {
         //Logic Version Handeling
-        public static List<int> ValidVersions = new List<int> { 8, 13, 14, 16 }; // Versions of logic used in main releases
-
         public static string trackerVersion = "V1.8";
 
         public static Dictionary<int, int> AreaClearDictionary(LogicObjects.TrackerInstance Instance)
