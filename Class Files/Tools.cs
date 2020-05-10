@@ -474,14 +474,22 @@ namespace MMR_Tracker.Class_Files
         }
         public static void WhatUnlockedThis()
         {
-            var Requirements = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic).ResolvedRealItems;
-            var FakeItems = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic).FakeItems;
-            var Playthrough = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic).playthrough;
-            var ItemsUsed = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic).UsedItems;
+            if (!Tools.CurrentSelectedItem.Available)
+            {
+                MessageBox.Show(Tools.CurrentSelectedItem.LocationName + " Is not available with the currently obtained items", Tools.CurrentSelectedItem.LocationName + " Is not available");
+                Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
+                return;
+            }
+            var UnlockData = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic);
+            var Requirements = UnlockData.ResolvedRealItems;
+            var FakeItems = UnlockData.FakeItems;
+            var Playthrough = UnlockData.playthrough;
+            var ItemsUsed = UnlockData.UsedItems;
             string message = "Logic Entries used:\n";
             if (Requirements.Count == 0)
             {
                 MessageBox.Show("Nothing is needed to check this location.", Tools.CurrentSelectedItem.LocationName + " Was Unlocked with:");
+                Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
                 return;
             }
             foreach (var i in ItemsUsed) { message = message + (LogicObjects.MainTrackerInstance.Logic[i].ItemName ?? LogicObjects.MainTrackerInstance.Logic[i].DictionaryName) + "\n"; }

@@ -224,5 +224,14 @@ namespace MMR_Tracker_V2
         {
             return Logic.Find(x => x.RandomizedItem == entry.ID);
         }
+        public static bool IsUserItem(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
+        {
+            int lastRealItem = -1;
+            foreach(var i in Logic)
+            {
+                if (!i.IsFake) { lastRealItem = i.ID; }
+            }
+            return (entry.ID > lastRealItem);
+        }
     }
 }

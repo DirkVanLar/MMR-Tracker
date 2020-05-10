@@ -627,7 +627,7 @@ namespace MMR_Tracker_V2
             if (e.Index < 0) { return; }
             e.DrawBackground();
             Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
-            if (LB.Items[e.Index] is LogicObjects.ListItem ListEntry)
+            if (LB.Items[e.Index] is LogicObjects.ListItem ListEntry && sender != LBPathFinder)
             {
                 var item = ListEntry.LocationEntry;
                 if (item.HasRandomItem(false) && !item.Available && item.Starred) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold | FontStyle.Strikeout); }
@@ -712,7 +712,7 @@ namespace MMR_Tracker_V2
             LocationContextMenu.Opening += (sender, e) => ContextMenu_Opening(LBValidLocations, e);
             ToolStripItem WhatUnlcoked = LocationContextMenu.Items.Add("What Unlocked This?");
             WhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBValidLocations); };
-            if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.Options.IncludeItemLocations)
+            if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando())
             {
                 ToolStripItem NavigateHere = LocationContextMenu.Items.Add("Navigate to this check");
                 NavigateHere.Click += (sender, e) => { RunMenuItems(5, LBValidLocations); };
@@ -734,7 +734,7 @@ namespace MMR_Tracker_V2
             EntranceContextMenu.Opening += (sender, e) => ContextMenu_Opening(LBValidEntrances, e);
             ToolStripItem EWhatUnlcoked = EntranceContextMenu.Items.Add("What Unlocked This?");
             EWhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBValidEntrances); };
-            if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled)
+            if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando())
             {
                 ToolStripItem ENavigateHere = EntranceContextMenu.Items.Add("Navigate to this entrance");
                 ENavigateHere.Click += (sender, e) => { RunMenuItems(5, LBValidEntrances); };
@@ -754,7 +754,9 @@ namespace MMR_Tracker_V2
             //LBCheckedLocations List Box
             ContextMenuStrip CheckContextMenu = new ContextMenuStrip();
             CheckContextMenu.Opening += (sender, e) => ContextMenu_Opening(LBCheckedLocations, e);
-            if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled)
+            ToolStripItem CWhatUnlcoked = CheckContextMenu.Items.Add("What Unlocked This?");
+            CWhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBCheckedLocations); };
+            if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando())
             {
                 ToolStripItem ENavigateHere = CheckContextMenu.Items.Add("Navigate to this check");
                 ENavigateHere.Click += (sender, e) => { RunMenuItems(5, LBCheckedLocations); };
@@ -765,6 +767,8 @@ namespace MMR_Tracker_V2
             CGroupFilter.Click += (sender, e) => { RunMenuItems(4, LBCheckedLocations); };
             ToolStripItem CCheck = CheckContextMenu.Items.Add("Un Check This Item");
             CCheck.Click += (sender, e) => { RunMenuItems(1, LBCheckedLocations); };
+            ToolStripItem CMCheck = CheckContextMenu.Items.Add("Un Check This Item (Keep Marked)");
+            CMCheck.Click += (sender, e) => { RunMenuItems(6, LBCheckedLocations); };
             ToolStripItem CStar = CheckContextMenu.Items.Add("Star This Item");
             CStar.Click += (sender, e) => { StarItemSelected(LBCheckedLocations); };
             LBCheckedLocations.ContextMenuStrip = CheckContextMenu;
@@ -854,6 +858,10 @@ namespace MMR_Tracker_V2
                 CMBEnd.DisplayMember = "Value";
                 CMBEnd.ValueMember = "key";
                 CMBEnd.SelectedIndex = 0;
+            }
+            if (Function == 6)
+            {
+                CheckItemSelected(ActiveListBox, true, 0, true) ;
             }
         }
         #endregion Context Menu
@@ -1107,7 +1115,7 @@ namespace MMR_Tracker_V2
             senderComboBox.DropDownWidth = width;
         }
 
-        public void CheckItemSelected(ListBox LB, bool FullCheck, int SetFunction = 0)
+        public void CheckItemSelected(ListBox LB, bool FullCheck, int SetFunction = 0, bool UncheckAndMark = false)
         {
             //Set Function: 0 = none, 1 = Always Set, 2 = Always Unset
             if (TXTLocSearch.Text.ToLower() == "enabledev" && LB == LBValidLocations && !FullCheck)
@@ -1128,7 +1136,19 @@ namespace MMR_Tracker_V2
                     { 
                         if ((LB == LBValidLocations || LB == LBValidEntrances) && (i as LogicObjects.LogicEntry).Checked) { continue; }
                         if (LB == LBCheckedLocations && !(i as LogicObjects.LogicEntry).Checked) { continue; }
+                        int RandomizedItem = (i as LogicObjects.LogicEntry).RandomizedItem;
                         if (!LogicEditing.CheckObject(i as LogicObjects.LogicEntry, LogicObjects.MainTrackerInstance)) { continue; }
+                        if (UncheckAndMark && (i as LogicObjects.LogicEntry).RandomizedItem < 0 && !(i as LogicObjects.LogicEntry).Checked)
+                        {
+                            if ((i as LogicObjects.LogicEntry).SpoilerRandom < 0)
+                            {
+                                (i as LogicObjects.LogicEntry).RandomizedItem = RandomizedItem;
+                            }
+                            else
+                            {
+                                LogicEditing.MarkObject(i as LogicObjects.LogicEntry);
+                            }
+                        }
                         ChangesMade = true;
                     }
                     else 
@@ -1353,5 +1373,39 @@ namespace MMR_Tracker_V2
         #endregion Other Functions
 
         #endregion Functions
+
+        private void DestinationLabel_DoubleClick(object sender, EventArgs e)
+        {
+            LogicObjects.LogicEntry newStart = null;
+            LogicObjects.LogicEntry newDest = null;
+            try 
+            {
+                int DestIndex = Int32.Parse(CMBEnd.SelectedValue.ToString());
+                newStart = LogicObjects.MainTrackerInstance.Logic[DestIndex].PairedEntry(LogicObjects.MainTrackerInstance);
+            } 
+            catch { }
+            try 
+            {
+                int StartIndex = Int32.Parse(CMBStart.SelectedValue.ToString());
+                newDest = LogicObjects.MainTrackerInstance.Logic[StartIndex].PairedEntry(LogicObjects.MainTrackerInstance);
+            } 
+            catch { }
+            try
+            {
+                CMBStart.DataSource = new BindingSource(new Dictionary<int, string> { { newStart.ID, newStart.ItemName } }, null);
+                CMBStart.DisplayMember = "Value";
+                CMBStart.ValueMember = "key";
+                CMBStart.SelectedIndex = 0;
+            } 
+            catch { }
+            try
+            {
+                CMBEnd.DataSource = new BindingSource(new Dictionary<int, string> { { newDest.ID, newDest.LocationName } }, null);
+                CMBEnd.DisplayMember = "Value";
+                CMBEnd.ValueMember = "key";
+                CMBEnd.SelectedIndex = 0;
+            }
+            catch { }
+        }
     }
 }

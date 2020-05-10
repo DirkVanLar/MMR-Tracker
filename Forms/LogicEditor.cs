@@ -372,7 +372,7 @@ namespace MMR_Tracker.Forms
         {
             if (nudIndex.Value > EditorInstance.Logic.Count - 1) { nudIndex.Value = EditorInstance.Logic.Count - 1; return; }
             if (nudIndex.Value < 0) { nudIndex.Value = 0; return; }
-            if (currentEntry.ID + 1 != (int)nudIndex.Value && currentEntry.ID - 1 != (int)nudIndex.Value && !NudUpdateing)  
+            if (currentEntry.ID + 1 != (int)nudIndex.Value && currentEntry.ID - 1 != (int)nudIndex.Value && !NudUpdateing && currentEntry.ID != (int)nudIndex.Value)  
             {
                 Console.WriteLine("Value Manually Entered");
                 GoBackList.Add(currentEntry.ID); 
@@ -467,9 +467,9 @@ namespace MMR_Tracker.Forms
             }
 
             currentEntry = entry;
-            renameCurrentItemToolStripMenuItem.Visible = currentEntry.IsFake;
-            deleteCurrentItemToolStripMenuItem.Visible = currentEntry.IsFake;
-            setTrickToolTipToolStripMenuItem.Visible = currentEntry.IsTrick;
+            renameCurrentItemToolStripMenuItem.Visible = currentEntry.IsUserItem(EditorInstance.Logic);
+            deleteCurrentItemToolStripMenuItem.Visible = currentEntry.IsUserItem(EditorInstance.Logic);
+            setTrickToolTipToolStripMenuItem.Visible = currentEntry.IsUserItem(EditorInstance.Logic);
             foreach (var i in entry.Required ?? new int[0])
             {
                 var ReqEntry = EditorInstance.Logic[i];

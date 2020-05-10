@@ -185,18 +185,10 @@ namespace MMR_Tracker_V2
 
         private void ShowAllAsDictionary()
         {
-            lastRealItem = -1;
-            if (LogicEditor.EditorInstance.IsMM())
-            {
-                for (var i = 0; i < UsedLogic.Count; i++)
-                {
-                    if (!UsedLogic[i].IsFake) { lastRealItem = i; }
-                }
-            }
             lbCheckItems.Items.Clear();
             for (var i = 0; i < UsedLogic.Count; i++)
             {
-                if (i > lastRealItem)
+                if (!LogicEditor.EditorInstance.IsMM() || UsedLogic[i].IsUserItem(UsedLogic))
                 {
                     UsedLogic[i].DisplayName = UsedLogic[i].DictionaryName;
                     LBItemSelect.Items.Add(UsedLogic[i]);
