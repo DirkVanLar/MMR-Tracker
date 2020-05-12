@@ -34,6 +34,7 @@ namespace MMR_Tracker_V2
             listView1.Columns[2].Width = 85;
             listView1.Columns[3].Width = 80;
             txtSearch.Text = "";
+            EnableButtons(false, false);
             WriteToListVeiw();
         }
 
@@ -118,14 +119,31 @@ namespace MMR_Tracker_V2
             var item = LogicObjects.MainTrackerInstance.Logic[Int32.Parse(e.Item.Tag.ToString())];
             if (e.Item.Checked)
             {
-                if (CheckedItems.Contains(item)) { return; }
-                CheckedItems.Add(item);
+                if (!CheckedItems.Contains(item)) { CheckedItems.Add(item); }
+                
             }
             else
             {
-                if (CheckedItems.IndexOf(item) < 0) { return; }
-                CheckedItems.RemoveAt(CheckedItems.IndexOf(item));
+                if (CheckedItems.IndexOf(item) > -1) { CheckedItems.RemoveAt(CheckedItems.IndexOf(item)); }
             }
+            bool EnableRO = false;
+            bool EnableTR = false;
+            foreach (var i in CheckedItems)
+            {
+                if (i.IsTrick && i.IsFake) { EnableTR = true; }
+                if (!i.IsFake) { EnableRO = true; }
+            }
+            EnableButtons(EnableTR, EnableRO);
+        }
+
+        private void EnableButtons(bool TR, bool RO)
+        {
+            BTNRandomized.Enabled = RO;
+            BTNUnrando.Enabled = RO;
+            BTNUnrandMan.Enabled = RO;
+            BTNJunk.Enabled = RO;
+            BTNStarting.Enabled = RO;
+            btnToggleTricks.Enabled = TR;
         }
 
         private void txtSearch_MouseUp(object sender, MouseEventArgs e)
@@ -332,6 +350,15 @@ namespace MMR_Tracker_V2
                 listView1.Columns[2].Width = 85;
                 listView1.Columns[3].Width = 80;
             }
+            bool EnableRO = false;
+            bool EnableTR = false;
+            foreach (var i in CheckedItems)
+            {
+                if (i.IsTrick && i.IsFake) { EnableTR = true; }
+                if (!i.IsFake) { EnableRO = true; }
+            }
+
+            EnableButtons(EnableTR, EnableRO);
 
             updating = false;
         }
