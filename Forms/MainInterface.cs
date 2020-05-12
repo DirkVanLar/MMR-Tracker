@@ -162,6 +162,7 @@ namespace MMR_Tracker_V2
             ResizeObject();
             PrintToListBox();
             FireEvents(sender, e);
+            Console.WriteLine($"Casual Logic V{LogicObjects.MainTrackerInstance.LogicVersion}");
         }
 
         private void GlitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
@@ -176,6 +177,7 @@ namespace MMR_Tracker_V2
             ResizeObject();
             PrintToListBox();
             FireEvents(sender, e);
+            Console.WriteLine($"Glitched Logic V{LogicObjects.MainTrackerInstance.LogicVersion}");
         }
 
         private void AccessibleLogicToolStripMenuItem_Click(object sender, EventArgs e)
@@ -190,6 +192,7 @@ namespace MMR_Tracker_V2
             ResizeObject();
             PrintToListBox();
             FireEvents(sender, e);
+            Console.WriteLine($"Accessable Logic V{LogicObjects.MainTrackerInstance.LogicVersion}");
         }
         #endregion New
         //Menu Strip => Options---------------------------------------------------------------------------
@@ -1325,6 +1328,8 @@ namespace MMR_Tracker_V2
             coupleEntrancesToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
             devToolStripMenuItem.Visible = Debugging.ISDebugging;
             seperateMarkedItemsToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom) ? "Don't Seperate Marked Items" : "Seperate Marked Items";
+
+            accessibleLogicToolStripMenuItem.Visible = Debugging.ISDebugging;
 
             CreateMenu();
 

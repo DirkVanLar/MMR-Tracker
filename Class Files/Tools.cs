@@ -144,7 +144,7 @@ namespace MMR_Tracker.Class_Files
                     entry.LocationID = -2;
                     entry.ItemID = -2;
 
-                    var location = instance.Logic.Find(x => x.SpoilerLocation == entry.LocationName);
+                    var location = instance.Logic.Find(x => x.SpoilerLocation == entry.LocationName || x.SpoilerLocation == GetAltSpoiler(entry.LocationName));
                     if (location == null) { Console.WriteLine($"Unable to find logic entry for {entry.LocationName}"); }
                     else { Console.WriteLine($"Entry {location.ID} is {entry.LocationName}"); }
 
@@ -162,6 +162,26 @@ namespace MMR_Tracker.Class_Files
                 }
             }
             return SpoilerData;
+        }
+
+        public static string GetAltSpoiler(string LocationName)
+        {
+            Dictionary<string, string> AltSpoilerNames = new Dictionary<string, string>
+            {
+                {"Great Bay Cape Ledge Without Tree Chest", "Zora Cape Ledge Without Tree Chest" },
+                {"Zora Cape Ledge Without Tree Chest", "Great Bay Cape Ledge Without Tree Chest" },
+                {"Great Bay Cape Ledge Without Tree Chest", "Zora Cape Ledge Without Tree Chest" },
+                {"Zora Cape Ledge Without Tree Chest","Great Bay Cape Ledge Without Tree Chest" },
+                {"Zora Cape Ledge With Tree Chest", "Great Bay Cape Ledge With Tree Chest" },
+                {"Great Bay Cape Ledge With Tree Chest", "Zora Cape Ledge With Tree Chest" },
+                {"Zora Cape Grotto", "Great Bay Cape Grotto" },
+                {"Great Bay Cape Grotto", "Zora Cape Grotto" },
+                {"Great Bay Cape Underwater Chest", "Zora Cape Underwater Chest" },
+                {"Zora Cape Underwater Chest", "Great Bay Cape Underwater Chest" },
+                {"Zora Cape Like-Like", "Great Bay Like-Like" },
+                {"Great Bay Like-Like", "Zora Cape Like-Like" }
+            };
+            return AltSpoilerNames.ContainsKey(LocationName) ? AltSpoilerNames[LocationName] : LocationName;
         }
 
         public static List<LogicObjects.SpoilerData> ReadHTMLSpoilerLog(string Path, LogicObjects.TrackerInstance Instance)
