@@ -59,7 +59,7 @@ namespace MMR_Tracker_V2
             Tools.Redo(LogicObjects.MainTrackerInstance);
             PrintToListBox();
             FormatMenuItems();
-            FireEvents();
+            FireEvents(sender, e);
         }
 
         private void UndoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace MMR_Tracker_V2
             Tools.Undo(LogicObjects.MainTrackerInstance);
             PrintToListBox();
             FormatMenuItems();
-            FireEvents();
+            FireEvents(sender, e);
         }
         #endregion Form Events
         //Menu Strip => File---------------------------------------------------------------------------
@@ -83,7 +83,7 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
-            FireEvents();
+            FireEvents(sender, e);
         }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -145,7 +145,7 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
-            FireEvents();
+            FireEvents(sender, e);
         }
         #endregion File
         //Menu Strip => File => New---------------------------------------------------------------------------
@@ -161,7 +161,7 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
-            FireEvents();
+            FireEvents(sender, e);
         }
 
         private void GlitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
@@ -175,7 +175,7 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
-            FireEvents();
+            FireEvents(sender, e);
         }
         #endregion New
         //Menu Strip => Options---------------------------------------------------------------------------
@@ -1258,7 +1258,7 @@ namespace MMR_Tracker_V2
             LogicObjects.MainTrackerInstance.UnsavedChanges = true;
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
 
-            FireEvents(false);
+            FireEvents(LB, null, false);
 
             int TopIndex = LB.TopIndex;
             PrintToListBox();
@@ -1442,7 +1442,7 @@ namespace MMR_Tracker_V2
             LBPathFinder.Visible = location;
         }
 
-        private static void FireEvents(bool TrackerUpdated = true, bool LocationCheck = true)
+        private static void FireEvents(object sender, EventArgs e, bool TrackerUpdated = true, bool LocationCheck = true)
         {
             if (LocationCheck) { LocationChecked(null, null); }
             if (TrackerUpdated) { TrackerUpdate(null, null); }
