@@ -126,30 +126,44 @@ namespace MMR_Tracker.Class_Files
                 Path = SpoilerFile.FileName;
             }
             List<int> usedId = new List<int>();
-            foreach (string line in File.ReadLines(Path))
+            foreach (string i in File.ReadLines(Path))
             {
+                var line = i;
+                if (line.Contains("Gossip Stone ") && line.Contains("Message")) { break; }
                 LogicObjects.SpoilerData entry = new LogicObjects.SpoilerData();
                 if (line.Contains("->"))
                 {
                     var linedata = line.Split(new string[] { "->" }, StringSplitOptions.None);
-                    linedata[0] = linedata[0].Replace("*", "");//Not sure if this is neccassary but I'm to
-                    linedata[1] = linedata[1].Replace("*", "");//lazy to check and it's not hurting anything
+                    linedata[0] = linedata[0].Replace("*", "");
+                    linedata[1] = linedata[1].Replace("*", "");
+
+
+
                     entry.LocationName = linedata[0].Trim();
                     entry.ItemName = linedata[1].Trim();
                     entry.LocationID = -2;
                     entry.ItemID = -2;
-                    bool itemfound = false;
-                    foreach (LogicObjects.LogicEntry X in instance.Logic)
+
+                    var location = instance.Logic.Find(x => x.SpoilerLocation == entry.LocationName);
+                    if (location == null) { Console.WriteLine($"Unable to find logic entry for {entry.LocationName}"); }
+                    else { Console.WriteLine($"Entry {location.ID} is {entry.LocationName}"); }
+
+                    var Item = instance.Logic.Find(x => x.SpoilerItem == entry.ItemName && !usedId.Contains(x.ID));
+                    if (Item == null) { Console.WriteLine($"Unable to find logic entry for {entry.ItemName}"); }
+                    else {Console.WriteLine($"Entry {Item.ID} is {entry.ItemName}"); }
+
+                    if (Item != null && location != null)
                     {
-                        if (X.SpoilerLocation == entry.LocationName) { entry.LocationID = X.ID; }
-                        if (X.SpoilerItem == entry.ItemName && !usedId.Contains(X.ID) && !itemfound)
-                        { entry.ItemID = X.ID; usedId.Add(X.ID); itemfound = true; }
+                        entry.ItemID = Item.ID;
+                        entry.LocationID = location.ID;
+                        usedId.Add(Item.ID);
+                        SpoilerData.Add(entry);
                     }
-                    SpoilerData.Add(entry);
                 }
             }
             return SpoilerData;
         }
+
         public static List<LogicObjects.SpoilerData> ReadHTMLSpoilerLog(string Path, LogicObjects.TrackerInstance Instance)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();

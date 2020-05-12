@@ -235,7 +235,7 @@ namespace MMR_Tracker_V2
                     if (entry.StartingItem()) { entry.Options -= 4; }
                     else { entry.Options += 4; }
                 }
-                else if (!entry.IsFake)
+                else if (option < 4 && !entry.IsFake)
                 {
                     if (entry.StartingItem()) { entry.Options = option + 4; }
                     else { entry.Options = option; }
@@ -274,6 +274,7 @@ namespace MMR_Tracker_V2
 
                 if (!entry.IsFake && chkValid && Utility.FilterSearch(entry, txtSearch.Text, entry.DictionaryName))
                 {
+                    Console.WriteLine(entry.Options);
                     string[] row = { 
                         entry.DictionaryName, randomizedOptions[entry.RandomizedState()], entry.StartingItem().ToString(), "" };
                     ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };

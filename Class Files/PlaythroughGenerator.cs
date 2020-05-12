@@ -36,6 +36,7 @@ namespace MMR_Tracker.Class_Files
                 if (i.IsFake) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; i.LocationName = i.DictionaryName; i.ItemName = i.DictionaryName; }
                 if (i.Unrandomized() && i.ID == i.SpoilerRandom) { i.IsFake = true; }
                 if (i.SpoilerRandom > -1) { i.RandomizedItem = i.SpoilerRandom; }
+                if (SpoilerToID.ContainsKey(i.SpoilerRandom) || i.SpoilerRandom < 0) { continue; }
                 SpoilerToID.Add(i.SpoilerRandom, i.ID);
                 //Check for all items mentioned in the logic file
                 if (i.Required != null)

@@ -178,10 +178,10 @@ Termina Underwater 20r,Termina Field Underwater Chest,Red Rupee,Termina Field,It
 Termina Grass 20r,Termina Field Grass Chest,Red Rupee,Termina Field,Item,Termina Field Grass Chest,Red Rupee
 Termina Stump 20r,Termina Field Stump Chest,Red Rupee,Termina Field,Item,Termina Field Stump Chest,Red Rupee
 Great Bay Coast Grotto,Great Bay Coast Grotto,Red Rupee,Great Bay Coast,Item,Great Bay Coast Grotto,Red Rupee
-Great Bay Cape Ledge (1),Great Bay Cape Ledge Without Tree Chest,Red Rupee,Great Bay Cape,Item,Great Bay Cape Ledge Without Tree Chest,Red Rupee
-Great Bay Cape Ledge (2),Great Bay Cape Ledge With Tree Chest,Red Rupee,Great Bay Cape,Item,Great Bay Cape Ledge With Tree Chest,Red Rupee
-Great Bay Cape Grotto,Great Bay Cape Grotto,Bombchu,Great Bay Cape,Item,Great Bay Cape Grotto,Bombchu
-Great Bay Cape Underwater,Great Bay Cape Underwater Chest,Purple Rupee,Great Bay Cape,Item,Great Bay Cape Underwater Chest,Purple Rupee
+Great Bay Cape Ledge (1),Great Bay Cape Ledge Without Tree Chest,Red Rupee,Great Bay Cape,Item,Zora Cape Ledge Without Tree Chest,Red Rupee
+Great Bay Cape Ledge (2),Great Bay Cape Ledge With Tree Chest,Red Rupee,Great Bay Cape,Item,Zora Cape Ledge With Tree Chest,Red Rupee
+Great Bay Cape Grotto,Great Bay Cape Grotto,Bombchu,Great Bay Cape,Item,Zora Cape Grotto,Bombchu
+Great Bay Cape Underwater,Great Bay Cape Underwater Chest,Purple Rupee,Great Bay Cape,Item,Zora Cape Underwater Chest,Purple Rupee
 PF Exterior 20r (1),Pirates' Fortress Exterior Log Chest,Red Rupee,Pirates' Fortress Exterior,Item,Pirates' Fortress Exterior Log Chest,Red Rupee
 PF Exterior 20r (2),Pirates' Fortress Exterior Sand Chest,Red Rupee,Pirates' Fortress Exterior,Item,Pirates' Fortress Exterior Sand Chest,Red Rupee
 PF Exterior 20r (3),Pirates' Fortress Exterior Corner Chest,Red Rupee,Pirates' Fortress Exterior,Item,Pirates' Fortress Exterior Corner Chest,Red Rupee
@@ -222,7 +222,7 @@ Deku Palace HP,Deku Palace West Garden,Piece of Heart,Deku Palace,Item,Deku Pala
 Goron Village Scrub HP,Goron Village Ledge,Piece of Heart,Goron Village,Item,Goron Village Ledge,Piece of Heart
 Bio Baba Grotto HP,Bio Baba Grotto,Piece of Heart,Termina Field,Item,Bio Baba Grotto,Piece of Heart
 Lab Fish HP,Lab Fish,Piece of Heart,Great Bay Coast,Item,Lab Fish,Piece of Heart
-Great Bay Like-Like HP,Great Bay Like-Like,Piece of Heart,Great Bay Cape,Item,Great Bay Like-Like,Piece of Heart
+Great Bay Like-Like HP,Great Bay Like-Like,Piece of Heart,Great Bay Cape,Item,Zora Cape Like-Like,Piece of Heart
 Pirates' Fortress HP,Pirates' Fortress Cage,Piece of Heart,Pirates' Fortress Sewer,Item,Pirates' Fortress Cage,Piece of Heart
 Zora Hall Scrub HP,Lulu's Room Ledge,Piece of Heart,Zora Hall,Item,Lulu's Room Ledge,Piece of Heart
 Path to Snowhead HP,Path to Snowhead Pillar,Piece of Heart,Path to Snowhead,Item,Path to Snowhead Pillar,Piece of Heart
