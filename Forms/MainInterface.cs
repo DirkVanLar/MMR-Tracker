@@ -990,20 +990,20 @@ namespace MMR_Tracker_V2
                 {
                     var Name = createDisplayName(false, entry, mi);
                     var LBItem = new LogicObjects.ListItem() { Container = 1, LocationEntry = entry, ItemEntry = entry.RandomizedEntry(mi, true), DisplayName = Name, Header = entry.LocationArea };
-                    TotalLoc++;
-                    if ((!entry.IsEntrance() || !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled) && Utility.FilterSearch(entry, TXTLocSearch.Text, Name))
+                    if ((!entry.IsEntrance() || !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled))
                     {
-                        ListItems.Add(LBItem);
+                        TotalLoc++;
+                        if (Utility.FilterSearch(entry, TXTLocSearch.Text, Name)) { ListItems.Add(LBItem); }
                     }
                 }
                 if (!entry.Checked && (entry.Available || entry.HasRandomItem(true) || CHKShowAll.Checked || TXTEntSearch.Text.StartsWith("^")))
                 {
                     var Name = createDisplayName(false, entry, mi);
                     var LBItem = new LogicObjects.ListItem() { Container = 2, LocationEntry = entry, ItemEntry = entry.RandomizedEntry(mi, true), DisplayName = Name, Header = entry.LocationArea };
-                    TotalEnt++;
-                    if (entry.IsEntrance() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && Utility.FilterSearch(entry, TXTEntSearch.Text, Name))
+                    if (entry.IsEntrance() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled)
                     {
-                        ListItems.Add(LBItem);
+                        TotalEnt++;
+                        if (Utility.FilterSearch(entry, TXTEntSearch.Text, Name)) { ListItems.Add(LBItem); }
                     }
                 }
                 if (entry.Checked)
