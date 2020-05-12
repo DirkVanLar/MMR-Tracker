@@ -89,6 +89,7 @@
             this.woodsOfMysteryRouteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ocarinaSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indexWarpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.curiosityShopBottlePurchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bombersCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timedEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,7 +102,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.curiosityShopBottlePurchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accessibleLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -362,14 +363,14 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.LoadToolStripMenuItem_Click);
             // 
@@ -377,31 +378,32 @@
             // 
             this.newToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.casualLogicToolStripMenuItem,
+            this.accessibleLogicToolStripMenuItem,
             this.glitchedLogicToolStripMenuItem,
             this.userLogicToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
             // casualLogicToolStripMenuItem
             // 
             this.casualLogicToolStripMenuItem.Name = "casualLogicToolStripMenuItem";
-            this.casualLogicToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.casualLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.casualLogicToolStripMenuItem.Text = "Casual Logic";
             this.casualLogicToolStripMenuItem.Click += new System.EventHandler(this.CasualLogicToolStripMenuItem_Click);
             // 
             // glitchedLogicToolStripMenuItem
             // 
             this.glitchedLogicToolStripMenuItem.Name = "glitchedLogicToolStripMenuItem";
-            this.glitchedLogicToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.glitchedLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.glitchedLogicToolStripMenuItem.Text = "Glitched Logic";
             this.glitchedLogicToolStripMenuItem.Click += new System.EventHandler(this.GlitchedLogicToolStripMenuItem_Click);
             // 
             // userLogicToolStripMenuItem
             // 
             this.userLogicToolStripMenuItem.Name = "userLogicToolStripMenuItem";
-            this.userLogicToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.userLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.userLogicToolStripMenuItem.Text = "User Logic";
             this.userLogicToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
@@ -624,55 +626,62 @@
             this.bombersCodeToolStripMenuItem,
             this.timedEventsToolStripMenuItem});
             this.referencesToolStripMenuItem.Name = "referencesToolStripMenuItem";
-            this.referencesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.referencesToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.referencesToolStripMenuItem.Text = "References";
             // 
             // ikanaWellMapToolStripMenuItem
             // 
             this.ikanaWellMapToolStripMenuItem.Name = "ikanaWellMapToolStripMenuItem";
-            this.ikanaWellMapToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.ikanaWellMapToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.ikanaWellMapToolStripMenuItem.Text = "Ikana Well Map";
             this.ikanaWellMapToolStripMenuItem.Click += new System.EventHandler(this.IkanaWellMapToolStripMenuItem_Click);
             // 
             // zoraTrialMapToolStripMenuItem
             // 
             this.zoraTrialMapToolStripMenuItem.Name = "zoraTrialMapToolStripMenuItem";
-            this.zoraTrialMapToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.zoraTrialMapToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.zoraTrialMapToolStripMenuItem.Text = "Zora Trial Map";
             this.zoraTrialMapToolStripMenuItem.Click += new System.EventHandler(this.zoraTrialMapToolStripMenuItem_Click);
             // 
             // woodsOfMysteryRouteToolStripMenuItem
             // 
             this.woodsOfMysteryRouteToolStripMenuItem.Name = "woodsOfMysteryRouteToolStripMenuItem";
-            this.woodsOfMysteryRouteToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.woodsOfMysteryRouteToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.woodsOfMysteryRouteToolStripMenuItem.Text = "Woods of Mystery Route";
             this.woodsOfMysteryRouteToolStripMenuItem.Click += new System.EventHandler(this.WoodsOfMysteryRouteToolStripMenuItem_Click);
             // 
             // ocarinaSongsToolStripMenuItem
             // 
             this.ocarinaSongsToolStripMenuItem.Name = "ocarinaSongsToolStripMenuItem";
-            this.ocarinaSongsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.ocarinaSongsToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.ocarinaSongsToolStripMenuItem.Text = "Ocarina Songs";
             this.ocarinaSongsToolStripMenuItem.Click += new System.EventHandler(this.OcarinaSongsToolStripMenuItem_Click);
             // 
             // indexWarpToolStripMenuItem
             // 
             this.indexWarpToolStripMenuItem.Name = "indexWarpToolStripMenuItem";
-            this.indexWarpToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.indexWarpToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.indexWarpToolStripMenuItem.Text = "Index Warp";
             this.indexWarpToolStripMenuItem.Click += new System.EventHandler(this.indexWarpToolStripMenuItem_Click);
+            // 
+            // curiosityShopBottlePurchaseToolStripMenuItem
+            // 
+            this.curiosityShopBottlePurchaseToolStripMenuItem.Name = "curiosityShopBottlePurchaseToolStripMenuItem";
+            this.curiosityShopBottlePurchaseToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.curiosityShopBottlePurchaseToolStripMenuItem.Text = "Curiosity Shop Bottle Purchase";
+            this.curiosityShopBottlePurchaseToolStripMenuItem.Click += new System.EventHandler(this.curiosityShopBottlePurchaseToolStripMenuItem_Click);
             // 
             // bombersCodeToolStripMenuItem
             // 
             this.bombersCodeToolStripMenuItem.Name = "bombersCodeToolStripMenuItem";
-            this.bombersCodeToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.bombersCodeToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.bombersCodeToolStripMenuItem.Text = "Bombers Code";
             this.bombersCodeToolStripMenuItem.Click += new System.EventHandler(this.BombersCodeToolStripMenuItem_Click);
             // 
             // timedEventsToolStripMenuItem
             // 
             this.timedEventsToolStripMenuItem.Name = "timedEventsToolStripMenuItem";
-            this.timedEventsToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.timedEventsToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.timedEventsToolStripMenuItem.Text = "Lottery Number(s)";
             this.timedEventsToolStripMenuItem.Click += new System.EventHandler(this.LotteryNumbersStripMenuItem_Click);
             // 
@@ -744,12 +753,12 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // curiosityShopBottlePurchaseToolStripMenuItem
+            // accessibleLogicToolStripMenuItem
             // 
-            this.curiosityShopBottlePurchaseToolStripMenuItem.Name = "curiosityShopBottlePurchaseToolStripMenuItem";
-            this.curiosityShopBottlePurchaseToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.curiosityShopBottlePurchaseToolStripMenuItem.Text = "Curiosity Shop Bottle Purchase";
-            this.curiosityShopBottlePurchaseToolStripMenuItem.Click += new System.EventHandler(this.curiosityShopBottlePurchaseToolStripMenuItem_Click);
+            this.accessibleLogicToolStripMenuItem.Name = "accessibleLogicToolStripMenuItem";
+            this.accessibleLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.accessibleLogicToolStripMenuItem.Text = "Accessible Logic";
+            this.accessibleLogicToolStripMenuItem.Click += new System.EventHandler(this.AccessibleLogicToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -868,6 +877,7 @@
         private System.Windows.Forms.ToolStripMenuItem indexWarpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoraTrialMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem curiosityShopBottlePurchaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem accessibleLogicToolStripMenuItem;
     }
 }
 

@@ -177,6 +177,20 @@ namespace MMR_Tracker_V2
             PrintToListBox();
             FireEvents(sender, e);
         }
+
+        private void AccessibleLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
+            System.Net.WebClient wc = new System.Net.WebClient();
+            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_ACCESSIBLE");
+            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
+            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+            FireEvents(sender, e);
+        }
         #endregion New
         //Menu Strip => Options---------------------------------------------------------------------------
         #region Online Play Options
@@ -1461,6 +1475,5 @@ namespace MMR_Tracker_V2
         #endregion Other Functions
 
         #endregion Functions
-
     }
 }
