@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using MMR_Tracker.Class_Files;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace MMR_Tracker_V2
 {
@@ -575,6 +576,12 @@ namespace MMR_Tracker_V2
             {
                 MessageBox.Show("Recourse not available. Redownload the tracker and isnure you extract all of the contents.");
             }
+        }
+
+        private void curiosityShopBottlePurchaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread t = new Thread(() => MessageBox.Show("Blue Rupee (5):\nMushroom, Half Milk\n\nRed Rupee (20):\nFish, Bug, Fairy, Any Spring Water, Zora Egg, Any Potion, Milk\n\nPurple Rupee (50):\nSmall Poe\n\nGold Rupee(200):\nGold Dust, Chateau, Big Poe", "Curiosity Shop Bottle Purchases", MessageBoxButtons.OK));
+            t.Start();
         }
 
         private void indexWarpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1378,7 +1385,7 @@ namespace MMR_Tracker_V2
                 CMBEnd.Width = FormHalfWidth - LowerRight3LBL.Width - 4;
                 LBPathFinder.Location = new Point(locX + FormHalfWidth, FormHalfHeight + locY + 8 + LowerRightLBL.Height + CMBStart.Height + CMBEnd.Height);
                 LBPathFinder.Width = FormHalfWidth - 2;
-                LBPathFinder.Height = LBCheckedLocations.Height - CMBEnd.Height - 4;
+                LBPathFinder.Height = LBCheckedLocations.Height - CMBEnd.Height - 5;
             }
             else
             {

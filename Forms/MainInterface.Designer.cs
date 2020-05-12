@@ -85,12 +85,12 @@
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.referencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ikanaWellMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zoraTrialMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.woodsOfMysteryRouteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ocarinaSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.indexWarpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bombersCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timedEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.indexWarpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zoraTrialMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,6 +101,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.curiosityShopBottlePurchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -263,6 +264,7 @@
             this.LBValidLocations.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBValidLocations.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBValidLocations.FormattingEnabled = true;
+            this.LBValidLocations.IntegralHeight = false;
             this.LBValidLocations.Location = new System.Drawing.Point(12, 258);
             this.LBValidLocations.Name = "LBValidLocations";
             this.LBValidLocations.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -278,6 +280,7 @@
             this.LBValidEntrances.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBValidEntrances.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBValidEntrances.FormattingEnabled = true;
+            this.LBValidEntrances.IntegralHeight = false;
             this.LBValidEntrances.Location = new System.Drawing.Point(106, 258);
             this.LBValidEntrances.Name = "LBValidEntrances";
             this.LBValidEntrances.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -293,6 +296,7 @@
             this.LBCheckedLocations.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBCheckedLocations.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBCheckedLocations.FormattingEnabled = true;
+            this.LBCheckedLocations.IntegralHeight = false;
             this.LBCheckedLocations.Location = new System.Drawing.Point(12, 359);
             this.LBCheckedLocations.Name = "LBCheckedLocations";
             this.LBCheckedLocations.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -308,6 +312,7 @@
             this.LBPathFinder.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBPathFinder.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBPathFinder.FormattingEnabled = true;
+            this.LBPathFinder.IntegralHeight = false;
             this.LBPathFinder.Location = new System.Drawing.Point(106, 359);
             this.LBPathFinder.Name = "LBPathFinder";
             this.LBPathFinder.Size = new System.Drawing.Size(75, 95);
@@ -615,6 +620,7 @@
             this.woodsOfMysteryRouteToolStripMenuItem,
             this.ocarinaSongsToolStripMenuItem,
             this.indexWarpToolStripMenuItem,
+            this.curiosityShopBottlePurchaseToolStripMenuItem,
             this.bombersCodeToolStripMenuItem,
             this.timedEventsToolStripMenuItem});
             this.referencesToolStripMenuItem.Name = "referencesToolStripMenuItem";
@@ -627,6 +633,13 @@
             this.ikanaWellMapToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.ikanaWellMapToolStripMenuItem.Text = "Ikana Well Map";
             this.ikanaWellMapToolStripMenuItem.Click += new System.EventHandler(this.IkanaWellMapToolStripMenuItem_Click);
+            // 
+            // zoraTrialMapToolStripMenuItem
+            // 
+            this.zoraTrialMapToolStripMenuItem.Name = "zoraTrialMapToolStripMenuItem";
+            this.zoraTrialMapToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.zoraTrialMapToolStripMenuItem.Text = "Zora Trial Map";
+            this.zoraTrialMapToolStripMenuItem.Click += new System.EventHandler(this.zoraTrialMapToolStripMenuItem_Click);
             // 
             // woodsOfMysteryRouteToolStripMenuItem
             // 
@@ -642,6 +655,13 @@
             this.ocarinaSongsToolStripMenuItem.Text = "Ocarina Songs";
             this.ocarinaSongsToolStripMenuItem.Click += new System.EventHandler(this.OcarinaSongsToolStripMenuItem_Click);
             // 
+            // indexWarpToolStripMenuItem
+            // 
+            this.indexWarpToolStripMenuItem.Name = "indexWarpToolStripMenuItem";
+            this.indexWarpToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.indexWarpToolStripMenuItem.Text = "Index Warp";
+            this.indexWarpToolStripMenuItem.Click += new System.EventHandler(this.indexWarpToolStripMenuItem_Click);
+            // 
             // bombersCodeToolStripMenuItem
             // 
             this.bombersCodeToolStripMenuItem.Name = "bombersCodeToolStripMenuItem";
@@ -656,24 +676,10 @@
             this.timedEventsToolStripMenuItem.Text = "Lottery Number(s)";
             this.timedEventsToolStripMenuItem.Click += new System.EventHandler(this.LotteryNumbersStripMenuItem_Click);
             // 
-            // indexWarpToolStripMenuItem
-            // 
-            this.indexWarpToolStripMenuItem.Name = "indexWarpToolStripMenuItem";
-            this.indexWarpToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.indexWarpToolStripMenuItem.Text = "Index Warp";
-            this.indexWarpToolStripMenuItem.Click += new System.EventHandler(this.indexWarpToolStripMenuItem_Click);
-            // 
-            // zoraTrialMapToolStripMenuItem
-            // 
-            this.zoraTrialMapToolStripMenuItem.Name = "zoraTrialMapToolStripMenuItem";
-            this.zoraTrialMapToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.zoraTrialMapToolStripMenuItem.Text = "Zora Trial Map";
-            this.zoraTrialMapToolStripMenuItem.Click += new System.EventHandler(this.zoraTrialMapToolStripMenuItem_Click);
-            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.InfoToolStripMenuItem_Click);
             // 
@@ -737,6 +743,13 @@
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
+            // 
+            // curiosityShopBottlePurchaseToolStripMenuItem
+            // 
+            this.curiosityShopBottlePurchaseToolStripMenuItem.Name = "curiosityShopBottlePurchaseToolStripMenuItem";
+            this.curiosityShopBottlePurchaseToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.curiosityShopBottlePurchaseToolStripMenuItem.Text = "Curiosity Shop Bottle Purchase";
+            this.curiosityShopBottlePurchaseToolStripMenuItem.Click += new System.EventHandler(this.curiosityShopBottlePurchaseToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -854,6 +867,7 @@
         private System.Windows.Forms.ToolStripMenuItem onlinePlayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem indexWarpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoraTrialMapToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem curiosityShopBottlePurchaseToolStripMenuItem;
     }
 }
 
