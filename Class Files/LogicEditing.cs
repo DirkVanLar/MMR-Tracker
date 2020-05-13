@@ -401,8 +401,11 @@ namespace MMR_Tracker_V2
                 if (IncludeTrickData) 
                 {
                     string trickLine = "";
-                    if (line.IsTrick) { trickLine = ";"; }
-                    if (line.TrickToolTip != "No Tooltip Available") { trickLine = trickLine + line.TrickToolTip; }
+                    if (line.IsTrick) 
+                    { 
+                        trickLine = ";";
+                        if (line.TrickToolTip != "No Tooltip Available") { trickLine = trickLine + line.TrickToolTip; }
+                    }
                     lines.Add(trickLine);
                 }
             }
