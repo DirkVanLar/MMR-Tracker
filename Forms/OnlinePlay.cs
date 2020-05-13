@@ -19,29 +19,6 @@ namespace MMR_Tracker.Forms
 {
     public partial class OnlinePlay : Form
     {
-        public class IPDATA
-        {
-            public IPAddress IP { get; set; }
-            public int PORT { get; set; }
-            public string DisplayName { get; set; }
-            public override string ToString()
-            {
-                return DisplayName;
-            }
-        }
-        public class IPDATASerializable
-        {
-            public string IP { get; set; }
-            public int PORT { get; set; }
-        }
-        public class MMRTpacket
-        {
-            public int PlayerID { get; set; }
-            public IPDATASerializable IPData { get; set; } = new IPDATASerializable();
-            public int RequestingUpdate { get; set; } = 0; //0= Sending Only, 1= Requesting Only, 2 = Both
-            public List<LogicObjects.NetData> LogicData { get; set; }
-
-        }
         public OnlinePlay()
         {
             InitializeComponent();
@@ -50,7 +27,7 @@ namespace MMR_Tracker.Forms
         }
 
         public static event EventHandler NetDataProcessed = delegate { };
-        public static event Action<MMRTpacket> TriggerAddRemoteToIPList = delegate { };
+        public static event Action<LogicObjects.MMRTpacket> TriggerAddRemoteToIPList = delegate { };
 
         public static bool Listening = false;
         public static bool Sending = false;
@@ -62,19 +39,19 @@ namespace MMR_Tracker.Forms
         public static bool AllowAutoPortForward = false;
         public static bool AutoAddIncomingConnections = false;
         public static bool StrictIP = false;
-        public static List<IPDATA> IPS = new List<IPDATA>();
+        public static List<LogicObjects.IPDATA> IPS = new List<LogicObjects.IPDATA>();
         public static Socket listener;
 
         //Sending Data
 
-        public static MMRTpacket createNetData(int Type)
+        public static LogicObjects.MMRTpacket createNetData(int Type)
         {
             List<LogicObjects.NetData> ClipboardNetData = new List<LogicObjects.NetData>();
             foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && x.HasRandomItem(true)))
             {
                 ClipboardNetData.Add(new LogicObjects.NetData { ID = i.ID, Ch = i.Checked, RI = i.RandomizedItem });
             }
-            MMRTpacket Pack = new MMRTpacket();
+            LogicObjects.MMRTpacket Pack = new LogicObjects.MMRTpacket();
             Pack.LogicData = ClipboardNetData;
             Pack.IPData.IP = MyIP.ToString();
             Pack.IPData.PORT = PortNumber;
@@ -83,7 +60,7 @@ namespace MMR_Tracker.Forms
             return Pack;
         }
 
-        public static void StartClient(string M, IPDATA ip)
+        public static void StartClient(string M, LogicObjects.IPDATA ip)
         {
             try
             {
@@ -117,7 +94,7 @@ namespace MMR_Tracker.Forms
             }
         }
 
-        public async static void SendData(List<IPDATA> SendList, int TYPE = 0)
+        public async static void SendData(List<LogicObjects.IPDATA> SendList, int TYPE = 0)
         {
             if (!Sending && TYPE != 1) { return; }
             string m = JsonConvert.SerializeObject(createNetData(TYPE));
@@ -189,12 +166,12 @@ namespace MMR_Tracker.Forms
                 string Logic = await Task.Run(() => RecieveData());
                 Console.WriteLine(Logic);
 
-                MMRTpacket NetData = new MMRTpacket();
+                LogicObjects.MMRTpacket NetData = new LogicObjects.MMRTpacket();
                 if (Logic != "")
                 {
                     try
                     {
-                        NetData = JsonConvert.DeserializeObject<MMRTpacket>(Logic);
+                        NetData = JsonConvert.DeserializeObject<LogicObjects.MMRTpacket>(Logic);
                         ManageNetData(NetData);
                         Console.WriteLine($"Data Processed");
                     }
@@ -262,7 +239,7 @@ namespace MMR_Tracker.Forms
 
         private void btnAddIP_Click_1(object sender, EventArgs e)
         {
-            IPDATA NewIP = new IPDATA();
+            LogicObjects.IPDATA NewIP = new LogicObjects.IPDATA();
             try { NewIP.IP = IPAddress.Parse(txtIP.Text); } catch { MessageBox.Show("IP Address not valid"); return; }
             NewIP.PORT = (int)NudPort.Value;
             NewIP.DisplayName = $"{NewIP.IP}:{NewIP.PORT}";
@@ -274,7 +251,7 @@ namespace MMR_Tracker.Forms
         {
             foreach (var i in LBIPAdresses.SelectedItems)
             {
-                IPS.RemoveAt(IPS.IndexOf(i as IPDATA));
+                IPS.RemoveAt(IPS.IndexOf(i as LogicObjects.IPDATA));
             }
             updateLB();
         }
@@ -331,7 +308,7 @@ namespace MMR_Tracker.Forms
             foreach (var i in IPS) { LBIPAdresses.Items.Add(i); }
         }
 
-        public static void ManageNetData(MMRTpacket Data)
+        public static void ManageNetData(LogicObjects.MMRTpacket Data)
         {
             var IPInSendingList = IPS.FindIndex(f => f.IP.ToString() == Data.IPData.IP) > -1;
 
@@ -346,7 +323,7 @@ namespace MMR_Tracker.Forms
                 try
                 {
                     IPAddress NIP = IPAddress.Parse(Data.IPData.IP);
-                    SendData(new List<IPDATA> { new IPDATA { IP = NIP, PORT = Data.IPData.PORT } }, 0);
+                    SendData(new List<LogicObjects.IPDATA> { new LogicObjects.IPDATA { IP = NIP, PORT = Data.IPData.PORT } }, 0);
                 }
                 catch { }
             }
@@ -387,9 +364,9 @@ namespace MMR_Tracker.Forms
             NetDataProcessed(null, null);
         }
 
-        private void OnlinePlay_TriggerAddRemoteToIPList(MMRTpacket Data)
+        private void OnlinePlay_TriggerAddRemoteToIPList(LogicObjects.MMRTpacket Data)
         {
-            IPDATA NewIP = new IPDATA();
+            LogicObjects.IPDATA NewIP = new LogicObjects.IPDATA();
             try { NewIP.IP = IPAddress.Parse(Data.IPData.IP); } catch { return; }
             NewIP.PORT = Data.IPData.PORT;
             NewIP.DisplayName = $"{NewIP.IP}:{NewIP.PORT}";
@@ -402,10 +379,10 @@ namespace MMR_Tracker.Forms
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker IP List (*.MMRTIP)|*.MMRTIP", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
 
-            List<IPDATASerializable> SaveIPS = new List<IPDATASerializable> { new IPDATASerializable { IP = MyIP.ToString(), PORT = PortNumber } };
+            List<LogicObjects.IPDATASerializable> SaveIPS = new List<LogicObjects.IPDATASerializable> { new LogicObjects.IPDATASerializable { IP = MyIP.ToString(), PORT = PortNumber } };
             foreach(var i in IPS)
             {
-                SaveIPS.Add(new IPDATASerializable { IP = i.IP.ToString(), PORT = i.PORT });
+                SaveIPS.Add(new LogicObjects.IPDATASerializable { IP = i.IP.ToString(), PORT = i.PORT });
             }
 
             File.WriteAllText(saveDialog.FileName, JsonConvert.SerializeObject(SaveIPS));
@@ -415,8 +392,8 @@ namespace MMR_Tracker.Forms
         {
             string file = Utility.FileSelect("Select An IP List", "MMR Tracker IP List (*.MMRTIP)|*.MMRTIP");
             if (file == "") { return; }
-            List<IPDATASerializable> LoadData = new List<IPDATASerializable>();
-            try { LoadData = JsonConvert.DeserializeObject<List<IPDATASerializable>>(File.ReadAllText(file)); }
+            List<LogicObjects.IPDATASerializable> LoadData = new List<LogicObjects.IPDATASerializable>();
+            try { LoadData = JsonConvert.DeserializeObject<List<LogicObjects.IPDATASerializable>>(File.ReadAllText(file)); }
             catch
             {
                 MessageBox.Show("File Invalid!");
@@ -430,7 +407,7 @@ namespace MMR_Tracker.Forms
                 {
                     IPAddress NIP;
                     try { NIP = IPAddress.Parse(i.IP.Trim()); } catch { Console.WriteLine($"{i.IP.Trim()} Invalid"); continue; }
-                    IPS.Add(new IPDATA { IP = NIP, PORT = i.PORT, DisplayName = $"{NIP}:{i.PORT}" });
+                    IPS.Add(new LogicObjects.IPDATA { IP = NIP, PORT = i.PORT, DisplayName = $"{NIP}:{i.PORT}" });
                     Console.WriteLine($"{i.IP.Trim()} Added");
                 }
             }

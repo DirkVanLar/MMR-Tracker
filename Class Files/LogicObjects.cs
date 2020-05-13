@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Windows.Controls;
 
 namespace MMR_Tracker_V2
@@ -90,6 +91,35 @@ namespace MMR_Tracker_V2
             public string SpoilerLocation { get; set; } //The name of this location in the spoiler Log
             public string SpoilerItem { get; set; } //The name of this item in the spoiler log
         }
+
+        public class Configuration
+        {
+            public GameplaySettings GameplaySettings { get; set; }
+        }
+
+        public class GameplaySettings
+        {
+            public bool UseCustomItemList { get; set; }
+            public bool AddDungeonItems { get; set; }
+            public bool AddShopItems { get; set; }
+            public bool AddMoonItems { get; set; }
+            public bool AddFairyRewards { get; set; }
+            public bool AddOther { get; set; }
+            public bool AddNutChest { get; set; }
+            public bool CrazyStartingItems { get; set; }
+            public bool AddCowMilk { get; set; }
+            public bool AddSkulltulaTokens { get; set; }
+            public bool AddStrayFairies { get; set; }
+            public bool AddMundaneRewards { get; set; }
+            public bool RandomizeBottleCatchContents { get; set; }
+            public bool ExcludeSongOfSoaring { get; set; }
+            public bool RandomizeDungeonEntrances { get; set; }
+            public bool NoStartingItems { get; set; }
+            public bool AddSongs { get; set; }
+            public string CustomItemListString { get; set; }
+            public string CustomJunkLocationsString { get; set; }
+            public List<int> EnabledTricks { get; set; }
+        }
         public class MapPoint
         {
             public int CurrentExit { get; set; } //The exit you are curretly at
@@ -142,6 +172,29 @@ namespace MMR_Tracker_V2
             public int ID { get; set; } //Check ID
             public int RI { get; set; } //Check Randomized Item
             public bool Ch { get; set; } //Whether the check is checked
+        }
+        public class IPDATA
+        {
+            public IPAddress IP { get; set; }
+            public int PORT { get; set; }
+            public string DisplayName { get; set; }
+            public override string ToString()
+            {
+                return DisplayName;
+            }
+        }
+        public class IPDATASerializable
+        {
+            public string IP { get; set; }
+            public int PORT { get; set; }
+        }
+        public class MMRTpacket
+        {
+            public int PlayerID { get; set; }
+            public IPDATASerializable IPData { get; set; } = new IPDATASerializable();
+            public int RequestingUpdate { get; set; } = 0; //0= Sending Only, 1= Requesting Only, 2 = Both
+            public List<LogicObjects.NetData> LogicData { get; set; }
+
         }
     }
 
