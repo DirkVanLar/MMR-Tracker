@@ -345,30 +345,6 @@ namespace MMR_Tracker.Class_Files
             }
             return true;
         }
-        public static void UpdateNames(LogicObjects.TrackerInstance Instance)
-        {
-            string[] VersionData = VersionHandeling.GetDictionaryPath(Instance);
-            if (VersionData.Count() > 0)
-            {
-                Instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
-            }
-            foreach (var entry in Instance.Logic)
-            {
-                foreach (var dicent in Instance.LogicDictionary)
-                {
-                    if (entry.DictionaryName == dicent.DictionaryName)
-                    {
-                        entry.LocationName = dicent.LocationName;
-                        entry.ItemName = dicent.ItemName;
-                        entry.LocationArea = dicent.LocationArea;
-                        entry.ItemSubType = dicent.ItemSubType;
-                        entry.SpoilerItem = dicent.SpoilerItem;
-                        entry.SpoilerLocation = dicent.SpoilerLocation;
-                        break;
-                    }
-                }
-            }
-        }
         public static Dictionary<int, int> CreateRandItemDic(List<LogicObjects.LogicEntry> logic, bool Spoiler = false)
         {
             var spoilerDic = new Dictionary<int, int>();

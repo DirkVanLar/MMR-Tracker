@@ -193,9 +193,6 @@
     <None Include="Recources\Dictionaries\OOTRDICTIONARYV5.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Other Files\MMRENTRANCEPAIRSV16.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Misc\App.config" />

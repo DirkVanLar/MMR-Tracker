@@ -28,13 +28,13 @@ namespace MMR_Tracker_V2
             LogicObjects.VersionInfo version = VersionHandeling.GetVersionFromLogicFile(instance.RawLogicFile); //Returns [0] The logic Version, [1] The game this logic file is for
             instance.LogicVersion = version.Version;
             instance.GameCode = version.Gamecode;
-            string[] VersionData = VersionHandeling.GetDictionaryPath(instance); //Returns [0] Path To Dictionary, [1] path to Entrance Pairs
+            string VersionData = VersionHandeling.GetDictionaryPath(instance); //Returns [0] Path To Dictionary, [1] path to Entrance Pairs
             int SubCounter = 0;
             int idCounter = 0;
             LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
-            if (VersionData.Count() > 0 && VersionData[0] != "")
+            if (VersionData != "")
             {
-                instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData[0]));
+                instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData));
             }
             var NextLine = 1;
             foreach (string line in instance.RawLogicFile)
@@ -108,7 +108,7 @@ namespace MMR_Tracker_V2
             instance.EntranceRando = instance.IsEntranceRando();
             instance.EntranceAreaDic = VersionHandeling.AreaClearDictionary(instance);
             CreateDicNameToID(instance.DicNameToID, instance.Logic);
-            if (VersionData.Count() > 1 && VersionData[1] != "") { CreatedEntrancepairDcitionary(instance.EntrancePairs, instance.DicNameToID, VersionData); }
+            if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
 
             return true;
         }
@@ -347,16 +347,14 @@ namespace MMR_Tracker_V2
             Tools.SaveState(Instance);
         }
 
-        public static void CreatedEntrancepairDcitionary(Dictionary<int, int> entrancePairs, Dictionary<string, int> NameToID, string[] VersionData)
+        public static void CreatedEntrancepairDcitionary(LogicObjects.TrackerInstance instance)
         {
-            foreach (var i in File.ReadAllLines(VersionData[1]))
+            foreach(var i in instance.Logic.Where(x => x.IsEntrance()))
             {
-                var j = i.Split(',');
-                if (NameToID.ContainsKey(j[0]) && NameToID.ContainsKey(j[1]))
-                {
-                    entrancePairs.Add(NameToID[j[0]], NameToID[j[1]]);
-                }
-            }
+                var Pair = instance.LogicDictionary.Find(x => x.EntrancePair == i.DictionaryName);
+                if (Pair == null || !instance.DicNameToID.ContainsKey(Pair.DictionaryName)) { continue; }
+                instance.EntrancePairs.Add(i.ID, instance.DicNameToID[Pair.DictionaryName]);
+            }   
         }
 
         public static void CreateDicNameToID(Dictionary<string, int> NameToID, List<LogicObjects.LogicEntry> logic)

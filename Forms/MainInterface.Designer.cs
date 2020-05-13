@@ -63,6 +63,7 @@
             this.editRadnomizationOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importSpoilerLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stricterLogicHandelingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entranceRandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useSongOfTimeInPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleEntranceRandoFeaturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,13 +97,11 @@
             this.devToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLogicObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateDisplayNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumbStuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verifyCustomRandoCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.changeLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -457,6 +456,13 @@
             this.stricterLogicHandelingToolStripMenuItem.Text = "Stricter Logic Handeling";
             this.stricterLogicHandelingToolStripMenuItem.Click += new System.EventHandler(this.StricterLogicHandelingToolStripMenuItem_Click);
             // 
+            // changeLogicToolStripMenuItem
+            // 
+            this.changeLogicToolStripMenuItem.Name = "changeLogicToolStripMenuItem";
+            this.changeLogicToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.changeLogicToolStripMenuItem.Text = "Change Logic";
+            this.changeLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
+            // 
             // entranceRandoToolStripMenuItem
             // 
             this.entranceRandoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -626,7 +632,7 @@
             this.bombersCodeToolStripMenuItem,
             this.timedEventsToolStripMenuItem});
             this.referencesToolStripMenuItem.Name = "referencesToolStripMenuItem";
-            this.referencesToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.referencesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.referencesToolStripMenuItem.Text = "References";
             // 
             // ikanaWellMapToolStripMenuItem
@@ -688,7 +694,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.InfoToolStripMenuItem_Click);
             // 
@@ -697,7 +703,6 @@
             this.devToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createDictionaryToolStripMenuItem,
             this.printLogicObjectToolStripMenuItem,
-            this.updateDisplayNamesToolStripMenuItem,
             this.dumbStuffToolStripMenuItem,
             this.verifyCustomRandoCodeToolStripMenuItem});
             this.devToolStripMenuItem.Name = "devToolStripMenuItem";
@@ -717,13 +722,6 @@
             this.printLogicObjectToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.printLogicObjectToolStripMenuItem.Text = "Print Logic Object";
             this.printLogicObjectToolStripMenuItem.Click += new System.EventHandler(this.PrintLogicObjectToolStripMenuItem_Click);
-            // 
-            // updateDisplayNamesToolStripMenuItem
-            // 
-            this.updateDisplayNamesToolStripMenuItem.Name = "updateDisplayNamesToolStripMenuItem";
-            this.updateDisplayNamesToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.updateDisplayNamesToolStripMenuItem.Text = "Update Display Names";
-            this.updateDisplayNamesToolStripMenuItem.Click += new System.EventHandler(this.UpdateDisplayNamesToolStripMenuItem_Click);
             // 
             // dumbStuffToolStripMenuItem
             // 
@@ -752,13 +750,6 @@
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
-            // 
-            // changeLogicToolStripMenuItem
-            // 
-            this.changeLogicToolStripMenuItem.Name = "changeLogicToolStripMenuItem";
-            this.changeLogicToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.changeLogicToolStripMenuItem.Text = "Change Logic";
-            this.changeLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -848,7 +839,6 @@
         private System.Windows.Forms.ToolStripMenuItem devToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createDictionaryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printLogicObjectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateDisplayNamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumbStuffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seedCheckerToolStripMenuItem;

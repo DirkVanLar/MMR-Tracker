@@ -90,6 +90,7 @@ namespace MMR_Tracker_V2
             public string ItemSubType { get; set; } //The type of item it is
             public string SpoilerLocation { get; set; } //The name of this location in the spoiler Log
             public string SpoilerItem { get; set; } //The name of this item in the spoiler log
+            public string EntrancePair { get; set; } //The Paired entrance for this entry
         }
 
         public class Configuration

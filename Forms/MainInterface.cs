@@ -323,13 +323,6 @@ namespace MMR_Tracker_V2
             DebugScreen.Show();
         }
 
-        private void UpdateDisplayNamesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-            Tools.UpdateNames(LogicObjects.MainTrackerInstance);
-            PrintToListBox();
-        }
-
         private void DumbStuffToolStripMenuItem_Click(object sender, EventArgs e) { Debugging.TestDumbStuff(); }
 
         private void CreateOOTFilesToolStripMenuItem_Click(object sender, EventArgs e)
