@@ -116,7 +116,9 @@ namespace MMR_Tracker_V2
             public bool RandomizeDungeonEntrances { get; set; }
             public bool NoStartingItems { get; set; }
             public bool AddSongs { get; set; }
+            public bool DecoupleEntrances { get; set; }
             public string CustomItemListString { get; set; }
+            public string RandomizedEntrancesString { get; set; }
             public string CustomJunkLocationsString { get; set; }
             public List<int> EnabledTricks { get; set; }
         }

@@ -144,7 +144,7 @@ namespace MMR_Tracker.Class_Files
                     entry.LocationID = -2;
                     entry.ItemID = -2;
 
-                    var location = instance.Logic.Find(x => x.SpoilerLocation == entry.LocationName || x.SpoilerLocation == GetAltSpoiler(entry.LocationName));
+                    var location = instance.Logic.Find(x => x.SpoilerLocation == entry.LocationName || x.SpoilerLocation == GetAltSpoilerName(entry.LocationName));
                     if (location == null) { Console.WriteLine($"Unable to find logic entry for {entry.LocationName}"); }
                     else { Console.WriteLine($"Entry {location.ID} is {entry.LocationName}"); }
 
@@ -163,8 +163,7 @@ namespace MMR_Tracker.Class_Files
             }
             return SpoilerData;
         }
-
-        public static string GetAltSpoiler(string LocationName)
+        public static string GetAltSpoilerName(string LocationName)
         {
             Dictionary<string, string> AltSpoilerNames = new Dictionary<string, string>
             {
@@ -183,7 +182,6 @@ namespace MMR_Tracker.Class_Files
             };
             return AltSpoilerNames.ContainsKey(LocationName) ? AltSpoilerNames[LocationName] : LocationName;
         }
-
         public static List<LogicObjects.SpoilerData> ReadHTMLSpoilerLog(string Path, LogicObjects.TrackerInstance Instance)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
@@ -566,7 +564,7 @@ namespace MMR_Tracker.Class_Files
             }
             return Message;
         }
-        public static List<int> ParseSettingString(string c)
+        public static List<int> ParseLocationAndJunkSettingString(string c)
         {
             var result = new List<int>();
             if (string.IsNullOrWhiteSpace(c))
@@ -596,6 +594,54 @@ namespace MMR_Tracker.Class_Files
             }
             return result;
         }
-        
+        public static List<LogicObjects.LogicEntry> ParseEntranceandStartingString(LogicObjects.TrackerInstance Instance, string c)
+        {
+            if (string.IsNullOrWhiteSpace(c))
+            {
+                return new List<LogicObjects.LogicEntry>();
+            }
+            var Entrances = Instance.Logic.Where(x => x.IsEntrance()).ToList();
+            if (Entrances.Count < 1) { return new List<LogicObjects.LogicEntry>(); }
+            var sectionCount = (int)Math.Ceiling(Entrances.Count / 32.0);
+            var result = new List<LogicObjects.LogicEntry>();
+            if (string.IsNullOrWhiteSpace(c))
+            {
+                return result;
+            }
+            try
+            {
+                string[] v = c.Split('-');
+                int[] vi = new int[sectionCount];
+                if (v.Length != vi.Length)
+                {
+                    return null;
+                }
+                for (int i = 0; i < sectionCount; i++)
+                {
+                    if (v[sectionCount - 1 - i] != "")
+                    {
+                        vi[i] = Convert.ToInt32(v[sectionCount - 1 - i], 16);
+                    }
+                }
+                for (int i = 0; i < 32 * sectionCount; i++)
+                {
+                    int j = i / 32;
+                    int k = i % 32;
+                    if (((vi[j] >> k) & 1) > 0)
+                    {
+                        if (i < Entrances.Count)
+                        {
+                            result.Add(Entrances[i]);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                return null;
+            }
+            return result;
+        }
+
     }
 }

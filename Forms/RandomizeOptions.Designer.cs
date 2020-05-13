@@ -63,6 +63,8 @@
             this.chkRandomState = new System.Windows.Forms.CheckBox();
             this.chkTricks = new System.Windows.Forms.CheckBox();
             this.btnLoadMMRSet = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtRandEntString = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -74,10 +76,10 @@
             this.Starting,
             this.TrickEnabled});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 12);
+            this.listView1.Location = new System.Drawing.Point(12, 23);
             this.listView1.Name = "listView1";
             this.listView1.ShowItemToolTips = true;
-            this.listView1.Size = new System.Drawing.Size(697, 615);
+            this.listView1.Size = new System.Drawing.Size(697, 644);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -329,7 +331,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(718, 562);
+            this.label4.Location = new System.Drawing.Point(718, 602);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 13);
             this.label4.TabIndex = 22;
@@ -337,7 +339,7 @@
             // 
             // txtJunkItemString
             // 
-            this.txtJunkItemString.Location = new System.Drawing.Point(721, 578);
+            this.txtJunkItemString.Location = new System.Drawing.Point(721, 618);
             this.txtJunkItemString.Name = "txtJunkItemString";
             this.txtJunkItemString.Size = new System.Drawing.Size(153, 20);
             this.txtJunkItemString.TabIndex = 21;
@@ -345,7 +347,7 @@
             // btnApplyString
             // 
             this.btnApplyString.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyString.Location = new System.Drawing.Point(720, 604);
+            this.btnApplyString.Location = new System.Drawing.Point(720, 644);
             this.btnApplyString.Name = "btnApplyString";
             this.btnApplyString.Size = new System.Drawing.Size(153, 23);
             this.btnApplyString.TabIndex = 23;
@@ -399,13 +401,33 @@
             this.btnLoadMMRSet.UseVisualStyleBackColor = true;
             this.btnLoadMMRSet.Click += new System.EventHandler(this.btnLoadMMRSet_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(718, 563);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(142, 13);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "Randomized Entrance String";
+            // 
+            // txtRandEntString
+            // 
+            this.txtRandEntString.Location = new System.Drawing.Point(721, 579);
+            this.txtRandEntString.Name = "txtRandEntString";
+            this.txtRandEntString.Size = new System.Drawing.Size(153, 20);
+            this.txtRandEntString.TabIndex = 28;
+            // 
             // RandomizeOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(883, 639);
+            this.ClientSize = new System.Drawing.Size(883, 675);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtRandEntString);
             this.Controls.Add(this.btnLoadMMRSet);
             this.Controls.Add(this.chkTricks);
             this.Controls.Add(this.chkRandomState);
@@ -478,5 +500,7 @@
         private System.Windows.Forms.CheckBox chkRandomState;
         private System.Windows.Forms.CheckBox chkTricks;
         private System.Windows.Forms.Button btnLoadMMRSet;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtRandEntString;
     }
 }
