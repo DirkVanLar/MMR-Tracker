@@ -55,6 +55,7 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.casualLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accessibleLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.glitchedLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +79,6 @@
             this.generatePlaythroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.popoutPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FilterMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemTrackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,7 +102,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.accessibleLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -363,14 +363,14 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.LoadToolStripMenuItem_Click);
             // 
@@ -382,28 +382,35 @@
             this.glitchedLogicToolStripMenuItem,
             this.userLogicToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
             // casualLogicToolStripMenuItem
             // 
             this.casualLogicToolStripMenuItem.Name = "casualLogicToolStripMenuItem";
-            this.casualLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.casualLogicToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.casualLogicToolStripMenuItem.Text = "Casual Logic";
             this.casualLogicToolStripMenuItem.Click += new System.EventHandler(this.CasualLogicToolStripMenuItem_Click);
+            // 
+            // accessibleLogicToolStripMenuItem
+            // 
+            this.accessibleLogicToolStripMenuItem.Name = "accessibleLogicToolStripMenuItem";
+            this.accessibleLogicToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.accessibleLogicToolStripMenuItem.Text = "Accessible Logic";
+            this.accessibleLogicToolStripMenuItem.Click += new System.EventHandler(this.AccessibleLogicToolStripMenuItem_Click);
             // 
             // glitchedLogicToolStripMenuItem
             // 
             this.glitchedLogicToolStripMenuItem.Name = "glitchedLogicToolStripMenuItem";
-            this.glitchedLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.glitchedLogicToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.glitchedLogicToolStripMenuItem.Text = "Glitched Logic";
             this.glitchedLogicToolStripMenuItem.Click += new System.EventHandler(this.GlitchedLogicToolStripMenuItem_Click);
             // 
             // userLogicToolStripMenuItem
             // 
             this.userLogicToolStripMenuItem.Name = "userLogicToolStripMenuItem";
-            this.userLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userLogicToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.userLogicToolStripMenuItem.Text = "User Logic";
             this.userLogicToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
@@ -423,9 +430,10 @@
             this.logicOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editRadnomizationOptionsToolStripMenuItem,
             this.importSpoilerLogToolStripMenuItem,
-            this.stricterLogicHandelingToolStripMenuItem});
+            this.stricterLogicHandelingToolStripMenuItem,
+            this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -457,7 +465,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -496,7 +504,7 @@
             this.changeMiddleClickToStarToolStripMenuItem,
             this.changeFontToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -530,7 +538,7 @@
             // onlinePlayToolStripMenuItem
             // 
             this.onlinePlayToolStripMenuItem.Name = "onlinePlayToolStripMenuItem";
-            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.onlinePlayToolStripMenuItem.Text = "Online Play";
             this.onlinePlayToolStripMenuItem.Click += new System.EventHandler(this.onlinePlayToolStripMenuItem_Click);
             // 
@@ -541,7 +549,6 @@
             this.generatePlaythroughToolStripMenuItem,
             this.whatUnlockedThisToolStripMenuItem,
             this.logicEditorToolStripMenuItem,
-            this.updateLogicToolStripMenuItem,
             this.popoutPathfinderToolStripMenuItem,
             this.FilterMapToolStripMenuItem,
             this.itemTrackerToolStripMenuItem});
@@ -576,13 +583,6 @@
             this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.logicEditorToolStripMenuItem.Text = "Logic Editor";
             this.logicEditorToolStripMenuItem.Click += new System.EventHandler(this.LogicEditorToolStripMenuItem_Click);
-            // 
-            // updateLogicToolStripMenuItem
-            // 
-            this.updateLogicToolStripMenuItem.Name = "updateLogicToolStripMenuItem";
-            this.updateLogicToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.updateLogicToolStripMenuItem.Text = "Update Logic";
-            this.updateLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
             // 
             // popoutPathfinderToolStripMenuItem
             // 
@@ -753,12 +753,12 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // accessibleLogicToolStripMenuItem
+            // changeLogicToolStripMenuItem
             // 
-            this.accessibleLogicToolStripMenuItem.Name = "accessibleLogicToolStripMenuItem";
-            this.accessibleLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.accessibleLogicToolStripMenuItem.Text = "Accessible Logic";
-            this.accessibleLogicToolStripMenuItem.Click += new System.EventHandler(this.AccessibleLogicToolStripMenuItem_Click);
+            this.changeLogicToolStripMenuItem.Name = "changeLogicToolStripMenuItem";
+            this.changeLogicToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.changeLogicToolStripMenuItem.Text = "Change Logic";
+            this.changeLogicToolStripMenuItem.Click += new System.EventHandler(this.UpdateLogicToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -855,7 +855,6 @@
         private System.Windows.Forms.ToolStripMenuItem generatePlaythroughToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem whatUnlockedThisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logicEditorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem referencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ikanaWellMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem woodsOfMysteryRouteToolStripMenuItem;
@@ -878,6 +877,7 @@
         private System.Windows.Forms.ToolStripMenuItem zoraTrialMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem curiosityShopBottlePurchaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accessibleLogicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeLogicToolStripMenuItem;
     }
 }
 
