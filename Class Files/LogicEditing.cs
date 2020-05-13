@@ -107,7 +107,7 @@ namespace MMR_Tracker_V2
 
             instance.EntranceRando = instance.IsEntranceRando();
             instance.EntranceAreaDic = VersionHandeling.AreaClearDictionary(instance);
-            CreateDicNameToID(instance.DicNameToID, instance.Logic);
+            CreateDicNameToID(instance);
             if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
 
             return true;
@@ -357,12 +357,12 @@ namespace MMR_Tracker_V2
             }   
         }
 
-        public static void CreateDicNameToID(Dictionary<string, int> NameToID, List<LogicObjects.LogicEntry> logic)
+        public static void CreateDicNameToID(LogicObjects.TrackerInstance instance)
         {
-            foreach (var LogicEntry1 in logic)
+            foreach (var LogicEntry1 in instance.Logic)
             {
-                if (!NameToID.ContainsKey(LogicEntry1.DictionaryName) && !LogicEntry1.IsFake)
-                { NameToID.Add(LogicEntry1.DictionaryName, LogicEntry1.ID); }
+                if (!instance.DicNameToID.ContainsKey(LogicEntry1.DictionaryName) && !LogicEntry1.IsFake)
+                { instance.DicNameToID.Add(LogicEntry1.DictionaryName, LogicEntry1.ID); }
             }
         }
 

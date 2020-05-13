@@ -465,12 +465,17 @@ namespace MMR_Tracker.Class_Files
             }
             else if (Instance.LogicVersion < 8)
             {
-                DialogResult dialogResult = MessageBox.Show("You are using a version of logic that is not supported by this tracker. Any logic version lower than version 8 (Below Randomizer version 1.8) may not work as intended. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("You are using a version of logic that is not supported by this tracker. Any logic version lower than version 8 (Randomizer version 1.8) may not work as intended. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }
             }
 
             if (File.Exists("options.txt"))
             {
+                Instance.Options.ShowEntryNameTooltip = true;
+                Instance.Options.MoveMarkedToBottom = false;
+                Instance.Options.UnradnomizeEntranesOnStartup = true;
+                Instance.Options.CheckForUpdate = true;
+                Instance.Options.MiddleClickStarNotMark = false;
                 foreach (var i in File.ReadAllLines("options.txt"))
                 {
                     if (i.Contains("ToolTips:0")) { Instance.Options.ShowEntryNameTooltip = false; }
@@ -491,16 +496,16 @@ namespace MMR_Tracker.Class_Files
             }
             var UnlockData = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic);
             var Requirements = UnlockData.ResolvedRealItems;
-            var FakeItems = UnlockData.FakeItems;
+            var FakeItems = UnlockData.FakeItems.Distinct().ToList();
             var Playthrough = UnlockData.playthrough;
             var ItemsUsed = UnlockData.UsedItems;
-            string message = "Logic Entries used:\n";
             if (Requirements.Count == 0)
             {
-                MessageBox.Show("Nothing is needed to check this location.", Tools.CurrentSelectedItem.LocationName + " Was Unlocked with:");
+                MessageBox.Show("Nothing is needed to check this location.", Tools.CurrentSelectedItem.LocationName + " Has No Requirements");
                 Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
                 return;
             }
+            string message = "Logic Entries used:\n";
             foreach (var i in ItemsUsed) { message = message + (LogicObjects.MainTrackerInstance.Logic[i].ItemName ?? LogicObjects.MainTrackerInstance.Logic[i].DictionaryName) + "\n"; }
             message = message + "\nReal items used:\n";
             foreach (var i in Requirements) { message = message + LogicObjects.MainTrackerInstance.Logic[i].ItemName + "\n"; }
@@ -509,7 +514,13 @@ namespace MMR_Tracker.Class_Files
             {
                 var ItemInPlaythrough = Playthrough.Find(x => x.Check.ID == i) ?? new LogicObjects.PlaythroughItem { ItemsUsed = new List<int>() };
                 message = message + LogicObjects.MainTrackerInstance.Logic[i].DictionaryName + "\n";
-                message = message + WhatUnlockedThisDetailed(i, "", Playthrough, ItemInPlaythrough.ItemsUsed);
+
+                var check = Playthrough.Find(x => x.Check.ID == i);
+                foreach (var j in check.ItemsUsed.OrderBy(x => LogicObjects.MainTrackerInstance.Logic[x].DictionaryName))
+                {
+                    var L = LogicObjects.MainTrackerInstance.Logic[j];
+                    message = message + ">>" + ((L.IsFake) ? L.DictionaryName : L.ItemName ?? L.DictionaryName) + "\n";
+                }
             }
             InformationDisplay Display = new InformationDisplay();
             Display.Text = Tools.CurrentSelectedItem.LocationName + " Was Unlocked with:";
@@ -517,28 +528,6 @@ namespace MMR_Tracker.Class_Files
             Display.DebugFunction = 4;
             Display.Show();
             Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
-        }
-        public static string WhatUnlockedThisDetailed(int i, String In, List<LogicObjects.PlaythroughItem> Playthorugh, List<int> TopLevel)
-        {
-            string Message = "";
-            string Indent = In + "      ";
-            var check = Playthorugh.Find(x => x.Check.ID == i);
-            foreach(var j in check.ItemsUsed.OrderBy(x => LogicObjects.MainTrackerInstance.Logic[x].DictionaryName))
-            {
-                if (LogicObjects.MainTrackerInstance.Logic[j].IsFake)
-                {
-                    Message = Message + Indent + LogicObjects.MainTrackerInstance.Logic[j].DictionaryName + "\n";
-                    if (!TopLevel.Contains(j))
-                    {
-                        Message = Message + WhatUnlockedThisDetailed(j, Indent, Playthorugh, TopLevel);
-                    }
-                }
-                else
-                {
-                    Message = Message + Indent + LogicObjects.MainTrackerInstance.Logic[j].ItemName + "\n";
-                }
-            }
-            return Message;
         }
         public static List<int> ParseLocationAndJunkSettingString(string c)
         {
