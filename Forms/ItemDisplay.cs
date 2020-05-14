@@ -27,15 +27,17 @@ namespace MMR_Tracker.Forms
         private void ItemDisplay_Load(object sender, EventArgs e)
         {
             GetImageFromImageSheet();
-            CreatePictureBoxes();
-            UpdateScreen();
-            this.Height = ((this.Width - 16) / ItemsOnScreen) * Position[0] + 38;
+            RefreshPage();
         }
         private void ItemDisplay_Resize(object sender, EventArgs e)
         {
+            RefreshPage();
+        }
+        private void RefreshPage()
+        {
             CreatePictureBoxes();
             UpdateScreen();
-            this.Height = ((this.Width - 16) / ItemsOnScreen)* Position[0] + 38;
+            this.Height = ((this.Width - 16) / ItemsOnScreen) * Position[0] + 38;
         }
         public ItemDisplay()
         {
@@ -293,7 +295,7 @@ namespace MMR_Tracker.Forms
             CreatePictureBox("StoneMask", "Stone Mask", Spacing);
             CreatePictureBox("GreatFairyMask", "Great Fairy's Mask", Spacing);
             CreatePictureBox("DekuMask", "Deku Mask", Spacing);
-            CreateCountablePictureBox("RedPotion", new List<string> { "Red Potion" }, Spacing);
+            CreateCountablePictureBox("RedPotion", new List<string> { "Red Potion", "Bottle with Red Potion" }, Spacing);
             CreatePictureBox("MamaLetter", "Letter to Mama", Spacing);
 
 
@@ -433,7 +435,7 @@ namespace MMR_Tracker.Forms
             DrawItem("StoneMask", "Stone Mask", Spacing);
             DrawItem("GreatFairyMask", "Great Fairy's Mask", Spacing);
             DrawItem("DekuMask", "Deku Mask", Spacing);
-            DrawCountableItem("RedPotion", new List<string> { "Red Potion" }, Spacing);
+            DrawCountableItem("RedPotion", new List<string> { "Red Potion", "Bottle with Red Potion" }, Spacing);
             DrawItem("MamaLetter", "Letter to Mama", Spacing);
 
 
@@ -528,24 +530,12 @@ namespace MMR_Tracker.Forms
 
             if (LogicChanges.Find(x => x.DictionaryName == Logicname) == null && Entry != null) { return; }
             string PictureName = "";
-            if (Image.Contains("|"))
-            {
-                PictureName = Image.Substring(0, Image.IndexOf("|"));
-            }
-            else
-            {
-                PictureName = Image;
-            }
+            if (Image.Contains("|")) { PictureName = Image.Substring(0, Image.IndexOf("|")); }
+            else { PictureName = Image; }
 
             Bitmap CurentImage;
-            if (Images.ContainsKey(PictureName))
-            {
-                CurentImage = Images[PictureName];
-            }
-            else
-            {
-                CurentImage = Images["Error"];
-            }
+            if (Images.ContainsKey(PictureName)) { CurentImage = Images[PictureName]; }
+            else { CurentImage = Images["Error"]; }
 
             if (Entry != null && ((!FakeItem && !Entry.Useable()) || (FakeItem && !Entry.Available)) && !DebugShowAll) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
 
@@ -594,23 +584,13 @@ namespace MMR_Tracker.Forms
             if (!ItemUpdated) { return; }
 
             string PictureName = "";
-            if (Image.Contains("|"))
-            {
-                PictureName = Image.Substring(0, Image.IndexOf("|"));
-            }
-            else
-            {
-                PictureName = Image;
-            }
+            if (Image.Contains("|")) { PictureName = Image.Substring(0, Image.IndexOf("|")); }
+            else { PictureName = Image; }
+
             Bitmap CurentImage;
-            if (Images.ContainsKey(PictureName))
-            {
-                CurentImage = Images[PictureName];
-            }
-            else
-            {
-                CurentImage = Images["Error"];
-            }
+            if (Images.ContainsKey(PictureName)) { CurentImage = Images[PictureName]; }
+            else { CurentImage = Images["Error"]; }
+
             string CountNumber = "";
             List<LogicObjects.LogicEntry> AllEntries = new List<LogicObjects.LogicEntry>();
             bool Itemmarked = false;
@@ -669,23 +649,13 @@ namespace MMR_Tracker.Forms
             if (!ItemUpdated) { return; }
 
             string PictureName = "";
-            if (Image.Contains("|"))
-            {
-                PictureName = Image.Substring(0, Image.IndexOf("|"));
-            }
-            else
-            {
-                PictureName = Image;
-            }
+            if (Image.Contains("|")) { PictureName = Image.Substring(0, Image.IndexOf("|")); }
+            else { PictureName = Image; }
+
             Bitmap CurentImage;
-            if (Images.ContainsKey(PictureName))
-            {
-                CurentImage = Images[PictureName];
-            }
-            else
-            {
-                CurentImage = Images["Error"];
-            }
+            if (Images.ContainsKey(PictureName)) { CurentImage = Images[PictureName]; }
+            else { CurentImage = Images["Error"]; }
+
             var Instance = LogicObjects.MainTrackerInstance;
             var log = Instance.Logic;
             int Obtained = log.Where(x => ItemNames.Contains(x.ItemName) && x.Useable()).Count();
@@ -932,5 +902,6 @@ namespace MMR_Tracker.Forms
             DisplayImages();
             CurrentLogicState = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
         }
+
     }
 }
