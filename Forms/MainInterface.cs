@@ -1003,7 +1003,7 @@ namespace MMR_Tracker_V2
                     if ((!entry.IsEntrance() || !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled))
                     {
                         TotalLoc++;
-                        if (Utility.FilterSearch(entry, TXTLocSearch.Text, Name)) { ListItems.Add(LBItem); }
+                        if (Utility.FilterSearch(entry, TXTLocSearch.Text, Name, entry.RandomizedEntry(mi))) { ListItems.Add(LBItem); }
                     }
                 }
                 if (!entry.Checked && (entry.Available || entry.HasRandomItem(true) || CHKShowAll.Checked || TXTEntSearch.Text.StartsWith("^")))
@@ -1013,7 +1013,7 @@ namespace MMR_Tracker_V2
                     if (entry.IsEntrance() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled)
                     {
                         TotalEnt++;
-                        if (Utility.FilterSearch(entry, TXTEntSearch.Text, Name)) { ListItems.Add(LBItem); }
+                        if (Utility.FilterSearch(entry, TXTEntSearch.Text, Name, entry.RandomizedEntry(mi))) { ListItems.Add(LBItem); }
                     }
                 }
                 if (entry.Checked)
@@ -1021,10 +1021,7 @@ namespace MMR_Tracker_V2
                     var Name = createDisplayName(true, entry, mi);
                     var LBItem = new LogicObjects.ListItem() { Container = 3, LocationEntry = entry, ItemEntry = entry.RandomizedEntry(mi, true), DisplayName = Name, Header = entry.LocationArea };
                     totalchk++;
-                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, Name))
-                    {
-                        ListItems.Add(LBItem);
-                    }
+                    if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, Name, entry.RandomizedEntry(mi))) { ListItems.Add(LBItem); }
                 }
 
             }
