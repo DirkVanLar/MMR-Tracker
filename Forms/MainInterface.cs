@@ -632,7 +632,12 @@ namespace MMR_Tracker_V2
         #endregion Info
         //Text Boxes---------------------------------------------------------------------------
         #region Text Boxes
-        private void TXT_TextChanged(object sender, EventArgs e) { PrintToListBox(); }
+        private void TXT_TextChanged(object sender, EventArgs e) 
+        { 
+            if (sender == TXTLocSearch) { PrintToListBox(1); }
+            if (sender == TXTEntSearch) { PrintToListBox(2); }
+            if (sender == TXTCheckedSearch) { PrintToListBox(3); }
+        }
 
         private void TXT_MouseClick(object sender, MouseEventArgs e)
         {
@@ -966,7 +971,7 @@ namespace MMR_Tracker_V2
         // List/combo Box Functions---------------------------------------------------------------------------
         #region List/combo Box
 
-        public void PrintToListBox()
+        public void PrintToListBox(int Container = 0)
         {
 
             LBValidLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
@@ -978,9 +983,6 @@ namespace MMR_Tracker_V2
             int TotalLoc = 0;
             int TotalEnt = 0;
             int totalchk = 0;
-            LBValidLocations.Items.Clear();
-            LBValidEntrances.Items.Clear();
-            LBCheckedLocations.Items.Clear();
 
             Dictionary<string, int> Groups = new Dictionary<string, int>();
             if (File.Exists(@"Recources\Other Files\Categories.txt"))
@@ -1041,22 +1043,30 @@ namespace MMR_Tracker_V2
             int AvalableEntrances = 0;
             int CheckedLocations = 0;
 
+            if (Container == 0 || Container == 1) { LBValidLocations.Items.Clear(); }
+            if (Container == 0 || Container == 2) { LBValidEntrances.Items.Clear(); }
+            if (Container == 0 || Container == 3) { LBCheckedLocations.Items.Clear(); }
+
             foreach (var entry in ListItems)
             {
-                if (entry.Container == 1) { lastLocArea = WriteObjectNEW(entry, LBValidLocations, lastLocArea, entry.LocationEntry.HasRandomItem(false)); AvalableLocations++; }
-                if (entry.Container == 2) { lastEntArea = WriteObjectNEW(entry, LBValidEntrances, lastEntArea, entry.LocationEntry.HasRandomItem(false)); AvalableEntrances++; }
-                if (entry.Container == 3) { lastChkArea = WriteObjectNEW(entry, LBCheckedLocations, lastChkArea, false); CheckedLocations++; }
+                if (entry.Container == 1 && (Container == 0 || Container == 1)) 
+                { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.LocationEntry.HasRandomItem(false)); AvalableLocations++; }
+                if (entry.Container == 2 && (Container == 0 || Container == 2)) 
+                { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.LocationEntry.HasRandomItem(false)); AvalableEntrances++; }
+                if (entry.Container == 3 && (Container == 0 || Container == 3)) 
+                { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false); CheckedLocations++; }
             }
 
+            if (Container == 0 || Container == 1) { LBValidLocations.TopIndex = lbLocTop; }
+            if (Container == 0 || Container == 2) { LBValidEntrances.TopIndex = lbEntTop; }
+            if (Container == 0 || Container == 3) { LBCheckedLocations.TopIndex = lbCheckTop; }
+
             label1.Text = "Available Locations: " + ((AvalableLocations == TotalLoc) ? AvalableLocations.ToString() : (AvalableLocations.ToString() + "/" + TotalLoc.ToString()));
-            label2.Text = "Checked locations: " + ((CheckedLocations == totalchk) ? CheckedLocations.ToString() : (CheckedLocations.ToString() + "/" + totalchk.ToString())); ;
-            label3.Text = "Available Entrances: " + ((AvalableEntrances == TotalEnt) ? AvalableEntrances.ToString() : (AvalableEntrances.ToString() + "/" + TotalEnt.ToString())); ;
-            LBValidLocations.TopIndex = lbLocTop;
-            LBValidEntrances.TopIndex = lbEntTop;
-            LBCheckedLocations.TopIndex = lbCheckTop;
+            label2.Text = "Checked locations: " + ((CheckedLocations == totalchk) ? CheckedLocations.ToString() : (CheckedLocations.ToString() + "/" + totalchk.ToString()));
+            label3.Text = "Available Entrances: " + ((AvalableEntrances == TotalEnt) ? AvalableEntrances.ToString() : (AvalableEntrances.ToString() + "/" + TotalEnt.ToString()));
         }
 
-        private string WriteObjectNEW(LogicObjects.ListItem ListEntry, ListBox lb, string lastArea, bool Marked)
+        private string WriteObject(LogicObjects.ListItem ListEntry, ListBox lb, string lastArea, bool Marked)
         {
             var entry = ListEntry.LocationEntry;
             bool ShowMarked = (Marked && LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom);

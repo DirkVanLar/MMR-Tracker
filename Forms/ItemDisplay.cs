@@ -20,16 +20,20 @@ namespace MMR_Tracker.Forms
         public int ItemsOnScreen = 8;
         public int[] Position = new int[] { 0, 0 };
         public bool DebugShowAll = false;
+        public List<LogicObjects.LogicEntry> CurrentLogicState = new List<LogicObjects.LogicEntry>();
+        public List<LogicObjects.LogicEntry> LogicChanges = new List<LogicObjects.LogicEntry>();
 
         //Form Functions
         private void ItemDisplay_Load(object sender, EventArgs e)
         {
             GetImageFromImageSheet();
+            CreatePictureBoxes();
             UpdateScreen();
             this.Height = ((this.Width - 16) / ItemsOnScreen) * Position[0] + 38;
         }
         private void ItemDisplay_Resize(object sender, EventArgs e)
         {
+            CreatePictureBoxes();
             UpdateScreen();
             this.Height = ((this.Width - 16) / ItemsOnScreen)* Position[0] + 38;
         }
@@ -217,13 +221,154 @@ namespace MMR_Tracker.Forms
         }
 
         //Picture Placing
-        public void DisplayImages()
+        public void CreatePictureBoxes()
         {
+
             Controls.Clear();
 
             int Spacing = (this.Width - 16) / ItemsOnScreen;
             Position[0] = 0;
             Position[1] = 0;
+
+            var start = System.DateTime.Now.Ticks;
+
+            CreatePictureBox("Ocarina", "Ocarina of Time", Spacing);
+            CreateProgressivePictureBox("Bow", new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } }, Spacing);
+            CreatePictureBox("FireArrow", "Fire Arrow", Spacing);
+            CreatePictureBox("IceArrow", "Ice Arrow", Spacing);
+            CreatePictureBox("LightArrow", "Light Arrow", Spacing);
+            CreatePictureBox("SongTime", "Song of Time", Spacing, "Time");
+            CreatePictureBox("Sonata", "Sonata of Awakening", Spacing, "Sonata");
+            CreatePictureBox("MoonTear", "Moon's Tear", Spacing);
+
+            CreateProgressivePictureBox("Bombs", new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } }, Spacing);
+            CreateCountablePictureBox("Bombchus", new List<string> { "10 Bombchu", "5 Bombchu", "Bombchu" }, Spacing);
+            CreateCountablePictureBox("DekuSticks", new List<string> { "Deku Stick" }, Spacing);
+            CreateCountablePictureBox("DekuNuts", new List<string> { "10 Deku Nuts", "Deku Nuts" }, Spacing);
+            CreateCountablePictureBox("MagicBeans", new List<string> { "Magic Bean", "Any Magic Bean" }, Spacing);
+            CreatePictureBox("SongHealing", "Song of Healing", Spacing, "Healing");
+            CreatePictureBox("Lullaby", "Goron Lullaby", Spacing, "Lullaby");
+            CreatePictureBox("LandDeed", "Land Title Deed", Spacing);
+
+            CreateCountablePictureBox("PowderKeg", new List<string> { "Powder Keg" }, Spacing);
+            CreatePictureBox("PictoBox", "Pictobox", Spacing);
+            CreatePictureBox("LensOfTruth", "Lens of Truth", Spacing);
+            CreatePictureBox("HookShot", "Hookshot", Spacing);
+            CreatePictureBox("GreatFairySword", "Great Fairy's Sword", Spacing);
+            CreatePictureBox("SongEpona", "Epona's Song", Spacing, "Epona");
+            CreatePictureBox("BossaNova", "New Wave Bossa Nova", Spacing, "Bossanova");
+            CreatePictureBox("SwampDeed", "Swamp Title Deed", Spacing);
+
+            CreateCountablePictureBox("Bottle", new List<string> { "Bottle with Red Potion", "Bottle with Milk", "Bottle with Gold Dust", "Empty Bottle", "Bottle with Chateau Romani" }, Spacing, true);
+            CreateCountablePictureBox("Milk", new List<string> { "Milk", "Bottle with Milk" }, Spacing);
+            CreatePictureBox("GoldDust", "Goron Race Bottle", Spacing);
+            CreatePictureBox("SeaHorse", "Seahorse", Spacing);
+            CreateCountablePictureBox("Chateau", new List<string> { "Chateau Romani", "Bottle with Chateau Romani" }, Spacing);
+            CreatePictureBox("SongSoaring", "Song of Soaring", Spacing, "Soaring");
+            CreatePictureBox("Elegy", "Elegy of Emptiness", Spacing, "Elegy");
+            CreatePictureBox("MountainDeed", "Mountain Title Deed", Spacing);
+
+            CreatePictureBox("Fairy", "Bottle: Fairy", Spacing);
+            CreatePictureBox("DekuPrincess", "Bottle: Deku Princess", Spacing);
+            CreatePictureBox("Fish", "Bottle: Fish", Spacing);
+            CreatePictureBox("Bug", "Bottle: Bug", Spacing);
+            CreatePictureBox("SmallPoe", "Bottle: Poe", Spacing);
+            CreatePictureBox("SongStorms", "Song of Storms", Spacing, "Storms");
+            CreatePictureBox("Oath", "Oath to Order", Spacing, "Oath");
+            CreatePictureBox("OceanDeed", "Ocean Title Deed", Spacing);
+
+
+            CreatePictureBox("BigPoe", "Bottle: Big Poe", Spacing);
+            CreatePictureBox("Water", "Bottle: Spring Water", Spacing);
+            CreatePictureBox("HotSpringWater", "Bottle: Hot Spring Water", Spacing);
+            CreatePictureBox("ZoraEgg", "Bottle: Zora Egg", Spacing);
+            CreatePictureBox("Mushroom", "Bottle: Mushroom", Spacing);
+            CreateCountablePictureBox("HeartPiece", new List<string> { "Piece of Heart" }, Spacing, true);
+            CreateCountablePictureBox("HeartContainer", new List<string> { "Heart Container" }, Spacing, true);
+            CreatePictureBox("RoomKey", "Room Key", Spacing);
+
+            CreatePictureBox("PostmansHat", "Postman's Hat", Spacing);
+            CreatePictureBox("AllNightMask", "All Night Mask", Spacing);
+            CreatePictureBox("BlastMask", "Blast Mask", Spacing);
+            CreatePictureBox("StoneMask", "Stone Mask", Spacing);
+            CreatePictureBox("GreatFairyMask", "Great Fairy's Mask", Spacing);
+            CreatePictureBox("DekuMask", "Deku Mask", Spacing);
+            CreateCountablePictureBox("RedPotion", new List<string> { "Red Potion" }, Spacing);
+            CreatePictureBox("MamaLetter", "Letter to Mama", Spacing);
+
+
+
+            CreatePictureBox("Keatonmask", "Keaton Mask", Spacing);
+            CreatePictureBox("BremonMask", "Bremen Mask", Spacing);
+            CreatePictureBox("BunnyHood", "Bunny Hood", Spacing);
+            CreatePictureBox("DonGeroMask", "Don Gero's Mask", Spacing);
+            CreatePictureBox("MaskOfScents", "Mask of Scents", Spacing);
+            CreatePictureBox("GoronMask", "Goron Mask", Spacing);
+            CreateCountablePictureBox("GreenPotion", new List<string> { "Green Potion" }, Spacing);
+            CreatePictureBox("KafeiLetter", "Letter to Kafei", Spacing);
+
+            CreatePictureBox("RomaniMask", "Romani Mask", Spacing);
+            CreatePictureBox("CircusLeadersMask", "Circus Leader's Mask", Spacing);
+            CreatePictureBox("KafeisMask", "Kafei's Mask", Spacing);
+            CreatePictureBox("CouplesMask", "Couple's Mask", Spacing);
+            CreatePictureBox("MaskOftruth", "Mask of Truth", Spacing);
+            CreatePictureBox("ZoraMask", "Zora Mask", Spacing);
+            CreateCountablePictureBox("BluePotion", new List<string> { "Blue Potion" }, Spacing);
+            CreatePictureBox("Pendant", "Pendant of Memories", Spacing);
+
+            CreatePictureBox("KamaroMask", "Kamaro's Mask", Spacing);
+            CreatePictureBox("GibdoMask", "Gibdo Mask", Spacing);
+            CreatePictureBox("GaroMask", "Garo Mask", Spacing);
+            CreatePictureBox("CaptainsHat", "Captain's Hat", Spacing);
+            CreatePictureBox("GiantsMask", "Giant's Mask", Spacing);
+            CreatePictureBox("FierceDeityMask", "Fierce Deity's Mask", Spacing);
+            CreatePictureBox("ClockTownFairy", "Clock Town Stray Fairy", Spacing);
+            CreatePictureBox("BombersNotebook", "Bombers' Notebook", Spacing);
+
+            CreateProgressivePictureBox("KokiriSword", new Dictionary<string, string> { { "Starting Sword", "null" }, { "Razor Sword", "null" }, { "Gilded Sword", "null" } }, Spacing, new List<string> { "KokiriSword", "RazorSword", "GildedSword" });
+            CreatePictureBox("OdolwasRemains", "Woodfall clear", Spacing, "", true);
+            CreatePictureBox("Map|1", "Woodfall Map", Spacing);
+            CreatePictureBox("Compass|1", "Woodfall Compass", Spacing);
+            CreatePictureBox("BossKey|1", "Woodfall Boss Key", Spacing);
+            CreatePictureBox("SmallKey|1", "Woodfall Key 1", Spacing);
+            CreateCountablePictureBox("WoodfallFairy", new List<string> { "Woodfall Stray Fairy" }, Spacing, true);
+            CreateCountablePictureBox("SwampSkullToken", new List<string> { "Swamp Skulltula Spirit" }, Spacing, true);
+
+            CreateProgressivePictureBox("HeroShield", new Dictionary<string, string> { { "Trading Post Shield", "null" }, { "Zora Shop Shield", "null" }, { "Starting Shield", "null" }, { "Mirror Shield", "null" } }, Spacing, new List<string> { "HeroShield", "HeroShield", "HeroShield", "MirrorShield" });
+            CreatePictureBox("GohtsRemains", "Snowhead clear", Spacing, "", true);
+            CreatePictureBox("Map|2", "Snowhead Map", Spacing);
+            CreatePictureBox("Compass|2", "Snowhead Compass", Spacing);
+            CreatePictureBox("BossKey|2", "Snowhead Boss Key", Spacing);
+            CreateCountablePictureBox("SmallKey|2", new List<string> { "Snowhead Small Key" }, Spacing, true);
+            CreateCountablePictureBox("SnowheadFairy", new List<string> { "Snowhead Stray Fairy" }, Spacing, true);
+            CreateCountablePictureBox("Magic", new List<string> { "Magic Power", "Extended Magic Power" }, Spacing);
+
+            CreateProgressivePictureBox("AdultWallet", new Dictionary<string, string> { { "Town Wallet (200)", "null" }, { "Ocean Wallet (500)", "null" } }, Spacing, new List<string> { "AdultWallet", "GiantWallet" });
+            CreatePictureBox("GyorgsRemains", "Great Bay clear", Spacing, "", true);
+            CreatePictureBox("Map|3", "Great Bay Map", Spacing);
+            CreatePictureBox("Compass|3", "Great Bay Compass", Spacing);
+            CreatePictureBox("BossKey|3", "Great Bay Boss Key", Spacing);
+            CreatePictureBox("SmallKey|3", "Great Bay Key 1", Spacing);
+            CreateCountablePictureBox("GreatBayFairy", new List<string> { "Great Bay Stray Fairy" }, Spacing, true);
+            CreateCountablePictureBox("OceanSkullToken", new List<string> { "Ocean Skulltula Spirit" }, Spacing, true);
+
+            CreatePictureBox("Moon", "Moon Access", Spacing, "", true);
+            CreatePictureBox("TwimoldsRemains", "Ikana clear", Spacing, "", true);
+            CreatePictureBox("Map|4", "Stone Tower Map", Spacing);
+            CreatePictureBox("Compass|4", "Stone Tower Compass", Spacing);
+            CreatePictureBox("BossKey|4", "Stone Tower Boss Key", Spacing);
+            CreateCountablePictureBox("SmallKey|4", new List<string> { "Stone Tower Small Key" }, Spacing, true);
+            CreateCountablePictureBox("StoneTowerFairy", new List<string> { "Stone Tower Stray Fairy" }, Spacing, true);
+            CreatePictureBox("DoubleDefence", "Great Fairy Double Defense", Spacing);
+
+            var End = System.DateTime.Now.Ticks;
+            var total = End - start;
+            Console.WriteLine("Execution took " + total.ToString() + " ticks");
+
+        }
+        public void DisplayImages()
+        {
+            int Spacing = (this.Width - 16) / ItemsOnScreen;
 
             var start = System.DateTime.Now.Ticks;
 
@@ -322,37 +467,37 @@ namespace MMR_Tracker.Forms
 
             DrawProgressiveItem("KokiriSword", new Dictionary<string, string> { { "Starting Sword", "null" }, { "Razor Sword", "null" }, { "Gilded Sword", "null" } }, Spacing, new List<string> { "KokiriSword", "RazorSword", "GildedSword" });
             DrawItem("OdolwasRemains", "Woodfall clear", Spacing, "", true);
-            DrawItem("Map", "Woodfall Map", Spacing);
-            DrawItem("Compass", "Woodfall Compass", Spacing);
-            DrawItem("BossKey", "Woodfall Boss Key", Spacing);
-            DrawItem("SmallKey", "Woodfall Key 1", Spacing);
+            DrawItem("Map|1", "Woodfall Map", Spacing);
+            DrawItem("Compass|1", "Woodfall Compass", Spacing);
+            DrawItem("BossKey|1", "Woodfall Boss Key", Spacing);
+            DrawItem("SmallKey|1", "Woodfall Key 1", Spacing);
             DrawCountableItem("WoodfallFairy", new List<string> { "Woodfall Stray Fairy" }, Spacing, true);
             DrawCountableItem("SwampSkullToken", new List<string> { "Swamp Skulltula Spirit" }, Spacing, true);
 
             DrawProgressiveItem("HeroShield", new Dictionary<string, string> { { "Trading Post Shield", "null" }, { "Zora Shop Shield", "null" }, { "Starting Shield", "null" }, { "Mirror Shield", "null" } }, Spacing, new List<string> { "HeroShield", "HeroShield", "HeroShield", "MirrorShield" });
             DrawItem("GohtsRemains", "Snowhead clear", Spacing, "", true);
-            DrawItem("Map", "Snowhead Map", Spacing);
-            DrawItem("Compass", "Snowhead Compass", Spacing);
-            DrawItem("BossKey", "Snowhead Boss Key", Spacing);
-            DrawCountableItem("SmallKey", new List<string> { "Snowhead Small Key" }, Spacing, true);
+            DrawItem("Map|2", "Snowhead Map", Spacing);
+            DrawItem("Compass|2", "Snowhead Compass", Spacing);
+            DrawItem("BossKey|2", "Snowhead Boss Key", Spacing);
+            DrawCountableItem("SmallKey|2", new List<string> { "Snowhead Small Key" }, Spacing, true);
             DrawCountableItem("SnowheadFairy", new List<string> { "Snowhead Stray Fairy" }, Spacing, true);
             DrawCountableItem("Magic", new List<string> { "Magic Power", "Extended Magic Power" }, Spacing);
 
             DrawProgressiveItem("AdultWallet", new Dictionary<string, string> { { "Town Wallet (200)", "null" }, { "Ocean Wallet (500)", "null" } }, Spacing, new List<string> { "AdultWallet", "GiantWallet" });
             DrawItem("GyorgsRemains", "Great Bay clear", Spacing, "", true);
-            DrawItem("Map", "Great Bay Map", Spacing);
-            DrawItem("Compass", "Great Bay Compass", Spacing);
-            DrawItem("BossKey", "Great Bay Boss Key", Spacing);
-            DrawItem("SmallKey", "Great Bay Key 1", Spacing);
+            DrawItem("Map|3", "Great Bay Map", Spacing);
+            DrawItem("Compass|3", "Great Bay Compass", Spacing);
+            DrawItem("BossKey|3", "Great Bay Boss Key", Spacing);
+            DrawItem("SmallKey|3", "Great Bay Key 1", Spacing);
             DrawCountableItem("GreatBayFairy", new List<string> { "Great Bay Stray Fairy" }, Spacing, true);
             DrawCountableItem("OceanSkullToken", new List<string> { "Ocean Skulltula Spirit" }, Spacing, true);
 
             DrawItem("Moon", "Moon Access", Spacing, "", true);
             DrawItem("TwimoldsRemains", "Ikana clear", Spacing, "", true);
-            DrawItem("Map", "Stone Tower Map", Spacing);
-            DrawItem("Compass", "Stone Tower Compass", Spacing);
-            DrawItem("BossKey", "Stone Tower Boss Key", Spacing);
-            DrawCountableItem("SmallKey", new List<string> { "Stone Tower Small Key" }, Spacing, true);
+            DrawItem("Map|4", "Stone Tower Map", Spacing);
+            DrawItem("Compass|4", "Stone Tower Compass", Spacing);
+            DrawItem("BossKey|4", "Stone Tower Boss Key", Spacing);
+            DrawCountableItem("SmallKey|4", new List<string> { "Stone Tower Small Key" }, Spacing, true);
             DrawCountableItem("StoneTowerFairy", new List<string> { "Stone Tower Stray Fairy" }, Spacing, true);
             DrawItem("DoubleDefence", "Great Fairy Double Defense", Spacing);
 
@@ -376,36 +521,43 @@ namespace MMR_Tracker.Forms
             Position[1] = colomn;
 
         }
+
         public void DrawItem(string Image, string Logicname, int Spacing, string Text = "", bool FakeItem = false)
         {
-            int row = Position[0];
-            int colomn = Position[1];
-            Increaseposition();
-            Bitmap CurentImage;
-            if (Images.ContainsKey(Image))
+            LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == Logicname);
+
+            if (LogicChanges.Find(x => x.DictionaryName == Logicname) == null && Entry != null) { return; }
+            string PictureName = "";
+            if (Image.Contains("|"))
             {
-                CurentImage = Images[Image];
+                PictureName = Image.Substring(0, Image.IndexOf("|"));
+            }
+            else
+            {
+                PictureName = Image;
+            }
+
+            Bitmap CurentImage;
+            if (Images.ContainsKey(PictureName))
+            {
+                CurentImage = Images[PictureName];
             }
             else
             {
                 CurentImage = Images["Error"];
             }
 
-            LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == Logicname);
             if (Entry != null && ((!FakeItem && !Entry.Useable()) || (FakeItem && !Entry.Available)) && !DebugShowAll) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
 
-            var PB = new PictureBox
+            string PBName = ("PB" + Image);
+            var PBL = Controls.Find(PBName, true);
+            PictureBox PB = null;
+            foreach(var p in PBL)
             {
-                BorderStyle = BorderStyle.Fixed3D,
-                Image = CurentImage,
-                Width = Spacing,
-                Height = Spacing,
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                Location = PostionItem(row, colomn, Spacing),
-                BackColor = Color.Transparent
-            };
-            Controls.Add(PB);
-            PB.Click += (s, ee) => FilterRegularItem(Entry);
+                if (p is PictureBox) { PB = p as PictureBox; break; } 
+            }
+            if (PB == null) { return; }
+            PB.Image = CurentImage;
 
             string display = "";
             if (Entry == null)
@@ -418,29 +570,42 @@ namespace MMR_Tracker.Forms
                 else { display = Text; }
             }
 
-            Label lb = new Label();
-            lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
-            lb.BackColor = Color.Black;
-            lb.ForeColor = Color.White;
+            string lbName = ("LB" + Image);
+            var lbL = Controls.Find(lbName, true);
+            Label lb = null;
+            foreach (var p in lbL)
+            {
+                if ((p is Label)) { lb = p as Label; break; }
+            }
+            if (lb == null) { return; }
+
             lb.Text = display;
-            lb.AutoSize = true;
             lb.Font = new Font("Arial", Spacing / 6);
-            Controls.Add(lb);
 
             while (lb.Width > PB.Width - 4) { lb.Font = new Font("Arial", lb.Font.SizeInPoints - (float)0.1); }
-
-            lb.Click += (s, ee) => FilterRegularItem(Entry);
-            lb.BringToFront();
         }
         public void DrawProgressiveItem(string Image, Dictionary<string, string> Logicnames, int Spacing, List<string> ProgressiveImages = null)
         {
-            int row = Position[0];
-            int colomn = Position[1];
-            Increaseposition();
-            Bitmap CurentImage;
-            if (Images.ContainsKey(Image))
+            bool ItemUpdated = false;
+            foreach(var name in Logicnames)
             {
-                CurentImage = Images[Image];
+                if (LogicChanges.Find(x => x.DictionaryName == name.Key) != null) { ItemUpdated = true; }
+            }
+            if (!ItemUpdated) { return; }
+
+            string PictureName = "";
+            if (Image.Contains("|"))
+            {
+                PictureName = Image.Substring(0, Image.IndexOf("|"));
+            }
+            else
+            {
+                PictureName = Image;
+            }
+            Bitmap CurentImage;
+            if (Images.ContainsKey(PictureName))
+            {
+                CurentImage = Images[PictureName];
             }
             else
             {
@@ -468,40 +633,54 @@ namespace MMR_Tracker.Forms
             if (CountNumber == "" && !DebugShowAll) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
             if (CountNumber == "" && Itemmarked) { CountNumber = "X"; }
             if (CountNumber == "null") { CountNumber = ""; }
-            var PB = new PictureBox
-            {
-                BorderStyle = BorderStyle.Fixed3D,
-                Image = CurentImage,
-                Width = Spacing,
-                Height = Spacing,
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                Location = PostionItem(row, colomn, Spacing),
-                BackColor = Color.Transparent
-            };
-            Controls.Add(PB);
-            PB.Click += (s, ee) => FilterProgressiveItem(AllEntries);
 
-            Label lb = new Label();
-            lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
-            lb.BackColor = Color.Black;
-            lb.ForeColor = Color.White;
+            string PBName = ("PB" + Image);
+            var PBL = Controls.Find(PBName, true);
+            PictureBox PB = null;
+            foreach (var p in PBL)
+            {
+                if (p is PictureBox) { PB = p as PictureBox; break; }
+            }
+            if (PB == null) { return; }
+            PB.Image = CurentImage;
+
+
+            string lbName = ("LB" + Image);
+            var lbL = Controls.Find(lbName, true);
+            Label lb = null;
+            foreach (var p in lbL)
+            {
+                if ((p is Label)) { lb = p as Label; break; }
+            }
+            if (lb == null) { return; }
+
             lb.Text = CountNumber;
-            lb.AutoSize = true;
             lb.Font = new Font("Arial", Spacing / 6);
-            Controls.Add(lb);
+
             while (lb.Width > PB.Width - 4) { lb.Font = new Font("Arial", lb.Font.SizeInPoints - (float)0.1); }
-            lb.Click += (s, ee) => FilterProgressiveItem(AllEntries);
-            lb.BringToFront();
         }
         public void DrawCountableItem(string Image, List<string> ItemNames, int Spacing, bool ShowCount = false)
         {
-            int row = Position[0];
-            int colomn = Position[1];
-            Increaseposition();
-            Bitmap CurentImage;
-            if (Images.ContainsKey(Image))
+            bool ItemUpdated = false;
+            foreach (var name in ItemNames)
             {
-                CurentImage = Images[Image];
+                if (LogicChanges.Find(x => x.ItemName == name) != null) { ItemUpdated = true; }
+            }
+            if (!ItemUpdated) { return; }
+
+            string PictureName = "";
+            if (Image.Contains("|"))
+            {
+                PictureName = Image.Substring(0, Image.IndexOf("|"));
+            }
+            else
+            {
+                PictureName = Image;
+            }
+            Bitmap CurentImage;
+            if (Images.ContainsKey(PictureName))
+            {
+                CurentImage = Images[PictureName];
             }
             else
             {
@@ -524,10 +703,113 @@ namespace MMR_Tracker.Forms
                 Display = "X";
             }
 
+            string PBName = ("PB" + Image);
+            var PBL = Controls.Find(PBName, true);
+            PictureBox PB = null;
+            foreach (var p in PBL)
+            {
+                if (p is PictureBox) { PB = p as PictureBox; break; }
+            }
+            if (PB == null) { return; }
+            PB.Image = CurentImage;
+
+            string lbName = ("LB" + Image);
+            var lbL = Controls.Find(lbName, true);
+            Label lb = null;
+            foreach (var p in lbL)
+            {
+                if ((p is Label)) { lb = p as Label; break; }
+            }
+            if (lb == null) { return; }
+
+            lb.Text = Display;
+            lb.Font = new Font("Arial", Spacing / 6);
+
+            while (lb.Width > PB.Width - 4) { lb.Font = new Font("Arial", lb.Font.SizeInPoints - (float)0.1); }
+        }
+
+        public void CreatePictureBox(string Image, string Logicname, int Spacing, string Text = "", bool FakeItem = false)
+        {
+            int row = Position[0];
+            int colomn = Position[1];
+            Increaseposition();
+
+            LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == Logicname);
+
             var PB = new PictureBox
             {
+                Name = "PB" + Image,
                 BorderStyle = BorderStyle.Fixed3D,
-                Image = CurentImage,
+                Image = Images["Error"],
+                Width = Spacing,
+                Height = Spacing,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Location = PostionItem(row, colomn, Spacing),
+                BackColor = Color.Transparent
+            };
+            Controls.Add(PB);
+            PB.Click += (s, ee) => FilterRegularItem(Entry);
+
+            Label lb = new Label();
+            lb.Name = "LB" + Image;
+            lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
+            lb.BackColor = Color.Black;
+            lb.ForeColor = Color.White;
+            lb.Text = "";
+            lb.AutoSize = true;
+            lb.Font = new Font("Arial", Spacing / 6);
+            Controls.Add(lb);
+            lb.Click += (s, ee) => FilterRegularItem(Entry);
+            lb.BringToFront();
+        }
+        public void CreateProgressivePictureBox(string Image, Dictionary<string, string> Logicnames, int Spacing, List<string> ProgressiveImages = null)
+        {
+            int row = Position[0];
+            int colomn = Position[1];
+            Increaseposition();
+            List<LogicObjects.LogicEntry> AllEntries = new List<LogicObjects.LogicEntry>();
+            foreach (KeyValuePair<string, string> i in Logicnames)
+            {
+                LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == i.Key);
+                if (Entry != null) { AllEntries.Add(Entry); }
+            }
+            var PB = new PictureBox
+            {
+                Name = "PB" + Image,
+                BorderStyle = BorderStyle.Fixed3D,
+                Image = Images["Error"],
+                Width = Spacing,
+                Height = Spacing,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Location = PostionItem(row, colomn, Spacing),
+                BackColor = Color.Transparent
+            };
+            Controls.Add(PB);
+            PB.Click += (s, ee) => FilterProgressiveItem(AllEntries);
+
+            Label lb = new Label();
+            lb.Name = "LB" + Image;
+            lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
+            lb.BackColor = Color.Black;
+            lb.ForeColor = Color.White;
+            lb.Text = "";
+            lb.AutoSize = true;
+            lb.Font = new Font("Arial", Spacing / 6);
+            Controls.Add(lb);
+            lb.Click += (s, ee) => FilterProgressiveItem(AllEntries);
+            lb.BringToFront();
+        }
+        public void CreateCountablePictureBox(string Image, List<string> ItemNames, int Spacing, bool ShowCount = false)
+        {
+            int row = Position[0];
+            int colomn = Position[1];
+            Increaseposition();
+
+            var PB = new PictureBox
+            {
+                Name = "PB" + Image,
+                BorderStyle = BorderStyle.Fixed3D,
+                Image = Images["Error"],
                 Width = Spacing,
                 Height = Spacing,
                 SizeMode = PictureBoxSizeMode.StretchImage,
@@ -538,14 +820,14 @@ namespace MMR_Tracker.Forms
             PB.Click += (s, ee) => FilterMultipleItems(ItemNames);
 
             Label lb = new Label();
+            lb.Name = "LB" + Image;
             lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
             lb.BackColor = Color.Black;
             lb.ForeColor = Color.White;
-            lb.Text = Display;
+            lb.Text = "";
             lb.AutoSize = true;
             lb.Font = new Font("Arial", Spacing / 6);
             Controls.Add(lb);
-            while (lb.Width > PB.Width - 4) { lb.Font = new Font("Arial", lb.Font.SizeInPoints - (float)0.1); }
             lb.Click += (s, ee) => FilterMultipleItems(ItemNames);
             lb.BringToFront();
         }
@@ -627,14 +909,28 @@ namespace MMR_Tracker.Forms
                 else { MainInterfaceInstance.TXTCheckedSearch.Text += (MainInterfaceInstance.TXTCheckedSearch.Text == "" ? "" : "|") + CheckedFilter; }
             }
         }
+
         private void MainInterface_LocationChecked(object sender, EventArgs e)
         {
             UpdateScreen();
         }
-
         private void UpdateScreen()
         {
-           DisplayImages();
+            LogicChanges.Clear();
+            if (CurrentLogicState.Count == 0)
+            {
+                LogicChanges = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
+            }
+            else
+            {
+                foreach (var i in CurrentLogicState)
+                {
+                    if (i.Aquired != LogicObjects.MainTrackerInstance.Logic[i.ID].Aquired) { LogicChanges.Add(i); }
+                }
+            }
+            if (LogicChanges.Count == 0) { LogicChanges = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic); }
+            DisplayImages();
+            CurrentLogicState = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
         }
     }
 }
