@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Shapes;
@@ -205,6 +206,7 @@ namespace MMR_Tracker.Forms
             Images.Add("GreatBayFairy", GetImage(3, 12));
             Images.Add("SnowheadFairy", GetImage(4, 12));
             Images.Add("WoodfallFairy", GetImage(5, 12));
+            //Songs
             Images.Add("Song", GetImage(3, 24));
             Images.Add("SongTime", ReshadeImage(GetImage(3, 24), -200, -20, 100));
             Images.Add("SongHealing", ReshadeImage(GetImage(3, 24), 100, 0, 50));
@@ -216,7 +218,7 @@ namespace MMR_Tracker.Forms
             Images.Add("BossaNova", ReshadeImage(GetImage(3, 24), -200, 50, 100));
             Images.Add("Elegy", ReshadeImage(GetImage(3, 24), 100, 80, 0));
             Images.Add("Oath", ReshadeImage(GetImage(3, 24), 20, -50, 100));
-
+            //Misc
             Images.Add("Error", GetImage(2, 24));
             Images.Add("Moon", new Bitmap(@"Recources\Images\Moon.ico"));
 
@@ -279,7 +281,6 @@ namespace MMR_Tracker.Forms
             CreatePictureBox("Oath", "Oath to Order", Spacing, "Oath");
             CreatePictureBox("OceanDeed", "Ocean Title Deed", Spacing);
 
-
             CreatePictureBox("BigPoe", "Bottle: Big Poe", Spacing);
             CreatePictureBox("Water", "Bottle: Spring Water", Spacing);
             CreatePictureBox("HotSpringWater", "Bottle: Hot Spring Water", Spacing);
@@ -297,8 +298,6 @@ namespace MMR_Tracker.Forms
             CreatePictureBox("DekuMask", "Deku Mask", Spacing);
             CreateCountablePictureBox("RedPotion", new List<string> { "Red Potion", "Bottle with Red Potion" }, Spacing);
             CreatePictureBox("MamaLetter", "Letter to Mama", Spacing);
-
-
 
             CreatePictureBox("Keatonmask", "Keaton Mask", Spacing);
             CreatePictureBox("BremonMask", "Bremen Mask", Spacing);
@@ -364,8 +363,8 @@ namespace MMR_Tracker.Forms
             CreatePictureBox("DoubleDefence", "Great Fairy Double Defense", Spacing);
 
             var End = System.DateTime.Now.Ticks;
-            var total = End - start;
-            Console.WriteLine("Execution took " + total.ToString() + " ticks");
+            var total = (End - start) / 10000;
+            Console.WriteLine("Creating Picture Boxes took " + total.ToString() + " Milisecconds");
 
         }
         public void DisplayImages()
@@ -504,9 +503,10 @@ namespace MMR_Tracker.Forms
             DrawItem("DoubleDefence", "Great Fairy Double Defense", Spacing);
 
             var End = System.DateTime.Now.Ticks;
-            var total = End - start;
-            Console.WriteLine("Execution took " + total.ToString() + " ticks");
+            var total = (End - start) / 10000;
+            Console.WriteLine("Drawing Items took " + total.ToString() + " Milisecconds");
 
+            CurrentLogicState = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
         }
         public void Increaseposition()
         {
@@ -715,19 +715,22 @@ namespace MMR_Tracker.Forms
                 Height = Spacing,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Location = PostionItem(row, colomn, Spacing),
-                BackColor = Color.Transparent
+                BackColor = Color.Transparent,
+                BackgroundImageLayout = ImageLayout.Stretch
             };
             Controls.Add(PB);
             PB.Click += (s, ee) => FilterRegularItem(Entry);
 
-            Label lb = new Label();
-            lb.Name = "LB" + Image;
-            lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
-            lb.BackColor = Color.Black;
-            lb.ForeColor = Color.White;
-            lb.Text = "";
-            lb.AutoSize = true;
-            lb.Font = new Font("Arial", Spacing / 6);
+            Label lb = new Label
+            {
+                Name = "LB" + Image,
+                Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2),
+                BackColor = Color.Black,
+                ForeColor = Color.White,
+                Text = "",
+                AutoSize = true,
+                Font = new Font("Arial", Spacing / 6)
+            };
             Controls.Add(lb);
             lb.Click += (s, ee) => FilterRegularItem(Entry);
             lb.BringToFront();
@@ -757,14 +760,16 @@ namespace MMR_Tracker.Forms
             Controls.Add(PB);
             PB.Click += (s, ee) => FilterProgressiveItem(AllEntries);
 
-            Label lb = new Label();
-            lb.Name = "LB" + Image;
-            lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
-            lb.BackColor = Color.Black;
-            lb.ForeColor = Color.White;
-            lb.Text = "";
-            lb.AutoSize = true;
-            lb.Font = new Font("Arial", Spacing / 6);
+            Label lb = new Label
+            {
+                Name = "LB" + Image,
+                Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2),
+                BackColor = Color.Black,
+                ForeColor = Color.White,
+                Text = "",
+                AutoSize = true,
+                Font = new Font("Arial", Spacing / 6)
+            };
             Controls.Add(lb);
             lb.Click += (s, ee) => FilterProgressiveItem(AllEntries);
             lb.BringToFront();
@@ -789,14 +794,16 @@ namespace MMR_Tracker.Forms
             Controls.Add(PB);
             PB.Click += (s, ee) => FilterMultipleItems(ItemNames);
 
-            Label lb = new Label();
-            lb.Name = "LB" + Image;
-            lb.Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2);
-            lb.BackColor = Color.Black;
-            lb.ForeColor = Color.White;
-            lb.Text = "";
-            lb.AutoSize = true;
-            lb.Font = new Font("Arial", Spacing / 6);
+            Label lb = new Label
+            {
+                Name = "LB" + Image,
+                Location = new Point(PostionItem(row, colomn, Spacing).X + 2, PostionItem(row, colomn, Spacing).Y + 2),
+                BackColor = Color.Black,
+                ForeColor = Color.White,
+                Text = "",
+                AutoSize = true,
+                Font = new Font("Arial", Spacing / 6)
+            };
             Controls.Add(lb);
             lb.Click += (s, ee) => FilterMultipleItems(ItemNames);
             lb.BringToFront();
@@ -900,7 +907,6 @@ namespace MMR_Tracker.Forms
             }
             if (LogicChanges.Count == 0) { LogicChanges = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic); }
             DisplayImages();
-            CurrentLogicState = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
         }
 
     }
