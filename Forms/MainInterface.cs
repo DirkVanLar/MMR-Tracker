@@ -997,7 +997,7 @@ namespace MMR_Tracker_V2
             List<LogicObjects.ListItem> ListItems = new List<LogicObjects.ListItem>();
             foreach(var entry in LogicObjects.MainTrackerInstance.Logic)
             {
-                if (!entry.AppearsInListbox()) { continue; }
+                if (!entry.AppearsInListbox() || entry.LocationName == null) { continue; }
                 if (!entry.Checked && (entry.Available || entry.HasRandomItem(true) || CHKShowAll.Checked || TXTLocSearch.Text.StartsWith("^")))
                 {
                     var Name = createDisplayName(false, entry, mi);
