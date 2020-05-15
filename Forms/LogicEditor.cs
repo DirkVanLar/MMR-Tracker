@@ -139,7 +139,7 @@ namespace MMR_Tracker.Forms
             ItemSelect.Function = 4;
             Selector.ShowDialog();
             if (Selector.DialogResult != DialogResult.OK) { return; }
-            GoBackList.Add(currentEntry.ID);
+            //GoBackList.Add(currentEntry.ID);
             try
             {
                 nudIndex.Value = Tools.CurrentSelectedItem.ID;
@@ -396,7 +396,7 @@ namespace MMR_Tracker.Forms
                 if (LBRequired.SelectedItem is LogicObjects.LogicEntry)
                 {
                     var index = (LBRequired.SelectedItem as LogicObjects.LogicEntry).ID;
-                    GoBackList.Add(currentEntry.ID);
+                    //GoBackList.Add(currentEntry.ID);
                     nudIndex.Value = index;
                     WriteCurentItem(index);
                 }
@@ -413,7 +413,7 @@ namespace MMR_Tracker.Forms
                     var item = (LBConditional.SelectedItem as RequiementConditional);
                     if (item.ItemIDs.Count < 2)
                     {
-                        GoBackList.Add(currentEntry.ID);
+                        //GoBackList.Add(currentEntry.ID);
                         nudIndex.Value = item.ItemIDs[0].ID;
                         WriteCurentItem(item.ItemIDs[0].ID);
                         return;
@@ -428,7 +428,7 @@ namespace MMR_Tracker.Forms
                     Selector.ShowDialog();
                     if (Selector.DialogResult != DialogResult.OK) { return; }
                     var index = Tools.CurrentSelectedItem.ID;
-                    GoBackList.Add(currentEntry.ID);
+                    //GoBackList.Add(currentEntry.ID);
                     nudIndex.Value = index;
                     WriteCurentItem(index);
                     Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
@@ -904,7 +904,7 @@ namespace MMR_Tracker.Forms
                     Selector.ShowDialog();
                     if (Selector.DialogResult != DialogResult.OK) { return; }
                     var index = Tools.CurrentSelectedItem.ID;
-                    GoBackList.Add(currentEntry.ID);
+                    //GoBackList.Add(currentEntry.ID);
                     nudIndex.Value = index;
                     WriteCurentItem(index);
                     Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();

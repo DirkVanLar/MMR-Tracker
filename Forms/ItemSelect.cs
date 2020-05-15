@@ -375,7 +375,6 @@ namespace MMR_Tracker_V2
         private void ItemSelect_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!ItemsReturned) { LogicEditor.AddCondSeperatly = false; }
-            lastRealItem = -1;
             Updating = false;
             UsedLogic = new List<LogicObjects.LogicEntry>();
             Function = 0;
