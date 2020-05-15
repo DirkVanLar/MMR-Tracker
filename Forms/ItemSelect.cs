@@ -20,7 +20,6 @@ namespace MMR_Tracker_V2
         public static List<int> CheckedItems = new List<int>();
         public static List<LogicObjects.LogicEntry> UsedLogic = new List<LogicObjects.LogicEntry>();
         public bool ItemsReturned = false;
-        public int lastRealItem = -1;
         public string Title = "";
 
         //Form Items
@@ -205,7 +204,7 @@ namespace MMR_Tracker_V2
             {
                 foreach (LogicObjects.LogicEntry i in UsedLogic)
                 {
-                    if (i.ID > lastRealItem) { break; }
+                    if (!LogicEditor.EditorInstance.IsMM() || i.IsUserItem(UsedLogic)) { break; }
                     Tools.CurrentselectedItems.Add(i);
 
                 }
@@ -216,7 +215,7 @@ namespace MMR_Tracker_V2
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            if (LBItemSelect.Visible)
+            else if (LBItemSelect.Visible)
             {
                 if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return; }
                 Tools.CurrentSelectedItem = LBItemSelect.SelectedItem as LogicObjects.LogicEntry;
