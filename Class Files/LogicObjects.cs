@@ -190,6 +190,7 @@ namespace MMR_Tracker_V2
         {
             public string IP { get; set; }
             public int PORT { get; set; }
+            public string DisplayName { get; set; }
         }
         public class MMRTpacket
         {

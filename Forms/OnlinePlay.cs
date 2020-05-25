@@ -240,9 +240,16 @@ namespace MMR_Tracker.Forms
         private void btnAddIP_Click_1(object sender, EventArgs e)
         {
             LogicObjects.IPDATA NewIP = new LogicObjects.IPDATA();
-            try { NewIP.IP = IPAddress.Parse(txtIP.Text); } catch { MessageBox.Show("IP Address not valid"); return; }
+            string IPText = txtIP.Text;
+            IPAddress IP = null;
+            try { IP = IPAddress.Parse(IPText); } catch { IP = null; }
+            if (IP == null) { try { IP = Dns.GetHostEntry(IPText).AddressList[0]; } catch { IP = null; } }
+            if (IP == null) { MessageBox.Show("IP Address not valid"); return; }
+            NewIP.IP = IP;
+            
+            Console.WriteLine(IP);
             NewIP.PORT = (int)NudPort.Value;
-            NewIP.DisplayName = $"{NewIP.IP}:{NewIP.PORT}";
+            NewIP.DisplayName = $"{IPText}:{NewIP.PORT}";
             IPS.Add(NewIP);
             updateLB();
         }
@@ -310,7 +317,7 @@ namespace MMR_Tracker.Forms
 
         public static void ManageNetData(LogicObjects.MMRTpacket Data)
         {
-            var IPInSendingList = IPS.FindIndex(f => f.IP.ToString() == Data.IPData.IP) > -1;
+            var IPInSendingList = IPS.FindIndex(f => f.IP.ToString() == Data.IPData.IP && f.PORT == Data.IPData.PORT) > -1;
 
             if (!IPInSendingList)
             {
@@ -382,7 +389,7 @@ namespace MMR_Tracker.Forms
             List<LogicObjects.IPDATASerializable> SaveIPS = new List<LogicObjects.IPDATASerializable> { new LogicObjects.IPDATASerializable { IP = MyIP.ToString(), PORT = PortNumber } };
             foreach(var i in IPS)
             {
-                SaveIPS.Add(new LogicObjects.IPDATASerializable { IP = i.IP.ToString(), PORT = i.PORT });
+                SaveIPS.Add(new LogicObjects.IPDATASerializable { IP = i.IP.ToString(), PORT = i.PORT, DisplayName = i.DisplayName });
             }
 
             File.WriteAllText(saveDialog.FileName, JsonConvert.SerializeObject(SaveIPS));
@@ -403,11 +410,12 @@ namespace MMR_Tracker.Forms
             foreach (var i in LoadData)
             {
                 Console.WriteLine($"Checking {i.IP.Trim()}");
-                if (i.IP != MyIP.ToString() && IPS.FindIndex(f => f.IP.ToString() == i.IP) < 0)
+                if (i.IP != MyIP.ToString() && IPS.FindIndex(f => f.IP.ToString() == i.IP && f.PORT == i.PORT) < 0)
                 {
                     IPAddress NIP;
                     try { NIP = IPAddress.Parse(i.IP.Trim()); } catch { Console.WriteLine($"{i.IP.Trim()} Invalid"); continue; }
-                    IPS.Add(new LogicObjects.IPDATA { IP = NIP, PORT = i.PORT, DisplayName = $"{NIP}:{i.PORT}" });
+                    string dist = (i.DisplayName == null || i.DisplayName == "") ? $"{NIP}:{i.PORT}" : i.DisplayName;
+                    IPS.Add(new LogicObjects.IPDATA { IP = NIP, PORT = i.PORT, DisplayName = dist });
                     Console.WriteLine($"{i.IP.Trim()} Added");
                 }
             }
@@ -418,6 +426,21 @@ namespace MMR_Tracker.Forms
         {
             StrictIP = !StrictIP;
             onlyAcceptDataFromSendingListToolStripMenuItem.Text = (StrictIP) ? "Accept data from any IP" : "Only accept data from sending list";
+        }
+
+        private void LBIPAdresses_MouseMove(object sender, MouseEventArgs e)
+        {
+            ShowtoolTip(e, sender as ListBox);
+        }
+        public void ShowtoolTip(MouseEventArgs e, ListBox lb)
+        {
+            int index = lb.IndexFromPoint(e.Location);
+            if (index < 0) { return; }
+            if (!(lb.Items[index] is LogicObjects.IPDATA)) { return; }
+            string DisplayName = (lb.Items[index] as LogicObjects.IPDATA).IP.ToString();
+            if (toolTip1.GetToolTip(lb) == DisplayName) { return; }
+            if (Utility.IsDivider(DisplayName)) { return; }
+            toolTip1.SetToolTip(lb, DisplayName);
         }
     }
 }

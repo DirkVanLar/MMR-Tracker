@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OnlinePlay));
             this.LBIPAdresses = new System.Windows.Forms.ListBox();
             this.btnAddIP = new System.Windows.Forms.Button();
@@ -57,6 +58,7 @@
             this.fullSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyNetDataToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.NudPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudYourPort)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -71,6 +73,7 @@
             this.LBIPAdresses.Size = new System.Drawing.Size(211, 277);
             this.LBIPAdresses.TabIndex = 0;
             this.LBIPAdresses.DoubleClick += new System.EventHandler(this.btnRemoveIP_Click);
+            this.LBIPAdresses.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBIPAdresses_MouseMove);
             // 
             // btnAddIP
             // 
@@ -414,5 +417,6 @@
         private System.Windows.Forms.ToolStripMenuItem requestDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fullSyncToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem onlyAcceptDataFromSendingListToolStripMenuItem;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

@@ -1,9 +1,3 @@
 ﻿TODO ===
 
 CONSIDER ===
-
-Re Write Item Display so it's not so laggy
-	Look into maikintg the picture boxes once on lead and then editing them as items change
-
-Add what unlocked this to checked locations
-
