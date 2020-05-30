@@ -124,6 +124,7 @@ namespace MMR_Tracker.Forms
                 sortedPathfinder = ItemPathFinder;
             }
 
+            if (sortedPathfinder.Values.Count < 1) { return; }
             ComboBox cmb = (start) ? CMBStart : CMBEnd;
             cmb.DataSource = new BindingSource(sortedPathfinder, null);
             cmb.DisplayMember = "Value";
@@ -141,6 +142,8 @@ namespace MMR_Tracker.Forms
                 ? SystemInformation.VerticalScrollBarWidth : 0;
 
             int newWidth;
+
+            if (senderComboBox.Items.Count < 1) { return; }
 
             foreach (KeyValuePair<int, string> dictionary in senderComboBox.Items)
             {

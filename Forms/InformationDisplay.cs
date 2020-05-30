@@ -222,10 +222,10 @@ namespace MMR_Tracker_V2
             Lines.Add("These methods can be combined in the same search.");
             Lines.Add("For example typing \"#Clock|Wood&fairy\" in the search box will show all entries who area contains the word \"Clock\" or display name contains both the words \"Wood\" and \"Fairy\".");
             Lines.Add(Utility.CreateDivider(listBox1));
-            Lines.Add("Setting Item vs Marking Item:");
+            Lines.Add("Setting a Location vs Checking a Location:");
             Lines.Add("The set item and set entrance button will mark an item/entrance as being at a location without actually marking that item/entrance as being obtained.");
             Lines.Add("This is usefull when you know what item is in a location but haven't actually obtianed it such as if you see it in a shop or read about it in a hint.");
-            Lines.Add("Marked items will always appear in your list even if they aren't available. If they aren't available, the text will have a strike through.");
+            Lines.Add("Set items (Also reffered to as Marked Items) will always appear in your list even if they aren't available. If they aren't available, the text will have a strike through.");
             Lines.Add("You can middle click an item to set it quickly as long as the middle click function is set to set item in Options -> Misc Options.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Starring an item:");
@@ -252,9 +252,11 @@ namespace MMR_Tracker_V2
             Lines.Add("This will make the tracker always consider the item obtained when calculating logic.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Saving/Loading Randomization Options:");
-            Lines.Add("You can save your options by clicking the save settings button");
-            Lines.Add("This will create a .MMRTSET file that can be loaded by clicking Load Settings");
-            Lines.Add("As mentioned above this .MMRTSET file can be use as logic as it will contain the the logic file the tracker is using when the setting file is created.");
+            Lines.Add("Radnomization options are save along with your progress in each save file.");
+            Lines.Add("Loading a save file in the Radnomization options page will import the setting from that save file without importing progress.");
+            Lines.Add("You can save a template save file that will only conatin your current radnomization options.");
+            Lines.Add("You can import the settings json file created by the randomizer to import those settings into the tracker.");
+            Lines.Add("You can also import setting strings for randomized locations/entrances and junk locations from the randomizer (Starting item setting string not currently supported).");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Importing Spoiler log:");
             Lines.Add("This will allow you to import the spoiler log generated with your rom.");
@@ -262,7 +264,7 @@ namespace MMR_Tracker_V2
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Strict Logic Handeling:");
             Lines.Add("This option might make your logic calculations a bit slower, but will prevent rare bugs that occur involvolving circular dependencies in logic.");
-            Lines.Add("You should never need to enable this, but it's worth a try if logic is being buggy.");
+            Lines.Add("You should amost never need to enable this, but it's worth a try if logic is being buggy.");
             Lines.Add(Utility.CreateDivider(listBox1));
             if ((instance.EntranceRando && instance.Options.EntranceRadnoEnabled) || instance.LogicVersion == 0)
             {
@@ -344,7 +346,7 @@ namespace MMR_Tracker_V2
             Lines.Add("The item tracker will give you a visual display of what items you have obtained.");
             Lines.Add("Items will be greyed out until they are obtained. Some items such as boss remains will become active once they become available.");
             Lines.Add("The moon icon in the bottom left will become active when the Game is beatable (Go mode). This is determined the same way the pathfinder determined game clear.");
-            Lines.Add("NOTE: this feature is currently in beta and will cause the tracker to lag slightly when displayed. While it is noticable it does not inhibit functionalty in any way. ");
+            Lines.Add("NOTE: you may notice some slight slowdown when using this feature.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Popout Pathfinder:");
             Lines.Add("This will open a new window containing the pathfinder.");
@@ -449,7 +451,7 @@ namespace MMR_Tracker_V2
                 "Selecting \"Auto Add Incoming IPs\" will add any IP you receive data from to your sending list if it's not there already. This option is useless if used in conjunction with \"Only accept data from sending list\", which is pretty self explanatory. This setting could potentially be dangerous as it could allow an unknown third party to add themselves to your group. It is recommended that you only enable this during setup.",
                 "",
                 Utility.CreateDivider(listBox1, "DISCLAIMER!"),
-                "This application does NOT send any information to any device other those you select. As always you can check the source code or email the developers with any questions or concerns. Links to this information can be found in the about page",
+                "This application does not send any information to any device other those you select. As always you can check the source code or email the developers with any questions or concerns. Links to this information can be found in the about page",
                 "(Click here to open the about page)"
             };
             foreach (var i in Lines)

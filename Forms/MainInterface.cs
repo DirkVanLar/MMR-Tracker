@@ -766,9 +766,15 @@ namespace MMR_Tracker_V2
         #region Other
         private void CHKShowAll_CheckedChanged(object sender, EventArgs e) { PrintToListBox(); }
 
-        private void CMBStart_DropDown(object sender, EventArgs e) { PrintToComboBox(true); AdjustCMBWidth(sender); }
+        private void CMBStart_DropDown(object sender, EventArgs e) 
+        {
+            PrintToComboBox(true); AdjustCMBWidth(sender);
+        }
 
-        private void CMBEnd_DropDown(object sender, EventArgs e) { PrintToComboBox(false); AdjustCMBWidth(sender); }
+        private void CMBEnd_DropDown(object sender, EventArgs e) 
+        {
+            PrintToComboBox(false); AdjustCMBWidth(sender);
+        }
 
         private void DestinationLabel_DoubleClick(object sender, EventArgs e)
         {
@@ -1192,7 +1198,7 @@ namespace MMR_Tracker_V2
                 }
                 sortedPathfinder = ItemPathFinder;
             }
-
+            if (sortedPathfinder.Values.Count < 1) { return; }
             ComboBox cmb = (start) ? CMBStart : CMBEnd;
             cmb.DataSource = new BindingSource(sortedPathfinder, null);
             cmb.DisplayMember = "Value";
@@ -1211,6 +1217,8 @@ namespace MMR_Tracker_V2
             int vertScrollBarWidth = (senderComboBox.Items.Count > senderComboBox.MaxDropDownItems) ? SystemInformation.VerticalScrollBarWidth : 0;
 
             int newWidth;
+
+            if (senderComboBox.Items.Count < 1) { return; }
 
             foreach (KeyValuePair<int, string> dictionary in senderComboBox.Items)
             {

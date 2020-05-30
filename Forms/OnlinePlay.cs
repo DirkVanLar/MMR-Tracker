@@ -239,12 +239,19 @@ namespace MMR_Tracker.Forms
 
         private void btnAddIP_Click_1(object sender, EventArgs e)
         {
+            
             LogicObjects.IPDATA NewIP = new LogicObjects.IPDATA();
             string IPText = txtIP.Text;
             IPAddress IP = null;
             try { IP = IPAddress.Parse(IPText); } catch { IP = null; }
             if (IP == null) { try { IP = Dns.GetHostEntry(IPText).AddressList[0]; } catch { IP = null; } }
-            if (IP == null) { MessageBox.Show("IP Address not valid"); return; }
+            if (IP == null) 
+            { 
+                MessageBox.Show("IP Address not valid");
+                txtIP.Focus();
+                txtIP.SelectAll(); 
+                return; 
+            }
             NewIP.IP = IP;
             
             Console.WriteLine(IP);
@@ -252,6 +259,8 @@ namespace MMR_Tracker.Forms
             NewIP.DisplayName = $"{IPText}:{NewIP.PORT}";
             IPS.Add(NewIP);
             updateLB();
+            txtIP.Focus();
+            txtIP.SelectAll();
         }
 
         private void btnRemoveIP_Click(object sender, EventArgs e)
