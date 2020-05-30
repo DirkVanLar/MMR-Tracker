@@ -400,11 +400,20 @@ namespace MMR_Tracker.Class_Files
                         if (UpdateCheck == DialogResult.No) { options.Add("CheckForUpdates:0"); }
                         else { options.Add("CheckForUpdates:1"); }
                     }
+                    else
+                    {
+                        options.Add("ToolTips:1");
+                        options.Add("SeperateMarked:0");
+                        options.Add("MiddleClickFunction:0");
+                        options.Add("DisableEntrancesOnStartup:0");
+                        options.Add("CheckForUpdates:0");
+                    }
                 }
                 else
                 {
                     options.Add("ToolTips:1");
                     options.Add("SeperateMarked:0");
+                    options.Add("MiddleClickFunction:0");
                     options.Add("DisableEntrancesOnStartup:0");
                     options.Add("CheckForUpdates:0");
                 }
