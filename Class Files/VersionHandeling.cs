@@ -11,7 +11,7 @@ namespace MMR_Tracker_V2
     class VersionHandeling
     {
         //Logic Version Handeling
-        public static string trackerVersion = "V1.8";
+        public static string trackerVersion = "V1.9";
 
         public static Dictionary<int, int> AreaClearDictionary(LogicObjects.TrackerInstance Instance)
         {
