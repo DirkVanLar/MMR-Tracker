@@ -13,8 +13,8 @@ You can set items as starting items to have the tracker always consider them obt
 These settings can be imported directly from the Majoras Mask Randomizer using either the settings.json or custom item strings.
 
 ## Entrance Randomizer Features:
-When entrance randomizer releases, the tracker will have a sperate box to keep track of available entrances.
-When checking an entrance, the tracker will automatically mark the entrance in reverse.
+When a version of the randomizer that includes entrance rando is used, the tracker will have a seperate box to keep track of available entrances.
+When checking an entrance, the tracker will automatically mark the entrance in reverse assuming you have the option enabled.
 You can use the pathfinder to show you available paths from one entrance to another.
 
 ## Online Play:
