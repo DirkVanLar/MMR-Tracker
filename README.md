@@ -16,6 +16,11 @@ When entrance randomizer releases, the tracker will have a sperate box to keep t
 When checking an entrance, the tracker will automatically mark the entrance in reverse.
 You can use the pathfinder to show you available paths from one entrance to another.
 
+## Online Play:
+You can sync your tracker with your friends online to share progress between your trackers.
+The tracker can be set to automatically mark items that others have found in coop seeds so you will know where that item is located.
+The tracker can be set to automatically check items obtained by your friends in an online world to mark that you have recieved it as well.
+
 ## Extra Features: 
 The tracker conatins a number of not exactly tracker related tools for use with the randomzier.
 
