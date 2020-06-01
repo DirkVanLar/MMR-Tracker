@@ -10,6 +10,7 @@ All checked locations will be displayed in a separate box displaying the locatio
 ## Item Settings:
 You can customize what locations are Randomized, unrandomized or junk. Unrandomized items will be automatically obtained when they are available and junk locations will be hidden from the tracker.
 You can set items as starting items to have the tracker always consider them obtained.
+These settings can be imported directly from the Majoras Mask Randomizer using either the settings.json or custom item strings.
 
 ## Entrance Randomizer Features:
 When entrance randomizer releases, the tracker will have a sperate box to keep track of available entrances.
