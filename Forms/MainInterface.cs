@@ -629,6 +629,12 @@ namespace MMR_Tracker_V2
             form.Show();
         }
 
+        private void goronGraveLadderClimbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread t = new Thread(() => MessageBox.Show("From the ground climb:\n23 Up, \n8 right, \n26 up, \n6 left, \n26 up, \n15 right, \nup from there", "Lensless Goron Grave", MessageBoxButtons.OK));
+            t.Start();
+        }
+
         #endregion Info
         //Text Boxes---------------------------------------------------------------------------
         #region Text Boxes
@@ -1488,5 +1494,6 @@ namespace MMR_Tracker_V2
         #endregion Other Functions
 
         #endregion Functions
+
     }
 }

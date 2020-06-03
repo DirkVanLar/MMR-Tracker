@@ -102,6 +102,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.goronGraveLadderClimbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -432,7 +433,7 @@
             this.stricterLogicHandelingToolStripMenuItem,
             this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -471,7 +472,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -510,7 +511,7 @@
             this.changeMiddleClickToStarToolStripMenuItem,
             this.changeFontToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -544,7 +545,7 @@
             // onlinePlayToolStripMenuItem
             // 
             this.onlinePlayToolStripMenuItem.Name = "onlinePlayToolStripMenuItem";
-            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.onlinePlayToolStripMenuItem.Text = "Online Play";
             this.onlinePlayToolStripMenuItem.Click += new System.EventHandler(this.onlinePlayToolStripMenuItem_Click);
             // 
@@ -626,6 +627,7 @@
             this.ikanaWellMapToolStripMenuItem,
             this.zoraTrialMapToolStripMenuItem,
             this.woodsOfMysteryRouteToolStripMenuItem,
+            this.goronGraveLadderClimbToolStripMenuItem,
             this.ocarinaSongsToolStripMenuItem,
             this.indexWarpToolStripMenuItem,
             this.curiosityShopBottlePurchaseToolStripMenuItem,
@@ -751,6 +753,13 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
+            // goronGraveLadderClimbToolStripMenuItem
+            // 
+            this.goronGraveLadderClimbToolStripMenuItem.Name = "goronGraveLadderClimbToolStripMenuItem";
+            this.goronGraveLadderClimbToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.goronGraveLadderClimbToolStripMenuItem.Text = "Goron Grave Ladder Climb";
+            this.goronGraveLadderClimbToolStripMenuItem.Click += new System.EventHandler(this.goronGraveLadderClimbToolStripMenuItem_Click);
+            // 
             // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -868,6 +877,7 @@
         private System.Windows.Forms.ToolStripMenuItem curiosityShopBottlePurchaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accessibleLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeLogicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem goronGraveLadderClimbToolStripMenuItem;
     }
 }
 
