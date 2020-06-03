@@ -10,11 +10,17 @@ All checked locations will be displayed in a separate box displaying the locatio
 ## Item Settings:
 You can customize what locations are Randomized, unrandomized or junk. Unrandomized items will be automatically obtained when they are available and junk locations will be hidden from the tracker.
 You can set items as starting items to have the tracker always consider them obtained.
+These settings can be imported directly from the Majoras Mask Randomizer using either the settings.json or custom item strings.
 
 ## Entrance Randomizer Features:
-When entrance randomizer releases, the tracker will have a sperate box to keep track of available entrances.
-When checking an entrance, the tracker will automatically mark the entrance in reverse.
+When a version of the randomizer that includes entrance rando is used, the tracker will have a seperate box to keep track of available entrances.
+When checking an entrance, the tracker will automatically mark the entrance in reverse assuming you have the option enabled.
 You can use the pathfinder to show you available paths from one entrance to another.
+
+## Online Play:
+You can sync your tracker with your friends online to share progress between your trackers.
+The tracker can be set to automatically mark items that others have found in coop seeds so you will know where that item is located.
+The tracker can be set to automatically check items obtained by your friends in an online world to mark that you have recieved it as well.
 
 ## Extra Features: 
 The tracker conatins a number of not exactly tracker related tools for use with the randomzier.
