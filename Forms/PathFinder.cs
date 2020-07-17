@@ -41,7 +41,7 @@ namespace MMR_Tracker.Forms
 
             if (DestinationAtStarting)
             {
-                foreach (var i in Utility.SeperateStringByMeasurement(LBPathFinder, "Your destination is available from your starting area.", "")) { LBPathFinder.Items.Add(i); }
+                foreach (var i in Utility.WrapStringInListBox(LBPathFinder, "Your destination is available from your starting area.", "")) { LBPathFinder.Items.Add(i); }
                 return;
             }
 
@@ -50,16 +50,16 @@ namespace MMR_Tracker.Forms
                 LBPathFinder.Items.Add("No Path Found!");
                 LBPathFinder.Items.Add("");
 
-                foreach (var i in Utility.SeperateStringByMeasurement(LBPathFinder, "This path finder is still in beta and may not always work as intended.", "")) { LBPathFinder.Items.Add(i); }
+                foreach (var i in Utility.WrapStringInListBox(LBPathFinder, "This path finder is still in beta and may not always work as intended.", "")) { LBPathFinder.Items.Add(i); }
                 LBPathFinder.Items.Add("");
                 if (!LogicObjects.MainTrackerInstance.Options.UseSongOfTime)
                 {
                     var sotT = "Your destination may not be reachable without song of time. The use of Song of Time is not considered by default. To enable Song of Time toggle it in the options menu";
-                    foreach (var i in Utility.SeperateStringByMeasurement(LBPathFinder, sotT, "")) { LBPathFinder.Items.Add(i); }
+                    foreach (var i in Utility.WrapStringInListBox(LBPathFinder, sotT, "")) { LBPathFinder.Items.Add(i); }
                 }
                 LBPathFinder.Items.Add("");
                 var ErrT = "If you believe this is an error try navigating to a different entrance close to your destination or try a different starting point.";
-                foreach (var i in Utility.SeperateStringByMeasurement(LBPathFinder, ErrT, "")) { LBPathFinder.Items.Add(i); }
+                foreach (var i in Utility.WrapStringInListBox(LBPathFinder, ErrT, "")) { LBPathFinder.Items.Add(i); }
 
                 return;
             }

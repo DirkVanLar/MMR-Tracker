@@ -32,7 +32,7 @@ namespace MMR_Tracker_V2
             int SubCounter = 0;
             int idCounter = 0;
             LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
-            if (VersionData != "")
+            if (!string.IsNullOrWhiteSpace(VersionData))
             {
                 instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData));
             }
@@ -58,20 +58,20 @@ namespace MMR_Tracker_V2
                         LogicEntry1.IsTrick = false;
                         LogicEntry1.TrickEnabled = true;
                         LogicEntry1.TrickToolTip = "";
-                        LogicEntry1.ItemName = (DicEntry.ItemName == "") ? null : DicEntry.ItemName;
-                        LogicEntry1.LocationName = (DicEntry.LocationName == "") ? null : DicEntry.LocationName;
-                        LogicEntry1.LocationArea = (DicEntry.LocationArea == "") ? "Misc" : DicEntry.LocationArea;
-                        LogicEntry1.ItemSubType = (DicEntry.ItemSubType == "") ? "Item" : DicEntry.ItemSubType;
-                        LogicEntry1.SpoilerLocation = (DicEntry.SpoilerLocation == "") ? LogicEntry1.LocationName : DicEntry.SpoilerLocation;
-                        LogicEntry1.SpoilerItem = (DicEntry.SpoilerItem == "") ? LogicEntry1.ItemName : DicEntry.SpoilerItem;
+                        LogicEntry1.ItemName = (string.IsNullOrWhiteSpace(DicEntry.ItemName)) ? null : DicEntry.ItemName;
+                        LogicEntry1.LocationName = (string.IsNullOrWhiteSpace(DicEntry.LocationName)) ? null : DicEntry.LocationName;
+                        LogicEntry1.LocationArea = (string.IsNullOrWhiteSpace(DicEntry.LocationArea)) ? "Misc" : DicEntry.LocationArea;
+                        LogicEntry1.ItemSubType = (string.IsNullOrWhiteSpace(DicEntry.ItemSubType)) ? "Item" : DicEntry.ItemSubType;
+                        LogicEntry1.SpoilerLocation = (string.IsNullOrWhiteSpace(DicEntry.SpoilerLocation)) ? LogicEntry1.LocationName : DicEntry.SpoilerLocation;
+                        LogicEntry1.SpoilerItem = (string.IsNullOrWhiteSpace(DicEntry.SpoilerItem)) ? LogicEntry1.ItemName : DicEntry.SpoilerItem;
                         break;
                     case 1:
-                        if (line == null || line == "") { LogicEntry1.Required = null; break; }
+                        if (string.IsNullOrWhiteSpace(line)) { LogicEntry1.Required = null; break; }
                         string[] req = line.Split(',');
                         LogicEntry1.Required = Array.ConvertAll(req, s => int.Parse(s));
                         break;
                     case 2:
-                        if (line == null || line == "") { LogicEntry1.Conditionals = null; break; }
+                        if (string.IsNullOrWhiteSpace(line)) { LogicEntry1.Conditionals = null; break; }
                         string[] ConditionalSets = line.Split(';');
                         int[][] Conditionals = new int[ConditionalSets.Length][];
                         for (int j = 0; j < ConditionalSets.Length; j++)
@@ -131,7 +131,7 @@ namespace MMR_Tracker_V2
             if (list == null) { return true; }
             foreach(var i in list)
             {
-                if (Array.Exists(i, x => !logic[x].TrickEnabled && logic[x].IsTrick)) { continue; }
+                if (Array.Exists(i, x => !logic[x].TrickEnabled && logic[x].IsTrick)) { continue; } //Ignore lines with disabled tricks
                 List<int> UsedItemsSet = new List<int>();
                 if (RequirementsMet(i, logic, UsedItemsSet))
                 {
@@ -148,13 +148,10 @@ namespace MMR_Tracker_V2
             //can be unlocked by each other. In this case they will never change from availabe to unavailabe
             //even if they are actually unavailable. This is only used in the pathfinder but the option to use it all the
             //time is availbe through a toggle in the options menu.
-            foreach (var entry in logic)
+            foreach (var entry in logic.Where(x => x.IsFake))
             {
-                if (entry.IsFake)
-                {
-                    entry.Available = false;
-                    entry.Aquired = false;
-                }
+                entry.Available = false;
+                entry.Aquired = false;
             }
         }
 

@@ -60,22 +60,12 @@ namespace MMR_Tracker.Class_Files
             MarkAreaClearAsEntry(playLogic);
             CalculatePlaythrough(playLogic.Logic, Playthrough, 0, importantItems);
 
-
             importantItems = new List<int>();
-            bool MajoraReachable = false;
-            var GameClearPlaythroughItem = new LogicObjects.PlaythroughItem();
-            foreach (var i in Playthrough)
-            {
-                if (i.Check.ID == GameClear)
-                {
-                    GameClearPlaythroughItem = i;
-                    importantItems.Add(i.Check.ID);
-                    FindImportantItems(i, importantItems, Playthrough, SpoilerToID);
-                    MajoraReachable = true;
-                    break;
-                }
-            }
-            if (!MajoraReachable) { MessageBox.Show("This seed is not beatable using this logic! Playthrough could not be generated!"); return; }
+            var GameClearPlaythroughItem = Playthrough.Find(x => x.Check.ID == GameClear);
+            if (GameClearPlaythroughItem == null) { MessageBox.Show("This seed is not beatable using this logic! Playthrough could not be generated!"); return; }
+
+            importantItems.Add(GameClearPlaythroughItem.Check.ID);
+            FindImportantItems(GameClearPlaythroughItem, importantItems, Playthrough, SpoilerToID);
 
             Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
 
@@ -123,17 +113,15 @@ namespace MMR_Tracker.Class_Files
                 List<int> UsedItems = new List<int>();
                 item.Available = (LogicEditing.RequirementsMet(item.Required, logic, UsedItems) && LogicEditing.CondtionalsMet(item.Conditionals, logic, UsedItems));
 
-                bool changed = false;
                 if (!item.IsFake && item.SpoilerRandom > -1 && item.Available != logic[item.SpoilerRandom].Aquired)
                 {
                     itemCheckList.Add(item);
                     recalculate = true;
-                    changed = true;
-                }
-                if (changed && ImportantItems.Contains(item.SpoilerRandom) && item.Available)
-                {
-                    Playthrough.Add(new LogicObjects.PlaythroughItem { SphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
-                    RealItemObtained = true;
+                    if (ImportantItems.Contains(item.SpoilerRandom) && item.Available)
+                    {
+                        Playthrough.Add(new LogicObjects.PlaythroughItem { SphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
+                        RealItemObtained = true;
+                    }
                 }
             }
             foreach (var item in itemCheckList)
@@ -155,16 +143,14 @@ namespace MMR_Tracker.Class_Files
             {
                 List<int> UsedItems = new List<int>();
                 item.Available = (LogicEditing.RequirementsMet(item.Required, logic, UsedItems) && LogicEditing.CondtionalsMet(item.Conditionals, logic, UsedItems));
-                bool changed = false;
                 if (item.Aquired != item.Available && item.IsFake)
                 {
                     item.Aquired = item.Available;
                     recalculate = true;
-                    changed = true;
-                }
-                if (changed && ImportantItems.Contains(item.SpoilerRandom) && item.Available)
-                {
-                    Playthrough.Add(new LogicObjects.PlaythroughItem { SphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
+                    if (ImportantItems.Contains(item.SpoilerRandom) && item.Available)
+                    {
+                        Playthrough.Add(new LogicObjects.PlaythroughItem { SphereNumber = sphere, Check = item, ItemsUsed = UsedItems });
+                    }
                 }
             }
             if (recalculate) { UnlockAllFake(logic, ImportantItems, sphere, Playthrough); }

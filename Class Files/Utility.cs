@@ -42,7 +42,6 @@ namespace MMR_Tracker_V2
         public static LogicObjects.TrackerInstance CloneTrackerInstance(LogicObjects.TrackerInstance instance)
         {
             //Create a deep copy of a tracker object by converting it to a json and coverting it back.
-            //I have no idea why this works and it seems silly but whatever.
             return JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(JsonConvert.SerializeObject(instance));
         }
         public static string FileSelect(string title, string filter)
@@ -168,9 +167,14 @@ namespace MMR_Tracker_V2
             int occurences = 0;
             foreach (var i in text)
             {
-                if (i == '=') { occurences++; }
+                if (i == '=') 
+                { 
+                    occurences++; 
+                    if (occurences >= 5) { return true; } 
+                }
+                else { occurences = 0; }
             }
-            return (occurences >= 5);
+            return false;
         }
         public static bool CheckForRandomEntrances(LogicObjects.TrackerInstance Instance, bool Spoiler = false, int validEntranceCount = 6)
         {
@@ -207,7 +211,7 @@ namespace MMR_Tracker_V2
         {
             return Bool ? (FalseFirst ? 1 : 0 ) : (FalseFirst ? 0 : 1);
         } 
-        public static List<string> SeperateStringByMeasurement(ListBox container, string Measure, string indent = "    ")
+        public static List<string> WrapStringInListBox(ListBox container, string Measure, string indent = "    ")
         {
             Font font = container.Font;
             int width = container.Width;

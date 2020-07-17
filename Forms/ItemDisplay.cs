@@ -229,7 +229,7 @@ namespace MMR_Tracker.Forms
             Position[0] = 0;
             Position[1] = 0;
 
-            var start = System.DateTime.Now.Ticks;
+            var start = System.DateTime.Now.Ticks; //Timing how long this takes for testing purposes
 
             CreatePictureBox("Ocarina", "Ocarina of Time", Spacing);
             CreateProgressivePictureBox("Bow", new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } }, Spacing);

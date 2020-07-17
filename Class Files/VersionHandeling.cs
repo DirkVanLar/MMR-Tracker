@@ -52,12 +52,9 @@ namespace MMR_Tracker_V2
         {
             var Currentversion = Instance.LogicVersion;
             //Get the dictionary
-            int smallestDicEntry = 0;
-            int largestDicEntry = 0;
             Dictionary<int, string> dictionaries = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
             var dic = Instance.GameCode + "DICTIONARY";
-            string[] files = Directory.GetFiles(@"Recources\Dictionaries").Where(x => x.Contains(dic)).ToArray();
-            foreach (var i in files)
+            foreach (var i in Directory.GetFiles(@"Recources\Dictionaries").Where(x => x.Contains(dic)).ToArray())
             {
                 var entry = i.Replace("Recources\\Dictionaries\\" + dic + "V", "");
                 entry = entry.Replace(".csv", "");
@@ -65,38 +62,29 @@ namespace MMR_Tracker_V2
                 try { version = Int32.Parse(entry); }
                 catch { continue; }
                 dictionaries.Add(version, i);
-                if (version > largestDicEntry) { largestDicEntry = version; }
-                if (smallestDicEntry == 0) { smallestDicEntry = largestDicEntry; }
-                if (version < smallestDicEntry) { smallestDicEntry = version; }
             }
 
             string currentdictionary;
-            var index = 0;
-
-            if (dictionaries.Count() == 0)
-            {
-                currentdictionary = "";
-            }
+            if (dictionaries.Count() == 0) { currentdictionary = ""; }
             else
             {
+                var index = 0;
                 if (dictionaries.ContainsKey(Currentversion)) { index = Currentversion; }
                 else //If we are using a logic version that doesn't have a dictionary, use the dictioary with the closest version
                 { index = dictionaries.Keys.Aggregate((x, y) => Math.Abs(x - Currentversion) < Math.Abs(y - Currentversion) ? x : y); }
-
                 currentdictionary = dictionaries[index];
             }
 
             Console.WriteLine(currentdictionary);
-
             return currentdictionary;
         }
 
         public static LogicObjects.VersionInfo GetVersionFromLogicFile(string[] LogicFile)
         {
             LogicObjects.VersionInfo version = new LogicObjects.VersionInfo { Version = 0, Gamecode = "MMR" };
-            if (LogicFile[0].Contains("-version"))
+            if (LogicFile[0].Contains("-version"))//Ensure the first line of this file has version data
             {
-                if (!LogicFile[0].Contains("-version "))
+                if (!LogicFile[0].Contains("-version "))//Check if the version line has game code data after "-version"
                 {
                     var i = LogicFile[0].Split(' ');
                     version.Gamecode = i[0].Replace("-version", "");
@@ -113,14 +101,7 @@ namespace MMR_Tracker_V2
         //Tracker Version Handeling
         public static bool GetLatestTrackerVersion()
         {
-            var CheckForUpdate = false;
-            if (File.Exists("options.txt"))
-            {
-                foreach (var file in File.ReadAllLines("options.txt"))
-                {
-                    if (file.Contains("CheckForUpdates:1")) { CheckForUpdate = true; }
-                }
-            }
+            var CheckForUpdate = File.Exists("options.txt") && File.ReadAllLines("options.txt").Any(x => x.Contains("CheckForUpdates:1"));
             if (!CheckForUpdate && (Control.ModifierKeys != Keys.Shift)) { return false; }
 
             var client = new GitHubClient(new ProductHeaderValue("MMR-Tracker"));

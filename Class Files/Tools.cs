@@ -422,6 +422,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static List<int> ResolveFakeToRealItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic)
         {
+            //Find all the real items that were used to unlock this fake item
             var RealItems = new List<int>();
             var New = new LogicObjects.PlaythroughItem();
             foreach (var j in item.ItemsUsed)
@@ -437,6 +438,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static List<int> FindAllFakeItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic)
         {
+            //Find all fake items used to unlock the given item
             var FakeItems = new List<int>();
             var New = new LogicObjects.PlaythroughItem();
             foreach (var j in item.ItemsUsed)

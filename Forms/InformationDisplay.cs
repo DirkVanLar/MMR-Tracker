@@ -361,7 +361,7 @@ namespace MMR_Tracker_V2
 
             foreach (var i in Lines)
             {
-                foreach (var j in Utility.SeperateStringByMeasurement(listBox1, i))
+                foreach (var j in Utility.WrapStringInListBox(listBox1, i))
                 {
                     listBox1.Items.Add(j);
                 }
@@ -456,7 +456,7 @@ namespace MMR_Tracker_V2
             };
             foreach (var i in Lines)
             {
-                foreach (var j in Utility.SeperateStringByMeasurement(listBox1, i))
+                foreach (var j in Utility.WrapStringInListBox(listBox1, i))
                 {
                     listBox1.Items.Add(j);
                 }

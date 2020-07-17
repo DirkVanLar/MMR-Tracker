@@ -97,7 +97,7 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-
+            
         }
 
     }
