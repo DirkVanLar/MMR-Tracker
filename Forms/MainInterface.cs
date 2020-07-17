@@ -525,33 +525,64 @@ namespace MMR_Tracker_V2
 
         private void IkanaWellMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //string link = "https://lh3.googleusercontent.com/C0lTSDAQVpM_AeYM_WAGsbFCXvOLHkrgw2pFjh5BGLKfyyIs-S8iUboYrapNpiHIYqEKdQTrLPSCkG-EBOztDKnhEfDNu-IqXspp5cjfmjumpEYqGb6u_-h0SpUsR28c41NljrXIJA";
-            string link = "https://cdn.discordapp.com/attachments/547922736257957914/707453444398645278/wells.png";
-            Form form = new Form();
-            var request = WebRequest.Create(link);
-            using (var response = request.GetResponse())
-            using (var stream = response.GetResponseStream()) { form.BackgroundImage = Bitmap.FromStream(stream); }
-            form.Width = 500;
-            form.Height = 500;
-            form.BackgroundImageLayout = ImageLayout.Stretch;
-            form.Text = "Showing Web page: " + link;
-            form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
-            form.Show();
+            try
+            {
+                //string link = "https://lh3.googleusercontent.com/C0lTSDAQVpM_AeYM_WAGsbFCXvOLHkrgw2pFjh5BGLKfyyIs-S8iUboYrapNpiHIYqEKdQTrLPSCkG-EBOztDKnhEfDNu-IqXspp5cjfmjumpEYqGb6u_-h0SpUsR28c41NljrXIJA";
+                string link = "https://cdn.discordapp.com/attachments/547922736257957914/707453444398645278/wells.png";
+                Form form = new Form();
+                var request = WebRequest.Create(link);
+                using (var response = request.GetResponse())
+                using (var stream = response.GetResponseStream()) { form.BackgroundImage = Bitmap.FromStream(stream); }
+                form.Width = 500;
+                form.Height = 500;
+                form.BackgroundImageLayout = ImageLayout.Stretch;
+                form.Text = "Showing Web page: " + link;
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Show();
+            }
+            catch
+            {
+                MessageBox.Show("This image source is currently unavailable.\n\nTo avoid copyright and ensure creators are properly credited for their work, certain images are not hosted locally within the tracker and are pulled live from the web. You are seeing this message because the source of this image has become unavailable, please report this using the links in the about page.", $"Image source not available");
+            }
         }
 
         private void WoodsOfMysteryRouteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string link = "https://gamefaqs.gamespot.com/n64/197770-the-legend-of-zelda-majoras-mask/map/761?raw=1";
-            Form form = new Form();
-            var request = WebRequest.Create(link);
-            using (var response = request.GetResponse())
-            using (var stream = response.GetResponseStream()) { form.BackgroundImage = Bitmap.FromStream(stream); }
-            form.Width = 500;
-            form.Height = 500;
-            form.BackgroundImageLayout = ImageLayout.Stretch;
-            form.Text = "Showing Web page: " + link;
-            form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
-            form.Show();
+            try
+            {
+                string link = "https://gamefaqs.gamespot.com/n64/197770-the-legend-of-zelda-majoras-mask/map/761?raw=1";
+                Form form = new Form();
+                var request = WebRequest.Create(link);
+                using (var response = request.GetResponse())
+                using (var stream = response.GetResponseStream()) { form.BackgroundImage = Bitmap.FromStream(stream); }
+                form.Width = 500;
+                form.Height = 500;
+                form.BackgroundImageLayout = ImageLayout.Stretch;
+                form.Text = "Showing Web page: " + link;
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Show();
+            }
+            catch
+            {
+                try
+                {
+                    string link = "https://www.zeldadungeon.net/Zelda06/Walkthrough/02/2b~Mystery2.jpg";
+                    Form form = new Form();
+                    var request = WebRequest.Create(link);
+                    using (var response = request.GetResponse())
+                    using (var stream = response.GetResponseStream()) { form.BackgroundImage = Bitmap.FromStream(stream); }
+                    form.Width = 500;
+                    form.Height = 500;
+                    form.BackgroundImageLayout = ImageLayout.Stretch;
+                    form.Text = "Showing Web page: " + link;
+                    form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                    form.Show();
+                }
+                catch
+                {
+                    MessageBox.Show("This image source is currently unavailable.\n\nTo avoid copyright and ensure creators are properly credited for their work, certain images are not hosted locally within the tracker and are pulled live from the web. You are seeing this message because the source of this image has become unavailable, please report this using the links in the about page.", $"Image source not available");
+                }
+            }
         }
 
         private void BombersCodeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -584,7 +615,7 @@ namespace MMR_Tracker_V2
             }
             catch
             {
-                MessageBox.Show("Recourse not available. Redownload the tracker and isnure you extract all of the contents.");
+                MessageBox.Show("Recourse not available. Redownload the tracker and ensure you extract all of the contents.");
             }
         }
 
@@ -610,23 +641,30 @@ namespace MMR_Tracker_V2
             }
             catch
             {
-                MessageBox.Show("Recourse not available. Redownload the tracker and isnure you extract all of the contents.");
+                MessageBox.Show("Recourse not available. Redownload the tracker and ensure you extract all of the contents.");
             }
         }
 
         private void zoraTrialMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string link = "https://cdn.discordapp.com/attachments/547922736257957914/598641931484135483/unknown.png";
-            Form form = new Form();
-            var request = WebRequest.Create(link);
-            using (var response = request.GetResponse())
-            using (var stream = response.GetResponseStream()) { form.BackgroundImage = Bitmap.FromStream(stream); }
-            form.Width = 500;
-            form.Height = 500;
-            form.BackgroundImageLayout = ImageLayout.Stretch;
-            form.Text = "Showing Web page: " + link;
-            form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
-            form.Show();
+            try
+            {
+                string link = "https://cdn.discordapp.com/attachments/547922736257957914/598641931484135483/unknown.png";
+                Form form = new Form();
+                var request = WebRequest.Create(link);
+                using (var response = request.GetResponse())
+                using (var stream = response.GetResponseStream()) { form.BackgroundImage = Bitmap.FromStream(stream); }
+                form.Width = 500;
+                form.Height = 500;
+                form.BackgroundImageLayout = ImageLayout.Stretch;
+                form.Text = "Showing Web page: " + link;
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Show();
+            }
+            catch
+            {
+                MessageBox.Show("This image source is currently unavailable.\n\nTo avoid copyright and ensure creators are properly credited for their work, certain images are not hosted locally within the tracker and are pulled live from the web. You are seeing this message because the source of this image has become unavailable, please report this using the links in the about page.", $"Image source not available");
+            }
         }
 
         private void goronGraveLadderClimbToolStripMenuItem_Click(object sender, EventArgs e)

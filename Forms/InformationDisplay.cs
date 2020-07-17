@@ -176,7 +176,6 @@ namespace MMR_Tracker_V2
             Lines.Add("Xy172: Map Filter and bug testing");
             Lines.Add("ZoeyZolotova and the Majoras mask rando team: The majoras mask randomizer");
             Lines.Add("ColbyDude: Ripping A majority of the item tracker Icons");
-            Lines.Add("Gold Mage: Mystery woods map. (Image not hosted locally)");
             Lines.Add("(Double click links to open them.)");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Importing Logic:");
