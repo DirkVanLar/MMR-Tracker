@@ -193,7 +193,7 @@ namespace MMR_Tracker_V2
             var RandoOptionsContradictSpoiler = false;
             foreach (var i in Instance.Logic)
             {
-                if (i.Unrandomized(2) && i.SpoilerRandom != i.ID && i.SpoilerRandom > -1) { RandoOptionsContradictSpoiler = true; }
+                if (i.Unrandomized(2) && i.SpoilerRandom != i.ID && i.SpoilerRandom > -1) { RandoOptionsContradictSpoiler = true; break; }
             }
             if (RandoOptionsContradictSpoiler)
             {

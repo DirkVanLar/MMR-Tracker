@@ -88,6 +88,7 @@
             this.ikanaWellMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoraTrialMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.woodsOfMysteryRouteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goronGraveLadderClimbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ocarinaSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indexWarpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.curiosityShopBottlePurchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,7 +103,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.goronGraveLadderClimbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lensCavePathsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -627,6 +628,7 @@
             this.ikanaWellMapToolStripMenuItem,
             this.zoraTrialMapToolStripMenuItem,
             this.woodsOfMysteryRouteToolStripMenuItem,
+            this.lensCavePathsToolStripMenuItem,
             this.goronGraveLadderClimbToolStripMenuItem,
             this.ocarinaSongsToolStripMenuItem,
             this.indexWarpToolStripMenuItem,
@@ -657,6 +659,13 @@
             this.woodsOfMysteryRouteToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.woodsOfMysteryRouteToolStripMenuItem.Text = "Woods of Mystery Route";
             this.woodsOfMysteryRouteToolStripMenuItem.Click += new System.EventHandler(this.WoodsOfMysteryRouteToolStripMenuItem_Click);
+            // 
+            // goronGraveLadderClimbToolStripMenuItem
+            // 
+            this.goronGraveLadderClimbToolStripMenuItem.Name = "goronGraveLadderClimbToolStripMenuItem";
+            this.goronGraveLadderClimbToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.goronGraveLadderClimbToolStripMenuItem.Text = "Goron Grave Ladder Climb";
+            this.goronGraveLadderClimbToolStripMenuItem.Click += new System.EventHandler(this.goronGraveLadderClimbToolStripMenuItem_Click);
             // 
             // ocarinaSongsToolStripMenuItem
             // 
@@ -753,12 +762,12 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // goronGraveLadderClimbToolStripMenuItem
+            // lensCavePathsToolStripMenuItem
             // 
-            this.goronGraveLadderClimbToolStripMenuItem.Name = "goronGraveLadderClimbToolStripMenuItem";
-            this.goronGraveLadderClimbToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.goronGraveLadderClimbToolStripMenuItem.Text = "Goron Grave Ladder Climb";
-            this.goronGraveLadderClimbToolStripMenuItem.Click += new System.EventHandler(this.goronGraveLadderClimbToolStripMenuItem_Click);
+            this.lensCavePathsToolStripMenuItem.Name = "lensCavePathsToolStripMenuItem";
+            this.lensCavePathsToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.lensCavePathsToolStripMenuItem.Text = "Lens Cave Paths";
+            this.lensCavePathsToolStripMenuItem.Click += new System.EventHandler(this.lensCavePathsToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -878,6 +887,7 @@
         private System.Windows.Forms.ToolStripMenuItem accessibleLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem goronGraveLadderClimbToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lensCavePathsToolStripMenuItem;
     }
 }
 

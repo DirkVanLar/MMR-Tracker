@@ -23,6 +23,14 @@ namespace MMR_Tracker.Forms
 
         private async void BTNFindPath_Click(object sender, EventArgs e)
         {
+            //Find grab the ID of the last path currently in the list. TODO delete that path from the "paths" to free up junk space.
+            if (LBPathFinder.Items.Count > 1)
+            {
+                var item = LBPathFinder.Items[1] as LogicObjects.ListItem;
+                var part = item.PathPartition;
+                Console.WriteLine(part);
+            }
+
             int partition = paths.Count();
             paths.Add(new List<List<LogicObjects.MapPoint>>());
             LBPathFinder.Items.Clear();

@@ -667,6 +667,28 @@ namespace MMR_Tracker_V2
             }
         }
 
+        private void lensCavePathsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string link = "https://cdn.discordapp.com/attachments/547922736257957914/737152928334348328/Invisible-paths.png";
+                Form form = new Form();
+                var request = WebRequest.Create(link);
+                using (var response = request.GetResponse())
+                using (var stream = response.GetResponseStream()) { form.BackgroundImage = Bitmap.FromStream(stream); }
+                form.Width = 500;
+                form.Height = 500;
+                form.BackgroundImageLayout = ImageLayout.Stretch;
+                form.Text = "Showing Web page: " + link;
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Show();
+            }
+            catch
+            {
+                MessageBox.Show("This image source is currently unavailable.\n\nTo avoid copyright and ensure creators are properly credited for their work, certain images are not hosted locally within the tracker and are pulled live from the web. You are seeing this message because the source of this image has become unavailable, please report this using the links in the about page.", $"Image source not available");
+            }
+        }
+
         private void goronGraveLadderClimbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Thread t = new Thread(() => MessageBox.Show("From the ground climb:\n23 Up, \n8 right, \n26 up, \n6 left, \n26 up, \n15 right, \nup from there", "Lensless Goron Grave", MessageBoxButtons.OK));
