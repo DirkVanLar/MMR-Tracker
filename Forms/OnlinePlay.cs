@@ -199,13 +199,13 @@ namespace MMR_Tracker.Forms
         private void allowFullCheckToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AllowCheckingItems = !AllowCheckingItems;
-            allowFullCheckToolStripMenuItem.Text = (AllowCheckingItems) ? "Disallow Full Check" : "Allow Full Check";
+            allowFullCheckToolStripMenuItem.Checked = (AllowCheckingItems);
         }
 
         private void autoAddIncomingIPsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AutoAddIncomingConnections = !AutoAddIncomingConnections;
-            autoAddIncomingIPsToolStripMenuItem.Text = (AutoAddIncomingConnections) ? "Don't Add Incoming IPs" : "Auto Add Incoming IPs";
+            autoAddIncomingIPsToolStripMenuItem.Checked = (AutoAddIncomingConnections);
         }
 
         private void copyNetDataToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -310,9 +310,9 @@ namespace MMR_Tracker.Forms
             txtPulbicIP.Text = MyIP.ToString();
             NudYourPort.Value = PortNumber;
             NudPort.Value = PortNumber;
-            allowFullCheckToolStripMenuItem.Text = (AllowCheckingItems) ? "Disallow Full Check" : "Allow Full Check";
-            autoAddIncomingIPsToolStripMenuItem.Text = (AutoAddIncomingConnections) ? "Don't Add Incoming IPs" : "Auto Add Incoming IPs";
-            onlyAcceptDataFromSendingListToolStripMenuItem.Text = (StrictIP) ? "Accept data from any IP" : "Only accept data from sending list";
+            allowFullCheckToolStripMenuItem.Checked = (AllowCheckingItems);
+            autoAddIncomingIPsToolStripMenuItem.Checked = (AutoAddIncomingConnections);
+            onlyAcceptDataFromSendingListToolStripMenuItem.Checked = (StrictIP);
             copyNetDataToClipboardToolStripMenuItem.Visible = Debugging.ISDebugging;
 
             Updating = false;
@@ -434,7 +434,7 @@ namespace MMR_Tracker.Forms
         private void onlyAcceptDataFromSendingListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StrictIP = !StrictIP;
-            onlyAcceptDataFromSendingListToolStripMenuItem.Text = (StrictIP) ? "Accept data from any IP" : "Only accept data from sending list";
+            onlyAcceptDataFromSendingListToolStripMenuItem.Checked = (StrictIP);
         }
 
         private void LBIPAdresses_MouseMove(object sender, MouseEventArgs e)

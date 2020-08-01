@@ -61,8 +61,8 @@ namespace MMR_Tracker.Forms
                 EditorInstance = new LogicObjects.TrackerInstance();
                 FormatForm();
             }
-            useLocationItemNamesToolStripMenuItem.Text = (UseDictionaryNameInSearch) ? "Use Location/Item Name" : "Use Logic Name";
-            displaySpoilerLogNamesToolStripMenuItem.Text = (UseSpoilerInDisplay) ? "Use Tracker names" : "Use Spoiler Log names";
+            useLocationItemNamesToolStripMenuItem.Checked = (UseDictionaryNameInSearch);
+            displaySpoilerLogNamesToolStripMenuItem.Checked = (UseSpoilerInDisplay);
             AssignUniqueItemnames(EditorInstance.Logic);
         }
 
@@ -345,14 +345,14 @@ namespace MMR_Tracker.Forms
         private void UseLocationItemNamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UseDictionaryNameInSearch = !UseDictionaryNameInSearch;
-            useLocationItemNamesToolStripMenuItem.Text = (UseDictionaryNameInSearch) ? "Use Location/Item Name" : "Use Logic Name";
+            useLocationItemNamesToolStripMenuItem.Checked = (UseDictionaryNameInSearch);
             WriteCurentItem(currentEntry.ID);
         }
 
         private void DisplaySpoilerLogNamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UseSpoilerInDisplay = !UseSpoilerInDisplay;
-            displaySpoilerLogNamesToolStripMenuItem.Text = (UseSpoilerInDisplay) ? "Use Tracker names" : "Use Spoiler Log names";
+            displaySpoilerLogNamesToolStripMenuItem.Checked = (UseSpoilerInDisplay);
             WriteCurentItem(currentEntry.ID);
         }
 

@@ -1374,10 +1374,10 @@ namespace MMR_Tracker_V2
         public void FormatMenuItems()
         {
             importSpoilerLogToolStripMenuItem.Text = (Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) ? "Remove Spoiler Log" : "Import Spoiler Log";
-            useSongOfTimeInPathfinderToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.UseSongOfTime) ? "Disable Song of Time in pathfinder" : "Enable Song of Time in pathfinder";
-            stricterLogicHandelingToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling) ? "Disable Stricter Logic Handeling" : "Enable Stricter Logic Handeling";
-            showEntryNameToolTipToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip) ? "Disable Entry Name ToolTip" : "Show Entry Name ToolTip";
-            includeItemLocationsAsDestinationToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations) ? "Exclude Item Locations As Destinations" : "Include Item Locations As Destinations";
+            useSongOfTimeInPathfinderToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.UseSongOfTime);
+            stricterLogicHandelingToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling);
+            showEntryNameToolTipToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip);
+            includeItemLocationsAsDestinationToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations);
             changeMiddleClickToStarToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark) ? "Make Middle Click Set Item" : "Make Middle Click Star Item";
             entranceRandoToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.EntranceRando;
             optionsToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
@@ -1396,10 +1396,10 @@ namespace MMR_Tracker_V2
             useSongOfTimeInPathfinderToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
-            toggleEntranceRandoFeaturesToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled) ? "Disable Entrance Rando Features" : "Enable Entrance Rando Features";
-            coupleEntrancesToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.CoupleEntrances) ? "Uncouple Entrances" : "Couple Entrances";
+            toggleEntranceRandoFeaturesToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled);
+            coupleEntrancesToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.CoupleEntrances);
             devToolStripMenuItem.Visible = Debugging.ISDebugging;
-            seperateMarkedItemsToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom) ? "Don't Seperate Marked Items" : "Seperate Marked Items";
+            seperateMarkedItemsToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom);
 
             accessibleLogicToolStripMenuItem.Visible = Debugging.ISDebugging;
 

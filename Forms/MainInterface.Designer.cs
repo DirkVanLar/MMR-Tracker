@@ -473,7 +473,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -487,7 +487,7 @@
             // 
             this.toggleEntranceRandoFeaturesToolStripMenuItem.Name = "toggleEntranceRandoFeaturesToolStripMenuItem";
             this.toggleEntranceRandoFeaturesToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
-            this.toggleEntranceRandoFeaturesToolStripMenuItem.Text = "Toggle Entrance Rando Features";
+            this.toggleEntranceRandoFeaturesToolStripMenuItem.Text = "Enable Entrance Rando Features";
             this.toggleEntranceRandoFeaturesToolStripMenuItem.Click += new System.EventHandler(this.ToggleEntranceRandoFeaturesToolStripMenuItem_Click);
             // 
             // includeItemLocationsAsDestinationToolStripMenuItem
