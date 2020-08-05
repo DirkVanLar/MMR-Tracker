@@ -169,8 +169,6 @@ namespace MMR_Tracker.Class_Files
             {
                 {"Great Bay Cape Ledge Without Tree Chest", "Zora Cape Ledge Without Tree Chest" },
                 {"Zora Cape Ledge Without Tree Chest", "Great Bay Cape Ledge Without Tree Chest" },
-                {"Great Bay Cape Ledge Without Tree Chest", "Zora Cape Ledge Without Tree Chest" },
-                {"Zora Cape Ledge Without Tree Chest","Great Bay Cape Ledge Without Tree Chest" },
                 {"Zora Cape Ledge With Tree Chest", "Great Bay Cape Ledge With Tree Chest" },
                 {"Great Bay Cape Ledge With Tree Chest", "Zora Cape Ledge With Tree Chest" },
                 {"Zora Cape Grotto", "Great Bay Cape Grotto" },
