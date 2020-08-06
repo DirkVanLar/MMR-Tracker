@@ -26,6 +26,15 @@ namespace MMR_Tracker_V2
         {
             InitializeComponent();
             OnlinePlay.NetDataProcessed += Tools_UpdateListBox;
+            Tools.StateListChanged += Tools_StateListChanged;
+        }
+
+        //Event Triggers
+
+        private void Tools_StateListChanged(object sender, EventArgs e)
+        {
+            undoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.UndoList.Count > 0;
+            redoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.RedoList.Count > 0;
         }
 
         private void Tools_UpdateListBox(object sender, EventArgs e)
@@ -1416,6 +1425,7 @@ namespace MMR_Tracker_V2
             FilterMapToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             itemTrackerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
 
+            Tools_StateListChanged(null, null);
         }
 
         private void ResizeObject()

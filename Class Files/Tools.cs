@@ -10,6 +10,7 @@ namespace MMR_Tracker.Class_Files
 {
     class Tools
     {
+        public static event EventHandler StateListChanged = delegate { };
 
         //Used to pass Logic items between forms
         public static LogicObjects.LogicEntry CurrentSelectedItem = new LogicObjects.LogicEntry();
@@ -306,6 +307,7 @@ namespace MMR_Tracker.Class_Files
             Instance.UndoList.Add(Utility.CloneLogicList(Logic));
             if (Instance.UndoList.Count() > 50) { Instance.UndoList.RemoveAt(0); }
             Instance.RedoList = new List<List<LogicObjects.LogicEntry>>();
+            StateListChanged(null, null);
             //(Application.OpenForms["FRMTracker"] as FRMTracker).EnableUndoRedo(true, false);
         }
         public static void Undo(LogicObjects.TrackerInstance Instance)
@@ -317,6 +319,7 @@ namespace MMR_Tracker.Class_Files
                 Instance.RedoList.Add(Utility.CloneLogicList(Instance.Logic));
                 Instance.Logic = Utility.CloneLogicList(Instance.UndoList[lastItem]);
                 Instance.UndoList.RemoveAt(lastItem);
+                StateListChanged(null, null);
             }
         }
         public static void Redo(LogicObjects.TrackerInstance Instance)
@@ -328,6 +331,7 @@ namespace MMR_Tracker.Class_Files
                 Instance.UndoList.Add(Utility.CloneLogicList(Instance.Logic));
                 Instance.Logic = Utility.CloneLogicList(Instance.RedoList[lastItem]);
                 Instance.RedoList.RemoveAt(lastItem);
+                StateListChanged(null, null);
             }
         }
         public static bool PromptSave(LogicObjects.TrackerInstance Instance, bool OnlyIfUnsaved = true)
