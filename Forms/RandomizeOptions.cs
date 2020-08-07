@@ -40,15 +40,7 @@ namespace MMR_Tracker_V2
             WriteToListVeiw();
         }
 
-        private void CHKShowRandom_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
-
-        private void ChkShowUnrand_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
-
-        private void ChkShowUnrandMan_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
-
-        private void ChkJunk_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
-
-        private void ChkStartingItems_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
+        private void CHK_CheckedChanged(object sender, EventArgs e) { WriteToListVeiw(); }
 
         private void BTNRandomized_Click(object sender, EventArgs e) { UpdateRandomOption(0); }
 
@@ -205,8 +197,6 @@ namespace MMR_Tracker_V2
             WriteToListVeiw();
         }
 
-        private void TxtSearch_TextChanged(object sender, EventArgs e) { WriteToListVeiw(); }
-
         private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (updating) { return; }
@@ -244,16 +234,6 @@ namespace MMR_Tracker_V2
         private void txtSearch_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Middle) { txtSearch.Clear(); }
-        }
-
-        private void chkShowEnabledTricks_CheckedChanged(object sender, EventArgs e)
-        {
-            WriteToListVeiw();
-        }
-
-        private void chkShowDisabledTricks_CheckedChanged(object sender, EventArgs e)
-        {
-            WriteToListVeiw();
         }
 
         private void btnToggleTricks_Click(object sender, EventArgs e) { UpdateRandomOption(5); }
