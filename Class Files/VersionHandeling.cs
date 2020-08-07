@@ -79,23 +79,23 @@ namespace MMR_Tracker_V2
             return currentdictionary;
         }
 
-        public static LogicObjects.VersionInfo GetVersionFromLogicFile(string[] LogicFile)
+        public static LogicObjects.VersionInfo GetVersionDataFromLogicFile(string[] LogicFile)
         {
-            LogicObjects.VersionInfo version = new LogicObjects.VersionInfo { Version = 0, Gamecode = "MMR" };
+            LogicObjects.VersionInfo versionData = new LogicObjects.VersionInfo { Version = 0, Gamecode = "MMR" };
             if (LogicFile[0].Contains("-version"))//Ensure the first line of this file has version data
             {
                 if (!LogicFile[0].Contains("-version "))//Check if the version line has game code data after "-version"
                 {
                     var i = LogicFile[0].Split(' ');
-                    version.Gamecode = i[0].Replace("-version", "");
+                    versionData.Gamecode = i[0].Replace("-version", "");
                 }
                 var j = LogicFile[0].Split(' ');
                 if (j.Count() > 1)
                 {
-                    version.Version = Convert.ToInt32(j[1]);
+                    versionData.Version = Convert.ToInt32(j[1]);
                 }
             }
-            return version;
+            return versionData;
         }
 
         //Tracker Version Handeling

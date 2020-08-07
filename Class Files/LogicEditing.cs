@@ -25,17 +25,23 @@ namespace MMR_Tracker_V2
             instance.Logic.Clear();
             instance.DicNameToID.Clear();
             instance.EntrancePairs.Clear();
-            LogicObjects.VersionInfo version = VersionHandeling.GetVersionFromLogicFile(instance.RawLogicFile); //Returns [0] The logic Version, [1] The game this logic file is for
-            instance.LogicVersion = version.Version;
-            instance.GameCode = version.Gamecode;
-            string VersionData = VersionHandeling.GetDictionaryPath(instance); //Returns [0] Path To Dictionary, [1] path to Entrance Pairs
+            LogicObjects.VersionInfo versionData = VersionHandeling.GetVersionDataFromLogicFile(instance.RawLogicFile);
+            instance.LogicVersion = versionData.Version;
+            instance.GameCode = versionData.Gamecode;
+            string DictionaryPath = VersionHandeling.GetDictionaryPath(instance);
             int SubCounter = 0;
             int idCounter = 0;
             LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
-            if (!string.IsNullOrWhiteSpace(VersionData))
+            if (!string.IsNullOrWhiteSpace(DictionaryPath))
             {
-                instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(VersionData));
+                try
+                {
+                    instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(DictionaryPath));
+                }
+                catch { MessageBox.Show($"The Dictionary File \"{DictionaryPath}\" has been corrupted. The tracker will not function correctly."); }
             }
+            else { MessageBox.Show($"A valid dictionary file could not be found for this logic. The tracker will not function correctly."); }
+
             var NextLine = 1;
             foreach (string line in instance.RawLogicFile)
             {
