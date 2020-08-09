@@ -47,7 +47,7 @@ namespace MMR_Tracker.Class_Files
             if (file == "") { return; }
 
             LogicObjects.TrackerInstance CDLogic = new LogicObjects.TrackerInstance();
-            int LogicVersion = VersionHandeling.GetVersionFromLogicFile(File.ReadAllLines(file)).Version;
+            int LogicVersion = VersionHandeling.GetVersionDataFromLogicFile(File.ReadAllLines(file)).Version;
             LogicEditing.PopulateTrackerInstance(CDLogic);
 
             List<LogicObjects.SpoilerData> SpoilerLog = Tools.ReadHTMLSpoilerLog("", CDLogic);
@@ -297,7 +297,7 @@ namespace MMR_Tracker.Class_Files
             LogicObjects.MainTrackerInstance.EntranceRando = LogicObjects.MainTrackerInstance.IsEntranceRando();
             if (LogicObjects.MainTrackerInstance.LogicVersion == 0)
             {
-                LogicObjects.MainTrackerInstance.LogicVersion = VersionHandeling.GetVersionFromLogicFile(LogicObjects.MainTrackerInstance.RawLogicFile).Version;
+                LogicObjects.MainTrackerInstance.LogicVersion = VersionHandeling.GetVersionDataFromLogicFile(LogicObjects.MainTrackerInstance.RawLogicFile).Version;
             }
             return;
         }

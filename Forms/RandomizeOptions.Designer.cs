@@ -182,7 +182,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(153, 20);
             this.txtSearch.TabIndex = 8;
-            this.txtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
+            this.txtSearch.TextChanged += new System.EventHandler(this.CHK_CheckedChanged);
             this.txtSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.txtSearch_MouseUp);
             // 
             // chkShowRandom
@@ -196,7 +196,7 @@
             this.chkShowRandom.TabIndex = 9;
             this.chkShowRandom.Text = "Show Randomized";
             this.chkShowRandom.UseVisualStyleBackColor = false;
-            this.chkShowRandom.CheckedChanged += new System.EventHandler(this.CHKShowRandom_CheckedChanged);
+            this.chkShowRandom.CheckedChanged += new System.EventHandler(this.CHK_CheckedChanged);
             // 
             // chkShowUnrand
             // 
@@ -209,7 +209,7 @@
             this.chkShowUnrand.TabIndex = 10;
             this.chkShowUnrand.Text = "Show UnRandomized";
             this.chkShowUnrand.UseVisualStyleBackColor = false;
-            this.chkShowUnrand.CheckedChanged += new System.EventHandler(this.ChkShowUnrand_CheckedChanged);
+            this.chkShowUnrand.CheckedChanged += new System.EventHandler(this.CHK_CheckedChanged);
             // 
             // chkShowUnrandMan
             // 
@@ -222,7 +222,7 @@
             this.chkShowUnrandMan.TabIndex = 11;
             this.chkShowUnrandMan.Text = "Show UnRando (Man)";
             this.chkShowUnrandMan.UseVisualStyleBackColor = false;
-            this.chkShowUnrandMan.CheckedChanged += new System.EventHandler(this.ChkShowUnrandMan_CheckedChanged);
+            this.chkShowUnrandMan.CheckedChanged += new System.EventHandler(this.CHK_CheckedChanged);
             // 
             // chkShowJunk
             // 
@@ -235,7 +235,7 @@
             this.chkShowJunk.TabIndex = 12;
             this.chkShowJunk.Text = "Show Forced Junk";
             this.chkShowJunk.UseVisualStyleBackColor = false;
-            this.chkShowJunk.CheckedChanged += new System.EventHandler(this.ChkJunk_CheckedChanged);
+            this.chkShowJunk.CheckedChanged += new System.EventHandler(this.CHK_CheckedChanged);
             // 
             // chkShowStartingItems
             // 
@@ -248,7 +248,7 @@
             this.chkShowStartingItems.TabIndex = 13;
             this.chkShowStartingItems.Text = "Show Starting Items";
             this.chkShowStartingItems.UseVisualStyleBackColor = false;
-            this.chkShowStartingItems.CheckedChanged += new System.EventHandler(this.ChkStartingItems_CheckedChanged);
+            this.chkShowStartingItems.CheckedChanged += new System.EventHandler(this.CHK_CheckedChanged);
             // 
             // chkShowDisabledTricks
             // 
@@ -261,7 +261,7 @@
             this.chkShowDisabledTricks.TabIndex = 15;
             this.chkShowDisabledTricks.Text = "Show Disabled Tricks";
             this.chkShowDisabledTricks.UseVisualStyleBackColor = false;
-            this.chkShowDisabledTricks.CheckedChanged += new System.EventHandler(this.chkShowDisabledTricks_CheckedChanged);
+            this.chkShowDisabledTricks.CheckedChanged += new System.EventHandler(this.CHK_CheckedChanged);
             // 
             // chkShowEnabledTricks
             // 
@@ -274,7 +274,7 @@
             this.chkShowEnabledTricks.TabIndex = 14;
             this.chkShowEnabledTricks.Text = "Show Enabled Tricks";
             this.chkShowEnabledTricks.UseVisualStyleBackColor = false;
-            this.chkShowEnabledTricks.CheckedChanged += new System.EventHandler(this.chkShowEnabledTricks_CheckedChanged);
+            this.chkShowEnabledTricks.CheckedChanged += new System.EventHandler(this.CHK_CheckedChanged);
             // 
             // btnToggleTricks
             // 
