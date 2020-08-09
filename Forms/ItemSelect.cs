@@ -262,118 +262,111 @@ namespace MMR_Tracker_V2
         private void RunFunction()
         {
             Updating = true;
-            if (Function == 0) //Main Tracker select Item
+
+            switch (Function)
             {
-                UsedLogic = LogicObjects.MainTrackerInstance.Logic;
-                BTNJunk.Text = "Junk";
-                LBItemSelect.SelectionMode = SelectionMode.One;
-                ShowUnusedRealAsItem(); 
-                this.Text = "Item at " + Tools.CurrentSelectedItem.LocationName;
-                LBItemSelect.Sorted = true;
-            }
-            if (Function == 1) //Seed Checker ignored Real Location Select
-            {
-                UsedLogic = LogicObjects.MainTrackerInstance.Logic;
-                BTNJunk.Text = "Select";
-                UseCheckBox();
-                ShowRealAsLocation();
-                RecheckItems();
-                this.Text = "Select a location";
-                LBItemSelect.Sorted = true;
-            }
-            if (Function == 2) //Seed Checker Item Select
-            {
-                UsedLogic = LogicObjects.MainTrackerInstance.Logic;
-                BTNJunk.Text = "Select";
-                UseCheckBox();
-                ShowAllAsItem();
-                RecheckItems();
-                this.Text = "Select an item";
-                LBItemSelect.Sorted = true;
-            }
-            if (Function == 3) //What Unlocked This? Show Available Real Locations
-            {
-                UsedLogic = LogicObjects.MainTrackerInstance.Logic;
-                BTNJunk.Visible = false;
-                if (!HeightSet)
-                {
-                    this.Height = this.Height - BTNJunk.Height;
-                    HeightSet = true;
-                }
-                LBItemSelect.SelectionMode = SelectionMode.One;
-                ShowAvailableAsLocation(); 
-                this.Text = "Select a location";
-                LBItemSelect.Sorted = true;
-            }
-            if (Function == 4) //Logic Editor Go to Check
-            {
-                UsedLogic = LogicEditor.EditorInstance.Logic;
-                BTNJunk.Text = "Select";
-                LBItemSelect.SelectionMode = SelectionMode.One;
-                ShowAllAsLocation(); 
-                this.Text = "Select an item";
-            }
-            if (Function == 5) //Logic Editor Select Items
-            {
-                UsedLogic = LogicEditor.EditorInstance.Logic;
-                BTNJunk.Text = "Select";
-                UseCheckBox();
-                ShowAllAsItem();
-                RecheckItems();
-                this.Text = "Select a location";
-                LBItemSelect.Sorted = true;
-            }
-            if (Function == 6) //Logic Editor Go to List Item
-            {
-                UsedLogic = LogicEditor.EditorInstance.Logic;
-                BTNJunk.Text = "Select";
-                LBItemSelect.SelectionMode = SelectionMode.One;
-                ShowAllCheckedItem();
-                this.Text = "Select a location";
-                LBItemSelect.Sorted = true;
-            }
-            if (Function == 7) //Logic Editor Select Items (Conditionals)
-            {
-                UsedLogic = LogicEditor.EditorInstance.Logic;
-                BTNJunk.Text = "Select";
-                chkAddSeperate.Checked = LogicEditor.AddCondSeperatly;
-                UseCheckBox();
-                ShowAllAsItem();
-                RecheckItems();
-                this.Text = "Select a location";
-                LBItemSelect.Sorted = true;
-            }
-            if (Function == 8) //Logic Reordering
-            {
-                UsedLogic = LogicEditor.EditorInstance.Logic;
-                BTNJunk.Text = "Apply";
-                LBItemSelect.SelectionMode = SelectionMode.One;
-                UseUpDown();
-                ShowAllAsDictionary();
-                this.Text = "Move an item to reorder it in the logic file";
-            }
-            if (Function == 9) //Logic Editor Go to List Item
-            {
-                UsedLogic = LogicEditor.EditorInstance.Logic;
-                BTNJunk.Text = "Select";
-                LBItemSelect.SelectionMode = SelectionMode.One;
-                ShowAllCheckedItem();
-                this.Text = Title;
-                LBItemSelect.Sorted = true;
-            }
-            if (Function == 10) //Spoiler display
-            {
-                UsedLogic = LogicObjects.MainTrackerInstance.Logic;
-                BTNJunk.Visible = false;
-                if (!HeightSet)
-                {
-                    this.Height = this.Height - BTNJunk.Height;
-                    HeightSet = true;
-                }
-                LBItemSelect.SelectionMode = SelectionMode.One;
-                ShowAllSpoilerAsItem();
-                this.Text = "Select an item to see it's location";
-                LBItemSelect.Sorted = true;
+                case 0:
+                    UsedLogic = LogicObjects.MainTrackerInstance.Logic;
+                    BTNJunk.Text = "Junk";
+                    LBItemSelect.SelectionMode = SelectionMode.One;
+                    ShowUnusedRealAsItem();
+                    this.Text = "Item at " + Tools.CurrentSelectedItem.LocationName;
+                    LBItemSelect.Sorted = true;
+                    break;
+                case 1:
+                    UsedLogic = LogicObjects.MainTrackerInstance.Logic;
+                    BTNJunk.Text = "Select";
+                    UseCheckBox();
+                    ShowRealAsLocation();
+                    RecheckItems();
+                    this.Text = "Select a location";
+                    LBItemSelect.Sorted = true;
+                    break;
+                case 2:
+                    UsedLogic = LogicObjects.MainTrackerInstance.Logic;
+                    BTNJunk.Text = "Select";
+                    UseCheckBox();
+                    ShowAllAsItem();
+                    RecheckItems();
+                    this.Text = "Select an item";
+                    LBItemSelect.Sorted = true;
+                    break;
+                case 3:
+                    UsedLogic = LogicObjects.MainTrackerInstance.Logic;
+                    BTNJunk.Visible = false;
+                    if (!HeightSet)
+                    {
+                        this.Height = this.Height - BTNJunk.Height;
+                        HeightSet = true;
+                    }
+                    LBItemSelect.SelectionMode = SelectionMode.One;
+                    ShowAvailableAsLocation();
+                    this.Text = "Select a location";
+                    LBItemSelect.Sorted = true;
+                    break;
+                case 4:
+                    UsedLogic = LogicEditor.EditorInstance.Logic;
+                    BTNJunk.Text = "Select";
+                    LBItemSelect.SelectionMode = SelectionMode.One;
+                    ShowAllAsLocation();
+                    this.Text = "Select an item";
+                    break;
+                case 5:
+                    UsedLogic = LogicEditor.EditorInstance.Logic;
+                    BTNJunk.Text = "Select";
+                    UseCheckBox();
+                    ShowAllAsItem();
+                    RecheckItems();
+                    this.Text = "Select a location";
+                    LBItemSelect.Sorted = true;
+                    break;
+                case 6:
+                    UsedLogic = LogicEditor.EditorInstance.Logic;
+                    BTNJunk.Text = "Select";
+                    LBItemSelect.SelectionMode = SelectionMode.One;
+                    ShowAllCheckedItem();
+                    this.Text = "Select a location";
+                    LBItemSelect.Sorted = true;
+                    break;
+                case 7:
+                    UsedLogic = LogicEditor.EditorInstance.Logic;
+                    BTNJunk.Text = "Select";
+                    chkAddSeperate.Checked = LogicEditor.AddCondSeperatly;
+                    UseCheckBox();
+                    ShowAllAsItem();
+                    RecheckItems();
+                    this.Text = "Select a location";
+                    LBItemSelect.Sorted = true;
+                    break;
+                case 8:
+                    UsedLogic = LogicEditor.EditorInstance.Logic;
+                    BTNJunk.Text = "Apply";
+                    LBItemSelect.SelectionMode = SelectionMode.One;
+                    UseUpDown();
+                    ShowAllAsDictionary();
+                    this.Text = "Move an item to reorder it in the logic file";
+                    break;
+                case 9:
+                    UsedLogic = LogicEditor.EditorInstance.Logic;
+                    BTNJunk.Text = "Select";
+                    LBItemSelect.SelectionMode = SelectionMode.One;
+                    ShowAllCheckedItem();
+                    this.Text = Title;
+                    LBItemSelect.Sorted = true;
+                    break;
+                case 10:
+                    UsedLogic = LogicObjects.MainTrackerInstance.Logic;
+                    BTNJunk.Visible = false;
+                    if (!HeightSet)
+                    {
+                        this.Height = this.Height - BTNJunk.Height;
+                        HeightSet = true;
+                    }
+                    LBItemSelect.SelectionMode = SelectionMode.One;
+                    ShowAllSpoilerAsItem();
+                    this.Text = "Select an item to see it's location";
+                    LBItemSelect.Sorted = true;
+                    break;
             }
             Updating = false;
         }
