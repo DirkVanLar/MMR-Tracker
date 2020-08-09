@@ -88,6 +88,7 @@
             this.ikanaWellMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoraTrialMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.woodsOfMysteryRouteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lensCavePathsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.goronGraveLadderClimbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ocarinaSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indexWarpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,7 +104,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.lensCavePathsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spoilerLogLookupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -473,7 +474,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -556,6 +557,7 @@
             this.seedCheckerToolStripMenuItem,
             this.generatePlaythroughToolStripMenuItem,
             this.whatUnlockedThisToolStripMenuItem,
+            this.spoilerLogLookupToolStripMenuItem,
             this.logicEditorToolStripMenuItem,
             this.popoutPathfinderToolStripMenuItem,
             this.FilterMapToolStripMenuItem,
@@ -636,7 +638,7 @@
             this.bombersCodeToolStripMenuItem,
             this.timedEventsToolStripMenuItem});
             this.referencesToolStripMenuItem.Name = "referencesToolStripMenuItem";
-            this.referencesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.referencesToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.referencesToolStripMenuItem.Text = "References";
             // 
             // ikanaWellMapToolStripMenuItem
@@ -659,6 +661,13 @@
             this.woodsOfMysteryRouteToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.woodsOfMysteryRouteToolStripMenuItem.Text = "Woods of Mystery Route";
             this.woodsOfMysteryRouteToolStripMenuItem.Click += new System.EventHandler(this.WoodsOfMysteryRouteToolStripMenuItem_Click);
+            // 
+            // lensCavePathsToolStripMenuItem
+            // 
+            this.lensCavePathsToolStripMenuItem.Name = "lensCavePathsToolStripMenuItem";
+            this.lensCavePathsToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.lensCavePathsToolStripMenuItem.Text = "Lens Cave Paths";
+            this.lensCavePathsToolStripMenuItem.Click += new System.EventHandler(this.lensCavePathsToolStripMenuItem_Click);
             // 
             // goronGraveLadderClimbToolStripMenuItem
             // 
@@ -705,7 +714,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.InfoToolStripMenuItem_Click);
             // 
@@ -762,12 +771,12 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // lensCavePathsToolStripMenuItem
+            // spoilerLogLookupToolStripMenuItem
             // 
-            this.lensCavePathsToolStripMenuItem.Name = "lensCavePathsToolStripMenuItem";
-            this.lensCavePathsToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.lensCavePathsToolStripMenuItem.Text = "Lens Cave Paths";
-            this.lensCavePathsToolStripMenuItem.Click += new System.EventHandler(this.lensCavePathsToolStripMenuItem_Click);
+            this.spoilerLogLookupToolStripMenuItem.Name = "spoilerLogLookupToolStripMenuItem";
+            this.spoilerLogLookupToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.spoilerLogLookupToolStripMenuItem.Text = "Spoiler Log lookup";
+            this.spoilerLogLookupToolStripMenuItem.Click += new System.EventHandler(this.spoilerLogLookupToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -888,6 +897,7 @@
         private System.Windows.Forms.ToolStripMenuItem changeLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem goronGraveLadderClimbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lensCavePathsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem spoilerLogLookupToolStripMenuItem;
     }
 }
 

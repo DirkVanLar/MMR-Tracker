@@ -1563,5 +1563,11 @@ namespace MMR_Tracker_V2
 
         #endregion Functions
 
+        private void spoilerLogLookupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ItemSelect ItemSelectForm = new ItemSelect();
+            ItemSelect.Function = 10;
+            var dialogResult = ItemSelectForm.ShowDialog();
+        }
     }
 }

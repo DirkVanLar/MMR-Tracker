@@ -3,6 +3,7 @@ using MMR_Tracker.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
@@ -21,6 +22,7 @@ namespace MMR_Tracker_V2
         public static List<LogicObjects.LogicEntry> UsedLogic = new List<LogicObjects.LogicEntry>();
         public bool ItemsReturned = false;
         public string Title = "";
+        public bool HeightSet = false;
 
         //Form Items
 
@@ -195,6 +197,20 @@ namespace MMR_Tracker_V2
             }
         }
 
+        private void ShowAllSpoilerAsItem()
+        {
+            LBItemSelect.Items.Clear();
+            foreach(var i in UsedLogic.Where(x => x.SpoilerRandom > -1))
+            {
+                var spoilerDisplay = new LogicObjects.LogicEntry { ID = i.ID, DisplayName = UsedLogic[i.SpoilerRandom].DictionaryName };
+                if (spoilerDisplay.DisplayName.ToLower().Contains(TXTSearch.Text.ToLower()))
+                {
+                    LBItemSelect.Items.Add(spoilerDisplay);
+                }
+                
+            }
+        }
+
         //Other Functions
 
         private void ReturnItems()
@@ -214,6 +230,13 @@ namespace MMR_Tracker_V2
                 }
                 this.DialogResult = DialogResult.OK;
                 this.Close();
+            }
+            else if (Function == 10)
+            {
+                if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return; }
+                var item = (LBItemSelect.SelectedItem as LogicObjects.LogicEntry).DisplayName;
+                var Location = UsedLogic[(LBItemSelect.SelectedItem as LogicObjects.LogicEntry).ID].LocationName;
+                MessageBox.Show($"{item} is found at {Location}");
             }
             else if (LBItemSelect.Visible)
             {
@@ -272,7 +295,11 @@ namespace MMR_Tracker_V2
             {
                 UsedLogic = LogicObjects.MainTrackerInstance.Logic;
                 BTNJunk.Visible = false;
-                this.Height = this.Height - BTNJunk.Height;
+                if (!HeightSet)
+                {
+                    this.Height = this.Height - BTNJunk.Height;
+                    HeightSet = true;
+                }
                 LBItemSelect.SelectionMode = SelectionMode.One;
                 ShowAvailableAsLocation(); 
                 this.Text = "Select a location";
@@ -332,6 +359,20 @@ namespace MMR_Tracker_V2
                 LBItemSelect.SelectionMode = SelectionMode.One;
                 ShowAllCheckedItem();
                 this.Text = Title;
+                LBItemSelect.Sorted = true;
+            }
+            if (Function == 10) //Spoiler display
+            {
+                UsedLogic = LogicObjects.MainTrackerInstance.Logic;
+                BTNJunk.Visible = false;
+                if (!HeightSet)
+                {
+                    this.Height = this.Height - BTNJunk.Height;
+                    HeightSet = true;
+                }
+                LBItemSelect.SelectionMode = SelectionMode.One;
+                ShowAllSpoilerAsItem();
+                this.Text = "Select an item to see it's location";
                 LBItemSelect.Sorted = true;
             }
             Updating = false;
