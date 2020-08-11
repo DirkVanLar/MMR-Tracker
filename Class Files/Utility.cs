@@ -141,19 +141,19 @@ namespace MMR_Tracker_V2
             }
             return false;
         }
-        public static bool CheckforSpoilerLog(List<LogicObjects.LogicEntry> Logic, bool full = false)
+        public static bool CheckforSpoilerLog(List<LogicObjects.LogicEntry> Logic, bool full = false, bool FakeAllowed = true)
         {
             bool fullLog = true;
             bool Spoiler = false;
             foreach (var i in Logic)
             {
                 if (i.IsFake) { continue; }
-                if (i.SpoilerRandom > -1) 
+                if (i.SpoilerRandom > (FakeAllowed ? -2 : -1)) 
                 { 
                     Spoiler = true;
                     if (!full) { Console.WriteLine(i.DictionaryName + " Had SpoilerData"); }
                 }
-                if (i.SpoilerRandom < 0) 
+                if (i.SpoilerRandom < (FakeAllowed ? -1 : 0)) 
                 { 
                     fullLog = false;
                     if (full) { Console.WriteLine(i.DictionaryName + " Does not have SpoilerData"); }

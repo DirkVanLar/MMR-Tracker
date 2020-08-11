@@ -153,6 +153,11 @@ namespace MMR_Tracker.Class_Files
                     if (Item == null) { Console.WriteLine($"Unable to find logic entry for {entry.ItemName}"); }
                     else {Console.WriteLine($"Entry {Item.ID} is {entry.ItemName}"); }
 
+                    if (entry.ItemName.Contains("Ice Trap"))
+                    {
+                        Item = new LogicObjects.LogicEntry { ID = -1 };
+                    }
+
                     if (Item != null && location != null)
                     {
                         entry.ItemID = Item.ID;
@@ -229,6 +234,12 @@ namespace MMR_Tracker.Class_Files
                     X = X.Replace("\"></span></td>", "");
                     entry.ItemName = X;
                     entry.LocationArea = Region;
+
+                    if (entry.ItemName.Contains("Ice Trap"))
+                    {
+                        entry.ItemID = -1;
+                    }
+
                     SpoilerData.Add(entry);
                     entry = new LogicObjects.SpoilerData();
                 }
