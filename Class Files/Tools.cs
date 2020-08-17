@@ -162,7 +162,7 @@ namespace MMR_Tracker.Class_Files
                     {
                         entry.ItemID = Item.ID;
                         entry.LocationID = location.ID;
-                        usedId.Add(Item.ID);
+                        if (instance.IsMM() || !Item.IsEntrance()) usedId.Add(Item.ID);
                         SpoilerData.Add(entry);
                     }
                 }

@@ -1415,7 +1415,7 @@ namespace MMR_Tracker_V2
             CreateMenu();
 
             //MM specific Controls
-            importSpoilerLogToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM();
+            //importSpoilerLogToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM();
             useSongOfTimeInPathfinderToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
@@ -1568,6 +1568,12 @@ namespace MMR_Tracker_V2
             ItemSelect ItemSelectForm = new ItemSelect();
             ItemSelect.Function = 10;
             var dialogResult = ItemSelectForm.ShowDialog();
+        }
+
+        private void spoilerLogConverterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SpoilerLogConverter spoilerLogConverter = new SpoilerLogConverter();
+            spoilerLogConverter.ShowDialog();
         }
     }
 }

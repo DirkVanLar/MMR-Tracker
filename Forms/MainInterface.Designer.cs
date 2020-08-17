@@ -79,6 +79,7 @@
             this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generatePlaythroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spoilerLogLookupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.popoutPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FilterMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,7 +105,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.spoilerLogLookupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spoilerLogConverterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -561,7 +562,8 @@
             this.logicEditorToolStripMenuItem,
             this.popoutPathfinderToolStripMenuItem,
             this.FilterMapToolStripMenuItem,
-            this.itemTrackerToolStripMenuItem});
+            this.itemTrackerToolStripMenuItem,
+            this.spoilerLogConverterToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -586,6 +588,13 @@
             this.whatUnlockedThisToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.whatUnlockedThisToolStripMenuItem.Text = "What Unlocked This?";
             this.whatUnlockedThisToolStripMenuItem.Click += new System.EventHandler(this.WhatUnlockedThisToolStripMenuItem_Click);
+            // 
+            // spoilerLogLookupToolStripMenuItem
+            // 
+            this.spoilerLogLookupToolStripMenuItem.Name = "spoilerLogLookupToolStripMenuItem";
+            this.spoilerLogLookupToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.spoilerLogLookupToolStripMenuItem.Text = "Spoiler Log lookup";
+            this.spoilerLogLookupToolStripMenuItem.Click += new System.EventHandler(this.spoilerLogLookupToolStripMenuItem_Click);
             // 
             // logicEditorToolStripMenuItem
             // 
@@ -771,12 +780,12 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // spoilerLogLookupToolStripMenuItem
+            // spoilerLogConverterToolStripMenuItem
             // 
-            this.spoilerLogLookupToolStripMenuItem.Name = "spoilerLogLookupToolStripMenuItem";
-            this.spoilerLogLookupToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.spoilerLogLookupToolStripMenuItem.Text = "Spoiler Log lookup";
-            this.spoilerLogLookupToolStripMenuItem.Click += new System.EventHandler(this.spoilerLogLookupToolStripMenuItem_Click);
+            this.spoilerLogConverterToolStripMenuItem.Name = "spoilerLogConverterToolStripMenuItem";
+            this.spoilerLogConverterToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.spoilerLogConverterToolStripMenuItem.Text = "Spoiler Log Converter";
+            this.spoilerLogConverterToolStripMenuItem.Click += new System.EventHandler(this.spoilerLogConverterToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -898,6 +907,7 @@
         private System.Windows.Forms.ToolStripMenuItem goronGraveLadderClimbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lensCavePathsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spoilerLogLookupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem spoilerLogConverterToolStripMenuItem;
     }
 }
 
