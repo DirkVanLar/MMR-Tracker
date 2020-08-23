@@ -1,5131 +1,6168 @@
 -versionOOTR 5
 - Adult Spawn => Temple of Time
-893
+895
 
 0
 0
+
 - Child Spawn => Links House
-892
+894
 
 0
 0
+
 - Bolero of Fire Warp => Death Mountain Crater Central Local
-924,259
+926,259
 
 0
 0
+
 - Minuet of Forest Warp => Sacred Forest Meadow
-924,251
+926,251
 
 0
 0
+
 - Nocturne of Shadow Warp => Shadow Temple Warp Region
-924,256
+926,256
 
 0
 0
+
 - Prelude of Light Warp => Temple of Time
-924,254
+926,254
 
 0
 0
+
 - Requiem of Spirit Warp => Desert Colossus
-924,253
+926,253
 
 0
 0
+
 - Serenade of Water Warp => Lake Hylia
-261,924
+261,926
 
 0
 0
+
 - Death Mountain Owl Flight => Kakariko Impa Ledge
-892,963
+894,965
 
 0
 0
+
 - Lake Hylia Owl Flight => Hyrule Field
-892,960
+894,962
 
 0
 0
+
 - Castle Grounds => Castle Town
 
 11;112;120;167
 0
 0
+
 - Castle Town => Castle Grounds
-962
+964
 
 0
 0
+
 - Castle Town => Castle Town Entrance
-962
+964
 
 0
 0
+
 - Castle Town => Temple of Time Exterior
-962
+964
 
 0
 0
+
 - Castle Town Entrance => Castle Town
-962
+964
 
 0
 0
+
 - Castle Town Entrance => Hyrule Field
-962
+964
 
 0
 0
+
 - Darunias Chamber => Death Mountain Crater Lower Local
-969,893
-926,984
+971,895
+928,986
 0
 0
+
 - Death Mountain => Goron City
-964
-
-0
-0
-- Death Mountain => Kakariko Village Behind Gate
-964
-
-0
-0
-- Death Mountain Crater Lower Nearby => Darunias Chamber
 966
 
 0
 0
+
+- Death Mountain => Kakariko Village Behind Gate
+966
+
+0
+0
+
+- Death Mountain Crater Lower Nearby => Darunias Chamber
+968
+
+0
+0
+
 - Death Mountain Crater Upper Nearby => Death Mountain Summit
-967
+969
 
 0
 0
+
 - Death Mountain Summit => Death Mountain Crater Upper Local
-963
+965
 
 0
 0
+
 - Desert Colossus => Haunted Wasteland Near Colossus
 
 6;31;81;105;177
 0
 0
+
 - Gerudo Fortress => Gerudo Valley Far Side
-968
-
-0
-0
-- Gerudo Fortress Outside Gate => Haunted Wasteland Near Fortress
-
-32;968,893,313;968,313,941,958
-0
-0
-- Gerudo Valley => Hyrule Field
-971
-
-0
-0
-- Gerudo Valley Far Side => Gerudo Fortress
 970
 
 0
 0
-- Gerudo Valley Lower Stream => Lake Hylia
 
-970;971;190
-0
-0
-- Goron City => Death Mountain
+- Gerudo Fortress Outside Gate => Haunted Wasteland Near Fortress
 
-969
+32;970,895,313;970,313,943,960
 0
 0
-- Goron City Woods Warp => Lost Woods
 
-969,984;969,926;969,929,923;969,930
+- Gerudo Valley => Hyrule Field
+973
+
 0
 0
-- Graveyard => Kakariko Village
+
+- Gerudo Valley Far Side => Gerudo Fortress
 972
 
 0
 0
+
+- Gerudo Valley Lower Stream => Lake Hylia
+
+972;973;190
+0
+0
+
+- Goron City => Death Mountain
+
+971
+0
+0
+
+- Goron City Woods Warp => Lost Woods
+
+971,986;971,928;971,931,925;971,932
+0
+0
+
+- Graveyard => Kakariko Village
+974
+
+0
+0
+
 - Haunted Wasteland Near Colossus => Desert Colossus
 
-22;24,954,912;24,954,925;24,927,912;24,927,925
+22;24,956,914;24,956,927;24,929,914;24,929,927
 0
 0
+
 - Haunted Wasteland Near Fortress => Gerudo Fortress Outside Gate
 
-24;22,957,912;22,957,925
+24;22,959,914;22,959,927
 0
 0
+
 - Hyrule Field => Castle Town Entrance
-961
+963
 
 0
 0
+
 - Hyrule Field => Gerudo Valley
-961
+963
 
 0
 0
+
 - Hyrule Field => Kakariko Village
-961
+963
 
 0
 0
+
 - Hyrule Field => Lake Hylia
-961
+963
 
 0
 0
+
 - Hyrule Field => Lon Lon Ranch
-961
+963
 
 0
 0
+
 - Hyrule Field => Lost Woods Bridge
-961
+963
 
 0
 0
+
 - Hyrule Field => Zora River Front
-961
+963
 
 0
 0
+
 - Kakariko Village => Graveyard
-973
+975
 
 0
 0
+
 - Kakariko Village => Hyrule Field
-973
+975
 
 0
 0
+
 - Kakariko Village Behind Gate => Death Mountain
-973
+975
 
 0
 0
+
 - Kokiri Forest => Lost Woods
-974
+976
 
 0
 0
+
 - Kokiri Forest => Lost Woods Bridge From Forest
-974
+976
 
 0
 0
+
 - Lake Hylia => Hyrule Field
-960
+962
 
 0
 0
+
 - Lake Hylia => Zoras Domain
-960
+962
 
 0
 0
+
 - Lon Lon Ranch => Hyrule Field
 
 37;124;151;159;216
 0
 0
+
 - Lost Woods => Goron City Woods Warp
-975
+977
 
 0
 0
+
 - Lost Woods => Zora River
-975
+977
 
 0
 0
+
 - Lost Woods Beyond Mido => Sacred Forest Meadow Entryway
-975
+977
 
 0
 0
+
 - Lost Woods Bridge => Hyrule Field
 
 38;44
 0
 0
+
 - Lost Woods Bridge => Kokiri Forest
 
 38;44
 0
 0
-- Lost Woods Forest Exit => Kokiri Forest
-975
 
-0
-0
-- Sacred Forest Meadow Entryway => Lost Woods Beyond Mido
+- Lost Woods Forest Exit => Kokiri Forest
 977
 
 0
 0
+
+- Sacred Forest Meadow Entryway => Lost Woods Beyond Mido
+979
+
+0
+0
+
 - Temple of Time Exterior => Castle Town
 
 13;160
 0
 0
+
 - Zora River => Lost Woods
-976
+978
 
 0
 0
+
 - Zora River Behind Waterfall => Zoras Domain
-976
+978
 
 0
 0
+
 - Zora River Front => Hyrule Field
-976
+978
 
 0
 0
+
 - Zoras Domain => Lake Hylia
-978
-
-0
-0
-- Zoras Domain => Zora River Behind Waterfall
-978
-
-0
-0
-- Zoras Domain Behind King Zora => Zoras Fountain
-978
-
-0
-0
-- Zoras Fountain => Zoras Domain Behind King Zora
-979
-
-0
-0
-- Bottom of the Well => Kakariko Village
-
-76;886
-0
-0
-- Death Mountain => Dodongos Cavern Beginning
-964
-
-0
-0
-- Deku Tree Lobby => Outside Deku Tree
-
-879;78
-0
-0
-- Desert Colossus => Spirit Temple Lobby
 980
 
 0
 0
+
+- Zoras Domain => Zora River Behind Waterfall
+980
+
+0
+0
+
+- Zoras Domain Behind King Zora => Zoras Fountain
+980
+
+0
+0
+
+- Zoras Fountain => Zoras Domain Behind King Zora
+981
+
+0
+0
+
+- Bottom of the Well => Kakariko Village
+
+76;888
+0
+0
+
+- Death Mountain => Dodongos Cavern Beginning
+966
+
+0
+0
+
+- Deku Tree Lobby => Outside Deku Tree
+
+881;78
+0
+0
+
+- Desert Colossus => Spirit Temple Lobby
+982
+
+0
+0
+
 - Dodongos Cavern Beginning => Death Mountain
 
-880;64
+882;64
 0
 0
+
 - Fire Temple Entrance => Fire Temple Lower
-965
+967
 
 0
 0
+
 - Fire Temple Lower => Fire Temple Entrance
 
-883;68
+885;68
 0
 0
+
 - Forest Temple Entrance Ledge => Forest Temple Lobby
-977
+979
 
 0
 0
+
 - Forest Temple Lobby => Forest Temple Entrance Ledge
 
-70;882
+70;884
 0
 0
+
 - Gerudo Fortress => Gerudo Training Grounds Lobby
-968
+970
 
 0
 0
+
 - Gerudo Training Grounds Lobby => Gerudo Fortress
 
-72;888
+72;890
 0
 0
+
 - Ice Cavern Beginning => Zoras Fountain Ice Ledge
 
-884;84
+886;84
 0
 0
+
 - Jabu Jabus Belly Beginning => Zoras Fountain
 
-83;881
+83;883
 0
 0
+
 - Kakariko Village => Bottom of the Well
-973
+975
 
 0
 0
+
 - Lake Hylia => Water Temple Lobby
-960
+962
 
 0
 0
+
 - Outside Deku Tree => Deku Tree Lobby
+976
+
+0
+0
+
+- Shadow Temple Entryway => Shadow Temple Warp Region
+
+889;80
+0
+0
+
+- Shadow Temple Warp Region => Shadow Temple Entryway
 974
 
 0
 0
-- Shadow Temple Entryway => Shadow Temple Warp Region
 
-887;80
-0
-0
-- Shadow Temple Warp Region => Shadow Temple Entryway
-972
-
-0
-0
 - Spirit Temple Lobby => Desert Colossus From Spirit Lobby
 
-889;66
+891;66
 0
 0
+
 - Water Temple Lobby => Lake Hylia
 
-77;885
+77;887
 0
 0
+
 - Zoras Fountain => Jabu Jabus Belly Beginning
-979
+981
 
 0
 0
+
 - Zoras Fountain Ice Ledge => Ice Cavern Beginning
-979
+981
 
 0
 0
+
 - Carpenter Boss House => Kakariko Village
 130
 
 0
 0
+
 - Carpenter Tent => Gerudo Valley Far Side
 114
 
 0
 0
+
 - Castle Town => Castle Town Bazaar
-962
+964
 
 0
 0
+
 - Castle Town => Castle Town Bombchu Bowling
-962
+964
 
 0
 0
+
 - Castle Town => Castle Town Mask Shop
-962
+964
 
 0
 0
+
 - Castle Town => Castle Town Potion Shop
-962
+964
 
 0
 0
+
 - Castle Town => Castle Town Shooting Gallery
-962
+964
 
 0
 0
+
 - Castle Town => Castle Town Treasure Chest Game
-962
+964
 
 0
 0
+
 - Castle Town Back Alley => Castle Town Bombchu Shop
-962
+964
 
 0
 0
+
 - Castle Town Back Alley => Castle Town Man in Green House
-962
+964
 
 0
 0
+
 - Castle Town Bazaar => Castle Town
 87
 
 0
 0
+
 - Castle Town Bombchu Bowling => Castle Town
 88
 
 0
 0
+
 - Castle Town Bombchu Shop => Castle Town Back Alley
 93
 
 0
 0
+
 - Castle Town Entrance => Castle Town Rupee Room
 
 12;33;102
 0
 0
+
 - Castle Town Man in Green House => Castle Town Back Alley
 94
 
 0
 0
+
 - Castle Town Mask Shop => Castle Town
 89
 
 0
 0
+
 - Castle Town Potion Shop => Castle Town
 90
 
 0
 0
+
 - Castle Town Rupee Room => Castle Town Entrance
 98
 
 0
 0
+
 - Castle Town Shooting Gallery => Castle Town
 91
 
 0
 0
+
 - Castle Town Treasure Chest Game => Castle Town
 92
 
 0
 0
+
 - Colossus Fairy => Desert Colossus
 110
 
 0
 0
+
 - Crater Fairy => Death Mountain Crater Lower Local
 108
 
 0
 0
+
 - Dampes House => Graveyard
 117
 
 0
 0
+
 - Death Mountain Crater Lower Nearby => Crater Fairy
-966
+968
 
 0
 0
+
 - Death Mountain Summit => Mountain Summit Fairy
-963
+965
 
 0
 0
+
 - Desert Colossus => Colossus Fairy
-980
+982
 
 0
 0
+
 - Fishing Hole => Lake Hylia Fishing Island
 148
 
 0
 0
+
 - Ganons Castle Fairy => Castle Grounds
 113
 
 0
 0
+
 - Ganons Castle Grounds => Ganons Castle Fairy
 
 11;112;120;167
 0
 0
+
 - Gerudo Valley Far Side => Carpenter Tent
-970
+972
 
 0
 0
+
 - Goron City => Goron Shop
-969
+971
 
 0
 0
+
 - Goron Shop => Goron City
 115
 
 0
 0
+
 - Graveyard => Dampes House
-972
+974
 
 0
 0
+
 - House of Skulltula => Kakariko Village
 131
 
 0
 0
+
 - House of Twins => Kokiri Forest
 140
 
 0
 0
+
 - Hyrule Castle Fairy => Castle Grounds
 121
 
 0
 0
+
 - Hyrule Castle Grounds => Hyrule Castle Fairy
 
 11;120;167
 0
 0
+
 - Impas House => Kakariko Village
 132
 
 0
 0
+
 - Impas House Back => Kakariko Impa Ledge
 126
 
 0
 0
+
 - Ingo Barn => Lon Lon Ranch
 152
 
 0
 0
+
 - Kakariko Bazaar => Kakariko Village
 133
 
 0
 0
+
 - Kakariko Impa Ledge => Impas House Back
-973
+975
 
 0
 0
+
 - Kakariko Potion Shop Back => Kakariko Village Backyard
 
 134;137
 0
 0
+
 - Kakariko Potion Shop Front => Kakariko Village
 
 134;137
 0
 0
+
 - Kakariko Shooting Gallery => Kakariko Village
 135
 
 0
 0
+
 - Kakariko Village => Carpenter Boss House
-973
+975
 
 0
 0
+
 - Kakariko Village => House of Skulltula
-973
+975
 
 0
 0
+
 - Kakariko Village => Impas House
-973
+975
 
 0
 0
+
 - Kakariko Village => Kakariko Bazaar
-973
+975
 
 0
 0
+
 - Kakariko Village => Kakariko Potion Shop Front
-973
+975
 
 0
 0
+
 - Kakariko Village => Kakariko Shooting Gallery
-973
+975
 
 0
 0
+
 - Kakariko Village => Windmill
-973
+975
 
 0
 0
+
 - Kakariko Village Backyard => Kakariko Potion Shop Back
-973
+975
 
 0
 0
+
 - Kakariko Village Backyard => Odd Medicine Building
-973
+975
 
 0
 0
+
 - Know It All House => Kokiri Forest
 141
 
 0
 0
+
 - Kokiri Forest => House of Twins
-974
+976
 
 0
 0
+
 - Kokiri Forest => Know It All House
-974
+976
 
 0
 0
+
 - Kokiri Forest => Kokiri Shop
-974
+976
 
 0
 0
+
 - Kokiri Forest => Links House
-974
+976
 
 0
 0
+
 - Kokiri Forest => Mido House
-974
+976
 
 0
 0
+
 - Kokiri Forest => Saria House
-974
+976
 
 0
 0
+
 - Kokiri Shop => Kokiri Forest
 142
 
 0
 0
+
 - Lake Hylia => Lake Hylia Lab
-960
+962
 
 0
 0
+
 - Lake Hylia Fishing Island => Fishing Hole
-960
+962
 
 0
 0
+
 - Lake Hylia Lab => Lake Hylia
 147
 
 0
 0
+
 - Links House => Kokiri Forest
 
 1;143
 0
 0
+
 - Lon Lon Corner Tower => Lon Lon Ranch
 153
 
 0
 0
+
 - Lon Lon Ranch => Ingo Barn
-981
+983
 
 0
 0
+
 - Lon Lon Ranch => Lon Lon Corner Tower
-981
+983
 
 0
 0
+
 - Lon Lon Ranch => Talon House
-981
+983
 
 0
 0
+
 - Mido House => Kokiri Forest
 144
 
 0
 0
+
 - Mountain Summit Fairy => Death Mountain Summit
 109
 
 0
 0
+
 - Odd Medicine Building => Kakariko Village Backyard
 138
 
 0
 0
+
 - Saria House => Kokiri Forest
 145
 
 0
 0
+
 - Talon House => Lon Lon Ranch
 154
 
 0
 0
+
 - Temple of Time => Temple of Time Exterior
 
 5;161
 0
 0
+
 - Temple of Time Exterior => Temple of Time
 
 160;13
 0
 0
+
 - Windmill => Kakariko Village
 136
 
 0
 0
+
 - Zora Shop => Zoras Domain
 164
 
 0
 0
+
 - Zoras Domain => Zora Shop
-978
+980
 
 0
 0
+
 - Zoras Fountain => Zoras Fountain Fairy
-979
+981
 
 0
 0
+
 - Zoras Fountain Fairy => Zoras Fountain
 165
 
 0
 0
+
 - Castle Storms Grotto => Castle Grounds
 199
 
 0
 0
+
 - Composer Grave => Graveyard
 194
 
 0
 0
+
 - DMC Hammer Grotto => Death Mountain Crater Lower Local
 172
 
 0
 0
+
 - Dampes Grave => Graveyard
 195
 
 0
 0
-- Death Mountain => Mountain Storms Grotto
-964
 
-0
-0
-- Death Mountain Crater Lower Nearby => DMC Hammer Grotto
+- Death Mountain => Mountain Storms Grotto
 966
 
 0
 0
+
+- Death Mountain Crater Lower Nearby => DMC Hammer Grotto
+968
+
+0
+0
+
 - Death Mountain Crater Upper Nearby => Top of Crater Grotto
-967
+969
 
 0
 0
+
 - Death Mountain Summit => Mountain Bombable Grotto
-963
+965
 
 0
 0
+
 - Deku Theater => Lost Woods Beyond Mido
 219
 
 0
 0
+
 - Desert Colossus => Desert Colossus Grotto
-980
+982
 
 0
 0
+
 - Desert Colossus Grotto => Desert Colossus
 176
 
 0
 0
+
 - Field Far West Castle Town Grotto => Hyrule Field
 200
 
 0
 0
+
 - Field Kakariko Grotto => Hyrule Field
 201
 
 0
 0
+
 - Field Near Lake Inside Fence Grotto => Hyrule Field
 202
 
 0
 0
+
 - Field Near Lake Outside Fence Grotto => Hyrule Field
 203
 
 0
 0
+
 - Field North Lon Lon Grotto => Hyrule Field
 204
 
 0
 0
+
 - Field Valley Grotto => Hyrule Field
 205
 
 0
 0
+
 - Field West Castle Town Grotto => Hyrule Field
 206
 
 0
 0
+
 - Front of Meadow Grotto => Sacred Forest Meadow Entryway
 230
 
 0
 0
+
 - Gerudo Fortress => Gerudo Fortress Storms Grotto
-968
+970
 
 0
 0
+
 - Gerudo Fortress Storms Grotto => Gerudo Fortress
 186
 
 0
 0
+
 - Gerudo Valley Far Side => Gerudo Valley Storms Grotto
-970
+972
 
 0
 0
+
 - Gerudo Valley Grotto Ledge => Gerudo Valley Octorok Grotto
-971
+973
 
 0
 0
+
 - Gerudo Valley Octorok Grotto => Gerudo Valley Grotto Ledge
 189
 
 0
 0
+
 - Gerudo Valley Storms Grotto => Gerudo Valley Far Side
 188
 
 0
 0
+
 - Goron City Grotto => Goron City Grotto Platform
 193
 
 0
 0
+
 - Goron City Grotto Platform => Goron City Grotto
-969
+971
 
 0
 0
+
 - Graveyard => Composer Grave
-972
+974
 
 0
 0
+
 - Graveyard => Dampes Grave
-972
+974
 
 0
 0
+
 - Graveyard => Heart Piece Grave
-972
+974
 
 0
 0
+
 - Graveyard => Shield Grave
-972
+974
 
 0
 0
+
 - Heart Piece Grave => Graveyard
 196
 
 0
 0
+
 - Hyrule Castle Grounds => Castle Storms Grotto
 
 11;120;167
 0
 0
+
 - Hyrule Field => Field Far West Castle Town Grotto
-961
+963
 
 0
 0
+
 - Hyrule Field => Field Kakariko Grotto
-961
+963
 
 0
 0
+
 - Hyrule Field => Field Near Lake Inside Fence Grotto
-961
+963
 
 0
 0
+
 - Hyrule Field => Field Near Lake Outside Fence Grotto
-961
+963
 
 0
 0
+
 - Hyrule Field => Field North Lon Lon Grotto
-961
+963
 
 0
 0
+
 - Hyrule Field => Field Valley Grotto
-961
+963
 
 0
 0
+
 - Hyrule Field => Field West Castle Town Grotto
-961
+963
 
 0
 0
+
 - Hyrule Field => Remote Southern Grotto
-961
+963
 
 0
 0
+
 - Kakariko Back Grotto => Kakariko Village Backyard
 211
 
 0
 0
+
 - Kakariko Bombable Grotto => Kakariko Village
 210
 
 0
 0
+
 - Kakariko Village => Kakariko Bombable Grotto
-973
+975
 
 0
 0
+
 - Kakariko Village Backyard => Kakariko Back Grotto
-973
+975
 
 0
 0
+
 - Kokiri Forest => Kokiri Forest Storms Grotto
-974
+976
 
 0
 0
+
 - Kokiri Forest Storms Grotto => Kokiri Forest
 212
 
 0
 0
+
 - Lake Hylia => Lake Hylia Grotto
-960
+962
 
 0
 0
+
 - Lake Hylia Grotto => Lake Hylia
 214
 
 0
 0
+
 - Lon Lon Grotto => Lon Lon Ranch
 217
 
 0
 0
+
 - Lon Lon Ranch => Lon Lon Grotto
-981
+983
 
 0
 0
+
 - Lost Woods => Lost Woods Generic Grotto
-975
+977
 
 0
 0
+
 - Lost Woods Beyond Mido => Deku Theater
-975
+977
 
 0
 0
+
 - Lost Woods Beyond Mido => Lost Woods Sales Grotto
-975
+977
 
 0
 0
+
 - Lost Woods Generic Grotto => Lost Woods
 218
 
 0
 0
+
 - Lost Woods Sales Grotto => Lost Woods Beyond Mido
 220
 
 0
 0
+
 - Meadow Fairy Grotto => Sacred Forest Meadow
 228
 
 0
 0
+
 - Meadow Storms Grotto => Sacred Forest Meadow
 229
 
 0
 0
+
 - Mountain Bombable Grotto => Death Mountain Summit
 174
 
 0
 0
+
 - Mountain Storms Grotto => Death Mountain
 171
 
 0
 0
+
 - Remote Southern Grotto => Hyrule Field
 207
 
 0
 0
+
 - Sacred Forest Meadow => Meadow Fairy Grotto
-977
+979
 
 0
 0
+
 - Sacred Forest Meadow => Meadow Storms Grotto
-977
+979
 
 0
 0
+
 - Sacred Forest Meadow Entryway => Front of Meadow Grotto
-977
+979
 
 0
 0
+
 - Shield Grave => Graveyard
 197
 
 0
 0
+
 - Top of Crater Grotto => Death Mountain Crater Upper Local
 173
 
 0
 0
+
 - Zora River => Zora River Plateau Bombable Grotto
-976
+978
 
 0
 0
+
 - Zora River => Zora River Plateau Open Grotto
-976
+978
 
 0
 0
+
 - Zora River => Zora River Storms Grotto
-976
+978
 
 0
 0
+
 - Zora River Plateau Bombable Grotto => Zora River
 233
 
 0
 0
+
 - Zora River Plateau Open Grotto => Zora River
 234
 
 0
 0
+
 - Zora River Storms Grotto => Zora River
 235
 
 0
 0
+
 - Zoras Domain => Zoras Domain Storms Grotto
-978
+980
 
 0
 0
+
 - Zoras Domain Storms Grotto => Zoras Domain
 239
 
 0
 0
+
 - Links Pocket
 
 
 0
 0
+
 - Queen Gohma
-1009
-
-0
-0
-- King Dodongo
-1010
-
-0
-0
-- Barinade
 1011
 
 0
 0
-- Phantom Ganon
+
+- King Dodongo
 1012
 
 0
 0
-- Volvagia
+
+- Barinade
 1013
 
 0
 0
-- Morpha
+
+- Phantom Ganon
 1014
 
 0
 0
-- Bongo Bongo
+
+- Volvagia
+1015
+
+0
+0
+
+- Morpha
 1016
 
 0
 0
-- Twinrova
+
+- Bongo Bongo
 1018
 
 0
 0
+
+- Twinrova
+1020
+
+0
+0
+
 - Song from Saria
-977
+979
 
 0
 0
+
 - Sheik Forest Song
-977
+979
 
 0
 0
+
 - Song from Ocarina of Time
-961,242,243,244
+963,242,243,244
 
 0
 0
+
 - Sheik at Colossus
-980
+982
 
 0
 0
+
 - Sheik at Temple
-1021
-
-0
-0
-- Impa at Castle
-1022,892
-
-0
-0
-- Sheik in Kakariko
-893
-
-0
-0
-- Song at Windmill
 1023
 
 0
 0
+
+- Impa at Castle
+1024,894
+
+0
+0
+
+- Sheik in Kakariko
+895
+
+0
+0
+
+- Song at Windmill
+1025
+
+0
+0
+
 - Song from Composer Grave
 194
 
 0
 0
+
 - Sheik in Crater
-965,893
+967,895
 
 0
 0
+
 - Song from Malon
-981
+983
 
 0
 0
+
 - Sheik in Ice Cavern
-1019
+1021
 
 0
 0
+
 - Kokiri Sword Chest
-974
+976
 
 0
 0
+
 - GS Kokiri Know It All House
-974
+976
 
 0
 0
+
 - GS Kokiri Bean Patch
-974
+976
 
 0
 0
+
 - GS Kokiri House of Twins
-974
+976
 
 0
 0
+
 - Links House Cow
 143
 
 0
 0
+
 - Mido Chest Top Left
 144
 
 0
 0
+
 - Mido Chest Top Right
 144
 
 0
 0
+
 - Mido Chest Bottom Left
 144
 
 0
 0
+
 - Mido Chest Bottom Right
 144
 
 0
 0
+
 - Kokiri Shop Item 5
 142
 
 0
 0
+
 - Kokiri Shop Item 6
 142
 
 0
 0
+
 - Kokiri Shop Item 7
 142
 
 0
 0
+
 - Kokiri Shop Item 8
 142
 
 0
 0
+
 - Skull Kid
-975
+977
 
 0
 0
+
 - Ocarina Memory Game
-975
+977
 
 0
 0
+
 - Target in Woods
-975
+977
 
 0
 0
+
 - LW Deku Scrub Deku Stick Upgrade
-975
+977
 
 0
 0
+
 - GS Lost Woods Bean Patch Near Bridge
-975
+977
 
 0
 0
+
 - LW Deku Scrub Deku Nuts
-975
+977
 
 0
 0
+
 - LW Deku Scrub Deku Sticks
-975
+977
 
 0
 0
+
 - GS Lost Woods Above Stage
-975
+977
 
 0
 0
+
 - GS Lost Woods Bean Patch Near Stage
-975
+977
 
 0
 0
+
 - GS Sacred Forest Meadow
-977
+979
 
 0
 0
+
 - Gift from Saria
-977
+979
 
 0
 0
+
 - Ocarina of Time
-961,242,243,244
+963,242,243,244
 
 0
 0
+
 - Underwater Bottle
-960,920
+962,922
 
 0
 0
+
 - Lake Hylia Sun
-1025,960
+1027,962
 
 0
 0
+
 - Lake Hylia Freestanding PoH
-960
+962
 
 0
 0
+
 - GS Lake Hylia Bean Patch
-960
+962
 
 0
 0
+
 - GS Lake Hylia Lab Wall
-960
+962
 
 0
 0
+
 - GS Lake Hylia Small Island
-960
+962
 
 0
 0
+
 - GS Lake Hylia Giant Tree
-960
+962
 
 0
 0
+
 - Diving in the Lab
 147
 
 0
 0
+
 - GS Lab Underwater Crate
 147
 
 0
 0
+
 - Child Fishing
 148
 
 0
 0
+
 - Adult Fishing
 148
 
 0
 0
+
 - GS Gerudo Valley Small Bridge
 
 
 0
 0
+
 - Gerudo Valley Waterfall Freestanding PoH
 
 
 0
 0
+
 - GS Gerudo Valley Bean Patch
 
 
 0
 0
+
 - Gerudo Valley Cow
 
 
 0
 0
+
 - Gerudo Valley Crate Freestanding PoH
 
 
 0
 0
+
 - Gerudo Valley Hammer Rocks Chest
 
 
 0
 0
+
 - GS Gerudo Valley Behind Tent
 
 
 0
 0
+
 - GS Gerudo Valley Pillar
 
 
 0
 0
+
 - Gerudo Fortress Rooftop Chest
 
 
 0
 0
+
 - Horseback Archery 1000 Points
 
 
 0
 0
+
 - Horseback Archery 1500 Points
 
 
 0
 0
+
 - Gerudo Fortress North F1 Carpenter
 
 
 0
 0
+
 - Gerudo Fortress North F2 Carpenter
 
 
 0
 0
+
 - Gerudo Fortress South F1 Carpenter
 
 
 0
 0
+
 - Gerudo Fortress South F2 Carpenter
 
 
 0
 0
+
 - Gerudo Fortress Membership Card
 
 
 0
 0
+
 - GS Gerudo Fortress Archery Range
 
 
 0
 0
+
 - GS Gerudo Fortress Top Floor
 
 
 0
 0
+
 - Haunted Wasteland Structure Chest
 
 
 0
 0
+
 - Haunted Wasteland Bombchu Salesman
 
 
 0
 0
+
 - GS Wasteland Ruins
 
 
 0
 0
+
 - Colossus Freestanding PoH
 
 
 0
 0
+
 - GS Desert Colossus Bean Patch
 
 
 0
 0
+
 - GS Desert Colossus Tree
 
 
 0
 0
+
 - GS Desert Colossus Hill
 
 
 0
 0
+
 - Desert Colossus Fairy Reward
 
 
 0
 0
+
 - Zelda
 
 
 0
 0
+
 - Malon Egg
 
 
 0
 0
+
 - GS Hyrule Castle Tree
 
 
 0
 0
+
 - Hyrule Castle Fairy Reward
 
 
 0
 0
+
 - GS Outside Ganon's Castle
 
 
 0
 0
+
 - Ganons Castle Fairy Reward
 
 
 0
 0
+
 - 10 Big Poes
 
 
 0
 0
+
 - GS Castle Market Guard House
 
 
 0
 0
+
 - Castle Town Bazaar Item 5
 
 
 0
 0
+
 - Castle Town Bazaar Item 6
 
 
 0
 0
+
 - Castle Town Bazaar Item 7
 
 
 0
 0
+
 - Castle Town Bazaar Item 8
 
 
 0
 0
+
 - Child Shooting Gallery
 
 
 0
 0
+
 - Bombchu Bowling Bomb Bag
 
 
 0
 0
+
 - Bombchu Bowling Piece of Heart
 
 
 0
 0
+
 - Castle Town Potion Shop Item 5
 
 
 0
 0
+
 - Castle Town Potion Shop Item 6
 
 
 0
 0
+
 - Castle Town Potion Shop Item 7
 
 
 0
 0
+
 - Castle Town Potion Shop Item 8
 
 
 0
 0
+
 - Treasure Chest Game
 
 
 0
 0
+
 - Bombchu Shop Item 5
 
 
 0
 0
+
 - Bombchu Shop Item 6
 
 
 0
 0
+
 - Bombchu Shop Item 7
 
 
 0
 0
+
 - Bombchu Shop Item 8
 
 
 0
 0
+
 - Dog Lady
 
 
 0
 0
+
 - Anju as Adult
 
 
 0
 0
+
 - Anjus Chickens
 
 
 0
 0
+
 - GS Kakariko House Under Construction
 
 
 0
 0
+
 - GS Kakariko Skulltula House
 
 
 0
 0
+
 - GS Kakariko Guard's House
 
 
 0
 0
+
 - GS Kakariko Tree
 
 
 0
 0
+
 - GS Kakariko Watchtower
 
 
 0
 0
+
 - GS Kakariko Above Impa's House
 
 
 0
 0
+
 - Man on Roof
 
 
 0
 0
+
 - 10 Gold Skulltula Reward
 
 
 0
 0
+
 - 20 Gold Skulltula Reward
 
 
 0
 0
+
 - 30 Gold Skulltula Reward
 
 
 0
 0
+
 - 40 Gold Skulltula Reward
 
 
 0
 0
+
 - 50 Gold Skulltula Reward
 
 
 0
 0
+
 - Impa House Freestanding PoH
 
 
 0
 0
+
 - Impas House Cow
 
 
 0
 0
+
 - Windmill Freestanding PoH
 
 
 0
 0
+
 - Kakariko Bazaar Item 5
 
 
 0
 0
+
 - Kakariko Bazaar Item 6
 
 
 0
 0
+
 - Kakariko Bazaar Item 7
 
 
 0
 0
+
 - Kakariko Bazaar Item 8
 
 
 0
 0
+
 - Adult Shooting Gallery
 
 
 0
 0
+
 - Kakariko Potion Shop Item 5
 
 
 0
 0
+
 - Kakariko Potion Shop Item 6
 
 
 0
 0
+
 - Kakariko Potion Shop Item 7
 
 
 0
 0
+
 - Kakariko Potion Shop Item 8
 
 
 0
 0
+
 - Graveyard Freestanding PoH
 
 
 0
 0
+
 - Gravedigging Tour
 
 
 0
 0
+
 - GS Graveyard Wall
 
 
 0
 0
+
 - GS Graveyard Bean Patch
 
 
 0
 0
+
 - Shield Grave Chest
 
 
 0
 0
+
 - Heart Piece Grave Chest
 
 
 0
 0
+
 - Composer Grave Chest
 
 
 0
 0
+
 - Hookshot Chest
 
 
 0
 0
+
 - Dampe Race Freestanding PoH
 
 
 0
 0
+
 - Death Mountain Bombable Chest
 
 
 0
 0
+
 - DM Trail Freestanding PoH
 
 
 0
 0
+
 - GS Mountain Trail Bean Patch
 
 
 0
 0
+
 - GS Mountain Trail Bomb Alcove
 
 
 0
 0
+
 - GS Mountain Trail Above Dodongo's Cavern
 
 
 0
 0
+
 - Biggoron
 
 
 0
 0
+
 - GS Mountain Trail Path to Crater
 
 
 0
 0
+
 - Goron City Leftmost Maze Chest
 
 
 0
 0
+
 - Goron City Left Maze Chest
 
 
 0
 0
+
 - Goron City Right Maze Chest
 
 
 0
 0
+
 - Goron City Pot Freestanding PoH
 
 
 0
 0
+
 - Rolling Goron as Child
 
 
 0
 0
+
 - Link the Goron
 
 
 0
 0
+
 - Medigoron
 
 
 0
 0
+
 - GS Goron City Boulder Maze
 
 
 0
 0
+
 - GS Goron City Center Platform
 
 
 0
 0
+
 - Darunias Joy
 
 
 0
 0
+
 - Goron Shop Item 5
 
 
 0
 0
+
 - Goron Shop Item 6
 
 
 0
 0
+
 - Goron Shop Item 7
 
 
 0
 0
+
 - Goron Shop Item 8
 
 
 0
 0
+
 - DM Crater Wall Freestanding PoH
 
 
 0
 0
+
 - GS Death Mountain Crater Crate
 
 
 0
 0
+
 - DMC Deku Scrub Bombs
 
 
 0
 0
+
 - DM Crater Volcano Freestanding PoH
 
 
 0
 0
+
 - GS Mountain Crater Bean Patch
 
 
 0
 0
+
 - Crater Fairy Reward
 
 
 0
 0
+
 - Mountain Summit Fairy Reward
 
 
 0
 0
+
 - GS Zora River Tree
 
 
 0
 0
+
 - Magic Bean Salesman
 
 
 0
 0
+
 - Frog Ocarina Game
 
 
 0
 0
+
 - Frogs in the Rain
 
 
 0
 0
+
 - Zora River Lower Freestanding PoH
 
 
 0
 0
+
 - Zora River Upper Freestanding PoH
 
 
 0
 0
+
 - GS Zora River Ladder
 
 
 0
 0
+
 - GS Zora River Near Raised Grottos
 
 
 0
 0
+
 - GS Zora River Above Bridge
 
 
 0
 0
+
 - Diving Minigame
 
 
 0
 0
+
 - Zoras Domain Torch Run
 
 
 0
 0
+
 - King Zora Thawed
 
 
 0
 0
+
 - GS Zora's Domain Frozen Waterfall
 
 
 0
 0
+
 - Zoras Fountain Iceberg Freestanding PoH
 
 
 0
 0
+
 - Zoras Fountain Bottom Freestanding PoH
 
 
 0
 0
+
 - GS Zora's Fountain Tree
 
 
 0
 0
+
 - GS Zora's Fountain Above the Log
 
 
 0
 0
+
 - GS Zora's Fountain Hidden Cave
 
 
 0
 0
+
 - Zora Shop Item 5
 
 
 0
 0
+
 - Zora Shop Item 6
 
 
 0
 0
+
 - Zora Shop Item 7
 
 
 0
 0
+
 - Zora Shop Item 8
 
 
 0
 0
+
 - Zoras Fountain Fairy Reward
 
 
 0
 0
+
 - GS Lon Lon Ranch Tree
 
 
 0
 0
+
 - GS Lon Lon Ranch Rain Shed
 
 
 0
 0
+
 - GS Lon Lon Ranch House Window
 
 
 0
 0
+
 - GS Lon Lon Ranch Back Wall
 
 
 0
 0
+
 - Talons Chickens
 
 
 0
 0
+
 - LLR Stables Left Cow
 
 
 0
 0
+
 - LLR Stables Right Cow
 
 
 0
 0
+
 - Lon Lon Tower Freestanding PoH
 
 
 0
 0
+
 - LLR Tower Left Cow
 
 
 0
 0
+
 - LLR Tower Right Cow
 
 
 0
 0
+
 - Ganons Tower Boss Key Chest
 
 
 0
 0
+
 - Kokiri Forest Storms Grotto Chest
 
 
 0
 0
+
 - Lost Woods Generic Grotto Chest
 
 
 0
 0
+
 - Deku Theater Skull Mask
 
 
 0
 0
+
 - Deku Theater Mask of Truth
 
 
 0
 0
+
 - LW Grotto Deku Scrub Arrows
 
 
 0
 0
+
 - LW Grotto Deku Scrub Deku Nut Upgrade
 
 
 0
 0
+
 - SFM Grotto Deku Scrub Red Potion
 
 
 0
 0
+
 - SFM Grotto Deku Scrub Green Potion
 
 
 0
 0
+
 - Wolfos Grotto Chest
 
 
 0
 0
+
 - LLR Grotto Deku Scrub Deku Nuts
 
 
 0
 0
+
 - LLR Grotto Deku Scrub Bombs
 
 
 0
 0
+
 - LLR Grotto Deku Scrub Arrows
 
 
 0
 0
+
 - Remote Southern Grotto Chest
 
 
 0
 0
+
 - Field Near Lake Outside Fence Grotto Chest
 
 
 0
 0
+
 - HF Grotto Deku Scrub Piece of Heart
 
 
 0
 0
+
 - GS Hyrule Field Near Gerudo Valley
 
 
 0
 0
+
 - HF Grotto Cow
 
 
 0
 0
+
 - Field West Castle Town Grotto Chest
 
 
 0
 0
+
 - GS Hyrule Field near Kakariko
 
 
 0
 0
+
 - Tektite Grotto Freestanding PoH
 
 
 0
 0
+
 - GS Hyrule Castle Grotto
 
 
 0
 0
+
 - Redead Grotto Chest
 
 
 0
 0
+
 - Kakariko Back Grotto Chest
 
 
 0
 0
+
 - DMT Grotto Cow
 
 
 0
 0
+
 - Mountain Storms Grotto Chest
 
 
 0
 0
+
 - Goron Grotto Deku Scrub Deku Nuts
 
 
 0
 0
+
 - Goron Grotto Deku Scrub Bombs
 
 
 0
 0
+
 - Goron Grotto Deku Scrub Arrows
 
 
 0
 0
+
 - Top of Crater Grotto Chest
 
 
 0
 0
+
 - DMC Grotto Deku Scrub Deku Nuts
 
 
 0
 0
+
 - DMC Grotto Deku Scrub Bombs
 
 
 0
 0
+
 - DMC Grotto Deku Scrub Arrows
 
 
 0
 0
+
 - Zora River Plateau Open Grotto Chest
 
 
 0
 0
+
 - ZR Grotto Deku Scrub Red Potion
 
 
 0
 0
+
 - ZR Grotto Deku Scrub Green Potion
 
 
 0
 0
+
 - LH Grotto Deku Scrub Deku Nuts
 
 
 0
 0
+
 - LH Grotto Deku Scrub Bombs
 
 
 0
 0
+
 - LH Grotto Deku Scrub Arrows
 
 
 0
 0
+
 - Desert Grotto Deku Scrub Red Potion
 
 
 0
 0
+
 - Desert Grotto Deku Scrub Green Potion
 
 
 0
 0
+
 - Valley Grotto Deku Scrub Red Potion
 
 
 0
 0
+
 - Valley Grotto Deku Scrub Green Potion
 
 
 0
 0
+
 - Deku Tree Lobby Chest
 
 
 0
 0
+
 - Deku Tree Compass Chest
 
 
 0
 0
+
 - Deku Tree Compass Room Side Chest
 
 
 0
 0
+
 - Deku Tree Basement Chest
 
 
 0
 0
+
 - GS Deku Tree Compass Room
 
 
 0
 0
+
 - GS Deku Tree Basement Vines
 
 
 0
 0
+
 - GS Deku Tree Basement Gate
 
 
 0
 0
+
 - GS Deku Tree Basement Back Room
 
 
 0
 0
+
 - Deku Tree Slingshot Chest
 
 
 0
 0
+
 - Deku Tree Slingshot Room Side Chest
 
 
 0
 0
+
 - Queen Gohma Heart
 
 
 0
 0
+
 - Dodongos Cavern Map Chest
 
 
 0
 0
+
 - Dodongos Cavern Compass Chest
 
 
 0
 0
+
 - GS Dodongo's Cavern East Side Room
 
 
 0
 0
+
 - GS Dodongo's Cavern Scarecrow
 
 
 0
 0
+
 - DC Deku Scrub Deku Sticks
 
 
 0
 0
+
 - DC Deku Scrub Deku Shield
 
 
 0
 0
+
 - Dodongos Cavern Bomb Flower Platform
 
 
 0
 0
+
 - GS Dodongo's Cavern Vines Above Stairs
 
 
 0
 0
+
 - DC Deku Scrub Deku Seeds
 
 
 0
 0
+
 - DC Deku Scrub Deku Nuts
 
 
 0
 0
+
 - Dodongos Cavern Bomb Bag Chest
 
 
 0
 0
+
 - Dodongos Cavern End of Bridge Chest
 
 
 0
 0
+
 - GS Dodongo's Cavern Alcove Above Stairs
 
 
 0
 0
+
 - Chest Above King Dodongo
 
 
 0
 0
+
 - King Dodongo Heart
 
 
 0
 0
+
 - GS Dodongo's Cavern Back Room
 
 
 0
 0
+
 - Boomerang Chest
 
 
 0
 0
+
 - GS Jabu Jabu Water Switch Room
 
 
 0
 0
+
 - GS Jabu Jabu Lobby Basement Lower
 
 
 0
 0
+
 - GS Jabu Jabu Lobby Basement Upper
 
 
 0
 0
+
 - Jabu Deku Scrub Deku Nuts
 
 
 0
 0
+
 - Jabu Jabus Belly Map Chest
 
 
 0
 0
+
 - Jabu Jabus Belly Compass Chest
 
 
 0
 0
+
 - Barinade Heart
 
 
 0
 0
+
 - GS Jabu Jabu Near Boss
 
 
 0
 0
+
 - Forest Temple First Chest
 
 
 0
 0
+
 - Forest Temple Chest Behind Lobby
 
 
 0
 0
+
 - GS Forest Temple First Room
 
 
 0
 0
+
 - GS Forest Temple Lobby
 
 
 0
 0
+
 - GS Forest Temple Outdoor West
 
 
 0
 0
+
 - Forest Temple Outside Hookshot Chest
 
 
 0
 0
+
 - GS Forest Temple Outdoor East
 
 
 0
 0
+
 - Forest Temple Well Chest
 
 
 0
 0
+
 - Forest Temple Map Chest
 
 
 0
 0
+
 - Forest Temple Falling Room Chest
 
 
 0
 0
+
 - Forest Temple Block Push Chest
 
 
 0
 0
+
 - Forest Temple Boss Key Chest
 
 
 0
 0
+
 - Forest Temple Floormaster Chest
 
 
 0
 0
+
 - Forest Temple Bow Chest
 
 
 0
 0
+
 - Forest Temple Red Poe Chest
 
 
 0
 0
+
 - Forest Temple Blue Poe Chest
 
 
 0
 0
+
 - Forest Temple Near Boss Chest
 
 
 0
 0
+
 - Phantom Ganon Heart
 
 
 0
 0
+
 - GS Forest Temple Basement
 
 
 0
 0
+
 - Bottom of the Well Front Left Hidden Wall
 
 
 0
 0
+
 - Bottom of the Well Front Center Bombable
 
 
 0
 0
+
 - Bottom of the Well Right Bottom Hidden Wall
 
 
 0
 0
+
 - Bottom of the Well Center Large Chest
 
 
 0
 0
+
 - Bottom of the Well Center Small Chest
 
 
 0
 0
+
 - Bottom of the Well Back Left Bombable
 
 
 0
 0
+
 - Bottom of the Well Freestanding Key
 
 
 0
 0
+
 - Bottom of the Well Defeat Boss
 
 
 0
 0
+
 - Bottom of the Well Invisible Chest
 
 
 0
 0
+
 - Bottom of the Well Underwater Front Chest
 
 
 0
 0
+
 - Bottom of the Well Underwater Left Chest
 
 
 0
 0
+
 - Bottom of the Well Basement Chest
 
 
 0
 0
+
 - Bottom of the Well Locked Pits
 
 
 0
 0
+
 - Bottom of the Well Behind Right Grate
 
 
 0
 0
+
 - GS Well West Inner Room
 
 
 0
 0
+
 - GS Well East Inner Room
 
 
 0
 0
+
 - GS Well Like Like Cage
 
 
 0
 0
+
 - Fire Temple Chest Near Boss
 
 
 0
 0
+
 - Fire Temple Fire Dancer Chest
 
 
 0
 0
+
 - Fire Temple Boss Key Chest
 
 
 0
 0
+
 - Volvagia Heart
 
 
 0
 0
+
 - GS Fire Temple Basement
 
 
 0
 0
+
 - Fire Temple Big Lava Room Open Chest
 
 
 0
 0
+
 - Fire Temple Big Lava Room Bombable Chest
 
 
 0
 0
+
 - GS Fire Temple Song of Time Room
 
 
 0
 0
+
 - Fire Temple Boulder Maze Lower Chest
 
 
 0
 0
+
 - Fire Temple Boulder Maze Upper Chest
 
 
 0
 0
+
 - Fire Temple Boulder Maze Side Room
 
 
 0
 0
+
 - Fire Temple Boulder Maze Bombable Pit
 
 
 0
 0
+
 - Fire Temple Scarecrow Chest
 
 
 0
 0
+
 - Fire Temple Map Chest
 
 
 0
 0
+
 - Fire Temple Compass Chest
 
 
 0
 0
+
 - GS Fire Temple Unmarked Bomb Wall
 
 
 0
 0
+
 - GS Fire Temple East Tower Climb
 
 
 0
 0
+
 - GS Fire Temple East Tower Top
 
 
 0
 0
+
 - Fire Temple Highest Goron Chest
 
 
 0
 0
+
 - Fire Temple Megaton Hammer Chest
 
 
 0
 0
+
 - Ice Cavern Map Chest
 
 
 0
 0
+
 - Ice Cavern Compass Chest
 
 
 0
 0
+
 - Ice Cavern Iron Boots Chest
 
 
 0
 0
+
 - Ice Cavern Freestanding PoH
 
 
 0
 0
+
 - GS Ice Cavern Spinning Scythe Room
 
 
 0
 0
+
 - GS Ice Cavern Heart Piece Room
 
 
 0
 0
+
 - GS Ice Cavern Push Block Room
 
 
 0
 0
+
 - Morpha Heart
 
 
 0
 0
+
 - Water Temple Map Chest
 
 
 0
 0
+
 - Water Temple Compass Chest
 
 
 0
 0
+
 - Water Temple Torches Chest
 
 
 0
 0
+
 - Water Temple Central Bow Target Chest
 
 
 0
 0
+
 - GS Water Temple South Basement
 
 
 0
 0
+
 - Water Temple Boss Key Chest
 
 
 0
 0
+
 - GS Water Temple Near Boss Key Chest
 
 
 0
 0
+
 - Water Temple Cracked Wall Chest
 
 
 0
 0
+
 - Water Temple Dragon Chest
 
 
 0
 0
+
 - Water Temple Central Pillar Chest
 
 
 0
 0
+
 - GS Water Temple Central Room
 
 
 0
 0
+
 - Water Temple Dark Link Chest
 
 
 0
 0
+
 - Water Temple River Chest
 
 
 0
 0
+
 - GS Water Temple Serpent River
 
 
 0
 0
+
 - GS Water Temple Falling Platform Room
 
 
 0
 0
+
 - Shadow Temple Map Chest
 
 
 0
 0
+
 - Shadow Temple Hover Boots Chest
 
 
 0
 0
+
 - Shadow Temple Compass Chest
 
 
 0
 0
+
 - Shadow Temple Early Silver Rupee Chest
 
 
 0
 0
+
 - Shadow Temple Invisible Blades Visible Chest
 
 
 0
 0
+
 - Shadow Temple Invisible Blades Invisible Chest
 
 
 0
 0
+
 - Shadow Temple Falling Spikes Lower Chest
 
 
 0
 0
+
 - Shadow Temple Falling Spikes Upper Chest
 
 
 0
 0
+
 - Shadow Temple Falling Spikes Switch Chest
 
 
 0
 0
+
 - Shadow Temple Invisible Spikes Chest
 
 
 0
 0
+
 - Shadow Temple Freestanding Key
 
 
 0
 0
+
 - GS Shadow Temple Like Like Room
 
 
 0
 0
+
 - GS Shadow Temple Crusher Room
 
 
 0
 0
+
 - GS Shadow Temple Single Giant Pot
 
 
 0
 0
+
 - Shadow Temple Wind Hint Chest
 
 
 0
 0
+
 - Shadow Temple After Wind Enemy Chest
 
 
 0
 0
+
 - Shadow Temple After Wind Hidden Chest
 
 
 0
 0
+
 - GS Shadow Temple Near Ship
 
 
 0
 0
+
 - Shadow Temple Spike Walls Left Chest
 
 
 0
 0
+
 - Shadow Temple Boss Key Chest
 
 
 0
 0
+
 - Shadow Temple Hidden Floormaster Chest
 
 
 0
 0
+
 - Bongo Bongo Heart
 
 
 0
 0
+
 - GS Shadow Temple Triple Giant Pot
 
 
 0
 0
+
 - Gerudo Training Grounds Lobby Left Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Lobby Right Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Stalfos Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Beamos Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Hidden Ceiling Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Maze Path First Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Maze Path Second Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Maze Path Third Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Maze Path Final Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Maze Right Central Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Maze Right Side Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Freestanding Key
 
 
 0
 0
+
 - Gerudo Training Grounds Underwater Silver Rupee Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Hammer Room Clear Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Hammer Room Switch Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Eye Statue Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Near Scarecrow Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Before Heavy Block Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Heavy Block First Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Heavy Block Second Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Heavy Block Third Chest
 
 
 0
 0
+
 - Gerudo Training Grounds Heavy Block Fourth Chest
 
 
 0
 0
+
 - Spirit Temple Child Left Chest
 
 
 0
 0
+
 - Spirit Temple Child Right Chest
 
 
 0
 0
+
 - GS Spirit Temple Metal Fence
 
 
 0
 0
+
 - Spirit Temple Child Climb East Chest
 
 
 0
 0
+
 - Spirit Temple Child Climb North Chest
 
 
 0
 0
+
 - GS Spirit Temple Bomb for Light Room
 
 
 0
 0
+
 - Spirit Temple Compass Chest
 
 
 0
 0
+
 - Spirit Temple Early Adult Right Chest
 
 
 0
 0
+
 - Spirit Temple First Mirror Right Chest
 
 
 0
 0
+
 - Spirit Temple First Mirror Left Chest
 
 
 0
 0
+
 - GS Spirit Temple Boulder Room
 
 
 0
 0
+
 - Spirit Temple Map Chest
 
 
 0
 0
+
 - Spirit Temple Sun Block Room Chest
 
 
 0
 0
+
 - Spirit Temple Statue Hand Chest
 
 
 0
 0
+
 - Spirit Temple NE Main Room Chest
 
 
 0
 0
+
 - GS Spirit Temple Hall to West Iron Knuckle
 
 
 0
 0
+
 - GS Spirit Temple Lobby
 
 
 0
 0
+
 - Silver Gauntlets Chest
 
 
 0
 0
+
 - Mirror Shield Chest
 
 
 0
 0
+
 - Spirit Temple Near Four Armos Chest
 
 
 0
 0
+
 - Spirit Temple Hallway Left Invisible Chest
 
 
 0
 0
+
 - Spirit Temple Hallway Right Invisible Chest
 
 
 0
 0
+
 - Spirit Temple Boss Key Chest
 
 
 0
 0
+
 - Spirit Temple Topmost Chest
 
 
 0
 0
+
 - Twinrova Heart
 
 
 0
 0
+
 - GC Deku Scrub Bombs
 
 
 0
 0
+
 - GC Deku Scrub Arrows
 
 
 0
 0
+
 - GC Deku Scrub Red Potion
 
 
 0
 0
+
 - GC Deku Scrub Green Potion
 
 
 0
 0
+
 - Ganons Castle Forest Trial Chest
 
 
 0
 0
+
 - Ganons Castle Water Trial Left Chest
 
 
 0
 0
+
 - Ganons Castle Water Trial Right Chest
 
 
 0
 0
+
 - Ganons Castle Shadow Trial First Chest
 
 
 0
 0
+
 - Ganons Castle Shadow Trial Second Chest
 
 
 0
 0
+
 - Ganons Castle Spirit Trial First Chest
 
 
 0
 0
+
 - Ganons Castle Spirit Trial Second Chest
 
 
 0
 0
+
 - Ganons Castle Light Trial First Left Chest
 
 
 0
 0
+
 - Ganons Castle Light Trial Second Left Chest
 
 
 0
 0
+
 - Ganons Castle Light Trial Third Left Chest
 
 
 0
 0
+
 - Ganons Castle Light Trial First Right Chest
 
 
 0
 0
+
 - Ganons Castle Light Trial Second Right Chest
 
 
 0
 0
+
 - Ganons Castle Light Trial Third Right Chest
 
 
 0
 0
+
 - Ganons Castle Light Trial Invisible Enemies Chest
 
 
 0
 0
-- Ganons Castle Light Trial Lullaby Chest- Deku Tree MQ Lobby Chest
+
+- Ganons Castle Light Trial Lullaby Chest
 
 
 0
 0
+
+- Temple of Time Light Arrow Cutscene
+
+
+0
+0
+
+- Deku Tree MQ Lobby Chest
+
+
+0
+0
+
 - Deku Tree MQ Slingshot Chest
 
 
 0
 0
+
 - Deku Tree MQ Slingshot Room Back Chest
 
 
 0
 0
+
 - Deku Tree MQ Basement Chest
 
 
 0
 0
+
 - GS Deku Tree MQ Lobby
 
 
 0
 0
+
 - Deku Tree MQ Compass Chest
 
 
 0
 0
+
 - GS Deku Tree MQ Compass Room
 
 
 0
 0
+
 - Deku Tree MQ Before Spinning Log Chest
 
 
 0
 0
+
 - Deku Tree MQ After Spinning Log Chest
 
 
 0
 0
+
 - GS Deku Tree MQ Basement Ceiling
 
 
 0
 0
+
 - GS Deku Tree MQ Basement Back Room
 
 
 0
 0
+
 - DT MQ Deku Scrub Deku Shield
 
 
 0
 0
+
 - Dodongos Cavern MQ Map Chest
 
 
 0
 0
+
 - Dodongos Cavern MQ Compass Chest
 
 
 0
 0
+
 - Dodongos Cavern MQ Larva Room Chest
 
 
 0
 0
+
 - Dodongos Cavern MQ Torch Puzzle Room Chest
 
 
 0
 0
+
 - GS Dodongo's Cavern MQ Song of Time Block Room
 
 
 0
 0
+
 - GS Dodongo's Cavern MQ Larva Room
 
 
 0
 0
+
 - GS Dodongo's Cavern MQ Lizalfos Room
 
 
 0
 0
+
 - DC MQ Deku Scrub Deku Sticks
 
 
 0
 0
+
 - DC MQ Deku Scrub Deku Seeds
 
 
 0
 0
+
 - DC MQ Deku Scrub Deku Shield
 
 
 0
 0
+
 - DC MQ Deku Scrub Red Potion
 
 
 0
 0
+
 - Dodongos Cavern MQ Bomb Bag Chest
 
 
 0
 0
+
 - GS Dodongo's Cavern MQ Scrub Room
 
 
 0
 0
+
 - Dodongos Cavern MQ Under Grave Chest
 
 
 0
 0
+
 - GS Dodongo's Cavern MQ Back Area
 
 
 0
 0
+
 - Jabu Jabus Belly MQ Map Chest
 
 
 0
 0
+
 - Jabu Jabus Belly MQ Entry Side Chest
 
 
 0
 0
+
 - Jabu Jabus Belly MQ Second Room Lower Chest
 
 
 0
 0
+
 - Jabu Jabus Belly MQ Second Room Upper Chest
 
 
 0
 0
+
 - Jabu Jabus Belly MQ Compass Chest
 
 
 0
 0
+
 - Jabu Jabus Belly MQ Basement South Chest
 
 
 0
 0
+
 - Jabu Jabus Belly MQ Basement North Chest
 
 
 0
 0
+
 - Jabu Jabus Belly MQ Boomerang Room Small Chest
 
 
 0
 0
+
 - MQ Boomerang Chest
 
 
 0
 0
+
 - GS Jabu Jabu MQ Boomerang Room
 
 
 0
 0
+
 - Jabu Jabus Belly MQ Falling Like Like Room Chest
 
 
 0
 0
+
 - GS Jabu Jabu MQ Tailpasaran Room
 
 
 0
 0
+
 - GS Jabu Jabu MQ Invisible Enemies Room
 
 
 0
 0
+
 - Jabu Jabus Belly MQ Cow
 
 
 0
 0
+
 - Jabu Jabus Belly MQ Near Boss Chest
 
 
 0
 0
+
 - GS Jabu Jabu MQ Near Boss
 
 
 0
 0
+
 - Forest Temple MQ First Chest
 
 
 0
 0
+
 - GS Forest Temple MQ First Hallway
 
 
 0
 0
+
 - Forest Temple MQ Chest Behind Lobby
 
 
 0
 0
+
 - GS Forest Temple MQ Block Push Room
 
 
 0
 0
+
 - Forest Temple MQ Boss Key Chest
 
 
 0
 0
+
 - Forest Temple MQ Redead Chest
 
 
 0
 0
+
 - GS Forest Temple MQ Outdoor West
 
 
 0
 0
+
 - Forest Temple MQ Well Chest
 
 
 0
 0
+
 - GS Forest Temple MQ Outdoor East
 
 
 0
 0
+
 - GS Forest Temple MQ Well
 
 
 0
 0
+
 - Forest Temple MQ NE Outdoors Upper Chest
 
 
 0
 0
+
 - Forest Temple MQ NE Outdoors Lower Chest
 
 
 0
 0
+
 - Forest Temple MQ Bow Chest
 
 
 0
 0
+
 - Forest Temple MQ Map Chest
 
 
 0
 0
+
 - Forest Temple MQ Compass Chest
 
 
 0
 0
+
 - Forest Temple MQ Falling Room Chest
 
 
 0
 0
+
 - Forest Temple MQ Near Boss Chest
 
 
 0
 0
+
 - Bottom of the Well MQ Compass Chest
 
 
 0
 0
+
 - Bottom of the Well MQ Map Chest
 
 
 0
 0
+
 - Bottom of the Well MQ Lens Chest
 
 
 0
 0
+
 - Bottom of the Well MQ Dead Hand Freestanding Key
 
 
 0
 0
+
 - Bottom of the Well MQ East Inner Room Freestanding Key
 
 
 0
 0
+
 - GS Well MQ Basement
 
 
 0
 0
+
 - GS Well MQ West Inner Room
 
 
 0
 0
+
 - GS Well MQ Coffin Room
 
 
 0
 0
+
 - Fire Temple MQ Entrance Hallway Small Chest
 
 
 0
 0
+
 - Fire Temple MQ Chest Near Boss
 
 
 0
 0
+
 - Fire Temple MQ Megaton Hammer Chest
 
 
 0
 0
+
 - Fire Temple MQ Map Chest
 
 
 0
 0
+
 - Fire Temple MQ Boss Key Chest
 
 
 0
 0
+
 - Fire Temple MQ Big Lava Room Bombable Chest
 
 
 0
 0
+
 - GS Fire Temple MQ Big Lava Room
 
 
 0
 0
+
 - Fire Temple MQ Maze Lower Chest
 
 
 0
 0
+
 - Fire Temple MQ Maze Side Room
 
 
 0
 0
+
 - Fire Temple MQ Maze Upper Chest
 
 
 0
 0
+
 - Fire Temple MQ Compass Chest
 
 
 0
 0
+
 - GS Fire Temple MQ East Tower Top
 
 
 0
 0
+
 - Fire Temple MQ Freestanding Key
 
 
 0
 0
+
 - Fire Temple MQ West Tower Top Chest
 
 
 0
 0
+
 - GS Fire Temple MQ Fire Wall Maze Side Room
 
 
 0
 0
+
 - GS Fire Temple MQ Fire Wall Maze Center
 
 
 0
 0
+
 - GS Fire Temple MQ Above Fire Wall Maze
 
 
 0
 0
+
 - Ice Cavern MQ Map Chest
 
 
 0
 0
+
 - Ice Cavern MQ Iron Boots Chest
 
 
 0
 0
+
 - GS Ice Cavern MQ Ice Block
 
 
 0
 0
+
 - GS Ice Cavern MQ Scarecrow
 
 
 0
 0
+
 - Ice Cavern MQ Compass Chest
 
 
 0
 0
+
 - Ice Cavern MQ Freestanding PoH
 
 
 0
 0
+
 - GS Ice Cavern MQ Red Ice
 
 
 0
 0
+
 - Water Temple MQ Map Chest
 
 
 0
 0
+
 - Water Temple MQ Central Pillar Chest
 
 
 0
 0
+
 - Water Temple MQ Compass Chest
 
 
 0
 0
+
 - Water Temple MQ Longshot Chest
 
 
 0
 0
+
 - GS Water Temple MQ Lizalfos Hallway
 
 
 0
 0
+
 - GS Water Temple MQ Before Upper Water Switch
 
 
 0
 0
+
 - Water Temple MQ Boss Key Chest
 
 
 0
 0
+
 - GS Water Temple MQ Serpent River
 
 
 0
 0
+
 - Water Temple MQ Freestanding Key
 
 
 0
 0
+
 - GS Water Temple MQ South Basement
 
 
 0
 0
+
 - GS Water Temple MQ North Basement
 
 
 0
 0
+
 - Shadow Temple MQ Compass Chest
 
 
 0
 0
+
 - Shadow Temple MQ Hover Boots Chest
 
 
 0
 0
+
 - Shadow Temple MQ Map Chest
 
 
 0
 0
+
 - Shadow Temple MQ Early Gibdos Chest
 
 
 0
 0
+
 - Shadow Temple MQ Near Ship Invisible Chest
 
 
 0
 0
+
 - Shadow Temple MQ Invisible Blades Visible Chest
 
 
 0
 0
+
 - Shadow Temple MQ Invisible Blades Invisible Chest
 
 
 0
 0
+
 - Shadow Temple MQ Beamos Silver Rupees Chest
 
 
 0
 0
+
 - Shadow Temple MQ Falling Spikes Lower Chest
 
 
 0
 0
+
 - Shadow Temple MQ Falling Spikes Upper Chest
 
 
 0
 0
+
 - Shadow Temple MQ Falling Spikes Switch Chest
 
 
 0
 0
+
 - Shadow Temple MQ Invisible Spikes Chest
 
 
 0
 0
+
 - Shadow Temple MQ Stalfos Room Chest
 
 
 0
 0
+
 - GS Shadow Temple MQ Crusher Room
 
 
 0
 0
+
 - Shadow Temple MQ Wind Hint Chest
 
 
 0
 0
+
 - Shadow Temple MQ After Wind Enemy Chest
 
 
 0
 0
+
 - Shadow Temple MQ After Wind Hidden Chest
 
 
 0
 0
+
 - GS Shadow Temple MQ Wind Hint Room
 
 
 0
 0
+
 - GS Shadow Temple MQ After Wind
 
 
 0
 0
+
 - GS Shadow Temple MQ After Ship
 
 
 0
 0
+
 - GS Shadow Temple MQ Near Boss
 
 
 0
 0
+
 - Shadow Temple MQ Spike Walls Left Chest
 
 
 0
 0
+
 - Shadow Temple MQ Boss Key Chest
 
 
 0
 0
+
 - Shadow Temple MQ Bomb Flower Chest
 
 
 0
 0
+
 - Shadow Temple MQ Freestanding Key
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Lobby Left Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Lobby Right Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Hidden Ceiling Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Maze Path First Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Maze Path Second Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Maze Path Third Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Dinolfos Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Underwater Silver Rupee Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ First Iron Knuckle Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Before Heavy Block Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Heavy Block Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Eye Statue Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Second Iron Knuckle Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Flame Circle Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Maze Right Central Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Maze Right Side Chest
 
 
 0
 0
+
 - Gerudo Training Grounds MQ Ice Arrows Chest
 
 
 0
 0
+
 - Spirit Temple MQ Entrance Front Left Chest
 
 
 0
 0
+
 - Spirit Temple MQ Entrance Back Left Chest
 
 
 0
 0
+
 - Spirit Temple MQ Entrance Back Right Chest
 
 
 0
 0
+
 - Spirit Temple MQ Child Center Chest
 
 
 0
 0
+
 - Spirit Temple MQ Child Left Chest
 
 
 0
 0
+
 - Spirit Temple MQ Map Chest
 
 
 0
 0
+
 - Spirit Temple MQ Silver Block Hallway Chest
 
 
 0
 0
+
 - Spirit Temple MQ Child Climb South Chest
 
 
 0
 0
+
 - Spirit Temple MQ Lower NE Main Room Chest
 
 
 0
 0
+
 - Spirit Temple MQ Upper NE Main Room Chest
 
 
 0
 0
+
 - Spirit Temple MQ Beamos Room Chest
 
 
 0
 0
+
 - Spirit Temple MQ Ice Trap Chest
 
 
 0
 0
+
 - Spirit Temple MQ Boss Key Chest
 
 
 0
 0
+
 - GS Spirit Temple MQ Iron Knuckle West
 
 
 0
 0
+
 - GS Spirit Temple MQ Iron Knuckle North
 
 
 0
 0
+
 - Spirit Temple MQ Child Climb North Chest
 
 
 0
 0
+
 - Spirit Temple MQ Compass Chest
 
 
 0
 0
+
 - Spirit Temple MQ Sun Block Room Chest
 
 
 0
 0
+
 - GS Spirit Temple MQ Sun Block Room
 
 
 0
 0
+
 - Spirit Temple MQ Lower Adult Left Chest
 
 
 0
 0
+
 - Spirit Temple MQ Lower Adult Right Chest
 
 
 0
 0
+
 - Spirit Temple MQ Entrance Front Right Chest
 
 
 0
 0
+
 - GS Spirit Temple MQ Lower Adult Left
 
 
 0
 0
+
 - GS Spirit Temple MQ Lower Adult Right
 
 
 0
 0
+
 - Spirit Temple MQ Mirror Puzzle Invisible Chest
 
 
 0
 0
+
 - GC MQ Deku Scrub Bombs
 
 
 0
 0
+
 - GC MQ Deku Scrub Arrows
 
 
 0
 0
+
 - GC MQ Deku Scrub Red Potion
 
 
 0
 0
+
 - GC MQ Deku Scrub Green Potion
 
 
 0
 0
+
 - GC MQ Deku Scrub Deku Nuts
 
 
 0
 0
+
 - Ganons Castle MQ Forest Trial First Chest
 
 
 0
 0
+
 - Ganons Castle MQ Forest Trial Second Chest
 
 
 0
 0
+
 - Ganons Castle MQ Forest Trial Freestanding Key
 
 
 0
 0
+
 - Ganons Castle MQ Water Trial Chest
 
 
 0
 0
+
 - Ganons Castle MQ Shadow Trial First Chest
 
 
 0
 0
+
 - Ganons Castle MQ Shadow Trial Second Chest
 
 
 0
 0
+
 - Ganons Castle MQ Spirit Trial First Chest
 
 
 0
 0
+
 - Ganons Castle MQ Spirit Trial Second Chest
 
 
 0
 0
+
 - Ganons Castle MQ Spirit Trial Sun Front Left Chest
 
 
 0
 0
+
 - Ganons Castle MQ Spirit Trial Sun Back Left Chest
 
 
 0
 0
+
 - Ganons Castle MQ Spirit Trial Golden Gauntlets Chest
 
 
 0
 0
+
 - Ganons Castle MQ Spirit Trial Sun Back Right Chest
 
 
 0
 0
+
 - Ganons Castle MQ Light Trial Lullaby Chest
 
 
 0
 0
+
 - Outside Deku Tree => Deku Tree Lobby MQ
 
 
 0
 0
+
 - Death Mountain => Dodongos Cavern Beginning MQ
 
 
 0
 0
+
 - Zoras Fountain => Jabu Jabus Belly Beginning MQ
 
 
 0
 0
+
 - Forest Temple Entrance Ledge => Forest Temple Lobby MQ
 
 
 0
 0
+
 - Fire Temple Entrance => Fire Temple Lower MQ
 
 
 0
 0
+
 - Zoras Fountain Ice Ledge => Ice Cavern Beginning MQ
 
 
 0
 0
+
 - Lake Hylia => Water Temple Lobby MQ
 
 
 0
 0
+
 - Kakariko Village => Bottom of the Well MQ
 
 
 0
 0
+
 - Shadow Temple Warp Region => Shadow Temple Entryway MQ
 
 
 0
 0
+
 - Gerudo Fortress => Gerudo Training Grounds Lobby MQ
 
 
 0
 0
+
 - Desert Colossus => Spirit Temple Lobby MQ
 
 
 0
 0
+
 - Ganons Castle Grounds => Ganons Castle
-893,952
+895,954
 11;112
 0
 0
+
 - Ganons Castle Grounds => Ganons Castle MQ
 
 
 0
 0
+
 - AgeIndicatorChild
 
 
 0
 0
+
 - AgeIndicatorAdult
 
 
 0
 0
+
 - Tycoon Wallet
 
 
 0
 0
-- Prescription
+
+- Starting Trade Item
 
 
 0
 0
+
 - Extra Biggorron Sword
 
 
 0
 0
+
 - Extra Rutos Letter
 
 
 0
 0
+
 - Extra Nut Upgrade
 
 
 0
 0
+
 - Extra Stick Upgrade
 
 
 0
 0
+
 - Extra Dins Fire
 
 
 0
 0
+
 - Extra Double Defense
 
 
 0
 0
+
 - Extra Fire arrows
 
 
 0
 0
+
 - Extra Goron Tunic
 
 
 0
 0
+
 - Extra Kokiri Sword
 
 
 0
 0
+
 - Extra Light Arrows
 
 
 0
 0
+
 - Extra Magic Meter
 
 
 0
 0
+
 - Extra Mirror Shield
 
 
 0
 0
+
 - Extra Scale
 
 
 0
 0
+
 - Extra Wallet Upgrade
 
 
 0
 0
+
 - Extra Zora Tunic
 
 
 0
 0
+
 - ### Default Fake Items ###
 
 
 0
 0
+
 - LongShot
-893
-382,599;382,786;599,786
+895
+382,599;382,788;599,788
 0
 0
+
 - Silver Gautlets
-893
-400,665;400,681;400,871;665,681;665,871;681,871
+895
+400,665;400,681;400,873;665,681;665,873;681,873
 0
 0
+
 - Golden Gautlets
-893
-400,665,681;400,665,871;665,681,871;400,681,871
+895
+400,665,681;400,665,873;665,681,873;400,681,873
 0
 0
+
 - Golden Scale
 
-297;421;908
+297;421;910
 0
 0
+
 - Any Bow
-893
-308;370;537;746
+895
+308;370;537;748
 0
 0
+
 - Any Bomb Bag
 
-337;395;509;714
+337;395;509;716
 0
 0
+
 - Any Hookshot
-893
-382;599;786
+895
+382;599;788
 0
 0
+
 - Any SlingShot
-892
-496;692
+894
+496;694
 0
 0
+
 - Any Scale
 
-908;421;297
+910;421;297
 0
 0
+
 - Any Shield
 
-379,893;504,892;556,893;666,893;702,892;907,893
+379,895;504,894;556,895;666,895;704,894;909,895
 0
 0
+
 - Any Sword
 
-262;904;893
+262;906;895
 0
 0
+
 - Any Magic
 
-410;411;906
+410;411;908
 0
 0
+
 - Any Ocarina
 
 285;286
 0
 0
+
 - Any Hover Boots
-893
-795;604
+895
+797;604
 0
 0
+
 - Any Strength
 
-400;665;681;871
+400;665;681;873
 0
 0
+
 - Any Lens
-923
-550;753
+925
+550;755
 0
 0
+
 - Any Stick
 
 281;334;368;503
 0
 0
+
 - Any Dins Fire
 
-327;900
+327;902
 0
 0
+
 - Any Hammer
-893
-579;761
+895
+579;763
 0
 0
+
 - Any Nuts
 
 
 0
 0
+
 - Any Bugs
 
 
 0
 0
+
 - Any Blue Fire
 
 
 0
 0
+
 - Any Fish
 
 
 0
 0
+
 - Any Fairy
 
 
 0
 0
+
 - Any Big Poe
 
 341;373
 0
 0
+
 - Any Bombchus
 
 317;344;345;346;347;361;544
 0
 0
+
 - Child Attack
 
 
 0
 0
+
 - Child Damage
 
 
 0
 0
+
 - Cut Grass
 
-893;262;904;281;334;368;503;515;726;984
+895;262;906;281;334;368;503;515;728;986
 0
 0
+
 - Can Change Age
 
 0;5;161
 0
 0
+
 - ### MMRTGameClear entry for compatibility with the playthrough generator ###
 
 
 0
 0
+
 - MMRTGameClear
 445
-890,893,905,916,923;893,905,916,923,891
+892,895,907,918,925;895,907,918,925,893
 0
 0
+
 - ### User Settings ###
 
 
 0
 0
+
 - Setting Bombchus in Logic
 
-937
+939
 0
 0
+
 - Setting Kokiri Forest Main Exit Open
 
 
 0
 0
+
 - Setting Kokiri Forest Deku tree Open
 
 
 0
 0
+
 - Setting Open Kakariko Gate
 
 
 0
 0
+
 - Setting Open Door Of Time
 
 
 0
 0
+
 - Setting King Zora Moved
 
 
 0
 0
+
 - Setting Gerudo Fortress Accessability
 
 
 0
 0
+
 - Setting Rainbow Bridge Requirements
 
 
 0
 0
+
 - Setting Invisible Items Without Lens
 
 
 0
 0
+
 - Setting Wasteland Without Lens
 
 
 0
 0
+
 - Setting Start with Scarecrow Song
 
 
 0
 0
+
 - Setting Adult Trade Sequence
 
 
 0
 0
+
 - Setting Reverse Wasteland
 
 
 0
 0
+
 - Setting Entrance Rando
 
 
 0
 0
+
 - ###Area Access###
 
 
 0
 0
+
 - Access Lake Hylia
 
 7;27;36;59;82;149;215
 0
 0
+
 - Access Hyrule Field
 
 227;184;183;182;181;180;179;178;58;51;47;45;41;25;15
 0
 0
+
 - Access Castle Town
 
 10;14;55;95;100;96;101;103;104
 0
 0
+
 - Access Death Mountain Summit
 
-20;156;225;964,984;963,930,893
+20;156;225;966,986;965,932,895
 0
 0
+
 - Access Death Mountain
 
 20;156;225;28;42;67;226
 0
 0
+
 - Access Death Mountain Crater Lower
 
-69;2;966,893,918;966,893,925
+69;2;968,895,920;968,895,927
 0
 0
+
 - Access Death Mountain Crater Mid
 
-16;106;169;965,893,918;965,925,893;967,893,918;965,413,941,893
+16;106;169;967,895,920;967,927,895;969,895,920;967,413,943,895
 0
 0
+
 - Access Death Mountain Crater Upper
 
-966;232;21;965,941,893,413
+968;232;21;967,943,895,413
 0
 0
+
 - Access Gerudo Fortress
 
-26;32,893;73;187;32,958,941,313,892
+26;32,895;73;187;32,960,943,313,894
 0
 0
+
 - Access Goron City
 
-17;116;192;48,984;48,930;48,929,923
+17;116;192;48,986;48,932;48,931,925
 0
 0
+
 - Access Gerudo Valley Fortress Side
 
-23;86;191;971,912;971,260,893
+23;86;191;973,914;973,260,895
 0
 0
+
 - Access Gerudo Valley Field Side
 
-970,892;970,912;970,260,893;34
+972,894;972,914;972,260,895;34
 0
 0
+
 - Access Graveyard
 
 40;107;168;170;198;231
 0
 0
+
 - Access Kakariko
 
 30;35;63;85;118;122;125;128;129;162;209
 0
 0
+
 - Access Kokiri Forest
 
 52;53;119;139;146;150;155;158;213
 0
 0
+
 - Access Lost Woods
 
 29;43;56;221;54;175
 0
 0
+
 - Access Zora River
 
 39;49;60;236;237;238
 0
 0
+
 - Access Sacred Forest Meadow
 
 3;50;185;223;224
 0
 0
+
 - Access Zora Domain
 
 46;57;62;163;240
 0
 0
+
 - Access Zora Fountain
 
 61;74;75;166
 0
 0
+
 - Access Desert Collosus
 
 6;31;81;105;177
 0
 0
+
 - Access Lon Lon Ranch
 
 37;124;151;159;216
 0
 0
+
 - Inaccessable
-982
+984
 
 0
 0
+
 - ###Misc Fake Items###
 
 
 0
 0
+
 - Explosives
 
-917;945
+919;947
 0
 0
+
 - Kokiri Shop Item 1
 
 
 0
 0
+
 - Kokiri Shop Item 2
 
 
 0
 0
+
 - Kokiri Shop Item 3
 
 
 0
 0
+
 - Kokiri Shop Item 4
 
 
 0
 0
+
 - Castle Town Potion Shop Item 1
 
 
 0
 0
+
 - Castle Town Potion Shop Item 2
 
 
 0
 0
+
 - Castle Town Potion Shop Item 3
 
 
 0
 0
+
 - Castle Town Potion Shop Item 4
 
 
 0
 0
+
 - Bombchu Shop Item 1
 
 
 0
 0
+
 - Bombchu Shop Item 2
 
 
 0
 0
+
 - Bombchu Shop Item 3
 
 
 0
 0
+
 - Bombchu Shop Item 4
 
 
 0
 0
+
 - Kakariko Potion Shop Item 1
 
 
 0
 0
+
 - Kakariko Potion Shop Item 2
 
 
 0
 0
+
 - Kakariko Potion Shop Item 3
 
 
 0
 0
+
 - Kakariko Potion Shop Item 4
 
 
 0
 0
+
 - Goron Shop Item 1
 
 
 0
 0
+
 - Goron Shop Item 2
 
 
 0
 0
+
 - Goron Shop Item 3
 
 
 0
 0
+
 - Goron Shop Item 4
 
 
 0
 0
+
 - Zora Shop Item 1
 
 
 0
 0
+
 - Zora Shop Item 2
 
 
 0
 0
+
 - Zora Shop Item 3
 
 
 0
 0
+
 - Zora Shop Item 4
 
 
 0
 0
+
 - Any Deku Tree
 
-78;879
+78;881
 0
 0
+
 - Any Dodongos Cavern
 
-880;64
+882;64
 0
 0
+
 - Any Jabu Jabus Belly
 
-83;881
+83;883
 0
 0
+
 - Any Forest Temple
 
-70;882
+70;884
 0
 0
+
 - Any Fire Temple
 
-68;883
+68;885
 0
 0
+
 - Any Water Temple
 
-77;885
+77;887
 0
 0
+
 - Any Bottom of the Well
 
-76;886
+76;888
 0
 0
+
 - Any Shadow Temple
 
-80;887
+80;889
 0
 0
+
 - Any Gerudo Training Grounds
 
-72;888
+72;890
 0
 0
+
 - Any Spirit Temple
 
-66;889
+66;891
 0
 0
+
 - Any Ice Cavern
 
-84;884
+84;886
 0
 0
+
 - Any Ganons Castle
 
-891;890
+893;892
 0
 0
+
 - Access Temple of Time
 
 0;5;161
 0
 0
+
 - Access Hyrule Castle
 
 11;112;120;167
 0
 0
+
 - Access Windmill
 
-136;195,893
+136;195,895
 0
 0
+
 - Access Links House
 
 143;1
 0
 0
+
 - Use Fire Arrow
-916,923
-902;288
+918,925
+904;288
 0
 0
