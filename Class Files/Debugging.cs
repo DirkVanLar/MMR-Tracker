@@ -97,7 +97,9 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-            
+            var EncryptedString = Crypto.EncryptStringAES("This is a test String", "MMRTNET");
+            Console.WriteLine(EncryptedString);
+            Console.WriteLine(Crypto.DecryptStringAES(EncryptedString, "MMRTNET"));
         }
 
     }
