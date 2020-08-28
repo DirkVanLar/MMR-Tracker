@@ -278,7 +278,6 @@ namespace MMR_Tracker.Forms
         private void chkListenForData_CheckedChanged(object sender, EventArgs e)
         {
             if (Updating) { return; }
-            UpdateFormItems();
             if (chkListenForData.Checked)
             {
                 NudYourPort.Enabled = false;
@@ -291,6 +290,7 @@ namespace MMR_Tracker.Forms
                 Listening = false;
                 try { listener.Close(); } catch { }
             }
+            UpdateFormItems();
         }
 
         private void chkSendData_CheckedChanged(object sender, EventArgs e)

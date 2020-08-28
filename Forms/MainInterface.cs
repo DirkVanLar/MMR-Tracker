@@ -1579,14 +1579,12 @@ namespace MMR_Tracker_V2
 
         private string createDisplayName(bool Checked, LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance instance)
         {
+            var addPlayerName = entry.ItemBelongsToMe() ? "" : $" (Player {entry.PlayerData.ItemBelongedToPlayer})";
             var LocationName = entry.LocationName ?? entry.DictionaryName;
             var ItemName = (entry.HasRandomItem(false)) ? (entry.RandomizedEntry(instance, true).ItemName ?? entry.RandomizedEntry(instance, true).DictionaryName) : "";
-            var checkedName = (ItemName == "") ? LocationName : ItemName + ": " + LocationName;
+            var checkedName = (ItemName == "") ? LocationName : ItemName + addPlayerName + ": " + LocationName;
             var AvailableName = (ItemName == "") ? LocationName : LocationName + ": " + ItemName;
             var fullName = (Checked) ? checkedName : AvailableName;
-            if (Checked && !entry.ItemBelongsToMe()){
-                fullName = fullName + $"(Player {entry.PlayerData.ItemBelongedToPlayer})";
-            }
             return fullName + ((entry.Starred) ? "*" : "");
         }
 
