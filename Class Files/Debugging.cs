@@ -100,6 +100,10 @@ namespace MMR_Tracker_V2
             var EncryptedString = Crypto.EncryptStringAES("This is a test String", "MMRTNET");
             Console.WriteLine(EncryptedString);
             Console.WriteLine(Crypto.DecryptStringAES(EncryptedString, "MMRTNET"));
+
+            LogicObjects.MainTrackerInstance.Logic[0].Aquired = true;
+            LogicObjects.MainTrackerInstance.Logic[0].PlayerData.ItemCameFromPlayer = 9;
+
         }
 
     }

@@ -32,6 +32,7 @@ namespace MMR_Tracker_V2
         {
             //Logic Options
             public bool StrictLogicHandeling { get; set; } = false;
+            public bool RemoveObtainedItemsfromList { get; set; } = true;
             //Entrance rando Options
             public bool EntranceRadnoEnabled { get; set; } = false;
             public bool OverRideAutoEntranceRandoEnable { get; set; } = false;
@@ -301,7 +302,7 @@ namespace MMR_Tracker_V2
 
         public static bool ItemBelongsToMe(this LogicObjects.LogicEntry entry)
         {
-            return entry.PlayerData.ItemBelongedToPlayer == -1 | entry.PlayerData.ItemBelongedToPlayer == -OnlinePlay.MyPlayerID;
+            return entry.PlayerData.ItemBelongedToPlayer == -1 || entry.PlayerData.ItemBelongedToPlayer == OnlinePlay.MyPlayerID;
         }
     }
 }

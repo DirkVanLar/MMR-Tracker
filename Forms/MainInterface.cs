@@ -332,7 +332,12 @@ namespace MMR_Tracker_V2
             DebugScreen.Show();
         }
 
-        private void DumbStuffToolStripMenuItem_Click(object sender, EventArgs e) { Debugging.TestDumbStuff(); }
+        private void DumbStuffToolStripMenuItem_Click(object sender, EventArgs e) 
+        { 
+            Debugging.TestDumbStuff();
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            PrintToListBox();
+        }
 
         private void CreateOOTFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -774,7 +779,8 @@ namespace MMR_Tracker_V2
             if (LB.Items[e.Index] is LogicObjects.ListItem ListEntry && sender != LBPathFinder)
             {
                 var item = ListEntry.LocationEntry;
-                if (item.HasRandomItem(false) && !item.Available && item.Starred) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold | FontStyle.Strikeout); }
+                if (item.ID < 0) { F = new Font(F.FontFamily, F.Size, FontStyle.Regular); }
+                else if (item.HasRandomItem(false) && !item.Available && item.Starred) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold | FontStyle.Strikeout); }
                 else if (item.Starred) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
                 else if (item.HasRandomItem(false) && !item.Available) { F = new Font(F.FontFamily, F.Size, FontStyle.Strikeout); }
             }
@@ -992,6 +998,7 @@ namespace MMR_Tracker_V2
             var index = LB.IndexFromPoint(LB.PointToClient(Cursor.Position));
             if (index < 0) { e.Cancel = true; return; }
             if (!(LB.Items[index] is LogicObjects.ListItem)) { e.Cancel = true; }
+            if ((LB.Items[index] as LogicObjects.ListItem).LocationEntry.ID < 0) { e.Cancel = true; }
         }
 
         private void RunMenuItems(int Function, ListBox ActiveListBox)
@@ -1344,8 +1351,10 @@ namespace MMR_Tracker_V2
                         if (LB == LBCheckedLocations && !(i as LogicObjects.LogicEntry).Checked) { continue; }
                         int RandomizedItem = (i as LogicObjects.LogicEntry).RandomizedItem;
                         if (!LogicEditing.CheckObject(i as LogicObjects.LogicEntry, LogicObjects.MainTrackerInstance)) { continue; }
-                        if ((i as LogicObjects.LogicEntry).ID < 0) { continue; } //Beta Multiworld Support
-                        if (UncheckAndMark && (i as LogicObjects.LogicEntry).RandomizedItem < 0 && !(i as LogicObjects.LogicEntry).Checked)
+                        if (UncheckAndMark && 
+                            (i as LogicObjects.LogicEntry).RandomizedItem < 0 && 
+                            !(i as LogicObjects.LogicEntry).Checked && 
+                            (i as LogicObjects.LogicEntry).ID > -1)
                         {
                             if ((i as LogicObjects.LogicEntry).SpoilerRandom < 0)
                             {

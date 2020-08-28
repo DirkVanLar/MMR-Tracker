@@ -1,4 +1,5 @@
-﻿using MMR_Tracker_V2;
+﻿using MMR_Tracker.Forms;
+using MMR_Tracker_V2;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -467,11 +468,11 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool SameItemMultipleChecks(int item, LogicObjects.TrackerInstance Instance)
         {
-            if (item < 0 || !Instance.Options.StrictLogicHandeling) { return false; }
+            if (item < 0 || (!Instance.Options.StrictLogicHandeling && !OnlinePlay.IsMultiWorld)) { return false; }
             int count = 0;
             foreach (var entry in Instance.Logic)
             {
-                if (entry.RandomizedItem == item && entry.Checked) { count += 1; }
+                if (entry.RandomizedItem == item && entry.Checked) { count = count + 1; }
             }
             return count > 1;
         }

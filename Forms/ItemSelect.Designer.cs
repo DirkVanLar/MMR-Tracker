@@ -36,6 +36,9 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.lbCheckItems = new System.Windows.Forms.ListView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.nudForPlayer = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.nudForPlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // LBItemSelect
@@ -69,12 +72,14 @@
             // chkAddSeperate
             // 
             this.chkAddSeperate.AutoSize = true;
+            this.chkAddSeperate.BackColor = System.Drawing.Color.Transparent;
+            this.chkAddSeperate.ForeColor = System.Drawing.SystemColors.Control;
             this.chkAddSeperate.Location = new System.Drawing.Point(256, 16);
             this.chkAddSeperate.Name = "chkAddSeperate";
             this.chkAddSeperate.Size = new System.Drawing.Size(175, 17);
             this.chkAddSeperate.TabIndex = 4;
             this.chkAddSeperate.Text = "Add Each Conditional Seperatly";
-            this.chkAddSeperate.UseVisualStyleBackColor = true;
+            this.chkAddSeperate.UseVisualStyleBackColor = false;
             this.chkAddSeperate.CheckedChanged += new System.EventHandler(this.chkAddSeperate_CheckedChanged);
             // 
             // btnUp
@@ -109,6 +114,26 @@
             this.lbCheckItems.View = System.Windows.Forms.View.List;
             this.lbCheckItems.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lbCheckItems_ItemChecked);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(317, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "For Player";
+            this.label1.Visible = false;
+            // 
+            // nudForPlayer
+            // 
+            this.nudForPlayer.Location = new System.Drawing.Point(377, 13);
+            this.nudForPlayer.Name = "nudForPlayer";
+            this.nudForPlayer.Size = new System.Drawing.Size(54, 20);
+            this.nudForPlayer.TabIndex = 9;
+            this.nudForPlayer.Visible = false;
+            // 
             // ItemSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -116,6 +141,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(443, 580);
+            this.Controls.Add(this.nudForPlayer);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lbCheckItems);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
@@ -128,6 +155,7 @@
             this.Text = "ItemSelect";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ItemSelect_FormClosing);
             this.Load += new System.EventHandler(this.ItemSelect_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudForPlayer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +170,7 @@
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.ListView lbCheckItems;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown nudForPlayer;
     }
 }

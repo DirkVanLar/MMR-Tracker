@@ -42,7 +42,7 @@ namespace MMR_Tracker_V2
                 btnUp.Visible = false;
                 TXTSearch.Width = LBItemSelect.Width;
             }
-            RunFunction();
+            RunFunction(true);
         }
 
         private void LBItemSelect_DoubleClick(object sender, EventArgs e)
@@ -61,6 +61,7 @@ namespace MMR_Tracker_V2
             {
                 ItemsReturned = true;
                 Tools.CurrentSelectedItem = new LogicObjects.LogicEntry { ID = -1 };
+                if (OnlinePlay.IsMultiWorld) { Tools.CurrentSelectedItem.PlayerData.ItemBelongedToPlayer = (int)nudForPlayer.Value; }
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -85,14 +86,14 @@ namespace MMR_Tracker_V2
 
         private void ShowUnusedRealAsItem()
         {
+            var options = LogicObjects.MainTrackerInstance.Options;
             LBItemSelect.Items.Clear();
             List<string> Duplicates = new List<string>();
             for (var i = 0; i < UsedLogic.Count; i++)
             {
                 UsedLogic[i].DisplayName = UsedLogic[i].ItemName ?? UsedLogic[i].DictionaryName;
-                if (!UsedLogic[i].Aquired
-                    && (!UsedLogic[i].IsFake)
-                    && (UsedLogic[i].GetItemsNewLocation(UsedLogic) == null)
+                if ((!UsedLogic[i].IsFake)
+                    && ((UsedLogic[i].GetItemsNewLocation(UsedLogic) == null && !UsedLogic[i].Aquired) || OnlinePlay.IsMultiWorld || !options.RemoveObtainedItemsfromList)
                     && (!UsedLogic[i].Unrandomized(2))
                     && !Duplicates.Contains(UsedLogic[i].ItemName)
                     && UsedLogic[i].ItemName != null
@@ -242,6 +243,7 @@ namespace MMR_Tracker_V2
             {
                 if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return; }
                 Tools.CurrentSelectedItem = LBItemSelect.SelectedItem as LogicObjects.LogicEntry;
+                if (OnlinePlay.IsMultiWorld) { Tools.CurrentSelectedItem.PlayerData.ItemBelongedToPlayer = (int)nudForPlayer.Value; }
                 CheckedItems = new List<int>();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -259,7 +261,7 @@ namespace MMR_Tracker_V2
             }
         }
 
-        private void RunFunction()
+        private void RunFunction(bool FormLoad = false)
         {
             Updating = true;
 
@@ -270,6 +272,7 @@ namespace MMR_Tracker_V2
                     BTNJunk.Text = "Junk";
                     LBItemSelect.SelectionMode = SelectionMode.One;
                     ShowUnusedRealAsItem();
+                    if (OnlinePlay.IsMultiWorld) { SelectPlayer(); if (FormLoad) { nudForPlayer.Value = OnlinePlay.MyPlayerID; } };
                     this.Text = "Item at " + Tools.CurrentSelectedItem.LocationName;
                     LBItemSelect.Sorted = true;
                     break;
@@ -378,6 +381,22 @@ namespace MMR_Tracker_V2
             lbCheckItems.Location = LBItemSelect.Location;
             lbCheckItems.Height = LBItemSelect.Height;
             lbCheckItems.Width = LBItemSelect.Width;
+            if (!HeightSet)
+            {
+                TXTSearch.Width = TXTSearch.Width - chkAddSeperate.Width - 10;
+                HeightSet = true;
+            }
+        }
+
+        private void SelectPlayer()
+        {
+            if (!HeightSet)
+            {
+                TXTSearch.Width = TXTSearch.Width - label1.Width - nudForPlayer.Width - 8;
+                HeightSet = true;
+            }
+            label1.Visible = true;
+            nudForPlayer.Visible = true;
         }
 
         private void UseUpDown()

@@ -59,9 +59,13 @@
             this.copyNetDataToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.multiworldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nudPlayerID = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NudPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudYourPort)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPlayerID)).BeginInit();
             this.SuspendLayout();
             // 
             // LBIPAdresses
@@ -274,6 +278,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.multiworldToolStripMenuItem,
             this.allowFullCheckToolStripMenuItem,
             this.autoAddIncomingIPsToolStripMenuItem,
             this.onlyAcceptDataFromSendingListToolStripMenuItem,
@@ -350,13 +355,41 @@
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.portForwardingToolStripMenuItem_Click);
             // 
+            // multiworldToolStripMenuItem
+            // 
+            this.multiworldToolStripMenuItem.Name = "multiworldToolStripMenuItem";
+            this.multiworldToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.multiworldToolStripMenuItem.Text = "Multiworld";
+            this.multiworldToolStripMenuItem.Click += new System.EventHandler(this.multiworldToolStripMenuItem_Click);
+            // 
+            // nudPlayerID
+            // 
+            this.nudPlayerID.Location = new System.Drawing.Point(154, 467);
+            this.nudPlayerID.Name = "nudPlayerID";
+            this.nudPlayerID.Size = new System.Drawing.Size(64, 20);
+            this.nudPlayerID.TabIndex = 15;
+            this.nudPlayerID.ValueChanged += new System.EventHandler(this.nudPlayerID_ValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(4, 469);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(128, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Your Multiworld Player ID:";
+            // 
             // OnlinePlay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(224, 470);
+            this.ClientSize = new System.Drawing.Size(224, 492);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.nudPlayerID);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.NudYourPort);
@@ -372,6 +405,7 @@
             this.Controls.Add(this.btnAddIP);
             this.Controls.Add(this.LBIPAdresses);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "OnlinePlay";
@@ -382,6 +416,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NudYourPort)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPlayerID)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,5 +453,8 @@
         private System.Windows.Forms.ToolStripMenuItem fullSyncToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem onlyAcceptDataFromSendingListToolStripMenuItem;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolStripMenuItem multiworldToolStripMenuItem;
+        private System.Windows.Forms.NumericUpDown nudPlayerID;
+        private System.Windows.Forms.Label label6;
     }
 }

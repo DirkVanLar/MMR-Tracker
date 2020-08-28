@@ -1,10 +1,7 @@
 ﻿TODO ===
 
-Add GUI Elements for
--Enable MultiWorld (Should happen in online play for. Should disable the "Full Check" Toggle as multiworld logic ignores that)
--Select your Player ID (Should appear in online play form if multiworld is enabled)
--Select which Player an Item should go to if a spoiler log is not applied (Should appear in the item select form if multiworld is enabled)
+Add toggle for RemoveObtainedItemsfromList
+
+SsameITemsMultipleChecks Doesn't work
 
 CONSIDER ===
-
-FOR MULTIWORLD ===

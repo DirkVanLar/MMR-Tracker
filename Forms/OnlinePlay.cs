@@ -261,7 +261,7 @@ namespace MMR_Tracker.Forms
             NewIP.PORT = (int)NudPort.Value;
             NewIP.DisplayName = $"{IPText}:{NewIP.PORT}";
             IPS.Add(NewIP);
-            updateLB();
+            UpdateFormItems();
             txtIP.Focus();
             txtIP.SelectAll();
         }
@@ -272,12 +272,13 @@ namespace MMR_Tracker.Forms
             {
                 IPS.RemoveAt(IPS.IndexOf(i as LogicObjects.IPDATA));
             }
-            updateLB();
+            UpdateFormItems();
         }
 
         private void chkListenForData_CheckedChanged(object sender, EventArgs e)
         {
             if (Updating) { return; }
+            UpdateFormItems();
             if (chkListenForData.Checked)
             {
                 NudYourPort.Enabled = false;
@@ -295,36 +296,18 @@ namespace MMR_Tracker.Forms
         private void chkSendData_CheckedChanged(object sender, EventArgs e)
         {
             Sending = chkSendData.Checked;
+            UpdateFormItems();
         }
 
         //Other
 
         private void OnlinePlay_Load(object sender, EventArgs e)
         {
-            Updating = true;
-
-            FormOpen = true;
-            updateLB();
-            chkListenForData.Checked = Listening;
-            chkSendData.Checked = Sending;
             var MyIPString = new WebClient().DownloadString("http://icanhazip.com").Trim();
             Console.WriteLine(MyIPString);
             MyIP = IPAddress.Parse(MyIPString);
             txtPulbicIP.Text = MyIP.ToString();
-            NudYourPort.Value = PortNumber;
-            NudPort.Value = PortNumber;
-            allowFullCheckToolStripMenuItem.Checked = (AllowCheckingItems);
-            autoAddIncomingIPsToolStripMenuItem.Checked = (AutoAddIncomingConnections);
-            onlyAcceptDataFromSendingListToolStripMenuItem.Checked = (StrictIP);
-            copyNetDataToClipboardToolStripMenuItem.Visible = Debugging.ISDebugging;
-
-            Updating = false;
-        }
-
-        public void updateLB()
-        {
-            LBIPAdresses.Items.Clear();
-            foreach (var i in IPS) { LBIPAdresses.Items.Add(i); }
+            UpdateFormItems(false, true);
         }
 
         public static void ManageNetData(LogicObjects.MMRTpacket Data)
@@ -398,7 +381,7 @@ namespace MMR_Tracker.Forms
             NewIP.PORT = Data.IPData.PORT;
             NewIP.DisplayName = $"{NewIP.IP}:{NewIP.PORT}";
             IPS.Add(NewIP);
-            updateLB();
+            UpdateFormItems();
         }
 
         private void saveIPListToolStripMenuItem_Click(object sender, EventArgs e)
@@ -439,19 +422,20 @@ namespace MMR_Tracker.Forms
                     Console.WriteLine($"{i.IP.Trim()} Added");
                 }
             }
-            updateLB();
+            UpdateFormItems();
         }
 
         private void onlyAcceptDataFromSendingListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StrictIP = !StrictIP;
-            onlyAcceptDataFromSendingListToolStripMenuItem.Checked = (StrictIP);
+            UpdateFormItems();
         }
 
         private void LBIPAdresses_MouseMove(object sender, MouseEventArgs e)
         {
             ShowtoolTip(e, sender as ListBox);
         }
+
         public void ShowtoolTip(MouseEventArgs e, ListBox lb)
         {
             int index = lb.IndexFromPoint(e.Location);
@@ -461,6 +445,55 @@ namespace MMR_Tracker.Forms
             if (toolTip1.GetToolTip(lb) == DisplayName) { return; }
             if (Utility.IsDivider(DisplayName)) { return; }
             toolTip1.SetToolTip(lb, DisplayName);
+        }
+
+        private void multiworldToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IsMultiWorld = !IsMultiWorld;
+            if (IsMultiWorld) { nudPlayerID_ValueChanged(null, null); }
+            UpdateFormItems(true);
+            if (!IsMultiWorld) { MyPlayerID = -1; }
+
+            Console.WriteLine(MyPlayerID);
+            Console.WriteLine(nudPlayerID.Value);
+            Console.WriteLine("====");
+        }
+
+        private void UpdateFormItems(bool DoResize = false, bool FormLoad = false)
+        {
+            Updating = true;
+
+            FormOpen = true;
+            LBIPAdresses.Items.Clear();
+            foreach (var i in IPS) { LBIPAdresses.Items.Add(i); }
+            chkListenForData.Checked = Listening;
+            chkSendData.Checked = Sending;
+            NudYourPort.Value = PortNumber;
+            NudPort.Value = PortNumber;
+            allowFullCheckToolStripMenuItem.Checked = (AllowCheckingItems);
+            autoAddIncomingIPsToolStripMenuItem.Checked = (AutoAddIncomingConnections);
+            onlyAcceptDataFromSendingListToolStripMenuItem.Checked = (StrictIP);
+            copyNetDataToClipboardToolStripMenuItem.Visible = Debugging.ISDebugging;
+            multiworldToolStripMenuItem.Checked = IsMultiWorld;
+            allowFullCheckToolStripMenuItem.Visible = !IsMultiWorld;
+            nudPlayerID.Enabled = IsMultiWorld && !chkListenForData.Checked && !chkSendData.Checked;
+            nudPlayerID.Value = (MyPlayerID < 0) ? 0 : MyPlayerID;
+            if (IsMultiWorld && DoResize)
+            {
+                this.Height = this.Height + 25;
+            }
+            else if (!IsMultiWorld && (DoResize || FormLoad))
+            {
+                this.Height = this.Height - 25;
+            }
+
+            Updating = false;
+        }
+
+        private void nudPlayerID_ValueChanged(object sender, EventArgs e)
+        {
+            if (Updating) { return; }
+            MyPlayerID = (int)nudPlayerID.Value;
         }
     }
 }
