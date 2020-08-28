@@ -1106,6 +1106,24 @@ namespace MMR_Tracker_V2
                     totalchk++;
                     if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, Name, entry.RandomizedEntry(mi))) { ListItems.Add(LBItem); }
                 }
+                if (OnlinePlay.IsMultiWorld && entry.Aquired && mi.Logic.Find(x => x.RandomizedItem == entry.ID && x.ItemBelongsToMe()) == null)
+                {
+                    var MultiWorldEntry = new LogicObjects.LogicEntry
+                    {
+                        ID = -1,
+                        DictionaryName = $"Player {entry.PlayerData.ItemCameFromPlayer}",
+                        Checked = true,
+                        RandomizedItem = entry.ID,
+                        SpoilerRandom = entry.ID,
+                        Options = 0,
+                        LocationArea = "Multiworld",
+                        ItemSubType = "Item"
+                    };
+                    var Name = createDisplayName(true, MultiWorldEntry, mi);
+                    var LBItem = new LogicObjects.ListItem() { Container = 3, LocationEntry = MultiWorldEntry, ItemEntry = entry, DisplayName = Name, Header = MultiWorldEntry.LocationArea };
+                    totalchk++;
+                    if (Utility.FilterSearch(MultiWorldEntry, TXTCheckedSearch.Text, Name, entry)) { ListItems.Add(LBItem); }
+                }
 
             }
 
@@ -1326,6 +1344,7 @@ namespace MMR_Tracker_V2
                         if (LB == LBCheckedLocations && !(i as LogicObjects.LogicEntry).Checked) { continue; }
                         int RandomizedItem = (i as LogicObjects.LogicEntry).RandomizedItem;
                         if (!LogicEditing.CheckObject(i as LogicObjects.LogicEntry, LogicObjects.MainTrackerInstance)) { continue; }
+                        if ((i as LogicObjects.LogicEntry).ID < 0) { continue; } //Beta Multiworld Support
                         if (UncheckAndMark && (i as LogicObjects.LogicEntry).RandomizedItem < 0 && !(i as LogicObjects.LogicEntry).Checked)
                         {
                             if ((i as LogicObjects.LogicEntry).SpoilerRandom < 0)
@@ -1556,6 +1575,9 @@ namespace MMR_Tracker_V2
             var checkedName = (ItemName == "") ? LocationName : ItemName + ": " + LocationName;
             var AvailableName = (ItemName == "") ? LocationName : LocationName + ": " + ItemName;
             var fullName = (Checked) ? checkedName : AvailableName;
+            if (Checked && !entry.ItemBelongsToMe()){
+                fullName = fullName + $"(Player {entry.PlayerData.ItemBelongedToPlayer})";
+            }
             return fullName + ((entry.Starred) ? "*" : "");
         }
 

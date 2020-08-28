@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MMR_Tracker.Forms;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -73,14 +74,20 @@ namespace MMR_Tracker_V2
             public bool IsTrick { get; set; } //Whether or not the entry is a trick
             public bool TrickEnabled { get; set; } //Whether or not the trick is enabled
             public string TrickToolTip { get; set; } //The tool tip describing what the trick is
-            public int ItemBelongedToPlayer { get; set; } = -1; //(Future proofing for multi world) What player the item at this check belonged to
-            public int ItemCameFromPlayer { get; set; } = -1; //(Future proofing for multi world) What the player this item came from
+            public playerData PlayerData { get; set; } = new playerData(); //Data for multiworld
             public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
             public override string ToString()
             {
                 return DisplayName;
             }
         }
+
+        public class playerData
+        {
+            public int ItemBelongedToPlayer { get; set; } = -1; //(Future proofing for multi world) What player the item at this check belonged to
+            public int ItemCameFromPlayer { get; set; } = -1; //(Future proofing for multi world) What the player this item came from
+        }
+
         public class LogicDictionaryEntry
         {
             public string DictionaryName { get; set; } //The name the logic file uses for the item
@@ -173,6 +180,7 @@ namespace MMR_Tracker_V2
         public class NetData
         {
             public int ID { get; set; } //Check ID
+            public int PI { get; set; } //Player ID (Which player the item at this check belongs to)
             public int RI { get; set; } //Check Randomized Item
             public bool Ch { get; set; } //Whether the check is checked
         }
@@ -289,6 +297,11 @@ namespace MMR_Tracker_V2
                 if (!i.IsFake) { lastRealItem = i.ID; }
             }
             return (entry.ID > lastRealItem);
+        }
+
+        public static bool ItemBelongsToMe(this LogicObjects.LogicEntry entry)
+        {
+            return entry.PlayerData.ItemBelongedToPlayer == -1 | entry.PlayerData.ItemBelongedToPlayer == -OnlinePlay.MyPlayerID;
         }
     }
 }

@@ -29,6 +29,9 @@ namespace MMR_Tracker.Forms
         public static event EventHandler NetDataProcessed = delegate { };
         public static event Action<LogicObjects.MMRTpacket> TriggerAddRemoteToIPList = delegate { };
 
+        public static int MyPlayerID = -1;
+        public static bool IsMultiWorld = false;
+
         public static bool Listening = false;
         public static bool Sending = false;
         public static bool Updating = false;
@@ -49,13 +52,13 @@ namespace MMR_Tracker.Forms
             List<LogicObjects.NetData> ClipboardNetData = new List<LogicObjects.NetData>();
             foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && x.HasRandomItem(true)))
             {
-                ClipboardNetData.Add(new LogicObjects.NetData { ID = i.ID, Ch = i.Checked, RI = i.RandomizedItem });
+                ClipboardNetData.Add(new LogicObjects.NetData { ID = i.ID, PI = i.PlayerData.ItemBelongedToPlayer ,Ch = i.Checked, RI = i.RandomizedItem });
             }
             LogicObjects.MMRTpacket Pack = new LogicObjects.MMRTpacket();
             Pack.LogicData = ClipboardNetData;
             Pack.IPData.IP = MyIP.ToString();
             Pack.IPData.PORT = PortNumber;
-            Pack.PlayerID = 0;
+            Pack.PlayerID = MyPlayerID;
             Pack.RequestingUpdate = Type;
             return Pack;
         }
@@ -326,6 +329,7 @@ namespace MMR_Tracker.Forms
 
         public static void ManageNetData(LogicObjects.MMRTpacket Data)
         {
+            var log = LogicObjects.MainTrackerInstance.Logic;
             var IPInSendingList = IPS.FindIndex(f => f.IP.ToString() == Data.IPData.IP && f.PORT == Data.IPData.PORT) > -1;
 
             if (!IPInSendingList)
@@ -348,9 +352,16 @@ namespace MMR_Tracker.Forms
 
             foreach (var i in Data.LogicData)
             {
-                if (LogicObjects.MainTrackerInstance.Logic.ElementAt(i.ID) != null && !LogicObjects.MainTrackerInstance.Logic[i.ID].Checked)
+                if (IsMultiWorld)
                 {
-                    var entry = LogicObjects.MainTrackerInstance.Logic[i.ID];
+                    if (i.PI != MyPlayerID || i.Ch == false || i.RI < 0 || i.RI >= log.Count() || log[i.RI].IsEntrance()) { continue; }
+                    var entry = new LogicObjects.LogicEntry { ID = -1, Checked = false, RandomizedItem = i.RI, SpoilerRandom = i.RI, Options = 0};
+                    LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance, Data.PlayerID);
+                }
+
+                else if (log.ElementAt(i.ID) != null && !log[i.ID].Checked)
+                {
+                    var entry = log[i.ID];
 
                     if (entry.HasRandomItem(true) || entry.SpoilerRandom > -1)
                     {

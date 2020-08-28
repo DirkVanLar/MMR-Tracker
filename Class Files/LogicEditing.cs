@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
@@ -193,12 +194,12 @@ namespace MMR_Tracker_V2
             return 1;
         }
 
-        public static bool CheckObject(LogicObjects.LogicEntry CheckedObject, LogicObjects.TrackerInstance Instance)
+        public static bool CheckObject(LogicObjects.LogicEntry CheckedObject, LogicObjects.TrackerInstance Instance, int FromNetPlayer = -1)
         {
             if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
             {
                 CheckedObject.Checked = false;
-                if (CheckedObject.RandomizedItem > -1 && CheckedObject.RandomizedItem < Instance.Logic.Count && !Tools.SameItemMultipleChecks(CheckedObject.RandomizedItem, Instance))
+                if (CheckedObject.RandomizedItem > -1 && CheckedObject.RandomizedItem < Instance.Logic.Count && !Tools.SameItemMultipleChecks(CheckedObject.RandomizedItem, Instance) && CheckedObject.ItemBelongsToMe())
                 {
                     Instance.Logic[CheckedObject.RandomizedItem].Aquired = false;
                     CheckEntrancePair(CheckedObject, Instance, false);
@@ -213,6 +214,7 @@ namespace MMR_Tracker_V2
                 if (CheckedObject.SpoilerRandom > -2) { CheckedObject.RandomizedItem = CheckedObject.SpoilerRandom; }
                 if (CheckedObject.RandomizedItem < 0) { CheckedObject.RandomizedItem = -1; return true; }
                 Instance.Logic[CheckedObject.RandomizedItem].Aquired = true;
+                Instance.Logic[CheckedObject.RandomizedItem].PlayerData.ItemCameFromPlayer = FromNetPlayer;
                 CheckEntrancePair(CheckedObject, Instance, true);
                 return true;
             }
@@ -266,7 +268,7 @@ namespace MMR_Tracker_V2
 
         public static void CheckEntrancePair(LogicObjects.LogicEntry Location, LogicObjects.TrackerInstance Instance, bool Checking)
         {
-            if (!Instance.Options.CoupleEntrances || !Location.HasRandomItem(true) || !Location.IsEntrance()) { return; }
+            if (Location.ID < 0 || !Instance.Options.CoupleEntrances || !Location.HasRandomItem(true) || !Location.IsEntrance()) { return; }
             var reverseLocation = Location.PairedEntry(Instance, true);
             var reverseItem = Location.PairedEntry(Instance);
             if (reverseItem == null || reverseLocation == null) return;
