@@ -49,7 +49,6 @@
             this.saveIPListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadIPListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allowFullCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoAddIncomingIPsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onlyAcceptDataFromSendingListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sYNCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,9 +58,13 @@
             this.copyNetDataToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.multiworldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nudPlayerID = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
+            this.gamemodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.coopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onlineSyncedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.multiworldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.NudPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudYourPort)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -278,8 +281,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.multiworldToolStripMenuItem,
-            this.allowFullCheckToolStripMenuItem,
+            this.gamemodeToolStripMenuItem,
             this.autoAddIncomingIPsToolStripMenuItem,
             this.onlyAcceptDataFromSendingListToolStripMenuItem,
             this.sYNCToolStripMenuItem,
@@ -287,13 +289,6 @@
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
-            // 
-            // allowFullCheckToolStripMenuItem
-            // 
-            this.allowFullCheckToolStripMenuItem.Name = "allowFullCheckToolStripMenuItem";
-            this.allowFullCheckToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
-            this.allowFullCheckToolStripMenuItem.Text = "Allow Full Check";
-            this.allowFullCheckToolStripMenuItem.Click += new System.EventHandler(this.allowFullCheckToolStripMenuItem_Click);
             // 
             // autoAddIncomingIPsToolStripMenuItem
             // 
@@ -355,13 +350,6 @@
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.portForwardingToolStripMenuItem_Click);
             // 
-            // multiworldToolStripMenuItem
-            // 
-            this.multiworldToolStripMenuItem.Name = "multiworldToolStripMenuItem";
-            this.multiworldToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
-            this.multiworldToolStripMenuItem.Text = "Multiworld";
-            this.multiworldToolStripMenuItem.Click += new System.EventHandler(this.multiworldToolStripMenuItem_Click);
-            // 
             // nudPlayerID
             // 
             this.nudPlayerID.Location = new System.Drawing.Point(154, 467);
@@ -380,6 +368,45 @@
             this.label6.Size = new System.Drawing.Size(128, 13);
             this.label6.TabIndex = 16;
             this.label6.Text = "Your Multiworld Player ID:";
+            // 
+            // gamemodeToolStripMenuItem
+            // 
+            this.gamemodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.coopToolStripMenuItem,
+            this.onlineSyncedToolStripMenuItem,
+            this.multiworldToolStripMenuItem,
+            this.infoToolStripMenuItem});
+            this.gamemodeToolStripMenuItem.Name = "gamemodeToolStripMenuItem";
+            this.gamemodeToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.gamemodeToolStripMenuItem.Text = "Gamemode";
+            // 
+            // coopToolStripMenuItem
+            // 
+            this.coopToolStripMenuItem.Name = "coopToolStripMenuItem";
+            this.coopToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.coopToolStripMenuItem.Text = "Co-op";
+            this.coopToolStripMenuItem.Click += new System.EventHandler(this.ChangeGameMode);
+            // 
+            // onlineSyncedToolStripMenuItem
+            // 
+            this.onlineSyncedToolStripMenuItem.Name = "onlineSyncedToolStripMenuItem";
+            this.onlineSyncedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.onlineSyncedToolStripMenuItem.Text = "Online (Synced)";
+            this.onlineSyncedToolStripMenuItem.Click += new System.EventHandler(this.ChangeGameMode);
+            // 
+            // multiworldToolStripMenuItem
+            // 
+            this.multiworldToolStripMenuItem.Name = "multiworldToolStripMenuItem";
+            this.multiworldToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.multiworldToolStripMenuItem.Text = "Multiworld";
+            this.multiworldToolStripMenuItem.Click += new System.EventHandler(this.ChangeGameMode);
+            // 
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.infoToolStripMenuItem.Text = "Info";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
             // OnlinePlay
             // 
@@ -443,7 +470,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveIPListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadIPListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem allowFullCheckToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoAddIncomingIPsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyNetDataToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
@@ -453,8 +479,12 @@
         private System.Windows.Forms.ToolStripMenuItem fullSyncToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem onlyAcceptDataFromSendingListToolStripMenuItem;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ToolStripMenuItem multiworldToolStripMenuItem;
         private System.Windows.Forms.NumericUpDown nudPlayerID;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripMenuItem gamemodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem coopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem onlineSyncedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem multiworldToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
     }
 }

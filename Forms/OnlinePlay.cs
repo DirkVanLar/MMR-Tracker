@@ -31,6 +31,7 @@ namespace MMR_Tracker.Forms
 
         public static int MyPlayerID = -1;
         public static bool IsMultiWorld = false;
+        public static bool MultiWorldOnlineCombo = false;
 
         public static bool Listening = false;
         public static bool Sending = false;
@@ -38,7 +39,7 @@ namespace MMR_Tracker.Forms
         public static bool FormOpen = false;
         public static IPAddress MyIP;
         public static int PortNumber = 2112;
-        public static bool AllowCheckingItems = true;
+        public static bool AllowCheckingItems = false;
         public static bool AllowAutoPortForward = false;
         public static bool AutoAddIncomingConnections = false;
         public static bool StrictIP = false;
@@ -199,11 +200,6 @@ namespace MMR_Tracker.Forms
         }
 
         //Options
-        private void allowFullCheckToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AllowCheckingItems = !AllowCheckingItems;
-            allowFullCheckToolStripMenuItem.Checked = (AllowCheckingItems);
-        }
 
         private void autoAddIncomingIPsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -307,7 +303,8 @@ namespace MMR_Tracker.Forms
             Console.WriteLine(MyIPString);
             MyIP = IPAddress.Parse(MyIPString);
             txtPulbicIP.Text = MyIP.ToString();
-            UpdateFormItems(false, true);
+            ChangeGameMode(sender, e);
+            UpdateFormItems();
         }
 
         public static void ManageNetData(LogicObjects.MMRTpacket Data)
@@ -335,7 +332,12 @@ namespace MMR_Tracker.Forms
 
             foreach (var i in Data.LogicData)
             {
-                if (IsMultiWorld)
+                var SyncedItemInMultiworld = (MultiWorldOnlineCombo && log.ElementAt(i.ID) != null && Data.PlayerID == i.PI && (log[i.ID].SpoilerRandom < -1 || log[i.ID].SpoilerRandom == i.RI));
+                //This is used to theoretically allow for a combination of multiworld and Modloader64 online. If you recieve data from a player 
+                //with a matching player ID and the data in the packet does not contridict the spoiler log data, Check the actual location on 
+                //your tracker as if you were in Online (Synced) mode.
+
+                if (IsMultiWorld && !SyncedItemInMultiworld)
                 {
                     if (i.PI != MyPlayerID || i.Ch == false || i.RI < 0 || i.RI >= log.Count() || log[i.RI].IsEntrance()) { continue; }
                     var entry = new LogicObjects.LogicEntry { ID = -1, Checked = false, RandomizedItem = i.RI, SpoilerRandom = i.RI, Options = 0};
@@ -348,25 +350,18 @@ namespace MMR_Tracker.Forms
 
                     if (entry.HasRandomItem(true) || entry.SpoilerRandom > -1)
                     {
-                        if (!AllowCheckingItems || i.Ch == false)
+                        if ((!AllowCheckingItems || i.Ch == false) && (entry.RandomizedItem < 0))
                         {
-                            if (entry.RandomizedItem < 0)
-                            {
-                                LogicEditing.MarkObject(entry);
-                            }
+                            LogicEditing.MarkObject(entry);
                         }
                         else
                         {
                             LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance);
                         }
                     }
-                    else
+                    else if(AllowCheckingItems && i.Ch)
                     {
                         LogicObjects.MainTrackerInstance.Logic[i.ID].RandomizedItem = i.RI;
-                        if (AllowCheckingItems && i.Ch)
-                        {
-                            LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance);
-                        }
                     }
                 }
             }
@@ -447,19 +442,37 @@ namespace MMR_Tracker.Forms
             toolTip1.SetToolTip(lb, DisplayName);
         }
 
-        private void multiworldToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ChangeGameMode(object sender, EventArgs e)
         {
-            IsMultiWorld = !IsMultiWorld;
-            if (IsMultiWorld) { nudPlayerID_ValueChanged(null, null); }
-            UpdateFormItems(true);
-            if (!IsMultiWorld) { MyPlayerID = -1; }
+            coopToolStripMenuItem.Checked = false;
+            onlineSyncedToolStripMenuItem.Checked = false;
+            multiworldToolStripMenuItem.Checked = false;
 
-            Console.WriteLine(MyPlayerID);
-            Console.WriteLine(nudPlayerID.Value);
-            Console.WriteLine("====");
+            bool wasMultiWorld = IsMultiWorld;
+
+            IsMultiWorld = (sender == multiworldToolStripMenuItem);
+            AllowCheckingItems = (sender == onlineSyncedToolStripMenuItem);
+
+            multiworldToolStripMenuItem.Checked = (IsMultiWorld);
+            onlineSyncedToolStripMenuItem.Checked = (!IsMultiWorld && AllowCheckingItems);
+            coopToolStripMenuItem.Checked = (!IsMultiWorld && !AllowCheckingItems);
+
+            if (IsMultiWorld && !wasMultiWorld)
+            {
+                this.Height = this.Height + 25;
+            }
+            else if ((!IsMultiWorld && wasMultiWorld) || sender == this) //Sender is "this" when called from form load event
+            {
+                this.Height = this.Height - 25;
+            }
+
+            if (IsMultiWorld) { MyPlayerID = (int)nudPlayerID.Value; }
+            else { MyPlayerID = -1; }
+
+            UpdateFormItems();
         }
 
-        private void UpdateFormItems(bool DoResize = false, bool FormLoad = false)
+        private void UpdateFormItems()
         {
             Updating = true;
 
@@ -470,22 +483,17 @@ namespace MMR_Tracker.Forms
             chkSendData.Checked = Sending;
             NudYourPort.Value = PortNumber;
             NudPort.Value = PortNumber;
-            allowFullCheckToolStripMenuItem.Checked = (AllowCheckingItems);
             autoAddIncomingIPsToolStripMenuItem.Checked = (AutoAddIncomingConnections);
+            autoAddIncomingIPsToolStripMenuItem.Visible = (!StrictIP);
             onlyAcceptDataFromSendingListToolStripMenuItem.Checked = (StrictIP);
             copyNetDataToClipboardToolStripMenuItem.Visible = Debugging.ISDebugging;
             multiworldToolStripMenuItem.Checked = IsMultiWorld;
-            allowFullCheckToolStripMenuItem.Visible = !IsMultiWorld;
             nudPlayerID.Enabled = IsMultiWorld && !chkListenForData.Checked && !chkSendData.Checked;
-            nudPlayerID.Value = (MyPlayerID < 0) ? 0 : MyPlayerID;
-            if (IsMultiWorld && DoResize)
-            {
-                this.Height = this.Height + 25;
-            }
-            else if (!IsMultiWorld && (DoResize || FormLoad))
-            {
-                this.Height = this.Height - 25;
-            }
+            if (IsMultiWorld) { nudPlayerID.Value = (MyPlayerID < 0) ? 0 : MyPlayerID; }
+
+            Console.WriteLine(IsMultiWorld);
+            Console.WriteLine(AllowCheckingItems);
+            Console.WriteLine("====");
 
             Updating = false;
         }
@@ -494,6 +502,13 @@ namespace MMR_Tracker.Forms
         {
             if (Updating) { return; }
             MyPlayerID = (int)nudPlayerID.Value;
+        }
+
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Co-op: In this mode, any locations you check or mark will be marked on your parties trackers. It will only ever mark a location on your parties tracker, even if you did a full check.\nUsefull for when you are playing Co-op runs using the same seed.\n\n" +
+                "Online (Synced): In this mode, any locations you check or mark will apply the same action to your parties tracker.\nUsefull for when you are playing an Online game through Modloader64 or other similar programs where items you obtain are synced between all players.\n\n" +
+                "Multiworld: In this mode, when you do a check you will assign what player the item is going to. That item will be marked as obtained for that player only.\nUseful when playing multiworld game modes such as OOT Randomizer Multiworld.", "Game Mode Info");
         }
     }
 }
