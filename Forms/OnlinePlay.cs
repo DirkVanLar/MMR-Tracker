@@ -339,30 +339,15 @@ namespace MMR_Tracker.Forms
 
                 if (IsMultiWorld && !SyncedItemInMultiworld)
                 {
-                    if (i.PI != MyPlayerID || i.Ch == false || i.RI < 0 || i.RI >= log.Count() || log[i.RI].IsEntrance()) { continue; }
+                    if (i.PI != MyPlayerID || i.Ch == false || i.RI < -1 || i.RI >= log.Count() || (i.RI > -1 && log[i.RI].IsEntrance())) { continue; }
                     var entry = new LogicObjects.LogicEntry { ID = -1, Checked = false, RandomizedItem = i.RI, SpoilerRandom = i.RI, Options = 0};
                     LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance, Data.PlayerID);
                 }
-
                 else if (log.ElementAt(i.ID) != null && !log[i.ID].Checked)
                 {
                     var entry = log[i.ID];
-
-                    if (entry.HasRandomItem(true) || entry.SpoilerRandom > -1)
-                    {
-                        if ((!AllowCheckingItems || i.Ch == false) && (entry.RandomizedItem < 0))
-                        {
-                            LogicEditing.MarkObject(entry);
-                        }
-                        else
-                        {
-                            LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance);
-                        }
-                    }
-                    else if(AllowCheckingItems && i.Ch)
-                    {
-                        LogicObjects.MainTrackerInstance.Logic[i.ID].RandomizedItem = i.RI;
-                    }
+                    entry.RandomizedItem = entry.HasRandomItem(false) ? entry.RandomizedItem : (entry.SpoilerRandom > -2 ? entry.SpoilerRandom : i.RI);
+                    if (AllowCheckingItems && i.Ch) { LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance); }
                 }
             }
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
@@ -509,6 +494,22 @@ namespace MMR_Tracker.Forms
             MessageBox.Show("Co-op: In this mode, any locations you check or mark will be marked on your parties trackers. It will only ever mark a location on your parties tracker, even if you did a full check.\nUsefull for when you are playing Co-op runs using the same seed.\n\n" +
                 "Online (Synced): In this mode, any locations you check or mark will apply the same action to your parties tracker.\nUsefull for when you are playing an Online game through Modloader64 or other similar programs where items you obtain are synced between all players.\n\n" +
                 "Multiworld: In this mode, when you do a check you will assign what player the item is going to. That item will be marked as obtained for that player only.\nUseful when playing multiworld game modes such as OOT Randomizer Multiworld.", "Game Mode Info");
+        }
+
+        private void lblYourIP_Click(object sender, EventArgs e)
+        {
+            if (lblYourIP.Text.Contains("Public"))
+            {
+                var LocalIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(x => x.AddressFamily == AddressFamily.InterNetwork);
+                if (LocalIP == null) { return; }
+                txtPulbicIP.Text = LocalIP.ToString();
+                lblYourIP.Text = "Your Local IP Address:";
+            }
+            else
+            {
+                txtPulbicIP.Text = MyIP.ToString();
+                lblYourIP.Text = "Your Public IP Address:";
+            }
         }
     }
 }

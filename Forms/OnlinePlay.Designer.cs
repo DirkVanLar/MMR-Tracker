@@ -39,7 +39,7 @@
             this.NudPort = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblYourIP = new System.Windows.Forms.Label();
             this.txtPulbicIP = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.NudYourPort = new System.Windows.Forms.NumericUpDown();
@@ -179,16 +179,17 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Port";
             // 
-            // label3
+            // lblYourIP
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(3, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Your IP Address:";
+            this.lblYourIP.AutoSize = true;
+            this.lblYourIP.BackColor = System.Drawing.Color.Transparent;
+            this.lblYourIP.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblYourIP.Location = new System.Drawing.Point(3, 34);
+            this.lblYourIP.Name = "lblYourIP";
+            this.lblYourIP.Size = new System.Drawing.Size(118, 13);
+            this.lblYourIP.TabIndex = 9;
+            this.lblYourIP.Text = "Your Public IP Address:";
+            this.lblYourIP.Click += new System.EventHandler(this.lblYourIP_Click);
             // 
             // txtPulbicIP
             // 
@@ -421,7 +422,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.NudYourPort);
             this.Controls.Add(this.txtPulbicIP);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblYourIP);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.NudPort);
@@ -460,7 +461,7 @@
         private System.Windows.Forms.NumericUpDown NudPort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblYourIP;
         private System.Windows.Forms.TextBox txtPulbicIP;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown NudYourPort;
