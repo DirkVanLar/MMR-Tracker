@@ -197,6 +197,7 @@ namespace MMR_Tracker_V2
 
         public static bool CheckObject(LogicObjects.LogicEntry CheckedObject, LogicObjects.TrackerInstance Instance, int FromNetPlayer = -1)
         {
+            if (CheckedObject.ID < -1) { return false; }
             if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
             {
                 if (CheckedObject.RandomizedItem > -1 && CheckedObject.RandomizedItem < Instance.Logic.Count && !Tools.SameItemMultipleChecks(CheckedObject.RandomizedItem, Instance) && (!OnlinePlay.IsMultiWorld || CheckedObject.ItemBelongsToMe()))

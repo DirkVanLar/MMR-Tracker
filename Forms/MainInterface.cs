@@ -1086,6 +1086,7 @@ namespace MMR_Tracker_V2
             foreach(var entry in LogicObjects.MainTrackerInstance.Logic)
             {
                 if (!entry.AppearsInListbox() || entry.LocationName == null) { continue; }
+                //Add Entry to Available Locations
                 if (!entry.Checked && (entry.Available || entry.HasRandomItem(true) || CHKShowAll.Checked || TXTLocSearch.Text.StartsWith("^")))
                 {
                     var Name = createDisplayName(false, entry, mi);
@@ -1096,6 +1097,7 @@ namespace MMR_Tracker_V2
                         if (Utility.FilterSearch(entry, TXTLocSearch.Text, Name, entry.RandomizedEntry(mi))) { ListItems.Add(LBItem); }
                     }
                 }
+                //Add Entry to Available Entrances
                 if (!entry.Checked && (entry.Available || entry.HasRandomItem(true) || CHKShowAll.Checked || TXTEntSearch.Text.StartsWith("^")))
                 {
                     var Name = createDisplayName(false, entry, mi);
@@ -1106,6 +1108,7 @@ namespace MMR_Tracker_V2
                         if (Utility.FilterSearch(entry, TXTEntSearch.Text, Name, entry.RandomizedEntry(mi))) { ListItems.Add(LBItem); }
                     }
                 }
+                //Add Entry to Checked Locations
                 if (entry.Checked)
                 {
                     var Name = createDisplayName(true, entry, mi);
@@ -1113,17 +1116,37 @@ namespace MMR_Tracker_V2
                     totalchk++;
                     if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, Name, entry.RandomizedEntry(mi))) { ListItems.Add(LBItem); }
                 }
-                if (OnlinePlay.IsMultiWorld && entry.Aquired && mi.Logic.Find(x => x.RandomizedItem == entry.ID && x.ItemBelongsToMe()) == null)
+                //Add Items obtained via multiworld to Checked Items
+                if (entry.Aquired && mi.Logic.Find(x => x.RandomizedItem == entry.ID && x.ItemBelongsToMe()) == null)
                 {
                     var MultiWorldEntry = new LogicObjects.LogicEntry
                     {
                         ID = -1,
-                        DictionaryName = $"Player {entry.PlayerData.ItemCameFromPlayer}",
+                        DictionaryName = (entry.PlayerData.ItemCameFromPlayer == -1 || entry.PlayerData.ItemCameFromPlayer == OnlinePlay.MyPlayerID) ? "Unknown" : $"Player {entry.PlayerData.ItemCameFromPlayer}",
                         Checked = true,
                         RandomizedItem = entry.ID,
                         SpoilerRandom = entry.ID,
                         Options = 0,
                         LocationArea = "Multiworld",
+                        ItemSubType = "Item"
+                    };
+                    var Name = createDisplayName(true, MultiWorldEntry, mi);
+                    var LBItem = new LogicObjects.ListItem() { Container = 3, LocationEntry = MultiWorldEntry, ItemEntry = entry, DisplayName = Name, Header = MultiWorldEntry.LocationArea };
+                    totalchk++;
+                    if (Utility.FilterSearch(MultiWorldEntry, TXTCheckedSearch.Text, Name, entry)) { ListItems.Add(LBItem); }
+                }
+                //Add starting items to Checked Items
+                if (entry.StartingItem())
+                {
+                    var MultiWorldEntry = new LogicObjects.LogicEntry
+                    {
+                        ID = -2,
+                        DictionaryName = "Starting Item",
+                        Checked = true,
+                        RandomizedItem = entry.ID,
+                        SpoilerRandom = entry.ID,
+                        Options = 0,
+                        LocationArea = "Starting Items",
                         ItemSubType = "Item"
                     };
                     var Name = createDisplayName(true, MultiWorldEntry, mi);

@@ -104,6 +104,9 @@ namespace MMR_Tracker_V2
             LogicObjects.MainTrackerInstance.Logic[0].Aquired = true;
             LogicObjects.MainTrackerInstance.Logic[0].PlayerData.ItemCameFromPlayer = 9;
 
+
+            LogicObjects.MainTrackerInstance.Logic[10].Aquired = true;
+
         }
 
     }
