@@ -39,6 +39,7 @@ namespace MMR_Tracker_V2
 
         private void Tools_UpdateListBox(object sender, EventArgs e)
         {
+            if (sender == OnlinePlay.MultiworldToggle) { FormatMenuItems(); Console.WriteLine("MTog"); }
             PrintToListBox();
         }
 
@@ -52,6 +53,7 @@ namespace MMR_Tracker_V2
             if (VersionHandeling.GetLatestTrackerVersion()) { this.Close(); }
             ResizeObject();
             FormatMenuItems();
+            HandleStartArgs(sender, e, Environment.GetCommandLineArgs());
         }
 
         private void FRMTracker_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
@@ -88,73 +90,12 @@ namespace MMR_Tracker_V2
 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Tools.LoadInstance();
-            FormatMenuItems();
-            ResizeObject();
-            PrintToListBox();
-            FireEvents(sender, e);
+            LoadMMRTSAVfile(sender, e);
         }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.fileToolStripMenuItem.HideDropDown();
-            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-            string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSAV)|*.txt;*.MMRTSAV");
-            if (file == "") { return; }
-
-            var saveFile = file.EndsWith(".MMRTSAV");
-            string[] SaveFileRawLogicFile = null;
-            LogicObjects.TrackerInstance template = null;
-            if (saveFile)
-            {
-                try { template = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file)); }
-                catch
-                {
-                    MessageBox.Show("Save File Not Valid.");
-                    return;
-                }
-                SaveFileRawLogicFile = template.RawLogicFile;
-            }
-
-            var lines = (saveFile) ? SaveFileRawLogicFile : File.ReadAllLines(file);
-
-            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
-
-            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, lines.ToArray());
-
-            if (saveFile)
-            {
-                var Options = MessageBox.Show("Would you like to import the general tracker options from this save file?", "Options", MessageBoxButtons.YesNo);
-                if (Options == DialogResult.Yes) { LogicObjects.MainTrackerInstance.Options = template.Options; }
-                var RandOptions = MessageBox.Show("Would you like to import the Item Randomization options from this save file?", "Randomization Options", MessageBoxButtons.YesNo);
-                if (RandOptions == DialogResult.Yes)
-                {
-                    foreach (var i in LogicObjects.MainTrackerInstance.Logic)
-                    {
-                        var TemplateData = template.Logic.Find(x => x.DictionaryName == i.DictionaryName);
-                        if (TemplateData != null)
-                        {
-                            i.Options = TemplateData.Options;
-                            i.TrickEnabled = TemplateData.TrickEnabled;
-                        }
-                    }
-                }
-            }
-             
-            if (LogicObjects.MainTrackerInstance.EntranceRando && !saveFile && LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup)
-            {
-                LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = false;
-                LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = true;
-                foreach (var item in LogicObjects.MainTrackerInstance.Logic)
-                {
-                    if (item.IsEntrance()) { item.Options = 1; }
-                }
-            }
-            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
-            FormatMenuItems();
-            ResizeObject();
-            PrintToListBox();
-            FireEvents(sender, e);
+            CreateNewLogicInstance(sender, e);
         }
         #endregion File
         //Menu Strip => File => New---------------------------------------------------------------------------
@@ -208,7 +149,7 @@ namespace MMR_Tracker_V2
         #region Online Play Options
         private void onlinePlayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (OnlinePlay.FormOpen != null) { Console.WriteLine("Form already open"); OnlinePlay.FormOpen.Focus(); return; }
+            if (OnlinePlay.CurrentOpenForm != null) { Console.WriteLine("Form already open"); OnlinePlay.CurrentOpenForm.Focus(); return; }
             OnlinePlay net = new OnlinePlay();
             net.Show();
         }
@@ -460,12 +401,14 @@ namespace MMR_Tracker_V2
         #region Tools
         private void SeedCheckerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { MessageBox.Show("Not compatible with multiworld seeds!", "Incompatible", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
             SeedChecker SeedCheckerForm = new SeedChecker();
             SeedCheckerForm.Show();
         }
 
         private void GeneratePlaythroughToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { MessageBox.Show("Not compatible with multiworld seeds!", "Incompatible", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
             PlaythroughGenerator.GeneratePlaythrough(LogicObjects.MainTrackerInstance);
         }
 
@@ -1122,12 +1065,12 @@ namespace MMR_Tracker_V2
                     var MultiWorldEntry = new LogicObjects.LogicEntry
                     {
                         ID = -1,
-                        DictionaryName = (entry.PlayerData.ItemCameFromPlayer == -1 || entry.PlayerData.ItemCameFromPlayer == OnlinePlay.MyPlayerID) ? "Unknown" : $"Player {entry.PlayerData.ItemCameFromPlayer}",
+                        DictionaryName = (entry.PlayerData.ItemCameFromPlayer == -1 || entry.PlayerData.ItemCameFromPlayer == LogicObjects.MainTrackerInstance.Options.MyPlayerID) ? "Unknown" : $"Player {entry.PlayerData.ItemCameFromPlayer}",
                         Checked = true,
                         RandomizedItem = entry.ID,
                         SpoilerRandom = entry.ID,
                         Options = 0,
-                        LocationArea = (entry.PlayerData.ItemCameFromPlayer == -1 || entry.PlayerData.ItemCameFromPlayer == OnlinePlay.MyPlayerID) ? "MISC" : "Multiworld",
+                        LocationArea = (entry.PlayerData.ItemCameFromPlayer == -1 || entry.PlayerData.ItemCameFromPlayer == LogicObjects.MainTrackerInstance.Options.MyPlayerID) ? "MISC" : "Multiworld",
                         ItemSubType = "Item"
                     };
                     var Name = createDisplayName(true, MultiWorldEntry, mi);
@@ -1431,6 +1374,95 @@ namespace MMR_Tracker_V2
             LB.TopIndex = TopIndex;
         }
 
+        public void LoadMMRTSAVfile(object sender, EventArgs e, string Name = "")
+        {
+            Tools.LoadInstance(Name);
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+            FireEvents(sender, e);
+        }
+
+        public void CreateNewLogicInstance(object sender, EventArgs e, string file = "")
+        {
+            if (sender == newToolStripMenuItem) { this.fileToolStripMenuItem.HideDropDown(); }
+
+            if (file == "")
+            {
+                if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
+                file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSAV)|*.txt;*.MMRTSAV");
+                if (file == "") { return; }
+            }
+            var saveFile = file.EndsWith(".MMRTSAV");
+            string[] SaveFileRawLogicFile = null;
+            LogicObjects.TrackerInstance template = null;
+            if (saveFile)
+            {
+                try { template = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file)); }
+                catch
+                {
+                    MessageBox.Show("Save File Not Valid.");
+                    return;
+                }
+                SaveFileRawLogicFile = template.RawLogicFile;
+            }
+
+            var lines = (saveFile) ? SaveFileRawLogicFile : File.ReadAllLines(file);
+
+            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
+
+            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, lines.ToArray());
+
+            if (saveFile)
+            {
+                var Options = MessageBox.Show("Would you like to import the general tracker options from this save file?", "Options", MessageBoxButtons.YesNo);
+                if (Options == DialogResult.Yes) { LogicObjects.MainTrackerInstance.Options = template.Options; }
+                var RandOptions = MessageBox.Show("Would you like to import the Item Randomization options from this save file?", "Randomization Options", MessageBoxButtons.YesNo);
+                if (RandOptions == DialogResult.Yes)
+                {
+                    foreach (var i in LogicObjects.MainTrackerInstance.Logic)
+                    {
+                        var TemplateData = template.Logic.Find(x => x.DictionaryName == i.DictionaryName);
+                        if (TemplateData != null)
+                        {
+                            i.Options = TemplateData.Options;
+                            i.TrickEnabled = TemplateData.TrickEnabled;
+                        }
+                    }
+                }
+            }
+
+            if (LogicObjects.MainTrackerInstance.EntranceRando && !saveFile && LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup)
+            {
+                LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = false;
+                LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = true;
+                foreach (var item in LogicObjects.MainTrackerInstance.Logic)
+                {
+                    if (item.IsEntrance()) { item.Options = 1; }
+                }
+            }
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+            FireEvents(sender, e);
+        }
+
+        public void HandleStartArgs(object sender, EventArgs e, string[] args)
+        {
+            if (args.Length > 1)
+            {
+                if (args[1].EndsWith(".MMRTSAV"))
+                {
+                    LoadMMRTSAVfile(sender, e, args[1]);
+                }
+                if (args[1].EndsWith(".txt"))
+                {
+                    CreateNewLogicInstance(sender, e, args[1]);
+                }
+            }
+        }
+
         public void FormatMenuItems()
         {
             importSpoilerLogToolStripMenuItem.Text = (Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) ? "Remove Spoiler Log" : "Import Spoiler Log";
@@ -1444,8 +1476,8 @@ namespace MMR_Tracker_V2
             undoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             redoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             saveToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            seedCheckerToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            generatePlaythroughToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            seedCheckerToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0) && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld;
+            generatePlaythroughToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0) && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld;
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             changeLogicToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             popoutPathfinderToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.EntranceRando);

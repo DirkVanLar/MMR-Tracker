@@ -28,21 +28,13 @@ namespace MMR_Tracker.Forms
 
         public static event EventHandler NetDataProcessed = delegate { };
         public static event Action<LogicObjects.MMRTpacket> TriggerAddRemoteToIPList = delegate { };
-
-        public static int MyPlayerID = -1;
-        public static bool IsMultiWorld = false;
-        public static bool MultiWorldOnlineCombo = false;
+        public static object MultiworldToggle = new object();
 
         public static bool Listening = false;
         public static bool Sending = false;
         public static bool Updating = false;
-        public static OnlinePlay FormOpen = null;
+        public static OnlinePlay CurrentOpenForm = null;
         public static IPAddress MyIP;
-        public static int PortNumber = 2112;
-        public static bool AllowCheckingItems = false;
-        public static bool AllowAutoPortForward = false;
-        public static bool AutoAddIncomingConnections = false;
-        public static bool StrictIP = false;
         public static List<LogicObjects.IPDATA> IPS = new List<LogicObjects.IPDATA>();
         public static Socket listener;
 
@@ -58,8 +50,8 @@ namespace MMR_Tracker.Forms
             LogicObjects.MMRTpacket Pack = new LogicObjects.MMRTpacket();
             Pack.LogicData = ClipboardNetData;
             Pack.IPData.IP = MyIP.ToString();
-            Pack.IPData.PORT = PortNumber;
-            Pack.PlayerID = MyPlayerID;
+            Pack.IPData.PORT = LogicObjects.MainTrackerInstance.Options.PortNumber;
+            Pack.PlayerID = LogicObjects.MainTrackerInstance.Options.MyPlayerID;
             Pack.RequestingUpdate = Type;
             return Pack;
         }
@@ -122,7 +114,7 @@ namespace MMR_Tracker.Forms
                 listener = new Socket(AddressFamily.InterNetwork,
                 SocketType.Stream,
                 ProtocolType.Tcp);
-                listener.Bind(new IPEndPoint(IPAddress.Any, PortNumber));
+                listener.Bind(new IPEndPoint(IPAddress.Any, LogicObjects.MainTrackerInstance.Options.PortNumber));
                 listener.Listen(10);
                 Socket socket = listener.Accept();
                 Console.WriteLine("Data Recieved.");
@@ -189,21 +181,21 @@ namespace MMR_Tracker.Forms
 
         private void NudYourPort_ValueChanged(object sender, EventArgs e)
         {
-            PortNumber = (int)NudYourPort.Value;
+            LogicObjects.MainTrackerInstance.Options.PortNumber = (int)NudYourPort.Value;
             chkListenForData.Checked = false;
         }
 
         private void OnlinePlay_FormClosing(object sender, FormClosingEventArgs e)
         {
-            FormOpen = null;
+            CurrentOpenForm = null;
         }
 
         //Options
 
         private void autoAddIncomingIPsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AutoAddIncomingConnections = !AutoAddIncomingConnections;
-            autoAddIncomingIPsToolStripMenuItem.Checked = (AutoAddIncomingConnections);
+            LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections = !LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections;
+            autoAddIncomingIPsToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections);
         }
 
         private void copyNetDataToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -310,8 +302,8 @@ namespace MMR_Tracker.Forms
 
             if (!IPInSendingList)
             {
-                if (StrictIP) { return; }
-                if (AutoAddIncomingConnections) { TriggerAddRemoteToIPList(Data); }
+                if (LogicObjects.MainTrackerInstance.Options.StrictIP) { return; }
+                if (LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections) { TriggerAddRemoteToIPList(Data); }
             }
 
             if (Data.RequestingUpdate !=0 && IPInSendingList)
@@ -328,14 +320,14 @@ namespace MMR_Tracker.Forms
 
             foreach (var i in Data.LogicData)
             {
-                var SyncedItemInMultiworld = (MultiWorldOnlineCombo && log.ElementAt(i.ID) != null && Data.PlayerID == i.PI && (log[i.ID].SpoilerRandom < -1 || log[i.ID].SpoilerRandom == i.RI));
+                var SyncedItemInMultiworld = (LogicObjects.MainTrackerInstance.Options.MultiWorldOnlineCombo && log.ElementAt(i.ID) != null && Data.PlayerID == i.PI && (log[i.ID].SpoilerRandom < -1 || log[i.ID].SpoilerRandom == i.RI));
                 //This is used to theoretically allow for a combination of multiworld and Modloader64 online. If you recieve data from a player 
                 //with a matching player ID and the data in the packet does not contridict the spoiler log data, Check the actual location on 
                 //your tracker as if you were in Online (Synced) mode.
 
-                if (IsMultiWorld && !SyncedItemInMultiworld)
+                if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld && !SyncedItemInMultiworld)
                 {
-                    if (i.PI != MyPlayerID || i.Ch == false || i.RI < -1 || i.RI >= log.Count() || (i.RI > -1 && log[i.RI].IsEntrance())) { continue; }
+                    if (i.PI != LogicObjects.MainTrackerInstance.Options.MyPlayerID || i.Ch == false || i.RI < -1 || i.RI >= log.Count() || (i.RI > -1 && log[i.RI].IsEntrance())) { continue; }
                     var entry = new LogicObjects.LogicEntry { ID = -1, Checked = false, RandomizedItem = i.RI, SpoilerRandom = i.RI, Options = 0};
                     LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance, Data.PlayerID);
                 }
@@ -343,7 +335,7 @@ namespace MMR_Tracker.Forms
                 {
                     var entry = log[i.ID];
                     entry.RandomizedItem = entry.HasRandomItem(false) ? entry.RandomizedItem : (entry.SpoilerRandom > -2 ? entry.SpoilerRandom : i.RI);
-                    if (AllowCheckingItems && i.Ch) { LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance); }
+                    if (LogicObjects.MainTrackerInstance.Options.AllowCheckingItems && i.Ch) { LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance); }
                 }
             }
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
@@ -365,7 +357,7 @@ namespace MMR_Tracker.Forms
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker IP List (*.MMRTIP)|*.MMRTIP", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
 
-            List<LogicObjects.IPDATASerializable> SaveIPS = new List<LogicObjects.IPDATASerializable> { new LogicObjects.IPDATASerializable { IP = MyIP.ToString(), PORT = PortNumber } };
+            List<LogicObjects.IPDATASerializable> SaveIPS = new List<LogicObjects.IPDATASerializable> { new LogicObjects.IPDATASerializable { IP = MyIP.ToString(), PORT = LogicObjects.MainTrackerInstance.Options.PortNumber } };
             foreach(var i in IPS)
             {
                 SaveIPS.Add(new LogicObjects.IPDATASerializable { IP = i.IP.ToString(), PORT = i.PORT, DisplayName = i.DisplayName });
@@ -403,7 +395,7 @@ namespace MMR_Tracker.Forms
 
         private void onlyAcceptDataFromSendingListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StrictIP = !StrictIP;
+            LogicObjects.MainTrackerInstance.Options.StrictIP = !LogicObjects.MainTrackerInstance.Options.StrictIP;
             UpdateFormItems();
         }
 
@@ -426,54 +418,56 @@ namespace MMR_Tracker.Forms
         private void ChangeGameMode(object sender, EventArgs e)
         {
 
-            bool wasMultiWorld = IsMultiWorld;
+            bool wasMultiWorld = LogicObjects.MainTrackerInstance.Options.IsMultiWorld;
 
             if (sender != this)
             {
-                IsMultiWorld = (sender == multiworldToolStripMenuItem);
-                AllowCheckingItems = (sender == onlineSyncedToolStripMenuItem);
+                LogicObjects.MainTrackerInstance.Options.IsMultiWorld = (sender == multiworldToolStripMenuItem);
+                LogicObjects.MainTrackerInstance.Options.AllowCheckingItems = (sender == onlineSyncedToolStripMenuItem);
             }
 
-            bool MultiworldOFF() { return !IsMultiWorld && wasMultiWorld; }
-            bool MultiworldON() { return IsMultiWorld && !wasMultiWorld; }
+            bool MultiworldOFF() { return !LogicObjects.MainTrackerInstance.Options.IsMultiWorld && wasMultiWorld; }
+            bool MultiworldON() { return LogicObjects.MainTrackerInstance.Options.IsMultiWorld && !wasMultiWorld; }
 
-            multiworldToolStripMenuItem.Checked = (IsMultiWorld);
-            onlineSyncedToolStripMenuItem.Checked = (!IsMultiWorld && AllowCheckingItems);
-            coopToolStripMenuItem.Checked = (!IsMultiWorld && !AllowCheckingItems);
+            multiworldToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.IsMultiWorld);
+            onlineSyncedToolStripMenuItem.Checked = (!LogicObjects.MainTrackerInstance.Options.IsMultiWorld && LogicObjects.MainTrackerInstance.Options.AllowCheckingItems);
+            coopToolStripMenuItem.Checked = (!LogicObjects.MainTrackerInstance.Options.IsMultiWorld && !LogicObjects.MainTrackerInstance.Options.AllowCheckingItems);
 
             if (MultiworldON())
             {
                 this.Height = this.Height + 25;
             }
-            else if (MultiworldOFF() || (sender == this && !IsMultiWorld)) //Sender is "this" when called from form load event
+            else if (MultiworldOFF() || (sender == this && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld)) //Sender is "this" when called from form load event
             {
                 this.Height = this.Height - 25;
             }
 
-            if (IsMultiWorld) { MyPlayerID = (int)nudPlayerID.Value; }
-            else { MyPlayerID = -1; }
+            if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { LogicObjects.MainTrackerInstance.Options.MyPlayerID = (int)nudPlayerID.Value; }
+            else { LogicObjects.MainTrackerInstance.Options.MyPlayerID = -1; }
 
             UpdateFormItems();
+
+            NetDataProcessed(MultiworldToggle, null);
         }
 
         private void UpdateFormItems()
         {
             Updating = true;
 
-            FormOpen = this;
+            CurrentOpenForm = this;
             LBIPAdresses.Items.Clear();
             foreach (var i in IPS) { LBIPAdresses.Items.Add(i); }
             chkListenForData.Checked = Listening;
             chkSendData.Checked = Sending;
-            NudYourPort.Value = PortNumber;
-            NudPort.Value = PortNumber;
-            autoAddIncomingIPsToolStripMenuItem.Checked = (AutoAddIncomingConnections);
-            autoAddIncomingIPsToolStripMenuItem.Visible = (!StrictIP);
-            onlyAcceptDataFromSendingListToolStripMenuItem.Checked = (StrictIP);
+            NudYourPort.Value = LogicObjects.MainTrackerInstance.Options.PortNumber;
+            NudPort.Value = LogicObjects.MainTrackerInstance.Options.PortNumber;
+            autoAddIncomingIPsToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections);
+            autoAddIncomingIPsToolStripMenuItem.Visible = (!LogicObjects.MainTrackerInstance.Options.StrictIP);
+            onlyAcceptDataFromSendingListToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.StrictIP);
             copyNetDataToClipboardToolStripMenuItem.Visible = Debugging.ISDebugging;
-            multiworldToolStripMenuItem.Checked = IsMultiWorld;
-            nudPlayerID.Enabled = IsMultiWorld && !chkListenForData.Checked && !chkSendData.Checked;
-            if (IsMultiWorld) { nudPlayerID.Value = (MyPlayerID < 0) ? 0 : MyPlayerID; }
+            multiworldToolStripMenuItem.Checked = LogicObjects.MainTrackerInstance.Options.IsMultiWorld;
+            nudPlayerID.Enabled = LogicObjects.MainTrackerInstance.Options.IsMultiWorld && !chkListenForData.Checked && !chkSendData.Checked;
+            if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { nudPlayerID.Value = (LogicObjects.MainTrackerInstance.Options.MyPlayerID < 0) ? 0 : LogicObjects.MainTrackerInstance.Options.MyPlayerID; }
 
             Updating = false;
         }
@@ -481,7 +475,7 @@ namespace MMR_Tracker.Forms
         private void nudPlayerID_ValueChanged(object sender, EventArgs e)
         {
             if (Updating) { return; }
-            MyPlayerID = (int)nudPlayerID.Value;
+            LogicObjects.MainTrackerInstance.Options.MyPlayerID = (int)nudPlayerID.Value;
         }
 
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
