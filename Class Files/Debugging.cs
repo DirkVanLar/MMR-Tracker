@@ -107,6 +107,11 @@ namespace MMR_Tracker_V2
 
             LogicObjects.MainTrackerInstance.Logic[10].Aquired = true;
 
+
+            LogicObjects.MainTrackerInstance.Logic[13].Checked = true;
+            LogicObjects.MainTrackerInstance.Logic[13].RandomizedItem = 0;
+            LogicObjects.MainTrackerInstance.Logic[13].PlayerData.ItemBelongedToPlayer = 5;
+
         }
 
     }
