@@ -314,7 +314,7 @@ namespace MMR_Tracker.Forms
             //startinglocation  :The ID of the last exit you came from
             //destination       :The ID of the entrance you want to reach
             //ExitsKnown        :The IDs of each entrance we've seen from areas we've been to and areas we've scanned using the NewExitsInResultingArea function
-            //ExitsSeenOriginal :The IDs of each entrance we've seen from area we have actually been to or could have been to earlier in the path
+            //ExitsVisited      :The IDs of each entrance we've seen from area we have actually been to or could have been to earlier in the path
             //Path              :A list of exits you have taken to get to your current point
             //PathPartition     :The index of the global paths variable where this path will be stored
             //InitialRun        :Is this code being run from the original source (True) or from it's self (False)

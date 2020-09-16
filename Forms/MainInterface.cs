@@ -208,7 +208,7 @@ namespace MMR_Tracker_V2
         #region Online Play Options
         private void onlinePlayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (OnlinePlay.FormOpen) { Console.WriteLine("Form already open"); return; }
+            if (OnlinePlay.FormOpen != null) { Console.WriteLine("Form already open"); OnlinePlay.FormOpen.Focus(); return; }
             OnlinePlay net = new OnlinePlay();
             net.Show();
         }

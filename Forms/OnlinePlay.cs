@@ -36,7 +36,7 @@ namespace MMR_Tracker.Forms
         public static bool Listening = false;
         public static bool Sending = false;
         public static bool Updating = false;
-        public static bool FormOpen = false;
+        public static OnlinePlay FormOpen = null;
         public static IPAddress MyIP;
         public static int PortNumber = 2112;
         public static bool AllowCheckingItems = false;
@@ -196,7 +196,7 @@ namespace MMR_Tracker.Forms
 
         private void OnlinePlay_FormClosing(object sender, FormClosingEventArgs e)
         {
-            FormOpen = false;
+            FormOpen = null;
         }
 
         //Options
@@ -304,7 +304,6 @@ namespace MMR_Tracker.Forms
             MyIP = IPAddress.Parse(MyIPString);
             txtPulbicIP.Text = MyIP.ToString();
             ChangeGameMode(sender, e);
-            UpdateFormItems();
         }
 
         public static void ManageNetData(LogicObjects.MMRTpacket Data)
@@ -429,24 +428,27 @@ namespace MMR_Tracker.Forms
 
         private void ChangeGameMode(object sender, EventArgs e)
         {
-            coopToolStripMenuItem.Checked = false;
-            onlineSyncedToolStripMenuItem.Checked = false;
-            multiworldToolStripMenuItem.Checked = false;
 
             bool wasMultiWorld = IsMultiWorld;
 
-            IsMultiWorld = (sender == multiworldToolStripMenuItem);
-            AllowCheckingItems = (sender == onlineSyncedToolStripMenuItem);
+            if (sender != this)
+            {
+                IsMultiWorld = (sender == multiworldToolStripMenuItem);
+                AllowCheckingItems = (sender == onlineSyncedToolStripMenuItem);
+            }
+
+            bool MultiworldOFF() { return !IsMultiWorld && wasMultiWorld; }
+            bool MultiworldON() { return IsMultiWorld && !wasMultiWorld; }
 
             multiworldToolStripMenuItem.Checked = (IsMultiWorld);
             onlineSyncedToolStripMenuItem.Checked = (!IsMultiWorld && AllowCheckingItems);
             coopToolStripMenuItem.Checked = (!IsMultiWorld && !AllowCheckingItems);
 
-            if (IsMultiWorld && !wasMultiWorld)
+            if (MultiworldON())
             {
                 this.Height = this.Height + 25;
             }
-            else if ((!IsMultiWorld && wasMultiWorld) || sender == this) //Sender is "this" when called from form load event
+            else if (MultiworldOFF() || (sender == this && !IsMultiWorld)) //Sender is "this" when called from form load event
             {
                 this.Height = this.Height - 25;
             }
@@ -461,7 +463,7 @@ namespace MMR_Tracker.Forms
         {
             Updating = true;
 
-            FormOpen = true;
+            FormOpen = this;
             LBIPAdresses.Items.Clear();
             foreach (var i in IPS) { LBIPAdresses.Items.Add(i); }
             chkListenForData.Checked = Listening;
