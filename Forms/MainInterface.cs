@@ -1127,7 +1127,7 @@ namespace MMR_Tracker_V2
                         RandomizedItem = entry.ID,
                         SpoilerRandom = entry.ID,
                         Options = 0,
-                        LocationArea = "Multiworld",
+                        LocationArea = (entry.PlayerData.ItemCameFromPlayer == -1 || entry.PlayerData.ItemCameFromPlayer == OnlinePlay.MyPlayerID) ? "MISC" : "Multiworld",
                         ItemSubType = "Item"
                     };
                     var Name = createDisplayName(true, MultiWorldEntry, mi);

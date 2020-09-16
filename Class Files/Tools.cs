@@ -472,7 +472,7 @@ namespace MMR_Tracker.Class_Files
             int count = 0;
             foreach (var entry in Instance.Logic)
             {
-                if (entry.RandomizedItem == item && entry.Checked) { count = count + 1; }
+                if (entry.RandomizedItem == item && entry.Checked && entry.ItemBelongsToMe()) { count = count + 1; }
             }
             return count > 1;
         }
