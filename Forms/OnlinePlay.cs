@@ -110,7 +110,6 @@ namespace MMR_Tracker.Forms
 
         private void MainInterface_LocationChecked(object sender, EventArgs e)
         {
-            Console.WriteLine("Logic updated");
             SendData(IPS);
         }
 
@@ -299,9 +298,7 @@ namespace MMR_Tracker.Forms
 
         private void OnlinePlay_Load(object sender, EventArgs e)
         {
-            var MyIPString = new WebClient().DownloadString("http://icanhazip.com").Trim();
-            Console.WriteLine(MyIPString);
-            MyIP = IPAddress.Parse(MyIPString);
+            MyIP = GetWanIP();
             txtPulbicIP.Text = MyIP.ToString();
             ChangeGameMode(sender, e);
         }
@@ -478,10 +475,6 @@ namespace MMR_Tracker.Forms
             nudPlayerID.Enabled = IsMultiWorld && !chkListenForData.Checked && !chkSendData.Checked;
             if (IsMultiWorld) { nudPlayerID.Value = (MyPlayerID < 0) ? 0 : MyPlayerID; }
 
-            Console.WriteLine(IsMultiWorld);
-            Console.WriteLine(AllowCheckingItems);
-            Console.WriteLine("====");
-
             Updating = false;
         }
 
@@ -503,7 +496,8 @@ namespace MMR_Tracker.Forms
             if (lblYourIP.Text.Contains("Public"))
             {
                 var LocalIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(x => x.AddressFamily == AddressFamily.InterNetwork);
-                if (LocalIP == null) { return; }
+                if (LocalIP == null) { LocalIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(x => x.AddressFamily == AddressFamily.InterNetworkV6); }
+                if (LocalIP == null) { LocalIP = IPAddress.Parse("169.254.0.1"); }
                 txtPulbicIP.Text = LocalIP.ToString();
                 lblYourIP.Text = "Your Local IP Address:";
             }
@@ -512,6 +506,46 @@ namespace MMR_Tracker.Forms
                 txtPulbicIP.Text = MyIP.ToString();
                 lblYourIP.Text = "Your Public IP Address:";
             }
+        }
+
+        public static IPAddress GetWanIP()
+        {   //Prioritize an IPv4, if none can be found try to use the first ipv6 that was found. If no v6 were found return an apipa address.
+            List<IPAddress> BackupIpV6 = new List<IPAddress>();
+
+            try
+            {
+                string externalip = new WebClient().DownloadString("https://ipinfo.io/ip").Trim();
+                try
+                {
+                    var ip = IPAddress.Parse(externalip);
+                    if (ip.AddressFamily == AddressFamily.InterNetwork) { return ip; }
+                    if (ip.AddressFamily == AddressFamily.InterNetworkV6) { BackupIpV6.Add(ip); }
+                }
+                catch { }
+
+                externalip = new WebClient().DownloadString("http://icanhazip.com").Trim();
+                try
+                {
+                    var ip = IPAddress.Parse(externalip);
+                    if (ip.AddressFamily == AddressFamily.InterNetwork) { return ip; }
+                    if (ip.AddressFamily == AddressFamily.InterNetworkV6) { BackupIpV6.Add(ip); }
+                }
+                catch { }
+
+                externalip = new WebClient().DownloadString("http://checkip.dyndns.org").Trim().Split(':')[1].Split('<')[0].Trim();
+                try
+                {
+                    var ip = IPAddress.Parse(externalip);
+                    if (ip.AddressFamily == AddressFamily.InterNetwork) { return ip; }
+                    if (ip.AddressFamily == AddressFamily.InterNetworkV6) { BackupIpV6.Add(ip); }
+                }
+                catch { }
+
+                if (BackupIpV6.Count() > 0) { return BackupIpV6[0]; }
+            }
+            catch { }
+
+            return IPAddress.Parse("169.254.0.1");
         }
     }
 }
