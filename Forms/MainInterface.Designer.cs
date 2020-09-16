@@ -84,7 +84,6 @@
             this.popoutPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FilterMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemTrackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.spoilerLogConverterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.referencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ikanaWellMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,12 +105,13 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.spoilerLogConverterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TXTLocSearch
             // 
-            this.TXTLocSearch.BackColor = System.Drawing.SystemColors.Control;
+            this.TXTLocSearch.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.TXTLocSearch.Location = new System.Drawing.Point(12, 39);
             this.TXTLocSearch.Name = "TXTLocSearch";
             this.TXTLocSearch.Size = new System.Drawing.Size(100, 20);
@@ -121,7 +121,7 @@
             // 
             // TXTEntSearch
             // 
-            this.TXTEntSearch.BackColor = System.Drawing.SystemColors.Control;
+            this.TXTEntSearch.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.TXTEntSearch.Location = new System.Drawing.Point(12, 65);
             this.TXTEntSearch.Name = "TXTEntSearch";
             this.TXTEntSearch.Size = new System.Drawing.Size(100, 20);
@@ -131,7 +131,7 @@
             // 
             // TXTCheckedSearch
             // 
-            this.TXTCheckedSearch.BackColor = System.Drawing.SystemColors.Control;
+            this.TXTCheckedSearch.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.TXTCheckedSearch.Location = new System.Drawing.Point(12, 91);
             this.TXTCheckedSearch.Name = "TXTCheckedSearch";
             this.TXTCheckedSearch.Size = new System.Drawing.Size(100, 20);
@@ -243,7 +243,7 @@
             // 
             // CMBStart
             // 
-            this.CMBStart.BackColor = System.Drawing.SystemColors.Control;
+            this.CMBStart.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.CMBStart.ForeColor = System.Drawing.SystemColors.InfoText;
             this.CMBStart.FormattingEnabled = true;
             this.CMBStart.Location = new System.Drawing.Point(12, 120);
@@ -254,7 +254,7 @@
             // 
             // CMBEnd
             // 
-            this.CMBEnd.BackColor = System.Drawing.SystemColors.Control;
+            this.CMBEnd.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.CMBEnd.ForeColor = System.Drawing.SystemColors.InfoText;
             this.CMBEnd.FormattingEnabled = true;
             this.CMBEnd.Location = new System.Drawing.Point(12, 147);
@@ -265,7 +265,7 @@
             // 
             // LBValidLocations
             // 
-            this.LBValidLocations.BackColor = System.Drawing.SystemColors.Control;
+            this.LBValidLocations.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBValidLocations.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBValidLocations.FormattingEnabled = true;
             this.LBValidLocations.IntegralHeight = false;
@@ -281,7 +281,7 @@
             // 
             // LBValidEntrances
             // 
-            this.LBValidEntrances.BackColor = System.Drawing.SystemColors.Control;
+            this.LBValidEntrances.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBValidEntrances.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBValidEntrances.FormattingEnabled = true;
             this.LBValidEntrances.IntegralHeight = false;
@@ -297,7 +297,7 @@
             // 
             // LBCheckedLocations
             // 
-            this.LBCheckedLocations.BackColor = System.Drawing.SystemColors.Control;
+            this.LBCheckedLocations.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBCheckedLocations.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBCheckedLocations.FormattingEnabled = true;
             this.LBCheckedLocations.IntegralHeight = false;
@@ -313,7 +313,7 @@
             // 
             // LBPathFinder
             // 
-            this.LBPathFinder.BackColor = System.Drawing.SystemColors.Control;
+            this.LBPathFinder.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.LBPathFinder.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBPathFinder.FormattingEnabled = true;
             this.LBPathFinder.IntegralHeight = false;
@@ -624,13 +624,6 @@
             this.itemTrackerToolStripMenuItem.Text = "Item Tracker";
             this.itemTrackerToolStripMenuItem.Click += new System.EventHandler(this.ItemTrackerToolStripMenuItem_Click);
             // 
-            // spoilerLogConverterToolStripMenuItem
-            // 
-            this.spoilerLogConverterToolStripMenuItem.Name = "spoilerLogConverterToolStripMenuItem";
-            this.spoilerLogConverterToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.spoilerLogConverterToolStripMenuItem.Text = "Spoiler Log Converter";
-            this.spoilerLogConverterToolStripMenuItem.Click += new System.EventHandler(this.spoilerLogConverterToolStripMenuItem_Click);
-            // 
             // infoToolStripMenuItem
             // 
             this.infoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -786,6 +779,13 @@
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
+            // 
+            // spoilerLogConverterToolStripMenuItem
+            // 
+            this.spoilerLogConverterToolStripMenuItem.Name = "spoilerLogConverterToolStripMenuItem";
+            this.spoilerLogConverterToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.spoilerLogConverterToolStripMenuItem.Text = "Spoiler Log Converter";
+            this.spoilerLogConverterToolStripMenuItem.Click += new System.EventHandler(this.spoilerLogConverterToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
