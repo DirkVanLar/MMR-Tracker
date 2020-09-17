@@ -129,21 +129,6 @@ namespace MMR_Tracker_V2
             FireEvents(sender, e);
             Console.WriteLine($"Glitched Logic V{LogicObjects.MainTrackerInstance.LogicVersion}");
         }
-
-        private void AccessibleLogicToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-            System.Net.WebClient wc = new System.Net.WebClient();
-            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_ACCESSIBLE");
-            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
-            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
-            FormatMenuItems();
-            ResizeObject();
-            PrintToListBox();
-            FireEvents(sender, e);
-            Console.WriteLine($"Accessable Logic V{LogicObjects.MainTrackerInstance.LogicVersion}");
-        }
         #endregion New
         //Menu Strip => Options---------------------------------------------------------------------------
         #region Online Play Options
@@ -1492,8 +1477,6 @@ namespace MMR_Tracker_V2
             coupleEntrancesToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.CoupleEntrances);
             devToolStripMenuItem.Visible = Debugging.ISDebugging;
             seperateMarkedItemsToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom);
-
-            accessibleLogicToolStripMenuItem.Visible = Debugging.ISDebugging;
 
             CreateMenu();
 
