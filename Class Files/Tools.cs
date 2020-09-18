@@ -275,11 +275,14 @@ namespace MMR_Tracker.Class_Files
             File.WriteAllText(saveDialog.FileName, JsonConvert.SerializeObject(SaveInstance));
             return true;
         }
-        public static void LoadInstance()
+        public static void LoadInstance(string file = "")
         {
-            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-            string file = Utility.FileSelect("Select A Save File", "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV");
-            if (file == "") { return; }
+            if (file == "")
+            {
+                if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
+                file = Utility.FileSelect("Select A Save File", "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV");
+                if (file == "") { return; }
+            }
             var backup = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
             LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
             //Try to load the save file with the new system. If that fails try wth the old system. If that fails restore the current instance and show an error.
@@ -376,9 +379,17 @@ namespace MMR_Tracker.Class_Files
         {
             if (!File.Exists("options.txt"))
             {
-                List<string> options = new List<string>(); 
-                var file = File.Create("options.txt");
-                file.Close();
+                List<string> options = new List<string>();
+                try
+                {
+                    var file = File.Create("options.txt");
+                    file.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Access Denied");
+                    System.Windows.Forms.Application.Exit();
+                }
 
                 if (!Debugging.ISDebugging || (Control.ModifierKeys == Keys.Shift))
                 {
@@ -468,7 +479,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool SameItemMultipleChecks(int item, LogicObjects.TrackerInstance Instance)
         {
-            if (item < 0 || (!Instance.Options.StrictLogicHandeling && !OnlinePlay.IsMultiWorld)) { return false; }
+            if (item < 0 || (!Instance.Options.StrictLogicHandeling && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld)) { return false; }
             int count = 0;
             foreach (var entry in Instance.Logic)
             {

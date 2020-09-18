@@ -49,6 +49,14 @@ namespace MMR_Tracker_V2
             public Font FormFont { get; set; } = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular);
             //Misc Options
             public bool CheckForUpdate { get; set; } = true;
+            //NetOptions
+            public int MyPlayerID { get; set; } = -1;
+            public bool IsMultiWorld { get; set; } = false;
+            public bool MultiWorldOnlineCombo { get; set; } = false;
+            public bool AllowCheckingItems { get; set; } = false;
+            public bool AutoAddIncomingConnections { get; set; } = false;
+            public bool StrictIP { get; set; } = false;
+            public int PortNumber { get; set; } = 2112;
         }
         public class LogicEntry
         {
@@ -302,7 +310,7 @@ namespace MMR_Tracker_V2
 
         public static bool ItemBelongsToMe(this LogicObjects.LogicEntry entry)
         {
-            return entry.PlayerData.ItemBelongedToPlayer == -1 || entry.PlayerData.ItemBelongedToPlayer == OnlinePlay.MyPlayerID;
+            return entry.PlayerData.ItemBelongedToPlayer == -1 || entry.PlayerData.ItemBelongedToPlayer == LogicObjects.MainTrackerInstance.Options.MyPlayerID;
         }
     }
 }

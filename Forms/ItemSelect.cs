@@ -61,7 +61,7 @@ namespace MMR_Tracker_V2
             {
                 ItemsReturned = true;
                 Tools.CurrentSelectedItem = new LogicObjects.LogicEntry { ID = -1 };
-                if (OnlinePlay.IsMultiWorld) { Tools.CurrentSelectedItem.PlayerData.ItemBelongedToPlayer = (int)nudForPlayer.Value; }
+                if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { Tools.CurrentSelectedItem.PlayerData.ItemBelongedToPlayer = (int)nudForPlayer.Value; }
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -93,7 +93,7 @@ namespace MMR_Tracker_V2
             {
                 UsedLogic[i].DisplayName = UsedLogic[i].ItemName ?? UsedLogic[i].DictionaryName;
                 if ((!UsedLogic[i].IsFake)
-                    && ((UsedLogic[i].GetItemsNewLocation(UsedLogic) == null && !UsedLogic[i].Aquired) || OnlinePlay.IsMultiWorld || !options.RemoveObtainedItemsfromList)
+                    && ((UsedLogic[i].GetItemsNewLocation(UsedLogic) == null && !UsedLogic[i].Aquired) || LogicObjects.MainTrackerInstance.Options.IsMultiWorld || !options.RemoveObtainedItemsfromList)
                     && (!UsedLogic[i].Unrandomized(2))
                     && !Duplicates.Contains(UsedLogic[i].ItemName)
                     && UsedLogic[i].ItemName != null
@@ -243,7 +243,7 @@ namespace MMR_Tracker_V2
             {
                 if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return; }
                 Tools.CurrentSelectedItem = LBItemSelect.SelectedItem as LogicObjects.LogicEntry;
-                if (OnlinePlay.IsMultiWorld) { Tools.CurrentSelectedItem.PlayerData.ItemBelongedToPlayer = (int)nudForPlayer.Value; }
+                if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { Tools.CurrentSelectedItem.PlayerData.ItemBelongedToPlayer = (int)nudForPlayer.Value; }
                 CheckedItems = new List<int>();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -272,7 +272,7 @@ namespace MMR_Tracker_V2
                     BTNJunk.Text = "Junk";
                     LBItemSelect.SelectionMode = SelectionMode.One;
                     ShowUnusedRealAsItem();
-                    if (OnlinePlay.IsMultiWorld) { SelectPlayer(); if (FormLoad) { nudForPlayer.Value = OnlinePlay.MyPlayerID; } };
+                    if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { SelectPlayer(); if (FormLoad) { nudForPlayer.Value = LogicObjects.MainTrackerInstance.Options.MyPlayerID; } };
                     this.Text = "Item at " + Tools.CurrentSelectedItem.LocationName;
                     LBItemSelect.Sorted = true;
                     break;

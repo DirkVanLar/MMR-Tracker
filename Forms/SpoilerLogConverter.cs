@@ -56,7 +56,6 @@ namespace MMR_Tracker.Forms
             };
             if (SelectedFile.ShowDialog() != DialogResult.OK) { return; }
 
-
             //Handle Entraces
             List<entranceTable> SpoilerEntranceTable = new List<entranceTable>();
             dynamic array = JsonConvert.DeserializeObject(File.ReadAllText(SelectedFile.FileName));
@@ -68,24 +67,12 @@ namespace MMR_Tracker.Forms
                 line = line.Replace('"', '{');
                 line = line.Replace("{", "");
                 line = line.Replace("}", "");
-                var lines = line.Split(':');
-                for (var i = 0; i < lines.Length; i++)
-                {
-                    lines[i] = lines[i].Trim();
-                }
+                var lines = line.Split(':').Select(x => x.Trim()).ToArray();
                 var front = lines[0].Split(new string[] { "->" }, StringSplitOptions.None);
                 entry.Entrance = front[0].Trim();
                 entry.To = front[1].Trim();
-                if (lines[1].Contains("region"))
-                {
-                    entry.Exit = lines[2].Trim();
-                    entry.From = lines[4].Trim();
-                }
-                else
-                {
-                    entry.Exit = lines[1].Trim();
-                    entry.From = "";
-                }
+                entry.Exit = (lines[1].Contains("region")) ? lines[2].Trim() : lines[1].Trim();
+                entry.From = (lines[1].Contains("region")) ? lines[4].Trim() : "";
                 SpoilerEntranceTable.Add(entry);
             }
 
@@ -96,8 +83,15 @@ namespace MMR_Tracker.Forms
                 FileContent.Add($"{i.Entrance}>{i.To}->{i.Exit}" + (i.From == "" ? "" : $"<{i.From}"));
             }
 
+            bool IsOneWay(string i)
+            {
+                var j = i.Split(new string[] { "->" }, StringSplitOptions.None)[0];
+                var k = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerLocation == j);
+                return string.IsNullOrWhiteSpace(k.EntrancePair) || i.Contains("Adult Spawn") || i.Contains("Child Spawn");
+            }
+
             //Attempt to add Entrances that were left out of the spoiler log
-            foreach(var i in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Entrance"))
+            foreach (var i in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Entrance"))
             {
                 var e = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[0]) == i.SpoilerLocation);
                 if (e == null)
@@ -176,13 +170,6 @@ namespace MMR_Tracker.Forms
             if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
 
             File.WriteAllLines(saveDialog.FileName, FileContent);
-        }
-
-        public static bool IsOneWay(string i)
-        {
-            var j = i.Split(new string[] { "->" }, StringSplitOptions.None)[0];
-            var k = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerLocation == j);
-            return string.IsNullOrWhiteSpace(k.EntrancePair) || i.Contains("Adult Spawn") || i.Contains("Child Spawn"); 
         }
 
     }

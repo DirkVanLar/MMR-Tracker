@@ -200,7 +200,7 @@ namespace MMR_Tracker_V2
             if (CheckedObject.ID < -1) { return false; }
             if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
             {
-                if (CheckedObject.RandomizedItem > -1 && CheckedObject.RandomizedItem < Instance.Logic.Count && !Tools.SameItemMultipleChecks(CheckedObject.RandomizedItem, Instance) && (!OnlinePlay.IsMultiWorld || CheckedObject.ItemBelongsToMe()))
+                if (CheckedObject.RandomizedItem > -1 && CheckedObject.RandomizedItem < Instance.Logic.Count && !Tools.SameItemMultipleChecks(CheckedObject.RandomizedItem, Instance) && (!LogicObjects.MainTrackerInstance.Options.IsMultiWorld || CheckedObject.ItemBelongsToMe()))
                 {
                     Instance.Logic[CheckedObject.RandomizedItem].Aquired = false;
                     CheckEntrancePair(CheckedObject, Instance, false);
@@ -215,7 +215,7 @@ namespace MMR_Tracker_V2
                 if (CheckedObject.RandomizedState() == 2) { CheckedObject.RandomizedItem = CheckedObject.ID; }
                 if (CheckedObject.SpoilerRandom > -2) { CheckedObject.RandomizedItem = CheckedObject.SpoilerRandom; }
                 if (CheckedObject.RandomizedItem < 0) { CheckedObject.RandomizedItem = -1; return true; }
-                if (!OnlinePlay.IsMultiWorld || CheckedObject.ItemBelongsToMe())
+                if (!LogicObjects.MainTrackerInstance.Options.IsMultiWorld || CheckedObject.ItemBelongsToMe())
                 {
                     Instance.Logic[CheckedObject.RandomizedItem].Aquired = true;
                 }
@@ -227,11 +227,11 @@ namespace MMR_Tracker_V2
             ItemSelect ItemSelectForm = new ItemSelect(); var dialogResult = ItemSelectForm.ShowDialog();
             if (dialogResult != DialogResult.OK) { Tools.CurrentSelectedItem = new LogicObjects.LogicEntry(); return false; }
             CheckedObject.Checked = true;
-            if (OnlinePlay.IsMultiWorld) { CheckedObject.PlayerData.ItemBelongedToPlayer = Tools.CurrentSelectedItem.PlayerData.ItemBelongedToPlayer; }
+            if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { CheckedObject.PlayerData.ItemBelongedToPlayer = Tools.CurrentSelectedItem.PlayerData.ItemBelongedToPlayer; }
             if (Tools.CurrentSelectedItem.ID < 0) //At this point CurrentSelectedItem has been changed to the selected item
             { CheckedObject.RandomizedItem = -1; Tools.CurrentSelectedItem = new LogicObjects.LogicEntry(); return true; }
             CheckedObject.RandomizedItem = Tools.CurrentSelectedItem.ID;
-            if (!OnlinePlay.IsMultiWorld || CheckedObject.ItemBelongsToMe())
+            if (!LogicObjects.MainTrackerInstance.Options.IsMultiWorld || CheckedObject.ItemBelongsToMe())
             {
                 Instance.Logic[Tools.CurrentSelectedItem.ID].Aquired = true;
             }
