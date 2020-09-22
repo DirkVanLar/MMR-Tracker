@@ -42,17 +42,39 @@ namespace MMR_Tracker.Forms
 
         public static LogicObjects.MMRTpacket createNetData(int Type)
         {
-            List<LogicObjects.NetData> ClipboardNetData = new List<LogicObjects.NetData>();
-            foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && x.HasRandomItem(true)))
+
+            bool isValidSyncable(LogicObjects.LogicEntry x)
             {
-                ClipboardNetData.Add(new LogicObjects.NetData { ID = i.ID, PI = i.PlayerData.ItemBelongedToPlayer ,Ch = i.Checked, RI = i.RandomizedItem });
+                string[] SyncableItemTypes = new string[] {
+                    "Item",
+                    "Bottle",
+                    "Owl Statue",
+                    "Boss Token",
+                    "Entrance",
+                    "Dungeon Entrance"
+                };
+                if (x.IsFake) { return false; }
+                if (!x.HasRandomItem(true)) { return false; }
+                if (SyncableItemTypes.Contains(x.ItemSubType)) { return false; }
+                return true;
+            } 
+
+            List<LogicObjects.NetData> NetData = new List<LogicObjects.NetData>();
+            foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => isValidSyncable(x)))
+            {
+                NetData.Add(new LogicObjects.NetData { ID = i.ID, PI = i.PlayerData.ItemBelongedToPlayer ,Ch = i.Checked, RI = i.RandomizedItem });
             }
-            LogicObjects.MMRTpacket Pack = new LogicObjects.MMRTpacket();
-            Pack.LogicData = ClipboardNetData;
-            Pack.IPData.IP = MyIP.ToString();
-            Pack.IPData.PORT = LogicObjects.MainTrackerInstance.Options.PortNumber;
-            Pack.PlayerID = LogicObjects.MainTrackerInstance.Options.MyPlayerID;
-            Pack.RequestingUpdate = Type;
+            LogicObjects.MMRTpacket Pack = new LogicObjects.MMRTpacket
+            {
+                LogicData = NetData,
+                PlayerID = LogicObjects.MainTrackerInstance.Options.MyPlayerID,
+                RequestingUpdate = Type,
+                IPData = new LogicObjects.IPDATASerializable
+                {
+                    IP = MyIP.ToString(),
+                    PORT = LogicObjects.MainTrackerInstance.Options.PortNumber
+                }
+            };
             return Pack;
         }
 
