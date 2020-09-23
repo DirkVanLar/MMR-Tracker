@@ -55,7 +55,7 @@ namespace MMR_Tracker.Forms
                 };
                 if (x.IsFake) { return false; }
                 if (!x.HasRandomItem(true)) { return false; }
-                if (SyncableItemTypes.Contains(x.ItemSubType)) { return false; }
+                if (!SyncableItemTypes.Contains(x.ItemSubType)) { return false; }
                 return true;
             } 
 
