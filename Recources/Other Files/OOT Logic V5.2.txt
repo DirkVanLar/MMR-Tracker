@@ -6166,3 +6166,75 @@
 904;288
 0
 0
+
+- Extra Sarias
+
+
+0
+0
+
+- Extra Minuet
+
+
+0
+0
+
+- Extra Song of Time
+
+
+0
+0
+
+- Extra Requiem
+
+
+0
+0
+
+- Extrea Prelude
+
+
+0
+0
+
+- Extra Lullaby
+
+
+0
+0
+
+- Extra Nocturne
+
+
+0
+0
+
+- Extra Storms
+
+
+0
+0
+
+- Extra Suns
+
+
+0
+0
+
+- Extra Bolero
+
+
+0
+0
+
+- Extra Eponas
+
+
+0
+0
+
+- Extra Seranade
+
+
+0
+0

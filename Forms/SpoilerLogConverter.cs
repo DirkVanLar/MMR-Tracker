@@ -47,6 +47,14 @@ namespace MMR_Tracker.Forms
 
         private void HandleOOTRSpoilerLog()
         {
+            var dic = LogicObjects.MainTrackerInstance.LogicDictionary;
+
+            if (dic.Count < 1 || LogicObjects.MainTrackerInstance.GameCode != "OOTR")
+            {
+                MessageBox.Show("You must first import an OOTR Logic File");
+                return;
+            }
+
             OpenFileDialog SelectedFile = new OpenFileDialog
             {
                 Title = $"Select OOTR Spoiler Log",
@@ -74,6 +82,76 @@ namespace MMR_Tracker.Forms
                 entry.Exit = (lines[1].Contains("region")) ? lines[2].Trim() : lines[1].Trim();
                 entry.From = (lines[1].Contains("region")) ? lines[4].Trim() : "";
                 SpoilerEntranceTable.Add(entry);
+            }
+
+            //Check the MQ entry in the spoiler log and convert the entries of any dungeon that are MQ to the MQ entry
+            foreach (dynamic i in array.dungeons)
+            {
+                string line = i.ToString();
+                Console.WriteLine(line);
+                var LineSplit = line.Split(':').Select(x => x.Replace("\"", "").Trim()).ToArray();
+                if (line.Length < 2) { continue; }
+                Console.WriteLine($"{LineSplit[0]}: {LineSplit[1] == "mq"}");
+
+                if (LineSplit[1] == "mq")
+                {
+                    switch (LineSplit[0])
+                    {
+                        case "Deku Tree":
+                            ConvertToMQ("Deku Tree Lobby", "Deku Tree Lobby");
+                            break;
+                        case "Dodongos Cavern":
+                            ConvertToMQ("Dodongos Cavern Beginning", "Dodongos Cavern Beginning");
+                            break;
+                        case "Jabu Jabus Belly":
+                            ConvertToMQ("Jabu Jabus Belly Beginning", "Jabu Jabus Belly Beginning");
+                            break;
+                        case "Bottom of the Well":
+                            ConvertToMQ("Bottom of the Well", "Bottom of the Well");
+                            break;
+                        case "Ice Cavern":
+                            ConvertToMQ("Ice Cavern Beginning", "Ice Cavern Beginning");
+                            break;
+                        case "Gerudo Training Grounds":
+                            ConvertToMQ("Gerudo Training Grounds Lobby", "Gerudo Training Grounds Lobby");
+                            break;
+                        case "Forest Temple":
+                            ConvertToMQ("Forest Temple Lobby", "Forest Temple Lobby");
+                            break;
+                        case "Fire Temple":
+                            ConvertToMQ("Fire Temple Lower", "Fire Temple Lower");
+                            break;
+                        case "Water Temple":
+                            ConvertToMQ("Water Temple Lobby", "Water Temple Lobby");
+                            break;
+                        case "Spirit Temple":
+                            ConvertToMQ("Spirit Temple Lobby", "Spirit Temple Lobby");
+                            break;
+                        case "Shadow Temple":
+                            ConvertToMQ("Shadow Temple Entryway", "Shadow Temple Entryway");
+                            break;
+                        case "Ganons Castle":
+                            ConvertToMQ("Ganons Castle", "Ganons Castle");
+                            break;
+                    }
+                }
+
+            }
+
+            void ConvertToMQ(string Entrance, string exit)
+            {
+                foreach (var i in SpoilerEntranceTable)
+                {
+                    if (i.Entrance == Entrance)
+                    {
+                        Console.WriteLine($"Changing {i.Entrance} to MQ {i.Entrance}");
+                        i.Entrance = "MQ " + i.Entrance;
+                    }
+                    if (i.Exit == exit)
+                    {
+                        i.Exit = "MQ " + i.Exit;
+                    }
+                }
             }
 
             List<string> FileContent = new List<string>();
@@ -123,7 +201,7 @@ namespace MMR_Tracker.Forms
                         else
                         {
                             Console.WriteLine($"{i.SpoilerLocation} Did not have reverse Data. Setting it Vanilla.");
-                            FileContent.Add(reverse.SpoilerLocation + "->" + reverse.SpoilerItem);
+                            FileContent.Add(i.SpoilerLocation + "->" + i.SpoilerItem);
                         }
                     }
                 }
@@ -160,6 +238,210 @@ namespace MMR_Tracker.Forms
                 FileContent.Add($"{i.Key}->{i.Value}");
             }
 
+            bool GanonKeyOnLACS = false;
+            bool StartAsChild = false;
+            int Forest = 0;
+            int Kakariko = 0;
+            bool OpenDOT = true;
+            int Zora = 0;
+            int Gerudo = 0;
+            int bridge = 0;
+            bool Chu = false;
+            bool SunSong = false;
+            bool mask = false;
+            bool Scarecrow = false;
+            foreach (dynamic item in array.settings)
+            {
+                string line = item.ToString();
+                if (line.Contains("shuffle_ganon_bosskey") && line.Contains("lacs")) { GanonKeyOnLACS = true; }
+                if (line.Contains("starting_age") && line.Contains("child")) { StartAsChild = true; }
+                if (line.Contains("open_forest") && line.Contains("closed_deku")) { Forest = 1; }
+                if (line.Contains("open_forest") && line.Contains("closed_forest")) { Forest = 2; }
+                if (line.Contains("open_kakariko") && line.Contains("zelda")) { Kakariko = 1; }
+                if (line.Contains("open_kakariko") && line.Contains("closed")) { Kakariko = 2; }
+                if (line.Contains("open_door_of_time") && line.Contains("closed")) { OpenDOT = false; }
+                if (line.Contains("zora_fountain") && line.Contains("adult")) { Zora = 1; }
+                if (line.Contains("zora_fountain") && line.Contains("closed")) { Zora = 2; }
+                if (line.Contains("gerudo_fortress") && line.Contains("one")) { Gerudo = 1; }
+                if (line.Contains("gerudo_fortress") && line.Contains("open")) { Gerudo = 2; }
+                if (line.Contains("bridge") && line.Contains("vanilla")) { bridge = 1; }
+                if (line.Contains("bridge") && line.Contains("stone")) { bridge = 2; }
+                if (line.Contains("bridge") && line.Contains("medallion")) { bridge = 3; }
+                if (line.Contains("bridge") && line.Contains("dungeon")) { bridge = 4; }
+                if (line.Contains("bridge") && line.Contains("skull")) { bridge = 5; }
+                if (line.Contains("bombchus_in_logic") && line.Contains("true")) { Chu = true; }
+                if (line.Contains("logic_no_night_tokens_without_suns_song") && line.Contains("true")) { SunSong = true; }
+                if (line.Contains("complete_mask_quest") && line.Contains("true")) { mask = true; }
+                if (line.Contains("free_scarecrow") && line.Contains("true")) { mask = true; }
+
+            }
+
+            foreach (var i in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Item" || x.ItemSubType == "Boss Token" || x.ItemSubType == "AgeIndicator" || x.ItemSubType.Contains("Setting")))
+            {
+                var e = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[0]) == i.SpoilerLocation);
+                if (e == null)
+                {
+                    #region ApplySettings
+                    if (i.DictionaryName == "Temple of Time Light Arrow Cutscene" && GanonKeyOnLACS)
+                    {
+                        FileContent.Add("ToT Light Arrows Cutscene->Boss Key (Ganons Castle)");
+                    }
+                    else if (i.DictionaryName == "SettingStartingAge")
+                    {
+                        string age = (StartAsChild) ? "SettingStartingAgeChild" : "SettingStartingAgeAdult";
+                        FileContent.Add($"SettingStartingAge->{ age}");
+                    }
+                    else if (i.DictionaryName == "SettingForest")
+                    {
+                        switch (Forest)
+                        {
+                            case 0:
+                                FileContent.Add($"SettingForest->SettingForestOpenForest");
+                                break;
+                            case 1:
+                                FileContent.Add($"SettingForest->SettingForestClosedDeku");
+                                break;
+                            case 2:
+                                FileContent.Add($"SettingForest->SettingForestClosedForest");
+                                break;
+                        }
+                    }
+                    else if (i.DictionaryName == "SettingDoorOfTime")
+                    {
+                        switch (OpenDOT)
+                        {
+                            case true:
+                                FileContent.Add($"SettingDoorOfTime->SettingDoorOfTimeOpen");
+                                break;
+                            case false:
+                                FileContent.Add($"SettingDoorOfTime->SettingDoorOfTimeClosed");
+                                break;
+                        }
+                    }
+                    else if (i.DictionaryName == "SettingKakarikoGate")
+                    {
+                        switch (Kakariko)
+                        {
+                            case 0:
+                                FileContent.Add($"SettingKakarikoGate->SettingKakarikoGateOpenGate");
+                                break;
+                            case 1:
+                                FileContent.Add($"SettingKakarikoGate->SettingKakarikoGateZeldasLetter");
+                                break;
+                            case 2:
+                                FileContent.Add($"SettingKakarikoGate->SettingKakarikoGateClosedGate");
+                                break;
+                        }
+                    }
+                    else if (i.DictionaryName == "SettingZorasFountain")
+                    {
+                        switch (Zora)
+                        {
+                            case 0:
+                                FileContent.Add($"SettingZorasFountain->SettingZorasFountainClosed");
+                                break;
+                            case 1:
+                                FileContent.Add($"SettingZorasFountain->SettingZorasFountainAdult");
+                                break;
+                            case 2:
+                                FileContent.Add($"SettingZorasFountain->SettingZorasFountainOpen");
+                                break;
+                        }
+                    }
+                    else if (i.DictionaryName == "SettingGerudoFortress")
+                    {
+                        switch (Gerudo)
+                        {
+                            case 0:
+                                FileContent.Add($"SettingGerudoFortress->SettingGerudoFortressDefaultBehavior");
+                                break;
+                            case 1:
+                                FileContent.Add($"SettingGerudoFortress->SettingGerudoFortressRescueOne");
+                                break;
+                            case 2:
+                                FileContent.Add($"SettingGerudoFortress->SettingGerudoFortressOpen");
+                                break;
+                        }
+                    }
+                    else if (i.DictionaryName == "SettingRainbowBridge")
+                    {
+                        switch (bridge)
+                        {
+                            case 0:
+                                FileContent.Add($"SettingRainbowBridge->SettingRainbowBridgeAlwaysOpen");
+                                break;
+                            case 1:
+                                FileContent.Add($"SettingRainbowBridge->SettingRainbowBridgeVanilla");
+                                break;
+                            case 2:
+                                FileContent.Add($"SettingRainbowBridge->SettingRainbowBridgeStone");
+                                break;
+                            case 3:
+                                FileContent.Add($"SettingRainbowBridge->SettingRainbowBridgeMedallions");
+                                break;
+                            case 4:
+                                FileContent.Add($"SettingRainbowBridge->SettingRainbowBridgeAllDungeons");
+                                break;
+                            case 5:
+                                FileContent.Add($"SettingRainbowBridge->SettingRainbowBridgeSkullTokens");
+                                break;
+                        }
+                    }
+                    else if (i.DictionaryName == "SettingBombchusInLogic")
+                    {
+                        switch (Chu)
+                        {
+                            case true:
+                                FileContent.Add($"SettingBombchusInLogic->SettingBombchusInLogicTrue");
+                                break;
+                            case false:
+                                FileContent.Add($"SettingBombchusInLogic->SettingBombchusInLogicFalse");
+                                break;
+                        }
+                    }
+                    else if (i.DictionaryName == "SettingNighSkullSunSong")
+                    {
+                        switch (SunSong)
+                        {
+                            case true:
+                                FileContent.Add($"SettingNighSkullSunSong->SettingNighSkullSunSongTrue");
+                                break;
+                            case false:
+                                FileContent.Add($"SettingNighSkullSunSong->SettingNighSkullSunSongFalse");
+                                break;
+                        }
+                    }
+                    else if (i.DictionaryName == "SettingCompleteMaskQuest")
+                    {
+                        switch (mask)
+                        {
+                            case true:
+                                FileContent.Add($"SettingCompleteMaskQuest->SettingCompleteMaskQuestTrue");
+                                break;
+                            case false:
+                                FileContent.Add($"SettingCompleteMaskQuest->SettingCompleteMaskQuestFalse");
+                                break;
+                        }
+                    }
+                    else if (i.DictionaryName == "SettingFreeScarecrow")
+                    {
+                        switch (Scarecrow)
+                        {
+                            case true:
+                                FileContent.Add($"SettingFreeScarecrow->SettingFreeScarecrowTrue");
+                                break;
+                            case false:
+                                FileContent.Add($"SettingFreeScarecrow->SettingFreeScarecrowFalse");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        FileContent.Add($"{i.SpoilerLocation}->{i.SpoilerItem}");
+                    }
+                    #endregion ApplySettings
+                }
+            }
 
             SaveFileDialog saveDialog = new SaveFileDialog
             {

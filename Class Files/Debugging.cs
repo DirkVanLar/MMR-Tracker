@@ -97,20 +97,52 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-            var EncryptedString = Crypto.EncryptStringAES("This is a test String", "MMRTNET");
-            Console.WriteLine(EncryptedString);
-            Console.WriteLine(Crypto.DecryptStringAES(EncryptedString, "MMRTNET"));
+            //TestEncryption();
+            //SetTestMultiworldData();
+            CreateOOTRLogicFile();
 
-            LogicObjects.MainTrackerInstance.Logic[0].Aquired = true;
-            LogicObjects.MainTrackerInstance.Logic[0].PlayerData.ItemCameFromPlayer = 9;
+            void TestEncryption()
+            {
+                var EncryptedString = Crypto.EncryptStringAES("This is a test String", "MMRTNET");
+                Console.WriteLine(EncryptedString);
+                Console.WriteLine(Crypto.DecryptStringAES(EncryptedString, "MMRTNET"));
+            }
 
+            void SetTestMultiworldData()
+            {
+                LogicObjects.MainTrackerInstance.Logic[0].Aquired = true;
+                LogicObjects.MainTrackerInstance.Logic[0].PlayerData.ItemCameFromPlayer = 9;
 
-            LogicObjects.MainTrackerInstance.Logic[10].Aquired = true;
+                LogicObjects.MainTrackerInstance.Logic[10].Aquired = true;
 
+                LogicObjects.MainTrackerInstance.Logic[13].Checked = true;
+                LogicObjects.MainTrackerInstance.Logic[13].RandomizedItem = 0;
+                LogicObjects.MainTrackerInstance.Logic[13].PlayerData.ItemBelongedToPlayer = 5;
+            }
 
-            LogicObjects.MainTrackerInstance.Logic[13].Checked = true;
-            LogicObjects.MainTrackerInstance.Logic[13].RandomizedItem = 0;
-            LogicObjects.MainTrackerInstance.Logic[13].PlayerData.ItemBelongedToPlayer = 5;
+            void CreateOOTRLogicFile()
+            {
+                List<LogicObjects.LogicDictionaryEntry> LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject("Recources\\Dictionaries\\OOTRDICTIONARYV5.csv"));
+                List<string> log = new List<string>();
+                log.Add("-versionOOTR 5");
+                foreach (var i in LogicDictionary)
+                {
+                    log.Add("- " + i.DictionaryName);
+                    log.Add("");
+                    log.Add("");
+                    log.Add("0");
+                    log.Add("0");
+                    log.Add("");
+                }
+                SaveFileDialog saveDic = new SaveFileDialog
+                {
+                    Filter = "TXT File (*.txt)|*.txt",
+                    Title = "Save OOT Logic File",
+                    FileName = "OOTR Logic.txt"
+                };
+                saveDic.ShowDialog();
+                File.WriteAllLines(saveDic.FileName, log);
+            }
 
         }
 
