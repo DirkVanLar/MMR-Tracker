@@ -99,7 +99,6 @@ namespace MMR_Tracker_V2
         {
             //TestEncryption();
             //SetTestMultiworldData();
-            CreateOOTRLogicFile();
 
             void TestEncryption()
             {
@@ -120,29 +119,7 @@ namespace MMR_Tracker_V2
                 LogicObjects.MainTrackerInstance.Logic[13].PlayerData.ItemBelongedToPlayer = 5;
             }
 
-            void CreateOOTRLogicFile()
-            {
-                List<LogicObjects.LogicDictionaryEntry> LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject("Recources\\Dictionaries\\OOTRDICTIONARYV5.csv"));
-                List<string> log = new List<string>();
-                log.Add("-versionOOTR 5");
-                foreach (var i in LogicDictionary)
-                {
-                    log.Add("- " + i.DictionaryName);
-                    log.Add("");
-                    log.Add("");
-                    log.Add("0");
-                    log.Add("0");
-                    log.Add("");
-                }
-                SaveFileDialog saveDic = new SaveFileDialog
-                {
-                    Filter = "TXT File (*.txt)|*.txt",
-                    Title = "Save OOT Logic File",
-                    FileName = "OOTR Logic.txt"
-                };
-                saveDic.ShowDialog();
-                File.WriteAllLines(saveDic.FileName, log);
-            }
+            
 
         }
 

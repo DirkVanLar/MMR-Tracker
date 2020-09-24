@@ -9,6 +9,7 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -57,7 +58,7 @@ namespace MMR_Tracker.Forms
                     HandleOOTRSpoilerLog();
                     break;
                 case 2:
-                    MessageBox.Show("NYI!");
+                    HandleWWRSpoilerLog();
                     break;
                 case 3:
                     MessageBox.Show("NYI!");
@@ -73,6 +74,30 @@ namespace MMR_Tracker.Forms
 
         private void HandleOOTRSpoilerLog()
         {
+            void CreateOOTRLogicFile()
+            {
+                List<LogicObjects.LogicDictionaryEntry> LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject("Recources\\Dictionaries\\OOTRDICTIONARYV5.csv"));
+                List<string> log = new List<string>();
+                log.Add("-versionOOTR 5");
+                foreach (var i in LogicDictionary)
+                {
+                    log.Add("- " + i.DictionaryName);
+                    log.Add("");
+                    log.Add("");
+                    log.Add("0");
+                    log.Add("0");
+                    log.Add("");
+                }
+                SaveFileDialog saveDic = new SaveFileDialog
+                {
+                    Filter = "TXT File (*.txt)|*.txt",
+                    Title = "Save OOT Logic File",
+                    FileName = "OOTR Logic.txt"
+                };
+                saveDic.ShowDialog();
+                File.WriteAllLines(saveDic.FileName, log);
+            }
+
             var dic = LogicObjects.MainTrackerInstance.LogicDictionary;
 
             if (dic.Count < 1 || LogicObjects.MainTrackerInstance.GameCode != "OOTR")
@@ -505,6 +530,97 @@ namespace MMR_Tracker.Forms
             if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
 
             File.WriteAllLines(saveDialog.FileName, FileContent);
+        }
+
+        private void HandleWWRSpoilerLog()
+        {
+            void CreateDictionary()
+            {
+                System.Net.WebClient wc = new System.Net.WebClient();
+                string webData = wc.DownloadString("https://raw.githubusercontent.com/LagoLunatic/wwrando/9f4752b6defbc5849ef52044422109b36f2ad790/logic/item_locations.txt");
+                string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+
+                List<string> DictionaryLines = new List<string> { "DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem,EntrancePair" };
+                LogicObjects.LogicDictionaryEntry Item = new LogicObjects.LogicDictionaryEntry();
+                Regex rgx = new Regex("[^a-zA-Z0-9 -]");
+
+                foreach (var i in Lines)
+                {
+                    string Line = i.Trim();
+                    //Console.WriteLine(Line);
+                    bool Unimplimented = false;
+                    if (Line.StartsWith("#"))
+                    {
+                        Line.Replace("#", "");
+                        Unimplimented = true;
+                    }
+                    if (Line.Contains(" -") && !Line.StartsWith("-") && !Line.Contains("\"") && Line.Contains(":") && !Line.Contains("Original item:") && !Line.Contains("Note:") && !Line.Contains("/"))
+                    {
+                        if (!string.IsNullOrWhiteSpace(Item.DictionaryName))
+                        {
+                            string DictionaryLine = $"{Item.DictionaryName},{Item.LocationName},{Item.ItemName},{Item.LocationArea},{Item.ItemSubType},{Item.SpoilerLocation},{Item.SpoilerItem},";
+                            DictionaryLines.Add(DictionaryLine.Replace("  ", " "));
+                        }
+                        Item = new LogicObjects.LogicDictionaryEntry();
+                        var AllParts = Line.Split(new string[] { " -" }, StringSplitOptions.None);
+
+                        string CombineParts = "";
+                        for (var j = 1; j < AllParts.Length; j++)
+                        {
+                            string Seperater = (j == AllParts.Length - 1) ? "" : " -";
+                            CombineParts = CombineParts + AllParts[j] + Seperater;
+                        }
+
+                        string[] Parts = new string[2] { AllParts[0], CombineParts };
+
+
+                        Item.ItemSubType = "Item";
+                        Item.LocationArea = Parts[0].Trim().Replace("#", "");
+                        Item.LocationName = Parts[1].Substring(0, Parts[1].IndexOf(":")).Trim();
+                        Item.SpoilerLocation = Item.LocationName;
+                        Item.DictionaryName = Item.LocationArea + " " + rgx.Replace(Parts[1].Trim(), "").Replace("-", "");
+                        Item.LocationName = (Unimplimented) ? "" : Item.LocationName;
+                    }
+                    if (Line.Contains("Original item:"))
+                    {
+                        Item.ItemName = Line.Split(':')[1].Trim();
+                        Item.SpoilerItem = Item.ItemName;
+                    }
+                }
+                SaveFileDialog saveDic = new SaveFileDialog
+                {
+                    Filter = "CSV File (*.csv)|*.csv",
+                    Title = "Save Dictionary File",
+                    FileName = "WWRDICTIONARYV" + "1.7.0" + ".csv"
+                };
+                saveDic.ShowDialog();
+                File.WriteAllLines(saveDic.FileName, DictionaryLines);
+            }
+
+            void CreateWWRLogicFile()
+            {
+                List<LogicObjects.LogicDictionaryEntry> LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject("Recources\\Dictionaries\\WWRDICTIONARYV170.csv"));
+                List<string> log = new List<string>();
+                log.Add("-versionWWR 170");
+                foreach (var i in LogicDictionary)
+                {
+                    log.Add("- " + i.DictionaryName);
+                    log.Add("");
+                    log.Add("");
+                    log.Add("0");
+                    log.Add("0");
+                    log.Add("");
+                }
+                SaveFileDialog saveDic = new SaveFileDialog
+                {
+                    Filter = "TXT File (*.txt)|*.txt",
+                    Title = "Save WWR Logic File",
+                    FileName = "WWR Logic.txt"
+                };
+                saveDic.ShowDialog();
+                File.WriteAllLines(saveDic.FileName, log);
+            }
+
         }
 
     }
