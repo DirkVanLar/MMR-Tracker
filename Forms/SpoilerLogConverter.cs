@@ -33,16 +33,42 @@ namespace MMR_Tracker.Forms
         {
             comboBox1.Items.Add("Select a Spoiler Log");
             comboBox1.Items.Add("Ocarina Of Time Rando");
-            //comboBox1.Items.Add("Wind Waker Rando");
-            //comboBox1.Items.Add("Twilight Princess Rando");
-            //comboBox1.Items.Add("Link to the past Rando");
-            //comboBox1.Items.Add("Minish Cap Rando");
-            comboBox1.SelectedIndex = 0;
+            comboBox1.Items.Add("Wind Waker Rando");
+            comboBox1.Items.Add("Twilight Princess Rando");
+            comboBox1.Items.Add("Link to the past Rando");
+            comboBox1.Items.Add("Minish Cap Rando");
+            if (LogicObjects.MainTrackerInstance.GameCode == "OOTR") { comboBox1.SelectedIndex = 1; }
+            else if (LogicObjects.MainTrackerInstance.GameCode == "WWR") { comboBox1.SelectedIndex = 2; }
+            else if (LogicObjects.MainTrackerInstance.GameCode == "TPR") { comboBox1.SelectedIndex = 3; }
+            else if (LogicObjects.MainTrackerInstance.GameCode == "LTTPR") { comboBox1.SelectedIndex = 4; }
+            else if (LogicObjects.MainTrackerInstance.GameCode == "MCR") { comboBox1.SelectedIndex = 5; }
+            else { comboBox1.SelectedIndex = 0; }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 1) { HandleOOTRSpoilerLog(); }
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    MessageBox.Show("Please Select A Game!");
+                    break;
+                case 1:
+                    HandleOOTRSpoilerLog();
+                    break;
+                case 2:
+                    MessageBox.Show("NYI!");
+                    break;
+                case 3:
+                    MessageBox.Show("NYI!");
+                    break;
+                case 4:
+                    MessageBox.Show("NYI!");
+                    break;
+                case 5:
+                    MessageBox.Show("NYI!");
+                    break;
+            }
         }
 
         private void HandleOOTRSpoilerLog()
@@ -63,18 +89,70 @@ namespace MMR_Tracker.Forms
                 Multiselect = false
             };
             if (SelectedFile.ShowDialog() != DialogResult.OK) { return; }
+            dynamic array = JsonConvert.DeserializeObject(File.ReadAllText(SelectedFile.FileName));
+
+            //Get Settings
+            bool GanonKeyOnLACS = false;
+            bool StartAsChild = false;
+            int Forest = 0;
+            int Kakariko = 0;
+            bool OpenDOT = true;
+            int Zora = 0;
+            int Gerudo = 0;
+            int bridge = 0;
+            bool Chu = false;
+            bool SunSong = false;
+            bool mask = false;
+            bool Scarecrow = false;
+            bool CoupledEntrances = true;
+            foreach (dynamic item in array.settings)
+            {
+                string line = item.ToString();
+                if (line.Contains("shuffle_ganon_bosskey") && line.Contains("lacs")) { GanonKeyOnLACS = true; }
+                if (line.Contains("starting_age") && line.Contains("child")) { StartAsChild = true; }
+                if (line.Contains("open_door_of_time") && line.Contains("closed")) { OpenDOT = false; }
+                if (line.Contains("bombchus_in_logic") && line.Contains("true")) { Chu = true; }
+                if (line.Contains("logic_no_night_tokens_without_suns_song") && line.Contains("true")) { SunSong = true; }
+                if (line.Contains("complete_mask_quest") && line.Contains("true")) { mask = true; }
+                if (line.Contains("free_scarecrow") && line.Contains("true")) { mask = true; }
+                if (line.Contains("decouple_entrances") && line.Contains("true")) { CoupledEntrances = false; }
+                if (line.Contains("open_forest"))
+                {
+                    if (line.Contains("closed_deku")) { Forest = 1; }
+                    if (line.Contains("closed_forest")) { Forest = 2; }
+                }
+                if (line.Contains("open_kakariko"))
+                {
+                    if (line.Contains("zelda")) { Kakariko = 1; }
+                    if (line.Contains("closed")) { Kakariko = 2; }
+                }
+                if (line.Contains("zora_fountain"))
+                {
+                    if (line.Contains("adult")) { Zora = 1; }
+                    if (line.Contains("closed")) { Zora = 2; }
+                }
+                if (line.Contains("gerudo_fortress"))
+                {
+                    if (line.Contains("one")) { Gerudo = 1; }
+                    if (line.Contains("open")) { Gerudo = 2; }
+                }
+                if (line.Contains("bridge"))
+                {
+                    if (line.Contains("vanilla")) { bridge = 1; }
+                    if (line.Contains("stone")) { bridge = 2; }
+                    if (line.Contains("medallion")) { bridge = 3; }
+                    if (line.Contains("bridge") && line.Contains("dungeon")) { bridge = 4; }
+                    if (line.Contains("bridge") && line.Contains("skull")) { bridge = 5; }
+                }
+            }
 
             //Handle Entraces
             List<entranceTable> SpoilerEntranceTable = new List<entranceTable>();
-            dynamic array = JsonConvert.DeserializeObject(File.ReadAllText(SelectedFile.FileName));
             foreach (dynamic item in array.entrances)
             {
                 var entry = new entranceTable();
                 string line = item.ToString();
-                line = line.Replace(',', ':');
-                line = line.Replace('"', '{');
-                line = line.Replace("{", "");
-                line = line.Replace("}", "");
+                line = line.Replace(',', ':').Replace('"', '{').Replace("{", "").Replace("}", "");
                 var lines = line.Split(':').Select(x => x.Trim()).ToArray();
                 var front = lines[0].Split(new string[] { "->" }, StringSplitOptions.None);
                 entry.Entrance = front[0].Trim();
@@ -169,39 +247,39 @@ namespace MMR_Tracker.Forms
             }
 
             //Attempt to add Entrances that were left out of the spoiler log
-            foreach (var i in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Entrance"))
+            foreach (var DictionaryItem in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Entrance"))
             {
-                var e = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[0]) == i.SpoilerLocation);
-                if (e == null)
+                var SpoilerLogLine = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[0]) == DictionaryItem.SpoilerLocation);
+                if (SpoilerLogLine == null)
                 {
                     Console.WriteLine($"===========================================================");
-                    Console.WriteLine($"{i.SpoilerLocation} Was not found");
-                    var reverse = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == i.EntrancePair);
-                    if (reverse == null) 
+                    Console.WriteLine($"{DictionaryItem.SpoilerLocation} Was not found");
+                    var EntrancePair = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == DictionaryItem.EntrancePair);
+                    if (EntrancePair == null || !CoupledEntrances) 
                     {
-                        Console.WriteLine($"{i.SpoilerLocation} Did not have a pair. Setting it vanilla.");
-                        FileContent.Add(i.SpoilerLocation + "->" + i.SpoilerItem); 
+                        Console.WriteLine($"{DictionaryItem.SpoilerLocation} Did not have a pair. Setting it vanilla.");
+                        FileContent.Add(DictionaryItem.SpoilerLocation + "->" + DictionaryItem.SpoilerItem); 
                     }
                     else
                     {
-                        var f = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[1]) == reverse.SpoilerItem && !IsOneWay(x));
-                        if (f != null)
+                        var EntrancePairSpoilerLogEntry = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[1]) == EntrancePair.SpoilerItem && !IsOneWay(x));
+                        if (EntrancePairSpoilerLogEntry != null)
                         {
-                            Console.WriteLine($"{i.SpoilerLocation} Reverse Data found at {f}");
-                            var g = f.Split(new string[] { "->" }, StringSplitOptions.None);
+                            Console.WriteLine($"{DictionaryItem.SpoilerLocation} Reverse Data found at {EntrancePairSpoilerLogEntry}");
+                            var g = EntrancePairSpoilerLogEntry.Split(new string[] { "->" }, StringSplitOptions.None);
                             var h0 = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerLocation == g[0] && !x.SpoilerLocation.Contains("Spawn"));
                             var j0 = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerItem == g[1] && !x.SpoilerLocation.Contains("Spawn"));
                             var h = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == h0.EntrancePair);
                             var j = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == j0.EntrancePair);
 
-                            if (h == null || j == null) { Console.WriteLine($"{f} Did not have reverse Data! This is an error!"); continue; }
+                            if (h == null || j == null) { Console.WriteLine($"{EntrancePairSpoilerLogEntry} Did not have reverse Data! This is an error!"); continue; }
 
                             FileContent.Add(j.SpoilerLocation + "->" + h.SpoilerItem);
                         }
                         else
                         {
-                            Console.WriteLine($"{i.SpoilerLocation} Did not have reverse Data. Setting it Vanilla.");
-                            FileContent.Add(i.SpoilerLocation + "->" + i.SpoilerItem);
+                            Console.WriteLine($"{DictionaryItem.SpoilerLocation} Did not have reverse Data. Setting it Vanilla.");
+                            FileContent.Add(DictionaryItem.SpoilerLocation + "->" + DictionaryItem.SpoilerItem);
                         }
                     }
                 }
@@ -224,7 +302,15 @@ namespace MMR_Tracker.Forms
 
                 if (lines[1].Contains("item"))
                 {
-                    ItemNames.Add(lines[0].Trim(), lines[2].Trim());
+                    var Name = lines[2].Trim();
+
+                    if (Name.Contains("["))
+                    {
+                        var ind = Name.IndexOf("[");
+                        Name = Name.Substring(0, ind).Trim();
+                    }
+
+                    ItemNames.Add(lines[0].Trim(), Name);
                 }
                 else
                 {
@@ -238,45 +324,12 @@ namespace MMR_Tracker.Forms
                 FileContent.Add($"{i.Key}->{i.Value}");
             }
 
-            bool GanonKeyOnLACS = false;
-            bool StartAsChild = false;
-            int Forest = 0;
-            int Kakariko = 0;
-            bool OpenDOT = true;
-            int Zora = 0;
-            int Gerudo = 0;
-            int bridge = 0;
-            bool Chu = false;
-            bool SunSong = false;
-            bool mask = false;
-            bool Scarecrow = false;
-            foreach (dynamic item in array.settings)
-            {
-                string line = item.ToString();
-                if (line.Contains("shuffle_ganon_bosskey") && line.Contains("lacs")) { GanonKeyOnLACS = true; }
-                if (line.Contains("starting_age") && line.Contains("child")) { StartAsChild = true; }
-                if (line.Contains("open_forest") && line.Contains("closed_deku")) { Forest = 1; }
-                if (line.Contains("open_forest") && line.Contains("closed_forest")) { Forest = 2; }
-                if (line.Contains("open_kakariko") && line.Contains("zelda")) { Kakariko = 1; }
-                if (line.Contains("open_kakariko") && line.Contains("closed")) { Kakariko = 2; }
-                if (line.Contains("open_door_of_time") && line.Contains("closed")) { OpenDOT = false; }
-                if (line.Contains("zora_fountain") && line.Contains("adult")) { Zora = 1; }
-                if (line.Contains("zora_fountain") && line.Contains("closed")) { Zora = 2; }
-                if (line.Contains("gerudo_fortress") && line.Contains("one")) { Gerudo = 1; }
-                if (line.Contains("gerudo_fortress") && line.Contains("open")) { Gerudo = 2; }
-                if (line.Contains("bridge") && line.Contains("vanilla")) { bridge = 1; }
-                if (line.Contains("bridge") && line.Contains("stone")) { bridge = 2; }
-                if (line.Contains("bridge") && line.Contains("medallion")) { bridge = 3; }
-                if (line.Contains("bridge") && line.Contains("dungeon")) { bridge = 4; }
-                if (line.Contains("bridge") && line.Contains("skull")) { bridge = 5; }
-                if (line.Contains("bombchus_in_logic") && line.Contains("true")) { Chu = true; }
-                if (line.Contains("logic_no_night_tokens_without_suns_song") && line.Contains("true")) { SunSong = true; }
-                if (line.Contains("complete_mask_quest") && line.Contains("true")) { mask = true; }
-                if (line.Contains("free_scarecrow") && line.Contains("true")) { mask = true; }
+            
 
-            }
-
-            foreach (var i in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Item" || x.ItemSubType == "Boss Token" || x.ItemSubType == "AgeIndicator" || x.ItemSubType.Contains("Setting")))
+            foreach (var i in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Item" 
+                                                                                        || x.ItemSubType == "Boss Token" 
+                                                                                        || x.ItemSubType == "AgeIndicator" 
+                                                                                        || x.ItemSubType.Contains("Setting")))
             {
                 var e = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[0]) == i.SpoilerLocation);
                 if (e == null)
