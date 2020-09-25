@@ -98,11 +98,13 @@ namespace MMR_Tracker.Forms
                 File.WriteAllLines(saveDic.FileName, log);
             }
 
+
             var dic = LogicObjects.MainTrackerInstance.LogicDictionary;
 
             if (dic.Count < 1 || LogicObjects.MainTrackerInstance.GameCode != "OOTR")
             {
-                MessageBox.Show("You must first import an OOTR Logic File");
+                if (!Debugging.ISDebugging) { MessageBox.Show("You must first import an OOTR Logic File"); }
+                else { CreateOOTRLogicFile(); }
                 return;
             }
 
@@ -118,7 +120,7 @@ namespace MMR_Tracker.Forms
 
             //Get Settings
             bool GanonKeyOnLACS = false;
-            bool StartAsChild = false;
+            bool StartAsChild = true;
             int Forest = 0;
             int Kakariko = 0;
             bool OpenDOT = true;
@@ -134,7 +136,7 @@ namespace MMR_Tracker.Forms
             {
                 string line = item.ToString();
                 if (line.Contains("shuffle_ganon_bosskey") && line.Contains("lacs")) { GanonKeyOnLACS = true; }
-                if (line.Contains("starting_age") && line.Contains("child")) { StartAsChild = true; }
+                if (line.Contains("starting_age") && line.Contains("adult")) { StartAsChild = false; }
                 if (line.Contains("open_door_of_time") && line.Contains("closed")) { OpenDOT = false; }
                 if (line.Contains("bombchus_in_logic") && line.Contains("true")) { Chu = true; }
                 if (line.Contains("logic_no_night_tokens_without_suns_song") && line.Contains("true")) { SunSong = true; }
@@ -144,30 +146,30 @@ namespace MMR_Tracker.Forms
                 if (line.Contains("open_forest"))
                 {
                     if (line.Contains("closed_deku")) { Forest = 1; }
-                    if (line.Contains("closed_forest")) { Forest = 2; }
+                    else if (line.Contains("closed")) { Forest = 2; }
                 }
                 if (line.Contains("open_kakariko"))
                 {
                     if (line.Contains("zelda")) { Kakariko = 1; }
-                    if (line.Contains("closed")) { Kakariko = 2; }
+                    else if (line.Contains("closed")) { Kakariko = 2; }
                 }
                 if (line.Contains("zora_fountain"))
                 {
                     if (line.Contains("adult")) { Zora = 1; }
-                    if (line.Contains("closed")) { Zora = 2; }
+                    else if (line.Contains("open")) { Zora = 2; }
                 }
                 if (line.Contains("gerudo_fortress"))
                 {
                     if (line.Contains("one")) { Gerudo = 1; }
-                    if (line.Contains("open")) { Gerudo = 2; }
+                    else if (line.Contains("open")) { Gerudo = 2; }
                 }
                 if (line.Contains("bridge"))
                 {
                     if (line.Contains("vanilla")) { bridge = 1; }
-                    if (line.Contains("stone")) { bridge = 2; }
-                    if (line.Contains("medallion")) { bridge = 3; }
-                    if (line.Contains("bridge") && line.Contains("dungeon")) { bridge = 4; }
-                    if (line.Contains("bridge") && line.Contains("skull")) { bridge = 5; }
+                    else if (line.Contains("stone")) { bridge = 2; }
+                    else if (line.Contains("medallion")) { bridge = 3; }
+                    else if (line.Contains("dungeon")) { bridge = 4; }
+                    else if (line.Contains("skull")) { bridge = 5; }
                 }
             }
 
@@ -188,6 +190,62 @@ namespace MMR_Tracker.Forms
             }
 
             //Check the MQ entry in the spoiler log and convert the entries of any dungeon that are MQ to the MQ entry
+            
+
+            List<string> FileContent = new List<string>();
+
+            foreach (var i in SpoilerEntranceTable)
+            {
+                FileContent.Add($"{i.Entrance}>{i.To}->{i.Exit}" + (i.From == "" ? "" : $"<{i.From}"));
+            }
+
+            bool IsOneWay(string i)
+            {
+                var j = i.Split(new string[] { "->" }, StringSplitOptions.None)[0];
+                var k = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerLocation == j);
+                return string.IsNullOrWhiteSpace(k.EntrancePair) || i.Contains("Adult Spawn") || i.Contains("Child Spawn");
+            }
+
+            //Attempt to add Entrances that were left out of the spoiler log
+            foreach (var DictionaryItem in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Entrance"))
+            {
+                if (DictionaryItem.SpoilerItem.Contains("=>") || DictionaryItem.SpoilerLocation.Contains("=>")) { continue; }
+                var SpoilerLogLine = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[0]) == DictionaryItem.SpoilerLocation);
+                if (SpoilerLogLine == null)
+                {
+                    Console.WriteLine($"===========================================================");
+                    Console.WriteLine($"{DictionaryItem.SpoilerLocation} Was not found");
+                    var EntrancePair = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == DictionaryItem.EntrancePair);
+                    if (EntrancePair == null || !CoupledEntrances) 
+                    {
+                        Console.WriteLine($"{DictionaryItem.SpoilerLocation} Did not have a pair. Setting it vanilla.");
+                        FileContent.Add(DictionaryItem.SpoilerLocation + "->" + DictionaryItem.SpoilerItem); 
+                    }
+                    else
+                    {
+                        var EntrancePairSpoilerLogEntry = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[1]) == EntrancePair.SpoilerItem && !IsOneWay(x));
+                        if (EntrancePairSpoilerLogEntry != null)
+                        {
+                            Console.WriteLine($"{DictionaryItem.SpoilerLocation} Reverse Data found at {EntrancePairSpoilerLogEntry}");
+                            var g = EntrancePairSpoilerLogEntry.Split(new string[] { "->" }, StringSplitOptions.None);
+                            var h0 = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerLocation == g[0] && !x.SpoilerLocation.Contains("Spawn"));
+                            var j0 = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerItem == g[1] && !x.SpoilerLocation.Contains("Spawn"));
+                            var h = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == h0.EntrancePair);
+                            var j = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == j0.EntrancePair);
+
+                            if (h == null || j == null) { Console.WriteLine($"{EntrancePairSpoilerLogEntry} Did not have reverse Data! This is an error!"); continue; }
+
+                            FileContent.Add(j.SpoilerLocation + "->" + h.SpoilerItem);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{DictionaryItem.SpoilerLocation} Did not have reverse Data. Setting it Vanilla.");
+                            FileContent.Add(DictionaryItem.SpoilerLocation + "->" + DictionaryItem.SpoilerItem);
+                        }
+                    }
+                }
+            }
+
             foreach (dynamic i in array.dungeons)
             {
                 string line = i.ToString();
@@ -243,8 +301,19 @@ namespace MMR_Tracker.Forms
 
             void ConvertToMQ(string Entrance, string exit)
             {
-                foreach (var i in SpoilerEntranceTable)
+                for (var k = 0; k < FileContent.Count(); k++)
                 {
+                    var Line = FileContent[k];
+                    var i = new entranceTable();
+                    if (Line.Split(new string[] { "->" }, StringSplitOptions.None).Length < 2) { continue; }
+                    var Front = Line.Split(new string[] { "->" }, StringSplitOptions.None)[0];
+                    var back = Line.Split(new string[] { "->" }, StringSplitOptions.None)[1];
+
+                    i.Entrance = Front.Split('>')[0];
+                    i.To = Front.Split('>')[1];
+                    i.Exit = back.Split('<')[0];
+                    i.From = (back.Split('<').Length > 1) ? back.Split('<')[1] : "";
+
                     if (i.Entrance == Entrance)
                     {
                         Console.WriteLine($"Changing {i.Entrance} to MQ {i.Entrance}");
@@ -254,59 +323,7 @@ namespace MMR_Tracker.Forms
                     {
                         i.Exit = "MQ " + i.Exit;
                     }
-                }
-            }
-
-            List<string> FileContent = new List<string>();
-
-            foreach (var i in SpoilerEntranceTable)
-            {
-                FileContent.Add($"{i.Entrance}>{i.To}->{i.Exit}" + (i.From == "" ? "" : $"<{i.From}"));
-            }
-
-            bool IsOneWay(string i)
-            {
-                var j = i.Split(new string[] { "->" }, StringSplitOptions.None)[0];
-                var k = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerLocation == j);
-                return string.IsNullOrWhiteSpace(k.EntrancePair) || i.Contains("Adult Spawn") || i.Contains("Child Spawn");
-            }
-
-            //Attempt to add Entrances that were left out of the spoiler log
-            foreach (var DictionaryItem in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Entrance"))
-            {
-                var SpoilerLogLine = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[0]) == DictionaryItem.SpoilerLocation);
-                if (SpoilerLogLine == null)
-                {
-                    Console.WriteLine($"===========================================================");
-                    Console.WriteLine($"{DictionaryItem.SpoilerLocation} Was not found");
-                    var EntrancePair = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == DictionaryItem.EntrancePair);
-                    if (EntrancePair == null || !CoupledEntrances) 
-                    {
-                        Console.WriteLine($"{DictionaryItem.SpoilerLocation} Did not have a pair. Setting it vanilla.");
-                        FileContent.Add(DictionaryItem.SpoilerLocation + "->" + DictionaryItem.SpoilerItem); 
-                    }
-                    else
-                    {
-                        var EntrancePairSpoilerLogEntry = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[1]) == EntrancePair.SpoilerItem && !IsOneWay(x));
-                        if (EntrancePairSpoilerLogEntry != null)
-                        {
-                            Console.WriteLine($"{DictionaryItem.SpoilerLocation} Reverse Data found at {EntrancePairSpoilerLogEntry}");
-                            var g = EntrancePairSpoilerLogEntry.Split(new string[] { "->" }, StringSplitOptions.None);
-                            var h0 = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerLocation == g[0] && !x.SpoilerLocation.Contains("Spawn"));
-                            var j0 = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerItem == g[1] && !x.SpoilerLocation.Contains("Spawn"));
-                            var h = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == h0.EntrancePair);
-                            var j = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == j0.EntrancePair);
-
-                            if (h == null || j == null) { Console.WriteLine($"{EntrancePairSpoilerLogEntry} Did not have reverse Data! This is an error!"); continue; }
-
-                            FileContent.Add(j.SpoilerLocation + "->" + h.SpoilerItem);
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{DictionaryItem.SpoilerLocation} Did not have reverse Data. Setting it Vanilla.");
-                            FileContent.Add(DictionaryItem.SpoilerLocation + "->" + DictionaryItem.SpoilerItem);
-                        }
-                    }
+                    FileContent[k] = ($"{i.Entrance}>{i.To}->{i.Exit}" + (i.From == "" ? "" : $"<{i.From}"));
                 }
             }
 
@@ -356,6 +373,7 @@ namespace MMR_Tracker.Forms
                                                                                         || x.ItemSubType == "AgeIndicator" 
                                                                                         || x.ItemSubType.Contains("Setting")))
             {
+                if (string.IsNullOrWhiteSpace(i.LocationName)) { continue; }
                 var e = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[0]) == i.SpoilerLocation);
                 if (e == null)
                 {
@@ -366,8 +384,15 @@ namespace MMR_Tracker.Forms
                     }
                     else if (i.DictionaryName == "SettingStartingAge")
                     {
-                        string age = (StartAsChild) ? "SettingStartingAgeChild" : "SettingStartingAgeAdult";
-                        FileContent.Add($"SettingStartingAge->{ age}");
+                        switch (StartAsChild)
+                        {
+                            case true:
+                                FileContent.Add($"SettingStartingAge->SettingStartingAgeChild");
+                                break;
+                            case false:
+                                FileContent.Add($"SettingStartingAge->SettingStartingAgeAdult");
+                                break;
+                        }
                     }
                     else if (i.DictionaryName == "SettingForest")
                     {

@@ -154,7 +154,7 @@ namespace MMR_Tracker.Class_Files
                     if (Item == null) { Console.WriteLine($"Unable to find logic entry for {entry.ItemName}"); }
                     else {Console.WriteLine($"Entry {Item.ID} is {entry.ItemName}"); }
 
-                    if (entry.ItemName.Contains("Ice Trap"))
+                    if (entry.ItemName.Contains("Ice Trap") || entry.ItemName == "Ice Trap")
                     {
                         Item = new LogicObjects.LogicEntry { ID = -1 };
                     }
