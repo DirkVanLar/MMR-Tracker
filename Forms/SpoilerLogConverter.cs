@@ -534,6 +534,7 @@ namespace MMR_Tracker.Forms
 
         private void HandleWWRSpoilerLog()
         {
+            Regex rgx = new Regex("[^a-zA-Z0-9 -]");
             void CreateDictionary()
             {
                 System.Net.WebClient wc = new System.Net.WebClient();
@@ -542,7 +543,6 @@ namespace MMR_Tracker.Forms
 
                 List<string> DictionaryLines = new List<string> { "DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem,EntrancePair" };
                 LogicObjects.LogicDictionaryEntry Item = new LogicObjects.LogicDictionaryEntry();
-                Regex rgx = new Regex("[^a-zA-Z0-9 -]");
 
                 foreach (var i in Lines)
                 {
@@ -621,6 +621,58 @@ namespace MMR_Tracker.Forms
                 File.WriteAllLines(saveDic.FileName, log);
             }
 
+            //CreateWWRLogicFile(); return;
+
+            OpenFileDialog SelectedFile = new OpenFileDialog
+            {
+                Title = $"Select WWR Spoiler Log",
+                Filter = "OOTR Spoiler Log (*.txt)|*.txt",
+                FilterIndex = 1,
+                Multiselect = false
+            };
+            if (SelectedFile.ShowDialog() != DialogResult.OK) { return; }
+
+            bool AtItems = false;
+            bool AtEntrances = false;
+            List<string> SpoilerData = new List<string>();
+            string header = "";
+            foreach (var line in File.ReadAllLines(SelectedFile.FileName).Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()))
+            {
+                if (line.Contains("All item locations:"))
+                {
+                    AtItems = true;
+                }
+                if (line.Contains("Starting island:"))
+                {
+                    AtItems = false;
+                }
+                if (line.Contains("Entrances:"))
+                {
+                    AtEntrances = true;
+                }
+                if (line.Contains("Charts:"))
+                {
+                    break;
+                }
+                if (AtItems || AtEntrances)
+                {
+                    var Parts = line.Split(':');
+                    if (string.IsNullOrWhiteSpace(Parts[1])) { header = Parts[0].Trim() + " "; continue; }
+                    if (AtEntrances) { header = ""; }
+                    if (Parts.Length < 2) { continue; }
+                    Parts[0] = rgx.Replace(Parts[0].Replace(" -", "").Replace("-", ""), "");
+                    SpoilerData.Add($"{header}{Parts[0].Trim()}->{Parts[1].Trim().Replace(" -", "")}");
+                }
+            }
+            SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                Filter = "Spoiler Log (*.txt)|*.txt",
+                FilterIndex = 1,
+                FileName = SelectedFile.FileName.Replace(".txt", " MMRT Converted")
+            };
+            if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+
+            File.WriteAllLines(saveDialog.FileName, SpoilerData);
         }
 
     }

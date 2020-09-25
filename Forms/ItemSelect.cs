@@ -203,7 +203,7 @@ namespace MMR_Tracker_V2
             LBItemSelect.Items.Clear();
             foreach(var i in UsedLogic.Where(x => x.SpoilerRandom > -1))
             {
-                var spoilerDisplay = new LogicObjects.LogicEntry { ID = i.ID, DisplayName = UsedLogic[i.SpoilerRandom].DictionaryName };
+                var spoilerDisplay = new LogicObjects.LogicEntry { ID = i.ID, DisplayName = UsedLogic[i.SpoilerRandom].ItemName?? UsedLogic[i.SpoilerRandom].DictionaryName };
                 if (spoilerDisplay.DisplayName.ToLower().Contains(TXTSearch.Text.ToLower()))
                 {
                     LBItemSelect.Items.Add(spoilerDisplay);

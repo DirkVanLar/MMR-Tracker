@@ -149,7 +149,7 @@ namespace MMR_Tracker_V2
             bool Spoiler = false;
             foreach (var i in Logic)
             {
-                if (i.IsFake) { continue; }
+                if (i.IsFake || string.IsNullOrWhiteSpace(i.LocationName)) { continue; }
                 if (i.SpoilerRandom > (FakeAllowed ? -2 : -1)) 
                 { 
                     Spoiler = true;
