@@ -47,7 +47,7 @@ namespace MMR_Tracker.Forms
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnConvert_Click(object sender, EventArgs e)
         {
             switch (comboBox1.SelectedIndex)
             {
@@ -636,7 +636,8 @@ namespace MMR_Tracker.Forms
             bool AtEntrances = false;
             List<string> SpoilerData = new List<string>();
             string header = "";
-            foreach (var line in File.ReadAllLines(SelectedFile.FileName).Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()))
+            var FileContent = File.ReadAllLines(SelectedFile.FileName).Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()).ToArray();
+            foreach (var line in FileContent)
             {
                 if (line.Contains("All item locations:"))
                 {
@@ -664,6 +665,25 @@ namespace MMR_Tracker.Forms
                     SpoilerData.Add($"{header}{Parts[0].Trim()}->{Parts[1].Trim().Replace(" -", "")}");
                 }
             }
+            string Settings = "";
+            for (var i = 0; i< FileContent.Count(); i++)
+            {
+                if (FileContent[i] == "Options selected:")
+                {
+                    Settings = FileContent[i + 1];
+                }
+            }
+
+            if (Settings.Contains("sword_mode: Start with Sword"))
+            {
+                SpoilerData.Add("Outset Island Orca Tutorial->Progressive Sword");
+            }
+            else
+            {
+                //Ice trap sets the item as junk, which in this case is being used in place of "Nothing"
+                SpoilerData.Add("Outset Island Orca Tutorial->Ice Trap");
+            }
+
             SaveFileDialog saveDialog = new SaveFileDialog
             {
                 Filter = "Spoiler Log (*.txt)|*.txt",
