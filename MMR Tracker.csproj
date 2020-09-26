@@ -237,6 +237,9 @@
     <Content Include="Recources\Other Files\OOT Logic V5.2.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Recources\Other Files\WWR Logic.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="NATUPNPLib">

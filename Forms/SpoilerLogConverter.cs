@@ -700,14 +700,16 @@ namespace MMR_Tracker.Forms
             }
 
             if (Settings.Contains("sword_mode: Start with Sword"))
-            {
-                SpoilerData.Add("Outset Island Orca Tutorial->Progressive Sword");
-            }
+            { SpoilerData.Add("SettingSwordMode->SettingSwordModeStartWith"); }
+            else if (Settings.Contains("sword_mode: Randomized Sword"))
+            { SpoilerData.Add("SettingSwordMode->SettingSwordModeRandomized"); }
             else
-            {
-                //Ice trap sets the item as junk, which in this case is being used in place of "Nothing"
-                SpoilerData.Add("Outset Island Orca Tutorial->Ice Trap");
-            }
+            { SpoilerData.Add("SettingSwordMode->SettingSwordModeSwordless"); }
+
+            if (Settings.Contains("skip_rematch_bosses"))
+            { SpoilerData.Add("SettingRemachBossesSkipped->SettingRemachBossesSkippedTrue"); }
+            else 
+            { SpoilerData.Add("SettingRemachBossesSkipped->SettingRemachBossesSkippedFalse"); }
 
             SaveFileDialog saveDialog = new SaveFileDialog
             {

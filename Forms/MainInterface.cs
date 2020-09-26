@@ -48,6 +48,9 @@ namespace MMR_Tracker_V2
         #region Form Events
         private void FRMTracker_Load(object sender, EventArgs e)
         {
+            //Ensure the current directory is always the base directory in case the application is opened from a MMRTSave file elsewhere on the system
+            System.IO.Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+
             Debugging.ISDebugging = (Control.ModifierKeys == Keys.Control) ? (!Debugger.IsAttached) : (Debugger.IsAttached);
             Tools.CreateOptionsFile();
             if (VersionHandeling.GetLatestTrackerVersion()) { this.Close(); }
