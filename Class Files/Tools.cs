@@ -493,13 +493,15 @@ namespace MMR_Tracker.Class_Files
             LogicEditing.PopulateTrackerInstance(Instance);
             LogicEditing.CalculateItems(Instance);
 
-
-            if (!Instance.IsMM())
+            if (!Instance.IsMM() && (!File.Exists("options.txt") || File.ReadAllLines("options.txt").ToList().Find(x => x.Contains("OtherLogicOK")) == null))
             {
-                DialogResult dialogResult = MessageBox.Show("This logic file was NOT created for the Majoras Mask Randomizer. While this tracker can support other games, support is very Limited. Many features will be disabled and core features might not work as intended. Do you wish to continue?", "Other Randomizer", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("This logic file was NOT created for the Majoras Mask Randomizer. While this tracker can support other games, support is very Limited. Many features will be disabled and core features might not work as intended. Do you wish to continue? If so this prompt will no longer display.", "Other Randomizer", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }
+                try { using (StreamWriter w = File.AppendText("options.txt")) { w.WriteLine("OtherLogicOK"); } }
+                catch { }
+
             }
-            else if (Instance.LogicVersion < 8)
+            else if (Instance.LogicVersion < 8 && Instance.IsMM())
             {
                 DialogResult dialogResult = MessageBox.Show("You are using a version of logic that is not supported by this tracker. Any logic version lower than version 8 (Randomizer version 1.8) may not work as intended. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }
