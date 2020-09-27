@@ -344,7 +344,7 @@ namespace MMR_Tracker_V2
                 case 8:
                     UsedLogic = LogicEditor.EditorInstance.Logic;
                     BTNJunk.Text = "Apply";
-                    LBItemSelect.SelectionMode = SelectionMode.One;
+                    LBItemSelect.SelectionMode = SelectionMode.MultiExtended;
                     UseUpDown();
                     ShowAllAsDictionary();
                     this.Text = "Move an item to reorder it in the logic file";
@@ -435,25 +435,53 @@ namespace MMR_Tracker_V2
             ItemsReturned = false;
         }
 
-        private void btnUp_Click(object sender, EventArgs e)
+        private void UpDownButtons(object sender, EventArgs e)
         {
-            MoveItem(-1);
+            if (sender == btnUp) { MoveItem(-1); }
+            else if (sender == btnDown) { MoveItem(1); }
         }
 
-        private void btnDown_Click(object sender, EventArgs e)
+        public void MoveItem(int Direction)
         {
-            MoveItem(1);
-        }
+            ListBox LB = LBItemSelect;
+            bool up = Direction < 0;
+            int Decrementor = Direction * -1;
+            if ((Control.ModifierKeys & Keys.Shift) != 0) { Direction *= 5; }
+            if ((Control.ModifierKeys & Keys.Control) != 0) { Direction *= 10; }
 
-        public void MoveItem(int direction)
-        {
-            if (LBItemSelect.SelectedItem == null || LBItemSelect.SelectedIndex < 0) { return; }
-            int newIndex = LBItemSelect.SelectedIndex + direction;
-            if (newIndex < 0 || newIndex >= LBItemSelect.Items.Count) { return; }
-            object selected = LBItemSelect.SelectedItem;
-            LBItemSelect.Items.Remove(selected);
-            LBItemSelect.Items.Insert(newIndex, selected);
-            LBItemSelect.SetSelected(newIndex, true);
+            bool CanMove = TestMove();
+
+            while (!CanMove)
+            {
+                Direction += Decrementor;
+                if (Direction == 0) { return; }
+                CanMove = TestMove();
+            }
+
+            if (up) { for (var i = 0; i < LB.SelectedIndices.Count; i++)      { MoveItem(i); } }
+            else    { for (var i = LB.SelectedIndices.Count - 1; i >= 0; i--) { MoveItem(i); } }
+            void MoveItem(int ind)
+            {
+                int newIndex = LB.SelectedIndices[ind] + Direction;
+                object selected = LB.SelectedItems[ind];
+                LB.Items.Remove(selected);
+                LB.Items.Insert(newIndex, selected);
+                LB.SetSelected(newIndex, true);
+            }
+
+            bool inBounds(int ind)
+            {
+                if (LB.SelectedItems[ind] == null || LB.SelectedIndices[ind] < 0) { return false; }
+                int newIndex = LB.SelectedIndices[ind] + Direction;
+                if (newIndex < 0 || newIndex >= LB.Items.Count) { return false; }
+                return true;
+            }
+            bool TestMove()
+            {
+                if (up)  { for (var i = 0; i < LB.SelectedIndices.Count; i++)      { if (!inBounds(i)) { return false; } } }
+                else     { for (var i = LB.SelectedIndices.Count - 1; i >= 0; i--) { if (!inBounds(i)) { return false; } } }
+                return true;
+            }
         }
 
         private void TXTSearch_MouseUp(object sender, MouseEventArgs e)

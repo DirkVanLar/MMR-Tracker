@@ -68,6 +68,7 @@ namespace MMR_Tracker.Forms
 
         private void FormatForm(int StartAt = 0)
         {
+            this.Text = "Logic Editor";
             bool enabled = (EditorInstance.Logic.Count > 0);
             btnAddReq.Enabled = enabled;
             btnAddCond.Enabled = enabled;
@@ -97,6 +98,7 @@ namespace MMR_Tracker.Forms
             redoToolStripMenuItem.Visible = enabled;
             renameCurrentItemToolStripMenuItem.Visible = enabled;
             reorderLogicToolStripMenuItem.Visible = enabled;
+            whatIsThisUsedInToolStripMenuItem.Visible = enabled;
             btnEditSelected.Enabled = enabled;
             lblDicName.Text = "";
             lblLocName.Text = "";
@@ -370,7 +372,12 @@ namespace MMR_Tracker.Forms
 
         private void NudIndex_ValueChanged(object sender, EventArgs e)
         {
-            if (nudIndex.Value > EditorInstance.Logic.Count - 1) { nudIndex.Value = EditorInstance.Logic.Count - 1; return; }
+            if (nudIndex.Value > EditorInstance.Logic.Count - 1) 
+            {
+                try { nudIndex.Value = EditorInstance.Logic.Count - 1; }
+                catch { nudIndex.Value = 0; }
+                return; 
+            }
             if (nudIndex.Value < 0) { nudIndex.Value = 0; return; }
             if (currentEntry.ID + 1 != (int)nudIndex.Value && currentEntry.ID - 1 != (int)nudIndex.Value && !NudUpdateing && currentEntry.ID != (int)nudIndex.Value)  
             {
@@ -462,6 +469,7 @@ namespace MMR_Tracker.Forms
             }
             catch
             {
+                this.Text = "Logic Editor";
                 FormatForm();
                 return;
             }
@@ -508,6 +516,7 @@ namespace MMR_Tracker.Forms
             ItemName = (UseSpoilerInDisplay) ? (entry.SpoilerItem ?? ItemName) : ItemName;
 
             lblDicName.Text = DictionaryName;
+            this.Text = (String.IsNullOrWhiteSpace(lblDicName.Text)) ? "Logic Editor" : $"Logic Editor: {lblDicName.Text}";
             lblLocName.Text = LocationName.ToString();
             lblItemName.Text = ItemName.ToString();
 

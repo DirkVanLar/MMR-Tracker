@@ -90,7 +90,7 @@
             this.btnUp.TabIndex = 5;
             this.btnUp.Text = "UP";
             this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            this.btnUp.Click += new System.EventHandler(this.UpDownButtons);
             // 
             // btnDown
             // 
@@ -100,7 +100,7 @@
             this.btnDown.TabIndex = 6;
             this.btnDown.Text = "Down";
             this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            this.btnDown.Click += new System.EventHandler(this.UpDownButtons);
             // 
             // lbCheckItems
             // 
