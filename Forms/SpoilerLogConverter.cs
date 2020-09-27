@@ -201,6 +201,7 @@ namespace MMR_Tracker.Forms
             
 
             List<string> FileContent = new List<string>();
+            FileContent.Add("Converted OOTR");
 
             foreach (var i in SpoilerEntranceTable)
             {
@@ -681,6 +682,7 @@ namespace MMR_Tracker.Forms
             bool AtItems = false;
             bool AtEntrances = false;
             List<string> SpoilerData = new List<string>();
+            SpoilerData.Add("Converted WWR");
             string header = "";
             var FileContent = Log.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()).ToArray();
             foreach (var line in FileContent)
