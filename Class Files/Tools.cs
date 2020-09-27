@@ -111,11 +111,11 @@ namespace MMR_Tracker.Class_Files
             saveDic.ShowDialog();
             File.WriteAllLines(saveDic.FileName, csv);
         }
-        public static List<LogicObjects.SpoilerData> ReadTextSpoilerlog(string Path, LogicObjects.TrackerInstance instance)
+        public static List<LogicObjects.SpoilerData> ReadTextSpoilerlog(LogicObjects.TrackerInstance instance, string[] Spoiler = null)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
 
-            if (Path == "")
+            if (Spoiler == null)
             {
                 OpenFileDialog SpoilerFile = new OpenFileDialog
                 {
@@ -125,10 +125,20 @@ namespace MMR_Tracker.Class_Files
                     Multiselect = false
                 };
                 if (SpoilerFile.ShowDialog() != DialogResult.OK) { return SpoilerData; }
-                Path = SpoilerFile.FileName;
+                Spoiler = File.ReadLines(SpoilerFile.FileName).ToArray();
             }
+
+            if (instance.GameCode == "WWR" && !Spoiler[0].Contains("Converted WWR")) 
+            {
+                Spoiler = SpoilerLogConverter.HandleWWRSpoilerLog(Spoiler);
+            }
+            if (instance.GameCode == "OOTR" && !Spoiler[0].Contains("Converted OOTR"))
+            {
+                Spoiler = SpoilerLogConverter.HandleOOTRSpoilerLog(string.Join("", Spoiler));
+            }
+
             List<int> usedId = new List<int>();
-            foreach (string i in File.ReadLines(Path))
+            foreach (string i in Spoiler)
             {
                 var line = i;
                 if (line.Contains("Gossip Stone ") && line.Contains("Message")) { break; }

@@ -259,7 +259,7 @@ namespace MMR_Tracker_V2
         public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
-            if (path.Contains(".txt")) { SpoilerData = Tools.ReadTextSpoilerlog(path, Instance); }
+            if (path.Contains(".txt") || path.Contains(".json")) { SpoilerData = Tools.ReadTextSpoilerlog(Instance, File.ReadAllLines(path)); }
             else if (path.Contains(".html")) { SpoilerData = Tools.ReadHTMLSpoilerLog(path, Instance); }
             else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return;  }
             foreach (LogicObjects.SpoilerData data in SpoilerData)

@@ -132,6 +132,34 @@ namespace MMR_Tracker_V2
             FireEvents(sender, e);
             Console.WriteLine($"Glitched Logic V{LogicObjects.MainTrackerInstance.LogicVersion}");
         }
+
+        private void windWakerRandoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
+            System.Net.WebClient wc = new System.Net.WebClient();
+            string webData = wc.DownloadString("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/WWR%20Logic.txt");
+            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
+            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+            FireEvents(sender, e);
+        }
+
+        private void ocarinaOfTimeRadnoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
+            System.Net.WebClient wc = new System.Net.WebClient();
+            string webData = wc.DownloadString("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/OOT%20Logic%20V5.2.txt");
+            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
+            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+            FireEvents(sender, e);
+        }
         #endregion New
         //Menu Strip => Options---------------------------------------------------------------------------
         #region Online Play Options
@@ -173,7 +201,9 @@ namespace MMR_Tracker_V2
             }
             else
             {
-                string file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
+                string file = (instance.GameCode == "MMR") ? 
+                    Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html") :
+                    Utility.FileSelect("Select A Spoiler Log", "Spoiler Log(*.txt;*html;*.json)|*.txt;*html;*.json");
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(instance, file);
                 if (!Utility.CheckforSpoilerLog(instance.Logic)) { MessageBox.Show("No spoiler data found!"); return; }
@@ -456,6 +486,19 @@ namespace MMR_Tracker_V2
             id.MainInterfaceInstance = this;
             id.Show();
 
+        }
+
+        private void spoilerLogLookupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ItemSelect ItemSelectForm = new ItemSelect();
+            ItemSelect.Function = 10;
+            var dialogResult = ItemSelectForm.ShowDialog();
+        }
+
+        private void spoilerLogConverterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SpoilerLogConverter spoilerLogConverter = new SpoilerLogConverter();
+            spoilerLogConverter.ShowDialog();
         }
         #endregion Tools
         //Menu strip => Info---------------------------------------------------------------------------
@@ -1632,18 +1675,5 @@ namespace MMR_Tracker_V2
         #endregion Other Functions
 
         #endregion Functions
-
-        private void spoilerLogLookupToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ItemSelect ItemSelectForm = new ItemSelect();
-            ItemSelect.Function = 10;
-            var dialogResult = ItemSelectForm.ShowDialog();
-        }
-
-        private void spoilerLogConverterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SpoilerLogConverter spoilerLogConverter = new SpoilerLogConverter();
-            spoilerLogConverter.ShowDialog();
-        }
     }
 }

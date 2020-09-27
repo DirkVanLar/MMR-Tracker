@@ -72,7 +72,7 @@ namespace MMR_Tracker.Forms
             }
         }
 
-        private void HandleOOTRSpoilerLog()
+        public static string[] HandleOOTRSpoilerLog(string Log = "")
         {
             void CreateOOTRLogicFile()
             {
@@ -98,6 +98,8 @@ namespace MMR_Tracker.Forms
                 File.WriteAllLines(saveDic.FileName, log);
             }
 
+            bool ManualConvert = (Log == "");
+            string filename = "";
 
             var dic = LogicObjects.MainTrackerInstance.LogicDictionary;
 
@@ -105,18 +107,24 @@ namespace MMR_Tracker.Forms
             {
                 if (!Debugging.ISDebugging) { MessageBox.Show("You must first import an OOTR Logic File"); }
                 else { CreateOOTRLogicFile(); }
-                return;
+                return null;
             }
 
-            OpenFileDialog SelectedFile = new OpenFileDialog
+            if (ManualConvert)
             {
-                Title = $"Select OOTR Spoiler Log",
-                Filter = "OOTR Spoiler Log (*.json)|*.json",
-                FilterIndex = 1,
-                Multiselect = false
-            };
-            if (SelectedFile.ShowDialog() != DialogResult.OK) { return; }
-            dynamic array = JsonConvert.DeserializeObject(File.ReadAllText(SelectedFile.FileName));
+                OpenFileDialog SelectedFile = new OpenFileDialog
+                {
+                    Title = $"Select OOTR Spoiler Log",
+                    Filter = "OOTR Spoiler Log (*.json)|*.json",
+                    FilterIndex = 1,
+                    Multiselect = false
+                };
+                if (SelectedFile.ShowDialog() != DialogResult.OK) { return null; }
+                filename = SelectedFile.FileName;
+                Log = File.ReadAllText(SelectedFile.FileName);
+            }
+
+            dynamic array = JsonConvert.DeserializeObject(Log);
 
             //Get Settings
             bool GanonKeyOnLACS = false;
@@ -546,18 +554,23 @@ namespace MMR_Tracker.Forms
                 }
             }
 
-            SaveFileDialog saveDialog = new SaveFileDialog
+            if (ManualConvert)
             {
-                Filter = "Spoiler Log (*.txt)|*.txt",
-                FilterIndex = 1,
-                FileName = SelectedFile.FileName.Replace(".json", " MMRT Converted")
-            };
-            if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+                SaveFileDialog saveDialog = new SaveFileDialog
+                {
+                    Filter = "Spoiler Log (*.txt)|*.txt",
+                    FilterIndex = 1,
+                    FileName = filename.Replace(".json", " MMRT Converted")
+                };
+                if (saveDialog.ShowDialog() != DialogResult.OK) { return null; }
 
-            File.WriteAllLines(saveDialog.FileName, FileContent);
+                File.WriteAllLines(saveDialog.FileName, FileContent);
+            }
+            return (ManualConvert) ? null : FileContent.ToArray();
+
         }
 
-        private void HandleWWRSpoilerLog()
+        public static string[] HandleWWRSpoilerLog(string[] Log = null)
         {
             Regex rgx = new Regex("[^a-zA-Z0-9 -]");
             void CreateDictionary()
@@ -648,20 +661,28 @@ namespace MMR_Tracker.Forms
 
             //CreateWWRLogicFile(); return;
 
-            OpenFileDialog SelectedFile = new OpenFileDialog
+            bool ManualConvert = (Log == null);
+            string filename = "";
+            if (ManualConvert)
             {
-                Title = $"Select WWR Spoiler Log",
-                Filter = "OOTR Spoiler Log (*.txt)|*.txt",
-                FilterIndex = 1,
-                Multiselect = false
-            };
-            if (SelectedFile.ShowDialog() != DialogResult.OK) { return; }
+                OpenFileDialog SelectedFile = new OpenFileDialog
+                {
+                    Title = $"Select WWR Spoiler Log",
+                    Filter = "OOTR Spoiler Log (*.txt)|*.txt",
+                    FilterIndex = 1,
+                    Multiselect = false
+                };
+                if (SelectedFile.ShowDialog() != DialogResult.OK) { return null; }
+                filename = SelectedFile.FileName;
+                Log = File.ReadAllLines(SelectedFile.FileName);
+            }
+
 
             bool AtItems = false;
             bool AtEntrances = false;
             List<string> SpoilerData = new List<string>();
             string header = "";
-            var FileContent = File.ReadAllLines(SelectedFile.FileName).Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()).ToArray();
+            var FileContent = Log.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()).ToArray();
             foreach (var line in FileContent)
             {
                 if (line.Contains("All item locations:"))
@@ -711,15 +732,19 @@ namespace MMR_Tracker.Forms
             else 
             { SpoilerData.Add("SettingRemachBossesSkipped->SettingRemachBossesSkippedFalse"); }
 
-            SaveFileDialog saveDialog = new SaveFileDialog
+            if (ManualConvert)
             {
-                Filter = "Spoiler Log (*.txt)|*.txt",
-                FilterIndex = 1,
-                FileName = SelectedFile.FileName.Replace(".txt", " MMRT Converted")
-            };
-            if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+                SaveFileDialog saveDialog = new SaveFileDialog
+                {
+                    Filter = "Spoiler Log (*.txt)|*.txt",
+                    FilterIndex = 1,
+                    FileName = filename.Replace(".txt", " MMRT Converted")
+                };
+                if (saveDialog.ShowDialog() != DialogResult.OK) { return null; }
+                File.WriteAllLines(saveDialog.FileName, SpoilerData);
+            }
+            return (ManualConvert) ? null : SpoilerData.ToArray();
 
-            File.WriteAllLines(saveDialog.FileName, SpoilerData);
         }
 
     }
