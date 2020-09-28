@@ -16,6 +16,7 @@ namespace MMR_Tracker.Class_Files
         //Used to pass Logic items between forms
         public static LogicObjects.LogicEntry CurrentSelectedItem = new LogicObjects.LogicEntry();
         public static List<LogicObjects.LogicEntry> CurrentselectedItems = new List<LogicObjects.LogicEntry>();
+        public static string SaveFilePath = "";
 
         public static LogicObjects.ItemUnlockData FindRequirements(LogicObjects.LogicEntry Item, List<LogicObjects.LogicEntry> logic)
         {
@@ -273,18 +274,24 @@ namespace MMR_Tracker.Class_Files
 
             return SpoilerData;
         }
-        public static bool SaveInstance(LogicObjects.TrackerInstance Instance)
+        public static bool SaveInstance(LogicObjects.TrackerInstance Instance, bool SetPath = false , string FilePath = "")
         {
-            SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV", FilterIndex = 1 };
-            if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
-            Instance.UnsavedChanges = false;
+            if (FilePath == "" || !File.Exists(FilePath))
+            {
+                SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV", FilterIndex = 1 };
+                if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
+                FilePath = saveDialog.FileName;
+            }
             //Clear the undo and redo list because otherwise the save file is massive
             var SaveInstance = Utility.CloneTrackerInstance(Instance);
             SaveInstance.UndoList.Clear();
             SaveInstance.RedoList.Clear();
-            File.WriteAllText(saveDialog.FileName, JsonConvert.SerializeObject(SaveInstance));
+            File.WriteAllText(FilePath, JsonConvert.SerializeObject(SaveInstance));
+            if (SetPath) { Tools.SaveFilePath = FilePath; }
+            Instance.UnsavedChanges = false;
             return true;
         }
+
         public static void LoadInstance(string file = "")
         {
             if (file == "")
@@ -324,6 +331,7 @@ namespace MMR_Tracker.Class_Files
             {
                 LogicObjects.MainTrackerInstance.LogicVersion = VersionHandeling.GetVersionDataFromLogicFile(LogicObjects.MainTrackerInstance.RawLogicFile).Version;
             }
+            Tools.SaveFilePath = file;
             return;
         }
         public static void SaveState(LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicEntry> Logic = null )
@@ -367,7 +375,7 @@ namespace MMR_Tracker.Class_Files
                 if (result == DialogResult.Cancel) { return false; }
                 if (result == DialogResult.Yes)
                 {
-                    if (!SaveInstance(Instance)) { return false; }
+                    if (Tools.SaveInstance(LogicObjects.MainTrackerInstance, true, Tools.SaveFilePath)) { return false; }
                 }
             }
             return true;

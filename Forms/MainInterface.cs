@@ -29,6 +29,8 @@ namespace MMR_Tracker_V2
             Tools.StateListChanged += Tools_StateListChanged;
         }
 
+        public static MainInterface CurrentProgram;
+
         //Event Triggers
 
         private void Tools_StateListChanged(object sender, EventArgs e)
@@ -50,13 +52,14 @@ namespace MMR_Tracker_V2
         {
             //Ensure the current directory is always the base directory in case the application is opened from a MMRTSave file elsewhere on the system
             System.IO.Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
-
+            //Since only one instance of the main interface will ever be open, We can store that instance in a variable to be called from static code.
+            CurrentProgram = this;
             Debugging.ISDebugging = (Control.ModifierKeys == Keys.Control) ? (!Debugger.IsAttached) : (Debugger.IsAttached);
             Tools.CreateOptionsFile();
             if (VersionHandeling.GetLatestTrackerVersion()) { this.Close(); }
+            HandleStartArgs(sender, e, Environment.GetCommandLineArgs());
             ResizeObject();
             FormatMenuItems();
-            HandleStartArgs(sender, e, Environment.GetCommandLineArgs());
             HandleUserPreset();
         }
 
@@ -89,7 +92,15 @@ namespace MMR_Tracker_V2
         #region File
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Tools.SaveInstance(LogicObjects.MainTrackerInstance);
+            if (sender == saveAsToolStripMenuItem)
+            {
+                Tools.SaveInstance(LogicObjects.MainTrackerInstance, true);
+            }
+            else
+            {
+                Tools.SaveInstance(LogicObjects.MainTrackerInstance, true, Tools.SaveFilePath);
+            }
+            FormatMenuItems();
         }
 
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1525,6 +1536,7 @@ namespace MMR_Tracker_V2
 
         public void FormatMenuItems()
         {
+            saveAsToolStripMenuItem.Visible = (Tools.SaveFilePath != "");
             importSpoilerLogToolStripMenuItem.Text = (Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) ? "Remove Spoiler Log" : "Import Spoiler Log";
             useSongOfTimeInPathfinderToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.UseSongOfTime);
             stricterLogicHandelingToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling);
@@ -1686,8 +1698,8 @@ namespace MMR_Tracker_V2
 
         private static void FireEvents(object sender, EventArgs e, bool TrackerUpdated = true, bool LocationCheck = true)
         {
-            if (LocationCheck) { LocationChecked(null, null); }
-            if (TrackerUpdated) { TrackerUpdate(null, null); }
+            if (LocationCheck) { LocationChecked(sender, e); }
+            if (TrackerUpdated) { TrackerUpdate(sender, e); }
         }
 
         private string createDisplayName(bool Checked, LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance instance)

@@ -21,7 +21,7 @@ namespace MMR_Tracker
         private void LogicEditing_LogicChanged(object sender, EventArgs e)
         {
             Console.WriteLine("Trigger");
-            Map_Load(null, null);
+            Map_Load(sender, e);
         }
 
         private void Map_Load(object sender, EventArgs e)
