@@ -196,8 +196,6 @@ namespace MMR_Tracker.Forms
                 entry.From = (lines[1].Contains("region")) ? lines[4].Trim() : "";
                 SpoilerEntranceTable.Add(entry);
             }
-
-            //Check the MQ entry in the spoiler log and convert the entries of any dungeon that are MQ to the MQ entry
             
 
             List<string> FileContent = new List<string>();
@@ -232,7 +230,7 @@ namespace MMR_Tracker.Forms
                     }
                     else
                     {
-                        var EntrancePairSpoilerLogEntry = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[1]) == EntrancePair.SpoilerItem && !IsOneWay(x));
+                        var EntrancePairSpoilerLogEntry = FileContent.Where(x => x.Contains("->")).ToList().Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[1]) == EntrancePair.SpoilerItem && !IsOneWay(x));
                         if (EntrancePairSpoilerLogEntry != null)
                         {
                             Console.WriteLine($"{DictionaryItem.SpoilerLocation} Reverse Data found at {EntrancePairSpoilerLogEntry}");
@@ -255,6 +253,7 @@ namespace MMR_Tracker.Forms
                 }
             }
 
+            //Check the MQ entry in the spoiler log and convert the entries of any dungeon that are MQ to the MQ entry
             foreach (dynamic i in array.dungeons)
             {
                 string line = i.ToString();
@@ -386,11 +385,11 @@ namespace MMR_Tracker.Forms
                 var e = FileContent.Find(x => (x.Split(new string[] { "->" }, StringSplitOptions.None)[0]) == i.SpoilerLocation);
                 if (e == null)
                 {
-                    #region ApplySettings
                     if (i.DictionaryName == "Temple of Time Light Arrow Cutscene" && GanonKeyOnLACS)
                     {
                         FileContent.Add("ToT Light Arrows Cutscene->Boss Key (Ganons Castle)");
                     }
+                    #region ApplySettings
                     else if (i.DictionaryName == "SettingStartingAge")
                     {
                         switch (StartAsChild)
@@ -567,7 +566,7 @@ namespace MMR_Tracker.Forms
 
                 File.WriteAllLines(saveDialog.FileName, FileContent);
             }
-            return (ManualConvert) ? null : FileContent.ToArray();
+            return FileContent.ToArray();
 
         }
 
@@ -745,7 +744,7 @@ namespace MMR_Tracker.Forms
                 if (saveDialog.ShowDialog() != DialogResult.OK) { return null; }
                 File.WriteAllLines(saveDialog.FileName, SpoilerData);
             }
-            return (ManualConvert) ? null : SpoilerData.ToArray();
+            return SpoilerData.ToArray();
 
         }
 
