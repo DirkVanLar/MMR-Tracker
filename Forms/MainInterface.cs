@@ -98,69 +98,28 @@ namespace MMR_Tracker_V2
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateNewLogicInstance(sender, e);
+            if (sender == newToolStripMenuItem || sender == userLogicToolStripMenuItem)
+            {
+                CreateNewLogicInstance(sender, e);
+            }
+            else if (sender == casualLogicToolStripMenuItem)
+            {
+                LoadLogicPreset(@"Recources\Other Files\REQ_CASUAL.txt", "https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt", sender, e);
+            }
+            else if (sender == glitchedLogicToolStripMenuItem)
+            {
+                LoadLogicPreset(@"Recources\Other Files\REQ_GLITCH.txt", "https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt", sender, e);
+            }
+            else if (sender == windWakerRandoToolStripMenuItem)
+            {
+                LoadLogicPreset(@"Recources\Other Files\WWR Logic.txt", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/WWR%20Logic.txt", sender, e);
+            }
+            else if (sender == ocarinaOfTimeRadnoToolStripMenuItem)
+            {
+                LoadLogicPreset(@"Recources\Other Files\OOT Logic.txt", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/OOT%20Logic.txt", sender, e);
+            }
         }
         #endregion File
-        //Menu Strip => File => New---------------------------------------------------------------------------
-        #region New
-        private void CasualLogicToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-            System.Net.WebClient wc = new System.Net.WebClient();
-            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
-            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
-            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
-            FormatMenuItems();
-            ResizeObject();
-            PrintToListBox();
-            FireEvents(sender, e);
-            Console.WriteLine($"Casual Logic V{LogicObjects.MainTrackerInstance.LogicVersion}");
-        }
-
-        private void GlitchedLogicToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-            System.Net.WebClient wc = new System.Net.WebClient();
-            string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
-            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
-            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
-            FormatMenuItems();
-            ResizeObject();
-            PrintToListBox();
-            FireEvents(sender, e);
-            Console.WriteLine($"Glitched Logic V{LogicObjects.MainTrackerInstance.LogicVersion}");
-        }
-
-        private void windWakerRandoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-            System.Net.WebClient wc = new System.Net.WebClient();
-            string webData = wc.DownloadString("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/WWR%20Logic.txt");
-            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
-            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
-            FormatMenuItems();
-            ResizeObject();
-            PrintToListBox();
-            FireEvents(sender, e);
-        }
-
-        private void ocarinaOfTimeRadnoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-            System.Net.WebClient wc = new System.Net.WebClient();
-            string webData = wc.DownloadString("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/OOT%20Logic%20V5.2.txt");
-            string[] Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
-            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
-            FormatMenuItems();
-            ResizeObject();
-            PrintToListBox();
-            FireEvents(sender, e);
-        }
-        #endregion New
         //Menu Strip => Options---------------------------------------------------------------------------
         #region Online Play Options
         private void onlinePlayToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1477,6 +1436,37 @@ namespace MMR_Tracker_V2
             ResizeObject();
             PrintToListBox();
             FireEvents(sender, e);
+        }
+
+        private void LoadLogicPreset(string Path, string WebPath, object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
+                string[] Lines = null;
+                if (File.Exists(Path))
+                {
+                    Lines = File.ReadAllLines(Path);
+                    Console.WriteLine(Path);
+                }
+                else
+                {
+                    System.Net.WebClient wc = new System.Net.WebClient();
+                    string webData = wc.DownloadString(WebPath);
+                    Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                    Console.WriteLine(WebPath);
+                }
+                LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
+                Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
+                FormatMenuItems();
+                ResizeObject();
+                PrintToListBox();
+                FireEvents(sender, e);
+            }
+            catch
+            {
+                MessageBox.Show("Preset File Invalid! If you have not tampered with the preset files in \"Recources\\Other Files\\\" Please report this issue. Otherwise, redownload or delete those files.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void HandleStartArgs(object sender, EventArgs e, string[] args)

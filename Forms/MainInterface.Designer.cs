@@ -57,6 +57,9 @@
             this.casualLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.glitchedLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.windWakerRandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ocarinaOfTimeRadnoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editRadnomizationOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,9 +108,6 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.windWakerRandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ocarinaOfTimeRadnoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -396,14 +396,14 @@
             this.casualLogicToolStripMenuItem.Name = "casualLogicToolStripMenuItem";
             this.casualLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.casualLogicToolStripMenuItem.Text = "Casual Logic";
-            this.casualLogicToolStripMenuItem.Click += new System.EventHandler(this.CasualLogicToolStripMenuItem_Click);
+            this.casualLogicToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
             // glitchedLogicToolStripMenuItem
             // 
             this.glitchedLogicToolStripMenuItem.Name = "glitchedLogicToolStripMenuItem";
             this.glitchedLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.glitchedLogicToolStripMenuItem.Text = "Glitched Logic";
-            this.glitchedLogicToolStripMenuItem.Click += new System.EventHandler(this.GlitchedLogicToolStripMenuItem_Click);
+            this.glitchedLogicToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
             // userLogicToolStripMenuItem
             // 
@@ -411,6 +411,29 @@
             this.userLogicToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.userLogicToolStripMenuItem.Text = "User Logic";
             this.userLogicToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
+            // 
+            // otherToolStripMenuItem
+            // 
+            this.otherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.windWakerRandoToolStripMenuItem,
+            this.ocarinaOfTimeRadnoToolStripMenuItem});
+            this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
+            this.otherToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.otherToolStripMenuItem.Text = "Other";
+            // 
+            // windWakerRandoToolStripMenuItem
+            // 
+            this.windWakerRandoToolStripMenuItem.Name = "windWakerRandoToolStripMenuItem";
+            this.windWakerRandoToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.windWakerRandoToolStripMenuItem.Text = "Wind Waker Rando";
+            this.windWakerRandoToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
+            // 
+            // ocarinaOfTimeRadnoToolStripMenuItem
+            // 
+            this.ocarinaOfTimeRadnoToolStripMenuItem.Name = "ocarinaOfTimeRadnoToolStripMenuItem";
+            this.ocarinaOfTimeRadnoToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.ocarinaOfTimeRadnoToolStripMenuItem.Text = "Ocarina of Time Radno";
+            this.ocarinaOfTimeRadnoToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -560,7 +583,7 @@
             this.itemTrackerToolStripMenuItem,
             this.spoilerLogConverterToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // seedCheckerToolStripMenuItem
@@ -781,29 +804,6 @@
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
-            // 
-            // otherToolStripMenuItem
-            // 
-            this.otherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.windWakerRandoToolStripMenuItem,
-            this.ocarinaOfTimeRadnoToolStripMenuItem});
-            this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
-            this.otherToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.otherToolStripMenuItem.Text = "Other";
-            // 
-            // windWakerRandoToolStripMenuItem
-            // 
-            this.windWakerRandoToolStripMenuItem.Name = "windWakerRandoToolStripMenuItem";
-            this.windWakerRandoToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.windWakerRandoToolStripMenuItem.Text = "Wind Waker Rando";
-            this.windWakerRandoToolStripMenuItem.Click += new System.EventHandler(this.windWakerRandoToolStripMenuItem_Click);
-            // 
-            // ocarinaOfTimeRadnoToolStripMenuItem
-            // 
-            this.ocarinaOfTimeRadnoToolStripMenuItem.Name = "ocarinaOfTimeRadnoToolStripMenuItem";
-            this.ocarinaOfTimeRadnoToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.ocarinaOfTimeRadnoToolStripMenuItem.Text = "Ocarina of Time Radno";
-            this.ocarinaOfTimeRadnoToolStripMenuItem.Click += new System.EventHandler(this.ocarinaOfTimeRadnoToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
