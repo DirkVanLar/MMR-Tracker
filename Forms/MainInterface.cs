@@ -1564,17 +1564,16 @@ namespace MMR_Tracker_V2
             coupleEntrancesToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.CoupleEntrances);
             devToolStripMenuItem.Visible = Debugging.ISDebugging;
             seperateMarkedItemsToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom);
+            coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
+            generatePlaythroughToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            seedCheckerToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
 
             CreateMenu();
 
             //MM specific Controls
-            //importSpoilerLogToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM();
             useSongOfTimeInPathfinderToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
-            coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
-            generatePlaythroughToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            seedCheckerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            whatUnlockedThisToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             FilterMapToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             itemTrackerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
 
