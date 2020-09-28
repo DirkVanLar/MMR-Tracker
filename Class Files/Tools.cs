@@ -371,6 +371,11 @@ namespace MMR_Tracker.Class_Files
         {
             if (Instance.UnsavedChanges || !OnlyIfUnsaved)
             {
+                if (Instance.Options.AutoSave && File.Exists(Tools.SaveFilePath))
+                {
+                    Tools.SaveInstance(LogicObjects.MainTrackerInstance, true, Tools.SaveFilePath);
+                    return true;
+                }
                 DialogResult result = MessageBox.Show("Would you like to save?", "You have unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
                 if (result == DialogResult.Cancel) { return false; }
                 if (result == DialogResult.Yes)

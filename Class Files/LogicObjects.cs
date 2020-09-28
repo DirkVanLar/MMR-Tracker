@@ -49,6 +49,7 @@ namespace MMR_Tracker_V2
             public Font FormFont { get; set; } = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular);
             //Misc Options
             public bool CheckForUpdate { get; set; } = true;
+            public bool AutoSave { get; set; } = false;
             //NetOptions
             public int MyPlayerID { get; set; } = -1;
             public bool IsMultiWorld { get; set; } = false;
