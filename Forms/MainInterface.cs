@@ -57,6 +57,7 @@ namespace MMR_Tracker_V2
             ResizeObject();
             FormatMenuItems();
             HandleStartArgs(sender, e, Environment.GetCommandLineArgs());
+            HandleUserPreset();
         }
 
         private void FRMTracker_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
@@ -98,26 +99,12 @@ namespace MMR_Tracker_V2
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (sender == newToolStripMenuItem || sender == userLogicToolStripMenuItem)
-            {
-                CreateNewLogicInstance(sender, e);
-            }
-            else if (sender == casualLogicToolStripMenuItem)
-            {
-                LoadLogicPreset(@"Recources\Other Files\REQ_CASUAL.txt", "https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt", sender, e);
-            }
-            else if (sender == glitchedLogicToolStripMenuItem)
-            {
-                LoadLogicPreset(@"Recources\Other Files\REQ_GLITCH.txt", "https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt", sender, e);
-            }
-            else if (sender == windWakerRandoToolStripMenuItem)
-            {
-                LoadLogicPreset(@"Recources\Other Files\WWR Logic.txt", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/WWR%20Logic.txt", sender, e);
-            }
-            else if (sender == ocarinaOfTimeRadnoToolStripMenuItem)
-            {
-                LoadLogicPreset(@"Recources\Other Files\OOT Logic.txt", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/OOT%20Logic.txt", sender, e);
-            }
+            CreateNewLogicInstance(sender, e);
+        }
+
+        private void presetsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(@"Recources\Other Files\Custom Logic Presets");
         }
         #endregion File
         //Menu Strip => Options---------------------------------------------------------------------------
@@ -1438,6 +1425,58 @@ namespace MMR_Tracker_V2
             FireEvents(sender, e);
         }
 
+        private void HandleUserPreset()
+        {
+            List<ToolStripMenuItem> Presets = new List<ToolStripMenuItem>();
+            foreach (var i in Directory.GetFiles(@"Recources\Other Files\Custom Logic Presets").Where(x => x.Contains(".txt") && !x.Contains("Web Presets.txt")))
+            {
+                ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
+                {
+                    Name = "newToolStripMenuItem",
+                    Size = new System.Drawing.Size(180, 22),
+                    Text = Path.GetFileName(i).Replace(".txt", "")
+                };
+                CustomLogicPreset.Click += (s, ee) => LoadLogicPreset(i, "", s, ee);
+                Presets.Add(CustomLogicPreset);
+            }
+            if (File.Exists(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt"))
+            {
+                ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem();
+                int counter = 0;
+                foreach (var i in File.ReadAllLines(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt"))
+                {
+                    if (i.StartsWith("Name:"))
+                    {
+                        CustomLogicPreset.Name = $"WEB{counter}";
+                        counter++;
+                        CustomLogicPreset.Text = i.Replace("Name:", "").Trim();
+                    }
+                    else if (i.StartsWith("Address:"))
+                    {
+                        CustomLogicPreset.Click += (s, ee) => LoadLogicPreset("", i.Replace("Address:", "").Trim(), s, ee);
+                        presetsToolStripMenuItem.DropDownItems.Add(CustomLogicPreset);
+                        CustomLogicPreset = new ToolStripMenuItem();
+                    }
+                }
+            }
+            if (Presets.Count() < 1)
+            {
+                ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
+                {
+                    Name = "newToolStripMenuItem",
+                    Size = new System.Drawing.Size(180, 22),
+                    Text = "No Presets Found (Open Folder)"
+                };
+                CustomLogicPreset.Click += (s, ee) => presetsToolStripMenuItem_Click(s, ee);
+                presetsToolStripMenuItem.DropDownItems.Add(CustomLogicPreset);
+            }
+            else
+            {
+                foreach (var i in Presets.OrderBy(x => x.Text))
+                    presetsToolStripMenuItem.DropDownItems.Add(i);
+            }
+        }
+
         private void LoadLogicPreset(string Path, string WebPath, object sender, EventArgs e)
         {
             try
@@ -1665,5 +1704,7 @@ namespace MMR_Tracker_V2
         #endregion Other Functions
 
         #endregion Functions
+
+        
     }
 }

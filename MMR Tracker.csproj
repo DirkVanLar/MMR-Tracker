@@ -234,13 +234,16 @@
     <Content Include="Recources\Other Files\Categories.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Recources\Other Files\OOT Logic.txt">
+    <Content Include="Recources\Other Files\Custom Logic Presets\OOT Logic.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Recources\Other Files\Custom Logic Presets\Web Presets.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Recources\Other Files\README Information for files in this folder.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Recources\Other Files\WWR Logic.txt">
+    <Content Include="Recources\Other Files\Custom Logic Presets\WWR Logic.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -255,6 +258,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>; Move all assemblies and related files to lib folder
