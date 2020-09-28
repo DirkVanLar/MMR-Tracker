@@ -45,10 +45,11 @@ namespace MMR_Tracker_V2
             PrintToListBox();
         }
 
+
         #region Form Objects
         //Form Events---------------------------------------------------------------------------
         #region Form Events
-        private void FRMTracker_Load(object sender, EventArgs e)
+        private void MainInterface_Load(object sender, EventArgs e)
         {
             //Ensure the current directory is always the base directory in case the application is opened from a MMRTSave file elsewhere on the system
             System.IO.Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
@@ -64,11 +65,19 @@ namespace MMR_Tracker_V2
             Tools.UpdateTrackerTitle();
         }
 
-        private void FRMTracker_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
+        private void MainInterface_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
 
-        private void FRMTracker_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainInterface_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = !Tools.PromptSave(LogicObjects.MainTrackerInstance);
+        }
+
+        private void MainInterface_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.S)
+            {
+                SaveToolStripMenuItem_Click(sender, e);
+            }
         }
         #endregion Form Events
         //Menu Strip---------------------------------------------------------------------------
@@ -1716,10 +1725,10 @@ namespace MMR_Tracker_V2
             return fullName + ((entry.Starred) ? "*" : "");
         }
 
+
         #endregion Other Functions
 
         #endregion Functions
 
-        
     }
 }

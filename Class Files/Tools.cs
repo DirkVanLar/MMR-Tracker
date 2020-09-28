@@ -283,12 +283,12 @@ namespace MMR_Tracker.Class_Files
                 FilePath = saveDialog.FileName;
             }
             //Clear the undo and redo list because otherwise the save file is massive
+            Instance.UnsavedChanges = false;
             var SaveInstance = Utility.CloneTrackerInstance(Instance);
             SaveInstance.UndoList.Clear();
             SaveInstance.RedoList.Clear();
             File.WriteAllText(FilePath, JsonConvert.SerializeObject(SaveInstance));
             if (SetPath) { Tools.SaveFilePath = FilePath; }
-            Instance.UnsavedChanges = false;
             UpdateTrackerTitle();
             return true;
         }
@@ -400,7 +400,7 @@ namespace MMR_Tracker.Class_Files
                 if (result == DialogResult.Cancel) { return false; }
                 if (result == DialogResult.Yes)
                 {
-                    if (Tools.SaveInstance(LogicObjects.MainTrackerInstance, true, Tools.SaveFilePath)) { return false; }
+                    if (!Tools.SaveInstance(LogicObjects.MainTrackerInstance, true, Tools.SaveFilePath)) { return false; }
                 }
             }
             return true;
