@@ -61,6 +61,7 @@ namespace MMR_Tracker_V2
             ResizeObject();
             FormatMenuItems();
             HandleUserPreset();
+            Tools.UpdateTrackerTitle();
         }
 
         private void FRMTracker_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
@@ -218,7 +219,7 @@ namespace MMR_Tracker_V2
             if (!LogicObjects.MainTrackerInstance.Options.CoupleEntrances) { MessageBox.Show("Entrances will not uncouple automatically."); }
             if (LogicObjects.MainTrackerInstance.Options.CoupleEntrances)
             {
-                LogicObjects.MainTrackerInstance.UnsavedChanges = true;
+                Tools.setUnsavedChanges(LogicObjects.MainTrackerInstance);
                 Tools.SaveState(LogicObjects.MainTrackerInstance);
                 foreach (var entry in LogicObjects.MainTrackerInstance.Logic)
                 {
@@ -1335,7 +1336,7 @@ namespace MMR_Tracker_V2
             }
             if (!ChangesMade) { return; }
             Tools.SaveState(LogicObjects.MainTrackerInstance, Templogic); //Now that we have successfully checked/Marked an object we can commit to a full save state
-            LogicObjects.MainTrackerInstance.UnsavedChanges = true;
+            Tools.setUnsavedChanges(LogicObjects.MainTrackerInstance);
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
 
             FireEvents(LB, null, false);
@@ -1369,6 +1370,7 @@ namespace MMR_Tracker_V2
             ResizeObject();
             PrintToListBox();
             FireEvents(sender, e);
+            Tools.UpdateTrackerTitle();
         }
 
         public void CreateNewLogicInstance(object sender, EventArgs e, string file = "")
@@ -1434,6 +1436,7 @@ namespace MMR_Tracker_V2
             ResizeObject();
             PrintToListBox();
             FireEvents(sender, e);
+            Tools.UpdateTrackerTitle();
         }
 
         private void HandleUserPreset()
@@ -1512,6 +1515,7 @@ namespace MMR_Tracker_V2
                 ResizeObject();
                 PrintToListBox();
                 FireEvents(sender, e);
+                Tools.UpdateTrackerTitle();
             }
             catch
             {

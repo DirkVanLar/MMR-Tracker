@@ -289,7 +289,27 @@ namespace MMR_Tracker.Class_Files
             File.WriteAllText(FilePath, JsonConvert.SerializeObject(SaveInstance));
             if (SetPath) { Tools.SaveFilePath = FilePath; }
             Instance.UnsavedChanges = false;
+            UpdateTrackerTitle();
             return true;
+        }
+
+        public static void setUnsavedChanges(LogicObjects.TrackerInstance Instance)
+        {
+            Instance.UnsavedChanges = true;
+            UpdateTrackerTitle();
+        }
+
+        public static void UpdateTrackerTitle()
+        {
+            string Gamecode = (string.IsNullOrWhiteSpace(LogicObjects.MainTrackerInstance.GameCode)) ? "MMR" : LogicObjects.MainTrackerInstance.GameCode;
+            if (LogicObjects.MainTrackerInstance.UnsavedChanges)
+            {
+                MainInterface.CurrentProgram.Text = $"{Gamecode} Tracker*";
+            }
+            else
+            {
+                MainInterface.CurrentProgram.Text = $"{Gamecode} Tracker";
+            }
         }
 
         public static void LoadInstance(string file = "")
@@ -347,7 +367,7 @@ namespace MMR_Tracker.Class_Files
         {
             if (Instance.UndoList.Any())
             {
-                Instance.UnsavedChanges = true;
+                setUnsavedChanges(Instance);
                 var lastItem = Instance.UndoList.Count - 1;
                 Instance.RedoList.Add(Utility.CloneLogicList(Instance.Logic));
                 Instance.Logic = Utility.CloneLogicList(Instance.UndoList[lastItem]);
@@ -359,7 +379,7 @@ namespace MMR_Tracker.Class_Files
         {
             if (Instance.RedoList.Any())
             {
-                Instance.UnsavedChanges = true;
+                setUnsavedChanges(Instance);
                 var lastItem = Instance.RedoList.Count - 1;
                 Instance.UndoList.Add(Utility.CloneLogicList(Instance.Logic));
                 Instance.Logic = Utility.CloneLogicList(Instance.RedoList[lastItem]);
