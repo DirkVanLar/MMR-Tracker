@@ -177,6 +177,7 @@ namespace MMR_Tracker.Forms
             Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
             ItemSelect.Function = 0;
             UpdateReqAndCond();
+            WriteCurentItem((int)nudIndex.Value);
         }
 
         private void BtnRemoveReq_Click(object sender, EventArgs e)
@@ -230,6 +231,7 @@ namespace MMR_Tracker.Forms
             Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
             ItemSelect.Function = 0;
             UpdateReqAndCond();
+            WriteCurentItem((int)nudIndex.Value);
         }
 
         private void BtnRemoveCond_Click(object sender, EventArgs e)

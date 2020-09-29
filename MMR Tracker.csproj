@@ -234,7 +234,7 @@
     <Content Include="Recources\Other Files\Categories.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Recources\Other Files\Custom Logic Presets\OOT Logic.txt">
+    <Content Include="Recources\Other Files\Custom Logic Presets\OOTR Logic.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Recources\Other Files\Custom Logic Presets\Web Presets.txt">

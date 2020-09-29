@@ -554,6 +554,126 @@ namespace MMR_Tracker.Forms
                 }
             }
 
+            //Add Shop Prices
+            string[] ShopChecks = new string[]
+            {
+                "KF Shop Item 1",
+                "KF Shop Item 2",
+                "KF Shop Item 3",
+                "KF Shop Item 4",
+                "KF Shop Item 5",
+                "KF Shop Item 6",
+                "KF Shop Item 7",
+                "KF Shop Item 8",
+                "Market Potion Shop Item 1",
+                "Market Potion Shop Item 2",
+                "Market Potion Shop Item 3",
+                "Market Potion Shop Item 4",
+                "Market Potion Shop Item 5",
+                "Market Potion Shop Item 6",
+                "Market Potion Shop Item 7",
+                "Market Potion Shop Item 8",
+                "Market Bombchu Shop Item 1",
+                "Market Bombchu Shop Item 2",
+                "Market Bombchu Shop Item 3",
+                "Market Bombchu Shop Item 4",
+                "Market Bombchu Shop Item 5",
+                "Market Bombchu Shop Item 6",
+                "Market Bombchu Shop Item 7",
+                "Market Bombchu Shop Item 8",
+                "Kak Potion Shop Item 1",
+                "Kak Potion Shop Item 2",
+                "Kak Potion Shop Item 3",
+                "Kak Potion Shop Item 4",
+                "Kak Potion Shop Item 5",
+                "Kak Potion Shop Item 6",
+                "Kak Potion Shop Item 7",
+                "Kak Potion Shop Item 8",
+                "GC Shop Item 1",
+                "GC Shop Item 2",
+                "GC Shop Item 3",
+                "GC Shop Item 4",
+                "GC Shop Item 5",
+                "GC Shop Item 6",
+                "GC Shop Item 7",
+                "GC Shop Item 8",
+                "ZD Shop Item 1",
+                "ZD Shop Item 2",
+                "ZD Shop Item 3",
+                "ZD Shop Item 4",
+                "ZD Shop Item 5",
+                "ZD Shop Item 6",
+                "ZD Shop Item 7",
+                "ZD Shop Item 8",
+                "LW Deku Scrub Near Bridge",
+                "LW Deku Scrub Near Deku Theater Right",
+                "LW Deku Scrub Near Deku Theater Left",
+                "LW Deku Scrub Grotto Rear",
+                "LW Deku Scrub Grotto Front",
+                "SFM Deku Scrub Grotto Rear",
+                "SFM Deku Scrub Grotto Front",
+                "LLR Deku Scrub Grotto Left",
+                "LLR Deku Scrub Grotto Right",
+                "LLR Deku Scrub Grotto Center",
+                "GC Deku Scrub Grotto Left",
+                "GC Deku Scrub Grotto Right", 
+                "GC Deku Scrub Grotto Center",
+                "DMC Deku Scrub Grotto Left",
+                "DMC Deku Scrub Grotto Right", 
+                "DMC Deku Scrub Grotto Center",
+                "ZR Deku Scrub Grotto Rear",     
+                "ZR Deku Scrub Grotto Front",      
+                "LH Deku Scrub Grotto Left",      
+                "LH Deku Scrub Grotto Right",     
+                "LH Deku Scrub Grotto Center",   
+                "Colossus Deku Scrub Grotto Rear",
+                "Colossus Deku Scrub Grotto Front",
+                "GV Deku Scrub Grotto Rear",        
+                "GV Deku Scrub Grotto Front",
+                "Dodongos Cavern Deku Scrub Side Room Near Dodongos",
+                "Dodongos Cavern Deku Scrub Lobby",
+                "Dodongos Cavern Deku Scrub Near Bomb Bag Right",
+                "Dodongos Cavern Deku Scrub Near Bomb Bag Left",
+                "Jabu Jabus Belly Deku Scrub",
+                "Ganons Castle Deku Scrub Center-Left",
+                "Ganons Castle Deku Scrub Center-Right", 
+                "Ganons Castle Deku Scrub Right", 
+                "Ganons Castle Deku Scrub Left",
+                "Dodongos Cavern MQ Deku Scrub Lobby Rear",              
+                "Dodongos Cavern MQ Deku Scrub Lobby Front",                  
+                "Dodongos Cavern MQ Deku Scrub Staircase",                    
+                "Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos",
+                "Ganons Castle MQ Deku Scrub Center-Left",     
+                "Ganons Castle MQ Deku Scrub Center",       
+                "Ganons Castle MQ Deku Scrub Center-Right",      
+                "Ganons Castle MQ Deku Scrub Left",             
+                "Ganons Castle MQ Deku Scrub Right",         
+                "Ganons Castle MQ Forest Trial Eye Switch Chest"
+            };
+
+            List<string> LocationList = new List<string>();
+            foreach(var i in array.locations) { LocationList.Add(i.ToString()); }
+
+            foreach(var i in ShopChecks)
+            {
+                var ShopLine = LocationList.Find(x => x.Contains(i));
+                if (ShopLine == null) { continue; }
+                try
+                {
+                    int PriceRange = GetPriceRange(Int32.Parse(ShopLine.Split(',')[1].Split(':')[1].Replace("}", "").Trim()));
+                    FileContent.Add($"{i} Price->{i} Price {PriceRange}");
+                } catch { }
+            }
+
+            int GetPriceRange(int price)
+            {
+                if (price < 100) { return 1; }
+                if (price < 201) { return 2; }
+                if (price < 501) { return 3; }
+                return 4;
+            }
+
+
             if (ManualConvert)
             {
                 SaveFileDialog saveDialog = new SaveFileDialog

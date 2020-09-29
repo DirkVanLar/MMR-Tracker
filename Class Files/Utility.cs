@@ -12,6 +12,14 @@ namespace MMR_Tracker_V2
 {
     class Utility
     {
+        public static string[] StandardItemTypes = new string[] {
+            "Item",
+            "Bottle",
+            "Owl Statue",
+            "Boss Token",
+            "Entrance",
+            "Dungeon Entrance"
+        };
         public static string ConvertCsvFileToJsonObject(string path)
         {
             var csv = new List<string[]>();

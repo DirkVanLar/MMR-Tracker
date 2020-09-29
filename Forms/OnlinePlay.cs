@@ -45,17 +45,9 @@ namespace MMR_Tracker.Forms
 
             bool isValidSyncable(LogicObjects.LogicEntry x)
             {
-                string[] SyncableItemTypes = new string[] {
-                    "Item",
-                    "Bottle",
-                    "Owl Statue",
-                    "Boss Token",
-                    "Entrance",
-                    "Dungeon Entrance"
-                };
                 if (x.IsFake) { return false; }
                 if (!x.HasRandomItem(true)) { return false; }
-                if (!SyncableItemTypes.Contains(x.ItemSubType)) { return false; }
+                if (!Utility.StandardItemTypes.Contains(x.ItemSubType)) { return false; }
                 return true;
             } 
 

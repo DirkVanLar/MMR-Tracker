@@ -363,16 +363,22 @@ namespace MMR_Tracker_V2
             List<string> randomizedOptions = new List<string> { "Randomized", "Unrandomized", "Unrandomized (Manual)", "Forced Junk" };
             listView1.FullRowSelect = true;
 
-            
-
             if (ShowingRandOptions())
             {
                 ListViewItem RandomITemHeader = new ListViewItem("RANDOMIZED ITEMS ===============================================================================") { Tag = -1 };
                 listView1.Items.Add(RandomITemHeader);
             }
 
+            bool isValidSyncable(LogicObjects.LogicEntry x)
+            {
+                if (!Utility.StandardItemTypes.Contains(x.ItemSubType)) { return false; }
+                if (string.IsNullOrWhiteSpace(x.ItemName)) { return false; }
+                return true;
+            }
+
             foreach (var entry in logic)
             {
+                if (!isValidSyncable(entry)) { continue; }
                 bool chkValid = false;
                 if (entry.RandomizedState() == 0 && chkShowRandom.Checked) { chkValid = true; }
                 if (entry.RandomizedState() == 1 && chkShowUnrand.Checked) { chkValid = true; }
