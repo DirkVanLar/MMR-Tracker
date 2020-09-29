@@ -5,3 +5,2219 @@ Add toggle for RemoveObtainedItemsfromList
 SsameITemsMultipleChecks Doesn't work
 
 CONSIDER ===
+
+
+Shop Price Logic. Holding it here in case I want to restore it
+- #Shop Price Selectors
+
+
+0
+0
+
+- KF Shop Item 1 Price
+
+
+0
+0
+
+- KF Shop Item 1 Price 1
+
+
+0
+0
+
+- KF Shop Item 1 Price 2
+
+
+0
+0
+
+- KF Shop Item 1 Price 3
+
+
+0
+0
+
+- KF Shop Item 2 Price
+
+
+0
+0
+
+- KF Shop Item 2 Price 1
+
+
+0
+0
+
+- KF Shop Item 2 Price 2
+
+
+0
+0
+
+- KF Shop Item 2 Price 3
+
+
+0
+0
+
+- KF Shop Item 3 Price
+
+
+0
+0
+
+- KF Shop Item 3 Price 1
+
+
+0
+0
+
+- KF Shop Item 3 Price 2
+
+
+0
+0
+
+- KF Shop Item 3 Price 3
+
+
+0
+0
+
+- KF Shop Item 4 Price
+
+
+0
+0
+
+- KF Shop Item 4 Price 1
+
+
+0
+0
+
+- KF Shop Item 4 Price 2
+
+
+0
+0
+
+- KF Shop Item 4 Price 3
+
+
+0
+0
+
+- KF Shop Item 5 Price
+
+
+0
+0
+
+- KF Shop Item 5 Price 1
+
+
+0
+0
+
+- KF Shop Item 5 Price 2
+
+
+0
+0
+
+- KF Shop Item 5 Price 3
+
+
+0
+0
+
+- KF Shop Item 6 Price
+
+
+0
+0
+
+- KF Shop Item 6 Price 1
+
+
+0
+0
+
+- KF Shop Item 6 Price 2
+
+
+0
+0
+
+- KF Shop Item 6 Price 3
+
+
+0
+0
+
+- KF Shop Item 7 Price
+
+
+0
+0
+
+- KF Shop Item 7 Price 1
+
+
+0
+0
+
+- KF Shop Item 7 Price 2
+
+
+0
+0
+
+- KF Shop Item 7 Price 3
+
+
+0
+0
+
+- KF Shop Item 8 Price
+
+
+0
+0
+
+- KF Shop Item 8 Price 1
+
+
+0
+0
+
+- KF Shop Item 8 Price 2
+
+
+0
+0
+
+- KF Shop Item 8 Price 3
+
+
+0
+0
+
+- Market Potion Shop Item 1 Price
+
+
+0
+0
+
+- Market Potion Shop Item 1 Price 1
+
+
+0
+0
+
+- Market Potion Shop Item 1 Price 2
+
+
+0
+0
+
+- Market Potion Shop Item 1 Price 3
+
+
+0
+0
+
+- Market Potion Shop Item 2 Price
+
+
+0
+0
+
+- Market Potion Shop Item 2 Price 1
+
+
+0
+0
+
+- Market Potion Shop Item 2 Price 2
+
+
+0
+0
+
+- Market Potion Shop Item 2 Price 3
+
+
+0
+0
+
+- Market Potion Shop Item 3 Price
+
+
+0
+0
+
+- Market Potion Shop Item 3 Price 1
+
+
+0
+0
+
+- Market Potion Shop Item 3 Price 2
+
+
+0
+0
+
+- Market Potion Shop Item 3 Price 3
+
+
+0
+0
+
+- Market Potion Shop Item 4 Price
+
+
+0
+0
+
+- Market Potion Shop Item 4 Price 1
+
+
+0
+0
+
+- Market Potion Shop Item 4 Price 2
+
+
+0
+0
+
+- Market Potion Shop Item 4 Price 3
+
+
+0
+0
+
+- Market Potion Shop Item 5 Price
+
+
+0
+0
+
+- Market Potion Shop Item 5 Price 1
+
+
+0
+0
+
+- Market Potion Shop Item 5 Price 2
+
+
+0
+0
+
+- Market Potion Shop Item 5 Price 3
+
+
+0
+0
+
+- Market Potion Shop Item 6 Price
+
+
+0
+0
+
+- Market Potion Shop Item 6 Price 1
+
+
+0
+0
+
+- Market Potion Shop Item 6 Price 2
+
+
+0
+0
+
+- Market Potion Shop Item 6 Price 3
+
+
+0
+0
+
+- Market Potion Shop Item 7 Price
+
+
+0
+0
+
+- Market Potion Shop Item 7 Price 1
+
+
+0
+0
+
+- Market Potion Shop Item 7 Price 2
+
+
+0
+0
+
+- Market Potion Shop Item 7 Price 3
+
+
+0
+0
+
+- Market Potion Shop Item 8 Price
+
+
+0
+0
+
+- Market Potion Shop Item 8 Price 1
+
+
+0
+0
+
+- Market Potion Shop Item 8 Price 2
+
+
+0
+0
+
+- Market Potion Shop Item 8 Price 3
+
+
+0
+0
+
+- Market Bombchu Shop Item 1 Price
+
+
+0
+0
+
+- Market Bombchu Shop Item 1 Price 1
+
+
+0
+0
+
+- Market Bombchu Shop Item 1 Price 2
+
+
+0
+0
+
+- Market Bombchu Shop Item 1 Price 3
+
+
+0
+0
+
+- Market Bombchu Shop Item 2 Price
+
+
+0
+0
+
+- Market Bombchu Shop Item 2 Price 1
+
+
+0
+0
+
+- Market Bombchu Shop Item 2 Price 2
+
+
+0
+0
+
+- Market Bombchu Shop Item 2 Price 3
+
+
+0
+0
+
+- Market Bombchu Shop Item 3 Price
+
+
+0
+0
+
+- Market Bombchu Shop Item 3 Price 1
+
+
+0
+0
+
+- Market Bombchu Shop Item 3 Price 2
+
+
+0
+0
+
+- Market Bombchu Shop Item 3 Price 3
+
+
+0
+0
+
+- Market Bombchu Shop Item 4 Price
+
+
+0
+0
+
+- Market Bombchu Shop Item 4 Price 1
+
+
+0
+0
+
+- Market Bombchu Shop Item 4 Price 2
+
+
+0
+0
+
+- Market Bombchu Shop Item 4 Price 3
+
+
+0
+0
+
+- Market Bombchu Shop Item 5 Price
+
+
+0
+0
+
+- Market Bombchu Shop Item 5 Price 1
+
+
+0
+0
+
+- Market Bombchu Shop Item 5 Price 2
+
+
+0
+0
+
+- Market Bombchu Shop Item 5 Price 3
+
+
+0
+0
+
+- Market Bombchu Shop Item 6 Price
+
+
+0
+0
+
+- Market Bombchu Shop Item 6 Price 1
+
+
+0
+0
+
+- Market Bombchu Shop Item 6 Price 2
+
+
+0
+0
+
+- Market Bombchu Shop Item 6 Price 3
+
+
+0
+0
+
+- Market Bombchu Shop Item 7 Price
+
+
+0
+0
+
+- Market Bombchu Shop Item 7 Price 1
+
+
+0
+0
+
+- Market Bombchu Shop Item 7 Price 2
+
+
+0
+0
+
+- Market Bombchu Shop Item 7 Price 3
+
+
+0
+0
+
+- Market Bombchu Shop Item 8 Price
+
+
+0
+0
+
+- Market Bombchu Shop Item 8 Price 1
+
+
+0
+0
+
+- Market Bombchu Shop Item 8 Price 2
+
+
+0
+0
+
+- Market Bombchu Shop Item 8 Price 3
+
+
+0
+0
+
+- Kak Potion Shop Item 1 Price
+
+
+0
+0
+
+- Kak Potion Shop Item 1 Price 1
+
+
+0
+0
+
+- Kak Potion Shop Item 1 Price 2
+
+
+0
+0
+
+- Kak Potion Shop Item 1 Price 3
+
+
+0
+0
+
+- Kak Potion Shop Item 2 Price
+
+
+0
+0
+
+- Kak Potion Shop Item 2 Price 1
+
+
+0
+0
+
+- Kak Potion Shop Item 2 Price 2
+
+
+0
+0
+
+- Kak Potion Shop Item 2 Price 3
+
+
+0
+0
+
+- Kak Potion Shop Item 3 Price
+
+
+0
+0
+
+- Kak Potion Shop Item 3 Price 1
+
+
+0
+0
+
+- Kak Potion Shop Item 3 Price 2
+
+
+0
+0
+
+- Kak Potion Shop Item 3 Price 3
+
+
+0
+0
+
+- Kak Potion Shop Item 4 Price
+
+
+0
+0
+
+- Kak Potion Shop Item 4 Price 1
+
+
+0
+0
+
+- Kak Potion Shop Item 4 Price 2
+
+
+0
+0
+
+- Kak Potion Shop Item 4 Price 3
+
+
+0
+0
+
+- Kak Potion Shop Item 5 Price
+
+
+0
+0
+
+- Kak Potion Shop Item 5 Price 1
+
+
+0
+0
+
+- Kak Potion Shop Item 5 Price 2
+
+
+0
+0
+
+- Kak Potion Shop Item 5 Price 3
+
+
+0
+0
+
+- Kak Potion Shop Item 6 Price
+
+
+0
+0
+
+- Kak Potion Shop Item 6 Price 1
+
+
+0
+0
+
+- Kak Potion Shop Item 6 Price 2
+
+
+0
+0
+
+- Kak Potion Shop Item 6 Price 3
+
+
+0
+0
+
+- Kak Potion Shop Item 7 Price
+
+
+0
+0
+
+- Kak Potion Shop Item 7 Price 1
+
+
+0
+0
+
+- Kak Potion Shop Item 7 Price 2
+
+
+0
+0
+
+- Kak Potion Shop Item 7 Price 3
+
+
+0
+0
+
+- Kak Potion Shop Item 8 Price
+
+
+0
+0
+
+- Kak Potion Shop Item 8 Price 1
+
+
+0
+0
+
+- Kak Potion Shop Item 8 Price 2
+
+
+0
+0
+
+- Kak Potion Shop Item 8 Price 3
+
+
+0
+0
+
+- GC Shop Item 1 Price
+
+
+0
+0
+
+- GC Shop Item 1 Price 1
+
+
+0
+0
+
+- GC Shop Item 1 Price 2
+
+
+0
+0
+
+- GC Shop Item 1 Price 3
+
+
+0
+0
+
+- GC Shop Item 2 Price
+
+
+0
+0
+
+- GC Shop Item 2 Price 1
+
+
+0
+0
+
+- GC Shop Item 2 Price 2
+
+
+0
+0
+
+- GC Shop Item 2 Price 3
+
+
+0
+0
+
+- GC Shop Item 3 Price
+
+
+0
+0
+
+- GC Shop Item 3 Price 1
+
+
+0
+0
+
+- GC Shop Item 3 Price 2
+
+
+0
+0
+
+- GC Shop Item 3 Price 3
+
+
+0
+0
+
+- GC Shop Item 4 Price
+
+
+0
+0
+
+- GC Shop Item 4 Price 1
+
+
+0
+0
+
+- GC Shop Item 4 Price 2
+
+
+0
+0
+
+- GC Shop Item 4 Price 3
+
+
+0
+0
+
+- GC Shop Item 5 Price
+
+
+0
+0
+
+- GC Shop Item 5 Price 1
+
+
+0
+0
+
+- GC Shop Item 5 Price 2
+
+
+0
+0
+
+- GC Shop Item 5 Price 3
+
+
+0
+0
+
+- GC Shop Item 6 Price
+
+
+0
+0
+
+- GC Shop Item 6 Price 1
+
+
+0
+0
+
+- GC Shop Item 6 Price 2
+
+
+0
+0
+
+- GC Shop Item 6 Price 3
+
+
+0
+0
+
+- GC Shop Item 7 Price
+
+
+0
+0
+
+- GC Shop Item 7 Price 1
+
+
+0
+0
+
+- GC Shop Item 7 Price 2
+
+
+0
+0
+
+- GC Shop Item 7 Price 3
+
+
+0
+0
+
+- GC Shop Item 8 Price
+
+
+0
+0
+
+- GC Shop Item 8 Price 1
+
+
+0
+0
+
+- GC Shop Item 8 Price 2
+
+
+0
+0
+
+- GC Shop Item 8 Price 3
+
+
+0
+0
+
+- ZD Shop Item 1 Price
+
+
+0
+0
+
+- ZD Shop Item 1 Price 1
+
+
+0
+0
+
+- ZD Shop Item 1 Price 2
+
+
+0
+0
+
+- ZD Shop Item 1 Price 3
+
+
+0
+0
+
+- ZD Shop Item 2 Price
+
+
+0
+0
+
+- ZD Shop Item 2 Price 1
+
+
+0
+0
+
+- ZD Shop Item 2 Price 2
+
+
+0
+0
+
+- ZD Shop Item 2 Price 3
+
+
+0
+0
+
+- ZD Shop Item 3 Price
+
+
+0
+0
+
+- ZD Shop Item 3 Price 1
+
+
+0
+0
+
+- ZD Shop Item 3 Price 2
+
+
+0
+0
+
+- ZD Shop Item 3 Price 3
+
+
+0
+0
+
+- ZD Shop Item 4 Price
+
+
+0
+0
+
+- ZD Shop Item 4 Price 1
+
+
+0
+0
+
+- ZD Shop Item 4 Price 2
+
+
+0
+0
+
+- ZD Shop Item 4 Price 3
+
+
+0
+0
+
+- ZD Shop Item 5 Price
+
+
+0
+0
+
+- ZD Shop Item 5 Price 1
+
+
+0
+0
+
+- ZD Shop Item 5 Price 2
+
+
+0
+0
+
+- ZD Shop Item 5 Price 3
+
+
+0
+0
+
+- ZD Shop Item 6 Price
+
+
+0
+0
+
+- ZD Shop Item 6 Price 1
+
+
+0
+0
+
+- ZD Shop Item 6 Price 2
+
+
+0
+0
+
+- ZD Shop Item 6 Price 3
+
+
+0
+0
+
+- ZD Shop Item 7 Price
+
+
+0
+0
+
+- ZD Shop Item 7 Price 1
+
+
+0
+0
+
+- ZD Shop Item 7 Price 2
+
+
+0
+0
+
+- ZD Shop Item 7 Price 3
+
+
+0
+0
+
+- ZD Shop Item 8 Price
+
+
+0
+0
+
+- ZD Shop Item 8 Price 1
+
+
+0
+0
+
+- ZD Shop Item 8 Price 2
+
+
+0
+0
+
+- ZD Shop Item 8 Price 3
+
+
+0
+0
+
+- LW Deku Scrub Near Bridge Price
+
+
+0
+0
+
+- LW Deku Scrub Near Bridge Price 1
+
+
+0
+0
+
+- LW Deku Scrub Near Bridge Price 2
+
+
+0
+0
+
+- LW Deku Scrub Near Bridge Price 3
+
+
+0
+0
+
+- LW Deku Scrub Near Deku Theater Right Price
+
+
+0
+0
+
+- LW Deku Scrub Near Deku Theater Right Price 1
+
+
+0
+0
+
+- LW Deku Scrub Near Deku Theater Right Price 2
+
+
+0
+0
+
+- LW Deku Scrub Near Deku Theater Right Price 3
+
+
+0
+0
+
+- LW Deku Scrub Near Deku Theater Left Price
+
+
+0
+0
+
+- LW Deku Scrub Near Deku Theater Left Price 1
+
+
+0
+0
+
+- LW Deku Scrub Near Deku Theater Left Price 2
+
+
+0
+0
+
+- LW Deku Scrub Near Deku Theater Left Price 3
+
+
+0
+0
+
+- LW Deku Scrub Grotto Rear Price
+
+
+0
+0
+
+- LW Deku Scrub Grotto Rear Price 1
+
+
+0
+0
+
+- LW Deku Scrub Grotto Rear Price 2
+
+
+0
+0
+
+- LW Deku Scrub Grotto Rear Price 3
+
+
+0
+0
+
+- LW Deku Scrub Grotto Front Price
+
+
+0
+0
+
+- LW Deku Scrub Grotto Front Price 1
+
+
+0
+0
+
+- LW Deku Scrub Grotto Front Price 2
+
+
+0
+0
+
+- LW Deku Scrub Grotto Front Price 3
+
+
+0
+0
+
+- SFM Deku Scrub Grotto Rear Price
+
+
+0
+0
+
+- SFM Deku Scrub Grotto Rear Price 1
+
+
+0
+0
+
+- SFM Deku Scrub Grotto Rear Price 2
+
+
+0
+0
+
+- SFM Deku Scrub Grotto Rear Price 3
+
+
+0
+0
+
+- SFM Deku Scrub Grotto Front Price
+
+
+0
+0
+
+- SFM Deku Scrub Grotto Front Price 1
+
+
+0
+0
+
+- SFM Deku Scrub Grotto Front Price 2
+
+
+0
+0
+
+- SFM Deku Scrub Grotto Front Price 3
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Left Price
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Left Price 1
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Left Price 2
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Left Price 3
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Right Price
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Right Price 1
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Right Price 2
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Right Price 3
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Center Price
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Center Price 1
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Center Price 2
+
+
+0
+0
+
+- LLR Deku Scrub Grotto Center Price 3
+
+
+0
+0
+
+- GC Deku Scrub Grotto Left Price
+
+
+0
+0
+
+- GC Deku Scrub Grotto Left Price 1
+
+
+0
+0
+
+- GC Deku Scrub Grotto Left Price 2
+
+
+0
+0
+
+- GC Deku Scrub Grotto Left Price 3
+
+
+0
+0
+
+- GC Deku Scrub Grotto Right Price
+
+
+0
+0
+
+- GC Deku Scrub Grotto Right Price 1
+
+
+0
+0
+
+- GC Deku Scrub Grotto Right Price 2
+
+
+0
+0
+
+- GC Deku Scrub Grotto Right Price 3
+
+
+0
+0
+
+- GC Deku Scrub Grotto Center Price
+
+
+0
+0
+
+- GC Deku Scrub Grotto Center Price 1
+
+
+0
+0
+
+- GC Deku Scrub Grotto Center Price 2
+
+
+0
+0
+
+- GC Deku Scrub Grotto Center Price 3
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Left Price
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Left Price 1
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Left Price 2
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Left Price 3
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Right Price
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Right Price 1
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Right Price 2
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Right Price 3
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Center Price
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Center Price 1
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Center Price 2
+
+
+0
+0
+
+- DMC Deku Scrub Grotto Center Price 3
+
+
+0
+0
+
+- ZR Deku Scrub Grotto Rear Price
+
+
+0
+0
+
+- ZR Deku Scrub Grotto Rear Price 1
+
+
+0
+0
+
+- ZR Deku Scrub Grotto Rear Price 2
+
+
+0
+0
+
+- ZR Deku Scrub Grotto Rear Price 3
+
+
+0
+0
+
+- ZR Deku Scrub Grotto Front Price
+
+
+0
+0
+
+- ZR Deku Scrub Grotto Front Price 1
+
+
+0
+0
+
+- ZR Deku Scrub Grotto Front Price 2
+
+
+0
+0
+
+- ZR Deku Scrub Grotto Front Price 3
+
+
+0
+0
+
+- LH Deku Scrub Grotto Left Price
+
+
+0
+0
+
+- LH Deku Scrub Grotto Left Price 1
+
+
+0
+0
+
+- LH Deku Scrub Grotto Left Price 2
+
+
+0
+0
+
+- LH Deku Scrub Grotto Left Price 3
+
+
+0
+0
+
+- LH Deku Scrub Grotto Right Price
+
+
+0
+0
+
+- LH Deku Scrub Grotto Right Price 1
+
+
+0
+0
+
+- LH Deku Scrub Grotto Right Price 2
+
+
+0
+0
+
+- LH Deku Scrub Grotto Right Price 3
+
+
+0
+0
+
+- LH Deku Scrub Grotto Center Price
+
+
+0
+0
+
+- LH Deku Scrub Grotto Center Price 1
+
+
+0
+0
+
+- LH Deku Scrub Grotto Center Price 2
+
+
+0
+0
+
+- LH Deku Scrub Grotto Center Price 3
+
+
+0
+0
+
+- Colossus Deku Scrub Grotto Rear Price
+
+
+0
+0
+
+- Colossus Deku Scrub Grotto Rear Price 1
+
+
+0
+0
+
+- Colossus Deku Scrub Grotto Rear Price 2
+
+
+0
+0
+
+- Colossus Deku Scrub Grotto Rear Price 3
+
+
+0
+0
+
+- Colossus Deku Scrub Grotto Front Price
+
+
+0
+0
+
+- Colossus Deku Scrub Grotto Front Price 1
+
+
+0
+0
+
+- Colossus Deku Scrub Grotto Front Price 2
+
+
+0
+0
+
+- Colossus Deku Scrub Grotto Front Price 3
+
+
+0
+0
+
+- GV Deku Scrub Grotto Rear Price
+
+
+0
+0
+
+- GV Deku Scrub Grotto Rear Price 1
+
+
+0
+0
+
+- GV Deku Scrub Grotto Rear Price 2
+
+
+0
+0
+
+- GV Deku Scrub Grotto Rear Price 3
+
+
+0
+0
+
+- GV Deku Scrub Grotto Front Price
+
+
+0
+0
+
+- GV Deku Scrub Grotto Front Price 1
+
+
+0
+0
+
+- GV Deku Scrub Grotto Front Price 2
+
+
+0
+0
+
+- GV Deku Scrub Grotto Front Price 3
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Side Room Near Dodongos Price
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Side Room Near Dodongos Price 1
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Side Room Near Dodongos Price 2
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Side Room Near Dodongos Price 3
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Lobby Price
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Lobby Price 1
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Lobby Price 2
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Lobby Price 3
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Near Bomb Bag Right Price
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Near Bomb Bag Right Price 1
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Near Bomb Bag Right Price 2
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Near Bomb Bag Right Price 3
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Near Bomb Bag Left Price
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Near Bomb Bag Left Price 1
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Near Bomb Bag Left Price 2
+
+
+0
+0
+
+- Dodongos Cavern Deku Scrub Near Bomb Bag Left Price 3
+
+
+0
+0
+
+- Jabu Jabus Belly Deku Scrub Price
+
+
+0
+0
+
+- Jabu Jabus Belly Deku Scrub Price 1
+
+
+0
+0
+
+- Jabu Jabus Belly Deku Scrub Price 2
+
+
+0
+0
+
+- Jabu Jabus Belly Deku Scrub Price 3
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Center-Left Price
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Center-Left Price 1
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Center-Left Price 2
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Center-Left Price 3
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Center-Right Price
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Center-Right Price 1
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Center-Right Price 2
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Center-Right Price 3
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Right Price
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Right Price 1
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Right Price 2
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Right Price 3
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Left Price
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Left Price 1
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Left Price 2
+
+
+0
+0
+
+- Ganons Castle Deku Scrub Left Price 3
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Lobby Rear Price
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Lobby Rear Price 1
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Lobby Rear Price 2
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Lobby Rear Price 3
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Lobby Front Price
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Lobby Front Price 1
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Lobby Front Price 2
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Lobby Front Price 3
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Staircase Price
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Staircase Price 1
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Staircase Price 2
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Staircase Price 3
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos Price
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos Price 1
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos Price 2
+
+
+0
+0
+
+- Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos Price 3
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center-Left Price
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center-Left Price 1
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center-Left Price 2
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center-Left Price 3
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center Price
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center Price 1
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center Price 2
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center Price 3
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center-Right Price
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center-Right Price 1
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center-Right Price 2
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Center-Right Price 3
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Left Price
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Left Price 1
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Left Price 2
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Left Price 3
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Right Price
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Right Price 1
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Right Price 2
+
+
+0
+0
+
+- Ganons Castle MQ Deku Scrub Right Price 3
+
+
+0
+0
+
+- Ganons Castle MQ Forest Trial Eye Switch Chest Price
+
+
+0
+0
+
+- Ganons Castle MQ Forest Trial Eye Switch Chest Price 1
+
+
+0
+0
+
+- Ganons Castle MQ Forest Trial Eye Switch Chest Price 2
+
+
+0
+0
+
+- Ganons Castle MQ Forest Trial Eye Switch Chest Price 3
+
+
+0
+0
