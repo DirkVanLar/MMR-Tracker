@@ -7852,3 +7852,45 @@
 14;161
 0
 0
+
+- Access Sacred Forest Meadow
+
+4;224;225;72;260;1310,1216;1310,1205;1310,1201;1310,1194;1310,1203
+0
+0
+
+- Access Sacred Forest Meadow EntryWay
+
+1309;51;186
+0
+0
+
+- Access Death Mountain Crater Upper
+
+
+0
+0
+
+- Access Death Mountain Crater Lower
+
+
+0
+0
+
+- Access Death Mountain Crater Near Fire Temple
+
+
+0
+0
+
+- Access Death Mountain Crater Near Ladder
+
+
+0
+0
+
+- Fewer Tunic Requirments
+
+
+0
+0
