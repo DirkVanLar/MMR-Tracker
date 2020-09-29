@@ -7756,3 +7756,99 @@
 1291,1225;1291,1256,1216,1183;21;157;226
 0
 0
+
+- Access Goron City
+
+18;49;117;193;1294;1298
+0
+0
+
+- Access Goron City Darunias Chamber
+
+1295,1293;1293,1215,1253
+0
+0
+
+- Stop GC Rolling Goron as Adult
+1216
+1183;1209;1223;1296
+0
+0
+
+- Adult Rolling Goron With Dins Fire
+
+
+0
+0
+;
+- GC Woods Warp Open From City
+1293
+1225;1183;1209;1203
+0
+0
+
+- GC Woods Warp Open From Woods
+49
+1225;1203
+0
+0
+
+- Access Zora River
+
+1300,1216;1300,1223;50;61;237;238;239
+0
+0
+
+- Access Zora River Front
+
+1299;40
+0
+0
+
+- Access Zora Domain
+
+47;58;164;241
+0
+0
+
+- Access Zora Domain Behind King Zora
+
+1301,1303;964;963,1216;63
+0
+0
+
+- Deliver Rutos Letter
+
+316;1012
+0
+0
+
+- Access Zoras Fountain
+
+62;75;76;167;259;262
+0
+0
+
+- Access Castle Town
+
+11;15;56;96;97;98;100;101;102;104;105
+0
+0
+
+- Access Castle Town Entry
+
+13;34;103
+0
+0
+
+- Access Hyrule Castle Grounds
+
+12;121;168
+0
+0
+
+- Access Temple Of Time Exterior
+
+14;161
+0
+0
