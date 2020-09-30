@@ -6,361 +6,361 @@
 0
 
 - Adult Spawn => Temple of Time
-
+1216
 
 0
 0
 
 - Child Spawn => Links House
-
+1215
 
 0
 0
 
 - Bolero of Fire Warp => Death Mountain Crater Central Local
-
-
+1212
+288;1037
 0
 0
 
 - Minuet of Forest Warp => Sacred Forest Meadow
-
-
+1212
+280;1029
 0
 0
 
 - Nocturne of Shadow Warp => Shadow Temple Warp Region
-
-
+1212
+285,1034
 0
 0
 
 - Prelude of Light Warp => Temple of Time
-
-
+1212
+283,1032
 0
 0
 
 - Requiem of Spirit Warp => Desert Colossus
-
-
+1212
+1031,282
 0
 0
 
 - Serenade of Water Warp => Lake Hylia
-
-
+1212
+290;1039
 0
 0
 
 - Death Mountain Owl Flight => Kakariko Impa Ledge
-
+1215,1292
 
 0
 0
 
 - Lake Hylia Owl Flight => Hyrule Field
-
+1278,1215
 
 0
 0
 
 - Castle Grounds => Castle Town
 
-
+1330;1307
 0
 0
 
 - Castle Town => Castle Grounds
-
+1305
 
 0
 0
 
 - Castle Town => Castle Town Entrance
-
+1305
 
 0
 0
 
 - Castle Town => Temple of Time Exterior
-
+1305
 
 0
 0
 
 - Castle Town Entrance => Castle Town
 
-
+13;34;103
 0
 0
 
 - Castle Town Entrance => Hyrule Field
 
-
+13;34;103
 0
 0
 
 - Darunias Chamber => Death Mountain Crater Lower Local
-
+1294,986
 
 0
 0
 
 - Death Mountain => Goron City
-
+1291
 
 0
 0
 
 - Death Mountain => Kakariko Village Behind Gate
-
+1291
 
 0
 0
 
 - Death Mountain Crater Lower Nearby => Darunias Chamber
-
+1312
 
 0
 0
 
 - Death Mountain Crater Upper Nearby => Death Mountain Summit
-
+1311
 
 0
 0
 
 - Death Mountain Summit => Death Mountain Crater Upper Local
-
+1292
 
 0
 0
 
 - Desert Colossus => Haunted Wasteland Near Colossus
-
+1329
 
 0
 0
 
 - Gerudo Fortress => Gerudo Valley Far Side
-
+1319
 
 0
 0
 
 - Gerudo Fortress Outside Gate => Haunted Wasteland Near Fortress
-
+1320
 
 0
 0
 
 - Gerudo Valley => Hyrule Field
-
+1317
 
 0
 0
 
 - Gerudo Valley Far Side => Gerudo Fortress
-
+1318
 
 0
 0
 
 - Gerudo Valley Lower Stream => Lake Hylia
 
-
+1318;1317;191
 0
 0
 
 - Goron City => Death Mountain
-
+1293
 
 0
 0
 
 - Goron City Woods Warp => Lost Woods
 
-
+1297,1293;49
 0
 0
 
 - Graveyard => Kakariko Village
-
+1290
 
 0
 0
 
 - Haunted Wasteland Near Colossus => Desert Colossus
-
+1323
 
 0
 0
 
 - Haunted Wasteland Near Fortress => Gerudo Fortress Outside Gate
-
+1322
 
 0
 0
 
 - Hyrule Field => Castle Town Entrance
-
+1286
 
 0
 0
 
 - Hyrule Field => Gerudo Valley
-
+1286
 
 0
 0
 
 - Hyrule Field => Kakariko Village
-
+1286
 
 0
 0
 
 - Hyrule Field => Lake Hylia
-
+1286
 
 0
 0
 
 - Hyrule Field => Lon Lon Ranch
-
+1286
 
 0
 0
 
 - Hyrule Field => Lost Woods Bridge
-
+1286
 
 0
 0
 
 - Hyrule Field => Zora River Front
-
+1286
 
 0
 0
 
 - Kakariko Village => Graveyard
-
+1287
 
 0
 0
 
 - Kakariko Village => Hyrule Field
-
+1287
 
 0
 0
 
 - Kakariko Village Behind Gate => Death Mountain
 
-
+1287,1289;19
 0
 0
 
 - Kokiri Forest => Lost Woods
-
+1276
 
 0
 0
 
 - Kokiri Forest => Lost Woods Bridge From Forest
-
+1276
 
 0
 0
 
 - Lake Hylia => Hyrule Field
-
+1278
 
 0
 0
 
 - Lake Hylia => Zoras Domain
-
+1278
 
 0
 0
 
 - Lon Lon Ranch => Hyrule Field
-
+1243
 
 0
 0
 
 - Lost Woods => Goron City Woods Warp
-
+1280
 
 0
 0
 
 - Lost Woods => Zora River
-
+1280
 
 0
 0
 
 - Lost Woods Beyond Mido => Sacred Forest Meadow Entryway
-
+1281
 
 0
 0
 
 - Lost Woods Bridge => Hyrule Field
-
+1282
 
 0
 0
 
 - Lost Woods Bridge => Kokiri Forest
-
+1282
 
 0
 0
 
 - Lost Woods Forest Exit => Kokiri Forest
 
-
+1280;1281
 0
 0
 
 - Sacred Forest Meadow Entryway => Lost Woods Beyond Mido
-
+1310
 
 0
 0
 
 - Temple of Time Exterior => Castle Town
-
+1308
 
 0
 0
 
 - Zora River => Lost Woods
 
-
+1206,1299;1337,1299
 0
 0
 
 - Zora River Behind Waterfall => Zoras Domain
 
-
+61;1299,1253;1299,1338,1215;1299,1267,1339
 0
 0
 
 - Zora River Front => Hyrule Field
-
+1300
 
 0
 0
 
 - Zoras Domain => Lake Hylia
-
+1206,1215,1301
 
 0
 0
@@ -7183,7 +7183,7 @@
 
 - Can Use Blue Fire
 1196
-
+250;85;526;538;1172
 0
 0
 
@@ -7590,7 +7590,7 @@
 0
 
 - Can Clear Gerudo Fortress
-
+1319
 966,1269,986,1266;966,1269,1266,1205;966,1269,1266,1224;967,1270,1216;967,1270,1205;967,1270,1224;968
 0
 0
@@ -7867,29 +7867,173 @@
 
 - Access Death Mountain Crater Upper
 
-
+22;233;1313,1256,1216;1314
 0
 0
 
 - Access Death Mountain Crater Lower
 
-
+17;1314,1267;1314,1200,1316;1313,1216,1267;1313,1216,1181;1313,1216,1256
 0
 0
 
 - Access Death Mountain Crater Near Fire Temple
 
-
+70;261;1311,1182;3;1312,1267;1312,1182
 0
 0
 
 - Access Death Mountain Crater Near Ladder
 
-
+1311;1312
 0
 0
 
 - Fewer Tunic Requirments
+
+
+0
+0
+;
+- Death Mountain Crater Upper To Lower With Hammer
+
+
+0
+0
+;
+- Access Gerudo Valley Field Side
+
+1318,1215;1318,1241;1318,1182;1318,968;1318,1265;35
+0
+0
+
+- Access Gerudo Valley Fortress Side
+
+1317,1216,1241;1317,1216,1182;1317,1216,968;1317,1216,1265;87;24;192
+0
+0
+
+- Access Gerudo Fortress
+
+27;74;266;188;1320,1216
+0
+0
+
+- Access Gerudo Fortress Outside Gate
+
+33;1319,1216,1321
+0
+0
+
+- Can Use Gerudo Membership Card
+
+1027;342
+0
+0
+
+- Access Wasteland Near Fortress
+
+25;1324,1325;1324,1267;1324,1182
+0
+0
+
+- Access Wasteland Near Colossus
+
+1324,1328;1324,1327;23
+0
+0
+
+- Access Wasteland Center
+
+1322,1325;1322,1267;1322,1182;1323,1326
+0
+0
+
+- Wasteland Crossing Without Hover Boots or Long Shot
+
+
+0
+0
+;
+- Reverse Wasteland
+
+
+0
+0
+;
+- Lenseless Wasteland
+
+
+0
+0
+;
+- Can Use Lens of truth
+1204
+823;617
+0
+0
+
+- Access Desert Colossus
+
+7;32;106;178;267
+0
+0
+
+- Access Ganons Castle Grounds
+
+12,1216;113;244;268
+0
+0
+
+- Sell Big Poe
+1216,1196
+
+0
+0
+
+- Skull Mask
+354,90
+991;1287,1215
+0
+0
+
+- Mask Of truth
+1332
+991;1280,1283,1290,1215,1286,1271
+0
+0
+
+- Can Drain Well
+137,1215,1260
+
+0
+0
+
+- Access Windmill
+
+137;196,1214,1216
+0
+0
+
+- Can Thaw King Zora
+1216,1197
+
+0
+0
+
+- Can Use Iron Boots
+1216
+649;847
+0
+0
+
+- Zora Domain Entry With Cucco
+
+
+0
+0
+
+- Zoras Domain Entry with Hover Boots
 
 
 0
