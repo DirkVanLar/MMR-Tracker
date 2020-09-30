@@ -1626,13 +1626,13 @@
 0
 
 - Queen Gohma
-
+1230
 
 0
 0
 
 - King Dodongo
-
+1344
 
 0
 0
@@ -8063,3 +8063,92 @@
 0
 0
 ;
+- Can Clear Dodongos Cavern
+1358
+1190,1216;1183,1216;1190,1194;1183,1194;1190,1205;1183,1205
+0
+0
+
+- Can Access Dodongos Cavern Beginning
+
+65;1346
+0
+0
+
+- Can Access Dodongos Cavern Lobby
+
+1345,1225;1345,1183;1347;1348;1349
+0
+0
+
+- Can Access Dodongos Cavern Climb
+
+1346,1216,1223;1346,1216,1183;1346,1216,1203;1346,1216,1350,1209;1346,310,1223;1346,310,1183;1346,310,1203;1346,310,1350,1209;1346,1203,1201;1346,1203,1223;1346,1203,1205
+0
+0
+
+- Can Access Dodongos Cavern Far Bridge
+
+1347,1215,1201;1347,1215,1351,1223;1347,1215,1351,1205;1347,1216,1209;1347,1216,1267;1347,1216,1182;1347,1216,1352
+0
+0
+
+- Can Access Dodongos Cavern Boss Area
+
+1348,1223
+0
+0
+
+- Lower Dodongos Cavern Stairs With Bow
+
+
+0
+0
+;
+- Dodongos Cavern SlingShot Skip
+
+
+0
+0
+;
+- Dodongos Cavern Spike Trap Room Jump Without Hover Boots
+
+
+0
+0
+;
+- Can Access MQ Dodongos Cavern Beginning
+246
+
+0
+0
+
+- Can Access MQ Dodongos Cavern Lobby
+
+
+0
+0
+
+- Can Access MQ Dodongos Cavern Lower Right Side
+
+
+0
+0
+
+- Can Access MQ Dodongos Cavern Bomb Bag Area
+
+
+0
+0
+
+- Can Access MQ Dodongos Cavern Boss Area
+
+
+0
+0
+
+- Can reach king Dodongo
+
+1349;1357
+0
+0

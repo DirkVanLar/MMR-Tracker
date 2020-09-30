@@ -35,6 +35,7 @@ namespace MMR_Tracker.Forms
         public static bool UseDictionaryNameInSearch = false;
         public static bool AddCondSeperatly = false;
         public static bool NudUpdateing = false;
+        public static bool CreatingNewItem = false;
 
         public class RequiementConditional
         {
@@ -285,12 +286,14 @@ namespace MMR_Tracker.Forms
             Tools.SaveState(EditorInstance);
             string name = Interaction.InputBox("Input New Item Name", "New Item", "");
             if (name == "") { return; }
+            CreatingNewItem = true;
             GoBackList.Add(currentEntry.ID);
             LogicObjects.LogicEntry newEntry = new LogicObjects.LogicEntry { ID = EditorInstance.Logic.Count, DictionaryName = name, IsFake = true, Required = null, Conditionals = null, AvailableOn = 0, NeededBy = 0 };
             EditorInstance.Logic.Add(newEntry);
-            FormatForm();
-            nudIndex.Value = (EditorInstance.Logic.Count - 1);
-            WriteCurentItem(EditorInstance.Logic.Count - 1);
+            FormatForm(EditorInstance.Logic.Count - 1);
+            //nudIndex.Value = (EditorInstance.Logic.Count - 1);
+            //WriteCurentItem(EditorInstance.Logic.Count - 1);
+            CreatingNewItem = false;
         }
 
         private void BtnEditSelected_Click(object sender, EventArgs e)
