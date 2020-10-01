@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace MMR_Tracker_V2
 {
@@ -100,6 +101,7 @@ namespace MMR_Tracker_V2
             //TestEncryption();
             //SetTestMultiworldData();
             //GenerateBigData();
+            GetAllUniqueCombos();
 
             void TestEncryption()
             {
@@ -254,7 +256,68 @@ namespace MMR_Tracker_V2
 
             }
 
-        }
+            void GetAllUniqueCombos()
+            {
+                Form UniqueData = new Form();
+                TextBox Data = new TextBox { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = 2, }, Width = 200 };
+                NumericUpDown Combos = new NumericUpDown { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = Data.Height + 4, }, Width = 200 };
+                Button ok = new Button { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = Combos.Location.Y + Combos.Height + 2, }, Text = "Copy", Width = 200 };
 
+                ok.Click += Ok_Click;
+
+                UniqueData.Controls.Add(Data);
+                UniqueData.Controls.Add(Combos);
+                UniqueData.Controls.Add(ok);
+
+                UniqueData.Width = 220;
+                UniqueData.Height = 110;
+
+                UniqueData.Show();
+
+                void Ok_Click(object sender, EventArgs e)
+                {
+                    var Line = Data.Text;
+                    var num = (int)Combos.Value;
+                    string Output = "";
+                    bool drawcolon = false;
+                    foreach (var i in GetPermutations(Line.Split(';'), num))
+                    {
+                        if (drawcolon) { Output += ";"; }
+                        else { drawcolon = true; }
+                        bool drawcomma = false;
+                        foreach (var j in i)
+                        {
+                            if (drawcomma)
+                            {
+                                Output += ("," + j);
+                            }
+                            else
+                            {
+                                Output += j;
+                                drawcomma = true;
+                            }
+                        }
+                    }
+                    Clipboard.SetText(Output);
+                    IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> items, int count)
+                    {
+                        int i = 0;
+                        foreach (var item in items)
+                        {
+                            if (count == 1)
+                                yield return new T[] { item };
+                            else
+                            {
+                                foreach (var result in GetPermutations(items.Skip(i + 1), count - 1))
+                                    yield return new T[] { item }.Concat(result);
+                            }
+                            ++i;
+                        }
+                    }
+                }
+            }
+
+
+        }
     }
 }

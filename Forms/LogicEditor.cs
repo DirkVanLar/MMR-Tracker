@@ -65,6 +65,7 @@ namespace MMR_Tracker.Forms
             useLocationItemNamesToolStripMenuItem.Checked = (UseDictionaryNameInSearch);
             displaySpoilerLogNamesToolStripMenuItem.Checked = (UseSpoilerInDisplay);
             AssignUniqueItemnames(EditorInstance.Logic);
+            CreateContextMenus();
         }
 
         private void FormatForm(int StartAt = 0)
@@ -175,6 +176,29 @@ namespace MMR_Tracker.Forms
                 if (LBRequired.Items.Contains(i)) { continue; }
                 LBRequired.Items.Add(i);
             }
+            Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
+            ItemSelect.Function = 0;
+            UpdateReqAndCond();
+            WriteCurentItem((int)nudIndex.Value);
+        }
+
+        private void ContextMenuAddPermutations(object sender, EventArgs e)
+        {
+            EditorInstance.UnsavedChanges = true;
+            Tools.SaveState(EditorInstance);
+            ItemSelect Selector = new ItemSelect();
+            ItemSelect.Function = 5;
+            Selector.ShowDialog();
+            if (Selector.DialogResult != DialogResult.OK) { ItemSelect.Function = 0; return; }
+            if (Tools.CurrentselectedItems.Count < 1) { ItemSelect.Function = 0; return; }
+            string Input = "";
+            bool drawcomma = false;
+            foreach (var i in Tools.CurrentselectedItems)
+            {
+                if (drawcomma) { Input += (";" + i.ID.ToString()); }
+                else { Input += i.ID.ToString(); drawcomma = true; }
+            }
+            Console.WriteLine(Input);
             Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
             ItemSelect.Function = 0;
             UpdateReqAndCond();
@@ -619,6 +643,14 @@ namespace MMR_Tracker.Forms
             LastSelectedListBox.Items.Insert(newIndex, selected);
             LastSelectedListBox.SetSelected(newIndex, true);
             UpdateReqAndCond();
+        }
+
+        public void CreateContextMenus()
+        {
+            ContextMenuStrip AddConditionalMenu = new ContextMenuStrip();
+            ToolStripItem AddPermutations = AddConditionalMenu.Items.Add("Create (Any X of A,B,C,D)");
+            AddPermutations.Click += (sender, e) => { ContextMenuAddPermutations(sender, e); };
+            btnAddCond.ContextMenuStrip = AddConditionalMenu;
         }
 
         //Static Functions
