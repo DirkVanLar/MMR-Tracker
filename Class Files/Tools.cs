@@ -536,7 +536,7 @@ namespace MMR_Tracker.Class_Files
             LogicEditing.PopulateTrackerInstance(Instance);
             LogicEditing.CalculateItems(Instance);
 
-            if (!Instance.IsMM() && (!File.Exists("options.txt") || File.ReadAllLines("options.txt").ToList().Find(x => x.Contains("OtherLogicOK")) == null))
+            if (!Instance.IsMM() && (!File.Exists("options.txt") || File.ReadAllLines("options.txt").ToList().Find(x => x.Contains("OtherLogicOK")) == null) && !Debugging.ISDebugging)
             {
                 DialogResult dialogResult = MessageBox.Show("This logic file was NOT created for the Majoras Mask Randomizer. While this tracker can support other games, support is very Limited. Many features will be disabled and core features might not work as intended. Do you wish to continue? If so this prompt will no longer display.", "Other Randomizer", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }
