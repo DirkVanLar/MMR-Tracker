@@ -36,6 +36,24 @@
     <ApplicationIcon>Misc\10_106247_moon_from_majoras_mask_render_majoras_mask_moon_WIL_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FParsec, Version=1.0.0.0, Culture=neutral, PublicKeyToken=40ccfc0a09edbb5d, processorArchitecture=MSIL">
+      <HintPath>packages\FParsec.1.0.3\lib\net40-client\FParsec.dll</HintPath>
+    </Reference>
+    <Reference Include="FParsecCS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=40ccfc0a09edbb5d, processorArchitecture=MSIL">
+      <HintPath>packages\FParsec.1.0.3\lib\net40-client\FParsecCS.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.Core, Version=4.6.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\FSharp.Core.4.6.0\lib\net45\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MathNet.Numerics.4.12.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics.FSharp, Version=4.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MathNet.Numerics.FSharp.4.9.1\lib\net45\MathNet.Numerics.FSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Symbolics, Version=0.21.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MathNet.Symbolics.0.21.0\lib\net461\MathNet.Symbolics.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -46,6 +64,8 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,6 +85,12 @@
     </Compile>
     <Compile Include="Forms\ItemDisplay.Designer.cs">
       <DependentUpon>ItemDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LogicParser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogicParser.Designer.cs">
+      <DependentUpon>LogicParser.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Map.cs">
       <SubType>Form</SubType>
@@ -144,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LogicEditor.resx">
       <DependentUpon>LogicEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogicParser.resx">
+      <DependentUpon>LogicParser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>

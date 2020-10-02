@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using MathNet.Numerics;
+using MathNet.Symbolics;
 
 namespace MMR_Tracker_V2
 {
@@ -101,7 +103,7 @@ namespace MMR_Tracker_V2
             //TestEncryption();
             //SetTestMultiworldData();
             //GenerateBigData();
-            GetAllUniqueCombos();
+            //GetAllUniqueCombos();
 
             void TestEncryption()
             {
@@ -317,7 +319,10 @@ namespace MMR_Tracker_V2
                 }
             }
 
+            
+
 
         }
+
     }
 }

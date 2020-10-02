@@ -75,19 +75,11 @@ namespace MMR_Tracker_V2
                         break;
                     case 1:
                         if (string.IsNullOrWhiteSpace(line)) { LogicEntry1.Required = null; break; }
-                        string[] req = line.Split(',');
-                        LogicEntry1.Required = Array.ConvertAll(req, s => int.Parse(s));
+                        LogicEntry1.Required = line.Split(',').Select(y => int.Parse(y)).ToArray();
                         break;
                     case 2:
                         if (string.IsNullOrWhiteSpace(line)) { LogicEntry1.Conditionals = null; break; }
-                        string[] ConditionalSets = line.Split(';');
-                        int[][] Conditionals = new int[ConditionalSets.Length][];
-                        for (int j = 0; j < ConditionalSets.Length; j++)
-                        {
-                            string[] condtional = ConditionalSets[j].Split(',');
-                            Conditionals[j] = Array.ConvertAll(condtional, s => int.Parse(s));
-                        }
-                        LogicEntry1.Conditionals = Conditionals;
+                        LogicEntry1.Conditionals = line.Split(';').Select(x => x.Split(',').Select(y => int.Parse(y)).ToArray()).ToArray();
                         break;
                     case 3:
                         LogicEntry1.NeededBy = Convert.ToInt32(line);
@@ -99,7 +91,7 @@ namespace MMR_Tracker_V2
                         LogicEntry1.IsTrick = (line.StartsWith(";"));
                         LogicEntry1.TrickEnabled = true;
                         LogicEntry1.TrickToolTip = (line.Length > 1) ? line.Substring(1) : "No Tooltip Available";
-                        if (LogicEntry1.IsTrick) { Console.WriteLine($"Trick {LogicEntry1.DictionaryName} Found. ToolTip =  { LogicEntry1.TrickToolTip }"); }
+                        //if (LogicEntry1.IsTrick) { Console.WriteLine($"Trick {LogicEntry1.DictionaryName} Found. ToolTip =  { LogicEntry1.TrickToolTip }"); }
                         break;
                 }
                 if ((NextLine) >= instance.RawLogicFile.Count() || instance.RawLogicFile[NextLine].StartsWith("-"))

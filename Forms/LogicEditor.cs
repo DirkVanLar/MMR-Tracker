@@ -198,11 +198,66 @@ namespace MMR_Tracker.Forms
                 if (drawcomma) { Input += (";" + i.ID.ToString()); }
                 else { Input += i.ID.ToString(); drawcomma = true; }
             }
-            Console.WriteLine(Input);
+
+            Form UniqueData = new Form();
+            Label Data = new Label { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = 2, }, Width = 200, Text = "How many of these items are needed?" };
+            NumericUpDown Combos = new NumericUpDown { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = Data.Height +2, }, Width = 200 };
+            Button ok = new Button { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = Combos.Location.Y + Combos.Height + 2, }, Text = "Select", Width = 200 };
+
+            ok.Click += (k, j) => { UniqueData.DialogResult = DialogResult.OK; UniqueData.Close(); };
+
+            UniqueData.Controls.Add(Data);
+            UniqueData.Controls.Add(Combos);
+            UniqueData.Controls.Add(ok);
+
+            UniqueData.Width = 220;
+            UniqueData.Height = 110;
+
+            UniqueData.AcceptButton = ok;
+
+            var closeReason = UniqueData.ShowDialog();
+
+            if (closeReason != DialogResult.OK)
+            {
+                Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
+                ItemSelect.Function = 0;
+                return;
+            }
+
+            var UniqueCombinations = Utility.CountUniqueCombinations(Tools.CurrentselectedItems.Count(), (int)Combos.Value);
+
+            Console.WriteLine($"Begin create {UniqueCombinations} permutatios");
+            if (UniqueCombinations > 10000)
+            {
+                MessageBox.Show($"To many combinations exist! {UniqueCombinations} Entries would be created!");
+                Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
+                ItemSelect.Function = 0;
+                return;
+            }
+            try
+            {
+                var NewConditionals = CreatePermiations(Input, (int)Combos.Value)
+                        .Split(';').Select(x => x
+                            .Split(',').Select(y => Int32.Parse(y)).ToArray()).ToArray();
+
+                Console.WriteLine("Finish create permutatios");
+                if (currentEntry.Conditionals == null)
+                {
+                    currentEntry.Conditionals = NewConditionals;
+                }
+                else
+                {
+                    currentEntry.Conditionals = currentEntry.Conditionals.Concat(NewConditionals).ToArray();
+                }
+
+                Console.WriteLine("Finish add to entry");
+            }
+            catch { }
+
             Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
             ItemSelect.Function = 0;
-            UpdateReqAndCond();
             WriteCurentItem((int)nudIndex.Value);
+            Console.WriteLine("Finish Write ITems");
         }
 
         private void BtnRemoveReq_Click(object sender, EventArgs e)
@@ -265,6 +320,7 @@ namespace MMR_Tracker.Forms
             Tools.SaveState(EditorInstance);
             for (int x = LBConditional.SelectedIndices.Count - 1; x >= 0; x--)
             {
+                if (!(LBConditional.Items[x] is RequiementConditional)) { continue; }
                 int idx = LBConditional.SelectedIndices[x];
                 LBConditional.Items.RemoveAt(idx);
             }
@@ -516,27 +572,38 @@ namespace MMR_Tracker.Forms
                 ReqEntry.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? ReqEntry.DictionaryName : ReqEntry.DisplayName;
                 LBRequired.Items.Add(ReqEntry);
             }
-            foreach (var j in entry.Conditionals ?? new int[0][])
+
+            if (entry.Conditionals != null && entry.Conditionals.Count() > 5000)
             {
-                var CondEntry = new RequiementConditional { ItemIDs = new List<LogicObjects.LogicEntry>() };
-                string Display = "";
-                string addComma = "";
-                foreach (var i in j ?? new int[0])
-                {
-                    var ReqEntry = EditorInstance.Logic[i]; 
-
-                    string disName = ReqEntry.ItemName ?? ReqEntry.DictionaryName;
-                    disName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem ?? disName) : disName;
-                    disName = (LogicEditor.UseDictionaryNameInSearch) ? ReqEntry.DictionaryName : disName;
-
-                    Display = Display + addComma + disName;
-                    addComma = ", ";
-                    CondEntry.ItemIDs.Add(ReqEntry);
-
-                }
-                CondEntry.DisplayName = Display;
-                LBConditional.Items.Add(CondEntry);
+                LBConditional.Items.Add("To many conditionals to display");
             }
+            else
+            {
+                if (entry.Conditionals != null) { Console.WriteLine(entry.Conditionals.Count()); }
+                
+                foreach (var j in entry.Conditionals ?? new int[0][])
+                {
+                    var CondEntry = new RequiementConditional { ItemIDs = new List<LogicObjects.LogicEntry>() };
+                    string Display = "";
+                    string addComma = "";
+                    foreach (var i in j ?? new int[0])
+                    {
+                        var ReqEntry = EditorInstance.Logic[i];
+
+                        string disName = ReqEntry.ItemName ?? ReqEntry.DictionaryName;
+                        disName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem ?? disName) : disName;
+                        disName = (LogicEditor.UseDictionaryNameInSearch) ? ReqEntry.DictionaryName : disName;
+
+                        Display = Display + addComma + disName;
+                        addComma = ", ";
+                        CondEntry.ItemIDs.Add(ReqEntry);
+
+                    }
+                    CondEntry.DisplayName = Display;
+                    LBConditional.Items.Add(CondEntry);
+                }
+            }
+            
             string DictionaryName = entry.DictionaryName.ToString();
             string LocationName = entry.LocationName ?? "Fake Location";
             string ItemName = entry.ItemName ?? "Fake Item";
@@ -591,6 +658,11 @@ namespace MMR_Tracker.Forms
             List<int> req = new List<int>();
             foreach (var i in LBRequired.Items) { req.Add((i as LogicObjects.LogicEntry).ID); }
             currentEntry.Required = req.ToArray();
+
+            if (LBConditional.Items.Count > 0 && !(LBConditional.Items[0] is RequiementConditional))
+            {
+                Console.WriteLine("Skipped Data"); return;
+            }
 
             List<int[]> cond = new List<int[]>();
             foreach (var i in LBConditional.Items)
@@ -650,6 +722,8 @@ namespace MMR_Tracker.Forms
             ContextMenuStrip AddConditionalMenu = new ContextMenuStrip();
             ToolStripItem AddPermutations = AddConditionalMenu.Items.Add("Create (Any X of A,B,C,D)");
             AddPermutations.Click += (sender, e) => { ContextMenuAddPermutations(sender, e); };
+            ToolStripItem ParseExpression = AddConditionalMenu.Items.Add("Parse A logical Expression");
+            ParseExpression.Click += (sender, e) =>  { RunLogicParser(); };
             btnAddCond.ContextMenuStrip = AddConditionalMenu;
         }
 
@@ -960,6 +1034,69 @@ namespace MMR_Tracker.Forms
                 catch { }
             }
             MessageBox.Show($"{currentEntry.DictionaryName} Is not used in any entries", "No entries found", MessageBoxButtons.OK);
+        }
+
+        private static string CreatePermiations(string input, int numb)
+        {
+            var Line = input;
+            var num = numb;
+            string Output = "";
+            bool drawcolon = false;
+            foreach (var i in GetPermutations(Line.Split(';'), num))
+            {
+                if (drawcolon) { Output += ";"; }
+                else { drawcolon = true; }
+                bool drawcomma = false;
+                foreach (var j in i)
+                {
+                    if (drawcomma)
+                    {
+                        Output += ("," + j);
+                    }
+                    else
+                    {
+                        Output += j;
+                        drawcomma = true;
+                    }
+                }
+            }
+            IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> items, int count)
+            {
+                int i = 0;
+                foreach (var item in items)
+                {
+                    if (count == 1)
+                        yield return new T[] { item };
+                    else
+                    {
+                        foreach (var result in GetPermutations(items.Skip(i + 1), count - 1))
+                            yield return new T[] { item }.Concat(result);
+                    }
+                    ++i;
+                }
+            }
+            return Output;
+        }
+
+        private void RunLogicParser()
+        {
+            LogicParser PArser = new LogicParser();
+            var result = PArser.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                EditorInstance.UnsavedChanges = true;
+                Tools.SaveState(EditorInstance);
+                if (currentEntry.Conditionals == null)
+                {
+                    currentEntry.Conditionals = LogicParser.Conditionals;
+                }
+                else
+                {
+                    currentEntry.Conditionals = currentEntry.Conditionals.Concat(LogicParser.Conditionals).ToArray();
+                }
+            }
+            LogicParser.Conditionals = null;
+            WriteCurentItem((int)nudIndex.Value);
         }
     }
 }

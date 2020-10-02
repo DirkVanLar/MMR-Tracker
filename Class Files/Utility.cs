@@ -269,6 +269,33 @@ namespace MMR_Tracker_V2
             }
             return Divider;
         }
+
+        public static long CountUniqueCombinations(int n, int r)
+        {
+            // naive: return Factorial(n) / (Factorial(r) * Factorial(n - r));
+            return nPr(n, r) / Factorial(r);
+
+            long nPr(int np, int rp)
+            {
+                // naive: return Factorial(n) / Factorial(n - r);
+                return FactorialDivision(np, np - rp);
+            }
+
+            long FactorialDivision(int topFactorial, int divisorFactorial)
+            {
+                long result = 1;
+                for (int i = topFactorial; i > divisorFactorial; i--)
+                    result *= i;
+                return result;
+            }
+
+            long Factorial(int i)
+            {
+                if (i <= 1)
+                    return 1;
+                return i * Factorial(i - 1);
+            }
+        }
     }
     public class Crypto
     {

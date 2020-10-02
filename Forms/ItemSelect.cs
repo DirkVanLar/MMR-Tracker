@@ -106,6 +106,19 @@ namespace MMR_Tracker_V2
             }
         }
 
+        private void ShowAllAsItemSelectOne()
+        {
+            LBItemSelect.Items.Clear();
+            for (var i = 0; i < UsedLogic.Count; i++)
+            {
+                UsedLogic[i].DisplayName = UsedLogic[i].ItemName ?? UsedLogic[i].DictionaryName;
+                if (Utility.FilterSearch(UsedLogic[i], TXTSearch.Text, UsedLogic[i].DisplayName))
+                {
+                    LBItemSelect.Items.Add(UsedLogic[i]);
+                }
+            }
+        }
+
         private void ShowRealAsLocation()
         {
             lbCheckItems.Items.Clear();
@@ -369,6 +382,12 @@ namespace MMR_Tracker_V2
                     ShowAllSpoilerAsItem();
                     this.Text = "Select an item to see it's location";
                     LBItemSelect.Sorted = true;
+                    break;
+                case 11:
+                    UsedLogic = LogicEditor.EditorInstance.Logic;
+                    BTNJunk.Text = "Select";
+                    LBItemSelect.SelectionMode = SelectionMode.One;
+                    ShowAllAsItemSelectOne();
                     break;
             }
             Updating = false;
