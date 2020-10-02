@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -70,7 +71,13 @@ namespace MMR_Tracker.Forms
 
         public int[][] ConvertLogicToConditional(string Logic)
         {
-            string NewLogic = Logic.Replace("&", "*").Replace("|", "+");
+            string NewLogic = Logic.Replace("and", "*").Replace("or", "+");
+            NewLogic = Logic.Replace("And", "*").Replace("Or", "+");
+            NewLogic = Logic.Replace("AND", "*").Replace("OR", "+");
+            NewLogic = Logic.Replace("A", "*").Replace("O", "+");
+            NewLogic = Logic.Replace("a", "*").Replace("o", "+");
+            NewLogic = Logic.Replace("&&", "*").Replace("||", "+");
+            NewLogic = Logic.Replace("&", "*").Replace("|", "+");
             Dictionary<string, int> LetterToNum = new Dictionary<string, int>();
             foreach (var i in ExtractNumbers(Logic))
             {
@@ -84,25 +91,68 @@ namespace MMR_Tracker.Forms
             Expression LogicSet = Infix.ParseOrThrow(NewLogic);
             var Output = Algebraic.Expand(LogicSet);
             string ExpandedLogic = Infix.Format(Output).Replace(" ", "");
+
             foreach (var i in LetterToNum)
             {
                 ExpandedLogic = ExpandedLogic.Replace(i.Key, i.Value.ToString());
             }
-            return ExpandedLogic.Split('+').Select(x => x.Split('*').Select(y => int.Parse(y)).ToArray()).ToArray(); ;
+            ExpandedLogic = HandlePowers(ExpandedLogic.Replace(" ", ""));
+
+            return ExpandedLogic.Split('+').Select(x => x.Split('*').Select(y => int.Parse(y)).ToArray()).ToArray();
+        }
+
+        public string SimplifyLetters(string Input)
+        {
+            string NewInput = Input;
+            List<string> Output = new List<string>();
+            string[] Sets = Input.Split('+');
+            for (var i = 0; i < Sets.Length; i++)
+            {
+                string[] SubSets = Sets[i].Split('*');
+                for (var j = 0; j < SubSets.Length; j++)
+                {
+                    Output.Add(SubSets[j]);
+                }
+            }
+            string Digits = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            Output = Output.Distinct().ToList();
+            int count = 0;
+            foreach(var i in Output)
+            {
+                NewInput = NewInput.Replace(i, Digits[count].ToString());
+                count++;
+            }
+            return NewInput;
+        }
+
+        public string HandlePowers(string Input)
+        {
+            string Output = "";
+            string[] Sets = Input.Split('+');
+            for (var i = 0; i < Sets.Length; i++)
+            {
+                string[] SubSets = Sets[i].Split('*');
+                for (var j = 0; j < SubSets.Length; j++)
+                {
+                    string line = SubSets[j];
+
+                    if (line.Contains("^"))
+                    {
+                        line = line.Substring(0, line.IndexOf("^"));
+                    }
+
+                    Output = Output + line;
+                    if (j != SubSets.Length - 1) { Output = Output + "*"; }
+                    
+                }
+                if (i != Sets.Length - 1) { Output = Output + "+"; }
+            }
+            return Output;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
-            foreach(var i in ExtractNumbers(textBox1.Text))
-            {
-                if (-1 < i && LogicEditor.EditorInstance.Logic.Count() > i && LogicEditor.EditorInstance.Logic.ElementAt(i) != null)
-                {
-                    var log = LogicEditor.EditorInstance.Logic[i];
-                    string[] row1 = { log.DictionaryName, log.LocationName, log.ItemName };
-                    listView1.Items.Add(log.ID.ToString()).SubItems.AddRange(row1);
-                }
-            }
+            PrintToListBox();
         }
 
         private void btnParseExpression_Click(object sender, EventArgs e)
@@ -126,15 +176,70 @@ namespace MMR_Tracker.Forms
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            ItemSelect ItemSelectForm = new ItemSelect();
-            ItemSelect.Function = 11;
-            var dialogResult = ItemSelectForm.ShowDialog();
-            if (dialogResult != DialogResult.OK) { Tools.CurrentSelectedItem = new LogicObjects.LogicEntry(); ItemSelect.Function = 0; return; }
-            textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, Tools.CurrentSelectedItem.ID.ToString());
-            Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
-            ItemSelect.Function = 0;
+            PrintToListVeiw();
+            PrintToListBox();
+        }
+
+        private void LogicParser_Load(object sender, EventArgs e)
+        {
+            radDic.Checked = true;
+        }
+
+        private void RadChanged(object sender, EventArgs e)
+        {
+            PrintToListVeiw();
+            PrintToListBox();
+        }
+
+        private void PrintToListVeiw()
+        {
+            listView1.Items.Clear();
+            foreach (var i in LogicEditor.EditorInstance.Logic)
+            {
+                string Name = i.DictionaryName;
+                if (radItem.Checked) { Name = i.ItemName ?? i.DictionaryName; }
+                if (radLoc.Checked) { Name = i.LocationName ?? i.DictionaryName; }
+                if (Utility.FilterSearch(i, textBox2.Text, Name))
+                {
+                    var log = i;
+                    string[] row = { log.ID.ToString(), log.DictionaryName, log.LocationName, log.ItemName };
+                    ListViewItem listViewItem = new ListViewItem(row) { Tag = log.ID };
+                    listView1.Items.Add(listViewItem);
+                }
+            }
+        }
+
+        private void PrintToListBox()
+        {
+            listBox1.Items.Clear();
+            foreach (var i in ExtractNumbers(textBox1.Text))
+            {
+                if (-1 < i && LogicEditor.EditorInstance.Logic.Count() > i && LogicEditor.EditorInstance.Logic.ElementAt(i) != null)
+                {
+                    var log = LogicEditor.EditorInstance.Logic[i];
+                    string Name = log.DictionaryName;
+                    if (radItem.Checked) { Name = log.ItemName ?? log.DictionaryName; }
+                    if (radLoc.Checked) { Name = log.LocationName ?? log.DictionaryName; }
+                    log.DisplayName = Name;
+                    listBox1.Items.Add(log);
+                }
+            }
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            LogicObjects.LogicEntry E = listBox1.SelectedItem as LogicObjects.LogicEntry;
+            textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, E.ID.ToString());
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, listView1.SelectedItems[0].Tag.ToString());
+            }
         }
     }
 }

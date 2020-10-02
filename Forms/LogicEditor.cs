@@ -187,7 +187,7 @@ namespace MMR_Tracker.Forms
             EditorInstance.UnsavedChanges = true;
             Tools.SaveState(EditorInstance);
             ItemSelect Selector = new ItemSelect();
-            ItemSelect.Function = 5;
+            ItemSelect.Function = 11;
             Selector.ShowDialog();
             if (Selector.DialogResult != DialogResult.OK) { ItemSelect.Function = 0; return; }
             if (Tools.CurrentselectedItems.Count < 1) { ItemSelect.Function = 0; return; }

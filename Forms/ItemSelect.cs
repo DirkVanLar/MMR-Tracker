@@ -386,8 +386,11 @@ namespace MMR_Tracker_V2
                 case 11:
                     UsedLogic = LogicEditor.EditorInstance.Logic;
                     BTNJunk.Text = "Select";
-                    LBItemSelect.SelectionMode = SelectionMode.One;
-                    ShowAllAsItemSelectOne();
+                    UseCheckBox();
+                    ShowAllAsItem();
+                    RecheckItems();
+                    this.Text = "Select a pool of Items";
+                    LBItemSelect.Sorted = true;
                     break;
             }
             Updating = false;
