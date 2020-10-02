@@ -54,37 +54,37 @@
 0
 
 - Death Mountain Owl Flight => Kakariko Impa Ledge
-1178,1254
+1178,1246
 
 0
 0
 
 - Lake Hylia Owl Flight => Hyrule Field
-1240,1178
+1235,1178
 
 0
 0
 
 - Castle Grounds => Castle Town
 
-1292;1269
+1278;1260
 0
 0
 
 - Castle Town => Castle Grounds
-1267
+1258
 
 0
 0
 
 - Castle Town => Castle Town Entrance
-1267
+1258
 
 0
 0
 
 - Castle Town => Temple of Time Exterior
-1267
+1258
 
 0
 0
@@ -102,283 +102,283 @@
 0
 
 - Darunias Chamber => Death Mountain Crater Lower Local
-1256,990
+1248,990
 
 0
 0
 
 - Death Mountain => Goron City
-1253
+1245
 
 0
 0
 
 - Death Mountain => Kakariko Village Behind Gate
-1253
+1245
 
 0
 0
 
 - Death Mountain Crater Lower Nearby => Darunias Chamber
-1274
+1265
 
 0
 0
 
 - Death Mountain Crater Upper Nearby => Death Mountain Summit
-1273
+1264
 
 0
 0
 
 - Death Mountain Summit => Death Mountain Crater Upper Local
-1254
+1246
 
 0
 0
 
 - Desert Colossus => Haunted Wasteland Near Colossus
-1291
+1277
 
 0
 0
 
 - Gerudo Fortress => Gerudo Valley Far Side
-1281
+1270
 
 0
 0
 
 - Gerudo Fortress Outside Gate => Haunted Wasteland Near Fortress
-1282
+1271
 
 0
 0
 
 - Gerudo Valley => Hyrule Field
-1279
+1268
 
 0
 0
 
 - Gerudo Valley Far Side => Gerudo Fortress
-1280
+1269
 
 0
 0
 
 - Gerudo Valley Lower Stream => Lake Hylia
 
-1280;1279;191
+1269;1268;191
 0
 0
 
 - Goron City => Death Mountain
-1255
+1247
 
 0
 0
 
 - Goron City Woods Warp => Lost Woods
 
-1259,1255;49
+1250,1247;49
 0
 0
 
 - Graveyard => Kakariko Village
-1252
+1244
 
 0
 0
 
 - Haunted Wasteland Near Colossus => Desert Colossus
-1285
+1274
 
 0
 0
 
 - Haunted Wasteland Near Fortress => Gerudo Fortress Outside Gate
-1284
+1273
 
 0
 0
 
 - Hyrule Field => Castle Town Entrance
-1248
+1241
 
 0
 0
 
 - Hyrule Field => Gerudo Valley
-1248
+1241
 
 0
 0
 
 - Hyrule Field => Kakariko Village
-1248
+1241
 
 0
 0
 
 - Hyrule Field => Lake Hylia
-1248
+1241
 
 0
 0
 
 - Hyrule Field => Lon Lon Ranch
-1248
+1241
 
 0
 0
 
 - Hyrule Field => Lost Woods Bridge
-1248
+1241
 
 0
 0
 
 - Hyrule Field => Zora River Front
-1248
+1241
 
 0
 0
 
 - Kakariko Village => Graveyard
-1249
+1242
 
 0
 0
 
 - Kakariko Village => Hyrule Field
-1249
+1242
 
 0
 0
 
 - Kakariko Village Behind Gate => Death Mountain
 
-1249,1251;19
+1242,1243;19
 0
 0
 
 - Kokiri Forest => Lost Woods
-1238
+1233
 
 0
 0
 
 - Kokiri Forest => Lost Woods Bridge From Forest
-1238
+1233
 
 0
 0
 
 - Lake Hylia => Hyrule Field
-1240
+1235
 
 0
 0
 
 - Lake Hylia => Zoras Domain
-1240
+1235
 
 0
 0
 
 - Lon Lon Ranch => Hyrule Field
-1206
+1203
 
 0
 0
 
 - Lost Woods => Goron City Woods Warp
-1242
+1237
 
 0
 0
 
 - Lost Woods => Zora River
-1242
+1237
 
 0
 0
 
 - Lost Woods Beyond Mido => Sacred Forest Meadow Entryway
-1243
+1238
 
 0
 0
 
 - Lost Woods Bridge => Hyrule Field
-1244
+1239
 
 0
 0
 
 - Lost Woods Bridge => Kokiri Forest
-1244
+1239
 
 0
 0
 
 - Lost Woods Forest Exit => Kokiri Forest
 
-1242;1243
+1237;1238
 0
 0
 
 - Sacred Forest Meadow Entryway => Lost Woods Beyond Mido
-1272
+1263
 
 0
 0
 
 - Temple of Time Exterior => Castle Town
-1270
+1261
 
 0
 0
 
 - Zora River => Lost Woods
 
-1169,1261;1299,1261
+1169,1252;1285,1252
 0
 0
 
 - Zora River Behind Waterfall => Zoras Domain
 
-61;1261,1216;1261,1300,1178;1261,1229,1301
+61;1252,1213;1252,1519,1178;1252,1225,1522
 0
 0
 
 - Zora River Front => Hyrule Field
-1262
+1253
 
 0
 0
 
 - Zoras Domain => Lake Hylia
-1169,1178,1263
+1169,1178,1254
 
 0
 0
 
 - Zoras Domain => Zora River Behind Waterfall
-1263
+1254
 
 0
 0
 
 - Zoras Domain Behind King Zora => Zoras Fountain
-1264
+1255
 
 0
 0
 
 - Zoras Fountain => Zoras Domain Behind King Zora
-1266
+1257
 
 0
 0
@@ -390,7 +390,7 @@
 0
 
 - Death Mountain => Dodongos Cavern Beginning
-1253
+1245
 1186;1146;1179
 0
 0
@@ -402,7 +402,7 @@
 0
 
 - Desert Colossus => Spirit Temple Lobby
-1291
+1277
 
 0
 0
@@ -414,8 +414,8 @@
 0
 
 - Fire Temple Entrance => Fire Temple Lower
-1275
-1151;1277
+1266
+1151;1427
 0
 0
 
@@ -426,7 +426,7 @@
 0
 
 - Forest Temple Entrance Ledge => Forest Temple Lobby
-1271,1144
+1262,1144
 
 0
 0
@@ -438,7 +438,7 @@
 0
 
 - Gerudo Fortress => Gerudo Training Grounds Lobby
-1281,1283,1179
+1270,1272,1179
 
 0
 0
@@ -462,20 +462,20 @@
 0
 
 - Kakariko Village => Bottom of the Well
-1249,1296
+1242,1282
 
 0
 0
 
 - Lake Hylia => Water Temple Lobby
-1240,1144
-1302;1299;1145,1170
+1235,1144
+1512;1285;1145,1170
 0
 0
 
 - Outside Deku Tree => Deku Tree Lobby
-1239
-1178;951,1237
+1234
+1178;951,1232
 0
 0
 
@@ -487,7 +487,7 @@
 
 - Shadow Temple Warp Region => Shadow Temple Entryway
 5
-1166;1303,1171
+1166;1500,1171
 0
 0
 
@@ -504,13 +504,13 @@
 0
 
 - Zoras Fountain => Jabu Jabus Belly Beginning
-1266,1178,1161
+1257,1178,1161
 
 0
 0
 
 - Zoras Fountain Ice Ledge => Ice Cavern Beginning
-1266,1179
+1257,1179
 
 0
 0
@@ -528,49 +528,49 @@
 0
 
 - Castle Town => Castle Town Bazaar
-1267,1178
+1258,1178
 
 0
 0
 
 - Castle Town => Castle Town Bombchu Bowling
-1267,1178
+1258,1178
 
 0
 0
 
 - Castle Town => Castle Town Mask Shop
-1267,1178
+1258,1178
 
 0
 0
 
 - Castle Town => Castle Town Potion Shop
-1267,1178
+1258,1178
 
 0
 0
 
 - Castle Town => Castle Town Shooting Gallery
-1267,1178
+1258,1178
 
 0
 0
 
 - Castle Town => Castle Town Treasure Chest Game
-1267,1178
+1258,1178
 
 0
 0
 
 - Castle Town Back Alley => Castle Town Bombchu Shop
-1267,1178
+1258,1178
 
 0
 0
 
 - Castle Town Back Alley => Castle Town Man in Green House
-1267,1178
+1258,1178
 
 0
 0
@@ -594,7 +594,7 @@
 0
 
 - Castle Town Entrance => Castle Town Rupee Room
-1268
+1259
 
 0
 0
@@ -654,19 +654,19 @@
 0
 
 - Death Mountain Crater Lower Nearby => Crater Fairy
-1274,1163
+1265,1163
 
 0
 0
 
 - Death Mountain Summit => Mountain Summit Fairy
-1254,1188
+1246,1187
 
 0
 0
 
 - Desert Colossus => Colossus Fairy
-1291,1186
+1277,1186
 
 0
 0
@@ -684,20 +684,20 @@
 0
 
 - Ganons Castle Grounds => Ganons Castle Fairy
-1292,1148
+1278,1148
 
 0
 0
 
 - Gerudo Valley Far Side => Carpenter Tent
-1280,1179
+1269,1179
 
 0
 0
 
 - Goron City => Goron Shop
-1255
-1257,1179;1178,1186;1178,1146;1178,1157
+1247
+1249,1179;1178,1186;1178,1146;1178,1157
 0
 0
 
@@ -708,7 +708,7 @@
 0
 
 - Graveyard => Dampes House
-1252
+1244
 
 0
 0
@@ -732,7 +732,7 @@
 0
 
 - Hyrule Castle Grounds => Hyrule Castle Fairy
-1269,1186
+1260,1186
 
 0
 0
@@ -762,8 +762,8 @@
 0
 
 - Kakariko Impa Ledge => Impas House Back
-1249
-1178;1179,1250;1144
+1242
+1178;1179,1468;1144
 0
 0
 
@@ -786,55 +786,55 @@
 0
 
 - Kakariko Village => Carpenter Boss House
-1249
+1242
 
 0
 0
 
 - Kakariko Village => House of Skulltula
-1249
+1242
 
 0
 0
 
 - Kakariko Village => Impas House
-1249
+1242
 
 0
 0
 
 - Kakariko Village => Kakariko Bazaar
-1249,1179
+1242,1179
 
 0
 0
 
 - Kakariko Village => Kakariko Potion Shop Front
-1249
+1242
 
 0
 0
 
 - Kakariko Village => Kakariko Shooting Gallery
-1249,1179
+1242,1179
 
 0
 0
 
 - Kakariko Village => Windmill
-1249
+1242
 
 0
 0
 
 - Kakariko Village Backyard => Kakariko Potion Shop Back
-1249,1179
+1242,1179
 
 0
 0
 
 - Kakariko Village Backyard => Odd Medicine Building
-1249,1179
+1242,1179
 
 0
 0
@@ -846,37 +846,37 @@
 0
 
 - Kokiri Forest => House of Twins
-1238
+1233
 
 0
 0
 
 - Kokiri Forest => Know It All House
-1238
+1233
 
 0
 0
 
 - Kokiri Forest => Kokiri Shop
-1238
+1233
 
 0
 0
 
 - Kokiri Forest => Links House
-1238
+1233
 
 0
 0
 
 - Kokiri Forest => Mido House
-1238
+1233
 
 0
 0
 
 - Kokiri Forest => Saria House
-1238
+1233
 
 0
 0
@@ -888,14 +888,14 @@
 0
 
 - Lake Hylia => Lake Hylia Lab
-1240
+1235
 
 0
 0
 
 - Lake Hylia Fishing Island => Fishing Hole
-1240
-1178;1149;1219;1304
+1235
+1178;1149;1216;1286
 0
 0
 
@@ -918,19 +918,19 @@
 0
 
 - Lon Lon Ranch => Ingo Barn
-1206
+1203
 
 0
 0
 
 - Lon Lon Ranch => Lon Lon Corner Tower
-1206
+1203
 
 0
 0
 
 - Lon Lon Ranch => Talon House
-1206
+1203
 
 0
 0
@@ -966,19 +966,19 @@
 0
 
 - Temple of Time => Temple of Time Exterior
-1241
+1236
 
 0
 0
 
 - Temple of Time Exterior => Temple of Time
-1270
+1261
 
 0
 0
 
 - Windmill => Kakariko Village
-1297
+1283
 
 0
 0
@@ -990,13 +990,13 @@
 0
 
 - Zoras Domain => Zora Shop
-1263
+1254
 1178;1160
 0
 0
 
 - Zoras Fountain => Zoras Fountain Fairy
-1266,1186
+1257,1186
 
 0
 0
@@ -1032,25 +1032,25 @@
 0
 
 - Death Mountain => Mountain Storms Grotto
-1253,1222
+1245,1218
 
 0
 0
 
 - Death Mountain Crater Lower Nearby => DMC Hammer Grotto
-1274,1163
+1265,1163
 
 0
 0
 
 - Death Mountain Crater Upper Nearby => Top of Crater Grotto
-1273,1188
+1264,1187
 
 0
 0
 
 - Death Mountain Summit => Mountain Bombable Grotto
-1254,1188
+1246,1187
 
 0
 0
@@ -1062,7 +1062,7 @@
 0
 
 - Desert Colossus => Desert Colossus Grotto
-1291,1147
+1277,1147
 
 0
 0
@@ -1122,7 +1122,7 @@
 0
 
 - Gerudo Fortress => Gerudo Fortress Storms Grotto
-1281,1179,1222
+1270,1179,1218
 
 0
 0
@@ -1134,13 +1134,13 @@
 0
 
 - Gerudo Valley Far Side => Gerudo Valley Storms Grotto
-1280,1179,1222
+1269,1179,1218
 
 0
 0
 
 - Gerudo Valley Grotto Ledge => Gerudo Valley Octorok Grotto
-1279,1147
+1268,1147
 
 0
 0
@@ -1164,31 +1164,31 @@
 0
 
 - Goron City Grotto Platform => Goron City Grotto
-1255,1179
-1177,1320;1177,1151;1177,1145;1151,1144,1320
+1247,1179
+1177,1299;1177,1151;1177,1145;1151,1144,1299
 0
 0
 
 - Graveyard => Composer Grave
-1252,1216
+1244,1213
 
 0
 0
 
 - Graveyard => Dampes Grave
-1252,1179
+1244,1179
 
 0
 0
 
 - Graveyard => Heart Piece Grave
-1252
+1244
 
 0
 0
 
 - Graveyard => Shield Grave
-1252
+1244
 
 0
 0
@@ -1200,55 +1200,55 @@
 0
 
 - Hyrule Castle Grounds => Castle Storms Grotto
-1269,1222
+1260,1218
 
 0
 0
 
 - Hyrule Field => Field Far West Castle Town Grotto
-1248,1188
+1241,1187
 
 0
 0
 
 - Hyrule Field => Field Kakariko Grotto
-1248,1221
+1241,1217
 
 0
 0
 
 - Hyrule Field => Field Near Lake Inside Fence Grotto
-1248,1221
+1241,1217
 
 0
 0
 
 - Hyrule Field => Field Near Lake Outside Fence Grotto
-1248
+1241
 
 0
 0
 
 - Hyrule Field => Field North Lon Lon Grotto
-1248,1221
+1241,1217
 
 0
 0
 
 - Hyrule Field => Field Valley Grotto
-1248,1221
+1241,1217
 1178;1163
 0
 0
 
 - Hyrule Field => Field West Castle Town Grotto
-1248,1188
+1241,1187
 
 0
 0
 
 - Hyrule Field => Remote Southern Grotto
-1248,1188
+1241,1187
 
 0
 0
@@ -1266,19 +1266,19 @@
 0
 
 - Kakariko Village => Kakariko Bombable Grotto
-1249,1221
+1242,1217
 
 0
 0
 
 - Kakariko Village Backyard => Kakariko Back Grotto
-1249
+1242
 
 0
 0
 
 - Kokiri Forest => Kokiri Forest Storms Grotto
-1238,1222
+1233,1218
 
 0
 0
@@ -1290,7 +1290,7 @@
 0
 
 - Lake Hylia => Lake Hylia Grotto
-1240
+1235
 
 0
 0
@@ -1308,25 +1308,25 @@
 0
 
 - Lon Lon Ranch => Lon Lon Grotto
-1206,1178
+1203,1178
 
 0
 0
 
 - Lost Woods => Lost Woods Generic Grotto
-1242,1188
+1237,1187
 
 0
 0
 
 - Lost Woods Beyond Mido => Deku Theater
-1243
+1238
 
 0
 0
 
 - Lost Woods Beyond Mido => Lost Woods Sales Grotto
-1243,1188
+1238,1187
 
 0
 0
@@ -1374,19 +1374,19 @@
 0
 
 - Sacred Forest Meadow => Meadow Fairy Grotto
-1271
+1262
 
 0
 0
 
 - Sacred Forest Meadow => Meadow Storms Grotto
-1271,1222
+1262,1218
 
 0
 0
 
 - Sacred Forest Meadow Entryway => Front of Meadow Grotto
-1272,1221
+1263,1217
 
 0
 0
@@ -1404,19 +1404,19 @@
 0
 
 - Zora River => Zora River Plateau Bombable Grotto
-1261
-1188
+1252
+1187
 0
 0
 
 - Zora River => Zora River Plateau Open Grotto
-1261
+1252
 
 0
 0
 
 - Zora River => Zora River Storms Grotto
-1261,1222
+1252,1218
 
 0
 0
@@ -1440,7 +1440,7 @@
 0
 
 - Zoras Domain => Zoras Domain Storms Grotto
-1263,1222
+1254,1218
 
 0
 0
@@ -1458,7 +1458,7 @@
 0
 
 - Ganons Castle Grounds => Ganons Castle
-1235,1292
+1230,1278
 
 0
 0
@@ -1626,13 +1626,13 @@
 0
 
 - Queen Gohma
-1193
+1190
 
 0
 0
 
 - King Dodongo
-1305
+1287
 
 0
 0
@@ -7039,13 +7039,13 @@
 
 - Can Play Scarecrow Song
 1175
-998;1178,1179,1240
+998;1178,1179,1235
 0
 0
 
 - Can Leave Forest
 
-951;952;1187;1193
+951;952;1435;1190
 0
 0
 
@@ -7056,7 +7056,7 @@
 0
 
 - Can Change Age
-1241
+1236
 959;960,1177
 0
 0
@@ -7121,12 +7121,6 @@
 0
 0
 
-- Glitched Logic
-
-
-0
-0
-;Enables Glitched Logic
 - Can Blast or Smash
 
 1186;1163
@@ -7141,24 +7135,12 @@
 
 - Has Fire Source With Torch
 
-1189;1157
+1188;1157
 0
 0
 
-- Deku Tree Basment 1 Web With Bow
-
-1172
-0
-0
-;
-- Deku Tree Basment 1 Skip
-
-
-0
-0
-;
 - Can Clear Deku Tree
-1196
+1193
 1157;1168;1179
 0
 0
@@ -7170,14 +7152,14 @@
 0
 
 - Can Access Deku Tree Slingshot Room
-1194
+1191
 1154;1155
 0
 0
 
 - Can Access Deku Tree Boss Room
 
-1190,1192,1194;1191,1192,1194;1190,1179,1194;1191,1179,1194;1190,1164,1194;1191,1164,1194;1201,1190
+1189,1411,1191;1410,1411,1191;1189,1179,1191;1410,1179,1191;1189,1164,1191;1410,1164,1191;1198,1189
 0
 0
 
@@ -7188,26 +7170,26 @@
 0
 
 - Can Access MQ Deku Tree Compass Room
-1197
-1172;1164,1190
+1194
+1172;1164,1189
 0
 0
 
 - Can Access Deku Tree MQ Basement Water Room
 
-1197,1190,1172;1197,1190,1164;1200,1168;1200,1202;1200,1156,1157
+1194,1189,1172;1194,1189,1164;1197,1168;1197,1199;1197,1156,1157
 0
 0
 
 - Can Access Deku Tree MQ Basement Back Room
 
-1201,1178;1199
+1198,1178;1196
 0
 0
 
 - Deku Tree MQ Basement Ledge
 
-1200,1178;1197,1192;1197,1179
+1197,1178;1194,1411;1194,1179
 0
 0
 
@@ -7224,13 +7206,13 @@
 0
 
 - Can Ride Epona
-1179,1205
-1207;1187,1211
+1179,1202
+1204;1435,1208
 0
 0
 
 - Can Unlock Epona
-1206,1179
+1203,1179
 
 0
 0
@@ -7254,25 +7236,25 @@
 0
 
 - Can Mega
-1186,1208
+1186,1205
 
 0
 0
 
 - Can Isg
-1208
+1205
 1179;1157;1168
 0
 0
 
 - Can Hover
-1209,1210
+1206,1207
 
 0
 0
 
 - can WierdShot
-1209,1144
+1206,1144
 
 0
 0
@@ -7291,7 +7273,7 @@
 
 - Can Summon Gossip Fairy Without Suns Song
 
-1177;1207;1216
+1177;1204;1213
 0
 0
 
@@ -7309,7 +7291,7 @@
 
 - Can Summon Gossip Fairy
 
-1215;1217
+1212;1214
 0
 0
 
@@ -7319,21 +7301,15 @@
 0
 0
 
-- Hidden Grottos Without Stone Of Agony
-
-
-0
-0
-;
 - Can Open Bomb Grotto
-1188
-389;1220
+1187
+389;1450
 0
 0
 
 - Can Open Storms Grotto
-1223
-389;1220
+1219
+389;1450
 0
 0
 
@@ -7368,8 +7344,8 @@
 0
 
 - Can Clear Gerudo Fortress
-1281
-968;966,1144,1168,1179,1231;966,1168,1172,1179,1231;966,1144,1179,1231;966,1172,1179,1231;966,1168,1187,1231;966,1179,1187,1231;966,1144,1179,1187,1231;966,1172,1179,1187,1231;966,1187,1231;966,1168,1179,1229,1231;966,1179,1229,1231;966,1179,1187,1229,1231;966,1168,1230,1231;966,1179,1230,1231;966,1187,1230,1231;967,1168,1232;967,1179,1232;967,1187,1232;966,1168,1231,1283;966,1179,1231,1283;966,1187,1231,1283
+1270
+968;966,1144,1168,1179,1226;966,1168,1172,1179,1226;966,1144,1179,1226;966,1172,1179,1226;966,1168,1435,1226;966,1179,1435,1226;966,1144,1179,1435,1226;966,1172,1179,1435,1226;966,1435,1226;966,1168,1179,1225,1226;966,1179,1225,1226;966,1179,1435,1225,1226;966,1168,1440,1226;966,1179,1440,1226;966,1435,1440,1226;967,1168,1227;967,1179,1227;967,1435,1227;966,1168,1226,1272;966,1179,1226,1272;966,1435,1226,1272
 0
 0
 
@@ -7379,12 +7355,6 @@
 0
 0
 
-- Gerudo Fortress Kitchen With No Additional Items
-
-
-0
-0
-;
 - Gerudo Fotress Small Key X4
 
 338,339,340,341;338,339,340,1030;338,339,341,1030;338,340,341,1030;339,340,341,1030
@@ -7411,31 +7381,31 @@
 
 - Can Build Rainbow Bridge
 
-970;972,1233;973,1234;974,1233,1234;975,292,293,294,308,311,312,313,319,320,321,322,324,327,329,333,334,343,344,347,349,350,351,356,358,361,381,382,383,384,385,386,407,408,416,417,418,420,428,429,436,439,442,448,449,450,454,457,458,459,465,466,467,468,490,493,495,559,560,561,562,568,569,573,578,581,583,584,585,590,593,594,595,597,609,624,625,626,631,634,642,643,644,651,652,653,659,661,665,668,669,681,682,683,687,692,717,720,725,730,731;971,277,278,353;971,277,278,1024
+970;972,1228;973,1229;974,1228,1229;975,292,293,294,308,311,312,313,319,320,321,322,324,327,329,333,334,343,344,347,349,350,351,356,358,361,381,382,383,384,385,386,407,408,416,417,418,420,428,429,436,439,442,448,449,450,454,457,458,459,465,466,467,468,490,493,495,559,560,561,562,568,569,573,578,581,583,584,585,590,593,594,595,597,609,624,625,626,631,634,642,643,644,651,652,653,659,661,665,668,669,681,682,683,687,692,717,720,725,730,731;971,277,278,353;971,277,278,1024
 0
 0
 
 - Can Trigger LACS
 
-977,278,277;978,1233;979,1234;980,1233,1234
+977,278,277;978,1228;979,1229;980,1228,1229
 0
 0
 
 - Showed Mido Sword & Shield
 
-1238,1168,1154;1239,1168,1154;1238,951;1239,951
+1233,1168,1154;1234,1168,1154;1233,951;1234,951
 0
 0
 
 - Access Kokiri Forest
 
-53;54;120;140;147;151;156;159;214;1239,1237
+53;54;120;140;147;151;156;159;214;1234,1232
 0
 0
 
 - Access Outside Deku Tree
 
-66;257;1238,1237
+66;257;1233,1232
 0
 0
 
@@ -7453,19 +7423,19 @@
 
 - Access Lost Woods Front
 
-30;44;57;222;1243,1178;1243,1245;1244,1145
+30;44;57;222;1238,1178;1238,1240;1239,1145
 0
 0
 
 - Access Lost Woods Behind Mido
 
-223;55;176;1242,1178;1242,1245;1242,1246
+223;55;176;1237,1178;1237,1240;1237,1394
 0
 0
 
 - Access Lost Woods Bridge
 
-39;45;1179,1229;1179,1145;1179,1219;1179,1247
+39;45;1179,1225;1179,1145;1179,1216;1179,1460
 0
 0
 
@@ -7475,18 +7445,6 @@
 0
 0
 
-- Backflip Over Mido
-
-
-0
-0
-;
-- Jump To Lost Woods Bridge
-
-
-0
-0
-;
 - Access Hyrule Field
 
 10;16;26;42;46;48;52;59;179;180;181;182;183;184;185;228
@@ -7495,18 +7453,12 @@
 
 - Access Kakariko Village
 
-9;19,1179;31;36;64;86;119;123;124;126;128;129;130;158;163;209;210;264;19,1250;19,955;19,1251
+9;19,1179;31;36;64;86;119;123;124;126;128;129;130;158;163;209;210;264;19,1468;19,955;19,1243
 0
 0
 
-- Pass Through One Way Collision
-
-
-0
-0
-;
 - Can Open Kakariko Village Gate
-1249,1178
+1242,1178
 354;955
 0
 0
@@ -7519,61 +7471,55 @@
 
 - Access Death Mountain Trail
 
-1254;258;227;43;68;29
+1246;258;227;43;68;29
 0
 0
 
 - Access Death Mountain Summit
 
-1253,1188;1253,1219,1179,1146;21;157;226
+1245,1187;1245,1216,1179,1146;21;157;226
 0
 0
 
 - Access Goron City
 
-18;49;117;193;1256;1260
+18;49;117;193;1248;1251
 0
 0
 
 - Access Goron City Darunias Chamber
 
-1257,1255;1255,1178,1216
+1249,1247;1247,1178,1213
 0
 0
 
 - Stop GC Rolling Goron as Adult
 1179
-1146;1172;1186;1258
+1146;1172;1186;1492
 0
 0
 
-- Adult Rolling Goron With Dins Fire
-
-
-0
-0
-;
 - GC Woods Warp Open From City
-1255
-1188;1146;1172;1166
+1247
+1187;1146;1172;1166
 0
 0
 
 - GC Woods Warp Open From Woods
 49
-1188;1166
+1187;1166
 0
 0
 
 - Access Zora River
 
-1262,1179;1262,1186;50;61;237;238;239
+1253,1179;1253,1186;50;61;237;238;239
 0
 0
 
 - Access Zora River Front
 
-1261;40
+1252;40
 0
 0
 
@@ -7585,7 +7531,7 @@
 
 - Access Zora Domain Behind King Zora
 
-1263,1265;964;963,1179;63
+1254,1256;964;963,1179;63
 0
 0
 
@@ -7627,73 +7573,61 @@
 
 - Access Sacred Forest Meadow
 
-4;224;225;72;260;1272,1179;1272,1168;1272,1164;1272,1157;1272,1166
+4;224;225;72;260;1263,1179;1263,1168;1263,1164;1263,1157;1263,1166
 0
 0
 
 - Access Sacred Forest Meadow EntryWay
 
-1271;51;186
+1262;51;186
 0
 0
 
 - Access Death Mountain Crater Upper
 
-22;233;1275,1219,1179;1276
+22;233;1266,1216,1179;1267
 0
 0
 
 - Access Death Mountain Crater Lower
 
-17;1276,1229;1276,1163,1278;1275,1179,1229;1275,1179,1144;1275,1179,1219
+17;1267,1225;1267,1163,1402;1266,1179,1225;1266,1179,1144;1266,1179,1216
 0
 0
 
 - Access Death Mountain Crater Near Fire Temple
 
-70;261;1273,1145,1151,1320;3;1274,1229;1274,1145
+70;261;1264,1145,1151,1299;3;1265,1225;1265,1145
 0
 0
 
 - Access Death Mountain Crater Near Ladder
 
-1273;1274
+1264;1265
 0
 0
 
-- Fewer Tunic Requirments
-
-
-0
-0
-;
-- Death Mountain Crater Upper To Lower With Hammer
-
-
-0
-0
-;
 - Access Gerudo Valley Field Side
 
-1280,1178;1280,1204;1280,1145;1280,968;1280,1228;35
+1269,1178;1269,1201;1269,1145;1269,968;1269,1224;35
 0
 0
 
 - Access Gerudo Valley Fortress Side
 
-1279,1179,1204;1279,1179,1145;1279,1179,968;1279,1179,1228;87;24;192
+1268,1179,1201;1268,1179,1145;1268,1179,968;1268,1179,1224;87;24;192
 0
 0
 
 - Access Gerudo Fortress
 
-27;74;266;188;1282,1179
+27;74;266;188;1271,1179
 0
 0
 
 - Access Gerudo Fortress Outside Gate
 
-33;1281,1179,1283
+33;1270,1179,1272
 0
 0
 
@@ -7705,40 +7639,22 @@
 
 - Access Wasteland Near Fortress
 
-25;1286,1287;1286,1229;1286,1145
+25;1275,1502;1275,1225;1275,1145
 0
 0
 
 - Access Wasteland Near Colossus
 
-1286,1290;1286,1289;23
+1275,1276;1275,1464;23
 0
 0
 
 - Access Wasteland Center
 
-1284,1287;1284,1229;1284,1145;1285,1288
+1273,1502;1273,1225;1273,1145;1274,1469
 0
 0
 
-- Wasteland Crossing Without Hover Boots or Long Shot
-
-
-0
-0
-;
-- Reverse Wasteland
-
-
-0
-0
-;
-- Lenseless Wasteland
-
-
-0
-0
-;
 - Can Use Lens of truth
 1167
 823;617
@@ -7765,18 +7681,18 @@
 
 - Skull Mask
 354,90
-995;1249,1178
+995;1242,1178
 0
 0
 
 - Mask Of truth
-1294
-995;1242,1245,1252,1178,1248,1233
+1280
+995;1237,1240,1244,1178,1241,1228
 0
 0
 
 - Can Drain Well
-137,1178,1223
+137,1178,1219
 
 0
 0
@@ -7799,90 +7715,48 @@
 0
 0
 
-- Zora Domain Entry With Cucco
-
-
-0
-0
-;
-- Zoras Domain Entry with Hover Boots
-
-
-0
-0
-;
-- Water Temple With Hookshot And Gold Scale
-1144,1170
-
-0
-0
-;
-- Shadow Temple With Fire Arrows
-
-
-0
-0
-;
 - Can Clear Water Temple
-1378
+1357
 
 0
 0
 
 - Can Clear Dodongos Cavern
-1319
+1298
 1153,1179;1146,1179;1153,1157;1146,1157;1153,1168;1146,1168
 0
 0
 
 - Can Access Dodongos Cavern Beginning
 
-65;1307
+65;1289
 0
 0
 
 - Can Access Dodongos Cavern Lobby
 
-1306,1188;1306,1146;1308;1309;1310
+1288,1187;1288,1146;1290;1291;1292
 0
 0
 
 - Can Access Dodongos Cavern Climb
 
-1307,1179,1186;1307,1179,1146;1307,1179,1166;1307,1179,1311,1172;1307,310,1186;1307,310,1146;1307,310,1166;1307,310,1311,1172;1307,1166,1164;1307,1166,1186;1307,1166,1168
+1289,1179,1186;1289,1179,1146;1289,1179,1166;1289,1179,1398,1172;1289,310,1186;1289,310,1146;1289,310,1166;1289,310,1398,1172;1289,1166,1164;1289,1166,1186;1289,1166,1168
 0
 0
 
 - Can Access Dodongos Cavern Far Bridge
 
-1308,1178,1164;1308,1178,1312,1186;1308,1178,1312,1168;1308,1179,1172;1308,1179,1229;1308,1179,1145;1308,1179,1313
+1290,1178,1164;1290,1178,1399,1186;1290,1178,1399,1168;1290,1179,1172;1290,1179,1225;1290,1179,1145;1290,1179,1400
 0
 0
 
 - Can Access Dodongos Cavern Boss Area
 
-1309,1186
+1291,1186
 0
 0
 
-- Lower Dodongos Cavern Stairs With Bow
-
-
-0
-0
-;
-- Dodongos Cavern SlingShot Skip
-
-
-0
-0
-;
-- Dodongos Cavern Spike Trap Room Jump Without Hover Boots
-
-
-0
-0
-;
 - Can Access MQ Dodongos Cavern Beginning
 246
 
@@ -7890,32 +7764,32 @@
 0
 
 - Can Access MQ Dodongos Cavern Lobby
-1314
-1188;1146
+1293
+1187;1146
 0
 0
 
 - Can Access MQ Dodongos Cavern Lower Right Side
 
-1315,1188;1315,1157,1320;1315,1166,1320;1317
+1294,1187;1294,1157,1299;1294,1166,1299;1296
 0
 0
 
 - Can Access MQ Dodongos Cavern Bomb Bag Area
 
-1307,1179,1186;1307,1322,1168,1320;1307,1322,1320,1157;1316,1164,1172;1316,1164,1146;1316,1164,1166;1316,1164,1186
+1289,1179,1186;1289,1401,1168,1299;1289,1401,1299,1157;1295,1164,1172;1295,1164,1146;1295,1164,1166;1295,1164,1186
 0
 0
 
 - Can Access MQ Dodongos Cavern Boss Area
-1316,1186
+1295,1186
 
 0
 0
 
 - Can reach king Dodongo
 
-1310;1318
+1292;1297
 0
 0
 
@@ -7931,12 +7805,6 @@
 0
 0
 
-- Dodongos Cavern MQ Early Bomb Bag Area As Child
-
-
-0
-0
-;
 - Forest Temple Small Key X1
 
 591;592;598;603;605;804;806;809;811;814;815
@@ -8183,6 +8051,12 @@
 0
 0
 
+- Water Temple Can Raise Water Level
+1343
+1152,1285;1427,1285;1145,1152,1507;1145,1427,1507
+0
+0
+
 - Can Access Water Temple Lobby
 78
 
@@ -8190,49 +8064,49 @@
 0
 
 - Can Access Water Temple Highest Water Level
-1364,1379
+1343,1342
 
 0
 0
 
 - Can Access Water Temple Dive
 
-1152,1299,1364;1277,1299,1364;1145,1152,1364,1380;1145,1277,1364,1380
+1152,1285,1343;1427,1285,1343;1145,1152,1343,1507;1145,1427,1343,1507
 0
 0
 
 - Can Access Water Temple North Basement
-1366
-1145,1216,1338;1145,1299,1338;1216,1229,1338,1381;1229,1299,1338,1381
+1345
+1145,1213,1316;1145,1285,1316;1213,1225,1316,1508;1225,1285,1316,1508
 0
 0
 
 - Can Access Water Temple Cracked Wall
 
-1370;1144,1216,1229,1366,1382;1216,1229,1366,1382;1144,1216,1366,1383;1216,1229,1366,1383
+1349;1144,1213,1225,1345,1509;1213,1225,1345,1509;1144,1213,1345,1510;1213,1225,1345,1510
 0
 0
 
 - Can Access Water Temple Dragon Statue
 
-1144,1146,1169,1216,1366,1384;1146,1169,1172,1216,1366,1384;1146,1169,1184,1216,1366,1384;1144,1146,1216,1299,1366,1384;1146,1172,1216,1299,1366,1384;1146,1184,1216,1299,1366,1384;1164,1169,1178,1366,1385;1165,1169,1178,1366,1385;1169,1178,1184,1366,1385;1152,1172,1177,1299,1376;1172,1177,1277,1299,1376;1172,1177,1376,1384;1172,1177,1376,1386
+1144,1146,1169,1213,1345,1515;1146,1169,1172,1213,1345,1515;1146,1169,1184,1213,1345,1515;1144,1146,1213,1285,1345,1515;1146,1172,1213,1285,1345,1515;1146,1184,1213,1285,1345,1515;1164,1169,1178,1345,1516;1165,1169,1178,1345,1516;1169,1178,1184,1345,1516;1152,1172,1177,1285,1355;1172,1177,1427,1285,1355;1172,1177,1355,1515;1172,1177,1355,1517
 0
 0
 
 - Can Access Water Temple Middle Water Level
 
-1166,1216,1366;1172,1216,1366;1157,1178,1216,1366;1144,1216,1339,1366
+1166,1213,1345;1172,1213,1345;1157,1178,1213,1345;1144,1213,1317,1345
 0
 0
 
 - Can Access Water Temple Falling Platform Room
-1365,1338
+1344,1316
 
 0
 0
 
 - Can Access Water Temple Dark Link Region
-1371,1339,1144
+1350,1317,1144
 
 0
 0
@@ -8245,40 +8119,928 @@
 
 - Can Access MQ Water Temple Dive
 
-1152,1299,1373;1277,1299,1373
+1152,1285,1352;1427,1285,1352
 0
 0
 
 - Can Access MQ Water Temple Lowered Water Levels
-1374,1216
+1353,1213
 
 0
 0
 
 - Can Access MQ Water Temple Dark Link Region
-1373,1336,1145
+1352,1314,1145
 
 0
 0
 
 - Can Access MQ Water Temple Basement Gated Areas
 
-1152,1166,1299,1376;1166,1277,1299,1376
+1152,1166,1285,1355;1166,1427,1285,1355
 0
 0
 
 - Can Access Morpha
 
-1373,660,1145;1373,1145,859;660,1145,1364;1145,859,1364
+1352,660,1145;1352,1145,859;660,1145,1343;1145,859,1343
 0
 0
 
-- Water Temple Can Raise Water Level
-1364
-1152,1299;1277,1299;1145,1152,1380;1145,1277,1380
+- Can Access Jabu Jabus Belly Beginning
+
+84;1359
 0
 0
 
+- Can Access Jabu Jabus Belly Main
+
+1358,1199;1360;1361
+0
+0
+
+- Can Access Jabu Jabus Belly Depths
+1359,1165
+
+0
+0
+
+- Can Access Jabu Jabus Belly Boss Area
+
+1157,1360;1168,1360;1225,1359,1458
+0
+0
+
+- Can Access MQ Jabu Jabus Belly Beginning
+
+247;1363
+0
+0
+
+- Can Access MQ Jabu Jabus Belly Main
+
+1362,1178,1164;1365
+0
+0
+
+- Can Access MQ Jabu Jabus Belly Depths
+
+1363,1186,1165
+0
+0
+
+- Can Access MQ Jabu Jabus Belly Boss Area
+
+1157,1364;1166,1168,1364
+0
+0
+
+- Can Access Barinade
+
+1365;1361,1165
+0
+0
+
+- Can Clear Jabu Jabu
+1366
+
+0
+0
+
+- Can Access Forest Temple Lobby
+
+
+0
+0
+
+- Can Access Forest Temple NW Outdoors
+
+
+0
+0
+
+- Can Access Forest Temple NE Outdoors
+
+
+0
+0
+
+- Can Access Forest Temple Outdoors High Balconies
+
+
+0
+0
+
+- Can Access Forest Temple Falling Room
+
+
+0
+0
+
+- Can Access Forest Temple Block Push Room
+
+
+0
+0
+
+- Can Access Forest Temple Straightened Hall
+
+
+0
+0
+
+- Can Access Forest Temple Outside Upper Ledge
+
+
+0
+0
+
+- Can Access Forest Temple Bow Region
+
+
+0
+0
+
+- Can Access Forest Temple Boss Region
+
+
+0
+0
+
+- Can Access MQ Forest Temple Lobby
+
+
+0
+0
+
+- Can Access MQ Forest Temple Central Area
+
+
+0
+0
+
+- Can Access MQ Forest Temple After Block Puzzle
+
+
+0
+0
+
+- Can Access MQ Forest Temple Outdoor Ledge
+
+
+0
+0
+
+- Can Access MQ Forest Temple NW Outdoors
+
+
+0
+0
+
+- Can Access MQ Forest Temple NE Outdoors
+
+
+0
+0
+
+- Can Access MQ Forest Temple Outdoors Top Ledges
+
+
+0
+0
+
+- Can Access MQ Forest Temple NE Outdoors Ledge
+
+
+0
+0
+
+- Can Access MQ Forest Temple Bow Region
+
+
+0
+0
+
+- Can Access MQ Forest Temple Falling Room
+
+
+0
+0
+
+- Can Access MQ Forest Temple Boss Region
+
+
+0
+0
+
+- Adult Kokiri Forest GS with Hover Boots
+
+
+0
+0
+;
+- Bottom of the Well Map Chest with Strength & Sticks
+
+
+0
+0
+;
+- Bottom of the Well without Lens of Truth
+
+
+0
+0
+;
+- Bottom of the Well Like Like GS without Boomerang
+
+
+0
+0
+;
+- Bottom of the Well MQ Dead Hand Freestanding Key with Boomerang
+
+
+0
+0
+;
+- Backflip over Mido as Adult
+
+
+0
+0
+;
+- Child Deadhand without Kokiri Sword
+
+
+0
+0
+;
+- Colossus Hill GS with Hookshot
+
+
+0
+0
+;
+- Crater's Bean PoH with Hover Boots
+
+
+0
+0
+;
+- Dodongo's Cavern Staircase with Bow
+
+
+0
+0
+;
+- Dodongo's Cavern Child Slingshot Skips
+
+
+0
+0
+;
+- Dodongo's Cavern Spike Trap Room Jump without Hover Boots
+
+
+0
+0
+;
+- Dodongo's Cavern MQ Early Bomb Bag Area as Child
+
+
+0
+0
+;
+- Death Mountain Crater Upper to Lower with Hammer
+
+
+0
+0
+;
+- Death Mountain Trail Soil GS without Destroying Boulder
+
+
+0
+0
+;
+- Dodongo's Cavern Two Scrub Room with Strength
+
+
+0
+0
+;
+- Death Mountain Trail Climb with Hover Boots
+
+
+0
+0
+;
+- Death Mountain Trail Upper Red Rock GS without Hammer
+
+
+0
+0
+;
+- Death Mountain Trail Lower Red Rock GS with Hookshot
+
+
+0
+0
+;
+- Death Mountain Trail Lower Red Rock GS with Magic Bean
+
+
+0
+0
+;
+- Deliver Eye Drops with Bolero of Fire
+
+
+0
+0
+;
+- Deku Tree Basement Webs with Bow
+
+1172
+0
+0
+;
+- Deku Tree Basement without Slingshot
+
+
+0
+0
+;
+- Dodongo's Cavern Scarecrow GS with Armos Statue
+
+
+0
+0
+;
+- Death Mountain Trail Chest with Strength
+
+
+0
+0
+;
+- Dodongo's Cavern Vines GS from Below with Longshot
+
+
+0
+0
+;
+- Deku Tree Basement Vines GS with Jump Slash
+
+
+0
+0
+;
+- Fire Temple Flame Wall Maze Skip
+
+
+0
+0
+;
+- Fire Temple MQ Flame Wall Maze Skip
+
+
+0
+0
+;
+- Fire Temple MQ Climb without Fire Source
+
+
+0
+0
+;
+- Fire Temple MQ Chest Near Boss without Breaking Crate
+
+
+0
+0
+;
+- Fire Temple MQ Boulder Maze Side Room without Box
+
+
+0
+0
+;
+- Fire Temple MQ Boss Key Chest without Bow
+
+
+0
+0
+;
+- Fire Temple Song of Time Room GS without Song of Time
+
+
+0
+0
+;
+- Fire Temple Climb without Strength
+
+
+0
+0
+;
+- Fire Temple MQ Big Lava Room Blocked Door without Hookshot
+
+
+0
+0
+;
+- Fire Temple East Tower without Scarecrow's Song
+
+
+0
+0
+;
+- Fire Temple Boss Door without Hover Boots or Pillar
+
+
+0
+0
+;
+- Fewer Tunic Requirments
+
+
+0
+0
+;Allows the following possible without Tunics: - Enter Water Temple. The key below the center pillar still requires Zora Tunic. - Enter Fire Temple. Only the first floor is accessible, and not Volvagia. - Zora's Fountain Bottom Freestanding PoH. Might not have enough health to resurface. - Gerudo Training Grounds Underwater Silver Rupee Chest. May need to make multiple trips.
+- Forest Temple East Courtyard GS with Boomerang
+
+
+0
+0
+;
+- Forest Temple Outside Backdoor without Hover Boots
+
+
+0
+0
+;
+- Forest Temple First Room GS with Difficult-to-Use Weapons
+
+
+0
+0
+;
+- Forest Temple NE Outdoors Ledge with Hover Boots
+
+
+0
+0
+;
+- Forest Temple East Courtyard GS with Boomerang
+
+
+0
+0
+;
+- Forest Temple East Courtyard Vines with Hookshot
+
+
+0
+0
+;
+- Forest Temple Scarecrow Route
+
+
+0
+0
+;
+- Glitched Logic
+
+
+0
+0
+;Enables Glitched Logic
+- Ganon's Castle MQ without Lens of Truth
+
+
+0
+0
+;
+- Ganon's Castle without Lens of Truth
+
+
+0
+0
+;
+- Goron City Maze Left Chest with Hover Boots
+
+
+0
+0
+;
+- Goron City Grotto with Hookshot While Taking Damage
+
+
+0
+0
+;
+- Gerudo Fortress "Kitchen" with No Additional Items
+
+
+0
+0
+;
+- Gerudo Training Grounds MQ without Lens of Truth
+
+
+0
+0
+;
+- Gerudo Training Grounds without Lens of Truth
+
+
+0
+0
+;
+- Goron City Spinning Pot PoH with Bombchu
+
+
+0
+0
+;
+- Gerudo Valley Crate PoH as Adult with Hover Boots
+
+
+0
+0
+;
+- Gerudo Training Grounds Left Side Silver Rupees without Hookshot
+
+
+0
+0
+;
+- 'Gerudo Training Grounds MQ Left Side Silver Rupees without Hookshot
+
+
+0
+0
+;
+- Graveyard Freestanding PoH with Boomerang
+
+
+0
+0
+;
+- Goron City Spinning Pot PoH with Strength
+
+
+0
+0
+;
+- Gerudo Training Grounds MQ Left Side Silver Rupees with Hookshot
+
+
+0
+0
+;
+- Hidden Grottos Without Stone Of Agony
+
+
+0
+0
+;
+- Hammer Rusted Switches Through Walls
+
+
+0
+0
+;
+- Hyrule Castle Storms Grotto GS with Just Boomerang
+
+
+0
+0
+;
+- Ice Cavern MQ Scarecrow GS with No Additional Items
+
+
+0
+0
+;
+- Ice Cavern Block Room GS with Hover Boots
+
+
+0
+0
+;
+- Jabu MQ Song of Time Block GS with Boomerang
+
+
+0
+0
+;
+- Jabu MQ without Lens of Truth
+
+
+0
+0
+;
+- Jabu Scrub as Adult with Jump Dive
+
+
+0
+0
+;
+- Jabu Near Boss GS without Boomerang as Adult
+
+
+0
+0
+;
+- Jabu Near Boss GS without Boomerang as Adult
+
+
+0
+0
+;
+- Jump onto the Lost Woods Bridge as Adult with Nothing
+
+
+0
+0
+;
+- Kakariko Tower GS with Jump Slash
+
+
+0
+0
+;
+- Lake Hylia Lab Dive without Gold Scale
+
+
+0
+0
+;
+- Lake Hylia Lab Wall GS with Jump Slash
+
+
+0
+0
+;
+- Lensless Wasteland
+
+
+0
+0
+;
+- Light Trial MQ without Hookshot
+
+
+0
+0
+;
+- Lost Woods Adult GS without Bean
+
+
+0
+0
+;
+- Man on Roof without Hookshot
+
+
+0
+0
+;
+- Pass Through Visible One-Way Collisions
+
+
+0
+0
+;
+- Reverse Wasteland
+
+
+0
+0
+;
+- Reach Gerudo Training Grounds Fake Wall Ledge with Hover Boots
+
+
+0
+0
+;
+- Rolling Goron (Hot Rodder Goron) as Child with Strength
+
+
+0
+0
+;
+- Reach Forest Temple MQ Twisted Hallway Switch with Hookshot
+
+
+0
+0
+;
+- Spirit Temple MQ Frozen Eye Switch without Fire
+
+
+0
+0
+;
+- Spirit Temple Shifting Wall with No Additional Items
+
+
+0
+0
+;
+- Spirit Temple Main Room GS with Boomerang
+
+
+0
+0
+;
+- Spirit Temple Main Room Jump from Hands to Upper Ledges
+
+
+0
+0
+;
+- Spirit Temple Lower Adult Switch with Bombs
+
+
+0
+0
+;
+- Spirit Trial without Hookshot
+
+
+0
+0
+;
+- Shadow Temple Stone Umbrella Skip
+
+
+0
+0
+;
+- Shadow Temple Falling Spikes GS with Hover Boots
+
+
+0
+0
+;
+- Spirit Temple MQ Sun Block Room GS with Boomerang
+
+
+0
+0
+;
+- Shadow Temple MQ before Invisible Moving Platform without Lens of Truth
+
+
+0
+0
+;
+- Shadow Temple MQ beyond Invisible Moving Platform without Lens of Truth
+
+
+0
+0
+;
+- Shadow Temple before Invisible Moving Platform without Lens of Truth
+
+
+0
+0
+;
+- Shadow Temple beyond Invisible Moving Platform without Lens of Truth
+
+
+0
+0
+;
+- Second Dampe Race as Child
+
+
+0
+0
+;
+- Spirit Temple MQ without Lens of Truth
+
+
+0
+0
+;
+- Spirit Temple without Lens of Truth
+
+
+0
+0
+;
+- Skip Forest Temple MQ Block Puzzle with Bombchu
+
+
+0
+0
+;
+- Spirit Temple Child Side Bridge with Bombchu
+
+
+0
+0
+;
+- Shadow Temple River Statue with Bombchu
+
+
+0
+0
+;
+- Stop Link the Goron with Din's Fire
+
+
+0
+0
+;
+- Shadow Temple Freestanding Key with Bombchu
+
+
+0
+0
+;
+- Shadow Temple MQ Lower Huge Pit without Fire Source
+
+
+0
+0
+;
+- Spirit Temple MQ Lower Adult without Fire Arrows
+
+
+0
+0
+;
+- Spirit Temple Map Chest with Bow
+
+
+0
+0
+;
+- Spirit Temple Sun Block Room Chest with Bow
+
+
+0
+0
+;
+- Shadow Trial MQ Torch with Bow
+
+
+0
+0
+;
+- Shadow Temple MQ Truth Spinner Gap with Longshot
+
+
+0
+0
+;
+- Shadow Temple Entry with Fire Arrows
+
+
+0
+0
+;
+- Swim Through Forest Temple MQ Well with Hookshot
+
+
+0
+0
+;
+- Wasteland Crossing without Hover Boots or Longshot
+
+
+0
+0
+;
+- Water Temple North Basement Ledge with Precise Jump
+
+
+0
+0
+;
+- Water Temple Central Pillar GS with Iron Boots
+
+
+0
+0
+;
+- Water Temple Boss Key Jump Dive
+
+
+0
+0
+;
+- Water Temple Central Bow Target without Longshot or Hover Boots
+
+
+0
+0
+;
 - Water Temple Torch Longshot
 
 
@@ -8303,6 +9065,30 @@
 0
 0
 ;
+- Water Temple Falling Platform Room GS with Hookshot
+
+
+0
+0
+;
+- Water Temple Entry without Iron Boots using Hookshot
+1144,1170
+
+0
+0
+;
+- Water Temple Falling Platform Room GS with Boomerang
+
+
+0
+0
+;
+- Water Temple River GS without Iron Boots
+
+
+0
+0
+;
 - Water Temple Dragon Statue Switch from Above the Water as Adult
 
 
@@ -8321,73 +9107,37 @@
 0
 0
 ;
-- Can Access Jabu Jabus Belly Beginning
-
-84;1388
-0
-0
-
-- Can Access Jabu Jabus Belly Main
-
-1387,1202;1389;1390
-0
-0
-
-- Can Access Jabu Jabus Belly Depths
-1388,1165
-
-0
-0
-
-- Can Access Jabu Jabus Belly Boss Area
-
-1157,1389;1168,1389;1229,1388,1398
-0
-0
-
-- Can Access MQ Jabu Jabus Belly Beginning
-
-
-0
-0
-
-- Can Access MQ Jabu Jabus Belly Main
-
-
-0
-0
-
-- Can Access MQ Jabu Jabus Belly Depths
-
-
-0
-0
-
-- Can Access MQ Jabu Jabus Belly Boss Area
-
-
-0
-0
-
-- Jabu MQ Song of Time Block GS with Boomerang
+- Windmill PoH as Adult with Nothing
 
 
 0
 0
 ;
-- Jabu MQ without Lens of Truth
+- Zora's Domain Entry with Cucco
 
 
 0
 0
 ;
-- Jabu Scrub as Adult with Jump Dive
+- Zora's River Lower Freestanding PoH as Adult with Nothing
 
 
 0
 0
 ;
-- Jabu Near Boss GS without Boomerang as Adult
+- Zora's Domain GS with No Additional Item
+
+
+0
+0
+;
+- Zoras Domain Entry with Hover Boots
+
+
+0
+0
+;
+- Zora's River Upper Freestanding PoH as Adult with Nothing
 
 
 0
