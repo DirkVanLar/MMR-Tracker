@@ -72,22 +72,25 @@ namespace MMR_Tracker.Forms
         public int[][] ConvertLogicToConditional(string Logic)
         {
             string NewLogic = Logic.Replace("and", "*").Replace("or", "+");
-            NewLogic = Logic.Replace("And", "*").Replace("Or", "+");
-            NewLogic = Logic.Replace("AND", "*").Replace("OR", "+");
-            NewLogic = Logic.Replace("A", "*").Replace("O", "+");
-            NewLogic = Logic.Replace("a", "*").Replace("o", "+");
-            NewLogic = Logic.Replace("&&", "*").Replace("||", "+");
-            NewLogic = Logic.Replace("&", "*").Replace("|", "+");
+            NewLogic = NewLogic.Replace("And", "*").Replace("Or", "+");
+            NewLogic = NewLogic.Replace("AND", "*").Replace("OR", "+");
+            NewLogic = NewLogic.Replace("A", "*").Replace("O", "+");
+            NewLogic = NewLogic.Replace("a", "*").Replace("o", "+");
+            NewLogic = NewLogic.Replace("&&", "*").Replace("||", "+");
+            NewLogic = NewLogic.Replace("&", "*").Replace("|", "+");
             Dictionary<string, int> LetterToNum = new Dictionary<string, int>();
             foreach (var i in ExtractNumbers(Logic))
             {
-                var Letter = IndexToColumn(i);
+                var Letter = IndexToColumn(i + 1);
                 LetterToNum.Add(Letter, i);
             }
+            LetterToNum = LetterToNum.OrderBy(x => x.Value).Reverse().ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             foreach (var i in LetterToNum)
             {
+                Console.WriteLine(i);
                 NewLogic = NewLogic.Replace(i.Value.ToString(), i.Key);
             }
+            Console.WriteLine(NewLogic);
             Expression LogicSet = Infix.ParseOrThrow(NewLogic);
             var Output = Algebraic.Expand(LogicSet);
             string ExpandedLogic = Infix.Format(Output).Replace(" ", "");
@@ -239,6 +242,17 @@ namespace MMR_Tracker.Forms
             if (listView1.SelectedItems.Count > 0)
             {
                 textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, listView1.SelectedItems[0].Tag.ToString());
+            }
+        }
+
+        private void btnNames_Click(object sender, EventArgs e)
+        {
+            foreach(var i in LogicEditor.EditorInstance.Logic)
+            {
+                if (textBox1.Text.Contains(i.DictionaryName))
+                {
+                    textBox1.Text = textBox1.Text.Replace(i.DictionaryName, i.ID.ToString());
+                }
             }
         }
     }

@@ -7823,8 +7823,8 @@
 0
 0
 ;
-- TODO Can Clear Water Temple
-
+- Can Clear Water Temple
+1378
 
 0
 0
@@ -8182,3 +8182,214 @@
 757,758,938;757,758,941;757,758,945;757,758,948;757,938,941;757,938,945;757,938,948;757,941,945;757,941,948;757,945,948;758,938,941;758,938,945;758,938,948;758,941,945;758,941,948;758,945,948;938,941,945;938,941,948;938,945,948;941,945,948
 0
 0
+
+- Can Access Water Temple Lobby
+78
+
+0
+0
+
+- Can Access Water Temple Highest Water Level
+1364,1379
+
+0
+0
+
+- Can Access Water Temple Dive
+
+1152,1299,1364;1277,1299,1364;1145,1152,1364,1380;1145,1277,1364,1380
+0
+0
+
+- Can Access Water Temple North Basement
+1366
+1145,1216,1338;1145,1299,1338;1216,1229,1338,1381;1229,1299,1338,1381
+0
+0
+
+- Can Access Water Temple Cracked Wall
+
+1370;1144,1216,1229,1366,1382;1216,1229,1366,1382;1144,1216,1366,1383;1216,1229,1366,1383
+0
+0
+
+- Can Access Water Temple Dragon Statue
+
+1144,1146,1169,1216,1366,1384;1146,1169,1172,1216,1366,1384;1146,1169,1184,1216,1366,1384;1144,1146,1216,1299,1366,1384;1146,1172,1216,1299,1366,1384;1146,1184,1216,1299,1366,1384;1164,1169,1178,1366,1385;1165,1169,1178,1366,1385;1169,1178,1184,1366,1385;1152,1172,1177,1299,1376;1172,1177,1277,1299,1376;1172,1177,1376,1384;1172,1177,1376,1386
+0
+0
+
+- Can Access Water Temple Middle Water Level
+
+1166,1216,1366;1172,1216,1366;1157,1178,1216,1366;1144,1216,1339,1366
+0
+0
+
+- Can Access Water Temple Falling Platform Room
+1365,1338
+
+0
+0
+
+- Can Access Water Temple Dark Link Region
+1371,1339,1144
+
+0
+0
+
+- Can Access MQ Water Temple Lobby
+251
+
+0
+0
+
+- Can Access MQ Water Temple Dive
+
+1152,1299,1373;1277,1299,1373
+0
+0
+
+- Can Access MQ Water Temple Lowered Water Levels
+1374,1216
+
+0
+0
+
+- Can Access MQ Water Temple Dark Link Region
+1373,1336,1145
+
+0
+0
+
+- Can Access MQ Water Temple Basement Gated Areas
+
+1152,1166,1299,1376;1166,1277,1299,1376
+0
+0
+
+- Can Access Morpha
+
+1373,660,1145;1373,1145,859;660,1145,1364;1145,859,1364
+0
+0
+
+- Water Temple Can Raise Water Level
+1364
+1152,1299;1277,1299;1145,1152,1380;1145,1277,1380
+0
+0
+
+- Water Temple Torch Longshot
+
+
+0
+0
+;
+- Water Temple Boss Key Region With Hover Boots
+
+
+0
+0
+;
+- Water Temple Cracked Wall With Hover Boots
+
+
+0
+0
+;
+- Water Temple Cracked Wall With No Additional Items
+
+
+0
+0
+;
+- Water Temple Dragon Statue Switch from Above the Water as Adult
+
+
+0
+0
+;
+- Water Temple Dragon Statue Switch from Above the Water as Child
+
+
+0
+0
+;
+- Water Temple Dragon Statue Jump Dive
+
+
+0
+0
+;
+- Can Access Jabu Jabus Belly Beginning
+
+84;1388
+0
+0
+
+- Can Access Jabu Jabus Belly Main
+
+1387,1202;1389;1390
+0
+0
+
+- Can Access Jabu Jabus Belly Depths
+1388,1165
+
+0
+0
+
+- Can Access Jabu Jabus Belly Boss Area
+
+1157,1389;1168,1389;1229,1388,1398
+0
+0
+
+- Can Access MQ Jabu Jabus Belly Beginning
+
+
+0
+0
+
+- Can Access MQ Jabu Jabus Belly Main
+
+
+0
+0
+
+- Can Access MQ Jabu Jabus Belly Depths
+
+
+0
+0
+
+- Can Access MQ Jabu Jabus Belly Boss Area
+
+
+0
+0
+
+- Jabu MQ Song of Time Block GS with Boomerang
+
+
+0
+0
+;
+- Jabu MQ without Lens of Truth
+
+
+0
+0
+;
+- Jabu Scrub as Adult with Jump Dive
+
+
+0
+0
+;
+- Jabu Near Boss GS without Boomerang as Adult
+
+
+0
+0
+;
