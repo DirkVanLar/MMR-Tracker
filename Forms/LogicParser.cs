@@ -94,6 +94,7 @@ namespace MMR_Tracker.Forms
             Expression LogicSet = Infix.ParseOrThrow(NewLogic);
             var Output = Algebraic.Expand(LogicSet);
             string ExpandedLogic = Infix.Format(Output).Replace(" ", "");
+            Console.WriteLine(ExpandedLogic);
 
             foreach (var i in LetterToNum)
             {
@@ -225,7 +226,7 @@ namespace MMR_Tracker.Forms
                     string Name = log.DictionaryName;
                     if (radItem.Checked) { Name = log.ItemName ?? log.DictionaryName; }
                     if (radLoc.Checked) { Name = log.LocationName ?? log.DictionaryName; }
-                    log.DisplayName = Name;
+                    log.DisplayName = log.ID.ToString() + ": " + Name;
                     listBox1.Items.Add(log);
                 }
             }
@@ -247,8 +248,10 @@ namespace MMR_Tracker.Forms
 
         private void btnNames_Click(object sender, EventArgs e)
         {
-            foreach(var i in LogicEditor.EditorInstance.Logic)
+            var OrderedLogic = Utility.CloneLogicList(LogicEditor.EditorInstance.Logic).OrderBy(x => x.DictionaryName.Count()).Reverse();
+            foreach (var i in OrderedLogic)
             {
+                Console.WriteLine(i.DictionaryName);
                 if (textBox1.Text.Contains(i.DictionaryName))
                 {
                     textBox1.Text = textBox1.Text.Replace(i.DictionaryName, i.ID.ToString());

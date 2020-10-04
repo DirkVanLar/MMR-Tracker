@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using MMR_Tracker.Class_Files;
+using System.Drawing;
 
 namespace MMR_Tracker.Forms
 {
@@ -36,6 +37,7 @@ namespace MMR_Tracker.Forms
         public static bool AddCondSeperatly = false;
         public static bool NudUpdateing = false;
         public static bool CreatingNewItem = false;
+        public static int MaxEntries = 10000;
 
         public class RequiementConditional
         {
@@ -200,6 +202,7 @@ namespace MMR_Tracker.Forms
             }
 
             Form UniqueData = new Form();
+            try { UniqueData.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon()); } catch { }
             Label Data = new Label { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = 2, }, Width = 200, Text = "How many of these items are needed?" };
             NumericUpDown Combos = new NumericUpDown { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = Data.Height +2, }, Width = 200 };
             Button ok = new Button { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = Combos.Location.Y + Combos.Height + 2, }, Text = "Select", Width = 200 };
@@ -226,14 +229,15 @@ namespace MMR_Tracker.Forms
 
             var UniqueCombinations = Utility.CountUniqueCombinations(Tools.CurrentselectedItems.Count(), (int)Combos.Value);
 
-            Console.WriteLine($"Begin create {UniqueCombinations} permutatios");
-            if (UniqueCombinations > 10000)
+
+            if (UniqueCombinations > MaxEntries)
             {
-                MessageBox.Show($"To many combinations exist! {UniqueCombinations} Entries would be created!");
+                MessageBox.Show($"{UniqueCombinations} Entries would be created with your selected parameters. This is greater than the max number of entries ({MaxEntries}) this process can easily handle, the proccess will now terminate.", "To many combinations exist!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
                 ItemSelect.Function = 0;
                 return;
             }
+            Console.WriteLine($"Begin create {UniqueCombinations} permutatios");
             try
             {
                 var NewConditionals = CreatePermiations(Input, (int)Combos.Value)
@@ -573,13 +577,12 @@ namespace MMR_Tracker.Forms
                 LBRequired.Items.Add(ReqEntry);
             }
 
-            if (entry.Conditionals != null && entry.Conditionals.Count() > 5000)
+            if (entry.Conditionals != null && entry.Conditionals.Count() > MaxEntries)
             {
                 LBConditional.Items.Add("To many conditionals to display");
             }
             else
             {
-                if (entry.Conditionals != null) { Console.WriteLine(entry.Conditionals.Count()); }
                 
                 foreach (var j in entry.Conditionals ?? new int[0][])
                 {

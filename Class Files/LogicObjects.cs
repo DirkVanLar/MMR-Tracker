@@ -311,7 +311,14 @@ namespace MMR_Tracker_V2
 
         public static bool ItemBelongsToMe(this LogicObjects.LogicEntry entry)
         {
+            if (!LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { return true; }
+            if (entry.IsEntrance()) { return true; }
             return entry.PlayerData.ItemBelongedToPlayer == -1 || entry.PlayerData.ItemBelongedToPlayer == LogicObjects.MainTrackerInstance.Options.MyPlayerID;
+        }
+
+        public static bool ItemInRange(this LogicObjects.TrackerInstance Instance, int Item)
+        {
+            return Item > -1 && Item < Instance.Logic.Count;
         }
     }
 }

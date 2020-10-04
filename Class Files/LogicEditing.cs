@@ -192,7 +192,7 @@ namespace MMR_Tracker_V2
             if (CheckedObject.ID < -1) { return false; }
             if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
             {
-                if (CheckedObject.RandomizedItem > -1 && CheckedObject.RandomizedItem < Instance.Logic.Count && !Tools.SameItemMultipleChecks(CheckedObject.RandomizedItem, Instance) && (!LogicObjects.MainTrackerInstance.Options.IsMultiWorld || CheckedObject.ItemBelongsToMe()))
+                if (Instance.ItemInRange(CheckedObject.RandomizedItem) && !Tools.SameItemMultipleChecks(CheckedObject.RandomizedItem, Instance) && (CheckedObject.ItemBelongsToMe()))
                 {
                     Instance.Logic[CheckedObject.RandomizedItem].Aquired = false;
                     CheckEntrancePair(CheckedObject, Instance, false);
@@ -207,7 +207,7 @@ namespace MMR_Tracker_V2
                 if (CheckedObject.RandomizedState() == 2) { CheckedObject.RandomizedItem = CheckedObject.ID; }
                 if (CheckedObject.SpoilerRandom > -2) { CheckedObject.RandomizedItem = CheckedObject.SpoilerRandom; }
                 if (CheckedObject.RandomizedItem < 0) { CheckedObject.RandomizedItem = -1; return true; }
-                if (!LogicObjects.MainTrackerInstance.Options.IsMultiWorld || CheckedObject.ItemBelongsToMe())
+                if (CheckedObject.ItemBelongsToMe())
                 {
                     Instance.Logic[CheckedObject.RandomizedItem].Aquired = true;
                 }

@@ -99,19 +99,19 @@ namespace MMR_Tracker_V2
                     if (subterm == "") { continue; }
                     if (subterm[0] == '#')
                     {
-                        if (subterm.Substring(1) == "") { continue; }
+                        if (subterm.Substring(1) == "" || logic.LocationArea == null) { continue; }
                         if (logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && logic.LocationArea.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
                     else if (subterm[0] == '@')
                     {
-                        if (subterm.Substring(1) == "") { continue; }
+                        if (subterm.Substring(1) == "" || logic.ItemSubType == null) { continue; }
                         if ((logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
                         if (Perfect && logic.ItemSubType.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
                     else if (subterm[0] == '~')
                     {
-                        if (subterm.Substring(1) == "") { continue; }
+                        if (subterm.Substring(1) == "" || logic.DictionaryName == null) { continue; }
                         if ((logic.DictionaryName.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
                         if (Perfect && logic.DictionaryName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
