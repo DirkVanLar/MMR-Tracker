@@ -1927,1176 +1927,1176 @@
 
 - GS Lake Hylia Small Island
 
-
+1315,1317,1363
 0
 0
 
 - GS Lake Hylia Giant Tree
-
+1363,1282
 
 0
 0
 
 - Diving in the Lab
-
-
+148
+1307;1218,1281,1413
 0
 0
 
 - GS Lab Underwater Crate
-
+148,1413,1281
 
 0
 0
 
 - Child Fishing
-
+149,1315
 
 0
 0
 
 - Adult Fishing
-
+149,1316
 
 0
 0
 
 - GS Gerudo Valley Small Bridge
-
+1396,1302
 
 0
 0
 
 - Gerudo Valley Waterfall Freestanding PoH
 
-
+1397;1396
 0
 0
 
 - GS Gerudo Valley Bean Patch
-
-
+1328,1317
+1397;1396
 0
 0
 
 - Gerudo Valley Cow
-
-
+1315,1332
+1397;1396
 0
 0
 
 - Gerudo Valley Crate Freestanding PoH
-
+1633
 
 0
 0
 
 - Gerudo Valley Hammer Rocks Chest
-
+1397,1300
 
 0
 0
 
 - GS Gerudo Valley Behind Tent
-
+1397,1281
 
 0
 0
 
 - GS Gerudo Valley Pillar
-
+1397,1281
 
 0
 0
 
 - Gerudo Fortress Rooftop Chest
-
-
+1398
+1282;1286;1353
 0
 0
 
 - Horseback Archery 1000 Points
-
+1398,1400,1329,1309
 
 0
 0
 
 - Horseback Archery 1500 Points
-
+1398,1400,1329,1309
 
 0
 0
 
 - Gerudo Fortress North F1 Carpenter
-
-
+1398
+1316;1305
 0
 0
 
 - Gerudo Fortress North F2 Carpenter
-
-
+1398
+1196,1305;1281,1305;1305,1309;1196,1316;1281,1316;1309,1316;1305,1353;1316,1353;1305,1400;1316,1400
 0
 0
 
 - Gerudo Fortress South F1 Carpenter
-
-
+1398
+1316;1305
 0
 0
 
 - Gerudo Fortress South F2 Carpenter
-
-
+1398
+1316;1305
 0
 0
 
 - Gerudo Fortress Membership Card
-
+1398,1352
 
 0
 0
 
 - GS Gerudo Fortress Archery Range
-
+1398,1281,1400
 
 0
 0
 
 - GS Gerudo Fortress Top Floor
-
-
+1398
+1196,1316;1281,1316;1309,1316;1316,1353;1316,1400
 0
 0
 
 - Haunted Wasteland Structure Chest
-
+1403,1325
 
 0
 0
 
 - Haunted Wasteland Bombchu Salesman
-
-
+1403
+1294,1634;1305,1634;1316,1634
 0
 0
 
 - GS Wasteland Ruins
-
-
+1403
+1281;1302
 0
 0
 
 - Colossus Freestanding PoH
-
+1405,1316,1344
 
 0
 0
 
 - GS Desert Colossus Bean Patch
-
+1405,1328,1317
 
 0
 0
 
 - GS Desert Colossus Tree
-
+1405,1281
 
 0
 0
 
 - GS Desert Colossus Hill
-
-
+1405
+1152,1281,1316;1282,1316;1316,1344
 0
 0
 
 - Desert Colossus Fairy Reward
-
+111,1341
 
 0
 0
 
 - Temple of Time Light Arrow Cutscene
-
+1364,1316,1359
 
 0
 0
 
 - Zelda
-
+1388,355
 
 0
 0
 
 - Malon Egg
-
+1388
 
 0
 0
 
 - GS Hyrule Castle Tree
-
+1388,1317
 
 0
 0
 
 - Hyrule Castle Fairy Reward
-
+122,1341
 
 0
 0
 
 - GS Outside Ganon's Castle
-
+1406
 
 0
 0
 
 - Ganons Castle Fairy Reward
-
+114,1341
 
 0
 0
 
 - 10 Big Poes
-
+1407
 
 0
 0
 
 - GS Castle Market Guard House
-
+99,1315
 
 0
 0
 
 - Castle Town Bazaar Item 5
-
+88
 
 0
 0
 
 - Castle Town Bazaar Item 6
-
+88
 
 0
 0
 
 - Castle Town Bazaar Item 7
-
+88
 
 0
 0
 
 - Castle Town Bazaar Item 8
-
+88
 
 0
 0
 
 - Child Shooting Gallery
-
+92,1315
 
 0
 0
 
 - Bombchu Bowling Bomb Bag
-
+1322,89
 
 0
 0
 
 - Bombchu Bowling Piece of Heart
-
+1322,89
 
 0
 0
 
 - Castle Town Potion Shop Item 5
-
+91
 
 0
 0
 
 - Castle Town Potion Shop Item 6
-
+91
 
 0
 0
 
 - Castle Town Potion Shop Item 7
-
+91
 
 0
 0
 
 - Castle Town Potion Shop Item 8
-
+91
 
 0
 0
 
 - Treasure Chest Game
-
+93,1404
 
 0
 0
 
 - Bombchu Shop Item 5
-
+94
 
 0
 0
 
 - Bombchu Shop Item 6
-
+94
 
 0
 0
 
 - Bombchu Shop Item 7
-
+94
 
 0
 0
 
 - Bombchu Shop Item 8
-
+94
 
 0
 0
 
 - Dog Lady
-
+1386,1315
 
 0
 0
 
 - Anju as Adult
-
+1370,1316
 
 0
 0
 
 - Anjus Chickens
-
+1370,1315
 
 0
 0
 
 - GS Kakariko House Under Construction
-
+1370,1315
 
 0
 0
 
 - GS Kakariko Skulltula House
-
+1370,1315
 
 0
 0
 
 - GS Kakariko Guard's House
-
+1370,1315
 
 0
 0
 
 - GS Kakariko Tree
-
+1370,1315
 
 0
 0
 
 - GS Kakariko Watchtower
-
-
+1370
+1301,1315;1315,1321;1217,1294,1315,1477;1217,1305,1315,1477
 0
 0
 
 - GS Kakariko Above Impa's House
-
-
+1370
+1281
 0
 0
 
 - Man on Roof
-
-
+1370
+1281;1223,1301;1223,1315;1223,1316;1223,1321;1217,1223,1294,1477;1217,1223,1305,1477
 0
 0
 
 - 10 Gold Skulltula Reward
-
+132
 
 0
 0
 
 - 20 Gold Skulltula Reward
-
+132
 
 0
 0
 
 - 30 Gold Skulltula Reward
-
+132
 
 0
 0
 
 - 40 Gold Skulltula Reward
-
+132
 
 0
 0
 
 - 50 Gold Skulltula Reward
-
+132
 
 0
 0
 
 - Impa House Freestanding PoH
-
+127
 
 0
 0
 
 - Impas House Cow
-
+1332,127
 
 0
 0
 
 - Windmill Freestanding PoH
-
-
+1411
+1302;1274,1316;1314,1316,196
 0
 0
 
 - Kakariko Bazaar Item 5
-
+134
 
 0
 0
 
 - Kakariko Bazaar Item 6
-
+134
 
 0
 0
 
 - Kakariko Bazaar Item 7
-
+134
 
 0
 0
 
 - Kakariko Bazaar Item 8
-
+134
 
 0
 0
 
 - Adult Shooting Gallery
-
+136,1316,1309
 
 0
 0
 
 - Kakariko Potion Shop Item 5
 
-
+135;138
 0
 0
 
 - Kakariko Potion Shop Item 6
 
-
+135;138
 0
 0
 
 - Kakariko Potion Shop Item 7
 
-
+135;138
 0
 0
 
 - Kakariko Potion Shop Item 8
 
-
+135;138
 0
 0
 
 - Graveyard Freestanding PoH
-
-
+1372
+1203,1302;1282,1316;1316,1344
 0
 0
 
 - Gravedigging Tour
-
+1372,1315
 
 0
 0
 
 - GS Graveyard Wall
-
+1372,1302
 
 0
 0
 
 - GS Graveyard Bean Patch
-
+1372,1328,1317
 
 0
 0
 
 - Shield Grave Chest
-
+198
 
 0
 0
 
 - Heart Piece Grave Chest
-
+197,1342
 
 0
 0
 
 - Composer Grave Chest
-
+195,1325
 
 0
 0
 
 - Hookshot Chest
-
+196
 
 0
 0
 
 - Dampe Race Freestanding PoH
-
-
+196
+1316;1242
 0
 0
 
 - Death Mountain Bombable Chest
-
-
+1373
+1169,1283,1315;1324
 0
 0
 
 - DM Trail Freestanding PoH
-
-
+1373
+1283,1316,1344;1316,1323,1344;1353;1477
 0
 0
 
 - GS Mountain Trail Bean Patch
-
-
+1373
+1283,1317,1328;1159,1302,1317,1328;1317,1323,1328
 0
 0
 
 - GS Mountain Trail Bomb Alcove
-
+1373,1324
 
 0
 0
 
 - GS Mountain Trail Above Dodongo's Cavern
-
-
+1373
+1163,1281,1316;1300,1316;1164,1283,1316,1344;1164,1316,1323,1344
 0
 0
 
 - Biggoron
-
+1316,1010,1374
 
 0
 0
 
 - GS Mountain Trail Path to Crater
-
-
+1374
+1162,1316;1300,1316
 0
 0
 
 - Goron City Leftmost Maze Chest
-
-
+1375
+1284;1300;1194,1323,1353
 0
 0
 
 - Goron City Left Maze Chest
-
-
+1375
+1284;1324
 0
 0
 
 - Goron City Right Maze Chest
-
-
+1375
+1284;1324
 0
 0
 
 - Goron City Pot Freestanding PoH
-
-
+1375
+1204,1283,1303,1315;1290,1303,1315;1303,1315,1321,1199
 0
 0
 
 - Rolling Goron as Child
-
-
+1375
+1227,1283,1315;1315,1323
 0
 0
 
 - Link the Goron
-
+1375,1377
 
 0
 0
 
 - Medigoron
-
-
+1375
+1283,1316,1634;1316,1324,1634
 0
 0
 
 - GS Goron City Boulder Maze
-
-
+1375
+1315,1323
 0
 0
 
 - GS Goron City Center Platform
-
+1375,1316
 
 0
 0
 
 - Darunias Joy
-
-
+1376
+1315,1368
 0
 0
 
 - Goron Shop Item 5
-
+116
 
 0
 0
 
 - Goron Shop Item 6
-
+116
 
 0
 0
 
 - Goron Shop Item 7
-
+116
 
 0
 0
 
 - Goron Shop Item 8
-
+116
 
 0
 0
 
 - DM Crater Wall Freestanding PoH
-
+1392
 
 0
 0
 
 - GS Death Mountain Crater Crate
-
+1392,1315,1317
 
 0
 0
 
 - DMC Deku Scrub Bombs
-
+1395,1315,1339
 
 0
 0
 
 - DM Crater Volcano Freestanding PoH
-
-
+1394
+1316,1344;1153,1316,1353
 0
 0
 
 - GS Mountain Crater Bean Patch
-
+1394,1328,1317
 
 0
 0
 
 - Crater Fairy Reward
-
+109,1341
 
 0
 0
 
 - Mountain Summit Fairy Reward
-
+110,1341
 
 0
 0
 
 - GS Zora River Tree
-
+1381,1315,1317
 
 0
 0
 
 - Magic Bean Salesman
-
+1380,1315
 
 0
 0
 
 - Frog Ocarina Game
-
+1380,1341,1368,1342,1332,1314,1347,1315
 
 0
 0
 
 - Frogs in the Rain
-
+1380,1347,1315
 
 0
 0
 
 - Zora River Lower Freestanding PoH
-
-
+1380
+1315;1276,1316;1353
 0
 0
 
 - Zora River Upper Freestanding PoH
-
-
+1380
+1315;1279,1316;1353
 0
 0
 
 - GS Zora River Ladder
-
-
+1380
+1315,1317
 0
 0
 
 - GS Zora River Near Raised Grottos
-
+1380,1281
 
 0
 0
 
 - GS Zora River Above Bridge
-
+1380,1281
 
 0
 0
 
 - Diving Minigame
-
+1382,1315
 
 0
 0
 
 - Zoras Domain Torch Run
-
+1382,1294
 
 0
 0
 
 - King Zora Thawed
-
+1382,1316,1297
 
 0
 0
 
 - GS Zora's Domain Frozen Waterfall
-
-
+1382
+1277,1316;1281,1316;1304,1316;1309,1316
 0
 0
 
 - Zoras Fountain Iceberg Freestanding PoH
-
+1385,1316
 
 0
 0
 
 - Zoras Fountain Bottom Freestanding PoH
-
-
+1385
+1183,1316,1413;1289,1316,1413
 0
 0
 
 - GS Zora's Fountain Tree
-
+1385,1315
 
 0
 0
 
 - GS Zora's Fountain Above the Log
-
+1385,1302
 
 0
 0
 
 - GS Zora's Fountain Hidden Cave
-
-
+1385
+1281,1284,1324
 0
 0
 
 - Zora Shop Item 5
-
+165
 
 0
 0
 
 - Zora Shop Item 6
-
+165
 
 0
 0
 
 - Zora Shop Item 7
-
+165
 
 0
 0
 
 - Zora Shop Item 8
-
+165
 
 0
 0
 
 - Zoras Fountain Fairy Reward
-
+166
 
 0
 0
 
 - GS Lon Lon Ranch Tree
-
+1331,1315
 
 0
 0
 
 - GS Lon Lon Ranch Rain Shed
-
+1331,1315
 
 0
 0
 
 - GS Lon Lon Ranch House Window
-
+1331,1302
 
 0
 0
 
 - GS Lon Lon Ranch Back Wall
-
+1331,1302
 
 0
 0
 
 - Talons Chickens
-
+155,1315,354
 
 0
 0
 
 - LLR Stables Left Cow
-
+153,1332
 
 0
 0
 
 - LLR Stables Right Cow
-
+153,1332
 
 0
 0
 
 - Lon Lon Tower Freestanding PoH
-
+154,1315
 
 0
 0
 
 - LLR Tower Left Cow
-
+154,1332
 
 0
 0
 
 - LLR Tower Right Cow
-
+154,1332
 
 0
 0
 
 - Kokiri Forest Storms Grotto Chest
-
+213
 
 0
 0
 
 - Lost Woods Generic Grotto Chest
-
+219
 
 0
 0
 
 - Deku Theater Skull Mask
-
+220,1408
 
 0
 0
 
 - Deku Theater Mask of Truth
-
+220,1409
 
 0
 0
 
 - LW Grotto Deku Scrub Arrows
-
+221
 
 0
 0
 
 - LW Grotto Deku Scrub Deku Nut Upgrade
-
+221
 
 0
 0
 
 - SFM Grotto Deku Scrub Red Potion
-
+230
 
 0
 0
 
 - SFM Grotto Deku Scrub Green Potion
-
+230
 
 0
 0
 
 - Wolfos Grotto Chest
-
+231
 
 0
 0
 
 - LLR Grotto Deku Scrub Deku Nuts
-
+218
 
 0
 0
 
 - LLR Grotto Deku Scrub Bombs
-
+218
 
 0
 0
 
 - LLR Grotto Deku Scrub Arrows
-
+218
 
 0
 0
 
 - Remote Southern Grotto Chest
-
+208
 
 0
 0
 
 - Field Near Lake Outside Fence Grotto Chest
-
+204
 
 0
 0
 
 - HF Grotto Deku Scrub Piece of Heart
-
+203
 
 0
 0
 
 - GS Hyrule Field Near Gerudo Valley
-
+206
 
 0
 0
 
 - HF Grotto Cow
-
+206
 
 0
 0
 
 - Field West Castle Town Grotto Chest
-
+207
 
 0
 0
 
 - GS Hyrule Field near Kakariko
-
+202
 
 0
 0
 
 - Tektite Grotto Freestanding PoH
-
+205
 
 0
 0
 
 - GS Hyrule Castle Grotto
-
+200
 
 0
 0
 
 - Redead Grotto Chest
-
+211
 
 0
 0
 
 - Kakariko Back Grotto Chest
-
+212
 
 0
 0
 
 - DMT Grotto Cow
-
+226
 
 0
 0
 
 - Mountain Storms Grotto Chest
-
+172
 
 0
 0
 
 - Goron Grotto Deku Scrub Deku Nuts
-
+194
 
 0
 0
 
 - Goron Grotto Deku Scrub Bombs
-
+194
 
 0
 0
 
 - Goron Grotto Deku Scrub Arrows
-
+194
 
 0
 0
 
 - Top of Crater Grotto Chest
-
+174
 
 0
 0
 
 - DMC Grotto Deku Scrub Deku Nuts
-
+173
 
 0
 0
 
 - DMC Grotto Deku Scrub Bombs
-
+173
 
 0
 0
 
 - DMC Grotto Deku Scrub Arrows
-
+173
 
 0
 0
 
 - Zora River Plateau Open Grotto Chest
-
+235
 
 0
 0
 
 - ZR Grotto Deku Scrub Red Potion
-
+236
 
 0
 0
 
 - ZR Grotto Deku Scrub Green Potion
-
+236
 
 0
 0
 
 - LH Grotto Deku Scrub Deku Nuts
-
+215
 
 0
 0
 
 - LH Grotto Deku Scrub Bombs
-
+215
 
 0
 0
 
 - LH Grotto Deku Scrub Arrows
-
+215
 
 0
 0
 
 - Desert Grotto Deku Scrub Red Potion
-
+177
 
 0
 0
 
 - Desert Grotto Deku Scrub Green Potion
-
+177
 
 0
 0
 
 - Valley Grotto Deku Scrub Red Potion
-
+189
 
 0
 0
 
 - Valley Grotto Deku Scrub Green Potion
-
+189
 
 0
 0
@@ -3108,193 +3108,193 @@
 0
 
 - KF Shop Item 1
-
+143
 
 0
 0
 
 - KF Shop Item 2
-
+143
 
 0
 0
 
 - KF Shop Item 3
-
+143
 
 0
 0
 
 - KF Shop Item 4
-
+143
 
 0
 0
 
 - Market Bazaar Item 1
-
+88
 
 0
 0
 
 - Market Bazaar Item 2
-
+88
 
 0
 0
 
 - Market Bazaar Item 3
-
+88
 
 0
 0
 
 - Market Bazaar Item 4
-
+88
 
 0
 0
 
 - Market Potion Shop Item 1
-
+91
 
 0
 0
 
 - Market Potion Shop Item 2
-
+91
 
 0
 0
 
 - Market Potion Shop Item 3
-
+91
 
 0
 0
 
 - Market Potion Shop Item 4
-
+91
 
 0
 0
 
 - Market Bombchu Shop Item 1
-
+94
 
 0
 0
 
 - Market Bombchu Shop Item 2
-
+94
 
 0
 0
 
 - Market Bombchu Shop Item 3
-
+94
 
 0
 0
 
 - Market Bombchu Shop Item 4
-
+94
 
 0
 0
 
 - Kak Bazaar Item 1
-
+134
 
 0
 0
 
 - Kak Bazaar Item 2
-
+134
 
 0
 0
 
 - Kak Bazaar Item 3
-
+134
 
 0
 0
 
 - Kak Bazaar Item 4
-
+134
 
 0
 0
 
 - Kak Potion Shop Item 1
 
-
+135;138
 0
 0
 
 - Kak Potion Shop Item 2
 
-
+135;138
 0
 0
 
 - Kak Potion Shop Item 3
 
-
+135;138
 0
 0
 
 - Kak Potion Shop Item 4
 
-
+135;138
 0
 0
 
 - GC Shop Item 1
-
+116
 
 0
 0
 
 - GC Shop Item 2
-
+116
 
 0
 0
 
 - GC Shop Item 3
-
+116
 
 0
 0
 
 - GC Shop Item 4
-
+116
 
 0
 0
 
 - ZD Shop Item 1
-
+165
 
 0
 0
 
 - ZD Shop Item 2
-
+165
 
 0
 0
 
 - ZD Shop Item 3
-
+165
 
 0
 0
 
 - ZD Shop Item 4
-
+165
 
 0
 0
@@ -6012,55 +6012,55 @@
 0
 
 - Cojiro
-
+131,1316,1001
 
 0
 0
 
 - Odd Mushroom
-
+1316,1365,1002
 
 0
 0
 
 - Odd Potion
-
+139,1003,1316
 
 0
 0
 
 - Poachers Saw
-
+1004,1365,1316
 
 0
 0
 
 - Broken Goron's Sword
-
+1005,1397,1316
 
 0
 0
 
 - Prescription
-
+1006,1374,1316
 
 0
 0
 
 - Eyeball Frog
-
+1007,1412,1385,1316
 
 0
 0
 
 - Eye Drops
-
+148,1008,1316
 
 0
 0
 
 - Claim Check
-
+1374,1316,1009
 
 0
 0
@@ -7789,7 +7789,7 @@
 
 - Can_Use(Fish)
 1296
-
+213;219;208;204;207;212;172;174;235;1382,1315
 0
 0
 
@@ -7891,13 +7891,13 @@
 
 - is_child
 
-989;990,1313
+989;990,1313,1637
 0
 0
 
 - is_adult
 
-990;989,1313
+990;989,1313,1637
 0
 0
 
@@ -8442,7 +8442,7 @@
 0
 
 - Sell Big Poe
-1316,1296
+1316,1296,1369,1309,1329,99
 
 0
 0
@@ -9636,7 +9636,7 @@
 0
 
 - Can Clear Spirit Temple
-
+1605
 
 0
 0
@@ -9796,3 +9796,34 @@
 
 0
 0
+
+- Access Gerudo Valley Crate Ledge
+
+1200,1353,1397,1477;1282,1396;1315,1396;191,1282
+0
+0
+
+- can_use(Adults_Wallet)
+
+388;390;1012;1028
+0
+0
+
+- can_use(Giants_Wallet)
+
+388,390;388,1012;388,1028;390,1012;390,1028;1012,1028
+0
+0
+
+- can_use(Tycoon_Wallet)
+
+388,390,1012;388,390,1028;388,1012,1028;390,1012,1028
+0
+0
+
+- Auto Age Toggle
+
+
+0
+0
+;Disable this trick to manually switch between ages by changing the "Starting age" check between child and adult. This will make logic and pathfinding more accurate but will make things like the playthough generator not function (Not like it works that well with OOTR anyway). NOTE: You will need to remove the line in the spoiler log that automatically sets the starting age.

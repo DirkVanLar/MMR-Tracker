@@ -312,6 +312,7 @@ namespace MMR_Tracker.Forms
         public static void ManageNetData(LogicObjects.MMRTpacket Data)
         {
             var log = LogicObjects.MainTrackerInstance.Logic;
+            var Instance = LogicObjects.MainTrackerInstance;
             var IPInSendingList = IPS.FindIndex(f => f.IP.ToString() == Data.IPData.IP && f.PORT == Data.IPData.PORT) > -1;
 
             if (!IPInSendingList)
@@ -332,6 +333,11 @@ namespace MMR_Tracker.Forms
 
             if (Data.RequestingUpdate == 1) { return; }
 
+            var Templogic = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic); //We want to save logic at this point but don't want to comit to a full save state
+            bool ChangesMade = false;
+
+            ListBox ItemsToCheck = new ListBox();
+
             foreach (var i in Data.LogicData)
             {
                 var SyncedItemInMultiworld = (LogicObjects.MainTrackerInstance.Options.MultiWorldOnlineCombo && log.ElementAt(i.ID) != null && Data.PlayerID == i.PI && (log[i.ID].SpoilerRandom < -1 || log[i.ID].SpoilerRandom == i.RI));
@@ -341,18 +347,34 @@ namespace MMR_Tracker.Forms
 
                 if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld && !SyncedItemInMultiworld)
                 {
-                    if (i.PI != LogicObjects.MainTrackerInstance.Options.MyPlayerID || i.Ch == false || i.RI < -1 || i.RI >= log.Count() || (i.RI > -1 && log[i.RI].IsEntrance())) { continue; }
+                    if (i.PI != LogicObjects.MainTrackerInstance.Options.MyPlayerID || i.Ch == false || !Instance.ItemInRange(i.RI) || log[i.RI].IsEntrance()) { continue; }
                     var entry = new LogicObjects.LogicEntry { ID = -1, Checked = false, RandomizedItem = i.RI, SpoilerRandom = i.RI, Options = 0};
-                    LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance, Data.PlayerID);
+                    ItemsToCheck.Items.Add(entry);
+                    ChangesMade = true;
                 }
                 else if (log.ElementAt(i.ID) != null && !log[i.ID].Checked)
                 {
                     var entry = log[i.ID];
-                    entry.RandomizedItem = entry.HasRandomItem(false) ? entry.RandomizedItem : (entry.SpoilerRandom > -2 ? entry.SpoilerRandom : i.RI);
-                    if (LogicObjects.MainTrackerInstance.Options.AllowCheckingItems && i.Ch) { LogicEditing.CheckObject(entry, LogicObjects.MainTrackerInstance); }
+                    if (!entry.HasRandomItem(false))
+                    {
+                        entry.RandomizedItem = (entry.SpoilerRandom > -2 ? entry.SpoilerRandom : i.RI);
+                        ChangesMade = true;
+                    }
+                    if (LogicObjects.MainTrackerInstance.Options.AllowCheckingItems && i.Ch) 
+                    {
+                        ItemsToCheck.Items.Add(entry);
+                        ChangesMade = true;
+                    }
                 }
             }
-            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+
+            if (!ChangesMade) { return; }
+
+            for (int i = 0; i < ItemsToCheck.Items.Count; i++)
+            {
+                ItemsToCheck.SetSelected(i, true);
+            }
+            MainInterface.CurrentProgram.CheckItemSelected(ItemsToCheck, true, 0, false, Data.PlayerID);
             NetDataProcessed(null, null);
         }
 
@@ -456,10 +478,10 @@ namespace MMR_Tracker.Forms
                 this.Height = this.Height - 25;
             }
 
+            UpdateFormItems();
+
             if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { LogicObjects.MainTrackerInstance.Options.MyPlayerID = (int)nudPlayerID.Value; }
             else { LogicObjects.MainTrackerInstance.Options.MyPlayerID = -1; }
-
-            UpdateFormItems();
 
             NetDataProcessed(MultiworldToggle, null);
         }
@@ -481,7 +503,13 @@ namespace MMR_Tracker.Forms
             copyNetDataToClipboardToolStripMenuItem.Visible = Debugging.ISDebugging;
             multiworldToolStripMenuItem.Checked = LogicObjects.MainTrackerInstance.Options.IsMultiWorld;
             nudPlayerID.Enabled = LogicObjects.MainTrackerInstance.Options.IsMultiWorld && !chkListenForData.Checked && !chkSendData.Checked;
-            if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { nudPlayerID.Value = (LogicObjects.MainTrackerInstance.Options.MyPlayerID < 0) ? 0 : LogicObjects.MainTrackerInstance.Options.MyPlayerID; }
+
+
+
+            if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) 
+            { 
+                nudPlayerID.Value = (LogicObjects.MainTrackerInstance.Options.MyPlayerID < 0) ? 0 : LogicObjects.MainTrackerInstance.Options.MyPlayerID; 
+            }
 
             Updating = false;
         }

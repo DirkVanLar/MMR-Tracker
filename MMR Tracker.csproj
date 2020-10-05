@@ -143,6 +143,12 @@
     <Compile Include="Forms\SpoilerLogConverter.Designer.cs">
       <DependentUpon>SpoilerLogConverter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Sub Forms\CheckItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Sub Forms\CheckItemForm.Designer.cs">
+      <DependentUpon>CheckItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\RandomizeOptions.cs">
       <SubType>Form</SubType>
@@ -188,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpoilerLogConverter.resx">
       <DependentUpon>SpoilerLogConverter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Sub Forms\CheckItemForm.resx">
+      <DependentUpon>CheckItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

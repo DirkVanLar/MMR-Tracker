@@ -14,6 +14,7 @@ using MMR_Tracker.Class_Files;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Threading;
+using MMR_Tracker.Forms.Sub_Forms;
 
 namespace MMR_Tracker_V2
 {
@@ -858,6 +859,8 @@ namespace MMR_Tracker_V2
             Mark.Click += (sender, e) => { RunMenuItems(2, LBValidLocations); };
             ToolStripItem Star = LocationContextMenu.Items.Add("Star This Item");
             Star.Click += (sender, e) => { StarItemSelected(LBValidLocations); };
+            ToolStripItem RemoveSpoiler = LocationContextMenu.Items.Add("Remove Spoiler Data");
+            RemoveSpoiler.Click += (sender, e) => { RunMenuItems(7, LBValidLocations); };
             LBValidLocations.ContextMenuStrip = LocationContextMenu;
 
             //LBValidEntrances List Box
@@ -880,6 +883,8 @@ namespace MMR_Tracker_V2
             EMark.Click += (sender, e) => { RunMenuItems(2, LBValidEntrances); };
             ToolStripItem EStar = EntranceContextMenu.Items.Add("Star This Item");
             EStar.Click += (sender, e) => { StarItemSelected(LBValidEntrances); };
+            ToolStripItem ERemoveSpoiler = EntranceContextMenu.Items.Add("Remove Spoiler Data");
+            ERemoveSpoiler.Click += (sender, e) => { RunMenuItems(7, LBValidEntrances); };
             LBValidEntrances.ContextMenuStrip = EntranceContextMenu;
 
             //LBCheckedLocations List Box
@@ -902,6 +907,8 @@ namespace MMR_Tracker_V2
             CMCheck.Click += (sender, e) => { RunMenuItems(6, LBCheckedLocations); };
             ToolStripItem CStar = CheckContextMenu.Items.Add("Star This Item");
             CStar.Click += (sender, e) => { StarItemSelected(LBCheckedLocations); };
+            ToolStripItem CReCheck = CheckContextMenu.Items.Add("Change Checked Item");
+            CReCheck.Click += (sender, e) => { RunMenuItems(8, LBCheckedLocations); };
             LBCheckedLocations.ContextMenuStrip = CheckContextMenu;
 
             //Set Item Button
@@ -935,11 +942,15 @@ namespace MMR_Tracker_V2
 
         private void ContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var LB = sender as ListBox; 
-            var index = LB.IndexFromPoint(LB.PointToClient(Cursor.Position));
-            if (index < 0) { e.Cancel = true; return; }
-            if (!(LB.Items[index] is LogicObjects.ListItem)) { e.Cancel = true; }
-            if ((LB.Items[index] as LogicObjects.ListItem).LocationEntry.ID < 0) { e.Cancel = true; }
+            try
+            {
+                var LB = sender as ListBox;
+                var index = LB.IndexFromPoint(LB.PointToClient(Cursor.Position));
+                if (index < 0) { e.Cancel = true; return; }
+                if (!(LB.Items[index] is LogicObjects.ListItem)) { e.Cancel = true; }
+                if ((LB.Items[index] as LogicObjects.ListItem).LocationEntry.ID < 0) { e.Cancel = true; }
+            }
+            catch { e.Cancel = true; }
         }
 
         private void RunMenuItems(int Function, ListBox ActiveListBox)
@@ -994,6 +1005,23 @@ namespace MMR_Tracker_V2
             if (Function == 6)
             {
                 CheckItemSelected(ActiveListBox, true, 0, true) ;
+            }
+            if (Function == 7)
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to remove this items spoiler data? The only way to recover spoiler data is reimporting the spoiler log.", "Remove Spoiler Data?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes) { ActiveItem.SpoilerRandom = -2; }
+            }
+            if (Function == 8)
+            {
+                Tools.SaveState(LogicObjects.MainTrackerInstance, LogicObjects.MainTrackerInstance.Logic);
+                for(var i = 0; i<2; i++)
+                {
+                    ListBox ItemList = new ListBox();
+                    ItemList.Items.Add(ActiveItem);
+                    ItemList.SelectedItems.Add(ItemList.Items[0]);
+                    CheckItemSelected(ItemList, true);
+                }
+
             }
         }
         #endregion Context Menu
@@ -1292,7 +1320,7 @@ namespace MMR_Tracker_V2
             senderComboBox.DropDownWidth = width;
         }
 
-        public void CheckItemSelected(ListBox LB, bool FullCheck, int SetFunction = 0, bool UncheckAndMark = false)
+        public void CheckItemSelected(ListBox LB, bool FullCheck, int SetFunction = 0, bool UncheckAndMark = false, int ItemsCameFromPlayer = -2)
         {
             //Set Function: 0 = none, 1 = Always Set, 2 = Always Unset
             if (TXTLocSearch.Text.ToLower() == "enabledev" && LB == LBValidLocations && !FullCheck)
@@ -1303,56 +1331,26 @@ namespace MMR_Tracker_V2
                 return;
             }
             var Templogic = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic); //We want to save logic at this point but don't want to comit to a full save state
-            bool ChangesMade = false;
-            foreach (var lbi in LB.SelectedItems)
+
+            CheckItemForm CIF = new CheckItemForm
             {
-                var i = (lbi is LogicObjects.ListItem) ? (lbi as LogicObjects.ListItem).LocationEntry : lbi;
-                if ((i is LogicObjects.LogicEntry))
-                {
-                    if (FullCheck) 
-                    { 
-                        if ((LB == LBValidLocations || LB == LBValidEntrances) && (i as LogicObjects.LogicEntry).Checked) { continue; }
-                        if (LB == LBCheckedLocations && !(i as LogicObjects.LogicEntry).Checked) { continue; }
-                        int RandomizedItem = (i as LogicObjects.LogicEntry).RandomizedItem;
-                        if (!LogicEditing.CheckObject(i as LogicObjects.LogicEntry, LogicObjects.MainTrackerInstance)) { continue; }
-                        if (UncheckAndMark && 
-                            (i as LogicObjects.LogicEntry).RandomizedItem < 0 && 
-                            !(i as LogicObjects.LogicEntry).Checked && 
-                            (i as LogicObjects.LogicEntry).ID > -1)
-                        {
-                            if ((i as LogicObjects.LogicEntry).SpoilerRandom < 0)
-                            {
-                                (i as LogicObjects.LogicEntry).RandomizedItem = RandomizedItem;
-                            }
-                            else
-                            {
-                                LogicEditing.MarkObject(i as LogicObjects.LogicEntry);
-                            }
-                        }
-                    }
-                    else 
-                    { 
-                        if (SetFunction != 0)
-                        {
-                            bool set = (SetFunction == 1);
-                            if ((i as LogicObjects.LogicEntry).RandomizedItem > -1 && set) { continue; }
-                            if ((i as LogicObjects.LogicEntry).RandomizedItem < 0 && !set) { continue; }
-                        }
-                        if (!LogicEditing.MarkObject(i as LogicObjects.LogicEntry)) { continue; }
-                    }
-                    ChangesMade = true;
-                }
-            }
-            if (!ChangesMade) { return; }
+                Instance = LogicObjects.MainTrackerInstance,
+                LB = LB,
+                FullCheck = FullCheck,
+                SetFunction = SetFunction,
+                KeepChecked = UncheckAndMark,
+                FromNetPlayer = ItemsCameFromPlayer
+            };
+            CIF.BeginCheckItem();
+
+            if (!CIF.ItemStateChanged && ItemsCameFromPlayer == -2) { return; }
             Tools.SaveState(LogicObjects.MainTrackerInstance, Templogic); //Now that we have successfully checked/Marked an object we can commit to a full save state
             Tools.setUnsavedChanges(LogicObjects.MainTrackerInstance);
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
 
-            FireEvents(LB, null, false);
+            if (ItemsCameFromPlayer == -2) { FireEvents(LB, null, false); }
 
-            int TopIndex = LB.TopIndex;
             PrintToListBox();
-            LB.TopIndex = TopIndex;
         }
 
         public void StarItemSelected(ListBox LB, int SetFunction = 0)

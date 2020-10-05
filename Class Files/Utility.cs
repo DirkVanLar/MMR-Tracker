@@ -97,51 +97,51 @@ namespace MMR_Tracker_V2
                         subterm = subterm.Substring(1);
                     }
                     if (subterm == "") { continue; }
-                    if (subterm[0] == '#')
+                    if (subterm[0] == '#')//Search By Location Area
                     {
                         if (subterm.Substring(1) == "" || logic.LocationArea == null) { continue; }
                         if (logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && logic.LocationArea.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
-                    else if (subterm[0] == '@')
+                    else if (subterm[0] == '@')//Search By Item Type
                     {
                         if (subterm.Substring(1) == "" || logic.ItemSubType == null) { continue; }
                         if ((logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
                         if (Perfect && logic.ItemSubType.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
-                    else if (subterm[0] == '~')
+                    else if (subterm[0] == '~')//Search By Dictionary Name
                     {
                         if (subterm.Substring(1) == "" || logic.DictionaryName == null) { continue; }
                         if ((logic.DictionaryName.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
                         if (Perfect && logic.DictionaryName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
-                    else if (subterm[0] == '$')
+                    else if (subterm[0] == '$')//Search By Item Name
                     {
                         if (subterm.Substring(1) == "" || logic.ItemName == null) { continue; }
                         if (logic.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && logic.ItemName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
-                    else if (subterm[0] == '%')
+                    else if (subterm[0] == '%')//Search By Location Name
                     {
                         if (subterm.Substring(1) == "" || logic.LocationName == null) { continue; }
                         if (logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && logic.LocationName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
-                    else if (subterm[0] == '_')
+                    else if (subterm[0] == '_')//Search By Randomized Item
                     {
                         if (subterm.Substring(1) == "") { continue; }
                         if (RandomizedItem == null) { valid = false; }
                         else if (RandomizedItem.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && logic.ItemName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
-                    else if (subterm[0] == '*')
+                    else if (subterm[0] == '*')//Search Starred Items
                     {
                         if (subterm.Substring(1) == "") { continue; }
                         if (NameToCompare.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && NameToCompare.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                         if (!logic.Starred) { valid = false; }
                     }
-                    else
+                    else //Search By "NameToCompare" variable
                     {
                         if (!NameToCompare.ToLower().Contains(subterm.ToLower()) == !Inverse) { valid = false; }
                         if (Perfect && NameToCompare.ToLower() != subterm.ToLower()) { valid = false; }
