@@ -175,11 +175,11 @@ namespace MMR_Tracker.Class_Files
 
 
                     //var location = instance.Logic.Find(x => x.SpoilerLocation == entry.LocationName || x.SpoilerLocation == GetAltSpoilerName(entry.LocationName));
-                    var location = instance.Logic.Find(x => x.SpoilerLocation.Select(j => j.Trim()).Contains(entry.LocationName.Trim()));
+                    var location = instance.Logic.Find(x => x.SpoilerLocation.Select(j => j ?? "".Trim()).Contains(entry.LocationName.Trim()));
                     //if (location == null) { Console.WriteLine($"Unable to find logic entry for {entry.LocationName}"); }
                     //else { Console.WriteLine($"Entry {location.ID} is {entry.LocationName}"); }
 
-                    var Item = instance.Logic.Find(x => x.SpoilerItem.Select(j => j.Trim()).Contains(entry.ItemName.Trim()) && !usedId.Contains(x.ID));
+                    var Item = instance.Logic.Find(x => x.SpoilerItem.Select(j => j ?? "".Trim()).Contains(entry.ItemName.Trim()) && !usedId.Contains(x.ID));
                     //if (Item == null) { Console.WriteLine($"Unable to find logic entry for {entry.ItemName}"); }
                     //else {Console.WriteLine($"Entry {Item.ID} is {entry.ItemName}"); }
 
@@ -341,23 +341,12 @@ namespace MMR_Tracker.Class_Files
             LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
             //Try to load the save file with the new system. If that fails try wth the old system. If that fails restore the current instance and show an error.
             try { LogicObjects.MainTrackerInstance = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file)); }
-            catch 
+            catch
             {
-                try
+                bool OldSave = TryLoadOldSaveFile(file);
+                if (!OldSave)
                 {
-                    string[] options = File.ReadAllLines(file);
-                    LogicObjects.MainTrackerInstance.Logic = JsonConvert.DeserializeObject<List<LogicObjects.LogicEntry>>(options[0]);
-                    if (options.Length > 1) { LogicObjects.MainTrackerInstance.LogicVersion = Int32.Parse(options[1].Replace("version:", "")); }
-                    else
-                    {
-                        MessageBox.Show("Save File Invalid!");
-                        LogicObjects.MainTrackerInstance = backup;
-                        return;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("Save File Invalid!");
+                    MessageBox.Show($"Save File Invalid!");
                     LogicObjects.MainTrackerInstance = backup;
                     return;
                 }
@@ -370,6 +359,37 @@ namespace MMR_Tracker.Class_Files
             }
             Tools.SaveFilePath = file;
             return;
+        }
+        public static bool TryLoadOldSaveFile(string file)
+        {
+            try
+            {
+                LogicObjects.MainTrackerInstance = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file), new JsonSerializerSettings
+                {
+                    Error = HandleDeserializationError
+                });
+                void HandleDeserializationError(object sender, Newtonsoft.Json.Serialization.ErrorEventArgs errorArgs)
+                {
+                    errorArgs.ErrorContext.Handled = true;
+                }
+                foreach (var i in LogicObjects.MainTrackerInstance.Logic)
+                {
+                    var dicentry = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == i.DictionaryName);
+                    if (dicentry == null) { continue; }
+                    i.SpoilerLocation = new List<string> { dicentry.SpoilerLocation };
+                    i.SpoilerItem = new List<string> { dicentry.SpoilerItem };
+                }
+                return true;
+            } catch { }
+            try
+            {
+                string[] options = File.ReadAllLines(file);
+                LogicObjects.MainTrackerInstance.Logic = JsonConvert.DeserializeObject<List<LogicObjects.LogicEntry>>(options[0]);
+                if (options.Length > 1) { LogicObjects.MainTrackerInstance.LogicVersion = Int32.Parse(options[1].Replace("version:", "")); return true; }
+            }
+            catch
+            { }
+            return false;
         }
         public static void SaveState(LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicEntry> Logic = null )
         {

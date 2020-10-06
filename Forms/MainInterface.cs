@@ -1483,12 +1483,19 @@ namespace MMR_Tracker_V2
         {
             if (args.Length > 1)
             {
-                Tools.ParseLogicFile(args[1]);
-                FormatMenuItems();
-                ResizeObject();
-                PrintToListBox();
-                FireEvents(sender, e);
-                Tools.UpdateTrackerTitle();
+                if (args[1].EndsWith(".MMRTSAV"))
+                {
+                    LoadMMRTSAVfile(sender, e, args[1]);
+                }
+                else
+                {
+                    Tools.ParseLogicFile(args[1]);
+                    FormatMenuItems();
+                    ResizeObject();
+                    PrintToListBox();
+                    FireEvents(sender, e);
+                    Tools.UpdateTrackerTitle();
+                }
             }
         }
 
