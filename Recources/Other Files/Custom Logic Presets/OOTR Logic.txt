@@ -7764,8 +7764,8 @@
 0
 
 - can_use(Sticks)
-
-
+1315
+1302,1362;1305,1362;1316,1362;1315,1375;1382,1315;1302,1506;1305,1506;1316,1506;1302,1507;1305,1507;1316,1507;1302,1520;1305,1520;1316,1520;1302,1472;1305,1472;1316,1472;1302,1456;1305,1456;1316,1456;1302,1459;1305,1459;1316,1459;1550,1315
 0
 0
 
@@ -9827,3 +9827,8 @@
 0
 0
 ;Disable this trick to manually switch between ages by changing the "Starting age" check between child and adult. This will make logic and pathfinding more accurate but will make things like the playthough generator not function (Not like it works that well with OOTR anyway). NOTE: You will need to remove the line in the spoiler log that automatically sets the starting age.
+- Bottle with Poe
+
+
+0
+0

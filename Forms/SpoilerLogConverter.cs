@@ -129,21 +129,30 @@ namespace MMR_Tracker.Forms
             //Get Settings
             bool GanonKeyOnLACS = false;
             bool StartAsChild = true;
-            int Forest = 0;
-            int Kakariko = 0;
+            int Forest = 0; // 0 = Open, 1 = Closed Deku, 2 = Default
+            int Kakariko = 0; // 0 = Open, 1 = Letter opens, 2 = Default
             bool OpenDOT = true;
-            int Zora = 0;
-            int Gerudo = 0;
-            int bridge = 0;
+            int Zora = 0; // 0 = open, 1 = Open as Adult, 2 = Default
+            int Gerudo = 0; // 0 = Default, 1 = One Carpenter, 2 = open
+            int bridge = 0; // 0 = open, 1 = Vanilla, 2 = stone, 3 = Meddalion, 4 = All, 5 = Skulls
             bool Chu = false;
             bool SunSong = false;
             bool mask = false;
             bool Scarecrow = false;
             bool CoupledEntrances = true;
+            int DamageMode = 0; // 0 = Other, 1 = 4x, 2 = OHKO
+            int LACSTrigger = 0; // 0 = Vanilla, 1 = stone, 2 = Meddalion, 3 = All,
             foreach (dynamic item in array.settings)
             {
                 string line = item.ToString();
-                if (line.Contains("shuffle_ganon_bosskey") && line.Contains("lacs")) { GanonKeyOnLACS = true; }
+                if (line.Contains("shuffle_ganon_bosskey")) 
+                {
+                    if (line.Contains("lacs")) { GanonKeyOnLACS = true; }
+
+                    if (line.Contains("lacs_stones")) { LACSTrigger = 1; }
+                    else if(line.Contains("lacs_medallions")) { LACSTrigger = 2; }
+                    else if(line.Contains("lacs_dungeons")) { LACSTrigger = 3; }
+                }
                 if (line.Contains("starting_age") && line.Contains("adult")) { StartAsChild = false; }
                 if (line.Contains("open_door_of_time") && line.Contains("closed")) { OpenDOT = false; }
                 if (line.Contains("bombchus_in_logic") && line.Contains("true")) { Chu = true; }
@@ -178,6 +187,11 @@ namespace MMR_Tracker.Forms
                     else if (line.Contains("medallion")) { bridge = 3; }
                     else if (line.Contains("dungeon")) { bridge = 4; }
                     else if (line.Contains("skull")) { bridge = 5; }
+                }
+                if (line.Contains("damage_multiplier"))
+                {
+                    if (line.Contains("quadruple")) { DamageMode = 1; }
+                    else if (line.Contains("ohko")) { DamageMode = 2; }
                 }
             }
 
@@ -546,11 +560,44 @@ namespace MMR_Tracker.Forms
                                 break;
                         }
                     }
+                    else if (i.DictionaryName == "SettingLACSTrigger")
+                    {
+                        switch (LACSTrigger)
+                        {
+                            case 0:
+                                FileContent.Add($"SettingLACSTrigger->SettingLACSTriggerVanilla");
+                                break;
+                            case 1:
+                                FileContent.Add($"SettingLACSTrigger->SettingLACSTriggerStones");
+                                break;
+                            case 2:
+                                FileContent.Add($"SettingLACSTrigger->SettingLACSTriggerMedallions");
+                                break;
+                            case 3:
+                                FileContent.Add($"SettingLACSTrigger->SettingLACSTriggerDungeons");
+                                break;
+                        }
+                    }
+                    else if (i.DictionaryName == "SettingDamageMode")
+                    {
+                        switch (DamageMode)
+                        {
+                            case 0:
+                                FileContent.Add($"SettingDamageMode->SettingDamageModeOther");
+                                break;
+                            case 1:
+                                FileContent.Add($"SettingDamageMode->SettingDamageMode4X");
+                                break;
+                            case 2:
+                                FileContent.Add($"SettingDamageMode->SettingDamageModeOHKO");
+                                break;
+                        }
+                    }
+                    #endregion ApplySettings
                     else
                     {
                         FileContent.Add($"{i.SpoilerLocation}->{i.SpoilerItem}");
                     }
-                    #endregion ApplySettings
                 }
             }
 

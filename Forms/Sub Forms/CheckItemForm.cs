@@ -18,6 +18,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
         public List<LogicObjects.LogicEntry> AutoSelect = new List<LogicObjects.LogicEntry>();
         public LogicObjects.TrackerInstance Instance = new LogicObjects.TrackerInstance();
         public ListBox LB = new ListBox();
+        public Dictionary<int, bool> ActionDic = new Dictionary<int, bool>();
         public int FromNetPlayer = -1;
         public int SetFunction = 0; //Set Function: 0 = none, 1 = Always Set, 2 = Always Unset
         public bool ItemStateChanged = false;
@@ -29,14 +30,6 @@ namespace MMR_Tracker.Forms.Sub_Forms
             InitializeComponent();
         }
 
-        private void CheckItemForm_Load(object sender, EventArgs e)
-        {
-            if (!Instance.Options.IsMultiWorld) { btnJunk.Width = LBItemSelect.Width; numericUpDown1.Visible = false; label1.Visible = false; }
-            else { numericUpDown1.Value = Instance.Options.MyPlayerID; }
-            LBItemSelect.Sorted = chkSort.Checked;
-            NextManualItem();
-        }
-
         public void BeginCheckItem()
         {
             List<LogicObjects.LogicEntry> ToCheck = new List<LogicObjects.LogicEntry>();
@@ -45,12 +38,12 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 var i = (lbi is LogicObjects.ListItem) ? (lbi as LogicObjects.ListItem).LocationEntry : lbi;
                 if (!(i is LogicObjects.LogicEntry)) { continue; }
                 var Item = i as LogicObjects.LogicEntry;
-                if (SetFunction != 0)
+                if (SetFunction != 0 && !FullCheck)
                 {
                     if (SetFunction == 1 && Item.HasRandomItem(false)) { continue; }
                     if (SetFunction == 2 && !Item.HasRandomItem(false)) { continue; }
                 }
-                Console.WriteLine($"To Check: {Item.DictionaryName}");
+                if (!ActionDic.ContainsKey(Item.ID)) { ActionDic.Add(Item.ID, Item.Checked); }
                 ToCheck.Add(Item);
             }
             SeperateLists(ToCheck);
@@ -62,15 +55,19 @@ namespace MMR_Tracker.Forms.Sub_Forms
             }
             if (ManualSelect.Count() > 0)
             {
-                HandleManualSelectItems();
+                this.ShowDialog();
             }
         }
+
+        //Automatic Checks
 
         public bool CheckAutoSelectItems()
         {
             bool ItemStateChanged = false;
             foreach (var CheckedObject in AutoSelect)
             {
+                //Check if the items checked status has been changed, most likely by CheckEntrancePair.
+                if (ActionDic[CheckedObject.ID] != CheckedObject.Checked && CheckedObject.IsEntrance()) { continue; } 
                 if (CheckedObject.ID < -1) { continue; }
                 if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
                 {
@@ -136,10 +133,14 @@ namespace MMR_Tracker.Forms.Sub_Forms
             return ItemStateChanged;
         }
 
+        //Manual Checks
 
-        public void HandleManualSelectItems()
+        private void CheckItemForm_Load(object sender, EventArgs e)
         {
-            this.ShowDialog();
+            if (!Instance.Options.IsMultiWorld) { btnJunk.Width = LBItemSelect.Width; numericUpDown1.Visible = false; label1.Visible = false; }
+            else { numericUpDown1.Value = Instance.Options.MyPlayerID; }
+            LBItemSelect.Sorted = chkSort.Checked;
+            NextManualItem();
         }
 
         public void NextManualItem()
@@ -149,8 +150,16 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 this.Close();
                 return;
             }
+            //Check if the items checked status has been changed, most likely by CheckEntrancePair.
+            if (ActionDic[ManualSelect[0].ID] != ManualSelect[0].Checked && ManualSelect[0].IsEntrance()) 
+            {
+                ManualSelect.RemoveAt(0);
+                NextManualItem();
+                return;
+            }
             this.Text = $"Select item found at {ManualSelect[0].LocationName ?? ManualSelect[0].DictionaryName}";
             TXTSearch.Clear();
+            TXTSearch.Focus();
             WriteItems(ManualSelect[0]);
         }
 
@@ -179,20 +188,22 @@ namespace MMR_Tracker.Forms.Sub_Forms
 
         private void HandleSelectedItem(object sender, EventArgs e)
         {
-            if (FullCheck) { CheckManualItem(sender, e); }
-            else { MarkManualItem(sender, e); }
+            bool ChangesMade;
+            if (FullCheck) { ChangesMade = CheckManualItem(sender, e); }
+            else { ChangesMade = MarkManualItem(sender, e); }
+            if (ChangesMade) { ItemStateChanged = true; }
+
             ManualSelect.RemoveAt(0);
-            ItemStateChanged = true;
             NextManualItem();
         }
 
-        private void CheckManualItem(object sender, EventArgs e)
+        private bool CheckManualItem(object sender, EventArgs e)
         {
             var CheckedObject = ManualSelect[0];
             LogicObjects.LogicEntry SelectedItem = new LogicObjects.LogicEntry { ID = -1 };
             if (sender == LBItemSelect)
             {
-                if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return; }
+                if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return false; }
                 SelectedItem = LBItemSelect.SelectedItem as LogicObjects.LogicEntry;
             }
 
@@ -201,10 +212,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             if (SelectedItem.ID < 0)
             {
                 CheckedObject.RandomizedItem = -1;
-                ManualSelect.RemoveAt(0);
-                ItemStateChanged = true;
-                NextManualItem();
-                return;
+                return true;
             }
             CheckedObject.RandomizedItem = SelectedItem.ID;
             if (!LogicObjects.MainTrackerInstance.Options.IsMultiWorld || CheckedObject.ItemBelongsToMe())
@@ -212,20 +220,23 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 Instance.Logic[SelectedItem.ID].Aquired = true;
             }
             LogicEditing.CheckEntrancePair(CheckedObject, Instance, true);
+            return true;
         }
 
-        private void MarkManualItem(object sender, EventArgs e)
+        private bool MarkManualItem(object sender, EventArgs e)
         {
             var CheckedObject = ManualSelect[0];
             LogicObjects.LogicEntry SelectedItem = new LogicObjects.LogicEntry { ID = -1 };
             if (sender == LBItemSelect)
             {
-                if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return; }
+                if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return false; }
                 SelectedItem = LBItemSelect.SelectedItem as LogicObjects.LogicEntry;
             }
             CheckedObject.RandomizedItem = SelectedItem.ID;
+            return true;
         }
 
+        //Functions
 
         public void SeperateLists(List<LogicObjects.LogicEntry> ToCheck)
         {
