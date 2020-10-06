@@ -33,7 +33,7 @@ namespace MMR_Tracker_V2
             //Logic Options
             public bool StrictLogicHandeling { get; set; } = false;
             public bool RemoveObtainedItemsfromList { get; set; } = true;
-            public bool ProgressiveItems { get; set; } = true;
+            public bool ProgressiveItems { get; set; } = false;
             //Entrance rando Options
             public bool EntranceRadnoEnabled { get; set; } = false;
             public bool OverRideAutoEntranceRandoEnable { get; set; } = false;
@@ -137,6 +137,8 @@ namespace MMR_Tracker_V2
             public bool AddSongs { get; set; } = false;
             public bool ProgressiveUpgrades { get; set; } = false;
             public bool DecoupleEntrances { get; set; } = false;
+            public string LogicMode { get; set; } = "Casual";
+            public string UserLogicFileName { get; set; } = "";
             public string CustomItemListString { get; set; } = "";
             public string RandomizedEntrancesString { get; set; } = "";
             public string CustomJunkLocationsString { get; set; } = "";
