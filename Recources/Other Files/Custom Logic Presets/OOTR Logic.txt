@@ -282,7 +282,7 @@
 0
 
 - Lake Hylia => Zoras Domain
-1363
+1363,1315,1306
 
 0
 0
@@ -301,7 +301,7 @@
 
 - Lost Woods => Zora River
 1365
-
+1306;1413
 0
 0
 
@@ -906,8 +906,8 @@
 0
 
 - Links House => Kokiri Forest
-144
 
+144;2
 0
 0
 
@@ -3330,1231 +3330,1231 @@
 0
 
 - Deku Tree Lobby Chest
-
+1456
 
 0
 0
 
 - Deku Tree Compass Chest
-
+1456
 
 0
 0
 
 - Deku Tree Compass Room Side Chest
-
+1456
 
 0
 0
 
 - Deku Tree Basement Chest
-
+1456
 
 0
 0
 
 - GS Deku Tree Compass Room
-
+1456
 
 0
 0
 
 - GS Deku Tree Basement Vines
-
+1456
 
 0
 0
 
 - GS Deku Tree Basement Gate
-
+1456
 
 0
 0
 
 - GS Deku Tree Basement Back Room
-
+1456
 
 0
 0
 
 - Deku Tree Slingshot Chest
-
+1456
 
 0
 0
 
 - Deku Tree Slingshot Room Side Chest
-
+1456
 
 0
 0
 
 - Queen Gohma Heart
-
+1456
 
 0
 0
 
 - Dodongos Cavern Map Chest
-
+1466
 
 0
 0
 
 - Dodongos Cavern Compass Chest
-
+1466
 
 0
 0
 
 - GS Dodongo's Cavern East Side Room
-
+1466
 
 0
 0
 
 - GS Dodongo's Cavern Scarecrow
-
+1466
 
 0
 0
 
 - DC Deku Scrub Deku Sticks
-
+1466
 
 0
 0
 
 - DC Deku Scrub Deku Shield
-
+1466
 
 0
 0
 
 - Dodongos Cavern Bomb Flower Platform
-
+1466
 
 0
 0
 
 - GS Dodongo's Cavern Vines Above Stairs
-
+1466
 
 0
 0
 
 - DC Deku Scrub Deku Seeds
-
+1466
 
 0
 0
 
 - DC Deku Scrub Deku Nuts
-
+1466
 
 0
 0
 
 - Dodongos Cavern Bomb Bag Chest
-
+1466
 
 0
 0
 
 - Dodongos Cavern End of Bridge Chest
-
+1466
 
 0
 0
 
 - GS Dodongo's Cavern Alcove Above Stairs
-
+1466
 
 0
 0
 
 - Chest Above King Dodongo
-
+1466
 
 0
 0
 
 - King Dodongo Heart
-
+1466
 
 0
 0
 
 - GS Dodongo's Cavern Back Room
-
+1466
 
 0
 0
 
 - Boomerang Chest
-
+1495
 
 0
 0
 
 - GS Jabu Jabu Water Switch Room
-
+1495
 
 0
 0
 
 - GS Jabu Jabu Lobby Basement Lower
-
+1495
 
 0
 0
 
 - GS Jabu Jabu Lobby Basement Upper
-
+1495
 
 0
 0
 
 - Jabu Deku Scrub Deku Nuts
-
+1495
 
 0
 0
 
 - Jabu Jabus Belly Map Chest
-
+1495
 
 0
 0
 
 - Jabu Jabus Belly Compass Chest
-
+1495
 
 0
 0
 
 - Barinade Heart
-
+1495
 
 0
 0
 
 - GS Jabu Jabu Near Boss
-
+1495
 
 0
 0
 
 - Forest Temple First Chest
-
+1505
 
 0
 0
 
 - Forest Temple Chest Behind Lobby
-
+1505
 
 0
 0
 
 - GS Forest Temple First Room
-
+1505
 
 0
 0
 
 - GS Forest Temple Lobby
-
+1505
 
 0
 0
 
 - GS Forest Temple Outdoor West
-
+1505
 
 0
 0
 
 - Forest Temple Outside Hookshot Chest
-
+1505
 
 0
 0
 
 - GS Forest Temple Outdoor East
-
+1505
 
 0
 0
 
 - Forest Temple Well Chest
-
+1505
 
 0
 0
 
 - Forest Temple Map Chest
-
+1505
 
 0
 0
 
 - Forest Temple Falling Room Chest
-
+1505
 
 0
 0
 
 - Forest Temple Block Push Chest
-
+1505
 
 0
 0
 
 - Forest Temple Boss Key Chest
-
+1505
 
 0
 0
 
 - Forest Temple Floormaster Chest
-
+1505
 
 0
 0
 
 - Forest Temple Bow Chest
-
+1505
 
 0
 0
 
 - Forest Temple Red Poe Chest
-
+1505
 
 0
 0
 
 - Forest Temple Blue Poe Chest
-
+1505
 
 0
 0
 
 - Forest Temple Near Boss Chest
-
+1505
 
 0
 0
 
 - Phantom Ganon Heart
-
+1505
 
 0
 0
 
 - GS Forest Temple Basement
-
+1505
 
 0
 0
 
 - Bottom of the Well Front Left Hidden Wall
-
+1549
 
 0
 0
 
 - Bottom of the Well Front Center Bombable
-
+1549
 
 0
 0
 
 - Bottom of the Well Right Bottom Hidden Wall
-
+1549
 
 0
 0
 
 - Bottom of the Well Center Large Chest
-
+1549
 
 0
 0
 
 - Bottom of the Well Center Small Chest
-
+1549
 
 0
 0
 
 - Bottom of the Well Back Left Bombable
-
+1549
 
 0
 0
 
 - Bottom of the Well Freestanding Key
-
+1549
 
 0
 0
 
 - Bottom of the Well Defeat Boss
-
+1549
 
 0
 0
 
 - Bottom of the Well Invisible Chest
-
+1549
 
 0
 0
 
 - Bottom of the Well Underwater Front Chest
-
+1549
 
 0
 0
 
 - Bottom of the Well Underwater Left Chest
-
+1549
 
 0
 0
 
 - Bottom of the Well Basement Chest
-
+1549
 
 0
 0
 
 - Bottom of the Well Locked Pits
-
+1549
 
 0
 0
 
 - Bottom of the Well Behind Right Grate
-
+1549
 
 0
 0
 
 - GS Well West Inner Room
-
+1549
 
 0
 0
 
 - GS Well East Inner Room
-
+1549
 
 0
 0
 
 - GS Well Like Like Cage
-
+1549
 
 0
 0
 
 - Fire Temple Chest Near Boss
-
+1530
 
 0
 0
 
 - Fire Temple Fire Dancer Chest
-
+1530
 
 0
 0
 
 - Fire Temple Boss Key Chest
-
+1530
 
 0
 0
 
 - Volvagia Heart
-
+1530
 
 0
 0
 
 - GS Fire Temple Basement
-
+1530
 
 0
 0
 
 - Fire Temple Big Lava Room Open Chest
-
+1530
 
 0
 0
 
 - Fire Temple Big Lava Room Bombable Chest
-
+1530
 
 0
 0
 
 - GS Fire Temple Song of Time Room
-
+1530
 
 0
 0
 
 - Fire Temple Boulder Maze Lower Chest
-
+1530
 
 0
 0
 
 - Fire Temple Boulder Maze Upper Chest
-
+1530
 
 0
 0
 
 - Fire Temple Boulder Maze Side Room
-
+1530
 
 0
 0
 
 - Fire Temple Boulder Maze Bombable Pit
-
+1530
 
 0
 0
 
 - Fire Temple Scarecrow Chest
-
+1530
 
 0
 0
 
 - Fire Temple Map Chest
-
+1530
 
 0
 0
 
 - Fire Temple Compass Chest
-
+1530
 
 0
 0
 
 - GS Fire Temple Unmarked Bomb Wall
-
+1530
 
 0
 0
 
 - GS Fire Temple East Tower Climb
-
+1530
 
 0
 0
 
 - GS Fire Temple East Tower Top
-
+1530
 
 0
 0
 
 - Fire Temple Highest Goron Chest
-
+1530
 
 0
 0
 
 - Fire Temple Megaton Hammer Chest
-
+1530
 
 0
 0
 
 - Ice Cavern Map Chest
-
+1543
 
 0
 0
 
 - Ice Cavern Compass Chest
-
+1543
 
 0
 0
 
 - Ice Cavern Iron Boots Chest
-
+1543
 
 0
 0
 
 - Ice Cavern Freestanding PoH
-
+1543
 
 0
 0
 
 - GS Ice Cavern Spinning Scythe Room
-
+1543
 
 0
 0
 
 - GS Ice Cavern Heart Piece Room
-
+1543
 
 0
 0
 
 - GS Ice Cavern Push Block Room
-
+1543
 
 0
 0
 
 - Morpha Heart
-
+1480
 
 0
 0
 
 - Water Temple Map Chest
-
+1480
 
 0
 0
 
 - Water Temple Compass Chest
-
+1480
 
 0
 0
 
 - Water Temple Torches Chest
-
+1480
 
 0
 0
 
 - Water Temple Central Bow Target Chest
-
+1480
 
 0
 0
 
 - GS Water Temple South Basement
-
+1480
 
 0
 0
 
 - Water Temple Boss Key Chest
-
+1480
 
 0
 0
 
 - GS Water Temple Near Boss Key Chest
-
+1480
 
 0
 0
 
 - Water Temple Cracked Wall Chest
-
+1480
 
 0
 0
 
 - Water Temple Dragon Chest
-
+1480
 
 0
 0
 
 - Water Temple Central Pillar Chest
-
+1480
 
 0
 0
 
 - GS Water Temple Central Room
-
+1480
 
 0
 0
 
 - Water Temple Dark Link Chest
-
+1480
 
 0
 0
 
 - Water Temple River Chest
-
+1480
 
 0
 0
 
 - GS Water Temple Serpent River
-
+1480
 
 0
 0
 
 - GS Water Temple Falling Platform Room
-
+1480
 
 0
 0
 
 - Shadow Temple Map Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Hover Boots Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Compass Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Early Silver Rupee Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Invisible Blades Visible Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Invisible Blades Invisible Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Falling Spikes Lower Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Falling Spikes Upper Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Falling Spikes Switch Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Invisible Spikes Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Freestanding Key
-
+1553
 
 0
 0
 
 - GS Shadow Temple Like Like Room
-
+1553
 
 0
 0
 
 - GS Shadow Temple Crusher Room
-
+1553
 
 0
 0
 
 - GS Shadow Temple Single Giant Pot
-
+1553
 
 0
 0
 
 - Shadow Temple Wind Hint Chest
-
+1553
 
 0
 0
 
 - Shadow Temple After Wind Enemy Chest
-
+1553
 
 0
 0
 
 - Shadow Temple After Wind Hidden Chest
-
+1553
 
 0
 0
 
 - GS Shadow Temple Near Ship
-
+1553
 
 0
 0
 
 - Shadow Temple Spike Walls Left Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Boss Key Chest
-
+1553
 
 0
 0
 
 - Shadow Temple Hidden Floormaster Chest
-
+1553
 
 0
 0
 
 - Bongo Bongo Heart
-
+1553
 
 0
 0
 
 - GS Shadow Temple Triple Giant Pot
-
+1553
 
 0
 0
 
 - Gerudo Training Grounds Lobby Left Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Lobby Right Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Stalfos Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Beamos Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Hidden Ceiling Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Maze Path First Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Maze Path Second Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Maze Path Third Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Maze Path Final Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Maze Right Central Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Maze Right Side Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Freestanding Key
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Underwater Silver Rupee Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Hammer Room Clear Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Hammer Room Switch Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Eye Statue Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Near Scarecrow Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Before Heavy Block Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Heavy Block First Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Heavy Block Second Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Heavy Block Third Chest
-
+1570
 
 0
 0
 
 - Gerudo Training Grounds Heavy Block Fourth Chest
-
+1570
 
 0
 0
 
 - Spirit Temple Child Left Chest
-
+1586
 
 0
 0
 
 - Spirit Temple Child Right Chest
-
+1586
 
 0
 0
 
 - GS Spirit Temple Metal Fence
-
+1586
 
 0
 0
 
 - Spirit Temple Child Climb East Chest
-
+1586
 
 0
 0
 
 - Spirit Temple Child Climb North Chest
-
+1586
 
 0
 0
 
 - GS Spirit Temple Bomb for Light Room
-
+1586
 
 0
 0
 
 - Spirit Temple Compass Chest
-
+1586
 
 0
 0
 
 - Spirit Temple Early Adult Right Chest
-
+1586
 
 0
 0
 
 - Spirit Temple First Mirror Right Chest
-
+1586
 
 0
 0
 
 - Spirit Temple First Mirror Left Chest
-
+1586
 
 0
 0
 
 - GS Spirit Temple Boulder Room
-
+1586
 
 0
 0
 
 - Spirit Temple Map Chest
-
+1586
 
 0
 0
 
 - Spirit Temple Sun Block Room Chest
-
+1586
 
 0
 0
 
 - Spirit Temple Statue Hand Chest
-
+1586
 
 0
 0
 
 - Spirit Temple NE Main Room Chest
-
+1586
 
 0
 0
 
 - GS Spirit Temple Hall to West Iron Knuckle
-
+1586
 
 0
 0
 
 - GS Spirit Temple Lobby
-
+1586
 
 0
 0
 
 - Silver Gauntlets Chest
-
+1586
 
 0
 0
 
 - Mirror Shield Chest
-
+1586
 
 0
 0
 
 - Spirit Temple Near Four Armos Chest
-
+1586
 
 0
 0
 
 - Spirit Temple Hallway Left Invisible Chest
-
+1586
 
 0
 0
 
 - Spirit Temple Hallway Right Invisible Chest
-
+1586
 
 0
 0
 
 - Spirit Temple Boss Key Chest
-
+1586
 
 0
 0
 
 - Spirit Temple Topmost Chest
-
+1586
 
 0
 0
 
 - Twinrova Heart
-
+1586
 
 0
 0
 
 - GC Deku Scrub Bombs
-
+1608
 
 0
 0
 
 - GC Deku Scrub Arrows
-
+1608
 
 0
 0
 
 - GC Deku Scrub Red Potion
-
+1608
 
 0
 0
 
 - GC Deku Scrub Green Potion
-
+1608
 
 0
 0
 
 - Ganons Castle Forest Trial Chest
-
+1609
 
 0
 0
 
 - Ganons Castle Water Trial Left Chest
-
+1611
 
 0
 0
 
 - Ganons Castle Water Trial Right Chest
-
+1611
 
 0
 0
 
 - Ganons Castle Shadow Trial First Chest
-
+1612
 
 0
 0
 
 - Ganons Castle Shadow Trial Second Chest
-
+1612
 
 0
 0
 
 - Ganons Castle Spirit Trial First Chest
-
+1613
 
 0
 0
 
 - Ganons Castle Spirit Trial Second Chest
-
+1613
 
 0
 0
 
 - Ganons Castle Light Trial First Left Chest
-
+1614
 
 0
 0
 
 - Ganons Castle Light Trial Second Left Chest
-
+1614
 
 0
 0
 
 - Ganons Castle Light Trial Third Left Chest
-
+1614
 
 0
 0
 
 - Ganons Castle Light Trial First Right Chest
-
+1614
 
 0
 0
 
 - Ganons Castle Light Trial Second Right Chest
-
+1614
 
 0
 0
 
 - Ganons Castle Light Trial Third Right Chest
-
+1614
 
 0
 0
 
 - Ganons Castle Light Trial Invisible Enemies Chest
-
+1614
 
 0
 0
 
 - Ganons Castle Light Trial Lullaby Chest
-
+1614
 
 0
 0
 
 - Ganons Tower Boss Key Chest
-
+1623
 
 0
 0
@@ -4566,1129 +4566,1129 @@
 0
 
 - Deku Tree MQ Lobby Chest
-
+1459
 
 0
 0
 
 - Deku Tree MQ Slingshot Chest
-
+1459
 
 0
 0
 
 - Deku Tree MQ Slingshot Room Back Chest
-
+1459
 
 0
 0
 
 - Deku Tree MQ Basement Chest
-
+1459
 
 0
 0
 
 - GS Deku Tree MQ Lobby
-
+1459
 
 0
 0
 
 - Deku Tree MQ Compass Chest
-
+1459
 
 0
 0
 
 - GS Deku Tree MQ Compass Room
-
+1459
 
 0
 0
 
 - Deku Tree MQ Before Spinning Log Chest
-
+1459
 
 0
 0
 
 - Deku Tree MQ After Spinning Log Chest
-
+1459
 
 0
 0
 
 - GS Deku Tree MQ Basement Ceiling
-
+1459
 
 0
 0
 
 - GS Deku Tree MQ Basement Back Room
-
+1459
 
 0
 0
 
 - DT MQ Deku Scrub Deku Shield
-
+1459
 
 0
 0
 
 - Dodongos Cavern MQ Map Chest
-
+1471
 
 0
 0
 
 - Dodongos Cavern MQ Compass Chest
-
+1471
 
 0
 0
 
 - Dodongos Cavern MQ Larva Room Chest
-
+1471
 
 0
 0
 
 - Dodongos Cavern MQ Torch Puzzle Room Chest
-
+1471
 
 0
 0
 
 - GS Dodongo's Cavern MQ Song of Time Block Room
-
+1471
 
 0
 0
 
 - GS Dodongo's Cavern MQ Larva Room
-
+1471
 
 0
 0
 
 - GS Dodongo's Cavern MQ Lizalfos Room
-
+1471
 
 0
 0
 
 - DC MQ Deku Scrub Deku Sticks
-
+1471
 
 0
 0
 
 - DC MQ Deku Scrub Deku Seeds
-
+1471
 
 0
 0
 
 - DC MQ Deku Scrub Deku Shield
-
+1471
 
 0
 0
 
 - DC MQ Deku Scrub Red Potion
-
+1471
 
 0
 0
 
 - Dodongos Cavern MQ Bomb Bag Chest
-
+1471
 
 0
 0
 
 - GS Dodongo's Cavern MQ Scrub Room
-
+1471
 
 0
 0
 
 - Dodongos Cavern MQ Under Grave Chest
-
+1471
 
 0
 0
 
 - GS Dodongo's Cavern MQ Back Area
-
+1471
 
 0
 0
 
 - Jabu Jabus Belly MQ Map Chest
-
+1499
 
 0
 0
 
 - Jabu Jabus Belly MQ Entry Side Chest
-
+1499
 
 0
 0
 
 - Jabu Jabus Belly MQ Second Room Lower Chest
-
+1499
 
 0
 0
 
 - Jabu Jabus Belly MQ Second Room Upper Chest
-
+1499
 
 0
 0
 
 - Jabu Jabus Belly MQ Compass Chest
-
+1499
 
 0
 0
 
 - Jabu Jabus Belly MQ Basement South Chest
-
+1499
 
 0
 0
 
 - Jabu Jabus Belly MQ Basement North Chest
-
+1499
 
 0
 0
 
 - Jabu Jabus Belly MQ Boomerang Room Small Chest
-
+1499
 
 0
 0
 
 - MQ Boomerang Chest
-
+1499
 
 0
 0
 
 - GS Jabu Jabu MQ Boomerang Room
-
+1499
 
 0
 0
 
 - Jabu Jabus Belly MQ Falling Like Like Room Chest
-
+1499
 
 0
 0
 
 - GS Jabu Jabu MQ Tailpasaran Room
-
+1499
 
 0
 0
 
 - GS Jabu Jabu MQ Invisible Enemies Room
-
+1499
 
 0
 0
 
 - Jabu Jabus Belly MQ Cow
-
+1499
 
 0
 0
 
 - Jabu Jabus Belly MQ Near Boss Chest
-
+1499
 
 0
 0
 
 - GS Jabu Jabu MQ Near Boss
-
+1499
 
 0
 0
 
 - Forest Temple MQ First Chest
-
+1515
 
 0
 0
 
 - GS Forest Temple MQ First Hallway
-
+1515
 
 0
 0
 
 - Forest Temple MQ Chest Behind Lobby
-
+1515
 
 0
 0
 
 - GS Forest Temple MQ Block Push Room
-
+1515
 
 0
 0
 
 - Forest Temple MQ Boss Key Chest
-
+1515
 
 0
 0
 
 - Forest Temple MQ Redead Chest
-
+1515
 
 0
 0
 
 - GS Forest Temple MQ Outdoor West
-
+1515
 
 0
 0
 
 - Forest Temple MQ Well Chest
-
+1515
 
 0
 0
 
 - GS Forest Temple MQ Outdoor East
-
+1515
 
 0
 0
 
 - GS Forest Temple MQ Well
-
+1515
 
 0
 0
 
 - Forest Temple MQ NE Outdoors Upper Chest
-
+1515
 
 0
 0
 
 - Forest Temple MQ NE Outdoors Lower Chest
-
+1515
 
 0
 0
 
 - Forest Temple MQ Bow Chest
-
+1515
 
 0
 0
 
 - Forest Temple MQ Map Chest
-
+1515
 
 0
 0
 
 - Forest Temple MQ Compass Chest
-
+1515
 
 0
 0
 
 - Forest Temple MQ Falling Room Chest
-
+1515
 
 0
 0
 
 - Forest Temple MQ Near Boss Chest
-
+1515
 
 0
 0
 
 - Bottom of the Well MQ Compass Chest
-
+1551
 
 0
 0
 
 - Bottom of the Well MQ Map Chest
-
+1551
 
 0
 0
 
 - Bottom of the Well MQ Lens Chest
-
+1551
 
 0
 0
 
 - Bottom of the Well MQ Dead Hand Freestanding Key
-
+1551
 
 0
 0
 
 - Bottom of the Well MQ East Inner Room Freestanding Key
-
+1551
 
 0
 0
 
 - GS Well MQ Basement
-
+1551
 
 0
 0
 
 - GS Well MQ West Inner Room
-
+1551
 
 0
 0
 
 - GS Well MQ Coffin Room
-
+1551
 
 0
 0
 
 - Fire Temple MQ Entrance Hallway Small Chest
-
+1534
 
 0
 0
 
 - Fire Temple MQ Chest Near Boss
-
+1534
 
 0
 0
 
 - Fire Temple MQ Megaton Hammer Chest
-
+1534
 
 0
 0
 
 - Fire Temple MQ Map Chest
-
+1534
 
 0
 0
 
 - Fire Temple MQ Boss Key Chest
-
+1534
 
 0
 0
 
 - Fire Temple MQ Big Lava Room Bombable Chest
-
+1534
 
 0
 0
 
 - GS Fire Temple MQ Big Lava Room
-
+1534
 
 0
 0
 
 - Fire Temple MQ Maze Lower Chest
-
+1534
 
 0
 0
 
 - Fire Temple MQ Maze Side Room
-
+1534
 
 0
 0
 
 - Fire Temple MQ Maze Upper Chest
-
+1534
 
 0
 0
 
 - Fire Temple MQ Compass Chest
-
+1534
 
 0
 0
 
 - GS Fire Temple MQ East Tower Top
-
+1534
 
 0
 0
 
 - Fire Temple MQ Freestanding Key
-
+1534
 
 0
 0
 
 - Fire Temple MQ West Tower Top Chest
-
+1534
 
 0
 0
 
 - GS Fire Temple MQ Fire Wall Maze Side Room
-
+1534
 
 0
 0
 
 - GS Fire Temple MQ Fire Wall Maze Center
-
+1534
 
 0
 0
 
 - GS Fire Temple MQ Above Fire Wall Maze
-
+1534
 
 0
 0
 
 - Ice Cavern MQ Map Chest
-
+1545
 
 0
 0
 
 - Ice Cavern MQ Iron Boots Chest
-
+1545
 
 0
 0
 
 - GS Ice Cavern MQ Ice Block
-
+1545
 
 0
 0
 
 - GS Ice Cavern MQ Scarecrow
-
+1545
 
 0
 0
 
 - Ice Cavern MQ Compass Chest
-
+1545
 
 0
 0
 
 - Ice Cavern MQ Freestanding PoH
-
+1545
 
 0
 0
 
 - GS Ice Cavern MQ Red Ice
-
+1545
 
 0
 0
 
 - Water Temple MQ Map Chest
-
+1489
 
 0
 0
 
 - Water Temple MQ Central Pillar Chest
-
+1489
 
 0
 0
 
 - Water Temple MQ Compass Chest
-
+1489
 
 0
 0
 
 - Water Temple MQ Longshot Chest
-
+1489
 
 0
 0
 
 - GS Water Temple MQ Lizalfos Hallway
-
+1489
 
 0
 0
 
 - GS Water Temple MQ Before Upper Water Switch
-
+1489
 
 0
 0
 
 - Water Temple MQ Boss Key Chest
-
+1489
 
 0
 0
 
 - GS Water Temple MQ Serpent River
-
+1489
 
 0
 0
 
 - Water Temple MQ Freestanding Key
-
+1489
 
 0
 0
 
 - GS Water Temple MQ South Basement
-
+1489
 
 0
 0
 
 - GS Water Temple MQ North Basement
-
+1489
 
 0
 0
 
 - Shadow Temple MQ Compass Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Hover Boots Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Map Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Early Gibdos Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Near Ship Invisible Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Invisible Blades Visible Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Invisible Blades Invisible Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Beamos Silver Rupees Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Falling Spikes Lower Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Falling Spikes Upper Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Falling Spikes Switch Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Invisible Spikes Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Stalfos Room Chest
-
+1559
 
 0
 0
 
 - GS Shadow Temple MQ Crusher Room
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Wind Hint Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ After Wind Enemy Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ After Wind Hidden Chest
-
+1559
 
 0
 0
 
 - GS Shadow Temple MQ Wind Hint Room
-
+1559
 
 0
 0
 
 - GS Shadow Temple MQ After Wind
-
+1559
 
 0
 0
 
 - GS Shadow Temple MQ After Ship
-
+1559
 
 0
 0
 
 - GS Shadow Temple MQ Near Boss
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Spike Walls Left Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Boss Key Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Bomb Flower Chest
-
+1559
 
 0
 0
 
 - Shadow Temple MQ Freestanding Key
-
+1559
 
 0
 0
 
 - Gerudo Training Grounds MQ Lobby Left Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Lobby Right Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Hidden Ceiling Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Maze Path First Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Maze Path Second Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Maze Path Third Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Dinolfos Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Underwater Silver Rupee Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ First Iron Knuckle Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Before Heavy Block Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Heavy Block Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Eye Statue Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Second Iron Knuckle Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Flame Circle Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Maze Right Central Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Maze Right Side Chest
-
+1579
 
 0
 0
 
 - Gerudo Training Grounds MQ Ice Arrows Chest
-
+1579
 
 0
 0
 
 - Spirit Temple MQ Entrance Front Left Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Entrance Back Left Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Entrance Back Right Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Child Center Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Child Left Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Map Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Silver Block Hallway Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Child Climb South Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Lower NE Main Room Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Upper NE Main Room Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Beamos Room Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Ice Trap Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Boss Key Chest
-
+1586
 
 0
 0
 
 - GS Spirit Temple MQ Iron Knuckle West
-
+1586
 
 0
 0
 
 - GS Spirit Temple MQ Iron Knuckle North
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Child Climb North Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Compass Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Sun Block Room Chest
-
+1586
 
 0
 0
 
 - GS Spirit Temple MQ Sun Block Room
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Lower Adult Left Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Lower Adult Right Chest
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Entrance Front Right Chest
-
+1586
 
 0
 0
 
 - GS Spirit Temple MQ Lower Adult Left
-
+1586
 
 0
 0
 
 - GS Spirit Temple MQ Lower Adult Right
-
+1586
 
 0
 0
 
 - Spirit Temple MQ Mirror Puzzle Invisible Chest
-
+1586
 
 0
 0
 
 - GC MQ Deku Scrub Bombs
-
+1616
 
 0
 0
 
 - GC MQ Deku Scrub Arrows
-
+1616
 
 0
 0
 
 - GC MQ Deku Scrub Red Potion
-
+1616
 
 0
 0
 
 - GC MQ Deku Scrub Green Potion
-
+1616
 
 0
 0
 
 - GC MQ Deku Scrub Deku Nuts
-
+1616
 
 0
 0
 
 - Ganons Castle MQ Forest Trial First Chest
-
+1617
 
 0
 0
 
 - Ganons Castle MQ Forest Trial Second Chest
-
+1617
 
 0
 0
 
 - Ganons Castle MQ Forest Trial Freestanding Key
-
+1617
 
 0
 0
 
 - Ganons Castle MQ Water Trial Chest
-
+1619
 
 0
 0
 
 - Ganons Castle MQ Shadow Trial First Chest
-
+1620
 
 0
 0
 
 - Ganons Castle MQ Shadow Trial Second Chest
-
+1620
 
 0
 0
 
 - Ganons Castle MQ Spirit Trial First Chest
-
+1621
 
 0
 0
 
 - Ganons Castle MQ Spirit Trial Second Chest
-
+1621
 
 0
 0
 
 - Ganons Castle MQ Spirit Trial Sun Front Left Chest
-
+1621
 
 0
 0
 
 - Ganons Castle MQ Spirit Trial Sun Back Left Chest
-
+1621
 
 0
 0
 
 - Ganons Castle MQ Spirit Trial Golden Gauntlets Chest
-
+1621
 
 0
 0
 
 - Ganons Castle MQ Spirit Trial Sun Back Right Chest
-
+1621
 
 0
 0
 
 - Ganons Castle MQ Light Trial Lullaby Chest
-
+1622
 
 0
 0
@@ -8251,7 +8251,7 @@
 
 - Access Goron City
 
-18;49;117;193;1376;1379
+18;49,1379;117;193;1376
 0
 0
 
@@ -9648,8 +9648,8 @@
 0
 
 - Can Access Ganons Castle Deku Scrubs
-
-1193;1404,1607
+1607
+1193;1404
 0
 0
 

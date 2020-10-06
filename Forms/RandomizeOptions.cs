@@ -372,7 +372,7 @@ namespace MMR_Tracker_V2
             bool isValidSyncable(LogicObjects.LogicEntry x)
             {
                 if (!Utility.StandardItemTypes.Contains(x.ItemSubType)) { return false; }
-                if (string.IsNullOrWhiteSpace(x.ItemName)) { return false; }
+                //if (string.IsNullOrWhiteSpace(x.ItemName)) { return false; }
                 return true;
             }
 
