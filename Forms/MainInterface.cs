@@ -122,7 +122,13 @@ namespace MMR_Tracker_V2
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateNewLogicInstance(sender, e);
+            this.fileToolStripMenuItem.HideDropDown();
+            Tools.ParseLogicFile();
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+            FireEvents(sender, e);
+            Tools.UpdateTrackerTitle();
         }
 
         private void presetsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1389,162 +1395,6 @@ namespace MMR_Tracker_V2
             Tools.UpdateTrackerTitle();
         }
 
-        public void CreateNewLogicInstance(object sender, EventArgs e, string file = "")
-        {
-            if (sender == newToolStripMenuItem) { this.fileToolStripMenuItem.HideDropDown(); }
-
-            if (file == "")
-            {
-                if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-                file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSAV;*.html)|*.txt;*.MMRTSAV;*.html");
-                if (file == "") { return; }
-            }
-
-            var saveFile = file.EndsWith(".MMRTSAV");
-            var HTMLLog = file.EndsWith(".html");
-            var TextLog = file.EndsWith(".txt") && TestForTextSpoiler(File.ReadAllLines(file));
-
-            string[] RawLogicFile = File.ReadAllLines(file);
-            LogicObjects.TrackerInstance SaveFileTemplate = null;
-            LogicObjects.GameplaySettings SettingFile = null;
-
-            if (saveFile)
-            {
-                try { SaveFileTemplate = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file)); }
-                catch
-                {
-                    MessageBox.Show("Save File Not Valid.");
-                    return;
-                }
-                RawLogicFile = SaveFileTemplate.RawLogicFile;
-            }
-            else if (HTMLLog)
-            {
-                foreach (var line in RawLogicFile)
-                {
-                    if (line.StartsWith("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">"))
-                    {
-                        var newLine = line.Replace("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">", "{\"GameplaySettings\":");
-                        newLine = newLine.Replace("</code><br/>", "}");
-                        try
-                        {
-                            SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(newLine).GameplaySettings;
-                            RandomizeOptions ApplySettings = new RandomizeOptions();
-                            ApplySettings.ApplyRandomizerSettings(SettingFile);
-                            Console.WriteLine("Settings Applied");
-                        }
-                        catch { MessageBox.Show("Spoiler Log Eror"); return; }
-                        break;
-                    }
-                }
-                setLogicFile();
-
-            }
-            else if (TextLog)
-            {
-                foreach (var line in RawLogicFile)
-                {
-                    if (line.StartsWith("Settings:"))
-                    {
-                        var Newline = line.Replace("Settings:", "\"GameplaySettings\":");
-                        Newline = "{" + Newline + "}";
-                        try
-                        {
-                            SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings;
-                            RandomizeOptions ApplySettings = new RandomizeOptions();
-                            ApplySettings.ApplyRandomizerSettings(SettingFile);
-                            Console.WriteLine("Settings Applied");
-                        }
-                        catch { return; }
-                        break;
-                    }
-                }
-                setLogicFile();
-            }
-
-            void setLogicFile()
-            {
-                if (SettingFile.LogicMode == "Casual")
-                {
-                    System.Net.WebClient wc = new System.Net.WebClient();
-                    string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
-                    RawLogicFile = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                }
-                else if (SettingFile.LogicMode == "Glitched")
-                {
-                    System.Net.WebClient wc = new System.Net.WebClient();
-                    string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
-                    RawLogicFile = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                }
-                else
-                {
-                    if (!File.Exists(SettingFile.UserLogicFileName)) { return; }
-                    RawLogicFile = File.ReadAllLines(SettingFile.UserLogicFileName);
-                }
-            }
-
-            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
-
-            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, RawLogicFile.ToArray());
-
-            if (saveFile)
-            {
-                var Options = MessageBox.Show("Would you like to import the general tracker options from this save file?", "Options", MessageBoxButtons.YesNo);
-                if (Options == DialogResult.Yes) { LogicObjects.MainTrackerInstance.Options = SaveFileTemplate.Options; }
-                var RandOptions = MessageBox.Show("Would you like to import the Item Randomization options from this save file?", "Randomization Options", MessageBoxButtons.YesNo);
-                if (RandOptions == DialogResult.Yes)
-                {
-                    foreach (var i in LogicObjects.MainTrackerInstance.Logic)
-                    {
-                        var TemplateData = SaveFileTemplate.Logic.Find(x => x.DictionaryName == i.DictionaryName);
-                        if (TemplateData != null)
-                        {
-                            i.Options = TemplateData.Options;
-                            i.TrickEnabled = TemplateData.TrickEnabled;
-                        }
-                    }
-                }
-            }
-            else if (HTMLLog || TextLog)
-            {
-                LogicEditing.WriteSpoilerLogToLogic(LogicObjects.MainTrackerInstance, file);
-                if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) { MessageBox.Show("No spoiler data found!"); return; }
-                else if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic, true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
-            }
-            else if (LogicObjects.MainTrackerInstance.EntranceRando && LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup)
-            {
-                LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = false;
-                LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = true;
-                foreach (var item in LogicObjects.MainTrackerInstance.Logic)
-                {
-                    if (item.IsEntrance()) { item.Options = 1; }
-                }
-            }
-            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
-            FormatMenuItems();
-            ResizeObject();
-            PrintToListBox();
-            FireEvents(sender, e);
-            Tools.UpdateTrackerTitle();
-        }
-
-        private bool TestForTextSpoiler(string[] RawLogicFile)
-        {
-            LogicObjects.GameplaySettings SettingFile = null;
-            foreach (var line in RawLogicFile)
-            {
-                if (line.StartsWith("Settings:"))
-                {
-                    var Newline = line.Replace("Settings:", "\"GameplaySettings\":");
-                    Newline = "{" + Newline + "}";
-                    try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings; }
-                    catch { return false; }
-                    return true;
-                }
-            }
-            return false;
-        }
-
         private void HandleUserPreset()
         {
             List<ToolStripMenuItem> Presets = new List<ToolStripMenuItem>();
@@ -1633,7 +1483,12 @@ namespace MMR_Tracker_V2
         {
             if (args.Length > 1)
             {
-                CreateNewLogicInstance(sender, e, args[1]);
+                Tools.ParseLogicFile(args[1]);
+                FormatMenuItems();
+                ResizeObject();
+                PrintToListBox();
+                FireEvents(sender, e);
+                Tools.UpdateTrackerTitle();
             }
         }
 

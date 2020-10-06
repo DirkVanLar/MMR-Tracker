@@ -705,7 +705,6 @@ namespace MMR_Tracker.Class_Files
             }
             return result;
         }
-
         public static bool ProgressiveItemAquired(List<LogicObjects.LogicEntry> Logic, LogicObjects.LogicEntry entry, List<int> usedItems)
         {
             var SW1 = Logic.Find(x => x.DictionaryName == "Razor Sword");
@@ -768,6 +767,135 @@ namespace MMR_Tracker.Class_Files
                 else { return false; }
             }
 
+        }
+        public static void ParseLogicFile(string file = "")
+        {
+            if (file == "")
+            {
+                if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
+                file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSAV;*.html)|*.txt;*.MMRTSAV;*.html");
+                if (file == "") { return; }
+            }
+
+            var saveFile = file.EndsWith(".MMRTSAV");
+            var HTMLLog = file.EndsWith(".html");
+            var TextLog = file.EndsWith(".txt") && TestForTextSpoiler(File.ReadAllLines(file));
+
+            string[] RawLogicFile = File.ReadAllLines(file);
+            LogicObjects.TrackerInstance SaveFileTemplate = null;
+            LogicObjects.GameplaySettings SettingFile = null;
+
+            if (saveFile)
+            {
+                try { SaveFileTemplate = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file)); }
+                catch
+                {
+                    MessageBox.Show("Save File Not Valid.");
+                    return;
+                }
+                RawLogicFile = SaveFileTemplate.RawLogicFile;
+            }
+            else if (HTMLLog)
+            {
+                foreach (var line in RawLogicFile)
+                {
+                    if (line.StartsWith("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">"))
+                    {
+                        var newLine = line.Replace("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">", "{\"GameplaySettings\":");
+                        newLine = newLine.Replace("</code><br/>", "}");
+                        try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(newLine).GameplaySettings; }
+                        catch { MessageBox.Show("Not a valid HTML Spoiler Log!"); return; }
+                        break;
+                    }
+                }
+                setLogicFile();
+
+            }
+            else if (TextLog)
+            {
+                foreach (var line in RawLogicFile)
+                {
+                    if (line.StartsWith("Settings:"))
+                    {
+                        var Newline = line.Replace("Settings:", "\"GameplaySettings\":");
+                        Newline = "{" + Newline + "}";
+                        SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings;
+                        break;
+                    }
+                }
+                setLogicFile();
+            }
+
+            void setLogicFile()
+            {
+                if (SettingFile.LogicMode == "Casual")
+                {
+                    System.Net.WebClient wc = new System.Net.WebClient();
+                    string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
+                    RawLogicFile = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                }
+                else if (SettingFile.LogicMode == "Glitched")
+                {
+                    System.Net.WebClient wc = new System.Net.WebClient();
+                    string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
+                    RawLogicFile = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                }
+                else
+                {
+                    if (!File.Exists(SettingFile.UserLogicFileName)) { return; }
+                    RawLogicFile = File.ReadAllLines(SettingFile.UserLogicFileName);
+                }
+            }
+
+            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
+
+            Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, RawLogicFile.ToArray());
+
+            if (saveFile)
+            {
+                LogicObjects.MainTrackerInstance.Options = SaveFileTemplate.Options;
+                foreach (var i in LogicObjects.MainTrackerInstance.Logic)
+                {
+                    var TemplateData = SaveFileTemplate.Logic.Find(x => x.DictionaryName == i.DictionaryName);
+                    if (TemplateData != null)
+                    {
+                        i.Options = TemplateData.Options;
+                        i.TrickEnabled = TemplateData.TrickEnabled;
+                    }
+                }
+            }
+            else if (HTMLLog || TextLog)
+            {
+                LogicEditing.WriteSpoilerLogToLogic(LogicObjects.MainTrackerInstance, file);
+                if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) { MessageBox.Show("No spoiler data found!"); return; }
+                else if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic, true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
+            }
+            else if (LogicObjects.MainTrackerInstance.EntranceRando && LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup)
+            {
+                LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = false;
+                LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = true;
+                foreach (var item in LogicObjects.MainTrackerInstance.Logic)
+                {
+                    if (item.IsEntrance()) { item.Options = 1; }
+                }
+            }
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+        }
+        public static bool TestForTextSpoiler(string[] RawLogicFile)
+        {
+            LogicObjects.GameplaySettings SettingFile = null;
+            foreach (var line in RawLogicFile)
+            {
+                if (line.StartsWith("Settings:"))
+                {
+                    var Newline = line.Replace("Settings:", "\"GameplaySettings\":");
+                    Newline = "{" + Newline + "}";
+                    try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings; }
+                    catch { return false; }
+                    return true;
+                }
+            }
+            return false;
         }
 
     }
