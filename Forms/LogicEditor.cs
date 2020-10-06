@@ -580,7 +580,7 @@ namespace MMR_Tracker.Forms
                 var ReqEntry = EditorInstance.Logic[i];
 
                 ReqEntry.DisplayName = ReqEntry.ItemName ?? ReqEntry.DictionaryName;
-                ReqEntry.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem ?? ReqEntry.DisplayName) : ReqEntry.DisplayName;
+                ReqEntry.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem[0] ?? ReqEntry.DisplayName) : ReqEntry.DisplayName;
                 ReqEntry.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? ReqEntry.DictionaryName : ReqEntry.DisplayName;
                 LBRequired.Items.Add(ReqEntry);
             }
@@ -602,7 +602,7 @@ namespace MMR_Tracker.Forms
                         var ReqEntry = EditorInstance.Logic[i];
 
                         string disName = ReqEntry.ItemName ?? ReqEntry.DictionaryName;
-                        disName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem ?? disName) : disName;
+                        disName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem[0] ?? disName) : disName;
                         disName = (LogicEditor.UseDictionaryNameInSearch) ? ReqEntry.DictionaryName : disName;
 
                         Display = Display + addComma + disName;
@@ -622,8 +622,8 @@ namespace MMR_Tracker.Forms
             string LocationName = entry.LocationName ?? "Fake Location";
             string ItemName = entry.ItemName ?? "Fake Item";
 
-            LocationName = (UseSpoilerInDisplay) ? (entry.SpoilerLocation ?? LocationName) : LocationName;
-            ItemName = (UseSpoilerInDisplay) ? (entry.SpoilerItem ?? ItemName) : ItemName;
+            LocationName = (UseSpoilerInDisplay) ? (entry.SpoilerLocation[0] ?? LocationName) : LocationName;
+            ItemName = (UseSpoilerInDisplay) ? (entry.SpoilerItem[0] ?? ItemName) : ItemName;
 
             lblDicName.Text = DictionaryName;
             this.Text = (String.IsNullOrWhiteSpace(lblDicName.Text)) ? "Logic Editor" : $"Logic Editor: {lblDicName.Text}";
@@ -761,13 +761,13 @@ namespace MMR_Tracker.Forms
 
                 if (LogicEntry1.SpoilerItem != null) 
                 {
-                    originalName = LogicEntry1.SpoilerItem;
-                    while (usedSpoilerNames.Contains(LogicEntry1.SpoilerItem))
+                    originalName = LogicEntry1.SpoilerItem[0];
+                    while (usedSpoilerNames.Contains(LogicEntry1.SpoilerItem[0]))
                     {
-                        LogicEntry1.SpoilerItem = originalName + " (" + number.ToString() + ")";
+                        LogicEntry1.SpoilerItem[0] = originalName + " (" + number.ToString() + ")";
                         number += 1;
                     }
-                    usedSpoilerNames.Add(LogicEntry1.SpoilerItem);
+                    usedSpoilerNames.Add(LogicEntry1.SpoilerItem[0]);
                 }
             }
         }

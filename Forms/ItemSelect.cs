@@ -155,7 +155,7 @@ namespace MMR_Tracker_V2
             for (var i = 0; i < LogicEditor.EditorInstance.Logic.Count; i++)
             {
                 UsedLogic[i].DisplayName = UsedLogic[i].LocationName ?? UsedLogic[i].DictionaryName;
-                UsedLogic[i].DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (UsedLogic[i].SpoilerLocation ?? UsedLogic[i].DisplayName) : UsedLogic[i].DisplayName;
+                UsedLogic[i].DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (UsedLogic[i].SpoilerLocation[0] ?? UsedLogic[i].DisplayName) : UsedLogic[i].DisplayName;
                 UsedLogic[i].DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? UsedLogic[i].DictionaryName : UsedLogic[i].DisplayName;
                 if (Utility.FilterSearch(UsedLogic[i], TXTSearch.Text, UsedLogic[i].DisplayName))
                 {
@@ -170,7 +170,7 @@ namespace MMR_Tracker_V2
             for (var i = 0; i < UsedLogic.Count; i++)
             {
                 UsedLogic[i].DisplayName = UsedLogic[i].ItemName ?? UsedLogic[i].DictionaryName;
-                UsedLogic[i].DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (UsedLogic[i].SpoilerItem ?? UsedLogic[i].DisplayName) : UsedLogic[i].DisplayName;
+                UsedLogic[i].DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (UsedLogic[i].SpoilerItem[0] ?? UsedLogic[i].DisplayName) : UsedLogic[i].DisplayName;
                 UsedLogic[i].DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? UsedLogic[i].DictionaryName : UsedLogic[i].DisplayName;
                 if (Utility.FilterSearch(UsedLogic[i], TXTSearch.Text, UsedLogic[i].DisplayName))
                 {
@@ -189,7 +189,7 @@ namespace MMR_Tracker_V2
             {
                 var item = UsedLogic[CheckedItems[i]];
                 item.DisplayName = item.LocationName ?? item.DictionaryName;
-                item.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (item.SpoilerLocation ?? item.DisplayName) : item.DisplayName;
+                item.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (item.SpoilerLocation[0] ?? item.DisplayName) : item.DisplayName;
                 item.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? item.DictionaryName : item.DisplayName;
                 if (Utility.FilterSearch(item, TXTSearch.Text, item.DisplayName))
                 {

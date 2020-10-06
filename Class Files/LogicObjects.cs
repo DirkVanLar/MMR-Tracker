@@ -76,8 +76,8 @@ namespace MMR_Tracker_V2
             public bool Starred { get; set; } = false; //Whether the check has been starred
             public string LocationArea { get; set; } //The General Area the location is in
             public string ItemSubType { get; set; } //The type of item it is
-            public string SpoilerLocation { get; set; } //The name of this location in the spoiler Log
-            public string SpoilerItem { get; set; } //The name of this item in the spoiler log
+            public List<string> SpoilerLocation { get; set; } = new List<string>(); //The name of this location in the spoiler Log
+            public List<string> SpoilerItem { get; set; } = new List<string>(); //The name of this item in the spoiler log
             public int SpoilerRandom { get; set; } //The item the spoiler log says is in this location //The name of this location in the spoiler Log
             public int AvailableOn { get; set; } //When the Check is available
             public int NeededBy { get; set; } //When the item is Needed

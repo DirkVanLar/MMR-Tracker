@@ -70,8 +70,16 @@ namespace MMR_Tracker_V2
                         LogicEntry1.LocationName = (string.IsNullOrWhiteSpace(DicEntry.LocationName)) ? null : DicEntry.LocationName;
                         LogicEntry1.LocationArea = (string.IsNullOrWhiteSpace(DicEntry.LocationArea)) ? "Misc" : DicEntry.LocationArea;
                         LogicEntry1.ItemSubType = (string.IsNullOrWhiteSpace(DicEntry.ItemSubType)) ? "Item" : DicEntry.ItemSubType;
-                        LogicEntry1.SpoilerLocation = (string.IsNullOrWhiteSpace(DicEntry.SpoilerLocation)) ? LogicEntry1.LocationName : DicEntry.SpoilerLocation;
-                        LogicEntry1.SpoilerItem = (string.IsNullOrWhiteSpace(DicEntry.SpoilerItem)) ? LogicEntry1.ItemName : DicEntry.SpoilerItem;
+                        LogicEntry1.SpoilerLocation = (string.IsNullOrWhiteSpace(DicEntry.SpoilerLocation)) 
+                            ? new List<string> { LogicEntry1.LocationName } : DicEntry.SpoilerLocation.Split('|').ToList();
+                        LogicEntry1.SpoilerItem = (string.IsNullOrWhiteSpace(DicEntry.SpoilerItem)) 
+                            ? new List<string> { LogicEntry1.ItemName } : DicEntry.SpoilerItem.Split('|').ToList();
+
+                        foreach(var i in LogicEntry1.SpoilerLocation)
+                        {
+                            Console.Write($"{i}, ");
+                        }
+                        Console.WriteLine("");
                         break;
                     case 1:
                         if (string.IsNullOrWhiteSpace(line)) { LogicEntry1.Required = null; break; }

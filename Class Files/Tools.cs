@@ -64,7 +64,7 @@ namespace MMR_Tracker.Class_Files
                     {
                         entry.IsFake = false;
                         entry.LocationName = spoiler.LocationName;
-                        entry.SpoilerLocation = spoiler.LocationName;
+                        entry.SpoilerLocation = new List<string> { spoiler.LocationName };
                         entry.LocationArea = spoiler.LocationArea;
                         entry.ItemSubType = "Item";
                         if (entry.DictionaryName.Contains("Bottle:")) { entry.ItemSubType = "Bottle"; }
@@ -86,7 +86,7 @@ namespace MMR_Tracker.Class_Files
                     {
                         entry.IsFake = false; //Not necessary, might cause problem but also might fix them ¯\_(ツ)_/¯
                         entry.ItemName = spoiler.ItemName;
-                        entry.SpoilerItem = spoiler.ItemName;
+                        entry.SpoilerItem = new List<string> { spoiler.ItemName };
                     }
                 }
             }
@@ -157,11 +157,13 @@ namespace MMR_Tracker.Class_Files
                     entry.LocationID = -2;
                     entry.ItemID = -2;
 
-                    var location = instance.Logic.Find(x => x.SpoilerLocation == entry.LocationName || x.SpoilerLocation == GetAltSpoilerName(entry.LocationName));
+
+                    //var location = instance.Logic.Find(x => x.SpoilerLocation == entry.LocationName || x.SpoilerLocation == GetAltSpoilerName(entry.LocationName));
+                    var location = instance.Logic.Find(x => x.SpoilerLocation.Select(j => j.Trim()).Contains(entry.LocationName.Trim()));
                     if (location == null) { Console.WriteLine($"Unable to find logic entry for {entry.LocationName}"); }
                     else { Console.WriteLine($"Entry {location.ID} is {entry.LocationName}"); }
 
-                    var Item = instance.Logic.Find(x => x.SpoilerItem == entry.ItemName && !usedId.Contains(x.ID));
+                    var Item = instance.Logic.Find(x => x.SpoilerItem.Select(j => j.Trim()).Contains(entry.ItemName.Trim()) && !usedId.Contains(x.ID));
                     if (Item == null) { Console.WriteLine($"Unable to find logic entry for {entry.ItemName}"); }
                     else {Console.WriteLine($"Entry {Item.ID} is {entry.ItemName}"); }
 
