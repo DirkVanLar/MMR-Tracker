@@ -67,7 +67,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             foreach (var CheckedObject in AutoSelect)
             {
                 //Check if the items checked status has been changed, most likely by CheckEntrancePair.
-                if (ActionDic[CheckedObject.ID] != CheckedObject.Checked && CheckedObject.IsEntrance()) { continue; } 
+                if (ActionDic.ContainsKey(CheckedObject.ID) && ActionDic[CheckedObject.ID] != CheckedObject.Checked && CheckedObject.IsEntrance()) { continue; } 
                 if (CheckedObject.ID < -1) { continue; }
                 if (CheckedObject.Checked && CheckedObject.RandomizedItem > -2)
                 {
@@ -151,7 +151,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 return;
             }
             //Check if the items checked status has been changed, most likely by CheckEntrancePair.
-            if (ActionDic[ManualSelect[0].ID] != ManualSelect[0].Checked && ManualSelect[0].IsEntrance()) 
+            if (ActionDic.ContainsKey(ManualSelect[0].ID) && ActionDic[ManualSelect[0].ID] != ManualSelect[0].Checked && ManualSelect[0].IsEntrance()) 
             {
                 ManualSelect.RemoveAt(0);
                 NextManualItem();
