@@ -1558,6 +1558,7 @@ namespace MMR_Tracker_V2
             saveAsToolStripMenuItem.Visible = (Tools.SaveFilePath != "");
             importSpoilerLogToolStripMenuItem.Text = (Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) ? "Remove Spoiler Log" : "Import Spoiler Log";
             useSongOfTimeInPathfinderToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.UseSongOfTime);
+            enableProgressiveItemsToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.ProgressiveItems);
             stricterLogicHandelingToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling);
             showEntryNameToolTipToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip);
             includeItemLocationsAsDestinationToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations);
@@ -1595,6 +1596,7 @@ namespace MMR_Tracker_V2
             itemTrackerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             generatePlaythroughToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             seedCheckerToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            enableProgressiveItemsToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.IsMM() && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
 
             Tools_StateListChanged(null, null);
         }
@@ -1724,7 +1726,7 @@ namespace MMR_Tracker_V2
         {
             var addPlayerName = entry.ItemBelongsToMe() ? "" : $" (Player {entry.PlayerData.ItemBelongedToPlayer})";
             var LocationName = entry.LocationName ?? entry.DictionaryName;
-            var ItemName = (entry.HasRandomItem(false)) ? (entry.RandomizedEntry(instance, true).ItemName ?? entry.RandomizedEntry(instance, true).DictionaryName) : "";
+            var ItemName = (entry.HasRandomItem(false)) ? Utility.GetProgressiveItemName(entry.RandomizedEntry(instance, true), instance) : "";
             var checkedName = (ItemName == "") ? LocationName : ItemName + addPlayerName + ": " + LocationName;
             var AvailableName = (ItemName == "") ? LocationName : LocationName + ": " + ItemName;
             var fullName = (Checked) ? checkedName : AvailableName;
@@ -1736,5 +1738,13 @@ namespace MMR_Tracker_V2
 
         #endregion Functions
 
+        private void enableProgressiveItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicObjects.MainTrackerInstance.Options.ProgressiveItems = !LogicObjects.MainTrackerInstance.Options.ProgressiveItems;
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+        }
     }
 }

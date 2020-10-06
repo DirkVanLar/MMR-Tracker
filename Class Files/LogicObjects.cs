@@ -33,6 +33,7 @@ namespace MMR_Tracker_V2
             //Logic Options
             public bool StrictLogicHandeling { get; set; } = false;
             public bool RemoveObtainedItemsfromList { get; set; } = true;
+            public bool ProgressiveItems { get; set; } = true;
             //Entrance rando Options
             public bool EntranceRadnoEnabled { get; set; } = false;
             public bool OverRideAutoEntranceRandoEnable { get; set; } = false;
@@ -117,28 +118,29 @@ namespace MMR_Tracker_V2
 
         public class GameplaySettings
         {
-            public bool UseCustomItemList { get; set; }
-            public bool AddDungeonItems { get; set; }
-            public bool AddShopItems { get; set; }
-            public bool AddMoonItems { get; set; }
-            public bool AddFairyRewards { get; set; }
-            public bool AddOther { get; set; }
-            public bool AddNutChest { get; set; }
-            public bool CrazyStartingItems { get; set; }
-            public bool AddCowMilk { get; set; }
-            public bool AddSkulltulaTokens { get; set; }
-            public bool AddStrayFairies { get; set; }
-            public bool AddMundaneRewards { get; set; }
-            public bool RandomizeBottleCatchContents { get; set; }
-            public bool ExcludeSongOfSoaring { get; set; }
-            public bool RandomizeDungeonEntrances { get; set; }
-            public bool NoStartingItems { get; set; }
-            public bool AddSongs { get; set; }
-            public bool DecoupleEntrances { get; set; }
-            public string CustomItemListString { get; set; }
-            public string RandomizedEntrancesString { get; set; }
-            public string CustomJunkLocationsString { get; set; }
-            public List<int> EnabledTricks { get; set; }
+            public bool UseCustomItemList { get; set; } = false;
+            public bool AddDungeonItems { get; set; } = false;
+            public bool AddShopItems { get; set; } = false;
+            public bool AddMoonItems { get; set; } = false;
+            public bool AddFairyRewards { get; set; } = false;
+            public bool AddOther { get; set; } = false;
+            public bool AddNutChest { get; set; } = false;
+            public bool CrazyStartingItems { get; set; } = false;
+            public bool AddCowMilk { get; set; } = false;
+            public bool AddSkulltulaTokens { get; set; } = false;
+            public bool AddStrayFairies { get; set; } = false;
+            public bool AddMundaneRewards { get; set; } = false;
+            public bool RandomizeBottleCatchContents { get; set; } = false;
+            public bool ExcludeSongOfSoaring { get; set; } = false;
+            public bool RandomizeDungeonEntrances { get; set; } = false;
+            public bool NoStartingItems { get; set; } = false;
+            public bool AddSongs { get; set; } = false;
+            public bool ProgressiveUpgrades { get; set; } = false;
+            public bool DecoupleEntrances { get; set; } = false;
+            public string CustomItemListString { get; set; } = "";
+            public string RandomizedEntrancesString { get; set; } = "";
+            public string CustomJunkLocationsString { get; set; } = "";
+            public List<int> EnabledTricks { get; set; } = new List<int>();
         }
         public class MapPoint
         {
@@ -319,6 +321,14 @@ namespace MMR_Tracker_V2
         public static bool ItemInRange(this LogicObjects.TrackerInstance Instance, int Item)
         {
             return Item > -1 && Item < Instance.Logic.Count;
+        }
+
+        public static bool IsProgressiveItem(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
+        {
+            if (!Instance.Options.ProgressiveItems || !Instance.IsMM()) { return false; }
+
+            if (Utility.ProgressiveItems.Contains(entry.DictionaryName)) { return true; }
+            return false;
         }
     }
 }

@@ -104,6 +104,7 @@ namespace MMR_Tracker_V2
             //SetTestMultiworldData();
             //GenerateBigData();
             //GetAllUniqueCombos();
+            TestProgressive();
 
             void TestEncryption()
             {
@@ -319,7 +320,18 @@ namespace MMR_Tracker_V2
                 }
             }
 
-            
+            void TestProgressive()
+            {
+                var BigBombBag = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)");
+
+                List<int> UsedItems = new List<int>();
+
+                var aquired = Tools.ProgressiveItemAquired(LogicObjects.MainTrackerInstance.Logic, BigBombBag, UsedItems);
+
+                Console.WriteLine(aquired);
+                Console.WriteLine("");
+                foreach (var i in UsedItems) { Console.WriteLine($"Final: Entry {i} was used"); }
+            }
 
 
         }

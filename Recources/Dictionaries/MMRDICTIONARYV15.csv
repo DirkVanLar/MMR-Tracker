@@ -1,18 +1,18 @@
 DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem
 Deku Mask,Starting Item,Deku Mask,Misc,Item,Starting Item,Deku Mask
-Hero's Bow,Hero's Bow Chest,Hero's Bow,Woodfall Temple,Item,Hero's Bow Chest,Hero's Bow
+Hero's Bow,Hero's Bow Chest,Hero's Bow,Woodfall Temple,Item,Hero's Bow Chest,Hero's Bow|Bow Upgrade
 Fire Arrow,Fire Arrow Chest,Fire Arrow,Snowhead Temple,Item,Fire Arrow Chest,Fire Arrow
 Ice Arrow,Ice Arrow Chest,Ice Arrow,Great Bay Temple,Item,Ice Arrow Chest,Ice Arrow
 Light Arrow,Light Arrow Chest,Light Arrow,Stone Tower Temple,Item,Light Arrow Chest,Light Arrow
-Bomb Bag (20),Bomb Bag Purchase,Bomb Bag,West Clock Town,Item,Bomb Bag Purchase,Bomb Bag
+Bomb Bag (20),Bomb Bag Purchase,Bomb Bag,West Clock Town,Item,Bomb Bag Purchase,Bomb Bag|Bomb Bag Upgrade
 Magic Bean,Bean Man,Magic Bean,Deku Palace,Item,Bean Man,Magic Bean
 Powder Keg,Powder Keg Challenge,Powder Keg,Goron Village,Item,Powder Keg Challenge,Powder Keg
 Pictobox,Koume,Pictobox,Southern Swamp,Item,Koume,Pictobox
 Lens of Truth,Lens of Truth Chest,Lens of Truth,Goron Village,Item,Lens of Truth Chest,Lens of Truth
 Hookshot,Hookshot Chest,Hookshot,Pirates' Fortress Interior,Item,Hookshot Chest,Hookshot
-Great Fairy Magic Meter,Town Great Fairy Non-Human,Magic Power,North Clock Town,Item,Town Great Fairy Non-Human,Magic Power
+Great Fairy Magic Meter,Town Great Fairy Non-Human,Magic Power,North Clock Town,Item,Town Great Fairy Non-Human,Magic Power|Magic Power Upgrade
 Great Fairy Spin Attack,Woodfall Great Fairy,Spin Attack,Woodfall,Item,Woodfall Great Fairy,Spin Attack
-Great Fairy Extended Magic,Snowhead Great Fairy,Extended Magic Power,Snowhead,Item,Snowhead Great Fairy,Extended Magic Power
+Great Fairy Extended Magic,Snowhead Great Fairy,Extended Magic Power,Snowhead,Item,Snowhead Great Fairy,Extended Magic Power|Magic Power Upgrade
 Great Fairy Double Defense,Ocean Great Fairy,Double Defense,Great Bay Cape,Item,Ocean Great Fairy,Double Defense
 Great Fairy's Sword,Ikana Great Fairy,Great Fairy's Sword,Ikana Canyon,Item,Ikana Great Fairy,Great Fairy's Sword
 Witch Bottle,Kotake,Bottle with Red Potion,Southern Swamp,Item,Kotake,Bottle with Red Potion
@@ -22,15 +22,15 @@ Beaver Race Bottle,Beaver Race #1,Empty Bottle,Great Bay Cape,Item,Beaver Race #
 Dampe Bottle,Dampe Digging,Empty Bottle,Ikana Graveyard,Item,Dampe Digging,Empty Bottle
 Chateau Bottle,Madame Aroma in Bar,Bottle with Chateau Romani,East Clock Town,Item,Madame Aroma in Bar,Bottle with Chateau Romani
 Bombers' Notebook,Bombers' Hide and Seek,Bombers' Notebook,North Clock Town,Item,Bombers' Hide and Seek,Bombers' Notebook
-Razor Sword,Mountain Smithy Day 1,Razor Sword,Mountain Village,Item,Mountain Smithy Day 1,Razor Sword
-Gilded Sword,Mountain Smithy Day 2,Gilded Sword,Mountain Village,Item,Mountain Smithy Day 2,Gilded Sword
+Razor Sword,Mountain Smithy Day 1,Razor Sword,Mountain Village,Item,Mountain Smithy Day 1,Razor Sword|Sword Upgrade
+Gilded Sword,Mountain Smithy Day 2,Gilded Sword,Mountain Village,Item,Mountain Smithy Day 2,Gilded Sword|Sword Upgrade
 Mirror Shield,Mirror Shield Chest,Mirror Shield,Beneath the Well,Item,Mirror Shield Chest,Mirror Shield
-Town Archery Quiver (40),Town Archery #1,Large Quiver,East Clock Town,Item,Town Archery #1,Large Quiver
-Swamp Archery Quiver (50),Swamp Archery #1,Largest Quiver,Road to Southern Swamp,Item,Swamp Archery #1,Largest Quiver
-Town Bomb Bag (30),Big Bomb Bag Purchase,Big Bomb Bag,West Clock Town,Item,Big Bomb Bag Purchase,Big Bomb Bag
-Mountain Bomb Bag (40),Biggest Bomb Bag Purchase,Biggest Bomb Bag,Goron Village,Item,Biggest Bomb Bag Purchase,Biggest Bomb Bag
-Town Wallet (200),Bank Reward #1,Adult Wallet,West Clock Town,Item,Bank Reward #1,Adult Wallet
-Ocean Wallet (500),Ocean Spider House Day 1 Reward,Giant Wallet,Great Bay Coast,Item,Ocean Spider House Day 1 Reward,Giant Wallet
+Town Archery Quiver (40),Town Archery #1,Large Quiver,East Clock Town,Item,Town Archery #1,Large Quiver|Bow Upgrade
+Swamp Archery Quiver (50),Swamp Archery #1,Largest Quiver,Road to Southern Swamp,Item,Swamp Archery #1,Largest Quiver|Bow Upgrade
+Town Bomb Bag (30),Big Bomb Bag Purchase,Big Bomb Bag,West Clock Town,Item,Big Bomb Bag Purchase,Big Bomb Bag|Bomb Bag Upgrade
+Mountain Bomb Bag (40),Biggest Bomb Bag Purchase,Biggest Bomb Bag,Goron Village,Item,Biggest Bomb Bag Purchase,Biggest Bomb Bag|Bomb Bag Upgrade
+Town Wallet (200),Bank Reward #1,Adult Wallet,West Clock Town,Item,Bank Reward #1,Adult Wallet|Wallet Upgrade
+Ocean Wallet (500),Ocean Spider House Day 1 Reward,Giant Wallet,Great Bay Coast,Item,Ocean Spider House Day 1 Reward,Giant Wallet|Wallet Upgrade
 Moon's Tear,Astronomy Telescope,Moon's Tear,Termina Field,Item,Astronomy Telescope,Moon's Tear
 Land Title Deed,Clock Town Scrub Trade,Land Title Deed,South Clock Town,Item,Clock Town Scrub Trade,Land Title Deed
 Swamp Title Deed,Swamp Scrub Trade,Swamp Title Deed,Southern Swamp,Item,Swamp Scrub Trade,Swamp Title Deed
@@ -249,7 +249,7 @@ Fierce Deity's Mask,Majora Child,Fierce Deity's Mask,The Moon,Item,Majora Child,
 Link Trial 30 Arrows,Link Trial Garo Master Chest,30 Arrows,The Moon,Item,Link Trial Garo Master Chest,30 Arrows
 Link Trial 10 Bombchu,Link Trial Iron Knuckle Chest,10 Bombchu,The Moon,Item,Link Trial Iron Knuckle Chest,10 Bombchu
 Pre-Clocktown 10 Deku Nuts,Pre-Clocktown Chest,10 Deku Nuts,Beneath Clocktown,Item,Pre-Clocktown Chest,10 Deku Nuts
-Starting Sword,Starting Sword,Kokiri Sword,Misc,Item,Starting Sword,Kokiri Sword
+Starting Sword,Starting Sword,Kokiri Sword,Misc,Item,Starting Sword,Kokiri Sword|Sword Upgrade
 Starting Shield,Starting Shield,Hero's Shield,Misc,Item,Starting Shield,Hero's Shield
 Starting Heart 1,Starting Heart Container #1,Heart Container,Misc,Item,Starting Heart Container #1,Heart Container
 Starting Heart 2,Starting Heart Container #2,Heart Container,Misc,Item,Starting Heart Container #2,Heart Container

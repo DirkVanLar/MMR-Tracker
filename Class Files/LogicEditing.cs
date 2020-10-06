@@ -74,12 +74,6 @@ namespace MMR_Tracker_V2
                             ? new List<string> { LogicEntry1.LocationName } : DicEntry.SpoilerLocation.Split('|').ToList();
                         LogicEntry1.SpoilerItem = (string.IsNullOrWhiteSpace(DicEntry.SpoilerItem)) 
                             ? new List<string> { LogicEntry1.ItemName } : DicEntry.SpoilerItem.Split('|').ToList();
-
-                        foreach(var i in LogicEntry1.SpoilerLocation)
-                        {
-                            Console.Write($"{i}, ");
-                        }
-                        Console.WriteLine("");
                         break;
                     case 1:
                         if (string.IsNullOrWhiteSpace(line)) { LogicEntry1.Required = null; break; }
@@ -127,8 +121,15 @@ namespace MMR_Tracker_V2
             if (list == null) { return true; }
             foreach(var i in list)
             {
-                usedItems.Add(i);
-                if (!logic[i].Useable()) { return false; }
+                if (logic[i].IsProgressiveItem(LogicObjects.MainTrackerInstance))
+                {
+                    if(!Tools.ProgressiveItemAquired(logic, logic[i], usedItems)) { return false; }
+                }
+                else
+                {
+                    usedItems.Add(i);
+                    if (!logic[i].Useable()) { return false; }
+                }
             }
             return true;
         }

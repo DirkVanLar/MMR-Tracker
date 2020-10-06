@@ -20,6 +20,23 @@ namespace MMR_Tracker_V2
             "Entrance",
             "Dungeon Entrance"
         };
+
+        public static List<string> ProgressiveItems = new List<string>
+            {
+                "Razor Sword",
+                "Gilded Sword",
+                "Starting Sword",
+                "Great Fairy Magic Meter",
+                "Great Fairy Extended Magic",
+                "Town Wallet (200)",
+                "Ocean Wallet (500)",
+                "Bomb Bag (20)",
+                "Town Bomb Bag (30)",
+                "Mountain Bomb Bag (40)",
+                "Hero's Bow",
+                "Town Archery Quiver (40)",
+                "Swamp Archery Quiver (50)"
+            };
         public static string ConvertCsvFileToJsonObject(string path)
         {
             var csv = new List<string[]>();
@@ -161,12 +178,12 @@ namespace MMR_Tracker_V2
                 if (i.SpoilerRandom > (FakeAllowed ? -2 : -1)) 
                 { 
                     Spoiler = true;
-                    if (!full) { Console.WriteLine(i.DictionaryName + " Had SpoilerData"); }
+                    //if (!full) { Console.WriteLine(i.DictionaryName + " Had SpoilerData"); }
                 }
                 if (i.SpoilerRandom < (FakeAllowed ? -1 : 0)) 
                 { 
                     fullLog = false;
-                    if (full) { Console.WriteLine(i.DictionaryName + " Does not have SpoilerData"); }
+                    //if (full) { Console.WriteLine(i.DictionaryName + " Does not have SpoilerData"); }
                 }
             }
             return (full) ? fullLog : Spoiler;
@@ -269,7 +286,6 @@ namespace MMR_Tracker_V2
             }
             return Divider;
         }
-
         public static long CountUniqueCombinations(int n, int r)
         {
             // naive: return Factorial(n) / (Factorial(r) * Factorial(n - r));
@@ -295,6 +311,15 @@ namespace MMR_Tracker_V2
                     return 1;
                 return i * Factorial(i - 1);
             }
+        }
+        public static string GetProgressiveItemName(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance instance)
+        {
+            if (!instance.Options.ProgressiveItems || !instance.IsMM()) { return entry.ItemName ?? entry.DictionaryName; }
+            if (Utility.ProgressiveItems.Contains(entry.DictionaryName))
+            {
+                return (entry.SpoilerItem.Count() > 1) ? entry.SpoilerItem[1] : entry.ItemName ?? entry.DictionaryName;
+            }
+            return entry.ItemName ?? entry.DictionaryName;
         }
     }
     public class Crypto

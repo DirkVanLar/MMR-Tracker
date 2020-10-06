@@ -171,17 +171,18 @@ namespace MMR_Tracker.Forms.Sub_Forms
             List<string> Duplicates = new List<string>();
             for (var i = 0; i < UsedLogic.Count; i++)
             {
-                UsedLogic[i].DisplayName = UsedLogic[i].ItemName ?? UsedLogic[i].DictionaryName;
+                var ItemName = Utility.GetProgressiveItemName(UsedLogic[i], Instance);
+                UsedLogic[i].DisplayName = ItemName;
                 if ((!UsedLogic[i].IsFake)
                     && ((UsedLogic[i].GetItemsNewLocation(UsedLogic) == null && !UsedLogic[i].Aquired) || Instance.Options.IsMultiWorld || !options.RemoveObtainedItemsfromList)
                     && (!UsedLogic[i].Unrandomized(2))
-                    && !Duplicates.Contains(UsedLogic[i].ItemName)
+                    && !Duplicates.Contains(ItemName)
                     && UsedLogic[i].ItemName != null
                     && Utility.FilterSearch(UsedLogic[i], TXTSearch.Text, UsedLogic[i].DisplayName)
                     && (entry.ItemSubType == UsedLogic[i].ItemSubType || entry.ItemSubType == "ALL"))
                 {
                     LBItemSelect.Items.Add(UsedLogic[i]);
-                    Duplicates.Add(UsedLogic[i].ItemName);
+                    Duplicates.Add(ItemName);
                 }
             }
         }

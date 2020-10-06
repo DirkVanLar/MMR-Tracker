@@ -104,6 +104,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.enableProgressiveItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -413,11 +414,12 @@
             // 
             this.logicOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editRadnomizationOptionsToolStripMenuItem,
+            this.enableProgressiveItemsToolStripMenuItem,
             this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem,
             this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -456,7 +458,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -495,7 +497,7 @@
             this.changeMiddleClickToStarToolStripMenuItem,
             this.changeFontToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -529,7 +531,7 @@
             // onlinePlayToolStripMenuItem
             // 
             this.onlinePlayToolStripMenuItem.Name = "onlinePlayToolStripMenuItem";
-            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.onlinePlayToolStripMenuItem.Text = "Online Play";
             this.onlinePlayToolStripMenuItem.Click += new System.EventHandler(this.onlinePlayToolStripMenuItem_Click);
             // 
@@ -768,6 +770,13 @@
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
+            // enableProgressiveItemsToolStripMenuItem
+            // 
+            this.enableProgressiveItemsToolStripMenuItem.Name = "enableProgressiveItemsToolStripMenuItem";
+            this.enableProgressiveItemsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.enableProgressiveItemsToolStripMenuItem.Text = "Enable Progressive Items";
+            this.enableProgressiveItemsToolStripMenuItem.Click += new System.EventHandler(this.enableProgressiveItemsToolStripMenuItem_Click);
+            // 
             // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -889,6 +898,7 @@
         private System.Windows.Forms.ToolStripMenuItem spoilerLogConverterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem presetsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enableProgressiveItemsToolStripMenuItem;
     }
 }
 

@@ -142,6 +142,22 @@ namespace MMR_Tracker.Class_Files
             foreach (string i in Spoiler)
             {
                 var line = i;
+
+                if (line.StartsWith("Settings:") && instance.IsMM())
+                {
+                    line = line.Replace("Settings:", "\"GameplaySettings\":");
+                    line = "{" + line + "}";
+                    LogicObjects.GameplaySettings SettingFile = new LogicObjects.GameplaySettings();
+                    try
+                    {
+                        SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(line).GameplaySettings;
+                        RandomizeOptions ApplySettings = new RandomizeOptions();
+                        ApplySettings.ApplyRandomizerSettings(SettingFile);
+                        Console.WriteLine("Settings Applied");
+                    }
+                    catch (Exception e) { Console.WriteLine(line); }
+                }
+
                 if (line.Contains("Gossip Stone ") && line.Contains("Message")) { break; }
                 LogicObjects.SpoilerData entry = new LogicObjects.SpoilerData();
                 if (line.Contains("->"))
@@ -160,12 +176,12 @@ namespace MMR_Tracker.Class_Files
 
                     //var location = instance.Logic.Find(x => x.SpoilerLocation == entry.LocationName || x.SpoilerLocation == GetAltSpoilerName(entry.LocationName));
                     var location = instance.Logic.Find(x => x.SpoilerLocation.Select(j => j.Trim()).Contains(entry.LocationName.Trim()));
-                    if (location == null) { Console.WriteLine($"Unable to find logic entry for {entry.LocationName}"); }
-                    else { Console.WriteLine($"Entry {location.ID} is {entry.LocationName}"); }
+                    //if (location == null) { Console.WriteLine($"Unable to find logic entry for {entry.LocationName}"); }
+                    //else { Console.WriteLine($"Entry {location.ID} is {entry.LocationName}"); }
 
                     var Item = instance.Logic.Find(x => x.SpoilerItem.Select(j => j.Trim()).Contains(entry.ItemName.Trim()) && !usedId.Contains(x.ID));
-                    if (Item == null) { Console.WriteLine($"Unable to find logic entry for {entry.ItemName}"); }
-                    else {Console.WriteLine($"Entry {Item.ID} is {entry.ItemName}"); }
+                    //if (Item == null) { Console.WriteLine($"Unable to find logic entry for {entry.ItemName}"); }
+                    //else {Console.WriteLine($"Entry {Item.ID} is {entry.ItemName}"); }
 
                     if (entry.ItemName.Contains("Ice Trap") || entry.ItemName == "Ice Trap")
                     {
@@ -183,23 +199,7 @@ namespace MMR_Tracker.Class_Files
             }
             return SpoilerData;
         }
-        public static string GetAltSpoilerName(string LocationName)
-        {
-            Dictionary<string, string> AltSpoilerNames = new Dictionary<string, string>
-            {
-                {"Great Bay Cape Ledge Without Tree Chest", "Zora Cape Ledge Without Tree Chest" },
-                {"Zora Cape Ledge Without Tree Chest", "Great Bay Cape Ledge Without Tree Chest" },
-                {"Zora Cape Ledge With Tree Chest", "Great Bay Cape Ledge With Tree Chest" },
-                {"Great Bay Cape Ledge With Tree Chest", "Zora Cape Ledge With Tree Chest" },
-                {"Zora Cape Grotto", "Great Bay Cape Grotto" },
-                {"Great Bay Cape Grotto", "Zora Cape Grotto" },
-                {"Great Bay Cape Underwater Chest", "Zora Cape Underwater Chest" },
-                {"Zora Cape Underwater Chest", "Great Bay Cape Underwater Chest" },
-                {"Zora Cape Like-Like", "Great Bay Like-Like" },
-                {"Great Bay Like-Like", "Zora Cape Like-Like" }
-            };
-            return AltSpoilerNames.ContainsKey(LocationName) ? AltSpoilerNames[LocationName] : LocationName;
-        }
+        
         public static List<LogicObjects.SpoilerData> ReadHTMLSpoilerLog(string Path, LogicObjects.TrackerInstance Instance)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
@@ -221,6 +221,21 @@ namespace MMR_Tracker.Class_Files
             LogicObjects.SpoilerData entry = new LogicObjects.SpoilerData();
             foreach (string line in File.ReadAllLines(Path))
             {
+                if (line.StartsWith("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">") && Instance.IsMM())
+                {
+                    var newLine = line.Replace("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">", "{\"GameplaySettings\":");
+                    newLine = newLine.Replace("</code><br/>", "}");
+                    LogicObjects.GameplaySettings SettingFile = new LogicObjects.GameplaySettings();
+                    try
+                    {
+                        SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(newLine).GameplaySettings;
+                        RandomizeOptions ApplySettings = new RandomizeOptions();
+                        ApplySettings.ApplyRandomizerSettings(SettingFile);
+                        Console.WriteLine("Settings Applied");
+                    }
+                    catch (Exception e) { Console.WriteLine(newLine); }
+                }
+
                 if (line.Contains("<tr class=\"region\">"))
                 {
                     Region = line.Trim();
@@ -689,6 +704,70 @@ namespace MMR_Tracker.Class_Files
                 return null;
             }
             return result;
+        }
+
+        public static bool ProgressiveItemAquired(List<LogicObjects.LogicEntry> Logic, LogicObjects.LogicEntry entry, List<int> usedItems)
+        {
+            var SW1 = Logic.Find(x => x.DictionaryName == "Razor Sword");
+            var SW2 = Logic.Find(x => x.DictionaryName == "Gilded Sword");
+            var SW3 = Logic.Find(x => x.DictionaryName == "Starting Sword");
+            var MM1 = Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter");
+            var MM2 = Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic");
+            var WL1 = Logic.Find(x => x.DictionaryName == "Town Wallet (200)");
+            var WL2 = Logic.Find(x => x.DictionaryName == "Ocean Wallet (500)");
+            var BB1 = Logic.Find(x => x.DictionaryName == "Bomb Bag (20)");
+            var BB2 = Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)");
+            var BB3 = Logic.Find(x => x.DictionaryName == "Mountain Bomb Bag (40)");
+            var BW1 = Logic.Find(x => x.DictionaryName == "Hero's Bow");
+            var BW2 = Logic.Find(x => x.DictionaryName == "Town Archery Quiver (40)");
+            var BW3 = Logic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)");
+
+            Dictionary<string, List<LogicObjects.LogicEntry>> ProgressiveItems = new Dictionary<string, List<LogicObjects.LogicEntry>>
+            {
+                { "Razor Sword", new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 } },
+                { "Gilded Sword", new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 } },
+                { "Starting Sword", new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 } },
+                { "Great Fairy Magic Meter", new List<LogicObjects.LogicEntry> { MM1, MM2 } },
+                { "Great Fairy Extended Magic", new List<LogicObjects.LogicEntry> { MM1, MM2 } },
+                { "Town Wallet (200)", new List<LogicObjects.LogicEntry> { WL1, WL2 } },
+                { "Ocean Wallet (500)", new List<LogicObjects.LogicEntry> { WL1, WL2 }},
+                { "Bomb Bag (20)", new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 }},
+                { "Town Bomb Bag (30)", new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 } },
+                { "Mountain Bomb Bag (40)", new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 } },
+                { "Hero's Bow", new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 } },
+                { "Town Archery Quiver (40)", new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 } },
+                { "Swamp Archery Quiver (50)", new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 } }
+            };
+
+            if (!ProgressiveItems.ContainsKey(entry.DictionaryName) // The item is not a pogressive item
+                || ProgressiveItems[entry.DictionaryName].Find(x => x == entry) == null // The item is not in it's own list
+                || ProgressiveItems[entry.DictionaryName].Find(x => x == null) != null) // one of the progressive items could not be found in logic
+            { return TreatAsNonProgressive(); } // None of these should ever happen
+
+            var ObtainedProgressiveITems = ProgressiveItems[entry.DictionaryName].Where(x => x.Useable()).ToList();
+
+            if (ObtainedProgressiveITems == null || ObtainedProgressiveITems.Count() < 1) { return false; } //None of the progressive items have been obtained
+
+            int ItemsNeeded = ProgressiveItems[entry.DictionaryName].IndexOf(entry) + 1;
+
+            if (ObtainedProgressiveITems.Count() >= ItemsNeeded)
+            {
+                for (var i = 0; i < ItemsNeeded; i++) { usedItems.Add(ObtainedProgressiveITems[i].ID); }
+                return true;
+            }
+            return false;
+
+            bool TreatAsNonProgressive()
+            {
+                Console.WriteLine("Error! non progressive made it past initial check");
+                if (entry.Useable())
+                {
+                    usedItems.Add(entry.ID);
+                    return true;
+                }
+                else { return false; }
+            }
+
         }
 
     }
