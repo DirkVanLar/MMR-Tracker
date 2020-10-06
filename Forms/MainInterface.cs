@@ -1145,6 +1145,10 @@ namespace MMR_Tracker_V2
             if (Container == 0 || Container == 2) { LBValidEntrances.Items.Clear(); }
             if (Container == 0 || Container == 3) { LBCheckedLocations.Items.Clear(); }
 
+            LBValidLocations.BeginUpdate();
+            LBValidEntrances.BeginUpdate();
+            LBCheckedLocations.BeginUpdate();
+
             foreach (var entry in ListItems)
             {
                 if (entry.Container == 1 && (Container == 0 || Container == 1)) 
@@ -1154,6 +1158,10 @@ namespace MMR_Tracker_V2
                 if (entry.Container == 3 && (Container == 0 || Container == 3)) 
                 { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false); CheckedLocations++; }
             }
+
+            LBValidLocations.EndUpdate();
+            LBValidEntrances.EndUpdate();
+            LBCheckedLocations.EndUpdate();
 
             if (Container == 0 || Container == 1) { LBValidLocations.TopIndex = lbLocTop; }
             if (Container == 0 || Container == 2) { LBValidEntrances.TopIndex = lbEntTop; }

@@ -268,11 +268,13 @@ namespace MMR_Tracker.Forms
         {
             EditorInstance.UnsavedChanges = true;
             Tools.SaveState(EditorInstance);
+            LBRequired.BeginUpdate();
             for (int x = LBRequired.SelectedIndices.Count - 1; x >= 0; x--)
             {
                 int idx = LBRequired.SelectedIndices[x];
                 LBRequired.Items.RemoveAt(idx);
             }
+            LBRequired.EndUpdate();
             UpdateReqAndCond();
         }
 
@@ -322,12 +324,14 @@ namespace MMR_Tracker.Forms
         {
             EditorInstance.UnsavedChanges = true;
             Tools.SaveState(EditorInstance);
+            LBConditional.BeginUpdate();
             for (int x = LBConditional.SelectedIndices.Count - 1; x >= 0; x--)
             {
                 if (!(LBConditional.Items[x] is RequiementConditional)) { continue; }
                 int idx = LBConditional.SelectedIndices[x];
                 LBConditional.Items.RemoveAt(idx);
             }
+            LBConditional.EndUpdate();
             UpdateReqAndCond();
         }
 
@@ -567,6 +571,10 @@ namespace MMR_Tracker.Forms
             renameCurrentItemToolStripMenuItem.Visible = currentEntry.IsUserItem(EditorInstance.Logic);
             deleteCurrentItemToolStripMenuItem.Visible = currentEntry.IsUserItem(EditorInstance.Logic);
             setTrickToolTipToolStripMenuItem.Visible = currentEntry.IsUserItem(EditorInstance.Logic);
+
+            LBRequired.BeginUpdate();
+            LBConditional.BeginUpdate();
+
             foreach (var i in entry.Required ?? new int[0])
             {
                 var ReqEntry = EditorInstance.Logic[i];
@@ -583,7 +591,7 @@ namespace MMR_Tracker.Forms
             }
             else
             {
-                
+
                 foreach (var j in entry.Conditionals ?? new int[0][])
                 {
                     var CondEntry = new RequiementConditional { ItemIDs = new List<LogicObjects.LogicEntry>() };
@@ -606,7 +614,10 @@ namespace MMR_Tracker.Forms
                     LBConditional.Items.Add(CondEntry);
                 }
             }
-            
+
+            LBRequired.EndUpdate();
+            LBConditional.EndUpdate();
+
             string DictionaryName = entry.DictionaryName.ToString();
             string LocationName = entry.LocationName ?? "Fake Location";
             string ItemName = entry.ItemName ?? "Fake Item";
