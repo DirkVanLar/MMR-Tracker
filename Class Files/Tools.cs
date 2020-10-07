@@ -303,6 +303,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool SaveInstance(LogicObjects.TrackerInstance Instance, bool SetPath = false , string FilePath = "")
         {
+            Console.WriteLine("Begin Save");
             if (FilePath == "" || !File.Exists(FilePath))
             {
                 SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV", FilterIndex = 1 };
@@ -311,10 +312,14 @@ namespace MMR_Tracker.Class_Files
             }
             //Clear the undo and redo list because otherwise the save file is massive
             Instance.UnsavedChanges = false;
+            Console.WriteLine("Start Clone");
             var SaveInstance = Utility.CloneTrackerInstance(Instance);
+            Console.WriteLine("Clear undo/redo");
             SaveInstance.UndoList.Clear();
             SaveInstance.RedoList.Clear();
+            Console.WriteLine("Write Data");
             File.WriteAllText(FilePath, JsonConvert.SerializeObject(SaveInstance));
+            Console.WriteLine("Format tracker");
             if (SetPath) { Tools.SaveFilePath = FilePath; }
             UpdateTrackerTitle();
             return true;
@@ -403,12 +408,12 @@ namespace MMR_Tracker.Class_Files
         }
         public static void SaveState(LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicEntry> Logic = null )
         {
+            int MaxUndoCount = (int)Math.Floor(Math.Pow(((double)5000 / (double)Instance.Logic.Count()), 1.5)); //Reduce the max count based on the size of the logic.
             if (Logic == null) { Logic = Instance.Logic; }
             Instance.UndoList.Add(Utility.CloneLogicList(Logic));
-            if (Instance.UndoList.Count() > 50) { Instance.UndoList.RemoveAt(0); }
+            if (Instance.UndoList.Count() > MaxUndoCount) { Instance.UndoList.RemoveAt(0); }
             Instance.RedoList = new List<List<LogicObjects.LogicEntry>>();
             StateListChanged(null, null);
-            //(Application.OpenForms["FRMTracker"] as FRMTracker).EnableUndoRedo(true, false);
         }
         public static void Undo(LogicObjects.TrackerInstance Instance)
         {

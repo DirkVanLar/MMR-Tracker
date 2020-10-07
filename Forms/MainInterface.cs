@@ -182,7 +182,7 @@ namespace MMR_Tracker_V2
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(instance, file);
                 if (!Utility.CheckforSpoilerLog(instance.Logic)) { MessageBox.Show("No spoiler data found!"); return; }
-                else if (!Utility.CheckforSpoilerLog(instance.Logic, true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
+                else if (!Utility.CheckforSpoilerLog(instance.Logic, true, true, true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
 
                 bool EntrancesRandoBefore = Utility.CheckForRandomEntrances(instance);
                 Utility.FixSpoilerInconsistency(LogicObjects.MainTrackerInstance);

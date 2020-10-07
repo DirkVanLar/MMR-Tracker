@@ -45,8 +45,8 @@ namespace MMR_Tracker_V2
                 Console.WriteLine("Checked: " + Logic[i].Checked);
                 Console.WriteLine("Fake Item: " + Logic[i].IsFake);
                 Console.WriteLine("Random Item: " + Logic[i].RandomizedItem);
-                Console.WriteLine("Spoiler Log Location name: " + Logic[i].SpoilerLocation);
-                Console.WriteLine("Spoiler Log Item name: " + Logic[i].SpoilerItem);
+                Console.WriteLine("Spoiler Log Location name: " + string.Join(",", Logic[i].SpoilerLocation));
+                Console.WriteLine("Spoiler Log Item name: " + string.Join(",", Logic[i].SpoilerItem));
                 Console.WriteLine("Spoiler Log Randomized Item: " + Logic[i].SpoilerRandom);
                 if (Logic[i].RandomizedState() == 0) { Console.WriteLine("Randomized State: Randomized"); }
                 if (Logic[i].RandomizedState() == 1) { Console.WriteLine("Randomized State: Unrandomized"); }

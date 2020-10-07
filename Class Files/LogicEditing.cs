@@ -206,18 +206,22 @@ namespace MMR_Tracker_V2
                 {
                     item.Available = false;
                     int has = 0;
-                    foreach (var i in item.Conditionals)
+                    var Required = item.Required.Where(x => !logic[x].DictionaryName.Contains("MMRTCombinations")).ToArray();
+                    if (!Required.Any() || RequirementsMet(Required, logic, TempUsedItems))
                     {
-                        List<int> ReqItemsUsed = new List<int>();
-                        if (RequirementsMet(i, logic, ReqItemsUsed)) 
-                        { 
-                            has++;
-                            foreach(var q in ReqItemsUsed) { TempUsedItems.Add(q);}
-                        }
-                        if (has >= Needed)
+                        foreach (var i in item.Conditionals)
                         {
-                            foreach (var q in TempUsedItems) { usedItems.Add(q); }
-                            return true;
+                            List<int> ReqItemsUsed = new List<int>();
+                            if (RequirementsMet(i, logic, ReqItemsUsed))
+                            {
+                                has++;
+                                foreach (var q in ReqItemsUsed) { TempUsedItems.Add(q); }
+                            }
+                            if (has >= Needed)
+                            {
+                                foreach (var q in TempUsedItems) { usedItems.Add(q); }
+                                return true;
+                            }
                         }
                     }
                 }
@@ -297,6 +301,7 @@ namespace MMR_Tracker_V2
 
                 LogicFile = (saveFile) ? SaveFileRawLogicFile : File.ReadAllLines(file);
             }
+            Tools.SaveState(Instance);
 
             var OldLogic = Utility.CloneLogicList(Instance.Logic);
             Instance.RawLogicFile = LogicFile;
@@ -305,18 +310,16 @@ namespace MMR_Tracker_V2
             var logic = Instance.Logic;
             foreach (var entry in OldLogic)
             {
-                if (Instance.DicNameToID.ContainsKey(entry.DictionaryName))
-                {
-                    var logicEntry = logic[Instance.DicNameToID[entry.DictionaryName]];
-
-                    logicEntry.Aquired = entry.Aquired;
-                    logicEntry.Checked = entry.Checked;
-                    logicEntry.RandomizedItem = entry.RandomizedItem;
-                    logicEntry.SpoilerRandom = entry.SpoilerRandom;
-                    logicEntry.Starred = entry.Starred;
-                    logicEntry.Options = entry.Options;
-                    logicEntry.TrickEnabled = entry.TrickEnabled;
-                }
+                var logicEntry = logic.Find(x => x.DictionaryName == entry.DictionaryName);
+                if (logicEntry == null) { continue; }
+                logicEntry.Aquired = entry.Aquired;
+                logicEntry.Checked = entry.Checked;
+                logicEntry.RandomizedItem = entry.RandomizedItem;
+                logicEntry.SpoilerRandom = entry.SpoilerRandom;
+                logicEntry.Starred = entry.Starred;
+                logicEntry.Options = entry.Options;
+                logicEntry.TrickEnabled = entry.TrickEnabled;
+                logicEntry.PlayerData = entry.PlayerData;
             }
             if (saveFile)
             {
@@ -339,7 +342,6 @@ namespace MMR_Tracker_V2
             Instance.Options.EntranceRadnoEnabled = Utility.CheckForRandomEntrances(Instance);
             Instance.Options.OverRideAutoEntranceRandoEnable = (Instance.Options.EntranceRadnoEnabled != Instance.EntranceRando);
             CalculateItems(Instance, true);
-            Tools.SaveState(Instance);
         }
 
         public static void CreatedEntrancepairDcitionary(LogicObjects.TrackerInstance instance)

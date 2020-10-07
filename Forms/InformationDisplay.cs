@@ -90,6 +90,7 @@ namespace MMR_Tracker_V2
         {
             this.Text = "Logic Object";
             List<LogicObjects.LogicEntry> Logic = Instance.Logic;
+            listBox1.BeginUpdate();
             for (int i = 0; i < Logic.Count; i++)
             {
                 listBox1.Items.Add("---------------------------------------");
@@ -104,8 +105,8 @@ namespace MMR_Tracker_V2
                 listBox1.Items.Add("Checked: " + Logic[i].Checked);
                 listBox1.Items.Add("Fake Item: " + Logic[i].IsFake);
                 listBox1.Items.Add("Random Item: " + Logic[i].RandomizedItem);
-                listBox1.Items.Add("Spoiler Log Location name: " + Logic[i].SpoilerLocation);
-                listBox1.Items.Add("Spoiler Log Item name: " + Logic[i].SpoilerItem);
+                listBox1.Items.Add("Spoiler Log Location name: " + string.Join(",", Logic[i].SpoilerLocation));
+                listBox1.Items.Add("Spoiler Log Item name: " + string.Join(",", Logic[i].SpoilerItem));
                 listBox1.Items.Add("Spoiler Log Randomized Item: " + Logic[i].SpoilerRandom);
                 if (Logic[i].RandomizedState() == 0) { listBox1.Items.Add("Randomized State: Randomized"); }
                 if (Logic[i].RandomizedState() == 1) { listBox1.Items.Add("Randomized State: Unrandomized"); }
@@ -155,6 +156,7 @@ namespace MMR_Tracker_V2
                     }
                 }
             }
+            listBox1.EndUpdate();
         }
 
         public void PrintInfo()

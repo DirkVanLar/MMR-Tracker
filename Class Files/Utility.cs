@@ -168,7 +168,7 @@ namespace MMR_Tracker_V2
             }
             return false;
         }
-        public static bool CheckforSpoilerLog(List<LogicObjects.LogicEntry> Logic, bool full = false, bool FakeAllowed = true)
+        public static bool CheckforSpoilerLog(List<LogicObjects.LogicEntry> Logic, bool full = false, bool FakeAllowed = true, bool Log = false)
         {
             bool fullLog = true;
             bool Spoiler = false;
@@ -178,12 +178,12 @@ namespace MMR_Tracker_V2
                 if (i.SpoilerRandom > (FakeAllowed ? -2 : -1)) 
                 { 
                     Spoiler = true;
-                    //if (!full) { Console.WriteLine(i.DictionaryName + " Had SpoilerData"); }
+                    if (!full && Log) { Console.WriteLine($"{string.Join(", ", i.SpoilerLocation[0])} Had SpoilerData: {string.Join(", ", i.SpoilerItem[0])}"); }
                 }
                 if (i.SpoilerRandom < (FakeAllowed ? -1 : 0)) 
                 { 
                     fullLog = false;
-                    //if (full) { Console.WriteLine(i.DictionaryName + " Does not have SpoilerData"); }
+                    if (full && Log) { Console.WriteLine(string.Join(", ", i.SpoilerLocation[0]) + " Does not have SpoilerData"); }
                 }
             }
             return (full) ? fullLog : Spoiler;

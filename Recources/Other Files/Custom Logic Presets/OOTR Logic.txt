@@ -31,19 +31,19 @@
 
 - Nocturne of Shadow Warp => Shadow Temple Warp Region
 1312
-285,1038
+285;1038
 0
 0
 
 - Prelude of Light Warp => Temple of Time
 1312
-283,1036
+283;1036
 0
 0
 
 - Requiem of Spirit Warp => Desert Colossus
 1312
-1035,282
+282;1035
 0
 0
 
@@ -2406,25 +2406,25 @@
 0
 
 - Kakariko Potion Shop Item 5
-
+1316
 135;138
 0
 0
 
 - Kakariko Potion Shop Item 6
-
+1316
 135;138
 0
 0
 
 - Kakariko Potion Shop Item 7
-
+1316
 135;138
 0
 0
 
 - Kakariko Potion Shop Item 8
-
+1316
 135;138
 0
 0
@@ -2886,13 +2886,13 @@
 0
 
 - SFM Grotto Deku Scrub Red Potion
-230
+230,1339
 
 0
 0
 
 - SFM Grotto Deku Scrub Green Potion
-230
+230,1339
 
 0
 0
@@ -2904,19 +2904,19 @@
 0
 
 - LLR Grotto Deku Scrub Deku Nuts
-218
+218,1339
 
 0
 0
 
 - LLR Grotto Deku Scrub Bombs
-218
+218,1339
 
 0
 0
 
 - LLR Grotto Deku Scrub Arrows
-218
+218,1339
 
 0
 0
@@ -2934,7 +2934,7 @@
 0
 
 - HF Grotto Deku Scrub Piece of Heart
-203
+203,1339
 
 0
 0
@@ -2988,7 +2988,7 @@
 0
 
 - DMT Grotto Cow
-226
+175
 
 0
 0
@@ -3000,19 +3000,19 @@
 0
 
 - Goron Grotto Deku Scrub Deku Nuts
-194
+194,1339
 
 0
 0
 
 - Goron Grotto Deku Scrub Bombs
-194
+194,1339
 
 0
 0
 
 - Goron Grotto Deku Scrub Arrows
-194
+194,1339
 
 0
 0
@@ -3048,55 +3048,55 @@
 0
 
 - ZR Grotto Deku Scrub Red Potion
-236
+236,1339
 
 0
 0
 
 - ZR Grotto Deku Scrub Green Potion
-236
+236,1339
 
 0
 0
 
 - LH Grotto Deku Scrub Deku Nuts
-215
+215,1339
 
 0
 0
 
 - LH Grotto Deku Scrub Bombs
-215
+215,1339
 
 0
 0
 
 - LH Grotto Deku Scrub Arrows
-215
+215,1339
 
 0
 0
 
 - Desert Grotto Deku Scrub Red Potion
-177
+177,1339
 
 0
 0
 
 - Desert Grotto Deku Scrub Green Potion
-177
+177,1339
 
 0
 0
 
 - Valley Grotto Deku Scrub Red Potion
-189
+189,1339
 
 0
 0
 
 - Valley Grotto Deku Scrub Green Potion
-189
+189,1339
 
 0
 0
@@ -3228,25 +3228,25 @@
 0
 
 - Kak Potion Shop Item 1
-
+1316
 135;138
 0
 0
 
 - Kak Potion Shop Item 2
-
+1316
 135;138
 0
 0
 
 - Kak Potion Shop Item 3
-
+1316
 135;138
 0
 0
 
 - Kak Potion Shop Item 4
-
+1316
 135;138
 0
 0
@@ -3420,13 +3420,13 @@
 0
 
 - DC Deku Scrub Deku Sticks
-1466
+1466,1339
 
 0
 0
 
 - DC Deku Scrub Deku Shield
-1466
+1466,1339
 
 0
 0
@@ -3444,13 +3444,13 @@
 0
 
 - DC Deku Scrub Deku Seeds
-1466
+1466,1339
 
 0
 0
 
 - DC Deku Scrub Deku Nuts
-1466
+1466,1339
 
 0
 0
@@ -3516,7 +3516,7 @@
 0
 
 - Jabu Deku Scrub Deku Nuts
-1495
+1495,1339
 
 0
 0
@@ -4440,25 +4440,25 @@
 0
 
 - GC Deku Scrub Bombs
-1608
+1608,1339
 
 0
 0
 
 - GC Deku Scrub Arrows
-1608
+1608,1339
 
 0
 0
 
 - GC Deku Scrub Red Potion
-1608
+1608,1339
 
 0
 0
 
 - GC Deku Scrub Green Potion
-1608
+1608,1339
 
 0
 0
@@ -4632,7 +4632,7 @@
 0
 
 - DT MQ Deku Scrub Deku Shield
-1459
+1459,1339
 
 0
 0
@@ -4680,25 +4680,25 @@
 0
 
 - DC MQ Deku Scrub Deku Sticks
-1471
+1471,1339
 
 0
 0
 
 - DC MQ Deku Scrub Deku Seeds
-1471
+1471,1339
 
 0
 0
 
 - DC MQ Deku Scrub Deku Shield
-1471
+1471,1339
 
 0
 0
 
 - DC MQ Deku Scrub Red Potion
-1471
+1471,1339
 
 0
 0
@@ -5586,31 +5586,31 @@
 0
 
 - GC MQ Deku Scrub Bombs
-1616
+1616,1339
 
 0
 0
 
 - GC MQ Deku Scrub Arrows
-1616
+1616,1339
 
 0
 0
 
 - GC MQ Deku Scrub Red Potion
-1616
+1616,1339
 
 0
 0
 
 - GC MQ Deku Scrub Green Potion
-1616
+1616,1339
 
 0
 0
 
 - GC MQ Deku Scrub Deku Nuts
-1616
+1616,1339
 
 0
 0

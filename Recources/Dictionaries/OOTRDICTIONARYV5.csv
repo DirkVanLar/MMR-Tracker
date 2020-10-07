@@ -233,14 +233,14 @@ Sacred Forest Meadow => Meadow Storms Grotto,Sacred Forest Meadow > Meadow Storm
 Sacred Forest Meadow Entryway => Front of Meadow Grotto,Sacred Forest Meadow Entryway > Front of Meadow Grotto,Front of Meadow Grotto < Sacred Forest Meadow Entryway,Lost Woods,Entrance,SFM Entryway>SFM Wolfos Grotto,SFM Wolfos Grotto,Front of Meadow Grotto => Sacred Forest Meadow Entryway
 Shield Grave => Graveyard,Shield Grave > Graveyard,Graveyard < Shield Grave,Kakariko Village,Entrance,Graveyard Shield Grave>Graveyard,Graveyard<Graveyard Shield Grave,Graveyard => Shield Grave
 Top of Crater Grotto => Death Mountain Crater Upper Local,Top of Crater Grotto > Death Mountain Crater Upper Local,Death Mountain Crater Upper Local < Top of Crater Grotto,Death Mountain,Entrance,DMC Upper Grotto>DMC Upper Local,DMC Upper Local<DMC Upper Grotto,Death Mountain Crater Upper Nearby => Top of Crater Grotto
-Zora River => Zora River Plateau Bombable Grotto,Zora River > Zora River Plateau Bombable Grotto,Zora River Plateau Bombable Grotto < Zora River,Zora River,Entrance,ZR Fairy Grotto>Zora River,Zora River<ZR Fairy Grotto,Zora River Plateau Bombable Grotto => Zora River
-Zora River => Zora River Plateau Open Grotto,Zora River > Zora River Plateau Open Grotto,Zora River Plateau Open Grotto < Zora River,Zora River,Entrance,ZR Open Grotto>Zora River,Zora River<ZR Open Grotto,Zora River Plateau Open Grotto => Zora River
-Zora River => Zora River Storms Grotto,Zora River > Zora River Storms Grotto,Zora River Storms Grotto < Zora River,Zora River,Entrance,ZR Storms Grotto>Zora River,Zora River<ZR Storms Grotto,Zora River Storms Grotto => Zora River
-Zora River Plateau Bombable Grotto => Zora River,Zora River Plateau Bombable Grotto > Zora River,Zora River < Zora River Plateau Bombable Grotto,Zora River,Entrance,Zora River>ZR Fairy Grotto,ZR Fairy Grotto,Zora River => Zora River Plateau Bombable Grotto
-Zora River Plateau Open Grotto => Zora River,Zora River Plateau Open Grotto > Zora River,Zora River < Zora River Plateau Open Grotto,Zora River,Entrance,Zora River>ZR Open Grotto,ZR Open Grotto,Zora River => Zora River Plateau Open Grotto
-Zora River Storms Grotto => Zora River,Zora River Storms Grotto > Zora River,Zora River < Zora River Storms Grotto,Zora River,Entrance,Zora River>ZR Storms Grotto,ZR Storms Grotto,Zora River => Zora River Storms Grotto
-Zoras Domain => Zoras Domain Storms Grotto,Zoras Domain > Zoras Domain Storms Grotto,Zoras Domain Storms Grotto < Zoras Domain,Zora River,Entrance,Zoras Domain>ZD Storms Grotto,ZD Storms Grotto,Zoras Domain Storms Grotto => Zoras Domain
-Zoras Domain Storms Grotto => Zoras Domain,Zoras Domain Storms Grotto > Zoras Domain,Zoras Domain < Zoras Domain Storms Grotto,Zora River,Entrance,ZD Storms Grotto>Zoras Domain,Zoras Domain<ZD Storms Grotto,Zoras Domain => Zoras Domain Storms Grotto
+Zora River => Zora River Plateau Bombable Grotto,Zora River > Zora River Plateau Bombable Grotto,Zora River Plateau Bombable Grotto < Zora River,Zora River,Entrance,Zora River>ZR Fairy Grotto,ZR Fairy Grotto,Zora River Plateau Bombable Grotto => Zora River
+Zora River => Zora River Plateau Open Grotto,Zora River > Zora River Plateau Open Grotto,Zora River Plateau Open Grotto < Zora River,Zora River,Entrance,Zora River>ZR Open Grotto,ZR Open Grotto,Zora River Plateau Open Grotto => Zora River
+Zora River => Zora River Storms Grotto,Zora River > Zora River Storms Grotto,Zora River Storms Grotto < Zora River,Zora River,Entrance,Zora River>ZR Storms Grotto,ZR Storms Grotto,Zora River Storms Grotto => Zora River
+Zora River Plateau Bombable Grotto => Zora River,Zora River Plateau Bombable Grotto > Zora River,Zora River < Zora River Plateau Bombable Grotto,Zora River,Entrance,ZR Fairy Grotto>Zora River,Zora River<ZR Fairy Grotto,Zora River => Zora River Plateau Bombable Grotto
+Zora River Plateau Open Grotto => Zora River,Zora River Plateau Open Grotto > Zora River,Zora River < Zora River Plateau Open Grotto,Zora River,Entrance,ZR Open Grotto>Zora River,Zora River<ZR Open Grotto,Zora River => Zora River Plateau Open Grotto
+Zora River Storms Grotto => Zora River,Zora River Storms Grotto > Zora River,Zora River < Zora River Storms Grotto,Zora River,Entrance,ZR Storms Grotto>Zora River,Zora River<ZR Storms Grotto,Zora River => Zora River Storms Grotto
+Zoras Domain => Zoras Domain Storms Grotto,Zoras Domain > Zoras Domain Storms Grotto,Zoras Domain Storms Grotto < Zoras Domain,Zora River,Entrance,ZD Storms Grotto>Zoras Domain,Zoras Domain<ZD Storms Grotto,Zoras Domain Storms Grotto => Zoras Domain
+Zoras Domain Storms Grotto => Zoras Domain,Zoras Domain Storms Grotto > Zoras Domain,Zoras Domain < Zoras Domain Storms Grotto,Zora River,Entrance,Zoras Domain>ZD Storms Grotto,ZD Storms Grotto,Zoras Domain => Zoras Domain Storms Grotto
 #MQ Dungeon Entrances,,,,,,,
 Ganons Castle Grounds => Ganons Castle,Ganons Castle Grounds > Ganons Castle,Ganons Castle < Ganons Castle Grounds,,Entrance,Ganons Castle Grounds>Ganons Castle,Ganons Castle<Ganons Castle Grounds,Ganons Castle => Ganons Castle Grounds
 Ganons Castle => Ganons Castle Grounds,Ganons Castle > Ganons Castle Grounds,Ganons Castle Grounds < Ganons Castle,,Entrance,Ganons Castle>Ganons Castle Grounds,Ganons Castle Grounds<Ganons Castle,Ganons Castle Grounds => Ganons Castle
@@ -365,7 +365,7 @@ Castle Town Bazaar Item 5,Market Bazaar Item 5,Buy Arrows (50),Castle Town,Item,
 Castle Town Bazaar Item 6,Market Bazaar Item 6,Buy Arrows (30),Castle Town,Item,Market Bazaar Item 6,Buy Arrows (30),
 Castle Town Bazaar Item 7,Market Bazaar Item 7,Buy Deku Stick (1),Castle Town,Item,Market Bazaar Item 7,Buy Deku Stick (1),
 Castle Town Bazaar Item 8,Market Bazaar Item 8,Buy Arrows (10),Castle Town,Item,Market Bazaar Item 8,Buy Arrows (10),
-Child Shooting Gallery,Market Shooting Gallery,Slingshot,Castle Town,Item,Market Shooting Gallery,Slingshot,
+Child Shooting Gallery,Market Shooting Gallery,Slingshot,Castle Town,Item,Market Shooting Gallery Reward,Slingshot,
 Bombchu Bowling Bomb Bag,Market Bombchu Bowling First Prize,Bomb Bag,Castle Town,Item,Market Bombchu Bowling First Prize,Bomb Bag,
 Bombchu Bowling Piece of Heart,Market Bombchu Bowling Second Prize,Piece of Heart,Castle Town,Item,Market Bombchu Bowling Second Prize,Piece of Heart,
 Castle Town Potion Shop Item 5,Market Potion Shop Item 5,Buy Bottle Fish,Castle Town,Item,Market Potion Shop Item 5,Buy Bottle Fish,
@@ -1181,7 +1181,7 @@ Bottle with Big Poe,,Bottle with Big Poe,,Item,Bottle with Big Poe,Bottle with B
 Bottle with Milk,,Bottle with Milk,,Item,Bottle with Milk,Bottle with Milk,
 Bottle with Fish,,Bottle with Fish,,Item,Bottle with Fish,Bottle with Fish,
 Bottle with Bugs,,Bottle with Bugs,,Item,Bottle with Bugs,Bottle with Bugs,
-Bottle with Blue Potion,,Bottle with Blue Potion,,Item,Bottle with Blue Potion,Bottle with Blue Potion,
-Bottle with Red Potion,,Bottle with Red Potion,,Item,Bottle with Red Potion,Bottle with Red Potion,
-Bottle with Green Potion,,Bottle with Green Potion,,Item,Bottle with Green Potion,Bottle with Green Potion,
+Bottle with Blue Potion,,Bottle with Potion,,Item,Bottle with Blue Potion,Bottle with Blue Potion|Bottle with Red Potion|Bottle with Green Potion,
+Bottle with Red Potion,,Bottle with Potion,,Item,Bottle with Red Potion,Bottle with Blue Potion|Bottle with Red Potion|Bottle with Green Potion,
+Bottle with Green Potion,,Bottle with Potion,,Item,Bottle with Green Potion,Bottle with Blue Potion|Bottle with Red Potion|Bottle with Green Potion,
 Bottle with Poe,,Bottle with Poe,,Item,Bottle with Poe,Bottle with Poe,
