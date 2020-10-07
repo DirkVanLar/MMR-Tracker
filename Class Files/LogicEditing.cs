@@ -138,9 +138,11 @@ namespace MMR_Tracker_V2
         {
             usedItems = usedItems ?? new List<int>();
             if (list == null) { return true; }
-            foreach(var i in list)
+            //Remove any lines from the conditional that contain disabled tricks
+            var ValidListEntries = list.Where(x => !x.Where(y => logic[y].IsTrick && !logic[y].TrickEnabled).Any());
+            if (!ValidListEntries.Any()) { return true; }
+            foreach (var i in ValidListEntries)
             {
-                if (Array.Exists(i, x => !logic[x].TrickEnabled && logic[x].IsTrick)) { continue; } //Ignore lines with disabled tricks
                 List<int> UsedItemsSet = new List<int>();
                 if (RequirementsMet(i, logic, UsedItemsSet))
                 {
@@ -199,13 +201,10 @@ namespace MMR_Tracker_V2
             List<int> TempUsedItems = new List<int>();
             if (item.Required != null && item.Conditionals != null && item.Required.Where(x => logic[x].DictionaryName.Contains("MMRTCombinations")).Any())
             {
-                Console.WriteLine($"Found Combo Entry on {item.DictionaryName}");
-                item.Available = false;
                 int ComboEntry = item.Required.ToList().Find(x => logic[x].DictionaryName.Contains("MMRTCombinations"));
-                if (int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out int e))
+                if (int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out int Needed))
                 {
-                    int Needed = int.Parse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""));
-                    Console.WriteLine($"{item.DictionaryName} Needs {Needed} Items");
+                    item.Available = false;
                     int has = 0;
                     foreach (var i in item.Conditionals)
                     {
@@ -213,7 +212,6 @@ namespace MMR_Tracker_V2
                         if (RequirementsMet(i, logic, ReqItemsUsed)) 
                         { 
                             has++;
-                            Console.WriteLine($"Requirement Met for {item.DictionaryName} has {has} Items");
                             foreach(var q in ReqItemsUsed) { TempUsedItems.Add(q);}
                         }
                         if (has >= Needed)
