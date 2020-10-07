@@ -157,6 +157,7 @@ namespace MMR_Tracker_V2
             public int ItemID { get; set; }
             public string ItemName { get; set; }
             public string LocationArea { get; set; }
+            public int BelongsTo { get; set; } = -1;
         }
         public class ListItem
         {

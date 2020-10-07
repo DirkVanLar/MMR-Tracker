@@ -74,6 +74,7 @@ namespace MMR_Tracker.Forms
 
         public static string[] HandleOOTRSpoilerLog(string Log = "")
         {
+
             void CreateOOTRLogicFile()
             {
                 List<LogicObjects.LogicDictionaryEntry> LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject("Recources\\Dictionaries\\OOTRDICTIONARYV5.csv"));
@@ -97,6 +98,7 @@ namespace MMR_Tracker.Forms
                 saveDic.ShowDialog();
                 File.WriteAllLines(saveDic.FileName, log);
             }
+
 
             bool ManualConvert = (Log == "");
             string filename = "";
@@ -140,10 +142,18 @@ namespace MMR_Tracker.Forms
             bool CoupledEntrances = true;
             int DamageMode = 0; // 0 = Other, 1 = 4x, 2 = OHKO
             int LACSTrigger = 0; // 0 = Vanilla, 1 = stone, 2 = Meddalion, 3 = All,
+            bool isMulti = false;
+            int worlCount = 1;
             dynamic array = JsonConvert.DeserializeObject(Log);
             List<string> FileContent = new List<string>();
             FileContent.Add("Converted OOTR");
 
+            dynamic SettingsArray = array.settings;
+            dynamic EntranceArray = array.entrances;
+            dynamic DungeonArray = array.dungeons;
+            dynamic ItemsArray = array.locations;
+
+            ConvertMultiWorldLog();
             ReadSettings();
             HandleEntrances();
             ConvertMQEntrances();
@@ -167,7 +177,7 @@ namespace MMR_Tracker.Forms
             #region DoStuffIDontWantToLookAt
             void ReadSettings()
             {
-                foreach (dynamic item in array.settings)
+                foreach (dynamic item in SettingsArray)
                 {
                     string line = item.ToString();
                     if (line.Contains("shuffle_ganon_bosskey"))
@@ -224,7 +234,7 @@ namespace MMR_Tracker.Forms
             void HandleEntrances()
             {//Handle Entraces
                 List<entranceTable> SpoilerEntranceTable = new List<entranceTable>();
-                foreach (dynamic item in array.entrances)
+                foreach (dynamic item in EntranceArray)
                 {
                     var entry = new entranceTable();
                     string line = item.ToString();
@@ -301,7 +311,7 @@ namespace MMR_Tracker.Forms
 
             void ConvertMQEntrances()
             {//Check the MQ entry in the spoiler log and convert the entries of any dungeon that are MQ to the MQ entry
-                foreach (dynamic i in array.dungeons)
+                foreach (dynamic i in DungeonArray)
                 {
                     string line = i.ToString();
                     //Console.WriteLine(line);
@@ -386,7 +396,7 @@ namespace MMR_Tracker.Forms
             void HandleItems()
             {//Handle Items
                 Dictionary<string, string> ItemNames = new Dictionary<string, string>();
-                foreach (dynamic item in array.locations)
+                foreach (dynamic item in ItemsArray)
                 {
                     string line = item.ToString();
                     line = line.Replace(',', ':');
@@ -399,28 +409,20 @@ namespace MMR_Tracker.Forms
                         lines[i] = lines[i].Trim();
                     }
 
+
                     if (lines[1].Contains("item"))
                     {
                         var Name = lines[2].Trim();
-
                         if (Name.Contains("["))
                         {
                             var ind = Name.IndexOf("[");
                             Name = Name.Substring(0, ind).Trim();
                         }
-
-                        ItemNames.Add(lines[0].Trim(), Name);
+                        if (isMulti && lines.Count() > 4) { Name = Name + "$" + lines[4]; }
+                        FileContent.Add($"{lines[0].Trim()}->{Name}");
                     }
-                    else
-                    {
-                        ItemNames.Add(lines[0].Trim(), lines[1].Trim());
-                    }
+                    else { FileContent.Add($"{lines[0].Trim()}->{lines[1].Trim()}"); }
 
-                }
-
-                foreach (var i in ItemNames)
-                {
-                    FileContent.Add($"{i.Key}->{i.Value}");
                 }
 
                 foreach (var i in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Item" 
@@ -581,6 +583,21 @@ namespace MMR_Tracker.Forms
                         FileContent.Add($"SettingDamageMode->SettingDamageModeOHKO");
                         break;
                 }
+                switch (LACSTrigger)
+                {
+                    case 0:
+                        FileContent.Add($"SettingLACSTrigger->SettingLACSTriggerVanilla");
+                        break;
+                    case 1:
+                        FileContent.Add($"SettingLACSTrigger->SettingLACSTriggerStones");
+                        break;
+                    case 2:
+                        FileContent.Add($"SettingLACSTrigger->SettingLACSTriggerMedallions");
+                        break;
+                    case 3:
+                        FileContent.Add($"SettingLACSTrigger->SettingLACSTriggerDungeons");
+                        break;
+                }
             }
 
             void AddShopItemPrices()
@@ -612,6 +629,58 @@ namespace MMR_Tracker.Forms
                     if (price < 501) { return 3; }
                     return 4;
                 }
+            }
+
+
+            void ConvertMultiWorldLog()
+            {
+                int MyplayerID = LogicObjects.MainTrackerInstance.Options.MyPlayerID;
+                bool ValidMultiworldConfig = true;
+                foreach (dynamic item in array.settings)
+                {
+                    string line = item.ToString();
+                    if (line.Contains("\"world_count\":") && int.TryParse(line.Replace("\"world_count\":", "").Replace(",","").Trim(), out worlCount) && worlCount > 1)
+                    {
+                        isMulti = true;
+                        break;
+                    }
+                }
+                Console.WriteLine($"Multiworld {isMulti}, World Count: {worlCount}");
+
+                if (isMulti && (MyplayerID < 0 || MyplayerID > worlCount || !LogicObjects.MainTrackerInstance.Options.IsMultiWorld))
+                {
+                    MessageBox.Show("The selected logic file is a multiworld Logic file. Multiworld is either not enabled in your tracker or your player ID was not found in the spoiler log. Multiworld data will not be imported", "Multiworld Invalid!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ValidMultiworldConfig = false;
+                    MyplayerID = 1;
+                }
+
+                if (isMulti)
+                {
+                    string entranceLine = "";
+                    foreach(dynamic i in EntranceArray)
+                    {
+                        string j = i.ToString();
+                        if (j.Trim().StartsWith($"\"World {MyplayerID}\"")) { entranceLine = j.Replace(System.Environment.NewLine, "").Replace($"\"World {MyplayerID}\":", ""); }
+                    }
+                    if (entranceLine != "") { EntranceArray = JsonConvert.DeserializeObject(entranceLine); }
+                    string DungeonLine = "";
+                    foreach (dynamic i in DungeonArray)
+                    {
+                        string j = i.ToString();
+                        if (j.Trim().StartsWith($"\"World {MyplayerID}\"")) { DungeonLine = j.Replace(System.Environment.NewLine, "").Replace($"\"World {MyplayerID}\":", ""); }
+                    }
+                    if (DungeonLine != "") { DungeonArray = JsonConvert.DeserializeObject(DungeonLine); }
+                    string ItemLine = "";
+                    foreach (dynamic i in ItemsArray)
+                    {
+                        string j = i.ToString();
+                        if (j.Trim().StartsWith($"\"World {MyplayerID}\"")) { ItemLine = j.Replace(System.Environment.NewLine, "").Replace($"\"World {MyplayerID}\":", ""); }
+                    }
+                    if (ItemLine != "") { ItemsArray = JsonConvert.DeserializeObject(ItemLine); }
+                }
+
+                if (!ValidMultiworldConfig) { isMulti = false; }
+
             }
             #endregion DoStuffIDontWantToLookAt
         }

@@ -148,7 +148,8 @@ namespace MMR_Tracker.Class_Files
                 Spoiler = SpoilerLogConverter.HandleOOTRSpoilerLog(string.Join("", Spoiler));
             }
 
-            List<int> usedId = new List<int>();
+            Dictionary<int, List<int>> usedId = new Dictionary<int, List<int>>();
+            int PlayerID = instance.Options.MyPlayerID;
             foreach (string i in Spoiler)
             {
                 var line = i;
@@ -169,14 +170,27 @@ namespace MMR_Tracker.Class_Files
                 }
 
                 if (line.Contains("Gossip Stone ") && line.Contains("Message")) { break; }
-                LogicObjects.SpoilerData entry = new LogicObjects.SpoilerData();
                 if (line.Contains("->"))
                 {
-                    var linedata = line.Split(new string[] { "->" }, StringSplitOptions.None);
+                    LogicObjects.SpoilerData entry = new LogicObjects.SpoilerData();
+                    string LineCopy = line;
+                    entry.BelongsTo = PlayerID;
+
+                    if (LineCopy.Contains("$")) 
+                    {
+                        var ExtractPlayerData = LineCopy.Split('$');
+                        if (ExtractPlayerData.Count() > 1 && int.TryParse(ExtractPlayerData[1], out int test))
+                        {
+                            LineCopy = ExtractPlayerData[0];
+                            entry.BelongsTo = test;
+                        }
+                    }
+
+                    if (!usedId.ContainsKey(entry.BelongsTo)) { usedId.Add(entry.BelongsTo, new List<int>()); }
+
+                    var linedata = LineCopy.Split(new string[] { "->" }, StringSplitOptions.None);
                     linedata[0] = linedata[0].Replace("*", "");
                     linedata[1] = linedata[1].Replace("*", "");
-
-
 
                     entry.LocationName = linedata[0].Trim();
                     entry.ItemName = linedata[1].Trim();
@@ -189,7 +203,7 @@ namespace MMR_Tracker.Class_Files
                     //if (location == null) { Console.WriteLine($"Unable to find logic entry for {entry.LocationName}"); }
                     //else { Console.WriteLine($"Entry {location.ID} is {entry.LocationName}"); }
 
-                    var Item = instance.Logic.Find(x => x.SpoilerItem.Select(j => j ?? "".Trim()).Contains(entry.ItemName.Trim()) && !usedId.Contains(x.ID));
+                    var Item = instance.Logic.Find(x => x.SpoilerItem.Select(j => j ?? "".Trim()).Contains(entry.ItemName.Trim()) && !usedId[entry.BelongsTo].Contains(x.ID));
                     //if (Item == null) { Console.WriteLine($"Unable to find logic entry for {entry.ItemName}"); }
                     //else {Console.WriteLine($"Entry {Item.ID} is {entry.ItemName}"); }
 
@@ -202,11 +216,12 @@ namespace MMR_Tracker.Class_Files
                     {
                         entry.ItemID = Item.ID;
                         entry.LocationID = location.ID;
-                        if (instance.IsMM() || !Item.IsEntrance()) usedId.Add(Item.ID);
+                        if (instance.IsMM() || !Item.IsEntrance()) usedId[entry.BelongsTo].Add(Item.ID);
                         SpoilerData.Add(entry);
                     }
                 }
             }
+            foreach(var i in usedId[PlayerID].OrderBy(x => x)) { Console.WriteLine(i); }
             return SpoilerData;
         }
         

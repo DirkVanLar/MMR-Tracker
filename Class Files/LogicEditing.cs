@@ -250,7 +250,10 @@ namespace MMR_Tracker_V2
             foreach (LogicObjects.SpoilerData data in SpoilerData)
             {
                 if (data.LocationID > -1 && data.ItemID > -2 && data.LocationID < Instance.Logic.Count && data.ItemID < Instance.Logic.Count)
+                {
                     Instance.Logic[data.LocationID].SpoilerRandom = data.ItemID;
+                    if (data.BelongsTo > -1) { Instance.Logic[data.LocationID].PlayerData.ItemBelongedToPlayer = data.BelongsTo; }
+                }
             }
 
             var entranceIDs = Instance.EntranceAreaDic;
