@@ -268,5 +268,11 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 WriteItems(ManualSelect[0]);
             }
         }
+
+        private void CheckItemForm_Shown(object sender, EventArgs e)
+        {
+            TXTSearch.Clear();
+            TXTSearch.Focus();
+        }
     }
 }

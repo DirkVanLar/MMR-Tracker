@@ -117,6 +117,7 @@
             this.Name = "CheckItemForm";
             this.Text = "CheckItemForm";
             this.Load += new System.EventHandler(this.CheckItemForm_Load);
+            this.Shown += new System.EventHandler(this.CheckItemForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
