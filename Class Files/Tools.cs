@@ -36,7 +36,17 @@ namespace MMR_Tracker.Class_Files
             }
             PlaythroughGenerator.UnlockAllFake(LogicCopy, ImportantItems, 0, playthrough);
             List<int> UsedItems = new List<int>();
-            bool isAvailable = (LogicEditing.RequirementsMet(ItemCopy.Required, LogicCopy, UsedItems) && LogicEditing.CondtionalsMet(ItemCopy.Conditionals, LogicCopy, UsedItems));
+            bool isAvailable = false;
+
+            if (ItemCopy.Required != null && ItemCopy.Conditionals != null && ItemCopy.Required.Where(x => logic[x].DictionaryName.Contains("MMRTCombinations")).Any())
+            {
+                isAvailable = LogicEditing.ParseCombinationEntry(logic, ItemCopy, UsedItems);
+            }
+            else
+            {
+                isAvailable = (LogicEditing.RequirementsMet(ItemCopy.Required, LogicCopy, UsedItems) && LogicEditing.CondtionalsMet(ItemCopy.Conditionals, LogicCopy, UsedItems));
+            }
+
             if (!isAvailable) { return new LogicObjects.ItemUnlockData(); }
             List<int> NeededItems = Tools.ResolveFakeToRealItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy);
             List<int> FakeItems = Tools.FindAllFakeItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy);

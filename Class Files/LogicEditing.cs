@@ -172,6 +172,8 @@ namespace MMR_Tracker_V2
             {
                 item.Available = RequirementsMet(item.Required, Instance.Logic) && CondtionalsMet(item.Conditionals, Instance.Logic);
 
+                if (ParseCombinationEntry(Instance.Logic, item)) { item.Available = true; }
+
                 int Special = SetAreaClear(item, Instance);
                 if (Special == 2) { recalculate = true; }
 
@@ -182,6 +184,47 @@ namespace MMR_Tracker_V2
                 }
             }
             if (recalculate) { CalculateItems(Instance, false, false); }
+        }
+
+        public static bool ParseCombinationEntry(List<LogicObjects.LogicEntry> logic, LogicObjects.LogicEntry item, List<int> usedItems = null)
+        {
+            //If an entry whose name starts with MMRTCombinations is found in the requirements for an item, it will instead use this method to determine whether
+            //The item is avalable. Example: "MMRTCombinations16"
+            //It will take  the number imediately following "MMRTCombinations" and set that as the "Needed amount". It will then check if the number of aquired
+            //conditional sets in the items conditionals is greater than or equal to the "Needed amount". If so the item is marked as available.
+            //This can be used to add a "Any X of A,B,C,D" where the amount of conditionals would be to large for the tracker to handle. 
+            //For example, Any 50 of 100 skulltullas would need 100,891,344,545,564,193,334,812,497,256 conditionals to be represented using the default logic,
+            //whereas it can be added using this method with 1 requirement and 100 conditionals.
+            usedItems = usedItems ?? new List<int>();
+            List<int> TempUsedItems = new List<int>();
+            if (item.Required != null && item.Conditionals != null && item.Required.Where(x => logic[x].DictionaryName.Contains("MMRTCombinations")).Any())
+            {
+                Console.WriteLine($"Found Combo Entry on {item.DictionaryName}");
+                item.Available = false;
+                int ComboEntry = item.Required.ToList().Find(x => logic[x].DictionaryName.Contains("MMRTCombinations"));
+                if (int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out int e))
+                {
+                    int Needed = int.Parse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""));
+                    Console.WriteLine($"{item.DictionaryName} Needs {Needed} Items");
+                    int has = 0;
+                    foreach (var i in item.Conditionals)
+                    {
+                        List<int> ReqItemsUsed = new List<int>();
+                        if (RequirementsMet(i, logic, ReqItemsUsed)) 
+                        { 
+                            has++;
+                            Console.WriteLine($"Requirement Met for {item.DictionaryName} has {has} Items");
+                            foreach(var q in ReqItemsUsed) { TempUsedItems.Add(q);}
+                        }
+                        if (has >= Needed)
+                        {
+                            foreach (var q in TempUsedItems) { usedItems.Add(q); }
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
         public static int SetAreaClear(LogicObjects.LogicEntry ClearLogic, LogicObjects.TrackerInstance Instance)
