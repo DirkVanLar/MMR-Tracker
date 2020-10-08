@@ -207,7 +207,7 @@ namespace MMR_Tracker.Class_Files
                     //if (Item == null) { Console.WriteLine($"Unable to find logic entry for {entry.ItemName}"); }
                     //else {Console.WriteLine($"Entry {Item.ID} is {entry.ItemName}"); }
 
-                    if (entry.ItemName.Contains("Ice Trap") || entry.ItemName == "Ice Trap")
+                    if (entry.ItemName.Contains("Ice Trap") || entry.ItemName == "Ice Trap" || (Item != null && Item.StartingItem()))
                     {
                         Item = new LogicObjects.LogicEntry { ID = -1 };
                     }
@@ -221,7 +221,7 @@ namespace MMR_Tracker.Class_Files
                     }
                 }
             }
-            foreach(var i in usedId[PlayerID].OrderBy(x => x)) { Console.WriteLine(i); }
+            //foreach(var i in usedId[PlayerID].OrderBy(x => x)) { Console.WriteLine(i); }
             return SpoilerData;
         }
         

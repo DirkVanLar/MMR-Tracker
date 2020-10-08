@@ -349,6 +349,7 @@ namespace MMR_Tracker.Forms
                 {
                     if (i.PI != LogicObjects.MainTrackerInstance.Options.MyPlayerID || i.Ch == false || !Instance.ItemInRange(i.RI) || log[i.RI].IsEntrance()) { continue; }
                     var entry = new LogicObjects.LogicEntry { ID = -1, Checked = false, RandomizedItem = i.RI, SpoilerRandom = i.RI, Options = 0};
+                    CleanMultiWorldData(Instance, Data, i, entry);
                     ItemsToCheck.Items.Add(entry);
                     ChangesMade = true;
                 }
@@ -376,6 +377,35 @@ namespace MMR_Tracker.Forms
             }
             MainInterface.CurrentProgram.CheckItemSelected(ItemsToCheck, true, 0, false, Data.PlayerID);
             NetDataProcessed(null, null);
+        }
+
+        public static void CleanMultiWorldData(LogicObjects.TrackerInstance Instance, LogicObjects.MMRTpacket Data, LogicObjects.NetData i, LogicObjects.LogicEntry entry)
+        {
+            //Unique ID Check
+            bool itemInUse = Instance.Logic.Where(x => x.SpoilerRandom == i.RI || x.RandomizedItem == i.RI).Any() || (Instance.Logic[i.RI].Useable() && Instance.Logic[i.RI].PlayerData.ItemCameFromPlayer != Data.PlayerID);
+            if (!itemInUse) { return; }
+
+            Console.WriteLine($"{Instance.Logic[i.RI].DictionaryName} was in use elsewhere");
+
+            var MatchingItems = Instance.Logic.Where(x => x.SpoilerItem.Intersect(Instance.Logic[i.RI].SpoilerItem).Any());
+            var FindUnAquiredMatchingItem = MatchingItems.Where(x => !x.Useable());
+            var FindUnusedMatchingItem = FindUnAquiredMatchingItem.Where(x =>
+                !Instance.Logic.Where(z => z.ItemBelongsToMe() && (z.SpoilerRandom == x.ID || z.RandomizedItem == x.ID)).Any());
+
+            if (FindUnusedMatchingItem.Any())
+            {
+                Console.WriteLine($"Unused Matching Item found: {FindUnusedMatchingItem.ToArray()[0].DictionaryName}");
+                entry.RandomizedItem = FindUnusedMatchingItem.ToArray()[0].ID;
+                entry.SpoilerRandom = FindUnusedMatchingItem.ToArray()[0].ID;
+            }
+            else if (FindUnAquiredMatchingItem.Any())
+            {
+                Console.WriteLine($"No Unused Matching Items Were Found, getting unaquired matching item.");
+                Console.WriteLine($"Matching UnAquired Item Found: {FindUnusedMatchingItem.ToArray()[0].DictionaryName}");
+                entry.RandomizedItem = FindUnAquiredMatchingItem.ToArray()[0].ID;
+                entry.SpoilerRandom = FindUnAquiredMatchingItem.ToArray()[0].ID;
+            }
+            else { Console.WriteLine($"No Unused or unaquired items were found. This is an error and could cause Issues."); }
         }
 
         private void OnlinePlay_TriggerAddRemoteToIPList(LogicObjects.MMRTpacket Data)
