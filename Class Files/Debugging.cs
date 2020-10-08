@@ -104,7 +104,8 @@ namespace MMR_Tracker_V2
             //SetTestMultiworldData();
             //GenerateBigData();
             //GetAllUniqueCombos();
-            TestProgressive();
+            //TestProgressive();
+            TestLists();
 
             void TestEncryption()
             {
@@ -331,6 +332,15 @@ namespace MMR_Tracker_V2
                 Console.WriteLine(aquired);
                 Console.WriteLine("");
                 foreach (var i in UsedItems) { Console.WriteLine($"Final: Entry {i} was used"); }
+            }
+
+            void TestLists()
+            {
+                string NetDataString = "{\"PlayerID\":2,\"IPData\":{\"IP\":\"99.145.3.193\",\"PORT\":2113,\"DisplayName\":null},\"RequestingUpdate\":0,\"LogicData\":[{\"ID\":2,\"PI\":1,\"RI\":0,\"Ch\":true},{\"ID\":3,\"PI\":1,\"RI\":0,\"Ch\":true},{\"ID\":6,\"PI\":1,\"RI\":1,\"Ch\":true}]}";
+
+                LogicObjects.MMRTpacket NetData = new LogicObjects.MMRTpacket();
+                NetData = JsonConvert.DeserializeObject<LogicObjects.MMRTpacket>(NetDataString);
+                OnlinePlay.ManageNetData(NetData);
             }
 
 

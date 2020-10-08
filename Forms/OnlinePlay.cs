@@ -314,6 +314,7 @@ namespace MMR_Tracker.Forms
             var log = LogicObjects.MainTrackerInstance.Logic;
             var Instance = LogicObjects.MainTrackerInstance;
             var IPInSendingList = IPS.FindIndex(f => f.IP.ToString() == Data.IPData.IP && f.PORT == Data.IPData.PORT) > -1;
+            //bool SameLAN = (Data.IPData.IP == MyIP.ToString() && Data.IPData.PORT != LogicObjects.MainTrackerInstance.Options.PortNumber);
 
             if (!IPInSendingList)
             {
@@ -321,35 +322,33 @@ namespace MMR_Tracker.Forms
                 if (LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections) { TriggerAddRemoteToIPList(Data); }
             }
 
-            if (Data.RequestingUpdate !=0 && IPInSendingList)
+            if (Data.RequestingUpdate !=0 && (IPInSendingList))
             {
                 try
                 {
                     IPAddress NIP = IPAddress.Parse(Data.IPData.IP);
                     SendData(new List<LogicObjects.IPDATA> { new LogicObjects.IPDATA { IP = NIP, PORT = Data.IPData.PORT } }, 0);
                 }
-                catch { }
+                catch (Exception e) { Console.WriteLine($"Could not send requested data\nReason: Send Request Errored with\n{e}"); }
             }
+            else if (Data.RequestingUpdate != 0) { Console.WriteLine($"Could not send requested data\nReason: User not in send list {Data.IPData.IP}:{Data.IPData.PORT}"); }
 
             if (Data.RequestingUpdate == 1) { return; }
 
             var Templogic = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic); //We want to save logic at this point but don't want to comit to a full save state
             bool ChangesMade = false;
 
+            if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { CleanMultiWorldData(Instance, Data); }
+            
             ListBox ItemsToCheck = new ListBox();
 
             foreach (var i in Data.LogicData)
             {
-                var SyncedItemInMultiworld = (LogicObjects.MainTrackerInstance.Options.MultiWorldOnlineCombo && log.ElementAt(i.ID) != null && Data.PlayerID == i.PI && (log[i.ID].SpoilerRandom < -1 || log[i.ID].SpoilerRandom == i.RI));
-                //This is used to theoretically allow for a combination of multiworld and Modloader64 online. If you recieve data from a player 
-                //with a matching player ID and the data in the packet does not contridict the spoiler log data, Check the actual location on 
-                //your tracker as if you were in Online (Synced) mode.
 
-                if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld && !SyncedItemInMultiworld)
+                if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld)
                 {
                     if (i.PI != LogicObjects.MainTrackerInstance.Options.MyPlayerID || i.Ch == false || !Instance.ItemInRange(i.RI) || log[i.RI].IsEntrance()) { continue; }
                     var entry = new LogicObjects.LogicEntry { ID = -1, Checked = false, RandomizedItem = i.RI, SpoilerRandom = i.RI, Options = 0};
-                    CleanMultiWorldData(Instance, Data, i, entry);
                     ItemsToCheck.Items.Add(entry);
                     ChangesMade = true;
                 }
@@ -379,33 +378,58 @@ namespace MMR_Tracker.Forms
             NetDataProcessed(null, null);
         }
 
-        public static void CleanMultiWorldData(LogicObjects.TrackerInstance Instance, LogicObjects.MMRTpacket Data, LogicObjects.NetData i, LogicObjects.LogicEntry entry)
+        public static void CleanMultiWorldData(LogicObjects.TrackerInstance Instance, LogicObjects.MMRTpacket Data)
         {
-            //Unique ID Check
-            bool itemInUse = Instance.Logic.Where(x => x.SpoilerRandom == i.RI || x.RandomizedItem == i.RI).Any() || (Instance.Logic[i.RI].Useable() && Instance.Logic[i.RI].PlayerData.ItemCameFromPlayer != Data.PlayerID);
-            if (!itemInUse) { return; }
-
-            Console.WriteLine($"{Instance.Logic[i.RI].DictionaryName} was in use elsewhere");
-
-            var MatchingItems = Instance.Logic.Where(x => x.SpoilerItem.Intersect(Instance.Logic[i.RI].SpoilerItem).Any());
-            var FindUnAquiredMatchingItem = MatchingItems.Where(x => !x.Useable());
-            var FindUnusedMatchingItem = FindUnAquiredMatchingItem.Where(x =>
-                !Instance.Logic.Where(z => z.ItemBelongsToMe() && (z.SpoilerRandom == x.ID || z.RandomizedItem == x.ID)).Any());
-
-            if (FindUnusedMatchingItem.Any())
+            foreach (var i in Instance.Logic.Where(x => x.Aquired && x.PlayerData.ItemCameFromPlayer == Data.PlayerID))
             {
-                Console.WriteLine($"Unused Matching Item found: {FindUnusedMatchingItem.ToArray()[0].DictionaryName}");
-                entry.RandomizedItem = FindUnusedMatchingItem.ToArray()[0].ID;
-                entry.SpoilerRandom = FindUnusedMatchingItem.ToArray()[0].ID;
+                i.Aquired = false;
+                i.PlayerData.ItemCameFromPlayer = -1;
             }
-            else if (FindUnAquiredMatchingItem.Any())
+
+            var log = LogicObjects.MainTrackerInstance.Logic;
+            var itemsObtained = new List<LogicObjects.LogicEntry>();
+            var itemsInUse = new List<LogicObjects.LogicEntry>();
+
+            foreach (var i in log)
             {
-                Console.WriteLine($"No Unused Matching Items Were Found, getting unaquired matching item.");
-                Console.WriteLine($"Matching UnAquired Item Found: {FindUnusedMatchingItem.ToArray()[0].DictionaryName}");
-                entry.RandomizedItem = FindUnAquiredMatchingItem.ToArray()[0].ID;
-                entry.SpoilerRandom = FindUnAquiredMatchingItem.ToArray()[0].ID;
+                if (i.IsFake) { continue; }
+                if (i.Useable()) { itemsObtained.Add(i); itemsInUse.Add(i); }
+                if (i.RandomizedItem > -1) { itemsInUse.Add(log[i.RandomizedItem]); }
+                if (i.SpoilerRandom > -1) { itemsInUse.Add(log[i.SpoilerRandom]); }
             }
-            else { Console.WriteLine($"No Unused or unaquired items were found. This is an error and could cause Issues."); }
+
+            foreach (var i in Data.LogicData)
+            {
+                if (i.PI != LogicObjects.MainTrackerInstance.Options.MyPlayerID || i.Ch == false || !Instance.ItemInRange(i.RI) || log[i.RI].IsEntrance()) { continue; }
+
+                if (itemsInUse.Where(x => x.ID == i.RI).Any())
+                {
+                    Console.WriteLine($"{log[i.RI].DictionaryName} was in use elsewhere");
+
+                    var MatchingItems = log.Where(x => x.SpoilerItem.Intersect(log[i.RI].SpoilerItem).Any());
+                    var FindUnusedMatchingItem = MatchingItems.Where(x => !itemsInUse.Where(y => y.ID == x.ID).Any());
+                    var FindUnAquiredMatchingItem = MatchingItems.Where(x => !itemsObtained.Where(y => y.ID == x.ID).Any());
+
+                    if (FindUnusedMatchingItem.Any())
+                    {
+                        Console.WriteLine($"Unused Matching Item found: {FindUnusedMatchingItem.ToArray()[0].DictionaryName}");
+                        var newItem = FindUnusedMatchingItem.ToArray()[0];
+                        i.RI = newItem.ID;
+                        itemsObtained.Add(newItem);
+                        itemsInUse.Add(newItem);
+                    }
+                    else if (FindUnAquiredMatchingItem.Any())
+                    {
+                        Console.WriteLine($"No Unused Matching Items Were Found, getting unaquired matching item.");
+                        Console.WriteLine($"Matching UnAquired Item Found: {FindUnAquiredMatchingItem.ToArray()[0].DictionaryName}");
+                        var newItem = FindUnAquiredMatchingItem.ToArray()[0];
+                        i.RI = newItem.ID;
+                        itemsObtained.Add(newItem);
+                        itemsInUse.Add(newItem);
+                    }
+                    else { Console.WriteLine($"No Unused items were found. This is an error and could cause Issues."); }
+                }
+            }
         }
 
         private void OnlinePlay_TriggerAddRemoteToIPList(LogicObjects.MMRTpacket Data)

@@ -54,7 +54,6 @@ namespace MMR_Tracker_V2
             //NetOptions
             public int MyPlayerID { get; set; } = -1;
             public bool IsMultiWorld { get; set; } = false;
-            public bool MultiWorldOnlineCombo { get; set; } = false;
             public bool AllowCheckingItems { get; set; } = false;
             public bool AutoAddIncomingConnections { get; set; } = false;
             public bool StrictIP { get; set; } = false;

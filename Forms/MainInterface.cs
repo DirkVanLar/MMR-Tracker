@@ -1093,7 +1093,7 @@ namespace MMR_Tracker_V2
                     if (Utility.FilterSearch(entry, TXTCheckedSearch.Text, Name, entry.RandomizedEntry(mi))) { ListItems.Add(LBItem); }
                 }
                 //Add Items obtained via multiworld to Checked Items
-                if (entry.Aquired && mi.Logic.Find(x => x.RandomizedItem == entry.ID && x.ItemBelongsToMe()) == null)
+                if (entry.Aquired && mi.Logic.Find(x => x.RandomizedItem == entry.ID && x.ItemBelongsToMe() && x.Checked) == null)
                 {
                     var MultiWorldEntry = new LogicObjects.LogicEntry
                     {
