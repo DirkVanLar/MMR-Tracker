@@ -599,6 +599,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static void CreateTrackerInstance(LogicObjects.TrackerInstance Instance, string[] RawLogic)
         {
+            Tools.SaveFilePath = "";
             Instance.RawLogicFile = RawLogic;
             LogicEditing.PopulateTrackerInstance(Instance);
             LogicEditing.CalculateItems(Instance);

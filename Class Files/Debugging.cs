@@ -105,7 +105,7 @@ namespace MMR_Tracker_V2
             //GenerateBigData();
             //GetAllUniqueCombos();
             //TestProgressive();
-            TestLists();
+            //TestLists();
 
             void TestEncryption()
             {

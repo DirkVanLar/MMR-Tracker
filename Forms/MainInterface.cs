@@ -129,6 +129,7 @@ namespace MMR_Tracker_V2
             PrintToListBox();
             FireEvents(sender, e);
             Tools.UpdateTrackerTitle();
+            Tools.SaveFilePath = "";
         }
 
         private void presetsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1674,7 +1675,7 @@ namespace MMR_Tracker_V2
             var LocationName = entry.LocationName ?? entry.DictionaryName;
             var ItemName = (entry.HasRandomItem(false)) ? Utility.GetProgressiveItemName(entry.RandomizedEntry(instance, true), instance) : "";
             var checkedName = (ItemName == "") ? LocationName : ItemName + addPlayerName + ": " + LocationName;
-            var AvailableName = (ItemName == "") ? LocationName : LocationName + ": " + ItemName;
+            var AvailableName = (ItemName == "") ? LocationName : LocationName + ": " + ItemName + addPlayerName;
             var fullName = (Checked) ? checkedName : AvailableName;
             return fullName + ((entry.Starred) ? "*" : "");
         }
