@@ -12,7 +12,7 @@ namespace MMR_Tracker.Class_Files
         {
             List<LogicObjects.PlaythroughItem> Playthrough = new List<LogicObjects.PlaythroughItem>();
             Dictionary<int, int> SpoilerToID = new Dictionary<int, int>();
-            var playLogic = Utility.CloneTrackerInstance(Instance);
+            LogicObjects.TrackerInstance playLogic = Utility.CloneTrackerInstance(Instance);
             var GameClear = GetGameClearEntry(playLogic.Logic, Instance.EntranceRando);
 
             if (GameClear < 0) { MessageBox.Show("Could not find game clear requirements. Playthrough can not be generated."); return; }
@@ -72,27 +72,30 @@ namespace MMR_Tracker.Class_Files
             //Replace all fake items with the real items used to unlock those fake items
             foreach (var i in Playthrough) { i.ItemsUsed = Tools.ResolveFakeToRealItems(i, Playthrough, playLogic.Logic).Distinct().ToList(); }
 
+            var ImportantPlaythrough = Playthrough.Where(i => (importantItems.Contains(i.Check.ID) && !i.Check.IsFake) || i.Check.ID == GameClear).ToList();
+
+            //foreach (var li in ImportantPlaythrough) { Console.WriteLine(li.Check.DictionaryName); }
+
+            //Convert Progressive Items Back to real items
+            ConvertProgressiveItems(ImportantPlaythrough, playLogic);
+
             List<string> PlaythroughString = new List<string>();
             int lastSphere = -1;
-            foreach (var i in Playthrough)
+            foreach (var i in ImportantPlaythrough)
             {
-                if (!importantItems.Contains(i.Check.ID) || i.Check.IsFake) { continue; }
                 if (i.SphereNumber != lastSphere)
                 {
                     PlaythroughString.Add("Sphere: " + i.SphereNumber + " ====================================="); lastSphere = i.SphereNumber;
                 }
-                PlaythroughString.Add("Check \"" + i.Check.LocationName + "\" to obtain \"" + playLogic.Logic[i.Check.RandomizedItem].ItemName + "\"");
+                if (i.Check.ID == GameClear) { PlaythroughString.Add("Defeat Majora"); }
+                else
+                {
+                    PlaythroughString.Add("Check \"" + i.Check.LocationName + "\" to obtain \"" + playLogic.Logic[i.Check.RandomizedItem].ItemName + "\"");
+                }
                 string items = "    Using Items: ";
                 foreach (var j in i.ItemsUsed) { items = items + playLogic.Logic[j].ItemName + ", "; }
                 if (items != "    Using Items: ") { PlaythroughString.Add(items); }
             }
-
-            var h = GameClearPlaythroughItem;
-            PlaythroughString.Add("Sphere: " + h.SphereNumber + " ====================================="); lastSphere = h.SphereNumber;
-            PlaythroughString.Add("Defeat Majora");
-            string items2 = "    Using Items: ";
-            foreach (var j in h.ItemsUsed) { items2 = items2 + playLogic.Logic[j].ItemName + ", "; }
-            if (items2 != "    Using Items: ") { PlaythroughString.Add(items2); }
 
             InformationDisplay DisplayPlaythrough = new InformationDisplay();
             InformationDisplay.Playthrough = PlaythroughString;
@@ -100,6 +103,75 @@ namespace MMR_Tracker.Class_Files
             DisplayPlaythrough.Show();
             InformationDisplay.Playthrough = new List<string>();
         }
+
+        public static void ConvertProgressiveItems(List<LogicObjects.PlaythroughItem> Playthrough, LogicObjects.TrackerInstance Instance)
+        {
+            if (!LogicObjects.MainTrackerInstance.IsMM() || !LogicObjects.MainTrackerInstance.Options.ProgressiveItems) { return; }
+            var SW1 = Instance.Logic.Find(x => x.DictionaryName == "Starting Sword");
+            var SW2 = Instance.Logic.Find(x => x.DictionaryName == "Razor Sword");
+            var SW3 = Instance.Logic.Find(x => x.DictionaryName == "Gilded Sword");
+            var MM1 = Instance.Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter");
+            var MM2 = Instance.Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic");
+            var WL1 = Instance.Logic.Find(x => x.DictionaryName == "Town Wallet (200)");
+            var WL2 = Instance.Logic.Find(x => x.DictionaryName == "Ocean Wallet (500)");
+            var BB1 = Instance.Logic.Find(x => x.DictionaryName == "Bomb Bag (20)");
+            var BB2 = Instance.Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)");
+            var BB3 = Instance.Logic.Find(x => x.DictionaryName == "Mountain Bomb Bag (40)");
+            var BW1 = Instance.Logic.Find(x => x.DictionaryName == "Hero's Bow");
+            var BW2 = Instance.Logic.Find(x => x.DictionaryName == "Town Archery Quiver (40)");
+            var BW3 = Instance.Logic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)");
+
+            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = new List<List<LogicObjects.LogicEntry>>
+            {
+                new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 },
+                new List<LogicObjects.LogicEntry> { MM1, MM2 },
+                new List<LogicObjects.LogicEntry> { WL1, WL2 },
+                new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 },
+                new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 },
+            };
+
+            foreach(var i in ProgressiveItemSets) { if (i == null || !i.Any() || i.Where(x => x == null).Any()) { return; } }
+
+            foreach (var ProgressiveItemSet in ProgressiveItemSets)
+            {
+                int TimesItemObtained = -1;
+                foreach(var ObtainedItem in Playthrough)
+                {
+                    var RandomItem = Instance.Logic[ObtainedItem.Check.RandomizedItem];
+                    if (ProgressiveItemSet.Contains(RandomItem))
+                    {
+                        TimesItemObtained++;
+                        ObtainedItem.Check.RandomizedItem = ProgressiveItemSet[TimesItemObtained].ID;
+                        if (TimesItemObtained >= ProgressiveItemSet.Count()) { TimesItemObtained = ProgressiveItemSet.Count() - 1; }
+                    }
+
+                    int TimesItemUsed = ObtainedItem.ItemsUsed.Where(x => ProgressiveItemSet.Where(y => y.ID == x).Any()).Count() - 1;
+                    if (TimesItemUsed < 0) { continue; }
+                    if (TimesItemUsed >= ProgressiveItemSet.Count()) { TimesItemUsed = ProgressiveItemSet.Count() - 1; }
+                    //Console.WriteLine($"{TimesItemUsed} Progressive Items where used to check {ObtainedItem.Check.LocationName}");
+                    List<int> newItemsUsed = new List<int>();
+                    bool ItemAdded = false;
+                    foreach (var UsedItem in ObtainedItem.ItemsUsed)
+                    {
+                        if (ProgressiveItemSet.Where(y => y.ID == UsedItem).Any())
+                        {
+                            if (!ItemAdded)
+                            {
+                                //Console.WriteLine($"{Instance.Logic[UsedItem].ItemName} was replace by {ProgressiveItemSet[TimesItemObtained].ItemName}");
+                                newItemsUsed.Add(ProgressiveItemSet[TimesItemObtained].ID);
+                                ItemAdded = true;
+                            }
+                        }
+                        else
+                        {
+                            newItemsUsed.Add(UsedItem);
+                        }
+                    }
+                    ObtainedItem.ItemsUsed = newItemsUsed.Distinct().ToList();
+                }
+            }
+        }
+
 
         public static void CalculatePlaythrough(List<LogicObjects.LogicEntry> logic, List<LogicObjects.PlaythroughItem> Playthrough, int sphere, List<int> ImportantItems)
         {
@@ -112,6 +184,8 @@ namespace MMR_Tracker.Class_Files
             {
                 List<int> UsedItems = new List<int>();
                 item.Available = (LogicEditing.RequirementsMet(item.Required, logic, UsedItems) && LogicEditing.CondtionalsMet(item.Conditionals, logic, UsedItems));
+
+                if (LogicEditing.ParseCombinationEntry(logic, item, UsedItems)) { item.Available = true; }
 
                 if (!item.IsFake && item.SpoilerRandom > -1 && item.Available != logic[item.SpoilerRandom].Aquired)
                 {
@@ -143,6 +217,9 @@ namespace MMR_Tracker.Class_Files
             {
                 List<int> UsedItems = new List<int>();
                 item.Available = (LogicEditing.RequirementsMet(item.Required, logic, UsedItems) && LogicEditing.CondtionalsMet(item.Conditionals, logic, UsedItems));
+
+                if (LogicEditing.ParseCombinationEntry(logic, item, UsedItems)) { item.Available = true; }
+
                 if (item.Aquired != item.Available && item.IsFake)
                 {
                     item.Aquired = item.Available;

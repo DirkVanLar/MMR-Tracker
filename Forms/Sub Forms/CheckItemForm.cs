@@ -171,7 +171,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             List<string> Duplicates = new List<string>();
             for (var i = 0; i < UsedLogic.Count; i++)
             {
-                var ItemName = Utility.GetProgressiveItemName(UsedLogic[i], Instance);
+                var ItemName = UsedLogic[i].ProgressiveItemName(LogicObjects.MainTrackerInstance);
                 UsedLogic[i].DisplayName = ItemName;
                 if ((!UsedLogic[i].IsFake)
                     && ((UsedLogic[i].GetItemsNewLocation(UsedLogic) == null && !UsedLogic[i].Aquired) || Instance.Options.IsMultiWorld || !options.RemoveObtainedItemsfromList)

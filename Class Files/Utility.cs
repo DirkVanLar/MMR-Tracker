@@ -312,15 +312,6 @@ namespace MMR_Tracker_V2
                 return i * Factorial(i - 1);
             }
         }
-        public static string GetProgressiveItemName(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance instance)
-        {
-            if (!instance.Options.ProgressiveItems || !instance.IsMM()) { return entry.ItemName ?? entry.DictionaryName; }
-            if (Utility.ProgressiveItems.Contains(entry.DictionaryName))
-            {
-                return (entry.SpoilerItem.Count() > 1) ? entry.SpoilerItem[1] : entry.ItemName ?? entry.DictionaryName;
-            }
-            return entry.ItemName ?? entry.DictionaryName;
-        }
     }
     public class Crypto
     {

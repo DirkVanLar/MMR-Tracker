@@ -758,9 +758,9 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool ProgressiveItemAquired(List<LogicObjects.LogicEntry> Logic, LogicObjects.LogicEntry entry, List<int> usedItems)
         {
-            var SW1 = Logic.Find(x => x.DictionaryName == "Razor Sword");
-            var SW2 = Logic.Find(x => x.DictionaryName == "Gilded Sword");
-            var SW3 = Logic.Find(x => x.DictionaryName == "Starting Sword");
+            var SW1 = Logic.Find(x => x.DictionaryName == "Starting Sword");
+            var SW2 = Logic.Find(x => x.DictionaryName == "Razor Sword");
+            var SW3 = Logic.Find(x => x.DictionaryName == "Gilded Sword");
             var MM1 = Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter");
             var MM2 = Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic");
             var WL1 = Logic.Find(x => x.DictionaryName == "Town Wallet (200)");

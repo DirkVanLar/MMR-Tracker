@@ -564,14 +564,14 @@
 0
 
 - Castle Town Back Alley => Castle Town Bombchu Shop
-1387,1316
-
+1387
+1316;95;94
 0
 0
 
 - Castle Town Back Alley => Castle Town Man in Green House
-1387,1316
-
+1387
+1316;95;94
 0
 0
 
@@ -8209,7 +8209,7 @@
 
 - Access Lost Woods Bridge
 
-39;45;1317,1354;1317,1283;1317,1345;1317,1217
+39;45;1317,1354,1366;1317,1283,1366;1317,1345,1366;1317,1217,1366
 0
 0
 
@@ -8334,7 +8334,7 @@
 0
 
 - Access Hyrule Castle Grounds
-
+1316
 12;121;168
 0
 0
@@ -8442,7 +8442,7 @@
 0
 
 - Access Ganons Castle Grounds
-
+1317
 12,1317;113;244;268
 0
 0

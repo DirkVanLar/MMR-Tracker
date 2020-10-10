@@ -1673,7 +1673,7 @@ namespace MMR_Tracker_V2
         {
             var addPlayerName = entry.ItemBelongsToMe() ? "" : $" (Player {entry.PlayerData.ItemBelongedToPlayer})";
             var LocationName = entry.LocationName ?? entry.DictionaryName;
-            var ItemName = (entry.HasRandomItem(false)) ? Utility.GetProgressiveItemName(entry.RandomizedEntry(instance, true), instance) : "";
+            var ItemName = (entry.HasRandomItem(false)) ? entry.RandomizedEntry(instance, true).ProgressiveItemName(instance) : "";
             var checkedName = (ItemName == "") ? LocationName : ItemName + addPlayerName + ": " + LocationName;
             var AvailableName = (ItemName == "") ? LocationName : LocationName + ": " + ItemName + addPlayerName;
             var fullName = (Checked) ? checkedName : AvailableName;

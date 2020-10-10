@@ -239,8 +239,8 @@ Zora River => Zora River Storms Grotto,Zora River > Zora River Storms Grotto,Zor
 Zora River Plateau Bombable Grotto => Zora River,Zora River Plateau Bombable Grotto > Zora River,Zora River < Zora River Plateau Bombable Grotto,Zora River,Entrance,ZR Fairy Grotto>Zora River,Zora River<ZR Fairy Grotto,Zora River => Zora River Plateau Bombable Grotto
 Zora River Plateau Open Grotto => Zora River,Zora River Plateau Open Grotto > Zora River,Zora River < Zora River Plateau Open Grotto,Zora River,Entrance,ZR Open Grotto>Zora River,Zora River<ZR Open Grotto,Zora River => Zora River Plateau Open Grotto
 Zora River Storms Grotto => Zora River,Zora River Storms Grotto > Zora River,Zora River < Zora River Storms Grotto,Zora River,Entrance,ZR Storms Grotto>Zora River,Zora River<ZR Storms Grotto,Zora River => Zora River Storms Grotto
-Zoras Domain => Zoras Domain Storms Grotto,Zoras Domain > Zoras Domain Storms Grotto,Zoras Domain Storms Grotto < Zoras Domain,Zora River,Entrance,ZD Storms Grotto>Zoras Domain,Zoras Domain<ZD Storms Grotto,Zoras Domain Storms Grotto => Zoras Domain
-Zoras Domain Storms Grotto => Zoras Domain,Zoras Domain Storms Grotto > Zoras Domain,Zoras Domain < Zoras Domain Storms Grotto,Zora River,Entrance,Zoras Domain>ZD Storms Grotto,ZD Storms Grotto,Zoras Domain => Zoras Domain Storms Grotto
+Zoras Domain => Zoras Domain Storms Grotto,Zoras Domain > Zoras Domain Storms Grotto,Zoras Domain Storms Grotto < Zoras Domain,Zora River,Entrance,Zoras Domain>ZD Storms Grotto,ZD Storms Grotto,Zoras Domain Storms Grotto => Zoras Domain
+Zoras Domain Storms Grotto => Zoras Domain,Zoras Domain Storms Grotto > Zoras Domain,Zoras Domain < Zoras Domain Storms Grotto,Zora River,Entrance,ZD Storms Grotto>Zoras Domain,Zoras Domain<ZD Storms Grotto,Zoras Domain => Zoras Domain Storms Grotto
 #MQ Dungeon Entrances,,,,,,,
 Ganons Castle Grounds => Ganons Castle,Ganons Castle Grounds > Ganons Castle,Ganons Castle < Ganons Castle Grounds,,Entrance,Ganons Castle Grounds>Ganons Castle,Ganons Castle<Ganons Castle Grounds,Ganons Castle => Ganons Castle Grounds
 Ganons Castle => Ganons Castle Grounds,Ganons Castle > Ganons Castle Grounds,Ganons Castle Grounds < Ganons Castle,,Entrance,Ganons Castle>Ganons Castle Grounds,Ganons Castle Grounds<Ganons Castle,Ganons Castle Grounds => Ganons Castle
@@ -515,7 +515,7 @@ LH Grotto Deku Scrub Arrows,LH Deku Scrub Grotto Center,10 Arrows,Lake Hylia,Ite
 Desert Grotto Deku Scrub Red Potion,Colossus Deku Scrub Grotto Rear,Red Potion,Gerudo Desert,Item,Colossus Deku Scrub Grotto Rear,Red Potion,
 Desert Grotto Deku Scrub Green Potion,Colossus Deku Scrub Grotto Front,Green Potion,Gerudo Desert,Item,Colossus Deku Scrub Grotto Front,Green Potion,
 Valley Grotto Deku Scrub Red Potion,GV Deku Scrub Grotto Rear,Red Potion,Gerudo Desert,Item,GV Deku Scrub Grotto Rear,Red Potion,
-Valley Grotto Deku Scrub Green Potion,GV Deku Scrub Grotto Front,Green Potion,Deku Tree,Item,GV Deku Scrub Grotto Front,Green Potion,
+Valley Grotto Deku Scrub Green Potion,GV Deku Scrub Grotto Front,Green Potion,Gerudo Desert,Item,GV Deku Scrub Grotto Front,Green Potion,
 #Right Side Shop Items,,,,,,,
 KF Shop Item 1,KF Shop Item 1,Buy Deku Nut (5),Kokiri Forest,Item,KF Shop Item 1,Buy Deku Nut (5),
 KF Shop Item 2,KF Shop Item 2,Buy Deku Stick (1),Kokiri Forest,Item,KF Shop Item 2,Buy Deku Stick (1),

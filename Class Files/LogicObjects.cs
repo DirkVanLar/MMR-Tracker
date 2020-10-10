@@ -332,5 +332,15 @@ namespace MMR_Tracker_V2
             if (Utility.ProgressiveItems.Contains(entry.DictionaryName)) { return true; }
             return false;
         }
+
+        public static string ProgressiveItemName(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
+        {
+            if (!Instance.Options.ProgressiveItems || !Instance.IsMM()) { return entry.ItemName ?? entry.DictionaryName; }
+            if (Utility.ProgressiveItems.Contains(entry.DictionaryName))
+            {
+                return (entry.SpoilerItem.Count() > 1) ? entry.SpoilerItem[1] : entry.ItemName ?? entry.DictionaryName;
+            }
+            return entry.ItemName ?? entry.DictionaryName;
+        }
     }
 }
