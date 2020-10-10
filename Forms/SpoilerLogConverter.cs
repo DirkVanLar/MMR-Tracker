@@ -189,11 +189,11 @@ namespace MMR_Tracker.Forms
                         else if (line.Contains("lacs_dungeons")) { LACSTrigger = 3; }
                     }
                     if (line.Contains("starting_age") && line.Contains("adult")) { StartAsChild = false; }
-                    if (line.Contains("open_door_of_time") && line.Contains("closed")) { OpenDOT = false; }
+                    if (line.Contains("open_door_of_time") && line.Contains("false")) { OpenDOT = false; }
                     if (line.Contains("bombchus_in_logic") && line.Contains("true")) { Chu = true; }
                     if (line.Contains("logic_no_night_tokens_without_suns_song") && line.Contains("true")) { SunSong = true; }
                     if (line.Contains("complete_mask_quest") && line.Contains("true")) { mask = true; }
-                    if (line.Contains("free_scarecrow") && line.Contains("true")) { mask = true; }
+                    if (line.Contains("free_scarecrow") && line.Contains("true")) { Scarecrow = true; }
                     if (line.Contains("decouple_entrances") && line.Contains("true")) { CoupledEntrances = false; }
                     if (line.Contains("open_forest"))
                     {
@@ -635,7 +635,6 @@ namespace MMR_Tracker.Forms
             void ConvertMultiWorldLog()
             {
                 int MyplayerID = LogicObjects.MainTrackerInstance.Options.MyPlayerID;
-                bool ValidMultiworldConfig = true;
                 foreach (dynamic item in array.settings)
                 {
                     string line = item.ToString();
@@ -647,15 +646,14 @@ namespace MMR_Tracker.Forms
                 }
                 Console.WriteLine($"Multiworld {isMulti}, World Count: {worlCount}");
 
-                if (isMulti && (MyplayerID < 0 || MyplayerID > worlCount || !LogicObjects.MainTrackerInstance.Options.IsMultiWorld))
-                {
-                    MessageBox.Show("The selected logic file is a multiworld Logic file. Multiworld is either not enabled in your tracker or your player ID was not found in the spoiler log. Multiworld data will not be imported", "Multiworld Invalid!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    ValidMultiworldConfig = false;
-                    MyplayerID = 1;
-                }
-
                 if (isMulti)
                 {
+                    if (MyplayerID < 0 || MyplayerID > worlCount || !LogicObjects.MainTrackerInstance.Options.IsMultiWorld)
+                    {
+                        MessageBox.Show("The selected logic file is a multiworld Logic file. Multiworld is either not enabled in your tracker or your player ID was not found in the spoiler log. Multiworld data will not be imported", "Multiworld Invalid!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MyplayerID = 1;
+                        isMulti = false;
+                    }
                     string entranceLine = "";
                     foreach(dynamic i in EntranceArray)
                     {
@@ -678,8 +676,6 @@ namespace MMR_Tracker.Forms
                     }
                     if (ItemLine != "") { ItemsArray = JsonConvert.DeserializeObject(ItemLine); }
                 }
-
-                if (!ValidMultiworldConfig) { isMulti = false; }
 
             }
             #endregion DoStuffIDontWantToLookAt

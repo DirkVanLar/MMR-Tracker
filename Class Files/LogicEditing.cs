@@ -232,6 +232,7 @@ namespace MMR_Tracker_V2
         public static int SetAreaClear(LogicObjects.LogicEntry ClearLogic, LogicObjects.TrackerInstance Instance)
         {
             //0 = do nothing, 1 = Skip Fake item calculation, 2 = Skip Fake item calculation and recalculate logic
+            if (!Instance.IsMM()) { return 0; }
             Dictionary<int, int> EntAreaDict = Instance.EntranceAreaDic;
             if (EntAreaDict.Count == 0 || !EntAreaDict.ContainsKey(ClearLogic.ID)) { return 0; }
             var RandClearLogic = ClearLogic.RandomizedAreaClear(Instance);

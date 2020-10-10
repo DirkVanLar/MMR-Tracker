@@ -81,13 +81,14 @@ namespace MMR_Tracker.Class_Files
 
             List<string> PlaythroughString = new List<string>();
             int lastSphere = -1;
+            string FinalTask = (Instance.IsMM()) ? "Defeat Majora" : "Beat the game";
             foreach (var i in ImportantPlaythrough)
             {
                 if (i.SphereNumber != lastSphere)
                 {
                     PlaythroughString.Add("Sphere: " + i.SphereNumber + " ====================================="); lastSphere = i.SphereNumber;
                 }
-                if (i.Check.ID == GameClear) { PlaythroughString.Add("Defeat Majora"); }
+                if (i.Check.ID == GameClear) { PlaythroughString.Add(FinalTask); }
                 else
                 {
                     PlaythroughString.Add("Check \"" + i.Check.LocationName + "\" to obtain \"" + playLogic.Logic[i.Check.RandomizedItem].ItemName + "\"");
@@ -187,7 +188,7 @@ namespace MMR_Tracker.Class_Files
 
                 if (LogicEditing.ParseCombinationEntry(logic, item, UsedItems)) { item.Available = true; }
 
-                if (!item.IsFake && item.SpoilerRandom > -1 && item.Available != logic[item.SpoilerRandom].Aquired)
+                if (!item.IsFake && item.SpoilerRandom > -1 && item.Available && !logic[item.SpoilerRandom].Aquired)
                 {
                     itemCheckList.Add(item);
                     recalculate = true;
@@ -236,7 +237,7 @@ namespace MMR_Tracker.Class_Files
 
         public static void FindImportantItems(LogicObjects.PlaythroughItem EntryToCheck, List<int> importantItems, List<LogicObjects.PlaythroughItem> Playthrough, Dictionary<int, int> SpoilerToID)
         {
-            foreach (var i in EntryToCheck.ItemsUsed)
+            foreach (var i in EntryToCheck.ItemsUsed ?? new List<int>())
             {
                 var locToCheck = SpoilerToID[i];
                 if (importantItems.Contains(locToCheck)) { continue; }

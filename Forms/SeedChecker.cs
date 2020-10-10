@@ -95,10 +95,17 @@ namespace MMR_Tracker
             List<string> unobtainable = new List<string>();
             foreach (var item in LBNeededItems.Items)
             {
+                bool Spoil = false;
                 var ListItem = item as LogicObjects.ListItem;
+                var iteminLogic = logicCopy.Logic[ListItem.PathID];
+                string ItemName = iteminLogic.ItemName ?? iteminLogic.DictionaryName;
+                var ItemsLocation = iteminLogic.GetItemsNewLocation(logicCopy.Logic);
+                string LocationFoundAt = (ItemsLocation != null) ? ItemsLocation.LocationName ?? ItemsLocation.DictionaryName : "";
+                string DisplayName = (Spoil) ? ItemName + ": " + LocationFoundAt : ItemName;
+
                 Console.WriteLine(logicCopy.Logic[ListItem.PathID].DictionaryName + " " + logicCopy.Logic[ListItem.PathID].Aquired);
-                if (logicCopy.Logic[ListItem.PathID].Aquired) { obtainable.Add(ListItem.DisplayName); }
-                else { unobtainable.Add(ListItem.DisplayName); }
+                if (logicCopy.Logic[ListItem.PathID].Aquired) { obtainable.Add(DisplayName); }
+                else { unobtainable.Add(DisplayName); }
             }
             if (unobtainable.Count > 0 && chkShowUnobtainable.Checked)
             {
@@ -125,17 +132,21 @@ namespace MMR_Tracker
             bool recalculate = false;
             foreach (var item in Instance.Logic)
             {
+
                 item.Available = LogicEditing.RequirementsMet(item.Required, Instance.Logic) && LogicEditing.CondtionalsMet(item.Conditionals, Instance.Logic);
                 Console.WriteLine($"{item.DictionaryName} Avalable {item.Available}");
+
+                if (LogicEditing.ParseCombinationEntry(Instance.Logic, item)) { item.Available = true; }
+
                 int Special = LogicEditing.SetAreaClear(item, Instance);
                 if (Special == 2) { recalculate = true; }
 
-                if (item.Aquired != item.Available && Special == 0 && item.IsFake)
+                if (!item.Aquired && item.Available && Special == 0 && item.IsFake)
                 {
                     item.Aquired = item.Available;
                     recalculate = true;
                 }
-                if (!item.IsFake && item.RandomizedItem > -1 && item.Available != Instance.Logic[item.RandomizedItem].Aquired && !Ignored.Contains(item.ID))
+                if (!item.IsFake && item.RandomizedItem > -1 && item.Available && !Instance.Logic[item.RandomizedItem].Aquired && !Ignored.Contains(item.ID))
                 {
                     Instance.Logic[item.RandomizedItem].Aquired = item.Available;
                     recalculate = true;

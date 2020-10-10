@@ -1,15 +1,16 @@
 ﻿DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem,EntrancePair
 #Entrances,,,,,,,
-Adult Spawn => Temple of Time,Adult Spawn > Temple of Time,,Castle Town,Entrance,Adult Spawn>Temple of Time,Temple of Time,
-Child Spawn => Links House,Child Spawn > Links House,,Kokiri Forest,Entrance,Child Spawn>KF Links House,KF Links House,
+Adult Spawn => Temple of Time,Adult Spawn > Temple of Time,Temple of Time < Adult Spawn,Castle Town,Entrance,Adult Spawn>Temple of Time,Temple of Time,
+Child Spawn => Links House,Child Spawn > Links House,Links House < Child Spawn,Kokiri Forest,Entrance,Child Spawn>KF Links House,KF Links House,
+ZD Eyeball Frog Timeout => Zoras Domain,,Zoras Domain < ZD Eyeball Frog Timeout,Zora River,Entrance,ZD Eyeball Frog Timeout > Zoras Domain,Zoras Domain<ZD Eyeball Frog Timeout,
 Bolero of Fire Warp => Death Mountain Crater Central Local,Bolero of Fire Warp > Death Mountain Crater Central Local,Death Mountain Crater Central Local < Bolero of Fire Warp,Death Mountain,Entrance,Bolero of Fire Warp>DMC Central Local,DMC Central Local<Bolero of Fire Warp,
 Minuet of Forest Warp => Sacred Forest Meadow,Minuet of Forest Warp > Sacred Forest Meadow,Sacred Forest Meadow < Minuet of Forest Warp,Lost Woods,Entrance,Minuet of Forest Warp>Sacred Forest Meadow,Sacred Forest Meadow<Minuet of Forest Warp,
 Nocturne of Shadow Warp => Shadow Temple Warp Region,Nocturne of Shadow Warp > Shadow Temple Warp Region,Shadow Temple Warp Region < Nocturne of Shadow Warp,Kakariko Village,Entrance,Nocturne of Shadow Warp>Graveyard Warp Pad Region,Graveyard Warp Pad Region<Nocturne of Shadow Warp,
 Prelude of Light Warp => Temple of Time,Prelude of Light Warp > Temple of Time,Temple of Time < Prelude of Light Warp,Castle Town,Entrance,Prelude of Light Warp>Temple of Time,Temple of Time<Prelude of Light Warp,
 Requiem of Spirit Warp => Desert Colossus,Requiem of Spirit Warp > Desert Colossus,Desert Colossus < Requiem of Spirit Warp,Gerudo Desert,Entrance,Requiem of Spirit Warp>Desert Colossus,Desert Colossus<Requiem of Spirit Warp,
 Serenade of Water Warp => Lake Hylia,Serenade of Water Warp > Lake Hylia,Lake Hylia < Serenade of Water Warp,Lake Hylia,Entrance,Serenade of Water Warp>Lake Hylia,Lake Hylia<Serenade of Water Warp,
-Death Mountain Owl Flight => Kakariko Impa Ledge,Death Mountain Owl Flight > Kakariko Impa Ledge,,Death Mountain,Entrance,DMT Owl Flight>Kak Impas Ledge,Kak Impas Ledge<DMT Owl Flight,
-Lake Hylia Owl Flight => Hyrule Field,Lake Hylia Owl Flight > Hyrule Field,,Lake Hylia,Entrance,LH Owl Flight>Hyrule Field,Hyrule Field<LH Owl Flight,
+Death Mountain Owl Flight => Kakariko Impa Ledge,Death Mountain Owl Flight > Kakariko Impa Ledge,Kakariko Impa Ledge < Death Mountain Owl Flight,Death Mountain,Entrance,DMT Owl Flight>Kak Impas Ledge,Kak Impas Ledge<DMT Owl Flight,
+Lake Hylia Owl Flight => Hyrule Field,Lake Hylia Owl Flight > Hyrule Field,Hyrule Field < Lake Hylia Owl Flight,Lake Hylia,Entrance,LH Owl Flight>Hyrule Field,Hyrule Field<LH Owl Flight,
 Castle Grounds => Castle Town,Castle Grounds > Castle Town,Castle Town < Castle Grounds,Castle Town,Entrance,Castle Grounds>Market,Market<Castle Grounds,Castle Town => Castle Grounds
 Castle Town => Castle Grounds,Castle Town > Castle Grounds,Castle Grounds < Castle Town,Castle Town,Entrance,Market>Castle Grounds,Castle Grounds<Market,Castle Grounds => Castle Town
 Castle Town => Castle Town Entrance,Castle Town > Castle Town Entrance,Castle Town Entrance < Castle Town,Castle Town,Entrance,Market>Market Entrance,Market Entrance<Market,Castle Town Entrance => Castle Town
