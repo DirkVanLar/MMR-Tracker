@@ -164,9 +164,9 @@ namespace MMR_Tracker.Class_Files
                         SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(line).GameplaySettings;
                         RandomizeOptions ApplySettings = new RandomizeOptions();
                         ApplySettings.ApplyRandomizerSettings(SettingFile);
-                        Console.WriteLine("Settings Applied");
+                        Debugging.Log("Settings Applied");
                     }
-                    catch (Exception e) { Console.WriteLine(line); }
+                    catch (Exception e) { Debugging.Log(line); }
                 }
 
                 if (line.Contains("Gossip Stone ") && line.Contains("Message")) { break; }
@@ -200,12 +200,12 @@ namespace MMR_Tracker.Class_Files
 
                     //var location = instance.Logic.Find(x => x.SpoilerLocation == entry.LocationName || x.SpoilerLocation == GetAltSpoilerName(entry.LocationName));
                     var location = instance.Logic.Find(x => x.SpoilerLocation.Select(j => j ?? "".Trim()).Contains(entry.LocationName.Trim()));
-                    //if (location == null) { Console.WriteLine($"Unable to find logic entry for {entry.LocationName}"); }
-                    //else { Console.WriteLine($"Entry {location.ID} is {entry.LocationName}"); }
+                    //if (location == null) { Debugging.Log($"Unable to find logic entry for {entry.LocationName}"); }
+                    //else { Debugging.Log($"Entry {location.ID} is {entry.LocationName}"); }
 
                     var Item = instance.Logic.Find(x => x.SpoilerItem.Select(j => j ?? "".Trim()).Contains(entry.ItemName.Trim()) && !usedId[entry.BelongsTo].Contains(x.ID));
-                    //if (Item == null) { Console.WriteLine($"Unable to find logic entry for {entry.ItemName}"); }
-                    //else {Console.WriteLine($"Entry {Item.ID} is {entry.ItemName}"); }
+                    //if (Item == null) { Debugging.Log($"Unable to find logic entry for {entry.ItemName}"); }
+                    //else {Debugging.Log($"Entry {Item.ID} is {entry.ItemName}"); }
 
                     if (entry.ItemName.Contains("Ice Trap") || entry.ItemName == "Ice Trap" || (Item != null && Item.StartingItem()))
                     {
@@ -221,7 +221,7 @@ namespace MMR_Tracker.Class_Files
                     }
                 }
             }
-            //foreach(var i in usedId[PlayerID].OrderBy(x => x)) { Console.WriteLine(i); }
+            //foreach(var i in usedId[PlayerID].OrderBy(x => x)) { Debugging.Log(i); }
             return SpoilerData;
         }
         
@@ -256,9 +256,9 @@ namespace MMR_Tracker.Class_Files
                         SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(newLine).GameplaySettings;
                         RandomizeOptions ApplySettings = new RandomizeOptions();
                         ApplySettings.ApplyRandomizerSettings(SettingFile);
-                        Console.WriteLine("Settings Applied");
+                        Debugging.Log("Settings Applied");
                     }
-                    catch (Exception e) { Console.WriteLine(newLine); }
+                    catch (Exception e) { Debugging.Log(newLine); }
                 }
 
                 if (line.Contains("<tr class=\"region\">"))
@@ -318,7 +318,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool SaveInstance(LogicObjects.TrackerInstance Instance, bool SetPath = false , string FilePath = "")
         {
-            Console.WriteLine("Begin Save");
+            Debugging.Log("Begin Save");
             if (FilePath == "" || !File.Exists(FilePath))
             {
                 SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker Save (*.MMRTSAV)|*.MMRTSAV", FilterIndex = 1 };
@@ -327,14 +327,14 @@ namespace MMR_Tracker.Class_Files
             }
             //Clear the undo and redo list because otherwise the save file is massive
             Instance.UnsavedChanges = false;
-            Console.WriteLine("Start Clone");
+            Debugging.Log("Start Clone");
             var SaveInstance = Utility.CloneTrackerInstance(Instance);
-            Console.WriteLine("Clear undo/redo");
+            Debugging.Log("Clear undo/redo");
             SaveInstance.UndoList.Clear();
             SaveInstance.RedoList.Clear();
-            Console.WriteLine("Write Data");
+            Debugging.Log("Write Data");
             File.WriteAllText(FilePath, JsonConvert.SerializeObject(SaveInstance));
-            Console.WriteLine("Format tracker");
+            Debugging.Log("Format tracker");
             if (SetPath) { Tools.SaveFilePath = FilePath; }
             UpdateTrackerTitle();
             return true;
@@ -809,7 +809,7 @@ namespace MMR_Tracker.Class_Files
 
             bool TreatAsNonProgressive()
             {
-                Console.WriteLine("Error! non progressive made it past initial check");
+                Debugging.Log("Error! non progressive made it past initial check");
                 if (entry.Useable())
                 {
                     usedItems.Add(entry.ID);

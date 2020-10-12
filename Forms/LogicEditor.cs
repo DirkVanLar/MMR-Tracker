@@ -237,14 +237,14 @@ namespace MMR_Tracker.Forms
                 ItemSelect.Function = 0;
                 return;
             }
-            Console.WriteLine($"Begin create {UniqueCombinations} permutatios");
+            Debugging.Log($"Begin create {UniqueCombinations} permutatios");
             try
             {
                 var NewConditionals = CreatePermiations(Input, (int)Combos.Value)
                         .Split(';').Select(x => x
                             .Split(',').Select(y => Int32.Parse(y)).ToArray()).ToArray();
 
-                Console.WriteLine("Finish create permutatios");
+                Debugging.Log("Finish create permutatios");
                 if (currentEntry.Conditionals == null)
                 {
                     currentEntry.Conditionals = NewConditionals;
@@ -254,14 +254,14 @@ namespace MMR_Tracker.Forms
                     currentEntry.Conditionals = currentEntry.Conditionals.Concat(NewConditionals).ToArray();
                 }
 
-                Console.WriteLine("Finish add to entry");
+                Debugging.Log("Finish add to entry");
             }
             catch { }
 
             Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
             ItemSelect.Function = 0;
             WriteCurentItem((int)nudIndex.Value);
-            Console.WriteLine("Finish Write ITems");
+            Debugging.Log("Finish Write ITems");
         }
 
         private void BtnRemoveReq_Click(object sender, EventArgs e)
@@ -474,7 +474,7 @@ namespace MMR_Tracker.Forms
             if (nudIndex.Value < 0) { nudIndex.Value = 0; return; }
             if (currentEntry.ID + 1 != (int)nudIndex.Value && currentEntry.ID - 1 != (int)nudIndex.Value && !NudUpdateing && currentEntry.ID != (int)nudIndex.Value)  
             {
-                Console.WriteLine("Value Manually Entered");
+                Debugging.Log("Value Manually Entered");
                 GoBackList.Add(currentEntry.ID); 
             }
 
@@ -675,7 +675,7 @@ namespace MMR_Tracker.Forms
 
             if (LBConditional.Items.Count > 0 && !(LBConditional.Items[0] is RequiementConditional))
             {
-                Console.WriteLine("Skipped Data"); return;
+                Debugging.Log("Skipped Data"); return;
             }
 
             List<int[]> cond = new List<int[]>();
@@ -844,7 +844,7 @@ namespace MMR_Tracker.Forms
             {
                 if (newOrder.ContainsKey(i.ID))
                 {
-                    Console.WriteLine("Item ID " + i.ID + " Became " + newOrder[i.ID]);
+                    Debugging.Log("Item ID " + i.ID + " Became " + newOrder[i.ID]);
                     i.ID = newOrder[i.ID];
                 }
                 if (i.Required != null)
@@ -853,7 +853,7 @@ namespace MMR_Tracker.Forms
                     {
                         if (newOrder.ContainsKey(i.Required[j]))
                         {
-                            Console.WriteLine("Requirment " + i.Required[j] + " Became " + newOrder[i.Required[j]]);
+                            Debugging.Log("Requirment " + i.Required[j] + " Became " + newOrder[i.Required[j]]);
                             i.Required[j] = newOrder[i.Required[j]];
                         }
                     }
@@ -866,7 +866,7 @@ namespace MMR_Tracker.Forms
                         {
                             if (newOrder.ContainsKey(i.Conditionals[j][k]))
                             {
-                                Console.WriteLine("Conditional " + i.Conditionals[j][k] + " Became " + newOrder[i.Conditionals[j][k]]);
+                                Debugging.Log("Conditional " + i.Conditionals[j][k] + " Became " + newOrder[i.Conditionals[j][k]]);
                                 i.Conditionals[j][k] = newOrder[i.Conditionals[j][k]];
                             }
                         }
@@ -962,7 +962,7 @@ namespace MMR_Tracker.Forms
             {
                 if (newOrder.ContainsKey(i.ID))
                 {
-                    Console.WriteLine("Item ID " + i.ID + " Became " + newOrder[i.ID]);
+                    Debugging.Log("Item ID " + i.ID + " Became " + newOrder[i.ID]);
                     i.ID = newOrder[i.ID];
                 }
                 if (i.Required != null)
@@ -971,7 +971,7 @@ namespace MMR_Tracker.Forms
                     {
                         if (newOrder.ContainsKey(i.Required[j]))
                         {
-                            Console.WriteLine("Requirment " + i.Required[j] + " Became " + newOrder[i.Required[j]]);
+                            Debugging.Log("Requirment " + i.Required[j] + " Became " + newOrder[i.Required[j]]);
                             i.Required[j] = newOrder[i.Required[j]];
                         }
                     }
@@ -984,7 +984,7 @@ namespace MMR_Tracker.Forms
                         {
                             if (newOrder.ContainsKey(i.Conditionals[j][k]))
                             {
-                                Console.WriteLine("Conditional " + i.Conditionals[j][k] + " Became " + newOrder[i.Conditionals[j][k]]);
+                                Debugging.Log("Conditional " + i.Conditionals[j][k] + " Became " + newOrder[i.Conditionals[j][k]]);
                                 i.Conditionals[j][k] = newOrder[i.Conditionals[j][k]];
                             }
                         }

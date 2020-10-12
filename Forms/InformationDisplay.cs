@@ -383,7 +383,7 @@ namespace MMR_Tracker_V2
 
         public void ResizeObject()
         {
-            Console.WriteLine(this.Text);
+            Debugging.Log(this.Text);
             if (this.Text == "Playthrough")
             {
                 listBox1.Height = this.Height - 60 - menuStrip1.Height;

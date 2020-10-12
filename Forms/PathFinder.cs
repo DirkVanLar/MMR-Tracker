@@ -28,7 +28,7 @@ namespace MMR_Tracker.Forms
             {
                 var item = LBPathFinder.Items[1] as LogicObjects.ListItem;
                 var part = item.PathPartition;
-                Console.WriteLine(part);
+                Debugging.Log(part.ToString());
             }
 
             int partition = paths.Count();

@@ -359,7 +359,7 @@ namespace MMR_Tracker.Forms
 
             var End = System.DateTime.Now.Ticks;
             var total = (End - start) / 10000;
-            Console.WriteLine("Creating Picture Boxes took " + total.ToString() + " Milisecconds");
+            Debugging.Log("Creating Picture Boxes took " + total.ToString() + " Milisecconds");
 
         }
         public void DisplayImages()
@@ -499,7 +499,7 @@ namespace MMR_Tracker.Forms
 
             var End = System.DateTime.Now.Ticks;
             var total = (End - start) / 10000;
-            Console.WriteLine("Drawing Items took " + total.ToString() + " Milisecconds");
+            Debugging.Log("Drawing Items took " + total.ToString() + " Milisecconds");
 
             CurrentLogicState = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
         }

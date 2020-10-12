@@ -20,7 +20,7 @@ namespace MMR_Tracker
 
         private void LogicEditing_LogicChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("Trigger");
+            Debugging.Log("Trigger");
             Map_Load(sender, e);
         }
 
@@ -123,7 +123,7 @@ namespace MMR_Tracker
                 if (Both0Entrance1Item2 == 2) { filter += Seperator + "=" + i + ",!@Entrance"; }
                 Seperator = "|";
             }
-            Console.WriteLine(filter);
+            Debugging.Log(filter);
             return filter;
         }
 
@@ -173,7 +173,7 @@ namespace MMR_Tracker
             List<string> NewMisc = new List<string> { "#Misc" };
             foreach (var i in Groups)
             {
-                if (!Assignedlocations.Contains(i) && ValidLocations.Contains(i)) { NewMisc.Add(i); Console.WriteLine(i); }
+                if (!Assignedlocations.Contains(i) && ValidLocations.Contains(i)) { NewMisc.Add(i); Debugging.Log(i); }
             }
             LocationDic.Find(x => x.locationArea == "Misc").SubAreas = NewMisc.ToArray();
         }
@@ -274,8 +274,8 @@ namespace MMR_Tracker
             int newWidth = (int)(originalSize.Width * yRatio);
             int newHeight = (int)(originalSize.Height * yRatio);
 
-            Console.WriteLine(this.Width - 8);
-            Console.WriteLine(this.Height - 39);
+            Debugging.Log((this.Width - 8).ToString());
+            Debugging.Log((this.Height - 39).ToString());
 
             btn.Location = new Point(newX, newY);
             btn.Size = new Size(newWidth, newHeight);

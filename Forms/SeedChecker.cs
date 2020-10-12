@@ -103,7 +103,7 @@ namespace MMR_Tracker
                 string LocationFoundAt = (ItemsLocation != null) ? ItemsLocation.LocationName ?? ItemsLocation.DictionaryName : "";
                 string DisplayName = (Spoil) ? ItemName + ": " + LocationFoundAt : ItemName;
 
-                Console.WriteLine(logicCopy.Logic[ListItem.PathID].DictionaryName + " " + logicCopy.Logic[ListItem.PathID].Aquired);
+                Debugging.Log(logicCopy.Logic[ListItem.PathID].DictionaryName + " " + logicCopy.Logic[ListItem.PathID].Aquired);
                 if (logicCopy.Logic[ListItem.PathID].Aquired) { obtainable.Add(DisplayName); }
                 else { unobtainable.Add(DisplayName); }
             }
@@ -134,7 +134,7 @@ namespace MMR_Tracker
             {
 
                 item.Available = LogicEditing.RequirementsMet(item.Required, Instance.Logic) && LogicEditing.CondtionalsMet(item.Conditionals, Instance.Logic);
-                Console.WriteLine($"{item.DictionaryName} Avalable {item.Available}");
+                Debugging.Log($"{item.DictionaryName} Avalable {item.Available}");
 
                 if (LogicEditing.ParseCombinationEntry(Instance.Logic, item)) { item.Available = true; }
 

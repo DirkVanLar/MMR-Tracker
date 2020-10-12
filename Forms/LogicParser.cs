@@ -87,14 +87,14 @@ namespace MMR_Tracker.Forms
             LetterToNum = LetterToNum.OrderBy(x => x.Value).Reverse().ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             foreach (var i in LetterToNum)
             {
-                Console.WriteLine(i);
+                Debugging.Log(i.ToString());
                 NewLogic = NewLogic.Replace(i.Value.ToString(), i.Key);
             }
-            Console.WriteLine(NewLogic);
+            Debugging.Log(NewLogic);
             Expression LogicSet = Infix.ParseOrThrow(NewLogic);
             var Output = Algebraic.Expand(LogicSet);
             string ExpandedLogic = Infix.Format(Output).Replace(" ", "");
-            Console.WriteLine(ExpandedLogic);
+            Debugging.Log(ExpandedLogic);
 
             foreach (var i in LetterToNum)
             {
@@ -251,7 +251,7 @@ namespace MMR_Tracker.Forms
             var OrderedLogic = Utility.CloneLogicList(LogicEditor.EditorInstance.Logic).OrderBy(x => x.DictionaryName.Count()).Reverse();
             foreach (var i in OrderedLogic)
             {
-                Console.WriteLine(i.DictionaryName);
+                Debugging.Log(i.DictionaryName);
                 if (textBox1.Text.Contains(i.DictionaryName))
                 {
                     textBox1.Text = textBox1.Text.Replace(i.DictionaryName, i.ID.ToString());

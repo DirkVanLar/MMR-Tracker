@@ -43,7 +43,7 @@ namespace MMR_Tracker_V2
 
         private void Tools_UpdateListBox(object sender, EventArgs e)
         {
-            if (sender == OnlinePlay.MultiworldToggle) { FormatMenuItems(); Console.WriteLine("MTog"); }
+            if (sender == OnlinePlay.MultiworldToggle) { FormatMenuItems();  }
             PrintToListBox();
         }
 
@@ -57,6 +57,11 @@ namespace MMR_Tracker_V2
             System.IO.Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             //Since only one instance of the main interface will ever be open, We can store that instance in a variable to be called from static code.
             CurrentProgram = this;
+
+            DateTime date = DateTime.Now;
+            string DateString = date.ToString("dd-MM-yy-HH-mm-ss-ff");
+            Debugging.LogFile = @"Recources\Logs\Log-" + DateString + ".txt";
+
             Debugging.ISDebugging = (Control.ModifierKeys == Keys.Control) ? (!Debugger.IsAttached) : (Debugger.IsAttached);
             Tools.CreateOptionsFile();
             if (VersionHandeling.GetLatestTrackerVersion()) { this.Close(); }
@@ -141,7 +146,7 @@ namespace MMR_Tracker_V2
         #region Online Play Options
         private void onlinePlayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (OnlinePlay.CurrentOpenForm != null) { Console.WriteLine("Form already open"); OnlinePlay.CurrentOpenForm.Focus(); return; }
+            if (OnlinePlay.CurrentOpenForm != null) { Debugging.Log("Form already open"); OnlinePlay.CurrentOpenForm.Focus(); return; }
             OnlinePlay net = new OnlinePlay();
             net.Show();
         }
@@ -1457,14 +1462,14 @@ namespace MMR_Tracker_V2
                 if (File.Exists(Path))
                 {
                     Lines = File.ReadAllLines(Path);
-                    Console.WriteLine(Path);
+                    Debugging.Log(Path);
                 }
                 else
                 {
                     System.Net.WebClient wc = new System.Net.WebClient();
                     string webData = wc.DownloadString(WebPath);
                     Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                    Console.WriteLine(WebPath);
+                    Debugging.Log(WebPath);
                 }
                 LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
                 Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());

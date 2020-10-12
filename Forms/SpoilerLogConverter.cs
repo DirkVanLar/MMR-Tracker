@@ -269,12 +269,12 @@ namespace MMR_Tracker.Forms
                     var SpoilerLogLine = FileContent.Find(x => DictionaryItem.SpoilerLocation.Split('|').Contains((x.Split(new string[] { "->" }, StringSplitOptions.None)[0])));
                     if (SpoilerLogLine == null)
                     {
-                        Console.WriteLine($"===========================================================");
-                        Console.WriteLine($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Was not found");
+                        Debugging.Log($"===========================================================");
+                        Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Was not found");
                         var EntrancePair = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == DictionaryItem.EntrancePair);
                         if (EntrancePair == null || !CoupledEntrances)
                         {
-                            Console.WriteLine($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Did not have a pair. Setting it vanilla.");
+                            Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Did not have a pair. Setting it vanilla.");
                             FileContent.Add(DictionaryItem.SpoilerLocation.Split('|')[0] + "->" + DictionaryItem.SpoilerItem.Split('|')[0]);
                         }
                         else
@@ -284,7 +284,7 @@ namespace MMR_Tracker.Forms
                                 .Find(x => EntrancePair.SpoilerItem.Split('|').Contains(x.Split(new string[] { "->" }, StringSplitOptions.None)[1]) && !IsOneWay(x));
                             if (EntrancePairSpoilerLogEntry != null)
                             {
-                                Console.WriteLine($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Reverse Data found at {EntrancePairSpoilerLogEntry}");
+                                Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Reverse Data found at {EntrancePairSpoilerLogEntry}");
                                 var g = EntrancePairSpoilerLogEntry.Split(new string[] { "->" }, StringSplitOptions.None);
                                 var h0 = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerLocation.Split('|').Contains(g[0])
                                     && !x.SpoilerLocation.Split('|').Where(o => o.Contains("Spawn")).Any());
@@ -293,15 +293,15 @@ namespace MMR_Tracker.Forms
                                 var h = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == h0.EntrancePair);
                                 var j = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == j0.EntrancePair);
 
-                                if (h == null || j == null) { Console.WriteLine($"{EntrancePairSpoilerLogEntry} Did not have reverse Data! This is an error!"); continue; }
+                                if (h == null || j == null) { Debugging.Log($"{EntrancePairSpoilerLogEntry} Did not have reverse Data! This is an error!"); continue; }
 
-                                Console.WriteLine($"New Entry Created: {j.SpoilerLocation.Split('|')[0] + "->" + h.SpoilerItem.Split('|')[0]}");
+                                Debugging.Log($"New Entry Created: {j.SpoilerLocation.Split('|')[0] + "->" + h.SpoilerItem.Split('|')[0]}");
 
                                 FileContent.Add(j.SpoilerLocation.Split('|')[0] + "->" + h.SpoilerItem.Split('|')[0]);
                             }
                             else
                             {
-                                Console.WriteLine($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Did not have reverse Data. Setting it Vanilla.");
+                                Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Did not have reverse Data. Setting it Vanilla.");
                                 FileContent.Add(DictionaryItem.SpoilerLocation.Split('|')[0] + "->" + DictionaryItem.SpoilerItem.Split('|')[0]);
                             }
                         }
@@ -314,10 +314,10 @@ namespace MMR_Tracker.Forms
                 foreach (dynamic i in DungeonArray)
                 {
                     string line = i.ToString();
-                    //Console.WriteLine(line);
+                    //Debugging.Log(line);
                     var LineSplit = line.Split(':').Select(x => x.Replace("\"", "").Trim()).ToArray();
                     if (line.Length < 2) { continue; }
-                    //Console.WriteLine($"{LineSplit[0]}: {LineSplit[1] == "mq"}");
+                    //Debugging.Log($"{LineSplit[0]}: {LineSplit[1] == "mq"}");
 
                     if (LineSplit[1] == "mq")
                     {
@@ -381,7 +381,7 @@ namespace MMR_Tracker.Forms
 
                         if (i.Entrance == Entrance)
                         {
-                            //Console.WriteLine($"Changing {i.Entrance} to MQ {i.Entrance}");
+                            //Debugging.Log($"Changing {i.Entrance} to MQ {i.Entrance}");
                             i.Entrance = "MQ " + i.Entrance;
                         }
                         if (i.Exit == exit)
@@ -644,7 +644,7 @@ namespace MMR_Tracker.Forms
                         break;
                     }
                 }
-                Console.WriteLine($"Multiworld {isMulti}, World Count: {worlCount}");
+                Debugging.Log($"Multiworld {isMulti}, World Count: {worlCount}");
 
                 if (isMulti)
                 {
@@ -696,7 +696,7 @@ namespace MMR_Tracker.Forms
                 foreach (var i in Lines)
                 {
                     string Line = i.Trim();
-                    //Console.WriteLine(Line);
+                    //Debugging.Log(Line);
                     bool Unimplimented = false;
                     if (Line.StartsWith("#"))
                     {

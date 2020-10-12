@@ -74,7 +74,7 @@ namespace MMR_Tracker.Class_Files
 
             var ImportantPlaythrough = Playthrough.Where(i => (importantItems.Contains(i.Check.ID) && !i.Check.IsFake) || i.Check.ID == GameClear).ToList();
 
-            //foreach (var li in ImportantPlaythrough) { Console.WriteLine(li.Check.DictionaryName); }
+            //foreach (var li in ImportantPlaythrough) { Debugging.Log(li.Check.DictionaryName); }
 
             //Convert Progressive Items Back to real items
             ConvertProgressiveItems(ImportantPlaythrough, playLogic);
@@ -149,7 +149,7 @@ namespace MMR_Tracker.Class_Files
                     int TimesItemUsed = ObtainedItem.ItemsUsed.Where(x => ProgressiveItemSet.Where(y => y.ID == x).Any()).Count() - 1;
                     if (TimesItemUsed < 0) { continue; }
                     if (TimesItemUsed >= ProgressiveItemSet.Count()) { TimesItemUsed = ProgressiveItemSet.Count() - 1; }
-                    //Console.WriteLine($"{TimesItemUsed} Progressive Items where used to check {ObtainedItem.Check.LocationName}");
+                    //Debugging.Log($"{TimesItemUsed} Progressive Items where used to check {ObtainedItem.Check.LocationName}");
                     List<int> newItemsUsed = new List<int>();
                     bool ItemAdded = false;
                     foreach (var UsedItem in ObtainedItem.ItemsUsed)
@@ -158,7 +158,7 @@ namespace MMR_Tracker.Class_Files
                         {
                             if (!ItemAdded)
                             {
-                                //Console.WriteLine($"{Instance.Logic[UsedItem].ItemName} was replace by {ProgressiveItemSet[TimesItemObtained].ItemName}");
+                                //Debugging.Log($"{Instance.Logic[UsedItem].ItemName} was replace by {ProgressiveItemSet[TimesItemObtained].ItemName}");
                                 newItemsUsed.Add(ProgressiveItemSet[TimesItemObtained].ID);
                                 ItemAdded = true;
                             }
@@ -305,7 +305,7 @@ namespace MMR_Tracker.Class_Files
             }
             catch
             {
-                Console.WriteLine("Could not find items for game clear conditional");
+                Debugging.Log("Could not find items for game clear conditional");
                 return -1;
             }
             return GameClear;

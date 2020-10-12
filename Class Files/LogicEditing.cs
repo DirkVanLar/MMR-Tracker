@@ -93,7 +93,7 @@ namespace MMR_Tracker_V2
                         LogicEntry1.IsTrick = (line.StartsWith(";"));
                         LogicEntry1.TrickEnabled = true;
                         LogicEntry1.TrickToolTip = (line.Length > 1) ? line.Substring(1) : "No Tooltip Available";
-                        //if (LogicEntry1.IsTrick) { Console.WriteLine($"Trick {LogicEntry1.DictionaryName} Found. ToolTip =  { LogicEntry1.TrickToolTip }"); }
+                        //if (LogicEntry1.IsTrick) { Debugging.Log($"Trick {LogicEntry1.DictionaryName} Found. ToolTip =  { LogicEntry1.TrickToolTip }"); }
                         break;
                 }
                 if ((NextLine) >= instance.RawLogicFile.Count() || instance.RawLogicFile[NextLine].StartsWith("-"))

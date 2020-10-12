@@ -444,7 +444,7 @@ namespace MMR_Tracker_V2
         private void chkAddSeperate_CheckedChanged(object sender, EventArgs e)
         {
             LogicEditor.AddCondSeperatly = chkAddSeperate.Checked;
-            Console.WriteLine(LogicEditor.AddCondSeperatly);
+            Debugging.Log(LogicEditor.AddCondSeperatly.ToString());
         }
 
         private void ItemSelect_FormClosing(object sender, FormClosingEventArgs e)

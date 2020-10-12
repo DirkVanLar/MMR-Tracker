@@ -76,31 +76,31 @@ namespace MMR_Tracker.Forms
             {
                 //IPEndPoint ipEndPoint = new IPEndPoint(ip, 8000);
                 IPEndPoint ipEndPoint = new IPEndPoint(ip.IP, ip.PORT);
-                //Console.WriteLine("Starting: Creating Socket object");
+                //Debugging.Log("Starting: Creating Socket object");
                 Socket sender = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 sender.Connect(ipEndPoint);
-                Console.WriteLine("Successfully connected to {0}", sender.RemoteEndPoint);
+                Debugging.Log($"Successfully connected to {sender.RemoteEndPoint}" );
                 string sendingMessage = M;
                 //string sendingMessage = "Hello World Socket Test";
-                //Console.WriteLine("Creating message:{0}", sendingMessage);
+                //Debugging.Log("Creating message:{0}", sendingMessage);
                 byte[] forwardMessage = Encoding.Default.GetBytes(sendingMessage);
                 sender.Send(forwardMessage);
                 //int totalBytesReceived = sender.Receive(receivedBytes);
-                //Console.WriteLine("Message provided from server: {0}", Encoding.ASCII.GetString(receivedBytes, 0, totalBytesReceived));
+                //Debugging.Log("Message provided from server: {0}", Encoding.ASCII.GetString(receivedBytes, 0, totalBytesReceived));
                 sender.Shutdown(SocketShutdown.Both);
                 sender.Close();
             }
             catch (ArgumentNullException ane)
             {
-                Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
+                Debugging.Log($"ArgumentNullException : {ane.ToString()}");
             }
             catch (SocketException se)
             {
-                Console.WriteLine("SocketException : {0}", se.ToString());
+                Debugging.Log($"SocketException : {se.ToString()}");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Unexpected exception : {0}", e.ToString());
+                Debugging.Log($"Unexpected exception : {e.ToString()}");
             }
         }
 
@@ -131,7 +131,7 @@ namespace MMR_Tracker.Forms
                 listener.Bind(new IPEndPoint(IPAddress.Any, LogicObjects.MainTrackerInstance.Options.PortNumber));
                 listener.Listen(10);
                 Socket socket = listener.Accept();
-                Console.WriteLine("Data Recieved.");
+                Debugging.Log("Data Recieved.");
                 string receivedValue = string.Empty;
                 byte[] bytes = null;
                 int counter = 0;
@@ -147,7 +147,7 @@ namespace MMR_Tracker.Forms
                     }
                 }
 
-                Console.WriteLine("Received value: {0}. Size: {1}", receivedValue, counter);
+                Debugging.Log($"Received value: {receivedValue}. Size: {counter}" );
                 //string replyValue = "Message successfully received.";
                 //byte[] replyMessage = Encoding.Default.GetBytes(replyValue);
                 //socket.Send(replyMessage);
@@ -160,7 +160,7 @@ namespace MMR_Tracker.Forms
             catch (Exception e)
             {
                 listener.Close();
-                Console.WriteLine($"Errored: { e.ToString() }");
+                Debugging.Log($"Errored: { e.ToString() }");
                 return "";
             }
         }
@@ -171,9 +171,9 @@ namespace MMR_Tracker.Forms
             Listening = true;
             while (Listening)
             {
-                Console.WriteLine("Listening for data...");
+                Debugging.Log("Listening for data...");
                 string Logic = await Task.Run(() => RecieveData());
-                Console.WriteLine(Logic);
+                Debugging.Log(Logic);
 
                 LogicObjects.MMRTpacket NetData = new LogicObjects.MMRTpacket();
                 if (Logic != "")
@@ -182,12 +182,12 @@ namespace MMR_Tracker.Forms
                     {
                         NetData = JsonConvert.DeserializeObject<LogicObjects.MMRTpacket>(Logic);
                         ManageNetData(NetData);
-                        Console.WriteLine($"Data Processed");
+                        Debugging.Log($"Data Processed");
                     }
-                    catch (Exception e) { Console.WriteLine($"Data Invalid: {e}"); }
+                    catch (Exception e) { Debugging.Log($"Data Invalid: {e}"); }
                 }
             }
-            Console.WriteLine("Server Shutting Down");
+            Debugging.Log("Server Shutting Down");
             return;
         }
 
@@ -257,8 +257,8 @@ namespace MMR_Tracker.Forms
                 return; 
             }
             NewIP.IP = IP;
-            
-            Console.WriteLine(IP);
+
+            Debugging.Log(IP.ToString());
             NewIP.PORT = (int)NudPort.Value;
             NewIP.DisplayName = $"{IPText}:{NewIP.PORT}";
             IPS.Add(NewIP);
@@ -283,7 +283,7 @@ namespace MMR_Tracker.Forms
             {
                 NudYourPort.Enabled = false;
                 startServer();
-                Console.WriteLine("Server Started");
+                Debugging.Log("Server Started");
             }
             else
             {
@@ -309,6 +309,21 @@ namespace MMR_Tracker.Forms
             ChangeGameMode(sender, e);
         }
 
+        private static void SendRequestedUpdate(LogicObjects.MMRTpacket Data, bool IPInSendingList)
+        {
+            if (Data.RequestingUpdate != 0 && (IPInSendingList))
+            {
+                try
+                {
+                    IPAddress NIP = IPAddress.Parse(Data.IPData.IP);
+                    SendData(new List<LogicObjects.IPDATA> { new LogicObjects.IPDATA { IP = NIP, PORT = Data.IPData.PORT } }, 0);
+                }
+                catch (Exception e) { Debugging.Log($"Could not send requested data\nReason: Send Request Errored with\n{e}"); }
+            }
+            else if (Data.RequestingUpdate != 0) { Debugging.Log($"Could not send requested data\nReason: User not in send list {Data.IPData.IP}:{Data.IPData.PORT}"); }
+
+        }
+
         public static void ManageNetData(LogicObjects.MMRTpacket Data)
         {
             var log = LogicObjects.MainTrackerInstance.Logic;
@@ -322,20 +337,10 @@ namespace MMR_Tracker.Forms
                 if (LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections) { TriggerAddRemoteToIPList(Data); }
             }
 
-            if (Data.RequestingUpdate !=0 && (IPInSendingList))
-            {
-                try
-                {
-                    IPAddress NIP = IPAddress.Parse(Data.IPData.IP);
-                    SendData(new List<LogicObjects.IPDATA> { new LogicObjects.IPDATA { IP = NIP, PORT = Data.IPData.PORT } }, 0);
-                }
-                catch (Exception e) { Console.WriteLine($"Could not send requested data\nReason: Send Request Errored with\n{e}"); }
-            }
-            else if (Data.RequestingUpdate != 0) { Console.WriteLine($"Could not send requested data\nReason: User not in send list {Data.IPData.IP}:{Data.IPData.PORT}"); }
+            SendRequestedUpdate(Data, IPInSendingList);
 
             if (Data.RequestingUpdate == 1) { return; }
 
-            var Templogic = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic); //We want to save logic at this point but don't want to comit to a full save state
             bool ChangesMade = false;
 
             if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { CleanMultiWorldData(Instance, Data); }
@@ -404,7 +409,7 @@ namespace MMR_Tracker.Forms
 
                 if (itemsInUse.Where(x => x.ID == i.RI).Any())
                 {
-                    Console.WriteLine($"{log[i.RI].DictionaryName} was in use elsewhere");
+                    Debugging.Log($"{log[i.RI].DictionaryName} was in use elsewhere");
 
                     var MatchingItems = log.Where(x => x.SpoilerItem.Intersect(log[i.RI].SpoilerItem).Any());
                     var FindUnusedMatchingItem = MatchingItems.Where(x => !itemsInUse.Where(y => y.ID == x.ID).Any());
@@ -412,7 +417,7 @@ namespace MMR_Tracker.Forms
 
                     if (FindUnusedMatchingItem.Any())
                     {
-                        Console.WriteLine($"Unused Matching Item found: {FindUnusedMatchingItem.ToArray()[0].DictionaryName}");
+                        Debugging.Log($"Unused Matching Item found: {FindUnusedMatchingItem.ToArray()[0].DictionaryName}");
                         var newItem = FindUnusedMatchingItem.ToArray()[0];
                         i.RI = newItem.ID;
                         itemsObtained.Add(newItem);
@@ -420,14 +425,14 @@ namespace MMR_Tracker.Forms
                     }
                     else if (FindUnAquiredMatchingItem.Any())
                     {
-                        Console.WriteLine($"No Unused Matching Items Were Found, getting unaquired matching item.");
-                        Console.WriteLine($"Matching UnAquired Item Found: {FindUnAquiredMatchingItem.ToArray()[0].DictionaryName}");
+                        Debugging.Log($"No Unused Matching Items Were Found, getting unaquired matching item.");
+                        Debugging.Log($"Matching UnAquired Item Found: {FindUnAquiredMatchingItem.ToArray()[0].DictionaryName}");
                         var newItem = FindUnAquiredMatchingItem.ToArray()[0];
                         i.RI = newItem.ID;
                         itemsObtained.Add(newItem);
                         itemsInUse.Add(newItem);
                     }
-                    else { Console.WriteLine($"No Unused items were found. This is an error and could cause Issues."); }
+                    else { Debugging.Log($"No Unused items were found. This is an error and could cause Issues."); }
                 }
             }
         }
@@ -467,17 +472,17 @@ namespace MMR_Tracker.Forms
                 MessageBox.Show("File Invalid!");
                 return;
             }
-            Console.WriteLine($"File Valid");
+            Debugging.Log($"File Valid");
             foreach (var i in LoadData)
             {
-                Console.WriteLine($"Checking {i.IP.Trim()}");
+                Debugging.Log($"Checking {i.IP.Trim()}");
                 if (i.IP != MyIP.ToString() && IPS.FindIndex(f => f.IP.ToString() == i.IP && f.PORT == i.PORT) < 0)
                 {
                     IPAddress NIP;
-                    try { NIP = IPAddress.Parse(i.IP.Trim()); } catch { Console.WriteLine($"{i.IP.Trim()} Invalid"); continue; }
+                    try { NIP = IPAddress.Parse(i.IP.Trim()); } catch { Debugging.Log($"{i.IP.Trim()} Invalid"); continue; }
                     string dist = (i.DisplayName == null || i.DisplayName == "") ? $"{NIP}:{i.PORT}" : i.DisplayName;
                     IPS.Add(new LogicObjects.IPDATA { IP = NIP, PORT = i.PORT, DisplayName = dist });
-                    Console.WriteLine($"{i.IP.Trim()} Added");
+                    Debugging.Log($"{i.IP.Trim()} Added");
                 }
             }
             UpdateFormItems();

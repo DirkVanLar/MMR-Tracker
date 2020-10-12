@@ -15,12 +15,15 @@ using System.Runtime.InteropServices;
 using MathNet.Numerics;
 using MathNet.Symbolics;
 using System.Text.RegularExpressions;
+using Microsoft.VisualBasic.Logging;
 
 namespace MMR_Tracker_V2
 {
     class Debugging
     {
         public static bool ISDebugging = false;
+
+        public static string LogFile = "";
 
         public static void PrintLogicObject(List<LogicObjects.LogicEntry> Logic, int start = -1, int end = -1)
         {
@@ -34,27 +37,27 @@ namespace MMR_Tracker_V2
             if (start < 0) { start = 0; }
             for (int i = start; i < end; i++)
             {
-                Console.WriteLine("---------------------------------------");
-                Console.WriteLine("ID: " + Logic[i].ID);
-                Console.WriteLine("Name: " + Logic[i].DictionaryName);
-                Console.WriteLine("Location: " + Logic[i].LocationName);
-                Console.WriteLine("Item: " + Logic[i].ItemName);
-                Console.WriteLine("Location area: " + Logic[i].LocationArea);
-                Console.WriteLine("Item Sub Type: " + Logic[i].ItemSubType);
-                Console.WriteLine("Available: " + Logic[i].Available);
-                Console.WriteLine("Aquired: " + Logic[i].Aquired);
-                Console.WriteLine("Checked: " + Logic[i].Checked);
-                Console.WriteLine("Fake Item: " + Logic[i].IsFake);
-                Console.WriteLine("Random Item: " + Logic[i].RandomizedItem);
-                Console.WriteLine("Spoiler Log Location name: " + string.Join(",", Logic[i].SpoilerLocation));
-                Console.WriteLine("Spoiler Log Item name: " + string.Join(",", Logic[i].SpoilerItem));
-                Console.WriteLine("Spoiler Log Randomized Item: " + Logic[i].SpoilerRandom);
-                if (Logic[i].RandomizedState() == 0) { Console.WriteLine("Randomized State: Randomized"); }
-                if (Logic[i].RandomizedState() == 1) { Console.WriteLine("Randomized State: Unrandomized"); }
-                if (Logic[i].RandomizedState() == 2) { Console.WriteLine("Randomized State: Forced Fake"); }
-                if (Logic[i].RandomizedState() == 3) { Console.WriteLine("Randomized State: Forced Junk"); }
+                Debugging.Log("---------------------------------------");
+                Debugging.Log("ID: " + Logic[i].ID);
+                Debugging.Log("Name: " + Logic[i].DictionaryName);
+                Debugging.Log("Location: " + Logic[i].LocationName);
+                Debugging.Log("Item: " + Logic[i].ItemName);
+                Debugging.Log("Location area: " + Logic[i].LocationArea);
+                Debugging.Log("Item Sub Type: " + Logic[i].ItemSubType);
+                Debugging.Log("Available: " + Logic[i].Available);
+                Debugging.Log("Aquired: " + Logic[i].Aquired);
+                Debugging.Log("Checked: " + Logic[i].Checked);
+                Debugging.Log("Fake Item: " + Logic[i].IsFake);
+                Debugging.Log("Random Item: " + Logic[i].RandomizedItem);
+                Debugging.Log("Spoiler Log Location name: " + string.Join(",", Logic[i].SpoilerLocation));
+                Debugging.Log("Spoiler Log Item name: " + string.Join(",", Logic[i].SpoilerItem));
+                Debugging.Log("Spoiler Log Randomized Item: " + Logic[i].SpoilerRandom);
+                if (Logic[i].RandomizedState() == 0) { Debugging.Log("Randomized State: Randomized"); }
+                if (Logic[i].RandomizedState() == 1) { Debugging.Log("Randomized State: Unrandomized"); }
+                if (Logic[i].RandomizedState() == 2) { Debugging.Log("Randomized State: Forced Fake"); }
+                if (Logic[i].RandomizedState() == 3) { Debugging.Log("Randomized State: Forced Junk"); }
 
-                Console.WriteLine("Starting Item: " + Logic[i].StartingItem());
+                Debugging.Log("Starting Item: " + Logic[i].StartingItem());
 
                 string av = "Available On: ";
                 if (((Logic[i].AvailableOn >> 0) & 1) == 1) { av += "Day 1, "; }
@@ -63,7 +66,7 @@ namespace MMR_Tracker_V2
                 if (((Logic[i].AvailableOn >> 1) & 1) == 1) { av += "Night 1, "; }
                 if (((Logic[i].AvailableOn >> 3) & 1) == 1) { av += "Night 2, "; }
                 if (((Logic[i].AvailableOn >> 5) & 1) == 1) { av += "Night 3, "; }
-                Console.WriteLine(av);
+                Debugging.Log(av);
                 av = "Needed By: ";
                 if (((Logic[i].NeededBy >> 0) & 1) == 1) { av += "Day 1, "; }
                 if (((Logic[i].NeededBy >> 2) & 1) == 1) { av += "Day 2, "; }
@@ -71,32 +74,46 @@ namespace MMR_Tracker_V2
                 if (((Logic[i].NeededBy >> 1) & 1) == 1) { av += "Night 1, "; }
                 if (((Logic[i].NeededBy >> 3) & 1) == 1) { av += "Night 2, "; }
                 if (((Logic[i].NeededBy >> 5) & 1) == 1) { av += "Night 3, "; }
-                Console.WriteLine(av);
+                Debugging.Log(av);
 
                 var test2 = Logic[i].Required;
-                if (test2 == null) { Console.WriteLine("NO REQUIREMENTS"); }
+                if (test2 == null) { Debugging.Log("NO REQUIREMENTS"); }
                 else
                 {
-                    Console.WriteLine("Required");
+                    Debugging.Log("Required");
                     for (int j = 0; j < test2.Length; j++)
                     {
-                        Console.WriteLine(Logic[test2[j]].ItemName ?? Logic[test2[j]].DictionaryName);
+                        Debugging.Log(Logic[test2[j]].ItemName ?? Logic[test2[j]].DictionaryName);
                     }
                 }
                 var test3 = Logic[i].Conditionals;
-                if (test3 == null) { Console.WriteLine("NO CONDITIONALS"); }
+                if (test3 == null) { Debugging.Log("NO CONDITIONALS"); }
                 else
                 {
                     for (int j = 0; j < test3.Length; j++)
                     {
-                        Console.WriteLine("Conditional " + j);
+                        Debugging.Log("Conditional " + j);
                         for (int k = 0; k < test3[j].Length; k++)
                         {
-                            Console.WriteLine(Logic[test3[j][k]].ItemName ?? Logic[test3[j][k]].DictionaryName);
+                            Debugging.Log(Logic[test3[j][k]].ItemName ?? Logic[test3[j][k]].DictionaryName);
                         }
                     }
                 }
             }
+        }
+
+        public static void Log(string Data, int LogLevel = 0)
+        {
+            //0 = Print to Console, 1 = Print to LogFile, 2 = Print to Both
+            if (LogLevel == 0 || LogLevel == 2) { Console.WriteLine(Data); }
+            if (LogLevel == 0) { return; }
+            if (!Directory.Exists(@"Recources\Logs")) { Directory.CreateDirectory(@"Recources\Logs"); }
+            if (!File.Exists(Debugging.LogFile)) { File.Create(Debugging.LogFile); }
+            try
+            {
+                File.AppendAllText(LogFile, Data + Environment.NewLine);
+            }
+            catch (Exception e) { Console.WriteLine($"Could not write to log file {e}"); }
         }
 
         public static void TestDumbStuff()
@@ -112,8 +129,8 @@ namespace MMR_Tracker_V2
             void TestEncryption()
             {
                 var EncryptedString = Crypto.EncryptStringAES("This is a test String", "MMRTNET");
-                Console.WriteLine(EncryptedString);
-                Console.WriteLine(Crypto.DecryptStringAES(EncryptedString, "MMRTNET"));
+                Debugging.Log(EncryptedString);
+                Debugging.Log(Crypto.DecryptStringAES(EncryptedString, "MMRTNET"));
             }
 
             void SetTestMultiworldData()
@@ -331,9 +348,9 @@ namespace MMR_Tracker_V2
 
                 var aquired = Tools.ProgressiveItemAquired(LogicObjects.MainTrackerInstance.Logic, BigBombBag, UsedItems);
 
-                Console.WriteLine(aquired);
-                Console.WriteLine("");
-                foreach (var i in UsedItems) { Console.WriteLine($"Final: Entry {i} was used"); }
+                Debugging.Log(aquired.ToString());
+                Debugging.Log("");
+                foreach (var i in UsedItems) { Debugging.Log($"Final: Entry {i} was used"); }
             }
 
             void CreatePAcketData()

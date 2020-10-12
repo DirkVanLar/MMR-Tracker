@@ -75,7 +75,7 @@ namespace MMR_Tracker_V2
                 currentdictionary = dictionaries[index];
             }
 
-            Console.WriteLine(currentdictionary);
+            Debugging.Log(currentdictionary);
             return currentdictionary;
         }
 
@@ -107,11 +107,11 @@ namespace MMR_Tracker_V2
             var client = new GitHubClient(new ProductHeaderValue("MMR-Tracker"));
             var lateset = client.Repository.Release.GetLatest("Thedrummonger", "MMR-Tracker").Result;
 
-            Console.WriteLine($"Latest Version: { lateset.TagName } Current Version { trackerVersion }");
+            Debugging.Log($"Latest Version: { lateset.TagName } Current Version { trackerVersion }");
 
             if (VersionHandeling.CompareVersions(lateset.TagName, trackerVersion))
             {
-                if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Console.WriteLine($"Tracker Out of Date. Latest Version: { lateset.TagName } Current Version { trackerVersion }"); }
+                if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Debugging.Log($"Tracker Out of Date. Latest Version: { lateset.TagName } Current Version { trackerVersion }"); }
                 else
                 {
                     var Download = MessageBox.Show($"Your tracker version { trackerVersion } is out of Date. Would you like to download the latest version { lateset.TagName }?", "Tracker Out of Date", MessageBoxButtons.YesNo);
