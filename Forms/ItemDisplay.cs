@@ -23,6 +23,7 @@ namespace MMR_Tracker.Forms
         public bool DebugShowAll = false;
         public List<LogicObjects.LogicEntry> CurrentLogicState = new List<LogicObjects.LogicEntry>();
         public List<LogicObjects.LogicEntry> LogicChanges = new List<LogicObjects.LogicEntry>();
+        public bool IsPogressive = LogicObjects.MainTrackerInstance.Options.ProgressiveItems;
 
         //Form Functions
         public ItemDisplay()
@@ -367,9 +368,14 @@ namespace MMR_Tracker.Forms
             int Spacing = (this.Width - 16) / ItemsOnScreen;
 
             var start = System.DateTime.Now.Ticks;
+            List<string> ProgressiveOverwright;
 
             DrawItem("Ocarina", "Ocarina of Time", Spacing);
-            DrawProgressiveItem("Bow", new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } }, Spacing);
+
+            //Handle Progressive Bow
+            ProgressiveOverwright = GetCurrentProgressiveItem(new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } });
+            DrawHighestTierItem("Bow", new Dictionary<string, string> { { "Hero's Bow", ProgressiveOverwright[0] }, { "Town Archery Quiver (40)", ProgressiveOverwright[1] }, { "Swamp Archery Quiver (50)", ProgressiveOverwright[2] } }, Spacing);
+
             DrawItem("FireArrow", "Fire Arrow", Spacing);
             DrawItem("IceArrow", "Ice Arrow", Spacing);
             DrawItem("LightArrow", "Light Arrow", Spacing);
@@ -377,7 +383,10 @@ namespace MMR_Tracker.Forms
             DrawItem("Sonata", "Sonata of Awakening", Spacing, "Sonata");
             DrawItem("MoonTear", "Moon's Tear", Spacing);
 
-            DrawProgressiveItem("Bombs", new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } }, Spacing);
+            //Handle Progressive Bomb Bag
+            ProgressiveOverwright = GetCurrentProgressiveItem(new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } });
+            DrawHighestTierItem("Bombs", new Dictionary<string, string> { { "Bomb Bag (20)", ProgressiveOverwright[0] }, { "Town Bomb Bag (30)", ProgressiveOverwright[1] }, { "Mountain Bomb Bag (40)", ProgressiveOverwright[2] } }, Spacing);
+
             DrawCountableItem("Bombchus", new List<string> { "10 Bombchu", "5 Bombchu", "Bombchu" }, Spacing);
             DrawCountableItem("DekuSticks", new List<string> { "Deku Stick" }, Spacing);
             DrawCountableItem("DekuNuts", new List<string> { "10 Deku Nuts", "Deku Nuts" }, Spacing);
@@ -461,7 +470,10 @@ namespace MMR_Tracker.Forms
             DrawItem("ClockTownFairy", "Clock Town Stray Fairy", Spacing);
             DrawItem("BombersNotebook", "Bombers' Notebook", Spacing);
 
-            DrawProgressiveItem("KokiriSword", new Dictionary<string, string> { { "Starting Sword", "null" }, { "Razor Sword", "null" }, { "Gilded Sword", "null" } }, Spacing, new List<string> { "KokiriSword", "RazorSword", "GildedSword" });
+            //Handle Progressive Sword
+            ProgressiveOverwright = GetCurrentProgressiveItem(new Dictionary<string, string> { { "Starting Sword", "KokiriSword" }, { "Razor Sword", "RazorSword" }, { "Gilded Sword", "GildedSword" } });
+            DrawHighestTierItem("KokiriSword", new Dictionary<string, string> { { "Starting Sword", "null" }, { "Razor Sword", "null" }, { "Gilded Sword", "null" } }, Spacing, ProgressiveOverwright);
+
             DrawItem("OdolwasRemains", "Woodfall clear", Spacing, "", true);
             DrawItem("Map|1", "Woodfall Map", Spacing);
             DrawItem("Compass|1", "Woodfall Compass", Spacing);
@@ -470,16 +482,23 @@ namespace MMR_Tracker.Forms
             DrawCountableItem("WoodfallFairy", new List<string> { "Woodfall Stray Fairy" }, Spacing, true);
             DrawCountableItem("SwampSkullToken", new List<string> { "Swamp Skulltula Spirit" }, Spacing, true);
 
-            DrawProgressiveItem("HeroShield", new Dictionary<string, string> { { "Trading Post Shield", "null" }, { "Zora Shop Shield", "null" }, { "Starting Shield", "null" }, { "Mirror Shield", "null" } }, Spacing, new List<string> { "HeroShield", "HeroShield", "HeroShield", "MirrorShield" });
+            DrawHighestTierItem("HeroShield", new Dictionary<string, string> { { "Trading Post Shield", "null" }, { "Zora Shop Shield", "null" }, { "Starting Shield", "null" }, { "Mirror Shield", "null" } }, Spacing, new List<string> { "HeroShield", "HeroShield", "HeroShield", "MirrorShield" });
             DrawItem("GohtsRemains", "Snowhead clear", Spacing, "", true);
             DrawItem("Map|2", "Snowhead Map", Spacing);
             DrawItem("Compass|2", "Snowhead Compass", Spacing);
             DrawItem("BossKey|2", "Snowhead Boss Key", Spacing);
             DrawCountableItem("SmallKey|2", new List<string> { "Snowhead Small Key" }, Spacing, true);
             DrawCountableItem("SnowheadFairy", new List<string> { "Snowhead Stray Fairy" }, Spacing, true);
-            DrawCountableItem("Magic", new List<string> { "Magic Power", "Extended Magic Power" }, Spacing);
 
-            DrawProgressiveItem("AdultWallet", new Dictionary<string, string> { { "Town Wallet (200)", "null" }, { "Ocean Wallet (500)", "null" } }, Spacing, new List<string> { "AdultWallet", "GiantWallet" });
+            //Handle Progressive Magic
+            ProgressiveOverwright = GetCurrentProgressiveItem(new Dictionary<string, string> { { "Great Fairy Magic Meter", "Magic Power" }, { "Great Fairy Extended Magic", "Extended Magic Power" } });
+            DrawCountableItem("Magic", ProgressiveOverwright, Spacing);
+
+            //Handle Progressive Wallet
+            ProgressiveOverwright = GetCurrentProgressiveItem(new Dictionary<string, string> { { "Town Wallet (200)", "AdultWallet" }, { "Ocean Wallet (500)", "GiantWallet" } });
+            DrawHighestTierItem("AdultWallet", new Dictionary<string, string> { { "Town Wallet (200)", "null" }, { "Ocean Wallet (500)", "null" } }, Spacing, ProgressiveOverwright);
+
+
             DrawItem("GyorgsRemains", "Great Bay clear", Spacing, "", true);
             DrawItem("Map|3", "Great Bay Map", Spacing);
             DrawItem("Compass|3", "Great Bay Compass", Spacing);
@@ -569,7 +588,7 @@ namespace MMR_Tracker.Forms
 
             while (lb.Width > PB.Width - 4) { lb.Font = new Font("Arial", lb.Font.SizeInPoints - (float)0.1); }
         }
-        public void DrawProgressiveItem(string Image, Dictionary<string, string> Logicnames, int Spacing, List<string> ProgressiveImages = null)
+        public void DrawHighestTierItem(string Image, Dictionary<string, string> Logicnames, int Spacing, List<string> ProgressiveImages = null)
         {
             bool ItemUpdated = false;
             foreach(var name in Logicnames)
@@ -898,6 +917,11 @@ namespace MMR_Tracker.Forms
             if (!LogicObjects.MainTrackerInstance.IsMM()) { this.Close(); }
             LogicChanges.Clear();
             if (CurrentLogicState.Count != LogicObjects.MainTrackerInstance.Logic.Count) { CurrentLogicState = new List<LogicObjects.LogicEntry>(); }
+            if (IsPogressive != LogicObjects.MainTrackerInstance.Options.ProgressiveItems) 
+            { 
+                CurrentLogicState = new List<LogicObjects.LogicEntry>();
+                IsPogressive = LogicObjects.MainTrackerInstance.Options.ProgressiveItems; 
+            }
             try
             {
                 if (CurrentLogicState.Count == 0)
@@ -918,6 +942,70 @@ namespace MMR_Tracker.Forms
                 LogicChanges = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
             }
             DisplayImages();
+        }
+
+        private List<string> GetCurrentProgressiveItem(Dictionary<string, string> Logicnames, List<string> NamesToReturn = null)
+        {
+            List<string> Counts = new List<string>();
+
+            if (NamesToReturn == null)
+            {
+                foreach (var i in Logicnames)
+                {
+                    Counts.Add(i.Value);
+                }
+            }
+            else
+            {
+                foreach (var i in NamesToReturn)
+                {
+                    Counts.Add(i);
+                }
+            }
+
+            if (!LogicObjects.MainTrackerInstance.IsMM() || !LogicObjects.MainTrackerInstance.Options.ProgressiveItems) { return Counts; }
+            var SW1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Starting Sword");
+            var SW2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Razor Sword");
+            var SW3 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Gilded Sword");
+            var MM1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter");
+            var MM2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic");
+            var WL1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Town Wallet (200)");
+            var WL2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Ocean Wallet (500)");
+            var BB1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Bomb Bag (20)");
+            var BB2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)");
+            var BB3 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Mountain Bomb Bag (40)");
+            var BW1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Hero's Bow");
+            var BW2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Town Archery Quiver (40)");
+            var BW3 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)");
+
+            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = new List<List<LogicObjects.LogicEntry>>
+            {
+                new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 },
+                new List<LogicObjects.LogicEntry> { MM1, MM2 },
+                new List<LogicObjects.LogicEntry> { WL1, WL2 },
+                new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 },
+                new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 },
+            };
+            Console.WriteLine(Logicnames.First().Key + " Was Progressive");
+            var Set = ProgressiveItemSets.Find(x => x.Where(y => y.DictionaryName == Logicnames.First().Key).Any());
+            int NumberAquired = Set.Where(x => x.Useable()).Count();
+            Console.WriteLine(NumberAquired + " Of this set have been aquired");
+
+            if (NumberAquired < 1) { return Counts; } 
+            if (NumberAquired > Counts.Count()) { NumberAquired = Counts.Count(); }
+
+            List<string> NewCounts = new List<string>();
+
+            var NewCount = Counts[NumberAquired - 1];
+
+            Console.WriteLine("New Number is " + NewCount);
+
+            foreach (var i in Counts)
+            {
+                NewCounts.Add(NewCount);
+            }
+
+            return NewCounts;
         }
 
     }
