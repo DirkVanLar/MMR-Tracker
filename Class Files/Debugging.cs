@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using MathNet.Numerics;
 using MathNet.Symbolics;
+using System.Text.RegularExpressions;
 
 namespace MMR_Tracker_V2
 {
@@ -105,7 +106,8 @@ namespace MMR_Tracker_V2
             //GenerateBigData();
             //GetAllUniqueCombos();
             //TestProgressive();
-            //TestLists();
+            //CreatePAcketData();
+            PromptBackup();
 
             void TestEncryption()
             {
@@ -334,7 +336,7 @@ namespace MMR_Tracker_V2
                 foreach (var i in UsedItems) { Console.WriteLine($"Final: Entry {i} was used"); }
             }
 
-            void TestLists()
+            void CreatePAcketData()
             {
                 string NetDataString = "{\"PlayerID\":2,\"IPData\":{\"IP\":\"99.145.3.193\",\"PORT\":2113,\"DisplayName\":null},\"RequestingUpdate\":0,\"LogicData\":[{\"ID\":2,\"PI\":1,\"RI\":0,\"Ch\":true},{\"ID\":3,\"PI\":1,\"RI\":0,\"Ch\":true},{\"ID\":6,\"PI\":1,\"RI\":1,\"Ch\":true}]}";
 
@@ -343,7 +345,51 @@ namespace MMR_Tracker_V2
                 OnlinePlay.ManageNetData(NetData);
             }
 
+            void PromptBackup()
+            {
+                var function = MessageBox.Show("Restore Data (Yes), Backup Data (No)", "", MessageBoxButtons.YesNoCancel);
+                if (function == DialogResult.Yes) { FullRecreateInstanceRestore(); }
+                else if (function == DialogResult.No) { FullRecreateInstanceBackup(); }
+            }
 
+            void FullRecreateInstanceBackup()
+            {
+                List<LogicObjects.LogicEntry> BackupData = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
+                Clipboard.SetText(JsonConvert.SerializeObject(BackupData));
+
+            }
+
+            void FullRecreateInstanceRestore()
+            {
+                List<LogicObjects.LogicEntry> RestorData = JsonConvert.DeserializeObject<List<LogicObjects.LogicEntry>>(Clipboard.GetText());
+                ListBox CheckedItems = new ListBox();
+                foreach(var i in RestorData)
+                {
+                    var NewLoc = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == i.DictionaryName);
+                    if (NewLoc == null) { continue; }
+                    NewLoc.Options = i.Options;
+                    if (i.Checked)
+                    {
+                        CheckedItems.Items.Add(NewLoc);
+                    }
+                    else if (i.HasRandomItem(false))
+                    {
+                        NewLoc.RandomizedItem = NewLoc.SpoilerRandom;
+                    }
+                    else if (i.IsTrick)
+                    {
+                        NewLoc.TrickEnabled = i.TrickEnabled;
+                    }
+                }
+                for (int i = 0; i < CheckedItems.Items.Count; i++)
+                {
+                    CheckedItems.SetSelected(i, true);
+                }
+
+                MainInterface.CurrentProgram.CheckItemSelected(CheckedItems,true);
+                LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance, true);
+                MainInterface.CurrentProgram.PrintToListBox();
+            }
         }
 
     }
