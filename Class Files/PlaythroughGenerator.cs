@@ -108,30 +108,10 @@ namespace MMR_Tracker.Class_Files
         public static void ConvertProgressiveItems(List<LogicObjects.PlaythroughItem> Playthrough, LogicObjects.TrackerInstance Instance)
         {
             if (!LogicObjects.MainTrackerInstance.IsMM() || !LogicObjects.MainTrackerInstance.Options.ProgressiveItems) { return; }
-            var SW1 = Instance.Logic.Find(x => x.DictionaryName == "Starting Sword");
-            var SW2 = Instance.Logic.Find(x => x.DictionaryName == "Razor Sword");
-            var SW3 = Instance.Logic.Find(x => x.DictionaryName == "Gilded Sword");
-            var MM1 = Instance.Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter");
-            var MM2 = Instance.Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic");
-            var WL1 = Instance.Logic.Find(x => x.DictionaryName == "Town Wallet (200)");
-            var WL2 = Instance.Logic.Find(x => x.DictionaryName == "Ocean Wallet (500)");
-            var BB1 = Instance.Logic.Find(x => x.DictionaryName == "Bomb Bag (20)");
-            var BB2 = Instance.Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)");
-            var BB3 = Instance.Logic.Find(x => x.DictionaryName == "Mountain Bomb Bag (40)");
-            var BW1 = Instance.Logic.Find(x => x.DictionaryName == "Hero's Bow");
-            var BW2 = Instance.Logic.Find(x => x.DictionaryName == "Town Archery Quiver (40)");
-            var BW3 = Instance.Logic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)");
 
-            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = new List<List<LogicObjects.LogicEntry>>
-            {
-                new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 },
-                new List<LogicObjects.LogicEntry> { MM1, MM2 },
-                new List<LogicObjects.LogicEntry> { WL1, WL2 },
-                new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 },
-                new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 },
-            };
+            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = Utility.GetProgressiveItemSets();
 
-            foreach(var i in ProgressiveItemSets) { if (i == null || !i.Any() || i.Where(x => x == null).Any()) { return; } }
+            foreach (var i in ProgressiveItemSets) { if (i == null || !i.Any() || i.Where(x => x == null).Any()) { return; } }
 
             foreach (var ProgressiveItemSet in ProgressiveItemSets)
             {

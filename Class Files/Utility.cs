@@ -20,23 +20,6 @@ namespace MMR_Tracker_V2
             "Entrance",
             "Dungeon Entrance"
         };
-
-        public static List<string> ProgressiveItems = new List<string>
-            {
-                "Razor Sword",
-                "Gilded Sword",
-                "Starting Sword",
-                "Great Fairy Magic Meter",
-                "Great Fairy Extended Magic",
-                "Town Wallet (200)",
-                "Ocean Wallet (500)",
-                "Bomb Bag (20)",
-                "Town Bomb Bag (30)",
-                "Mountain Bomb Bag (40)",
-                "Hero's Bow",
-                "Town Archery Quiver (40)",
-                "Swamp Archery Quiver (50)"
-            };
         public static string ConvertCsvFileToJsonObject(string path)
         {
             var csv = new List<string[]>();
@@ -311,6 +294,32 @@ namespace MMR_Tracker_V2
                     return 1;
                 return i * Factorial(i - 1);
             }
+        }
+        public static List<List<LogicObjects.LogicEntry>> GetProgressiveItemSets()
+        {
+            var SW1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Starting Sword");
+            var SW2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Razor Sword");
+            var SW3 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Gilded Sword");
+            var MM1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter");
+            var MM2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic");
+            var WL1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Town Wallet (200)");
+            var WL2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Ocean Wallet (500)");
+            var BB1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Bomb Bag (20)");
+            var BB2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)");
+            var BB3 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Mountain Bomb Bag (40)");
+            var BW1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Hero's Bow");
+            var BW2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Town Archery Quiver (40)");
+            var BW3 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)");
+
+            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = new List<List<LogicObjects.LogicEntry>>
+            {
+                new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 },
+                new List<LogicObjects.LogicEntry> { MM1, MM2 },
+                new List<LogicObjects.LogicEntry> { WL1, WL2 },
+                new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 },
+                new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 },
+            };
+            return ProgressiveItemSets;
         }
     }
     public class Crypto

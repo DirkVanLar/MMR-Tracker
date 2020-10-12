@@ -328,15 +328,16 @@ namespace MMR_Tracker_V2
         public static bool IsProgressiveItem(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
             if (!Instance.Options.ProgressiveItems || !Instance.IsMM()) { return false; }
-
-            if (Utility.ProgressiveItems.Contains(entry.DictionaryName)) { return true; }
+            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = Utility.GetProgressiveItemSets();
+            List<string> ProgressiveItems = ProgressiveItemSets.SelectMany(x => x.Select(y => y.DictionaryName)).ToList();
+            if (ProgressiveItems.Contains(entry.DictionaryName)) { return true; }
             return false;
         }
 
         public static string ProgressiveItemName(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
             if (!Instance.Options.ProgressiveItems || !Instance.IsMM()) { return entry.ItemName ?? entry.DictionaryName; }
-            if (Utility.ProgressiveItems.Contains(entry.DictionaryName))
+            if (entry.IsProgressiveItem(Instance))
             {
                 return (entry.SpoilerItem.Count() > 1) ? entry.SpoilerItem[1] : entry.ItemName ?? entry.DictionaryName;
             }
