@@ -58,7 +58,7 @@ namespace MMR_Tracker.Class_Files
 
             SwapAreaClearLogic(playLogic);
             MarkAreaClearAsEntry(playLogic);
-            CalculatePlaythrough(playLogic.Logic, Playthrough, 0, importantItems);
+            CalculatePlaythrough(playLogic, Playthrough, 0, importantItems);
 
             importantItems = new List<int>();
             var GameClearPlaythroughItem = Playthrough.Find(x => x.Check.ID == GameClear);
@@ -154,8 +154,9 @@ namespace MMR_Tracker.Class_Files
         }
 
 
-        public static void CalculatePlaythrough(List<LogicObjects.LogicEntry> logic, List<LogicObjects.PlaythroughItem> Playthrough, int sphere, List<int> ImportantItems)
+        public static void CalculatePlaythrough(LogicObjects.TrackerInstance Instance, List<LogicObjects.PlaythroughItem> Playthrough, int sphere, List<int> ImportantItems)
         {
+            var logic = Instance.Logic;
             bool RealItemObtained = false;
             bool recalculate = false;
             List<LogicObjects.LogicEntry> itemCheckList = new List<LogicObjects.LogicEntry>();
@@ -164,9 +165,7 @@ namespace MMR_Tracker.Class_Files
             foreach (var item in logic)
             {
                 List<int> UsedItems = new List<int>();
-                item.Available = (LogicEditing.RequirementsMet(item.Required, logic, UsedItems) && LogicEditing.CondtionalsMet(item.Conditionals, logic, UsedItems));
-
-                if (LogicEditing.ParseCombinationEntry(logic, item, UsedItems)) { item.Available = true; }
+                item.Available = item.CheckAvailability(Instance, UsedItems);
 
                 if (!item.IsFake && item.SpoilerRandom > -1 && item.Available && !logic[item.SpoilerRandom].Aquired)
                 {
@@ -186,20 +185,20 @@ namespace MMR_Tracker.Class_Files
 
             int NewSphere = (RealItemObtained) ? sphere + 1 : sphere;
 
-            if (UnlockAllFake(logic, ImportantItems, NewSphere, Playthrough)) { recalculate = true; }
+            if (UnlockAllFake(Instance, ImportantItems, NewSphere, Playthrough)) { recalculate = true; }
 
-            if (recalculate) { CalculatePlaythrough(logic, Playthrough, NewSphere, ImportantItems); }
+            if (recalculate) { CalculatePlaythrough(Instance, Playthrough, NewSphere, ImportantItems); }
         }
 
-        public static bool UnlockAllFake(List<LogicObjects.LogicEntry> logic, List<int> ImportantItems, int sphere, List<LogicObjects.PlaythroughItem> Playthrough)
+        public static bool UnlockAllFake(LogicObjects.TrackerInstance Instance, List<int> ImportantItems, int sphere, List<LogicObjects.PlaythroughItem> Playthrough)
         {
+            var logic = Instance.Logic;
             var recalculate = false;
             foreach (var item in logic)
             {
                 List<int> UsedItems = new List<int>();
-                item.Available = (LogicEditing.RequirementsMet(item.Required, logic, UsedItems) && LogicEditing.CondtionalsMet(item.Conditionals, logic, UsedItems));
 
-                if (LogicEditing.ParseCombinationEntry(logic, item, UsedItems)) { item.Available = true; }
+                item.Available = item.CheckAvailability(Instance, UsedItems);
 
                 if (item.Aquired != item.Available && item.IsFake)
                 {
@@ -211,7 +210,7 @@ namespace MMR_Tracker.Class_Files
                     }
                 }
             }
-            if (recalculate) { UnlockAllFake(logic, ImportantItems, sphere, Playthrough); }
+            if (recalculate) { UnlockAllFake(Instance, ImportantItems, sphere, Playthrough); }
             return recalculate;
         }
 
@@ -315,14 +314,14 @@ namespace MMR_Tracker.Class_Files
             IkanaClear.LocationName = "Defeat Twinmold";
             IkanaClear.ItemName = "Twinmolds Remians";
             //Find the name of the randomized area clear
-            var newWoodfallLocation = (WoodFallClear.RandomizedAreaClear(instance) ?? WoodFallClear).LocationName;
-            var newWoodfallItem = (WoodFallClear.RandomizedAreaClear(instance) ?? WoodFallClear).ItemName;
-            var newSnowheadLocation = (SnowheadClear.RandomizedAreaClear(instance) ?? SnowheadClear).LocationName;
-            var newSnowheadItem = (SnowheadClear.RandomizedAreaClear(instance) ?? SnowheadClear).ItemName;
-            var newGreatBayLocation = (GreatBayClear.RandomizedAreaClear(instance) ?? GreatBayClear).LocationName;
-            var newGreatBayItem = (GreatBayClear.RandomizedAreaClear(instance) ?? GreatBayClear).ItemName;
-            var newIkanaLocation = (IkanaClear.RandomizedAreaClear(instance) ?? IkanaClear).LocationName;
-            var newIkanaItem = (IkanaClear.RandomizedAreaClear(instance) ?? IkanaClear).ItemName;
+            var newWoodfallLocation = (WoodFallClear.ClearRandomizedDungeonInThisArea(instance) ?? WoodFallClear).LocationName;
+            var newWoodfallItem = (WoodFallClear.ClearRandomizedDungeonInThisArea(instance) ?? WoodFallClear).ItemName;
+            var newSnowheadLocation = (SnowheadClear.ClearRandomizedDungeonInThisArea(instance) ?? SnowheadClear).LocationName;
+            var newSnowheadItem = (SnowheadClear.ClearRandomizedDungeonInThisArea(instance) ?? SnowheadClear).ItemName;
+            var newGreatBayLocation = (GreatBayClear.ClearRandomizedDungeonInThisArea(instance) ?? GreatBayClear).LocationName;
+            var newGreatBayItem = (GreatBayClear.ClearRandomizedDungeonInThisArea(instance) ?? GreatBayClear).ItemName;
+            var newIkanaLocation = (IkanaClear.ClearRandomizedDungeonInThisArea(instance) ?? IkanaClear).LocationName;
+            var newIkanaItem = (IkanaClear.ClearRandomizedDungeonInThisArea(instance) ?? IkanaClear).ItemName;
             //Set the randomized area clear name to the original area clear
             WoodFallClear.LocationName = newWoodfallLocation;
             WoodFallClear.ItemName = newWoodfallItem;

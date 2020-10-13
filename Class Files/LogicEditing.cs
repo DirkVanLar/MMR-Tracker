@@ -145,93 +145,16 @@ namespace MMR_Tracker_V2
             return false;
         }
 
-        public static void ForceFreshCalculation(List<LogicObjects.LogicEntry> logic)
-        {
-            //This makes logic calculate fake items from scratch. This is used to prevent a bug where two fake items
-            //can be unlocked by each other. In this case they will never change from availabe to unavailabe
-            //even if they are actually unavailable. This is only used in the pathfinder but the option to use it all the
-            //time is availbe through a toggle in the options menu.
-            foreach (var entry in logic.Where(x => x.IsFake))
-            {
-                entry.Available = false;
-                entry.Aquired = false;
-            }
-        }
-
         public static void CalculateItems(LogicObjects.TrackerInstance Instance, bool ForceStrictLogicHendeling = false, bool InitialRun = true)
         {
-            if (InitialRun && (Instance.Options.StrictLogicHandeling || ForceStrictLogicHendeling)) { ForceFreshCalculation(Instance.Logic); }
+            if (InitialRun && (Instance.Options.StrictLogicHandeling || ForceStrictLogicHendeling)) { Instance.RefreshFakeItems(); }
             bool recalculate = false;
             foreach (var item in Instance.Logic)
             {
-                item.Available = RequirementsMet(item.Required, Instance.Logic) && CondtionalsMet(item.Conditionals, Instance.Logic);
-
-                if (ParseCombinationEntry(Instance.Logic, item)) { item.Available = true; }
-
-                int Special = SetAreaClear(item, Instance);
-                if (Special == 2) { recalculate = true; }
-
-                if (item.Aquired != item.Available && item.IsFake && Special == 0)
-                {
-                    item.Aquired = item.Available;
-                    recalculate = true;
-                }
+                item.Available = item.CheckAvailability(Instance);
+                if (item.AquireFakeItem()) { recalculate = true; }
             }
             if (recalculate) { CalculateItems(Instance, false, false); }
-        }
-
-        public static bool ParseCombinationEntry(List<LogicObjects.LogicEntry> logic, LogicObjects.LogicEntry item, List<int> usedItems = null)
-        {
-            //If an entry whose name starts with MMRTCombinations is found in the requirements for an item, it will instead use this method to determine whether
-            //The item is avalable. Example: "MMRTCombinations16"
-            //It will take  the number imediately following "MMRTCombinations" and set that as the "Needed amount". It will then check if the number of aquired
-            //conditional sets in the items conditionals is greater than or equal to the "Needed amount". If so the item is marked as available.
-            //This can be used to add a "Any X of A,B,C,D" where the amount of conditionals would be to large for the tracker to handle. 
-            //For example, Any 50 of 100 skulltullas would need 100,891,344,545,564,193,334,812,497,256 conditionals to be represented using the default logic,
-            //whereas it can be added using this method with 1 requirement and 100 conditionals.
-            usedItems = usedItems ?? new List<int>();
-            List<int> TempUsedItems = new List<int>();
-            if (item.Required != null && item.Conditionals != null && item.Required.Where(x => logic[x].DictionaryName.Contains("MMRTCombinations")).Any())
-            {
-                int ComboEntry = item.Required.ToList().Find(x => logic[x].DictionaryName.Contains("MMRTCombinations"));
-                if (int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out int Needed))
-                {
-                    item.Available = false;
-                    int has = 0;
-                    var Required = item.Required.Where(x => !logic[x].DictionaryName.Contains("MMRTCombinations")).ToArray();
-                    if (!Required.Any() || RequirementsMet(Required, logic, TempUsedItems))
-                    {
-                        foreach (var i in item.Conditionals)
-                        {
-                            List<int> ReqItemsUsed = new List<int>();
-                            if (RequirementsMet(i, logic, ReqItemsUsed))
-                            {
-                                has++;
-                                foreach (var q in ReqItemsUsed) { TempUsedItems.Add(q); }
-                            }
-                            if (has >= Needed)
-                            {
-                                foreach (var q in TempUsedItems) { usedItems.Add(q); }
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
-        public static int SetAreaClear(LogicObjects.LogicEntry ClearLogic, LogicObjects.TrackerInstance Instance)
-        {
-            //0 = do nothing, 1 = Skip Fake item calculation, 2 = Skip Fake item calculation and recalculate logic
-            if (!Instance.IsMM()) { return 0; }
-            Dictionary<int, int> EntAreaDict = Instance.EntranceAreaDic;
-            if (EntAreaDict.Count == 0 || !EntAreaDict.ContainsKey(ClearLogic.ID)) { return 0; }
-            var RandClearLogic = ClearLogic.RandomizedAreaClear(Instance);
-            if (RandClearLogic == null && ClearLogic.Aquired) { ClearLogic.Aquired = false; return 2; }
-            if (RandClearLogic == null) { return 1; }
-            if (ClearLogic.Aquired != RandClearLogic.Available) { ClearLogic.Aquired = RandClearLogic.Available; return 2; }
-            return 1;
         }
 
         public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path)

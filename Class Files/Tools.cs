@@ -18,18 +18,18 @@ namespace MMR_Tracker.Class_Files
         public static List<LogicObjects.LogicEntry> CurrentselectedItems = new List<LogicObjects.LogicEntry>();
         public static string SaveFilePath = "";
 
-        public static LogicObjects.ItemUnlockData FindRequirements(LogicObjects.LogicEntry Item, List<LogicObjects.LogicEntry> logic)
+        public static LogicObjects.ItemUnlockData FindRequirements(LogicObjects.LogicEntry Item, LogicObjects.TrackerInstance Instance)
         {
             List<int> ImportantItems = new List<int>();
             List<LogicObjects.PlaythroughItem> playthrough = new List<LogicObjects.PlaythroughItem>();
-            var LogicCopy = Utility.CloneLogicList(logic);
-            foreach (var i in LogicCopy)
+            var LogicCopy = Utility.CloneTrackerInstance(Instance);
+            foreach (var i in LogicCopy.Logic)
             {
                 if (i.Unrandomized()) { i.IsFake = true; }
             }
-            var ItemCopy = LogicCopy[Item.ID];
-            LogicEditing.ForceFreshCalculation(LogicCopy);
-            foreach (var i in LogicCopy)
+            var ItemCopy = LogicCopy.Logic[Item.ID];
+            LogicCopy.RefreshFakeItems();
+            foreach (var i in LogicCopy.Logic)
             {
                 ImportantItems.Add(i.ID);
                 if (i.IsFake) { i.SpoilerRandom = i.ID; }
@@ -38,18 +38,11 @@ namespace MMR_Tracker.Class_Files
             List<int> UsedItems = new List<int>();
             bool isAvailable = false;
 
-            if (ItemCopy.Required != null && ItemCopy.Conditionals != null && ItemCopy.Required.Where(x => logic[x].DictionaryName.Contains("MMRTCombinations")).Any())
-            {
-                isAvailable = LogicEditing.ParseCombinationEntry(logic, ItemCopy, UsedItems);
-            }
-            else
-            {
-                isAvailable = (LogicEditing.RequirementsMet(ItemCopy.Required, LogicCopy, UsedItems) && LogicEditing.CondtionalsMet(ItemCopy.Conditionals, LogicCopy, UsedItems));
-            }
+            isAvailable = ItemCopy.CheckAvailability(Instance, UsedItems);
 
             if (!isAvailable) { return new LogicObjects.ItemUnlockData(); }
-            List<int> NeededItems = Tools.ResolveFakeToRealItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy);
-            List<int> FakeItems = Tools.FindAllFakeItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy);
+            List<int> NeededItems = Tools.ResolveFakeToRealItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy.Logic);
+            List<int> FakeItems = Tools.FindAllFakeItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy.Logic);
             NeededItems = NeededItems.Distinct().ToList();
             return new LogicObjects.ItemUnlockData {playthrough = playthrough, FakeItems = FakeItems, ResolvedRealItems = NeededItems, UsedItems =UsedItems };
         }
@@ -643,7 +636,7 @@ namespace MMR_Tracker.Class_Files
                 Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
                 return;
             }
-            var UnlockData = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance.Logic);
+            var UnlockData = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance);
             var Requirements = UnlockData.ResolvedRealItems;
             var FakeItems = UnlockData.FakeItems.Distinct().ToList();
             var Playthrough = UnlockData.playthrough;

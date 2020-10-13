@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using MMR_Tracker.Class_Files;
 
 namespace MMR_Tracker.Forms
 {

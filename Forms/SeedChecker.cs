@@ -128,24 +128,13 @@ namespace MMR_Tracker
 
         public static void CheckSeed(LogicObjects.TrackerInstance Instance, bool InitialRun, List<int> Ignored)
         {
-            if (InitialRun) { LogicEditing.ForceFreshCalculation(Instance.Logic); }
+            if (InitialRun) { Instance.RefreshFakeItems(); }
             bool recalculate = false;
             foreach (var item in Instance.Logic)
             {
+                item.Available = item.CheckAvailability(Instance);
+                if (item.AquireFakeItem()) { recalculate = true; }
 
-                item.Available = LogicEditing.RequirementsMet(item.Required, Instance.Logic) && LogicEditing.CondtionalsMet(item.Conditionals, Instance.Logic);
-                Debugging.Log($"{item.DictionaryName} Avalable {item.Available}");
-
-                if (LogicEditing.ParseCombinationEntry(Instance.Logic, item)) { item.Available = true; }
-
-                int Special = LogicEditing.SetAreaClear(item, Instance);
-                if (Special == 2) { recalculate = true; }
-
-                if (!item.Aquired && item.Available && Special == 0 && item.IsFake)
-                {
-                    item.Aquired = item.Available;
-                    recalculate = true;
-                }
                 if (!item.IsFake && item.RandomizedItem > -1 && item.Available && !Instance.Logic[item.RandomizedItem].Aquired && !Ignored.Contains(item.ID))
                 {
                     Instance.Logic[item.RandomizedItem].Aquired = item.Available;

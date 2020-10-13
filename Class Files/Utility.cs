@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MMR_Tracker.Class_Files;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
