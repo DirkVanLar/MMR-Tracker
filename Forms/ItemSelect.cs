@@ -203,7 +203,7 @@ namespace MMR_Tracker_V2
             lbCheckItems.Items.Clear();
             for (var i = 0; i < UsedLogic.Count; i++)
             {
-                if (!LogicEditor.EditorInstance.IsMM() || UsedLogic[i].IsUserItem(UsedLogic))
+                if (!LogicEditor.EditorInstance.IsMM() || UsedLogic[i].UserCreatedFakeItem(UsedLogic))
                 {
                     UsedLogic[i].DisplayName = UsedLogic[i].DictionaryName;
                     LBItemSelect.Items.Add(UsedLogic[i]);
@@ -234,7 +234,7 @@ namespace MMR_Tracker_V2
             {
                 foreach (LogicObjects.LogicEntry i in UsedLogic)
                 {
-                    if (!LogicEditor.EditorInstance.IsMM() || i.IsUserItem(UsedLogic)) { break; }
+                    if (!LogicEditor.EditorInstance.IsMM() || i.UserCreatedFakeItem(UsedLogic)) { break; }
                     Tools.CurrentselectedItems.Add(i);
 
                 }

@@ -44,7 +44,7 @@ namespace MMR_Tracker.Class_Files
             List<int> NeededItems = Tools.ResolveFakeToRealItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy.Logic);
             List<int> FakeItems = Tools.FindAllFakeItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy.Logic);
             NeededItems = NeededItems.Distinct().ToList();
-            return new LogicObjects.ItemUnlockData {playthrough = playthrough, FakeItems = FakeItems, ResolvedRealItems = NeededItems, UsedItems =UsedItems };
+            return new LogicObjects.ItemUnlockData {Playthrough = playthrough, FakeItems = FakeItems, ResolvedRealItems = NeededItems, UsedItems =UsedItems };
         }
         public static void CreateDictionary()
         {
@@ -639,7 +639,7 @@ namespace MMR_Tracker.Class_Files
             var UnlockData = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance);
             var Requirements = UnlockData.ResolvedRealItems;
             var FakeItems = UnlockData.FakeItems.Distinct().ToList();
-            var Playthrough = UnlockData.playthrough;
+            var Playthrough = UnlockData.Playthrough;
             var ItemsUsed = UnlockData.UsedItems;
             if (Requirements.Count == 0)
             {

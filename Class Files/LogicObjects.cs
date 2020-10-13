@@ -85,7 +85,7 @@ namespace MMR_Tracker_V2
             public bool IsTrick { get; set; } //Whether or not the entry is a trick
             public bool TrickEnabled { get; set; } //Whether or not the trick is enabled
             public string TrickToolTip { get; set; } //The tool tip describing what the trick is
-            public playerData PlayerData { get; set; } = new playerData(); //Data for multiworld
+            public PlayerData PlayerData { get; set; } = new PlayerData(); //Data for multiworld
             public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
             public override string ToString()
             {
@@ -93,7 +93,7 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public class playerData
+        public class PlayerData
         {
             public int ItemBelongedToPlayer { get; set; } = -1; //(Future proofing for multi world) What player the item at this check belonged to
             public int ItemCameFromPlayer { get; set; } = -1; //(Future proofing for multi world) What the player this item came from
@@ -187,7 +187,7 @@ namespace MMR_Tracker_V2
         }
         public class ItemUnlockData
         {
-            public List<LogicObjects.PlaythroughItem> playthrough { get; set; } = new List<LogicObjects.PlaythroughItem>();
+            public List<LogicObjects.PlaythroughItem> Playthrough { get; set; } = new List<LogicObjects.PlaythroughItem>();
             public List<int> ResolvedRealItems { get; set; } = new List<int>();
             public List<int> FakeItems { get; set; } = new List<int>();
             public List<int> UsedItems { get; set; } = new List<int>();

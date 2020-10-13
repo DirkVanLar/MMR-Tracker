@@ -133,7 +133,7 @@ namespace MMR_Tracker
             foreach (var item in Instance.Logic)
             {
                 item.Available = item.CheckAvailability(Instance);
-                if (item.AquireFakeItem()) { recalculate = true; }
+                if (item.FakeItemStatusChange()) { recalculate = true; }
 
                 if (!item.IsFake && item.RandomizedItem > -1 && item.Available && !Instance.Logic[item.RandomizedItem].Aquired && !Ignored.Contains(item.ID))
                 {

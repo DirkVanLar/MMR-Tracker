@@ -76,7 +76,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool AppearsInListbox(this LogicObjects.LogicEntry entry)
         {
-            return (entry.Randomized() || entry.Unrandomized(1)) && !entry.IsFake;
+            return (entry.Randomized() || entry.Unrandomized(1)) && !entry.IsFake && !string.IsNullOrWhiteSpace(entry.LocationName);
         }
         public static bool LogicItemAquired(this LogicObjects.LogicEntry entry)
         {
@@ -86,7 +86,11 @@ namespace MMR_Tracker.Class_Files
         {
             return Logic.Find(x => x.RandomizedItem == entry.ID);
         }
-        public static bool IsUserItem(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
+        public static bool ItemHasBeenPlaced(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
+        {
+            return Logic.Where(x => x.RandomizedItem == entry.ID || x.SpoilerRandom == entry.ID).Any();
+        }
+        public static bool UserCreatedFakeItem(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
         {
             int lastRealItem = -1;
             foreach (var i in Logic)
@@ -116,12 +120,6 @@ namespace MMR_Tracker.Class_Files
                 return (entry.SpoilerItem.Count() > 1) ? entry.SpoilerItem[1] : entry.ItemName ?? entry.DictionaryName;
             }
             return entry.ItemName ?? entry.DictionaryName;
-        }
-        public static int ProgressiveItemsAquired(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
-        {
-            var set = entry.ProgressiveItemSet(Instance);
-            if (set == null) { return entry.LogicItemAquired() ? 1 : 0; }
-            return set.Where(x => x.LogicItemAquired()).Count();
         }
         public static int ProgressiveItemsNeeded(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool IndexValue = false)
         {
@@ -168,11 +166,11 @@ namespace MMR_Tracker.Class_Files
             usedItems = usedItems ?? new List<int>();
 
             //Check for a "Combinations" Entry
-            if (entry.Required != null && entry.Conditionals != null && entry.Required.Where(x => logic[x].DictionaryName.Contains("MMRTCombinations")).Any())
+            if (entry.Required != null && entry.Conditionals != null && entry.Required.Where(x => logic[x].DictionaryName.StartsWith("MMRTCombinations")).Any())
             {
                 List<int> CondItemsUsed = new List<int>();
-                int ComboEntry = entry.Required.ToList().Find(x => logic[x].DictionaryName.Contains("MMRTCombinations"));
-                var Required = entry.Required.Where(x => !logic[x].DictionaryName.Contains("MMRTCombinations")).ToArray();
+                int ComboEntry = entry.Required.ToList().Find(x => logic[x].DictionaryName.StartsWith("MMRTCombinations"));
+                var Required = entry.Required.Where(x => !logic[x].DictionaryName.StartsWith("MMRTCombinations")).ToArray();
                 int ConditionalsAquired = 0;
                 if (int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out int ConditionalsNeeded))
                 {
@@ -197,7 +195,7 @@ namespace MMR_Tracker.Class_Files
                 return false;
             }
             //Check for a "Check contains Item" Entry
-            else if (entry.Required != null && entry.Conditionals != null && entry.Required.Where(x => logic[x].DictionaryName.Contains("MMRTCheckContains")).Any())
+            else if (entry.Required != null && entry.Conditionals != null && entry.Required.Where(x => logic[x].DictionaryName == "MMRTCheckContains").Any())
             {
                 var Checks = entry.Required.Where(x => logic[x].DictionaryName != "MMRTCheckContains").ToArray();
                 if (!Checks.Any()) { return false; }
@@ -214,7 +212,7 @@ namespace MMR_Tracker.Class_Files
                 return false;
             }
             //Check for a MMR Dungeon clear Entry
-            else if (Instance.EntranceAreaDic.Count > 0 && Instance.EntranceAreaDic.ContainsKey(entry.ID) && Instance.IsMM() && entry.IsFake)
+            else if (Instance.IsMM() && entry.IsFake && Instance.EntranceAreaDic.Count > 0 && Instance.EntranceAreaDic.ContainsKey(entry.ID))
             {
                 var RandClearLogic = entry.ClearRandomizedDungeonInThisArea(Instance);
                 if (RandClearLogic == null) { return false; }
@@ -231,7 +229,7 @@ namespace MMR_Tracker.Class_Files
                             LogicEditing.CondtionalsMet(entry.Conditionals, Instance.Logic, usedItems);
             }
         }
-        public static bool AquireFakeItem(this LogicObjects.LogicEntry entry)
+        public static bool FakeItemStatusChange(this LogicObjects.LogicEntry entry)
         {
             if (entry.Aquired != entry.Available && entry.IsFake)
             {

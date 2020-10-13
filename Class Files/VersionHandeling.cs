@@ -57,8 +57,7 @@ namespace MMR_Tracker_V2
             var dic = Instance.GameCode + "DICTIONARY";
             foreach (var i in Directory.GetFiles(@"Recources\Dictionaries").Where(x => x.Contains(dic)).ToArray())
             {
-                var entry = i.Replace("Recources\\Dictionaries\\" + dic + "V", "");
-                entry = entry.Replace(".csv", "");
+                var entry = i.Replace("Recources\\Dictionaries\\" + dic + "V", "").Replace(".csv", "");
                 int version = 0;
                 try { version = Int32.Parse(entry); }
                 catch { continue; }
@@ -66,7 +65,7 @@ namespace MMR_Tracker_V2
             }
 
             string currentdictionary;
-            if (dictionaries.Count() == 0) { currentdictionary = ""; }
+            if (!dictionaries.Any()) { currentdictionary = ""; }
             else
             {
                 var index = 0;

@@ -79,7 +79,7 @@
             this.LBIPAdresses.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBIPAdresses.Size = new System.Drawing.Size(211, 277);
             this.LBIPAdresses.TabIndex = 0;
-            this.LBIPAdresses.DoubleClick += new System.EventHandler(this.btnRemoveIP_Click);
+            this.LBIPAdresses.DoubleClick += new System.EventHandler(this.BtnRemoveIP_Click);
             this.LBIPAdresses.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LBIPAdresses_MouseMove);
             // 
             // btnAddIP
@@ -90,7 +90,7 @@
             this.btnAddIP.TabIndex = 1;
             this.btnAddIP.Text = "Add IP";
             this.btnAddIP.UseVisualStyleBackColor = true;
-            this.btnAddIP.Click += new System.EventHandler(this.btnAddIP_Click_1);
+            this.btnAddIP.Click += new System.EventHandler(this.BtnAddIP_Click_1);
             // 
             // txtIP
             // 
@@ -107,7 +107,7 @@
             this.btnRemoveIP.TabIndex = 3;
             this.btnRemoveIP.Text = "Remove IP";
             this.btnRemoveIP.UseVisualStyleBackColor = true;
-            this.btnRemoveIP.Click += new System.EventHandler(this.btnRemoveIP_Click);
+            this.btnRemoveIP.Click += new System.EventHandler(this.BtnRemoveIP_Click);
             // 
             // chkListenForData
             // 
@@ -120,7 +120,7 @@
             this.chkListenForData.TabIndex = 4;
             this.chkListenForData.Text = "Listen for Data";
             this.chkListenForData.UseVisualStyleBackColor = false;
-            this.chkListenForData.CheckedChanged += new System.EventHandler(this.chkListenForData_CheckedChanged);
+            this.chkListenForData.CheckedChanged += new System.EventHandler(this.ChkListenForData_CheckedChanged);
             // 
             // chkSendData
             // 
@@ -133,7 +133,7 @@
             this.chkSendData.TabIndex = 5;
             this.chkSendData.Text = "Send Data";
             this.chkSendData.UseVisualStyleBackColor = false;
-            this.chkSendData.CheckedChanged += new System.EventHandler(this.chkSendData_CheckedChanged);
+            this.chkSendData.CheckedChanged += new System.EventHandler(this.ChkSendData_CheckedChanged);
             // 
             // NudPort
             // 
@@ -189,7 +189,7 @@
             this.lblYourIP.Size = new System.Drawing.Size(118, 13);
             this.lblYourIP.TabIndex = 9;
             this.lblYourIP.Text = "Your Public IP Address:";
-            this.lblYourIP.Click += new System.EventHandler(this.lblYourIP_Click);
+            this.lblYourIP.Click += new System.EventHandler(this.LblYourIP_Click);
             // 
             // txtPulbicIP
             // 
@@ -270,14 +270,14 @@
             this.saveIPListToolStripMenuItem.Name = "saveIPListToolStripMenuItem";
             this.saveIPListToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.saveIPListToolStripMenuItem.Text = "Save IP List";
-            this.saveIPListToolStripMenuItem.Click += new System.EventHandler(this.saveIPListToolStripMenuItem_Click);
+            this.saveIPListToolStripMenuItem.Click += new System.EventHandler(this.SaveIPListToolStripMenuItem_Click);
             // 
             // loadIPListToolStripMenuItem
             // 
             this.loadIPListToolStripMenuItem.Name = "loadIPListToolStripMenuItem";
             this.loadIPListToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.loadIPListToolStripMenuItem.Text = "Load IP List";
-            this.loadIPListToolStripMenuItem.Click += new System.EventHandler(this.loadIPListToolStripMenuItem_Click);
+            this.loadIPListToolStripMenuItem.Click += new System.EventHandler(this.LoadIPListToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -296,14 +296,14 @@
             this.autoAddIncomingIPsToolStripMenuItem.Name = "autoAddIncomingIPsToolStripMenuItem";
             this.autoAddIncomingIPsToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.autoAddIncomingIPsToolStripMenuItem.Text = "Auto Add Incoming IPs";
-            this.autoAddIncomingIPsToolStripMenuItem.Click += new System.EventHandler(this.autoAddIncomingIPsToolStripMenuItem_Click);
+            this.autoAddIncomingIPsToolStripMenuItem.Click += new System.EventHandler(this.AutoAddIncomingIPsToolStripMenuItem_Click);
             // 
             // onlyAcceptDataFromSendingListToolStripMenuItem
             // 
             this.onlyAcceptDataFromSendingListToolStripMenuItem.Name = "onlyAcceptDataFromSendingListToolStripMenuItem";
             this.onlyAcceptDataFromSendingListToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.onlyAcceptDataFromSendingListToolStripMenuItem.Text = "Only accept data from sending list";
-            this.onlyAcceptDataFromSendingListToolStripMenuItem.Click += new System.EventHandler(this.onlyAcceptDataFromSendingListToolStripMenuItem_Click);
+            this.onlyAcceptDataFromSendingListToolStripMenuItem.Click += new System.EventHandler(this.OnlyAcceptDataFromSendingListToolStripMenuItem_Click);
             // 
             // sYNCToolStripMenuItem
             // 
@@ -314,42 +314,42 @@
             this.sYNCToolStripMenuItem.Name = "sYNCToolStripMenuItem";
             this.sYNCToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.sYNCToolStripMenuItem.Text = "SYNC";
-            this.sYNCToolStripMenuItem.Click += new System.EventHandler(this.fullSyncToolStripMenuItem_Click);
+            this.sYNCToolStripMenuItem.Click += new System.EventHandler(this.FullSyncToolStripMenuItem_Click);
             // 
             // sendingDataToolStripMenuItem
             // 
             this.sendingDataToolStripMenuItem.Name = "sendingDataToolStripMenuItem";
             this.sendingDataToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.sendingDataToolStripMenuItem.Text = "Sending Data";
-            this.sendingDataToolStripMenuItem.Click += new System.EventHandler(this.sendingDataToolStripMenuItem_Click);
+            this.sendingDataToolStripMenuItem.Click += new System.EventHandler(this.SendingDataToolStripMenuItem_Click);
             // 
             // requestDataToolStripMenuItem
             // 
             this.requestDataToolStripMenuItem.Name = "requestDataToolStripMenuItem";
             this.requestDataToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.requestDataToolStripMenuItem.Text = "Request Data";
-            this.requestDataToolStripMenuItem.Click += new System.EventHandler(this.requestDataToolStripMenuItem_Click);
+            this.requestDataToolStripMenuItem.Click += new System.EventHandler(this.RequestDataToolStripMenuItem_Click);
             // 
             // fullSyncToolStripMenuItem
             // 
             this.fullSyncToolStripMenuItem.Name = "fullSyncToolStripMenuItem";
             this.fullSyncToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.fullSyncToolStripMenuItem.Text = "Full Sync";
-            this.fullSyncToolStripMenuItem.Click += new System.EventHandler(this.fullSyncToolStripMenuItem_Click);
+            this.fullSyncToolStripMenuItem.Click += new System.EventHandler(this.FullSyncToolStripMenuItem_Click);
             // 
             // copyNetDataToClipboardToolStripMenuItem
             // 
             this.copyNetDataToClipboardToolStripMenuItem.Name = "copyNetDataToClipboardToolStripMenuItem";
             this.copyNetDataToClipboardToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.copyNetDataToClipboardToolStripMenuItem.Text = "Copy Net Data to Clipboard";
-            this.copyNetDataToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyNetDataToClipboardToolStripMenuItem_Click);
+            this.copyNetDataToClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopyNetDataToClipboardToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.portForwardingToolStripMenuItem_Click);
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.PortForwardingToolStripMenuItem_Click);
             // 
             // nudPlayerID
             // 
@@ -357,7 +357,7 @@
             this.nudPlayerID.Name = "nudPlayerID";
             this.nudPlayerID.Size = new System.Drawing.Size(64, 20);
             this.nudPlayerID.TabIndex = 15;
-            this.nudPlayerID.ValueChanged += new System.EventHandler(this.nudPlayerID_ValueChanged);
+            this.nudPlayerID.ValueChanged += new System.EventHandler(this.NudPlayerID_ValueChanged);
             // 
             // label6
             // 
@@ -407,7 +407,7 @@
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.infoToolStripMenuItem.Text = "Info";
-            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.InfoToolStripMenuItem_Click);
             // 
             // OnlinePlay
             // 

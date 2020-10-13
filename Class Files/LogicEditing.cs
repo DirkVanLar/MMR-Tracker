@@ -152,7 +152,7 @@ namespace MMR_Tracker_V2
             foreach (var item in Instance.Logic)
             {
                 item.Available = item.CheckAvailability(Instance);
-                if (item.AquireFakeItem()) { recalculate = true; }
+                if (item.FakeItemStatusChange()) { recalculate = true; }
             }
             if (recalculate) { CalculateItems(Instance, false, false); }
         }
@@ -284,8 +284,10 @@ namespace MMR_Tracker_V2
 
         public static string[] WriteLogicToArray(LogicObjects.TrackerInstance Instance, bool IncludeTrickData = true)
         {
-            List<string> lines = new List<string>();
-            lines.Add((Instance.IsMM()) ? "-version " + Instance.LogicVersion : "-version" + Instance.GameCode + " " + Instance.LogicVersion);
+            List<string> lines = new List<string>
+            {
+                (Instance.IsMM()) ? "-version " + Instance.LogicVersion : "-version" + Instance.GameCode + " " + Instance.LogicVersion
+            };
             foreach (var line in Instance.Logic)
             {
                 lines.Add("- " + line.DictionaryName);
@@ -320,7 +322,7 @@ namespace MMR_Tracker_V2
                     if (line.IsTrick) 
                     { 
                         trickLine = ";";
-                        if (line.TrickToolTip != "No Tooltip Available") { trickLine = trickLine + line.TrickToolTip; }
+                        if (line.TrickToolTip != "No Tooltip Available") { trickLine += line.TrickToolTip; }
                     }
                     lines.Add(trickLine);
                 }

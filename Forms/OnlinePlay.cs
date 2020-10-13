@@ -40,7 +40,7 @@ namespace MMR_Tracker.Forms
 
         //Sending Data
 
-        public static LogicObjects.MMRTpacket createNetData(int Type)
+        public static LogicObjects.MMRTpacket CreateNetData(int Type)
         {
 
             bool isValidSyncable(LogicObjects.LogicEntry x)
@@ -53,6 +53,7 @@ namespace MMR_Tracker.Forms
             List<LogicObjects.NetData> NetData = new List<LogicObjects.NetData>();
             foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => isValidSyncable(x)))
             {
+                if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld && (!i.Checked || i.ItemBelongsToMe())) { continue; }
                 NetData.Add(new LogicObjects.NetData { ID = i.ID, PI = i.PlayerData.ItemBelongedToPlayer ,Ch = i.Checked, RI = i.RandomizedItem });
             }
             LogicObjects.MMRTpacket Pack = new LogicObjects.MMRTpacket
@@ -91,22 +92,22 @@ namespace MMR_Tracker.Forms
             }
             catch (ArgumentNullException ane)
             {
-                Debugging.Log($"ArgumentNullException : {ane.ToString()}");
+                Debugging.Log($"ArgumentNullException : {ane}");
             }
             catch (SocketException se)
             {
-                Debugging.Log($"SocketException : {se.ToString()}");
+                Debugging.Log($"SocketException : {se}");
             }
             catch (Exception e)
             {
-                Debugging.Log($"Unexpected exception : {e.ToString()}");
+                Debugging.Log($"Unexpected exception : {e}");
             }
         }
 
         public async static void SendData(List<LogicObjects.IPDATA> SendList, int TYPE = 0)
         {
             if (!Sending && TYPE != 1) { return; }
-            string m = JsonConvert.SerializeObject(createNetData(TYPE));
+            string m = JsonConvert.SerializeObject(CreateNetData(TYPE));
             foreach (var ip in SendList)
             {
                 await Task.Run(() => StartClient(m, ip));
@@ -159,12 +160,12 @@ namespace MMR_Tracker.Forms
             catch (Exception e)
             {
                 listener.Close();
-                Debugging.Log($"Errored: { e.ToString() }");
+                Debugging.Log($"Errored: { e}");
                 return "";
             }
         }
 
-        public static async void startServer()
+        public static async void StartServer()
         {
             if (Listening) { MessageBox.Show("Net client already started!"); return; }
             Listening = true;
@@ -205,47 +206,46 @@ namespace MMR_Tracker.Forms
 
         //Options
 
-        private void autoAddIncomingIPsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AutoAddIncomingIPsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections = !LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections;
             autoAddIncomingIPsToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections);
         }
 
-        private void copyNetDataToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CopyNetDataToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(JsonConvert.SerializeObject(createNetData(0)));
+            Clipboard.SetText(JsonConvert.SerializeObject(CreateNetData(0)));
         }
 
-        private void sendingDataToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SendingDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SendData(IPS);
         }
 
-        private void requestDataToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RequestDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SendData(IPS, 1);
         }
 
-        private void fullSyncToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FullSyncToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SendData(IPS, 2);
         }
 
-        private void portForwardingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PortForwardingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            InformationDisplay DebugScreen = new InformationDisplay();
-            DebugScreen.DebugFunction = 5;
+            InformationDisplay DebugScreen = new InformationDisplay { DebugFunction = 5 };
             DebugScreen.Show();
         }
 
         //Controls
 
-        private void btnAddIP_Click_1(object sender, EventArgs e)
+        private void BtnAddIP_Click_1(object sender, EventArgs e)
         {
             
             LogicObjects.IPDATA NewIP = new LogicObjects.IPDATA();
             string IPText = txtIP.Text;
-            IPAddress IP = null;
+            IPAddress IP;
             try { IP = IPAddress.Parse(IPText); } catch { IP = null; }
             if (IP == null) { try { IP = Dns.GetHostEntry(IPText).AddressList[0]; } catch { IP = null; } }
             if (IP == null) 
@@ -266,7 +266,7 @@ namespace MMR_Tracker.Forms
             txtIP.SelectAll();
         }
 
-        private void btnRemoveIP_Click(object sender, EventArgs e)
+        private void BtnRemoveIP_Click(object sender, EventArgs e)
         {
             foreach (var i in LBIPAdresses.SelectedItems)
             {
@@ -275,13 +275,13 @@ namespace MMR_Tracker.Forms
             UpdateFormItems();
         }
 
-        private void chkListenForData_CheckedChanged(object sender, EventArgs e)
+        private void ChkListenForData_CheckedChanged(object sender, EventArgs e)
         {
             if (Updating) { return; }
             if (chkListenForData.Checked)
             {
                 NudYourPort.Enabled = false;
-                startServer();
+                StartServer();
                 Debugging.Log("Server Started");
             }
             else
@@ -293,7 +293,7 @@ namespace MMR_Tracker.Forms
             UpdateFormItems();
         }
 
-        private void chkSendData_CheckedChanged(object sender, EventArgs e)
+        private void ChkSendData_CheckedChanged(object sender, EventArgs e)
         {
             Sending = chkSendData.Checked;
             UpdateFormItems();
@@ -391,15 +391,14 @@ namespace MMR_Tracker.Forms
             }
 
             var log = LogicObjects.MainTrackerInstance.Logic;
-            var itemsObtained = new List<LogicObjects.LogicEntry>();
+            var itemsAquired = new List<LogicObjects.LogicEntry>();
             var itemsInUse = new List<LogicObjects.LogicEntry>();
 
             foreach (var i in log)
             {
                 if (i.IsFake) { continue; }
-                if (i.LogicItemAquired()) { itemsObtained.Add(i); itemsInUse.Add(i); }
-                if (i.RandomizedItem > -1) { itemsInUse.Add(log[i.RandomizedItem]); }
-                if (i.SpoilerRandom > -1) { itemsInUse.Add(log[i.SpoilerRandom]); }
+                if (i.LogicItemAquired()) { itemsAquired.Add(i); itemsInUse.Add(i); }
+                if (i.ItemHasBeenPlaced(Instance.Logic)) { itemsInUse.Add(i); }
             }
 
             foreach (var i in Data.LogicData)
@@ -412,14 +411,14 @@ namespace MMR_Tracker.Forms
 
                     var MatchingItems = log.Where(x => x.SpoilerItem.Intersect(log[i.RI].SpoilerItem).Any());
                     var FindUnusedMatchingItem = MatchingItems.Where(x => !itemsInUse.Where(y => y.ID == x.ID).Any());
-                    var FindUnAquiredMatchingItem = MatchingItems.Where(x => !itemsObtained.Where(y => y.ID == x.ID).Any());
+                    var FindUnAquiredMatchingItem = MatchingItems.Where(x => !itemsAquired.Where(y => y.ID == x.ID).Any());
 
                     if (FindUnusedMatchingItem.Any())
                     {
                         Debugging.Log($"Unused Matching Item found: {FindUnusedMatchingItem.ToArray()[0].DictionaryName}");
                         var newItem = FindUnusedMatchingItem.ToArray()[0];
                         i.RI = newItem.ID;
-                        itemsObtained.Add(newItem);
+                        itemsAquired.Add(newItem);
                         itemsInUse.Add(newItem);
                     }
                     else if (FindUnAquiredMatchingItem.Any())
@@ -428,7 +427,7 @@ namespace MMR_Tracker.Forms
                         Debugging.Log($"Matching UnAquired Item Found: {FindUnAquiredMatchingItem.ToArray()[0].DictionaryName}");
                         var newItem = FindUnAquiredMatchingItem.ToArray()[0];
                         i.RI = newItem.ID;
-                        itemsObtained.Add(newItem);
+                        itemsAquired.Add(newItem);
                         itemsInUse.Add(newItem);
                     }
                     else { Debugging.Log($"No Unused items were found. This is an error and could cause Issues."); }
@@ -446,7 +445,7 @@ namespace MMR_Tracker.Forms
             UpdateFormItems();
         }
 
-        private void saveIPListToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveIPListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker IP List (*.MMRTIP)|*.MMRTIP", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
@@ -460,7 +459,7 @@ namespace MMR_Tracker.Forms
             File.WriteAllText(saveDialog.FileName, JsonConvert.SerializeObject(SaveIPS));
         }
 
-        private void loadIPListToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadIPListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string file = Utility.FileSelect("Select An IP List", "MMR Tracker IP List (*.MMRTIP)|*.MMRTIP");
             if (file == "") { return; }
@@ -487,7 +486,7 @@ namespace MMR_Tracker.Forms
             UpdateFormItems();
         }
 
-        private void onlyAcceptDataFromSendingListToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OnlyAcceptDataFromSendingListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicObjects.MainTrackerInstance.Options.StrictIP = !LogicObjects.MainTrackerInstance.Options.StrictIP;
             UpdateFormItems();
@@ -529,11 +528,11 @@ namespace MMR_Tracker.Forms
 
             if (MultiworldON())
             {
-                this.Height = this.Height + 25;
+                this.Height += 25;
             }
             else if (MultiworldOFF() || (sender == this && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld)) //Sender is "this" when called from form load event
             {
-                this.Height = this.Height - 25;
+                this.Height -= 25;
             }
 
             UpdateFormItems();
@@ -572,20 +571,20 @@ namespace MMR_Tracker.Forms
             Updating = false;
         }
 
-        private void nudPlayerID_ValueChanged(object sender, EventArgs e)
+        private void NudPlayerID_ValueChanged(object sender, EventArgs e)
         {
             if (Updating) { return; }
             LogicObjects.MainTrackerInstance.Options.MyPlayerID = (int)nudPlayerID.Value;
         }
 
-        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Co-op: In this mode, any locations you check or mark will be marked on your parties trackers. It will only ever mark a location on your parties tracker, even if you did a full check.\nUsefull for when you are playing Co-op runs using the same seed.\n\n" +
                 "Online (Synced): In this mode, any locations you check or mark will apply the same action to your parties tracker.\nUsefull for when you are playing an Online game through Modloader64 or other similar programs where items you obtain are synced between all players.\n\n" +
                 "Multiworld: In this mode, when you do a check you will assign what player the item is going to. That item will be marked as obtained for that player only.\nUseful when playing multiworld game modes such as OOT Randomizer Multiworld.", "Game Mode Info");
         }
 
-        private void lblYourIP_Click(object sender, EventArgs e)
+        private void LblYourIP_Click(object sender, EventArgs e)
         {
             if (lblYourIP.Text.Contains("Public"))
             {
