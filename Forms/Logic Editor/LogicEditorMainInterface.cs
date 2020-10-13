@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using MMR_Tracker.Class_Files;
 using System.Drawing;
+using MMR_Tracker.Forms.Sub_Forms;
 
 namespace MMR_Tracker.Forms
 {
@@ -141,17 +142,19 @@ namespace MMR_Tracker.Forms
 
         private void BtnGoTo_Click(object sender, EventArgs e)
         {
-            ItemSelect Selector = new ItemSelect();
-            ItemSelect.Function = 4;
+            MiscSingleItemSelect Selector = new MiscSingleItemSelect
+            {
+                Text = "Go to item",
+                ListContent = LogicEditor.EditorInstance.Logic,
+                Display = 6
+            };
             Selector.ShowDialog();
             if (Selector.DialogResult != DialogResult.OK) { return; }
             //GoBackList.Add(currentEntry.ID);
             try
             {
-                nudIndex.Value = Tools.CurrentSelectedItem.ID;
-                WriteCurentItem(Tools.CurrentSelectedItem.ID);
-                Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
-                ItemSelect.Function = 0;
+                nudIndex.Value = Selector.SelectedObject.ID;
+                WriteCurentItem(Selector.SelectedObject.ID);
             }
             catch { }
         }
@@ -518,21 +521,18 @@ namespace MMR_Tracker.Forms
                         WriteCurentItem(item.ItemIDs[0].ID);
                         return;
                     }
-                    ItemSelect.CheckedItems = new List<int>();
-                    foreach (var i in item.ItemIDs)
+                    MiscSingleItemSelect Selector = new MiscSingleItemSelect
                     {
-                        ItemSelect.CheckedItems.Add(i.ID);
-                    }
-                    ItemSelect Selector = new ItemSelect();
-                    ItemSelect.Function = 6;
+                        Text = "Go to item",
+                        Display = 6,
+                        ListContent = item.ItemIDs
+                    };
                     Selector.ShowDialog();
                     if (Selector.DialogResult != DialogResult.OK) { return; }
-                    var index = Tools.CurrentSelectedItem.ID;
+                    var index = Selector.SelectedObject.ID;
                     //GoBackList.Add(currentEntry.ID);
                     nudIndex.Value = index;
                     WriteCurentItem(index);
-                    Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
-                    ItemSelect.Function = 0;
                 }
             }
             catch { }
@@ -1027,22 +1027,18 @@ namespace MMR_Tracker.Forms
             {
                 try
                 {
-                    ItemSelect.CheckedItems = new List<int>();
-                    foreach (var i in Inuse)
+                    MiscSingleItemSelect Selector = new MiscSingleItemSelect
                     {
-                        ItemSelect.CheckedItems.Add(i.ID);
-                    }
-                    ItemSelect Selector = new ItemSelect();
-                    ItemSelect.Function = 9;
-                    Selector.Title = $"{currentEntry.DictionaryName} Is used in the following entries:\n\n";
+                        ListContent = Inuse,
+                        Display = 6,
+                        Text = $"{currentEntry.DictionaryName} Is used in the following entries:\n\n"
+                    };
                     Selector.ShowDialog();
                     if (Selector.DialogResult != DialogResult.OK) { return; }
-                    var index = Tools.CurrentSelectedItem.ID;
+                    var index = Selector.SelectedObject.ID;
                     //GoBackList.Add(currentEntry.ID);
                     nudIndex.Value = index;
                     WriteCurentItem(index);
-                    Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
-                    ItemSelect.Function = 0;
                     return;
                 }
                 catch { }

@@ -86,6 +86,10 @@ namespace MMR_Tracker.Class_Files
         {
             return Logic.Find(x => x.RandomizedItem == entry.ID);
         }
+        public static LogicObjects.LogicEntry GetItemsSpoilerLocation(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
+        {
+            return Logic.Find(x => x.SpoilerRandom == entry.ID);
+        }
         public static bool ItemHasBeenPlaced(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
         {
             return Logic.Where(x => x.RandomizedItem == entry.ID || x.SpoilerRandom == entry.ID).Any();

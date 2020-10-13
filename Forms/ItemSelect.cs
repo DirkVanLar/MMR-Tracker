@@ -327,7 +327,7 @@ namespace MMR_Tracker_V2
                     ShowAllAsLocation();
                     this.Text = "Select an item";
                     break;
-                case 5: //Logic Editor Add Requirment and Edit Conditional [LogicEditorRequirement]
+                case 5: //Logic Editor Add Requirment and Edit Conditional [MiscMultiItemSelect]
                     UsedLogic = LogicEditor.EditorInstance.Logic;
                     BTNJunk.Text = "Select";
                     UseCheckBox();

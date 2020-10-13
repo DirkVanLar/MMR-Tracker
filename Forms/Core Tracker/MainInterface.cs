@@ -413,22 +413,15 @@ namespace MMR_Tracker_V2
 
         private void WhatUnlockedThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((this.ActiveControl == LBValidLocations) && LBValidLocations.SelectedItem is LogicObjects.LogicEntry)
+            MiscSingleItemSelect WhatUnlockedSelect = new MiscSingleItemSelect
             {
-                Tools.CurrentSelectedItem = LBValidLocations.SelectedItem as LogicObjects.LogicEntry;
-            }
-            else if ((this.ActiveControl == LBValidEntrances) && LBValidEntrances.SelectedItem is LogicObjects.LogicEntry)
-            {
-                Tools.CurrentSelectedItem = LBValidEntrances.SelectedItem as LogicObjects.LogicEntry;
-            }
-            else
-            {
-                ItemSelect ItemSelectForm = new ItemSelect();
-                ItemSelect.Function = 3;
-                var dialogResult = ItemSelectForm.ShowDialog();
-                if (dialogResult != DialogResult.OK) { Tools.CurrentSelectedItem = new LogicObjects.LogicEntry(); return; }
-            }
-            Tools.WhatUnlockedThis();
+                Text = "Select Available Item",
+                Function = 1,
+                Display = 1,
+                ListContent = LogicObjects.MainTrackerInstance.Logic.Where(x => x.Available && !x.IsFake).ToList()
+            };
+            WhatUnlockedSelect.Show();
+            return;
         }
 
         private void LogicEditorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -471,9 +464,16 @@ namespace MMR_Tracker_V2
 
         private void spoilerLogLookupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ItemSelect ItemSelectForm = new ItemSelect();
-            ItemSelect.Function = 10;
-            var dialogResult = ItemSelectForm.ShowDialog();
+            var logic = LogicObjects.MainTrackerInstance.Logic;
+            if (!Utility.CheckforSpoilerLog(logic)) { MessageBox.Show("No spoiler data found!"); return; }
+            MiscSingleItemSelect ListSpoilerItems = new MiscSingleItemSelect
+            {
+                Text = "Select an Item",
+                ListContent = logic.Where(x => x.GetItemsSpoilerLocation(logic) != null).ToList(),
+                Display = 2,
+                Function = 2
+            };
+            ListSpoilerItems.Show();
         }
 
         private void spoilerLogConverterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -977,7 +977,7 @@ namespace MMR_Tracker_V2
             { ActiveItem = (LBCheckedLocations.SelectedItem as LogicObjects.ListItem).LocationEntry; }
             else { return; }
 
-            if (Function == 0) { Tools.CurrentSelectedItem = ActiveItem; Tools.WhatUnlockedThis(); }
+            if (Function == 0) { Tools.WhatUnlockedThis(ActiveItem); }
             if (Function == 1) { CheckItemSelected(ActiveListBox, true); }
             if (Function == 2) { CheckItemSelected(ActiveListBox, false); }
             if (Function == 3) 

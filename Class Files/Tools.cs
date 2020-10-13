@@ -628,23 +628,21 @@ namespace MMR_Tracker.Class_Files
                 }
             }
         }
-        public static void WhatUnlockedThis()
+        public static void WhatUnlockedThis(LogicObjects.LogicEntry Entry)
         {
-            if (!Tools.CurrentSelectedItem.Available)
+            if (!Entry.Available)
             {
-                MessageBox.Show(Tools.CurrentSelectedItem.LocationName + " Is not available with the currently obtained items", Tools.CurrentSelectedItem.LocationName + " Is not available");
-                Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
+                MessageBox.Show(Entry.LocationName + " Is not available with the currently obtained items", Entry.LocationName + " Is not available");
                 return;
             }
-            var UnlockData = Tools.FindRequirements(Tools.CurrentSelectedItem, LogicObjects.MainTrackerInstance);
+            var UnlockData = Tools.FindRequirements(Entry, LogicObjects.MainTrackerInstance);
             var Requirements = UnlockData.ResolvedRealItems;
             var FakeItems = UnlockData.FakeItems.Distinct().ToList();
             var Playthrough = UnlockData.Playthrough;
             var ItemsUsed = UnlockData.UsedItems;
             if (Requirements.Count == 0)
             {
-                MessageBox.Show("Nothing is needed to check this location.", Tools.CurrentSelectedItem.LocationName + " Has No Requirements");
-                Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
+                MessageBox.Show("Nothing is needed to check this location.", Entry.LocationName + " Has No Requirements");
                 return;
             }
             string message = "Logic Entries used:\n";
@@ -665,11 +663,10 @@ namespace MMR_Tracker.Class_Files
                 }
             }
             InformationDisplay Display = new InformationDisplay();
-            Display.Text = Tools.CurrentSelectedItem.LocationName + " Was Unlocked with:";
+            Display.Text = Entry.LocationName + " Was Unlocked with:";
             InformationDisplay.Playthrough = message.Split( new[] { "\n" }, StringSplitOptions.None).ToList();
             Display.DebugFunction = 4;
             Display.Show();
-            Tools.CurrentSelectedItem = new LogicObjects.LogicEntry();
         }
         public static List<int> ParseLocationAndJunkSettingString(string c)
         {
