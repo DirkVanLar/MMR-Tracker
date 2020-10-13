@@ -346,7 +346,7 @@ namespace MMR_Tracker_V2
 
                 List<int> UsedItems = new List<int>();
 
-                var aquired = Tools.ProgressiveItemAquired(LogicObjects.MainTrackerInstance.Logic, BigBombBag, UsedItems);
+                var aquired = BigBombBag.ItemUseable();
 
                 Debugging.Log(aquired.ToString());
                 Debugging.Log("");

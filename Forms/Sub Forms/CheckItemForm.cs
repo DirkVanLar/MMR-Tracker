@@ -179,7 +179,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                     && !Duplicates.Contains(ItemName)
                     && UsedLogic[i].ItemName != null
                     && Utility.FilterSearch(UsedLogic[i], TXTSearch.Text, UsedLogic[i].DisplayName)
-                    && (entry.ItemSubType == UsedLogic[i].ItemSubType || entry.ItemSubType == "ALL"))
+                    && (entry.ItemSubType == UsedLogic[i].ItemSubType || (entry.IsEntrance() && UsedLogic[i].IsEntrance()) || entry.ItemSubType == "ALL"))
                 {
                     LBItemSelect.Items.Add(UsedLogic[i]);
                     Duplicates.Add(ItemName);

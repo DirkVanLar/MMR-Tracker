@@ -47,7 +47,6 @@ namespace MMR_Tracker.Forms
             {
                 if (x.IsFake) { return false; }
                 if (!x.HasRandomItem(true)) { return false; }
-                if (!Utility.StandardItemTypes.Contains(x.ItemSubType)) { return false; }
                 return true;
             } 
 
@@ -398,7 +397,7 @@ namespace MMR_Tracker.Forms
             foreach (var i in log)
             {
                 if (i.IsFake) { continue; }
-                if (i.Useable()) { itemsObtained.Add(i); itemsInUse.Add(i); }
+                if (i.LogicItemAquired()) { itemsObtained.Add(i); itemsInUse.Add(i); }
                 if (i.RandomizedItem > -1) { itemsInUse.Add(log[i.RandomizedItem]); }
                 if (i.SpoilerRandom > -1) { itemsInUse.Add(log[i.SpoilerRandom]); }
             }

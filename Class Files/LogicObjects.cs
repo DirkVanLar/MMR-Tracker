@@ -1,4 +1,5 @@
 ﻿using MMR_Tracker.Forms;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -295,7 +296,7 @@ namespace MMR_Tracker_V2
         {
             return (entry.Randomized() || entry.Unrandomized(1)) && !entry.IsFake;
         }
-        public static bool Useable(this LogicObjects.LogicEntry entry)
+        public static bool LogicItemAquired(this LogicObjects.LogicEntry entry)
         {
             return (entry.Aquired || entry.StartingItem() || (entry.Unrandomized() && entry.Available));
         }
@@ -312,36 +313,72 @@ namespace MMR_Tracker_V2
             }
             return (entry.ID > lastRealItem);
         }
-
         public static bool ItemBelongsToMe(this LogicObjects.LogicEntry entry)
         {
             if (!LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { return true; }
             if (entry.IsEntrance()) { return true; }
             return entry.PlayerData.ItemBelongedToPlayer == -1 || entry.PlayerData.ItemBelongedToPlayer == LogicObjects.MainTrackerInstance.Options.MyPlayerID;
         }
-
         public static bool ItemInRange(this LogicObjects.TrackerInstance Instance, int Item)
         {
             return Item > -1 && Item < Instance.Logic.Count;
         }
-
         public static bool IsProgressiveItem(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
-            if (!Instance.Options.ProgressiveItems || !Instance.IsMM()) { return false; }
-            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = Utility.GetProgressiveItemSets();
-            List<string> ProgressiveItems = ProgressiveItemSets.SelectMany(x => x.Select(y => y.DictionaryName)).ToList();
-            if (ProgressiveItems.Contains(entry.DictionaryName)) { return true; }
-            return false;
+            return entry.ProgressiveItemSet(Instance) != null;
         }
-
         public static string ProgressiveItemName(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
-            if (!Instance.Options.ProgressiveItems || !Instance.IsMM()) { return entry.ItemName ?? entry.DictionaryName; }
-            if (entry.IsProgressiveItem(Instance))
+            if (entry.IsProgressiveItem(Instance) && Instance.Options.ProgressiveItems && Instance.IsMM())
             {
                 return (entry.SpoilerItem.Count() > 1) ? entry.SpoilerItem[1] : entry.ItemName ?? entry.DictionaryName;
             }
             return entry.ItemName ?? entry.DictionaryName;
+        }
+        public static int ProgressiveItemsAquired(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
+        {
+            var set = entry.ProgressiveItemSet(Instance);
+            if (set == null) { return entry.LogicItemAquired() ? 1 : 0; }
+            return set.Where(x => x.LogicItemAquired()).Count();
+        }
+        public static int ProgressiveItemsNeeded(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool IndexValue = false)
+        {
+            var set = entry.ProgressiveItemSet(Instance);
+            if (set == null) { return 0; }
+            int offset = (IndexValue) ? 0 : 1;
+            return set.IndexOf(entry) + offset;
+        }
+        public static List<LogicObjects.LogicEntry> ProgressiveItemSet(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
+        {
+            if (!Instance.Options.ProgressiveItems || !Instance.IsMM()) { return null; }
+            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = Utility.GetProgressiveItemSets(Instance);
+            var set = ProgressiveItemSets.Find(x => x.Contains(entry));
+            return set;
+        }
+        public static bool ItemUseable(this LogicObjects.LogicEntry entry, List<int> usedItems = null)
+        {
+            if (usedItems == null) { usedItems = new List<int>(); }
+            var Set = entry.ProgressiveItemSet(LogicObjects.MainTrackerInstance);
+            if (Set == null) { return NonProgressiveItemUseable(); }
+
+            var AquiredSet = Set.Where(x => x.LogicItemAquired()).ToList();
+            var ItemsNeeded = entry.ProgressiveItemsNeeded(LogicObjects.MainTrackerInstance);
+            if (AquiredSet.Count() >= ItemsNeeded)
+            {
+                for (var i = 0; i < ItemsNeeded; i++) {  usedItems.Add(AquiredSet[i].ID); }
+                return true;
+            }
+            return false;
+
+            bool NonProgressiveItemUseable()
+            {
+                if (entry.LogicItemAquired())
+                {
+                    usedItems.Add(entry.ID);
+                    return true;
+                }
+                else { return false; }
+            }
         }
     }
 }

@@ -121,15 +121,7 @@ namespace MMR_Tracker_V2
             if (list == null) { return true; }
             foreach(var i in list)
             {
-                if (logic[i].IsProgressiveItem(LogicObjects.MainTrackerInstance))
-                {
-                    if(!Tools.ProgressiveItemAquired(logic, logic[i], usedItems)) { return false; }
-                }
-                else
-                {
-                    usedItems.Add(i);
-                    if (!logic[i].Useable()) { return false; }
-                }
+                if (!logic[i].ItemUseable(usedItems)) { return false; }
             }
             return true;
         }

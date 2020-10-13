@@ -756,69 +756,6 @@ namespace MMR_Tracker.Class_Files
             }
             return result;
         }
-        public static bool ProgressiveItemAquired(List<LogicObjects.LogicEntry> Logic, LogicObjects.LogicEntry entry, List<int> usedItems)
-        {
-            var SW1 = Logic.Find(x => x.DictionaryName == "Starting Sword");
-            var SW2 = Logic.Find(x => x.DictionaryName == "Razor Sword");
-            var SW3 = Logic.Find(x => x.DictionaryName == "Gilded Sword");
-            var MM1 = Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter");
-            var MM2 = Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic");
-            var WL1 = Logic.Find(x => x.DictionaryName == "Town Wallet (200)");
-            var WL2 = Logic.Find(x => x.DictionaryName == "Ocean Wallet (500)");
-            var BB1 = Logic.Find(x => x.DictionaryName == "Bomb Bag (20)");
-            var BB2 = Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)");
-            var BB3 = Logic.Find(x => x.DictionaryName == "Mountain Bomb Bag (40)");
-            var BW1 = Logic.Find(x => x.DictionaryName == "Hero's Bow");
-            var BW2 = Logic.Find(x => x.DictionaryName == "Town Archery Quiver (40)");
-            var BW3 = Logic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)");
-
-            Dictionary<string, List<LogicObjects.LogicEntry>> ProgressiveItems = new Dictionary<string, List<LogicObjects.LogicEntry>>
-            {
-                { "Razor Sword", new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 } },
-                { "Gilded Sword", new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 } },
-                { "Starting Sword", new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 } },
-                { "Great Fairy Magic Meter", new List<LogicObjects.LogicEntry> { MM1, MM2 } },
-                { "Great Fairy Extended Magic", new List<LogicObjects.LogicEntry> { MM1, MM2 } },
-                { "Town Wallet (200)", new List<LogicObjects.LogicEntry> { WL1, WL2 } },
-                { "Ocean Wallet (500)", new List<LogicObjects.LogicEntry> { WL1, WL2 }},
-                { "Bomb Bag (20)", new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 }},
-                { "Town Bomb Bag (30)", new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 } },
-                { "Mountain Bomb Bag (40)", new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 } },
-                { "Hero's Bow", new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 } },
-                { "Town Archery Quiver (40)", new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 } },
-                { "Swamp Archery Quiver (50)", new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 } }
-            };
-
-            if (!ProgressiveItems.ContainsKey(entry.DictionaryName) // The item is not a pogressive item
-                || ProgressiveItems[entry.DictionaryName].Find(x => x == entry) == null // The item is not in it's own list
-                || ProgressiveItems[entry.DictionaryName].Find(x => x == null) != null) // one of the progressive items could not be found in logic
-            { return TreatAsNonProgressive(); } // None of these should ever happen
-
-            var ObtainedProgressiveITems = ProgressiveItems[entry.DictionaryName].Where(x => x.Useable()).ToList();
-
-            if (ObtainedProgressiveITems == null || ObtainedProgressiveITems.Count() < 1) { return false; } //None of the progressive items have been obtained
-
-            int ItemsNeeded = ProgressiveItems[entry.DictionaryName].IndexOf(entry) + 1;
-
-            if (ObtainedProgressiveITems.Count() >= ItemsNeeded)
-            {
-                for (var i = 0; i < ItemsNeeded; i++) { usedItems.Add(ObtainedProgressiveITems[i].ID); }
-                return true;
-            }
-            return false;
-
-            bool TreatAsNonProgressive()
-            {
-                Debugging.Log("Error! non progressive made it past initial check");
-                if (entry.Useable())
-                {
-                    usedItems.Add(entry.ID);
-                    return true;
-                }
-                else { return false; }
-            }
-
-        }
         public static void ParseLogicFile(string file = "")
         {
             if (file == "")

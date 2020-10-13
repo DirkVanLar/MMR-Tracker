@@ -368,14 +368,9 @@ namespace MMR_Tracker.Forms
             int Spacing = (this.Width - 16) / ItemsOnScreen;
 
             var start = System.DateTime.Now.Ticks;
-            List<string> ProgressiveOverwright;
 
             DrawItem("Ocarina", "Ocarina of Time", Spacing);
-
-            //Handle Progressive Bow
-            ProgressiveOverwright = GetCurrentProgressiveItem(new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } });
-            DrawHighestTierItem("Bow", new Dictionary<string, string> { { "Hero's Bow", ProgressiveOverwright[0] }, { "Town Archery Quiver (40)", ProgressiveOverwright[1] }, { "Swamp Archery Quiver (50)", ProgressiveOverwright[2] } }, Spacing);
-
+            DrawHighestTierItem("Bow", new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } }, Spacing);
             DrawItem("FireArrow", "Fire Arrow", Spacing);
             DrawItem("IceArrow", "Ice Arrow", Spacing);
             DrawItem("LightArrow", "Light Arrow", Spacing);
@@ -383,10 +378,7 @@ namespace MMR_Tracker.Forms
             DrawItem("Sonata", "Sonata of Awakening", Spacing, "Sonata");
             DrawItem("MoonTear", "Moon's Tear", Spacing);
 
-            //Handle Progressive Bomb Bag
-            ProgressiveOverwright = GetCurrentProgressiveItem(new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } });
-            DrawHighestTierItem("Bombs", new Dictionary<string, string> { { "Bomb Bag (20)", ProgressiveOverwright[0] }, { "Town Bomb Bag (30)", ProgressiveOverwright[1] }, { "Mountain Bomb Bag (40)", ProgressiveOverwright[2] } }, Spacing);
-
+            DrawHighestTierItem("Bombs", new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } }, Spacing);
             DrawCountableItem("Bombchus", new List<string> { "10 Bombchu", "5 Bombchu", "Bombchu" }, Spacing);
             DrawCountableItem("DekuSticks", new List<string> { "Deku Stick" }, Spacing);
             DrawCountableItem("DekuNuts", new List<string> { "10 Deku Nuts", "Deku Nuts" }, Spacing);
@@ -469,10 +461,7 @@ namespace MMR_Tracker.Forms
             DrawItem("FierceDeityMask", "Fierce Deity's Mask", Spacing);
             DrawItem("ClockTownFairy", "Clock Town Stray Fairy", Spacing);
             DrawItem("BombersNotebook", "Bombers' Notebook", Spacing);
-
-            //Handle Progressive Sword
-            ProgressiveOverwright = GetCurrentProgressiveItem(new Dictionary<string, string> { { "Starting Sword", "KokiriSword" }, { "Razor Sword", "RazorSword" }, { "Gilded Sword", "GildedSword" } });
-            DrawHighestTierItem("KokiriSword", new Dictionary<string, string> { { "Starting Sword", "null" }, { "Razor Sword", "null" }, { "Gilded Sword", "null" } }, Spacing, ProgressiveOverwright);
+            DrawHighestTierItem("KokiriSword", new Dictionary<string, string> { { "Starting Sword", "null" }, { "Razor Sword", "null" }, { "Gilded Sword", "null" } }, Spacing, new List<string> { "KokiriSword", "RazorSword", "GildedSword" });
 
             DrawItem("OdolwasRemains", "Woodfall clear", Spacing, "", true);
             DrawItem("Map|1", "Woodfall Map", Spacing);
@@ -489,14 +478,8 @@ namespace MMR_Tracker.Forms
             DrawItem("BossKey|2", "Snowhead Boss Key", Spacing);
             DrawCountableItem("SmallKey|2", new List<string> { "Snowhead Small Key" }, Spacing, true);
             DrawCountableItem("SnowheadFairy", new List<string> { "Snowhead Stray Fairy" }, Spacing, true);
-
-            //Handle Progressive Magic
-            ProgressiveOverwright = GetCurrentProgressiveItem(new Dictionary<string, string> { { "Great Fairy Magic Meter", "Magic Power" }, { "Great Fairy Extended Magic", "Extended Magic Power" } });
-            DrawCountableItem("Magic", ProgressiveOverwright, Spacing);
-
-            //Handle Progressive Wallet
-            ProgressiveOverwright = GetCurrentProgressiveItem(new Dictionary<string, string> { { "Town Wallet (200)", "AdultWallet" }, { "Ocean Wallet (500)", "GiantWallet" } });
-            DrawHighestTierItem("AdultWallet", new Dictionary<string, string> { { "Town Wallet (200)", "null" }, { "Ocean Wallet (500)", "null" } }, Spacing, ProgressiveOverwright);
+            DrawCountableItem("Magic", new List<string> { "Magic Power", "Extended Magic Power" }, Spacing);
+            DrawHighestTierItem("AdultWallet", new Dictionary<string, string> { { "Town Wallet (200)", "null" }, { "Ocean Wallet (500)", "null" } }, Spacing, new List<string> { "AdultWallet", "GiantWallet" });
 
 
             DrawItem("GyorgsRemains", "Great Bay clear", Spacing, "", true);
@@ -551,7 +534,7 @@ namespace MMR_Tracker.Forms
             if (Images.ContainsKey(PictureName)) { CurentImage = Images[PictureName]; }
             else { CurentImage = Images["Error"]; }
 
-            if (Entry != null && ((!FakeItem && !Entry.Useable()) || (FakeItem && !Entry.Available)) && !DebugShowAll) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
+            if (Entry != null && ((!FakeItem && !Entry.ItemUseable()) || (FakeItem && !Entry.Available)) && !DebugShowAll) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
 
             string PBName = ("PB" + Image);
             var PBL = Controls.Find(PBName, true);
@@ -612,10 +595,10 @@ namespace MMR_Tracker.Forms
             foreach (KeyValuePair<string, string> i in Logicnames)
             {
                 LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == i.Key);
-                if (Entry != null && Entry.Useable()) { CountNumber = i.Value; }
+                if (Entry != null && Entry.ItemUseable()) { CountNumber = i.Value; }
                 if (Entry != null) { AllEntries.Add(Entry); }
                 if (Entry != null && Entry.GetItemsNewLocation(LogicObjects.MainTrackerInstance.Logic) != null & !Entry.Aquired) { Itemmarked = true; }
-                if (Entry != null && Entry.Useable() && ProgressiveImages != null && count < ProgressiveImages.Count())
+                if (Entry != null && Entry.ItemUseable() && ProgressiveImages != null && count < ProgressiveImages.Count())
                 {
                     if (Images.ContainsKey(ProgressiveImages[count]))
                     {
@@ -672,7 +655,7 @@ namespace MMR_Tracker.Forms
 
             var Instance = LogicObjects.MainTrackerInstance;
             var log = Instance.Logic;
-            int Obtained = log.Where(x => ItemNames.Contains(x.ItemName) && x.Useable()).Count();
+            int Obtained = log.Where(x => ItemNames.Contains(x.ItemName) && x.ItemUseable()).Count();
             int Seen = log.Where(x => x.HasRandomItem(true) && ItemNames.Contains(x.RandomizedEntry(Instance).ItemName) && !x.Checked).Count();
             int TotalNumber = Seen + Obtained;
             string Display = "";
@@ -942,51 +925,6 @@ namespace MMR_Tracker.Forms
                 LogicChanges = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
             }
             DisplayImages();
-        }
-
-        private List<string> GetCurrentProgressiveItem(Dictionary<string, string> Logicnames, List<string> NamesToReturn = null)
-        {
-            List<string> Counts = new List<string>();
-
-            if (NamesToReturn == null)
-            {
-                foreach (var i in Logicnames)
-                {
-                    Counts.Add(i.Value);
-                }
-            }
-            else
-            {
-                foreach (var i in NamesToReturn)
-                {
-                    Counts.Add(i);
-                }
-            }
-
-            if (!LogicObjects.MainTrackerInstance.IsMM() || !LogicObjects.MainTrackerInstance.Options.ProgressiveItems) { return Counts; }
-
-            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = Utility.GetProgressiveItemSets();
-
-            Console.WriteLine(Logicnames.First().Key + " Was Progressive");
-            var Set = ProgressiveItemSets.Find(x => x.Where(y => y.DictionaryName == Logicnames.First().Key).Any());
-            int NumberAquired = Set.Where(x => x.Useable()).Count();
-            Console.WriteLine(NumberAquired + " Of this set have been aquired");
-
-            if (NumberAquired < 1) { return Counts; } 
-            if (NumberAquired > Counts.Count()) { NumberAquired = Counts.Count(); }
-
-            List<string> NewCounts = new List<string>();
-
-            var NewCount = Counts[NumberAquired - 1];
-
-            Console.WriteLine("New Number is " + NewCount);
-
-            foreach (var i in Counts)
-            {
-                NewCounts.Add(NewCount);
-            }
-
-            return NewCounts;
         }
 
     }

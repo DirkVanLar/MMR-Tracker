@@ -109,7 +109,7 @@ namespace MMR_Tracker.Class_Files
         {
             if (!LogicObjects.MainTrackerInstance.IsMM() || !LogicObjects.MainTrackerInstance.Options.ProgressiveItems) { return; }
 
-            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = Utility.GetProgressiveItemSets();
+            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = Utility.GetProgressiveItemSets(Instance);
 
             foreach (var i in ProgressiveItemSets) { if (i == null || !i.Any() || i.Where(x => x == null).Any()) { return; } }
 

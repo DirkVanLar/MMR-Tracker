@@ -12,14 +12,6 @@ namespace MMR_Tracker_V2
 {
     class Utility
     {
-        public static string[] StandardItemTypes = new string[] {
-            "Item",
-            "Bottle",
-            "Owl Statue",
-            "Boss Token",
-            "Entrance",
-            "Dungeon Entrance"
-        };
         public static string ConvertCsvFileToJsonObject(string path)
         {
             var csv = new List<string[]>();
@@ -295,31 +287,31 @@ namespace MMR_Tracker_V2
                 return i * Factorial(i - 1);
             }
         }
-        public static List<List<LogicObjects.LogicEntry>> GetProgressiveItemSets()
+        public static List<List<LogicObjects.LogicEntry>> GetProgressiveItemSets(LogicObjects.TrackerInstance instance)
         {
-            var SW1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Starting Sword");
-            var SW2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Razor Sword");
-            var SW3 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Gilded Sword");
-            var MM1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter");
-            var MM2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic");
-            var WL1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Town Wallet (200)");
-            var WL2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Ocean Wallet (500)");
-            var BB1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Bomb Bag (20)");
-            var BB2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)");
-            var BB3 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Mountain Bomb Bag (40)");
-            var BW1 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Hero's Bow");
-            var BW2 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Town Archery Quiver (40)");
-            var BW3 = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)");
+            var SW1 = instance.Logic.Find(x => x.DictionaryName == "Starting Sword");
+            var SW2 = instance.Logic.Find(x => x.DictionaryName == "Razor Sword");
+            var SW3 = instance.Logic.Find(x => x.DictionaryName == "Gilded Sword");
+            var MM1 = instance.Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter");
+            var MM2 = instance.Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic");
+            var WL1 = instance.Logic.Find(x => x.DictionaryName == "Town Wallet (200)");
+            var WL2 = instance.Logic.Find(x => x.DictionaryName == "Ocean Wallet (500)");
+            var BB1 = instance.Logic.Find(x => x.DictionaryName == "Bomb Bag (20)");
+            var BB2 = instance.Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)");
+            var BB3 = instance.Logic.Find(x => x.DictionaryName == "Mountain Bomb Bag (40)");
+            var BW1 = instance.Logic.Find(x => x.DictionaryName == "Hero's Bow");
+            var BW2 = instance.Logic.Find(x => x.DictionaryName == "Town Archery Quiver (40)");
+            var BW3 = instance.Logic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)");
 
             List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = new List<List<LogicObjects.LogicEntry>>
             {
-                new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 },
-                new List<LogicObjects.LogicEntry> { MM1, MM2 },
-                new List<LogicObjects.LogicEntry> { WL1, WL2 },
-                new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 },
-                new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 },
+                new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 }.Where(x => x != null).ToList(),
+                new List<LogicObjects.LogicEntry> { MM1, MM2 }.Where(x => x != null).ToList(),
+                new List<LogicObjects.LogicEntry> { WL1, WL2 }.Where(x => x != null).ToList(),
+                new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 }.Where(x => x != null).ToList(),
+                new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 }.Where(x => x != null).ToList(),
             };
-            return ProgressiveItemSets;
+            return ProgressiveItemSets.Where(x => x.Any()).ToList();
         }
     }
     public class Crypto

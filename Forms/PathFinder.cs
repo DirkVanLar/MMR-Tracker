@@ -108,7 +108,7 @@ namespace MMR_Tracker.Forms
                 {
                     if ((start) ? entry.Aquired : entry.Available) { UnsortedPathfinder.Add(entry.ID, (start) ? entry.ItemName : entry.LocationName); }
                 }
-                if (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations && entry.ItemSubType != "Entrance" && !entry.IsFake && entry.Available && !start)
+                if (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations && !entry.IsEntrance() && !entry.IsFake && entry.Available && !start)
                 {
                     UnsortedItemPathfinder.Add(entry.ID, (entry.RandomizedItem > -1) ? entry.LocationName + ": " + LogicObjects.MainTrackerInstance.Logic[entry.RandomizedItem].ItemName : entry.LocationName);
                 }
