@@ -84,28 +84,34 @@
     <Compile Include="Class Files\LogicObjectExtentions.cs" />
     <Compile Include="Class Files\PlaythroughGenerator.cs" />
     <Compile Include="Class Files\Tools.cs" />
-    <Compile Include="Forms\ItemDisplay.cs">
+    <Compile Include="Forms\Extra Functionality\ItemDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ItemDisplay.Designer.cs">
+    <Compile Include="Forms\Extra Functionality\ItemDisplay.Designer.cs">
       <DependentUpon>ItemDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LogicParser.cs">
+    <Compile Include="Forms\Logic Editor\LogicEditorAddPermutations.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LogicParser.Designer.cs">
+    <Compile Include="Forms\Logic Editor\LogicEditorAddPermutations.Designer.cs">
+      <DependentUpon>LogicEditorAddPermutations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Logic Editor\LogicParser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Logic Editor\LogicParser.Designer.cs">
       <DependentUpon>LogicParser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Map.cs">
+    <Compile Include="Forms\Extra Functionality\Map.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Map.Designer.cs">
+    <Compile Include="Forms\Extra Functionality\Map.Designer.cs">
       <DependentUpon>Map.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\InformationDisplay.cs">
+    <Compile Include="Forms\Core Tracker\InformationDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\InformationDisplay.Designer.cs">
+    <Compile Include="Forms\Core Tracker\InformationDisplay.Designer.cs">
       <DependentUpon>InformationDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ItemSelect.cs">
@@ -116,91 +122,124 @@
     </Compile>
     <Compile Include="Class Files\LogicEditing.cs" />
     <Compile Include="Class Files\LogicObjects.cs" />
-    <Compile Include="Forms\LogicEditor.cs">
+    <Compile Include="Forms\Logic Editor\LogicEditorMainInterface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LogicEditor.Designer.cs">
-      <DependentUpon>LogicEditor.cs</DependentUpon>
+    <Compile Include="Forms\Logic Editor\LogicEditorMainInterface.Designer.cs">
+      <DependentUpon>LogicEditorMainInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainInterface.cs">
+    <Compile Include="Forms\Core Tracker\MainInterface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainInterface.Designer.cs">
+    <Compile Include="Forms\Core Tracker\MainInterface.Designer.cs">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </Compile>
     <Compile Include="Class Files\Program.cs" />
-    <Compile Include="Forms\OnlinePlay.cs">
+    <Compile Include="Forms\Extra Functionality\OnlinePlay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\OnlinePlay.Designer.cs">
+    <Compile Include="Forms\Extra Functionality\OnlinePlay.Designer.cs">
       <DependentUpon>OnlinePlay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PathFinder.cs">
+    <Compile Include="Forms\Extra Functionality\PathFinder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PathFinder.Designer.cs">
+    <Compile Include="Forms\Extra Functionality\PathFinder.Designer.cs">
       <DependentUpon>PathFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SpoilerLogConverter.cs">
+    <Compile Include="Forms\Extra Functionality\SpoilerLogConverter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SpoilerLogConverter.Designer.cs">
+    <Compile Include="Forms\Extra Functionality\SpoilerLogConverter.Designer.cs">
       <DependentUpon>SpoilerLogConverter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Sub Forms\CheckItemForm.cs">
+    <Compile Include="Forms\Item Select Forms\CheckItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Sub Forms\CheckItemForm.Designer.cs">
+    <Compile Include="Forms\Item Select Forms\CheckItemForm.Designer.cs">
       <DependentUpon>CheckItemForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\RandomizeOptions.cs">
+    <Compile Include="Forms\Logic Editor\LogicEditorConditional.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\RandomizeOptions.Designer.cs">
+    <Compile Include="Forms\Logic Editor\LogicEditorConditional.Designer.cs">
+      <DependentUpon>LogicEditorConditional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Logic Editor\LogicEditorReorder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Logic Editor\LogicEditorReorder.Designer.cs">
+      <DependentUpon>LogicEditorReorder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Logic Editor\LogicEditorRequirement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Logic Editor\LogicEditorRequirement.Designer.cs">
+      <DependentUpon>LogicEditorRequirement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Item Select Forms\MiscSingleItemSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Item Select Forms\MiscSingleItemSelect.Designer.cs">
+      <DependentUpon>MiscSingleItemSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Item Select Forms\MiscMultiItemSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Item Select Forms\MiscMultiItemSelect.Designer.cs">
+      <DependentUpon>MiscMultiItemSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Forms\Core Tracker\RandomizeOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Core Tracker\RandomizeOptions.Designer.cs">
       <DependentUpon>RandomizeOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SeedChecker.cs">
+    <Compile Include="Forms\Extra Functionality\SeedChecker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SeedChecker.Designer.cs">
+    <Compile Include="Forms\Extra Functionality\SeedChecker.Designer.cs">
       <DependentUpon>SeedChecker.cs</DependentUpon>
     </Compile>
     <Compile Include="Class Files\Utility.cs" />
     <Compile Include="Class Files\VersionHandeling.cs" />
-    <EmbeddedResource Include="Forms\InformationDisplay.resx">
+    <EmbeddedResource Include="Forms\Core Tracker\InformationDisplay.resx">
       <DependentUpon>InformationDisplay.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ItemDisplay.resx">
+    <EmbeddedResource Include="Forms\Extra Functionality\ItemDisplay.resx">
       <DependentUpon>ItemDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemSelect.resx">
       <DependentUpon>ItemSelect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LogicEditor.resx">
-      <DependentUpon>LogicEditor.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Logic Editor\LogicEditorMainInterface.resx">
+      <DependentUpon>LogicEditorMainInterface.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LogicParser.resx">
+    <EmbeddedResource Include="Forms\Logic Editor\LogicParser.resx">
       <DependentUpon>LogicParser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainInterface.resx">
+    <EmbeddedResource Include="Forms\Core Tracker\MainInterface.resx">
       <DependentUpon>MainInterface.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Map.resx">
+    <EmbeddedResource Include="Forms\Extra Functionality\Map.resx">
       <DependentUpon>Map.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OnlinePlay.resx">
+    <EmbeddedResource Include="Forms\Extra Functionality\OnlinePlay.resx">
       <DependentUpon>OnlinePlay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PathFinder.resx">
+    <EmbeddedResource Include="Forms\Extra Functionality\PathFinder.resx">
       <DependentUpon>PathFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SpoilerLogConverter.resx">
+    <EmbeddedResource Include="Forms\Extra Functionality\SpoilerLogConverter.resx">
       <DependentUpon>SpoilerLogConverter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Sub Forms\CheckItemForm.resx">
+    <EmbeddedResource Include="Forms\Item Select Forms\CheckItemForm.resx">
       <DependentUpon>CheckItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Item Select Forms\MiscMultiItemSelect.resx">
+      <DependentUpon>MiscMultiItemSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -212,10 +251,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\RandomizeOptions.resx">
+    <EmbeddedResource Include="Forms\Core Tracker\RandomizeOptions.resx">
       <DependentUpon>RandomizeOptions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SeedChecker.resx">
+    <EmbeddedResource Include="Forms\Extra Functionality\SeedChecker.resx">
       <DependentUpon>SeedChecker.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

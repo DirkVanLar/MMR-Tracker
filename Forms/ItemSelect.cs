@@ -280,7 +280,7 @@ namespace MMR_Tracker_V2
 
             switch (Function)
             {
-                case 0:
+                case 0: //Main form Item Select [CheckItemForm]
                     UsedLogic = LogicObjects.MainTrackerInstance.Logic;
                     BTNJunk.Text = "Junk";
                     LBItemSelect.SelectionMode = SelectionMode.One;
@@ -289,7 +289,7 @@ namespace MMR_Tracker_V2
                     this.Text = "Item at " + Tools.CurrentSelectedItem.LocationName;
                     LBItemSelect.Sorted = true;
                     break;
-                case 1:
+                case 1: //Seedchecker AddIgnored [MiscMultiItemSelect]
                     UsedLogic = LogicObjects.MainTrackerInstance.Logic;
                     BTNJunk.Text = "Select";
                     UseCheckBox();
@@ -298,7 +298,7 @@ namespace MMR_Tracker_V2
                     this.Text = "Select a location";
                     LBItemSelect.Sorted = true;
                     break;
-                case 2:
+                case 2: //Seedchecker AddNeeded [MiscMultiItemSelect]
                     UsedLogic = LogicObjects.MainTrackerInstance.Logic;
                     BTNJunk.Text = "Select";
                     UseCheckBox();
@@ -307,7 +307,7 @@ namespace MMR_Tracker_V2
                     this.Text = "Select an item";
                     LBItemSelect.Sorted = true;
                     break;
-                case 3:
+                case 3: //WhatUnlockedThis (If no item found) [MiscSingleItemSelect]
                     UsedLogic = LogicObjects.MainTrackerInstance.Logic;
                     BTNJunk.Visible = false;
                     if (!HeightSet)
@@ -320,14 +320,14 @@ namespace MMR_Tracker_V2
                     this.Text = "Select a location";
                     LBItemSelect.Sorted = true;
                     break;
-                case 4:
+                case 4: //Logic Editor Go to [MiscSingleItemSelect]
                     UsedLogic = LogicEditor.EditorInstance.Logic;
                     BTNJunk.Text = "Select";
                     LBItemSelect.SelectionMode = SelectionMode.One;
                     ShowAllAsLocation();
                     this.Text = "Select an item";
                     break;
-                case 5:
+                case 5: //Logic Editor Add Requirment and Edit Conditional [LogicEditorRequirement]
                     UsedLogic = LogicEditor.EditorInstance.Logic;
                     BTNJunk.Text = "Select";
                     UseCheckBox();
@@ -336,7 +336,7 @@ namespace MMR_Tracker_V2
                     this.Text = "Select a location";
                     LBItemSelect.Sorted = true;
                     break;
-                case 6:
+                case 6: //Logic editor Display items in conditional (For goto functionality) [MiscSingleItemSelect]
                     UsedLogic = LogicEditor.EditorInstance.Logic;
                     BTNJunk.Text = "Select";
                     LBItemSelect.SelectionMode = SelectionMode.One;
@@ -344,7 +344,7 @@ namespace MMR_Tracker_V2
                     this.Text = "Select a location";
                     LBItemSelect.Sorted = true;
                     break;
-                case 7:
+                case 7: //Logic Editor Add Conditional [LogicEditorConditional]
                     UsedLogic = LogicEditor.EditorInstance.Logic;
                     BTNJunk.Text = "Select";
                     chkAddSeperate.Checked = LogicEditor.AddCondSeperatly;
@@ -354,7 +354,7 @@ namespace MMR_Tracker_V2
                     this.Text = "Select a location";
                     LBItemSelect.Sorted = true;
                     break;
-                case 8:
+                case 8: // Logic Editor Reorder Logic [LogicEditorReorder]
                     UsedLogic = LogicEditor.EditorInstance.Logic;
                     BTNJunk.Text = "Apply";
                     LBItemSelect.SelectionMode = SelectionMode.MultiExtended;
@@ -362,7 +362,7 @@ namespace MMR_Tracker_V2
                     ShowAllAsDictionary();
                     this.Text = "Move an item to reorder it in the logic file";
                     break;
-                case 9:
+                case 9: //Logic editor "what is this used in" (Each item can be used as goto) [MiscSingleItemSelect]
                     UsedLogic = LogicEditor.EditorInstance.Logic;
                     BTNJunk.Text = "Select";
                     LBItemSelect.SelectionMode = SelectionMode.One;
@@ -370,7 +370,7 @@ namespace MMR_Tracker_V2
                     this.Text = Title;
                     LBItemSelect.Sorted = true;
                     break;
-                case 10:
+                case 10: //Spoiler Log lookup (The form doesn't close after selecting an item) [MiscSingleItemSelect]
                     UsedLogic = LogicObjects.MainTrackerInstance.Logic;
                     BTNJunk.Visible = false;
                     if (!HeightSet)
@@ -383,7 +383,7 @@ namespace MMR_Tracker_V2
                     this.Text = "Select an item to see it's location";
                     LBItemSelect.Sorted = true;
                     break;
-                case 11:
+                case 11: //Add permutations [LogicEditorAddPermutations]
                     UsedLogic = LogicEditor.EditorInstance.Logic;
                     BTNJunk.Text = "Select";
                     UseCheckBox();
