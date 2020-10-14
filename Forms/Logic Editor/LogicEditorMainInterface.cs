@@ -171,18 +171,21 @@ namespace MMR_Tracker.Forms
         {
             EditorInstance.UnsavedChanges = true;
             Tools.SaveState(EditorInstance);
-            ItemSelect Selector = new ItemSelect();
-            ItemSelect.Function = 5;
-            Selector.ShowDialog();
-            if (Selector.DialogResult != DialogResult.OK) { ItemSelect.Function = 0; return; }
-            if (Tools.CurrentselectedItems.Count < 1) { ItemSelect.Function = 0;  return; }
-            foreach (var i in Tools.CurrentselectedItems)
+            MiscMultiItemSelect NeededSelect = new MiscMultiItemSelect
+            {
+                UsedInstance = EditorInstance,
+                Display = 7,
+                ListContent = LogicObjects.MainTrackerInstance.Logic
+            };
+            if (NeededSelect.ShowDialog() != DialogResult.OK) { return; }
+            foreach (var i in NeededSelect.SelectedItems)
             {
                 if (LBRequired.Items.Contains(i)) { continue; }
+                i.DisplayName = i.ItemName ?? i.DictionaryName;
+                i.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (i.SpoilerItem[0] ?? i.DisplayName) : i.DisplayName;
+                i.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? i.DictionaryName : i.DisplayName;
                 LBRequired.Items.Add(i);
             }
-            Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
-            ItemSelect.Function = 0;
             UpdateReqAndCond();
             WriteCurentItem((int)nudIndex.Value);
         }
@@ -396,24 +399,23 @@ namespace MMR_Tracker.Forms
                 if (LBConditional.GetSelected(n))
                 {
                     var temp = LBConditional.Items[n] as RequiementConditional;
-                    foreach (var j in temp.ItemIDs)
+                    MiscMultiItemSelect Selector = new MiscMultiItemSelect
                     {
-                        ItemSelect.CheckedItems.Add(j.ID);
-                    }
-                    ItemSelect Selector = new ItemSelect();
-                    ItemSelect.Function = 5;
-                    Selector.ShowDialog();
-                    if (Selector.DialogResult != DialogResult.OK)
-                    {
-                        ItemSelect.Function = 0;
-                        return;
-                    }
+                        UsedInstance = EditorInstance,
+                        Display = 7,
+                        ListContent = LogicObjects.MainTrackerInstance.Logic,
+                        CheckedItems = temp.ItemIDs.Select(x => x.ID).ToList()
+                    };
+                    if (Selector.ShowDialog() != DialogResult.OK) { return; }
                     RequiementConditional entry = new RequiementConditional { ItemIDs = new List<LogicObjects.LogicEntry>() };
                     string Display = "";
                     string addComma = "";
-                    foreach (var i in Tools.CurrentselectedItems)
+                    foreach (var i in Selector.SelectedItems)
                     {
-                        Display = Display + addComma + (i.ItemName ?? i.DictionaryName);
+                        string ItemName = i.ItemName ?? i.DictionaryName;
+                        ItemName = (LogicEditor.UseSpoilerInDisplay) ? (i.SpoilerItem[0] ?? ItemName) : ItemName;
+                        ItemName = (LogicEditor.UseDictionaryNameInSearch) ? i.DictionaryName : ItemName;
+                        Display = Display + addComma + ItemName;
                         addComma = ", ";
                         entry.ItemIDs.Add(i);
                     }
@@ -426,8 +428,6 @@ namespace MMR_Tracker.Forms
                     {
                         LBConditional.Items[n] = (entry);
                     }
-                    Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
-                    ItemSelect.Function = 0;
                     LBConditional.Refresh();
                     UpdateReqAndCond();
                 }

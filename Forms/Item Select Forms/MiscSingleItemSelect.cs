@@ -19,6 +19,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             InitializeComponent();
         }
 
+        public LogicObjects.TrackerInstance UsedInstance = LogicObjects.MainTrackerInstance;
         public int Function = 0;
         public int Display = 0;
         public List<LogicObjects.LogicEntry> ListContent = new List<LogicObjects.LogicEntry>();
@@ -54,7 +55,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                         ListItem.DisplayName = i.SpoilerItem[0] ?? i.LocationName ?? i.DictionaryName;
                         break;
                     case 5:
-                        ListItem.DisplayName = i.ProgressiveItemName(LogicObjects.MainTrackerInstance);
+                        ListItem.DisplayName = i.ProgressiveItemName(UsedInstance);
                         break;
                     case 6:
                         ListItem.DisplayName = i.LocationName ?? i.DictionaryName;
@@ -83,7 +84,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 case 2:// Spoiler Log Lookup
                     if (!(listBox1.SelectedItem is LogicObjects.ListItem)) { return; }
                     var item = (listBox1.SelectedItem as LogicObjects.ListItem).LocationEntry;
-                    var itemLocation = item.GetItemsSpoilerLocation(LogicObjects.MainTrackerInstance.Logic);
+                    var itemLocation = item.GetItemsSpoilerLocation(UsedInstance.Logic);
                     if (itemLocation == null) { MessageBox.Show($"{item.DictionaryName} Was not found in spoiler data"); }
                     MessageBox.Show($"{item.ItemName??item.DictionaryName} is found at {itemLocation.LocationName ?? itemLocation.DictionaryName}", $"{ item.DictionaryName} Item Location: ");
                     break;

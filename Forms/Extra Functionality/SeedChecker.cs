@@ -1,4 +1,5 @@
 ﻿using MMR_Tracker.Class_Files;
+using MMR_Tracker.Forms.Sub_Forms;
 using MMR_Tracker_V2;
 using System;
 using System.Collections.Generic;
@@ -15,20 +16,14 @@ namespace MMR_Tracker
 
         private void BtnAddNeeded_Click(object sender, EventArgs e)
         {
-            ItemSelect.Function = 2;
-            ItemSelect ItemSelectForm = new ItemSelect(); var dialogResult = ItemSelectForm.ShowDialog();
-            if (dialogResult != DialogResult.OK) { Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>(); return; }
-            foreach (var item in LBNeededItems.Items)
+            MiscMultiItemSelect NeededSelect = new MiscMultiItemSelect();
+            NeededSelect.Display = 2;
+            NeededSelect.ListContent = LogicObjects.MainTrackerInstance.Logic;
+            if (NeededSelect.ShowDialog() != DialogResult.OK) { return; }
+            foreach (var i in NeededSelect.SelectedItems)
             {
-                var ListItem = item as LogicObjects.ListItem;
-                if (ListItem.PathID == Tools.CurrentSelectedItem.ID) { return; }
+                LBNeededItems.Items.Add(new LogicObjects.ListItem { DisplayName = i.ItemName ?? i.DictionaryName, PathID = i.ID });
             }
-            foreach (var i in Tools.CurrentselectedItems)
-            {
-                LBNeededItems.Items.Add(new LogicObjects.ListItem { DisplayName = i.DisplayName, PathID = i.ID });
-            }
-            Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
-            ItemSelect.Function = 0;
         }
 
         private void LBNeededItems_DoubleClick(object sender, EventArgs e)
@@ -39,20 +34,14 @@ namespace MMR_Tracker
 
         private void BtnAddIgnored_Click(object sender, EventArgs e)
         {
-            ItemSelect.Function = 1;
-            ItemSelect ItemSelectForm = new ItemSelect(); var dialogResult = ItemSelectForm.ShowDialog();
-            if (dialogResult != DialogResult.OK) { Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>(); return; }
-            foreach (var item in LBIgnoredChecks.Items)
+            MiscMultiItemSelect NeededSelect = new MiscMultiItemSelect();
+            NeededSelect.Display = 1;
+            NeededSelect.ListContent = LogicObjects.MainTrackerInstance.Logic;
+            if (NeededSelect.ShowDialog() != DialogResult.OK) { return; }
+            foreach (var i in NeededSelect.SelectedItems)
             {
-                var ListItem = item as LogicObjects.ListItem;
-                if (ListItem.PathID == Tools.CurrentSelectedItem.ID) { return; }
+                LBIgnoredChecks.Items.Add(new LogicObjects.ListItem { DisplayName = i.LocationName ?? i.DictionaryName, PathID = i.ID });
             }
-            foreach (var i in Tools.CurrentselectedItems)
-            {
-                LBIgnoredChecks.Items.Add(new LogicObjects.ListItem { DisplayName = i.DisplayName, PathID = i.ID });
-            }
-            Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
-            ItemSelect.Function = 0;
         }
 
         private void LBIgnoredChecks_DoubleClick(object sender, EventArgs e)
