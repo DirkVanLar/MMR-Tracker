@@ -188,78 +188,31 @@ namespace MMR_Tracker
 
         #endregion Static Function
 
-        private void ClockTown_Click(object sender, EventArgs e)
+        private void AreaClicked(object sender, EventArgs e)
         {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "ClockTown").SubAreas);
-        }
-
-        private void Termina_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "Termina").SubAreas);
-        }
-
-        private void Ranch_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "Ranch").SubAreas);
-        }
-
-        private void Swamp_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "Swamp").SubAreas);
-        }
-
-        private void Woodfall_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "Woodfall").SubAreas);
-        }
-
-        private void Ikana_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "Ikana").SubAreas);
-        }
-
-        private void StoneTower_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "StoneTower").SubAreas);
-        }
-
-        private void Mountain_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "Mountain").SubAreas);
-        }
-
-        private void Snowhead_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "Snowhead").SubAreas);
-        }
-
-        private void GreatBay_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "GreatBay").SubAreas);
-        }
-
-        private void Moon_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "Moon").SubAreas);
-        }
-
-        private void Coast_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "Coast").SubAreas);
-        }
-
-        private void Misc_Click(object sender, EventArgs e)
-        {
-            ProcessFilters(LocationDic.Find(x => x.locationArea == "Misc").SubAreas);
-        }
-
-        private void Clear_Click(object sender, EventArgs e)
-        {
-            bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.EntranceRando;
-            if (checkedLocations.Checked) { MainInterfaceInstance.TXTCheckedSearch.Text = ""; }
-            if (entrances.Checked && EntrancesInItemBox) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
-            else if (entrances.Checked && !EntrancesInItemBox) { MainInterfaceInstance.TXTEntSearch.Text = ""; }
-            if (locations.Checked) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
+            if (!(sender is Button)) { return; }
+            Button area = sender as Button;
+            if (area == clockTown) { ProcessFilters(LocationDic.Find(x => x.locationArea == "ClockTown").SubAreas); }
+            if (area == Termina) { ProcessFilters(LocationDic.Find(x => x.locationArea == "Termina").SubAreas); }
+            if (area == Ranch) { ProcessFilters(LocationDic.Find(x => x.locationArea == "Ranch").SubAreas); }
+            if (area == Swamp) { ProcessFilters(LocationDic.Find(x => x.locationArea == "Swamp").SubAreas); }
+            if (area == Woodfall) { ProcessFilters(LocationDic.Find(x => x.locationArea == "Woodfall").SubAreas); }
+            if (area == Ikana) { ProcessFilters(LocationDic.Find(x => x.locationArea == "Ikana").SubAreas); }
+            if (area == StoneTower) { ProcessFilters(LocationDic.Find(x => x.locationArea == "StoneTower").SubAreas); }
+            if (area == Mountain) { ProcessFilters(LocationDic.Find(x => x.locationArea == "Mountain").SubAreas); }
+            if (area == Snowhead) { ProcessFilters(LocationDic.Find(x => x.locationArea == "Snowhead").SubAreas); }
+            if (area == GreatBay) { ProcessFilters(LocationDic.Find(x => x.locationArea == "GreatBay").SubAreas); }
+            if (area == Moon) { ProcessFilters(LocationDic.Find(x => x.locationArea == "Moon").SubAreas); }
+            if (area == Coast) { ProcessFilters(LocationDic.Find(x => x.locationArea == "Coast").SubAreas); }
+            if (area == Misc) { ProcessFilters(LocationDic.Find(x => x.locationArea == "Misc").SubAreas); }
+            if (area == Clear)
+            {
+                bool EntrancesInItemBox = !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.EntranceRando;
+                if (checkedLocations.Checked) { MainInterfaceInstance.TXTCheckedSearch.Text = ""; }
+                if (entrances.Checked && EntrancesInItemBox) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
+                else if (entrances.Checked && !EntrancesInItemBox) { MainInterfaceInstance.TXTEntSearch.Text = ""; }
+                if (locations.Checked) { MainInterfaceInstance.TXTLocSearch.Text = ""; }
+            }
         }
 
         public Size OriginalSize;
