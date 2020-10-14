@@ -59,6 +59,7 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editRadnomizationOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableProgressiveItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importSpoilerLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stricterLogicHandelingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,11 +101,9 @@
             this.createDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLogicObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumbStuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verifyCustomRandoCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.enableProgressiveItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -419,7 +418,7 @@
             this.stricterLogicHandelingToolStripMenuItem,
             this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             // 
             // editRadnomizationOptionsToolStripMenuItem
@@ -428,6 +427,13 @@
             this.editRadnomizationOptionsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.editRadnomizationOptionsToolStripMenuItem.Text = "Edit Randomization Options";
             this.editRadnomizationOptionsToolStripMenuItem.Click += new System.EventHandler(this.EditRadnomizationOptionsToolStripMenuItem_Click);
+            // 
+            // enableProgressiveItemsToolStripMenuItem
+            // 
+            this.enableProgressiveItemsToolStripMenuItem.Name = "enableProgressiveItemsToolStripMenuItem";
+            this.enableProgressiveItemsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.enableProgressiveItemsToolStripMenuItem.Text = "Enable Progressive Items";
+            this.enableProgressiveItemsToolStripMenuItem.Click += new System.EventHandler(this.enableProgressiveItemsToolStripMenuItem_Click);
             // 
             // importSpoilerLogToolStripMenuItem
             // 
@@ -458,7 +464,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -497,7 +503,7 @@
             this.changeMiddleClickToStarToolStripMenuItem,
             this.changeFontToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -531,7 +537,7 @@
             // onlinePlayToolStripMenuItem
             // 
             this.onlinePlayToolStripMenuItem.Name = "onlinePlayToolStripMenuItem";
-            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.onlinePlayToolStripMenuItem.Text = "Online Play";
             this.onlinePlayToolStripMenuItem.Click += new System.EventHandler(this.onlinePlayToolStripMenuItem_Click);
             // 
@@ -548,7 +554,7 @@
             this.itemTrackerToolStripMenuItem,
             this.spoilerLogConverterToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // seedCheckerToolStripMenuItem
@@ -722,8 +728,7 @@
             this.devToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createDictionaryToolStripMenuItem,
             this.printLogicObjectToolStripMenuItem,
-            this.dumbStuffToolStripMenuItem,
-            this.verifyCustomRandoCodeToolStripMenuItem});
+            this.dumbStuffToolStripMenuItem});
             this.devToolStripMenuItem.Name = "devToolStripMenuItem";
             this.devToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.devToolStripMenuItem.Text = "Dev";
@@ -747,14 +752,7 @@
             this.dumbStuffToolStripMenuItem.Name = "dumbStuffToolStripMenuItem";
             this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.dumbStuffToolStripMenuItem.Text = "Code Testing";
-            this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.DumbStuffToolStripMenuItem_Click);
-            // 
-            // verifyCustomRandoCodeToolStripMenuItem
-            // 
-            this.verifyCustomRandoCodeToolStripMenuItem.Name = "verifyCustomRandoCodeToolStripMenuItem";
-            this.verifyCustomRandoCodeToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.verifyCustomRandoCodeToolStripMenuItem.Text = "Verify Custom Rando Code";
-            this.verifyCustomRandoCodeToolStripMenuItem.Click += new System.EventHandler(this.VerifyCustomRandoCodeToolStripMenuItem_Click);
+            this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.CodeTestingToolStripMenuItem_Click);
             // 
             // undoToolStripMenuItem
             // 
@@ -769,13 +767,6 @@
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
-            // 
-            // enableProgressiveItemsToolStripMenuItem
-            // 
-            this.enableProgressiveItemsToolStripMenuItem.Name = "enableProgressiveItemsToolStripMenuItem";
-            this.enableProgressiveItemsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.enableProgressiveItemsToolStripMenuItem.Text = "Enable Progressive Items";
-            this.enableProgressiveItemsToolStripMenuItem.Click += new System.EventHandler(this.enableProgressiveItemsToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -877,7 +868,6 @@
         private System.Windows.Forms.ToolStripMenuItem timedEventsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ocarinaSongsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem verifyCustomRandoCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seperateMarkedItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem popoutPathfinderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FilterMapToolStripMenuItem;

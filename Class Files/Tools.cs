@@ -12,10 +12,6 @@ namespace MMR_Tracker.Class_Files
     class Tools
     {
         public static event EventHandler StateListChanged = delegate { };
-
-        //Used to pass Logic items between forms
-        public static LogicObjects.LogicEntry CurrentSelectedItem = new LogicObjects.LogicEntry();
-        public static List<LogicObjects.LogicEntry> CurrentselectedItems = new List<LogicObjects.LogicEntry>();
         public static string SaveFilePath = "";
 
         public static LogicObjects.ItemUnlockData FindRequirements(LogicObjects.LogicEntry Item, LogicObjects.TrackerInstance Instance)

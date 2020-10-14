@@ -184,7 +184,7 @@ namespace MMR_Tracker_V2
             {
                 string file = (instance.GameCode == "MMR") ? 
                     Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html") :
-                    Utility.FileSelect("Select A Spoiler Log", "Spoiler Log(*.txt;*html;*.json)|*.txt;*html;*.json");
+                    Utility.FileSelect("Select A Spoiler Log", "Spoiler Log(*.txt;*.json)|*.txt;*.json");
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(instance, file);
                 if (!Utility.CheckforSpoilerLog(instance.Logic)) { MessageBox.Show("No spoiler data found!"); return; }
@@ -272,21 +272,11 @@ namespace MMR_Tracker_V2
             DebugScreen.Show();
         }
 
-        private void DumbStuffToolStripMenuItem_Click(object sender, EventArgs e) 
+        private void CodeTestingToolStripMenuItem_Click(object sender, EventArgs e) 
         { 
             Debugging.TestDumbStuff();
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
             PrintToListBox();
-        }
-
-        private void CreateOOTFilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void VerifyCustomRandoCodeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //PrintToListBoxNEW();
         }
         #endregion Dev
         //Menu Strip => Options => MISC Options---------------------------------------------------------------------------
@@ -1523,6 +1513,7 @@ namespace MMR_Tracker_V2
             generatePlaythroughToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0) && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld;
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             changeLogicToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            spoilerLogLookupToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             popoutPathfinderToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.EntranceRando);
             if (!LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable) 
             {
