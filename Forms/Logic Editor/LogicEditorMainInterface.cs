@@ -40,6 +40,8 @@ namespace MMR_Tracker.Forms
         public static bool CreatingNewItem = false;
         public static int MaxEntries = 10000;
 
+        public static LogicEditor EditorForm = null;
+
         public class RequiementConditional
         {
             public string DisplayName { get; set; }
@@ -54,6 +56,8 @@ namespace MMR_Tracker.Forms
 
         private void LogicEditor_Load(object sender, EventArgs e)
         {
+            if (EditorForm != null) { this.Close(); }
+            EditorForm = this;
             nudIndex.Value = 0;
             if (LogicObjects.MainTrackerInstance.LogicVersion > 0)
             {
@@ -119,6 +123,7 @@ namespace MMR_Tracker.Forms
         private void LogicEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!PromptSave()) { e.Cancel = true; }
+            EditorForm = null;
         }
 
         //Button
@@ -165,6 +170,9 @@ namespace MMR_Tracker.Forms
             {
                 LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance, LogicEditing.WriteLogicToArray(EditorInstance));
             }
+            MainInterface.CurrentProgram.PrintToListBox();
+            MainInterface.CurrentProgram.ResizeObject();
+            MainInterface.CurrentProgram.FormatMenuItems();
         }
 
         private void BtnAddReq_Click(object sender, EventArgs e)
@@ -264,8 +272,7 @@ namespace MMR_Tracker.Forms
                 Text = "Select required items",
                 UsedInstance = EditorInstance,
                 Display = 7,
-                ListContent = LogicObjects.MainTrackerInstance.Logic,
-                EditorForm = this
+                ListContent = LogicObjects.MainTrackerInstance.Logic
             };
             ConditionalSelect.ShowDialog();
         }

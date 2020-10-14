@@ -28,11 +28,10 @@ namespace MMR_Tracker.Forms.Sub_Forms
         public List<LogicObjects.LogicEntry> SelectedItems = new List<LogicObjects.LogicEntry>();
         private bool Updating = false;
         private bool AddCondSeperately = false;
-        public LogicEditor EditorForm = null;
 
         private void LogicEditorConditional_Load(object sender, EventArgs e)
         {
-            if (EditorForm == null) { return; }
+            if (LogicEditor.EditorForm == null) { return; }
             WriteToListBox();
         }
 
@@ -163,12 +162,12 @@ namespace MMR_Tracker.Forms.Sub_Forms
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            EditorForm.RunLogicParser();
+            LogicEditor.EditorForm.RunLogicParser();
         }
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            EditorForm.ContextMenuAddPermutations(sender, e);
+            LogicEditor.EditorForm.ContextMenuAddPermutations(sender, e);
         }
 
         private void Addconditional()
@@ -181,8 +180,8 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 foreach (var i in SelectedItems)
                 {
                     var entry = new LogicEditor.RequiementConditional { DisplayName = (i.ItemName ?? i.DictionaryName), ItemIDs = new List<LogicObjects.LogicEntry> { i } };
-                    if (EditorForm.LBConditional.Items.Contains(entry)) { continue; }
-                    EditorForm.LBConditional.Items.Add(entry);
+                    if (LogicEditor.EditorForm.LBConditional.Items.Contains(entry)) { continue; }
+                    LogicEditor.EditorForm.LBConditional.Items.Add(entry);
                 }
             }
             else
@@ -198,11 +197,11 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 }
                 entry.DisplayName = Display;
                 if (entry.DisplayName == "" || entry.ItemIDs.Count < 1) { return; }
-                if (!EditorForm.LBConditional.Items.Contains(entry)) { EditorForm.LBConditional.Items.Add(entry); }
+                if (!LogicEditor.EditorForm.LBConditional.Items.Contains(entry)) { LogicEditor.EditorForm.LBConditional.Items.Add(entry); }
 
             }
-            EditorForm.UpdateReqAndCond();
-            EditorForm.WriteCurentItem((int)EditorForm.nudIndex.Value);
+            LogicEditor.EditorForm.UpdateReqAndCond();
+            LogicEditor.EditorForm.WriteCurentItem((int)LogicEditor.EditorForm.nudIndex.Value);
         }
 
         private void TextBox1_MouseUp(object sender, MouseEventArgs e)

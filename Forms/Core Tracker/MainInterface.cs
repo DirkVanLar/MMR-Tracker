@@ -426,10 +426,9 @@ namespace MMR_Tracker_V2
 
         private void LogicEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (LogicEditor.EditorForm != null) { LogicEditor.EditorForm.Focus(); }
             LogicEditor Editor = new LogicEditor();
-            Editor.ShowDialog();
-            PrintToListBox();
-            FormatMenuItems();
+            Editor.Show();
         }
 
         private void UpdateLogicToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1555,7 +1554,7 @@ namespace MMR_Tracker_V2
             Tools_StateListChanged(null, null);
         }
 
-        private void ResizeObject()
+        public void ResizeObject()
         {
             var UpperLeftLBL = label1;
             var UpperRightLBL = label3;
