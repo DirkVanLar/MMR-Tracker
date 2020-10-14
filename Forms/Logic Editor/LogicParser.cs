@@ -258,5 +258,10 @@ namespace MMR_Tracker.Forms
                 }
             }
         }
+
+        private void textBox2_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle) { textBox2.Clear(); }
+        }
     }
 }

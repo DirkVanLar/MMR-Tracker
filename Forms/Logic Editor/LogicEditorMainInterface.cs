@@ -190,63 +190,38 @@ namespace MMR_Tracker.Forms
             WriteCurentItem((int)nudIndex.Value);
         }
 
-        private void ContextMenuAddPermutations(object sender, EventArgs e)
+        public void ContextMenuAddPermutations(object sender, EventArgs e)
         {
-            EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance);
-            ItemSelect Selector = new ItemSelect();
-            ItemSelect.Function = 11;
+            LogicEditorAddPermutations Selector = new LogicEditorAddPermutations();
+            Selector.Display = 2;
+            Selector.ListContent = EditorInstance.Logic;
             Selector.ShowDialog();
-            if (Selector.DialogResult != DialogResult.OK) { ItemSelect.Function = 0; return; }
-            if (Tools.CurrentselectedItems.Count < 1) { ItemSelect.Function = 0; return; }
+            if (Selector.DialogResult != DialogResult.OK) {  return; }
+            if (Selector.SelectedItems.Count < 1) {  return; }
             string Input = "";
             bool drawcomma = false;
-            foreach (var i in Tools.CurrentselectedItems)
+            foreach (var i in Selector.SelectedItems)
             {
                 if (drawcomma) { Input += (";" + i.ID.ToString()); }
                 else { Input += i.ID.ToString(); drawcomma = true; }
             }
 
-            Form UniqueData = new Form();
-            try { UniqueData.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon()); } catch { }
-            Label Data = new Label { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = 2, }, Width = 200, Text = "How many of these items are needed?" };
-            NumericUpDown Combos = new NumericUpDown { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = Data.Height +2, }, Width = 200 };
-            Button ok = new Button { Parent = UniqueData, Location = new System.Drawing.Point { X = 2, Y = Combos.Location.Y + Combos.Height + 2, }, Text = "Select", Width = 200 };
-
-            ok.Click += (k, j) => { UniqueData.DialogResult = DialogResult.OK; UniqueData.Close(); };
-
-            UniqueData.Controls.Add(Data);
-            UniqueData.Controls.Add(Combos);
-            UniqueData.Controls.Add(ok);
-
-            UniqueData.Width = 220;
-            UniqueData.Height = 110;
-
-            UniqueData.AcceptButton = ok;
-
-            var closeReason = UniqueData.ShowDialog();
-
-            if (closeReason != DialogResult.OK)
-            {
-                Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
-                ItemSelect.Function = 0;
-                return;
-            }
-
-            var UniqueCombinations = Utility.CountUniqueCombinations(Tools.CurrentselectedItems.Count(), (int)Combos.Value);
+            var UniqueCombinations = Utility.CountUniqueCombinations(Selector.SelectedItems.Count(), (int)Selector.numericUpDown1.Value);
 
 
             if (UniqueCombinations > MaxEntries)
             {
                 MessageBox.Show($"{UniqueCombinations} Entries would be created with your selected parameters. This is greater than the max number of entries ({MaxEntries}) this process can easily handle, the proccess will now terminate.", "To many combinations exist!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
-                ItemSelect.Function = 0;
                 return;
             }
+
+            EditorInstance.UnsavedChanges = true;
+            Tools.SaveState(EditorInstance);
+
             Debugging.Log($"Begin create {UniqueCombinations} permutatios");
             try
             {
-                var NewConditionals = CreatePermiations(Input, (int)Combos.Value)
+                var NewConditionals = CreatePermiations(Input, (int)Selector.numericUpDown1.Value)
                         .Split(';').Select(x => x
                             .Split(',').Select(y => Int32.Parse(y)).ToArray()).ToArray();
 
@@ -264,8 +239,6 @@ namespace MMR_Tracker.Forms
             }
             catch { }
 
-            Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
-            ItemSelect.Function = 0;
             WriteCurentItem((int)nudIndex.Value);
             Debugging.Log("Finish Write ITems");
         }
@@ -286,44 +259,15 @@ namespace MMR_Tracker.Forms
 
         private void BtnAddCond_Click(object sender, EventArgs e)
         {
-            EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance);
-            ItemSelect Selector = new ItemSelect();
-            ItemSelect.Function = 7;
-            Selector.ShowDialog();
-            if (Selector.DialogResult != DialogResult.OK) { ItemSelect.Function = 0; return; }
-            if (Tools.CurrentselectedItems.Count < 1) { ItemSelect.Function = 0; return; }
-            if (AddCondSeperatly)
+            LogicEditorConditional ConditionalSelect = new LogicEditorConditional
             {
-                foreach (var i in Tools.CurrentselectedItems)
-                {
-                    var entry = new RequiementConditional { DisplayName = (i.ItemName ?? i.DictionaryName), ItemIDs = new List<LogicObjects.LogicEntry> { i } };
-                    if (LBConditional.Items.Contains(entry)) { continue; }
-                    LBConditional.Items.Add(entry);
-                }
-            }
-            else
-            {
-                RequiementConditional entry = new RequiementConditional { ItemIDs = new List<LogicObjects.LogicEntry>() };
-                string Display = "";
-                string addComma = "";
-                foreach (var i in Tools.CurrentselectedItems)
-                {
-                    Display = Display + addComma + (i.ItemName ?? i.DictionaryName);
-                    addComma = ", ";
-                    entry.ItemIDs.Add(i);
-                }
-                entry.DisplayName = Display;
-                if (entry.DisplayName == "" || entry.ItemIDs.Count < 1) { return; }
-                if (!LBConditional.Items.Contains(entry)) { LBConditional.Items.Add(entry); }
-                
-            }
-
-            AddCondSeperatly = false;
-            Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
-            ItemSelect.Function = 0;
-            UpdateReqAndCond();
-            WriteCurentItem((int)nudIndex.Value);
+                Text = "Select required items",
+                UsedInstance = EditorInstance,
+                Display = 7,
+                ListContent = LogicObjects.MainTrackerInstance.Logic,
+                EditorForm = this
+            };
+            ConditionalSelect.ShowDialog();
         }
 
         private void BtnRemoveCond_Click(object sender, EventArgs e)
@@ -401,6 +345,7 @@ namespace MMR_Tracker.Forms
                     var temp = LBConditional.Items[n] as RequiementConditional;
                     MiscMultiItemSelect Selector = new MiscMultiItemSelect
                     {
+                        Text = "Edit items in this conditional",
                         UsedInstance = EditorInstance,
                         Display = 7,
                         ListContent = LogicObjects.MainTrackerInstance.Logic,
@@ -824,15 +769,15 @@ namespace MMR_Tracker.Forms
 
         private void ReorderLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ItemSelect Selector = new ItemSelect();
-            ItemSelect.Function = 8;
+            LogicEditorReorder Selector = new LogicEditorReorder();
+            Selector.ListContent = EditorInstance.Logic;
             Selector.ShowDialog();
             if(Selector.DialogResult != DialogResult.OK) { return; }
             EditorInstance.UnsavedChanges = true;
             Tools.SaveState(EditorInstance);
             int counter = 0;
             Dictionary<int, int> newOrder = new Dictionary<int, int>();
-            foreach(var i in Tools.CurrentselectedItems)
+            foreach(var i in Selector.SelectedItems)
             {
                 if (i.ID != counter)
                 {
@@ -840,7 +785,7 @@ namespace MMR_Tracker.Forms
                 }
                 counter++;
             }
-            foreach (var i in Tools.CurrentselectedItems)
+            foreach (var i in Selector.SelectedItems)
             {
                 if (newOrder.ContainsKey(i.ID))
                 {
@@ -873,8 +818,7 @@ namespace MMR_Tracker.Forms
                     }
                 }
             }
-            EditorInstance.Logic = Utility.CloneLogicList(Tools.CurrentselectedItems);
-            Tools.CurrentselectedItems = new List<LogicObjects.LogicEntry>();
+            EditorInstance.Logic = Utility.CloneLogicList(Selector.SelectedItems);
             WriteCurentItem(currentEntry.ID);
         }
 
@@ -1088,7 +1032,7 @@ namespace MMR_Tracker.Forms
             return Output;
         }
 
-        private void RunLogicParser()
+        public void RunLogicParser()
         {
             LogicParser PArser = new LogicParser();
             var result = PArser.ShowDialog();

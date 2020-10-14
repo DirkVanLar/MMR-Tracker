@@ -95,5 +95,10 @@ namespace MMR_Tracker.Forms.Sub_Forms
         {
             WriteToListBox();
         }
+
+        private void textBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle) { textBox1.Clear(); }
+        }
     }
 }

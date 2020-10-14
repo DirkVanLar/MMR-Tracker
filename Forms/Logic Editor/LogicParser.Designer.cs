@@ -193,6 +193,7 @@
             this.textBox2.Size = new System.Drawing.Size(256, 20);
             this.textBox2.TabIndex = 8;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.textBox2_MouseUp);
             // 
             // label3
             // 

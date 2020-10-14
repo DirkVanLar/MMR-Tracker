@@ -128,5 +128,10 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 CheckedItems.RemoveAt(CheckedItems.IndexOf(NewItem.ID));
             }
         }
+
+        private void MiscMultiItemSelect_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Middle) { textBox1.Clear(); }
+        }
     }
 }
