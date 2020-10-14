@@ -770,7 +770,7 @@ namespace MMR_Tracker.Forms
         private void ReorderLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicEditorReorder Selector = new LogicEditorReorder();
-            Selector.ListContent = EditorInstance.Logic;
+            Selector.ListContent = Utility.CloneLogicList(EditorInstance.Logic);
             Selector.ShowDialog();
             if(Selector.DialogResult != DialogResult.OK) { return; }
             EditorInstance.UnsavedChanges = true;

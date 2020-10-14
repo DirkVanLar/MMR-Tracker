@@ -193,6 +193,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SeedChecker";
             this.Text = "SeedChecker";
+            this.Load += new System.EventHandler(this.SeedChecker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

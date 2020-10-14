@@ -290,31 +290,28 @@ namespace MMR_Tracker_V2
                 TempList.Add(RandomITemHeader);
             }
 
-            bool isValidSyncable(LogicObjects.LogicEntry x)
+            bool isValid(LogicObjects.LogicEntry x)
             {
-                Console.WriteLine(x.DictionaryName);
-                if (x.LocationArea == "%Settings%" || x.LocationArea == "Hidden" || x.ItemSubType.Contains("Setting") || string.IsNullOrWhiteSpace(x.ItemSubType)) { return false; }
-                //if (string.IsNullOrWhiteSpace(x.ItemName)) { return false; }
+                if (x.IsFake 
+                    || x.LocationArea == "%Settings%" 
+                    || x.LocationArea == "Hidden" 
+                    || x.ItemSubType.Contains("Setting") 
+                    || string.IsNullOrWhiteSpace(x.ItemSubType)) { return false; }
+                if (x.RandomizedState() == 0 && !chkShowRandom.Checked) { return false; }
+                if (x.RandomizedState() == 1 && !chkShowUnrand.Checked) { return false; }
+                if (x.RandomizedState() == 2 && !chkShowUnrandMan.Checked) { return false; }
+                if (x.RandomizedState() == 3 && !chkShowJunk.Checked) { return false; }
+                if (x.StartingItem() && !chkShowStartingItems.Checked) { return false; }
+                if (!Utility.FilterSearch(x, txtSearch.Text, x.DictionaryName)) { return false; }
                 return true;
             }
 
             foreach (var entry in logic)
             {
-                if (!isValidSyncable(entry)) { continue; }
-                bool chkValid = false;
-                if (entry.RandomizedState() == 0 && chkShowRandom.Checked) { chkValid = true; }
-                if (entry.RandomizedState() == 1 && chkShowUnrand.Checked) { chkValid = true; }
-                if (entry.RandomizedState() == 2 && chkShowUnrandMan.Checked) { chkValid = true; }
-                if (entry.RandomizedState() == 3 && chkShowJunk.Checked) { chkValid = true; }
-                if (entry.StartingItem() && chkShowStartingItems.Checked) { chkValid = true; }
-
-                if (!entry.IsFake && chkValid && Utility.FilterSearch(entry, txtSearch.Text, entry.DictionaryName))
-                {
-                    string[] row = { 
-                        entry.DictionaryName, randomizedOptions[entry.RandomizedState()], entry.StartingItem().ToString(), "" };
-                    ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };
-                    TempList.Add(listViewItem);
-                }
+                if (!isValid(entry)) { continue; }
+                string[] row = { entry.DictionaryName, randomizedOptions[entry.RandomizedState()], entry.StartingItem().ToString(), "" };
+                ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };
+                TempList.Add(listViewItem);
             }
             if (ShowingTrickOptions())
             {

@@ -3,6 +3,7 @@ using MMR_Tracker.Forms.Sub_Forms;
 using MMR_Tracker_V2;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MMR_Tracker
@@ -16,9 +17,24 @@ namespace MMR_Tracker
 
         private void BtnAddNeeded_Click(object sender, EventArgs e)
         {
+            var TempInstance = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
             MiscMultiItemSelect NeededSelect = new MiscMultiItemSelect();
+            NeededSelect.UsedInstance = TempInstance;
             NeededSelect.Display = 2;
-            NeededSelect.ListContent = LogicObjects.MainTrackerInstance.Logic;
+            NeededSelect.ListContent = TempInstance.Logic;
+
+            var GameClearEntry = TempInstance.Logic.Find(x => x.DictionaryName == "MMRTGameClear");
+            if (GameClearEntry != null)
+            {
+                GameClearEntry.ItemName = (TempInstance.IsMM()) ? "Defeat Majora" : "Beat the Game";
+            }
+            else if (LogicObjects.MainTrackerInstance.IsMM())
+            {
+                Console.WriteLine("Adding MMRTGameClear");
+                int GameClearID = PlaythroughGenerator.GetGameClearEntry(NeededSelect.ListContent, LogicObjects.MainTrackerInstance.IsEntranceRando());
+                NeededSelect.ListContent[GameClearID].ItemName = "Defeat Majora";
+            }
+
             if (NeededSelect.ShowDialog() != DialogResult.OK) { return; }
             foreach (var i in NeededSelect.SelectedItems)
             {
@@ -36,7 +52,7 @@ namespace MMR_Tracker
         {
             MiscMultiItemSelect NeededSelect = new MiscMultiItemSelect();
             NeededSelect.Display = 1;
-            NeededSelect.ListContent = LogicObjects.MainTrackerInstance.Logic;
+            NeededSelect.ListContent = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && !string.IsNullOrWhiteSpace(x.LocationName)).ToList();
             if (NeededSelect.ShowDialog() != DialogResult.OK) { return; }
             foreach (var i in NeededSelect.SelectedItems)
             {
@@ -79,6 +95,18 @@ namespace MMR_Tracker
             {
                 Ignored.Add((item as LogicObjects.ListItem).PathID);
             }
+
+            var GameClearEntry = logicCopy.Logic.Find(x => x.DictionaryName == "MMRTGameClear");
+            if (GameClearEntry != null)
+            {
+                GameClearEntry.ItemName = (LogicObjects.MainTrackerInstance.IsMM()) ? "Defeat Majora" : "Beat the Game";
+            }
+            else if (LogicObjects.MainTrackerInstance.IsMM())
+            {
+                int GameClearID = PlaythroughGenerator.GetGameClearEntry(logicCopy.Logic, LogicObjects.MainTrackerInstance.IsEntranceRando());
+                logicCopy.Logic[GameClearID].ItemName = "Defeat Majora";
+            }
+
             CheckSeed(logicCopy, true, Ignored);
             List<string> obtainable = new List<string>();
             List<string> unobtainable = new List<string>();
@@ -131,6 +159,23 @@ namespace MMR_Tracker
                 }
             }
             if (recalculate) { CheckSeed(Instance, false, Ignored); }
+        }
+
+        private void SeedChecker_Load(object sender, EventArgs e)
+        {
+            var TempInstance = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
+            var GameClearEntry = TempInstance.Logic.Find(x => x.DictionaryName == "MMRTGameClear");
+            if (GameClearEntry != null)
+            {
+                string GameClearName = (LogicObjects.MainTrackerInstance.IsMM()) ? "Defeat Majora" : "Beat the Game";
+                LBNeededItems.Items.Add(new LogicObjects.ListItem { DisplayName = GameClearName, PathID = GameClearEntry.ID });
+            }
+            else if (LogicObjects.MainTrackerInstance.IsMM())
+            {
+                Console.WriteLine("Adding MMRTGameClear");
+                int GamClearID = PlaythroughGenerator.GetGameClearEntry(TempInstance.Logic, LogicObjects.MainTrackerInstance.IsEntranceRando());
+                LBNeededItems.Items.Add(new LogicObjects.ListItem { DisplayName = "Defeat Majora", PathID = GamClearID });
+            }
         }
     }
 }
