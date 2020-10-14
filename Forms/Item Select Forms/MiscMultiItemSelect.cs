@@ -37,6 +37,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             listView1.BeginUpdate();
             Updating = true;
             listView1.Items.Clear();
+            var TempList = new List<ListViewItem>();
             foreach (var i in ListContent)
             {
                 LogicObjects.ListItem ListItem = new LogicObjects.ListItem();
@@ -78,10 +79,11 @@ namespace MMR_Tracker.Forms.Sub_Forms
                     ListViewItem item = new ListViewItem();
                     item.Text = ListItem.DisplayName;
                     item.Tag = ListItem.LocationEntry;
-                    listView1.Items.Add(item);
+                    TempList.Add(item);
                 }
-                RecheckItems();
             }
+            listView1.Items.AddRange(TempList.ToArray());
+            RecheckItems();
             Updating = false;
             listView1.EndUpdate();
         }

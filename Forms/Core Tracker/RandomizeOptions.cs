@@ -282,14 +282,17 @@ namespace MMR_Tracker_V2
             List<string> randomizedOptions = new List<string> { "Randomized", "Unrandomized", "Unrandomized (Manual)", "Forced Junk" };
             listView1.FullRowSelect = true;
 
+            List<ListViewItem> TempList = new List<ListViewItem>();
+
             if (ShowingRandOptions())
             {
                 ListViewItem RandomITemHeader = new ListViewItem("RANDOMIZED ITEMS ===============================================================================") { Tag = -1 };
-                listView1.Items.Add(RandomITemHeader);
+                TempList.Add(RandomITemHeader);
             }
 
             bool isValidSyncable(LogicObjects.LogicEntry x)
-            { 
+            {
+                Console.WriteLine(x.DictionaryName);
                 if (x.LocationArea == "%Settings%" || x.LocationArea == "Hidden" || x.ItemSubType.Contains("Setting") || string.IsNullOrWhiteSpace(x.ItemSubType)) { return false; }
                 //if (string.IsNullOrWhiteSpace(x.ItemName)) { return false; }
                 return true;
@@ -310,13 +313,13 @@ namespace MMR_Tracker_V2
                     string[] row = { 
                         entry.DictionaryName, randomizedOptions[entry.RandomizedState()], entry.StartingItem().ToString(), "" };
                     ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };
-                    listView1.Items.Add(listViewItem);
+                    TempList.Add(listViewItem);
                 }
             }
             if (ShowingTrickOptions())
             {
                 ListViewItem TrickHeader = new ListViewItem("TRICKS ===============================================================================") { Tag = -1 };
-                listView1.Items.Add(TrickHeader);
+                TempList.Add(TrickHeader);
             }
 
             foreach (var entry in logic.Where(x => x.IsFake && x.IsTrick))
@@ -331,9 +334,11 @@ namespace MMR_Tracker_V2
                         entry.DictionaryName, "", "", entry.TrickEnabled.ToString() };
                     ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };
                     listViewItem.ToolTipText = entry.TrickToolTip;
-                    listView1.Items.Add(listViewItem);
+                    TempList.Add(listViewItem);
                 }
             }
+            listView1.Items.AddRange(TempList.ToArray());
+
             var checkedItems = CheckedItems.Cast<LogicObjects.LogicEntry>().ToList();
             foreach (ListViewItem i in listView1.Items)
             {
