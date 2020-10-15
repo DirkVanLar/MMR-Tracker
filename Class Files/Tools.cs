@@ -32,9 +32,7 @@ namespace MMR_Tracker.Class_Files
             }
             PlaythroughGenerator.UnlockAllFake(LogicCopy, ImportantItems, 0, playthrough);
             List<int> UsedItems = new List<int>();
-            bool isAvailable = false;
-
-            isAvailable = ItemCopy.CheckAvailability(Instance, UsedItems);
+            bool isAvailable = ItemCopy.CheckAvailability(Instance, UsedItems);
 
             if (!isAvailable) { return new LogicObjects.ItemUnlockData(); }
             List<int> NeededItems = Tools.ResolveFakeToRealItems(new LogicObjects.PlaythroughItem { SphereNumber = 0, Check = ItemCopy, ItemsUsed = UsedItems }, playthrough, LogicCopy.Logic);
@@ -159,7 +157,7 @@ namespace MMR_Tracker.Class_Files
                         ApplySettings.ApplyRandomizerSettings(SettingFile);
                         Debugging.Log("Settings Applied");
                     }
-                    catch (Exception e) { Debugging.Log(line); }
+                    catch { Debugging.Log(line); }
                 }
 
                 if (line.Contains("Gossip Stone ") && line.Contains("Message")) { break; }
@@ -255,7 +253,7 @@ namespace MMR_Tracker.Class_Files
                         ApplySettings.ApplyRandomizerSettings(SettingFile);
                         Debugging.Log("Settings Applied");
                     }
-                    catch (Exception e) { Debugging.Log(newLine); }
+                    catch { Debugging.Log(newLine); }
                 }
 
                 if (line.Contains("<tr class=\"region\">"))
@@ -337,7 +335,7 @@ namespace MMR_Tracker.Class_Files
             return true;
         }
 
-        public static void setUnsavedChanges(LogicObjects.TrackerInstance Instance)
+        public static void SetUnsavedChanges(LogicObjects.TrackerInstance Instance)
         {
             Instance.UnsavedChanges = true;
             UpdateTrackerTitle();
@@ -346,14 +344,8 @@ namespace MMR_Tracker.Class_Files
         public static void UpdateTrackerTitle()
         {
             string Gamecode = (string.IsNullOrWhiteSpace(LogicObjects.MainTrackerInstance.GameCode)) ? "MMR" : LogicObjects.MainTrackerInstance.GameCode;
-            if (LogicObjects.MainTrackerInstance.UnsavedChanges)
-            {
-                MainInterface.CurrentProgram.Text = $"{Gamecode} Tracker*";
-            }
-            else
-            {
-                MainInterface.CurrentProgram.Text = $"{Gamecode} Tracker";
-            }
+            if (LogicObjects.MainTrackerInstance.UnsavedChanges) { MainInterface.CurrentProgram.Text = $"{Gamecode} Tracker*"; }
+            else { MainInterface.CurrentProgram.Text = $"{Gamecode} Tracker"; }
         }
 
         public static void LoadInstance(string file = "")
@@ -389,6 +381,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool TryLoadOldSaveFile(string file)
         {
+            //Pre Spoiler Location/Spoiler Item Changes
             try
             {
                 LogicObjects.MainTrackerInstance = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file), new JsonSerializerSettings
@@ -403,11 +396,14 @@ namespace MMR_Tracker.Class_Files
                 {
                     var dicentry = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == i.DictionaryName);
                     if (dicentry == null) { continue; }
-                    i.SpoilerLocation = new List<string> { dicentry.SpoilerLocation };
-                    i.SpoilerItem = new List<string> { dicentry.SpoilerItem };
+                    i.SpoilerLocation = (string.IsNullOrWhiteSpace(dicentry.SpoilerLocation))
+                            ? new List<string> { i.LocationName } : dicentry.SpoilerLocation.Split('|').ToList();
+                    i.SpoilerItem = (string.IsNullOrWhiteSpace(dicentry.SpoilerItem))
+                        ? new List<string> { i.ItemName } : dicentry.SpoilerItem.Split('|').ToList();
                 }
                 return true;
             } catch { }
+            //Pre Tracker Instance Addition
             try
             {
                 string[] options = File.ReadAllLines(file);
@@ -421,6 +417,7 @@ namespace MMR_Tracker.Class_Files
         public static void SaveState(LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicEntry> Logic = null )
         {
             int MaxUndoCount = (int)Math.Floor(Math.Pow(((double)5000 / (double)Instance.Logic.Count()), 1.5)); //Reduce the max count based on the size of the logic.
+            if (MaxUndoCount < 3) { MaxUndoCount = 3; }
             if (Logic == null) { Logic = Instance.Logic; }
             Instance.UndoList.Add(Utility.CloneLogicList(Logic));
             if (Instance.UndoList.Count() > MaxUndoCount) { Instance.UndoList.RemoveAt(0); }
@@ -431,7 +428,7 @@ namespace MMR_Tracker.Class_Files
         {
             if (Instance.UndoList.Any())
             {
-                setUnsavedChanges(Instance);
+                SetUnsavedChanges(Instance);
                 var lastItem = Instance.UndoList.Count - 1;
                 Instance.RedoList.Add(Utility.CloneLogicList(Instance.Logic));
                 Instance.Logic = Utility.CloneLogicList(Instance.UndoList[lastItem]);
@@ -443,7 +440,7 @@ namespace MMR_Tracker.Class_Files
         {
             if (Instance.RedoList.Any())
             {
-                setUnsavedChanges(Instance);
+                SetUnsavedChanges(Instance);
                 var lastItem = Instance.RedoList.Count - 1;
                 Instance.UndoList.Add(Utility.CloneLogicList(Instance.Logic));
                 Instance.Logic = Utility.CloneLogicList(Instance.RedoList[lastItem]);
@@ -504,8 +501,7 @@ namespace MMR_Tracker.Class_Files
                     if (firsttime == DialogResult.Yes)
                     {
                         MessageBox.Show("Please Take this opportunity to familliarize yourself with how to use this tracker. There are many features that are not obvious or explained anywhere outside of the about page. This information can be accessed at any time by selecting 'Info' -> 'About'. Click OK to show the About Page. Once you have read through the information, close the window to return to setup.", "How to Use", MessageBoxButtons.OK);
-                        InformationDisplay DebugScreen = new InformationDisplay();
-                        DebugScreen.DebugFunction = 2;
+                        InformationDisplay DebugScreen = new InformationDisplay { DebugFunction = 2 };
                         DebugScreen.ShowDialog();
                     }
 
@@ -590,7 +586,7 @@ namespace MMR_Tracker.Class_Files
             int count = 0;
             foreach (var entry in Instance.Logic)
             {
-                if (entry.RandomizedItem == item && entry.Checked && entry.ItemBelongsToMe()) { count = count + 1; }
+                if (entry.RandomizedItem == item && entry.Checked && entry.ItemBelongsToMe()) { count += 1; }
             }
             return count > 1;
         }
@@ -651,9 +647,9 @@ namespace MMR_Tracker.Class_Files
             }
             string message = "Logic Entries used:\n";
             foreach (var i in ItemsUsed) { message = message + (LogicObjects.MainTrackerInstance.Logic[i].ItemName ?? LogicObjects.MainTrackerInstance.Logic[i].DictionaryName) + "\n"; }
-            message = message + "\nReal items used:\n";
+            message += "\nReal items used:\n";
             foreach (var i in Requirements) { message = message + LogicObjects.MainTrackerInstance.Logic[i].ItemName + "\n"; }
-            message = message + "\nFake Items Breakdown:\n";
+            message += "\nFake Items Breakdown:\n";
             foreach (var i in FakeItems.OrderBy(x => LogicObjects.MainTrackerInstance.Logic[x].DictionaryName)) 
             {
                 var ItemInPlaythrough = Playthrough.Find(x => x.Check.ID == i) ?? new LogicObjects.PlaythroughItem { ItemsUsed = new List<int>() };
@@ -666,10 +662,12 @@ namespace MMR_Tracker.Class_Files
                     message = message + ">>" + ((L.IsFake) ? L.DictionaryName : L.ItemName ?? L.DictionaryName) + "\n";
                 }
             }
-            InformationDisplay Display = new InformationDisplay();
-            Display.Text = Entry.LocationName + " Was Unlocked with:";
-            InformationDisplay.Playthrough = message.Split( new[] { "\n" }, StringSplitOptions.None).ToList();
-            Display.DebugFunction = 4;
+            InformationDisplay Display = new InformationDisplay
+            {
+                Text = Entry.LocationName + " Was Unlocked with:",
+                DebugFunction = 4
+            };
+            InformationDisplay.Playthrough = message.Split(new[] { "\n" }, StringSplitOptions.None).ToList();
             Display.Show();
         }
         public static List<int> ParseLocationAndJunkSettingString(string c)
@@ -865,14 +863,13 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool TestForTextSpoiler(string[] RawLogicFile)
         {
-            LogicObjects.GameplaySettings SettingFile = null;
             foreach (var line in RawLogicFile)
             {
                 if (line.StartsWith("Settings:"))
                 {
                     var Newline = line.Replace("Settings:", "\"GameplaySettings\":");
                     Newline = "{" + Newline + "}";
-                    try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings; }
+                    try { LogicObjects.GameplaySettings SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings; }
                     catch { return false; }
                     return true;
                 }

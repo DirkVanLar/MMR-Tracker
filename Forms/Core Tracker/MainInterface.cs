@@ -242,7 +242,7 @@ namespace MMR_Tracker_V2
             if (!LogicObjects.MainTrackerInstance.Options.CoupleEntrances) { MessageBox.Show("Entrances will not uncouple automatically."); }
             if (LogicObjects.MainTrackerInstance.Options.CoupleEntrances)
             {
-                Tools.setUnsavedChanges(LogicObjects.MainTrackerInstance);
+                Tools.SetUnsavedChanges(LogicObjects.MainTrackerInstance);
                 Tools.SaveState(LogicObjects.MainTrackerInstance);
                 foreach (var entry in LogicObjects.MainTrackerInstance.Logic)
                 {
@@ -1355,7 +1355,7 @@ namespace MMR_Tracker_V2
 
             if (!CIF.ItemStateChanged && ItemsCameFromPlayer == -2) { return; }
             Tools.SaveState(LogicObjects.MainTrackerInstance, Templogic); //Now that we have successfully checked/Marked an object we can commit to a full save state
-            Tools.setUnsavedChanges(LogicObjects.MainTrackerInstance);
+            Tools.SetUnsavedChanges(LogicObjects.MainTrackerInstance);
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
 
             if (ItemsCameFromPlayer == -2) { FireEvents(LB, null, false); }

@@ -35,17 +35,17 @@ namespace MMR_Tracker.Forms.Sub_Forms
             WriteToListBox();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TxtSearch_TextChanged(object sender, EventArgs e)
         {
             WriteToListBox();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void ChkAddSeperate_CheckedChanged(object sender, EventArgs e)
         {
             AddCondSeperately = checkBox1.Checked;
         }
 
-        private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
+        private void LvConditionalSelect_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (Updating) { return; }
             var NewItem = e.Item.Tag as LogicObjects.LogicEntry;
@@ -67,8 +67,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             var TempList = new List<ListViewItem>();
             foreach (var i in ListContent)
             {
-                LogicObjects.ListItem ListItem = new LogicObjects.ListItem();
-                ListItem.LocationEntry = i;
+                LogicObjects.ListItem ListItem = new LogicObjects.ListItem { LocationEntry = i };
                 switch (Display)
                 {
                     case 0:
@@ -103,9 +102,11 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 if (string.IsNullOrWhiteSpace(ListItem.DisplayName)) { ListItem.DisplayName = i.DictionaryName + "DidError"; }
                 if (Utility.FilterSearch(ListItem.LocationEntry, textBox1.Text, ListItem.DisplayName))
                 {
-                    ListViewItem item = new ListViewItem();
-                    item.Text = ListItem.DisplayName;
-                    item.Tag = ListItem.LocationEntry;
+                    ListViewItem item = new ListViewItem
+                    {
+                        Text = ListItem.DisplayName,
+                        Tag = ListItem.LocationEntry
+                    };
                     TempList.Add(item);
                 }
             }
@@ -124,7 +125,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void BtnAddAndClose_Click(object sender, EventArgs e)
         {
             foreach (var i in CheckedItems.Where(x => UsedInstance.ItemInRange(x)))
             {
@@ -134,7 +135,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             this.Close();
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void BtnAddAndNew_Click(object sender, EventArgs e)
         {
             foreach (var i in CheckedItems.Where(x => UsedInstance.ItemInRange(x)))
             {
@@ -148,24 +149,30 @@ namespace MMR_Tracker.Forms.Sub_Forms
             WriteToListBox();
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        private void BtnCreateTemplate_Click(object sender, EventArgs e)
         {
             CheckedTemplate.Clear();
-            foreach (var i in CheckedItems) { CheckedTemplate.Add(i); listBox1.Items.Add(UsedInstance.Logic[i].DictionaryName); }
+            listBox1.Items.Clear();
+            foreach (var i in CheckedItems) 
+            { 
+                CheckedTemplate.Add(i);
+                LogicObjects.ListItem listItem = new LogicObjects.ListItem { DisplayName = UsedInstance.Logic[i].DictionaryName, PathID = UsedInstance.Logic[i].ID };
+                listBox1.Items.Add(listItem); 
+            }
         }
 
-        private void Button4_Click(object sender, EventArgs e)
+        private void BtnClearTemplate_Click(object sender, EventArgs e)
         {
             CheckedTemplate.Clear();
             listBox1.Items.Clear();
         }
 
-        private void Button5_Click(object sender, EventArgs e)
+        private void BtnParseLogic_Click(object sender, EventArgs e)
         {
             LogicEditor.EditorForm.RunLogicParser();
         }
 
-        private void Button6_Click(object sender, EventArgs e)
+        private void BtnCreateCombinations_Click(object sender, EventArgs e)
         {
             LogicEditor.EditorForm.ContextMenuAddPermutations(sender, e);
         }
@@ -207,6 +214,19 @@ namespace MMR_Tracker.Forms.Sub_Forms
         private void TextBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Middle) { textBox1.Clear(); }
+        }
+
+        private void LbTemplate_DoubleClick(object sender, EventArgs e)
+        {
+            if (!(listBox1.SelectedItem is LogicObjects.ListItem)) { return; }
+            var Item = listBox1.SelectedItem as LogicObjects.ListItem;
+            if (CheckedTemplate.IndexOf(Item.PathID) > -1) { CheckedTemplate.RemoveAt(CheckedTemplate.IndexOf(Item.PathID)); }
+            listBox1.Items.Clear();
+            foreach (var i in CheckedTemplate)
+            {
+                LogicObjects.ListItem listItem = new LogicObjects.ListItem { DisplayName = UsedInstance.Logic[i].DictionaryName, PathID = UsedInstance.Logic[i].ID };
+                listBox1.Items.Add(listItem);
+            }
         }
     }
 }
