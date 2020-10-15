@@ -160,9 +160,27 @@ namespace MMR_Tracker_V2
         public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
-            if (path.Contains(".txt") || path.Contains(".json")) { SpoilerData = Tools.ReadTextSpoilerlog(Instance, File.ReadAllLines(path)); }
+            if (path.Contains(".txt") || path.Contains(".json")) 
+            {
+                bool TXTOverride = false;
+                if (Instance.IsMM())
+                {
+                    var txs = MessageBox.Show("If possible, the HTML spoiler log should always be imported in place of the text spoiler log.\n\n The text spoiler log will work most of the time but may be inconsistent.\n\nWould you like to select an HTML spoiler log instead?", "Text log used", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (txs == DialogResult.Yes) 
+                    {
+                        var HTMLPath = Utility.FileSelect("Select an HTML Spoiler Log", "Spoiler Log (*html)|*html");
+                        if (HTMLPath != "")
+                        {
+                            TXTOverride = true;
+                            SpoilerData = Tools.ReadHTMLSpoilerLog(HTMLPath, Instance);
+                        }
+                    }
+                }
+                if (!TXTOverride) { SpoilerData = Tools.ReadTextSpoilerlog(Instance, File.ReadAllLines(path)); }
+            }
             else if (path.Contains(".html")) { SpoilerData = Tools.ReadHTMLSpoilerLog(path, Instance); }
             else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return;  }
+
             foreach (LogicObjects.SpoilerData data in SpoilerData)
             {
                 if (data.LocationID > -1 && data.ItemID > -2 && data.LocationID < Instance.Logic.Count && data.ItemID < Instance.Logic.Count)
