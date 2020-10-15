@@ -124,7 +124,7 @@ namespace MMR_Tracker_V2
                     {
                         if (subterm.Substring(1) == "") { continue; }
                         if (RandomizedItem == null) { valid = false; }
-                        else if (RandomizedItem.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
+                        else if ((RandomizedItem.ItemName ?? RandomizedItem.DictionaryName).ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                         if (Perfect && logic.ItemName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
                     }
                     else if (subterm[0] == '*')//Search Starred Items

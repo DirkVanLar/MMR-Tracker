@@ -139,6 +139,10 @@ namespace MMR_Tracker.Class_Files
 
             Dictionary<int, List<int>> usedId = new Dictionary<int, List<int>>();
             int PlayerID = instance.Options.MyPlayerID;
+
+            var IceTrapEntry = instance.Logic.Find(x => x.DictionaryName == "Ice Trap");
+            var NoAvailableItemsEntry = instance.Logic.Find(x => x.DictionaryName == "MMRTSpoilerLogErrorCatcher");
+
             foreach (string i in Spoiler)
             {
                 var line = i;
@@ -187,18 +191,28 @@ namespace MMR_Tracker.Class_Files
                     entry.ItemID = -2;
 
 
-                    //var location = instance.Logic.Find(x => x.SpoilerLocation == entry.LocationName || x.SpoilerLocation == GetAltSpoilerName(entry.LocationName));
                     var location = instance.Logic.Find(x => x.SpoilerLocation.Select(j => j ?? "".Trim()).Contains(entry.LocationName.Trim()));
-                    //if (location == null) { Debugging.Log($"Unable to find logic entry for {entry.LocationName}"); }
-                    //else { Debugging.Log($"Entry {location.ID} is {entry.LocationName}"); }
 
                     var Item = instance.Logic.Find(x => x.SpoilerItem.Select(j => j ?? "".Trim()).Contains(entry.ItemName.Trim()) && !usedId[entry.BelongsTo].Contains(x.ID));
-                    //if (Item == null) { Debugging.Log($"Unable to find logic entry for {entry.ItemName}"); }
-                    //else {Debugging.Log($"Entry {Item.ID} is {entry.ItemName}"); }
 
-                    if (entry.ItemName.Contains("Ice Trap") || entry.ItemName == "Ice Trap" || (Item != null && Item.StartingItem()))
+                    //Handle Ice traps
+                    if (entry.ItemName.Contains("Ice Trap") || entry.ItemName == "Ice Trap")
+                    {
+                        if (IceTrapEntry == null) { Item = new LogicObjects.LogicEntry { ID = -1 }; }
+                        else { Item = IceTrapEntry; }
+                    }
+
+                    //If an item is a starting item, it will be junk when we find it in the world (MMR only)
+                    if (Item != null && Item.StartingItem() && instance.IsMM())
                     {
                         Item = new LogicObjects.LogicEntry { ID = -1 };
+                    }
+
+                    //If an item exists in the spoiler log, but doesn't have any unused items to assign, attempt to use a special error entry
+                    if (Item == null && NoAvailableItemsEntry != null)
+                    {
+                        var ItemExists = instance.Logic.Find(x => x.SpoilerItem.Select(j => j ?? "".Trim()).Contains(entry.ItemName.Trim())) != null;
+                        if (ItemExists) { Item = NoAvailableItemsEntry; }
                     }
 
                     if (Item != null && location != null)
