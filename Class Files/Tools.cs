@@ -202,12 +202,6 @@ namespace MMR_Tracker.Class_Files
                         else { Item = IceTrapEntry; }
                     }
 
-                    //If an item is a starting item, it will be junk when we find it in the world (MMR only)
-                    if (Item != null && Item.StartingItem() && instance.IsMM())
-                    {
-                        Item = new LogicObjects.LogicEntry { ID = -1 };
-                    }
-
                     //If an item exists in the spoiler log, but doesn't have any unused items to assign, attempt to use a special error entry
                     if (Item == null && NoAvailableItemsEntry != null)
                     {
