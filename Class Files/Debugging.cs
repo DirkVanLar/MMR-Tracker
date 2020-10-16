@@ -124,7 +124,8 @@ namespace MMR_Tracker_V2
             //GetAllUniqueCombos();
             //TestProgressive();
             //CreatePAcketData();
-            PromptBackup();
+            //PromptBackup();
+            FixMisnishLogic();
 
             void TestEncryption()
             {
@@ -406,6 +407,27 @@ namespace MMR_Tracker_V2
                 MainInterface.CurrentProgram.CheckItemSelected(CheckedItems,true);
                 LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance, true);
                 MainInterface.CurrentProgram.PrintToListBox();
+            }
+
+            void FixMisnishLogic()
+            {
+                string Input = "Items.Ocarina, Helpers.HasDamageSource, Items.PacciCane, (|Items.Flippers, (&Items.HyruleanBestiary,Items.PicoriLegend,Items.MaskHistory, Items.GripRing, (|Items.GustJar, Items.RocsCape)))";
+                Input = Input.Replace("Items.", "").Replace("Helpers.", "").Replace("Locations.", "");
+
+                var InputList = Input.ToArray();
+
+                List<char> Actions = new List<char> { '&' };
+
+                for(var i = 0; i < Input.Length; i++)
+                {
+                    if (Input[i] == '|') { Actions.Add('|'); InputList[i] = ' '; }
+                    if (Input[i] == '&') { Actions.Add('&'); InputList[i] = ' '; }
+                    if (Input[i] == ')') { Actions.RemoveAt(Actions.Count() - 1); }
+                    if (Input[i] == ',') { InputList[i] = Actions[Actions.Count() - 1]; }
+                }
+
+                string output = new string(InputList);
+                Console.WriteLine(output);
             }
         }
 
