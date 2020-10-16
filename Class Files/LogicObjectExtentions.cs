@@ -132,6 +132,13 @@ namespace MMR_Tracker.Class_Files
             int offset = (IndexValue) ? 0 : 1;
             return set.IndexOf(entry) + offset;
         }
+        public static int ProgressiveItemsAquired(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool Unique = true)
+        {
+            var set = entry.ProgressiveItemSet(Instance).Where(x => x.LogicItemAquired()).ToList();
+            var setIDs = set.Select(x => x.ID);
+            if (Unique) { return set.Where(x => x.LogicItemAquired()).Count(); }
+            return Instance.Logic.Where(x => setIDs.Contains(x.RandomizedItem) && x.Checked).Count();
+        }
         public static List<LogicObjects.LogicEntry> ProgressiveItemSet(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
             if (!Instance.Options.ProgressiveItems || !Instance.IsMM()) { return null; }
