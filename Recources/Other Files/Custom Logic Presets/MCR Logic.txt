@@ -1,0 +1,3216 @@
+-versionMCR 1
+- HasSword
+
+
+0
+0
+
+- HasSpin
+
+
+0
+0
+
+- CanSplit2
+
+
+0
+0
+
+- CanSplit3
+
+
+0
+0
+
+- CanSplit4
+
+
+0
+0
+
+- HasBottle
+
+
+0
+0
+
+- HasBow
+
+
+0
+0
+
+- HasLightBow
+
+
+0
+0
+
+- HasBoomerang
+
+
+0
+0
+
+- HasDamageSource
+
+
+0
+0
+
+- HasBeam
+
+
+0
+0
+
+- CanDownThrust
+
+
+0
+0
+
+- CanDestroyTrees
+
+
+0
+0
+
+- Inaccessible
+
+
+0
+0
+
+- PedItem1
+
+
+0
+0
+
+- PedItem2
+
+
+0
+0
+
+- PedItem3
+
+
+0
+0
+
+- SmithHouse
+
+
+0
+0
+
+- IntroItem1
+
+
+0
+0
+
+- IntroItem2
+
+
+0
+0
+
+- LinkMinishWaterHoleHeartPiece
+
+
+0
+0
+
+- HyruleWellTop
+
+
+0
+0
+
+- HyruleWellLeft
+
+
+0
+0
+
+- HyruleWellBottom
+
+
+0
+0
+
+- HyruleWellPillar
+
+
+0
+0
+
+- HyruleWellRight
+
+
+0
+0
+
+- PreCastleCaveHeartPiece
+
+
+0
+0
+
+- SwiftbladeScroll1
+
+
+0
+0
+
+- SwiftbladeScroll2
+
+
+0
+0
+
+- SwiftbladeScroll3
+
+
+0
+0
+
+- SwiftbladeScroll4
+
+
+0
+0
+
+- GrimbladeHeartPiece
+
+
+0
+0
+
+- GrimbladeScroll
+
+
+0
+0
+
+- CastleWaterLeft
+
+
+0
+0
+
+- CastleWaterRight
+
+
+0
+0
+
+- CafeLady
+
+
+0
+0
+
+- HearthLedge
+
+
+0
+0
+
+- HearthBackdoor
+
+
+0
+0
+
+- SchoolTop
+
+
+0
+0
+
+- SchoolGardenLeft
+
+
+0
+0
+
+- SchoolGardenMiddle
+
+
+0
+0
+
+- SchoolGardenRight
+
+
+0
+0
+
+- SchoolGardenHeartPiece
+
+
+0
+0
+
+- TownDiggingTop
+
+
+0
+0
+
+- TownDiggingRight
+
+
+0
+0
+
+- TownDiggingLeft
+
+
+0
+0
+
+- BakeryAttic
+
+
+0
+0
+
+- StockWellAttic
+
+
+0
+0
+
+- SimulationChest
+
+
+0
+0
+
+- RemShoeShop
+
+
+0
+0
+
+- Shop80Item
+
+
+0
+0
+
+- Shop300Item
+
+
+0
+0
+
+- Shop600Item
+
+
+0
+0
+
+- ShopDogfoodItem
+
+
+0
+0
+
+- CarlovReward
+
+
+0
+0
+
+- FigurineHouseLeft
+
+
+0
+0
+
+- FigurineHouseMiddle
+
+
+0
+0
+
+- FigurineHouseRight
+
+
+0
+0
+
+- FigurineHouseHeartPiece
+
+
+0
+0
+
+- JullietaBook
+
+
+0
+0
+
+- WrightAtticBook
+
+
+0
+0
+
+- FountainBig
+
+
+0
+0
+
+- FountainSmall
+
+
+0
+0
+
+- FountainHeartPiece
+
+
+0
+0
+
+- LibraryMinish
+
+
+0
+0
+
+- CuccoMinigame
+
+
+0
+0
+
+- TownBell
+
+
+0
+0
+
+- FlipsCaveBig
+
+
+0
+0
+
+- FlipsCaveSmall
+
+
+0
+0
+
+- TingleTrophyItem
+
+
+0
+0
+
+- AccessEastField
+
+
+0
+0
+
+- HillsKeeseCave
+
+
+0
+0
+
+- AboveHPHole
+
+
+0
+0
+
+- LonLonPot
+
+
+0
+0
+
+- LonLonCave
+
+
+0
+0
+
+- LonLonCaveSecret
+
+
+0
+0
+
+- LonLonHeartPiece
+
+
+0
+0
+
+- MinishRupeeFairy
+
+
+0
+0
+
+- AccessWestField
+
+
+0
+0
+
+- TrilbyBombCave
+
+
+0
+0
+
+- TrilbyMoleCaveLeft
+
+
+0
+0
+
+- TrilbyMoleCaveRight
+
+
+0
+0
+
+- BottleScrub
+
+
+0
+0
+
+- AccessMinishWoods
+
+
+0
+0
+
+- JabberNut
+
+
+0
+0
+
+- BelariBombs
+
+
+0
+0
+
+- MinishMiddleFlipperHole
+
+
+0
+0
+
+- MinishRightFlipperHole
+
+
+0
+0
+
+- MinishLeftFlipperHole
+
+
+0
+0
+
+- MinishLeftFlipperHoleHeartPiece
+
+
+0
+0
+
+- MinishLikeLikeDiggingCaveLeft
+
+
+0
+0
+
+- MinishLikeLikeDiggingCaveRight
+
+
+0
+0
+
+- MinishNorthHole
+
+
+0
+0
+
+- MinishWitchHut
+
+
+0
+0
+
+- MinishHeartPieceTop
+
+
+0
+0
+
+- MinishHeartPieceBottom
+
+
+0
+0
+
+- MinishVillageHeartPiece
+
+
+0
+0
+
+- AccessCrenel
+
+
+0
+0
+
+- AccessLowerCrenel
+
+
+0
+0
+
+- CrenelVineHole
+
+
+0
+0
+
+- CrenelMinishHouse
+
+
+0
+0
+
+- CrenelCaveDownstairs
+
+
+0
+0
+
+- CrenelHeartCaveLeft
+
+
+0
+0
+
+- CrenelHeartCaveRight
+
+
+0
+0
+
+- CrenelHeartCaveHeartPiece
+
+
+0
+0
+
+- CrenelFairyHeartPiece
+
+
+0
+0
+
+- CrenelGripScrub
+
+
+0
+0
+
+- GraybladeLeft
+
+
+0
+0
+
+- GraybladeRight
+
+
+0
+0
+
+- GraybladeHeartPiece
+
+
+0
+0
+
+- GraybladeScroll
+
+
+0
+0
+
+- CrenelBombFairy
+
+
+0
+0
+
+- CrenelDigCaveHeartPiece
+
+
+0
+0
+
+- CrenelBlockChest
+
+
+0
+0
+
+- Melari
+
+
+0
+0
+
+- GotScrolls
+
+
+0
+0
+
+- AccessWilds
+
+
+0
+0
+
+- WildsSouthCave
+
+
+0
+0
+
+- WildsDarknutCave
+
+
+0
+0
+
+- WildsDekuCaveRight
+
+
+0
+0
+
+- WildsMulldozerHole
+
+
+0
+0
+
+- WildsDiggingCaveLeft
+
+
+0
+0
+
+- WildsDiggingCaveRight
+
+
+0
+0
+
+- WildsTopChest
+
+
+0
+0
+
+- WildsTopRightCaveHeartPiece
+
+
+0
+0
+
+- SwiftbladeTheFirstHeartPiece
+
+
+0
+0
+
+- SwiftbladeTheFirstScroll
+
+
+0
+0
+
+- RuinsBombCave
+
+
+0
+0
+
+- RuinsMinishHome
+
+
+0
+0
+
+- RuinsMinishCaveHeartPiece
+
+
+0
+0
+
+- RuinsArmosKillLeft
+
+
+0
+0
+
+- RuinsArmosKillRight
+
+
+0
+0
+
+- AccessHyliaNorth
+
+
+0
+0
+
+- AccessHyliaSouth
+
+
+0
+0
+
+- StockwellDog
+
+
+0
+0
+
+- HyliaNorthMinishHole
+
+
+0
+0
+
+- HyliaMayorCabin
+
+
+0
+0
+
+- WitchDiggingCave
+
+
+0
+0
+
+- HyliaSunkenHeartPiece
+
+
+0
+0
+
+- HyliaBottomHeartPiece
+
+
+0
+0
+
+- WavebladeHeartPiece
+
+
+0
+0
+
+- WavebladeScroll
+
+
+0
+0
+
+- AccessTreasureCave
+
+
+0
+0
+
+- HyliaCapeCaveTopRight
+
+
+0
+0
+
+- HyliaCapeCaveBottomLeft
+
+
+0
+0
+
+- HyliaCapeCaveTopLeft
+
+
+0
+0
+
+- HyliaCapeCaveTopMiddle
+
+
+0
+0
+
+- HyliaCapeCaveEntrance
+
+
+0
+0
+
+- HyliaCapeCaveBottomRight
+
+
+0
+0
+
+- HyliaCapeCaveBottomMiddle
+
+
+0
+0
+
+- HyliaPostCapeCaveHeartPiece
+
+
+0
+0
+
+- HyliaPreCapeCaveHeartPiece
+
+
+0
+0
+
+- AccessValley
+
+
+0
+0
+
+- ArrowFairy
+
+
+0
+0
+
+- DampeKey
+
+
+0
+0
+
+- RoyalValleyGraveHeartPiece
+
+
+0
+0
+
+- RoyalValleyLostWoodsChest
+
+
+0
+0
+
+- AccessCrypt
+
+
+0
+0
+
+- CryptGibdoLeft
+
+
+0
+0
+
+- CryptGibdoRight
+
+
+0
+0
+
+- CryptLeft
+
+
+0
+0
+
+- CryptRight
+
+
+0
+0
+
+- KingGift
+
+
+0
+0
+
+- AccessFallsNorth
+
+
+0
+0
+
+- FallsBehindWall
+
+
+0
+0
+
+- FallsCliff
+
+
+0
+0
+
+- FallsTopCaveBomb
+
+
+0
+0
+
+- FallsTopCaveFree
+
+
+0
+0
+
+- FallsUpperHeartPiece
+
+
+0
+0
+
+- AccessFallsSouth
+
+
+0
+0
+
+- FallsLowerCaveLeft
+
+
+0
+0
+
+- FallsLowerCaveRight
+
+
+0
+0
+
+- FallsLowerHeartPiece
+
+
+0
+0
+
+- AccessClouds
+
+
+0
+0
+
+- CloudsFreeChest
+
+
+0
+0
+
+- CloudsNorthKill
+
+
+0
+0
+
+- CloudsSouthKill
+
+
+0
+0
+
+- CloudsSouthMiddle
+
+
+0
+0
+
+- CloudsWestBottom
+
+
+0
+0
+
+- CloudsWestLeft
+
+
+0
+0
+
+- CloudsWestRight
+
+
+0
+0
+
+- CloudsSouthLeft
+
+
+0
+0
+
+- CloudsSouthRight
+
+
+0
+0
+
+- AccessUpperClouds
+
+
+0
+0
+
+- TowerBottomLeft
+
+
+0
+0
+
+- TowerBottomRight
+
+
+0
+0
+
+- TowerF2
+
+
+0
+0
+
+- GregalOne
+
+
+0
+0
+
+- GregalTwo
+
+
+0
+0
+
+- TowerRightBed
+
+
+0
+0
+
+- TowerMiddleBed
+
+
+0
+0
+
+- TowerLeftBed
+
+
+0
+0
+
+- TowerTopLeft
+
+
+0
+0
+
+- TowerTopRight
+
+
+0
+0
+
+- DeepwoodAccess
+
+
+0
+0
+
+- DeepwoodWiggler
+
+
+0
+0
+
+- DeepwoodPostWigglerHeartPiece
+
+
+0
+0
+
+- DeepwoodPreWigglerLeft
+
+
+0
+0
+
+- DeepwoodPreWigglerRight
+
+
+0
+0
+
+- DeepwoodPreWigglerHeartPiece
+
+
+0
+0
+
+- DeepwoodPreCompass
+
+
+0
+0
+
+- DeepwoodMulldozers
+
+
+0
+0
+
+- DeepwoodStatueRoom
+
+
+0
+0
+
+- DeepwoodWestWing
+
+
+0
+0
+
+- DeepwoodPreBarrel
+
+
+0
+0
+
+- DeepwoodSlugTorches
+
+
+0
+0
+
+- DeepwoodBasementNorth
+
+
+0
+0
+
+- DeepwoodBasementSwitch
+
+
+0
+0
+
+- DeepwoodBasementEast
+
+
+0
+0
+
+- DeepwoodUpstairsChest
+
+
+0
+0
+
+- CompleteDeepwood
+
+
+0
+0
+
+- DeepwoodBossItem
+
+
+0
+0
+
+- DeepwoodPrize
+
+
+0
+0
+
+- CoFAccess
+
+
+0
+0
+
+- CoFFlippedCart
+
+
+0
+0
+
+- CoFHeartPiece
+
+
+0
+0
+
+- CoFChuPit
+
+
+0
+0
+
+- CoFPillBugsPillarChest
+
+
+0
+0
+
+- CoFPillBugsHoleChest
+
+
+0
+0
+
+- CoFSoutheastSmall
+
+
+0
+0
+
+- CoFSoutheastBig
+
+
+0
+0
+
+- CoFBasementTop
+
+
+0
+0
+
+- CoFBasementBottom
+
+
+0
+0
+
+- CoFBlades
+
+
+0
+0
+
+- CoFSpinies
+
+
+0
+0
+
+- CoFBasementLavaLeft
+
+
+0
+0
+
+- CoFBasementLavaRight
+
+
+0
+0
+
+- CoFBasementLavaBig
+
+
+0
+0
+
+- CompleteCoF
+
+
+0
+0
+
+- CoFBossItem
+
+
+0
+0
+
+- CoFPrize
+
+
+0
+0
+
+- AccessFortress
+
+
+0
+0
+
+- FortressEntrance
+
+
+0
+0
+
+- FortressHeartPiece
+
+
+0
+0
+
+- FortressOutsideF2Left
+
+
+0
+0
+
+- FortressOutsideF2Middle
+
+
+0
+0
+
+- FortressOutsideF2Right
+
+
+0
+0
+
+- FortressOutsideF3Left
+
+
+0
+0
+
+- FortressOutsideF3Right
+
+
+0
+0
+
+- FortressOutsideBombWallBigChest
+
+
+0
+0
+
+- FortressOutsideBombWallSmallChest
+
+
+0
+0
+
+- FortressOutsideMinishHole
+
+
+0
+0
+
+- FortressRightDrop
+
+
+0
+0
+
+- FortressLeftDrop
+
+
+0
+0
+
+- FortressClonePuzzle
+
+
+0
+0
+
+- FortressEyegoreKill
+
+
+0
+0
+
+- FortressPedestal
+
+
+0
+0
+
+- FortressSkullFall
+
+
+0
+0
+
+- FortressSkullRoomLeft
+
+
+0
+0
+
+- FortressSkullRoomRight
+
+
+0
+0
+
+- FortressWizrobes
+
+
+0
+0
+
+- CompleteFortress
+
+
+0
+0
+
+- FortressBossItem
+
+
+0
+0
+
+- FortressPrize
+
+
+0
+0
+
+- AccessDroplets
+
+
+0
+0
+
+- DropletsMulldozers
+
+
+0
+0
+
+- DropletsWaterPot
+
+
+0
+0
+
+- DropletsSecondIceblock
+
+
+0
+0
+
+- DropletsFirstIceblock
+
+
+0
+0
+
+- DropletsBottomJump
+
+
+0
+0
+
+- DropletsEastLever
+
+
+0
+0
+
+- DropletsWestLever
+
+
+0
+0
+
+- DropletsEastFirst
+
+
+0
+0
+
+- DropletsIceMaze
+
+
+0
+0
+
+- DropletsOverhang
+
+
+0
+0
+
+- DropletsBluChu
+
+
+0
+0
+
+- DropletsBasement
+
+
+0
+0
+
+- DropletsFrozenIcePlain
+
+
+0
+0
+
+- DropletsFreeIcePlain
+
+
+0
+0
+
+- DropletsDarkMazeRight
+
+
+0
+0
+
+- DropletsDarkMazeLeft
+
+
+0
+0
+
+- DropletsDarkMazeMiddle
+
+
+0
+0
+
+- DropletsPostTwinFrozen
+
+
+0
+0
+
+- DropletsPreviewFrozen
+
+
+0
+0
+
+- DropletsIceWiggler
+
+
+0
+0
+
+- CompleteDroplets
+
+
+0
+0
+
+- DropletsBossItem
+
+
+0
+0
+
+- DropletsPrize
+
+
+0
+0
+
+- AccessPalace
+
+
+0
+0
+
+- PalaceWizrobeKill
+
+
+0
+0
+
+- PalaceFirstGrate
+
+
+0
+0
+
+- PalaceBraceletPuzzleKey
+
+
+0
+0
+
+- PalaceWideGap
+
+
+0
+0
+
+- PalaceBallAndChainSoldiers
+
+
+0
+0
+
+- PalaceFanLoop
+
+
+0
+0
+
+- PalacePreBigDoor
+
+
+0
+0
+
+- PalaceDarkBig
+
+
+0
+0
+
+- PalaceDarkSmall
+
+
+0
+0
+
+- PalaceManyRollers
+
+
+0
+0
+
+- PalaceTwinWizrobes
+
+
+0
+0
+
+- PalaceFirerobeTrio
+
+
+0
+0
+
+- PalaceHeartPiece
+
+
+0
+0
+
+- PalaceSwitchHit
+
+
+0
+0
+
+- PalacePreBoss
+
+
+0
+0
+
+- PalaceBlockMaze
+
+
+0
+0
+
+- PalaceDetour
+
+
+0
+0
+
+- CompletePalace
+
+
+0
+0
+
+- PalaceBossItem
+
+
+0
+0
+
+- PalacePrize
+
+
+0
+0
+
+- BeatVaati
+
+
+0
+0
+
+- DHCAccess
+
+
+0
+0
+
+- CastleBigDoorsOpen
+
+
+0
+0
+
+- CastleKing
+
+
+0
+0
+
+- CastleBasement
+
+
+0
+0
+
+- CastleClones
+
+
+0
+0
+
+- CastlePostThrone
+
+
+0
+0
+
+- CastleTopLeftTower
+
+
+0
+0
+
+- CastleTopRightTower
+
+
+0
+0
+
+- CastleLowerLeftTower
+
+
+0
+0
+
+- CastleLowerRightTower
+
+
+0
+0
+
+- CastleBigBlock
+
+
+0
+0
+
+- MinishBottomLeftFusion
+
+
+0
+0
+
+- MinishMiddleRightFusion
+
+
+0
+0
+
+- MinishMiddleFusion
+
+
+0
+0
+
+- MinishMiddleLeftFusion
+
+
+0
+0
+
+- MinishTopLeftFusion
+
+
+0
+0
+
+- MinishMinishPathFusion
+
+
+0
+0
+
+- MinishCrackChest
+
+
+0
+0
+
+- HyliaMinishPathFusion
+
+
+0
+0
+
+- SchoolMinishPathFusion
+
+
+0
+0
+
+- TownWaterfallChest
+
+
+0
+0
+
+- TingleTreeTopLeft
+
+
+0
+0
+
+- TingleTreeTopRight
+
+
+0
+0
+
+- TingleTreeBottomLeft
+
+
+0
+0
+
+- TingleTreeBottomRight
+
+
+0
+0
+
+- CastleGardenRightMinishHole
+
+
+0
+0
+
+- CastleGardenLeftMinishHole
+
+
+0
+0
+
+- LinkHouseFusion
+
+
+0
+0
+
+- LonLonFallsFusion
+
+
+0
+0
+
+- LonLonMinishPathFusion
+
+
+0
+0
+
+- GoronSmallChest
+
+
+0
+0
+
+- TrilbyTopFusion
+
+
+0
+0
+
+- TrilbyMiddleFusion
+
+
+0
+0
+
+- TrilbyWaterCave
+
+
+0
+0
+
+- WesternWoodChest
+
+
+0
+0
+
+- WesternWoodTopDig1
+
+
+0
+0
+
+- WesternWoodTopDig2
+
+
+0
+0
+
+- WesternWoodTopDig3
+
+
+0
+0
+
+- WesternWoodTopDig4
+
+
+0
+0
+
+- WesternWoodTopDig5
+
+
+0
+0
+
+- WesternWoodTopDig6
+
+
+0
+0
+
+- WesternWoodBottomDig1
+
+
+0
+0
+
+- WesternWoodBottomDig2
+
+
+0
+0
+
+- PercyHouseMoblin
+
+
+0
+0
+
+- PercyHouseReward
+
+
+0
+0
+
+- HyliaWaterDigCave
+
+
+0
+0
+
+- CrenelGreenWaterFusion
+
+
+0
+0
+
+- CrenelClimbFusion
+
+
+0
+0
+
+- CrenelRainPath
+
+
+0
+0
+
+- CrenelLowerLeftFusion
+
+
+0
+0
+
+- PreMelariFusion
+
+
+0
+0
+
+- WildsTopRightCrack
+
+
+0
+0
+
+- WildsTopLeftCrack
+
+
+0
+0
+
+- WildsMiddleLeftCrack
+
+
+0
+0
+
+- WildsLongJourneyCrack
+
+
+0
+0
+
+- WildsMinishWaterCaveChest
+
+
+0
+0
+
+- RuinsPillarsFusion
+
+
+0
+0
+
+- RuinsCrackFusion
+
+
+0
+0
+
+- PreValleyFusion
+
+
+0
+0
+
+- RoyalValleyLeftFusion
+
+
+0
+0
+
+- RoyalValleyRightFusion
+
+
+0
+0
+
+- GinaGrave
+
+
+0
+0
+
+- FallsNearCrestFusion
+
+
+0
+0
+
+- FallsWaterCaveEnd
+
+
+0
+0
+
+- RuinsBombBag
+
+
+0
+0
+
+- LonLonWallet
+
+
+0
+0
+
+- LonLonBottle3
+
+
+0
+0
+
+- GoronBottle4
+
+
+0
+0
+
+- TingleBoomerang
+
+
+0
+0
+
+- RuinsBeanStalk
+
+
+0
+0
+
+- BelariRemote
+
+
+0
+0
+
+- RuinsArrowButterfly
+
+
+0
+0
+
+- WildsDigButterfly
+
+
+0
+0
+
+- ValleySwimButterfly
+
+
+0
+0
+
+- CrenelBeanstalkHP
+
+
+0
+0
+
+- HyliaBeanstalkHP
+
+
+0
+0
+
+- HyliaBeanstalkLeft
+
+
+0
+0
+
+- HyliaBeanstalkRight
+
+
+0
+0
+
+- HillsBeanstalkHP
+
+
+0
+0
+
+- HillsBeanstalkRight
+
+
+0
+0
+
+- HillsBeanstalkLeft
+
+
+0
+0
+
+- WesternBeanstalk
+
+
+0
+0
+
+- WesternTreeHouseHP
+
+
+0
+0
+
+- LinkHouseTreeHP
+
+
+0
+0
+
+- FallsWaterDigCaveHP
+
+
+0
+0
+
+- FallsWaterfallHP
+
+
+0
+0
+
+- WildsMinishWaterCaveHP
+
+
+0
+0
+
+- CastleGardenDrainedFountainHP
+
+
+0
+0
+
+- LibrariCabinContainer
+
+
+0
+0
+
+- ScarbladeScroll
+
+
+0
+0
+
+- SplitbladeScroll
+
+
+0
+0
+
+- GreatbladeScroll
+
+
+0
+0
+
+- HearthPot
+
+
+0
+0
+
+- DropletsIceMazePot
+
+
+0
+0
+
+- FoWRightSideTopPot
+
+
+0
+0
+
+- FoWRightSideBottomPot
+
+
+0
+0
+
+- LonLonBuriedTreasure
+
+
+0
+0
+
+- NorthHyruleFieldBuriedTreasure
+
+
+0
+0
+
+- TopLeftCloudWall
+
+
+0
+0
+
+- TopRightCloudWall
+
+
+0
+0
+
+- BottomMiddleCloudWall
+
+
+0
+0
+
+- BottomRightmostTopCloudWall
+
+
+0
+0
+
+- BottomLeftCloudWall
+
+
+0
+0
+
+- BottomRightCloudWall
+
+
+0
+0
+
+- BottomRightmostBottomCloudWall
+
+
+0
+0
+
+- FallsBuriedTopTreasure
+
+
+0
+0
+
+- FallsBuriedBottomTreasure
+
+
+0
+0
+
+- MelariMining1
+
+
+0
+0
+
+- MelariMining2
+
+
+0
+0
+
+- MelariMining3
+
+
+0
+0
+
+- MelariMining4
+
+
+0
+0
+
+- MelariMining5
+
+
+0
+0
+
+- MelariMining6
+
+
+0
+0
+
+- MelariMining7
+
+
+0
+0
+
+- MelariMining8
+
+
+0
+0
+
+- WildsSunkenKinstoneTop
+
+
+0
+0
+
+- WildsSunkenKinstoneMiddle
+
+
+0
+0
+
+- WildsSunkenKinstoneBottom
+
+
+0
+0
+
+- CrenelFairyCaveRupee1
+
+
+0
+0
+
+- CrenelFairyCaveRupee2
+
+
+0
+0
+
+- CrenelFairyCaveRupee3
+
+
+0
+0
+
+- CrenelOutsideRupee
+
+
+0
+0
+
+- FallsLowerRupee1
+
+
+0
+0
+
+- FallsLowerRupee2
+
+
+0
+0
+
+- FallsLowerRupee3
+
+
+0
+0
+
+- FallsUpperCaveRupee1
+
+
+0
+0
+
+- FallsUpperCaveRupee2
+
+
+0
+0
+
+- FallsUpperCaveRupee3
+
+
+0
+0
+
+- FallsUpperCaveRupee4
+
+
+0
+0
+
+- FallsUpperCaveRupee5
+
+
+0
+0
+
+- FallsUpperCaveRupee6
+
+
+0
+0
+
+- FallsUpperCaveRupee7
+
+
+0
+0
+
+- FallsUpperCaveRupee8
+
+
+0
+0
+
+- FallsUpperCaveRupee9
+
+
+0
+0
+
+- FallsUpperCaveWaterRupee1
+
+
+0
+0
+
+- FallsUpperCaveWaterRupee2
+
+
+0
+0
+
+- FallsUpperCaveWaterRupee3
+
+
+0
+0
+
+- FallsUpperCaveWaterRupee4
+
+
+0
+0
+
+- FallsUpperCaveWaterRupee5
+
+
+0
+0
+
+- FallsUpperCaveWaterRupee6
+
+
+0
+0
+
+- FortressBigRupee
+
+
+0
+0
+
+- FortressF1Rupee1
+
+
+0
+0
+
+- FortressF1Rupee2
+
+
+0
+0
+
+- FortressF1Rupee3
+
+
+0
+0
+
+- FortressF1Rupee4
+
+
+0
+0
+
+- FortressF1Rupee5
+
+
+0
+0
+
+- FortressF1Rupee6
+
+
+0
+0
+
+- FortressF1Rupee7
+
+
+0
+0
+
+- DropletsUpperWaterRupee1
+
+
+0
+0
+
+- DropletsUpperWaterRupee2
+
+
+0
+0
+
+- DropletsUpperWaterRupee3
+
+
+0
+0
+
+- DropletsUpperWaterRupee4
+
+
+0
+0
+
+- DropletsUpperWaterRupee5
+
+
+0
+0
+
+- DropletsUpperWaterRupee6
+
+
+0
+0
+
+- DropletsLowerWaterRupee1
+
+
+0
+0
+
+- DropletsLowerWaterRupee2
+
+
+0
+0
+
+- DropletsLowerWaterRupee3
+
+
+0
+0
+
+- DropletsLowerWaterRupee4
+
+
+0
+0
+
+- DropletsLowerWaterRupee5
+
+
+0
+0
+
+- DropletsLowerWaterRupee6
+
+
+0
+0
+
+- DropletsLeftPathRupee1
+
+
+0
+0
+
+- DropletsLeftPathRupee2
+
+
+0
+0
+
+- DropletsLeftPathRupee3
+
+
+0
+0
+
+- DropletsLeftPathRupee4
+
+
+0
+0
+
+- DropletsLeftPathRupee5
+
+
+0
+0
+
+- DropletsRightPathRupee1
+
+
+0
+0
+
+- DropletsRightPathRupee2
+
+
+0
+0
+
+- DropletsRightPathRupee3
+
+
+0
+0
+
+- DropletsRightPathRupee4
+
+
+0
+0
+
+- DropletsRightPathRupee5
+
+
+0
+0
+
+- CoFRupee1
+
+
+0
+0
+
+- CoFRupee2
+
+
+0
+0
+
+- CoFRupee3
+
+
+0
+0
+
+- CoFRupee4
+
+
+0
+0
+
+- CoFRupee5
+
+
+0
+0
+
+- PalaceRupee1
+
+
+0
+0
+
+- PalaceRupee2
+
+
+0
+0
+
+- PalaceRupee3
+
+
+0
+0
+
+- PalaceRupee4
+
+
+0
+0
+
+- PalaceRupee5
+
+
+0
+0
+
+- FlipsCaveWaterfallRupee
+
+
+0
+0
+
+- FarmCaveRupee
+
+
+0
+0
+
+- CrenelBeanstalkRupee1
+
+
+0
+0
+
+- CrenelBeanstalkRupee2
+
+
+0
+0
+
+- CrenelBeanstalkRupee3
+
+
+0
+0
+
+- CrenelBeanstalkRupee4
+
+
+0
+0
+
+- CrenelBeanstalkRupee5
+
+
+0
+0
+
+- CrenelBeanstalkRupee6
+
+
+0
+0
+
+- CrenelBeanstalkRupee7
+
+
+0
+0
+
+- CrenelBeanstalkRupee8
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee1
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee2
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee3
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee4
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee5
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee6
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee7
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee8
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee9
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee10
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee11
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee12
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee13
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee14
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee15
+
+
+0
+0
+
+- WesternWoodBeanstalkRupee16
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee1
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee2
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee3
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee4
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee5
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee6
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee7
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee8
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee9
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee10
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee11
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee12
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee13
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee14
+
+
+0
+0
+
+- LinkHousePuddleCaveRupee15
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee1
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee2
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee3
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee4
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee5
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee6
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee7
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee8
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee9
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee10
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee11
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee12
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee13
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee14
+
+
+0
+0
+
+- TrilbyPuddleCaveRupee15
+
+
+0
+0

@@ -1,0 +1,491 @@
+DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem
+PedItem1,Ped Item1,Smith Sword,Overworld,Item,PedItem1,SmithSword
+PedItem2,Ped Item2,Smith Sword,Overworld,Item,PedItem2,SmithSword
+PedItem3,Ped Item3,Smith Sword,Overworld,Item,PedItem3,SmithSword
+SmithHouse,Smith House,,Overworld,Item,SmithHouse,
+IntroItem1,Intro Item1,Smith Sword,Overworld,Item,IntroItem1,SmithSword
+IntroItem2,Intro Item2,Shield,Overworld,Item,IntroItem2,Shield
+LinkMinishWaterHoleHeartPiece,Link Minish Water Hole Heart Piece,,Overworld,Item,LinkMinishWaterHoleHeartPiece,
+HyruleWellTop,Hyrule Well Top,Shield,Overworld,Item,HyruleWellTop,Shield
+HyruleWellLeft,Hyrule Well Left,,Overworld,Item,HyruleWellLeft,
+HyruleWellBottom,Hyrule Well Bottom,,Overworld,Item,HyruleWellBottom,
+HyruleWellPillar,Hyrule Well Pillar,,Overworld,Item,HyruleWellPillar,
+HyruleWellRight,Hyrule Well Right,,Overworld,Item,HyruleWellRight,
+PreCastleCaveHeartPiece,Pre Castle Cave Heart Piece,,Overworld,Item,PreCastleCaveHeartPiece,
+SwiftbladeScroll1,Swiftblade Scroll1,Spin Attack,Overworld,Item,SwiftbladeScroll1,SpinAttack
+SwiftbladeScroll2,Swiftblade Scroll2,Rock Breaker,Overworld,Item,SwiftbladeScroll2,RockBreaker
+SwiftbladeScroll3,Swiftblade Scroll3,Dash Attack,Overworld,Item,SwiftbladeScroll3,DashAttack
+SwiftbladeScroll4,Swiftblade Scroll4,Down Thrust,Overworld,Item,SwiftbladeScroll4,DownThrust
+GrimbladeHeartPiece,Grimblade Heart Piece,,Overworld,Item,GrimbladeHeartPiece,
+GrimbladeScroll,Grimblade Scroll,Sword Beam,Overworld,Item,GrimbladeScroll,SwordBeam
+CastleWaterLeft,Castle Water Left,Bomb Bag,Overworld,Item,CastleWaterLeft,BombBag
+CastleWaterRight,Castle Water Right,,Overworld,Item,CastleWaterRight,
+CafeLady,Cafe Lady,Kinstone X. Red Spike,Overworld,Item,CafeLady,KinstoneX.RedSpike
+HearthLedge,Hearth Ledge,,Overworld,Item,HearthLedge,
+HearthBackdoor,Hearth Backdoor,,Overworld,Item,HearthBackdoor,
+SchoolTop,School Top,,Overworld,Item,SchoolTop,
+SchoolGardenLeft,School Garden Left,,Overworld,Item,SchoolGardenLeft,
+SchoolGardenMiddle,School Garden Middle,,Overworld,Item,SchoolGardenMiddle,
+SchoolGardenRight,School Garden Right,,Overworld,Item,SchoolGardenRight,
+SchoolGardenHeartPiece,School Garden Heart Piece,,Overworld,Item,SchoolGardenHeartPiece,
+TownDiggingTop,Town Digging Top,,Overworld,Item,TownDiggingTop,
+TownDiggingRight,Town Digging Right,,Overworld,Item,TownDiggingRight,
+TownDiggingLeft,Town Digging Left,,Overworld,Item,TownDiggingLeft,
+BakeryAttic,Bakery Attic,,Overworld,Item,BakeryAttic,
+StockWellAttic,Stock Well Attic,,Overworld,Item,StockWellAttic,
+SimulationChest,Simulation Chest,,Overworld,Item,SimulationChest,
+RemShoeShop,Rem Shoe Shop,,Overworld,Item,RemShoeShop,
+Shop80Item,Shop80 Item,Wallet,Overworld,Item,Shop80Item,Wallet
+Shop300Item,Shop300 Item,Boomerang,Overworld,Item,Shop300Item,Boomerang
+Shop600Item,Shop600 Item,Large Quiver,Overworld,Item,Shop600Item,LargeQuiver
+ShopDogfoodItem,Shop Dogfood Item,Dog Food Bottle,Overworld,Item,ShopDogfoodItem,DogFoodBottle
+CarlovReward,Carlov Reward,Carlov Medal,Overworld,Item,CarlovReward,CarlovMedal
+FigurineHouseLeft,Figurine House Left,,Overworld,Item,FigurineHouseLeft,
+FigurineHouseMiddle,Figurine House Middle,,Overworld,Item,FigurineHouseMiddle,
+FigurineHouseRight,Figurine House Right,,Overworld,Item,FigurineHouseRight,
+FigurineHouseHeartPiece,Figurine House Heart Piece,,Overworld,Item,FigurineHouseHeartPiece,
+JullietaBook,Jullieta Book,Hyrulean Bestiary,Overworld,Item,JullietaBook,HyruleanBestiary
+WrightAtticBook,Wright Attic Book,Picori Legend,Overworld,Item,WrightAtticBook,PicoriLegend
+FountainBig,Fountain Big,,Overworld,Item,FountainBig,
+FountainSmall,Fountain Small,,Overworld,Item,FountainSmall,
+FountainHeartPiece,Fountain Heart Piece,,Overworld,Item,FountainHeartPiece,
+LibraryMinish,Library Minish,,Overworld,Item,LibraryMinish,
+CuccoMinigame,Cucco Minigame,,Overworld,Item,CuccoMinigame,
+TownBell,Town Bell,Piece Of Heart,Overworld,Item,TownBell,PieceOfHeart
+FlipsCaveBig,Flips Cave Big,,Overworld,Item,FlipsCaveBig,
+FlipsCaveSmall,Flips Cave Small,,Overworld,Item,FlipsCaveSmall,
+TingleTrophyItem,Tingle Trophy Item,Tingle Trophy,Overworld,Item,TingleTrophyItem,TingleTrophy
+HillsKeeseCave,Hills Keese Cave,,Overworld,Item,HillsKeeseCave,
+AboveHPHole,Above H P Hole,,Hylia North,Item,AboveHPHole,
+LonLonPot,Lon Lon Pot,,East Field,Item,LonLonPot,
+LonLonCave,Lon Lon Cave,,Hylia North,Item,LonLonCave,
+LonLonCaveSecret,Lon Lon Cave Secret,,Overworld,Item,LonLonCaveSecret,
+LonLonHeartPiece,Lon Lon Heart Piece,,Hylia North,Item,LonLonHeartPiece,
+MinishRupeeFairy,Minish Rupee Fairy,,East Field,Item,MinishRupeeFairy,
+TrilbyBombCave,Trilby Bomb Cave,,West Field,Item,TrilbyBombCave,
+TrilbyMoleCaveLeft,Trilby Mole Cave Left,,West Field,Item,TrilbyMoleCaveLeft,
+TrilbyMoleCaveRight,Trilby Mole Cave Right,,West Field,Item,TrilbyMoleCaveRight,
+BottleScrub,Bottle Scrub,Bottle4,West Field,Item,BottleScrub,Bottle1
+JabberNut,Jabber Nut,Jabber Nut,Minish Woods,Item,JabberNut,JabberNut
+BelariBombs,Belari Bombs,,Minish Woods,Item,BelariBombs,
+MinishMiddleFlipperHole,Minish Middle Flipper Hole,,Minish Woods,Item,MinishMiddleFlipperHole,
+MinishRightFlipperHole,Minish Right Flipper Hole,,Minish Woods,Item,MinishRightFlipperHole,
+MinishLeftFlipperHole,Minish Left Flipper Hole,,Minish Woods,Item,MinishLeftFlipperHole,
+MinishLeftFlipperHoleHeartPiece,Minish Left Flipper Hole Heart Piece,,Minish Woods,Item,MinishLeftFlipperHoleHeartPiece,
+MinishLikeLikeDiggingCaveLeft,Minish Like Like Digging Cave Left,,Minish Woods,Item,MinishLikeLikeDiggingCaveLeft,
+MinishLikeLikeDiggingCaveRight,Minish Like Like Digging Cave Right,,Minish Woods,Item,MinishLikeLikeDiggingCaveRight,
+MinishNorthHole,Minish North Hole,,Hylia South,Item,MinishNorthHole,
+MinishWitchHut,Minish Witch Hut,,Minish Woods,Item,MinishWitchHut,
+MinishHeartPieceTop,Minish Heart Piece Top,,Minish Woods,Item,MinishHeartPieceTop,
+MinishHeartPieceBottom,Minish Heart Piece Bottom,,Minish Woods,Item,MinishHeartPieceBottom,
+MinishVillageHeartPiece,Minish Village Heart Piece,,Minish Woods,Item,MinishVillageHeartPiece,
+CrenelVineHole,Crenel Vine Hole,,Lower Crenel,Item,CrenelVineHole,
+CrenelMinishHouse,Crenel Minish House,,Lower Crenel,Item,CrenelMinishHouse,
+CrenelCaveDownstairs,Crenel Cave Downstairs,,Crenel,Item,CrenelCaveDownstairs,
+CrenelHeartCaveLeft,Crenel Heart Cave Left,,Lower Crenel,Item,CrenelHeartCaveLeft,
+CrenelHeartCaveRight,Crenel Heart Cave Right,,Lower Crenel,Item,CrenelHeartCaveRight,
+CrenelHeartCaveHeartPiece,Crenel Heart Cave Heart Piece,,Lower Crenel,Item,CrenelHeartCaveHeartPiece,
+CrenelFairyHeartPiece,Crenel Fairy Heart Piece,,Crenel,Item,CrenelFairyHeartPiece,
+CrenelGripScrub,Crenel Grip Scrub,Grip Ring,Crenel,Item,CrenelGripScrub,GripRing
+GraybladeLeft,Grayblade Left,,Crenel,Item,GraybladeLeft,
+GraybladeRight,Grayblade Right,,Crenel,Item,GraybladeRight,
+GraybladeHeartPiece,Grayblade Heart Piece,,Crenel,Item,GraybladeHeartPiece,
+GraybladeScroll,Grayblade Scroll,Roll Attack,Overworld,Item,GraybladeScroll,RollAttack
+CrenelBombFairy,Crenel Bomb Fairy,,Crenel,Item,CrenelBombFairy,
+CrenelDigCaveHeartPiece,Crenel Dig Cave Heart Piece,,Crenel,Item,CrenelDigCaveHeartPiece,
+CrenelBlockChest,Crenel Block Chest,,Crenel,Item,CrenelBlockChest,
+Melari,Melari,Smith Sword,Overworld,Item,Melari,SmithSword
+WildsSouthCave,Wilds South Cave,Kinstone X. Yellow Totem Prong,Wilds,Item,WildsSouthCave,KinstoneX.YellowTotemProng
+WildsDarknutCave,Wilds Darknut Cave,Kinstone X. Yellow Totem Prong,Wilds,Item,WildsDarknutCave,KinstoneX.YellowTotemProng
+WildsDekuCaveRight,Wilds Deku Cave Right,Kinstone X. Yellow Totem Prong,Wilds,Item,WildsDekuCaveRight,KinstoneX.YellowTotemProng
+WildsMulldozerHole,Wilds Mulldozer Hole,Bow,Wilds,Item,WildsMulldozerHole,Bow
+WildsDiggingCaveLeft,Wilds Digging Cave Left,,Wilds,Item,WildsDiggingCaveLeft,
+WildsDiggingCaveRight,Wilds Digging Cave Right,,Wilds,Item,WildsDiggingCaveRight,
+WildsTopChest,Wilds Top Chest,,Wilds,Item,WildsTopChest,
+WildsTopRightCaveHeartPiece,Wilds Top Right Cave Heart Piece,,Wilds,Item,WildsTopRightCaveHeartPiece,
+SwiftbladeTheFirstHeartPiece,Swiftblade The First Heart Piece,,Wilds,Item,SwiftbladeTheFirstHeartPiece,
+SwiftbladeTheFirstScroll,Swiftblade The First Scroll,Great Spin,Overworld,Item,SwiftbladeTheFirstScroll,GreatSpin
+RuinsBombCave,Ruins Bomb Cave,,Wilds,Item,RuinsBombCave,
+RuinsMinishHome,Ruins Minish Home,,Wilds,Item,RuinsMinishHome,
+RuinsMinishCaveHeartPiece,Ruins Minish Cave Heart Piece,,Wilds,Item,RuinsMinishCaveHeartPiece,
+RuinsArmosKillLeft,Ruins Armos Kill Left,,Wilds,Item,RuinsArmosKillLeft,
+RuinsArmosKillRight,Ruins Armos Kill Right,,Wilds,Item,RuinsArmosKillRight,
+StockwellDog,Stockwell Dog,Bottle4,Hylia North,Item,StockwellDog,Bottle2
+HyliaNorthMinishHole,Hylia North Minish Hole,,Hylia North,Item,HyliaNorthMinishHole,
+HyliaMayorCabin,Hylia Mayor Cabin,Mask History,Hylia South,Item,HyliaMayorCabin,MaskHistory
+WitchDiggingCave,Witch Digging Cave,,Hylia South,Item,WitchDiggingCave,
+HyliaSunkenHeartPiece,Hylia Sunken Heart Piece,,Hylia North,Item,HyliaSunkenHeartPiece,
+HyliaBottomHeartPiece,Hylia Bottom Heart Piece,,Hylia North,Item,HyliaBottomHeartPiece,
+WavebladeHeartPiece,Waveblade Heart Piece,,Hylia North,Item,WavebladeHeartPiece,
+WavebladeScroll,Waveblade Scroll,Peril Beam,Overworld,Item,WavebladeScroll,PerilBeam
+HyliaCapeCaveTopRight,Hylia Cape Cave Top Right,,Treasure Cave,Item,HyliaCapeCaveTopRight,
+HyliaCapeCaveBottomLeft,Hylia Cape Cave Bottom Left,,Treasure Cave,Item,HyliaCapeCaveBottomLeft,
+HyliaCapeCaveTopLeft,Hylia Cape Cave Top Left,,Treasure Cave,Item,HyliaCapeCaveTopLeft,
+HyliaCapeCaveTopMiddle,Hylia Cape Cave Top Middle,,Treasure Cave,Item,HyliaCapeCaveTopMiddle,
+HyliaCapeCaveEntrance,Hylia Cape Cave Entrance,,Treasure Cave,Item,HyliaCapeCaveEntrance,
+HyliaCapeCaveBottomRight,Hylia Cape Cave Bottom Right,,Treasure Cave,Item,HyliaCapeCaveBottomRight,
+HyliaCapeCaveBottomMiddle,Hylia Cape Cave Bottom Middle,,Treasure Cave,Item,HyliaCapeCaveBottomMiddle,
+HyliaPostCapeCaveHeartPiece,Hylia Post Cape Cave Heart Piece,,Treasure Cave,Item,HyliaPostCapeCaveHeartPiece,
+HyliaPreCapeCaveHeartPiece,Hylia Pre Cape Cave Heart Piece,,Hylia North,Item,HyliaPreCapeCaveHeartPiece,
+ArrowFairy,Arrow Fairy,,Overworld,Item,ArrowFairy,
+DampeKey,Dampe Key,,Valley,Item,DampeKey,
+RoyalValleyGraveHeartPiece,Royal Valley Grave Heart Piece,,Valley,Item,RoyalValleyGraveHeartPiece,
+RoyalValleyLostWoodsChest,Royal Valley Lost Woods Chest,,Valley,Item,RoyalValleyLostWoodsChest,
+CryptGibdoLeft,Crypt Gibdo Left,Bombs5,Crypt,Item,CryptGibdoLeft,Bombs5
+CryptGibdoRight,Crypt Gibdo Right,Small Key` R C_ S E T`,Crypt,Item,CryptGibdoRight,SmallKey`RC_SET`
+CryptLeft,Crypt Left,Small Key` R C_ S E T`,Crypt,Item,CryptLeft,SmallKey`RC_SET`
+CryptRight,Crypt Right,Small Key` R C_ S E T`,Crypt,Item,CryptRight,SmallKey`RC_SET`
+KingGift,King Gift,Kinstone X. Yellow Crown,Valley,Item,KingGift,KinstoneX.YellowCrown
+FallsBehindWall,Falls Behind Wall,,Falls North,Item,FallsBehindWall,
+FallsCliff,Falls Cliff,,Falls North,Item,FallsCliff,
+FallsTopCaveBomb,Falls Top Cave Bomb,,Falls North,Item,FallsTopCaveBomb,
+FallsTopCaveFree,Falls Top Cave Free,,Falls North,Item,FallsTopCaveFree,
+FallsUpperHeartPiece,Falls Upper Heart Piece,,Overworld,Item,FallsUpperHeartPiece,
+FallsLowerCaveLeft,Falls Lower Cave Left,,Falls South,Item,FallsLowerCaveLeft,
+FallsLowerCaveRight,Falls Lower Cave Right,,Falls South,Item,FallsLowerCaveRight,
+FallsLowerHeartPiece,Falls Lower Heart Piece,,Falls South,Item,FallsLowerHeartPiece,
+CloudsFreeChest,Clouds Free Chest,Kinstone X. Yellow Tornado Prong,Clouds,Item,CloudsFreeChest,KinstoneX.YellowTornadoProng
+CloudsNorthKill,Clouds North Kill,Kinstone X. Yellow Tornado Prong,Clouds,Item,CloudsNorthKill,KinstoneX.YellowTornadoProng
+CloudsSouthKill,Clouds South Kill,Kinstone X. Yellow Tornado Prong,Clouds,Item,CloudsSouthKill,KinstoneX.YellowTornadoProng
+CloudsSouthMiddle,Clouds South Middle,Kinstone X. Yellow Tornado Prong,Clouds,Item,CloudsSouthMiddle,KinstoneX.YellowTornadoProng
+CloudsWestBottom,Clouds West Bottom,Kinstone X. Yellow Tornado Prong,Clouds,Item,CloudsWestBottom,KinstoneX.YellowTornadoProng
+CloudsWestLeft,Clouds West Left,,Clouds,Item,CloudsWestLeft,
+CloudsWestRight,Clouds West Right,,Clouds,Item,CloudsWestRight,
+CloudsSouthLeft,Clouds South Left,,Clouds,Item,CloudsSouthLeft,
+CloudsSouthRight,Clouds South Right,,Clouds,Item,CloudsSouthRight,
+TowerBottomLeft,Tower Bottom Left,,Upper Clouds,Item,TowerBottomLeft,
+TowerBottomRight,Tower Bottom Right,,Upper Clouds,Item,TowerBottomRight,
+TowerF2,Tower F2,,Upper Clouds,Item,TowerF2,
+GregalOne,Gregal One,,Upper Clouds,Item,GregalOne,
+GregalTwo,Gregal Two,Bow,Upper Clouds,Item,GregalTwo,Bow
+TowerRightBed,Tower Right Bed,,Upper Clouds,Item,TowerRightBed,
+TowerMiddleBed,Tower Middle Bed,,Upper Clouds,Item,TowerMiddleBed,
+TowerLeftBed,Tower Left Bed,,Upper Clouds,Item,TowerLeftBed,
+TowerTopLeft,Tower Top Left,,Upper Clouds,Item,TowerTopLeft,
+TowerTopRight,Tower Top Right,,Upper Clouds,Item,TowerTopRight,
+DeepwoodWiggler,Deepwood Wiggler,,Deepwood,Item,DeepwoodWiggler,
+DeepwoodPostWigglerHeartPiece,Deepwood Post Wiggler Heart Piece,,Deepwood,Item,DeepwoodPostWigglerHeartPiece,
+DeepwoodPreWigglerLeft,Deepwood Pre Wiggler Left,,Deepwood,Item,DeepwoodPreWigglerLeft,
+DeepwoodPreWigglerRight,Deepwood Pre Wiggler Right,,Deepwood,Item,DeepwoodPreWigglerRight,
+DeepwoodPreWigglerHeartPiece,Deepwood Pre Wiggler Heart Piece,,Deepwood,Item,DeepwoodPreWigglerHeartPiece,
+DeepwoodPreCompass,Deepwood Pre Compass,,Deepwood,Item,DeepwoodPreCompass,
+DeepwoodMulldozers,Deepwood Mulldozers,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodMulldozers,SmallKey`DWS_SET`
+DeepwoodStatueRoom,Deepwood Statue Room,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodStatueRoom,SmallKey`DWS_SET`
+DeepwoodWestWing,Deepwood West Wing,Compass` D W S_ S E T`,Deepwood,Item,DeepwoodWestWing,Compass`DWS_SET`
+DeepwoodPreBarrel,Deepwood Pre Barrel,,Deepwood,Item,DeepwoodPreBarrel,
+DeepwoodSlugTorches,Deepwood Slug Torches,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodSlugTorches,SmallKey`DWS_SET`
+DeepwoodBasementNorth,Deepwood Basement North,Big Key` D W S_ S E T`,Deepwood,Item,DeepwoodBasementNorth,BigKey`DWS_SET`
+DeepwoodBasementSwitch,Deepwood Basement Switch,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodBasementSwitch,SmallKey`DWS_SET`
+DeepwoodBasementEast,Deepwood Basement East,Dungeon Map` D W S_ S E T`,Deepwood,Item,DeepwoodBasementEast,DungeonMap`DWS_SET`
+DeepwoodUpstairsChest,Deepwood Upstairs Chest,,Deepwood,Item,DeepwoodUpstairsChest,
+DeepwoodBossItem,Deepwood Boss Item,Heart Container,Overworld,Item,DeepwoodBossItem,HeartContainer
+DeepwoodPrize,Deepwood Prize,,Overworld,Item,DeepwoodPrize,
+CoFFlippedCart,Co F Flipped Cart,Small Key` C O F_ S E T`,Co F,Item,CoFFlippedCart,SmallKey`COF_SET`
+CoFHeartPiece,Co F Heart Piece,,Co F,Item,CoFHeartPiece,
+CoFChuPit,Co F Chu Pit,,Co F,Item,CoFChuPit,
+CoFPillBugsPillarChest,Co F Pill Bugs Pillar Chest,Small Key` C O F_ S E T`,Co F,Item,CoFPillBugsPillarChest,SmallKey`COF_SET`
+CoFPillBugsHoleChest,Co F Pill Bugs Hole Chest,,Co F,Item,CoFPillBugsHoleChest,
+CoFSoutheastSmall,Co F Southeast Small,,Co F,Item,CoFSoutheastSmall,
+CoFSoutheastBig,Co F Southeast Big,Compass` C O F_ S E T`,Co F,Item,CoFSoutheastBig,Compass`COF_SET`
+CoFBasementTop,Co F Basement Top,,Co F,Item,CoFBasementTop,
+CoFBasementBottom,Co F Basement Bottom,,Co F,Item,CoFBasementBottom,
+CoFBlades,Co F Blades,,Co F,Item,CoFBlades,
+CoFSpinies,Co F Spinies,Dungeon Map` C O F_ S E T`,Co F,Item,CoFSpinies,DungeonMap`COF_SET`
+CoFBasementLavaLeft,Co F Basement Lava Left,,Co F,Item,CoFBasementLavaLeft,
+CoFBasementLavaRight,Co F Basement Lava Right,,Co F,Item,CoFBasementLavaRight,
+CoFBasementLavaBig,Co F Basement Lava Big,Big Key` C O F_ S E T`,Co F,Item,CoFBasementLavaBig,BigKey`COF_SET`
+CoFBossItem,Co F Boss Item,Heart Container,Overworld,Item,CoFBossItem,HeartContainer
+CoFPrize,Co F Prize,,Overworld,Item,CoFPrize,
+FortressEntrance,Fortress Entrance,,Fortress,Item,FortressEntrance,
+FortressHeartPiece,Fortress Heart Piece,,Fortress,Item,FortressHeartPiece,
+FortressOutsideF2Left,Fortress Outside F2 Left,,Fortress,Item,FortressOutsideF2Left,
+FortressOutsideF2Middle,Fortress Outside F2 Middle,,Fortress,Item,FortressOutsideF2Middle,
+FortressOutsideF2Right,Fortress Outside F2 Right,,Fortress,Item,FortressOutsideF2Right,
+FortressOutsideF3Left,Fortress Outside F3 Left,,Fortress,Item,FortressOutsideF3Left,
+FortressOutsideF3Right,Fortress Outside F3 Right,,Fortress,Item,FortressOutsideF3Right,
+FortressOutsideBombWallBigChest,Fortress Outside Bomb Wall Big Chest,,Fortress,Item,FortressOutsideBombWallBigChest,
+FortressOutsideBombWallSmallChest,Fortress Outside Bomb Wall Small Chest,,Overworld,Item,FortressOutsideBombWallSmallChest,
+FortressOutsideMinishHole,Fortress Outside Minish Hole,Small Key` F O W_ S E T`,Fortress,Item,FortressOutsideMinishHole,SmallKey`FOW_SET`
+FortressRightDrop,Fortress Right Drop,Small Key` F O W_ S E T`,Fortress,Item,FortressRightDrop,SmallKey`FOW_SET`
+FortressLeftDrop,Fortress Left Drop,Small Key` F O W_ S E T`,Fortress,Item,FortressLeftDrop,SmallKey`FOW_SET`
+FortressClonePuzzle,Fortress Clone Puzzle,Small Key` F O W_ S E T`,Fortress,Item,FortressClonePuzzle,SmallKey`FOW_SET`
+FortressEyegoreKill,Fortress Eyegore Kill,Dungeon Map` F O W_ S E T`,Fortress,Item,FortressEyegoreKill,DungeonMap`FOW_SET`
+FortressPedestal,Fortress Pedestal,Compass` F O W_ S E T`,Fortress,Item,FortressPedestal,Compass`FOW_SET`
+FortressSkullFall,Fortress Skull Fall,Big Key` F O W_ S E T`,Fortress,Item,FortressSkullFall,BigKey`FOW_SET`
+FortressSkullRoomLeft,Fortress Skull Room Left,,Fortress,Item,FortressSkullRoomLeft,
+FortressSkullRoomRight,Fortress Skull Room Right,,Fortress,Item,FortressSkullRoomRight,
+FortressWizrobes,Fortress Wizrobes,,Fortress,Item,FortressWizrobes,
+FortressBossItem,Fortress Boss Item,Heart Container,Overworld,Item,FortressBossItem,HeartContainer
+FortressPrize,Fortress Prize,,Overworld,Item,FortressPrize,
+DropletsMulldozers,Droplets Mulldozers,Small Key` T O D_ S E T`,Droplets,Item,DropletsMulldozers,SmallKey`TOD_SET`
+DropletsWaterPot,Droplets Water Pot,Small Key` T O D_ S E T`,Droplets,Item,DropletsWaterPot,SmallKey`TOD_SET`
+DropletsSecondIceblock,Droplets Second Iceblock,Small Key` T O D_ S E T`,Droplets,Item,DropletsSecondIceblock,SmallKey`TOD_SET`
+DropletsFirstIceblock,Droplets First Iceblock,Big Key` T O D_ S E T`,Droplets,Item,DropletsFirstIceblock,BigKey`TOD_SET`
+DropletsEastFirst,Droplets East First,,Droplets,Item,DropletsEastFirst,
+DropletsIceMaze,Droplets Ice Maze,,Droplets,Item,DropletsIceMaze,
+DropletsOverhang,Droplets Overhang,Dungeon Map` T O D_ S E T`,Droplets,Item,DropletsOverhang,DungeonMap`TOD_SET`
+DropletsBluChu,Droplets Blu Chu,,Droplets,Item,DropletsBluChu,
+DropletsBasement,Droplets Basement,Small Key` T O D_ S E T`,Droplets,Item,DropletsBasement,SmallKey`TOD_SET`
+DropletsFrozenIcePlain,Droplets Frozen Ice Plain,,Droplets,Item,DropletsFrozenIcePlain,
+DropletsFreeIcePlain,Droplets Free Ice Plain,,Droplets,Item,DropletsFreeIcePlain,
+DropletsDarkMazeRight,Droplets Dark Maze Right,,Droplets,Item,DropletsDarkMazeRight,
+DropletsDarkMazeLeft,Droplets Dark Maze Left,,Droplets,Item,DropletsDarkMazeLeft,
+DropletsDarkMazeMiddle,Droplets Dark Maze Middle,,Droplets,Item,DropletsDarkMazeMiddle,
+DropletsPostTwinFrozen,Droplets Post Twin Frozen,,Droplets,Item,DropletsPostTwinFrozen,
+DropletsPreviewFrozen,Droplets Preview Frozen,,Droplets,Item,DropletsPreviewFrozen,
+DropletsIceWiggler,Droplets Ice Wiggler,Compass` T O D_ S E T`,Droplets,Item,DropletsIceWiggler,Compass`TOD_SET`
+DropletsBossItem,Droplets Boss Item,Heart Container,Overworld,Item,DropletsBossItem,HeartContainer
+DropletsPrize,Droplets Prize,,Overworld,Item,DropletsPrize,
+PalaceWizrobeKill,Palace Wizrobe Kill,,Palace,Item,PalaceWizrobeKill,
+PalaceFirstGrate,Palace First Grate,,Palace,Item,PalaceFirstGrate,
+PalaceBraceletPuzzleKey,Palace Bracelet Puzzle Key,Small Key` P O W_ S E T`,Palace,Item,PalaceBraceletPuzzleKey,SmallKey`POW_SET`
+PalaceWideGap,Palace Wide Gap,,Palace,Item,PalaceWideGap,
+PalaceBallAndChainSoldiers,Palace Ball And Chain Soldiers,Small Key` P O W_ S E T`,Palace,Item,PalaceBallAndChainSoldiers,SmallKey`POW_SET`
+PalaceFanLoop,Palace Fan Loop,Small Key` P O W_ S E T`,Palace,Item,PalaceFanLoop,SmallKey`POW_SET`
+PalacePreBigDoor,Palace Pre Big Door,Big Key` P O W_ S E T`,Palace,Item,PalacePreBigDoor,BigKey`POW_SET`
+PalaceDarkBig,Palace Dark Big,Compass` P O W_ S E T`,Palace,Item,PalaceDarkBig,Compass`POW_SET`
+PalaceDarkSmall,Palace Dark Small,Small Key` P O W_ S E T`,Palace,Item,PalaceDarkSmall,SmallKey`POW_SET`
+PalaceManyRollers,Palace Many Rollers,Small Key` P O W_ S E T`,Palace,Item,PalaceManyRollers,SmallKey`POW_SET`
+PalaceTwinWizrobes,Palace Twin Wizrobes,,Palace,Item,PalaceTwinWizrobes,
+PalaceFirerobeTrio,Palace Firerobe Trio,Dungeon Map` P O W_ S E T`,Palace,Item,PalaceFirerobeTrio,DungeonMap`POW_SET`
+PalaceHeartPiece,Palace Heart Piece,,Palace,Item,PalaceHeartPiece,
+PalaceSwitchHit,Palace Switch Hit,,Palace,Item,PalaceSwitchHit,
+PalacePreBoss,Palace Pre Boss,Small Key` P O W_ S E T`,Palace,Item,PalacePreBoss,SmallKey`POW_SET`
+PalaceBlockMaze,Palace Block Maze,,Palace,Item,PalaceBlockMaze,
+PalaceDetour,Palace Detour,,Palace,Item,PalaceDetour,
+PalaceBossItem,Palace Boss Item,Heart Container,Overworld,Item,PalaceBossItem,HeartContainer
+PalacePrize,Palace Prize,,Overworld,Item,PalacePrize,
+CastleKing,Castle King,Rupee200,D H C,Item,CastleKing,Rupee200
+CastleBasement,Castle Basement,Dungeon Map` D H C_ S E T`,D H C,Item,CastleBasement,DungeonMap`DHC_SET`
+CastleClones,Castle Clones,Small Key` D H C_ S E T`,D H C,Item,CastleClones,SmallKey`DHC_SET`
+CastlePostThrone,Castle Post Throne,Compass` D H C_ S E T`,D H C,Item,CastlePostThrone,Compass`DHC_SET`
+CastleTopLeftTower,Castle Top Left Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleTopLeftTower,SmallKey`DHC_SET`
+CastleTopRightTower,Castle Top Right Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleTopRightTower,SmallKey`DHC_SET`
+CastleLowerLeftTower,Castle Lower Left Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleLowerLeftTower,SmallKey`DHC_SET`
+CastleLowerRightTower,Castle Lower Right Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleLowerRightTower,SmallKey`DHC_SET`
+CastleBigBlock,Castle Big Block,Big Key` D H C_ S E T`,Overworld,Item,CastleBigBlock,BigKey`DHC_SET`
+MinishBottomLeftFusion,Minish Bottom Left Fusion,,Overworld,Item,MinishBottomLeftFusion,
+MinishMiddleRightFusion,Minish Middle Right Fusion,,Minish Woods,Item,MinishMiddleRightFusion,
+MinishMiddleFusion,Minish Middle Fusion,,Minish Woods,Item,MinishMiddleFusion,
+MinishMiddleLeftFusion,Minish Middle Left Fusion,,Minish Woods,Item,MinishMiddleLeftFusion,
+MinishTopLeftFusion,Minish Top Left Fusion,,Overworld,Item,MinishTopLeftFusion,
+MinishMinishPathFusion,Minish Minish Path Fusion,,Minish Woods,Item,MinishMinishPathFusion,
+MinishCrackChest,Minish Crack Chest,,Minish Woods,Item,MinishCrackChest,
+HyliaMinishPathFusion,Hylia Minish Path Fusion,,Hylia South,Item,HyliaMinishPathFusion,
+SchoolMinishPathFusion,School Minish Path Fusion,,Overworld,Item,SchoolMinishPathFusion,
+TownWaterfallChest,Town Waterfall Chest,,Overworld,Item,TownWaterfallChest,
+TingleTreeTopLeft,Tingle Tree Top Left,,Overworld,Item,TingleTreeTopLeft,
+TingleTreeTopRight,Tingle Tree Top Right,,Overworld,Item,TingleTreeTopRight,
+TingleTreeBottomLeft,Tingle Tree Bottom Left,,Overworld,Item,TingleTreeBottomLeft,
+TingleTreeBottomRight,Tingle Tree Bottom Right,,Overworld,Item,TingleTreeBottomRight,
+CastleGardenRightMinishHole,Castle Garden Right Minish Hole,,Overworld,Item,CastleGardenRightMinishHole,
+CastleGardenLeftMinishHole,Castle Garden Left Minish Hole,,Overworld,Item,CastleGardenLeftMinishHole,
+LinkHouseFusion,Link House Fusion,,Overworld,Item,LinkHouseFusion,
+LonLonFallsFusion,Lon Lon Falls Fusion,,Falls South,Item,LonLonFallsFusion,
+LonLonMinishPathFusion,Lon Lon Minish Path Fusion,,Hylia North,Item,LonLonMinishPathFusion,
+GoronSmallChest,Goron Small Chest,,Overworld,Item,GoronSmallChest,
+TrilbyTopFusion,Trilby Top Fusion,,West Field,Item,TrilbyTopFusion,
+TrilbyMiddleFusion,Trilby Middle Fusion,,West Field,Item,TrilbyMiddleFusion,
+TrilbyWaterCave,Trilby Water Cave,,West Field,Item,TrilbyWaterCave,
+WesternWoodChest,Western Wood Chest,,Overworld,Item,WesternWoodChest,
+WesternWoodTopDig1,Western Wood Top Dig1,,Overworld,Item,WesternWoodTopDig1,
+WesternWoodTopDig2,Western Wood Top Dig2,,Overworld,Item,WesternWoodTopDig2,
+WesternWoodTopDig3,Western Wood Top Dig3,,Overworld,Item,WesternWoodTopDig3,
+WesternWoodTopDig4,Western Wood Top Dig4,,Overworld,Item,WesternWoodTopDig4,
+WesternWoodTopDig5,Western Wood Top Dig5,,Overworld,Item,WesternWoodTopDig5,
+WesternWoodTopDig6,Western Wood Top Dig6,,Overworld,Item,WesternWoodTopDig6,
+WesternWoodBottomDig1,Western Wood Bottom Dig1,,Overworld,Item,WesternWoodBottomDig1,
+WesternWoodBottomDig2,Western Wood Bottom Dig2,,Overworld,Item,WesternWoodBottomDig2,
+PercyHouseMoblin,Percy House Moblin,,Overworld,Item,PercyHouseMoblin,
+PercyHouseReward,Percy House Reward,,Overworld,Item,PercyHouseReward,
+HyliaWaterDigCave,Hylia Water Dig Cave,,Hylia South,Item,HyliaWaterDigCave,
+CrenelGreenWaterFusion,Crenel Green Water Fusion,,West Field,Item,CrenelGreenWaterFusion,
+CrenelClimbFusion,Crenel Climb Fusion,,Crenel,Item,CrenelClimbFusion,
+CrenelRainPath,Crenel Rain Path,,Crenel,Item,CrenelRainPath,
+CrenelLowerLeftFusion,Crenel Lower Left Fusion,,West Field,Item,CrenelLowerLeftFusion,
+PreMelariFusion,Pre Melari Fusion,,Overworld,Item,PreMelariFusion,
+WildsTopRightCrack,Wilds Top Right Crack,,Wilds,Item,WildsTopRightCrack,
+WildsTopLeftCrack,Wilds Top Left Crack,,Wilds,Item,WildsTopLeftCrack,
+WildsMiddleLeftCrack,Wilds Middle Left Crack,,Wilds,Item,WildsMiddleLeftCrack,
+WildsLongJourneyCrack,Wilds Long Journey Crack,,Wilds,Item,WildsLongJourneyCrack,
+WildsMinishWaterCaveChest,Wilds Minish Water Cave Chest,,Wilds,Item,WildsMinishWaterCaveChest,
+RuinsPillarsFusion,Ruins Pillars Fusion,,Fortress,Item,RuinsPillarsFusion,
+RuinsCrackFusion,Ruins Crack Fusion,,Fortress,Item,RuinsCrackFusion,
+PreValleyFusion,Pre Valley Fusion,,Overworld,Item,PreValleyFusion,
+RoyalValleyLeftFusion,Royal Valley Left Fusion,,Valley,Item,RoyalValleyLeftFusion,
+RoyalValleyRightFusion,Royal Valley Right Fusion,,Valley,Item,RoyalValleyRightFusion,
+GinaGrave,Gina Grave,,Valley,Item,GinaGrave,
+FallsNearCrestFusion,Falls Near Crest Fusion,,Falls North,Item,FallsNearCrestFusion,
+FallsWaterCaveEnd,Falls Water Cave End,,Overworld,Item,FallsWaterCaveEnd,
+RuinsBombBag,Ruins Bomb Bag,,Fortress,Item,RuinsBombBag,
+LonLonWallet,Lon Lon Wallet,,Hylia North,Item,LonLonWallet,
+LonLonBottle3,Lon Lon Bottle3,Bottle4,Overworld,Item,LonLonBottle3,Bottle3
+GoronBottle4,Goron Bottle4,Bottle4,Overworld,Item,GoronBottle4,Bottle4
+TingleBoomerang,Tingle Boomerang,Boomerang,Overworld,Item,TingleBoomerang,Boomerang
+RuinsBeanStalk,Ruins Bean Stalk,,Fortress,Item,RuinsBeanStalk,
+BelariRemote,Belari Remote,,Overworld,Item,BelariRemote,
+RuinsArrowButterfly,Ruins Arrow Butterfly,,Fortress,Item,RuinsArrowButterfly,
+WildsDigButterfly,Wilds Dig Butterfly,,Wilds,Item,WildsDigButterfly,
+ValleySwimButterfly,Valley Swim Butterfly,,Valley,Item,ValleySwimButterfly,
+CrenelBeanstalkHP,Crenel Beanstalk H P,,Crenel,Item,CrenelBeanstalkHP,
+HyliaBeanstalkHP,Hylia Beanstalk H P,,Treasure Cave,Item,HyliaBeanstalkHP,
+HyliaBeanstalkLeft,Hylia Beanstalk Left,,Treasure Cave,Item,HyliaBeanstalkLeft,
+HyliaBeanstalkRight,Hylia Beanstalk Right,,Treasure Cave,Item,HyliaBeanstalkRight,
+HillsBeanstalkHP,Hills Beanstalk H P,,Overworld,Item,HillsBeanstalkHP,
+HillsBeanstalkRight,Hills Beanstalk Right,,Overworld,Item,HillsBeanstalkRight,
+HillsBeanstalkLeft,Hills Beanstalk Left,,Overworld,Item,HillsBeanstalkLeft,
+WesternBeanstalk,Western Beanstalk,,Overworld,Item,WesternBeanstalk,
+WesternTreeHouseHP,Western Tree House H P,,Overworld,Item,WesternTreeHouseHP,
+LinkHouseTreeHP,Link House Tree H P,,Overworld,Item,LinkHouseTreeHP,
+FallsWaterDigCaveHP,Falls Water Dig Cave H P,,Overworld,Item,FallsWaterDigCaveHP,
+FallsWaterfallHP,Falls Waterfall H P,,Falls North,Item,FallsWaterfallHP,
+WildsMinishWaterCaveHP,Wilds Minish Water Cave H P,,Wilds,Item,WildsMinishWaterCaveHP,
+CastleGardenDrainedFountainHP,Castle Garden Drained Fountain H P,,Overworld,Item,CastleGardenDrainedFountainHP,
+LibrariCabinContainer,Librari Cabin Container,,Overworld,Item,LibrariCabinContainer,
+ScarbladeScroll,Scarblade Scroll,Fast Spin,Wilds,Item,ScarbladeScroll,FastSpin
+SplitbladeScroll,Splitblade Scroll,Fast Split,Falls South,Item,SplitbladeScroll,FastSplit
+GreatbladeScroll,Greatblade Scroll,Long Spin,Overworld,Item,GreatbladeScroll,LongSpin
+HearthPot,Hearth Pot,,Overworld,Item,HearthPot,
+DropletsIceMazePot,Droplets Ice Maze Pot,,Droplets,Item,DropletsIceMazePot,
+FoWRightSideTopPot,Fo W Right Side Top Pot,,Fortress,Item,FoWRightSideTopPot,
+FoWRightSideBottomPot,Fo W Right Side Bottom Pot,,Fortress,Item,FoWRightSideBottomPot,
+LonLonBuriedTreasure,Lon Lon Buried Treasure,,Overworld,Item,LonLonBuriedTreasure,
+NorthHyruleFieldBuriedTreasure,North Hyrule Field Buried Treasure,,Overworld,Item,NorthHyruleFieldBuriedTreasure,
+TopLeftCloudWall,Top Left Cloud Wall,,Clouds,Item,TopLeftCloudWall,
+TopRightCloudWall,Top Right Cloud Wall,,Clouds,Item,TopRightCloudWall,
+BottomMiddleCloudWall,Bottom Middle Cloud Wall,,Clouds,Item,BottomMiddleCloudWall,
+BottomRightmostTopCloudWall,Bottom Rightmost Top Cloud Wall,,Clouds,Item,BottomRightmostTopCloudWall,
+BottomLeftCloudWall,Bottom Left Cloud Wall,,Clouds,Item,BottomLeftCloudWall,
+BottomRightCloudWall,Bottom Right Cloud Wall,,Clouds,Item,BottomRightCloudWall,
+BottomRightmostBottomCloudWall,Bottom Rightmost Bottom Cloud Wall,,Clouds,Item,BottomRightmostBottomCloudWall,
+FallsBuriedTopTreasure,Falls Buried Top Treasure,,Falls North,Item,FallsBuriedTopTreasure,
+FallsBuriedBottomTreasure,Falls Buried Bottom Treasure,,Falls North,Item,FallsBuriedBottomTreasure,
+MelariMining1,Melari Mining1,,Overworld,Item,MelariMining1,
+MelariMining2,Melari Mining2,,Overworld,Item,MelariMining2,
+MelariMining3,Melari Mining3,,Overworld,Item,MelariMining3,
+MelariMining4,Melari Mining4,,Overworld,Item,MelariMining4,
+MelariMining5,Melari Mining5,,Overworld,Item,MelariMining5,
+MelariMining6,Melari Mining6,,Overworld,Item,MelariMining6,
+MelariMining7,Melari Mining7,,Overworld,Item,MelariMining7,
+MelariMining8,Melari Mining8,,Overworld,Item,MelariMining8,
+WildsSunkenKinstoneTop,Wilds Sunken Kinstone Top,,Wilds,Item,WildsSunkenKinstoneTop,
+WildsSunkenKinstoneMiddle,Wilds Sunken Kinstone Middle,,Wilds,Item,WildsSunkenKinstoneMiddle,
+WildsSunkenKinstoneBottom,Wilds Sunken Kinstone Bottom,,Wilds,Item,WildsSunkenKinstoneBottom,
+CrenelFairyCaveRupee1,Crenel Fairy Cave Rupee1,,West Field,Item,CrenelFairyCaveRupee1,
+CrenelFairyCaveRupee2,Crenel Fairy Cave Rupee2,,West Field,Item,CrenelFairyCaveRupee2,
+CrenelFairyCaveRupee3,Crenel Fairy Cave Rupee3,,West Field,Item,CrenelFairyCaveRupee3,
+CrenelOutsideRupee,Crenel Outside Rupee,,West Field,Item,CrenelOutsideRupee,
+FallsLowerRupee1,Falls Lower Rupee1,,Falls South,Item,FallsLowerRupee1,
+FallsLowerRupee2,Falls Lower Rupee2,,Falls South,Item,FallsLowerRupee2,
+FallsLowerRupee3,Falls Lower Rupee3,,Falls South,Item,FallsLowerRupee3,
+FallsUpperCaveRupee1,Falls Upper Cave Rupee1,,Falls North,Item,FallsUpperCaveRupee1,
+FallsUpperCaveRupee2,Falls Upper Cave Rupee2,,Falls North,Item,FallsUpperCaveRupee2,
+FallsUpperCaveRupee3,Falls Upper Cave Rupee3,,Falls North,Item,FallsUpperCaveRupee3,
+FallsUpperCaveRupee4,Falls Upper Cave Rupee4,,Falls North,Item,FallsUpperCaveRupee4,
+FallsUpperCaveRupee5,Falls Upper Cave Rupee5,,Falls North,Item,FallsUpperCaveRupee5,
+FallsUpperCaveRupee6,Falls Upper Cave Rupee6,,Falls North,Item,FallsUpperCaveRupee6,
+FallsUpperCaveRupee7,Falls Upper Cave Rupee7,,Falls North,Item,FallsUpperCaveRupee7,
+FallsUpperCaveRupee8,Falls Upper Cave Rupee8,,Falls North,Item,FallsUpperCaveRupee8,
+FallsUpperCaveRupee9,Falls Upper Cave Rupee9,,Falls North,Item,FallsUpperCaveRupee9,
+FallsUpperCaveWaterRupee1,Falls Upper Cave Water Rupee1,,Falls North,Item,FallsUpperCaveWaterRupee1,
+FallsUpperCaveWaterRupee2,Falls Upper Cave Water Rupee2,,Falls North,Item,FallsUpperCaveWaterRupee2,
+FallsUpperCaveWaterRupee3,Falls Upper Cave Water Rupee3,,Falls North,Item,FallsUpperCaveWaterRupee3,
+FallsUpperCaveWaterRupee4,Falls Upper Cave Water Rupee4,,Falls North,Item,FallsUpperCaveWaterRupee4,
+FallsUpperCaveWaterRupee5,Falls Upper Cave Water Rupee5,,Falls North,Item,FallsUpperCaveWaterRupee5,
+FallsUpperCaveWaterRupee6,Falls Upper Cave Water Rupee6,,Falls North,Item,FallsUpperCaveWaterRupee6,
+FortressBigRupee,Fortress Big Rupee,,Fortress,Item,FortressBigRupee,
+FortressF1Rupee1,Fortress F1 Rupee1,,Fortress,Item,FortressF1Rupee1,
+FortressF1Rupee2,Fortress F1 Rupee2,,Fortress,Item,FortressF1Rupee2,
+FortressF1Rupee3,Fortress F1 Rupee3,,Fortress,Item,FortressF1Rupee3,
+FortressF1Rupee4,Fortress F1 Rupee4,,Fortress,Item,FortressF1Rupee4,
+FortressF1Rupee5,Fortress F1 Rupee5,,Fortress,Item,FortressF1Rupee5,
+FortressF1Rupee6,Fortress F1 Rupee6,,Fortress,Item,FortressF1Rupee6,
+FortressF1Rupee7,Fortress F1 Rupee7,,Fortress,Item,FortressF1Rupee7,
+DropletsUpperWaterRupee1,Droplets Upper Water Rupee1,,Droplets,Item,DropletsUpperWaterRupee1,
+DropletsUpperWaterRupee2,Droplets Upper Water Rupee2,,Droplets,Item,DropletsUpperWaterRupee2,
+DropletsUpperWaterRupee3,Droplets Upper Water Rupee3,,Droplets,Item,DropletsUpperWaterRupee3,
+DropletsUpperWaterRupee4,Droplets Upper Water Rupee4,,Droplets,Item,DropletsUpperWaterRupee4,
+DropletsUpperWaterRupee5,Droplets Upper Water Rupee5,,Droplets,Item,DropletsUpperWaterRupee5,
+DropletsUpperWaterRupee6,Droplets Upper Water Rupee6,,Droplets,Item,DropletsUpperWaterRupee6,
+DropletsLowerWaterRupee1,Droplets Lower Water Rupee1,,Droplets,Item,DropletsLowerWaterRupee1,
+DropletsLowerWaterRupee2,Droplets Lower Water Rupee2,,Droplets,Item,DropletsLowerWaterRupee2,
+DropletsLowerWaterRupee3,Droplets Lower Water Rupee3,,Droplets,Item,DropletsLowerWaterRupee3,
+DropletsLowerWaterRupee4,Droplets Lower Water Rupee4,,Droplets,Item,DropletsLowerWaterRupee4,
+DropletsLowerWaterRupee5,Droplets Lower Water Rupee5,,Droplets,Item,DropletsLowerWaterRupee5,
+DropletsLowerWaterRupee6,Droplets Lower Water Rupee6,,Droplets,Item,DropletsLowerWaterRupee6,
+DropletsLeftPathRupee1,Droplets Left Path Rupee1,,Droplets,Item,DropletsLeftPathRupee1,
+DropletsLeftPathRupee2,Droplets Left Path Rupee2,,Droplets,Item,DropletsLeftPathRupee2,
+DropletsLeftPathRupee3,Droplets Left Path Rupee3,,Droplets,Item,DropletsLeftPathRupee3,
+DropletsLeftPathRupee4,Droplets Left Path Rupee4,,Droplets,Item,DropletsLeftPathRupee4,
+DropletsLeftPathRupee5,Droplets Left Path Rupee5,,Droplets,Item,DropletsLeftPathRupee5,
+DropletsRightPathRupee1,Droplets Right Path Rupee1,,Droplets,Item,DropletsRightPathRupee1,
+DropletsRightPathRupee2,Droplets Right Path Rupee2,,Droplets,Item,DropletsRightPathRupee2,
+DropletsRightPathRupee3,Droplets Right Path Rupee3,,Droplets,Item,DropletsRightPathRupee3,
+DropletsRightPathRupee4,Droplets Right Path Rupee4,,Droplets,Item,DropletsRightPathRupee4,
+DropletsRightPathRupee5,Droplets Right Path Rupee5,,Droplets,Item,DropletsRightPathRupee5,
+CoFRupee1,Co F Rupee1,,Co F,Item,CoFRupee1,
+CoFRupee2,Co F Rupee2,,Co F,Item,CoFRupee2,
+CoFRupee3,Co F Rupee3,,Co F,Item,CoFRupee3,
+CoFRupee4,Co F Rupee4,,Co F,Item,CoFRupee4,
+CoFRupee5,Co F Rupee5,,Co F,Item,CoFRupee5,
+PalaceRupee1,Palace Rupee1,,Palace,Item,PalaceRupee1,
+PalaceRupee2,Palace Rupee2,,Palace,Item,PalaceRupee2,
+PalaceRupee3,Palace Rupee3,,Palace,Item,PalaceRupee3,
+PalaceRupee4,Palace Rupee4,,Palace,Item,PalaceRupee4,
+PalaceRupee5,Palace Rupee5,,Palace,Item,PalaceRupee5,
+FlipsCaveWaterfallRupee,Flips Cave Waterfall Rupee,,Overworld,Item,FlipsCaveWaterfallRupee,
+FarmCaveRupee,Farm Cave Rupee,,East Field,Item,FarmCaveRupee,
+CrenelBeanstalkRupee1,Crenel Beanstalk Rupee1,,Crenel,Item,CrenelBeanstalkRupee1,
+CrenelBeanstalkRupee2,Crenel Beanstalk Rupee2,,Crenel,Item,CrenelBeanstalkRupee2,
+CrenelBeanstalkRupee3,Crenel Beanstalk Rupee3,,Crenel,Item,CrenelBeanstalkRupee3,
+CrenelBeanstalkRupee4,Crenel Beanstalk Rupee4,,Crenel,Item,CrenelBeanstalkRupee4,
+CrenelBeanstalkRupee5,Crenel Beanstalk Rupee5,,Crenel,Item,CrenelBeanstalkRupee5,
+CrenelBeanstalkRupee6,Crenel Beanstalk Rupee6,,Crenel,Item,CrenelBeanstalkRupee6,
+CrenelBeanstalkRupee7,Crenel Beanstalk Rupee7,,Crenel,Item,CrenelBeanstalkRupee7,
+CrenelBeanstalkRupee8,Crenel Beanstalk Rupee8,,Crenel,Item,CrenelBeanstalkRupee8,
+WesternWoodBeanstalkRupee1,Western Wood Beanstalk Rupee1,,Overworld,Item,WesternWoodBeanstalkRupee1,
+WesternWoodBeanstalkRupee2,Western Wood Beanstalk Rupee2,,Overworld,Item,WesternWoodBeanstalkRupee2,
+WesternWoodBeanstalkRupee3,Western Wood Beanstalk Rupee3,,Overworld,Item,WesternWoodBeanstalkRupee3,
+WesternWoodBeanstalkRupee4,Western Wood Beanstalk Rupee4,,Overworld,Item,WesternWoodBeanstalkRupee4,
+WesternWoodBeanstalkRupee5,Western Wood Beanstalk Rupee5,,Overworld,Item,WesternWoodBeanstalkRupee5,
+WesternWoodBeanstalkRupee6,Western Wood Beanstalk Rupee6,,Overworld,Item,WesternWoodBeanstalkRupee6,
+WesternWoodBeanstalkRupee7,Western Wood Beanstalk Rupee7,,Overworld,Item,WesternWoodBeanstalkRupee7,
+WesternWoodBeanstalkRupee8,Western Wood Beanstalk Rupee8,,Overworld,Item,WesternWoodBeanstalkRupee8,
+WesternWoodBeanstalkRupee9,Western Wood Beanstalk Rupee9,,Overworld,Item,WesternWoodBeanstalkRupee9,
+WesternWoodBeanstalkRupee10,Western Wood Beanstalk Rupee10,,Overworld,Item,WesternWoodBeanstalkRupee10,
+WesternWoodBeanstalkRupee11,Western Wood Beanstalk Rupee11,,Overworld,Item,WesternWoodBeanstalkRupee11,
+WesternWoodBeanstalkRupee12,Western Wood Beanstalk Rupee12,,Overworld,Item,WesternWoodBeanstalkRupee12,
+WesternWoodBeanstalkRupee13,Western Wood Beanstalk Rupee13,,Overworld,Item,WesternWoodBeanstalkRupee13,
+WesternWoodBeanstalkRupee14,Western Wood Beanstalk Rupee14,,Overworld,Item,WesternWoodBeanstalkRupee14,
+WesternWoodBeanstalkRupee15,Western Wood Beanstalk Rupee15,,Overworld,Item,WesternWoodBeanstalkRupee15,
+WesternWoodBeanstalkRupee16,Western Wood Beanstalk Rupee16,,Overworld,Item,WesternWoodBeanstalkRupee16,
+LinkHousePuddleCaveRupee1,Link House Puddle Cave Rupee1,,Overworld,Item,LinkHousePuddleCaveRupee1,
+LinkHousePuddleCaveRupee2,Link House Puddle Cave Rupee2,,Overworld,Item,LinkHousePuddleCaveRupee2,
+LinkHousePuddleCaveRupee3,Link House Puddle Cave Rupee3,,Overworld,Item,LinkHousePuddleCaveRupee3,
+LinkHousePuddleCaveRupee4,Link House Puddle Cave Rupee4,,Overworld,Item,LinkHousePuddleCaveRupee4,
+LinkHousePuddleCaveRupee5,Link House Puddle Cave Rupee5,,Overworld,Item,LinkHousePuddleCaveRupee5,
+LinkHousePuddleCaveRupee6,Link House Puddle Cave Rupee6,,Overworld,Item,LinkHousePuddleCaveRupee6,
+LinkHousePuddleCaveRupee7,Link House Puddle Cave Rupee7,,Overworld,Item,LinkHousePuddleCaveRupee7,
+LinkHousePuddleCaveRupee8,Link House Puddle Cave Rupee8,,Overworld,Item,LinkHousePuddleCaveRupee8,
+LinkHousePuddleCaveRupee9,Link House Puddle Cave Rupee9,,Overworld,Item,LinkHousePuddleCaveRupee9,
+LinkHousePuddleCaveRupee10,Link House Puddle Cave Rupee10,,Overworld,Item,LinkHousePuddleCaveRupee10,
+LinkHousePuddleCaveRupee11,Link House Puddle Cave Rupee11,,Overworld,Item,LinkHousePuddleCaveRupee11,
+LinkHousePuddleCaveRupee12,Link House Puddle Cave Rupee12,,Overworld,Item,LinkHousePuddleCaveRupee12,
+LinkHousePuddleCaveRupee13,Link House Puddle Cave Rupee13,,Overworld,Item,LinkHousePuddleCaveRupee13,
+LinkHousePuddleCaveRupee14,Link House Puddle Cave Rupee14,,Overworld,Item,LinkHousePuddleCaveRupee14,
+LinkHousePuddleCaveRupee15,Link House Puddle Cave Rupee15,,Overworld,Item,LinkHousePuddleCaveRupee15,
+TrilbyPuddleCaveRupee1,Trilby Puddle Cave Rupee1,,Overworld,Item,TrilbyPuddleCaveRupee1,
+TrilbyPuddleCaveRupee2,Trilby Puddle Cave Rupee2,,Overworld,Item,TrilbyPuddleCaveRupee2,
+TrilbyPuddleCaveRupee3,Trilby Puddle Cave Rupee3,,Overworld,Item,TrilbyPuddleCaveRupee3,
+TrilbyPuddleCaveRupee4,Trilby Puddle Cave Rupee4,,Overworld,Item,TrilbyPuddleCaveRupee4,
+TrilbyPuddleCaveRupee5,Trilby Puddle Cave Rupee5,,Overworld,Item,TrilbyPuddleCaveRupee5,
+TrilbyPuddleCaveRupee6,Trilby Puddle Cave Rupee6,,Overworld,Item,TrilbyPuddleCaveRupee6,
+TrilbyPuddleCaveRupee7,Trilby Puddle Cave Rupee7,,Overworld,Item,TrilbyPuddleCaveRupee7,
+TrilbyPuddleCaveRupee8,Trilby Puddle Cave Rupee8,,Overworld,Item,TrilbyPuddleCaveRupee8,
+TrilbyPuddleCaveRupee9,Trilby Puddle Cave Rupee9,,Overworld,Item,TrilbyPuddleCaveRupee9,
+TrilbyPuddleCaveRupee10,Trilby Puddle Cave Rupee10,,Overworld,Item,TrilbyPuddleCaveRupee10,
+TrilbyPuddleCaveRupee11,Trilby Puddle Cave Rupee11,,Overworld,Item,TrilbyPuddleCaveRupee11,
+TrilbyPuddleCaveRupee12,Trilby Puddle Cave Rupee12,,Overworld,Item,TrilbyPuddleCaveRupee12,
+TrilbyPuddleCaveRupee13,Trilby Puddle Cave Rupee13,,Overworld,Item,TrilbyPuddleCaveRupee13,
+TrilbyPuddleCaveRupee14,Trilby Puddle Cave Rupee14,,Overworld,Item,TrilbyPuddleCaveRupee14,
+TrilbyPuddleCaveRupee15,Trilby Puddle Cave Rupee15,,Overworld,Item,TrilbyPuddleCaveRupee15,

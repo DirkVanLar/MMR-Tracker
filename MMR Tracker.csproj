@@ -54,6 +54,7 @@
     <Reference Include="MathNet.Symbolics, Version=0.21.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MathNet.Symbolics.0.21.0\lib\net461\MathNet.Symbolics.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.JScript" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -141,10 +142,10 @@
     <Compile Include="Forms\Extra Functionality\PathFinder.Designer.cs">
       <DependentUpon>PathFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Extra Functionality\SpoilerLogConverter.cs">
+    <Compile Include="Forms\Other Games\SpoilerLogConverter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Extra Functionality\SpoilerLogConverter.Designer.cs">
+    <Compile Include="Forms\Other Games\SpoilerLogConverter.Designer.cs">
       <DependentUpon>SpoilerLogConverter.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Item Select Forms\CheckItemForm.cs">
@@ -229,7 +230,7 @@
     <EmbeddedResource Include="Forms\Extra Functionality\PathFinder.resx">
       <DependentUpon>PathFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Extra Functionality\SpoilerLogConverter.resx">
+    <EmbeddedResource Include="Forms\Other Games\SpoilerLogConverter.resx">
       <DependentUpon>SpoilerLogConverter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Item Select Forms\CheckItemForm.resx">
@@ -265,6 +266,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Recources\Dictionaries\MCRDICTIONARYV6.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Recources\Dictionaries\MMRDICTIONARYV13.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -310,6 +314,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Recources\Other Files\Categories.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Recources\Other Files\Custom Logic Presets\MCR Logic.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Recources\Other Files\Custom Logic Presets\OOTR Logic.txt">
