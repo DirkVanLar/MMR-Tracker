@@ -1,5 +1,6 @@
 ﻿using MathNet.Symbolics;
 using MMR_Tracker.Class_Files;
+using MMR_Tracker.Forms.Other_Games;
 using MMR_Tracker_V2;
 using System;
 using System.Collections.Generic;
@@ -87,14 +88,14 @@ namespace MMR_Tracker.Forms
             LetterToNum = LetterToNum.OrderBy(x => x.Value).Reverse().ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             foreach (var i in LetterToNum)
             {
-                Debugging.Log(i.ToString());
+                //Debugging.Log(i.ToString());
                 NewLogic = NewLogic.Replace(i.Value.ToString(), i.Key);
             }
-            Debugging.Log(NewLogic);
+            //Debugging.Log(NewLogic);
             Expression LogicSet = Infix.ParseOrThrow(NewLogic);
             var Output = Algebraic.Expand(LogicSet);
             string ExpandedLogic = Infix.Format(Output).Replace(" ", "");
-            Debugging.Log(ExpandedLogic);
+            //Debugging.Log(ExpandedLogic);
 
             foreach (var i in LetterToNum)
             {
@@ -161,6 +162,7 @@ namespace MMR_Tracker.Forms
 
         private void btnParseExpression_Click(object sender, EventArgs e)
         {
+
             foreach (var i in ExtractNumbers(textBox1.Text))
             {
                 if (i < 0 || i >= LogicEditor.EditorInstance.Logic.Count() && LogicEditor.EditorInstance.Logic.ElementAt(i) == null)
@@ -248,6 +250,21 @@ namespace MMR_Tracker.Forms
 
         private void btnNames_Click(object sender, EventArgs e)
         {
+            if(LogicEditor.EditorInstance.GameCode == "MCR")
+            {
+                textBox1.Text = MInishCapTools.ConvertMinishLogicString(textBox1.Text);
+                var OrderedLogicSpoiler = Utility.CloneLogicList(LogicEditor.EditorInstance.Logic)
+                    .Where(x=>x.SpoilerItem != null && x.SpoilerItem.Count() > 0 && !string.IsNullOrWhiteSpace(x.SpoilerItem[0]))
+                    .OrderBy(x => x.SpoilerItem[0].Count()).Reverse();
+                foreach (var i in OrderedLogicSpoiler)
+                {
+                    if (textBox1.Text.Contains(i.SpoilerItem[0]))
+                    {
+                        textBox1.Text = textBox1.Text.Replace(i.SpoilerItem[0], i.DictionaryName);
+                    }
+                }
+            }
+
             var OrderedLogic = Utility.CloneLogicList(LogicEditor.EditorInstance.Logic).OrderBy(x => x.DictionaryName.Count()).Reverse();
             foreach (var i in OrderedLogic)
             {

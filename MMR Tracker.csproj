@@ -142,10 +142,12 @@
     <Compile Include="Forms\Extra Functionality\PathFinder.Designer.cs">
       <DependentUpon>PathFinder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Other Games\SpoilerLogConverter.cs">
+    <Compile Include="Other Games\MInishCapTools.cs" />
+    <Compile Include="Other Games\OcarinaOfTimeTools.cs" />
+    <Compile Include="Other Games\SpoilerLogConverter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Other Games\SpoilerLogConverter.Designer.cs">
+    <Compile Include="Other Games\SpoilerLogConverter.Designer.cs">
       <DependentUpon>SpoilerLogConverter.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Item Select Forms\CheckItemForm.cs">
@@ -178,6 +180,7 @@
     <Compile Include="Forms\Item Select Forms\MiscMultiItemSelect.Designer.cs">
       <DependentUpon>MiscMultiItemSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="Other Games\WindWakerTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Core Tracker\RandomizeOptions.cs">
       <SubType>Form</SubType>
@@ -230,7 +233,7 @@
     <EmbeddedResource Include="Forms\Extra Functionality\PathFinder.resx">
       <DependentUpon>PathFinder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Other Games\SpoilerLogConverter.resx">
+    <EmbeddedResource Include="Other Games\SpoilerLogConverter.resx">
       <DependentUpon>SpoilerLogConverter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Item Select Forms\CheckItemForm.resx">

@@ -1,7 +1,7 @@
 DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem
-PedItem1,Ped Item1,Smith Sword,Overworld,Item,PedItem1,SmithSword
-PedItem2,Ped Item2,Smith Sword,Overworld,Item,PedItem2,SmithSword
-PedItem3,Ped Item3,Smith Sword,Overworld,Item,PedItem3,SmithSword
+PedItem1,Ped Item1,Smith Sword,Overworld,Item,PedItem1,GreenSword|SmithSword
+PedItem2,Ped Item2,Smith Sword,Overworld,Item,PedItem2,RedSword|SmithSword
+PedItem3,Ped Item3,Smith Sword,Overworld,Item,PedItem3,BlueSword|SmithSword
 SmithHouse,Smith House,,Overworld,Item,SmithHouse,
 IntroItem1,Intro Item1,Smith Sword,Overworld,Item,IntroItem1,SmithSword
 IntroItem2,Intro Item2,Shield,Overworld,Item,IntroItem2,Shield
@@ -65,7 +65,7 @@ MinishRupeeFairy,Minish Rupee Fairy,,East Field,Item,MinishRupeeFairy,
 TrilbyBombCave,Trilby Bomb Cave,,West Field,Item,TrilbyBombCave,
 TrilbyMoleCaveLeft,Trilby Mole Cave Left,,West Field,Item,TrilbyMoleCaveLeft,
 TrilbyMoleCaveRight,Trilby Mole Cave Right,,West Field,Item,TrilbyMoleCaveRight,
-BottleScrub,Bottle Scrub,Bottle4,West Field,Item,BottleScrub,Bottle1
+BottleScrub,Bottle Scrub,Bottle,West Field,Item,BottleScrub,Bottle1
 JabberNut,Jabber Nut,Jabber Nut,Minish Woods,Item,JabberNut,JabberNut
 BelariBombs,Belari Bombs,,Minish Woods,Item,BelariBombs,
 MinishMiddleFlipperHole,Minish Middle Flipper Hole,,Minish Woods,Item,MinishMiddleFlipperHole,
@@ -94,7 +94,7 @@ GraybladeScroll,Grayblade Scroll,Roll Attack,Overworld,Item,GraybladeScroll,Roll
 CrenelBombFairy,Crenel Bomb Fairy,,Crenel,Item,CrenelBombFairy,
 CrenelDigCaveHeartPiece,Crenel Dig Cave Heart Piece,,Crenel,Item,CrenelDigCaveHeartPiece,
 CrenelBlockChest,Crenel Block Chest,,Crenel,Item,CrenelBlockChest,
-Melari,Melari,Smith Sword,Overworld,Item,Melari,SmithSword
+Melari,Melari,Smith Sword,Overworld,Item,Melari,FourSword|SmithSword
 WildsSouthCave,Wilds South Cave,Kinstone X. Yellow Totem Prong,Wilds,Item,WildsSouthCave,KinstoneX.YellowTotemProng
 WildsDarknutCave,Wilds Darknut Cave,Kinstone X. Yellow Totem Prong,Wilds,Item,WildsDarknutCave,KinstoneX.YellowTotemProng
 WildsDekuCaveRight,Wilds Deku Cave Right,Kinstone X. Yellow Totem Prong,Wilds,Item,WildsDekuCaveRight,KinstoneX.YellowTotemProng
@@ -110,7 +110,7 @@ RuinsMinishHome,Ruins Minish Home,,Wilds,Item,RuinsMinishHome,
 RuinsMinishCaveHeartPiece,Ruins Minish Cave Heart Piece,,Wilds,Item,RuinsMinishCaveHeartPiece,
 RuinsArmosKillLeft,Ruins Armos Kill Left,,Wilds,Item,RuinsArmosKillLeft,
 RuinsArmosKillRight,Ruins Armos Kill Right,,Wilds,Item,RuinsArmosKillRight,
-StockwellDog,Stockwell Dog,Bottle4,Hylia North,Item,StockwellDog,Bottle2
+StockwellDog,Stockwell Dog,Bottle,Hylia North,Item,StockwellDog,Bottle2
 HyliaNorthMinishHole,Hylia North Minish Hole,,Hylia North,Item,HyliaNorthMinishHole,
 HyliaMayorCabin,Hylia Mayor Cabin,Mask History,Hylia South,Item,HyliaMayorCabin,MaskHistory
 WitchDiggingCave,Witch Digging Cave,,Hylia South,Item,WitchDiggingCave,
@@ -131,11 +131,11 @@ ArrowFairy,Arrow Fairy,,Overworld,Item,ArrowFairy,
 DampeKey,Dampe Key,,Valley,Item,DampeKey,
 RoyalValleyGraveHeartPiece,Royal Valley Grave Heart Piece,,Valley,Item,RoyalValleyGraveHeartPiece,
 RoyalValleyLostWoodsChest,Royal Valley Lost Woods Chest,,Valley,Item,RoyalValleyLostWoodsChest,
-CryptGibdoLeft,Crypt Gibdo Left,Bombs5,Crypt,Item,CryptGibdoLeft,Bombs5
-CryptGibdoRight,Crypt Gibdo Right,Small Key` R C_ S E T`,Crypt,Item,CryptGibdoRight,SmallKey`RC_SET`
-CryptLeft,Crypt Left,Small Key` R C_ S E T`,Crypt,Item,CryptLeft,SmallKey`RC_SET`
-CryptRight,Crypt Right,Small Key` R C_ S E T`,Crypt,Item,CryptRight,SmallKey`RC_SET`
-KingGift,King Gift,Kinstone X. Yellow Crown,Valley,Item,KingGift,KinstoneX.YellowCrown
+CryptGibdoLeft:Crypt,Crypt Gibdo Left,Bombs5,Crypt,Item,CryptGibdoLeft,Bombs5
+CryptGibdoRight:Crypt,Crypt Gibdo Right,Small Key` R C_ S E T`,Crypt,Item,CryptGibdoRight,SmallKey`RC_SET`
+CryptLeft:Crypt,Crypt Left,Small Key` R C_ S E T`,Crypt,Item,CryptLeft,SmallKey`RC_SET`
+CryptRight:Crypt,Crypt Right,Small Key` R C_ S E T`,Crypt,Item,CryptRight,SmallKey`RC_SET`
+KingGift:`ELEMENT_DUNGEON`,King Gift,Kinstone X. Yellow Crown,Valley,Item,KingGift,KinstoneX.YellowCrown
 FallsBehindWall,Falls Behind Wall,,Falls North,Item,FallsBehindWall,
 FallsCliff,Falls Cliff,,Falls North,Item,FallsCliff,
 FallsTopCaveBomb,Falls Top Cave Bomb,,Falls North,Item,FallsTopCaveBomb,
@@ -163,107 +163,107 @@ TowerMiddleBed,Tower Middle Bed,,Upper Clouds,Item,TowerMiddleBed,
 TowerLeftBed,Tower Left Bed,,Upper Clouds,Item,TowerLeftBed,
 TowerTopLeft,Tower Top Left,,Upper Clouds,Item,TowerTopLeft,
 TowerTopRight,Tower Top Right,,Upper Clouds,Item,TowerTopRight,
-DeepwoodWiggler,Deepwood Wiggler,,Deepwood,Item,DeepwoodWiggler,
-DeepwoodPostWigglerHeartPiece,Deepwood Post Wiggler Heart Piece,,Deepwood,Item,DeepwoodPostWigglerHeartPiece,
-DeepwoodPreWigglerLeft,Deepwood Pre Wiggler Left,,Deepwood,Item,DeepwoodPreWigglerLeft,
-DeepwoodPreWigglerRight,Deepwood Pre Wiggler Right,,Deepwood,Item,DeepwoodPreWigglerRight,
-DeepwoodPreWigglerHeartPiece,Deepwood Pre Wiggler Heart Piece,,Deepwood,Item,DeepwoodPreWigglerHeartPiece,
-DeepwoodPreCompass,Deepwood Pre Compass,,Deepwood,Item,DeepwoodPreCompass,
-DeepwoodMulldozers,Deepwood Mulldozers,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodMulldozers,SmallKey`DWS_SET`
-DeepwoodStatueRoom,Deepwood Statue Room,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodStatueRoom,SmallKey`DWS_SET`
-DeepwoodWestWing,Deepwood West Wing,Compass` D W S_ S E T`,Deepwood,Item,DeepwoodWestWing,Compass`DWS_SET`
-DeepwoodPreBarrel,Deepwood Pre Barrel,,Deepwood,Item,DeepwoodPreBarrel,
-DeepwoodSlugTorches,Deepwood Slug Torches,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodSlugTorches,SmallKey`DWS_SET`
-DeepwoodBasementNorth,Deepwood Basement North,Big Key` D W S_ S E T`,Deepwood,Item,DeepwoodBasementNorth,BigKey`DWS_SET`
-DeepwoodBasementSwitch,Deepwood Basement Switch,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodBasementSwitch,SmallKey`DWS_SET`
-DeepwoodBasementEast,Deepwood Basement East,Dungeon Map` D W S_ S E T`,Deepwood,Item,DeepwoodBasementEast,DungeonMap`DWS_SET`
-DeepwoodUpstairsChest,Deepwood Upstairs Chest,,Deepwood,Item,DeepwoodUpstairsChest,
-DeepwoodBossItem,Deepwood Boss Item,Heart Container,Overworld,Item,DeepwoodBossItem,HeartContainer
-DeepwoodPrize,Deepwood Prize,,Overworld,Item,DeepwoodPrize,
-CoFFlippedCart,Co F Flipped Cart,Small Key` C O F_ S E T`,Co F,Item,CoFFlippedCart,SmallKey`COF_SET`
-CoFHeartPiece,Co F Heart Piece,,Co F,Item,CoFHeartPiece,
-CoFChuPit,Co F Chu Pit,,Co F,Item,CoFChuPit,
-CoFPillBugsPillarChest,Co F Pill Bugs Pillar Chest,Small Key` C O F_ S E T`,Co F,Item,CoFPillBugsPillarChest,SmallKey`COF_SET`
-CoFPillBugsHoleChest,Co F Pill Bugs Hole Chest,,Co F,Item,CoFPillBugsHoleChest,
-CoFSoutheastSmall,Co F Southeast Small,,Co F,Item,CoFSoutheastSmall,
-CoFSoutheastBig,Co F Southeast Big,Compass` C O F_ S E T`,Co F,Item,CoFSoutheastBig,Compass`COF_SET`
-CoFBasementTop,Co F Basement Top,,Co F,Item,CoFBasementTop,
-CoFBasementBottom,Co F Basement Bottom,,Co F,Item,CoFBasementBottom,
-CoFBlades,Co F Blades,,Co F,Item,CoFBlades,
-CoFSpinies,Co F Spinies,Dungeon Map` C O F_ S E T`,Co F,Item,CoFSpinies,DungeonMap`COF_SET`
-CoFBasementLavaLeft,Co F Basement Lava Left,,Co F,Item,CoFBasementLavaLeft,
-CoFBasementLavaRight,Co F Basement Lava Right,,Co F,Item,CoFBasementLavaRight,
-CoFBasementLavaBig,Co F Basement Lava Big,Big Key` C O F_ S E T`,Co F,Item,CoFBasementLavaBig,BigKey`COF_SET`
-CoFBossItem,Co F Boss Item,Heart Container,Overworld,Item,CoFBossItem,HeartContainer
-CoFPrize,Co F Prize,,Overworld,Item,CoFPrize,
-FortressEntrance,Fortress Entrance,,Fortress,Item,FortressEntrance,
-FortressHeartPiece,Fortress Heart Piece,,Fortress,Item,FortressHeartPiece,
-FortressOutsideF2Left,Fortress Outside F2 Left,,Fortress,Item,FortressOutsideF2Left,
-FortressOutsideF2Middle,Fortress Outside F2 Middle,,Fortress,Item,FortressOutsideF2Middle,
-FortressOutsideF2Right,Fortress Outside F2 Right,,Fortress,Item,FortressOutsideF2Right,
-FortressOutsideF3Left,Fortress Outside F3 Left,,Fortress,Item,FortressOutsideF3Left,
-FortressOutsideF3Right,Fortress Outside F3 Right,,Fortress,Item,FortressOutsideF3Right,
-FortressOutsideBombWallBigChest,Fortress Outside Bomb Wall Big Chest,,Fortress,Item,FortressOutsideBombWallBigChest,
-FortressOutsideBombWallSmallChest,Fortress Outside Bomb Wall Small Chest,,Overworld,Item,FortressOutsideBombWallSmallChest,
-FortressOutsideMinishHole,Fortress Outside Minish Hole,Small Key` F O W_ S E T`,Fortress,Item,FortressOutsideMinishHole,SmallKey`FOW_SET`
-FortressRightDrop,Fortress Right Drop,Small Key` F O W_ S E T`,Fortress,Item,FortressRightDrop,SmallKey`FOW_SET`
-FortressLeftDrop,Fortress Left Drop,Small Key` F O W_ S E T`,Fortress,Item,FortressLeftDrop,SmallKey`FOW_SET`
-FortressClonePuzzle,Fortress Clone Puzzle,Small Key` F O W_ S E T`,Fortress,Item,FortressClonePuzzle,SmallKey`FOW_SET`
-FortressEyegoreKill,Fortress Eyegore Kill,Dungeon Map` F O W_ S E T`,Fortress,Item,FortressEyegoreKill,DungeonMap`FOW_SET`
-FortressPedestal,Fortress Pedestal,Compass` F O W_ S E T`,Fortress,Item,FortressPedestal,Compass`FOW_SET`
-FortressSkullFall,Fortress Skull Fall,Big Key` F O W_ S E T`,Fortress,Item,FortressSkullFall,BigKey`FOW_SET`
-FortressSkullRoomLeft,Fortress Skull Room Left,,Fortress,Item,FortressSkullRoomLeft,
-FortressSkullRoomRight,Fortress Skull Room Right,,Fortress,Item,FortressSkullRoomRight,
-FortressWizrobes,Fortress Wizrobes,,Fortress,Item,FortressWizrobes,
-FortressBossItem,Fortress Boss Item,Heart Container,Overworld,Item,FortressBossItem,HeartContainer
-FortressPrize,Fortress Prize,,Overworld,Item,FortressPrize,
-DropletsMulldozers,Droplets Mulldozers,Small Key` T O D_ S E T`,Droplets,Item,DropletsMulldozers,SmallKey`TOD_SET`
-DropletsWaterPot,Droplets Water Pot,Small Key` T O D_ S E T`,Droplets,Item,DropletsWaterPot,SmallKey`TOD_SET`
-DropletsSecondIceblock,Droplets Second Iceblock,Small Key` T O D_ S E T`,Droplets,Item,DropletsSecondIceblock,SmallKey`TOD_SET`
-DropletsFirstIceblock,Droplets First Iceblock,Big Key` T O D_ S E T`,Droplets,Item,DropletsFirstIceblock,BigKey`TOD_SET`
-DropletsEastFirst,Droplets East First,,Droplets,Item,DropletsEastFirst,
-DropletsIceMaze,Droplets Ice Maze,,Droplets,Item,DropletsIceMaze,
-DropletsOverhang,Droplets Overhang,Dungeon Map` T O D_ S E T`,Droplets,Item,DropletsOverhang,DungeonMap`TOD_SET`
-DropletsBluChu,Droplets Blu Chu,,Droplets,Item,DropletsBluChu,
-DropletsBasement,Droplets Basement,Small Key` T O D_ S E T`,Droplets,Item,DropletsBasement,SmallKey`TOD_SET`
-DropletsFrozenIcePlain,Droplets Frozen Ice Plain,,Droplets,Item,DropletsFrozenIcePlain,
-DropletsFreeIcePlain,Droplets Free Ice Plain,,Droplets,Item,DropletsFreeIcePlain,
-DropletsDarkMazeRight,Droplets Dark Maze Right,,Droplets,Item,DropletsDarkMazeRight,
-DropletsDarkMazeLeft,Droplets Dark Maze Left,,Droplets,Item,DropletsDarkMazeLeft,
-DropletsDarkMazeMiddle,Droplets Dark Maze Middle,,Droplets,Item,DropletsDarkMazeMiddle,
-DropletsPostTwinFrozen,Droplets Post Twin Frozen,,Droplets,Item,DropletsPostTwinFrozen,
-DropletsPreviewFrozen,Droplets Preview Frozen,,Droplets,Item,DropletsPreviewFrozen,
-DropletsIceWiggler,Droplets Ice Wiggler,Compass` T O D_ S E T`,Droplets,Item,DropletsIceWiggler,Compass`TOD_SET`
-DropletsBossItem,Droplets Boss Item,Heart Container,Overworld,Item,DropletsBossItem,HeartContainer
-DropletsPrize,Droplets Prize,,Overworld,Item,DropletsPrize,
-PalaceWizrobeKill,Palace Wizrobe Kill,,Palace,Item,PalaceWizrobeKill,
-PalaceFirstGrate,Palace First Grate,,Palace,Item,PalaceFirstGrate,
-PalaceBraceletPuzzleKey,Palace Bracelet Puzzle Key,Small Key` P O W_ S E T`,Palace,Item,PalaceBraceletPuzzleKey,SmallKey`POW_SET`
-PalaceWideGap,Palace Wide Gap,,Palace,Item,PalaceWideGap,
-PalaceBallAndChainSoldiers,Palace Ball And Chain Soldiers,Small Key` P O W_ S E T`,Palace,Item,PalaceBallAndChainSoldiers,SmallKey`POW_SET`
-PalaceFanLoop,Palace Fan Loop,Small Key` P O W_ S E T`,Palace,Item,PalaceFanLoop,SmallKey`POW_SET`
-PalacePreBigDoor,Palace Pre Big Door,Big Key` P O W_ S E T`,Palace,Item,PalacePreBigDoor,BigKey`POW_SET`
-PalaceDarkBig,Palace Dark Big,Compass` P O W_ S E T`,Palace,Item,PalaceDarkBig,Compass`POW_SET`
-PalaceDarkSmall,Palace Dark Small,Small Key` P O W_ S E T`,Palace,Item,PalaceDarkSmall,SmallKey`POW_SET`
-PalaceManyRollers,Palace Many Rollers,Small Key` P O W_ S E T`,Palace,Item,PalaceManyRollers,SmallKey`POW_SET`
-PalaceTwinWizrobes,Palace Twin Wizrobes,,Palace,Item,PalaceTwinWizrobes,
-PalaceFirerobeTrio,Palace Firerobe Trio,Dungeon Map` P O W_ S E T`,Palace,Item,PalaceFirerobeTrio,DungeonMap`POW_SET`
-PalaceHeartPiece,Palace Heart Piece,,Palace,Item,PalaceHeartPiece,
-PalaceSwitchHit,Palace Switch Hit,,Palace,Item,PalaceSwitchHit,
-PalacePreBoss,Palace Pre Boss,Small Key` P O W_ S E T`,Palace,Item,PalacePreBoss,SmallKey`POW_SET`
-PalaceBlockMaze,Palace Block Maze,,Palace,Item,PalaceBlockMaze,
-PalaceDetour,Palace Detour,,Palace,Item,PalaceDetour,
-PalaceBossItem,Palace Boss Item,Heart Container,Overworld,Item,PalaceBossItem,HeartContainer
-PalacePrize,Palace Prize,,Overworld,Item,PalacePrize,
-CastleKing,Castle King,Rupee200,D H C,Item,CastleKing,Rupee200
-CastleBasement,Castle Basement,Dungeon Map` D H C_ S E T`,D H C,Item,CastleBasement,DungeonMap`DHC_SET`
-CastleClones,Castle Clones,Small Key` D H C_ S E T`,D H C,Item,CastleClones,SmallKey`DHC_SET`
-CastlePostThrone,Castle Post Throne,Compass` D H C_ S E T`,D H C,Item,CastlePostThrone,Compass`DHC_SET`
-CastleTopLeftTower,Castle Top Left Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleTopLeftTower,SmallKey`DHC_SET`
-CastleTopRightTower,Castle Top Right Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleTopRightTower,SmallKey`DHC_SET`
-CastleLowerLeftTower,Castle Lower Left Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleLowerLeftTower,SmallKey`DHC_SET`
-CastleLowerRightTower,Castle Lower Right Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleLowerRightTower,SmallKey`DHC_SET`
-CastleBigBlock,Castle Big Block,Big Key` D H C_ S E T`,Overworld,Item,CastleBigBlock,BigKey`DHC_SET`
+DeepwoodWiggler:Deepwood,Deepwood Wiggler,,Deepwood,Item,DeepwoodWiggler,
+DeepwoodPostWigglerHeartPiece:Deepwood,Deepwood Post Wiggler Heart Piece,,Deepwood,Item,DeepwoodPostWigglerHeartPiece,
+DeepwoodPreWigglerLeft:Deepwood,Deepwood Pre Wiggler Left,,Deepwood,Item,DeepwoodPreWigglerLeft,
+DeepwoodPreWigglerRight:Deepwood,Deepwood Pre Wiggler Right,,Deepwood,Item,DeepwoodPreWigglerRight,
+DeepwoodPreWigglerHeartPiece:Deepwood,Deepwood Pre Wiggler Heart Piece,,Deepwood,Item,DeepwoodPreWigglerHeartPiece,
+DeepwoodPreCompass:Deepwood,Deepwood Pre Compass,,Deepwood,Item,DeepwoodPreCompass,
+DeepwoodMulldozers:Deepwood,Deepwood Mulldozers,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodMulldozers,SmallKey`DWS_SET`
+DeepwoodStatueRoom:Deepwood,Deepwood Statue Room,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodStatueRoom,SmallKey`DWS_SET`
+DeepwoodWestWing:Deepwood,Deepwood West Wing,Compass` D W S_ S E T`,Deepwood,Item,DeepwoodWestWing,Compass`DWS_SET`
+DeepwoodPreBarrel:Deepwood,Deepwood Pre Barrel,,Deepwood,Item,DeepwoodPreBarrel,
+DeepwoodSlugTorches:Deepwood,Deepwood Slug Torches,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodSlugTorches,SmallKey`DWS_SET`
+DeepwoodBasementNorth:Deepwood,Deepwood Basement North,Big Key` D W S_ S E T`,Deepwood,Item,DeepwoodBasementNorth,BigKey`DWS_SET`
+DeepwoodBasementSwitch:Deepwood,Deepwood Basement Switch,Small Key` D W S_ S E T`,Deepwood,Item,DeepwoodBasementSwitch,SmallKey`DWS_SET`
+DeepwoodBasementEast:Deepwood,Deepwood Basement East,Dungeon Map` D W S_ S E T`,Deepwood,Item,DeepwoodBasementEast,DungeonMap`DWS_SET`
+DeepwoodUpstairsChest:Deepwood,Deepwood Upstairs Chest,,Deepwood,Item,DeepwoodUpstairsChest,
+DeepwoodBossItem:Deepwood,Deepwood Boss Item,Heart Container,Overworld,Item,DeepwoodBossItem,HeartContainer
+DeepwoodPrize:`ELEMENT_DUNGEON`,Deepwood Prize,,Overworld,Item,DeepwoodPrize,
+CoFFlippedCart:FlameCave,Co F Flipped Cart,Small Key` C O F_ S E T`,Co F,Item,CoFFlippedCart,SmallKey`COF_SET`
+CoFHeartPiece:FlameCave,Co F Heart Piece,,Co F,Item,CoFHeartPiece,
+CoFChuPit:FlameCave,Co F Chu Pit,,Co F,Item,CoFChuPit,
+CoFPillBugsPillarChest:FlameCave,Co F Pill Bugs Pillar Chest,Small Key` C O F_ S E T`,Co F,Item,CoFPillBugsPillarChest,SmallKey`COF_SET`
+CoFPillBugsHoleChest:FlameCave,Co F Pill Bugs Hole Chest,,Co F,Item,CoFPillBugsHoleChest,
+CoFSoutheastSmall:FlameCave,Co F Southeast Small,,Co F,Item,CoFSoutheastSmall,
+CoFSoutheastBig:FlameCave,Co F Southeast Big,Compass` C O F_ S E T`,Co F,Item,CoFSoutheastBig,Compass`COF_SET`
+CoFBasementTop:FlameCave,Co F Basement Top,,Co F,Item,CoFBasementTop,
+CoFBasementBottom:FlameCave,Co F Basement Bottom,,Co F,Item,CoFBasementBottom,
+CoFBlades:FlameCave,Co F Blades,,Co F,Item,CoFBlades,
+CoFSpinies:FlameCave,Co F Spinies,Dungeon Map` C O F_ S E T`,Co F,Item,CoFSpinies,DungeonMap`COF_SET`
+CoFBasementLavaLeft:FlameCave,Co F Basement Lava Left,,Co F,Item,CoFBasementLavaLeft,
+CoFBasementLavaRight:FlameCave,Co F Basement Lava Right,,Co F,Item,CoFBasementLavaRight,
+CoFBasementLavaBig:FlameCave,Co F Basement Lava Big,Big Key` C O F_ S E T`,Co F,Item,CoFBasementLavaBig,BigKey`COF_SET`
+CoFBossItem:FlameCave,Co F Boss Item,Heart Container,Overworld,Item,CoFBossItem,HeartContainer
+CoFPrize:`ELEMENT_DUNGEON`,Co F Prize,,Overworld,Item,CoFPrize,
+FortressEntrance:Fortress,Fortress Entrance,,Fortress,Item,FortressEntrance,
+FortressHeartPiece:Fortress,Fortress Heart Piece,,Fortress,Item,FortressHeartPiece,
+FortressOutsideF2Left:Fortress,Fortress Outside F2 Left,,Fortress,Item,FortressOutsideF2Left,
+FortressOutsideF2Middle:Fortress,Fortress Outside F2 Middle,,Fortress,Item,FortressOutsideF2Middle,
+FortressOutsideF2Right:Fortress,Fortress Outside F2 Right,,Fortress,Item,FortressOutsideF2Right,
+FortressOutsideF3Left:Fortress,Fortress Outside F3 Left,,Fortress,Item,FortressOutsideF3Left,
+FortressOutsideF3Right:Fortress,Fortress Outside F3 Right,,Fortress,Item,FortressOutsideF3Right,
+FortressOutsideBombWallBigChest:Fortress,Fortress Outside Bomb Wall Big Chest,,Fortress,Item,FortressOutsideBombWallBigChest,
+FortressOutsideBombWallSmallChest:Fortress,Fortress Outside Bomb Wall Small Chest,,Overworld,Item,FortressOutsideBombWallSmallChest,
+FortressOutsideMinishHole:Fortress,Fortress Outside Minish Hole,Small Key` F O W_ S E T`,Fortress,Item,FortressOutsideMinishHole,SmallKey`FOW_SET`
+FortressRightDrop:Fortress,Fortress Right Drop,Small Key` F O W_ S E T`,Fortress,Item,FortressRightDrop,SmallKey`FOW_SET`
+FortressLeftDrop:Fortress,Fortress Left Drop,Small Key` F O W_ S E T`,Fortress,Item,FortressLeftDrop,SmallKey`FOW_SET`
+FortressClonePuzzle:Fortress,Fortress Clone Puzzle,Small Key` F O W_ S E T`,Fortress,Item,FortressClonePuzzle,SmallKey`FOW_SET`
+FortressEyegoreKill:Fortress,Fortress Eyegore Kill,Dungeon Map` F O W_ S E T`,Fortress,Item,FortressEyegoreKill,DungeonMap`FOW_SET`
+FortressPedestal:Fortress,Fortress Pedestal,Compass` F O W_ S E T`,Fortress,Item,FortressPedestal,Compass`FOW_SET`
+FortressSkullFall:Fortress,Fortress Skull Fall,Big Key` F O W_ S E T`,Fortress,Item,FortressSkullFall,BigKey`FOW_SET`
+FortressSkullRoomLeft:Fortress,Fortress Skull Room Left,,Fortress,Item,FortressSkullRoomLeft,
+FortressSkullRoomRight:Fortress,Fortress Skull Room Right,,Fortress,Item,FortressSkullRoomRight,
+FortressWizrobes:Fortress,Fortress Wizrobes,,Fortress,Item,FortressWizrobes,
+FortressBossItem:Fortress,Fortress Boss Item,Heart Container,Overworld,Item,FortressBossItem,HeartContainer
+FortressPrize:`ELEMENT_DUNGEON`,Fortress Prize,,Overworld,Item,FortressPrize,
+DropletsMulldozers:Droplets,Droplets Mulldozers,Small Key` T O D_ S E T`,Droplets,Item,DropletsMulldozers,SmallKey`TOD_SET`
+DropletsWaterPot:Droplets,Droplets Water Pot,Small Key` T O D_ S E T`,Droplets,Item,DropletsWaterPot,SmallKey`TOD_SET`
+DropletsSecondIceblock:Droplets,Droplets Second Iceblock,Small Key` T O D_ S E T`,Droplets,Item,DropletsSecondIceblock,SmallKey`TOD_SET`
+DropletsFirstIceblock:Droplets,Droplets First Iceblock,Big Key` T O D_ S E T`,Droplets,Item,DropletsFirstIceblock,BigKey`TOD_SET`
+DropletsEastFirst:Droplets,Droplets East First,,Droplets,Item,DropletsEastFirst,
+DropletsIceMaze:Droplets,Droplets Ice Maze,,Droplets,Item,DropletsIceMaze,
+DropletsOverhang:Droplets,Droplets Overhang,Dungeon Map` T O D_ S E T`,Droplets,Item,DropletsOverhang,DungeonMap`TOD_SET`
+DropletsBluChu:Droplets,Droplets Blu Chu,Flame Lantern,Droplets,Item,DropletsBluChu,LanternOff
+DropletsBasement:Droplets,Droplets Basement,Small Key` T O D_ S E T`,Droplets,Item,DropletsBasement,SmallKey`TOD_SET`
+DropletsFrozenIcePlain:Droplets,Droplets Frozen Ice Plain,,Droplets,Item,DropletsFrozenIcePlain,
+DropletsFreeIcePlain:Droplets,Droplets Free Ice Plain,,Droplets,Item,DropletsFreeIcePlain,
+DropletsDarkMazeRight:Droplets,Droplets Dark Maze Right,,Droplets,Item,DropletsDarkMazeRight,
+DropletsDarkMazeLeft:Droplets,Droplets Dark Maze Left,,Droplets,Item,DropletsDarkMazeLeft,
+DropletsDarkMazeMiddle:Droplets,Droplets Dark Maze Middle,,Droplets,Item,DropletsDarkMazeMiddle,
+DropletsPostTwinFrozen:Droplets,Droplets Post Twin Frozen,,Droplets,Item,DropletsPostTwinFrozen,
+DropletsPreviewFrozen:Droplets,Droplets Preview Frozen,,Droplets,Item,DropletsPreviewFrozen,
+DropletsIceWiggler:Droplets,Droplets Ice Wiggler,Compass` T O D_ S E T`,Droplets,Item,DropletsIceWiggler,Compass`TOD_SET`
+DropletsBossItem:Droplets,Droplets Boss Item,Heart Container,Overworld,Item,DropletsBossItem,HeartContainer
+DropletsPrize:`ELEMENT_DUNGEON`,Droplets Prize,,Overworld,Item,DropletsPrize,
+PalaceWizrobeKill:Palace,Palace Wizrobe Kill,,Palace,Item,PalaceWizrobeKill,
+PalaceFirstGrate:Palace,Palace First Grate,,Palace,Item,PalaceFirstGrate,
+PalaceBraceletPuzzleKey:Palace,Palace Bracelet Puzzle Key,Small Key` P O W_ S E T`,Palace,Item,PalaceBraceletPuzzleKey,SmallKey`POW_SET`
+PalaceWideGap:Palace,Palace Wide Gap,,Palace,Item,PalaceWideGap,
+PalaceBallAndChainSoldiers:Palace,Palace Ball And Chain Soldiers,Small Key` P O W_ S E T`,Palace,Item,PalaceBallAndChainSoldiers,SmallKey`POW_SET`
+PalaceFanLoop:Palace,Palace Fan Loop,Small Key` P O W_ S E T`,Palace,Item,PalaceFanLoop,SmallKey`POW_SET`
+PalacePreBigDoor:Palace,Palace Pre Big Door,Big Key` P O W_ S E T`,Palace,Item,PalacePreBigDoor,BigKey`POW_SET`
+PalaceDarkBig:Palace,Palace Dark Big,Compass` P O W_ S E T`,Palace,Item,PalaceDarkBig,Compass`POW_SET`
+PalaceDarkSmall:Palace,Palace Dark Small,Small Key` P O W_ S E T`,Palace,Item,PalaceDarkSmall,SmallKey`POW_SET`
+PalaceManyRollers:Palace,Palace Many Rollers,Small Key` P O W_ S E T`,Palace,Item,PalaceManyRollers,SmallKey`POW_SET`
+PalaceTwinWizrobes:Palace,Palace Twin Wizrobes,,Palace,Item,PalaceTwinWizrobes,
+PalaceFirerobeTrio:Palace,Palace Firerobe Trio,Dungeon Map` P O W_ S E T`,Palace,Item,PalaceFirerobeTrio,DungeonMap`POW_SET`
+PalaceHeartPiece:Palace,Palace Heart Piece,,Palace,Item,PalaceHeartPiece,
+PalaceSwitchHit:Palace,Palace Switch Hit,,Palace,Item,PalaceSwitchHit,
+PalacePreBoss:Palace,Palace Pre Boss,Small Key` P O W_ S E T`,Palace,Item,PalacePreBoss,SmallKey`POW_SET`
+PalaceBlockMaze:Palace,Palace Block Maze,,Palace,Item,PalaceBlockMaze,
+PalaceDetour:Palace,Palace Detour,,Palace,Item,PalaceDetour,
+PalaceBossItem:Palace,Palace Boss Item,Heart Container,Overworld,Item,PalaceBossItem,HeartContainer
+PalacePrize:`ELEMENT_DUNGEON`,Palace Prize,,Overworld,Item,PalacePrize,
+CastleKing:DHC,Castle King,Rupee200,D H C,Item,CastleKing,Rupee200
+CastleBasement:DHC,Castle Basement,Dungeon Map` D H C_ S E T`,D H C,Item,CastleBasement,DungeonMap`DHC_SET`
+CastleClones:DHC,Castle Clones,Small Key` D H C_ S E T`,D H C,Item,CastleClones,SmallKey`DHC_SET`
+CastlePostThrone:DHC,Castle Post Throne,Compass` D H C_ S E T`,D H C,Item,CastlePostThrone,Compass`DHC_SET`
+CastleTopLeftTower:DHC,Castle Top Left Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleTopLeftTower,SmallKey`DHC_SET`
+CastleTopRightTower:DHC,Castle Top Right Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleTopRightTower,SmallKey`DHC_SET`
+CastleLowerLeftTower:DHC,Castle Lower Left Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleLowerLeftTower,SmallKey`DHC_SET`
+CastleLowerRightTower:DHC,Castle Lower Right Tower,Small Key` D H C_ S E T`,Overworld,Item,CastleLowerRightTower,SmallKey`DHC_SET`
+CastleBigBlock:DHC,Castle Big Block,Big Key` D H C_ S E T`,Overworld,Item,CastleBigBlock,BigKey`DHC_SET`
 MinishBottomLeftFusion,Minish Bottom Left Fusion,,Overworld,Item,MinishBottomLeftFusion,
 MinishMiddleRightFusion,Minish Middle Right Fusion,,Minish Woods,Item,MinishMiddleRightFusion,
 MinishMiddleFusion,Minish Middle Fusion,,Minish Woods,Item,MinishMiddleFusion,
@@ -319,8 +319,8 @@ FallsNearCrestFusion,Falls Near Crest Fusion,,Falls North,Item,FallsNearCrestFus
 FallsWaterCaveEnd,Falls Water Cave End,,Overworld,Item,FallsWaterCaveEnd,
 RuinsBombBag,Ruins Bomb Bag,,Fortress,Item,RuinsBombBag,
 LonLonWallet,Lon Lon Wallet,,Hylia North,Item,LonLonWallet,
-LonLonBottle3,Lon Lon Bottle3,Bottle4,Overworld,Item,LonLonBottle3,Bottle3
-GoronBottle4,Goron Bottle4,Bottle4,Overworld,Item,GoronBottle4,Bottle4
+LonLonBottle3,Lon Lon Bottle3,Bottle,Overworld,Item,LonLonBottle3,Bottle3
+GoronBottle4,Goron Bottle4,Bottle,Overworld,Item,GoronBottle4,Bottle4
 TingleBoomerang,Tingle Boomerang,Boomerang,Overworld,Item,TingleBoomerang,Boomerang
 RuinsBeanStalk,Ruins Bean Stalk,,Fortress,Item,RuinsBeanStalk,
 BelariRemote,Belari Remote,,Overworld,Item,BelariRemote,
@@ -346,9 +346,9 @@ ScarbladeScroll,Scarblade Scroll,Fast Spin,Wilds,Item,ScarbladeScroll,FastSpin
 SplitbladeScroll,Splitblade Scroll,Fast Split,Falls South,Item,SplitbladeScroll,FastSplit
 GreatbladeScroll,Greatblade Scroll,Long Spin,Overworld,Item,GreatbladeScroll,LongSpin
 HearthPot,Hearth Pot,,Overworld,Item,HearthPot,
-DropletsIceMazePot,Droplets Ice Maze Pot,,Droplets,Item,DropletsIceMazePot,
-FoWRightSideTopPot,Fo W Right Side Top Pot,,Fortress,Item,FoWRightSideTopPot,
-FoWRightSideBottomPot,Fo W Right Side Bottom Pot,,Fortress,Item,FoWRightSideBottomPot,
+DropletsIceMazePot:Droplets,Droplets Ice Maze Pot,,Droplets,Item,DropletsIceMazePot,
+FoWRightSideTopPot:Fortress,Fo W Right Side Top Pot,,Fortress,Item,FoWRightSideTopPot,
+FoWRightSideBottomPot:Fortress,Fo W Right Side Bottom Pot,,Fortress,Item,FoWRightSideBottomPot,
 LonLonBuriedTreasure,Lon Lon Buried Treasure,,Overworld,Item,LonLonBuriedTreasure,
 NorthHyruleFieldBuriedTreasure,North Hyrule Field Buried Treasure,,Overworld,Item,NorthHyruleFieldBuriedTreasure,
 TopLeftCloudWall,Top Left Cloud Wall,,Clouds,Item,TopLeftCloudWall,
@@ -393,46 +393,46 @@ FallsUpperCaveWaterRupee3,Falls Upper Cave Water Rupee3,,Falls North,Item,FallsU
 FallsUpperCaveWaterRupee4,Falls Upper Cave Water Rupee4,,Falls North,Item,FallsUpperCaveWaterRupee4,
 FallsUpperCaveWaterRupee5,Falls Upper Cave Water Rupee5,,Falls North,Item,FallsUpperCaveWaterRupee5,
 FallsUpperCaveWaterRupee6,Falls Upper Cave Water Rupee6,,Falls North,Item,FallsUpperCaveWaterRupee6,
-FortressBigRupee,Fortress Big Rupee,,Fortress,Item,FortressBigRupee,
-FortressF1Rupee1,Fortress F1 Rupee1,,Fortress,Item,FortressF1Rupee1,
-FortressF1Rupee2,Fortress F1 Rupee2,,Fortress,Item,FortressF1Rupee2,
-FortressF1Rupee3,Fortress F1 Rupee3,,Fortress,Item,FortressF1Rupee3,
-FortressF1Rupee4,Fortress F1 Rupee4,,Fortress,Item,FortressF1Rupee4,
-FortressF1Rupee5,Fortress F1 Rupee5,,Fortress,Item,FortressF1Rupee5,
-FortressF1Rupee6,Fortress F1 Rupee6,,Fortress,Item,FortressF1Rupee6,
-FortressF1Rupee7,Fortress F1 Rupee7,,Fortress,Item,FortressF1Rupee7,
-DropletsUpperWaterRupee1,Droplets Upper Water Rupee1,,Droplets,Item,DropletsUpperWaterRupee1,
-DropletsUpperWaterRupee2,Droplets Upper Water Rupee2,,Droplets,Item,DropletsUpperWaterRupee2,
-DropletsUpperWaterRupee3,Droplets Upper Water Rupee3,,Droplets,Item,DropletsUpperWaterRupee3,
-DropletsUpperWaterRupee4,Droplets Upper Water Rupee4,,Droplets,Item,DropletsUpperWaterRupee4,
-DropletsUpperWaterRupee5,Droplets Upper Water Rupee5,,Droplets,Item,DropletsUpperWaterRupee5,
-DropletsUpperWaterRupee6,Droplets Upper Water Rupee6,,Droplets,Item,DropletsUpperWaterRupee6,
-DropletsLowerWaterRupee1,Droplets Lower Water Rupee1,,Droplets,Item,DropletsLowerWaterRupee1,
-DropletsLowerWaterRupee2,Droplets Lower Water Rupee2,,Droplets,Item,DropletsLowerWaterRupee2,
-DropletsLowerWaterRupee3,Droplets Lower Water Rupee3,,Droplets,Item,DropletsLowerWaterRupee3,
-DropletsLowerWaterRupee4,Droplets Lower Water Rupee4,,Droplets,Item,DropletsLowerWaterRupee4,
-DropletsLowerWaterRupee5,Droplets Lower Water Rupee5,,Droplets,Item,DropletsLowerWaterRupee5,
-DropletsLowerWaterRupee6,Droplets Lower Water Rupee6,,Droplets,Item,DropletsLowerWaterRupee6,
-DropletsLeftPathRupee1,Droplets Left Path Rupee1,,Droplets,Item,DropletsLeftPathRupee1,
-DropletsLeftPathRupee2,Droplets Left Path Rupee2,,Droplets,Item,DropletsLeftPathRupee2,
-DropletsLeftPathRupee3,Droplets Left Path Rupee3,,Droplets,Item,DropletsLeftPathRupee3,
-DropletsLeftPathRupee4,Droplets Left Path Rupee4,,Droplets,Item,DropletsLeftPathRupee4,
-DropletsLeftPathRupee5,Droplets Left Path Rupee5,,Droplets,Item,DropletsLeftPathRupee5,
-DropletsRightPathRupee1,Droplets Right Path Rupee1,,Droplets,Item,DropletsRightPathRupee1,
-DropletsRightPathRupee2,Droplets Right Path Rupee2,,Droplets,Item,DropletsRightPathRupee2,
-DropletsRightPathRupee3,Droplets Right Path Rupee3,,Droplets,Item,DropletsRightPathRupee3,
-DropletsRightPathRupee4,Droplets Right Path Rupee4,,Droplets,Item,DropletsRightPathRupee4,
-DropletsRightPathRupee5,Droplets Right Path Rupee5,,Droplets,Item,DropletsRightPathRupee5,
-CoFRupee1,Co F Rupee1,,Co F,Item,CoFRupee1,
-CoFRupee2,Co F Rupee2,,Co F,Item,CoFRupee2,
-CoFRupee3,Co F Rupee3,,Co F,Item,CoFRupee3,
-CoFRupee4,Co F Rupee4,,Co F,Item,CoFRupee4,
-CoFRupee5,Co F Rupee5,,Co F,Item,CoFRupee5,
-PalaceRupee1,Palace Rupee1,,Palace,Item,PalaceRupee1,
-PalaceRupee2,Palace Rupee2,,Palace,Item,PalaceRupee2,
-PalaceRupee3,Palace Rupee3,,Palace,Item,PalaceRupee3,
-PalaceRupee4,Palace Rupee4,,Palace,Item,PalaceRupee4,
-PalaceRupee5,Palace Rupee5,,Palace,Item,PalaceRupee5,
+FortressBigRupee:Fortress,Fortress Big Rupee,,Fortress,Item,FortressBigRupee,
+FortressF1Rupee1:Fortress,Fortress F1 Rupee1,,Fortress,Item,FortressF1Rupee1,
+FortressF1Rupee2:Fortress,Fortress F1 Rupee2,,Fortress,Item,FortressF1Rupee2,
+FortressF1Rupee3:Fortress,Fortress F1 Rupee3,,Fortress,Item,FortressF1Rupee3,
+FortressF1Rupee4:Fortress,Fortress F1 Rupee4,,Fortress,Item,FortressF1Rupee4,
+FortressF1Rupee5:Fortress,Fortress F1 Rupee5,,Fortress,Item,FortressF1Rupee5,
+FortressF1Rupee6:Fortress,Fortress F1 Rupee6,,Fortress,Item,FortressF1Rupee6,
+FortressF1Rupee7:Fortress,Fortress F1 Rupee7,,Fortress,Item,FortressF1Rupee7,
+DropletsUpperWaterRupee1:Droplets,Droplets Upper Water Rupee1,,Droplets,Item,DropletsUpperWaterRupee1,
+DropletsUpperWaterRupee2:Droplets,Droplets Upper Water Rupee2,,Droplets,Item,DropletsUpperWaterRupee2,
+DropletsUpperWaterRupee3:Droplets,Droplets Upper Water Rupee3,,Droplets,Item,DropletsUpperWaterRupee3,
+DropletsUpperWaterRupee4:Droplets,Droplets Upper Water Rupee4,,Droplets,Item,DropletsUpperWaterRupee4,
+DropletsUpperWaterRupee5:Droplets,Droplets Upper Water Rupee5,,Droplets,Item,DropletsUpperWaterRupee5,
+DropletsUpperWaterRupee6:Droplets,Droplets Upper Water Rupee6,,Droplets,Item,DropletsUpperWaterRupee6,
+DropletsLowerWaterRupee1:Droplets,Droplets Lower Water Rupee1,,Droplets,Item,DropletsLowerWaterRupee1,
+DropletsLowerWaterRupee2:Droplets,Droplets Lower Water Rupee2,,Droplets,Item,DropletsLowerWaterRupee2,
+DropletsLowerWaterRupee3:Droplets,Droplets Lower Water Rupee3,,Droplets,Item,DropletsLowerWaterRupee3,
+DropletsLowerWaterRupee4:Droplets,Droplets Lower Water Rupee4,,Droplets,Item,DropletsLowerWaterRupee4,
+DropletsLowerWaterRupee5:Droplets,Droplets Lower Water Rupee5,,Droplets,Item,DropletsLowerWaterRupee5,
+DropletsLowerWaterRupee6:Droplets,Droplets Lower Water Rupee6,,Droplets,Item,DropletsLowerWaterRupee6,
+DropletsLeftPathRupee1:Droplets,Droplets Left Path Rupee1,,Droplets,Item,DropletsLeftPathRupee1,
+DropletsLeftPathRupee2:Droplets,Droplets Left Path Rupee2,,Droplets,Item,DropletsLeftPathRupee2,
+DropletsLeftPathRupee3:Droplets,Droplets Left Path Rupee3,,Droplets,Item,DropletsLeftPathRupee3,
+DropletsLeftPathRupee4:Droplets,Droplets Left Path Rupee4,,Droplets,Item,DropletsLeftPathRupee4,
+DropletsLeftPathRupee5:Droplets,Droplets Left Path Rupee5,,Droplets,Item,DropletsLeftPathRupee5,
+DropletsRightPathRupee1:Droplets,Droplets Right Path Rupee1,,Droplets,Item,DropletsRightPathRupee1,
+DropletsRightPathRupee2:Droplets,Droplets Right Path Rupee2,,Droplets,Item,DropletsRightPathRupee2,
+DropletsRightPathRupee3:Droplets,Droplets Right Path Rupee3,,Droplets,Item,DropletsRightPathRupee3,
+DropletsRightPathRupee4:Droplets,Droplets Right Path Rupee4,,Droplets,Item,DropletsRightPathRupee4,
+DropletsRightPathRupee5:Droplets,Droplets Right Path Rupee5,,Droplets,Item,DropletsRightPathRupee5,
+CoFRupee1:FlameCave,Co F Rupee1,,Co F,Item,CoFRupee1,
+CoFRupee2:FlameCave,Co F Rupee2,,Co F,Item,CoFRupee2,
+CoFRupee3:FlameCave,Co F Rupee3,,Co F,Item,CoFRupee3,
+CoFRupee4:FlameCave,Co F Rupee4,,Co F,Item,CoFRupee4,
+CoFRupee5:FlameCave,Co F Rupee5,,Co F,Item,CoFRupee5,
+PalaceRupee1:Palace,Palace Rupee1,,Palace,Item,PalaceRupee1,
+PalaceRupee2:Palace,Palace Rupee2,,Palace,Item,PalaceRupee2,
+PalaceRupee3:Palace,Palace Rupee3,,Palace,Item,PalaceRupee3,
+PalaceRupee4:Palace,Palace Rupee4,,Palace,Item,PalaceRupee4,
+PalaceRupee5:Palace,Palace Rupee5,,Palace,Item,PalaceRupee5,
 FlipsCaveWaterfallRupee,Flips Cave Waterfall Rupee,,Overworld,Item,FlipsCaveWaterfallRupee,
 FarmCaveRupee,Farm Cave Rupee,,East Field,Item,FarmCaveRupee,
 CrenelBeanstalkRupee1,Crenel Beanstalk Rupee1,,Crenel,Item,CrenelBeanstalkRupee1,
@@ -489,3 +489,18 @@ TrilbyPuddleCaveRupee12,Trilby Puddle Cave Rupee12,,Overworld,Item,TrilbyPuddleC
 TrilbyPuddleCaveRupee13,Trilby Puddle Cave Rupee13,,Overworld,Item,TrilbyPuddleCaveRupee13,
 TrilbyPuddleCaveRupee14,Trilby Puddle Cave Rupee14,,Overworld,Item,TrilbyPuddleCaveRupee14,
 TrilbyPuddleCaveRupee15,Trilby Puddle Cave Rupee15,,Overworld,Item,TrilbyPuddleCaveRupee15,
+SettingOtherWeaponsDamage,Damaging items other than sword seen as weapons,,%Settings%,SettingOtherWeaponsDamage,,
+SettingOtherWeaponsDamageTrue,,TRUE,%Settings%,SettingOtherWeaponsDamage,,
+SettingOtherWeaponsDamageFalse,,FALSE,%Settings%,SettingOtherWeaponsDamage,,
+SettingFigurineHunt,Shuffle figurines into item pool,,%Settings%,SettingFigurineHunt,,
+SettingFigurineHuntTrue,,TRUE,%Settings%,SettingFigurineHunt,,
+SettingFigurineHuntFalse,,FALSE,%Settings%,SettingFigurineHunt,,
+SettingFusion,Fusion Settings,,%Settings%,SettingFusion,,
+SettingFusionNo,,No normal fusions,%Settings%,SettingFusion,,
+SettingFusionOpen,,Open fusion mode,%Settings%,SettingFusion,,
+SettingFusionVanilla,,Vanilla Fusions,%Settings%,SettingFusion,,
+SettingDarkHuryleCastle,Dark Hyrule Castle Settings,,%Settings%,SettingDarkHuryleCastle,,
+SettingDarkHuryleCastlePORD,,Ped Open/Regular DHC,%Settings%,SettingDarkHuryleCastle,,
+SettingDarkHuryleCastlePFND,,Ped Finish/No DHC,%Settings%,SettingDarkHuryleCastle,,
+SettingDarkHuryleCastleOD,,Open DHC,%Settings%,SettingDarkHuryleCastle,,
+SettingDarkHuryleCastleODPI,,Open DHC + Ped Items,%Settings%,SettingDarkHuryleCastle,,

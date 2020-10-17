@@ -947,31 +947,31 @@
 0
 0
 
-- CryptGibdoLeft
+- CryptGibdoLeft:Crypt
 
 
 0
 0
 
-- CryptGibdoRight
+- CryptGibdoRight:Crypt
 
 
 0
 0
 
-- CryptLeft
+- CryptLeft:Crypt
 
 
 0
 0
 
-- CryptRight
+- CryptRight:Crypt
 
 
 0
 0
 
-- KingGift
+- KingGift:`ELEMENT_DUNGEON`
 
 
 0
@@ -1163,631 +1163,631 @@
 0
 0
 
-- DeepwoodAccess
+- DeepwoodAccess:Deepwood
 
 
 0
 0
 
-- DeepwoodWiggler
+- DeepwoodWiggler:Deepwood
 
 
 0
 0
 
-- DeepwoodPostWigglerHeartPiece
+- DeepwoodPostWigglerHeartPiece:Deepwood
 
 
 0
 0
 
-- DeepwoodPreWigglerLeft
+- DeepwoodPreWigglerLeft:Deepwood
 
 
 0
 0
 
-- DeepwoodPreWigglerRight
+- DeepwoodPreWigglerRight:Deepwood
 
 
 0
 0
 
-- DeepwoodPreWigglerHeartPiece
+- DeepwoodPreWigglerHeartPiece:Deepwood
 
 
 0
 0
 
-- DeepwoodPreCompass
+- DeepwoodPreCompass:Deepwood
 
 
 0
 0
 
-- DeepwoodMulldozers
+- DeepwoodMulldozers:Deepwood
 
 
 0
 0
 
-- DeepwoodStatueRoom
+- DeepwoodStatueRoom:Deepwood
 
 
 0
 0
 
-- DeepwoodWestWing
+- DeepwoodWestWing:Deepwood
 
 
 0
 0
 
-- DeepwoodPreBarrel
+- DeepwoodPreBarrel:Deepwood
 
 
 0
 0
 
-- DeepwoodSlugTorches
+- DeepwoodSlugTorches:Deepwood
 
 
 0
 0
 
-- DeepwoodBasementNorth
+- DeepwoodBasementNorth:Deepwood
 
 
 0
 0
 
-- DeepwoodBasementSwitch
+- DeepwoodBasementSwitch:Deepwood
 
 
 0
 0
 
-- DeepwoodBasementEast
+- DeepwoodBasementEast:Deepwood
 
 
 0
 0
 
-- DeepwoodUpstairsChest
+- DeepwoodUpstairsChest:Deepwood
 
 
 0
 0
 
-- CompleteDeepwood
+- CompleteDeepwood:Deepwood
 
 
 0
 0
 
-- DeepwoodBossItem
+- DeepwoodBossItem:Deepwood
 
 
 0
 0
 
-- DeepwoodPrize
+- DeepwoodPrize:`ELEMENT_DUNGEON`
 
 
 0
 0
 
-- CoFAccess
+- CoFAccess:FlameCave
 
 
 0
 0
 
-- CoFFlippedCart
+- CoFFlippedCart:FlameCave
 
 
 0
 0
 
-- CoFHeartPiece
+- CoFHeartPiece:FlameCave
 
 
 0
 0
 
-- CoFChuPit
+- CoFChuPit:FlameCave
 
 
 0
 0
 
-- CoFPillBugsPillarChest
+- CoFPillBugsPillarChest:FlameCave
 
 
 0
 0
 
-- CoFPillBugsHoleChest
+- CoFPillBugsHoleChest:FlameCave
 
 
 0
 0
 
-- CoFSoutheastSmall
+- CoFSoutheastSmall:FlameCave
 
 
 0
 0
 
-- CoFSoutheastBig
+- CoFSoutheastBig:FlameCave
 
 
 0
 0
 
-- CoFBasementTop
+- CoFBasementTop:FlameCave
 
 
 0
 0
 
-- CoFBasementBottom
+- CoFBasementBottom:FlameCave
 
 
 0
 0
 
-- CoFBlades
+- CoFBlades:FlameCave
 
 
 0
 0
 
-- CoFSpinies
+- CoFSpinies:FlameCave
 
 
 0
 0
 
-- CoFBasementLavaLeft
+- CoFBasementLavaLeft:FlameCave
 
 
 0
 0
 
-- CoFBasementLavaRight
+- CoFBasementLavaRight:FlameCave
 
 
 0
 0
 
-- CoFBasementLavaBig
+- CoFBasementLavaBig:FlameCave
 
 
 0
 0
 
-- CompleteCoF
+- CompleteCoF:FlameCave
 
 
 0
 0
 
-- CoFBossItem
+- CoFBossItem:FlameCave
 
 
 0
 0
 
-- CoFPrize
+- CoFPrize:`ELEMENT_DUNGEON`
 
 
 0
 0
 
-- AccessFortress
+- AccessFortress:Fortress
 
 
 0
 0
 
-- FortressEntrance
+- FortressEntrance:Fortress
 
 
 0
 0
 
-- FortressHeartPiece
+- FortressHeartPiece:Fortress
 
 
 0
 0
 
-- FortressOutsideF2Left
+- FortressOutsideF2Left:Fortress
 
 
 0
 0
 
-- FortressOutsideF2Middle
+- FortressOutsideF2Middle:Fortress
 
 
 0
 0
 
-- FortressOutsideF2Right
+- FortressOutsideF2Right:Fortress
 
 
 0
 0
 
-- FortressOutsideF3Left
+- FortressOutsideF3Left:Fortress
 
 
 0
 0
 
-- FortressOutsideF3Right
+- FortressOutsideF3Right:Fortress
 
 
 0
 0
 
-- FortressOutsideBombWallBigChest
+- FortressOutsideBombWallBigChest:Fortress
 
 
 0
 0
 
-- FortressOutsideBombWallSmallChest
+- FortressOutsideBombWallSmallChest:Fortress
 
 
 0
 0
 
-- FortressOutsideMinishHole
+- FortressOutsideMinishHole:Fortress
 
 
 0
 0
 
-- FortressRightDrop
+- FortressRightDrop:Fortress
 
 
 0
 0
 
-- FortressLeftDrop
+- FortressLeftDrop:Fortress
 
 
 0
 0
 
-- FortressClonePuzzle
+- FortressClonePuzzle:Fortress
 
 
 0
 0
 
-- FortressEyegoreKill
+- FortressEyegoreKill:Fortress
 
 
 0
 0
 
-- FortressPedestal
+- FortressPedestal:Fortress
 
 
 0
 0
 
-- FortressSkullFall
+- FortressSkullFall:Fortress
 
 
 0
 0
 
-- FortressSkullRoomLeft
+- FortressSkullRoomLeft:Fortress
 
 
 0
 0
 
-- FortressSkullRoomRight
+- FortressSkullRoomRight:Fortress
 
 
 0
 0
 
-- FortressWizrobes
+- FortressWizrobes:Fortress
 
 
 0
 0
 
-- CompleteFortress
+- CompleteFortress:Fortress
 
 
 0
 0
 
-- FortressBossItem
+- FortressBossItem:Fortress
 
 
 0
 0
 
-- FortressPrize
+- FortressPrize:`ELEMENT_DUNGEON`
 
 
 0
 0
 
-- AccessDroplets
+- AccessDroplets:Droplets
 
 
 0
 0
 
-- DropletsMulldozers
+- DropletsMulldozers:Droplets
 
 
 0
 0
 
-- DropletsWaterPot
+- DropletsWaterPot:Droplets
 
 
 0
 0
 
-- DropletsSecondIceblock
+- DropletsSecondIceblock:Droplets
 
 
 0
 0
 
-- DropletsFirstIceblock
+- DropletsFirstIceblock:Droplets
 
 
 0
 0
 
-- DropletsBottomJump
+- DropletsBottomJump:Droplets
 
 
 0
 0
 
-- DropletsEastLever
+- DropletsEastLever:Droplets
 
 
 0
 0
 
-- DropletsWestLever
+- DropletsWestLever:Droplets
 
 
 0
 0
 
-- DropletsEastFirst
+- DropletsEastFirst:Droplets
 
 
 0
 0
 
-- DropletsIceMaze
+- DropletsIceMaze:Droplets
 
 
 0
 0
 
-- DropletsOverhang
+- DropletsOverhang:Droplets
 
 
 0
 0
 
-- DropletsBluChu
+- DropletsBluChu:Droplets
 
 
 0
 0
 
-- DropletsBasement
+- DropletsBasement:Droplets
 
 
 0
 0
 
-- DropletsFrozenIcePlain
+- DropletsFrozenIcePlain:Droplets
 
 
 0
 0
 
-- DropletsFreeIcePlain
+- DropletsFreeIcePlain:Droplets
 
 
 0
 0
 
-- DropletsDarkMazeRight
+- DropletsDarkMazeRight:Droplets
 
 
 0
 0
 
-- DropletsDarkMazeLeft
+- DropletsDarkMazeLeft:Droplets
 
 
 0
 0
 
-- DropletsDarkMazeMiddle
+- DropletsDarkMazeMiddle:Droplets
 
 
 0
 0
 
-- DropletsPostTwinFrozen
+- DropletsPostTwinFrozen:Droplets
 
 
 0
 0
 
-- DropletsPreviewFrozen
+- DropletsPreviewFrozen:Droplets
 
 
 0
 0
 
-- DropletsIceWiggler
+- DropletsIceWiggler:Droplets
 
 
 0
 0
 
-- CompleteDroplets
+- CompleteDroplets:Droplets
 
 
 0
 0
 
-- DropletsBossItem
+- DropletsBossItem:Droplets
 
 
 0
 0
 
-- DropletsPrize
+- DropletsPrize:`ELEMENT_DUNGEON`
 
 
 0
 0
 
-- AccessPalace
+- AccessPalace:Palace
 
 
 0
 0
 
-- PalaceWizrobeKill
+- PalaceWizrobeKill:Palace
 
 
 0
 0
 
-- PalaceFirstGrate
+- PalaceFirstGrate:Palace
 
 
 0
 0
 
-- PalaceBraceletPuzzleKey
+- PalaceBraceletPuzzleKey:Palace
 
 
 0
 0
 
-- PalaceWideGap
+- PalaceWideGap:Palace
 
 
 0
 0
 
-- PalaceBallAndChainSoldiers
+- PalaceBallAndChainSoldiers:Palace
 
 
 0
 0
 
-- PalaceFanLoop
+- PalaceFanLoop:Palace
 
 
 0
 0
 
-- PalacePreBigDoor
+- PalacePreBigDoor:Palace
 
 
 0
 0
 
-- PalaceDarkBig
+- PalaceDarkBig:Palace
 
 
 0
 0
 
-- PalaceDarkSmall
+- PalaceDarkSmall:Palace
 
 
 0
 0
 
-- PalaceManyRollers
+- PalaceManyRollers:Palace
 
 
 0
 0
 
-- PalaceTwinWizrobes
+- PalaceTwinWizrobes:Palace
 
 
 0
 0
 
-- PalaceFirerobeTrio
+- PalaceFirerobeTrio:Palace
 
 
 0
 0
 
-- PalaceHeartPiece
+- PalaceHeartPiece:Palace
 
 
 0
 0
 
-- PalaceSwitchHit
+- PalaceSwitchHit:Palace
 
 
 0
 0
 
-- PalacePreBoss
+- PalacePreBoss:Palace
 
 
 0
 0
 
-- PalaceBlockMaze
+- PalaceBlockMaze:Palace
 
 
 0
 0
 
-- PalaceDetour
+- PalaceDetour:Palace
 
 
 0
 0
 
-- CompletePalace
+- CompletePalace:Palace
 
 
 0
 0
 
-- PalaceBossItem
+- PalaceBossItem:Palace
 
 
 0
 0
 
-- PalacePrize
+- PalacePrize:`ELEMENT_DUNGEON`
 
 
 0
@@ -1799,67 +1799,67 @@
 0
 0
 
-- DHCAccess
+- DHCAccess:DHC
 
 
 0
 0
 
-- CastleBigDoorsOpen
+- CastleBigDoorsOpen:DHC
 
 
 0
 0
 
-- CastleKing
+- CastleKing:DHC
 
 
 0
 0
 
-- CastleBasement
+- CastleBasement:DHC
 
 
 0
 0
 
-- CastleClones
+- CastleClones:DHC
 
 
 0
 0
 
-- CastlePostThrone
+- CastlePostThrone:DHC
 
 
 0
 0
 
-- CastleTopLeftTower
+- CastleTopLeftTower:DHC
 
 
 0
 0
 
-- CastleTopRightTower
+- CastleTopRightTower:DHC
 
 
 0
 0
 
-- CastleLowerLeftTower
+- CastleLowerLeftTower:DHC
 
 
 0
 0
 
-- CastleLowerRightTower
+- CastleLowerRightTower:DHC
 
 
 0
 0
 
-- CastleBigBlock
+- CastleBigBlock:DHC
 
 
 0
@@ -2357,19 +2357,19 @@
 0
 0
 
-- DropletsIceMazePot
+- DropletsIceMazePot:Droplets
 
 
 0
 0
 
-- FoWRightSideTopPot
+- FoWRightSideTopPot:Fortress
 
 
 0
 0
 
-- FoWRightSideBottomPot
+- FoWRightSideBottomPot:Fortress
 
 
 0
@@ -2639,241 +2639,241 @@
 0
 0
 
-- FortressBigRupee
+- FortressBigRupee:Fortress
 
 
 0
 0
 
-- FortressF1Rupee1
+- FortressF1Rupee1:Fortress
 
 
 0
 0
 
-- FortressF1Rupee2
+- FortressF1Rupee2:Fortress
 
 
 0
 0
 
-- FortressF1Rupee3
+- FortressF1Rupee3:Fortress
 
 
 0
 0
 
-- FortressF1Rupee4
+- FortressF1Rupee4:Fortress
 
 
 0
 0
 
-- FortressF1Rupee5
+- FortressF1Rupee5:Fortress
 
 
 0
 0
 
-- FortressF1Rupee6
+- FortressF1Rupee6:Fortress
 
 
 0
 0
 
-- FortressF1Rupee7
+- FortressF1Rupee7:Fortress
 
 
 0
 0
 
-- DropletsUpperWaterRupee1
+- DropletsUpperWaterRupee1:Droplets
 
 
 0
 0
 
-- DropletsUpperWaterRupee2
+- DropletsUpperWaterRupee2:Droplets
 
 
 0
 0
 
-- DropletsUpperWaterRupee3
+- DropletsUpperWaterRupee3:Droplets
 
 
 0
 0
 
-- DropletsUpperWaterRupee4
+- DropletsUpperWaterRupee4:Droplets
 
 
 0
 0
 
-- DropletsUpperWaterRupee5
+- DropletsUpperWaterRupee5:Droplets
 
 
 0
 0
 
-- DropletsUpperWaterRupee6
+- DropletsUpperWaterRupee6:Droplets
 
 
 0
 0
 
-- DropletsLowerWaterRupee1
+- DropletsLowerWaterRupee1:Droplets
 
 
 0
 0
 
-- DropletsLowerWaterRupee2
+- DropletsLowerWaterRupee2:Droplets
 
 
 0
 0
 
-- DropletsLowerWaterRupee3
+- DropletsLowerWaterRupee3:Droplets
 
 
 0
 0
 
-- DropletsLowerWaterRupee4
+- DropletsLowerWaterRupee4:Droplets
 
 
 0
 0
 
-- DropletsLowerWaterRupee5
+- DropletsLowerWaterRupee5:Droplets
 
 
 0
 0
 
-- DropletsLowerWaterRupee6
+- DropletsLowerWaterRupee6:Droplets
 
 
 0
 0
 
-- DropletsLeftPathRupee1
+- DropletsLeftPathRupee1:Droplets
 
 
 0
 0
 
-- DropletsLeftPathRupee2
+- DropletsLeftPathRupee2:Droplets
 
 
 0
 0
 
-- DropletsLeftPathRupee3
+- DropletsLeftPathRupee3:Droplets
 
 
 0
 0
 
-- DropletsLeftPathRupee4
+- DropletsLeftPathRupee4:Droplets
 
 
 0
 0
 
-- DropletsLeftPathRupee5
+- DropletsLeftPathRupee5:Droplets
 
 
 0
 0
 
-- DropletsRightPathRupee1
+- DropletsRightPathRupee1:Droplets
 
 
 0
 0
 
-- DropletsRightPathRupee2
+- DropletsRightPathRupee2:Droplets
 
 
 0
 0
 
-- DropletsRightPathRupee3
+- DropletsRightPathRupee3:Droplets
 
 
 0
 0
 
-- DropletsRightPathRupee4
+- DropletsRightPathRupee4:Droplets
 
 
 0
 0
 
-- DropletsRightPathRupee5
+- DropletsRightPathRupee5:Droplets
 
 
 0
 0
 
-- CoFRupee1
+- CoFRupee1:FlameCave
 
 
 0
 0
 
-- CoFRupee2
+- CoFRupee2:FlameCave
 
 
 0
 0
 
-- CoFRupee3
+- CoFRupee3:FlameCave
 
 
 0
 0
 
-- CoFRupee4
+- CoFRupee4:FlameCave
 
 
 0
 0
 
-- CoFRupee5
+- CoFRupee5:FlameCave
 
 
 0
 0
 
-- PalaceRupee1
+- PalaceRupee1:Palace
 
 
 0
 0
 
-- PalaceRupee2
+- PalaceRupee2:Palace
 
 
 0
 0
 
-- PalaceRupee3
+- PalaceRupee3:Palace
 
 
 0
 0
 
-- PalaceRupee4
+- PalaceRupee4:Palace
 
 
 0
 0
 
-- PalaceRupee5
+- PalaceRupee5:Palace
 
 
 0
@@ -3210,6 +3210,96 @@
 0
 
 - TrilbyPuddleCaveRupee15
+
+
+0
+0
+
+- SettingOtherWeaponsDamage
+
+
+0
+0
+
+- SettingOtherWeaponsDamageTrue
+
+
+0
+0
+
+- SettingOtherWeaponsDamageFalse
+
+
+0
+0
+
+- SettingFigurineHunt
+
+
+0
+0
+
+- SettingFigurineHuntTrue
+
+
+0
+0
+
+- SettingFigurineHuntFalse
+
+
+0
+0
+
+- SettingFusion
+
+
+0
+0
+
+- SettingFusionNo
+
+
+0
+0
+
+- SettingFusionOpen
+
+
+0
+0
+
+- SettingFusionVanilla
+
+
+0
+0
+
+- SettingDarkHuryleCastle
+
+
+0
+0
+
+- SettingDarkHuryleCastlePORD
+
+
+0
+0
+
+- SettingDarkHuryleCastlePFND
+
+
+0
+0
+
+- SettingDarkHuryleCastleOD
+
+
+0
+0
+
+- SettingDarkHuryleCastleODPI
 
 
 0

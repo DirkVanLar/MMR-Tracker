@@ -62,7 +62,9 @@ namespace MMR_Tracker_V2
             string DateString = date.ToString("dd-MM-yy-HH-mm-ss-ff");
             Debugging.LogFile = @"Recources\Logs\Log-" + DateString + ".txt";
 
-            Debugging.ISDebugging = (Control.ModifierKeys == Keys.Control) ? (!Debugger.IsAttached) : (Debugger.IsAttached);
+            Debugging.ISDebugging = ((Control.ModifierKeys != Keys.Control) && Debugger.IsAttached);
+            Debugging.ViewAsUserMode = ((Control.ModifierKeys == Keys.Control) && Debugger.IsAttached);
+
             Tools.CreateOptionsFile();
             if (VersionHandeling.GetLatestTrackerVersion()) { this.Close(); }
             HandleStartArgs(sender, e, Environment.GetCommandLineArgs());
@@ -1524,10 +1526,15 @@ namespace MMR_Tracker_V2
             coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             toggleEntranceRandoFeaturesToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled);
             coupleEntrancesToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.CoupleEntrances);
-            devToolStripMenuItem.Visible = Debugging.ISDebugging;
             seperateMarkedItemsToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom);
             coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+
+            //Manage Dev Menus
+            devToolStripMenuItem.Visible = Debugging.ISDebugging || Debugging.ViewAsUserMode;
+            devToolStripMenuItem.Text = (Debugging.ViewAsUserMode) ? "Run as Dev" : "Dev Options";
+            foreach (ToolStripDropDownItem i in devToolStripMenuItem.DropDownItems) { i.Visible = Debugging.ISDebugging; }
+            viewAsUserToolStripMenuItem.Checked = Debugging.ViewAsUserMode;
 
             CreateMenu();
 
@@ -1689,6 +1696,23 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
+        }
+
+        private void viewAsUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Debugging.ISDebugging && !Debugging.ViewAsUserMode) { return; }
+            else if (Debugging.ISDebugging) { Debugging.ISDebugging = false; Debugging.ViewAsUserMode = true; }
+            else if (Debugging.ViewAsUserMode) { Debugging.ISDebugging = true; Debugging.ViewAsUserMode = false; }
+            FormatMenuItems();
+        }
+
+        private void devToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Debugging.ISDebugging && Debugging.ViewAsUserMode)
+            {
+                Debugging.ISDebugging = true; Debugging.ViewAsUserMode = false;
+                FormatMenuItems();
+            }
         }
     }
 }

@@ -201,6 +201,7 @@ namespace MMR_Tracker.Forms
         public void ContextMenuAddPermutations(object sender, EventArgs e)
         {
             LogicEditorAddPermutations Selector = new LogicEditorAddPermutations();
+            Selector.UsedInstance = EditorInstance;
             Selector.Display = 2;
             Selector.ListContent = EditorInstance.Logic;
             Selector.ShowDialog();
@@ -213,6 +214,8 @@ namespace MMR_Tracker.Forms
                 if (drawcomma) { Input += (";" + i.ID.ToString()); }
                 else { Input += i.ID.ToString(); drawcomma = true; }
             }
+
+            Console.WriteLine($"{(int)Selector.numericUpDown1.Value} OF {Selector.SelectedItems.Count} Items");
 
             var UniqueCombinations = Utility.CountUniqueCombinations(Selector.SelectedItems.Count(), (int)Selector.numericUpDown1.Value);
 
