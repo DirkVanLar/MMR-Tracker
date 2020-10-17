@@ -183,7 +183,7 @@ namespace MMR_Tracker.Forms
             {
                 UsedInstance = EditorInstance,
                 Display = 7,
-                ListContent = LogicObjects.MainTrackerInstance.Logic
+                ListContent = EditorInstance.Logic
             };
             if (NeededSelect.ShowDialog() != DialogResult.OK) { return; }
             foreach (var i in NeededSelect.SelectedItems)
@@ -272,10 +272,10 @@ namespace MMR_Tracker.Forms
         {
             LogicEditorConditional ConditionalSelect = new LogicEditorConditional
             {
-                Text = "Select required items",
+                Text = "Create Logic Conditional",
                 UsedInstance = EditorInstance,
                 Display = 7,
-                ListContent = LogicObjects.MainTrackerInstance.Logic
+                ListContent = EditorInstance.Logic
             };
             ConditionalSelect.ShowDialog();
         }
@@ -358,7 +358,7 @@ namespace MMR_Tracker.Forms
                         Text = "Edit items in this conditional",
                         UsedInstance = EditorInstance,
                         Display = 7,
-                        ListContent = LogicObjects.MainTrackerInstance.Logic,
+                        ListContent = EditorInstance.Logic,
                         CheckedItems = temp.ItemIDs.Select(x => x.ID).ToList()
                     };
                     if (Selector.ShowDialog() != DialogResult.OK) { return; }

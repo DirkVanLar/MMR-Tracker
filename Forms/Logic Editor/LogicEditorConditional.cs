@@ -228,5 +228,11 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 listBox1.Items.Add(listItem);
             }
         }
+
+        private void LogicEditorConditional_Shown(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            textBox1.Focus();
+        }
     }
 }

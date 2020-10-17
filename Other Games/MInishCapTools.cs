@@ -214,9 +214,45 @@ namespace MMR_Tracker.Forms.Other_Games
 
         }
 
+        public static void PrintMinishLogic()
+        {
+            var MinishLogicFile = File.ReadAllLines(@"D:\Emulated Games\Emulator\mGBA-0.7.3-win64\MinishRandomizer.v0.6.1a\MinishRandomizer.v0.6.1a\default.logic");
+            bool AtLogic = false;
+            bool IsInIf = false;
+            bool IsInElse = false;
+            foreach (var i in MinishLogicFile)
+            {
+                if (i.Trim() == "# Item Macro Helpers") { AtLogic = true; }
+                if (i.Trim() == "#Unrandomized locations") { AtLogic = false; }
+                if (!AtLogic) { continue; }
+                if (string.IsNullOrWhiteSpace(i)) { continue; }
+                if (i.Trim().StartsWith("#")) { continue; }
+
+                if (i.Contains("!ifdef") || i.Contains("!ifndef")) { IsInIf = true; continue; }
+                if (i.Contains("!else")) { IsInElse = true; IsInIf = false; continue; }
+                if (i.Contains("!endif")) { IsInElse = false; IsInIf = false; continue; }
+
+                //if (IsInElse) { continue; }
+
+                string CleanedLine = i.Replace("Items.", "").Replace("Helpers.", "").Replace("Locations.", "");
+
+                var Data = CleanedLine.Split(';').Select(x => x.Trim()).ToArray();
+
+                if (Data.Count() < 4) { continue; }
+
+                Console.WriteLine("Logic Entry" + Data[0]);
+                Console.WriteLine(Data[3]);
+                Console.WriteLine("==================================================");
+
+            }
+        }
+
         public static int[][] ConvertMinishLogic(string Input)
         {
-            var OrderedLogic = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic).OrderBy(x => x.DictionaryName.Count()).Reverse();
+            if (string.IsNullOrWhiteSpace(Input)) { return null; }
+            var OrderedLogic = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
+            var OrderedLogicSpoiler = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic)
+                    .Where(x => x.SpoilerItem != null && x.SpoilerItem.Count() > 0 && !string.IsNullOrWhiteSpace(x.SpoilerItem[0]));
             Input = Input.Replace("Items.", "").Replace("Helpers.", "").Replace("Locations.", "");
 
             var InputList = Input.ToArray();
@@ -242,18 +278,28 @@ namespace MMR_Tracker.Forms.Other_Games
             int[][] Conditional = null;
             try
             {
-                foreach (var i in OrderedLogic)
+                Dictionary<string, string> ReplacerList = new Dictionary<string, string>();
+                foreach (var i in OrderedLogicSpoiler)
                 {
-                    if (i.SpoilerItem != null && i.SpoilerItem.Count() > 0 && !string.IsNullOrWhiteSpace(i.SpoilerItem[0]) && output.Contains(i.SpoilerItem[0]))
+                    if (!ReplacerList.ContainsKey(i.SpoilerItem[0]))
                     {
-                        output = output.Replace(i.SpoilerItem[0], i.ID.ToString());
+                        ReplacerList.Add(i.SpoilerItem[0], i.ID.ToString());
                     }
                 }
+
                 foreach (var i in OrderedLogic)
                 {
-                    if (output.Contains(i.DictionaryName))
+                    if (!ReplacerList.ContainsKey(i.DictionaryName))
                     {
-                        output = output.Replace(i.DictionaryName, i.ID.ToString());
+                        ReplacerList.Add(i.DictionaryName, i.ID.ToString());
+                    }
+                }
+
+                foreach (var i in ReplacerList.OrderBy(x => x.Key.Count()).Reverse())
+                {
+                    if (output.Contains(i.Key))
+                    {
+                        output = output.Replace(i.Key, i.Value);
                     }
                 }
                 Conditional = MinishParser.ConvertLogicToConditional(output);

@@ -64,6 +64,7 @@
             this.Name = "MiscSingleItemSelect";
             this.Text = "Select";
             this.Load += new System.EventHandler(this.MiscSingleItemSelect_Load);
+            this.Shown += new System.EventHandler(this.MiscSingleItemSelect_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -78,6 +78,7 @@
             this.Name = "MiscMultiItemSelect";
             this.Text = "Select";
             this.Load += new System.EventHandler(this.MiscMultiItemSelect_Load);
+            this.Shown += new System.EventHandler(this.MiscMultiItemSelect_Shown);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MiscMultiItemSelect_MouseUp);
             this.ResumeLayout(false);
             this.PerformLayout();

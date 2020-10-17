@@ -250,35 +250,53 @@ namespace MMR_Tracker.Forms
 
         private void btnNames_Click(object sender, EventArgs e)
         {
+            Dictionary<string, string> ReplacerList = new Dictionary<string, string>();
+
             if(LogicEditor.EditorInstance.GameCode == "MCR")
             {
-                textBox1.Text = MInishCapTools.ConvertMinishLogicString(textBox1.Text);
                 var OrderedLogicSpoiler = Utility.CloneLogicList(LogicEditor.EditorInstance.Logic)
-                    .Where(x=>x.SpoilerItem != null && x.SpoilerItem.Count() > 0 && !string.IsNullOrWhiteSpace(x.SpoilerItem[0]))
-                    .OrderBy(x => x.SpoilerItem[0].Count()).Reverse();
+                    .Where(x => x.SpoilerItem != null && x.SpoilerItem.Count() > 0 && !string.IsNullOrWhiteSpace(x.SpoilerItem[0]));
                 foreach (var i in OrderedLogicSpoiler)
                 {
-                    if (textBox1.Text.Contains(i.SpoilerItem[0]))
+                    if (!ReplacerList.ContainsKey(i.SpoilerItem[0]))
                     {
-                        textBox1.Text = textBox1.Text.Replace(i.SpoilerItem[0], i.DictionaryName);
+                        ReplacerList.Add(i.SpoilerItem[0], i.ID.ToString());
                     }
+                    
                 }
             }
 
-            var OrderedLogic = Utility.CloneLogicList(LogicEditor.EditorInstance.Logic).OrderBy(x => x.DictionaryName.Count()).Reverse();
+            var OrderedLogic = Utility.CloneLogicList(LogicEditor.EditorInstance.Logic);
             foreach (var i in OrderedLogic)
             {
-                Debugging.Log(i.DictionaryName);
-                if (textBox1.Text.Contains(i.DictionaryName))
+                if (!ReplacerList.ContainsKey(i.DictionaryName))
                 {
-                    textBox1.Text = textBox1.Text.Replace(i.DictionaryName, i.ID.ToString());
+                    ReplacerList.Add(i.DictionaryName, i.ID.ToString());
                 }
             }
+
+            foreach (var i in ReplacerList.OrderBy(x => x.Key.Count()).Reverse())
+            {
+                if (textBox1.Text.Contains(i.Key))
+                {
+                    textBox1.Text = textBox1.Text.Replace(i.Key, i.Value);
+                }
+            }
+
+            if (LogicEditor.EditorInstance.GameCode == "MCR")
+                textBox1.Text = MInishCapTools.ConvertMinishLogicString(textBox1.Text);
+
         }
 
         private void textBox2_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Middle) { textBox2.Clear(); }
+        }
+
+        private void LogicParser_Shown(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            textBox1.Focus();
         }
     }
 }

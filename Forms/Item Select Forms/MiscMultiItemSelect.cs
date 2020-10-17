@@ -135,5 +135,11 @@ namespace MMR_Tracker.Forms.Sub_Forms
         {
             if (e.Button == MouseButtons.Middle) { textBox1.Clear(); }
         }
+
+        private void MiscMultiItemSelect_Shown(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            textBox1.Focus();
+        }
     }
 }

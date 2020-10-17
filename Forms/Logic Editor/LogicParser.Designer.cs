@@ -237,6 +237,7 @@
             this.Name = "LogicParser";
             this.Text = "Logic Parser";
             this.Load += new System.EventHandler(this.LogicParser_Load);
+            this.Shown += new System.EventHandler(this.LogicParser_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

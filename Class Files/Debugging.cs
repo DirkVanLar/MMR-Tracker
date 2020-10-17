@@ -129,7 +129,9 @@ namespace MMR_Tracker_V2
             //TestProgressive();
             //CreatePAcketData();
             //PromptBackup();
-            TestExtractNames();
+            //TestExtractNames();
+            //MInishCapTools.FillMinishLogic();
+            //MInishCapTools.PrintMinishLogic();
 
             void TestExtractNames()
             {
