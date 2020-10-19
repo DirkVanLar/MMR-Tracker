@@ -418,9 +418,16 @@ namespace MMR_Tracker_V2
 
         private void LogicEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (LogicEditor.EditorForm != null) { LogicEditor.EditorForm.Focus(); }
-            LogicEditor Editor = new LogicEditor();
-            Editor.Show();
+            if (LogicEditor.EditorForm == null)
+            {
+                LogicEditor.EditorForm = new LogicEditor();
+                LogicEditor.EditorForm.Show();
+            }
+            else
+            {
+                LogicEditor.EditorForm.Show();
+                LogicEditor.EditorForm.Focus();
+            }
         }
 
         private void UpdateLogicToolStripMenuItem_Click(object sender, EventArgs e)
@@ -470,7 +477,7 @@ namespace MMR_Tracker_V2
         private void spoilerLogConverterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SpoilerLogConverter spoilerLogConverter = new SpoilerLogConverter();
-            spoilerLogConverter.ShowDialog();
+            spoilerLogConverter.Show();
         }
         #endregion Tools
         //Menu strip => Info---------------------------------------------------------------------------
@@ -1444,7 +1451,7 @@ namespace MMR_Tracker_V2
             }
         }
 
-        private void LoadLogicPreset(string Path, string WebPath, object sender, EventArgs e)
+        public void LoadLogicPreset(string Path, string WebPath, object sender, EventArgs e)
         {
             try
             {

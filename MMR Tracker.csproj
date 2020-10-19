@@ -269,9 +269,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Recources\Dictionaries\MCRDICTIONARYV6.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Recources\Dictionaries\MMRDICTIONARYV13.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -317,9 +314,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Recources\Other Files\Categories.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Recources\Other Files\Custom Logic Presets\MCR Logic.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Recources\Other Files\Custom Logic Presets\OOTR Logic.txt">

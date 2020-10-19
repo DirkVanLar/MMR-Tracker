@@ -101,10 +101,10 @@
             this.createDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLogicObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumbStuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAsUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.viewAsUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -618,7 +618,7 @@
             // 
             this.spoilerLogConverterToolStripMenuItem.Name = "spoilerLogConverterToolStripMenuItem";
             this.spoilerLogConverterToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.spoilerLogConverterToolStripMenuItem.Text = "Spoiler Log Converter";
+            this.spoilerLogConverterToolStripMenuItem.Text = "Other Game Support";
             this.spoilerLogConverterToolStripMenuItem.Click += new System.EventHandler(this.spoilerLogConverterToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
@@ -739,23 +739,30 @@
             // createDictionaryToolStripMenuItem
             // 
             this.createDictionaryToolStripMenuItem.Name = "createDictionaryToolStripMenuItem";
-            this.createDictionaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createDictionaryToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.createDictionaryToolStripMenuItem.Text = "Create Dictionary";
             this.createDictionaryToolStripMenuItem.Click += new System.EventHandler(this.CreateDictionaryToolStripMenuItem_Click);
             // 
             // printLogicObjectToolStripMenuItem
             // 
             this.printLogicObjectToolStripMenuItem.Name = "printLogicObjectToolStripMenuItem";
-            this.printLogicObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printLogicObjectToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.printLogicObjectToolStripMenuItem.Text = "Print Logic Object";
             this.printLogicObjectToolStripMenuItem.Click += new System.EventHandler(this.PrintLogicObjectToolStripMenuItem_Click);
             // 
             // dumbStuffToolStripMenuItem
             // 
             this.dumbStuffToolStripMenuItem.Name = "dumbStuffToolStripMenuItem";
-            this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.dumbStuffToolStripMenuItem.Text = "Code Testing";
             this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.CodeTestingToolStripMenuItem_Click);
+            // 
+            // viewAsUserToolStripMenuItem
+            // 
+            this.viewAsUserToolStripMenuItem.Name = "viewAsUserToolStripMenuItem";
+            this.viewAsUserToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.viewAsUserToolStripMenuItem.Text = "Run As User";
+            this.viewAsUserToolStripMenuItem.Click += new System.EventHandler(this.viewAsUserToolStripMenuItem_Click);
             // 
             // undoToolStripMenuItem
             // 
@@ -770,13 +777,6 @@
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
-            // 
-            // viewAsUserToolStripMenuItem
-            // 
-            this.viewAsUserToolStripMenuItem.Name = "viewAsUserToolStripMenuItem";
-            this.viewAsUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.viewAsUserToolStripMenuItem.Text = "Run As User";
-            this.viewAsUserToolStripMenuItem.Click += new System.EventHandler(this.viewAsUserToolStripMenuItem_Click);
             // 
             // MainInterface
             // 

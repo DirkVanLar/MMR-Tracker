@@ -175,6 +175,7 @@ namespace MMR_Tracker.Class_Files
         {
             var logic = Instance.Logic;
             usedItems = usedItems ?? new List<int>();
+            if (string.IsNullOrWhiteSpace(entry.LocationName) && !entry.IsFake) { return false; }
 
             //Check for a "Combinations" Entry
             if (entry.Required != null && entry.Conditionals != null && entry.Required.Where(x => logic[x].DictionaryName.StartsWith("MMRTCombinations")).Any())

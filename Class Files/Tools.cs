@@ -126,14 +126,7 @@ namespace MMR_Tracker.Class_Files
                 Spoiler = File.ReadLines(SpoilerFile.FileName).ToArray();
             }
 
-            if (instance.GameCode == "WWR" && !Spoiler[0].Contains("Converted WWR")) 
-            {
-                Spoiler = SpoilerLogConverter.HandleWWRSpoilerLog(Spoiler);
-            }
-            if (instance.GameCode == "OOTR" && !Spoiler[0].Contains("Converted OOTR"))
-            {
-                Spoiler = SpoilerLogConverter.HandleOOTRSpoilerLog(string.Join("", Spoiler));
-            }
+            Spoiler = SpoilerLogConverter.AutoConverter(instance, Spoiler);
 
             Dictionary<int, List<int>> usedId = new Dictionary<int, List<int>>();
             int PlayerID = instance.Options.MyPlayerID;
@@ -559,6 +552,7 @@ namespace MMR_Tracker.Class_Files
                 else
                 {
                     var NewItem = Playthrough.Find(i => i.Check.ID == j);
+                    if (NewItem == null) { continue; }
                     foreach (var k in ResolveFakeToRealItems(NewItem, Playthrough, logic)) { RealItems.Add(k); }
                 }
             }
