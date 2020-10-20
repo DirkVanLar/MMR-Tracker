@@ -164,20 +164,12 @@ namespace MMR_Tracker_V2
             }
             return (full) ? fullLog : Spoiler;
         }
-        public static bool IsDivider(string text)
+        public static bool IsDivider(string text, int MinDividerLength = 5)
         {
             if (text == null || text == "") { return false; }
-            int occurences = 0;
-            foreach (var i in text)
-            {
-                if (i == '=') 
-                { 
-                    occurences++; 
-                    if (occurences >= 5) { return true; } 
-                }
-                else { occurences = 0; }
-            }
-            return false;
+            string TestFor = "";
+            for(var i = 0; i < MinDividerLength; i++) { TestFor += "="; }
+            return text.Contains(TestFor);
         }
         public static bool CheckForRandomEntrances(LogicObjects.TrackerInstance Instance, bool Spoiler = false, int validEntranceCount = 6)
         {
@@ -214,6 +206,12 @@ namespace MMR_Tracker_V2
         {
             return Bool ? (FalseFirst ? 1 : 0 ) : (FalseFirst ? 0 : 1);
         } 
+        public static string RemoveCommentLines(string Line)
+        {
+            string[] lines = Line.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            string[] LinesNew = lines.Where(i => !i.Trim().StartsWith("#")).Select(i => (i.Contains("#")) ? i.Substring(0, i.IndexOf("#")) : i).ToArray();
+            return string.Join(Environment.NewLine, LinesNew);
+        }
         public static List<string> WrapStringInListBox(ListBox container, string Measure, string indent = "    ")
         {
             Font font = container.Font;

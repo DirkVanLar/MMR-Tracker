@@ -48,7 +48,6 @@ namespace MMR_Tracker.Forms
 
         public int[] ExtractNumbers(string x)
         {
-            int testNum;
             List<string> Sets = new List<string>();
             string num = "";
             foreach (var i in x)
@@ -57,16 +56,13 @@ namespace MMR_Tracker.Forms
                 {
                     num += i;
                 }
-                else
+                else if (num != "")
                 {
-                    if (num != "")
-                    {
-                        if (int.TryParse(num, out testNum)) { Sets.Add(num); }
-                        num = "";
-                    }
+                    if (int.TryParse(num, out int testNum1)) { Sets.Add(num); }
+                    num = "";
                 }
             }
-            if (int.TryParse(num, out testNum)) { Sets.Add(num); }
+            if (int.TryParse(num, out int testNum2)) { Sets.Add(num); }
             return Sets.Select(y => int.Parse(y)).Distinct().ToArray();
         }
 
@@ -162,15 +158,14 @@ namespace MMR_Tracker.Forms
 
         private void btnParseExpression_Click(object sender, EventArgs e)
         {
-            string[] lines = textBox1.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-            string[] LinesNew = lines.Where(i => !i.Trim().StartsWith("#")).Select(i => (i.Contains("#")) ? i.Substring(0, i.IndexOf("#")) : i).ToArray();
-            string TextBoxNewText = string.Join(Environment.NewLine, LinesNew);
+            string TextBoxNewText = Utility.RemoveCommentLines(textBox1.Text);
 
             foreach (var i in ExtractNumbers(TextBoxNewText))
             {
-                if (i < 0 || i >= LogicEditor.EditorInstance.Logic.Count() && LogicEditor.EditorInstance.Logic.ElementAt(i) == null)
+                if (!LogicEditor.EditorInstance.ItemInRange(i) || LogicEditor.EditorInstance.Logic.ElementAt(i) == null)
                 {
                     MessageBox.Show($"Logic Expression Not Valid. {i} is not a valid index in your logic.");
+                    return;
                 }
             }
             try
@@ -182,6 +177,7 @@ namespace MMR_Tracker.Forms
             catch
             {
                 MessageBox.Show("Logic Expression Not Valid. Check syntax.");
+                Conditionals = null;
             }
         }
 
@@ -225,7 +221,7 @@ namespace MMR_Tracker.Forms
             listBox1.Items.Clear();
             foreach (var i in ExtractNumbers(textBox1.Text))
             {
-                if (-1 < i && LogicEditor.EditorInstance.Logic.Count() > i && LogicEditor.EditorInstance.Logic.ElementAt(i) != null)
+                if (LogicEditor.EditorInstance.ItemInRange(i) && LogicEditor.EditorInstance.Logic.ElementAt(i) != null)
                 {
                     var log = LogicEditor.EditorInstance.Logic[i];
                     string Name = log.DictionaryName;
@@ -296,9 +292,11 @@ namespace MMR_Tracker.Forms
                 }
             }
 
+            string TextBoxNewText = Utility.RemoveCommentLines(textBox1.Text);
+
             foreach (var i in ReplacerList.OrderBy(x => x.Key.Count()).Reverse())
             {
-                if (textBox1.Text.Contains(i.Key))
+                if (TextBoxNewText.Contains(i.Key))
                 {
                     textBox1.Text = textBox1.Text.Replace(i.Key, i.Value);
                 }
@@ -315,16 +313,6 @@ namespace MMR_Tracker.Forms
         {
             textBox1.Clear();
             textBox1.Focus();
-        }
-
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

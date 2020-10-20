@@ -9,6 +9,7 @@ namespace MMR_Tracker.Class_Files
 {
     public static class LogicObjectExtentions
     {
+        //Logic Entry Extentions
         public static bool IsEntrance(this LogicObjects.LogicEntry entry)
         {
             return entry.ItemSubType == "Entrance";
@@ -62,14 +63,6 @@ namespace MMR_Tracker.Class_Files
         {
             return (entry.Options > 3);
         }
-        public static bool IsEntranceRando(this LogicObjects.TrackerInstance Instance)
-        {
-            return (Instance.Logic.Where(x => x.IsEntrance()).Count() > 0);
-        }
-        public static bool IsMM(this LogicObjects.TrackerInstance Instance)
-        {
-            return Instance.GameCode == "MMR";
-        }
         public static bool IsWarpSong(this LogicObjects.LogicEntry entry)
         {
             return (entry.LocationArea == "Owl Warp");
@@ -108,10 +101,6 @@ namespace MMR_Tracker.Class_Files
             if (!LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { return true; }
             if (entry.IsEntrance()) { return true; }
             return entry.PlayerData.ItemBelongedToPlayer == -1 || entry.PlayerData.ItemBelongedToPlayer == LogicObjects.MainTrackerInstance.Options.MyPlayerID;
-        }
-        public static bool ItemInRange(this LogicObjects.TrackerInstance Instance, int Item)
-        {
-            return Item > -1 && Item < Instance.Logic.Count;
         }
         public static bool IsProgressiveItem(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
@@ -250,9 +239,22 @@ namespace MMR_Tracker.Class_Files
             }
             return false;
         }
+        //Logic Instance Extentions
         public static void RefreshFakeItems(this LogicObjects.TrackerInstance Instance)
         {
             foreach(var i in Instance.Logic.Where(j => j.IsFake)) { i.Aquired = false; i.Available = false; }
+        }
+        public static bool IsEntranceRando(this LogicObjects.TrackerInstance Instance)
+        {
+            return (Instance.Logic.Where(x => x.IsEntrance()).Count() > 0);
+        }
+        public static bool IsMM(this LogicObjects.TrackerInstance Instance)
+        {
+            return Instance.GameCode == "MMR";
+        }
+        public static bool ItemInRange(this LogicObjects.TrackerInstance Instance, int Item)
+        {
+            return Item > -1 && Item < Instance.Logic.Count;
         }
     }
 }
