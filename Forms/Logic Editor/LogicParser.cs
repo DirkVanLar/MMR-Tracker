@@ -162,8 +162,11 @@ namespace MMR_Tracker.Forms
 
         private void btnParseExpression_Click(object sender, EventArgs e)
         {
+            string[] lines = textBox1.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            string[] LinesNew = lines.Where(i => !i.Trim().StartsWith("#")).Select(i => (i.Contains("#")) ? i.Substring(0, i.IndexOf("#")) : i).ToArray();
+            string TextBoxNewText = string.Join(Environment.NewLine, LinesNew);
 
-            foreach (var i in ExtractNumbers(textBox1.Text))
+            foreach (var i in ExtractNumbers(TextBoxNewText))
             {
                 if (i < 0 || i >= LogicEditor.EditorInstance.Logic.Count() && LogicEditor.EditorInstance.Logic.ElementAt(i) == null)
                 {
@@ -172,7 +175,7 @@ namespace MMR_Tracker.Forms
             }
             try
             {
-                Conditionals = ConvertLogicToConditional(textBox1.Text);
+                Conditionals = ConvertLogicToConditional(TextBoxNewText);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -236,35 +239,53 @@ namespace MMR_Tracker.Forms
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
+            if (!(listBox1.SelectedItem is LogicObjects.LogicEntry)) { return; }
             LogicObjects.LogicEntry E = listBox1.SelectedItem as LogicObjects.LogicEntry;
-            textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, E.ID.ToString());
+            int CursorPos = textBox1.SelectionStart;
+            int InsertLength = 0;
+            if (listView1.SelectedItems.Count > 0)
+            {
+                if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
+                {
+                    InsertLength = E.DictionaryName.Count();
+                    textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, E.DictionaryName);
+                }
+                else
+                {
+                    InsertLength = E.ID.ToString().Count();
+                    textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, E.ID.ToString());
+                }
+            }
+            textBox1.Focus();
+            textBox1.SelectionStart = CursorPos + InsertLength;
+            textBox1.SelectionLength = 0;
         }
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
+            int CursorPos = textBox1.SelectionStart;
+            int InsertLength = 0;
             if (listView1.SelectedItems.Count > 0)
             {
-                textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, listView1.SelectedItems[0].Tag.ToString());
+                if ((Control.ModifierKeys & Keys.Control) == Keys.Control && int.TryParse(listView1.SelectedItems[0].Tag.ToString(), out int x) && LogicEditor.EditorInstance.ItemInRange(x))
+                {
+                    InsertLength = LogicEditor.EditorInstance.Logic[x].DictionaryName.Count();
+                    textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, LogicEditor.EditorInstance.Logic[x].DictionaryName);
+                }
+                else
+                {
+                    InsertLength = listView1.SelectedItems[0].Tag.ToString().Count();
+                    textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, listView1.SelectedItems[0].Tag.ToString());
+                }
             }
+            textBox1.Focus();
+            textBox1.SelectionStart = CursorPos + InsertLength;
+            textBox1.SelectionLength = 0;
         }
 
         private void btnNames_Click(object sender, EventArgs e)
         {
             Dictionary<string, string> ReplacerList = new Dictionary<string, string>();
-
-            if(LogicEditor.EditorInstance.GameCode == "MCR")
-            {
-                var OrderedLogicSpoiler = Utility.CloneLogicList(LogicEditor.EditorInstance.Logic)
-                    .Where(x => x.SpoilerItem != null && x.SpoilerItem.Count() > 0 && !string.IsNullOrWhiteSpace(x.SpoilerItem[0]));
-                foreach (var i in OrderedLogicSpoiler)
-                {
-                    if (!ReplacerList.ContainsKey(i.SpoilerItem[0]))
-                    {
-                        ReplacerList.Add(i.SpoilerItem[0], i.ID.ToString());
-                    }
-                    
-                }
-            }
 
             var OrderedLogic = Utility.CloneLogicList(LogicEditor.EditorInstance.Logic);
             foreach (var i in OrderedLogic)
@@ -283,9 +304,6 @@ namespace MMR_Tracker.Forms
                 }
             }
 
-            if (LogicEditor.EditorInstance.GameCode == "MCR")
-                textBox1.Text = MInishCapTools.ConvertMinishLogicString(textBox1.Text);
-
         }
 
         private void textBox2_MouseUp(object sender, MouseEventArgs e)
@@ -297,6 +315,16 @@ namespace MMR_Tracker.Forms
         {
             textBox1.Clear();
             textBox1.Focus();
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

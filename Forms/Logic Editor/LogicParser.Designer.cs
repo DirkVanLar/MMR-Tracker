@@ -53,10 +53,13 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(13, 29);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(775, 20);
+            this.textBox1.Size = new System.Drawing.Size(775, 212);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // listView1
             // 
@@ -66,7 +69,7 @@
             this.LOC,
             this.ITEM});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 95);
+            this.listView1.Location = new System.Drawing.Point(15, 287);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(541, 343);
@@ -111,7 +114,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(559, 55);
+            this.label2.Location = new System.Drawing.Point(562, 247);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 13);
             this.label2.TabIndex = 3;
@@ -130,7 +133,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(560, 70);
+            this.listBox1.Location = new System.Drawing.Point(563, 262);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(227, 368);
             this.listBox1.TabIndex = 6;
@@ -143,7 +146,7 @@
             this.groupBox1.Controls.Add(this.radLoc);
             this.groupBox1.Controls.Add(this.radDic);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox1.Location = new System.Drawing.Point(274, 55);
+            this.groupBox1.Location = new System.Drawing.Point(277, 247);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(279, 34);
             this.groupBox1.TabIndex = 7;
@@ -188,7 +191,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 66);
+            this.textBox2.Location = new System.Drawing.Point(15, 258);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(256, 20);
             this.textBox2.TabIndex = 8;
@@ -200,7 +203,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(10, 52);
+            this.label3.Location = new System.Drawing.Point(13, 244);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 9;
@@ -222,7 +225,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 642);
             this.Controls.Add(this.btnNames);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox2);
