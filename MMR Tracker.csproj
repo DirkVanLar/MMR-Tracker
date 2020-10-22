@@ -144,6 +144,7 @@
     </Compile>
     <Compile Include="Other Games\MInishCapTools.cs" />
     <Compile Include="Other Games\OcarinaOfTimeTools.cs" />
+    <Compile Include="Other Games\SkywardSwordTools.cs" />
     <Compile Include="Other Games\SpoilerLogConverter.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1007,7 +1007,7 @@ namespace MMR_Tracker.Forms
             MessageBox.Show($"{currentEntry.DictionaryName} Is not used in any entries", "No entries found", MessageBoxButtons.OK);
         }
 
-        private static string CreatePermiations(string input, int numb)
+        public static string CreatePermiations(string input, int numb)
         {
             var Line = input;
             var num = numb;

@@ -19,6 +19,7 @@ using Microsoft.VisualBasic.Logging;
 using Microsoft.JScript;
 using System.Windows.Documents;
 using MMR_Tracker.Forms.Other_Games;
+using MMR_Tracker.Other_Games;
 
 namespace MMR_Tracker_V2
 {
@@ -128,10 +129,17 @@ namespace MMR_Tracker_V2
             //GetAllUniqueCombos();
             //TestProgressive();
             //CreatePAcketData();
-            //PromptBackup();
+            PromptBackup();
             //TestExtractNames();
             //MInishCapTools.FillMinishLogic();
             //MInishCapTools.PrintMinishLogic();
+
+            //SStesting();
+
+            void SStesting()
+            {
+                SkywardSwordTools.CreateData();
+            }
 
             void TestExtractNames()
             {
