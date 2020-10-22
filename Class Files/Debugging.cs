@@ -129,12 +129,12 @@ namespace MMR_Tracker_V2
             //GetAllUniqueCombos();
             //TestProgressive();
             //CreatePAcketData();
-            PromptBackup();
+            //PromptBackup();
             //TestExtractNames();
             //MInishCapTools.FillMinishLogic();
             //MInishCapTools.PrintMinishLogic();
 
-            //SStesting();
+            SStesting();
 
             void SStesting()
             {

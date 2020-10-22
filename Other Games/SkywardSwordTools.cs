@@ -34,8 +34,8 @@ namespace MMR_Tracker.Other_Games
             //string MacroData = wc.DownloadString("https://raw.githubusercontent.com/lepelog/sslib/master/SS%20Rando%20Logic%20-%20Macros.yaml");
             //string[] MacroDataLines = MacroData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
-            string[] ItemDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Item Location.txt");
-            string[] MacroDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Macros.txt");
+            string[] ItemDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Item Location.yaml");
+            string[] MacroDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Macros.yaml");
 
             var backupEditorInstance = Utility.CloneTrackerInstance(LogicEditor.EditorInstance);
 
@@ -90,41 +90,47 @@ namespace MMR_Tracker.Other_Games
             List<string> Failed = new List<string>();
             foreach(var i in SSInstance.Logic.Where(x=> x.Conditionals == null))
             {
-                Console.WriteLine("========================================================");
-                Console.WriteLine($"Creating Logic for {i.DictionaryName}");
+                //Console.WriteLine("========================================================");
+                //Console.WriteLine($"Creating Logic for {i.DictionaryName}");
 
                 var dataentry = SSData.Find(x => x.DictionaryName == i.DictionaryName);
                 if (dataentry == null)
                 {
-                    Console.WriteLine($"Could not find {i.DictionaryName} in Data File");
+                    //Console.WriteLine($"Could not find {i.DictionaryName} in Data File");
                     continue; 
                 }
                 if (string.IsNullOrWhiteSpace(dataentry.Logic) || dataentry.Logic.Trim() == "Nothing")
                 {
-                    Console.WriteLine($"{i.DictionaryName} Does not have Logic");
+                    //Console.WriteLine($"{i.DictionaryName} Does not have Logic");
                     continue; 
                 }
 
                 LogicParser SSParser = new LogicParser();
-                Console.WriteLine($"{dataentry.Logic}\nWas converted to:");
+                //Console.WriteLine($"{dataentry.Logic}\nWas converted to:");
                 string ConvertedLogic = LogicParser.ConvertDicNameToID(dataentry.Logic);
-                Console.WriteLine($"{ConvertedLogic}");
+                //Console.WriteLine($"{ConvertedLogic}");
                 try
                 {
                     i.Conditionals = SSParser.ConvertLogicToConditional(ConvertedLogic);
-                    Console.WriteLine($"Successufully Created Logic for {i.DictionaryName}");
+                    //Console.WriteLine($"Successufully Created Logic for {i.DictionaryName}");
                 }
                 catch
                 {
                     Failed.Add(i.DictionaryName + "\n" + dataentry.Logic + "\n" + ConvertedLogic + "\n==============================");
-                    Console.WriteLine($"Failed to convert Logic for {i.DictionaryName}");
+                    //Console.WriteLine($"Failed to convert Logic for {i.DictionaryName}");
                 }
 
             }
             Console.WriteLine("");
-            Console.WriteLine("The following entries failed");
-
-            foreach (var i in Failed) { Console.WriteLine(i); }
+            if (Failed.Count == 0)
+            {
+                Console.WriteLine("All Entries were created Successfully");
+            }
+            else
+            {
+                Console.WriteLine("The following entries failed");
+                foreach (var i in Failed) { Console.WriteLine(i); }
+            }
         }
 
         public static string textTotheRight(string Input, string RightOf)
@@ -325,27 +331,17 @@ namespace MMR_Tracker.Other_Games
 
             //For some reason the baby rattle is spelled differently in some places. This is probaly a mistake but we'll add a fake item to refer it to the correct entry.
             var rattleentry = SSInstance.Logic.Find(x => x.ItemName == "Baby's Rattle");
-            if (rattleentry != null)
-            {
-                SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Baby Rattle", IsFake = true, IsTrick = false, Required = new int[] { rattleentry.ID } });
-            }
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Baby Rattle", IsFake = true, IsTrick = false, Required = new int[] { rattleentry.ID } });
 
             //For some reason Song of the hero is shortened to SOTH in some places, I have no idea how the randomizer code is able to handle this but whatever. Same deal as above
             var LSOTH = SSInstance.Logic.Find(x => x.ItemName == "Lanayru Soth part");
-            if (rattleentry != null)
-            {
-                SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Lanayru Song of the Hero Part", IsFake = true, IsTrick = false, Required = new int[] { LSOTH.ID } });
-            }
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Lanayru Song of the Hero Part", IsFake = true, IsTrick = false, Required = new int[] { LSOTH.ID } });
+
             var FSOTH = SSInstance.Logic.Find(x => x.ItemName == "Faron Soth Part");
-            if (rattleentry != null)
-            {
-                SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Faron Song of the Hero Part", IsFake = true, IsTrick = false, Required = new int[] { FSOTH.ID } });
-            }
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Faron Song of the Hero Part", IsFake = true, IsTrick = false, Required = new int[] { FSOTH.ID } });
+
             var ESOTH = SSInstance.Logic.Find(x => x.ItemName == "Eldin Soth part");
-            if (rattleentry != null)
-            {
-                SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Eldin Song of the Hero Part", IsFake = true, IsTrick = false, Required = new int[] { ESOTH.ID } });
-            }
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Eldin Song of the Hero Part", IsFake = true, IsTrick = false, Required = new int[] { ESOTH.ID } });
 
             //These are not supposed to be a thing so just make it require it's self to hide it
             SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Can Access Boko Base", IsFake = true, IsTrick = false, Required= new[] { SSInstance.Logic.Count() } });
@@ -369,26 +365,17 @@ namespace MMR_Tracker.Other_Games
 
             //Manually fix some wierd key related entries, I think this is because of some error in my code but whatever.
             var SWBossKey = SSInstance.Logic.Find(x => x.ItemName == "Skyview Boss Key");
-            if (SWBossKey != null)
-            {
-                SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "SW Boss Key", IsFake = true, IsTrick = false, Required = new int[] { SWBossKey.ID } });
-            }
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "SW Boss Key", IsFake = true, IsTrick = false, Required = new int[] { SWBossKey.ID } });
+
             var LMFKey = SSInstance.Logic.Find(x => x.ItemName == "LMF Small Key");
-            if (LMFKey != null)
-            {
-                SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "LMF Small Key x1", IsFake = true, IsTrick = false, Required = new int[] { LMFKey.ID } });
-            }
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "LMF Small Key x1", IsFake = true, IsTrick = false, Required = new int[] { LMFKey.ID } });
+
             var SKSmallKey = SSInstance.Logic.Find(x => x.ItemName == "Skykeep Small Key");
-            if (SKSmallKey != null)
-            {
-                SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Skykeep Small Key x1", IsFake = true, IsTrick = false, Required = new int[] { SKSmallKey.ID } });
-                SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "SK Small Key x1", IsFake = true, IsTrick = false, Required = new int[] { SKSmallKey.ID } });
-            }
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Skykeep Small Key x1", IsFake = true, IsTrick = false, Required = new int[] { SKSmallKey.ID } });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "SK Small Key x1", IsFake = true, IsTrick = false, Required = new int[] { SKSmallKey.ID } });
+
             var LCSmallKey = SSInstance.Logic.Find(x => x.ItemName == "LanayruCaves Small Key");
-            if (LCSmallKey != null)
-            {
-                SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "LanayruCaves Small Key x1", IsFake = true, IsTrick = false, Required = new int[] { LCSmallKey.ID } });
-            }
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "LanayruCaves Small Key x1", IsFake = true, IsTrick = false, Required = new int[] { LCSmallKey.ID } });
 
             //Add new entries for the tablets so they can be aquired by either the tablet it's self or if "SuffleTablet" setting is off. 
             var RubyTablet = SSInstance.Logic.Find(x => x.ItemName == "Ruby Tablet");
@@ -402,6 +389,39 @@ namespace MMR_Tracker.Other_Games
             SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Emerald Tablet", IsFake = true, IsTrick = false, Conditionals = EmeraldCond.ToArray() });
             SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Amber Tablet", IsFake = true, IsTrick = false, Conditionals = AmberCond.ToArray() });
 
+
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "MMRTCombinations2", IsFake = true, IsTrick = false });
+
+            var CanAccessPast = SSInstance.Logic.Find(x => x.DictionaryName == "Can Access Past");
+            CanAccessPast.Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Master Sword").ID, SSInstance.Logic.Find(x => x.DictionaryName == "MMRTCombinations2").ID };
+            var Dungeon1Clear = SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Skyview");
+            var Dungeon1Setting = SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonSW");
+            var Dungeon2Clear = SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Earth Temple");
+            var Dungeon2Setting = SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonET");
+            var Dungeon3Clear = SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Lanayru Mining Facility");
+            var Dungeon3Setting = SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonMF");
+            var Dungeon4Clear = SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Ancient Cistern");
+            var Dungeon4Setting = SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonAC");
+            var Dungeon5Clear = SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Sandship");
+            var Dungeon5Setting = SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonSS");
+            var Dungeon6Clear = SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Fire Sanctuary");
+            var Dungeon6Setting = SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonFS");
+            var Dungeon7Clear = SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Skykeep");
+            var Dungeon7Setting = SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonSK");
+
+            CanAccessPast.Conditionals = new List<int[]>
+            {
+                new int[] { Dungeon1Clear.ID, Dungeon1Setting.ID },
+                new int[] { Dungeon2Clear.ID, Dungeon2Setting.ID },
+                new int[] { Dungeon3Clear.ID, Dungeon3Setting.ID },
+                new int[] { Dungeon4Clear.ID, Dungeon4Setting.ID },
+                new int[] { Dungeon5Clear.ID, Dungeon5Setting.ID },
+                new int[] { Dungeon6Clear.ID, Dungeon6Setting.ID },
+                new int[] { Dungeon7Clear.ID, Dungeon7Setting.ID },
+            }.ToArray();
+
+            var CanBeatDemise = SSInstance.Logic.Find(x => x.DictionaryName == "Can Reach and Defeat Demise");
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "MMRTGameClear", IsFake = true, IsTrick = false, Required = new int[] { CanBeatDemise.ID } });
 
         }
 
@@ -544,12 +564,18 @@ namespace MMR_Tracker.Other_Games
         static void CreateCustomData(List<SSLocations> SSData)
         {
             SSData.Add(new SSLocations { DictionaryName = "Item Emerald Tablet", isFake = false, LocationName = "", ItemName = "Emerald Tablet", ItemSubType = "Item", SpoilerItem = "Emerald Tablet" });
+
             SSData.Add(new SSLocations { DictionaryName = "SettingSuffleTablet", isFake = false, LocationName = "Shuffled Tablets", ItemName = "", ItemSubType = "SettingSuffleTablet", LocationArea = "%Settings%", SpoilerLocation = "SettingSuffleTablet", SpoilerItem = "SettingSuffleTablet" });
             SSData.Add(new SSLocations { DictionaryName = "SettingSuffleTabletTrue", isFake = false, LocationName = "", ItemName = "True", ItemSubType = "SettingSuffleTablet", LocationArea = "%Settings%", SpoilerLocation = "SettingSuffleTabletTrue", SpoilerItem = "SettingSuffleTabletTrue" });
             SSData.Add(new SSLocations { DictionaryName = "SettingSuffleTabletFalse", isFake = false, LocationName = "", ItemName = "False", ItemSubType = "SettingSuffleTablet", LocationArea = "%Settings%", SpoilerLocation = "SettingSuffleTabletFalse", SpoilerItem = "SettingSuffleTabletFalse" });
+
             SSData.Add(new SSLocations { DictionaryName = "SettingStartingSword", isFake = false, LocationName = "Start With Sword", ItemName = "", ItemSubType = "SettingStartingSword", LocationArea = "%Settings%", SpoilerLocation = "SettingStartingSword", SpoilerItem = "SettingStartingSword" });
             SSData.Add(new SSLocations { DictionaryName = "SettingStartingSwordTrue", isFake = false, LocationName = "", ItemName = "Progressive Sword", ItemSubType = "SettingStartingSword", LocationArea = "%Settings%", SpoilerLocation = "SettingStartingSwordTrue", SpoilerItem = "SettingStartingSwordTrue" });
             SSData.Add(new SSLocations { DictionaryName = "SettingStartingSwordFalse", isFake = false, LocationName = "", ItemName = "None", ItemSubType = "SettingStartingSword", LocationArea = "%Settings%", SpoilerLocation = "SettingStartingSwordFalse", SpoilerItem = "SettingStartingSwordFalse" });
+
+            SSData.Add(new SSLocations { DictionaryName = "SettingClosedThunderHead", isFake = false, LocationName = "Closed Thunderhead", ItemName = "", ItemSubType = "SettingClosedThunderHead", LocationArea = "%Settings%", SpoilerLocation = "SettingClosedThunderHead", SpoilerItem = "SettingClosedThunderHead" });
+            SSData.Add(new SSLocations { DictionaryName = "Option \"closed-thunderhead\" Enabled", isFake = false, LocationName = "", ItemName = "True", ItemSubType = "SettingClosedThunderHead", LocationArea = "%Settings%", SpoilerLocation = "SettingClosedThunderHeadTrue", SpoilerItem = "SettingClosedThunderHeadTrue" });
+            SSData.Add(new SSLocations { DictionaryName = "Option \"closed-thunderhead\" Disabled", isFake = false, LocationName = "", ItemName = "False", ItemSubType = "SettingClosedThunderHead", LocationArea = "%Settings%", SpoilerLocation = "SettingClosedThunderHeadFalse", SpoilerItem = "SettingClosedThunderHeadFalse" });
             //Extra Junk items to fill the pool
             for (var i = 0; i < 10; i++) 
             { 
@@ -559,6 +585,17 @@ namespace MMR_Tracker.Other_Games
             SSData.Add(new SSLocations { DictionaryName = $"ExtraHP1", isFake = false, LocationName = "", ItemName = "Heart Piece", ItemSubType = "Item", LocationArea = "", SpoilerItem = "Heart Piece", SpoilerLocation = $"ExtraHP1" });
             SSData.Add(new SSLocations { DictionaryName = $"ExtraHP2", isFake = false, LocationName = "", ItemName = "Heart Piece", ItemSubType = "Item", LocationArea = "", SpoilerItem = "Heart Piece", SpoilerLocation = $"ExtraHP2" });
             SSData.Add(new SSLocations { DictionaryName = $"ExtraBottle1", isFake = false, LocationName = "", ItemName = "Bottle", ItemSubType = "Item", LocationArea = "", SpoilerItem = "Bottle|Empty Bottle", SpoilerLocation = $"ExtraBottle1" });
+
+            //Add Required Dungeons for game clear
+            SSData.Add(new SSLocations { DictionaryName = $"RequiredDungeon1", isFake = false, LocationName = "Required Dungeon 1", ItemName = "", ItemSubType = "RequiredDungeon", LocationArea = "%Settings%", SpoilerItem = "RequiredDungeon1", SpoilerLocation = $"RequiredDungeon1" });
+            SSData.Add(new SSLocations { DictionaryName = $"RequiredDungeon2", isFake = false, LocationName = "Required Dungeon 2", ItemName = "", ItemSubType = "RequiredDungeon", LocationArea = "%Settings%", SpoilerItem = "RequiredDungeon1", SpoilerLocation = $"RequiredDungeon2" });
+            SSData.Add(new SSLocations { DictionaryName = $"RequiredDungeonSW", isFake = false, LocationName = "", ItemName = "Req Skyview", ItemSubType = "RequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Skyview", SpoilerLocation = $"RequiredDungeonSW" });
+            SSData.Add(new SSLocations { DictionaryName = $"RequiredDungeonET", isFake = false, LocationName = "", ItemName = "Req Earth Temple", ItemSubType = "RequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Earth Temple", SpoilerLocation = $"RequiredDungeonET" });
+            SSData.Add(new SSLocations { DictionaryName = $"RequiredDungeonMF", isFake = false, LocationName = "", ItemName = "Req Lanayru Mining Facility", ItemSubType = "RequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Lanayru Mining Facility", SpoilerLocation = $"RequiredDungeonMF" });
+            SSData.Add(new SSLocations { DictionaryName = $"RequiredDungeonAC", isFake = false, LocationName = "", ItemName = "Req Ancient Cistern", ItemSubType = "RequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Ancient Cistern", SpoilerLocation = $"RequiredDungeonAC" });
+            SSData.Add(new SSLocations { DictionaryName = $"RequiredDungeonSS", isFake = false, LocationName = "", ItemName = "Req Sandship", ItemSubType = "RequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Sandship", SpoilerLocation = $"RequiredDungeonSS" });
+            SSData.Add(new SSLocations { DictionaryName = $"RequiredDungeonFS", isFake = false, LocationName = "", ItemName = "Req Fire Sanctuary", ItemSubType = "RequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Fire Sanctuary", SpoilerLocation = $"RequiredDungeonFS" });
+            SSData.Add(new SSLocations { DictionaryName = $"RequiredDungeonSK", isFake = false, LocationName = "", ItemName = "Req Skykeep", ItemSubType = "RequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Skykeep", SpoilerLocation = $"RequiredDungeonSK" });
 
         }
 
@@ -588,11 +625,19 @@ namespace MMR_Tracker.Other_Games
                 {
                     CreateNewEntry();
                     CurrentEntry.DictionaryName = line.Replace(":", "").Trim();
+
+                    bool Unimplimented = false;
+                    if (CurrentEntry.DictionaryName.EndsWith("+"))
+                    {
+                        CurrentEntry.DictionaryName = CurrentEntry.DictionaryName.Replace("+", "");
+                        Unimplimented = true;
+                    }
+
                     CurrentEntry.ItemSubType = "Item";
                     var Data = line.Split('-').Select(x => x.Trim()).ToArray();
                     if (Data.Count() > 1)
                     {
-                        CurrentEntry.LocationName = line.Replace(":", "").Trim();
+                        CurrentEntry.LocationName = (Unimplimented) ? "" : line.Replace(":", "").Trim();
                         CurrentEntry.SpoilerLocation = line.Replace(":", "").Trim();
                         CurrentEntry.LocationArea = Data[0].Trim();
                     }
@@ -708,12 +753,40 @@ namespace MMR_Tracker.Other_Games
 
             bool AtItems = false;
             bool AtEntrances = false;
+            bool AtOptions = false;
+            bool RandomizeTablets = false;
+            bool ClosedThunderhead = false;
+            bool Swordless = false;
+            bool RandomizeSailcloth = false;
             List<string> SpoilerData = new List<string>();
             SpoilerData.Add("Converted SSR");
             string header = "";
             var FileContent = Log.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()).ToArray();
             foreach (var line in FileContent)
             {
+                if (line.Contains("Options selected:"))
+                {
+                    AtOptions = true;
+                }
+                if (line.Contains("Required Dungeon 1:"))
+                {
+                    AtOptions = false;
+                    SpoilerData.Add($"RequiredDungeon1->Required Dungeon " + line.Replace("Required Dungeon 1:", "").Trim());
+                }
+                if (line.Contains("Required Dungeon 2:"))
+                {
+                    SpoilerData.Add($"RequiredDungeon2->Required Dungeon " + line.Replace("Required Dungeon 2:", "").Trim());
+                }
+
+                if (AtOptions)
+                {
+                    if (line.Contains("randomize-tablets")) { RandomizeTablets = true; }
+                    if (line.Contains("closed-thunderhead")) { ClosedThunderhead = true; }
+                    if (line.Contains("swordless")) { Swordless = true; }
+                    if (line.Contains("randomize-sailcloth")) { RandomizeSailcloth = true; }
+                }
+
+
                 if (line.Contains("All item locations:"))
                 {
                     AtItems = true;
@@ -734,13 +807,14 @@ namespace MMR_Tracker.Other_Games
                 }
             }
 
-            var StartWithTablets = SpoilerData.Find(x => x.Contains("->Ruby Tablet")) == null;
-            if (StartWithTablets) { SpoilerData.Add($"SettingSuffleTablet->SettingSuffleTabletFalse"); }
+            if (!RandomizeTablets) { SpoilerData.Add($"SettingSuffleTablet->SettingSuffleTabletFalse"); }
             else { SpoilerData.Add($"SettingSuffleTablet->SettingSuffleTabletTrue"); }
 
-            var StartWithSword = true; //I assume this will be togglable Later
-            if (StartWithSword) { SpoilerData.Add($"SettingStartingSword->SettingStartingSwordTrue"); }
+            if (!Swordless) { SpoilerData.Add($"SettingStartingSword->SettingStartingSwordTrue"); }
             else { SpoilerData.Add($"SettingStartingSword->SettingStartingSwordFalse"); }
+
+            if (ClosedThunderhead) { SpoilerData.Add($"SettingClosedThunderHead->SettingClosedThunderHeadTrue"); }
+            else { SpoilerData.Add($"SettingClosedThunderHead->SettingClosedThunderHeadFalse"); }
 
             if (ManualConvert)
             {
