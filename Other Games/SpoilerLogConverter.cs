@@ -1,4 +1,5 @@
 ﻿using MMR_Tracker.Forms.Other_Games;
+using MMR_Tracker.Other_Games;
 using MMR_Tracker_V2;
 using Newtonsoft.Json;
 using System;
@@ -70,6 +71,10 @@ namespace MMR_Tracker.Forms
             if (instance.GameCode == "OOTR" && !Spoiler[0].Contains("Converted OOTR"))
             {
                 ReturnSpoiler = OcarinaOfTimeTools.HandleOOTRSpoilerLog(string.Join("", Spoiler));
+            }
+            if (instance.GameCode == "SSR" && !Spoiler[0].Contains("Converted SSR"))
+            {
+                ReturnSpoiler = SkywardSwordTools.HandleSSRSpoilerLog(Spoiler);
             }
             return ReturnSpoiler;
         }

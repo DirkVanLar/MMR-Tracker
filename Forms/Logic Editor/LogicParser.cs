@@ -302,9 +302,7 @@ namespace MMR_Tracker.Forms
 
         public static string ConvertDicNameToID(string Input)
         {
-            string newInput = Input.Replace(" and ", " & ").Replace(" And ", " & ").Replace(" AND ", " & ").Replace(" or ", " | ").Replace(" Or ", " | ").Replace(" OR ", " | ");
-
-            var Entries = GetEntries(newInput);
+            var Entries = GetEntries(Input);
             for (var i = 0; i < Entries.Count(); i++)
             {
                 if (ISLogicChar(Entries[i][0]) || ISComment(Entries[i])) { continue; }
@@ -313,14 +311,14 @@ namespace MMR_Tracker.Forms
                 if (LogicEntry == null) { continue; }
                 Entries[i] = LogicEntry.ID.ToString();
             }
-            return string.Join("", Entries);
+            string newOutput = string.Join("", Entries);
+            //newOutput = newOutput.Replace(" and ", " & ").Replace(" And ", " & ").Replace(" AND ", " & ").Replace(" or ", " | ").Replace(" Or ", " | ").Replace(" OR ", " | ");
+            return newOutput;
         }
 
         public static string ConvertIDToDicName(string Input)
         {
-            string newInput = Input.Replace(" and ", " & ").Replace(" And ", " & ").Replace(" AND ", " & ").Replace(" or ", " | ").Replace(" Or ", " | ").Replace(" OR ", " | ");
-
-            var Entries = GetEntries(newInput);
+            var Entries = GetEntries(Input);
             for (var i = 0; i < Entries.Count(); i++)
             {
                 if (ISLogicChar(Entries[i][0]) || ISComment(Entries[i])) { continue; }
@@ -330,7 +328,9 @@ namespace MMR_Tracker.Forms
                     Entries[i] = LogicEditor.EditorInstance.Logic[ID].DictionaryName;
                 }
             }
-            return string.Join("", Entries);
+            string newOutput = string.Join("", Entries);
+            //newOutput = newOutput.Replace(" and ", " & ").Replace(" And ", " & ").Replace(" AND ", " & ").Replace(" or ", " | ").Replace(" Or ", " | ").Replace(" OR ", " | ");
+            return newOutput;
         }
 
         public static List<string> GetEntries(string input)

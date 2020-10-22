@@ -134,8 +134,21 @@ namespace MMR_Tracker.Class_Files
             var IceTrapEntry = instance.Logic.Find(x => x.DictionaryName == "Ice Trap");
             var NoAvailableItemsEntry = instance.Logic.Find(x => x.DictionaryName == "MMRTSpoilerLogErrorCatcher");
 
+            //Debugging
+            List<string> LocationsNotFound = new List<string>();
+            List<string> LocationsFound = new List<string>();
+            List<string> ItemsNotFound = new List<string>();
+            List<string> ItemsIceTrap = new List<string>();
+            List<string> ItemsNoneAvailable = new List<string>();
+            List<string> ItemsFound = new List<string>();
+            //Debugging
+
             foreach (string i in Spoiler)
             {
+                //Debugging
+                bool ItemHandled = false;
+                //Debugging
+
                 var line = i;
 
                 if (line.StartsWith("Settings:") && instance.IsMM())
@@ -186,18 +199,44 @@ namespace MMR_Tracker.Class_Files
 
                     var Item = instance.Logic.Find(x => x.SpoilerItem.Select(j => j ?? "".Trim()).Contains(entry.ItemName.Trim()) && !usedId[entry.BelongsTo].Contains(x.ID));
 
+                    if (location == null)
+                    {
+                        LocationsNotFound.Add(entry.LocationName);
+                    }
+                    else
+                    {
+                        LocationsFound.Add(entry.LocationName);
+                    }
+
                     //Handle Ice traps
                     if (entry.ItemName.Contains("Ice Trap") || entry.ItemName == "Ice Trap")
                     {
+                        ItemsIceTrap.Add(entry.ItemName);
+                        ItemHandled = true;
                         if (IceTrapEntry == null) { Item = new LogicObjects.LogicEntry { ID = -1 }; }
                         else { Item = IceTrapEntry; }
                     }
 
                     //If an item exists in the spoiler log, but doesn't have any unused items to assign, attempt to use a special error entry
-                    if (Item == null && NoAvailableItemsEntry != null)
+                    if (Item == null)
                     {
                         var ItemExists = instance.Logic.Find(x => x.SpoilerItem.Select(j => j ?? "".Trim()).Contains(entry.ItemName.Trim())) != null;
-                        if (ItemExists) { Item = NoAvailableItemsEntry; }
+                        if (ItemExists)
+                        {
+                            ItemsNoneAvailable.Add(entry.ItemName);
+                        }
+                        else
+                        {
+                            ItemsNotFound.Add(entry.ItemName);
+                        }
+                        if (ItemExists && NoAvailableItemsEntry != null) 
+                        { 
+                            Item = NoAvailableItemsEntry; 
+                        }
+                    }
+                    else if (!ItemHandled)
+                    {
+                        ItemsFound.Add(entry.ItemName);
                     }
 
                     if (Item != null && location != null)
@@ -209,6 +248,43 @@ namespace MMR_Tracker.Class_Files
                     }
                 }
             }
+
+            bool DebugStatus = true;
+            if (DebugStatus)
+            {
+                Console.WriteLine($"\nThe Following locations were not found in the logic");
+                foreach (var i in LocationsNotFound)
+                {
+                    Console.WriteLine($"-{i}");
+                }
+                Console.WriteLine($"\nThe Following Items were not found in the logic");
+                foreach (var i in ItemsNotFound)
+                {
+                    Console.WriteLine($"-{i}");
+                }
+                Console.WriteLine($"\nThe Following Items were found in the dictionary but all were already used");
+                foreach (var i in ItemsNoneAvailable)
+                {
+                    Console.WriteLine($"-{i}");
+                }
+                Console.WriteLine($"\nThe Following Items were ice traps");
+                foreach (var i in ItemsIceTrap)
+                {
+                    Console.WriteLine($"-{i}");
+                }
+                Console.WriteLine($"\nThe Following Locations were found in the dictionary");
+                foreach (var i in LocationsFound)
+                {
+                    //Console.WriteLine($"-{i}");
+                }
+                Console.WriteLine($"\nThe Following Items were found in the dictionary");
+                foreach (var i in ItemsFound)
+                {
+                    //Console.WriteLine($"-{i}");
+                }
+            }
+
+
             //foreach(var i in usedId[PlayerID].OrderBy(x => x)) { Debugging.Log(i); }
             return SpoilerData;
         }
