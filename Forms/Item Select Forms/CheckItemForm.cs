@@ -137,10 +137,40 @@ namespace MMR_Tracker.Forms.Sub_Forms
 
         private void CheckItemForm_Load(object sender, EventArgs e)
         {
-            if (!Instance.Options.IsMultiWorld) { btnJunk.Width = LBItemSelect.Width; numericUpDown1.Visible = false; label1.Visible = false; }
-            else { numericUpDown1.Value = Instance.Options.MyPlayerID; }
+            PositionItems();
             LBItemSelect.Sorted = chkSort.Checked;
             NextManualItem();
+        }
+
+        public void PositionItems()
+        {
+
+            LBItemSelect.Width = this.Width - 24;
+            LBItemSelect.Height = this.Height - (LBItemSelect.Location.Y) - 42;
+
+            if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld)
+            {
+                TXTSearch.Width = LBItemSelect.Width - numericUpDown1.Width - 4;
+            }
+            else
+            {
+                label1.Visible = false;
+                numericUpDown1.Visible = false;
+                TXTSearch.Width = LBItemSelect.Width;
+            }
+
+            label2.Location = new Point { X = 4, Y = 6 };
+            TXTSearch.Location = new Point { X = 4, Y = 12 + label2.Height };
+            LBItemSelect.Location = new Point { X = 4, Y = 18 + label2.Height + TXTSearch.Height };
+
+            btnJunk.Location = new Point { X = 4 + TXTSearch.Width - btnJunk.Width, Y = 4 };
+            chkSort.Location = new Point { X = 4 + TXTSearch.Width - chkSort.Width - btnJunk.Width, Y = 6 };
+
+            numericUpDown1.Location = new Point { X = LBItemSelect.Width + 4 - numericUpDown1.Width, Y = TXTSearch.Location.Y };
+            label1.Location = new Point { X = numericUpDown1.Location.X, Y = label2.Location.Y };
+
+
+
         }
 
         public void NextManualItem()
@@ -157,7 +187,22 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 NextManualItem();
                 return;
             }
-            this.Text = $"Select item found at {ManualSelect[0].LocationName ?? ManualSelect[0].DictionaryName}";
+            if (ManualSelect[0].ItemSubType.ToLower().Contains("setting"))
+            {
+                this.Text = $"Setting: {ManualSelect[0].LocationName ?? ManualSelect[0].DictionaryName}";
+            }
+            else if (ManualSelect[0].ItemSubType.ToLower().Contains("dungeon"))
+            {
+                this.Text = $"Dungeon at: {ManualSelect[0].LocationName ?? ManualSelect[0].DictionaryName}";
+            }
+            else if (ManualSelect[0].IsEntrance())
+            {
+                this.Text = $"Exit at: {ManualSelect[0].LocationName ?? ManualSelect[0].DictionaryName}";
+            }
+            else
+            {
+                this.Text = $"Item at: {ManualSelect[0].LocationName ?? ManualSelect[0].DictionaryName}";
+            }
             TXTSearch.Clear();
             TXTSearch.Focus();
             WriteItems(ManualSelect[0]);
@@ -273,6 +318,11 @@ namespace MMR_Tracker.Forms.Sub_Forms
         {
             TXTSearch.Clear();
             TXTSearch.Focus();
+        }
+
+        private void CheckItemForm_Resize(object sender, EventArgs e)
+        {
+            PositionItems();
         }
     }
 }

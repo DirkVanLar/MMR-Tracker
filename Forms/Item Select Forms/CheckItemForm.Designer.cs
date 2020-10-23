@@ -35,23 +35,26 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TXTSearch = new System.Windows.Forms.TextBox();
             this.chkSort = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // LBItemSelect
             // 
+            this.LBItemSelect.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.LBItemSelect.FormattingEnabled = true;
-            this.LBItemSelect.Location = new System.Drawing.Point(13, 39);
+            this.LBItemSelect.IntegralHeight = false;
+            this.LBItemSelect.Location = new System.Drawing.Point(13, 52);
             this.LBItemSelect.Name = "LBItemSelect";
-            this.LBItemSelect.Size = new System.Drawing.Size(336, 550);
+            this.LBItemSelect.Size = new System.Drawing.Size(428, 576);
             this.LBItemSelect.TabIndex = 0;
             this.LBItemSelect.DoubleClick += new System.EventHandler(this.HandleSelectedItem);
             // 
             // btnJunk
             // 
-            this.btnJunk.Location = new System.Drawing.Point(13, 596);
+            this.btnJunk.Location = new System.Drawing.Point(274, 5);
             this.btnJunk.Name = "btnJunk";
-            this.btnJunk.Size = new System.Drawing.Size(232, 41);
+            this.btnJunk.Size = new System.Drawing.Size(68, 20);
             this.btnJunk.TabIndex = 1;
             this.btnJunk.Text = "Junk";
             this.btnJunk.UseVisualStyleBackColor = true;
@@ -59,7 +62,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(251, 617);
+            this.numericUpDown1.Location = new System.Drawing.Point(348, 26);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(93, 20);
             this.numericUpDown1.TabIndex = 2;
@@ -69,7 +72,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(248, 601);
+            this.label1.Location = new System.Drawing.Point(345, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 13);
             this.label1.TabIndex = 3;
@@ -77,9 +80,9 @@
             // 
             // TXTSearch
             // 
-            this.TXTSearch.Location = new System.Drawing.Point(13, 13);
+            this.TXTSearch.Location = new System.Drawing.Point(13, 26);
             this.TXTSearch.Name = "TXTSearch";
-            this.TXTSearch.Size = new System.Drawing.Size(262, 20);
+            this.TXTSearch.Size = new System.Drawing.Size(329, 20);
             this.TXTSearch.TabIndex = 4;
             this.TXTSearch.TextChanged += new System.EventHandler(this.TXTSearch_TextChanged);
             this.TXTSearch.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TXTSearch_MouseUp);
@@ -91,13 +94,24 @@
             this.chkSort.Checked = true;
             this.chkSort.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSort.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkSort.Location = new System.Drawing.Point(281, 15);
+            this.chkSort.Location = new System.Drawing.Point(200, 7);
             this.chkSort.Name = "chkSort";
             this.chkSort.Size = new System.Drawing.Size(68, 17);
             this.chkSort.TabIndex = 5;
             this.chkSort.Text = "Sort A>Z";
             this.chkSort.UseVisualStyleBackColor = false;
             this.chkSort.CheckedChanged += new System.EventHandler(this.chkSort_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(12, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Filter By:";
             // 
             // CheckItemForm
             // 
@@ -106,18 +120,19 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(361, 641);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.chkSort);
             this.Controls.Add(this.TXTSearch);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.btnJunk);
             this.Controls.Add(this.LBItemSelect);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CheckItemForm";
             this.Text = "CheckItemForm";
             this.Load += new System.EventHandler(this.CheckItemForm_Load);
             this.Shown += new System.EventHandler(this.CheckItemForm_Shown);
+            this.Resize += new System.EventHandler(this.CheckItemForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -132,5 +147,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TXTSearch;
         private System.Windows.Forms.CheckBox chkSort;
+        private System.Windows.Forms.Label label2;
     }
 }

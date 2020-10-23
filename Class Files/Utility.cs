@@ -171,6 +171,14 @@ namespace MMR_Tracker_V2
             for(var i = 0; i < MinDividerLength; i++) { TestFor += "="; }
             return text.Contains(TestFor);
         }
+        public static string GetTextAfter(string Input, string After)
+        {
+            int Loc = Input.IndexOf(After);
+            if (Loc < 0) { return ""; }
+            int Rightof = Loc + After.Count();
+            if (Rightof >= Input.Count()) { return ""; }
+            return Input.Substring(Rightof);
+        }
         public static bool CheckForRandomEntrances(LogicObjects.TrackerInstance Instance, bool Spoiler = false, int validEntranceCount = 6)
         {
             if (!Instance.EntranceRando) { return false; }

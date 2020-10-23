@@ -27,7 +27,7 @@ namespace MMR_Tracker.Forms.Other_Games
                 OpenFileDialog SelectedFile = new OpenFileDialog
                 {
                     Title = $"Select WWR Spoiler Log",
-                    Filter = "OOTR Spoiler Log (*.txt)|*.txt",
+                    Filter = "WWR Spoiler Log (*.txt)|*.txt",
                     FilterIndex = 1,
                     Multiselect = false
                 };

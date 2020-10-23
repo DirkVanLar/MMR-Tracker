@@ -39,7 +39,7 @@ namespace MMR_Tracker.Forms
             return Lines;
         }
 
-        private void LoadLogicData(string[] Logic, bool NewData)
+        private void LoadLogicData(string[] Logic = null)
         {
             if (LogicEditor.EditorForm == null)
             {
@@ -52,8 +52,8 @@ namespace MMR_Tracker.Forms
                 LogicEditor.EditorForm.Focus();
             }
 
-            LogicEditor.EditorForm.LoadLogic(Logic);
-            if (NewData) { LogicEditor.EditorForm.ClearLogicData(true); }
+            if (Logic != null) { LogicEditor.EditorForm.LoadLogic(Logic); }
+            else { LogicEditor.EditorForm.BtnNewLogic_Click(this, null); }
         }
 
         private void SpoilerLogConverter_Load(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace MMR_Tracker.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            LoadLogicData(GetWebData("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/OOTR%20Logic.txt"), true);
+            LoadLogicData(GetWebData("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/OOTR%20Logic.txt"));
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -106,22 +106,40 @@ namespace MMR_Tracker.Forms
 
         private void button5_Click(object sender, EventArgs e)
         {
-            LoadLogicData(GetWebData("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/WWR%20Logic.txt"), true);
+            LoadLogicData(GetWebData("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/WWR%20Logic.txt"));
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            if (LogicEditor.EditorForm == null)
+            LoadLogicData();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            List<string> csv = new List<string> { "DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem,EntrancePair" };
+            SaveFileDialog saveDic = new SaveFileDialog
             {
-                LogicEditor.EditorForm = new LogicEditor();
-                LogicEditor.EditorForm.Show();
-            }
-            else
-            {
-                LogicEditor.EditorForm.Show();
-                LogicEditor.EditorForm.Focus();
-            }
-            LogicEditor.EditorForm.BtnNewLogic_Click(sender, e);
+                Filter = "CSV File (*.csv)|*.csv",
+                Title = "Save Dictionary File",
+                FileName = "XXXDICTIONARYV1.csv"
+            };
+            saveDic.ShowDialog();
+            File.WriteAllLines(saveDic.FileName, csv);
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            MainInterface.CurrentProgram.LoadLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/SSR%20Logic.txt", sender, e);
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            SkywardSwordTools.HandleSSRSpoilerLog();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            LoadLogicData(GetWebData("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/SSR%20Logic.txt"));
         }
     }
 }

@@ -272,12 +272,12 @@ ExtraTreasure9,,Rare Treasure,,Item,ExtraTreasure9,Rare Treasure
 ExtraHP1,,Heart Piece,,Item,ExtraHP1,Heart Piece
 ExtraHP2,,Heart Piece,,Item,ExtraHP2,Heart Piece
 ExtraBottle1,,Bottle,,Item,ExtraBottle1,Bottle|Empty Bottle
-RequiredDungeon1,Required Dungeon 1,,%Settings%,RequiredDungeon,RequiredDungeon1,RequiredDungeon1
-RequiredDungeon2,Required Dungeon 2,,%Settings%,RequiredDungeon,RequiredDungeon2,RequiredDungeon1
-RequiredDungeonSW,,Req Skyview,,RequiredDungeon,RequiredDungeonSW,Required Dungeon Skyview
-RequiredDungeonET,,Req Earth Temple,,RequiredDungeon,RequiredDungeonET,Required Dungeon Earth Temple
-RequiredDungeonMF,,Req Lanayru Mining Facility,,RequiredDungeon,RequiredDungeonMF,Required Dungeon Lanayru Mining Facility
-RequiredDungeonAC,,Req Ancient Cistern,,RequiredDungeon,RequiredDungeonAC,Required Dungeon Ancient Cistern
-RequiredDungeonSS,,Req Sandship,,RequiredDungeon,RequiredDungeonSS,Required Dungeon Sandship
-RequiredDungeonFS,,Req Fire Sanctuary,,RequiredDungeon,RequiredDungeonFS,Required Dungeon Fire Sanctuary
-RequiredDungeonSK,,Req Skykeep,,RequiredDungeon,RequiredDungeonSK,Required Dungeon Skykeep
+RequiredDungeon1,Required Dungeon 1,,%Required Dungeon%,RequiredDungeon,RequiredDungeon1,RequiredDungeon1
+RequiredDungeon2,Required Dungeon 2,,%Required Dungeon%,RequiredDungeon,RequiredDungeon2,RequiredDungeon1
+RequiredDungeonSW,,Req Skyview,,SettingRequiredDungeon,RequiredDungeonSW,Required Dungeon Skyview
+RequiredDungeonET,,Req Earth Temple,,SettingRequiredDungeon,RequiredDungeonET,Required Dungeon Earth Temple
+RequiredDungeonMF,,Req Lanayru Mining Facility,,SettingRequiredDungeon,RequiredDungeonMF,Required Dungeon Lanayru Mining Facility
+RequiredDungeonAC,,Req Ancient Cistern,,SettingRequiredDungeon,RequiredDungeonAC,Required Dungeon Ancient Cistern
+RequiredDungeonSS,,Req Sandship,,SettingRequiredDungeon,RequiredDungeonSS,Required Dungeon Sandship
+RequiredDungeonFS,,Req Fire Sanctuary,,SettingRequiredDungeon,RequiredDungeonFS,Required Dungeon Fire Sanctuary
+RequiredDungeonSK,,Req Skykeep,,SettingRequiredDungeon,RequiredDungeonSK,Required Dungeon Skykeep
