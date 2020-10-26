@@ -116,6 +116,7 @@
             this.Name = "LogicEditorAddPermutations";
             this.Text = "Create item combinations";
             this.Load += new System.EventHandler(this.LogicEditorAddPermutations_Load);
+            this.Shown += new System.EventHandler(this.LogicEditorAddPermutations_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

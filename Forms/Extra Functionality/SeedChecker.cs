@@ -32,7 +32,7 @@ namespace MMR_Tracker
             {
                 Console.WriteLine("Adding MMRTGameClear");
                 int GameClearID = PlaythroughGenerator.GetGameClearEntry(NeededSelect.ListContent, LogicObjects.MainTrackerInstance.IsEntranceRando());
-                NeededSelect.ListContent[GameClearID].ItemName = "Defeat Majora";
+                if (GameClearID > -1 && GameClearID < NeededSelect.ListContent.Count()) { NeededSelect.ListContent[GameClearID].ItemName = "Defeat Majora"; }
             }
 
             if (NeededSelect.ShowDialog() != DialogResult.OK) { return; }

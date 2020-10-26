@@ -90,7 +90,7 @@
 0
 
 - Darunias Chamber => Death Mountain Crater Lower Local
-1381,992
+1381,1321
 
 0
 0
@@ -1716,7 +1716,7 @@
 0
 
 - Sheik in Kakariko
-1375,992,275,276,277
+1375,275,276,277,1321
 
 0
 0
@@ -7884,7 +7884,7 @@
 0
 
 - can_use(Bow)
-
+1321
 338;401;606;818
 0
 0

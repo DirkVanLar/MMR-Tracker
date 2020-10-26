@@ -50,7 +50,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(12, 12);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(337, 566);
+            this.listView1.Size = new System.Drawing.Size(337, 569);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
@@ -58,7 +58,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(356, 117);
+            this.textBox1.Location = new System.Drawing.Point(355, 121);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(148, 20);
             this.textBox1.TabIndex = 1;
@@ -73,9 +73,9 @@
             this.checkBox1.ForeColor = System.Drawing.SystemColors.Control;
             this.checkBox1.Location = new System.Drawing.Point(355, 70);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(158, 17);
+            this.checkBox1.Size = new System.Drawing.Size(144, 30);
             this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Add Conditionals Seperately";
+            this.checkBox1.Text = "Add each selected Item \r\nas a seperate conditional";
             this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.ChkAddSeperate_CheckedChanged);
             // 
@@ -166,7 +166,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Cursor = System.Windows.Forms.Cursors.Default;
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(352, 101);
+            this.label2.Location = new System.Drawing.Point(351, 105);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 11;
@@ -208,6 +208,7 @@
             this.Name = "LogicEditorConditional";
             this.Text = "Create Logic Conditional";
             this.Load += new System.EventHandler(this.LogicEditorConditional_Load);
+            this.Shown += new System.EventHandler(this.LogicEditorConditional_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

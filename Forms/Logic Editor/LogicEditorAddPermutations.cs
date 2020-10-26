@@ -19,7 +19,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             InitializeComponent();
         }
 
-        public LogicObjects.TrackerInstance UsedInstance = LogicObjects.MainTrackerInstance;
+        public LogicObjects.TrackerInstance UsedInstance = LogicEditor.EditorInstance;
         public List<LogicObjects.LogicEntry> ListContent = new List<LogicObjects.LogicEntry>();
         public List<int> CheckedItems = new List<int>();
         public int Display = 0;
@@ -38,13 +38,8 @@ namespace MMR_Tracker.Forms.Sub_Forms
             {
                 SelectedItems.Add(UsedInstance.Logic[i]);
             }
-            switch (Function)
-            {
-                case 0:
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                    break;
-            }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
@@ -147,6 +142,12 @@ namespace MMR_Tracker.Forms.Sub_Forms
         private void textBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Middle) { textBox1.Clear(); }
+        }
+
+        private void LogicEditorAddPermutations_Shown(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            textBox1.Focus();
         }
     }
 }

@@ -100,6 +100,7 @@
             this.Name = "LogicEditorReorder";
             this.Text = "Reorder Logic Items";
             this.Load += new System.EventHandler(this.LogicEditorReorder_Load);
+            this.Shown += new System.EventHandler(this.LogicEditorReorder_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

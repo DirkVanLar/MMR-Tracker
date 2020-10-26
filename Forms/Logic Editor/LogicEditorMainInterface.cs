@@ -56,8 +56,6 @@ namespace MMR_Tracker.Forms
 
         private void LogicEditor_Load(object sender, EventArgs e)
         {
-            if (EditorForm != null) { this.Close(); }
-            EditorForm = this;
             nudIndex.Value = 0;
             if (LogicObjects.MainTrackerInstance.LogicVersion > 0)
             {
@@ -130,14 +128,23 @@ namespace MMR_Tracker.Forms
 
         private void BtnLoad_Click(object sender, EventArgs e)
         {
+            LoadLogic();
+        }
+
+        public void LoadLogic(string[] Lines = null)
+        {
             if (!PromptSave()) { return; }
-            string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
-            if (file == "") { return; }
+            if (Lines == null)
+            {
+                var file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
+                if (file == "") { return; }
+                bool SettingsFile = file.EndsWith(".MMRTSET");
+                Lines = (SettingsFile) ? File.ReadAllLines(file).Skip(2).ToArray() : File.ReadAllLines(file).ToArray();
+            }
+
             GoBackList = new List<int>();
-            bool SettingsFile = file.EndsWith(".MMRTSET");
-            var lines = (SettingsFile) ? File.ReadAllLines(file).Skip(2) : File.ReadAllLines(file);
             EditorInstance = new LogicObjects.TrackerInstance();
-            EditorInstance.RawLogicFile = lines.ToArray();
+            EditorInstance.RawLogicFile = Lines;
             LogicEditing.PopulateTrackerInstance(EditorInstance);
 
             AssignUniqueItemnames(EditorInstance.Logic);
@@ -183,7 +190,7 @@ namespace MMR_Tracker.Forms
             {
                 UsedInstance = EditorInstance,
                 Display = 7,
-                ListContent = LogicObjects.MainTrackerInstance.Logic
+                ListContent = EditorInstance.Logic
             };
             if (NeededSelect.ShowDialog() != DialogResult.OK) { return; }
             foreach (var i in NeededSelect.SelectedItems)
@@ -201,21 +208,16 @@ namespace MMR_Tracker.Forms
         public void ContextMenuAddPermutations(object sender, EventArgs e)
         {
             LogicEditorAddPermutations Selector = new LogicEditorAddPermutations();
+            Selector.UsedInstance = EditorInstance;
             Selector.Display = 2;
             Selector.ListContent = EditorInstance.Logic;
             Selector.ShowDialog();
             if (Selector.DialogResult != DialogResult.OK) {  return; }
             if (Selector.SelectedItems.Count < 1) {  return; }
-            string Input = "";
-            bool drawcomma = false;
-            foreach (var i in Selector.SelectedItems)
-            {
-                if (drawcomma) { Input += (";" + i.ID.ToString()); }
-                else { Input += i.ID.ToString(); drawcomma = true; }
-            }
+
+            Console.WriteLine($"{(int)Selector.numericUpDown1.Value} OF {Selector.SelectedItems.Count} Items");
 
             var UniqueCombinations = Utility.CountUniqueCombinations(Selector.SelectedItems.Count(), (int)Selector.numericUpDown1.Value);
-
 
             if (UniqueCombinations > MaxEntries)
             {
@@ -229,9 +231,7 @@ namespace MMR_Tracker.Forms
             Debugging.Log($"Begin create {UniqueCombinations} permutatios");
             try
             {
-                var NewConditionals = CreatePermiations(Input, (int)Selector.numericUpDown1.Value)
-                        .Split(';').Select(x => x
-                            .Split(',').Select(y => Int32.Parse(y)).ToArray()).ToArray();
+                var NewConditionals = CreatePermiations(Selector.SelectedItems.Select(x=>x.ID).ToArray(), (int)Selector.numericUpDown1.Value);
 
                 Debugging.Log("Finish create permutatios");
                 if (currentEntry.Conditionals == null)
@@ -269,10 +269,10 @@ namespace MMR_Tracker.Forms
         {
             LogicEditorConditional ConditionalSelect = new LogicEditorConditional
             {
-                Text = "Select required items",
+                Text = "Create Logic Conditional",
                 UsedInstance = EditorInstance,
                 Display = 7,
-                ListContent = LogicObjects.MainTrackerInstance.Logic
+                ListContent = EditorInstance.Logic
             };
             ConditionalSelect.ShowDialog();
         }
@@ -302,7 +302,7 @@ namespace MMR_Tracker.Forms
             NudUpdateing = false;
         }
 
-        private void BtnNewLogic_Click(object sender, EventArgs e)
+        public void BtnNewLogic_Click(object sender, EventArgs e)
         {
             if (!PromptSave()) { return; }
             EditorInstance = new LogicObjects.TrackerInstance();
@@ -355,7 +355,7 @@ namespace MMR_Tracker.Forms
                         Text = "Edit items in this conditional",
                         UsedInstance = EditorInstance,
                         Display = 7,
-                        ListContent = LogicObjects.MainTrackerInstance.Logic,
+                        ListContent = EditorInstance.Logic,
                         CheckedItems = temp.ItemIDs.Select(x => x.ID).ToList()
                     };
                     if (Selector.ShowDialog() != DialogResult.OK) { return; }
@@ -997,30 +997,9 @@ namespace MMR_Tracker.Forms
             MessageBox.Show($"{currentEntry.DictionaryName} Is not used in any entries", "No entries found", MessageBoxButtons.OK);
         }
 
-        private static string CreatePermiations(string input, int numb)
+        public static int[][] CreatePermiations(int[] List, int numb)
         {
-            var Line = input;
-            var num = numb;
-            string Output = "";
-            bool drawcolon = false;
-            foreach (var i in GetPermutations(Line.Split(';'), num))
-            {
-                if (drawcolon) { Output += ";"; }
-                else { drawcolon = true; }
-                bool drawcomma = false;
-                foreach (var j in i)
-                {
-                    if (drawcomma)
-                    {
-                        Output += ("," + j);
-                    }
-                    else
-                    {
-                        Output += j;
-                        drawcomma = true;
-                    }
-                }
-            }
+            var EnumList = List.Select(x => x);
             IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> items, int count)
             {
                 int i = 0;
@@ -1036,7 +1015,7 @@ namespace MMR_Tracker.Forms
                     ++i;
                 }
             }
-            return Output;
+            return GetPermutations(List, numb).Select(x => x.ToArray()).ToArray();
         }
 
         public void RunLogicParser()
@@ -1058,6 +1037,27 @@ namespace MMR_Tracker.Forms
             }
             LogicParser.Conditionals = null;
             WriteCurentItem((int)nudIndex.Value);
+        }
+
+        private void clearLogicDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearLogicData();
+        }
+
+        public void ClearLogicData(bool YOLO = false)
+        {
+            if (!YOLO)
+            {
+                var Clear = MessageBox.Show("WARNING, this will clear all requirements and conditionals from your logic data, are you sure you wish to continue?", "Clear Logic Data", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (Clear != DialogResult.Yes) { return; }
+            }
+
+            foreach(var i in EditorInstance.Logic)
+            {
+                i.Required = null;
+                i.Conditionals = null;
+            }
+            WriteCurentItem(currentEntry.ID);
         }
     }
 }
