@@ -666,5 +666,80 @@ namespace MMR_Tracker_V2
             }
         }
 
+        public static void CleanLogicEntry(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
+        {
+            if (entry.Required == null && entry.Conditionals == null) { return; }
+            var l = Instance.Logic;
+            if (entry.Required.Where(x => l[x].DictionaryName.StartsWith("MMRTCombinations") || l[x].DictionaryName.StartsWith("MMRTCheckContains")).Any())
+            { return;}
+            MoveRequirementsToConditionals(entry);
+            RemoveRedundantConditionals(entry);
+            MakeCommonConditionalsRequirements(entry);
+        }
+
+        public static void MoveRequirementsToConditionals(LogicObjects.LogicEntry entry)
+        {
+            if (entry.Required == null) { return; }
+            if (entry.Conditionals == null)
+            {
+                List<int> NewConditionals = new List<int>();
+                foreach(var i in entry.Required)
+                {
+                    NewConditionals.Add(i);
+                }
+                entry.Conditionals = new int[][] { NewConditionals.ToArray() };
+            }
+            else
+            {
+                var NewConditionals = entry.Conditionals.Select(x => x.ToList()).ToArray();
+                foreach (var i in NewConditionals)
+                {
+                    i.AddRange(entry.Required.ToList());
+                }
+                entry.Conditionals = NewConditionals.Select(x => x.ToArray()).ToArray();
+            }
+            entry.Required = null;
+        }
+
+        public static void RemoveRedundantConditionals(LogicObjects.LogicEntry entry)
+        {
+            if (entry.Conditionals == null) { return; }
+            var cleanedConditionals = entry.Conditionals.Select(x => x.Distinct().ToArray()).ToArray();
+            var NewConditionals = cleanedConditionals.Where(i => !IsRedundant(i, cleanedConditionals));
+
+            entry.Conditionals = NewConditionals.ToArray();
+
+            bool IsRedundant(int[] FocusedList, int[][] CheckingList)
+            {   
+                foreach(var i in CheckingList)
+                {
+                    if (!i.Equals(FocusedList) && i.All(j => FocusedList.Contains(j)))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        public static void MakeCommonConditionalsRequirements(LogicObjects.LogicEntry entry)
+        {
+            if (entry.Conditionals == null) { return; }
+            List<int> ConsistantConditionals = 
+                entry.Conditionals.SelectMany(x => x).Distinct().Where(i => entry.Conditionals.All(x => x.Contains(i))).ToList();
+
+            var NewRequirements = (entry.Required ?? new List<int>().ToArray()).ToList();
+            NewRequirements.AddRange(ConsistantConditionals);
+            entry.Required = (NewRequirements.Any()) ? NewRequirements.Distinct().ToArray() : null;
+
+            var NewConditionals = entry.Conditionals.Select(x => x.ToList()).ToList();
+            foreach (var i in NewConditionals) 
+            {
+                i.RemoveAll(x => ConsistantConditionals.Contains(x));
+            }
+            NewConditionals.RemoveAll(x => !x.Any());
+            entry.Conditionals = (NewConditionals.Any()) ? NewConditionals.Select(x => x.ToArray()).ToArray() : null;
+        }
+
     }
 }
