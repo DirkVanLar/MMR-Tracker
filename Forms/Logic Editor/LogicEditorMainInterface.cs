@@ -214,18 +214,10 @@ namespace MMR_Tracker.Forms
             Selector.ShowDialog();
             if (Selector.DialogResult != DialogResult.OK) {  return; }
             if (Selector.SelectedItems.Count < 1) {  return; }
-            string Input = "";
-            bool drawcomma = false;
-            foreach (var i in Selector.SelectedItems)
-            {
-                if (drawcomma) { Input += (";" + i.ID.ToString()); }
-                else { Input += i.ID.ToString(); drawcomma = true; }
-            }
 
             Console.WriteLine($"{(int)Selector.numericUpDown1.Value} OF {Selector.SelectedItems.Count} Items");
 
             var UniqueCombinations = Utility.CountUniqueCombinations(Selector.SelectedItems.Count(), (int)Selector.numericUpDown1.Value);
-
 
             if (UniqueCombinations > MaxEntries)
             {
@@ -239,9 +231,7 @@ namespace MMR_Tracker.Forms
             Debugging.Log($"Begin create {UniqueCombinations} permutatios");
             try
             {
-                var NewConditionals = CreatePermiations(Input, (int)Selector.numericUpDown1.Value)
-                        .Split(';').Select(x => x
-                            .Split(',').Select(y => Int32.Parse(y)).ToArray()).ToArray();
+                var NewConditionals = CreatePermiations(Selector.SelectedItems.Select(x=>x.ID).ToArray(), (int)Selector.numericUpDown1.Value);
 
                 Debugging.Log("Finish create permutatios");
                 if (currentEntry.Conditionals == null)
@@ -1007,30 +997,9 @@ namespace MMR_Tracker.Forms
             MessageBox.Show($"{currentEntry.DictionaryName} Is not used in any entries", "No entries found", MessageBoxButtons.OK);
         }
 
-        public static string CreatePermiations(string input, int numb)
+        public static int[][] CreatePermiations(int[] List, int numb)
         {
-            var Line = input;
-            var num = numb;
-            string Output = "";
-            bool drawcolon = false;
-            foreach (var i in GetPermutations(Line.Split(';'), num))
-            {
-                if (drawcolon) { Output += ";"; }
-                else { drawcolon = true; }
-                bool drawcomma = false;
-                foreach (var j in i)
-                {
-                    if (drawcomma)
-                    {
-                        Output += ("," + j);
-                    }
-                    else
-                    {
-                        Output += j;
-                        drawcomma = true;
-                    }
-                }
-            }
+            var EnumList = List.Select(x => x);
             IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> items, int count)
             {
                 int i = 0;
@@ -1046,7 +1015,7 @@ namespace MMR_Tracker.Forms
                     ++i;
                 }
             }
-            return Output;
+            return GetPermutations(List, numb).Select(x => x.ToArray()).ToArray();
         }
 
         public void RunLogicParser()

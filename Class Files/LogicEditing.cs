@@ -115,8 +115,14 @@ namespace MMR_Tracker_V2
             instance.EntranceAreaDic = VersionHandeling.AreaClearDictionary(instance);
             CreateDicNameToID(instance);
             if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
+            MarkUniqeItemsUnrandomizedManual(instance);
 
             return true;
+        }
+
+        public static void MarkUniqeItemsUnrandomizedManual(LogicObjects.TrackerInstance Instance)
+        {
+            foreach (var i in Instance.Logic) { if (Instance.Logic.Where(x=> x.ItemSubType == i.ItemSubType).Count() < 2) { i.Options = (i.StartingItem()) ? 6 : 2; } }
         }
 
         public static bool RequirementsMet(int[] list, List<LogicObjects.LogicEntry> logic, List<int> usedItems = null)

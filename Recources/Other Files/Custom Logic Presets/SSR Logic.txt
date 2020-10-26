@@ -25,13 +25,13 @@
 
 - Skyloft - Waterfall Cave First Chest
 
-
+243;445
 0
 0
 
 - Skyloft - Waterfall Cave Second Chest
 
-
+243;445
 0
 0
 
@@ -49,55 +49,55 @@
 
 - Skyloft - Bazaar Goddess Chest
 
-322
+337
 0
 0
 
 - Skyloft - Shed Chest
 
-444
+465
 0
 0
 
 - Skyloft - Shed Goddess Chest
 
-313,444
+328,465
 0
 0
 
 - Skyloft - West Cliff Goddess Chest
 
-300
+315
 0
 0
 
 - Skyloft - Floating Island Goddess Chest
 
-306,441
+321,462
 0
 0
 
 - Skyloft - Waterfall Goddess Chest
 
-324,441
+339,462
 0
 0
 
 - Skyloft - Pumpkin Archery - 600 Points
 
-434
+455
 0
 0
 
 - Skyloft - Zelda Heartpiece
 
-441
+462
 0
 0
 
 - Skyloft - Baby Rattle
 
-428,441
+448,462
 0
 0
 
@@ -109,7 +109,7 @@
 
 - Skyloft - Cawlin's Letter
 
-420
+440
 0
 0
 
@@ -133,193 +133,193 @@
 
 - Skyloft - Fledge Crystals
 
-254,278
+254,291
 0
 0
 
 - Skyloft - Baby Crystals
 
-378
+397
 0
 0
 
 - Skyloft - Ghost/Pipit Crystals
 
-407
+427
 0
 0
 
 - Skyloft - Sparrot Crystals
 
-261,290,441
+271,305,462
 0
 0
 
 - Skyloft - Cleaning Crystal
 
-428
+448
 0
 0
 
 - Skyloft - Owlan Crystals
 
-290
+261,305,445
 0
 0
 
 - Skyloft - Batreaux 5 Crystals
 
-255,368
+255,256,387
 0
 0
 
 - Skyloft - Batreaux 10 Crystals
 
-255,369
+255,256,388
 0
 0
 
 - Skyloft - Batreaux 30 Crystals
 
-255,371
+255,256,390
 0
 0
 
 - Skyloft - Batreaux 30 Crystal Chest
 
-371
+255,390
 0
 0
 
 - Skyloft - Batreaux 40 Crystals
 
-255,372
+255,256,391
 0
 0
 
 - Skyloft - Batreaux 50 Crystals
 
-255,373
+255,256,392
 0
 0
 
 - Skyloft - Batreaux 70 Crystals
 
-255,375
+255,256,394
 0
 0
 
 - Skyloft - Batreaux 70 Crystals Second Reward
 
-255,375
+255,256,394
 0
 0
 
 - Skyloft - Batreaux 80 Crystals
 
-255,376
+255,256,395
 0
 0
 
 - Skyloft - Crystal in Link's Room
 
-255
+256
 0
 0
 
 - Skyloft - Crystal on Light Tower
 
-255
+256
 0
 0
 
 - Skyloft - Crystal near Pumpkin Patch
 
-255
+256
 0
 0
 
 - Skyloft - Crystal in Parrow and Orielle's House
 
-255
+256
 0
 0
 
 - Skyloft - Crystal inbetween wooden Planks
 
-255
+256
 0
 0
 
 - Skyloft - Crystal in Knight Academy Plant
 
-255
+256
 0
 0
 
 - Skyloft - Crystal on West Cliff
 
-255
+256
 0
 0
 
 - Skyloft - Crystal after Waterfall Cave
 
-255
+243,256;249,256;256,445
 0
 0
 
 - Skyloft - Crystal in Loftwing Prison
 
-255
+243,256;249,256;256,445
 0
 0
 
 - Skyloft - Crystal in Sparring Hall
 
-249,255
+249,256
 0
 0
 
 - Skyloft - Crystal on Beedles Ship
 
-249,255
+249,256
 0
 0
 
 - Skyloft - Crystal on Waterfall Island
 
-255,441
+256,462
 0
 0
 
 - Skyloft - Crystal in Zelda's Room
 
-255,441
+256,462
 0
 0
 
 - Sky - Crystal outside Lumpy Pumpkin
 
-255
+256
 0
 0
 
 - Sky - Crystal inside Lumpy Pumpkin
 
-255
+256
 0
 0
 
 - Sky - Lumpy Pumpkin Room Goddess Chest
 
-305
+320
 0
 0
 
 - Sky - Lumpy Pumpkin Goddess Chest
 
-299
+314
 0
 0
 
@@ -331,103 +331,103 @@
 
 - Sky - Lumpy Pumpkin Harp Minigame
 
-254,276,420
+254,288,440
 0
 0
 
 - Sky - next to Beedle's island chest 1
 
-309
+324
 0
 0
 
 - Sky - SW Sky Satchel
 
-308
+323
 0
 0
 
 - Sky - Bamboo Island Goddess Chest
 
-311
+326
 0
 0
 
 - Sky - NE Sky Treasure Medal
 
-312
+327
 0
 0
 
 - Sky - NE Sky Silver Rupee
 
-317,425
+332,445
 0
 0
 
 - Sky - Goddess Chest Inside Volcanic Island
 
-302
+317
 0
 0
 
 - Sky - Goddess Chest Outside Volcanic Island
 
-318
+333
 0
 0
 
 - Sky - Goddess Chest on Island Closest to Faron Pillar
 
-303
+318
 0
 0
 
 - Sky - next to Bamboo island chest 2
 
-320,444
+335,465
 0
 0
 
 - Sky - SW Sky Life Medal
 
-321
+336
 0
 0
 
 - Sky - SW Sky Potion medal
 
-323,441
+338,462
 0
 0
 
 - Sky - Beedle's Island Cage Goddess Chest
 
-257,304
+258,319
 0
 0
 
 - Sky - Beedle's Island Goddess Chest
 
-319
+334
 0
 0
 
 - Sky - Goddess Chest Under Fun Fun Island
 
-307
+322
 0
 0
 
 - Sky - Fun Fun Island Minigame
 
-265
+275
 0
 0
 
 - Sky - Dohdoh Crystals
 
-265
+275
 0
 0
 
@@ -439,1093 +439,1099 @@
 
 - Sky - Kina Crystals
 
-254,260,276,289,420
+254,270,288,304,440
 0
 0
 
 - Sky - Beedle's Crystals
 
-257,409
+258,429
 0
 0
 
 - Sky - Breakable Boulder near Fun Fun island
 
-291
+306
 0
 0
 
 - Sky - Breakable Boulder near Lumpy Pumpkin
 
-291
+306
 0
 0
 
 - Thunderhead - Goddess Chest Outside Isle of Song
 
-256,310
+257,325
 0
 0
 
 - Thunderhead - Goddess Chest on top of Isle of Song
 
-256,316
+257,331
 0
 0
 
 - Thunderhead - East Island Goddess Chest
 
-256,301
+257,316
 0
 0
 
 - Thunderhead - East Island Chest
 
-256
+257
 0
 0
 
 - Thunderhead - Bug Island Goddess Chest
 
-256,315
+257,330
 0
 0
 
 - Thunderhead - First Goddess Chest on Mogma Mitts Island
 
-252,256,314
+252,257,329
 0
 0
 
 - Thunderhead - Mogma Mitts Island Quiver
 
-252,256,325
+252,257,340
 0
 0
 
 - Thunderhead - Bug Island minigame
 
-256,258
+257,259
 0
 0
 
 - Thunderhead - Farore's Courage
 
-244,256
+244,257
 0
 0
 
 - Thunderhead - Nayru's Wisdom
 
-245,256
+245,257
 0
 0
 
 - Thunderhead - Din's Power
 
-246,256
+246,257
 0
 0
 
 - Sealed Grounds - Inside Sealed Temple
 
-259
+260
 0
 0
 
 - Sealed Grounds - Ballad of the Goddess
 
-259,420
+260,440
 0
 0
 
 - Sealed Grounds - Gorko Goddess Wall Reward
 
-259,267
+260
 0
 0
 
 - Sealed Grounds - Behind the Temple Triforce on goddess wall
 
-259,267,291,425,434
+260,277,306,445,455
 0
 0
 
 - Sealed Grounds - True Master Sword
 
-259,290
+260,305
 0
 0
 
 - Faron Woods - Heart Piece on Tree
 
-259
+261
 0
 0
 
 - Faron Woods - Slingshot
 
-259
+261,262
 0
 0
 
 - Faron Woods - Deep Woods Chest
 
-270
+280
 0
 0
 
 - Faron Woods - Heart Piece Behind Boulder
 
-259,425
+261,445
 0
 0
 
 - Faron Woods - Faron Woods Treasure
 
-259,425
+261,445
 0
 0
 
 - Faron Woods - Chest Inside Great Tree
 
-259,441;259,428,444
+261,263,462;261,448,465
 0
 0
 
 - Lake Floria - Outside AC
 
-249,259,269
+249,279
 0
 0
 
 - Lake Floria - Dragon Lair First Chest
 
-259,269
+279
 0
 0
 
 - Lake Floria - Dragon Lair Second Chest (Scale)
 
-259,269
+279
 0
 0
 
 - Lake Floria - Lake Floria Chest
 
-259,269
+279
 0
 0
 
 - Lake Floria - Lake Floria Silver Rupee
 
-259,269
+279
 0
 0
 
 - Eldin Volcano - Behind Bombable Wall in First Room
 
-260
+270
 0
 0
 
 - Eldin Volcano - After Crawlspace
 
-260
+270
 0
 0
 
 - Eldin Volcano - Behind Bombable Wall Near HP
 
-260
+270
 0
 0
 
 - Eldin Volcano - Heart Piece on Cliff
 
-260
+270
 0
 0
 
 - Eldin Volcano - Behind Bombable Wall Near Volcano Ascent
 
-261
+271
 0
 0
 
 - Eldin Volcano - Key Piece in Front of ET
 
-251,260
+251,270
 0
 0
 
 - Eldin Volcano - Key Piece Below Tower
 
-251,260
+251,270
 0
 0
 
 - Eldin Volcano - Key Piece Behind Boulder on Sandy Slope
 
-251,260
+251,270
 0
 0
 
 - Eldin Volcano - Key Piece After Vents
 
-251,260
+251,270
 0
 0
 
 - Eldin Volcano - Key Piece After Draining Lava
 
-251,260
+251,270
 0
 0
 
 - Mogma Turf - Free Fall chest
 
-260
+270
 0
 0
 
 - Mogma Turf - Behind Bombable Wall at Entrance
 
-260
+270
 0
 0
 
 - Mogma Turf - Sand Slide Chest
 
-251,260
+251,270
 0
 0
 
 - Mogma Turf - Digging Mitts
 
-260
+262,270
 0
 0
 
-- Mogma Turf - Behind Bombale Wall in Lava Maze
+- Mogma Turf - Behind Bombable Wall in Lava Maze
 
-251,260
+251,270
 0
 0
 
 - Volcano Summit - Heart Piece Behind Digging
 
-252,254,262
+252,254,272
 0
 0
 
 - Volcano Summit - Behind Bombable Wall in Waterfall Area
 
-262,441
+272,462
 0
 0
 
 - Boko Base - Small chest in front of Sword in boko base
 
-382,425,441
+401,445,462
 0
 0
 
 - Boko Base - Pouch chest in boko base
 
-382,425,441
+401,445,462
 0
 0
 
 - Lanayru Mines - Chest Behind First Landing
 
-263,441
+273,462
 0
 0
 
 - Lanayru Mines - Near First Timeshift Stone
 
-263
+273
 0
 0
 
 - Lanayru Mines - Behind Statue
 
-250,263;263,425
+250,273;273,445
 0
 0
 
 - Lanayru Mines - End of Mines
 
-250,263;263,425
+250,273;273,445
 0
 0
 
 - Lanayru - Chest Near Party Wheel
 
-263,425
+273,445
 0
 0
 
 - Lanayru - Chest Before Hook Beetle
 
-250,263;263,425;263,441
+250,273;273,445;273,462
 0
 0
 
 - Lanayru - Hook Beetle
 
-250,263;263,425
+250,273;273,445
 0
 0
 
 - Lanayru - NE Desert Chest
 
-264,425
+274,445
 0
 0
 
 - Lanayru - On Top of Lanayru Mining Facility
 
-277
+289
 0
 0
 
 - Lanayru - Chest Next to Trial
 
-264,441
+274,462
 0
 0
 
 - Lanayru - Chest on Platform Near Fire Node
 
-263,441
+273,462
 0
 0
 
 - Lanayru - Chest Near Sand Oasis
 
-263,441
+273,462
 0
 0
 
 - Lanayru - Beginning of Lightning Node
 
-264,425
+274,445
 0
 0
 
 - Lanayru - MIddle of Lightning Node
 
-264,425
+274,445
 0
 0
 
 - Lanayru - End of Lightning Node room
 
-249,264,425
+274,445
 0
 0
 
 - Lanayru - Fire Node Shortcut Chest
 
-264
+266,274
 0
 0
 
 - Lanayru - Beginning of Fire Node
 
-264,425
+274,445
 0
 0
 
 - Lanayru - Middle of Fire Node
 
-264,425
+274,445
 0
 0
 
 - Lanayru - Fire Node Left Chest
 
-250,264,425
+250,274,445
 0
 0
 
 - Lanayru - Fire Node Right Chest
 
-250,264,425
+250,274,445
 0
 0
 
 - Lanayru - Harp
 
-278
+291
 0
 0
 
 - Lanayru Caves - Chest
 
-263,441
+273,462
 0
 0
 
 - Lanayru Caves - Golo
 
-263,441
+273,462
 0
 0
 
 - Lanayru Sand Sea - Skydive Chest at Skippers Retreat
 
-249,266,431;266,414,431;266,431,434
+249,276,452;276,434,452;276,452,455
 0
 0
 
 - Lanayru Sand Sea - Chest After Moblin at Skippers Retreat
 
-250,266;266,425;266,431
+250,276;276,445;276,452
 0
 0
 
 - Lanayru Sand Sea - Near Shack
 
-249,266,431;266,414,431;266,431,434
+249,276,452;276,434,452;276,452,455
 0
 0
 
 - Lanayru Sand Sea - In Skippers Shack
 
-249,266,428,431;266,414,428,431;266,428,431,434
+249,276,448,452;276,434,448,452;276,448,452,455
 0
 0
 
 - Lanayru Sand Sea - Roller Coaster Minigame
 
-266,428
+267,276
 0
 0
 
 - Lanayru Sand Sea - First Chest in Pirate Stronghold
 
-266
+276
 0
 0
 
 - Lanayru Sand Sea - Second Chest in Pirate Stronghold
 
-266
+276
 0
 0
 
 - Lanayru Sand Sea - 3rd Chest in Pirate Stronghold
 
-266
+276
 0
 0
 
 - Skyview - Map Chest
 
-273,384
+283,284,403
 0
 0
 
 - Skyview - Small Key Digging Spot
 
-251,272,384,444
+251,282,284,403,465
 0
 0
 
 - Skyview - Behind Two Eyes
 
-272,384
+243,282,284,403
 0
 0
 
 - Skyview - Beetle
 
-249,384,423;384,414,423;384,423,434;384,423,441
+243,249,403,443;243,403,434,443;243,403,443,455;243,403,443,462;249,403,443,445,465;403,434,443,445,465;403,443,445,455,465;403,443,445,462,465
 0
 0
 
 - Skyview - Behind Bars in Hub Room
 
-249,384,423
+249,284,403,443
 0
 0
 
 - Skyview - Behind Three Eyes
 
-249,384,423
+243,249,284,403,443
 0
 0
 
 - Skyview - Near Boss Door
 
-249,384,424;384,424,425;384,424,434;384,424,444
+244,249,284,403,444;249,250,284,403,444;244,284,403,444,445;250,284,403,444,445;244,284,403,444,455;249,284,403,444,455;250,284,403,444,455;284,403,444,445,455;284,403,444,455;244,284,403,444,465;250,284,403,444,465;284,403,444,455,465
 0
 0
 
 - Skyview - Boss Key
 
-249,384,424;384,424,425;384,424,434;384,424,444
+244,249,284,403,444;249,250,284,403,444;244,284,403,444,445;250,284,403,444,445;244,284,403,444,455;249,284,403,444,455;250,284,403,444,455;284,403,444,445,455;284,403,444,455;244,284,403,444,465;250,284,403,444,465;284,403,444,455,465
 0
 0
 
 - Skyview Boss Room - Heart Container
 
-249,384,391,424;384,391,424,425;384,391,424,434;384,391,424,444
+243,244,249,284,403,410,444;243,249,250,284,403,410,444;243,244,284,403,410,444,445;243,250,284,403,410,444,445;243,244,284,403,410,444,455;243,249,284,403,410,444,455;243,250,284,403,410,444,455;243,284,403,410,444,445,455;243,284,403,410,444,455;243,244,284,403,410,444,465;243,250,284,403,410,444,465;243,284,403,410,444,455,465
 0
 0
 
 - Skyview Spring - Ruby Tablet
 
-249,384,391,424;384,391,424,425;384,391,424,434;384,391,424,444
+244,249,284,403,410,444;244,284,403,410,444,445;244,284,403,410,444,455;244,284,403,410,444,465
 0
 0
 
 - Earth Temple - First Chest
 
-251,385
+251,404
 0
 0
 
 - Earth Temple - Behind Boulder
 
-249,385;385,434
+287,404
 0
 0
 
 - Earth Temple - Left Chest After Boulder Section
 
-249,385;385,434
+287,404
 0
 0
 
 - Earth Temple - Map Chest
 
-249,250,385;249,385,425;250,385,434;385,425,434
+250,287,404;287,404,445
 0
 0
 
 - Earth Temple - Bomb Bag
 
-249,385;385,434
+265,287,404
 0
 0
 
 - Earth Temple - 5 Bombs From Ledd
 
-249,385;385,434
+265,287,404
 0
 0
 
 - Earth Temple - Chest Guarded by Lizalfos
 
-250,385;249,385,425
+250,287,404;249,287,404,445
 0
 0
 
 - Earth Temple - Boss Key
 
-250,385;249,251,385,425
+250,287,404;249,251,287,404,445
 0
 0
 
 - ET Boss Room - ET Heart Container
 
-250,385,425,426;249,251,385,425,426
+243,250,404,445,446;243,249,251,404,445,446
 0
 0
 
 - ET Spring - Amber Tablet
 
-250,385,425,426;249,251,385,425,426
+244,250,404,445,446;244,249,251,404,445,446
 0
 0
 
 - Lanayru Mining Facility - Behind Bars
 
-386
+405
 0
 0
 
 - Lanayru Mining Facility - First Chest in Hub Room
 
-250,386
+250,405
 0
 0
 
 - Lanayru Mining Facility - Chest in Room Behind Locked Door
 
-250,386,392
+250,405,411
 0
 0
 
 - Lanayru Mining Facility - Gust Bellows
 
-250,386,392
+250,405,411
 0
 0
 
 - Lanayru Mining Facility - Inside Gust Bellows Room
 
-250,386,392
+250,405,411
 0
 0
 
 - Lanayru Mining Facility - First West Room
 
-250,386,428
+250,405,448
 0
 0
 
 - Lanayru Mining Facility - Map chest
 
-250,386,428
+243,250,290,405,448
 0
 0
 
 - Lanayru Mining Facility - Behind First Crawlspace
 
-250,386,428
+243,250,290,405,448
 0
 0
 
 - Lanayru Mining Facility - Behind Second Crawlspace
 
-250,386,428
+243,250,290,405,448
 0
 0
 
 - Lanayru Mining Facility - Boss Key
 
-250,386,425,428
+243,250,290,405,445,448
 0
 0
 
 - Lanayru Mining Facility - Chest After Boss Key Room
 
-250,386,425,428
+243,250,290,405,445,448
 0
 0
 
 - LMF boss room - LMF Heart Container
 
-250,386,428,429
+243,250,290,405,448,450
 0
 0
 
 - Ancient Cistern - Small Key Chest
 
-387,444
+243,406,465
 0
 0
 
 - Ancient Cistern - Whip
 
-387,430
+243,406,451;297,406,451
 0
 0
 
 - Ancient Cistern - Map Chest
 
-387,431
+406,452
 0
 0
 
 - Ancient Cistern - Vines Chest
 
-387,431,441;249,387,430,431,444;387,430,431,434,444
+297,406
 0
 0
 
 - Ancient Cistern - Behind Waterfall
 
-387,431,444
+406,452,465
 0
 0
 
 - Ancient Cistern - Bokoblin
 
-249,387,431,444;387,431,434,444
+249,406,452,465;406,452,455,465
 0
 0
 
 - Ancient Cistern - Boss Key
 
-387,431,441;249,250,387,430,431,444;250,387,430,431,434,444
+250,297,406;297,406,462
 0
 0
 
 - AC Boss Room - AC Heart Container
 
-387,430,431,432;387,431,432,441
+298,406,451,452,453;298,406,452,453,462
 0
 0
 
 - AC Boss Room - Goddess Longsword
 
-387,430,431,432;387,431,432,441
+244,406,451,452,453;244,406,452,453,462
 0
 0
 
 - Sandship - Behind Combination Lock
 
-388
+243,244,407;243,407,434;243,407,445;243,407,455
 0
 0
 
 - Sandship - Bow chest
 
-388,433
+243,407,454
 0
 0
 
 - Sandship - Heart Piece Chest
 
-388,434,441
+407,455,462
 0
 0
 
 - Sandship - Map Chest
 
-388,434
+243,407,455;407,454,455
 0
 0
 
 - Sandship - Treasure Room First Chest
 
-388,431,434
+243,407,452,455
 0
 0
 
 - Sandship - Treasure Room Second Chest
 
-388,431,434
+243,407,452,455
 0
 0
 
 - Sandship - Treasure Room Third Chest
 
-388,431,434
+243,407,452,455
 0
 0
 
 - Sandship - Treasure Room Fourth Chest
 
-388,431,434
+243,407,452,455
 0
 0
 
 - Sandship - Treasure Room Fifth Chest
 
-388,431,434
+243,407,452,455
 0
 0
 
 - Sandship - Robot in Brig
 
-388,431,434
+243,407,452,455
 0
 0
 
 - Sandship - Boss Key
 
-388,433,434
+407,454,455
 0
 0
 
 - Sandship - Tentalus Heart Container
 
-388,434,435
+243,407,455,456;407,454,455,456
 0
 0
 
 - Sandship - Nayru's Flame
 
-388,434,435
+244,407,455,456
 0
 0
 
 - Fire Sanctuary - First Room
 
-288,389
+262,303,408
 0
 0
 
 - Fire Sanctuary - After First Outside Section
 
-288,389,436
+262,303,408,457
 0
 0
 
 - Fire Sanctuary - Second Small Key Chest
 
-250,389,428,436;250,389,436,441
+250,265,408,448,457;250,265,408,457,462
 0
 0
 
 - Fire Sanctuary - First Chest in Water Pod Room
 
-250,389,437
+250,265,408,458
 0
 0
 
 - Fire Sanctuary - Second Chest in Water Pod Room
 
-250,389,437
+250,265,408,458
 0
 0
 
 - Fire Sanctuary - Mogma Mitts
 
-250,389,437
+243,250,408,458
 0
 0
 
 - Fire Sanctuary - Bottle
 
-252,288,389,436
+243,252,303,408,457
 0
 0
 
 - Fire Sanctuary - Map Chest
 
-250,252,389,428,437,441
+243,250,252,408,448,458,462
 0
 0
 
 - Fire Sanctuary - Third Small Key Chest
 
-250,252,389,425,428,437,441
+243,250,252,408,445,448,458,462
 0
 0
 
 - Fire Sanctuary - Plats Chest
 
-250,252,389,438
+243,250,252,408,459
 0
 0
 
 - Fire Sanctuary - Staircase Room
 
-250,252,389,438,441
+243,250,252,408,459,462
 0
 0
 
 - Fire Sanctuary - Boss Key
 
-250,252,389,438,441
+243,250,252,408,459,462
 0
 0
 
 - Fire Sanctuary - Ghirahim Heart Container
 
-250,252,389,438,439
+243,250,252,408,459,460
 0
 0
 
 - Fire Sanctuary - Din's Flame
 
-250,252,389,438,439
+244,250,252,408,459,460
 0
 0
 
 - Lanayru Gorge - Boss rush heart piece
 
-295
+310
 0
 0
 
 - Lanayru Gorge - Boss rush hylian shield
 
-295
+310
 0
 0
 
 - Lanayru Gorge - Life Tree Seedling
 
-294
+309
 0
 0
 
 - Lanayru Gorge - Lanayru Soth Part event
 
-295
+310
 0
 0
 
 - Flooded Faron Woods - Faron Soth Part event
 
-383,444
+402,465
 0
 0
 
 - Boko base - Mogma Mitts Event
 
-382
+401
 0
 0
 
 - Boko base - Clawshots
 
-252,382,428;382,414,428;382,425,428;382,428,434
+252,401,448;401,434,448;401,445,448;401,448,455
 0
 0
 
 - Boko base - Gust Bellows
 
-382
+401
 0
 0
 
 - Boko base - Bombs
 
-244,250,382,441;382,425,441;382,414,431,441;382,431,434,441
+244,250,401,462;401,445,462;401,434,452,462;401,452,455,462
 0
 0
 
 - Boko base - Slingshot
 
-250,382,441;382,425,441;382,431,441
+250,401,462;401,445,462;401,452,462
 0
 0
 
 - Boko base - Whip
 
-382,441
+401,462
 0
 0
 
 - Fire Dragon Room - Eldin Soth part event
 
-249,382,425,441;382,425,434,441
+249,401,445,462;401,445,455,462
 0
 0
 
 - Skykeep - Map Chest
 
-390
+409
 0
 0
 
 - Skykeep - Small Key Chest
 
-390,428,431,434,441
+243,409,448,452,455,462
 0
 0
 
 - Skykeep - Triforce of Wisdom Event
 
-390,428,431,434,441
+409,448,452,455,462
 0
 0
 
 - Skykeep - Triforce of Power Event
 
-390,428,431,434,441
+409,448,452,455,462
 0
 0
 
 - Skykeep - Triforce of Courage Event
 
-390,393,428,431,434,441
+409,412,448,452,455,462
 0
 0
 
 - Skyloft Silent Realm - Stone of Trials
 
-253,420
+253,440
 0
 0
 
 - Faron Silent Realm - Water Scale
 
-259,410,420
+261,430,440
 0
 0
 
 - Lanyru Silent Realm - Clawshots
 
-264,411,420
+274,431,440
 0
 0
 
 - Eldin Silent Realm - Fireshield Earrings
 
-261,412,420
+271,432,440
 0
 0
 
 - Practice Sword
 
-401
+419
 0
 0
 
 - Goddess Sword
 
-402
+420
 0
 0
 
 - Goddess Longsword
 
-403
+421
 0
 0
 
 - Goddess White Sword
 
-404
+422
 0
 0
 
 - Master Sword
 
-405
+423
 0
 0
 
 - True Master Sword
 
-406
+424
 0
 0
 
 - Beetle
 
-418
+438
 0
 0
 
 - Hook Beetle
 
-419
+439
 0
 0
 
 - Digging Mitts
 
-416
+436
 0
 0
 
 - Mogma Mitts
 
-417
+437
 0
 0
 
 - Song of the Hero
 
-379,380,381
+398,399,400
 0
 0
 
 - Bottle
 
-377,400
+396,425
+0
+0
+
+- Can Open Batreaux Shed
+
+243
 0
 0
 
@@ -1537,421 +1543,505 @@
 
 - Can Access Thunderhead
 
-335;413
+350;433
 0
 0
 
 - Can Access Beedle's Shop
 
-249;414;425;434;441
+249;434;445;455;462
 0
 0
 
 - Bug Net
 
-257
+258
 0
 0
 
 - Can Access Sealed Temple
 
-397
+416
+0
+0
+
+- Can Access Most of Faron Woods
+
+243,260;260,445;260,462
+0
+0
+
+- Can Defeat Bokoblins
+
+243;445;455
+0
+0
+
+- Can Defeat Moblins
+
+243;445;455
+0
+0
+
+- Can Defeat Keeses
+
+243;249;434;445;452;455;462
+0
+0
+
+- Can Defeat Lezalfos
+
+243;445
+0
+0
+
+- Can Defeat Ampilus
+
+243;445;455
+0
+0
+
+- Can Defeat Molderach
+
+243,448
+0
+0
+
+- Can Defeat Armos
+
+243,448
+0
+0
+
+- Can Defeat Beamos
+
+243;455
 0
 0
 
 - Can Access Eldin
 
-396
+415
 0
 0
 
 - Can Access Second Part of Eldin
 
-250,260;251,260;260,425
+250,270;251,270;270,445
 0
 0
 
 - Can Access Volcano Summit
 
-261,445
+271,466
 0
 0
 
 - Can Access Lanayru
 
-398
+417
 0
 0
 
 - Can Access Second Part of Lanayru
 
-250,263;263,441
+250,273;273,462
 0
 0
 
 - Can Retrieve Party Wheel
 
-263,425
+273,445
 0
 0
 
 - Can Access Sand Sea
 
-263,395,441
+273,414,462
 0
 0
 
-- Can Access Goddess Walls
+- Can Unlock Goddess Walls
 
-280,413,420
+243,293,433,440;293,433,440,445
 0
 0
 
 - Can Talk to Yerbal
 
-249,441;414,441;249,428,444;414,428,444
+249,261,462;261,434,462;249,261,448,465;261,434,448,465
 0
 0
 
 - Can Access Lake Floria
 
-259,268,444
+244,261,278,465
 0
 0
 
 - Can Access Deep Woods
 
-249,259;259,414;259,425;259,434;259,441
+249,261;261,434;261,445;261,455;261,462
 0
 0
 
 - Can Access Dungeon Entrance In Deep Woods
 
-270
+280
 0
 0
 
-- Can Hit High Vines and Switches in Beginning Skyview
+- Can Hit High Skyview Switches
 
-249;414;425;434;441
+249;434;445;455;462
+0
+0
+
+- Can Hit Vines in Skyview Left Room
+
+244;282;452
 0
 0
 
 - Can Get Past the First Skyview Room
 
-272;444
+243,282;445;243,465
 0
 0
 
 - Can Beat Skyview
 
-249,384,391,424;384,391,424,425;384,391,424,434;384,391,424,444
+244,249,403,410,444;244,403,410,444,445;244,403,410,444,455;244,403,410,444,465
 0
 0
 
 - Can Access Dungeon Entrance In Eldin Volcano
 
-261,415
+271,435
+0
+0
+
+- Can Get Past First ET Drawbridge
+
+249,265;249,434;455;249,462
 0
 0
 
 - Can Beat Earth Temple
 
-250,385,425,426;249,251,385,425,426
+244,250,404,445,446;244,249,251,404,445,446
 0
 0
 
 - Can Access Dungeon Entrance In Lanayru Desert
 
-250,263,425
+243,250,273,445
+0
+0
+
+- Can Hit Crystal in LMF Map Room
+
+244;434;452;455
 0
 0
 
 - Can Beat Lanayru Mining Facility
 
-250,386,428,429
+243,250,290,405,448,450
 0
 0
 
 - Can Raise Gate of Time
 
-259,413,420
+260,440
 0
 0
 
 - Can Access Skyview 2
 
-384,444
+403,465
 0
 0
 
 - Can Beat Skyview 2
 
-274,280
+285,293
 0
 0
 
 - Can Get Sacred Water
 
-254,281
+254,294
 0
 0
 
 - Can Access Dungeon Entrance In Lake Floria
 
-269
+279
+0
+0
+
+- Can Lower Ancient Cistern Statue
+
+452,462;249,451,452,465;451,452,455,465
+0
+0
+
+- Can Defeat Koloktos
+
+243,452;445,452;452,455
 0
 0
 
 - Can Beat Ancient Cistern
 
-387,430,431,432;387,431,432,441
+244,406,451,452,453;244,406,452,453,462
 0
 0
 
 - Can Access Dungeon Entrance In Sand Sea
 
-266,422
+276,442
 0
 0
 
 - Can Beat Sandship
 
-388,434,435
+244,407,455,456
 0
 0
 
 - Can Access Dungeon Entrance In Volcano Summit
 
-254,262,441
+254,272,462
 0
 0
 
 - Can Hit First Water Pods
 
-249;414;425;434;441
+249;434;445;455;462
 0
 0
 
 - Can Beat Fire Sanctuary
 
-250,252,389,438,439
+244,250,252,408,459,460
 0
 0
 
 - Can Access Past
-358,247,259
-274,351;276,352;278,353;284,354;286,355;289,356;297,357
+374,247,260
+285,366;288,367;291,368;299,369;301,370;304,371;312,372
 0
 0
 
 - Can Access Levias
 
-290
+305
 0
 0
 
 - Can Access/Beat Flooded Faron
 
-291,444
+306,465
 0
 0
 
 - Can Access/(Beat) Boko Base
 
-291
+306
 0
 0
 
 - Can Access Lanayru Gorge
 
-263,291,441
+273,306,462
 0
 0
 
 - Can Heal Thunder Dragon
 
-250,290,294,425,431,440,441
+250,305,309,445,452,461,462
 0
 0
 
 - Can Access Dungeon Entrance On Skyloft
 
-441,443
+462,464
 0
 0
 
 - Can Beat Skykeep
 
-390,394,428,431,434,441
+243,409,413,448,452,455,462
 0
 0
 
 - Can Reach and Defeat Demise
 
-290,297
+305,312
 0
 0
 
 - Initial Goddess Cube
 
-270
+244,280
 0
 0
 
 - Goddess Cube on West Great Tree near exit
 
-259,441;259,428,444
+244,261,462;244,261,448,465
 0
 0
 
 - Goddess Cube on East Great Tree with Rope
 
-259,441;259,428,444
+244,261,462;244,261,448,465
 0
 0
 
 - Goddess Cube on East Great Tree with Clawshot Target
 
-259,441;259,428,444
+244,261,462;244,261,448,465
 0
 0
 
 - Goddess Cube in Deep Woods
 
-270
+244,280
 0
 0
 
 - Goddess Cube on top of Skyview
 
-270,441
+244,280,462
 0
 0
 
 - Goddess Cube in Skyview Spring
 
-274
+244,285
 0
 0
 
 - Goddess Cube in Lake Floria
 
-269
+244,279
 0
 0
 
 - Goddess Cube in Floria Waterfall
 
-269,441
+244,279,462
 0
 0
 
 - Goddess Cube at Eldin Entrance
 
-260
+244,270
 0
 0
 
 - Goddess Cube near Mogma Turf Entrance
 
-260
+244,270
 0
 0
 
 - Goddess Cube in Mogma Turf
 
-260
+244,270
 0
 0
 
 - Goddess Cube West of Temple Entrance
 
-251,261
+244,251,271
 0
 0
 
 - Goddess Cube East of Temple Entrance
 
-261
+244,271
 0
 0
 
 - Goddess Cube in Eldin Slide
 
-261
+244,271
 0
 0
 
 - Goddess Cube inside Volcano Summit
 
-262
+244,272
 0
 0
 
 - Goddess Cube in Summit Waterfall
 
-262
+244,272
 0
 0
 
 - Goddess Cube near FS Entrance
 
-254,262,441
+244,254,272,462
 0
 0
 
 - Goddess Cube at Lanayru Mine Entrance
 
-263
+244,273
 0
 0
 
 - Goddess Cube in Sand Oasis
 
-264
+244,274
 0
 0
 
 - Goddess Cube at ride in ToT area
 
-250,264
+244,250,274
 0
 0
 
 - Goddess Cube in secret passageway in Desert
 
-264,425,441
+244,274,445,462
 0
 0
 
 - Goddess Cube near Hook Beetle Fight
 
-250,263;263,425;263,441
+244,250,273;244,273,445;244,273,462
 0
 0
 
 - Goddess Cube in Ancient Harbour
 
-266
+244,276
 0
 0
 
 - Goddess Cube in Skipper's Retreat
 
-250,266;266,425;266,431
+244,250,276;244,276,445;244,276,452
 0
 0
 
 - Goddess Cube in Pirate Stronghold
 
-266,428
+244,268,269,276
 0
 0
 
 - Goddess Cube in Lanayru Gorge
 
-250,294,431,441
+244,250,309,452,462
 0
 0
 
@@ -2147,13 +2237,37 @@
 0
 0
 
+- MMRTCombinations1
+
+
+0
+0
+
 - MMRTCombinations2
 
 
 0
 0
 
+- MMRTCombinations3
+
+
+0
+0
+
+- MMRTCombinations4
+
+
+0
+0
+
 - MMRTCombinations5
+
+
+0
+0
+
+- MMRTCombinations6
 
 
 0
@@ -2208,62 +2322,62 @@
 0
 
 - Gratitude Crystal x5
-359
+377
 19;19;19;19;19;20;20;20;20;20;21;21;21;21;21;22;22;22;22;22;23;23;23;23;23;24;24;24;24;24;25;25;25;25;25;26;26;26;26;26;27;27;27;27;27;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;71;71;71;71;71;72;72;72;72;72;73;73;73;73;73;74;74;74;74;74
 0
 0
 
 - Gratitude Crystal x10
-360
+379
 19;19;19;19;19;20;20;20;20;20;21;21;21;21;21;22;22;22;22;22;23;23;23;23;23;24;24;24;24;24;25;25;25;25;25;26;26;26;26;26;27;27;27;27;27;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;71;71;71;71;71;72;72;72;72;72;73;73;73;73;73;74;74;74;74;74
 0
 0
 
 - Gratitude Crystal x20
-361
+380
 19;19;19;19;19;20;20;20;20;20;21;21;21;21;21;22;22;22;22;22;23;23;23;23;23;24;24;24;24;24;25;25;25;25;25;26;26;26;26;26;27;27;27;27;27;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;71;71;71;71;71;72;72;72;72;72;73;73;73;73;73;74;74;74;74;74
 0
 0
 
 - Gratitude Crystal x30
-362
+381
 19;19;19;19;19;20;20;20;20;20;21;21;21;21;21;22;22;22;22;22;23;23;23;23;23;24;24;24;24;24;25;25;25;25;25;26;26;26;26;26;27;27;27;27;27;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;71;71;71;71;71;72;72;72;72;72;73;73;73;73;73;74;74;74;74;74
 0
 0
 
 - Gratitude Crystal x40
-363
+382
 19;19;19;19;19;20;20;20;20;20;21;21;21;21;21;22;22;22;22;22;23;23;23;23;23;24;24;24;24;24;25;25;25;25;25;26;26;26;26;26;27;27;27;27;27;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;71;71;71;71;71;72;72;72;72;72;73;73;73;73;73;74;74;74;74;74
 0
 0
 
 - Gratitude Crystal x50
-364
+383
 19;19;19;19;19;20;20;20;20;20;21;21;21;21;21;22;22;22;22;22;23;23;23;23;23;24;24;24;24;24;25;25;25;25;25;26;26;26;26;26;27;27;27;27;27;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;71;71;71;71;71;72;72;72;72;72;73;73;73;73;73;74;74;74;74;74
 0
 0
 
 - Gratitude Crystal x60
-365
+384
 19;19;19;19;19;20;20;20;20;20;21;21;21;21;21;22;22;22;22;22;23;23;23;23;23;24;24;24;24;24;25;25;25;25;25;26;26;26;26;26;27;27;27;27;27;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;71;71;71;71;71;72;72;72;72;72;73;73;73;73;73;74;74;74;74;74
 0
 0
 
 - Gratitude Crystal x70
-366
+385
 19;19;19;19;19;20;20;20;20;20;21;21;21;21;21;22;22;22;22;22;23;23;23;23;23;24;24;24;24;24;25;25;25;25;25;26;26;26;26;26;27;27;27;27;27;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;71;71;71;71;71;72;72;72;72;72;73;73;73;73;73;74;74;74;74;74
 0
 0
 
 - Gratitude Crystal x80
-367
+386
 19;19;19;19;19;20;20;20;20;20;21;21;21;21;21;22;22;22;22;22;23;23;23;23;23;24;24;24;24;24;25;25;25;25;25;26;26;26;26;26;27;27;27;27;27;37;38;39;40;41;42;43;44;45;46;47;48;49;50;51;71;71;71;71;71;72;72;72;72;72;73;73;73;73;73;74;74;74;74;74
 0
 0
 
 - Empty Bottle
 
-3;17;82;214;348
+3;17;82;214;363
 0
 0
 
@@ -2292,55 +2406,55 @@
 0
 
 - Can Access Boko Base
-382
+401
 
 0
 0
 
 - Can Access Flooded Faron Woods
-383
+402
 
 0
 0
 
 - Can Access Skyview
-271
+281
 
 0
 0
 
 - Can Access Earth Temple
-275
+286
 
 0
 0
 
 - Can Access Lanayru Mining Facility
-277
+289
 
 0
 0
 
 - Can Access Ancient Cistern
-283
+296
 
 0
 0
 
 - Can Access Sandship
-285
+300
 
 0
 0
 
 - Can Access Fire Sanctuary
-287
+302
 
 0
 0
 
 - Can Access Skykeep
-296
+311
 
 0
 0
@@ -2377,25 +2491,61 @@
 
 - Ruby Tablet
 
-163;329
+163;344
 0
 0
 
 - Emerald Tablet
 
-326;329
+341;344
 0
 0
 
 - Amber Tablet
 
-173;329
+173;344
 0
 0
 
 - MMRTGameClear
-298
+313
 
+0
+0
+
+- Progressive Sword x1
+373
+2;7;92;194;207;221;346;346
+0
+0
+
+- Progressive Sword x2
+374
+2;7;92;194;207;221;346;346
+0
+0
+
+- Progressive Sword x3
+375
+2;7;92;194;207;221;346;346
+0
+0
+
+- Progressive Sword x4
+376
+2;7;92;194;207;221;346;346
+0
+0
+
+- Progressive Sword x5
+377
+2;7;92;194;207;221;346;346
+0
+0
+
+- Progressive Sword x6
+378
+2;7;92;194;207;221;346;346
 0
 0
 
@@ -2405,39 +2555,9 @@
 0
 0
 
-- Progressive Sword x1
+- Progressive Sword
 
-2;7;92;194;207;221;331
-0
-0
-
-- Progressive Sword x2
-
-2,7;2,92;2,194;2,207;2,221;2,331;7,92;7,194;7,207;7,221;7,331;92,194;92,207;92,221;92,331;194,207;194,221;194,331;207,221;207,331;221,331
-0
-0
-
-- Progressive Sword x3
-
-2,7,92;2,7,194;2,7,207;2,7,221;2,7,331;2,92,194;2,92,207;2,92,221;2,92,331;2,194,207;2,194,221;2,194,331;2,207,221;2,207,331;2,221,331;7,92,194;7,92,207;7,92,221;7,92,331;7,194,207;7,194,221;7,194,331;7,207,221;7,207,331;7,221,331;92,194,207;92,194,221;92,194,331;92,207,221;92,207,331;92,221,331;194,207,221;194,207,331;194,221,331;207,221,331
-0
-0
-
-- Progressive Sword x4
-
-2,7,92,194;2,7,92,207;2,7,92,221;2,7,92,331;2,7,194,207;2,7,194,221;2,7,194,331;2,7,207,221;2,7,207,331;2,7,221,331;2,92,194,207;2,92,194,221;2,92,194,331;2,92,207,221;2,92,207,331;2,92,221,331;2,194,207,221;2,194,207,331;2,194,221,331;2,207,221,331;7,92,194,207;7,92,194,221;7,92,194,331;7,92,207,221;7,92,207,331;7,92,221,331;7,194,207,221;7,194,207,331;7,194,221,331;7,207,221,331;92,194,207,221;92,194,207,331;92,194,221,331;92,207,221,331;194,207,221,331
-0
-0
-
-- Progressive Sword x5
-
-2,7,92,194,207;2,7,92,194,221;2,7,92,194,331;2,7,92,207,221;2,7,92,207,331;2,7,92,221,331;2,7,194,207,221;2,7,194,207,331;2,7,194,221,331;2,7,207,221,331;2,92,194,207,221;2,92,194,207,331;2,92,194,221,331;2,92,207,221,331;2,194,207,221,331;7,92,194,207,221;7,92,194,207,331;7,92,194,221,331;7,92,207,221,331;7,194,207,221,331;92,194,207,221,331
-0
-0
-
-- Progressive Sword x6
-
-2,7,92,194,207,221;2,7,92,194,207,331;2,7,92,194,221,331;2,7,92,207,221,331;2,7,194,207,221,331;2,92,194,207,221,331;7,92,194,207,221,331
+2;7;92;194;207;221
 0
 0
 
@@ -2573,6 +2693,12 @@
 0
 0
 
+- LMF Map
+180
+
+0
+0
+
 - LMF Boss Key
 183
 
@@ -2676,44 +2802,50 @@
 0
 
 - Skyview
-271
+281
 
 0
 0
 
 - Earth Temple
-275
+286
 
 0
 0
 
 - Lanayru Mining Facility
-277
+289
 
 0
 0
 
 - Ancient Cistern
-283
+296
 
 0
 0
 
 - Sandship
-285
+300
 
 0
 0
 
 - Fire Sanctuary
-287
+302
 
 0
 0
 
 - Skykeep
-296
+311
 
+0
+0
+
+- Disabled
+
+344;346;350
 0
 0
 

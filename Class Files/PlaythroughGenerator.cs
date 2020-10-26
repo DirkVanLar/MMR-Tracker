@@ -34,9 +34,10 @@ namespace MMR_Tracker.Class_Files
                 i.Checked = false;
                 i.Aquired = false;
                 if (i.IsFake) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; i.LocationName = i.DictionaryName; i.ItemName = i.DictionaryName; }
-                if (i.Unrandomized() && i.ID == i.SpoilerRandom) { i.IsFake = true; }
-                if (i.SpoilerRandom > -1) { i.RandomizedItem = i.SpoilerRandom; }
-                else if (i.RandomizedItem > -1) { i.SpoilerRandom = i.RandomizedItem; }
+                if (i.Unrandomized() && i.ID == i.SpoilerRandom) { i.IsFake = true; }//If the item is unrandomized treat it as a fake item
+                if (i.SpoilerRandom > -1) { i.RandomizedItem = i.SpoilerRandom; }//Make the items randomized item its spoiler item, just for consitancy sake
+                else if (i.RandomizedItem > -1) { i.SpoilerRandom = i.RandomizedItem; }//If the item doesn't have spoiler data, but does have a randomized item. set it's spoiler data to the randomized item
+                else if (i.Unrandomized(1)) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; }//If the item doesn't have spoiler data or a randomized item and is unrandomized (manual), set it's spoiler item to it's self
                 if (SpoilerToID.ContainsKey(i.SpoilerRandom) || i.SpoilerRandom < 0) { continue; }
                 SpoilerToID.Add(i.SpoilerRandom, i.ID);
                 //Check for all items mentioned in the logic file
@@ -229,65 +230,55 @@ namespace MMR_Tracker.Class_Files
 
         public static int GetGameClearEntry(List<LogicObjects.LogicEntry> playLogic, bool EntranceRadno)
         {
-            var GameClearEntry = playLogic.Find(x => x.DictionaryName == "MMRTGameClear") ?? new LogicObjects.LogicEntry { ID = -1 };
-            int GameClear = GameClearEntry.ID;
+            var MMRTGameClear = playLogic.Find(x => x.DictionaryName == "MMRTGameClear");
+            if (MMRTGameClear != null) { return MMRTGameClear.ID; }
 
-            if (GameClear > -1) { return GameClear; }
+            int GameClear = -1;
+            int StunMajora = playLogic.Count();
+            playLogic.Add(new LogicObjects.LogicEntry
+            {
+                ID = StunMajora,
+                DictionaryName = "MMRTStunMajora",
+                IsFake = true,
+                Conditionals = new int[][]
+                {
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Town Archery Quiver (40)").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Hero's Bow").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Zora Mask").ID }
+                }
+            });
 
-            int StunMajora = -1;
-            int DamageMajora = -1;
-            int AccessMajora = -1;
-            List<List<int>> Conditionals = new List<List<int>>();
-
-            StunMajora = playLogic.Count();
-            playLogic.Add(new LogicObjects.LogicEntry { ID = StunMajora, DictionaryName = "MMRTStunMajora", IsFake = true });
-
-            DamageMajora = playLogic.Count();
-            playLogic.Add(new LogicObjects.LogicEntry { ID = DamageMajora, DictionaryName = "MMRTDamageMajora", IsFake = true });
-
-            AccessMajora = playLogic.Count();
-            playLogic.Add(new LogicObjects.LogicEntry { ID = AccessMajora, DictionaryName = "MMRTAccessMajora", IsFake = true });
+            int DamageMajora = playLogic.Count();
+            playLogic.Add(new LogicObjects.LogicEntry
+            {
+                ID = DamageMajora,
+                DictionaryName = "MMRTDamageMajora",
+                IsFake = true,
+                Conditionals = new int[][]
+                {
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Starting Sword").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Razor Sword").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Gilded Sword").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Great Fairy's Sword").ID }
+                }
+            });
 
             GameClear = playLogic.Count();
-            playLogic.Add(new LogicObjects.LogicEntry { ID = GameClear, DictionaryName = "MMRTGameClear", IsFake = true });
-
-            try
+            playLogic.Add(new LogicObjects.LogicEntry
             {
-                playLogic[DamageMajora].Conditionals = new int[4][];
-                playLogic[DamageMajora].Conditionals[0] = new int[] { playLogic.Where(x => x.DictionaryName == "Starting Sword").First().ID };
-                playLogic[DamageMajora].Conditionals[1] = new int[] { playLogic.Where(x => x.DictionaryName == "Razor Sword").First().ID };
-                playLogic[DamageMajora].Conditionals[2] = new int[] { playLogic.Where(x => x.DictionaryName == "Gilded Sword").First().ID };
-                playLogic[DamageMajora].Conditionals[3] = new int[] { playLogic.Where(x => x.DictionaryName == "Great Fairy's Sword").First().ID };
-                playLogic[StunMajora].Conditionals = new int[4][];
-                playLogic[StunMajora].Conditionals[0] = new int[] { playLogic.Where(x => x.DictionaryName == "Town Archery Quiver (40)").First().ID };
-                playLogic[StunMajora].Conditionals[1] = new int[] { playLogic.Where(x => x.DictionaryName == "Swamp Archery Quiver (50)").First().ID };
-                playLogic[StunMajora].Conditionals[2] = new int[] { playLogic.Where(x => x.DictionaryName == "Hero's Bow").First().ID };
-                playLogic[StunMajora].Conditionals[3] = new int[] { playLogic.Where(x => x.DictionaryName == "Zora Mask").First().ID };
-
-                if (EntranceRadno)
+                ID = GameClear,
+                DictionaryName = "MMRTGameClear",
+                IsFake = true,
+                Required = (!EntranceRadno) ?
+                    new int[] { playLogic.Find(x => x.DictionaryName == "Moon Access").ID } :
+                    new int[] { playLogic.Find(x => x.DictionaryName == "EntranceMajorasLairFromTheMoon").ID },
+                Conditionals = new int[][]
                 {
-                    playLogic[AccessMajora].Required = new int[] { playLogic.Where(x => x.DictionaryName == "EntranceMajorasLairFromTheMoon").First().ID };
+                        new int[] { StunMajora, DamageMajora },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Fierce Deity's Mask").ID, playLogic.Find(x => x.DictionaryName == "Magic Meter").ID }
                 }
-                else
-                {
-                    playLogic[AccessMajora].Required = new int[] { playLogic.Where(x => x.DictionaryName == "Moon Access").First().ID };
-                }
-
-                playLogic[GameClear].Required = new int[] { AccessMajora };
-
-                playLogic[GameClear].Conditionals = new int[2][];
-                playLogic[GameClear].Conditionals[0] = new int[] { StunMajora, DamageMajora };
-
-                var FD = playLogic.Where(x => x.DictionaryName == "Fierce Deity's Mask").First().ID;
-                var M1 = playLogic.Where(x => x.DictionaryName == "Magic Meter").First().ID;
-
-                playLogic[GameClear].Conditionals[1] = new int[] { FD, M1 };
-            }
-            catch
-            {
-                Debugging.Log("Could not find items for game clear conditional");
-                return -1;
-            }
+            });
             return GameClear;
         }
 
