@@ -34,8 +34,12 @@ namespace MMR_Tracker.Other_Games
             //string MacroData = wc.DownloadString("https://raw.githubusercontent.com/lepelog/sslib/master/SS%20Rando%20Logic%20-%20Macros.yaml");
             //string[] MacroDataLines = MacroData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
-            string[] ItemDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Item Location.yaml");
-            string[] MacroDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Macros.yaml");
+            //string[] ItemDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Item Location.yaml");
+            //string[] MacroDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Macros.yaml");
+
+            string[] ItemDataLines = File.ReadAllLines(@"C:\Users\ttalbot\Documents\VS CODE STUFF\SS Rando Logic - Item Location\SS Rando Logic - Item Location.yaml");
+
+            string[] MacroDataLines = File.ReadAllLines(@"C:\Users\ttalbot\Documents\VS CODE STUFF\SS Rando Logic - Item Location\SS Rando Logic - Macros.yaml");
 
             var backupEditorInstance = Utility.CloneTrackerInstance(LogicEditor.EditorInstance);
 
@@ -52,6 +56,8 @@ namespace MMR_Tracker.Other_Games
             LogicEditor.EditorInstance = SSInstance;
             ApplyLogic(SSData, SSInstance);
             LogicEditor.EditorInstance = backupEditorInstance;
+
+            foreach(var i in SSInstance.Logic) { LogicEditor.CleanLogicEntry(i, SSInstance); }
 
             var Save = false;
 

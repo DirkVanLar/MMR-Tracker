@@ -9,3 +9,5 @@ Name: MMR Casual
 Address: https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt
 Name: MMR Glitched
 Address: https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt
+Name: TheDrumMongerCustom
+Address: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/Entrance-Radno-Logic/Logic%20File.txt

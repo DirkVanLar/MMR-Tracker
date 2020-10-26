@@ -67,6 +67,7 @@
             this.applyToTrackerLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearLogicDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLocationItemNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +84,9 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.chkIsTrick = new System.Windows.Forms.CheckBox();
-            this.clearLogicDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cleanLogicEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extractRequiredItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeRedundantConditionalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -479,44 +482,51 @@
             this.saveLogicWithTrickDataDefaultToolStripMenuItem,
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem});
             this.saveLogicToolStripMenuItem.Name = "saveLogicToolStripMenuItem";
-            this.saveLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.saveLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.saveLogicToolStripMenuItem.Text = "Save Logic";
             this.saveLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // saveLogicWithTrickDataDefaultToolStripMenuItem
             // 
             this.saveLogicWithTrickDataDefaultToolStripMenuItem.Name = "saveLogicWithTrickDataDefaultToolStripMenuItem";
-            this.saveLogicWithTrickDataDefaultToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.saveLogicWithTrickDataDefaultToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
             this.saveLogicWithTrickDataDefaultToolStripMenuItem.Text = "Save Logic With Trick Data (Default)";
             this.saveLogicWithTrickDataDefaultToolStripMenuItem.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // saveLogicWothoutTrickDataLegacyToolStripMenuItem
             // 
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Name = "saveLogicWothoutTrickDataLegacyToolStripMenuItem";
-            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Text = "Save Logic Without Trick Data (Legacy)";
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Click += new System.EventHandler(this.saveLogicWothoutTrickDataLegacyToolStripMenuItem_Click);
             // 
             // applyToTrackerLogicToolStripMenuItem
             // 
             this.applyToTrackerLogicToolStripMenuItem.Name = "applyToTrackerLogicToolStripMenuItem";
-            this.applyToTrackerLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.applyToTrackerLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.applyToTrackerLogicToolStripMenuItem.Text = "Apply Logic to Tracker";
             this.applyToTrackerLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // loadLogicToolStripMenuItem
             // 
             this.loadLogicToolStripMenuItem.Name = "loadLogicToolStripMenuItem";
-            this.loadLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.loadLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.loadLogicToolStripMenuItem.Text = "Load Logic";
             this.loadLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnLoad_Click);
             // 
             // newLogicToolStripMenuItem
             // 
             this.newLogicToolStripMenuItem.Name = "newLogicToolStripMenuItem";
-            this.newLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.newLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.newLogicToolStripMenuItem.Text = "New Logic";
             this.newLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnNewLogic_Click);
+            // 
+            // clearLogicDataToolStripMenuItem
+            // 
+            this.clearLogicDataToolStripMenuItem.Name = "clearLogicDataToolStripMenuItem";
+            this.clearLogicDataToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.clearLogicDataToolStripMenuItem.Text = "Clear Logic Data";
+            this.clearLogicDataToolStripMenuItem.Click += new System.EventHandler(this.clearLogicDataToolStripMenuItem_Click);
             // 
             // newItemToolStripMenuItem
             // 
@@ -534,7 +544,8 @@
             this.renameCurrentItemToolStripMenuItem,
             this.deleteCurrentItemToolStripMenuItem,
             this.setTrickToolTipToolStripMenuItem,
-            this.whatIsThisUsedInToolStripMenuItem});
+            this.whatIsThisUsedInToolStripMenuItem,
+            this.cleanLogicEntryToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -662,12 +673,29 @@
             this.chkIsTrick.UseVisualStyleBackColor = false;
             this.chkIsTrick.CheckedChanged += new System.EventHandler(this.chkIsTrick_CheckedChanged);
             // 
-            // clearLogicDataToolStripMenuItem
+            // cleanLogicEntryToolStripMenuItem
             // 
-            this.clearLogicDataToolStripMenuItem.Name = "clearLogicDataToolStripMenuItem";
-            this.clearLogicDataToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.clearLogicDataToolStripMenuItem.Text = "Clear Logic Data";
-            this.clearLogicDataToolStripMenuItem.Click += new System.EventHandler(this.clearLogicDataToolStripMenuItem_Click);
+            this.cleanLogicEntryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.extractRequiredItemsToolStripMenuItem,
+            this.removeRedundantConditionalsToolStripMenuItem});
+            this.cleanLogicEntryToolStripMenuItem.Name = "cleanLogicEntryToolStripMenuItem";
+            this.cleanLogicEntryToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.cleanLogicEntryToolStripMenuItem.Text = "Clean Logic Entry";
+            this.cleanLogicEntryToolStripMenuItem.Click += new System.EventHandler(this.cleanLogicEntryToolStripMenuItem_Click);
+            // 
+            // extractRequiredItemsToolStripMenuItem
+            // 
+            this.extractRequiredItemsToolStripMenuItem.Name = "extractRequiredItemsToolStripMenuItem";
+            this.extractRequiredItemsToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.extractRequiredItemsToolStripMenuItem.Text = "Extract Required Items";
+            this.extractRequiredItemsToolStripMenuItem.Click += new System.EventHandler(this.extractRequiredItemsToolStripMenuItem_Click);
+            // 
+            // removeRedundantConditionalsToolStripMenuItem
+            // 
+            this.removeRedundantConditionalsToolStripMenuItem.Name = "removeRedundantConditionalsToolStripMenuItem";
+            this.removeRedundantConditionalsToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.removeRedundantConditionalsToolStripMenuItem.Text = "Remove Redundant Conditionals";
+            this.removeRedundantConditionalsToolStripMenuItem.Click += new System.EventHandler(this.removeRedundantConditionalsToolStripMenuItem_Click);
             // 
             // LogicEditor
             // 
@@ -786,5 +814,8 @@
         public System.Windows.Forms.ListBox LBConditional;
         public System.Windows.Forms.NumericUpDown nudIndex;
         private System.Windows.Forms.ToolStripMenuItem clearLogicDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cleanLogicEntryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem extractRequiredItemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeRedundantConditionalsToolStripMenuItem;
     }
 }

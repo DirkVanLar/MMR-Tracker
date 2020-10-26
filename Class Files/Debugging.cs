@@ -134,7 +134,9 @@ namespace MMR_Tracker_V2
             //MInishCapTools.FillMinishLogic();
             //MInishCapTools.PrintMinishLogic();
 
-            SStesting();
+            //SStesting();
+            ConvertLogicEntryToRealItemsOnly();
+            Console.WriteLine("Finish");
 
             void SStesting()
             {
@@ -450,80 +452,77 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public static void CleanLogicEntry(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
+        class CircularDependancyTracking
         {
-            if (entry.Required == null && entry.Conditionals == null) { return; }
-            var l = Instance.Logic;
-            if (entry.Required.Where(x => l[x].DictionaryName.StartsWith("MMRTCombinations") || l[x].DictionaryName.StartsWith("MMRTCheckContains")).Any())
-            { return;}
-            MoveRequirementsToConditionals(entry);
-            RemoveRedundantConditionals(entry);
-            MakeCommonConditionalsRequirements(entry);
+            //The Entry I want to add Logic to
+            public LogicObjects.LogicEntry CheckedEntry { get; set; } = new LogicObjects.LogicEntry();
+            //The Entry I want to copy logic from
+            public LogicObjects.LogicEntry CircularDepenency { get; set; } = new LogicObjects.LogicEntry();
         }
 
-        public static void MoveRequirementsToConditionals(LogicObjects.LogicEntry entry)
+        public static void ConvertLogicEntryToRealItemsOnly()
         {
-            if (entry.Required == null) { return; }
-            if (entry.Conditionals == null)
+
+            List<CircularDependancyTracking> CircularDependencies = new List<CircularDependancyTracking>();
+
+            foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.IsFake))
             {
-                List<int> NewConditionals = new List<int>();
-                foreach(var i in entry.Required)
-                {
-                    NewConditionals.Add(i);
-                }
-                entry.Conditionals = new int[][] { NewConditionals.ToArray() };
+                findCircularDependancies(i, i, new List<int> { i.ID }, LogicObjects.MainTrackerInstance, 1);
             }
-            else
+
+            foreach (var i in CircularDependencies)
             {
-                var NewConditionals = entry.Conditionals.Select(x => x.ToList()).ToArray();
-                foreach (var i in NewConditionals)
-                {
-                    i.AddRange(entry.Required.ToList());
-                }
-                entry.Conditionals = NewConditionals.Select(x => x.ToArray()).ToArray();
+                Console.WriteLine($"Circular Dependancy Found {i.CheckedEntry.DictionaryName} required {i.CircularDepenency.DictionaryName}");
+                ResolveCirculaardependency(i);
             }
-            entry.Required = null;
-        }
 
-        public static void RemoveRedundantConditionals(LogicObjects.LogicEntry entry)
-        {
-            if (entry.Conditionals == null) { return; }
-            var cleanedConditionals = entry.Conditionals.Select(x => x.Distinct().ToArray()).ToArray();
-            var NewConditionals = cleanedConditionals.Where(i => !IsRedundant(i, cleanedConditionals));
+            void findCircularDependancies(LogicObjects.LogicEntry entry, LogicObjects.LogicEntry RootEntry, List<int> CheckedEntries, LogicObjects.TrackerInstance Instance, int Layer)
+            {
+                LogicEditor.MoveRequirementsToConditionals(entry);
+                var AllRequirements = (entry.Conditionals == null) ? new List<int>() : entry.Conditionals.SelectMany(x => x).ToList();
+                AllRequirements = AllRequirements.Distinct().ToList(); ;
 
-            entry.Conditionals = NewConditionals.ToArray();
-
-            bool IsRedundant(int[] FocusedList, int[][] CheckingList)
-            {   
-                foreach(var i in CheckingList)
+                if (AllRequirements.Contains(RootEntry.ID))
                 {
-                    if (!i.Equals(FocusedList) && i.All(j => FocusedList.Contains(j)))
+                    CircularDependencies.Add(new CircularDependancyTracking { CheckedEntry = entry, CircularDepenency = RootEntry });
+                    return;
+                }
+
+                foreach (var i in AllRequirements.Where(x => Instance.Logic[x].IsFake))
+                {
+                    if (CheckedEntries.Contains(i)) { continue; }
+                    List<int> NewChecked = new List<int>();
+                    NewChecked.AddRange(CheckedEntries);
+                    CheckedEntries.Add(i);
+                    findCircularDependancies(Instance.Logic[i], RootEntry, CheckedEntries, Instance, Layer + 1);
+                }
+            }
+
+            void ResolveCirculaardependency(CircularDependancyTracking CircularDependancy)
+            {
+                var DependanciesToSub = CircularDependancy.CheckedEntry.Conditionals.Where(x => x.Contains(CircularDependancy.CircularDepenency.ID));
+
+                var TempToList = CircularDependancy.CheckedEntry.Conditionals.ToList();
+                TempToList.RemoveAll(x => x.Contains(CircularDependancy.CircularDepenency.ID));
+                var TempToArray = TempToList.ToArray();
+
+                var NewConditionals = new List<int[]>();
+                foreach (var i in DependanciesToSub)
+                {
+                    var DepList = i.ToList();
+                    DepList.RemoveAll(x => x == CircularDependancy.CircularDepenency.ID);
+                    foreach(var j in CircularDependancy.CircularDepenency.Conditionals)
                     {
-                        return true;
+                        var AddOther = j.ToList();
+                        AddOther.AddRange(DepList);
+                        NewConditionals.Add(AddOther.ToArray());
                     }
                 }
-                return false;
+                NewConditionals.AddRange(CircularDependancy.CheckedEntry.Conditionals);
+                CircularDependancy.CheckedEntry.Conditionals = NewConditionals.ToArray();
             }
         }
 
-        public static void MakeCommonConditionalsRequirements(LogicObjects.LogicEntry entry)
-        {
-            if (entry.Conditionals == null) { return; }
-            List<int> ConsistantConditionals = 
-                entry.Conditionals.SelectMany(x => x).Distinct().Where(i => entry.Conditionals.All(x => x.Contains(i))).ToList();
-
-            var NewRequirements = (entry.Required ?? new List<int>().ToArray()).ToList();
-            NewRequirements.AddRange(ConsistantConditionals);
-            entry.Required = (NewRequirements.Any()) ? NewRequirements.Distinct().ToArray() : null;
-
-            var NewConditionals = entry.Conditionals.Select(x => x.ToList()).ToList();
-            foreach (var i in NewConditionals) 
-            {
-                i.RemoveAll(x => ConsistantConditionals.Contains(x));
-            }
-            NewConditionals.RemoveAll(x => !x.Any());
-            entry.Conditionals = (NewConditionals.Any()) ? NewConditionals.Select(x => x.ToArray()).ToArray() : null;
-        }
 
     }
 }

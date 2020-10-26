@@ -1059,5 +1059,126 @@ namespace MMR_Tracker.Forms
             }
             WriteCurentItem(currentEntry.ID);
         }
+
+        public static void CleanLogicEntry(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool RemoveRedundant = true, bool Extractreq = true)
+        {
+            if (entry.Required == null && entry.Conditionals == null) { return; }
+            var l = Instance.Logic;
+            if (entry.Required != null && 
+                (entry.Required.Where(x => l[x].DictionaryName.StartsWith("MMRTCombinations") || l[x].DictionaryName.StartsWith("MMRTCheckContains")).Any()))
+            { return; }
+
+            if (Extractreq && RemoveRedundant) { MoveRequirementsToConditionals(entry); }
+            if (RemoveRedundant) { RemoveRedundantConditionals(entry); }
+            if (Extractreq) { MakeCommonConditionalsRequirements(entry); }
+        }
+
+        public static void MoveRequirementsToConditionals(LogicObjects.LogicEntry entry)
+        {
+            if (entry.Required == null) { return; }
+            if (entry.Conditionals == null) { entry.Conditionals = new int[][] { entry.Required }; }
+            else
+            {
+                var NewConditionals = entry.Conditionals.Select(x => x.ToList()).ToArray();
+                foreach (var i in NewConditionals)
+                {
+                    i.AddRange(entry.Required.ToList());
+                }
+                entry.Conditionals = NewConditionals.Select(x => x.ToArray()).ToArray();
+            }
+            entry.Required = null;
+        }
+
+        public static bool RemoveRedundantConditionals(LogicObjects.LogicEntry entry)
+        {
+            bool ChangesMade = false;
+            if (entry.Conditionals == null) { return ChangesMade; }
+            var cleanedConditionals = entry.Conditionals.Select(x => x.Distinct().ToArray()).ToArray();
+
+            bool Clear = false;
+            while (!Clear)
+            {
+                var test = cleanedConditionals.Where(i => IsRedundant(i, cleanedConditionals)).ToArray();
+                if (test.Any())
+                {
+                    ChangesMade = true;
+                    var TempCond = cleanedConditionals.ToList();
+                    TempCond.Remove(test[0]);
+                    cleanedConditionals = TempCond.ToArray();
+                }
+                else { Clear = true; }
+            }
+
+            List<List<int>> TempConditionals = cleanedConditionals.Select(x => x.ToList()).ToList(); ;
+            if (entry.Required != null)
+            {
+                var NewConditionals = cleanedConditionals.Select(x => x.ToList()).ToArray();
+                foreach (var i in NewConditionals)
+                {
+                    if (i.Where(x => entry.Required.Contains(x)).Any()) { ChangesMade = true; }
+                    i.RemoveAll(x => entry.Required.Contains(x));
+                }
+                TempConditionals = NewConditionals.ToList();
+                TempConditionals.RemoveAll(x => !x.Any());
+            }
+
+            entry.Conditionals = (TempConditionals.Any()) ? TempConditionals.Select(x => x.ToArray()).ToArray() : null;
+
+            return ChangesMade;
+
+            bool IsRedundant(int[] FocusedList, int[][] CheckingList)
+            {
+                foreach (var i in CheckingList)
+                {
+                    if (!i.Equals(FocusedList) && i.All(j => FocusedList.Contains(j)))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        public static bool MakeCommonConditionalsRequirements(LogicObjects.LogicEntry entry)
+        {
+            bool ChangesMade = false;
+            if (entry.Conditionals == null) { return ChangesMade; }
+            List<int> ConsistantConditionals =
+                entry.Conditionals.SelectMany(x => x).Distinct().Where(i => entry.Conditionals.All(x => x.Contains(i))).ToList();
+
+            bool changesMade = ConsistantConditionals.Any();
+
+            var NewRequirements = (entry.Required ?? new List<int>().ToArray()).ToList();
+            NewRequirements.AddRange(ConsistantConditionals);
+            entry.Required = (NewRequirements.Any()) ? NewRequirements.Distinct().ToArray() : null;
+
+            var NewConditionals = entry.Conditionals.Select(x => x.ToList()).ToList();
+            foreach (var i in NewConditionals)
+            {
+                i.RemoveAll(x => ConsistantConditionals.Contains(x));
+            }
+            NewConditionals.RemoveAll(x => !x.Any());
+            entry.Conditionals = (NewConditionals.Any()) ? NewConditionals.Select(x => x.ToArray()).ToArray() : null;
+            return ChangesMade;
+        }
+
+        private void cleanLogicEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cleanLogicEntryToolStripMenuItem.HideDropDown();
+            CleanLogicEntry(currentEntry, EditorInstance);
+            WriteCurentItem(currentEntry.ID);
+        }
+
+        private void extractRequiredItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CleanLogicEntry(currentEntry, EditorInstance, false);
+            WriteCurentItem(currentEntry.ID);
+        }
+
+        private void removeRedundantConditionalsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CleanLogicEntry(currentEntry, EditorInstance, true, false);
+            WriteCurentItem(currentEntry.ID);
+        }
     }
 }
