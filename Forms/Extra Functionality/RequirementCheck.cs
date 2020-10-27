@@ -27,7 +27,6 @@ namespace MMR_Tracker.Forms.Extra_Functionality
 
         private void listBox2_DrawItem(object sender, DrawItemEventArgs e)
         {
-            var graphics = this.CreateGraphics();
             if (e.Index < 0) { return; }
             e.DrawBackground();
 
@@ -36,7 +35,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
 
             if (listBox2.Items[e.Index] is LogicEditor.RequiementConditional)
             {
-                var test = graphics.MeasureString("", F).Width;
+                var test = e.Graphics.MeasureString("", F).Width;
                 LogicEditor.RequiementConditional entry = listBox2.Items[e.Index] as LogicEditor.RequiementConditional;
                 var drawComma = false;
                 foreach (var i in entry.ItemIDs)
@@ -45,7 +44,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
                     if (drawComma)
                     {
                         e.Graphics.DrawString(",", F, brush, test, e.Bounds.Y, StringFormat.GenericDefault);
-                        test += graphics.MeasureString(",", F).Width;
+                        test += e.Graphics.MeasureString(",", F).Width;
                     }
 
 
@@ -53,7 +52,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
                     var Printname = i.DictionaryName;
                     if (i.ItemName != null && !string.IsNullOrWhiteSpace(i.ItemName)) { Printname = i.ItemName; }
                     e.Graphics.DrawString(Printname, F, brush, test, e.Bounds.Y, StringFormat.GenericDefault);
-                    test += graphics.MeasureString(Printname, F).Width - graphics.MeasureString(" ", F).Width;
+                    test += e.Graphics.MeasureString(Printname, F).Width - e.Graphics.MeasureString(" ", F).Width;
                     F = new Font(F.FontFamily, F.Size, FontStyle.Regular);
                     
                     drawComma = true;
@@ -64,6 +63,9 @@ namespace MMR_Tracker.Forms.Extra_Functionality
                 e.Graphics.DrawString("Error", e.Font, brush, e.Bounds, StringFormat.GenericDefault);
             }
             e.DrawFocusRectangle();
+
+            var Len = e.Graphics.MeasureString(listBox2.Items[e.Index].ToString(), F).Width;
+            if (Len > listBox2.Width && (int)Len + 2 > listBox2.HorizontalExtent) { listBox2.HorizontalExtent = (int)Len + 2; }
         }
 
         private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
@@ -93,13 +95,33 @@ namespace MMR_Tracker.Forms.Extra_Functionality
 
         private void RequirementCheck_Load(object sender, EventArgs e)
         {
+            if (Instance.Logic.All(x => x.NeededBy == 0 && x.AvailableOn == 0)) { HideTimeData(); }
             WriteEntry();
+        }
+
+        private void HideTimeData()
+        {
+            ND1.Visible = false;
+            ND2.Visible = false;
+            ND3.Visible = false;
+            NN1.Visible = false;
+            NN2.Visible = false;
+            NN3.Visible = false;
+            label3.Visible = false;
+
+            int buttonOldY = button1.Location.Y;
+            button1.Location = new Point { X = button1.Location.X, Y = listBox2.Location.Y + listBox2.Height - button1.Height + 1 };
+            button2.Location = new Point { X = button2.Location.X, Y = listBox2.Location.Y + listBox2.Height - button2.Height + 1 };
+            int buttonNewY = button1.Location.Y;
+
+            listBox1.Height += (buttonNewY - buttonOldY);
         }
 
         public void WriteEntry()
         {
             listBox1.Items.Clear();
             listBox2.Items.Clear();
+            listBox2.HorizontalExtent = 0;
             this.Text = $"Requirements for {entry.LocationName ?? entry.DictionaryName}";
             foreach (var i in entry.Required ?? new int[0])
             {
@@ -208,6 +230,21 @@ namespace MMR_Tracker.Forms.Extra_Functionality
                 entry = Selector.SelectedObject;
                 WriteEntry();
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

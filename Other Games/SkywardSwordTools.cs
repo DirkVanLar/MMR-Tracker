@@ -58,7 +58,7 @@ namespace MMR_Tracker.Other_Games
 
             foreach(var i in SSInstance.Logic) { LogicEditor.CleanLogicEntry(i, SSInstance); }
 
-            var Save = false;
+            var Save = true;
 
             if (!Save)
             {
@@ -664,14 +664,26 @@ namespace MMR_Tracker.Other_Games
                     AtLogic = true;
                 }
                 else if (line.Contains("original item:"))
-                {
-                    AtLogic = false;
-                    CurrentEntry.Logic = LogicString;
-                    LogicString = "";
+                { 
+                    if (AtLogic)
+                    {
+                        AtLogic = false;
+                        CurrentEntry.Logic = LogicString;
+                        LogicString = "";
+                    }
 
                     CurrentEntry.ItemName = Utility.GetTextAfter(line, "original item:").Trim();
                     CurrentEntry.SpoilerItem = Utility.GetTextAfter(line, "original item:").Trim();
                     if (CurrentEntry.ItemName == "Gratitude Crystal") { CurrentEntry.LocationArea = "Single Gratitude Crystal"; CurrentEntry.ItemSubType = " Gratitude Crystal"; }
+                }
+                else if (line.Contains("type:"))
+                {
+                    if (AtLogic)
+                    {
+                        AtLogic = false;
+                        CurrentEntry.Logic = LogicString;
+                        LogicString = "";
+                    }
                 }
 
                 if (AtLogic)

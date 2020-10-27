@@ -135,12 +135,7 @@ namespace MMR_Tracker_V2
             //MInishCapTools.FillMinishLogic();
             //MInishCapTools.PrintMinishLogic();
 
-            //SStesting();
-
-            RequirementCheck Req = new RequirementCheck();
-            Req.Instance = LogicObjects.MainTrackerInstance;
-            Req.entry = LogicObjects.MainTrackerInstance.Logic[101];
-            Req.Show();
+            SStesting();
 
             void SStesting()
             {

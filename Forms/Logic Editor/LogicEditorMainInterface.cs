@@ -509,6 +509,7 @@ namespace MMR_Tracker.Forms
             LBConditional.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
             LBRequired.Items.Clear();
             LBConditional.Items.Clear();
+            LBConditional.HorizontalExtent = 0;
             LogicObjects.LogicEntry entry;
             try
             {
@@ -834,10 +835,10 @@ namespace MMR_Tracker.Forms
         private void RenameCurrentItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!currentEntry.IsFake) { MessageBox.Show("Only fake Items Can be Renamed"); return; }
-            EditorInstance.UnsavedChanges = true;
             Tools.SaveState(EditorInstance);
             string name = Interaction.InputBox("Input New Item Name", "New Item", currentEntry.DictionaryName);
             if (name == "") { return; }
+            EditorInstance.UnsavedChanges = true;
             currentEntry.DictionaryName = name;
             WriteCurentItem(currentEntry.ID);
         }
@@ -1201,6 +1202,10 @@ namespace MMR_Tracker.Forms
             Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
             e.Graphics.DrawString(LBConditional.Items[e.Index].ToString(), F, brush, e.Bounds);
             e.DrawFocusRectangle();
+
+            var Len = e.Graphics.MeasureString(LBConditional.Items[e.Index].ToString(), F).Width;
+            if (Len > LBConditional.Width && (int)Len + 2 > LBConditional.HorizontalExtent) { LBConditional.HorizontalExtent = (int)Len + 2; }
+
         }
     }
 }
