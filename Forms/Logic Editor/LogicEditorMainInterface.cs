@@ -1093,7 +1093,7 @@ namespace MMR_Tracker.Forms
         {
             bool ChangesMade = false;
             if (entry.Conditionals == null) { return ChangesMade; }
-            var cleanedConditionals = entry.Conditionals.Select(x => x.Distinct().ToArray()).ToArray();
+            var cleanedConditionals = entry.Conditionals.Select(x => x.Distinct().ToList()).ToList();
 
             bool Clear = false;
             while (!Clear)
@@ -1102,9 +1102,9 @@ namespace MMR_Tracker.Forms
                 if (test.Any())
                 {
                     ChangesMade = true;
-                    var TempCond = cleanedConditionals.ToList();
+                    var TempCond = cleanedConditionals;
                     TempCond.Remove(test[0]);
-                    cleanedConditionals = TempCond.ToArray();
+                    cleanedConditionals = TempCond;
                 }
                 else { Clear = true; }
             }
@@ -1112,7 +1112,7 @@ namespace MMR_Tracker.Forms
             List<List<int>> TempConditionals = cleanedConditionals.Select(x => x.ToList()).ToList(); ;
             if (entry.Required != null)
             {
-                var NewConditionals = cleanedConditionals.Select(x => x.ToList()).ToArray();
+                var NewConditionals = cleanedConditionals.Select(x => x.ToList());
                 foreach (var i in NewConditionals)
                 {
                     if (i.Where(x => entry.Required.Contains(x)).Any()) { ChangesMade = true; }
@@ -1126,7 +1126,7 @@ namespace MMR_Tracker.Forms
 
             return ChangesMade;
 
-            bool IsRedundant(int[] FocusedList, int[][] CheckingList)
+            bool IsRedundant(List<int> FocusedList, List<List<int>> CheckingList)
             {
                 foreach (var i in CheckingList)
                 {

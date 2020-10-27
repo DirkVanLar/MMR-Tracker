@@ -34,12 +34,11 @@ namespace MMR_Tracker.Other_Games
             //string MacroData = wc.DownloadString("https://raw.githubusercontent.com/lepelog/sslib/master/SS%20Rando%20Logic%20-%20Macros.yaml");
             //string[] MacroDataLines = MacroData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
-            //string[] ItemDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Item Location.yaml");
-            //string[] MacroDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Macros.yaml");
+            string[] ItemDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Item Location.yaml");
+            string[] MacroDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Macros.yaml");
 
-            string[] ItemDataLines = File.ReadAllLines(@"C:\Users\ttalbot\Documents\VS CODE STUFF\SS Rando Logic - Item Location\SS Rando Logic - Item Location.yaml");
-
-            string[] MacroDataLines = File.ReadAllLines(@"C:\Users\ttalbot\Documents\VS CODE STUFF\SS Rando Logic - Item Location\SS Rando Logic - Macros.yaml");
+            //string[] ItemDataLines = File.ReadAllLines(@"C:\Users\ttalbot\Documents\VS CODE STUFF\SS Rando Logic - Item Location\SS Rando Logic - Item Location.yaml");
+            //string[] MacroDataLines = File.ReadAllLines(@"C:\Users\ttalbot\Documents\VS CODE STUFF\SS Rando Logic - Item Location\SS Rando Logic - Macros.yaml");
 
             var backupEditorInstance = Utility.CloneTrackerInstance(LogicEditor.EditorInstance);
 
@@ -432,8 +431,8 @@ namespace MMR_Tracker.Other_Games
                 if (CurrentEntry.DictionaryName != "")
                 {
                     MakeDungeonEntranceRealLocation(CurrentEntry);
-                    MakeGodesscubesTrackable(CurrentEntry);
                     CurrentEntry.Logic = Logic.Trim().Replace("?","");
+                    MakeGodesscubesTrackable(CurrentEntry);
                     SSData.Add(CurrentEntry);
                     CurrentEntry = new SSLocation { DictionaryName = "", isFake = true };
                     Logic = "";
@@ -444,9 +443,18 @@ namespace MMR_Tracker.Other_Games
             {
                 if (!IsGoddessCubeAccessEntry(entry.DictionaryName)) { return; }
                 entry.isFake = false;
-                entry.LocationArea = "Goddess Cube tracking";
-                entry.ItemSubType = entry.DictionaryName;
+                Console.WriteLine(entry.Logic.ToLower());
+                entry.LocationArea = "Goddess Cubes";
                 entry.LocationName = entry.DictionaryName;
+                if (entry.Logic.ToLower().Contains("woods")) { entry.LocationName = "Faron Woods - " + entry.DictionaryName; }
+                if (entry.Logic.ToLower().Contains("skyview")) { entry.LocationName = "Skyview Spring - " + entry.DictionaryName; }
+                if (entry.Logic.ToLower().Contains("floria")) { entry.LocationName = "Lake Floria - " + entry.DictionaryName; }
+                if (entry.Logic.ToLower().Contains("eldin")) { entry.LocationName = "Eldin Volcano - " + entry.DictionaryName; }
+                if (entry.Logic.ToLower().Contains("summit")) { entry.LocationName = "Volcano Summit - " + entry.DictionaryName; }
+                if (entry.Logic.ToLower().Contains("lanayru")) { entry.LocationName = "Lanayru - " + entry.DictionaryName; }
+                if (entry.Logic.ToLower().Contains("sea")) { entry.LocationName = "Lanayru Sand Sea - " + entry.DictionaryName; }
+                if (entry.Logic.ToLower().Contains("gorge")) { entry.LocationName = "Lanayru Gorge - " + entry.DictionaryName; }
+                entry.ItemSubType = entry.DictionaryName;
                 entry.ItemName = entry.DictionaryName;
                 entry.SpoilerItem = entry.DictionaryName;
                 entry.SpoilerLocation = entry.DictionaryName;
@@ -663,7 +671,7 @@ namespace MMR_Tracker.Other_Games
 
                     CurrentEntry.ItemName = Utility.GetTextAfter(line, "original item:").Trim();
                     CurrentEntry.SpoilerItem = Utility.GetTextAfter(line, "original item:").Trim();
-                    if (CurrentEntry.ItemName == "Gratitude Crystal") { CurrentEntry.LocationArea += " Gratitude Crystal"; CurrentEntry.ItemSubType += " Gratitude Crystal"; }
+                    if (CurrentEntry.ItemName == "Gratitude Crystal") { CurrentEntry.LocationArea = "Single Gratitude Crystal"; CurrentEntry.ItemSubType = " Gratitude Crystal"; }
                 }
 
                 if (AtLogic)

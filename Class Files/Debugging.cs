@@ -134,9 +134,7 @@ namespace MMR_Tracker_V2
             //MInishCapTools.FillMinishLogic();
             //MInishCapTools.PrintMinishLogic();
 
-            //SStesting();
-            ConvertLogicEntryToRealItemsOnly();
-            Console.WriteLine("Finish");
+            SStesting();
 
             void SStesting()
             {
@@ -451,78 +449,6 @@ namespace MMR_Tracker_V2
                 MainInterface.CurrentProgram.PrintToListBox();
             }
         }
-
-        class CircularDependancyTracking
-        {
-            //The Entry I want to add Logic to
-            public LogicObjects.LogicEntry CheckedEntry { get; set; } = new LogicObjects.LogicEntry();
-            //The Entry I want to copy logic from
-            public LogicObjects.LogicEntry CircularDepenency { get; set; } = new LogicObjects.LogicEntry();
-        }
-
-        public static void ConvertLogicEntryToRealItemsOnly()
-        {
-
-            List<CircularDependancyTracking> CircularDependencies = new List<CircularDependancyTracking>();
-
-            foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.IsFake))
-            {
-                findCircularDependancies(i, i, new List<int> { i.ID }, LogicObjects.MainTrackerInstance, 1);
-            }
-
-            foreach (var i in CircularDependencies)
-            {
-                Console.WriteLine($"Circular Dependancy Found {i.CheckedEntry.DictionaryName} required {i.CircularDepenency.DictionaryName}");
-                ResolveCirculaardependency(i);
-            }
-
-            void findCircularDependancies(LogicObjects.LogicEntry entry, LogicObjects.LogicEntry RootEntry, List<int> CheckedEntries, LogicObjects.TrackerInstance Instance, int Layer)
-            {
-                LogicEditor.MoveRequirementsToConditionals(entry);
-                var AllRequirements = (entry.Conditionals == null) ? new List<int>() : entry.Conditionals.SelectMany(x => x).ToList();
-                AllRequirements = AllRequirements.Distinct().ToList(); ;
-
-                if (AllRequirements.Contains(RootEntry.ID))
-                {
-                    CircularDependencies.Add(new CircularDependancyTracking { CheckedEntry = entry, CircularDepenency = RootEntry });
-                    return;
-                }
-
-                foreach (var i in AllRequirements.Where(x => Instance.Logic[x].IsFake))
-                {
-                    if (CheckedEntries.Contains(i)) { continue; }
-                    List<int> NewChecked = new List<int>();
-                    NewChecked.AddRange(CheckedEntries);
-                    CheckedEntries.Add(i);
-                    findCircularDependancies(Instance.Logic[i], RootEntry, CheckedEntries, Instance, Layer + 1);
-                }
-            }
-
-            void ResolveCirculaardependency(CircularDependancyTracking CircularDependancy)
-            {
-                var DependanciesToSub = CircularDependancy.CheckedEntry.Conditionals.Where(x => x.Contains(CircularDependancy.CircularDepenency.ID));
-
-                var TempToList = CircularDependancy.CheckedEntry.Conditionals.ToList();
-                TempToList.RemoveAll(x => x.Contains(CircularDependancy.CircularDepenency.ID));
-                var TempToArray = TempToList.ToArray();
-
-                var NewConditionals = new List<int[]>();
-                foreach (var i in DependanciesToSub)
-                {
-                    var DepList = i.ToList();
-                    DepList.RemoveAll(x => x == CircularDependancy.CircularDepenency.ID);
-                    foreach(var j in CircularDependancy.CircularDepenency.Conditionals)
-                    {
-                        var AddOther = j.ToList();
-                        AddOther.AddRange(DepList);
-                        NewConditionals.Add(AddOther.ToArray());
-                    }
-                }
-                NewConditionals.AddRange(CircularDependancy.CheckedEntry.Conditionals);
-                CircularDependancy.CheckedEntry.Conditionals = NewConditionals.ToArray();
-            }
-        }
-
 
     }
 }
