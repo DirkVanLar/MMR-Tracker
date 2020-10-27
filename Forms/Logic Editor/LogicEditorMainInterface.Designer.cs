@@ -77,6 +77,9 @@
             this.deleteCurrentItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setTrickToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whatIsThisUsedInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cleanLogicEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extractRequiredItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeRedundantConditionalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label6 = new System.Windows.Forms.Label();
@@ -84,15 +87,13 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.chkIsTrick = new System.Windows.Forms.CheckBox();
-            this.cleanLogicEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.extractRequiredItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeRedundantConditionalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // LBRequired
             // 
+            this.LBRequired.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBRequired.FormattingEnabled = true;
             this.LBRequired.HorizontalScrollbar = true;
             this.LBRequired.Location = new System.Drawing.Point(12, 44);
@@ -100,12 +101,14 @@
             this.LBRequired.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBRequired.Size = new System.Drawing.Size(249, 329);
             this.LBRequired.TabIndex = 0;
+            this.LBRequired.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LBRequired_DrawItem);
             this.LBRequired.SelectedIndexChanged += new System.EventHandler(this.LBRequired_SelectedIndexChanged);
             this.LBRequired.DoubleClick += new System.EventHandler(this.LBRequired_DoubleClick);
             this.LBRequired.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LBRequired_KeyDown);
             // 
             // LBConditional
             // 
+            this.LBConditional.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBConditional.FormattingEnabled = true;
             this.LBConditional.HorizontalScrollbar = true;
             this.LBConditional.Location = new System.Drawing.Point(267, 44);
@@ -113,6 +116,7 @@
             this.LBConditional.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.LBConditional.Size = new System.Drawing.Size(530, 329);
             this.LBConditional.TabIndex = 1;
+            this.LBConditional.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LBConditional_DrawItem);
             this.LBConditional.SelectedIndexChanged += new System.EventHandler(this.LBConditional_SelectedIndexChanged);
             this.LBConditional.DoubleClick += new System.EventHandler(this.LBConditional_DoubleClick);
             this.LBConditional.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LBConditional_KeyDown);
@@ -599,6 +603,30 @@
             this.whatIsThisUsedInToolStripMenuItem.Text = "What is this used in?";
             this.whatIsThisUsedInToolStripMenuItem.Click += new System.EventHandler(this.whatIsThisUsedInToolStripMenuItem_Click);
             // 
+            // cleanLogicEntryToolStripMenuItem
+            // 
+            this.cleanLogicEntryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.extractRequiredItemsToolStripMenuItem,
+            this.removeRedundantConditionalsToolStripMenuItem});
+            this.cleanLogicEntryToolStripMenuItem.Name = "cleanLogicEntryToolStripMenuItem";
+            this.cleanLogicEntryToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.cleanLogicEntryToolStripMenuItem.Text = "Clean Logic Entry";
+            this.cleanLogicEntryToolStripMenuItem.Click += new System.EventHandler(this.cleanLogicEntryToolStripMenuItem_Click);
+            // 
+            // extractRequiredItemsToolStripMenuItem
+            // 
+            this.extractRequiredItemsToolStripMenuItem.Name = "extractRequiredItemsToolStripMenuItem";
+            this.extractRequiredItemsToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.extractRequiredItemsToolStripMenuItem.Text = "Extract Required Items";
+            this.extractRequiredItemsToolStripMenuItem.Click += new System.EventHandler(this.extractRequiredItemsToolStripMenuItem_Click);
+            // 
+            // removeRedundantConditionalsToolStripMenuItem
+            // 
+            this.removeRedundantConditionalsToolStripMenuItem.Name = "removeRedundantConditionalsToolStripMenuItem";
+            this.removeRedundantConditionalsToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.removeRedundantConditionalsToolStripMenuItem.Text = "Remove Redundant Conditionals";
+            this.removeRedundantConditionalsToolStripMenuItem.Click += new System.EventHandler(this.removeRedundantConditionalsToolStripMenuItem_Click);
+            // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
@@ -672,30 +700,6 @@
             this.chkIsTrick.Text = "Is Trick";
             this.chkIsTrick.UseVisualStyleBackColor = false;
             this.chkIsTrick.CheckedChanged += new System.EventHandler(this.chkIsTrick_CheckedChanged);
-            // 
-            // cleanLogicEntryToolStripMenuItem
-            // 
-            this.cleanLogicEntryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.extractRequiredItemsToolStripMenuItem,
-            this.removeRedundantConditionalsToolStripMenuItem});
-            this.cleanLogicEntryToolStripMenuItem.Name = "cleanLogicEntryToolStripMenuItem";
-            this.cleanLogicEntryToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.cleanLogicEntryToolStripMenuItem.Text = "Clean Logic Entry";
-            this.cleanLogicEntryToolStripMenuItem.Click += new System.EventHandler(this.cleanLogicEntryToolStripMenuItem_Click);
-            // 
-            // extractRequiredItemsToolStripMenuItem
-            // 
-            this.extractRequiredItemsToolStripMenuItem.Name = "extractRequiredItemsToolStripMenuItem";
-            this.extractRequiredItemsToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
-            this.extractRequiredItemsToolStripMenuItem.Text = "Extract Required Items";
-            this.extractRequiredItemsToolStripMenuItem.Click += new System.EventHandler(this.extractRequiredItemsToolStripMenuItem_Click);
-            // 
-            // removeRedundantConditionalsToolStripMenuItem
-            // 
-            this.removeRedundantConditionalsToolStripMenuItem.Name = "removeRedundantConditionalsToolStripMenuItem";
-            this.removeRedundantConditionalsToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
-            this.removeRedundantConditionalsToolStripMenuItem.Text = "Remove Redundant Conditionals";
-            this.removeRedundantConditionalsToolStripMenuItem.Click += new System.EventHandler(this.removeRedundantConditionalsToolStripMenuItem_Click);
             // 
             // LogicEditor
             // 

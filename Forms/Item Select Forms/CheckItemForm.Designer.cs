@@ -42,12 +42,14 @@
             // LBItemSelect
             // 
             this.LBItemSelect.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.LBItemSelect.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBItemSelect.FormattingEnabled = true;
             this.LBItemSelect.IntegralHeight = false;
             this.LBItemSelect.Location = new System.Drawing.Point(13, 52);
             this.LBItemSelect.Name = "LBItemSelect";
             this.LBItemSelect.Size = new System.Drawing.Size(428, 576);
             this.LBItemSelect.TabIndex = 0;
+            this.LBItemSelect.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LBItemSelect_DrawItem);
             this.LBItemSelect.DoubleClick += new System.EventHandler(this.HandleSelectedItem);
             // 
             // btnJunk

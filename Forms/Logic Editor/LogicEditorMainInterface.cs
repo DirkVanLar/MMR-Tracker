@@ -505,6 +505,8 @@ namespace MMR_Tracker.Forms
         public void WriteCurentItem(int Index)
         {
             PrintingItem = true;
+            LBRequired.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
+            LBConditional.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
             LBRequired.Items.Clear();
             LBConditional.Items.Clear();
             LogicObjects.LogicEntry entry;
@@ -1179,6 +1181,26 @@ namespace MMR_Tracker.Forms
         {
             CleanLogicEntry(currentEntry, EditorInstance, true, false);
             WriteCurentItem(currentEntry.ID);
+        }
+
+        private void LBRequired_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) { return; }
+            e.DrawBackground();
+            Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
+            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
+            e.Graphics.DrawString(LBRequired.Items[e.Index].ToString(), F, brush, e.Bounds);
+            e.DrawFocusRectangle();
+        }
+
+        private void LBConditional_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) { return; }
+            e.DrawBackground();
+            Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
+            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
+            e.Graphics.DrawString(LBConditional.Items[e.Index].ToString(), F, brush, e.Bounds);
+            e.DrawFocusRectangle();
         }
     }
 }

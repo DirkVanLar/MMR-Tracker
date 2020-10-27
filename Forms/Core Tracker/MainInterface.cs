@@ -176,6 +176,15 @@ namespace MMR_Tracker_V2
             PrintToListBox();
         }
 
+        private void enableProgressiveItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicObjects.MainTrackerInstance.Options.ProgressiveItems = !LogicObjects.MainTrackerInstance.Options.ProgressiveItems;
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+        }
+
         private void ImportSpoilerLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var instance = LogicObjects.MainTrackerInstance;
@@ -280,6 +289,23 @@ namespace MMR_Tracker_V2
             Debugging.TestDumbStuff();
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
             PrintToListBox();
+        }
+
+        private void viewAsUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Debugging.ISDebugging && !Debugging.ViewAsUserMode) { return; }
+            else if (Debugging.ISDebugging) { Debugging.ISDebugging = false; Debugging.ViewAsUserMode = true; }
+            else if (Debugging.ViewAsUserMode) { Debugging.ISDebugging = true; Debugging.ViewAsUserMode = false; }
+            FormatMenuItems();
+        }
+
+        private void devToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Debugging.ISDebugging && Debugging.ViewAsUserMode)
+            {
+                Debugging.ISDebugging = true; Debugging.ViewAsUserMode = false;
+                FormatMenuItems();
+            }
         }
         #endregion Dev
         //Menu Strip => Options => MISC Options---------------------------------------------------------------------------
@@ -730,6 +756,7 @@ namespace MMR_Tracker_V2
             if (e.Index < 0) { return; }
             e.DrawBackground();
             Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
+            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
             if (LB.Items[e.Index] is LogicObjects.ListItem ListEntry && sender != LBPathFinder)
             {
                 var item = ListEntry.LocationEntry;
@@ -738,11 +765,8 @@ namespace MMR_Tracker_V2
                 else if (item.Starred) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
                 else if (item.HasRandomItem(false) && !item.Available) { F = new Font(F.FontFamily, F.Size, FontStyle.Strikeout); }
             }
-            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-            { e.Graphics.DrawString(LB.Items[e.Index].ToString(), F, Brushes.White, e.Bounds); }
-            else
-            { e.Graphics.DrawString(LB.Items[e.Index].ToString(), F, Brushes.Black, e.Bounds); }
-                
+            e.Graphics.DrawString(LB.Items[e.Index].ToString(), F, brush, e.Bounds);
+
             e.DrawFocusRectangle();
         }
         #endregion List Boxes
@@ -1711,31 +1735,5 @@ namespace MMR_Tracker_V2
         #endregion Other Functions
 
         #endregion Functions
-
-        private void enableProgressiveItemsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LogicObjects.MainTrackerInstance.Options.ProgressiveItems = !LogicObjects.MainTrackerInstance.Options.ProgressiveItems;
-            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
-            FormatMenuItems();
-            ResizeObject();
-            PrintToListBox();
-        }
-
-        private void viewAsUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Debugging.ISDebugging && !Debugging.ViewAsUserMode) { return; }
-            else if (Debugging.ISDebugging) { Debugging.ISDebugging = false; Debugging.ViewAsUserMode = true; }
-            else if (Debugging.ViewAsUserMode) { Debugging.ISDebugging = true; Debugging.ViewAsUserMode = false; }
-            FormatMenuItems();
-        }
-
-        private void devToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Debugging.ISDebugging && Debugging.ViewAsUserMode)
-            {
-                Debugging.ISDebugging = true; Debugging.ViewAsUserMode = false;
-                FormatMenuItems();
-            }
-        }
     }
 }

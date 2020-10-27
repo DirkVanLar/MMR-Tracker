@@ -210,6 +210,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
 
         public void WriteItems(LogicObjects.LogicEntry entry)
         {
+            LBItemSelect.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
             var UsedLogic = Instance.Logic;
             var options = Instance.Options;
             LBItemSelect.Items.Clear();
@@ -323,6 +324,16 @@ namespace MMR_Tracker.Forms.Sub_Forms
         private void CheckItemForm_Resize(object sender, EventArgs e)
         {
             PositionItems();
+        }
+
+        private void LBItemSelect_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) { return; }
+            e.DrawBackground();
+            Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
+            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
+            e.Graphics.DrawString(LBItemSelect.Items[e.Index].ToString(), F, brush, e.Bounds);
+            e.DrawFocusRectangle();
         }
     }
 }

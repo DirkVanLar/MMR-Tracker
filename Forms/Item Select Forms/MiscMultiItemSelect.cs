@@ -30,6 +30,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
         private void MiscMultiItemSelect_Load(object sender, EventArgs e)
         {
             WriteToListBox();
+            listView1.Font = LogicObjects.MainTrackerInstance.Options.FormFont;
         }
 
         private void WriteToListBox()

@@ -28,6 +28,8 @@ namespace MMR_Tracker.Forms.Sub_Forms
         private void MiscSingleItemSelect_Load(object sender, EventArgs e)
         {
             WriteToListBox();
+            listBox1.Font = LogicObjects.MainTrackerInstance.Options.FormFont;
+            listBox1.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
         }
 
         private void WriteToListBox()

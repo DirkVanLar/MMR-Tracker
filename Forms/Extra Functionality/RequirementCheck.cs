@@ -1,4 +1,5 @@
 ﻿using MMR_Tracker.Class_Files;
+using MMR_Tracker.Forms.Sub_Forms;
 using MMR_Tracker_V2;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace MMR_Tracker.Forms.Extra_Functionality
 
         public LogicObjects.LogicEntry entry;
         public LogicObjects.TrackerInstance Instance;
+
+        public List<LogicObjects.LogicEntry> GoBackList = new List<LogicObjects.LogicEntry>();
 
         private void listBox2_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -58,7 +61,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             }
             else
             {
-                e.Graphics.DrawString("Error", e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
+                e.Graphics.DrawString("Error", e.Font, brush, e.Bounds, StringFormat.GenericDefault);
             }
             e.DrawFocusRectangle();
         }
@@ -69,6 +72,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             e.DrawBackground();
 
             Font F = e.Font;
+            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
 
             if (listBox1.Items[e.Index] is LogicObjects.LogicEntry)
             {
@@ -78,14 +82,11 @@ namespace MMR_Tracker.Forms.Extra_Functionality
                 var Printname = entry.DictionaryName;
                 if (entry.ItemName != null && !string.IsNullOrWhiteSpace(entry.ItemName)) { Printname = entry.ItemName; }
 
-                if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-                { e.Graphics.DrawString(Printname, F, Brushes.White, e.Bounds, StringFormat.GenericDefault); }
-                else
-                { e.Graphics.DrawString(Printname, F, Brushes.Black, e.Bounds, StringFormat.GenericDefault); }
+                e.Graphics.DrawString(Printname, F, brush, e.Bounds, StringFormat.GenericDefault);
             }
             else
             {
-                e.Graphics.DrawString("Error", e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
+                e.Graphics.DrawString("Error", e.Font, brush, e.Bounds, StringFormat.GenericDefault);
             }
             e.DrawFocusRectangle();
         }
@@ -97,6 +98,8 @@ namespace MMR_Tracker.Forms.Extra_Functionality
 
         public void WriteEntry()
         {
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
             this.Text = $"Requirements for {entry.LocationName ?? entry.DictionaryName}";
             foreach (var i in entry.Required ?? new int[0])
             {
@@ -141,6 +144,70 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             NN1.Checked = (((entry.AvailableOn >> 1) & 1) == 1);
             NN2.Checked = (((entry.AvailableOn >> 3) & 1) == 1);
             NN3.Checked = (((entry.AvailableOn >> 5) & 1) == 1);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MiscSingleItemSelect Selector = new MiscSingleItemSelect
+            {
+                Text = "Go to item",
+                ListContent = LogicObjects.MainTrackerInstance.Logic,
+                Display = 6
+            };
+            Selector.ShowDialog();
+            if (Selector.DialogResult != DialogResult.OK) { return; }
+            //GoBackList.Add(currentEntry.ID);
+            try
+            {
+                GoBackList.Add(entry);
+                entry = Selector.SelectedObject;
+                WriteEntry();
+            }
+            catch { }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!GoBackList.Any()) { return; }
+            entry = GoBackList[GoBackList.Count() - 1];
+            GoBackList.RemoveAt(GoBackList.Count() - 1);
+            WriteEntry();
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem is LogicObjects.LogicEntry)
+            {
+                GoBackList.Add(entry);
+                entry = listBox1.SelectedItem as LogicObjects.LogicEntry;
+                WriteEntry();
+            }
+        }
+
+        private void listBox2_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedItem is LogicEditor.RequiementConditional)
+            {
+                var item = (listBox2.SelectedItem as LogicEditor.RequiementConditional);
+                if (item.ItemIDs.Count < 2)
+                {
+                    GoBackList.Add(entry);
+                    entry = item.ItemIDs[0];
+                    WriteEntry();
+                    return;
+                }
+                MiscSingleItemSelect Selector = new MiscSingleItemSelect
+                {
+                    Text = "Go to item",
+                    Display = 6,
+                    ListContent = item.ItemIDs
+                };
+                Selector.ShowDialog();
+                if (Selector.DialogResult != DialogResult.OK) { return; }
+                GoBackList.Add(entry);
+                entry = Selector.SelectedObject;
+                WriteEntry();
+            }
         }
     }
 }
