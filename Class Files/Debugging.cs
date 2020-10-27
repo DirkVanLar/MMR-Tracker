@@ -20,6 +20,7 @@ using Microsoft.JScript;
 using System.Windows.Documents;
 using MMR_Tracker.Forms.Other_Games;
 using MMR_Tracker.Other_Games;
+using MMR_Tracker.Forms.Extra_Functionality;
 
 namespace MMR_Tracker_V2
 {
@@ -134,7 +135,12 @@ namespace MMR_Tracker_V2
             //MInishCapTools.FillMinishLogic();
             //MInishCapTools.PrintMinishLogic();
 
-            SStesting();
+            //SStesting();
+
+            RequirementCheck Req = new RequirementCheck();
+            Req.Instance = LogicObjects.MainTrackerInstance;
+            Req.entry = LogicObjects.MainTrackerInstance.Logic[101];
+            Req.Show();
 
             void SStesting()
             {

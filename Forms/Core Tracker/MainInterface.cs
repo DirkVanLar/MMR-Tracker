@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Threading;
 using MMR_Tracker.Forms.Sub_Forms;
+using MMR_Tracker.Forms.Extra_Functionality;
 
 namespace MMR_Tracker_V2
 {
@@ -855,6 +856,8 @@ namespace MMR_Tracker_V2
             LocationContextMenu.Opening += (sender, e) => ContextMenu_Opening(LBValidLocations, e);
             ToolStripItem WhatUnlcoked = LocationContextMenu.Items.Add("What Unlocked This?");
             WhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBValidLocations); };
+            ToolStripItem ShowRequired = LocationContextMenu.Items.Add("Show Requirements");
+            ShowRequired.Click += (sender, e) => { RunMenuItems(9, LBValidLocations); };
             if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando())
             {
                 ToolStripItem NavigateHere = LocationContextMenu.Items.Add("Navigate to this check");
@@ -879,6 +882,8 @@ namespace MMR_Tracker_V2
             EntranceContextMenu.Opening += (sender, e) => ContextMenu_Opening(LBValidEntrances, e);
             ToolStripItem EWhatUnlcoked = EntranceContextMenu.Items.Add("What Unlocked This?");
             EWhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBValidEntrances); };
+            ToolStripItem EShowRequired = EntranceContextMenu.Items.Add("Show Requirements");
+            EShowRequired.Click += (sender, e) => { RunMenuItems(9, LBValidEntrances); };
             if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando())
             {
                 ToolStripItem ENavigateHere = EntranceContextMenu.Items.Add("Navigate to this entrance");
@@ -903,6 +908,8 @@ namespace MMR_Tracker_V2
             CheckContextMenu.Opening += (sender, e) => ContextMenu_Opening(LBCheckedLocations, e);
             ToolStripItem CWhatUnlcoked = CheckContextMenu.Items.Add("What Unlocked This?");
             CWhatUnlcoked.Click += (sender, e) => { RunMenuItems(0, LBCheckedLocations); };
+            ToolStripItem CShowRequired = CheckContextMenu.Items.Add("Show Requirements");
+            CShowRequired.Click += (sender, e) => { RunMenuItems(9, LBCheckedLocations); };
             if (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled && LogicObjects.MainTrackerInstance.IsEntranceRando())
             {
                 ToolStripItem ENavigateHere = CheckContextMenu.Items.Add("Navigate to this check");
@@ -1033,6 +1040,15 @@ namespace MMR_Tracker_V2
                     CheckItemSelected(ItemList, true);
                 }
 
+            }
+            if (Function == 9)
+            {
+                RequirementCheck Req = new RequirementCheck
+                {
+                    Instance = LogicObjects.MainTrackerInstance,
+                    entry = ActiveItem
+                };
+                Req.Show();
             }
         }
         #endregion Context Menu
