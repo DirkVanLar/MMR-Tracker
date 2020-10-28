@@ -1627,6 +1627,7 @@ namespace MMR_Tracker_V2
             bool ShowMMOnly = LogicObjects.MainTrackerInstance.IsMM() || Debugging.ISDebugging;
 
             //MM specific Controls
+            importSpoilerLogToolStripMenuItem.Visible = SpoilerLogConverter.SpoilerLogConvertable.Contains(LogicObjects.MainTrackerInstance.GameCode.ToUpper());
             useSongOfTimeInPathfinderToolStripMenuItem.Visible = ShowMMOnly && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = ShowMMOnly && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             FilterMapToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
