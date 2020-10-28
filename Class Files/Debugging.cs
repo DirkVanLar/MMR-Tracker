@@ -137,6 +137,8 @@ namespace MMR_Tracker_V2
 
             SStesting();
 
+            //GetAllLocations();
+
             void SStesting()
             {
                 SkywardSwordTools.CreateData();
@@ -448,6 +450,14 @@ namespace MMR_Tracker_V2
                 MainInterface.CurrentProgram.CheckItemSelected(CheckedItems,true);
                 LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance, true);
                 MainInterface.CurrentProgram.PrintToListBox();
+            }
+        }
+
+        public static void GetAllLocations()
+        {
+            foreach (var i in LogicObjects.MainTrackerInstance.Logic.Select(x => x.LocationArea).Distinct().OrderBy(x => x))
+            {
+                Console.WriteLine(i);
             }
         }
 

@@ -1,3 +1,9 @@
+//The tracker will sort location areas in the same order you list them in this file
+//Using "#GAMECODESTART: 'Your Games Game Code'" will make the following categories be ignored if the corrisponding game code is not loaded
+//Multiple gamecodes can be defined in a comma seperated lits ex: (#GAMECODESTART:MMR,OOTR)
+//Using "#GAMECODEEND:" will exit the game code restriction
+
+#GAMECODESTART: MMR
 Clock Town
 North Clock Town
 East Clock Town
@@ -53,12 +59,48 @@ Stone Tower Temple
 Inverted Stone Tower Temple
 Stone Tower Temple Fairies
 Tingle Map
-Misc
 Bottle Catch
 Dungeon Entrance
 The Moon
 Owl Warp
 Interior
 Grottos
+#GAMECODEEND:
+
+#GAMECODESTART: SSR
+%Settings%
+%Required Dungeon%
+Skyloft
+Sky
+Sealed Grounds
+Faron Woods
+Skyview
+Eldin Volcano
+Mogma Turf
+Earth Temple
+Lanayru Mines
+Lanayru
+Lanayru Mining Facility
+Thunderhead
+Faron Silent Realm
+Flooded Faron Woods
+Lake Floria
+Ancient Cistern
+Eldin Silent Realm
+Volcano Summit
+Fire Dragon Room
+Fire Sanctuary
+Lanyru Silent Realm
+Lanayru Caves
+Lanayru Gorge
+Lanayru Sand Sea
+Sandship
+Skyloft Silent Realm
+Skykeep
+Goddess Cubes
+Single Gratitude Crystal
+#GAMECODEEND:
+
+Misc
 Multiworld
 Starting Items
