@@ -404,7 +404,7 @@ namespace MMR_Tracker_V2
             Default.Click += (s, ea) =>
             {
                 var currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
-                LogicObjects.MainTrackerInstance.Options.FormFont = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular);
+                LogicObjects.MainTrackerInstance.Options.FormFont = SystemFonts.DefaultFont;
                 currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
                 try { cmbStyle.SelectedIndex = cmbStyle.Items.IndexOf(currentFont.FontFamily.Name); } catch { }
                 Size.Value = (decimal)LogicObjects.MainTrackerInstance.Options.FormFont.Size;

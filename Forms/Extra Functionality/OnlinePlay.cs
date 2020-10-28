@@ -58,7 +58,7 @@ namespace MMR_Tracker.Forms
             }
             LogicObjects.MMRTpacket Pack = new LogicObjects.MMRTpacket
             {
-                LogicData = NetData,
+                LogicData = (Type == 1) ? new List<LogicObjects.NetData>() : NetData,
                 PlayerID = LogicObjects.MainTrackerInstance.Options.MyPlayerID,
                 RequestingUpdate = Type,
                 IPData = new LogicObjects.IPDATASerializable
@@ -310,7 +310,7 @@ namespace MMR_Tracker.Forms
 
         private static void SendRequestedUpdate(LogicObjects.MMRTpacket Data, bool IPInSendingList)
         {
-            if (Data.RequestingUpdate != 0 && (IPInSendingList))
+            if (IPInSendingList)
             {
                 try
                 {
@@ -319,7 +319,7 @@ namespace MMR_Tracker.Forms
                 }
                 catch (Exception e) { Debugging.Log($"Could not send requested data\nReason: Send Request Errored with\n{e}"); }
             }
-            else if (Data.RequestingUpdate != 0) { Debugging.Log($"Could not send requested data\nReason: User not in send list {Data.IPData.IP}:{Data.IPData.PORT}"); }
+            else { Debugging.Log($"Could not send requested data\nReason: User not in send list {Data.IPData.IP}:{Data.IPData.PORT}"); }
 
         }
 
@@ -336,8 +336,8 @@ namespace MMR_Tracker.Forms
                 if (LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections) { TriggerAddRemoteToIPList(Data); }
             }
 
-            SendRequestedUpdate(Data, IPInSendingList);
-
+            if (Data.RequestingUpdate != 0) { SendRequestedUpdate(Data, IPInSendingList); }
+            
             if (Data.RequestingUpdate == 1) { return; }
 
             bool ChangesMade = false;
@@ -356,7 +356,7 @@ namespace MMR_Tracker.Forms
                     ItemsToCheck.Items.Add(entry);
                     ChangesMade = true;
                 }
-                else if (log.ElementAt(i.ID) != null && !log[i.ID].Checked)
+                else if (Instance.ItemInRange(i.ID) && !log[i.ID].Checked)
                 {
                     var entry = log[i.ID];
                     if (!entry.HasRandomItem(false))
@@ -416,7 +416,7 @@ namespace MMR_Tracker.Forms
                     if (FindUnusedMatchingItem.Any())
                     {
                         Debugging.Log($"Unused Matching Item found: {FindUnusedMatchingItem.ToArray()[0].DictionaryName}");
-                        var newItem = FindUnusedMatchingItem.ToArray()[0];
+                        var newItem = FindUnusedMatchingItem.First();
                         i.RI = newItem.ID;
                         itemsAquired.Add(newItem);
                         itemsInUse.Add(newItem);
@@ -424,8 +424,8 @@ namespace MMR_Tracker.Forms
                     else if (FindUnAquiredMatchingItem.Any())
                     {
                         Debugging.Log($"No Unused Matching Items Were Found, getting unaquired matching item.");
-                        Debugging.Log($"Matching UnAquired Item Found: {FindUnAquiredMatchingItem.ToArray()[0].DictionaryName}");
-                        var newItem = FindUnAquiredMatchingItem.ToArray()[0];
+                        Debugging.Log($"Matching UnAquired Item Found: {FindUnAquiredMatchingItem.First().DictionaryName}");
+                        var newItem = FindUnAquiredMatchingItem.First();
                         i.RI = newItem.ID;
                         itemsAquired.Add(newItem);
                         itemsInUse.Add(newItem);

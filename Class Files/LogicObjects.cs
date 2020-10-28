@@ -48,7 +48,7 @@ namespace MMR_Tracker_V2
             public bool MiddleClickStarNotMark { get; set; } = false;
             public string BomberCode { get; set; } = "";
             public string LotteryNumber { get; set; } = "";
-            public Font FormFont { get; set; } = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular);
+            public Font FormFont { get; set; } = SystemFonts.DefaultFont;
             //Misc Options
             public bool CheckForUpdate { get; set; } = true;
             public bool AutoSave { get; set; } = false;
