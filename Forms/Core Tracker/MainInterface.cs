@@ -1113,7 +1113,7 @@ namespace MMR_Tracker_V2
                     }
                     if (x.StartsWith("#gamecodeend:")) { AtGame = true; continue; }
 
-                    Console.WriteLine($"{x} Is Valid {AtGame}");
+                    //Console.WriteLine($"{x} Is Valid {AtGame}");
 
                     if (!Groups.ContainsKey(x) && AtGame)
                     {

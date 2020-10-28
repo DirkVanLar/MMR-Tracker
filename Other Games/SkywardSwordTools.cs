@@ -37,8 +37,8 @@ namespace MMR_Tracker.Other_Games
             //string[] ItemDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Item Location.yaml");
             //string[] MacroDataLines = File.ReadAllLines(@"D:\Emulated Games\Emulator\Dolphin\Dolphin-x64 Skyward Sword Randomizer\Seed Testing\SS Rando Logic - Macros.yaml");
 
-            string[] ItemDataLines = File.ReadAllLines(@"C:\Users\ttalbot\Documents\VS CODE STUFF\SS Rando Logic - Item Location\SS Rando Logic - Item Location.yaml");
-            string[] MacroDataLines = File.ReadAllLines(@"C:\Users\ttalbot\Documents\VS CODE STUFF\SS Rando Logic - Item Location\SS Rando Logic - Macros.yaml");
+            string[] ItemDataLines = File.ReadAllLines(@"C:\Users\ttalbot\Documents\VS CODE STUFF\sslib-master\SS Rando Logic - Item Location.yaml");
+            string[] MacroDataLines = File.ReadAllLines(@"C:\Users\ttalbot\Documents\VS CODE STUFF\sslib-master\SS Rando Logic - Macros.yaml");
 
             var backupEditorInstance = Utility.CloneTrackerInstance(LogicEditor.EditorInstance);
 
@@ -58,7 +58,7 @@ namespace MMR_Tracker.Other_Games
 
             foreach(var i in SSInstance.Logic) { LogicEditor.CleanLogicEntry(i, SSInstance); }
 
-            var Save = false;
+            var Save = true;
 
             if (!Save)
             {
@@ -648,7 +648,7 @@ namespace MMR_Tracker.Other_Games
                     if (Data.Count() > 1)
                     {
                         CurrentEntry.LocationName = (Unimplimented) ? "" : line.Replace(":", "").Trim();
-                        CurrentEntry.SpoilerLocation = line.Replace(":", "").Trim();
+                        CurrentEntry.SpoilerLocation = line.Replace(":", "").Replace("+", "").Trim();
                         CurrentEntry.LocationArea = Data[0].Trim();
                     }
                     else
