@@ -1442,26 +1442,43 @@ namespace MMR_Tracker_V2
         private void HandleUserPreset()
         {
             List<ToolStripMenuItem> Presets = new List<ToolStripMenuItem>();
+            if (!Directory.Exists(@"Recources\Other Files\Custom Logic Presets"))
+            {
+                try
+                {
+                    Directory.CreateDirectory((@"Recources\Other Files\Custom Logic Presets"));
+                }
+                catch { return; }
+            }
+            int counter = 0;
             foreach (var i in Directory.GetFiles(@"Recources\Other Files\Custom Logic Presets").Where(x => x.Contains(".txt") && !x.Contains("Web Presets.txt")))
             {
                 ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
                 {
-                    Name = "newToolStripMenuItem",
+                    Name = $"PresetLogic{counter}",
                     Size = new System.Drawing.Size(180, 22),
                     Text = Path.GetFileName(i).Replace(".txt", "")
                 };
+                counter++;
                 CustomLogicPreset.Click += (s, ee) => LoadLogicPreset(i, "", s, ee);
                 Presets.Add(CustomLogicPreset);
             }
             if (File.Exists(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt"))
             {
+                if (Debugging.ISDebugging || Environment.MachineName == "TIMOTHY-PC")
+                {
+                    File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Glitched Logic");
+                    File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/master/Logic%20File.txt");
+                    File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Entrance Rando");
+                    File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/Entrance-Radno-Logic/Logic%20File.txt");
+                }
+
                 ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem();
-                int counter = 0;
                 foreach (var i in File.ReadAllLines(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt"))
                 {
                     if (i.StartsWith("Name:"))
                     {
-                        CustomLogicPreset.Name = $"WEB{counter}";
+                        CustomLogicPreset.Name = $"PresetLogic{counter}";
                         counter++;
                         CustomLogicPreset.Text = i.Replace("Name:", "").Trim();
                     }
