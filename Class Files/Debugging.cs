@@ -135,9 +135,9 @@ namespace MMR_Tracker_V2
             //MInishCapTools.FillMinishLogic();
             //MInishCapTools.PrintMinishLogic();
 
-            //SStesting();
+            SStesting();
 
-            GetAllLocations();
+            //GetAllLocations();
 
             void SStesting()
             {
