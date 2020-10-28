@@ -19,6 +19,8 @@ namespace MMR_Tracker.Forms
 {
     public partial class SpoilerLogConverter : Form
     {
+
+        public static string[] SpoilerLogConvertable = new string[] { "MMR", "SSR", "OOTR", "WWR" };
         public SpoilerLogConverter()
         {
             InitializeComponent();
