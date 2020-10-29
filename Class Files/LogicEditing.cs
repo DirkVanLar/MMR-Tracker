@@ -252,6 +252,7 @@ namespace MMR_Tracker_V2
 
             var OldLogic = Utility.CloneLogicList(Instance.Logic);
             Instance.RawLogicFile = LogicFile;
+            Instance.LogicDictionary = null;
             LogicEditing.PopulateTrackerInstance(Instance);
 
             var logic = Instance.Logic;
