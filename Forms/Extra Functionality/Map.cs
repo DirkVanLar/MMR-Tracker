@@ -15,7 +15,7 @@ namespace MMR_Tracker
         public Map()
         {
             InitializeComponent();
-            MainInterface.TrackerUpdate += LogicEditing_LogicChanged;
+            MainInterface.LogicStateUpdated += LogicEditing_LogicChanged;
         }
 
         private void LogicEditing_LogicChanged(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace MMR_Tracker
             public Button Btn { get; set; }
         }
 
-        public MainInterface MainInterfaceInstance;
+        public MainInterface MainInterfaceInstance = MainInterface.CurrentProgram;
         private ContextMenuStrip btnRClick;
         public List<LocationArea> LocationDic = new List<LocationArea>();
         public void setLocationDic(List<LocationArea> Result)

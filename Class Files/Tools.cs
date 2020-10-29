@@ -11,7 +11,6 @@ namespace MMR_Tracker.Class_Files
 {
     class Tools
     {
-        public static event EventHandler StateListChanged = delegate { };
         public static string SaveFilePath = "";
 
         public static LogicObjects.ItemUnlockData FindRequirements(LogicObjects.LogicEntry Item, LogicObjects.TrackerInstance Instance)
@@ -491,7 +490,7 @@ namespace MMR_Tracker.Class_Files
             Instance.UndoList.Add(Utility.CloneLogicList(Logic));
             if (Instance.UndoList.Count() > MaxUndoCount) { Instance.UndoList.RemoveAt(0); }
             Instance.RedoList = new List<List<LogicObjects.LogicEntry>>();
-            StateListChanged(null, null);
+            MainInterface.CurrentProgram.Tools_StateListChanged();
         }
         public static void Undo(LogicObjects.TrackerInstance Instance)
         {
@@ -502,7 +501,7 @@ namespace MMR_Tracker.Class_Files
                 Instance.RedoList.Add(Utility.CloneLogicList(Instance.Logic));
                 Instance.Logic = Utility.CloneLogicList(Instance.UndoList[lastItem]);
                 Instance.UndoList.RemoveAt(lastItem);
-                StateListChanged(null, null);
+                MainInterface.CurrentProgram.Tools_StateListChanged();
             }
         }
         public static void Redo(LogicObjects.TrackerInstance Instance)
@@ -514,7 +513,7 @@ namespace MMR_Tracker.Class_Files
                 Instance.UndoList.Add(Utility.CloneLogicList(Instance.Logic));
                 Instance.Logic = Utility.CloneLogicList(Instance.RedoList[lastItem]);
                 Instance.RedoList.RemoveAt(lastItem);
-                StateListChanged(null, null);
+                MainInterface.CurrentProgram.Tools_StateListChanged();
             }
         }
         public static bool PromptSave(LogicObjects.TrackerInstance Instance, bool OnlyIfUnsaved = true)

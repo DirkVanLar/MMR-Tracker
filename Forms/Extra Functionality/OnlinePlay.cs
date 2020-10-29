@@ -22,13 +22,7 @@ namespace MMR_Tracker.Forms
         public OnlinePlay()
         {
             InitializeComponent();
-            MainInterface.LocationChecked += MainInterface_LocationChecked;
-            TriggerAddRemoteToIPList += OnlinePlay_TriggerAddRemoteToIPList;
         }
-
-        public static event EventHandler NetDataProcessed = delegate { };
-        public static event Action<LogicObjects.MMRTpacket> TriggerAddRemoteToIPList = delegate { };
-        public static object MultiworldToggle = new object();
 
         public static bool Listening = false;
         public static bool Sending = false;
@@ -112,11 +106,6 @@ namespace MMR_Tracker.Forms
             {
                 await Task.Run(() => StartClient(m, ip));
             }
-        }
-
-        private void MainInterface_LocationChecked(object sender, EventArgs e)
-        {
-            SendData(IPS);
         }
 
         //RecievingData
@@ -333,7 +322,7 @@ namespace MMR_Tracker.Forms
             if (!IPInSendingList)
             {
                 if (LogicObjects.MainTrackerInstance.Options.StrictIP) { return; }
-                if (LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections) { TriggerAddRemoteToIPList(Data); }
+                if (LogicObjects.MainTrackerInstance.Options.AutoAddIncomingConnections) { OnlinePlay_TriggerAddRemoteToIPList(Data); }
             }
 
             if (Data.RequestingUpdate != 0) { SendRequestedUpdate(Data, IPInSendingList); }
@@ -378,8 +367,7 @@ namespace MMR_Tracker.Forms
             {
                 ItemsToCheck.SetSelected(i, true);
             }
-            MainInterface.CurrentProgram.CheckItemSelected(ItemsToCheck, true, 0, false, Data.PlayerID);
-            NetDataProcessed(null, null);
+            MainInterface.CurrentProgram.CheckItemSelected(ItemsToCheck, true, 0, false, Data.PlayerID, true);
         }
 
         public static void CleanMultiWorldData(LogicObjects.TrackerInstance Instance, LogicObjects.MMRTpacket Data)
@@ -435,14 +423,18 @@ namespace MMR_Tracker.Forms
             }
         }
 
-        private void OnlinePlay_TriggerAddRemoteToIPList(LogicObjects.MMRTpacket Data)
+        public static void OnlinePlay_TriggerAddRemoteToIPList(LogicObjects.MMRTpacket Data)
         {
             LogicObjects.IPDATA NewIP = new LogicObjects.IPDATA();
             try { NewIP.IP = IPAddress.Parse(Data.IPData.IP); } catch { return; }
             NewIP.PORT = Data.IPData.PORT;
             NewIP.DisplayName = $"{NewIP.IP}:{NewIP.PORT}";
-            IPS.Add(NewIP);
-            UpdateFormItems();
+            IPS.Add(NewIP); 
+            if (CurrentOpenForm != null)
+            {
+                CurrentOpenForm.UpdateFormItems();
+            }
+            
         }
 
         private void SaveIPListToolStripMenuItem_Click(object sender, EventArgs e)
@@ -540,14 +532,13 @@ namespace MMR_Tracker.Forms
             if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { LogicObjects.MainTrackerInstance.Options.MyPlayerID = (int)nudPlayerID.Value; }
             else { LogicObjects.MainTrackerInstance.Options.MyPlayerID = -1; }
 
-            NetDataProcessed(MultiworldToggle, null);
+            MainInterface.CurrentProgram.FormatMenuItems();
         }
 
         private void UpdateFormItems()
         {
             Updating = true;
 
-            CurrentOpenForm = this;
             LBIPAdresses.Items.Clear();
             foreach (var i in IPS) { LBIPAdresses.Items.Add(i); }
             chkListenForData.Checked = Listening;
@@ -560,8 +551,6 @@ namespace MMR_Tracker.Forms
             copyNetDataToClipboardToolStripMenuItem.Visible = Debugging.ISDebugging;
             multiworldToolStripMenuItem.Checked = LogicObjects.MainTrackerInstance.Options.IsMultiWorld;
             nudPlayerID.Enabled = LogicObjects.MainTrackerInstance.Options.IsMultiWorld && !chkListenForData.Checked && !chkSendData.Checked;
-
-
 
             if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) 
             { 

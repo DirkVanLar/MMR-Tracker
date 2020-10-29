@@ -22,31 +22,17 @@ namespace MMR_Tracker_V2
 {
     public partial class MainInterface : Form
     {
-        public static event EventHandler LocationChecked = delegate { };
-        public static event EventHandler TrackerUpdate = delegate { };
 
         public MainInterface()
         {
             InitializeComponent();
-            OnlinePlay.NetDataProcessed += Tools_UpdateListBox;
-            Tools.StateListChanged += Tools_StateListChanged;
         }
 
         public static MainInterface CurrentProgram;
 
         //Event Triggers
 
-        private void Tools_StateListChanged(object sender, EventArgs e)
-        {
-            undoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.UndoList.Count > 0;
-            redoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.RedoList.Count > 0;
-        }
-
-        private void Tools_UpdateListBox(object sender, EventArgs e)
-        {
-            if (sender == OnlinePlay.MultiworldToggle) { FormatMenuItems();  }
-            PrintToListBox();
-        }
+        public static event EventHandler LogicStateUpdated = delegate { };
 
 
         #region Form Objects
@@ -150,8 +136,8 @@ namespace MMR_Tracker_V2
         private void onlinePlayToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (OnlinePlay.CurrentOpenForm != null) { Debugging.Log("Form already open"); OnlinePlay.CurrentOpenForm.Focus(); return; }
-            OnlinePlay net = new OnlinePlay();
-            net.Show();
+            OnlinePlay.CurrentOpenForm = new OnlinePlay();
+            OnlinePlay.CurrentOpenForm.Show();
         }
         #endregion Online Play Options
         //Menu Strip => Options => Logic Options---------------------------------------------------------------------------
@@ -396,13 +382,13 @@ namespace MMR_Tracker_V2
         private void FilterMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Map FilterMap = new Map();
-            FilterMap.MainInterfaceInstance = this;
             FilterMap.Show();
         }
 
         private void ItemTrackerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ItemDisplay id = new ItemDisplay();
+            id.Name = "ItemDisplay";
             id.MainInterfaceInstance = this;
             id.Show();
 
@@ -1322,7 +1308,7 @@ namespace MMR_Tracker_V2
             senderComboBox.DropDownWidth = width;
         }
 
-        public void CheckItemSelected(ListBox LB, bool FullCheck, int SetFunction = 0, bool UncheckAndMark = false, int ItemsCameFromPlayer = -2)
+        public void CheckItemSelected(ListBox LB, bool FullCheck, int SetFunction = 0, bool UncheckAndMark = false, int ItemsCameFromPlayer = -2, bool FromNet = false)
         {
             //Set Function: 0 = none, 1 = Always Set, 2 = Always Unset
             if (TXTLocSearch.Text.ToLower() == "enabledev" && LB == LBValidLocations && !FullCheck)
@@ -1350,9 +1336,10 @@ namespace MMR_Tracker_V2
             Tools.SetUnsavedChanges(LogicObjects.MainTrackerInstance);
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
 
-            if (ItemsCameFromPlayer == -2) { FireEvents(LB, null, false); }
+            if (!FromNet) { OnlinePlay.SendData(OnlinePlay.IPS); }
 
             PrintToListBox();
+            LogicStateUpdated(null, null);
         }
 
         public void StarItemSelected(ListBox LB, int SetFunction = 0)
@@ -1606,11 +1593,10 @@ namespace MMR_Tracker_V2
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = ShowMMOnly && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             FilterMapToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             itemTrackerToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            generatePlaythroughToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            seedCheckerToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             enableProgressiveItemsToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
 
-            Tools_StateListChanged(null, null);
+            Tools_StateListChanged();
+            LogicStateUpdated(null, null);
         }
 
         public void ResizeObject()
@@ -1730,8 +1716,7 @@ namespace MMR_Tracker_V2
 
         private static void FireEvents(object sender, EventArgs e, bool TrackerUpdated = true, bool LocationCheck = true)
         {
-            if (LocationCheck) { LocationChecked(sender, e); }
-            if (TrackerUpdated) { TrackerUpdate(sender, e); }
+
         }
 
         private string createDisplayName(bool Checked, LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance instance)
@@ -1743,6 +1728,12 @@ namespace MMR_Tracker_V2
             var AvailableName = (ItemName == "") ? LocationName : LocationName + ": " + ItemName + addPlayerName;
             var fullName = (Checked) ? checkedName : AvailableName;
             return fullName + ((entry.Starred) ? "*" : "");
+        }
+
+        public void Tools_StateListChanged()
+        {
+            undoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.UndoList.Count > 0;
+            redoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.RedoList.Count > 0;
         }
 
 

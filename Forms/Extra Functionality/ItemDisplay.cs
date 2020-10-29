@@ -29,8 +29,7 @@ namespace MMR_Tracker.Forms
         public ItemDisplay()
         {
             InitializeComponent();
-            MainInterface.LocationChecked += MainInterface_LocationChecked;
-            OnlinePlay.NetDataProcessed += MainInterface_LocationChecked;
+            MainInterface.LogicStateUpdated += MainInterface_LocationChecked;
         }
         private void ItemDisplay_Load(object sender, EventArgs e)
         {
@@ -94,7 +93,7 @@ namespace MMR_Tracker.Forms
         public static Bitmap GetImage(int Column, int Row)
         {
             Bitmap source = new Bitmap(@"Recources\Images\Nintendo 64 - The Legend of Zelda Majoras Mask - Item Icons.png");
-            return source.Clone(new System.Drawing.Rectangle(Column * 32, Row * 32, 32, 32), source.PixelFormat);
+            return source.Clone(new System.Drawing.Rectangle(Column * 32, Row * 32, 32, 32), PixelFormat.Format32bppPArgb);
         }
         public Point PostionItem(int Row, int Columb, int Spacing)
         {
@@ -502,7 +501,7 @@ namespace MMR_Tracker.Forms
             var End = System.DateTime.Now.Ticks;
             var total = (End - start) / 10000;
             Debugging.Log("Drawing Items took " + total.ToString() + " Milisecconds");
-
+            
             CurrentLogicState = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
         }
         public void Increaseposition()
@@ -887,7 +886,16 @@ namespace MMR_Tracker.Forms
         //Misc Functions
         private void MainInterface_LocationChecked(object sender, EventArgs e)
         {
-            UpdateScreen();
+            FormCollection fc = Application.OpenForms;
+
+            foreach (Form frm in fc)
+            {
+                if (frm.Name == "ItemDisplay")
+                {
+                    UpdateScreen();
+                    break;
+                }
+            }
         }
         private void RefreshPage()
         {
