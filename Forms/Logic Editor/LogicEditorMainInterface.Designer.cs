@@ -96,6 +96,7 @@
             this.LBRequired.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.LBRequired.FormattingEnabled = true;
             this.LBRequired.HorizontalScrollbar = true;
+            this.LBRequired.IntegralHeight = false;
             this.LBRequired.Location = new System.Drawing.Point(12, 44);
             this.LBRequired.Name = "LBRequired";
             this.LBRequired.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -111,6 +112,7 @@
             this.LBConditional.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.LBConditional.FormattingEnabled = true;
             this.LBConditional.HorizontalScrollbar = true;
+            this.LBConditional.IntegralHeight = false;
             this.LBConditional.Location = new System.Drawing.Point(267, 44);
             this.LBConditional.Name = "LBConditional";
             this.LBConditional.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -486,49 +488,49 @@
             this.saveLogicWithTrickDataDefaultToolStripMenuItem,
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem});
             this.saveLogicToolStripMenuItem.Name = "saveLogicToolStripMenuItem";
-            this.saveLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.saveLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.saveLogicToolStripMenuItem.Text = "Save Logic";
             this.saveLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // saveLogicWithTrickDataDefaultToolStripMenuItem
             // 
             this.saveLogicWithTrickDataDefaultToolStripMenuItem.Name = "saveLogicWithTrickDataDefaultToolStripMenuItem";
-            this.saveLogicWithTrickDataDefaultToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.saveLogicWithTrickDataDefaultToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
             this.saveLogicWithTrickDataDefaultToolStripMenuItem.Text = "Save Logic With Trick Data (Default)";
             this.saveLogicWithTrickDataDefaultToolStripMenuItem.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // saveLogicWothoutTrickDataLegacyToolStripMenuItem
             // 
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Name = "saveLogicWothoutTrickDataLegacyToolStripMenuItem";
-            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Text = "Save Logic Without Trick Data (Legacy)";
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Click += new System.EventHandler(this.saveLogicWothoutTrickDataLegacyToolStripMenuItem_Click);
             // 
             // applyToTrackerLogicToolStripMenuItem
             // 
             this.applyToTrackerLogicToolStripMenuItem.Name = "applyToTrackerLogicToolStripMenuItem";
-            this.applyToTrackerLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.applyToTrackerLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.applyToTrackerLogicToolStripMenuItem.Text = "Apply Logic to Tracker";
             this.applyToTrackerLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // loadLogicToolStripMenuItem
             // 
             this.loadLogicToolStripMenuItem.Name = "loadLogicToolStripMenuItem";
-            this.loadLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.loadLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.loadLogicToolStripMenuItem.Text = "Load Logic";
             this.loadLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnLoad_Click);
             // 
             // newLogicToolStripMenuItem
             // 
             this.newLogicToolStripMenuItem.Name = "newLogicToolStripMenuItem";
-            this.newLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.newLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.newLogicToolStripMenuItem.Text = "New Logic";
             this.newLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnNewLogic_Click);
             // 
             // clearLogicDataToolStripMenuItem
             // 
             this.clearLogicDataToolStripMenuItem.Name = "clearLogicDataToolStripMenuItem";
-            this.clearLogicDataToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.clearLogicDataToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.clearLogicDataToolStripMenuItem.Text = "Clear Logic Data";
             this.clearLogicDataToolStripMenuItem.Click += new System.EventHandler(this.clearLogicDataToolStripMenuItem_Click);
             // 
@@ -762,8 +764,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox LBRequired;
         private System.Windows.Forms.CheckBox chkNeedDay1;
         private System.Windows.Forms.CheckBox chkNeedNight1;
         private System.Windows.Forms.CheckBox chkNeedDay2;
@@ -821,5 +821,6 @@
         private System.Windows.Forms.ToolStripMenuItem cleanLogicEntryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem extractRequiredItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeRedundantConditionalsToolStripMenuItem;
+        public System.Windows.Forms.ListBox LBRequired;
     }
 }

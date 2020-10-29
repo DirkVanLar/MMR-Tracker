@@ -363,6 +363,7 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.DropDownOpening += new System.EventHandler(this.HandleUserPreset);
             // 
             // saveToolStripMenuItem
             // 
@@ -419,8 +420,9 @@
             this.stricterLogicHandelingToolStripMenuItem,
             this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
+            this.logicOptionsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.HandleUserPreset);
             // 
             // editRadnomizationOptionsToolStripMenuItem
             // 
@@ -465,7 +467,7 @@
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -504,7 +506,7 @@
             this.changeMiddleClickToStarToolStripMenuItem,
             this.changeFontToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -538,7 +540,7 @@
             // onlinePlayToolStripMenuItem
             // 
             this.onlinePlayToolStripMenuItem.Name = "onlinePlayToolStripMenuItem";
-            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.onlinePlayToolStripMenuItem.Text = "Online Play";
             this.onlinePlayToolStripMenuItem.Click += new System.EventHandler(this.onlinePlayToolStripMenuItem_Click);
             // 
@@ -555,7 +557,7 @@
             this.itemTrackerToolStripMenuItem,
             this.spoilerLogConverterToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // seedCheckerToolStripMenuItem
@@ -836,10 +838,6 @@
         private System.Windows.Forms.CheckBox CHKShowAll;
         private System.Windows.Forms.ComboBox CMBStart;
         private System.Windows.Forms.ComboBox CMBEnd;
-        private System.Windows.Forms.ListBox LBValidLocations;
-        private System.Windows.Forms.ListBox LBValidEntrances;
-        private System.Windows.Forms.ListBox LBCheckedLocations;
-        private System.Windows.Forms.ListBox LBPathFinder;
         private System.Windows.Forms.Button BTNFindPath;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -900,6 +898,10 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enableProgressiveItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAsUserToolStripMenuItem;
+        public System.Windows.Forms.ListBox LBValidLocations;
+        public System.Windows.Forms.ListBox LBValidEntrances;
+        public System.Windows.Forms.ListBox LBCheckedLocations;
+        public System.Windows.Forms.ListBox LBPathFinder;
     }
 }
 

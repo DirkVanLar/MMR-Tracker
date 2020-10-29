@@ -71,7 +71,7 @@ namespace MMR_Tracker_V2
             HandleStartArgs(sender, e, Environment.GetCommandLineArgs());
             ResizeObject();
             FormatMenuItems();
-            HandleUserPreset();
+            HandleUserPreset(sender, e);
             Tools.UpdateTrackerTitle();
         }
 
@@ -223,6 +223,16 @@ namespace MMR_Tracker_V2
             LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling = !LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling;
             FormatMenuItems();
         }
+
+        private void UpdateLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            optionsToolStripMenuItem.HideDropDown();
+            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
+            LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance);
+            PrintToListBox();
+            ResizeObject();
+            FormatMenuItems();
+        }
         #endregion Logic Options
         //Menu Strip => Options => Entrance Rando---------------------------------------------------------------------------
         #region Entrance Rando
@@ -332,87 +342,7 @@ namespace MMR_Tracker_V2
 
         private void ChangeFontToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form fontSelect = new Form();
-            fontSelect.FormBorderStyle = FormBorderStyle.FixedSingle;
-            fontSelect.Text = "Font";
-            fontSelect.Width = (220);
-            fontSelect.Height = (112);
-            try { fontSelect.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon()); } catch { }
-            //Font Size lable
-            Label lbSize = new Label();
-            lbSize.Text = "Font Size:";
-            lbSize.Location = new Point(2, 2);
-            lbSize.AutoSize = true;
-            lbSize.Parent = fontSelect;
-            fontSelect.Controls.Add(lbSize);
-            //Font Size Selector
-            NumericUpDown Size = new NumericUpDown();
-            Size.Location = new Point(lbSize.Width + 6, 2);
-            Size.Width += 20;
-            Size.Parent = fontSelect;
-            Size.DecimalPlaces = 2;
-            Size.Value = (decimal)LogicObjects.MainTrackerInstance.Options.FormFont.Size;
-            Size.ValueChanged += (s, ea) =>
-            {
-                var currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
-                LogicObjects.MainTrackerInstance.Options.FormFont = new Font(currentFont.FontFamily, (float)Size.Value, FontStyle.Regular);
-                LBValidLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
-                LBValidEntrances.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
-                LBCheckedLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
-                LBPathFinder.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
-                ResizeObject();
-            };
-            fontSelect.Controls.Add(Size);
-            //Font Style Lable
-            Label lbFont = new Label();
-            lbFont.Text = "Font Style:";
-            lbFont.Location = new Point(2, Size.Height + 2);
-            lbFont.AutoSize = true;
-            lbFont.Parent = fontSelect;
-            fontSelect.Controls.Add(lbFont);
-            //Create list of available fonts and find currently used Font
-            List<string> FontStyles = new List<string>();
-            int CurIndex = -1;
-            foreach (FontFamily font in System.Drawing.FontFamily.Families)
-            {
-                FontStyles.Add(font.Name);
-                if (font.Name == LogicObjects.MainTrackerInstance.Options.FormFont.FontFamily.Name) { CurIndex = FontStyles.Count - 1; }
-            }
-            //Font Style Selector
-            ComboBox cmbStyle = new ComboBox();
-            cmbStyle.Location = new Point(lbSize.Width + 6, Size.Height + 2);
-            cmbStyle.Parent = fontSelect;
-            cmbStyle.DataSource = FontStyles;
-            cmbStyle.Width = Size.Width;
-            if (CurIndex > 0) { cmbStyle.SelectedIndex = CurIndex; }
-            cmbStyle.SelectedIndexChanged += (s, ea) =>
-            {
-                var currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
-                LogicObjects.MainTrackerInstance.Options.FormFont = new Font(cmbStyle.SelectedItem.ToString(), currentFont.Size, FontStyle.Regular);
-                LBValidLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
-                LBValidEntrances.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
-                LBCheckedLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
-                LBPathFinder.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.5);
-                ResizeObject();
-            };
-            fontSelect.Controls.Add(cmbStyle);
-            //Default button
-            Button Default = new Button();
-            Default.Text = "Set to Default";
-            Default.Location = new Point(2, Size.Height + 4 + cmbStyle.Height);
-            Default.Width = lbSize.Width + Size.Width + 5;
-            Default.Click += (s, ea) =>
-            {
-                var currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
-                LogicObjects.MainTrackerInstance.Options.FormFont = SystemFonts.DefaultFont;
-                currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;
-                try { cmbStyle.SelectedIndex = cmbStyle.Items.IndexOf(currentFont.FontFamily.Name); } catch { }
-                Size.Value = (decimal)LogicObjects.MainTrackerInstance.Options.FormFont.Size;
-                PrintToListBox();
-                ResizeObject();
-            };
-            fontSelect.Controls.Add(Default);
-            fontSelect.Show();
+            Utility.EditFont();
         }
         #endregion MISC Options
         //Menu Strip => Tools---------------------------------------------------------------------------
@@ -455,15 +385,6 @@ namespace MMR_Tracker_V2
                 LogicEditor.EditorForm.Show();
                 LogicEditor.EditorForm.Focus();
             }
-        }
-
-        private void UpdateLogicToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-            LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance);
-            PrintToListBox();
-            ResizeObject();
-            FormatMenuItems();
         }
 
         private void PopoutPathfinderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1461,9 +1382,12 @@ namespace MMR_Tracker_V2
             Tools.UpdateTrackerTitle();
         }
 
-        private void HandleUserPreset()
+        private void HandleUserPreset(object sender, EventArgs e)
         {
-            List<ToolStripMenuItem> Presets = new List<ToolStripMenuItem>();
+            presetsToolStripMenuItem.DropDownItems.Clear();
+            changeLogicToolStripMenuItem.DropDownItems.Clear();
+            List<ToolStripMenuItem> NewPresets = new List<ToolStripMenuItem>();
+            List<ToolStripMenuItem> RecreatePresets = new List<ToolStripMenuItem>();
             if (!Directory.Exists(@"Recources\Other Files\Custom Logic Presets"))
             {
                 try
@@ -1477,42 +1401,53 @@ namespace MMR_Tracker_V2
             {
                 ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
                 {
-                    Name = $"PresetLogic{counter}",
+                    Name = $"PresetNewLogic{counter}",
                     Size = new System.Drawing.Size(180, 22),
                     Text = Path.GetFileName(i).Replace(".txt", "")
                 };
                 counter++;
                 CustomLogicPreset.Click += (s, ee) => LoadLogicPreset(i, "", s, ee);
-                Presets.Add(CustomLogicPreset);
+                NewPresets.Add(CustomLogicPreset);
+
+                ToolStripMenuItem CustomLogicPresetRecreate = new ToolStripMenuItem
+                {
+                    Name = $"PresetChangeLogic{counter}",
+                    Size = new System.Drawing.Size(180, 22),
+                    Text = Path.GetFileName(i).Replace(".txt", "")
+                };
+                counter++;
+                CustomLogicPresetRecreate.Click += (s, ee) => LoadLogicPreset(i, "", s, ee, false);
+                RecreatePresets.Add(CustomLogicPresetRecreate);
             }
             if (File.Exists(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt"))
             {
-                if (Debugging.ISDebugging || Environment.MachineName == "TIMOTHY-PC")
-                {
-                    File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Glitched Logic");
-                    File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/master/Logic%20File.txt");
-                    File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Entrance Rando");
-                    File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/Entrance-Radno-Logic/Logic%20File.txt");
-                }
-
+                AddPersonalPresets();
                 ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem();
+                ToolStripMenuItem CustomLogicPresetRecreate = new ToolStripMenuItem();
                 foreach (var i in File.ReadAllLines(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt"))
                 {
                     if (i.StartsWith("Name:"))
                     {
-                        CustomLogicPreset.Name = $"PresetLogic{counter}";
-                        counter++;
+                        CustomLogicPreset.Name = $"PresetNewLogic{counter}";
                         CustomLogicPreset.Text = i.Replace("Name:", "").Trim();
+
+                        CustomLogicPresetRecreate.Name = $"PresetChangeLogic{counter}";
+                        CustomLogicPresetRecreate.Text = i.Replace("Name:", "").Trim();
                     }
                     else if (i.StartsWith("Address:"))
                     {
                         CustomLogicPreset.Click += (s, ee) => LoadLogicPreset("", i.Replace("Address:", "").Trim(), s, ee);
-                        presetsToolStripMenuItem.DropDownItems.Add(CustomLogicPreset);
+                        NewPresets.Add(CustomLogicPreset);
                         CustomLogicPreset = new ToolStripMenuItem();
+
+                        CustomLogicPresetRecreate.Click += (s, ee) => LoadLogicPreset("", i.Replace("Address:", "").Trim(), s, ee, false);
+                        RecreatePresets.Add(CustomLogicPresetRecreate);
+                        CustomLogicPresetRecreate = new ToolStripMenuItem();
                     }
+                    counter++;
                 }
             }
-            if (Presets.Count() < 1)
+            if (NewPresets.Count() < 1)
             {
                 ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
                 {
@@ -1525,12 +1460,43 @@ namespace MMR_Tracker_V2
             }
             else
             {
-                foreach (var i in Presets.OrderBy(x => x.Text))
+                foreach (var i in NewPresets.OrderBy(x => x.Text))
+                {
                     presetsToolStripMenuItem.DropDownItems.Add(i);
+                }
+                foreach (var i in RecreatePresets.OrderBy(x => x.Text))
+                {
+                    changeLogicToolStripMenuItem.DropDownItems.Add(i);
+                }
+                ToolStripMenuItem newRecreatePreset = new ToolStripMenuItem
+                {
+                    Name = $"PresetChangeLogic{counter + 1}",
+                    Size = new System.Drawing.Size(180, 22),
+                    Text = "Browse"
+                };
+                newRecreatePreset.Click += (s, ee) => LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance);
+                changeLogicToolStripMenuItem.DropDownItems.Add(newRecreatePreset);
+            }
+
+            void AddPersonalPresets()
+            {
+                if (Debugging.ISDebugging || Environment.MachineName == "TIMOTHY-PC")
+                {
+                    if (!File.ReadAllLines(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt").Contains("Name: Thedrummonger Glitched Logic"))
+                    {
+                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Glitched Logic");
+                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/master/Logic%20File.txt");
+                    }
+                    if (!File.ReadAllLines(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt").Contains("Name: Thedrummonger Entrance Rando"))
+                    {
+                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Entrance Rando");
+                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/Entrance-Radno-Logic/Logic%20File.txt");
+                    }
+                }
             }
         }
 
-        public void LoadLogicPreset(string Path, string WebPath, object sender, EventArgs e)
+        public void LoadLogicPreset(string Path, string WebPath, object sender, EventArgs e, bool New = true)
         {
             try
             {
@@ -1548,8 +1514,16 @@ namespace MMR_Tracker_V2
                     Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                     Debugging.Log(WebPath);
                 }
-                LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
-                Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
+
+                if (New)
+                {
+                    LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
+                    Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
+                }
+                else
+                {
+                    LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance, Lines);
+                }
                 FormatMenuItems();
                 ResizeObject();
                 PrintToListBox();
