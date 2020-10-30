@@ -10,8 +10,8 @@ Address: https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomi
 Name: MMR Glitched
 Address: https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt
 Name: Ocarina of Time
-Address: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/OOTR%20Logic.txt.dis
+Address: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%Game%Premade%Logic/OOTR%20Logic.txt
 Name: Wind Waker
-Address: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/WWR%20Logic.txt.dis
+Address: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%Game%Premade%Logic/WWR%20Logic.txt
 Name: Skyward Sword
-Address: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/SSR%20Logic.txt.dis
+Address: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%Game%Premade%Logic/SSR%20Logic.txt

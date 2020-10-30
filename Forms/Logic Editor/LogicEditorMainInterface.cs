@@ -126,6 +126,32 @@ namespace MMR_Tracker.Forms
 
         //Button
 
+        public static void LoadLogicPreset(string Path, string WebPath)
+        {
+            try
+            {
+                string[] Lines = null;
+                if (File.Exists(Path))
+                {
+                    Lines = File.ReadAllLines(Path);
+                    Debugging.Log(Path);
+                }
+                else
+                {
+                    System.Net.WebClient wc = new System.Net.WebClient();
+                    string webData = wc.DownloadString(WebPath);
+                    Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                    Debugging.Log(WebPath);
+                }
+
+                if (EditorForm != null)
+                {
+                    EditorForm.LoadLogic(Lines);
+                }
+            }
+            catch { }
+        }
+
         private void BtnLoad_Click(object sender, EventArgs e)
         {
             LoadLogic();
@@ -1206,6 +1232,11 @@ namespace MMR_Tracker.Forms
             var Len = e.Graphics.MeasureString(LBConditional.Items[e.Index].ToString(), F).Width;
             if (Len > LBConditional.Width && (int)Len + 2 > LBConditional.HorizontalExtent) { LBConditional.HorizontalExtent = (int)Len + 2; }
 
+        }
+
+        private void fileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            Tools.HandleUserPreset(sender, e);
         }
     }
 }

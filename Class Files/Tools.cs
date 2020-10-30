@@ -945,6 +945,190 @@ namespace MMR_Tracker.Class_Files
             }
             return false;
         }
+        public static void HandleUserPreset(object sender, EventArgs e)
+        {
+            MainInterface.CurrentProgram.presetsToolStripMenuItem.DropDownItems.Clear();
+            MainInterface.CurrentProgram.changeLogicToolStripMenuItem.DropDownItems.Clear();
+            if (LogicEditor.EditorForm != null)
+            {
+                LogicEditor.EditorForm.templatesToolStripMenuItem.DropDownItems.Clear();
+            }
+            List<ToolStripMenuItem> NewPresets = new List<ToolStripMenuItem>();
+            List<ToolStripMenuItem> RecreatePresets = new List<ToolStripMenuItem>();
+            List<ToolStripMenuItem> LogicEditorPresets = new List<ToolStripMenuItem>();
+            int counter = 0;
+            if (!Directory.Exists(@"Recources\Other Files\Custom Logic Presets"))
+            {
+                try
+                {
+                    Directory.CreateDirectory((@"Recources\Other Files\Custom Logic Presets"));
+                }
+                catch { }
+            }
+            else
+            {
+                foreach (var i in Directory.GetFiles(@"Recources\Other Files\Custom Logic Presets").Where(x => x.EndsWith(".txt") && !x.Contains("Web Presets.txt")))
+                {
+                    ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
+                    {
+                        Name = $"PresetNewLogic{counter}",
+                        Size = new System.Drawing.Size(180, 22),
+                        Text = Path.GetFileName(i).Replace(".txt", "")
+                    };
+                    counter++;
+                    CustomLogicPreset.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset(i, "", s, ee);
+                    NewPresets.Add(CustomLogicPreset);
+
+                    ToolStripMenuItem CustomLogicPresetRecreate = new ToolStripMenuItem
+                    {
+                        Name = $"PresetChangeLogic{counter}",
+                        Size = new System.Drawing.Size(180, 22),
+                        Text = Path.GetFileName(i).Replace(".txt", "")
+                    };
+                    counter++;
+                    CustomLogicPresetRecreate.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset(i, "", s, ee, false);
+                    RecreatePresets.Add(CustomLogicPresetRecreate);
+
+                    ToolStripMenuItem CustomLogicPresetLogicEditor = new ToolStripMenuItem
+                    {
+                        Name = $"PresetLogicEditor{counter}",
+                        Size = new System.Drawing.Size(180, 22),
+                        Text = Path.GetFileName(i).Replace(".txt", "")
+                    };
+                    counter++;
+                    CustomLogicPresetLogicEditor.Click += (s, ee) => LogicEditor.LoadLogicPreset(i, "");
+                    LogicEditorPresets.Add(CustomLogicPresetLogicEditor);
+                }
+            }
+            AddDevPresets();
+            if (File.Exists(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt"))
+            {
+                var TextFile = File.ReadAllLines(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt");
+                AddPersonalPresets(TextFile);
+                ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem();
+                ToolStripMenuItem CustomLogicPresetRecreate = new ToolStripMenuItem();
+                ToolStripMenuItem CustomLogicPresetEditor = new ToolStripMenuItem();
+                foreach (var i in TextFile)
+                {
+                    if (i.StartsWith("Name:"))
+                    {
+                        CustomLogicPreset.Name = $"PresetNewLogic{counter}";
+                        CustomLogicPreset.Text = i.Replace("Name:", "").Trim();
+
+                        CustomLogicPresetRecreate.Name = $"PresetChangeLogic{counter}";
+                        CustomLogicPresetRecreate.Text = i.Replace("Name:", "").Trim();
+
+                        CustomLogicPresetEditor.Name = $"PresetChangeLogic{counter}";
+                        CustomLogicPresetEditor.Text = i.Replace("Name:", "").Trim();
+                    }
+                    else if (i.StartsWith("Address:"))
+                    {
+                        CustomLogicPreset.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset("", i.Replace("Address:", "").Trim(), s, ee);
+                        NewPresets.Add(CustomLogicPreset);
+                        CustomLogicPreset = new ToolStripMenuItem();
+
+                        CustomLogicPresetRecreate.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset("", i.Replace("Address:", "").Trim(), s, ee, false);
+                        RecreatePresets.Add(CustomLogicPresetRecreate);
+                        CustomLogicPresetRecreate = new ToolStripMenuItem();
+
+                        CustomLogicPresetEditor.Click += (s, ee) => LogicEditor.LoadLogicPreset("", i.Replace("Address:", "").Trim());
+                        LogicEditorPresets.Add(CustomLogicPresetEditor);
+                        CustomLogicPresetEditor = new ToolStripMenuItem();
+                    }
+                    counter++;
+                }
+            }
+            if (NewPresets.Count() < 1)
+            {
+                ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
+                {
+                    Name = "newToolStripMenuItem",
+                    Size = new System.Drawing.Size(180, 22),
+                    Text = "No Presets Found (Open Folder)"
+                };
+                CustomLogicPreset.Click += (s, ee) => MainInterface.CurrentProgram.presetsToolStripMenuItem_Click(s, ee);
+                MainInterface.CurrentProgram.presetsToolStripMenuItem.DropDownItems.Add(CustomLogicPreset);
+            }
+            else
+            {
+                foreach (var i in NewPresets.OrderBy(x => x.Text))
+                {
+                    MainInterface.CurrentProgram.presetsToolStripMenuItem.DropDownItems.Add(i);
+                }
+                foreach (var i in RecreatePresets.OrderBy(x => x.Text))
+                {
+                    MainInterface.CurrentProgram.changeLogicToolStripMenuItem.DropDownItems.Add(i);
+                }
+                if (LogicEditor.EditorForm != null)
+                {
+                    foreach (var i in LogicEditorPresets.OrderBy(x => x.Text))
+                    {
+                        LogicEditor.EditorForm.templatesToolStripMenuItem.DropDownItems.Add(i);
+                    }
+                }
+                ToolStripMenuItem newRecreatePreset = new ToolStripMenuItem
+                {
+                    Name = $"PresetChangeLogic{counter + 1}",
+                    Size = new System.Drawing.Size(180, 22),
+                    Text = "Browse"
+                };
+                newRecreatePreset.Click += (s, ee) => LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance);
+                MainInterface.CurrentProgram.changeLogicToolStripMenuItem.DropDownItems.Add(newRecreatePreset);
+            }
+
+            void AddPersonalPresets(string[] TextFile)
+            {
+                if (Debugging.ISDebugging || Environment.MachineName == "TIMOTHY-PC")
+                {
+                    if (!TextFile.Contains("Name: Thedrummonger Glitched Logic"))
+                    {
+                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Glitched Logic");
+                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/master/Logic%20File.txt");
+                    }
+                    if (!TextFile.Contains("Name: Thedrummonger Entrance Rando"))
+                    {
+                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Entrance Rando");
+                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/Entrance-Radno-Logic/Logic%20File.txt");
+                    }
+                }
+            }
+            void AddDevPresets()
+            {
+                if (!Debugging.ISDebugging || !Directory.Exists(@"Recources\Other Files\Other Game Premade Logic")) { return; }
+                foreach (var i in Directory.GetFiles(@"Recources\Other Files\Other Game Premade Logic").Where(x => x.EndsWith(".txt") && !x.Contains("Web Presets.txt")))
+                {
+                    ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
+                    {
+                        Name = $"PresetNewLogic{counter}",
+                        Size = new System.Drawing.Size(180, 22),
+                        Text = Path.GetFileName(i).Replace(".txt", "") + " DEV"
+                    };
+                    counter++;
+                    CustomLogicPreset.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset(i, "", s, ee);
+                    NewPresets.Add(CustomLogicPreset);
+
+                    ToolStripMenuItem CustomLogicPresetRecreate = new ToolStripMenuItem
+                    {
+                        Name = $"PresetChangeLogic{counter}",
+                        Size = new System.Drawing.Size(180, 22),
+                        Text = Path.GetFileName(i).Replace(".txt", "") + " DEV"
+                    };
+                    counter++;
+                    CustomLogicPresetRecreate.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset(i, "", s, ee, false);
+                    RecreatePresets.Add(CustomLogicPresetRecreate);
+
+                    ToolStripMenuItem CustomLogicPresetEditor = new ToolStripMenuItem
+                    {
+                        Name = $"PresetChangeLogic{counter}",
+                        Size = new System.Drawing.Size(180, 22),
+                        Text = Path.GetFileName(i).Replace(".txt", "") + " DEV"
+                    };
+                    counter++;
+                    CustomLogicPresetEditor.Click += (s, ee) => LogicEditor.LoadLogicPreset(i, "");
+                    LogicEditorPresets.Add(CustomLogicPresetEditor);
+                }
+            }
+        }
 
     }
 }

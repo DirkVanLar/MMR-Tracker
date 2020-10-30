@@ -1,4 +1,6 @@
-﻿namespace MMR_Tracker_V2
+﻿using MMR_Tracker.Class_Files;
+
+namespace MMR_Tracker_V2
 {
     partial class MainInterface
     {
@@ -363,7 +365,7 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
-            this.fileToolStripMenuItem.DropDownOpening += new System.EventHandler(this.HandleUserPreset);
+            this.fileToolStripMenuItem.DropDownOpening += new System.EventHandler(this.PresetDropDownOpening);
             // 
             // saveToolStripMenuItem
             // 
@@ -422,7 +424,7 @@
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
             this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
-            this.logicOptionsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.HandleUserPreset);
+            this.logicOptionsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.PresetDropDownOpening);
             // 
             // editRadnomizationOptionsToolStripMenuItem
             // 
@@ -840,7 +842,6 @@
         private System.Windows.Forms.ComboBox CMBEnd;
         private System.Windows.Forms.Button BTNFindPath;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
@@ -889,12 +890,10 @@
         private System.Windows.Forms.ToolStripMenuItem indexWarpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zoraTrialMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem curiosityShopBottlePurchaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changeLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem goronGraveLadderClimbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lensCavePathsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spoilerLogLookupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spoilerLogConverterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem presetsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enableProgressiveItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAsUserToolStripMenuItem;
@@ -902,6 +901,9 @@
         public System.Windows.Forms.ListBox LBValidEntrances;
         public System.Windows.Forms.ListBox LBCheckedLocations;
         public System.Windows.Forms.ListBox LBPathFinder;
+        public System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem presetsToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem changeLogicToolStripMenuItem;
     }
 }
 

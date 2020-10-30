@@ -329,21 +329,21 @@
     <Content Include="Recources\Other Files\Categories.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Recources\Other Files\Custom Logic Presets\OOTR Logic.txt.dis">
+    <Content Include="Recources\Other Files\Other Game Premade Logic\OOTR Logic.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Recources\Other Files\Custom Logic Presets\SSR Logic.txt.dis">
+    </Content>
+    <Content Include="Recources\Other Files\Other Game Premade Logic\SSR Logic.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <Content Include="Recources\Other Files\Custom Logic Presets\Web Presets.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Recources\Other Files\README Information for files in this folder.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Recources\Other Files\Custom Logic Presets\WWR Logic.txt.dis">
+    <Content Include="Recources\Other Files\Other Game Premade Logic\WWR Logic.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="NATUPNPLib">

@@ -83,7 +83,7 @@ namespace MMR_Tracker.Forms
 
         private void CreateOOTR_Click(object sender, EventArgs e)
         {
-            MainInterface.CurrentProgram.LoadLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/OOTR%20Logic.txt.dis", sender, e);
+            MainInterface.CurrentProgram.LoadLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%Game%Premade%Logic/OOTR%20Logic.txt", sender, e);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -93,12 +93,12 @@ namespace MMR_Tracker.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            LoadLogicData(GetWebData("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/OOTR%20Logic.txt.dis"));
+            LoadLogicData(GetWebData("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%Game%Premade%Logic/OOTR%20Logic.txt"));
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            MainInterface.CurrentProgram.LoadLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/WWR%20Logic.txt.dis", sender, e);
+            MainInterface.CurrentProgram.LoadLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%Game%Premade%Logic/WWR%20Logic.txt", sender, e);
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -108,7 +108,7 @@ namespace MMR_Tracker.Forms
 
         private void button5_Click(object sender, EventArgs e)
         {
-            LoadLogicData(GetWebData("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/WWR%20Logic.txt.dis"));
+            LoadLogicData(GetWebData("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%Game%Premade%Logic/WWR%20Logic.txt"));
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -131,7 +131,7 @@ namespace MMR_Tracker.Forms
 
         private void button15_Click(object sender, EventArgs e)
         {
-            MainInterface.CurrentProgram.LoadLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/SSR%20Logic.txt.dis", sender, e);
+            MainInterface.CurrentProgram.LoadLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%Game%Premade%Logic/SSR%20Logic.txt", sender, e);
         }
 
         private void button14_Click(object sender, EventArgs e)
@@ -141,7 +141,7 @@ namespace MMR_Tracker.Forms
 
         private void button13_Click(object sender, EventArgs e)
         {
-            LoadLogicData(GetWebData("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Custom%20Logic%20Presets/SSR%20Logic.txt.dis"));
+            LoadLogicData(GetWebData("https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%Game%Premade%Logic/SSR%20Logic.txt"));
         }
     }
 }

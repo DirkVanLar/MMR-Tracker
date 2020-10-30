@@ -87,6 +87,7 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.chkIsTrick = new System.Windows.Forms.CheckBox();
+            this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -476,11 +477,13 @@
             this.saveLogicToolStripMenuItem,
             this.applyToTrackerLogicToolStripMenuItem,
             this.loadLogicToolStripMenuItem,
+            this.templatesToolStripMenuItem,
             this.newLogicToolStripMenuItem,
             this.clearLogicDataToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.DropDownOpening += new System.EventHandler(this.fileToolStripMenuItem_DropDownOpening);
             // 
             // saveLogicToolStripMenuItem
             // 
@@ -703,6 +706,12 @@
             this.chkIsTrick.UseVisualStyleBackColor = false;
             this.chkIsTrick.CheckedChanged += new System.EventHandler(this.chkIsTrick_CheckedChanged);
             // 
+            // templatesToolStripMenuItem
+            // 
+            this.templatesToolStripMenuItem.Name = "templatesToolStripMenuItem";
+            this.templatesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.templatesToolStripMenuItem.Text = "Templates";
+            // 
             // LogicEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -822,5 +831,6 @@
         private System.Windows.Forms.ToolStripMenuItem extractRequiredItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeRedundantConditionalsToolStripMenuItem;
         public System.Windows.Forms.ListBox LBRequired;
+        public System.Windows.Forms.ToolStripMenuItem templatesToolStripMenuItem;
     }
 }
