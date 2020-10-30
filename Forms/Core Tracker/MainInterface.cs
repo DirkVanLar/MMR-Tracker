@@ -1408,10 +1408,11 @@ namespace MMR_Tracker_V2
             }
             if (File.Exists(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt"))
             {
-                AddPersonalPresets();
+                var TextFile = File.ReadAllLines(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt");
+                AddPersonalPresets(TextFile);
                 ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem();
                 ToolStripMenuItem CustomLogicPresetRecreate = new ToolStripMenuItem();
-                foreach (var i in File.ReadAllLines(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt"))
+                foreach (var i in TextFile)
                 {
                     if (i.StartsWith("Name:"))
                     {
@@ -1465,16 +1466,16 @@ namespace MMR_Tracker_V2
                 changeLogicToolStripMenuItem.DropDownItems.Add(newRecreatePreset);
             }
 
-            void AddPersonalPresets()
+            void AddPersonalPresets(string[] TextFile)
             {
                 if (Debugging.ISDebugging || Environment.MachineName == "TIMOTHY-PC")
                 {
-                    if (!File.ReadAllLines(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt").Contains("Name: Thedrummonger Glitched Logic"))
+                    if (!TextFile.Contains("Name: Thedrummonger Glitched Logic"))
                     {
                         File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Glitched Logic");
                         File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/master/Logic%20File.txt");
                     }
-                    if (!File.ReadAllLines(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt").Contains("Name: Thedrummonger Entrance Rando"))
+                    if (!TextFile.Contains("Name: Thedrummonger Entrance Rando"))
                     {
                         File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Entrance Rando");
                         File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/Entrance-Radno-Logic/Logic%20File.txt");
