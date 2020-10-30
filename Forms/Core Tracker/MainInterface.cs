@@ -40,11 +40,13 @@ namespace MMR_Tracker_V2
         #region Form Events
         private void MainInterface_Load(object sender, EventArgs e)
         {
-            //Ensure the current directory is always the base directory in case the application is opened from a MMRTSave file elsewhere on the system
-            System.IO.Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
-            //Since only one instance of the main interface will ever be open, We can store that instance in a variable to be called from static code.
+            //Since only one instance of the main interface should ever be open, We can store that instance in a variable to be called from static code.
+            if (CurrentProgram != null) { Close(); return; }
             CurrentProgram = this;
 
+            //Ensure the current directory is always the base directory in case the application is opened from a MMRTSave file elsewhere on the system
+            System.IO.Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+            
             DateTime date = DateTime.Now;
             string DateString = date.ToString("dd-MM-yy-HH-mm-ss-ff");
             Debugging.LogFile = @"Recources\Logs\Log-" + DateString + ".txt";
@@ -117,7 +119,7 @@ namespace MMR_Tracker_V2
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.fileToolStripMenuItem.HideDropDown();
-            Tools.ParseLogicFile();
+            if (!Tools.ParseLogicFile()) { return; }
             FormatMenuItems();
             ResizeObject();
             PrintToListBox();
@@ -1419,7 +1421,7 @@ namespace MMR_Tracker_V2
                 }
                 else
                 {
-                    Tools.ParseLogicFile(args[1]);
+                    if (!Tools.ParseLogicFile(args[1])) { return; }
                     FormatMenuItems();
                     ResizeObject();
                     PrintToListBox();

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace MMR_Tracker.Class_Files
@@ -559,13 +560,13 @@ namespace MMR_Tracker.Class_Files
                 }
                 catch
                 {
-                    MessageBox.Show("Access Denied");
+                    MessageBox.Show("Access Denied. Ensure you have proper access to the folder you are running the tracker from.");
                     System.Windows.Forms.Application.Exit();
                 }
 
                 if (!Debugging.ISDebugging || (Control.ModifierKeys == Keys.Shift))
                 {
-                    var firsttime = MessageBox.Show("Welcome to the Majoras Mask Randomizer Tracker by thedrummonger! It looks like this is your first time running the tracker. If so select Yes. Otherwise, select No.", "First Time Setup", MessageBoxButtons.YesNo);
+                    var firsttime = MessageBox.Show("It looks like this is your first time running this tracker. If so select Yes. Otherwise, select No.", "First Time Setup", MessageBoxButtons.YesNo);
                     if (firsttime == DialogResult.Yes)
                     {
                         MessageBox.Show("Please Take this opportunity to familliarize yourself with how to use this tracker. There are many features that are not obvious or explained anywhere outside of the about page. This information can be accessed at any time by selecting 'Info' -> 'About'. Click OK to show the About Page. Once you have read through the information, close the window to return to setup.", "How to Use", MessageBoxButtons.OK);
@@ -596,24 +597,20 @@ namespace MMR_Tracker.Class_Files
                         if (UpdateCheck == DialogResult.No) { options.Add("CheckForUpdates:0"); }
                         else { options.Add("CheckForUpdates:1"); }
                     }
-                    else
-                    {
-                        options.Add("ToolTips:1");
-                        options.Add("SeperateMarked:0");
-                        options.Add("MiddleClickFunction:0");
-                        options.Add("DisableEntrancesOnStartup:0");
-                        options.Add("CheckForUpdates:0");
-                    }
                 }
-                else
-                {
-                    options.Add("ToolTips:1");
-                    options.Add("SeperateMarked:0");
-                    options.Add("MiddleClickFunction:0");
-                    options.Add("DisableEntrancesOnStartup:0");
-                    options.Add("CheckForUpdates:0");
-                }
+
+                SetDefault();
                 File.WriteAllLines("options.txt", options);
+
+                void SetDefault()
+                {
+                    if (!options.Any(x => x.Contains("ToolTips"))) { options.Add("ToolTips:1"); }
+                    if (!options.Any(x => x.Contains("SeperateMarked"))) { options.Add("SeperateMarked:0"); }
+                    if (!options.Any(x => x.Contains("MiddleClickFunction"))) { options.Add("MiddleClickFunction:0"); }
+                    if (!options.Any(x => x.Contains("DisableEntrancesOnStartup"))) { options.Add("DisableEntrancesOnStartup:0"); }
+                    if (!options.Any(x => x.Contains("CheckForUpdates"))) { options.Add("CheckForUpdates:1"); }
+                }
+
             }
         }
         public static List<int> ResolveFakeToRealItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic)
@@ -817,13 +814,13 @@ namespace MMR_Tracker.Class_Files
             }
             return result;
         }
-        public static void ParseLogicFile(string file = "")
+        public static bool ParseLogicFile(string file = "")
         {
             if (file == "")
             {
-                if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
+                if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return false; }
                 file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSAV;*.html)|*.txt;*.MMRTSAV;*.html");
-                if (file == "") { return; }
+                if (file == "") { return false; }
             }
 
             var saveFile = file.EndsWith(".MMRTSAV");
@@ -840,7 +837,7 @@ namespace MMR_Tracker.Class_Files
                 catch
                 {
                     MessageBox.Show("Save File Not Valid.");
-                    return;
+                    return false;
                 }
                 RawLogicFile = SaveFileTemplate.RawLogicFile;
             }
@@ -853,11 +850,11 @@ namespace MMR_Tracker.Class_Files
                         var newLine = line.Replace("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">", "{\"GameplaySettings\":");
                         newLine = newLine.Replace("</code><br/>", "}");
                         try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(newLine).GameplaySettings; }
-                        catch { MessageBox.Show("Not a valid HTML Spoiler Log!"); return; }
+                        catch { MessageBox.Show("Not a valid HTML Spoiler Log!"); return false; }
                         break;
                     }
                 }
-                setLogicFile();
+                if (!setLogicFile()) { return false; }
 
             }
             else if (TextLog)
@@ -872,10 +869,10 @@ namespace MMR_Tracker.Class_Files
                         break;
                     }
                 }
-                setLogicFile();
+                if (!setLogicFile()) { return false; }
             }
 
-            void setLogicFile()
+            bool setLogicFile()
             {
                 if (SettingFile.LogicMode == "Casual")
                 {
@@ -891,9 +888,10 @@ namespace MMR_Tracker.Class_Files
                 }
                 else
                 {
-                    if (!File.Exists(SettingFile.UserLogicFileName)) { return; }
+                    if (!File.Exists(SettingFile.UserLogicFileName)) { return false; }
                     RawLogicFile = File.ReadAllLines(SettingFile.UserLogicFileName);
                 }
+                return true;
             }
 
             LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
@@ -916,7 +914,7 @@ namespace MMR_Tracker.Class_Files
             else if (HTMLLog || TextLog)
             {
                 LogicEditing.WriteSpoilerLogToLogic(LogicObjects.MainTrackerInstance, file);
-                if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) { MessageBox.Show("No spoiler data found!"); return; }
+                if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) { MessageBox.Show("No spoiler data found!"); }
                 else if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic, true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
             }
             else if (LogicObjects.MainTrackerInstance.EntranceRando && LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup)
@@ -929,6 +927,7 @@ namespace MMR_Tracker.Class_Files
                 }
             }
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            return true;
         }
         public static bool TestForTextSpoiler(string[] RawLogicFile)
         {
@@ -1013,25 +1012,25 @@ namespace MMR_Tracker.Class_Files
                     if (i.StartsWith("Name:"))
                     {
                         CustomLogicPreset.Name = $"PresetNewLogic{counter}";
-                        CustomLogicPreset.Text = i.Replace("Name:", "").Trim();
+                        CustomLogicPreset.Text = Regex.Replace(i, "Name:", "", RegexOptions.IgnoreCase).Trim();
 
                         CustomLogicPresetRecreate.Name = $"PresetChangeLogic{counter}";
-                        CustomLogicPresetRecreate.Text = i.Replace("Name:", "").Trim();
+                        CustomLogicPresetRecreate.Text = Regex.Replace(i, "Name:", "", RegexOptions.IgnoreCase).Trim();
 
                         CustomLogicPresetEditor.Name = $"PresetChangeLogic{counter}";
-                        CustomLogicPresetEditor.Text = i.Replace("Name:", "").Trim();
+                        CustomLogicPresetEditor.Text = Regex.Replace(i, "Name:", "", RegexOptions.IgnoreCase).Trim();
                     }
                     else if (i.StartsWith("Address:"))
                     {
-                        CustomLogicPreset.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset("", i.Replace("Address:", "").Trim(), s, ee);
+                        CustomLogicPreset.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset("", Regex.Replace(i, "Address:", "", RegexOptions.IgnoreCase).Trim(), s, ee);
                         NewPresets.Add(CustomLogicPreset);
                         CustomLogicPreset = new ToolStripMenuItem();
 
-                        CustomLogicPresetRecreate.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset("", i.Replace("Address:", "").Trim(), s, ee, false);
+                        CustomLogicPresetRecreate.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset("", Regex.Replace(i, "Address:", "", RegexOptions.IgnoreCase).Trim(), s, ee, false);
                         RecreatePresets.Add(CustomLogicPresetRecreate);
                         CustomLogicPresetRecreate = new ToolStripMenuItem();
 
-                        CustomLogicPresetEditor.Click += (s, ee) => LogicEditor.LoadLogicPreset("", i.Replace("Address:", "").Trim());
+                        CustomLogicPresetEditor.Click += (s, ee) => LogicEditor.LoadLogicPreset("", Regex.Replace(i, "Address:", "", RegexOptions.IgnoreCase).Trim());
                         LogicEditorPresets.Add(CustomLogicPresetEditor);
                         CustomLogicPresetEditor = new ToolStripMenuItem();
                     }

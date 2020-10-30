@@ -12,7 +12,7 @@ namespace MMR_Tracker_V2
     class VersionHandeling
     {
         //Logic Version Handeling
-        public static string trackerVersion = "V1.10";
+        public static string trackerVersion = "V1.11";
 
         public static Dictionary<int, int> AreaClearDictionary(LogicObjects.TrackerInstance Instance)
         {
@@ -90,9 +90,9 @@ namespace MMR_Tracker_V2
                     versionData.Gamecode = i[0].Replace("-version", "");
                 }
                 var j = LogicFile[0].Split(' ');
-                if (j.Count() > 1)
+                if (j.Count() > 1 && int.TryParse(j[1], out int Ver))
                 {
-                    versionData.Version = Convert.ToInt32(j[1]);
+                    versionData.Version = Ver;
                 }
             }
             return versionData;
