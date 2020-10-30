@@ -109,7 +109,7 @@ namespace MMR_Tracker_V2
 
             Debugging.Log($"Latest Version: { lateset.TagName } Current Version { trackerVersion }");
 
-            if (VersionHandeling.CompareVersions(lateset.TagName, trackerVersion))
+            if (VersionHandeling.CompareVersions(lateset.TagName, trackerVersion, 1))
             {
                 if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Debugging.Log($"Tracker Out of Date. Latest Version: { lateset.TagName } Current Version { trackerVersion }"); }
                 else
@@ -121,24 +121,11 @@ namespace MMR_Tracker_V2
             return false;
         }
 
-        public static bool CompareVersions(string V1, string V2)
+        public static bool CompareVersions(string V1, string V2, int Check)
         {
-            List<int> Version1;
-            List<int> Version2;
-            try
-            {
-                Version1 = V1.Replace("V", "").Split('.').Select(x => Convert.ToInt32(x)).ToList();
-                Version2 = V2.Replace("V", "").Split('.').Select(x => Convert.ToInt32(x)).ToList();
-            }
-            catch { return false; }
-
-            for (var i = 0; i < Version1.Count(); i++)
-            {
-                if (i >= Version2.Count()) { Version2.Add(0); }
-                if (Version1[i] > Version2[i]) { return true; }
-                if (Version1[i] < Version2[i]) { return false; }
-            }
-            return false;
+            var CleanedV1 = new Version(string.Join("", V1.Where(x => char.IsDigit(x) || x == '.')));
+            var CleanedV2 = new Version(string.Join("", V2.Where(x => char.IsDigit(x) || x == '.')));
+            return CleanedV1.CompareTo(CleanedV2) == Check;
         }
     }
 }
