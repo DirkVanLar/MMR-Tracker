@@ -1384,7 +1384,7 @@ namespace MMR_Tracker_V2
                 catch { return; }
             }
             int counter = 0;
-            foreach (var i in Directory.GetFiles(@"Recources\Other Files\Custom Logic Presets").Where(x => x.Contains(".txt") && !x.Contains("Web Presets.txt")))
+            foreach (var i in Directory.GetFiles(@"Recources\Other Files\Custom Logic Presets").Where(x => x.EndsWith(".txt") && !x.Contains("Web Presets.txt")))
             {
                 ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
                 {
