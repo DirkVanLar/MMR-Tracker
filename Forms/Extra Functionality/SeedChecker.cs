@@ -69,13 +69,6 @@ namespace MMR_Tracker
         private void BtnCheckSeed_Click(object sender, EventArgs e)
         {
             var logicCopy = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
-            foreach (var i in logicCopy.Logic)
-            {
-                i.Available = false;
-                i.Checked = false;
-                i.Aquired = false;
-                i.Options = 0;
-            }
             if (!Utility.CheckforSpoilerLog(logicCopy.Logic))
             {
                 var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
@@ -87,7 +80,15 @@ namespace MMR_Tracker
             else if (!Utility.CheckforSpoilerLog(logicCopy.Logic, true))
             { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
 
-            foreach (var entry in logicCopy.Logic) { if (entry.SpoilerRandom > -1) { entry.RandomizedItem = entry.SpoilerRandom; } }
+            foreach (var entry in logicCopy.Logic)
+            {
+                entry.Available = false;
+                entry.Checked = false;
+                entry.Aquired = false;
+                if (entry.SpoilerRandom > -1) { entry.RandomizedItem = entry.SpoilerRandom; }//Make the items randomized item its spoiler item, just for consitancy sake
+                else if (entry.RandomizedItem > -1) { entry.SpoilerRandom = entry.RandomizedItem; }//If the item doesn't have spoiler data, but does have a randomized item. set it's spoiler data to the randomized item
+                else if (entry.Unrandomized(2)) { entry.SpoilerRandom = entry.ID; entry.RandomizedItem = entry.ID; }//If the item doesn't have spoiler data or a randomized item and is unrandomized (manual), set it's spoiler item to it's self 
+            }
 
             LBResult.Items.Clear();
             List<int> Ignored = new List<int>();
