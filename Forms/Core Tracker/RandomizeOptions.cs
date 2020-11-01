@@ -13,12 +13,27 @@ namespace MMR_Tracker_V2
         public static bool updating = false;
         public static bool PauseListview = false;
         public List<LogicObjects.LogicEntry> CheckedItems = new List<LogicObjects.LogicEntry>();
+        public static List<LogicObjects.LogicEntry> ItemStringLogic;
         public RandomizeOptions()
         {
             InitializeComponent();
         }
 
         //Form Objects
+
+        public static bool IsInMMRItemList(LogicObjects.LogicEntry x, bool IncludeOwl = false)
+        {
+            return 
+                (
+                    (
+                        x.ItemSubType == "Bottle" ||
+                        x.ItemSubType == "Item" ||
+                        x.ItemSubType == "Entrance" ||
+                        (x.ItemSubType == "Owl Statue" && IncludeOwl)
+                    ) &&
+                    x.DictionaryName != "Ice Trap"
+                );
+        }
 
         private void RandomizeOptions_Load(object sender, EventArgs e)
         {
@@ -36,6 +51,9 @@ namespace MMR_Tracker_V2
             txtSearch.Text = "";
             btnLoadMMRSet.Enabled = LogicObjects.MainTrackerInstance.IsMM();
             txtRandEntString.Enabled = LogicObjects.MainTrackerInstance.IsEntranceRando();
+
+            ItemStringLogic = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && (IsInMMRItemList(x) || !LogicObjects.MainTrackerInstance.IsMM())).ToList();
+
             EnableButtons(false, false);
             WriteToListVeiw();
         }
@@ -159,9 +177,27 @@ namespace MMR_Tracker_V2
 
         private void btnApplyString_Click(object sender, EventArgs e)
         {
-            var CustomItemList = Tools.ParseLocationAndJunkSettingString(txtCustomItemString.Text);
-            var ForceJunkList = Tools.ParseLocationAndJunkSettingString(txtJunkItemString.Text);
-            var EntranceList = Tools.ParseEntranceandStartingString(LogicObjects.MainTrackerInstance, txtRandEntString.Text);
+            var ItemLogic = ItemStringLogic.Where(x => !x.IsEntrance()).ToList();
+            var ItemGroupCount = (int)Math.Ceiling(ItemLogic.Count / 32.0);
+
+            var CustomItemList = Tools.ParseLocationAndJunkSettingString(txtCustomItemString.Text, ItemGroupCount);
+            var ForceJunkList = Tools.ParseLocationAndJunkSettingString(txtJunkItemString.Text, ItemGroupCount);
+            var EntranceList = Tools.ParseEntranceandStartingString(txtRandEntString.Text, ItemStringLogic.Where(x => x.IsEntrance()).ToList());
+
+            var StartingStringLogic = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && (IsInMMRItemList(x, true) || !LogicObjects.MainTrackerInstance.IsMM())).ToList();
+            if (LogicObjects.MainTrackerInstance.IsMM())
+            {
+                List<string> usedItems = new List<string>();
+                for (var i = StartingStringLogic.Count() - 1; i >= 0; i--)
+                {
+                    if (usedItems.Contains(StartingStringLogic[i].ItemName))
+                    {
+                        StartingStringLogic.RemoveAt(i);
+                    }
+                    usedItems.Add(StartingStringLogic[i].ItemName);
+                }
+            }
+            var StartingList = Tools.ParseEntranceandStartingString(txtStartingitemString.Text, StartingStringLogic.Where(x => x.CanBeStartingItem(LogicObjects.MainTrackerInstance)).ToList());
 
             label3.Text = "Custom Item String";
             if (CustomItemList == null) { label3.Text = "Custom Item String (INVALID!)"; }
@@ -217,6 +253,23 @@ namespace MMR_Tracker_V2
                     else
                     {
                         i.Options = (i.StartingItem()) ? 5 : 1;
+                    }
+                }
+            }
+            label6.Text = "Starting Item String";
+            if (StartingList == null) { label6.Text = ("Starting Item String (INVALID!)"); }
+            else if (StartingList.Count > 0)
+            {
+                var MI = StartingStringLogic;
+                foreach (var i in MI)
+                {
+                    if (StartingList.Contains(i))
+                    {
+                        i.Options = (i.StartingItem()) ? i.Options : i.Options + 4;
+                    }
+                    else
+                    {
+                        i.Options = (i.StartingItem()) ? i.Options - 4 : i.Options;
                     }
                 }
             }
@@ -297,12 +350,12 @@ namespace MMR_Tracker_V2
                     || x.LocationArea == "Hidden" 
                     || x.ItemSubType.Contains("Setting") 
                     || string.IsNullOrWhiteSpace(x.ItemSubType)) { return false; }
+                if (!Utility.FilterSearch(x, txtSearch.Text, x.DictionaryName)) { return false; }
+                if (x.StartingItem() && chkShowStartingItems.Checked) { return true; }
                 if (x.RandomizedState() == 0 && !chkShowRandom.Checked) { return false; }
                 if (x.RandomizedState() == 1 && !chkShowUnrand.Checked) { return false; }
                 if (x.RandomizedState() == 2 && !chkShowUnrandMan.Checked) { return false; }
                 if (x.RandomizedState() == 3 && !chkShowJunk.Checked) { return false; }
-                if (x.StartingItem() && !chkShowStartingItems.Checked) { return false; }
-                if (!Utility.FilterSearch(x, txtSearch.Text, x.DictionaryName)) { return false; }
                 return true;
             }
 
@@ -375,6 +428,14 @@ namespace MMR_Tracker_V2
             }
 
             EnableButtons(EnableTR, EnableRO);
+
+            if (ItemStringLogic != null)
+            {
+                CreateItemString();
+                CreateJunkItemString();
+                CreateEntranceString();
+                CreateStartingItemString();
+            }
 
             updating = false;
         }
@@ -463,6 +524,7 @@ namespace MMR_Tracker_V2
                 LogicObjects.MainTrackerInstance.Options.CoupleEntrances = !Settings.DecoupleEntrances;
             }
             txtJunkItemString.Text = Settings.CustomJunkLocationsString;
+            txtStartingitemString.Text = Settings.CustomStartingItemListString;
             btnApplyString_Click(null, null);
 
             LogicObjects.MainTrackerInstance.Options.ProgressiveItems = Settings.ProgressiveUpgrades;
@@ -552,5 +614,108 @@ namespace MMR_Tracker_V2
 
             }
         }
+
+
+        private void CreateJunkItemString()
+        {
+            var ItemLogic = ItemStringLogic.Where(x => !x.IsEntrance()).ToList();
+            var ItemGroupCount = (int)Math.Ceiling(ItemLogic.Count / 32.0);
+
+            int[] n = new int[ItemGroupCount];
+            string[] ns = new string[ItemGroupCount];
+            foreach (var item in ItemLogic.Where(x => x.RandomizedState() == 3))
+            {
+                var i = ItemLogic.ToList().IndexOf(item);
+                int j = i / 32;
+                int k = i % 32;
+                n[j] |= (int)(1 << k);
+                ns[j] = Convert.ToString(n[j], 16);
+            }
+            txtJunkItemString.Text = string.Join("-", ns.Reverse());
+        }
+
+        private void CreateItemString()
+        {
+            var ItemLogic = ItemStringLogic.Where(x => !x.IsEntrance()).ToList();
+            var ItemGroupCount = (int)Math.Ceiling(ItemLogic.Count / 32.0);
+
+            int[] n = new int[ItemGroupCount];
+            string[] ns = new string[ItemGroupCount];
+
+
+            foreach (var item in ItemLogic.Where(x => x.RandomizedState() != 1 && x.RandomizedState() != 2))
+            {
+                var i = ItemLogic.ToList().IndexOf(item);
+                int j = i / 32;
+                int k = i % 32;
+                try
+                {
+                    n[j] |= (int)(1 << k);
+                    ns[j] = Convert.ToString(n[j], 16);
+                }
+                catch { }
+            }
+            txtCustomItemString.Text = string.Join("-", ns.Reverse());
+        }
+
+        private void CreateEntranceString()
+        {
+            var EntranceLogic = ItemStringLogic.Where(x => x.IsEntrance()).ToList();
+            var EntranceGroupCount = (int)Math.Ceiling(EntranceLogic.Count / 32.0);
+
+            int[] n = new int[EntranceGroupCount];
+            string[] ns = new string[EntranceGroupCount];
+            foreach (var item in EntranceLogic.Where(x => x.RandomizedState() == 0))
+            {
+                var i = EntranceLogic.ToList().IndexOf(item);
+                int j = i / 32;
+                int k = i % 32;
+                try
+                {
+                    n[j] |= (int)(1 << k);
+                    ns[j] = Convert.ToString(n[j], 16);
+                }
+                catch { }
+            }
+            txtRandEntString.Text = string.Join("-", ns.Reverse());
+        }
+
+        private void CreateStartingItemString()
+        {
+            var StartingStringLogic = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && (IsInMMRItemList(x, true) || !LogicObjects.MainTrackerInstance.IsMM())).ToList();
+
+            if (LogicObjects.MainTrackerInstance.IsMM())
+            {
+                List<string> usedItems = new List<string>();
+                for (var i = StartingStringLogic.Count() - 1; i >= 0; i--)
+                {
+                    if (usedItems.Contains(StartingStringLogic[i].ItemName))
+                    {
+                        StartingStringLogic.RemoveAt(i);
+                    }
+                    usedItems.Add(StartingStringLogic[i].ItemName);
+                }
+            }
+
+            var EntranceLogic = StartingStringLogic.Where(x => x.CanBeStartingItem(LogicObjects.MainTrackerInstance)).ToList();
+            var EntranceGroupCount = (int)Math.Ceiling(EntranceLogic.Count / 32.0);
+
+            int[] n = new int[EntranceGroupCount];
+            string[] ns = new string[EntranceGroupCount];
+            foreach (var item in EntranceLogic.Where(x => x.StartingItem()))
+            {
+                var i = EntranceLogic.ToList().IndexOf(item);
+                int j = i / 32;
+                int k = i % 32;
+                try
+                {
+                    n[j] |= (int)(1 << k);
+                    ns[j] = Convert.ToString(n[j], 16);
+                }
+                catch { }
+            }
+            txtStartingitemString.Text = string.Join("-", ns.Reverse());
+        }
+
     }
 }

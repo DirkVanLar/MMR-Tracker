@@ -142,6 +142,7 @@ namespace MMR_Tracker_V2
             public string CustomItemListString { get; set; } = "";
             public string RandomizedEntrancesString { get; set; } = "";
             public string CustomJunkLocationsString { get; set; } = "";
+            public string CustomStartingItemListString { get; set; } = "";
             public List<int> EnabledTricks { get; set; } = new List<int>();
         }
         public class MapPoint

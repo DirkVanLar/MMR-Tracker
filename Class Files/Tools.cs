@@ -736,24 +736,26 @@ namespace MMR_Tracker.Class_Files
             InformationDisplay.Playthrough = message.Split(new[] { "\n" }, StringSplitOptions.None).ToList();
             Display.Show();
         }
-        public static List<int> ParseLocationAndJunkSettingString(string c)
+        public static List<int> ParseLocationAndJunkSettingString(string c, int ItemCount)
         {
             var result = new List<int>();
             if (string.IsNullOrWhiteSpace(c))
             {
                 return result;
             }
+
+            result.Clear();
+            string[] Sections = c.Split('-');
+            int[] NewSections = new int[ItemCount];
+            if (Sections.Length != NewSections.Length) { Console.WriteLine($"Didin't match {Sections.Length}, {NewSections.Length}"); return null; }
+
             try
             {
-                result.Clear();
-                string[] Sections = c.Split('-');
-                int[] NewSections = new int[13];
-                if (Sections.Length != NewSections.Length) { return null; }
-                for (int i = 0; i < 13; i++)
+                for (int i = 0; i < ItemCount; i++)
                 {
-                    if (Sections[12 - i] != "") { NewSections[i] = Convert.ToInt32(Sections[12 - i], 16); }
+                    if (Sections[(ItemCount - 1) - i] != "") { NewSections[i] = Convert.ToInt32(Sections[(ItemCount - 1) - i], 16); }
                 }
-                for (int i = 0; i < 32 * 13; i++)
+                for (int i = 0; i < 32 * ItemCount; i++)
                 {
                     int j = i / 32;
                     int k = i % 32;
@@ -766,13 +768,13 @@ namespace MMR_Tracker.Class_Files
             }
             return result;
         }
-        public static List<LogicObjects.LogicEntry> ParseEntranceandStartingString(LogicObjects.TrackerInstance Instance, string c)
+        public static List<LogicObjects.LogicEntry> ParseEntranceandStartingString(string c, List<LogicObjects.LogicEntry> Subsection )
         {
             if (string.IsNullOrWhiteSpace(c))
             {
                 return new List<LogicObjects.LogicEntry>();
             }
-            var Entrances = Instance.Logic.Where(x => x.IsEntrance()).ToList();
+            var Entrances = Subsection;
             if (Entrances.Count < 1) { return new List<LogicObjects.LogicEntry>(); }
             var sectionCount = (int)Math.Ceiling(Entrances.Count / 32.0);
             var result = new List<LogicObjects.LogicEntry>();
@@ -1128,6 +1130,8 @@ namespace MMR_Tracker.Class_Files
                 }
             }
         }
+
+
 
     }
 }

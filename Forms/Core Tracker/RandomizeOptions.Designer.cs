@@ -65,6 +65,8 @@
             this.btnLoadMMRSet = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtRandEntString = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtStartingitemString = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -79,7 +81,7 @@
             this.listView1.Location = new System.Drawing.Point(12, 23);
             this.listView1.Name = "listView1";
             this.listView1.ShowItemToolTips = true;
-            this.listView1.Size = new System.Drawing.Size(697, 644);
+            this.listView1.Size = new System.Drawing.Size(697, 685);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -347,7 +349,7 @@
             // btnApplyString
             // 
             this.btnApplyString.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyString.Location = new System.Drawing.Point(720, 644);
+            this.btnApplyString.Location = new System.Drawing.Point(721, 685);
             this.btnApplyString.Name = "btnApplyString";
             this.btnApplyString.Size = new System.Drawing.Size(153, 23);
             this.btnApplyString.TabIndex = 23;
@@ -419,13 +421,33 @@
             this.txtRandEntString.Size = new System.Drawing.Size(153, 20);
             this.txtRandEntString.TabIndex = 28;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.ForeColor = System.Drawing.SystemColors.Control;
+            this.label7.Location = new System.Drawing.Point(718, 643);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 13);
+            this.label7.TabIndex = 31;
+            this.label7.Text = "Starting Items String";
+            // 
+            // txtStartingitemString
+            // 
+            this.txtStartingitemString.Location = new System.Drawing.Point(721, 659);
+            this.txtStartingitemString.Name = "txtStartingitemString";
+            this.txtStartingitemString.Size = new System.Drawing.Size(153, 20);
+            this.txtStartingitemString.TabIndex = 30;
+            // 
             // RandomizeOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(883, 675);
+            this.ClientSize = new System.Drawing.Size(883, 718);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtStartingitemString);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtRandEntString);
             this.Controls.Add(this.btnLoadMMRSet);
@@ -502,5 +524,7 @@
         private System.Windows.Forms.Button btnLoadMMRSet;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtRandEntString;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtStartingitemString;
     }
 }
