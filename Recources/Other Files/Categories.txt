@@ -72,31 +72,31 @@ Grottos
 %Required Dungeon%
 Skyloft
 Sky
+Skyloft Silent Realm
+Skykeep
+Thunderhead
 Sealed Grounds
 Faron Woods
 Skyview
-Eldin Volcano
-Mogma Turf
-Earth Temple
-Lanayru Mines
-Lanayru
-Lanayru Mining Facility
-Thunderhead
 Faron Silent Realm
 Flooded Faron Woods
 Lake Floria
 Ancient Cistern
+Eldin Volcano
+Mogma Turf
+Earth Temple
 Eldin Silent Realm
 Volcano Summit
 Fire Dragon Room
 Fire Sanctuary
+Lanayru Mines
+Lanayru
+Lanayru Mining Facility
 Lanyru Silent Realm
 Lanayru Caves
 Lanayru Gorge
 Lanayru Sand Sea
 Sandship
-Skyloft Silent Realm
-Skykeep
 Goddess Cubes
 Single Gratitude Crystal
 #GAMECODEEND:

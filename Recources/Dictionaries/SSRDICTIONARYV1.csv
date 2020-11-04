@@ -281,7 +281,12 @@ SettingClosedThunderHead,Closed Thunderhead,,%Settings%,SettingClosedThunderHead
 Option "closed-thunderhead" Enabled,,Enabled,%Settings%,SettingClosedThunderHead,SettingClosedThunderHeadTrue,SettingClosedThunderHeadTrue
 Option "closed-thunderhead" Disabled,,Disabled,%Settings%,SettingClosedThunderHead,SettingClosedThunderHeadFalse,SettingClosedThunderHeadFalse
 RequiredDungeon1,Required Dungeon 1,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon1,RequiredDungeon1
-RequiredDungeon2,Required Dungeon 2,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon2,RequiredDungeon1
+RequiredDungeon2,Required Dungeon 2,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon2,RequiredDungeon2
+RequiredDungeon3,Required Dungeon 3,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon3,RequiredDungeon3
+RequiredDungeon4,Required Dungeon 4,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon4,RequiredDungeon4
+RequiredDungeon5,Required Dungeon 5,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon5,RequiredDungeon5
+RequiredDungeon6,Required Dungeon 6,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon6,RequiredDungeon6
+RequiredDungeon7,Required Dungeon 7,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon7,RequiredDungeon7
 RequiredDungeonSW,,Req Skyview,,SettingRequiredDungeon,RequiredDungeonSW,Required Dungeon Skyview
 RequiredDungeonET,,Req Earth Temple,,SettingRequiredDungeon,RequiredDungeonET,Required Dungeon Earth Temple
 RequiredDungeonMF,,Req Lanayru Mining Facility,,SettingRequiredDungeon,RequiredDungeonMF,Required Dungeon Lanayru Mining Facility
@@ -289,3 +294,10 @@ RequiredDungeonAC,,Req Ancient Cistern,,SettingRequiredDungeon,RequiredDungeonAC
 RequiredDungeonSS,,Req Sandship,,SettingRequiredDungeon,RequiredDungeonSS,Required Dungeon Sandship
 RequiredDungeonFS,,Req Fire Sanctuary,,SettingRequiredDungeon,RequiredDungeonFS,Required Dungeon Fire Sanctuary
 RequiredDungeonSK,,Req Skykeep,,SettingRequiredDungeon,RequiredDungeonSK,Required Dungeon Skykeep
+RequiredDungeonNone1,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone1,Required Dungeon None1
+RequiredDungeonNone2,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone2,Required Dungeon None2
+RequiredDungeonNone3,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone3,Required Dungeon None3
+RequiredDungeonNone4,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone4,Required Dungeon None4
+RequiredDungeonNone5,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone5,Required Dungeon None5
+RequiredDungeonNone6,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone6,Required Dungeon None6
+RequiredDungeonNone7,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone7,Required Dungeon None7

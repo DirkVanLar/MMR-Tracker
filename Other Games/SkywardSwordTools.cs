@@ -266,29 +266,6 @@ namespace MMR_Tracker.Other_Games
             SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Emerald Tablet", IsFake = true, IsTrick = false, Conditionals = EmeraldCond });
             SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Amber Tablet", IsFake = true, IsTrick = false, Conditionals = AmberCond });
 
-            //Add Game clear logic to the "Can Access Past" entry based on what 2 dungeons are required
-            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "MMRTCombinations2", IsFake = true, IsTrick = false });
-            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Can Access Past", IsFake = true, IsTrick = false });
-            var CanAccessPast = SSInstance.Logic.Find(x => x.DictionaryName == "Can Access Past");
-
-            CanAccessPast.Required = new int[]
-            {
-                SSInstance.Logic.Find(x => x.DictionaryName == "MMRTCombinations2").ID,
-                SSInstance.Logic.Find(x => x.DictionaryName == "Master Sword").ID, 
-                SSInstance.Logic.Find(x => x.DictionaryName == "Can Access Sealed Temple").ID
-            };
-
-            CanAccessPast.Conditionals = new int[][]
-            {
-                new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Skyview").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonSW").ID },
-                new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Earth Temple").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonET").ID },
-                new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Lanayru Mining Facility").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonMF").ID },
-                new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Ancient Cistern").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonAC").ID },
-                new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Sandship").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonSS").ID },
-                new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Fire Sanctuary").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonFS").ID },
-                new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Skykeep").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonSK").ID },
-            };
-
             //Add MMRTGAmeClear entry for the playthrough generator
             SSInstance.Logic.Add(new LogicObjects.LogicEntry  { ID = SSInstance.Logic.Count(), DictionaryName = "MMRTGameClear", IsFake = true, IsTrick = false, 
                 Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Reach and Defeat Demise").ID } 
@@ -319,6 +296,232 @@ namespace MMR_Tracker.Other_Games
                 Conditionals = LogicEditor.CreatePermiations(allSwords.ToArray(), 6)
             });
 
+            CreateRequiredDungeonLogic(SSInstance);
+
+        }
+
+        public static void CreateRequiredDungeonLogic(LogicObjects.TrackerInstance SSInstance)
+        {
+
+            //Add Required Dungeon Logic
+            var RequiredDungeonNoneEntries = SSInstance.Logic.Where(x => x.ItemName == "None" && x.ItemSubType == "SettingRequiredDungeon");
+            var RequiredDungeonNoneEntriesIDS = RequiredDungeonNoneEntries.Select(x => x.ID).ToArray();
+
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "0DungeonsRequired", IsFake = true, IsTrick = false, Required = RequiredDungeonNoneEntriesIDS });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "1DungeonsRequired",
+                IsFake = true,
+                IsTrick = false,
+                Conditionals = LogicEditor.CreatePermiations(RequiredDungeonNoneEntriesIDS, 6)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "2DungeonsRequired",
+                IsFake = true,
+                IsTrick = false,
+                Conditionals = LogicEditor.CreatePermiations(RequiredDungeonNoneEntriesIDS, 5)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "3DungeonsRequired",
+                IsFake = true,
+                IsTrick = false,
+                Conditionals = LogicEditor.CreatePermiations(RequiredDungeonNoneEntriesIDS, 4)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "4DungeonsRequired",
+                IsFake = true,
+                IsTrick = false,
+                Conditionals = LogicEditor.CreatePermiations(RequiredDungeonNoneEntriesIDS, 3)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "5DungeonsRequired",
+                IsFake = true,
+                IsTrick = false,
+                Conditionals = LogicEditor.CreatePermiations(RequiredDungeonNoneEntriesIDS, 2)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "6DungeonsRequired",
+                IsFake = true,
+                IsTrick = false,
+                Conditionals = LogicEditor.CreatePermiations(RequiredDungeonNoneEntriesIDS, 1)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "7DungeonsRequired",
+                IsFake = true,
+                IsTrick = false
+            });
+
+            var AquiredAndBeatableList = new List<int>();
+
+            AquiredAndBeatableList.Add(SSInstance.Logic.Count());
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "SVRequiredAndCompletable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Skyview").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonSW").ID }
+            });
+            AquiredAndBeatableList.Add(SSInstance.Logic.Count());
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "ETRequiredAndCompletable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Earth Temple").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonET").ID }
+            });
+            AquiredAndBeatableList.Add(SSInstance.Logic.Count());
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "MFRequiredAndCompletable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Lanayru Mining Facility").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonMF").ID }
+            });
+            AquiredAndBeatableList.Add(SSInstance.Logic.Count());
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "ACRequiredAndCompletable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Ancient Cistern").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonAC").ID }
+            });
+            AquiredAndBeatableList.Add(SSInstance.Logic.Count());
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "SSRequiredAndCompletable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Sandship").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonSS").ID }
+            });
+            AquiredAndBeatableList.Add(SSInstance.Logic.Count());
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "FSRequiredAndCompletable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Fire Sanctuary").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonFS").ID }
+            });
+            AquiredAndBeatableList.Add(SSInstance.Logic.Count());
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "SKRequiredAndCompletable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "Can Beat Skykeep").ID, SSInstance.Logic.Find(x => x.DictionaryName == "RequiredDungeonSK").ID }
+            });
+
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "0DungeonsRequiredAndBeatable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "0DungeonsRequired").ID }
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "1DungeonsRequiredAndBeatable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "1DungeonsRequired").ID },
+                Conditionals = LogicEditor.CreatePermiations(AquiredAndBeatableList.ToArray(), 1)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "2DungeonsRequiredAndBeatable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "2DungeonsRequired").ID },
+                Conditionals = LogicEditor.CreatePermiations(AquiredAndBeatableList.ToArray(), 2)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "3DungeonsRequiredAndBeatable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "3DungeonsRequired").ID },
+                Conditionals = LogicEditor.CreatePermiations(AquiredAndBeatableList.ToArray(), 3)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "4DungeonsRequiredAndBeatable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "4DungeonsRequired").ID },
+                Conditionals = LogicEditor.CreatePermiations(AquiredAndBeatableList.ToArray(), 4)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "5DungeonsRequiredAndBeatable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "5DungeonsRequired").ID },
+                Conditionals = LogicEditor.CreatePermiations(AquiredAndBeatableList.ToArray(), 5)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "6DungeonsRequiredAndBeatable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "6DungeonsRequired").ID },
+                Conditionals = LogicEditor.CreatePermiations(AquiredAndBeatableList.ToArray(), 6)
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "7DungeonsRequiredAndBeatable",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "7DungeonsRequired").ID },
+                Conditionals = LogicEditor.CreatePermiations(AquiredAndBeatableList.ToArray(), 7)
+            });
+
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Can Access Past", IsFake = true, IsTrick = false });
+            var CanAccessPast = SSInstance.Logic[SSInstance.Logic.Count() - 1];
+
+            CanAccessPast.Required = new int[]
+            {
+                SSInstance.Logic.Find(x => x.DictionaryName == "Master Sword").ID,
+                SSInstance.Logic.Find(x => x.DictionaryName == "Can Access Sealed Temple").ID
+            };
+
+            CanAccessPast.Conditionals = new int[][]
+            {
+                new int[]{ SSInstance.Logic.Find(x => x.DictionaryName == "0DungeonsRequiredAndBeatable").ID },
+                new int[]{ SSInstance.Logic.Find(x => x.DictionaryName == "1DungeonsRequiredAndBeatable").ID },
+                new int[]{ SSInstance.Logic.Find(x => x.DictionaryName == "2DungeonsRequiredAndBeatable").ID },
+                new int[]{ SSInstance.Logic.Find(x => x.DictionaryName == "3DungeonsRequiredAndBeatable").ID },
+                new int[]{ SSInstance.Logic.Find(x => x.DictionaryName == "4DungeonsRequiredAndBeatable").ID },
+                new int[]{ SSInstance.Logic.Find(x => x.DictionaryName == "5DungeonsRequiredAndBeatable").ID },
+                new int[]{ SSInstance.Logic.Find(x => x.DictionaryName == "6DungeonsRequiredAndBeatable").ID },
+                new int[]{ SSInstance.Logic.Find(x => x.DictionaryName == "7DungeonsRequiredAndBeatable").ID }
+            };
         }
 
         public static bool IsGoddessCubeAccessEntry(string Name)
@@ -540,7 +743,13 @@ namespace MMR_Tracker.Other_Games
 
             //Add "Required Dungeons" settings
             SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeon1", isFake = false, LocationName = "Required Dungeon 1", ItemName = "", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "RequiredDungeon1", SpoilerLocation = $"RequiredDungeon1" });
-            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeon2", isFake = false, LocationName = "Required Dungeon 2", ItemName = "", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "RequiredDungeon1", SpoilerLocation = $"RequiredDungeon2" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeon2", isFake = false, LocationName = "Required Dungeon 2", ItemName = "", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "RequiredDungeon2", SpoilerLocation = $"RequiredDungeon2" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeon3", isFake = false, LocationName = "Required Dungeon 3", ItemName = "", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "RequiredDungeon3", SpoilerLocation = $"RequiredDungeon3" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeon4", isFake = false, LocationName = "Required Dungeon 4", ItemName = "", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "RequiredDungeon4", SpoilerLocation = $"RequiredDungeon4" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeon5", isFake = false, LocationName = "Required Dungeon 5", ItemName = "", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "RequiredDungeon5", SpoilerLocation = $"RequiredDungeon5" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeon6", isFake = false, LocationName = "Required Dungeon 6", ItemName = "", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "RequiredDungeon6", SpoilerLocation = $"RequiredDungeon6" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeon7", isFake = false, LocationName = "Required Dungeon 7", ItemName = "", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "RequiredDungeon7", SpoilerLocation = $"RequiredDungeon7" });
+
             SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonSW", isFake = false, LocationName = "", ItemName = "Req Skyview", ItemSubType = "SettingRequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Skyview", SpoilerLocation = $"RequiredDungeonSW" });
             SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonET", isFake = false, LocationName = "", ItemName = "Req Earth Temple", ItemSubType = "SettingRequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Earth Temple", SpoilerLocation = $"RequiredDungeonET" });
             SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonMF", isFake = false, LocationName = "", ItemName = "Req Lanayru Mining Facility", ItemSubType = "SettingRequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Lanayru Mining Facility", SpoilerLocation = $"RequiredDungeonMF" });
@@ -548,6 +757,14 @@ namespace MMR_Tracker.Other_Games
             SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonSS", isFake = false, LocationName = "", ItemName = "Req Sandship", ItemSubType = "SettingRequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Sandship", SpoilerLocation = $"RequiredDungeonSS" });
             SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonFS", isFake = false, LocationName = "", ItemName = "Req Fire Sanctuary", ItemSubType = "SettingRequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Fire Sanctuary", SpoilerLocation = $"RequiredDungeonFS" });
             SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonSK", isFake = false, LocationName = "", ItemName = "Req Skykeep", ItemSubType = "SettingRequiredDungeon", LocationArea = "", SpoilerItem = "Required Dungeon Skykeep", SpoilerLocation = $"RequiredDungeonSK" });
+
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonNone1", isFake = false, LocationName = "", ItemName = "None", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "Required Dungeon None1", SpoilerLocation = $"RequiredDungeonNone1" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonNone2", isFake = false, LocationName = "", ItemName = "None", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "Required Dungeon None2", SpoilerLocation = $"RequiredDungeonNone2" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonNone3", isFake = false, LocationName = "", ItemName = "None", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "Required Dungeon None3", SpoilerLocation = $"RequiredDungeonNone3" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonNone4", isFake = false, LocationName = "", ItemName = "None", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "Required Dungeon None4", SpoilerLocation = $"RequiredDungeonNone4" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonNone5", isFake = false, LocationName = "", ItemName = "None", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "Required Dungeon None5", SpoilerLocation = $"RequiredDungeonNone5" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonNone6", isFake = false, LocationName = "", ItemName = "None", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "Required Dungeon None6", SpoilerLocation = $"RequiredDungeonNone6" });
+            SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeonNone7", isFake = false, LocationName = "", ItemName = "None", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "Required Dungeon None7", SpoilerLocation = $"RequiredDungeonNone7" });
 
         }
 
@@ -756,20 +973,49 @@ namespace MMR_Tracker.Other_Games
             SpoilerData.Add("Converted SSR");
             string header = "";
             var FileContent = Log.Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()).ToArray();
+            Dictionary<string, string> RequiredDungeons = new Dictionary<string, string>();
             foreach (var line in FileContent)
             {
                 if (line.Contains("Options selected:"))
                 {
                     AtOptions = true;
                 }
+
                 if (line.Contains("Required Dungeon 1:"))
                 {
                     AtOptions = false;
-                    SpoilerData.Add($"RequiredDungeon1->Required Dungeon " + line.Replace("Required Dungeon 1:", "").Trim());
+                    RequiredDungeons.Add("RequiredDungeon1", line.Replace("Required Dungeon 1:", "").Trim());
+                    Console.WriteLine($"Required Dungeon 1 Found. It was {RequiredDungeons["RequiredDungeon1"]}");
                 }
                 if (line.Contains("Required Dungeon 2:"))
                 {
-                    SpoilerData.Add($"RequiredDungeon2->Required Dungeon " + line.Replace("Required Dungeon 2:", "").Trim());
+                    RequiredDungeons.Add("RequiredDungeon2", line.Replace("Required Dungeon 2:", "").Trim());
+                    Console.WriteLine($"Required Dungeon 2 Found. It was {RequiredDungeons["RequiredDungeon2"]}");
+                }
+                if (line.Contains("Required Dungeon 3:"))
+                {
+                    RequiredDungeons.Add("RequiredDungeon3", line.Replace("Required Dungeon 3:", "").Trim());
+                    Console.WriteLine($"Required Dungeon 3 Found. It was {RequiredDungeons["RequiredDungeon3"]}");
+                }
+                if (line.Contains("Required Dungeon 4:"))
+                {
+                    RequiredDungeons.Add("RequiredDungeon4", line.Replace("Required Dungeon 4:", "").Trim());
+                    Console.WriteLine($"Required Dungeon 4 Found. It was {RequiredDungeons["RequiredDungeon4"]}");
+                }
+                if (line.Contains("Required Dungeon 5:"))
+                {
+                    RequiredDungeons.Add("RequiredDungeon5", line.Replace("Required Dungeon 5:", "").Trim());
+                    Console.WriteLine($"Required Dungeon 5 Found. It was {RequiredDungeons["RequiredDungeon5"]}");
+                }
+                if (line.Contains("Required Dungeon 6:"))
+                {
+                    RequiredDungeons.Add("RequiredDungeon6", line.Replace("Required Dungeon 6:", "").Trim());
+                    Console.WriteLine($"Required Dungeon 6 Found. It was {RequiredDungeons["RequiredDungeon6"]}");
+                }
+                if (line.Contains("Required Dungeon 7:"))
+                {
+                    RequiredDungeons.Add("RequiredDungeon7", line.Replace("Required Dungeon 7:", "").Trim());
+                    Console.WriteLine($"Required Dungeon 7 Found. It was {RequiredDungeons["RequiredDungeon7"]}");
                 }
 
                 if (AtOptions)
@@ -783,6 +1029,21 @@ namespace MMR_Tracker.Other_Games
 
                 if (line.Contains("All item locations:"))
                 {
+                    for (var i = 1; i < 8; i++)
+                    {
+                        var test = RequiredDungeons.ContainsKey($"RequiredDungeon{i}");
+                        if (!RequiredDungeons.ContainsKey($"RequiredDungeon{i}"))
+                        {
+                            RequiredDungeons.Add($"RequiredDungeon{i}", $"None{i}");
+                        }
+                    }
+                    SpoilerData.Add($"RequiredDungeon1->Required Dungeon " + RequiredDungeons["RequiredDungeon1"]);
+                    SpoilerData.Add($"RequiredDungeon2->Required Dungeon " + RequiredDungeons["RequiredDungeon2"]);
+                    SpoilerData.Add($"RequiredDungeon3->Required Dungeon " + RequiredDungeons["RequiredDungeon3"]);
+                    SpoilerData.Add($"RequiredDungeon4->Required Dungeon " + RequiredDungeons["RequiredDungeon4"]);
+                    SpoilerData.Add($"RequiredDungeon5->Required Dungeon " + RequiredDungeons["RequiredDungeon5"]);
+                    SpoilerData.Add($"RequiredDungeon6->Required Dungeon " + RequiredDungeons["RequiredDungeon6"]);
+                    SpoilerData.Add($"RequiredDungeon7->Required Dungeon " + RequiredDungeons["RequiredDungeon7"]);
                     AtItems = true;
                 }
                 if (line.Contains("Entrances:"))
@@ -797,7 +1058,6 @@ namespace MMR_Tracker.Other_Games
                     if (AtEntrances) { header = ""; }
                     if (Parts.Length < 2) { continue; }
                     SpoilerData.Add($"{header}{Parts[0].Trim()}->{Parts[1].Trim()}");
-                    Console.WriteLine($"{header}{Parts[0].Trim()}->{Parts[1].Trim()}");
                 }
             }
 

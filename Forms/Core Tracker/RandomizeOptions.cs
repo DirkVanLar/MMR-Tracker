@@ -185,18 +185,7 @@ namespace MMR_Tracker_V2
             var EntranceList = Tools.ParseEntranceandStartingString(txtRandEntString.Text, ItemStringLogic.Where(x => x.IsEntrance()).ToList());
 
             var StartingStringLogic = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && (IsInMMRItemList(x, true) || !LogicObjects.MainTrackerInstance.IsMM())).ToList();
-            if (LogicObjects.MainTrackerInstance.IsMM())
-            {
-                List<string> usedItems = new List<string>();
-                for (var i = StartingStringLogic.Count() - 1; i >= 0; i--)
-                {
-                    if (usedItems.Contains(StartingStringLogic[i].ItemName))
-                    {
-                        StartingStringLogic.RemoveAt(i);
-                    }
-                    usedItems.Add(StartingStringLogic[i].ItemName);
-                }
-            }
+            RemoveDuplicateStartingItems(StartingStringLogic, LogicObjects.MainTrackerInstance);
             var StartingList = Tools.ParseEntranceandStartingString(txtStartingitemString.Text, StartingStringLogic.Where(x => x.CanBeStartingItem(LogicObjects.MainTrackerInstance)).ToList());
 
             label3.Text = "Custom Item String";
@@ -684,18 +673,7 @@ namespace MMR_Tracker_V2
         {
             var StartingStringLogic = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && (IsInMMRItemList(x, true) || !LogicObjects.MainTrackerInstance.IsMM())).ToList();
 
-            if (LogicObjects.MainTrackerInstance.IsMM())
-            {
-                List<string> usedItems = new List<string>();
-                for (var i = StartingStringLogic.Count() - 1; i >= 0; i--)
-                {
-                    if (usedItems.Contains(StartingStringLogic[i].ItemName))
-                    {
-                        StartingStringLogic.RemoveAt(i);
-                    }
-                    usedItems.Add(StartingStringLogic[i].ItemName);
-                }
-            }
+            RemoveDuplicateStartingItems(StartingStringLogic, LogicObjects.MainTrackerInstance);
 
             var EntranceLogic = StartingStringLogic.Where(x => x.CanBeStartingItem(LogicObjects.MainTrackerInstance)).ToList();
             var EntranceGroupCount = (int)Math.Ceiling(EntranceLogic.Count / 32.0);
@@ -715,6 +693,20 @@ namespace MMR_Tracker_V2
                 catch { }
             }
             txtStartingitemString.Text = string.Join("-", ns.Reverse());
+        }
+
+        private void RemoveDuplicateStartingItems(List<LogicObjects.LogicEntry> StartingItems, LogicObjects.TrackerInstance Instance)
+        {
+            if (!Instance.IsMM()) { return; }
+            List<string> usedItems = new List<string>();
+            for (var i = StartingItems.Count() - 1; i >= 0; i--)
+            {
+                if (usedItems.Contains(StartingItems[i].ItemName))
+                {
+                    StartingItems.RemoveAt(i);
+                }
+                usedItems.Add(StartingItems[i].ItemName);
+            }
         }
 
     }
