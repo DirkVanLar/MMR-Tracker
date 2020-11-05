@@ -19,17 +19,17 @@ Skyloft - Baby Rattle,Skyloft - Baby Rattle,Baby's Rattle,Skyloft,Item,Skyloft -
 Skyloft - Parrow's Bottle,Skyloft - Parrow's Bottle,Bottle,Skyloft,Item,Skyloft - Parrow's Bottle,Bottle|Empty Bottle
 Skyloft - Cawlin's Letter,Skyloft - Cawlin's Letter,Cawlin's Letter,Skyloft,Item,Skyloft - Cawlin's Letter,Cawlin's Letter
 Skyloft - Wyrna Crystals,Skyloft - Wyrna Crystals,5 Gratitude Crystals,Skyloft,Item,Skyloft - Wyrna Crystals,5 Gratitude Crystals
-Skyloft - Peater/Peatrice Crystal,Skyloft - Peater/Peatrice Crystal,5 Gratitude Crystals,Skyloft,Item,Skyloft - Peater/Peatrice Crystal,5 Gratitude Crystals
+Skyloft - Peater/Peatrice Crystals,Skyloft - Peater/Peatrice Crystals,5 Gratitude Crystals,Skyloft,Item,Skyloft - Peater/Peatrice Crystals,5 Gratitude Crystals
 Skyloft - Parrow Crystals,Skyloft - Parrow Crystals,5 Gratitude Crystals,Skyloft,Item,Skyloft - Parrow Crystals,5 Gratitude Crystals
 Skyloft - Fledge Crystals,Skyloft - Fledge Crystals,5 Gratitude Crystals,Skyloft,Item,Skyloft - Fledge Crystals,5 Gratitude Crystals
 Skyloft - Baby Crystals,Skyloft - Baby Crystals,5 Gratitude Crystals,Skyloft,Item,Skyloft - Baby Crystals,5 Gratitude Crystals
 Skyloft - Ghost/Pipit Crystals,Skyloft - Ghost/Pipit Crystals,5 Gratitude Crystals,Skyloft,Item,Skyloft - Ghost/Pipit Crystals,5 Gratitude Crystals
 Skyloft - Sparrot Crystals,Skyloft - Sparrot Crystals,5 Gratitude Crystals,Skyloft,Item,Skyloft - Sparrot Crystals,5 Gratitude Crystals
-Skyloft - Cleaning Crystal,Skyloft - Cleaning Crystal,5 Gratitude Crystals,Skyloft,Item,Skyloft - Cleaning Crystal,5 Gratitude Crystals
+Skyloft - Cleaning Crystals,Skyloft - Cleaning Crystals,5 Gratitude Crystals,Skyloft,Item,Skyloft - Cleaning Crystals,5 Gratitude Crystals
 Skyloft - Batreaux 5 Crystals,Skyloft - Batreaux 5 Crystals,Progressive Wallet,Skyloft,Item,Skyloft - Batreaux 5 Crystals,Progressive Wallet
 Skyloft - Batreaux 10 Crystals,Skyloft - Batreaux 10 Crystals,Heart Piece,Skyloft,Item,Skyloft - Batreaux 10 Crystals,Heart Piece
 Skyloft - Batreaux 30 Crystals,Skyloft - Batreaux 30 Crystals,Progressive Wallet,Skyloft,Item,Skyloft - Batreaux 30 Crystals,Progressive Wallet
-Skyloft - Batreaux 30 Crystal Chest,Skyloft - Batreaux 30 Crystal Chest,Cursed Medal,Skyloft,Item,Skyloft - Batreaux 30 Crystal Chest,Cursed Medal
+Skyloft - Batreaux 30 Crystals Chest,Skyloft - Batreaux 30 Crystals Chest,Cursed Medal,Skyloft,Item,Skyloft - Batreaux 30 Crystals Chest,Cursed Medal
 Skyloft - Batreaux 40 Crystals,Skyloft - Batreaux 40 Crystals,Gold Rupee,Skyloft,Item,Skyloft - Batreaux 40 Crystals,Gold Rupee
 Skyloft - Batreaux 50 Crystals,Skyloft - Batreaux 50 Crystals,Progressive Wallet,Skyloft,Item,Skyloft - Batreaux 50 Crystals,Progressive Wallet
 Skyloft - Batreaux 70 Crystals,Skyloft - Batreaux 70 Crystals,Gold Rupee,Skyloft,Item,Skyloft - Batreaux 70 Crystals,Gold Rupee
@@ -216,7 +216,7 @@ Skykeep - Map Chest,Skykeep - Map Chest,Skykeep Map,Skykeep,Item,Skykeep - Map C
 Skykeep - Small Key Chest,Skykeep - Small Key Chest,Skykeep Small Key,Skykeep,Item,Skykeep - Small Key Chest,Skykeep Small Key|SK Small Key
 Skyloft Silent Realm - Stone of Trials,Skyloft Silent Realm - Stone of Trials,Stone of Trials,Skyloft Silent Realm,Item,Skyloft Silent Realm - Stone of Trials,Stone of Trials
 Faron Silent Realm - Water Scale,Faron Silent Realm - Water Scale,Water Scale,Faron Silent Realm,Item,Faron Silent Realm - Water Scale,Water Scale
-Lanyru Silent Realm - Clawshots,Lanyru Silent Realm - Clawshots,Clawshots,Lanyru Silent Realm,Item,Lanyru Silent Realm - Clawshots,Clawshots
+Lanayru Silent Realm - Clawshots,Lanayru Silent Realm - Clawshots,Clawshots,Lanayru Silent Realm,Item,Lanayru Silent Realm - Clawshots,Clawshots
 Eldin Silent Realm - Fireshield Earrings,Eldin Silent Realm - Fireshield Earrings,Fireshield Earrings,Eldin Silent Realm,Item,Eldin Silent Realm - Fireshield Earrings,Fireshield Earrings
 Can Access Dungeon Entrance In Deep Woods,Dungeon Entrance In Deep Woods,Skyview,Faron Woods,DungeonEntrance,Dungeon Entrance In Deep Woods,Skyview
 Can Access Dungeon Entrance In Eldin Volcano,Dungeon Entrance In Eldin Volcano,Earth Temple,Eldin Volcano,DungeonEntrance,Dungeon Entrance In Eldin Volcano,Earth Temple
@@ -278,26 +278,26 @@ SettingStartingSword,Swordless,,%Settings%,SettingStartingSword,SettingStartingS
 SettingStartingSwordTrue,,Disabled,%Settings%,SettingStartingSword,SettingStartingSwordTrue,SettingStartingSwordTrue
 SettingStartingSwordFalse,,Enabled,%Settings%,SettingStartingSword,SettingStartingSwordFalse,SettingStartingSwordFalse
 SettingClosedThunderHead,Closed Thunderhead,,%Settings%,SettingClosedThunderHead,SettingClosedThunderHead,SettingClosedThunderHead
-Option "closed-thunderhead" Enabled,,Enabled,%Settings%,SettingClosedThunderHead,SettingClosedThunderHeadTrue,SettingClosedThunderHeadTrue
-Option "closed-thunderhead" Disabled,,Disabled,%Settings%,SettingClosedThunderHead,SettingClosedThunderHeadFalse,SettingClosedThunderHeadFalse
+SettingClosedThunderHeadTrue,,Enabled,%Settings%,SettingClosedThunderHead,SettingClosedThunderHeadTrue,SettingClosedThunderHeadTrue
+SettingClosedThunderHeadFalse,,Disabled,%Settings%,SettingClosedThunderHead,SettingClosedThunderHeadFalse,SettingClosedThunderHeadFalse
+SettingSkipSkykeep,Skip Skykeep,,%Settings%,SettingSkipSkykeep,SettingSkipSkykeep,SettingSkipSkykeep
+SettingSkipSkykeepTrue,,Enabled,%Settings%,SettingSkipSkykeep,SettingSkipSkykeepTrue,SettingSkipSkykeepTrue
+SettingSkipSkykeepFalse,,Disabled,%Settings%,SettingSkipSkykeep,SettingSkipSkykeepFalse,SettingSkipSkykeepFalse
 RequiredDungeon1,Required Dungeon 1,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon1,RequiredDungeon1
 RequiredDungeon2,Required Dungeon 2,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon2,RequiredDungeon2
 RequiredDungeon3,Required Dungeon 3,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon3,RequiredDungeon3
 RequiredDungeon4,Required Dungeon 4,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon4,RequiredDungeon4
 RequiredDungeon5,Required Dungeon 5,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon5,RequiredDungeon5
 RequiredDungeon6,Required Dungeon 6,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon6,RequiredDungeon6
-RequiredDungeon7,Required Dungeon 7,,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeon7,RequiredDungeon7
 RequiredDungeonSW,,Req Skyview,,SettingRequiredDungeon,RequiredDungeonSW,Required Dungeon Skyview
 RequiredDungeonET,,Req Earth Temple,,SettingRequiredDungeon,RequiredDungeonET,Required Dungeon Earth Temple
 RequiredDungeonMF,,Req Lanayru Mining Facility,,SettingRequiredDungeon,RequiredDungeonMF,Required Dungeon Lanayru Mining Facility
 RequiredDungeonAC,,Req Ancient Cistern,,SettingRequiredDungeon,RequiredDungeonAC,Required Dungeon Ancient Cistern
 RequiredDungeonSS,,Req Sandship,,SettingRequiredDungeon,RequiredDungeonSS,Required Dungeon Sandship
 RequiredDungeonFS,,Req Fire Sanctuary,,SettingRequiredDungeon,RequiredDungeonFS,Required Dungeon Fire Sanctuary
-RequiredDungeonSK,,Req Skykeep,,SettingRequiredDungeon,RequiredDungeonSK,Required Dungeon Skykeep
 RequiredDungeonNone1,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone1,Required Dungeon None1
 RequiredDungeonNone2,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone2,Required Dungeon None2
 RequiredDungeonNone3,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone3,Required Dungeon None3
 RequiredDungeonNone4,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone4,Required Dungeon None4
 RequiredDungeonNone5,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone5,Required Dungeon None5
 RequiredDungeonNone6,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone6,Required Dungeon None6
-RequiredDungeonNone7,,None,%Required Dungeon%,SettingRequiredDungeon,RequiredDungeonNone7,Required Dungeon None7
