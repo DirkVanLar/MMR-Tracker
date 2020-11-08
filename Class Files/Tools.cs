@@ -176,10 +176,10 @@ namespace MMR_Tracker.Class_Files
                     if (LineCopy.Contains("$")) 
                     {
                         var ExtractPlayerData = LineCopy.Split('$');
-                        if (ExtractPlayerData.Count() > 1 && int.TryParse(ExtractPlayerData[1], out int test))
+                        if (ExtractPlayerData.Count() > 1 && int.TryParse(ExtractPlayerData[1], out int NewPlayer))
                         {
                             LineCopy = ExtractPlayerData[0];
-                            entry.BelongsTo = test;
+                            entry.BelongsTo = NewPlayer;
                         }
                     }
 
@@ -224,14 +224,14 @@ namespace MMR_Tracker.Class_Files
                         if (ItemExists)
                         {
                             ItemsNoneAvailable.Add(entry.ItemName);
+                            if (NoAvailableItemsEntry != null)
+                            {
+                                Item = NoAvailableItemsEntry;
+                            }
                         }
                         else
                         {
                             ItemsNotFound.Add(entry.ItemName);
-                        }
-                        if (ItemExists && NoAvailableItemsEntry != null) 
-                        { 
-                            Item = NoAvailableItemsEntry; 
                         }
                     }
                     else if (!ItemHandled)

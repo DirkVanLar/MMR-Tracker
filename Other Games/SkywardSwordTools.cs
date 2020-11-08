@@ -1008,15 +1008,6 @@ namespace MMR_Tracker.Other_Games
                 if (line.Contains("All item locations:"))
                 {
                     AtOptions = false;
-                    for (var i = 1; i < 7; i++)
-                    {
-                        var test = RequiredDungeons.ContainsKey($"RequiredDungeon{i}");
-                        if (!RequiredDungeons.ContainsKey($"RequiredDungeon{i}"))
-                        {
-                            RequiredDungeons.Add($"RequiredDungeon{i}", $"None{i}");
-                        }
-                        SpoilerData.Add($"RequiredDungeon{i}->Required Dungeon " + RequiredDungeons[$"RequiredDungeon{i}"]);
-                    }
                     AtItems = true;
                 }
 
@@ -1036,6 +1027,15 @@ namespace MMR_Tracker.Other_Games
                 }
             }
 
+            for (var i = 1; i < 7; i++)
+            {
+                if (!RequiredDungeons.ContainsKey($"RequiredDungeon{i}"))
+                {
+                    RequiredDungeons.Add($"RequiredDungeon{i}", $"None{i}");
+                }
+                SpoilerData.Add($"RequiredDungeon{i}->Required Dungeon " + RequiredDungeons[$"RequiredDungeon{i}"]);
+            }
+
             if (!RandomizeTablets) { SpoilerData.Add($"SettingSuffleTablet->SettingSuffleTabletFalse"); }
             else { SpoilerData.Add($"SettingSuffleTablet->SettingSuffleTabletTrue"); }
 
@@ -1047,6 +1047,9 @@ namespace MMR_Tracker.Other_Games
 
             if (SkipSkykeep) { SpoilerData.Add($"SettingSkipSkykeep->SettingSkipSkykeepTrue"); }
             else { SpoilerData.Add($"SettingSkipSkykeep->SettingSkipSkykeepFalse"); }
+
+            //if (RandomizeSailcloth) { SpoilerData.Add($"SettingRandomizeSailcloth->SettingRandomizeSailclothTrue"); }
+            //else { SpoilerData.Add($"SettingRandomizeSailcloth->SettingRandomizeSailclothFalse"); }
 
             if (ManualConvert)
             {
