@@ -412,9 +412,12 @@ namespace MMR_Tracker.Class_Files
 
         public static void UpdateTrackerTitle()
         {
-            string Gamecode = (string.IsNullOrWhiteSpace(LogicObjects.MainTrackerInstance.GameCode)) ? "MMR" : LogicObjects.MainTrackerInstance.GameCode;
-            if (LogicObjects.MainTrackerInstance.UnsavedChanges) { MainInterface.CurrentProgram.Text = $"{Gamecode} Tracker*"; }
-            else { MainInterface.CurrentProgram.Text = $"{Gamecode} Tracker"; }
+            MainInterface.CurrentProgram.Text = (string.IsNullOrWhiteSpace(LogicObjects.MainTrackerInstance.GameCode)) ? "MMR" : LogicObjects.MainTrackerInstance.GameCode;
+            MainInterface.CurrentProgram.Text += " Tracker";
+            MainInterface.CurrentProgram.Text += (LogicObjects.MainTrackerInstance.UnsavedChanges) ? "*" : "";
+
+            if (VersionHandeling.TrackerVersionStatus == -1) { MainInterface.CurrentProgram.Text += $" (OUTDATED)"; }
+            else if (VersionHandeling.TrackerVersionStatus == 1) { MainInterface.CurrentProgram.Text += $" (DEV)"; }
         }
 
         public static void LoadInstance(string file = "")

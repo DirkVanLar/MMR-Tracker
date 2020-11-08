@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using MMR_Tracker.Class_Files;
+using System.Threading.Tasks;
 
 namespace MMR_Tracker_V2
 {
@@ -13,41 +14,16 @@ namespace MMR_Tracker_V2
     {
         //Logic Version Handeling
         public static string trackerVersion = "V1.11";
+        public static int TrackerVersionStatus = 0;
 
-        public static Dictionary<int, int> AreaClearDictionary(LogicObjects.TrackerInstance Instance)
-        {
-            //Rando Version 1.5 = Logic Version 3
-            //Rando Version 1.6 = Logic Version 5
-            //Rando Version 1.7 = Logic Version 6
-            //Rando Version 1.8 = Logic Version 8
-            //Rando Version 1.9 - 1.11 = Logic Version 13
-            //Entrance Rando Dev Build 1.11.0.2 = Logic Version 16 (Used to test entrance rando features)
-            var EntAreaDict = new Dictionary<int, int>();
+        //Rando Versions
+        //Rando Version 1.5 = Logic Version 3
+        //Rando Version 1.6 = Logic Version 5
+        //Rando Version 1.7 = Logic Version 6
+        //Rando Version 1.8 = Logic Version 8
+        //Rando Version 1.9 - 1.11 = Logic Version 13
+        //Entrance Rando Dev Build 1.11.0.2 = Logic Version 16 (Used to test entrance rando features)
 
-            if (!Instance.IsMM()) { return EntAreaDict; }
-
-            var WoodfallClear = Instance.Logic.Find(x => x.DictionaryName == "Woodfall clear");
-            var WoodfallAccess = Instance.Logic.Find(x => x.DictionaryName == "Woodfall Temple access" && !x.IsFake);
-            if (WoodfallAccess == null || WoodfallClear == null) { return new Dictionary<int, int>(); }
-            EntAreaDict.Add(WoodfallClear.ID, WoodfallAccess.ID);
-
-            var SnowheadClear = Instance.Logic.Find(x => x.DictionaryName == "Snowhead clear");
-            var SnowheadAccess = Instance.Logic.Find(x => x.DictionaryName == "Snowhead Temple access" && !x.IsFake);
-            if (SnowheadAccess == null || SnowheadClear == null) { return new Dictionary<int, int>(); }
-            EntAreaDict.Add(SnowheadClear.ID, SnowheadAccess.ID);
-
-            var GreatBayClear = Instance.Logic.Find(x => x.DictionaryName == "Great Bay clear");
-            var GreatBayAccess = Instance.Logic.Find(x => x.DictionaryName == "Great Bay Temple access" && !x.IsFake);
-            if (GreatBayAccess == null || GreatBayClear == null) { return new Dictionary<int, int>(); }
-            EntAreaDict.Add(GreatBayClear.ID, GreatBayAccess.ID);
-
-            var StoneTowerClear = Instance.Logic.Find(x => x.DictionaryName == "Ikana clear");
-            var StoneTowerAccess = Instance.Logic.Find(x => x.DictionaryName == "Inverted Stone Tower Temple access" && !x.IsFake);
-            if (StoneTowerAccess == null || StoneTowerClear == null) { return new Dictionary<int, int>(); }
-            EntAreaDict.Add(StoneTowerClear.ID, StoneTowerAccess.ID);
-
-            return EntAreaDict;
-        }
 
         public static string GetDictionaryPath(LogicObjects.TrackerInstance Instance)
         {
@@ -108,24 +84,29 @@ namespace MMR_Tracker_V2
             var lateset = client.Repository.Release.GetLatest("Thedrummonger", "MMR-Tracker").Result;
 
             Debugging.Log($"Latest Version: { lateset.TagName } Current Version { trackerVersion }");
+            if (VersionHandeling.CompareVersions(lateset.TagName, trackerVersion) == 0) { Debugging.Log($"Using Current Version"); }
+            if (VersionHandeling.CompareVersions(lateset.TagName, trackerVersion) < 0) { Debugging.Log($"Using Unreleased Dev Version"); TrackerVersionStatus = 1; }
 
-            if (VersionHandeling.CompareVersions(lateset.TagName, trackerVersion, 1))
+            if (VersionHandeling.CompareVersions(lateset.TagName, trackerVersion) > 0)
             {
-                if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Debugging.Log($"Tracker Out of Date. Latest Version: { lateset.TagName } Current Version { trackerVersion }"); }
+                if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Debugging.Log($"Using Outdated Version"); }
                 else
                 {
                     var Download = MessageBox.Show($"Your tracker version { trackerVersion } is out of Date. Would you like to download the latest version { lateset.TagName }?", "Tracker Out of Date", MessageBoxButtons.YesNo);
                     if (Download == DialogResult.Yes) { { Process.Start(lateset.HtmlUrl); return true; } }
                 }
+                TrackerVersionStatus = -1;
             }
             return false;
         }
 
-        public static bool CompareVersions(string V1, string V2, int Check)
+        public static int CompareVersions(string V1, string V2)
         {
+            if (!V1.Contains(".")) { V1 += ".0"; }
+            if (!V2.Contains(".")) { V2 += ".0"; }
             var CleanedV1 = new Version(string.Join("", V1.Where(x => char.IsDigit(x) || x == '.')));
             var CleanedV2 = new Version(string.Join("", V2.Where(x => char.IsDigit(x) || x == '.')));
-            return CleanedV1.CompareTo(CleanedV2) == Check;
+            return CleanedV1.CompareTo(CleanedV2);
         }
     }
 }

@@ -134,14 +134,38 @@ namespace MMR_Tracker_V2
             //TestExtractNames();
             //MInishCapTools.FillMinishLogic();
             //MInishCapTools.PrintMinishLogic();
+            //GetAllLocations();
 
             SStesting();
 
-            //GetAllLocations();
 
             void SStesting()
             {
                 SkywardSwordTools.CreateData();
+            }
+
+            void VersionHandleTesting()
+            {
+                List<string> TestVersionNumbers = new List<string>
+                {
+                    "1",
+                    "15",
+                    "12.0.5",
+                    "12.1.62",
+                    "6.2a",
+                    "7.1.2.3"
+                };
+                foreach (var i in TestVersionNumbers)
+                {
+                    Console.WriteLine(ParseVersion(i));
+                }
+
+                Version ParseVersion(string ver)
+                {
+                    ver = string.Join("", ver.Where(x => char.IsDigit(x) || x == '.'));
+                    if (!ver.Contains(".")) { ver += ".0"; }
+                    return new Version(ver);
+                }
             }
 
             void TestExtractNames()
