@@ -698,7 +698,6 @@ namespace MMR_Tracker.Other_Games
                 //The emerald tablet is not actually an item but a flag in the vanilla game so it doesn't really have a check.
                 { "Skyloft - Emerald Tablet", "Emerald Tablet" },
                 //The original check for the following items are currently Not reachable.
-                { "Skyloft - Owlan Crystals", "5 Gratitude Crystals" },
                 { "Flooded Faron Woods - Faron Soth Part event", "Faron Song of the Hero Part" },
                 { "Fire Dragon Room - Eldin Soth part event", "Eldin Song of the Hero Part" },
                 { "Lanayru Gorge - Lanayru Soth Part event", "Lanayru Song of the Hero Part" },
