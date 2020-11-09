@@ -74,6 +74,8 @@ Sky - Dohdoh Crystals,Sky - Dohdoh Crystals,5 Gratitude Crystals,Sky,Item,Sky - 
 Sky - Orrielle Crystals,Sky - Orrielle Crystals,5 Gratitude Crystals,Sky,Item,Sky - Orrielle Crystals,5 Gratitude Crystals
 Sky - Kina Crystals,Sky - Kina Crystals,5 Gratitude Crystals,Sky,Item,Sky - Kina Crystals,5 Gratitude Crystals
 Sky - Beedle's Crystals,Sky - Beedle's Crystals,5 Gratitude Crystals,Sky,Item,Sky - Beedle's Crystals,5 Gratitude Crystals
+Sky - Breakable Boulder near Fun Fun island,Sky - Breakable Boulder near Fun Fun island,Silver Rupee,Sky,Item,Sky - Breakable Boulder near Fun Fun island,Silver Rupee
+Sky - Breakable Boulder near Lumpy Pumpkin,Sky - Breakable Boulder near Lumpy Pumpkin,Silver Rupee,Sky,Item,Sky - Breakable Boulder near Lumpy Pumpkin,Silver Rupee
 Thunderhead - Goddess Chest Outside Isle of Song,Thunderhead - Goddess Chest Outside Isle of Song,Gold Rupee,Thunderhead,Item,Thunderhead - Goddess Chest Outside Isle of Song,Gold Rupee
 Thunderhead - Goddess Chest on top of Isle of Song,Thunderhead - Goddess Chest on top of Isle of Song,Small Bomb Bag,Thunderhead,Item,Thunderhead - Goddess Chest on top of Isle of Song,Small Bomb Bag
 Thunderhead - East Island Goddess Chest,Thunderhead - East Island Goddess Chest,Rupee Medal,Thunderhead,Item,Thunderhead - East Island Goddess Chest,Rupee Medal
@@ -253,6 +255,7 @@ Goddess Cube in Ancient Harbour,Lanayru Sand Sea - Goddess Cube in Ancient Harbo
 Goddess Cube in Skipper's Retreat,Lanayru Sand Sea - Goddess Cube in Skipper's Retreat,Goddess Cube in Skipper's Retreat,Goddess Cubes,Goddess Cube in Skipper's Retreat,Goddess Cube in Skipper's Retreat,Goddess Cube in Skipper's Retreat
 Goddess Cube in Pirate Stronghold,Lanayru Sand Sea - Goddess Cube in Pirate Stronghold,Goddess Cube in Pirate Stronghold,Goddess Cubes,Goddess Cube in Pirate Stronghold,Goddess Cube in Pirate Stronghold,Goddess Cube in Pirate Stronghold
 Skyloft - Emerald Tablet,,Emerald Tablet,,Item,,Emerald Tablet
+Skyloft - Spiral Charge,,Spiral Charge,,Item,,Spiral Charge
 Flooded Faron Woods - Faron Soth Part event,,Faron Song of the Hero Part,,Item,,Faron Song of the Hero Part
 Fire Dragon Room - Eldin Soth part event,,Eldin Song of the Hero Part,,Item,,Eldin Song of the Hero Part
 Lanayru Gorge - Lanayru Soth Part event,,Lanayru Song of the Hero Part,,Item,,Lanayru Song of the Hero Part
@@ -269,8 +272,6 @@ Extra Treasure 5,,Rare Treasure,,Item,,Rare Treasure
 Extra Treasure 6,,Rare Treasure,,Item,,Rare Treasure
 Extra Treasure 7,,Rare Treasure,,Item,,Rare Treasure
 Extra Treasure 8,,Rare Treasure,,Item,,Rare Treasure
-Extra Treasure 9,,Silver Rupee,,Item,,Silver Rupee
-Extra Treasure 10,,Silver Rupee,,Item,,Silver Rupee
 SettingSuffleTablet,Shuffled Tablets,,%Settings%,SettingSuffleTablet,SettingSuffleTablet,SettingSuffleTablet
 SettingSuffleTabletTrue,,Enabled,%Settings%,SettingSuffleTablet,SettingSuffleTabletTrue,SettingSuffleTabletTrue
 SettingSuffleTabletFalse,,Disabled,%Settings%,SettingSuffleTablet,SettingSuffleTabletFalse,SettingSuffleTabletFalse
