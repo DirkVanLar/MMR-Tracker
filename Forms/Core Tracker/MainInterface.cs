@@ -1371,7 +1371,7 @@ namespace MMR_Tracker_V2
             Tools.UpdateTrackerTitle();
         }
 
-        public void LoadLogicPreset(string Path, string WebPath, object sender, EventArgs e, bool New = true)
+        public void LoadLogicPreset(string Path, string WebPath, object sender, EventArgs e, bool New = true, string WebDicOverride = "")
         {
             try
             {
@@ -1390,13 +1390,28 @@ namespace MMR_Tracker_V2
                     Debugging.Log(WebPath);
                 }
 
+                List<LogicObjects.LogicDictionaryEntry> DicOverride = null;
+                if (WebDicOverride != "")
+                {
+                    try
+                    {
+                        System.Net.WebClient wc = new System.Net.WebClient();
+                        string webData = wc.DownloadString(WebDicOverride);
+                        Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                        DicOverride = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(Lines));
+                    }
+                    catch { DicOverride = null; }
+                }
+
                 if (New)
                 {
                     LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
+                    LogicObjects.MainTrackerInstance.LogicDictionary = DicOverride;
                     Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
                 }
                 else
                 {
+                    LogicObjects.MainTrackerInstance.LogicDictionary = DicOverride;
                     LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance, Lines);
                 }
                 FormatMenuItems();

@@ -1012,6 +1012,7 @@ namespace MMR_Tracker.Class_Files
                 ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem();
                 ToolStripMenuItem CustomLogicPresetRecreate = new ToolStripMenuItem();
                 ToolStripMenuItem CustomLogicPresetEditor = new ToolStripMenuItem();
+                string WebDicOverride = "";
                 foreach (var i in TextFile)
                 {
                     if (i.StartsWith("Name:"))
@@ -1025,19 +1026,25 @@ namespace MMR_Tracker.Class_Files
                         CustomLogicPresetEditor.Name = $"PresetChangeLogic{counter}";
                         CustomLogicPresetEditor.Text = Regex.Replace(i, "Name:", "", RegexOptions.IgnoreCase).Trim();
                     }
+                    else if (i.StartsWith("Dictionary:"))
+                    {
+                        WebDicOverride = Regex.Replace(i, "Dictionary:", "", RegexOptions.IgnoreCase).Trim();
+                    }
                     else if (i.StartsWith("Address:"))
                     {
-                        CustomLogicPreset.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset("", Regex.Replace(i, "Address:", "", RegexOptions.IgnoreCase).Trim(), s, ee);
+                        CustomLogicPreset.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset("", Regex.Replace(i, "Address:", "", RegexOptions.IgnoreCase).Trim(), s, ee, true, WebDicOverride);
                         NewPresets.Add(CustomLogicPreset);
                         CustomLogicPreset = new ToolStripMenuItem();
 
-                        CustomLogicPresetRecreate.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset("", Regex.Replace(i, "Address:", "", RegexOptions.IgnoreCase).Trim(), s, ee, false);
+                        CustomLogicPresetRecreate.Click += (s, ee) => MainInterface.CurrentProgram.LoadLogicPreset("", Regex.Replace(i, "Address:", "", RegexOptions.IgnoreCase).Trim(), s, ee, false, WebDicOverride);
                         RecreatePresets.Add(CustomLogicPresetRecreate);
                         CustomLogicPresetRecreate = new ToolStripMenuItem();
 
                         CustomLogicPresetEditor.Click += (s, ee) => LogicEditor.LoadLogicPreset("", Regex.Replace(i, "Address:", "", RegexOptions.IgnoreCase).Trim());
                         LogicEditorPresets.Add(CustomLogicPresetEditor);
                         CustomLogicPresetEditor = new ToolStripMenuItem();
+
+                        WebDicOverride = "";
                     }
                     counter++;
                 }

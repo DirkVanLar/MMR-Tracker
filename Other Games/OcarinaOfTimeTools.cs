@@ -111,7 +111,8 @@ namespace MMR_Tracker.Forms.Other_Games
 
         public static void CreateOOTRLogicFile()
         {
-            List<LogicObjects.LogicDictionaryEntry> LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject("Recources\\Dictionaries\\OOTRDICTIONARYV5.csv"));
+            var Lines = File.ReadAllLines("Recources\\Dictionaries\\OOTRDICTIONARYV5.csv");
+            List<LogicObjects.LogicDictionaryEntry> LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(Lines));
             List<string> log = new List<string>();
             log.Add("-versionOOTR 5");
             foreach (var i in LogicDictionary)

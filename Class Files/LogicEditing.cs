@@ -41,7 +41,7 @@ namespace MMR_Tracker_V2
                 {
                     try
                     {
-                        instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(DictionaryPath));
+                        instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(File.ReadAllLines(DictionaryPath)));
                     }
                     catch { MessageBox.Show($"The Dictionary File \"{DictionaryPath}\" has been corrupted. The tracker will not function correctly."); }
                 }

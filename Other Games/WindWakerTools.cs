@@ -109,7 +109,8 @@ namespace MMR_Tracker.Forms.Other_Games
 
         public static void CreateWWRLogicFile()
         {
-            List<LogicObjects.LogicDictionaryEntry> LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject("Recources\\Dictionaries\\WWRDICTIONARYV170.csv"));
+            var lines = File.ReadAllLines("Recources\\Dictionaries\\WWRDICTIONARYV170.csv");
+            List<LogicObjects.LogicDictionaryEntry> LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(lines));
             List<string> log = new List<string>();
             log.Add("-versionWWR 170");
             foreach (var i in LogicDictionary)

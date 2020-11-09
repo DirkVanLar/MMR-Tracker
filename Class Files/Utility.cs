@@ -14,10 +14,9 @@ namespace MMR_Tracker_V2
 {
     class Utility
     {
-        public static string ConvertCsvFileToJsonObject(string path)
+        public static string ConvertCsvFileToJsonObject(string[] lines)
         {
             var csv = new List<string[]>();
-            var lines = File.ReadAllLines(path);
 
             foreach (string line in lines)
                 csv.Add(line.Split(','));
