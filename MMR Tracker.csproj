@@ -85,6 +85,7 @@
     <Compile Include="Class Files\LogicObjectExtentions.cs" />
     <Compile Include="Class Files\PlaythroughGenerator.cs" />
     <Compile Include="Class Files\Tools.cs" />
+    <Compile Include="Class Files\UserSettings.cs" />
     <Compile Include="Forms\Extra Functionality\ItemDisplay.cs">
       <SubType>Form</SubType>
     </Compile>

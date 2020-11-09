@@ -29,7 +29,13 @@ namespace MMR_Tracker_V2
             {
                 var objResult = new Dictionary<string, string>();
                 for (int j = 0; j < properties.Length; j++)
-                    objResult.Add(properties[j], csv[i][j]);
+                {
+                    try
+                    {
+                        objResult.Add(properties[j], csv[i][j]);
+                    }
+                    catch { }
+                }
 
                 listObjResult.Add(objResult);
             }

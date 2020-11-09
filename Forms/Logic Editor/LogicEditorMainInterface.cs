@@ -73,7 +73,7 @@ namespace MMR_Tracker.Forms
             CreateContextMenus();
         }
 
-        private void FormatForm(int StartAt = 0)
+        public void FormatForm(int StartAt = 0)
         {
             this.Text = "Logic Editor";
             bool enabled = (EditorInstance.Logic.Count > 0);
@@ -125,32 +125,6 @@ namespace MMR_Tracker.Forms
         }
 
         //Button
-
-        public static void LoadLogicPreset(string Path, string WebPath)
-        {
-            try
-            {
-                string[] Lines = null;
-                if (File.Exists(Path))
-                {
-                    Lines = File.ReadAllLines(Path);
-                    Debugging.Log(Path);
-                }
-                else
-                {
-                    System.Net.WebClient wc = new System.Net.WebClient();
-                    string webData = wc.DownloadString(WebPath);
-                    Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                    Debugging.Log(WebPath);
-                }
-
-                if (EditorForm != null)
-                {
-                    EditorForm.LoadLogic(Lines);
-                }
-            }
-            catch { }
-        }
 
         private void BtnLoad_Click(object sender, EventArgs e)
         {
@@ -1236,7 +1210,7 @@ namespace MMR_Tracker.Forms
 
         private void fileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
-            Tools.HandleUserPreset(sender, e);
+            UserSettings.HandleUserPreset(sender, e);
         }
     }
 }
