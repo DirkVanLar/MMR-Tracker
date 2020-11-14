@@ -1,4 +1,5 @@
-﻿using MMR_Tracker.Forms.Other_Games;
+﻿using MMR_Tracker.Class_Files;
+using MMR_Tracker.Forms.Other_Games;
 using MMR_Tracker.Other_Games;
 using MMR_Tracker_V2;
 using Newtonsoft.Json;
@@ -83,7 +84,7 @@ namespace MMR_Tracker.Forms
 
         private void CreateOOTR_Click(object sender, EventArgs e)
         {
-            MainInterface.CurrentProgram.LoadLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%20Game%20Premade%20Logic/OOTR%20Logic.txt", sender, e);
+            UserSettings.LoadMainLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%20Game%20Premade%20Logic/OOTR%20Logic.txt", sender, e, "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Dictionaries/OOTRDICTIONARYV5.csv");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -98,7 +99,7 @@ namespace MMR_Tracker.Forms
 
         private void button7_Click(object sender, EventArgs e)
         {
-            MainInterface.CurrentProgram.LoadLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%20Game%20Premade%20Logic/WWR%20Logic.txt", sender, e);
+            UserSettings.LoadMainLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%20Game%20Premade%20Logic/WWR%20Logic.txt", sender, e, "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Dictionaries/WWRDICTIONARYV170.csv");
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -131,7 +132,7 @@ namespace MMR_Tracker.Forms
 
         private void button15_Click(object sender, EventArgs e)
         {
-            MainInterface.CurrentProgram.LoadLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%20Game%20Premade%20Logic/SSR%20Logic.txt", sender, e);
+            UserSettings.LoadMainLogicPreset("", "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%20Game%20Premade%20Logic/SSR%20Logic.txt", sender, e, "https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Dictionaries/SSRDICTIONARYV1.csv");
         }
 
         private void button14_Click(object sender, EventArgs e)

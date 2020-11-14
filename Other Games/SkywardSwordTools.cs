@@ -695,9 +695,11 @@ namespace MMR_Tracker.Other_Games
 
             Dictionary<string, string> MissingItems = new Dictionary<string, string>
             {
-                //The emerald tablet is not actually an item but a flag in the vanilla game so it doesn't really have a check.
+                //These entries are not actual items but flags in the vanilla game so they don't have a check listed in the item list.
                 { "Skyloft - Emerald Tablet", "Emerald Tablet" },
-                //The original check for the following items are currently Not reachable.
+                { "Skyloft - Spiral Charge", "Spiral Charge" },
+                //The original check for the following items are currently not reachable and are commented out in the item list. 
+                //The items however are either still in the pool or used in logic, so they need to be added.
                 { "Flooded Faron Woods - Faron Soth Part event", "Faron Song of the Hero Part" },
                 { "Fire Dragon Room - Eldin Soth part event", "Eldin Song of the Hero Part" },
                 { "Lanayru Gorge - Lanayru Soth Part event", "Lanayru Song of the Hero Part" },
@@ -706,7 +708,7 @@ namespace MMR_Tracker.Other_Games
                 { "Lanayru Gorge - Boss rush heart piece", "Heart Piece" }, 
                 //The "Goddess Cube in Lanayru Gorge" that unlocks this currently can't be reached.
                 { "Thunderhead - Mogma Mitts Island Quiver", "Small Quiver" },
-                //The item list only has 23 HP's but there are 24 in the Spoiler log. I guess 24 is beetles HP but you can still get it in game it's just not randomized so IDK. Doesn't really matter though
+                //Beetles heart piece was added to the randomization pool despite it being still available at his shop.
                 { "Skyloft - Beetle Shop Heart Piece", "Heart Piece" },
                 //Extra junk that I assume is just to fill the item pool.
                 { "Extra Treasure 1", "Rare Treasure" }, 
@@ -716,9 +718,7 @@ namespace MMR_Tracker.Other_Games
                 { "Extra Treasure 5", "Rare Treasure" },
                 { "Extra Treasure 6", "Rare Treasure" },
                 { "Extra Treasure 7", "Rare Treasure" },
-                { "Extra Treasure 8", "Rare Treasure" },
-                { "Extra Treasure 9", "Silver Rupee" },
-                { "Extra Treasure 10", "Silver Rupee" }
+                { "Extra Treasure 8", "Rare Treasure" }
             };
             foreach (var i in MissingItems)
             {

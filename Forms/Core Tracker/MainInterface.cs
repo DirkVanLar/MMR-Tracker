@@ -59,7 +59,7 @@ namespace MMR_Tracker_V2
             HandleStartArgs(sender, e, Environment.GetCommandLineArgs());
             ResizeObject();
             FormatMenuItems();
-            Tools.HandleUserPreset(sender, e);
+            UserSettings.HandleUserPreset(sender, e);
             Tools.UpdateTrackerTitle();
         }
 
@@ -1351,61 +1351,6 @@ namespace MMR_Tracker_V2
             Tools.UpdateTrackerTitle();
         }
 
-        public void LoadLogicPreset(string Path, string WebPath, object sender, EventArgs e, bool New = true, string WebDicOverride = "")
-        {
-            try
-            {
-                if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return; }
-                string[] Lines = null;
-                if (File.Exists(Path))
-                {
-                    Lines = File.ReadAllLines(Path);
-                    Debugging.Log(Path);
-                }
-                else
-                {
-                    System.Net.WebClient wc = new System.Net.WebClient();
-                    string webData = wc.DownloadString(WebPath);
-                    Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                    Debugging.Log(WebPath);
-                }
-
-                List<LogicObjects.LogicDictionaryEntry> DicOverride = null;
-                if (WebDicOverride != "")
-                {
-                    try
-                    {
-                        System.Net.WebClient wc = new System.Net.WebClient();
-                        string webData = wc.DownloadString(WebDicOverride);
-                        Lines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                        DicOverride = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(Lines));
-                    }
-                    catch { DicOverride = null; }
-                }
-
-                if (New)
-                {
-                    LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
-                    LogicObjects.MainTrackerInstance.LogicDictionary = DicOverride;
-                    Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, Lines.ToArray());
-                }
-                else
-                {
-                    LogicObjects.MainTrackerInstance.LogicDictionary = DicOverride;
-                    LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance, Lines);
-                }
-                FormatMenuItems();
-                ResizeObject();
-                PrintToListBox();
-                FireEvents(sender, e);
-                Tools.UpdateTrackerTitle();
-            }
-            catch
-            {
-                MessageBox.Show("Preset File Invalid! If you have not tampered with the preset files in \"Recources\\Other Files\\\" Please report this issue. Otherwise, redownload or delete those files.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         public void HandleStartArgs(object sender, EventArgs e, string[] args)
         {
             if (args.Length > 1)
@@ -1595,7 +1540,7 @@ namespace MMR_Tracker_V2
             LBPathFinder.Visible = location;
         }
 
-        private static void FireEvents(object sender, EventArgs e, bool TrackerUpdated = true, bool LocationCheck = true)
+        public static void FireEvents(object sender, EventArgs e, bool TrackerUpdated = true, bool LocationCheck = true)
         {
 
         }
@@ -1624,7 +1569,7 @@ namespace MMR_Tracker_V2
 
         private void PresetDropDownOpening(object sender, EventArgs e)
         {
-            Tools.HandleUserPreset(sender, e);
+            UserSettings.HandleUserPreset(sender, e);
         }
     }
 }
