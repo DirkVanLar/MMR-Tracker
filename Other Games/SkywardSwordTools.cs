@@ -52,7 +52,7 @@ namespace MMR_Tracker.Other_Games
 
             foreach(var i in SSInstance.Logic) { LogicEditor.CleanLogicEntry(i, SSInstance); }
 
-            var Save = false;
+            var Save = true;
 
             if (!Save)
             {
@@ -321,6 +321,14 @@ namespace MMR_Tracker.Other_Games
                 IsFake = true,
                 IsTrick = false,
                 Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "SettingClosedThunderHeadFalse").ID }
+            });
+            SSInstance.Logic.Add(new LogicObjects.LogicEntry
+            {
+                ID = SSInstance.Logic.Count(),
+                DictionaryName = "Option \"hero-mode\" Enabled",
+                IsFake = true,
+                IsTrick = false,
+                Required = new int[] { SSInstance.Logic.Find(x => x.DictionaryName == "SettingHeroModeTrue").ID }
             });
 
             CreateRequiredDungeonLogic(SSInstance);
@@ -745,6 +753,12 @@ namespace MMR_Tracker.Other_Games
             SSData.Add(new SSLocation { DictionaryName = "SettingSkipSkykeepTrue", isFake = false, LocationName = "", ItemName = "Enabled", ItemSubType = "SettingSkipSkykeep", LocationArea = "%Settings%", SpoilerLocation = "SettingSkipSkykeepTrue", SpoilerItem = "SettingSkipSkykeepTrue" });
             SSData.Add(new SSLocation { DictionaryName = "SettingSkipSkykeepFalse", isFake = false, LocationName = "", ItemName = "Disabled", ItemSubType = "SettingSkipSkykeep", LocationArea = "%Settings%", SpoilerLocation = "SettingSkipSkykeepFalse", SpoilerItem = "SettingSkipSkykeepFalse" });
 
+
+            //Add "Hero Mode" setting entrys
+            SSData.Add(new SSLocation { DictionaryName = "SettingHeroMode", isFake = false, LocationName = "Hero Mode", ItemName = "", ItemSubType = "SettingHeroMode", LocationArea = "%Settings%", SpoilerLocation = "SettingHeroMode", SpoilerItem = "SettingHeroMode" });
+            SSData.Add(new SSLocation { DictionaryName = "SettingHeroModeTrue", isFake = false, LocationName = "", ItemName = "Enabled", ItemSubType = "SettingHeroMode", LocationArea = "%Settings%", SpoilerLocation = "SettingHeroModeTrue", SpoilerItem = "SettingHeroModeTrue" });
+            SSData.Add(new SSLocation { DictionaryName = "SettingHeroModeFalse", isFake = false, LocationName = "", ItemName = "Disabled", ItemSubType = "SettingHeroMode", LocationArea = "%Settings%", SpoilerLocation = "SettingHeroModeFalse", SpoilerItem = "SettingHeroModeFalse" });
+
             //Add "Required Dungeons" settings
             SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeon1", isFake = false, LocationName = "Required Dungeon 1", ItemName = "", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "RequiredDungeon1", SpoilerLocation = $"RequiredDungeon1" });
             SSData.Add(new SSLocation { DictionaryName = $"RequiredDungeon2", isFake = false, LocationName = "Required Dungeon 2", ItemName = "", ItemSubType = "SettingRequiredDungeon", LocationArea = "%Required Dungeon%", SpoilerItem = "RequiredDungeon2", SpoilerLocation = $"RequiredDungeon2" });
@@ -970,6 +984,7 @@ namespace MMR_Tracker.Other_Games
             bool ClosedThunderhead = false;
             bool SkipSkykeep = false;
             bool Swordless = false;
+            bool HeroMode = false;
             bool RandomizeSailcloth = false;
             List<string> SpoilerData = new List<string>();
             SpoilerData.Add("Converted SSR");
@@ -991,6 +1006,7 @@ namespace MMR_Tracker.Other_Games
                     if (line.Contains("swordless")) { Swordless = true; }
                     if (line.Contains("randomize-sailcloth")) { RandomizeSailcloth = true; }
                     if (line.Contains("skip-skykeep")) { SkipSkykeep = true; }
+                    if (line.Contains("hero-mode")) { HeroMode = true; }
 
                     for (var i = 1; i < 7; i++)
                     {
@@ -1046,6 +1062,9 @@ namespace MMR_Tracker.Other_Games
 
             if (SkipSkykeep) { SpoilerData.Add($"SettingSkipSkykeep->SettingSkipSkykeepTrue"); }
             else { SpoilerData.Add($"SettingSkipSkykeep->SettingSkipSkykeepFalse"); }
+
+            if (HeroMode) { SpoilerData.Add($"SettingHeroMode->SettingHeroModeTrue"); }
+            else { SpoilerData.Add($"SettingHeroMode->SettingHeroModeFalse"); }
 
             //if (RandomizeSailcloth) { SpoilerData.Add($"SettingRandomizeSailcloth->SettingRandomizeSailclothTrue"); }
             //else { SpoilerData.Add($"SettingRandomizeSailcloth->SettingRandomizeSailclothFalse"); }
