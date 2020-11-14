@@ -180,9 +180,11 @@ namespace MMR_Tracker
 
             listBox2.DataSource = CheckerInstance.Logic.Select(x => x.LocationName ?? x.DictionaryName).ToList();
 
-            if (GameclearID > -1)
+            GameClearEntry = CheckerInstance.Logic.Find(x => x.DictionaryName == "MMRTGameClear" || x.DictionaryName == "Beat the Game" || x.DictionaryName == "Defeat Majora");
+
+            if (GameClearEntry != null)
             {
-                listBox2.SelectedIndex = GameclearID;
+                listBox2.SelectedIndex = GameClearEntry.ID;
             }
             else
             {
@@ -234,23 +236,31 @@ namespace MMR_Tracker
             foreach (var i in CheckerInstance.Logic)
             {
                 var SPOILERlOCATION = (i.IsFake) ? null : i.GetItemsSpoilerLocation(CheckerInstance.Logic);
-                if (SPOILERlOCATION != null && Utility.FilterSearch(i, textBox1.Text, i.ItemName ?? i.DictionaryName))
+
+                if (Utility.FilterSearch(i, textBox1.Text, i.ItemName ?? i.DictionaryName))
                 {
-                    var ListItem = new LogicObjects.ListItem();
-                    ListItem.ItemEntry = i;
-                    ListItem.LocationEntry = SPOILERlOCATION;
-                    ListItem.PathID = SPOILERlOCATION.ID;
-                    ListItem.DisplayName = i.ItemName ?? i.DictionaryName;
-                    listBox1.Items.Add(ListItem);
-                }
-                if (i.IsFake)
-                {
-                    var ListItem = new LogicObjects.ListItem();
-                    ListItem.ItemEntry = i;
-                    ListItem.LocationEntry = i;
-                    ListItem.PathID = i.ID;
-                    ListItem.DisplayName = i.ItemName ?? i.DictionaryName;
-                    listBox1.Items.Add(ListItem);
+                    if (SPOILERlOCATION != null)
+                    {
+                        var ListItem = new LogicObjects.ListItem
+                        {
+                            ItemEntry = i,
+                            LocationEntry = SPOILERlOCATION,
+                            PathID = SPOILERlOCATION.ID,
+                            DisplayName = i.ItemName ?? i.DictionaryName
+                        };
+                        listBox1.Items.Add(ListItem);
+                    }
+                    if (i.IsFake)
+                    {
+                        var ListItem = new LogicObjects.ListItem
+                        {
+                            ItemEntry = i,
+                            LocationEntry = i,
+                            PathID = i.ID,
+                            DisplayName = i.ItemName ?? i.DictionaryName
+                        };
+                        listBox1.Items.Add(ListItem);
+                    }
                 }
             }
         }
