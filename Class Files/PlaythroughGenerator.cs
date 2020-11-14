@@ -3,32 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using MMR_Tracker_V2;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace MMR_Tracker.Class_Files
 {
     class PlaythroughGenerator
     {
-        public static void GeneratePlaythrough(LogicObjects.TrackerInstance Instance)
+        public class PlaythroughContainer
         {
+            public List<LogicObjects.PlaythroughItem> Playthrough { get; set; } = null;
+            public List<LogicObjects.PlaythroughItem> RealItemPlaythrough { get; set; } = null;
+            public List<LogicObjects.PlaythroughItem> ImportantPlaythrough { get; set; } = null;
+            public LogicObjects.TrackerInstance PlaythroughInstance { get; set; } = null;
+            public string ErrorMessage { get; set; } = "";
+            public LogicObjects.PlaythroughItem GameClearItem { get; set; } = null;
+
+        }
+
+        public static PlaythroughContainer GeneratePlaythrough(LogicObjects.TrackerInstance Instance, int GameClear)
+        {
+            var container = new PlaythroughContainer();
+
             List<LogicObjects.PlaythroughItem> Playthrough = new List<LogicObjects.PlaythroughItem>();
             Dictionary<int, int> SpoilerToID = new Dictionary<int, int>();
-            LogicObjects.TrackerInstance playLogic = Utility.CloneTrackerInstance(Instance);
-            var GameClear = GetGameClearEntry(playLogic.Logic, Instance.EntranceRando);
+            container.PlaythroughInstance = Utility.CloneTrackerInstance(Instance);
 
-            if (GameClear < 0) { MessageBox.Show("Could not find game clear requirements. Playthrough can not be generated."); return; }
+            if (GameClear < 0) { container.ErrorMessage = ("Could not find game clear requirements. Playthrough can not be generated."); return container; }
 
-            if (!Utility.CheckforSpoilerLog(playLogic.Logic))
+            if (!Utility.CheckforSpoilerLog(container.PlaythroughInstance.Logic))
             {
                 var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
-                if (file == "") { return; }
-                LogicEditing.WriteSpoilerLogToLogic(playLogic, file);
+                if (file == "") { return null; }
+                LogicEditing.WriteSpoilerLogToLogic(container.PlaythroughInstance, file);
             }
 
-            if (!Utility.CheckforSpoilerLog(playLogic.Logic, true))
-            { MessageBox.Show("Not all items have spoiler data. Playthrough may not generate correctly. Ensure you are using the same version of logic used to generate your selected spoiler log"); }
+            if (!Utility.CheckforSpoilerLog(container.PlaythroughInstance.Logic, true))
+            { MessageBox.Show("Not all items have spoiler data. Results may be inconsistant. Ensure you are using the same version of logic used to generate your selected spoiler log"); }
 
             List<int> importantItems = new List<int>();
-            foreach (var i in playLogic.Logic)
+            foreach (var i in container.PlaythroughInstance.Logic)
             {
                 i.Available = false;
                 i.Checked = false;
@@ -58,45 +71,65 @@ namespace MMR_Tracker.Class_Files
                 if (i.ID == GameClear) { importantItems.Add(i.ID); }
             }
 
-            SwapAreaClearLogic(playLogic);
-            MarkAreaClearAsEntry(playLogic);
-            CalculatePlaythrough(playLogic, Playthrough, 0, importantItems);
+            SwapAreaClearLogic(container.PlaythroughInstance);
+            MarkAreaClearAsEntry(container.PlaythroughInstance);
+            CalculatePlaythrough(container.PlaythroughInstance, Playthrough, 0, importantItems);
 
             importantItems = new List<int>();
             var GameClearPlaythroughItem = Playthrough.Find(x => x.Check.ID == GameClear);
-            if (GameClearPlaythroughItem == null) { MessageBox.Show("This seed is not beatable using this logic! Playthrough could not be generated!"); return; }
+            if (GameClearPlaythroughItem == null)
+            {
+                container.Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
+                return container;
+            }
+
+            container.GameClearItem = GameClearPlaythroughItem;
 
             importantItems.Add(GameClearPlaythroughItem.Check.ID);
             FindImportantItems(GameClearPlaythroughItem, importantItems, Playthrough, SpoilerToID);
 
-            Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
+            container.Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
 
+            container.RealItemPlaythrough = JsonConvert.DeserializeObject<List<LogicObjects.PlaythroughItem>>(JsonConvert.SerializeObject(container.Playthrough));
             //Replace all fake items with the real items used to unlock those fake items
-            foreach (var i in Playthrough) { i.ItemsUsed = Tools.ResolveFakeToRealItems(i, Playthrough, playLogic.Logic).Distinct().ToList(); }
+            foreach (var i in container.RealItemPlaythrough) { i.ItemsUsed = Tools.ResolveFakeToRealItems(i, Playthrough, container.PlaythroughInstance.Logic).Distinct().ToList(); }
 
-            var ImportantPlaythrough = Playthrough.Where(i => (importantItems.Contains(i.Check.ID) && !i.Check.IsFake) || i.Check.ID == GameClear).ToList();
-
-            //foreach (var li in ImportantPlaythrough) { Debugging.Log(li.Check.DictionaryName); }
+            container.ImportantPlaythrough = container.RealItemPlaythrough.Where(i => (importantItems.Contains(i.Check.ID) && !i.Check.IsFake) || i.Check.ID == GameClear).ToList();
 
             //Convert Progressive Items Back to real items
-            ConvertProgressiveItems(ImportantPlaythrough, playLogic);
+            ConvertProgressiveItems(container.Playthrough, container.PlaythroughInstance);
+            ConvertProgressiveItems(container.RealItemPlaythrough, container.PlaythroughInstance);
+            ConvertProgressiveItems(container.ImportantPlaythrough, container.PlaythroughInstance);
 
+            return container;
+        }
+
+        
+
+        public static void DisplayPlaythrough(List<LogicObjects.PlaythroughItem> Playthrough, LogicObjects.TrackerInstance CopyInstance, int GameclearItem)
+        {
             List<string> PlaythroughString = new List<string>();
             int lastSphere = -1;
-            string FinalTask = (Instance.IsMM()) ? "Defeat Majora" : "Beat the game";
-            foreach (var i in ImportantPlaythrough)
+
+            string FinalTask = CopyInstance.Logic[GameclearItem].DictionaryName;
+
+            if (FinalTask == "MMRTGameClear")
+            {
+                FinalTask = (CopyInstance.IsMM()) ? "Defeat Majora" : "Beat the game";
+            }
+            foreach (var i in Playthrough)
             {
                 if (i.SphereNumber != lastSphere)
                 {
                     PlaythroughString.Add("Sphere: " + i.SphereNumber + " ====================================="); lastSphere = i.SphereNumber;
                 }
-                if (i.Check.ID == GameClear) { PlaythroughString.Add(FinalTask); }
+                if (i.Check.ID == GameclearItem) { PlaythroughString.Add(FinalTask); }
                 else
                 {
-                    PlaythroughString.Add("Check \"" + i.Check.LocationName + "\" to obtain \"" + playLogic.Logic[i.Check.RandomizedItem].ItemName + "\"");
+                    PlaythroughString.Add("Check \"" + i.Check.LocationName + "\" to obtain \"" + CopyInstance.Logic[i.Check.RandomizedItem].ItemName + "\"");
                 }
                 string items = "    Using Items: ";
-                foreach (var j in i.ItemsUsed) { items = items + playLogic.Logic[j].ItemName + ", "; }
+                foreach (var j in i.ItemsUsed) { items = items + CopyInstance.Logic[j].ItemName + ", "; }
                 if (items != "    Using Items: ") { PlaythroughString.Add(items); }
             }
 
@@ -234,51 +267,55 @@ namespace MMR_Tracker.Class_Files
             if (MMRTGameClear != null) { return MMRTGameClear.ID; }
 
             int GameClear = -1;
-            int StunMajora = playLogic.Count();
-            playLogic.Add(new LogicObjects.LogicEntry
+            try
             {
-                ID = StunMajora,
-                DictionaryName = "MMRTStunMajora",
-                IsFake = true,
-                Conditionals = new int[][]
+                int StunMajora = playLogic.Count();
+                playLogic.Add(new LogicObjects.LogicEntry
                 {
+                    ID = StunMajora,
+                    DictionaryName = "MMRTStunMajora",
+                    IsFake = true,
+                    Conditionals = new int[][]
+                    {
                         new int[] { playLogic.Find(x => x.DictionaryName == "Town Archery Quiver (40)").ID },
                         new int[] { playLogic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)").ID },
                         new int[] { playLogic.Find(x => x.DictionaryName == "Hero's Bow").ID },
                         new int[] { playLogic.Find(x => x.DictionaryName == "Zora Mask").ID }
-                }
-            });
+                    }
+                });
 
-            int DamageMajora = playLogic.Count();
-            playLogic.Add(new LogicObjects.LogicEntry
-            {
-                ID = DamageMajora,
-                DictionaryName = "MMRTDamageMajora",
-                IsFake = true,
-                Conditionals = new int[][]
+                int DamageMajora = playLogic.Count();
+                playLogic.Add(new LogicObjects.LogicEntry
                 {
+                    ID = DamageMajora,
+                    DictionaryName = "MMRTDamageMajora",
+                    IsFake = true,
+                    Conditionals = new int[][]
+                    {
                         new int[] { playLogic.Find(x => x.DictionaryName == "Starting Sword").ID },
                         new int[] { playLogic.Find(x => x.DictionaryName == "Razor Sword").ID },
                         new int[] { playLogic.Find(x => x.DictionaryName == "Gilded Sword").ID },
                         new int[] { playLogic.Find(x => x.DictionaryName == "Great Fairy's Sword").ID }
-                }
-            });
+                    }
+                });
 
-            GameClear = playLogic.Count();
-            playLogic.Add(new LogicObjects.LogicEntry
-            {
-                ID = GameClear,
-                DictionaryName = "MMRTGameClear",
-                IsFake = true,
-                Required = (!EntranceRadno) ?
-                    new int[] { playLogic.Find(x => x.DictionaryName == "Moon Access").ID } :
-                    new int[] { playLogic.Find(x => x.DictionaryName == "EntranceMajorasLairFromTheMoon").ID },
-                Conditionals = new int[][]
+                GameClear = playLogic.Count();
+                playLogic.Add(new LogicObjects.LogicEntry
                 {
+                    ID = GameClear,
+                    DictionaryName = "MMRTGameClear",
+                    IsFake = true,
+                    Required = (!EntranceRadno) ?
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Moon Access").ID } :
+                        new int[] { playLogic.Find(x => x.DictionaryName == "EntranceMajorasLairFromTheMoon").ID },
+                    Conditionals = new int[][]
+                    {
                         new int[] { StunMajora, DamageMajora },
                         new int[] { playLogic.Find(x => x.DictionaryName == "Fierce Deity's Mask").ID, playLogic.Find(x => x.DictionaryName == "Magic Meter").ID }
-                }
-            });
+                    }
+                });
+            }
+            catch { GameClear = -1; }
             return GameClear;
         }
 

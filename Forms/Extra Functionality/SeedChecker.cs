@@ -15,70 +15,59 @@ namespace MMR_Tracker
             InitializeComponent();
         }
 
+        private LogicObjects.TrackerInstance CheckerInstance = null;
+
         private void BtnAddNeeded_Click(object sender, EventArgs e)
         {
-            var TempInstance = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
             MiscMultiItemSelect NeededSelect = new MiscMultiItemSelect();
-            NeededSelect.UsedInstance = TempInstance;
+            NeededSelect.UsedInstance = CheckerInstance;
             NeededSelect.Display = 2;
-            NeededSelect.ListContent = TempInstance.Logic;
-
-            var GameClearEntry = TempInstance.Logic.Find(x => x.DictionaryName == "MMRTGameClear");
-            if (GameClearEntry != null)
-            {
-                GameClearEntry.ItemName = (TempInstance.IsMM()) ? "Defeat Majora" : "Beat the Game";
-            }
-            else if (LogicObjects.MainTrackerInstance.IsMM())
-            {
-                Console.WriteLine("Adding MMRTGameClear");
-                int GameClearID = PlaythroughGenerator.GetGameClearEntry(NeededSelect.ListContent, LogicObjects.MainTrackerInstance.IsEntranceRando());
-                if (GameClearID > -1 && GameClearID < NeededSelect.ListContent.Count()) { NeededSelect.ListContent[GameClearID].ItemName = "Defeat Majora"; }
-            }
+            NeededSelect.ListContent = CheckerInstance.Logic;
 
             if (NeededSelect.ShowDialog() != DialogResult.OK) { return; }
             foreach (var i in NeededSelect.SelectedItems)
             {
                 LBNeededItems.Items.Add(new LogicObjects.ListItem { DisplayName = i.ItemName ?? i.DictionaryName, PathID = i.ID });
             }
+            BtnCheckSeed_Click(sender, e);
         }
 
         private void LBNeededItems_DoubleClick(object sender, EventArgs e)
         {
             if (LBNeededItems.SelectedIndex == -1) { return; }
             LBNeededItems.Items.RemoveAt(LBNeededItems.SelectedIndex);
+            BtnCheckSeed_Click(sender, e);
         }
 
         private void BtnAddIgnored_Click(object sender, EventArgs e)
         {
             MiscMultiItemSelect NeededSelect = new MiscMultiItemSelect();
             NeededSelect.Display = 1;
-            NeededSelect.ListContent = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && !string.IsNullOrWhiteSpace(x.LocationName)).ToList();
+            NeededSelect.ListContent = CheckerInstance.Logic.Where(x => !x.IsFake && !string.IsNullOrWhiteSpace(x.LocationName)).ToList();
             if (NeededSelect.ShowDialog() != DialogResult.OK) { return; }
             foreach (var i in NeededSelect.SelectedItems)
             {
                 LBIgnoredChecks.Items.Add(new LogicObjects.ListItem { DisplayName = i.LocationName ?? i.DictionaryName, PathID = i.ID });
             }
+            BtnCheckSeed_Click(sender, e);
         }
 
         private void LBIgnoredChecks_DoubleClick(object sender, EventArgs e)
         {
             if (LBIgnoredChecks.SelectedIndex == -1) { return; }
             LBIgnoredChecks.Items.RemoveAt(LBIgnoredChecks.SelectedIndex);
+            BtnCheckSeed_Click(sender, e);
         }
 
         private void BtnCheckSeed_Click(object sender, EventArgs e)
         {
-            var logicCopy = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
-            if (!Utility.CheckforSpoilerLog(logicCopy.Logic))
+            if (!chkShowObtainable.Checked && !chkShowUnobtainable.Checked)
             {
-                var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
-                if (file == "") { return; }
-                LogicEditing.WriteSpoilerLogToLogic(logicCopy, file);
-                if (!Utility.CheckforSpoilerLog(logicCopy.Logic, true))
-                { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
+                LBResult.Items.Clear();
+                return;
             }
-            else if (!Utility.CheckforSpoilerLog(logicCopy.Logic, true))
-            { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
+
+            var logicCopy = Utility.CloneTrackerInstance(CheckerInstance);
 
             foreach (var entry in logicCopy.Logic)
             {
@@ -137,13 +126,6 @@ namespace MMR_Tracker
             }
         }
 
-        private void BtnClear_Click(object sender, EventArgs e)
-        {
-            LBIgnoredChecks.Items.Clear();
-            LBNeededItems.Items.Clear();
-            LBResult.Items.Clear();
-        }
-
         public static void CheckSeed(LogicObjects.TrackerInstance Instance, bool InitialRun, List<int> Ignored)
         {
             if (InitialRun) { Instance.RefreshFakeItems(); }
@@ -164,19 +146,137 @@ namespace MMR_Tracker
 
         private void SeedChecker_Load(object sender, EventArgs e)
         {
-            var TempInstance = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
-            var GameClearEntry = TempInstance.Logic.Find(x => x.DictionaryName == "MMRTGameClear");
+            CheckerInstance = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
+
+            if (!Utility.CheckforSpoilerLog(CheckerInstance.Logic))
+            {
+                var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
+                if (file == "") { return; }
+                LogicEditing.WriteSpoilerLogToLogic(CheckerInstance, file);
+                if (!Utility.CheckforSpoilerLog(CheckerInstance.Logic, true))
+                { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
+            }
+            else if (!Utility.CheckforSpoilerLog(CheckerInstance.Logic, true))
+            { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
+
+
+            var GameClearEntry = CheckerInstance.Logic.Find(x => x.DictionaryName == "MMRTGameClear");
+
+            int GameclearID = -1;
+
             if (GameClearEntry != null)
             {
-                string GameClearName = (LogicObjects.MainTrackerInstance.IsMM()) ? "Defeat Majora" : "Beat the Game";
-                LBNeededItems.Items.Add(new LogicObjects.ListItem { DisplayName = GameClearName, PathID = GameClearEntry.ID });
+                GameClearEntry.DictionaryName = (CheckerInstance.IsMM()) ? "Defeat Majora" : "Beat the Game";
+                LBNeededItems.Items.Add(new LogicObjects.ListItem { DisplayName = GameClearEntry.DictionaryName, PathID = GameClearEntry.ID });
             }
-            else if (LogicObjects.MainTrackerInstance.IsMM())
+            else if (CheckerInstance.IsMM())
             {
                 Console.WriteLine("Adding MMRTGameClear");
-                int GamClearID = PlaythroughGenerator.GetGameClearEntry(TempInstance.Logic, LogicObjects.MainTrackerInstance.IsEntranceRando());
-                LBNeededItems.Items.Add(new LogicObjects.ListItem { DisplayName = "Defeat Majora", PathID = GamClearID });
+                GameclearID = PlaythroughGenerator.GetGameClearEntry(CheckerInstance.Logic, CheckerInstance.IsEntranceRando());
+                if (!CheckerInstance.ItemInRange(GameclearID)) { return; }
+                CheckerInstance.Logic[GameclearID].DictionaryName = "Defeat Majora";
+                LBNeededItems.Items.Add(new LogicObjects.ListItem { DisplayName = "Defeat Majora", PathID = GameclearID });
             }
+
+            listBox2.DataSource = CheckerInstance.Logic.Select(x => x.LocationName ?? x.DictionaryName).ToList();
+
+            if (GameclearID > -1)
+            {
+                listBox2.SelectedIndex = GameclearID;
+            }
+            else
+            {
+                listBox2.SelectedIndex = 0;
+            }
+            WriteSpoilerItemsToBox();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var Playthrough = PlaythroughGenerator.GeneratePlaythrough(CheckerInstance, listBox2.SelectedIndex);
+            if (Playthrough.GameClearItem == null)
+            {
+                MessageBox.Show("The selected Game Clear Item can not be obtained in this seed. A playthrough can not be generated.");
+                return;
+            }
+            PlaythroughGenerator.DisplayPlaythrough(Playthrough.ImportantPlaythrough, Playthrough.PlaythroughInstance, Playthrough.GameClearItem.Check.ID);
+        }
+
+        private void spoilerLogLookupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!(listBox1.SelectedItem is LogicObjects.ListItem)) { return; }
+            var Location = (listBox1.SelectedItem as LogicObjects.ListItem).LocationEntry;
+            var Item = (listBox1.SelectedItem as LogicObjects.ListItem).ItemEntry;
+            MessageBox.Show($"{Item.ItemName ?? Item.DictionaryName} is found at {Location.LocationName ?? Location.DictionaryName}", $"{ Item.DictionaryName} Item Location: ");
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            for(var i = 0; i < listBox2.Items.Count; i++)
+            {
+                if (listBox2.Items[i].ToString().ToLower().Contains(textBox2.Text.ToLower()))
+                {
+                    listBox2.TopIndex = i;
+                    break;
+                }
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            WriteSpoilerItemsToBox();
+        }
+
+        private void WriteSpoilerItemsToBox()
+        {
+            listBox1.Items.Clear();
+            foreach (var i in CheckerInstance.Logic)
+            {
+                var SPOILERlOCATION = (i.IsFake) ? null : i.GetItemsSpoilerLocation(CheckerInstance.Logic);
+                if (SPOILERlOCATION != null && Utility.FilterSearch(i, textBox1.Text, i.ItemName ?? i.DictionaryName))
+                {
+                    var ListItem = new LogicObjects.ListItem();
+                    ListItem.ItemEntry = i;
+                    ListItem.LocationEntry = SPOILERlOCATION;
+                    ListItem.PathID = SPOILERlOCATION.ID;
+                    ListItem.DisplayName = i.ItemName ?? i.DictionaryName;
+                    listBox1.Items.Add(ListItem);
+                }
+                if (i.IsFake)
+                {
+                    var ListItem = new LogicObjects.ListItem();
+                    ListItem.ItemEntry = i;
+                    ListItem.LocationEntry = i;
+                    ListItem.PathID = i.ID;
+                    ListItem.DisplayName = i.ItemName ?? i.DictionaryName;
+                    listBox1.Items.Add(ListItem);
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (!(listBox1.SelectedItem is LogicObjects.ListItem)) { return; }
+            var Location = (listBox1.SelectedItem as LogicObjects.ListItem).LocationEntry;
+            var Item = (listBox1.SelectedItem as LogicObjects.ListItem).ItemEntry;
+            var Playthrough = PlaythroughGenerator.GeneratePlaythrough(CheckerInstance, Location.ID);
+
+            var LocationInPlayThrough = Playthrough.Playthrough.Find(x => x.Check.ID == Location.ID);
+
+            if (LocationInPlayThrough == null)
+            {
+                MessageBox.Show($"{Item.ItemName ?? Item.DictionaryName} Can not be obtained in this seed");
+                return;
+            }
+            MessageBox.Show($"{Item.ItemName ?? Item.DictionaryName} Can be obtained in Sphere {LocationInPlayThrough.SphereNumber}");
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!(listBox1.SelectedItem is LogicObjects.ListItem)) { return; }
+            var Item = (listBox1.SelectedItem as LogicObjects.ListItem).ItemEntry;
+            button2.Enabled = !Item.IsFake;
         }
     }
 }

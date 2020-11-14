@@ -78,9 +78,7 @@ namespace MMR_Tracker_V2
             this.onlinePlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generatePlaythroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.spoilerLogLookupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.popoutPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FilterMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -422,7 +420,7 @@ namespace MMR_Tracker_V2
             this.stricterLogicHandelingToolStripMenuItem,
             this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             this.logicOptionsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.PresetDropDownOpening);
             // 
@@ -469,7 +467,7 @@ namespace MMR_Tracker_V2
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -508,7 +506,7 @@ namespace MMR_Tracker_V2
             this.changeMiddleClickToStarToolStripMenuItem,
             this.changeFontToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -542,7 +540,7 @@ namespace MMR_Tracker_V2
             // onlinePlayToolStripMenuItem
             // 
             this.onlinePlayToolStripMenuItem.Name = "onlinePlayToolStripMenuItem";
-            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.onlinePlayToolStripMenuItem.Text = "Online Play";
             this.onlinePlayToolStripMenuItem.Click += new System.EventHandler(this.onlinePlayToolStripMenuItem_Click);
             // 
@@ -550,78 +548,62 @@ namespace MMR_Tracker_V2
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.seedCheckerToolStripMenuItem,
-            this.generatePlaythroughToolStripMenuItem,
             this.whatUnlockedThisToolStripMenuItem,
-            this.spoilerLogLookupToolStripMenuItem,
             this.logicEditorToolStripMenuItem,
             this.popoutPathfinderToolStripMenuItem,
             this.FilterMapToolStripMenuItem,
             this.itemTrackerToolStripMenuItem,
             this.spoilerLogConverterToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // seedCheckerToolStripMenuItem
             // 
             this.seedCheckerToolStripMenuItem.Name = "seedCheckerToolStripMenuItem";
-            this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.seedCheckerToolStripMenuItem.Text = "Seed Checker";
+            this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.seedCheckerToolStripMenuItem.Text = "Spoiler Log Tools";
             this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.SeedCheckerToolStripMenuItem_Click);
-            // 
-            // generatePlaythroughToolStripMenuItem
-            // 
-            this.generatePlaythroughToolStripMenuItem.Name = "generatePlaythroughToolStripMenuItem";
-            this.generatePlaythroughToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.generatePlaythroughToolStripMenuItem.Text = "Generate Playthrough";
-            this.generatePlaythroughToolStripMenuItem.Click += new System.EventHandler(this.GeneratePlaythroughToolStripMenuItem_Click);
             // 
             // whatUnlockedThisToolStripMenuItem
             // 
             this.whatUnlockedThisToolStripMenuItem.Name = "whatUnlockedThisToolStripMenuItem";
-            this.whatUnlockedThisToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.whatUnlockedThisToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.whatUnlockedThisToolStripMenuItem.Text = "What Unlocked This?";
             this.whatUnlockedThisToolStripMenuItem.Click += new System.EventHandler(this.WhatUnlockedThisToolStripMenuItem_Click);
-            // 
-            // spoilerLogLookupToolStripMenuItem
-            // 
-            this.spoilerLogLookupToolStripMenuItem.Name = "spoilerLogLookupToolStripMenuItem";
-            this.spoilerLogLookupToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.spoilerLogLookupToolStripMenuItem.Text = "Spoiler Log lookup";
-            this.spoilerLogLookupToolStripMenuItem.Click += new System.EventHandler(this.spoilerLogLookupToolStripMenuItem_Click);
             // 
             // logicEditorToolStripMenuItem
             // 
             this.logicEditorToolStripMenuItem.Name = "logicEditorToolStripMenuItem";
-            this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.logicEditorToolStripMenuItem.Text = "Logic Editor";
             this.logicEditorToolStripMenuItem.Click += new System.EventHandler(this.LogicEditorToolStripMenuItem_Click);
             // 
             // popoutPathfinderToolStripMenuItem
             // 
             this.popoutPathfinderToolStripMenuItem.Name = "popoutPathfinderToolStripMenuItem";
-            this.popoutPathfinderToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.popoutPathfinderToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.popoutPathfinderToolStripMenuItem.Text = "Popout Pathfinder";
             this.popoutPathfinderToolStripMenuItem.Click += new System.EventHandler(this.PopoutPathfinderToolStripMenuItem_Click);
             // 
             // FilterMapToolStripMenuItem
             // 
             this.FilterMapToolStripMenuItem.Name = "FilterMapToolStripMenuItem";
-            this.FilterMapToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.FilterMapToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.FilterMapToolStripMenuItem.Text = "Filter Map";
             this.FilterMapToolStripMenuItem.Click += new System.EventHandler(this.FilterMapToolStripMenuItem_Click);
             // 
             // itemTrackerToolStripMenuItem
             // 
             this.itemTrackerToolStripMenuItem.Name = "itemTrackerToolStripMenuItem";
-            this.itemTrackerToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.itemTrackerToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.itemTrackerToolStripMenuItem.Text = "Item Tracker";
             this.itemTrackerToolStripMenuItem.Click += new System.EventHandler(this.ItemTrackerToolStripMenuItem_Click);
             // 
             // spoilerLogConverterToolStripMenuItem
             // 
             this.spoilerLogConverterToolStripMenuItem.Name = "spoilerLogConverterToolStripMenuItem";
-            this.spoilerLogConverterToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.spoilerLogConverterToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.spoilerLogConverterToolStripMenuItem.Text = "Other Game Support";
             this.spoilerLogConverterToolStripMenuItem.Click += new System.EventHandler(this.spoilerLogConverterToolStripMenuItem_Click);
             // 
@@ -867,7 +849,6 @@ namespace MMR_Tracker_V2
         private System.Windows.Forms.ToolStripMenuItem dumbStuffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seedCheckerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generatePlaythroughToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem whatUnlockedThisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logicEditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem referencesToolStripMenuItem;
@@ -892,7 +873,6 @@ namespace MMR_Tracker_V2
         private System.Windows.Forms.ToolStripMenuItem curiosityShopBottlePurchaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem goronGraveLadderClimbToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lensCavePathsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem spoilerLogLookupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spoilerLogConverterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enableProgressiveItemsToolStripMenuItem;

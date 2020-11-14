@@ -52,7 +52,7 @@ namespace MMR_Tracker.Other_Games
 
             foreach(var i in SSInstance.Logic) { LogicEditor.CleanLogicEntry(i, SSInstance); }
 
-            var Save = true;
+            var Save = false;
 
             if (!Save)
             {

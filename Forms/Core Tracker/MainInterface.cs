@@ -342,12 +342,6 @@ namespace MMR_Tracker_V2
             SeedCheckerForm.Show();
         }
 
-        private void GeneratePlaythroughToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { MessageBox.Show("Not compatible with multiworld seeds!", "Incompatible", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
-            PlaythroughGenerator.GeneratePlaythrough(LogicObjects.MainTrackerInstance);
-        }
-
         private void WhatUnlockedThisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MiscSingleItemSelect WhatUnlockedSelect = new MiscSingleItemSelect
@@ -394,20 +388,6 @@ namespace MMR_Tracker_V2
             id.MainInterfaceInstance = this;
             id.Show();
 
-        }
-
-        private void spoilerLogLookupToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var logic = LogicObjects.MainTrackerInstance.Logic;
-            if (!Utility.CheckforSpoilerLog(logic)) { MessageBox.Show("No spoiler data found!"); return; }
-            MiscSingleItemSelect ListSpoilerItems = new MiscSingleItemSelect
-            {
-                Text = "Select an Item",
-                ListContent = logic.Where(x => x.GetItemsSpoilerLocation(logic) != null).ToList(),
-                Display = 2,
-                Function = 2
-            };
-            ListSpoilerItems.Show();
         }
 
         private void spoilerLogConverterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1462,10 +1442,8 @@ namespace MMR_Tracker_V2
             redoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             saveToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             seedCheckerToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0) && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld;
-            generatePlaythroughToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0) && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld;
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             changeLogicToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            spoilerLogLookupToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             popoutPathfinderToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.EntranceRando);
             if (!LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable) 
             {
