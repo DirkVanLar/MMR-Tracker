@@ -270,7 +270,7 @@ namespace MMR_Tracker
             if (!(listBox1.SelectedItem is LogicObjects.ListItem)) { return; }
             var Location = (listBox1.SelectedItem as LogicObjects.ListItem).LocationEntry;
             var Item = (listBox1.SelectedItem as LogicObjects.ListItem).ItemEntry;
-            var Playthrough = PlaythroughGenerator.GeneratePlaythrough(CheckerInstance, Location.ID);
+            var Playthrough = PlaythroughGenerator.GeneratePlaythrough(CheckerInstance, Location.ID, true);
 
             var LocationInPlayThrough = Playthrough.Playthrough.Find(x => x.Check.ID == Location.ID);
 

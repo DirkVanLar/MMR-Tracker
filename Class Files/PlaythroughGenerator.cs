@@ -20,7 +20,7 @@ namespace MMR_Tracker.Class_Files
 
         }
 
-        public static PlaythroughContainer GeneratePlaythrough(LogicObjects.TrackerInstance Instance, int GameClear)
+        public static PlaythroughContainer GeneratePlaythrough(LogicObjects.TrackerInstance Instance, int GameClear, bool fullplaythrough = false)
         {
             var container = new PlaythroughContainer();
 
@@ -69,6 +69,8 @@ namespace MMR_Tracker.Class_Files
                     }
                 }
                 if (i.ID == GameClear) { importantItems.Add(i.ID); }
+
+                if (!importantItems.Contains(i.ID) && fullplaythrough) { importantItems.Add(i.ID); }
             }
 
             SwapAreaClearLogic(container.PlaythroughInstance);
