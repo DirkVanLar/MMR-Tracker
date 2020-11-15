@@ -263,6 +263,12 @@ namespace MMR_Tracker
                     }
                 }
             }
+
+            if (listBox1.SelectedIndex < 0)
+            {
+                button2.Enabled = false;
+                button3.Enabled = false;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -284,9 +290,18 @@ namespace MMR_Tracker
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            button2.Enabled = true;
+            button3.Enabled = true;
+
             if (!(listBox1.SelectedItem is LogicObjects.ListItem)) { return; }
             var Item = (listBox1.SelectedItem as LogicObjects.ListItem).ItemEntry;
             button2.Enabled = !Item.IsFake;
+
+            if (listBox1.SelectedIndex < 0)
+            {
+                button2.Enabled = false;
+                button3.Enabled = false;
+            }
         }
     }
 }
