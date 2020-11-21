@@ -1710,7 +1710,7 @@
 0
 
 - Can Access Dungeon Entrance In Sand Sea
-224,262,450
+223,262,450
 
 0
 0
