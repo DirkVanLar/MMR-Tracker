@@ -136,8 +136,12 @@ namespace MMR_Tracker_V2
             //MInishCapTools.PrintMinishLogic();
             //GetAllLocations();
 
-            SStesting();
+            OOTRTesting();
 
+            void OOTRTesting()
+            {
+                OcarinaOfTimeToolsLogicCreation.Testing();
+            }
 
             void SStesting()
             {

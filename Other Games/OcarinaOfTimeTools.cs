@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static MMR_Tracker.Forms.SpoilerLogConverter;
@@ -635,6 +636,236 @@ namespace MMR_Tracker.Forms.Other_Games
                 if (ItemLine != "") { ItemsArray = JsonConvert.DeserializeObject(ItemLine); }
             }
 
+        }
+    }
+
+    class OcarinaOfTimeToolsLogicCreation
+    {
+
+        class RegionData
+        {
+            public string Region { get; set; } = "";
+            public Dictionary<string, string> Events { get; set; } = new Dictionary<string, string>();
+            public Dictionary<string, string> Locations { get; set; } = new Dictionary<string, string>();
+            public Dictionary<string, string> Exits { get; set; } = new Dictionary<string, string>();
+        }
+
+        public static void Testing()
+        {
+            var TestLine = Directory.GetFiles(@"D:\Visual Studio Code Stuff\MMR TRACKER V2\MMR Tracker V2\Recources\Other Junk\OOTR Logic Data\World", "*.json").Where(x => !x.Contains("MQ")).SelectMany(f => File.ReadLines(f).Concat(new[] { Environment.NewLine }));
+
+            var AllRegionData = new List<RegionData>();
+
+            RegionData CurrentRegion = null;
+
+            bool InRegion = false;
+            bool inLocations = false;
+            bool InExits = false;
+            bool AtEndORegion = false;
+            bool InEvents = false;
+
+            string CurrentEventLine = "";
+            string CurrentLogicLine = "";
+            string CurrentExitLine = "";
+
+            foreach (var i in TestLine)
+            {
+                if (TestPosition(i)) { continue; }
+
+                if (InEvents)
+                {
+                    if (i.Contains(":") && CurrentEventLine != "")
+                    {
+                        var logiclinesplit = CleanLine(CurrentEventLine, CurrentRegion.Region).Split(':');
+                        if (logiclinesplit.Count() > 1) { CurrentRegion.Events.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
+                        CurrentEventLine = "";
+                    }
+                    CurrentEventLine += i;
+                }
+
+                if (inLocations)
+                {
+                    if (CurrentEventLine != "")
+                    {
+                        var logiclinesplit = CleanLine(CurrentEventLine, CurrentRegion.Region).Split(':');
+                        if (logiclinesplit.Count() > 1) { CurrentRegion.Events.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
+                        CurrentEventLine = "";
+                    }
+                    if (i.Contains(":") && CurrentLogicLine != "")
+                    {
+                        var logiclinesplit = CleanLine(CurrentLogicLine, CurrentRegion.Region).Split(':');
+                        if (logiclinesplit.Count() > 1) { CurrentRegion.Locations.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
+                        CurrentLogicLine = "";
+                    }
+                    CurrentLogicLine += i;
+                }
+
+                if (InExits)
+                {
+                    if (CurrentLogicLine != "")
+                    {
+                        var logiclinesplit = CleanLine(CurrentLogicLine, CurrentRegion.Region).Split(':');
+                        if (logiclinesplit.Count() > 1) { CurrentRegion.Locations.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
+                        CurrentLogicLine = "";
+                    }
+                    if (i.Contains(":") && CurrentExitLine != "")
+                    {
+                        var logiclinesplit = CleanLine(CurrentExitLine, CurrentRegion.Region, true).Split(':');
+                        if (logiclinesplit.Count() > 1) { CurrentRegion.Exits.Add($"{CurrentRegion.Region}>{logiclinesplit[0].Trim()}", "(" + logiclinesplit[1].Trim()); }
+                        CurrentExitLine = "";
+                    }
+                    CurrentExitLine += i;
+                }
+
+                if (AtEndORegion)
+                {
+                    if (CurrentExitLine != "")
+                    {
+                        var logiclinesplit = CleanLine(CurrentExitLine, CurrentRegion.Region, true).Split(':');
+                        if (logiclinesplit.Count() > 1) { CurrentRegion.Exits.Add($"{CurrentRegion.Region}>{logiclinesplit[0].Trim()}", "(" + logiclinesplit[1].Trim()); }
+                        CurrentExitLine = "";
+                    }
+                    if (CurrentRegion != null)
+                    {
+                        AllRegionData.Add(CurrentRegion);
+                        CurrentRegion = null;
+                    }
+                }
+            }
+
+            string CleanLine(string Line, string Region, bool EntranceLine = false)
+            {
+                RegexOptions options = RegexOptions.None;
+                Regex regex = new Regex("[ ]{2,}", options);
+                Line = regex.Replace(Line, " ");
+                Line = Line.Replace("\"", "").Replace(",", "").Replace("'", "").Trim();
+
+
+                Line = $"{Line}) and {Region}";
+
+                return Line.Trim();
+            }
+
+            List<string> UsedNames = new List<string>();
+            List<string> DuplicateName = new List<string>();
+
+            foreach (var i in AllRegionData)
+            {
+                Console.WriteLine("============");
+                Console.WriteLine($"Region: {i.Region}");
+
+                if (i.Locations.Any())
+                {
+                    Console.WriteLine($"Location Logic:");
+                    foreach (var j in i.Locations)
+                    {
+                        Console.WriteLine($"  {j}");
+                        if (UsedNames.Contains(j.Key)) { DuplicateName.Add(j.Key); }
+                        else { UsedNames.Add(j.Key); }
+                    }
+                }
+                if (i.Exits.Any())
+                {
+                    Console.WriteLine($"Exit Logic:");
+                    foreach (var j in i.Exits)
+                    {
+                        Console.WriteLine($"  {j}");
+                        if (UsedNames.Contains(j.Key)) { DuplicateName.Add(j.Key); }
+                        else { UsedNames.Add(j.Key); }
+                    }
+                }
+                if (i.Events.Any())
+                {
+                    Console.WriteLine($"Event Logic:");
+                    foreach (var j in i.Events)
+                    {
+                        Console.WriteLine($"  {j}");
+                        if (UsedNames.Contains(j.Key)) { DuplicateName.Add(j.Key); }
+                        else { UsedNames.Add(j.Key); }
+                    }
+                }
+            }
+
+            Dictionary<string, string> CombinedDuplicates = new Dictionary<string, string>();
+            foreach(var i in DuplicateName.Distinct())
+            {
+                CombinedDuplicates.Add(i, "");
+                foreach(var j in AllRegionData)
+                {
+                    foreach(var k in j.Events)
+                    {
+                        AddDupeData(k, i);
+                    }
+                    foreach (var k in j.Exits)
+                    {
+                        AddDupeData(k, i);
+                    }
+                    foreach (var k in j.Locations)
+                    {
+                        AddDupeData(k, i);
+                    }
+                }
+            }
+            Console.WriteLine($"=========");
+            Console.WriteLine($"Combined Duplicates");
+
+            foreach (var i in CombinedDuplicates)
+            {
+                Console.WriteLine(i);
+            }
+
+            void AddDupeData(KeyValuePair<string, string> k, string i)
+            {
+                if (k.Key == i)
+                {
+                    if (CombinedDuplicates[i] == "")
+                    {
+                        CombinedDuplicates[i] = $"({k.Value})";
+                    }
+                    else
+                    {
+                        CombinedDuplicates[i] += $" or ({k.Value})";
+                    }
+                }
+            }
+
+            bool TestPosition(string i)
+            {
+                if (i.Contains("\"region_name\":"))
+                {
+                    InRegion = true;
+                    AtEndORegion = false;
+                    CurrentRegion = new RegionData();
+                    CurrentRegion.Region = i.Replace("\"region_name\":", "").Replace("\"", "").Replace(",", "").Trim();
+                    return true;
+                }
+                if (i.Contains("\"events\":") && InRegion)
+                {
+                    InEvents = true;
+                    return true;
+                }
+                if (i.Contains("\"locations\":") && InRegion)
+                {
+                    inLocations = true;
+                    return true;
+                }
+                if (i.Contains("\"exits\":") && InRegion)
+                {
+                    InExits = true;
+                    return true;
+                }
+                if (i.Contains("}"))
+                {
+                    if (InEvents) { InEvents = false; }
+                    else if (inLocations) { inLocations = false; }
+                    else if (InExits) { InExits = false; }
+                    else if (InRegion) { InRegion = false; }
+
+                    if (!InRegion) { AtEndORegion = true; }
+                    return true;
+                }
+                return false;
+            }
         }
     }
 }
