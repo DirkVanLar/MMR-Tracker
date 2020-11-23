@@ -642,7 +642,7 @@ namespace MMR_Tracker.Forms.Other_Games
     class OcarinaOfTimeToolsLogicCreation
     {
 
-        class RegionData
+        public class RegionData
         {
             public string Region { get; set; } = "";
             public Dictionary<string, string> Events { get; set; } = new Dictionary<string, string>();
@@ -652,7 +652,16 @@ namespace MMR_Tracker.Forms.Other_Games
 
         public static void Testing()
         {
-            var TestLine = Directory.GetFiles(@"D:\Visual Studio Code Stuff\MMR TRACKER V2\MMR Tracker V2\Recources\Other Junk\OOTR Logic Data\World", "*.json").Where(x => !x.Contains("MQ")).SelectMany(f => File.ReadLines(f).Concat(new[] { Environment.NewLine }));
+            //var DataPath = @"D:\Visual Studio Code Stuff\MMR TRACKER V2\MMR Tracker V2\Recources\Other Junk\OOTR Logic Data\World";
+            var DataPath = @"C:\Users\ttalbot\Downloads\data\data";
+
+            var WorldData = DataPath + @"\World";
+
+            var MainWorldFiles = Directory.GetFiles(WorldData, "*.json").Where(x => !x.Contains("MQ")).SelectMany(f => File.ReadLines(f).Concat(new[] { Environment.NewLine }));
+
+            var MQWorldFiles = Directory.GetFiles(WorldData, "*.json").Where(x => x.Contains("MQ")).SelectMany(f => File.ReadLines(f).Concat(new[] { Environment.NewLine }));
+
+            var LogiHelperFile = File.ReadAllLines(DataPath + @"\LogicHelpers.json");
 
             var AllRegionData = new List<RegionData>();
 
@@ -668,69 +677,184 @@ namespace MMR_Tracker.Forms.Other_Games
             string CurrentLogicLine = "";
             string CurrentExitLine = "";
 
-            foreach (var i in TestLine)
+            List<string> UsedNames = new List<string>();
+            List<string> DuplicateName = new List<string>();
+
+            HAndleMianFiles();
+            HandleMQFiles();
+            HandleLogicHelpers();
+            //PrintData();
+            //PrintDuplicate();
+            PRintLogicItems();
+
+            void PRintLogicItems()
             {
-                if (TestPosition(i)) { continue; }
+                foreach(var i in GetItemsUsedInLogic(AllRegionData).Distinct()) { Console.WriteLine(i); }
+            }
 
-                if (InEvents)
+            void HAndleMianFiles()
+            {
+                foreach (var i in MainWorldFiles)
                 {
-                    if (i.Contains(":") && CurrentEventLine != "")
-                    {
-                        var logiclinesplit = CleanLine(CurrentEventLine, CurrentRegion.Region).Split(':');
-                        if (logiclinesplit.Count() > 1) { CurrentRegion.Events.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
-                        CurrentEventLine = "";
-                    }
-                    CurrentEventLine += i;
-                }
+                    if (TestPosition(i)) { continue; }
 
-                if (inLocations)
-                {
-                    if (CurrentEventLine != "")
-                    {
-                        var logiclinesplit = CleanLine(CurrentEventLine, CurrentRegion.Region).Split(':');
-                        if (logiclinesplit.Count() > 1) { CurrentRegion.Events.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
-                        CurrentEventLine = "";
-                    }
-                    if (i.Contains(":") && CurrentLogicLine != "")
-                    {
-                        var logiclinesplit = CleanLine(CurrentLogicLine, CurrentRegion.Region).Split(':');
-                        if (logiclinesplit.Count() > 1) { CurrentRegion.Locations.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
-                        CurrentLogicLine = "";
-                    }
-                    CurrentLogicLine += i;
-                }
+                    string CleanedLine = RemoveComments(i);
 
-                if (InExits)
-                {
-                    if (CurrentLogicLine != "")
+                    if (InEvents)
                     {
-                        var logiclinesplit = CleanLine(CurrentLogicLine, CurrentRegion.Region).Split(':');
-                        if (logiclinesplit.Count() > 1) { CurrentRegion.Locations.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
-                        CurrentLogicLine = "";
+                        if (CleanedLine.Contains(":") && CurrentEventLine != "")
+                        {
+                            var logiclinesplit = CleanLine(CurrentEventLine, CurrentRegion.Region).Split(':');
+                            if (logiclinesplit.Count() > 1) { CurrentRegion.Events.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
+                            CurrentEventLine = "";
+                        }
+                        CurrentEventLine += CleanedLine;
                     }
-                    if (i.Contains(":") && CurrentExitLine != "")
-                    {
-                        var logiclinesplit = CleanLine(CurrentExitLine, CurrentRegion.Region, true).Split(':');
-                        if (logiclinesplit.Count() > 1) { CurrentRegion.Exits.Add($"{CurrentRegion.Region}>{logiclinesplit[0].Trim()}", "(" + logiclinesplit[1].Trim()); }
-                        CurrentExitLine = "";
-                    }
-                    CurrentExitLine += i;
-                }
 
-                if (AtEndORegion)
-                {
-                    if (CurrentExitLine != "")
+                    if (inLocations)
                     {
-                        var logiclinesplit = CleanLine(CurrentExitLine, CurrentRegion.Region, true).Split(':');
-                        if (logiclinesplit.Count() > 1) { CurrentRegion.Exits.Add($"{CurrentRegion.Region}>{logiclinesplit[0].Trim()}", "(" + logiclinesplit[1].Trim()); }
-                        CurrentExitLine = "";
+                        if (CleanedLine.Contains(":") && CurrentLogicLine != "")
+                        {
+                            var logiclinesplit = CleanLine(CurrentLogicLine, CurrentRegion.Region).Split(':');
+                            if (logiclinesplit.Count() > 1) { CurrentRegion.Locations.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
+                            CurrentLogicLine = "";
+                        }
+                        CurrentLogicLine += CleanedLine;
                     }
-                    if (CurrentRegion != null)
+
+                    if (InExits)
                     {
-                        AllRegionData.Add(CurrentRegion);
-                        CurrentRegion = null;
+                        if (CleanedLine.Contains(":") && CurrentExitLine != "")
+                        {
+                            var logiclinesplit = CleanLine(CurrentExitLine, CurrentRegion.Region, true).Split(':');
+                            if (logiclinesplit.Count() > 1) { CurrentRegion.Exits.Add($"{CurrentRegion.Region}>{logiclinesplit[0].Trim()}", "(" + logiclinesplit[1].Trim()); }
+                            CurrentExitLine = "";
+                        }
+                        CurrentExitLine += CleanedLine;
+                    }
+
+                    if (AtEndORegion)
+                    {
+                        if (CurrentRegion != null)
+                        {
+                            AllRegionData.Add(CurrentRegion);
+                            CurrentRegion = null;
+                        }
                     }
                 }
+                InRegion = false;
+                inLocations = false;
+                InExits = false;
+                AtEndORegion = false;
+                InEvents = false;
+                CurrentEventLine = "";
+                CurrentLogicLine = "";
+                CurrentExitLine = "";
+                CurrentRegion = null;
+            }
+            
+            void HandleMQFiles()
+            {
+                foreach (var i in MQWorldFiles)
+                {
+                    if (TestPosition(i, true)) { continue; }
+
+                    string CleanedLine = RemoveComments(i);
+
+                    if (InEvents)
+                    {
+                        if (CleanedLine.Contains(":") && CurrentEventLine != "")
+                        {
+                            var logiclinesplit = CleanLine(CurrentEventLine, CurrentRegion.Region).Split(':');
+                            if (logiclinesplit.Count() > 1) { CurrentRegion.Events.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
+                            CurrentEventLine = "";
+                        }
+                        CurrentEventLine += CleanedLine;
+                    }
+
+                    if (inLocations)
+                    {
+                        if (CleanedLine.Contains(":") && CurrentLogicLine != "")
+                        {
+                            var logiclinesplit = CleanLine(CurrentLogicLine, CurrentRegion.Region).Split(':');
+                            if (logiclinesplit.Count() > 1) { CurrentRegion.Locations.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
+                            CurrentLogicLine = "";
+                        }
+                        CurrentLogicLine += CleanedLine;
+                    }
+
+                    if (InExits)
+                    {
+                        if (CleanedLine.Contains(":") && CurrentExitLine != "")
+                        {
+                            var logiclinesplit = CleanLine(CurrentExitLine, CurrentRegion.Region, true).Split(':');
+                            if (logiclinesplit.Count() > 1) { CurrentRegion.Exits.Add($"{CurrentRegion.Region}>MQ {logiclinesplit[0].Trim()}", "(" + logiclinesplit[1].Trim()); }
+                            CurrentExitLine = "";
+                        }
+                        CurrentExitLine += CleanedLine;
+                    }
+
+                    if (AtEndORegion)
+                    {
+                        if (CurrentRegion != null)
+                        {
+                            AllRegionData.Add(CurrentRegion);
+                            CurrentRegion = null;
+                        }
+                    }
+                }
+                InRegion = false;
+                inLocations = false;
+                InExits = false;
+                AtEndORegion = false;
+                InEvents = false;
+                CurrentEventLine = "";
+                CurrentLogicLine = "";
+                CurrentExitLine = "";
+                CurrentRegion = null;
+            }
+
+            string RemoveComments(string i)
+            {
+                if (i.Contains("#"))
+                {
+                    return i.Split('#')[0];
+                }
+                return i;
+            }
+
+            void HandleLogicHelpers()
+            {
+                RegexOptions options = RegexOptions.None;
+                Regex regex = new Regex("[ ]{2,}", options);
+                CurrentRegion = new RegionData { Region = "Helpers" };
+                string LogicLine = "";
+                foreach (var i in LogiHelperFile)
+                {
+                    var CleanedLine = RemoveComments(i);
+
+                    if (CleanedLine.Contains(":") && LogicLine != "")
+                    {
+                        var HelperData = LogicLine.Split(':');
+
+                        if (HelperData.Count() > 1)
+                        {
+                            HelperData[0] = regex.Replace(HelperData[0], " ");
+                            HelperData[0] = HelperData[0].Replace("\"", "").Replace(",", "").Replace("'", "").Trim();
+                            HelperData[1] = regex.Replace(HelperData[1], " ");
+                            HelperData[1] = HelperData[1].Replace("\"", "").Replace(",", "").Replace("'", "").Trim();
+                            if (!HelperData[1].Contains("==") && !HelperData[1].Contains("!="))
+                            {
+                                CurrentRegion.Events.Add(HelperData[0], HelperData[1]);
+                            }
+                        }
+                        LogicLine = "";
+                    }
+
+                    LogicLine += CleanedLine;
+
+                }
+                AllRegionData.Add(CurrentRegion);
             }
 
             string CleanLine(string Line, string Region, bool EntranceLine = false)
@@ -746,97 +870,103 @@ namespace MMR_Tracker.Forms.Other_Games
                 return Line.Trim();
             }
 
-            List<string> UsedNames = new List<string>();
-            List<string> DuplicateName = new List<string>();
-
-            foreach (var i in AllRegionData)
+            void PrintData()
             {
-                Console.WriteLine("============");
-                Console.WriteLine($"Region: {i.Region}");
+                foreach (var i in AllRegionData)
+                {
+                    Console.WriteLine("============");
+                    Console.WriteLine($"Region: {i.Region}");
 
-                if (i.Locations.Any())
-                {
-                    Console.WriteLine($"Location Logic:");
-                    foreach (var j in i.Locations)
+                    if (i.Locations.Any())
                     {
-                        Console.WriteLine($"  {j}");
-                        if (UsedNames.Contains(j.Key)) { DuplicateName.Add(j.Key); }
-                        else { UsedNames.Add(j.Key); }
+                        Console.WriteLine($"Location Logic:");
+                        foreach (var j in i.Locations)
+                        {
+                            Console.WriteLine($"  {j}");
+                            if (UsedNames.Contains(j.Key)) { DuplicateName.Add(j.Key); }
+                            else { UsedNames.Add(j.Key); }
+                        }
                     }
-                }
-                if (i.Exits.Any())
-                {
-                    Console.WriteLine($"Exit Logic:");
-                    foreach (var j in i.Exits)
+                    if (i.Exits.Any())
                     {
-                        Console.WriteLine($"  {j}");
-                        if (UsedNames.Contains(j.Key)) { DuplicateName.Add(j.Key); }
-                        else { UsedNames.Add(j.Key); }
+                        Console.WriteLine($"Exit Logic:");
+                        foreach (var j in i.Exits)
+                        {
+                            Console.WriteLine($"  {j}");
+                            if (UsedNames.Contains(j.Key)) { DuplicateName.Add(j.Key); }
+                            else { UsedNames.Add(j.Key); }
+                        }
                     }
-                }
-                if (i.Events.Any())
-                {
-                    Console.WriteLine($"Event Logic:");
-                    foreach (var j in i.Events)
+                    if (i.Events.Any())
                     {
-                        Console.WriteLine($"  {j}");
-                        if (UsedNames.Contains(j.Key)) { DuplicateName.Add(j.Key); }
-                        else { UsedNames.Add(j.Key); }
-                    }
-                }
-            }
-
-            Dictionary<string, string> CombinedDuplicates = new Dictionary<string, string>();
-            foreach(var i in DuplicateName.Distinct())
-            {
-                CombinedDuplicates.Add(i, "");
-                foreach(var j in AllRegionData)
-                {
-                    foreach(var k in j.Events)
-                    {
-                        AddDupeData(k, i);
-                    }
-                    foreach (var k in j.Exits)
-                    {
-                        AddDupeData(k, i);
-                    }
-                    foreach (var k in j.Locations)
-                    {
-                        AddDupeData(k, i);
-                    }
-                }
-            }
-            Console.WriteLine($"=========");
-            Console.WriteLine($"Combined Duplicates");
-
-            foreach (var i in CombinedDuplicates)
-            {
-                Console.WriteLine(i);
-            }
-
-            void AddDupeData(KeyValuePair<string, string> k, string i)
-            {
-                if (k.Key == i)
-                {
-                    if (CombinedDuplicates[i] == "")
-                    {
-                        CombinedDuplicates[i] = $"({k.Value})";
-                    }
-                    else
-                    {
-                        CombinedDuplicates[i] += $" or ({k.Value})";
+                        Console.WriteLine($"Event Logic:");
+                        foreach (var j in i.Events)
+                        {
+                            Console.WriteLine($"  {j}");
+                            if (UsedNames.Contains(j.Key)) { DuplicateName.Add(j.Key); }
+                            else { UsedNames.Add(j.Key); }
+                        }
                     }
                 }
             }
 
-            bool TestPosition(string i)
+            void PrintDuplicate()
             {
+                Dictionary<string, string> CombinedDuplicates = new Dictionary<string, string>();
+                foreach (var i in DuplicateName.Distinct())
+                {
+                    CombinedDuplicates.Add(i, "");
+                    foreach (var j in AllRegionData)
+                    {
+                        foreach (var k in j.Events)
+                        {
+                            AddDupeData(k, i);
+                        }
+                        foreach (var k in j.Exits)
+                        {
+                            AddDupeData(k, i);
+                        }
+                        foreach (var k in j.Locations)
+                        {
+                            AddDupeData(k, i);
+                        }
+                    }
+                }
+                Console.WriteLine($"=========");
+                Console.WriteLine($"Combined Duplicates");
+
+                foreach (var i in CombinedDuplicates)
+                {
+                    Console.WriteLine(i);
+                }
+
+
+                void AddDupeData(KeyValuePair<string, string> k, string i)
+                {
+                    if (k.Key == i)
+                    {
+                        if (CombinedDuplicates[i] == "")
+                        {
+                            CombinedDuplicates[i] = $"({k.Value})";
+                        }
+                        else
+                        {
+                            CombinedDuplicates[i] += $" or ({k.Value})";
+                        }
+                    }
+                }
+            }
+
+            bool TestPosition(string i, bool IsMQ = false)
+            {
+                if (i.Trim().StartsWith("#")) { return true; }
+
                 if (i.Contains("\"region_name\":"))
                 {
                     InRegion = true;
                     AtEndORegion = false;
                     CurrentRegion = new RegionData();
-                    CurrentRegion.Region = i.Replace("\"region_name\":", "").Replace("\"", "").Replace(",", "").Trim();
+                    CurrentRegion.Region = (IsMQ ? "MQ " : "") + i.Replace("\"region_name\":", "").Replace("\"", "").Replace(",", "").Trim();
                     return true;
                 }
                 if (i.Contains("\"events\":") && InRegion)
@@ -856,16 +986,82 @@ namespace MMR_Tracker.Forms.Other_Games
                 }
                 if (i.Contains("}"))
                 {
-                    if (InEvents) { InEvents = false; }
-                    else if (inLocations) { inLocations = false; }
-                    else if (InExits) { InExits = false; }
-                    else if (InRegion) { InRegion = false; }
+                    if (InEvents) 
+                    { 
+                        InEvents = false;
+                        if (CurrentEventLine != "")
+                        {
+                            var logiclinesplit = CleanLine(CurrentEventLine, CurrentRegion.Region).Split(':');
+                            if (logiclinesplit.Count() > 1) { CurrentRegion.Events.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
+                            CurrentEventLine = "";
+                        }
+                    }
+                    else if (inLocations) 
+                    { 
+                        inLocations = false;
+                        if (CurrentLogicLine != "")
+                        {
+                            var logiclinesplit = CleanLine(CurrentLogicLine, CurrentRegion.Region).Split(':');
+                            if (logiclinesplit.Count() > 1) { CurrentRegion.Locations.Add(logiclinesplit[0].Trim(), "(" + logiclinesplit[1].Trim()); }
+                            CurrentLogicLine = "";
+                        }
+                    }
+                    else if (InExits) 
+                    { 
+                        InExits = false;
+                        if (CurrentExitLine != "")
+                        {
+                            string MQRoom = IsMQ ? "MQ " : "";
+
+                            var logiclinesplit = CleanLine(CurrentExitLine, CurrentRegion.Region, true).Split(':');
+                            if (logiclinesplit.Count() > 1) { CurrentRegion.Exits.Add($"{CurrentRegion.Region}>{MQRoom}{logiclinesplit[0].Trim()}", "(" + logiclinesplit[1].Trim()); }
+                            CurrentExitLine = "";
+                        }
+                    }
+                    else if (InRegion) 
+                    { 
+                        InRegion = false;
+                    }
 
                     if (!InRegion) { AtEndORegion = true; }
                     return true;
                 }
                 return false;
             }
+        }
+
+        public static List<string> GetItemsUsedInLogic(List<RegionData> RegionData)
+        {
+            List<string> AllEntries = new List<string>();
+
+            foreach(var h in RegionData)
+            {
+                foreach(var g in h.Locations)
+                {
+                    var parsedString = g.Value.Replace(" and ", "&").Replace(" or ", "|").Replace("can_use(", "(");
+                    foreach (var j in LogicParser.GetEntries(parsedString).Where(x => x.Length > 0 && !LogicParser.ISLogicChar(x[0]) && !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()).Distinct())
+                    {
+                        AllEntries.Add(j + ": " + h.Region);
+                    }
+                }
+                foreach (var g in h.Exits)
+                {
+                    var parsedString = g.Value.Replace(" and ", "&").Replace(" or ", "|").Replace("can_use(", "(");
+                    foreach (var j in LogicParser.GetEntries(parsedString).Where(x => x.Length > 0 && !LogicParser.ISLogicChar(x[0]) && !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()).Distinct())
+                    {
+                        AllEntries.Add(j + ": " + h.Region);
+                    }
+                }
+                foreach (var g in h.Events)
+                {
+                    var parsedString = g.Value.Replace(" and ", "&").Replace(" or ", "|").Replace("can_use(", "(");
+                    foreach (var j in LogicParser.GetEntries(parsedString).Where(x => x.Length > 0 && !LogicParser.ISLogicChar(x[0]) && !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()).Distinct())
+                    {
+                        AllEntries.Add(j + ": " + h.Region);
+                    }
+                }
+            }
+            return AllEntries.OrderBy(x => x).ToList();
         }
     }
 }
