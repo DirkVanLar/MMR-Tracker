@@ -52,7 +52,7 @@ namespace MMR_Tracker.Other_Games
 
             foreach(var i in SSInstance.Logic) { LogicEditor.CleanLogicEntry(i, SSInstance); }
 
-            var Save = true;
+            var Save = false;
 
             if (!Save)
             {
@@ -256,15 +256,21 @@ namespace MMR_Tracker.Other_Games
             var LCSmallKey = SSInstance.Logic.Find(x => x.ItemName == "LanayruCaves Small Key");
             SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "LanayruCaves Small Key x1", IsFake = true, IsTrick = false, Required = new int[] { LCSmallKey.ID } });
 
+
+
             //Add new entries for the tablets so they can be aquired by either the tablet it's self or by the "SuffleTablet" setting being off.
-            var HaveTablets = SSInstance.Logic.Find(x => x.DictionaryName == "SettingSuffleTabletFalse");
-            int[][] RubyCond = new int[][] { new int[] { SSInstance.Logic.Find(x => x.ItemName == "Ruby Tablet").ID }, new int[] { HaveTablets.ID } };
-            int[][] EmeraldCond = new int[][] { new int[] { SSInstance.Logic.Find(x => x.ItemName == "Emerald Tablet").ID }, new int[] { HaveTablets.ID } };
-            int[][] AmberCond = new int[][] { new int[] { SSInstance.Logic.Find(x => x.ItemName == "Amber Tablet").ID }, new int[] { HaveTablets.ID } };
+            var HaveRubyTablet = SSInstance.Logic.Find(x => x.DictionaryName == "StartingRubyTabletTrue");
+            var HaveEmerladTablet = SSInstance.Logic.Find(x => x.DictionaryName == "StartingEmeraldTabletTrue");
+            var HaveAmberTablet = SSInstance.Logic.Find(x => x.DictionaryName == "StartingAmberTabletTrue");
+            int[][] RubyCond = new int[][] { new int[] { SSInstance.Logic.Find(x => x.ItemName == "Ruby Tablet").ID }, new int[] { HaveRubyTablet.ID } };
+            int[][] EmeraldCond = new int[][] { new int[] { SSInstance.Logic.Find(x => x.ItemName == "Emerald Tablet").ID }, new int[] { HaveEmerladTablet.ID } };
+            int[][] AmberCond = new int[][] { new int[] { SSInstance.Logic.Find(x => x.ItemName == "Amber Tablet").ID }, new int[] { HaveAmberTablet.ID } };
 
             SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Ruby Tablet", IsFake = true, IsTrick = false, Conditionals = RubyCond });
             SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Emerald Tablet", IsFake = true, IsTrick = false, Conditionals = EmeraldCond });
             SSInstance.Logic.Add(new LogicObjects.LogicEntry { ID = SSInstance.Logic.Count(), DictionaryName = "Amber Tablet", IsFake = true, IsTrick = false, Conditionals = AmberCond });
+
+
 
             //Add MMRTGAmeClear entry for the playthrough generator
             SSInstance.Logic.Add(new LogicObjects.LogicEntry  { ID = SSInstance.Logic.Count(), DictionaryName = "MMRTGameClear", IsFake = true, IsTrick = false, 
@@ -734,9 +740,17 @@ namespace MMR_Tracker.Other_Games
             }
 
             //Add "Shuffle Tablets" setting entrys
-            SSData.Add(new SSLocation { DictionaryName = "SettingSuffleTablet", isFake = false, LocationName = "Shuffled Tablets", ItemName = "", ItemSubType = "SettingSuffleTablet", LocationArea = "%Settings%", SpoilerLocation = "SettingSuffleTablet", SpoilerItem = "SettingSuffleTablet" });
-            SSData.Add(new SSLocation { DictionaryName = "SettingSuffleTabletTrue", isFake = false, LocationName = "", ItemName = "Enabled", ItemSubType = "SettingSuffleTablet", LocationArea = "%Settings%", SpoilerLocation = "SettingSuffleTabletTrue", SpoilerItem = "SettingSuffleTabletTrue" });
-            SSData.Add(new SSLocation { DictionaryName = "SettingSuffleTabletFalse", isFake = false, LocationName = "", ItemName = "Disabled", ItemSubType = "SettingSuffleTablet", LocationArea = "%Settings%", SpoilerLocation = "SettingSuffleTabletFalse", SpoilerItem = "SettingSuffleTabletFalse" });
+            SSData.Add(new SSLocation { DictionaryName = "StartingRubyTablet", isFake = false, LocationName = "Start with Ruby Tablet", ItemName = "", ItemSubType = "StartingRubyTablet", LocationArea = "%Settings%", SpoilerLocation = "StartingRubyTablet", SpoilerItem = "StartingRubyTablet" });
+            SSData.Add(new SSLocation { DictionaryName = "StartingRubyTabletTrue", isFake = false, LocationName = "", ItemName = "True", ItemSubType = "StartingRubyTablet", LocationArea = "%Settings%", SpoilerLocation = "StartingRubyTabletTrue", SpoilerItem = "StartingRubyTabletTrue" });
+            SSData.Add(new SSLocation { DictionaryName = "StartingRubyTableFalse", isFake = false, LocationName = "", ItemName = "False", ItemSubType = "StartingRubyTablet", LocationArea = "%Settings%", SpoilerLocation = "StartingRubyTabletFalse", SpoilerItem = "StartingRubyTabletFalse" });
+
+            SSData.Add(new SSLocation { DictionaryName = "StartingEmeraldTablet", isFake = false, LocationName = "Start with Emerald Tablet", ItemName = "", ItemSubType = "StartingEmeraldTablet", LocationArea = "%Settings%", SpoilerLocation = "StartingEmeraldTablet", SpoilerItem = "StartingEmeraldTablet" });
+            SSData.Add(new SSLocation { DictionaryName = "StartingEmeraldTabletTrue", isFake = false, LocationName = "", ItemName = "True", ItemSubType = "StartingEmeraldTablet", LocationArea = "%Settings%", SpoilerLocation = "StartingEmeraldTabletTrue", SpoilerItem = "StartingEmeraldTabletTrue" });
+            SSData.Add(new SSLocation { DictionaryName = "StartingEmeraldTableFalse", isFake = false, LocationName = "", ItemName = "False", ItemSubType = "StartingEmeraldTablet", LocationArea = "%Settings%", SpoilerLocation = "StartingEmeraldTabletFalse", SpoilerItem = "StartingEmeraldTabletFalse" });
+
+            SSData.Add(new SSLocation { DictionaryName = "StartingAmberTablet", isFake = false, LocationName = "Start with Amber Tablet", ItemName = "", ItemSubType = "StartingAmberTablet", LocationArea = "%Settings%", SpoilerLocation = "StartingAmberTablet", SpoilerItem = "StartingAmberTablet" });
+            SSData.Add(new SSLocation { DictionaryName = "StartingAmberTabletTrue", isFake = false, LocationName = "", ItemName = "True", ItemSubType = "StartingAmberTablet", LocationArea = "%Settings%", SpoilerLocation = "StartingAmberTabletTrue", SpoilerItem = "StartingAmberTabletTrue" });
+            SSData.Add(new SSLocation { DictionaryName = "StartingAmberTableFalse", isFake = false, LocationName = "", ItemName = "False", ItemSubType = "StartingAmberTablet", LocationArea = "%Settings%", SpoilerLocation = "StartingAmberTabletFalse", SpoilerItem = "StartingAmberTabletFalse" });
 
             //Add "Swordless" setting entrys
             SSData.Add(new SSLocation { DictionaryName = "SettingStartingSword", isFake = false, LocationName = "Swordless", ItemName = "", ItemSubType = "SettingStartingSword", LocationArea = "%Settings%", SpoilerLocation = "SettingStartingSword", SpoilerItem = "SettingStartingSword" });
@@ -978,9 +992,12 @@ namespace MMR_Tracker.Other_Games
 
 
             bool AtItems = false;
+            bool AtStartingItems = false;
             bool AtEntrances = false;
             bool AtOptions = false;
-            bool RandomizeTablets = false;
+            bool StartingRuby = false;
+            bool StartingEmerald = false;
+            bool StartingAmber = false;
             bool ClosedThunderhead = false;
             bool SkipSkykeep = false;
             bool Swordless = false;
@@ -996,12 +1013,47 @@ namespace MMR_Tracker.Other_Games
                 if (line.Contains("Options selected:"))
                 {
                     AtOptions = true;
+
                 }
 
+                if (line.Contains("Starting items:"))
+                {
+                    AtOptions = false;
+                    AtStartingItems = true;
+
+                }
+
+                if (line.Contains("All item locations:"))
+                {
+                    AtStartingItems = false;
+                    AtItems = true;
+                }
+
+                if (line.Contains("Entrances:"))
+                {
+                    AtItems = false;
+                    AtEntrances = true;
+                }
+
+                if (AtStartingItems)
+                {
+                    if (line.Contains("Ruby Tablet")) { StartingRuby = true; }
+                    if (line.Contains("Emerald Tablet")) { StartingEmerald = true; }
+                    if (line.Contains("Amber Tablet")) { StartingAmber = true; }
+
+                    for (var i = 1; i < 7; i++)
+                    {
+                        if (line.Contains($"Required Dungeon {i}:"))
+                        {
+                            if (RequiredDungeons.ContainsKey($"RequiredDungeon{i}")) { continue; }
+                            RequiredDungeons.Add($"RequiredDungeon{i}", line.Replace($"Required Dungeon {i}:", "").Trim());
+                            break;
+                        }
+                    }
+                }
 
                 if (AtOptions)
                 {
-                    if (line.Contains("randomize-tablets")) { RandomizeTablets = true; }
                     if (line.Contains("closed-thunderhead")) { ClosedThunderhead = true; }
                     if (line.Contains("swordless")) { Swordless = true; }
                     if (line.Contains("randomize-sailcloth")) { RandomizeSailcloth = true; }
@@ -1017,19 +1069,6 @@ namespace MMR_Tracker.Other_Games
                             break;
                         }
                     }
-                }
-
-
-                if (line.Contains("All item locations:"))
-                {
-                    AtOptions = false;
-                    AtItems = true;
-                }
-
-                if (line.Contains("Entrances:"))
-                {
-                    AtItems = false;
-                    AtEntrances = true;
                 }
 
                 if (AtItems || AtEntrances)
@@ -1051,8 +1090,12 @@ namespace MMR_Tracker.Other_Games
                 SpoilerData.Add($"RequiredDungeon{i}->Required Dungeon " + RequiredDungeons[$"RequiredDungeon{i}"]);
             }
 
-            if (!RandomizeTablets) { SpoilerData.Add($"SettingSuffleTablet->SettingSuffleTabletFalse"); }
-            else { SpoilerData.Add($"SettingSuffleTablet->SettingSuffleTabletTrue"); }
+            if (StartingRuby) { SpoilerData.Add($"StartingRubyTablet->StartingRubyTabletTrue"); }
+            else { SpoilerData.Add($"StartingRubyTablet->StartingRubyTabletFalse"); }
+            if (StartingEmerald) { SpoilerData.Add($"StartingEmeraldTablet->StartingEmeraldTabletTrue"); }
+            else { SpoilerData.Add($"StartingEmeraldTablet->StartingEmeraldTabletFalse"); }
+            if (StartingAmber) { SpoilerData.Add($"StartingAmberTablet->StartingAmberTabletTrue"); }
+            else { SpoilerData.Add($"StartingAmberTablet->StartingAmberTabletFalse"); }
 
             if (!Swordless) { SpoilerData.Add($"SettingStartingSword->SettingStartingSwordTrue"); }
             else { SpoilerData.Add($"SettingStartingSword->SettingStartingSwordFalse"); }

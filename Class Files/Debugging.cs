@@ -31,6 +31,8 @@ namespace MMR_Tracker_V2
 
         public static string LogFile = "";
 
+        
+
         public static void PrintLogicObject(List<LogicObjects.LogicEntry> Logic, int start = -1, int end = -1)
         {
             start -= 1;
@@ -136,7 +138,7 @@ namespace MMR_Tracker_V2
             //MInishCapTools.PrintMinishLogic();
             //GetAllLocations();
 
-            OOTRTesting();
+            SStesting();
 
             void OOTRTesting()
             {
