@@ -254,6 +254,7 @@ namespace MMR_Tracker.Class_Files
                 "Lens of Truth",
                 "Hookshot",
                 "Magic Power",
+                "Spin Attack",
                 "Extended Magic Power",
                 "Double Defense",
                 "Great Fairy's Sword",
@@ -306,19 +307,15 @@ namespace MMR_Tracker.Class_Files
                 "Great Bay Compass",
                 "Stone Tower Map",
                 "Stone Tower Compass",
+                "Map of Clock Town",
+                "Map of Woodfall",
+                "Map of Snowhead",
+                "Map of Romani Ranch",
+                "Map of Great Bay",
+                "Map of Stone Tower",
                 "Fierce Deity's Mask",
                 "Kokiri Sword",
-                "Hero's Shield",
-                "Great Bay Owl",
-                "Zora Cape Owl",
-                "Snowhead Owl",
-                "Mountain Village Owl",
-                "Clock Town Owl",
-                "Milk Road Owl",
-                "Woodfall Owl",
-                "Southern Swamp Owl",
-                "Ikana Canyon Owl",
-                "Stone Tower Owl"
+                "Hero's Shield"
             };
             return StartingItems.Contains(entry.ItemName);
         }

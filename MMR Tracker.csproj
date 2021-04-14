@@ -295,6 +295,7 @@
     <None Include="Recources\Dictionaries\MMRDICTIONARYV8.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Recources\Dictionaries\MMRDICTIONARYV99.csv" />
     <None Include="Recources\Dictionaries\OOTRDICTIONARYV5.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

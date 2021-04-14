@@ -42,7 +42,7 @@ namespace MMR_Tracker.Forms
             return Lines;
         }
 
-        private void LoadLogicData(string[] Logic = null)
+        public void LoadLogicData(string[] Logic = null)
         {
             if (LogicEditor.EditorForm == null)
             {

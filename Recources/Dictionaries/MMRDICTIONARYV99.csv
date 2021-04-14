@@ -1,0 +1,726 @@
+DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem,EntrancePair
+Deku Mask,Starting Item,Deku Mask,Misc,Item,Starting Item,Deku Mask,
+Hero's Bow,Hero's Bow Chest,Hero's Bow,Woodfall Temple,Item,Hero's Bow Chest,Hero's Bow,
+Fire Arrow,Fire Arrow Chest,Fire Arrow,Snowhead Temple,Item,Fire Arrow Chest,Fire Arrow,
+Ice Arrow,Ice Arrow Chest,Ice Arrow,Great Bay Temple,Item,Ice Arrow Chest,Ice Arrow,
+Light Arrow,Light Arrow Chest,Light Arrow,Stone Tower Temple,Item,Light Arrow Chest,Light Arrow,
+Bomb Bag (20),Bomb Bag Purchase,Bomb Bag,West Clock Town,Item,Bomb Bag Purchase,Bomb Bag,
+Magic Bean,Bean Man,Magic Bean,Deku Palace,Item,Bean Man,Magic Bean,
+Powder Keg,Powder Keg Challenge,Powder Keg,Goron Village,Item,Powder Keg Challenge,Powder Keg,
+Pictobox,Koume,Pictobox,Southern Swamp,Item,Koume,Pictobox,
+Lens of Truth,Lens of Truth Chest,Lens of Truth,Goron Village,Item,Lens of Truth Chest,Lens of Truth,
+Hookshot,Hookshot Chest,Hookshot,Pirates' Fortress Interior,Item,Hookshot Chest,Hookshot,
+Great Fairy Magic Meter,Town Great Fairy Non-Human,Magic Power,North Clock Town,Item,Town Great Fairy Non-Human,Magic Power,
+Great Fairy Spin Attack,Woodfall Great Fairy,Spin Attack,Woodfall,Item,Woodfall Great Fairy,Spin Attack,
+Great Fairy Extended Magic,Snowhead Great Fairy,Extended Magic Power,Snowhead,Item,Snowhead Great Fairy,Extended Magic Power,
+Great Fairy Double Defense,Ocean Great Fairy,Double Defense,Zora Cape,Item,Ocean Great Fairy,Double Defense,
+Great Fairy's Sword,Ikana Great Fairy,Great Fairy's Sword,Ikana Canyon,Item,Ikana Great Fairy,Great Fairy's Sword,
+Witch Bottle,Kotake,Bottle with Red Potion,Southern Swamp,Item,Kotake,Bottle with Red Potion,
+Aliens Bottle,Aliens Defense,Bottle with Milk,Romani Ranch,Item,Aliens Defense,Bottle with Milk,
+Goron Race Bottle,Goron Race,Bottle with Gold Dust,Twin Islands,Item,Goron Race,Bottle with Gold Dust,
+Beaver Race Bottle,Beaver Race #1,Empty Bottle,Zora Cape,Item,Beaver Race #1,Empty Bottle,
+Dampe Bottle,Dampe Digging,Empty Bottle,Ikana Graveyard,Item,Dampe Digging,Empty Bottle,
+Chateau Bottle,Madame Aroma in Bar,Bottle with Chateau Romani,East Clock Town,Item,Madame Aroma in Bar,Bottle with Chateau Romani,
+Bombers' Notebook,Bombers' Hide and Seek,Bombers' Notebook,North Clock Town,Item,Bombers' Hide and Seek,Bombers' Notebook,
+Razor Sword,Mountain Smithy Day 1,Razor Sword,Mountain Village,Item,Mountain Smithy Day 1,Razor Sword,
+Gilded Sword,Mountain Smithy Day 2,Gilded Sword,Mountain Village,Item,Mountain Smithy Day 2,Gilded Sword,
+Mirror Shield,Mirror Shield Chest,Mirror Shield,Beneath the Well,Item,Mirror Shield Chest,Mirror Shield,
+Town Archery Quiver (40),Town Archery #1,Large Quiver,East Clock Town,Item,Town Archery #1,Large Quiver,
+Swamp Archery Quiver (50),Swamp Archery #1,Largest Quiver,Road to Southern Swamp,Item,Swamp Archery #1,Largest Quiver,
+Town Bomb Bag (30),Big Bomb Bag Purchase,Big Bomb Bag,West Clock Town,Item,Big Bomb Bag Purchase,Big Bomb Bag,
+Mountain Bomb Bag (40),Biggest Bomb Bag Purchase,Biggest Bomb Bag,Goron Village,Item,Biggest Bomb Bag Purchase,Biggest Bomb Bag,
+Town Wallet (200),Bank Reward #1,Adult Wallet,West Clock Town,Item,Bank Reward #1,Adult Wallet,
+Ocean Wallet (500),Ocean Spider House Day 1 Reward,Giant Wallet,Great Bay Coast,Item,Ocean Spider House Day 1 Reward,Giant Wallet,
+Moon's Tear,Astronomy Telescope,Moon's Tear,Termina Field,Item,Astronomy Telescope,Moon's Tear,
+Land Title Deed,Clock Town Scrub Trade,Land Title Deed,South Clock Town,Item,Clock Town Scrub Trade,Land Title Deed,
+Swamp Title Deed,Swamp Scrub Trade,Swamp Title Deed,Southern Swamp,Item,Swamp Scrub Trade,Swamp Title Deed,
+Mountain Title Deed,Mountain Scrub Trade,Mountain Title Deed,Goron Village,Item,Mountain Scrub Trade,Mountain Title Deed,
+Ocean Title Deed,Ocean Scrub Trade,Ocean Title Deed,Zora Hall,Item,Ocean Scrub Trade,Ocean Title Deed,
+Room Key,Inn Reservation,Room Key,Stock Pot Inn,Item,Inn Reservation,Room Key,
+Letter to Kafei,Midnight Meeting,Letter to Kafei,Stock Pot Inn,Item,Midnight Meeting,Letter to Kafei,
+Pendant of Memories,Kafei,Pendant of Memories,Laundry Pool,Item,Kafei,Pendant of Memories,
+Letter to Mama,Curiosity Shop Man #2,Letter to Mama,Laundry Pool,Item,Curiosity Shop Man #2,Letter to Mama,
+Mayor Dotour HP,Mayor,Piece of Heart,East Clock Town,Item,Mayor,Piece of Heart,
+Postman HP,Postman's Game,Piece of Heart,West Clock Town,Item,Postman's Game,Piece of Heart,
+Rosa Sisters HP,Rosa Sisters,Piece of Heart,West Clock Town,Item,Rosa Sisters,Piece of Heart,
+??? HP,Toilet Hand,Piece of Heart,Stock Pot Inn,Item,Toilet Hand,Piece of Heart,
+Grandma Short Story HP,Grandma Short Story,Piece of Heart,Stock Pot Inn,Item,Grandma Short Story,Piece of Heart,
+Grandma Long Story HP,Grandma Long Story,Piece of Heart,Stock Pot Inn,Item,Grandma Long Story,Piece of Heart,
+Keaton Quiz HP,Keaton Quiz,Piece of Heart,North Clock Town,Item,Keaton Quiz,Piece of Heart,
+Deku Playground HP,Deku Playground Three Days,Piece of Heart,North Clock Town,Item,Deku Playground Three Days,Piece of Heart,
+Town Archery HP,Town Archery #2,Piece of Heart,East Clock Town,Item,Town Archery #2,Piece of Heart,
+Honey and Darling HP,Honey and Darling Three Days,Piece of Heart,East Clock Town,Item,Honey and Darling Three Days,Piece of Heart,
+Swordsman's School HP,Swordsman's School,Piece of Heart,West Clock Town,Item,Swordsman's School,Piece of Heart,
+Postbox HP,Postbox,Piece of Heart,South Clock Town,Item,Postbox,Piece of Heart,
+Termina Field Gossips HP,Gossip Stones,Piece of Heart,Termina Field,Item,Gossip Stones,Piece of Heart,
+Termina Field Business Scrub HP,Business Scrub Purchase,Piece of Heart,Termina Field,Item,Business Scrub Purchase,Piece of Heart,
+Swamp Archery HP,Swamp Archery #2,Piece of Heart,Road to Southern Swamp,Item,Swamp Archery #2,Piece of Heart,
+Pictograph Contest HP,Pictograph Contest Winner,Piece of Heart,Southern Swamp,Item,Pictograph Contest Winner,Piece of Heart,
+Boat Archery HP,Boat Archery,Piece of Heart,Southern Swamp,Item,Boat Archery,Piece of Heart,
+Frog Choir HP,Frog Choir,Piece of Heart,Mountain Village,Item,Frog Choir,Piece of Heart,
+Beaver Race HP,Beaver Race #2,Piece of Heart,Zora Cape,Item,Beaver Race #2,Piece of Heart,
+Seahorse HP,Seahorses,Piece of Heart,Pinnacle Rock,Item,Seahorses,Piece of Heart,
+Fisherman Game HP,Fisherman Game,Piece of Heart,Great Bay Coast,Item,Fisherman Game,Piece of Heart,
+Evan HP,Evan,Piece of Heart,Zora Hall,Item,Evan,Piece of Heart,
+Dog Race HP,Dog Race,Piece of Heart,Romani Ranch,Item,Dog Race,Piece of Heart,
+Poe Hut HP,Poe Hut,Piece of Heart,Ikana Canyon,Item,Poe Hut,Piece of Heart,
+Treasure Chest Game HP,Treasure Chest Game Goron,Piece of Heart,East Clock Town,Item,Treasure Chest Game Goron,Piece of Heart,
+Peahat Grotto HP,Peahat Grotto,Piece of Heart,Termina Field,Item,Peahat Grotto,Piece of Heart,
+Dodongo Grotto HP,Dodongo Grotto,Piece of Heart,Termina Field,Item,Dodongo Grotto,Piece of Heart,
+Woodfall Chest HP,Woodfall Bridge Chest,Piece of Heart,Woodfall,Item,Woodfall Bridge Chest,Piece of Heart,
+Twin Islands Chest HP,Twin Islands Underwater Ramp Chest,Piece of Heart,Twin Islands,Item,Twin Islands Underwater Ramp Chest,Piece of Heart,
+Ocean Spider House HP,Ocean Spider House Chest,Piece of Heart,Great Bay Coast,Item,Ocean Spider House Chest,Piece of Heart,
+Graveyard Iron Knuckle HP,Iron Knuckle Chest,Piece of Heart,Ikana Graveyard,Item,Iron Knuckle Chest,Piece of Heart,
+Postman's Hat,Postman's Freedom Reward,Postman's Hat,East Clock Town,Item,Postman's Freedom Reward,Postman's Hat,
+All Night Mask,All Night Mask Purchase,All Night Mask,West Clock Town,Item,All Night Mask Purchase,All Night Mask,
+Blast Mask,Old Lady,Blast Mask,North Clock Town,Item,Old Lady,Blast Mask,
+Stone Mask,Invisible Soldier,Stone Mask,Road to Ikana,Item,Invisible Soldier,Stone Mask,
+Great Fairy's Mask,Town Great Fairy,Great Fairy's Mask,North Clock Town,Item,Town Great Fairy,Great Fairy's Mask,
+Keaton Mask,Curiosity Shop Man #1,Keaton Mask,Laundry Pool,Item,Curiosity Shop Man #1,Keaton Mask,
+Bremen Mask,Guru Guru,Bremen Mask,Laundry Pool,Item,Guru Guru,Bremen Mask,
+Bunny Hood,Grog,Bunny Hood,Romani Ranch,Item,Grog,Bunny Hood,
+Don Gero's Mask,Hungry Goron,Don Gero's Mask,Mountain Village,Item,Hungry Goron,Don Gero's Mask,
+Mask of Scents,Butler,Mask of Scents,Deku Palace,Item,Butler,Mask of Scents,
+Romani Mask,Cremia,Romani's Mask,Romani Ranch,Item,Cremia,Romani's Mask,
+Circus Leader's Mask,Gorman,Circus Leader's Mask,East Clock Town,Item,Gorman,Circus Leader's Mask,
+Kafei's Mask,Madame Aroma in Office,Kafei's Mask,East Clock Town,Item,Madame Aroma in Office,Kafei's Mask,
+Couple's Mask,Anju and Kafei,Couple's Mask,Stock Pot Inn,Item,Anju and Kafei,Couple's Mask,
+Mask of Truth,Swamp Spider House Reward,Mask of Truth,Southern Swamp,Item,Swamp Spider House Reward,Mask of Truth,
+Kamaro's Mask,Kamaro,Kamaro's Mask,Termina Field,Item,Kamaro,Kamaro's Mask,
+Gibdo Mask,Pamela's Father,Gibdo Mask,Ikana Canyon,Item,Pamela's Father,Gibdo Mask,
+Garo Mask,Gorman Bros Race,Garo's Mask,Milk Road,Item,Gorman Bros Race,Garo's Mask,
+Captain's Hat,Captain Keeta's Chest,Captain's Hat,Ikana Graveyard,Item,Captain Keeta's Chest,Captain's Hat,
+Giant's Mask,Giant's Mask Chest,Giant's Mask,Inverted Stone Tower Temple,Item,Giant's Mask Chest,Giant's Mask,
+Goron Mask,Darmani,Goron Mask,Mountain Village,Item,Darmani,Goron Mask,
+Zora Mask,Mikau,Zora Mask,Great Bay Coast,Item,Mikau,Zora Mask,
+Song of Healing,Starting Song,Song of Healing,Misc,Item,Starting Song,Song of Healing,
+Song of Soaring,Swamp Music Statue,Song of Soaring,Southern Swamp,Item,Swamp Music Statue,Song of Soaring,
+Epona's Song,Romani's Game,Epona's Song,Romani Ranch,Item,Romani's Game,Epona's Song,
+Song of Storms,Day 1 Grave Tablet,Song of Storms,Ikana Graveyard,Item,Day 1 Grave Tablet,Song of Storms,
+Sonata of Awakening,Imprisoned Monkey,Sonata of Awakening,Deku Palace,Item,Imprisoned Monkey,Sonata of Awakening,
+Goron Lullaby,Baby Goron,Goron Lullaby,Goron Village,Item,Baby Goron,Goron Lullaby,
+New Wave Bossa Nova,Baby Zoras,New Wave Bossa Nova,Great Bay Coast,Item,Baby Zoras,New Wave Bossa Nova,
+Elegy of Emptiness,Ikana King,Elegy of Emptiness,Ikana Castle,Item,Ikana King,Elegy of Emptiness,
+Oath to Order,Boss Blue Warp,Oath to Order,Misc,Item,Boss Blue Warp,Oath to Order,
+Woodfall Map,Woodfall Map Chest,Woodfall Map,Woodfall Temple,Item,Woodfall Map Chest,Woodfall Map,
+Woodfall Compass,Woodfall Compass Chest,Woodfall Compass,Woodfall Temple,Item,Woodfall Compass Chest,Woodfall Compass,
+Woodfall Boss Key,Woodfall Boss Key Chest,Woodfall Boss Key,Woodfall Temple,Item,Woodfall Boss Key Chest,Woodfall Boss Key,
+Woodfall Key 1,Woodfall Small Key Chest,Woodfall Small Key,Woodfall Temple,Item,Woodfall Small Key Chest,Woodfall Small Key,
+Snowhead Map,Snowhead Map Chest,Snowhead Map,Snowhead Temple,Item,Snowhead Map Chest,Snowhead Map,
+Snowhead Compass,Snowhead Compass Chest,Snowhead Compass,Snowhead Temple,Item,Snowhead Compass Chest,Snowhead Compass,
+Snowhead Boss Key,Snowhead Boss Key Chest,Snowhead Boss Key,Snowhead Temple,Item,Snowhead Boss Key Chest,Snowhead Boss Key,
+Snowhead Key 1 - block room,Snowhead Block Room Chest,Snowhead Small Key,Snowhead Temple,Item,Snowhead Block Room Chest,Snowhead Small Key,
+Snowhead Key 2 - icicle room,Snowhead Icicle Room Chest,Snowhead Small Key,Snowhead Temple,Item,Snowhead Icicle Room Chest,Snowhead Small Key,
+Snowhead Key 3 - bridge room,Snowhead Bridge Room Chest,Snowhead Small Key,Snowhead Temple,Item,Snowhead Bridge Room Chest,Snowhead Small Key,
+Great Bay Map,Great Bay Map Chest,Great Bay Map,Great Bay Temple,Item,Great Bay Map Chest,Great Bay Map,
+Great Bay Compass,Great Bay Compass Chest,Great Bay Compass,Great Bay Temple,Item,Great Bay Compass Chest,Great Bay Compass,
+Great Bay Boss Key,Great Bay Boss Key Chest,Great Bay Boss Key,Great Bay Temple,Item,Great Bay Boss Key Chest,Great Bay Boss Key,
+Great Bay Key 1,Great Bay Small Key Chest,Great Bay Small Key,Great Bay Temple,Item,Great Bay Small Key Chest,Great Bay Small Key,
+Stone Tower Map,Stone Tower Map Chest,Stone Tower Map,Stone Tower Temple,Item,Stone Tower Map Chest,Stone Tower Map,
+Stone Tower Compass,Stone Tower Compass Chest,Stone Tower Compass,Stone Tower Temple,Item,Stone Tower Compass Chest,Stone Tower Compass,
+Stone Tower Boss Key,Stone Tower Boss Key Chest,Stone Tower Boss Key,Inverted Stone Tower Temple,Item,Stone Tower Boss Key Chest,Stone Tower Boss Key,
+Stone Tower Key 1 - armos room,Stone Tower Armor Room Chest,Stone Tower Small Key,Stone Tower Temple,Item,Stone Tower Armor Room Chest,Stone Tower Small Key,
+Stone Tower Key 2 - eyegore room,Stone Tower Eyegore Room Chest,Stone Tower Small Key,Stone Tower Temple,Item,Stone Tower Eyegore Room Chest,Stone Tower Small Key,
+Stone Tower Key 3 - updraft room,Stone Tower Updraft Room Chest,Stone Tower Small Key,Inverted Stone Tower Temple,Item,Stone Tower Updraft Room Chest,Stone Tower Small Key,
+Stone Tower Key 4 - death armos maze,Stone Tower Death Armos Maze Chest,Stone Tower Small Key,Inverted Stone Tower Temple,Item,Stone Tower Death Armos Maze Chest,Stone Tower Small Key,
+Trading Post Red Potion,Trading Post Red Potion,Red Potion,West Clock Town,Item,Trading Post Red Potion,Red Potion,
+Trading Post Green Potion,Trading Post Green Potion,Green Potion,West Clock Town,Item,Trading Post Green Potion,Green Potion,
+Trading Post Shield,Trading Post Hero's Shield,Hero's Shield,West Clock Town,Item,Trading Post Hero's Shield,Hero's Shield,
+Trading Post Fairy,Trading Post Fairy,Fairy,West Clock Town,Item,Trading Post Fairy,Fairy,
+Trading Post Stick,Trading Post Deku Stick,Deku Stick,West Clock Town,Item,Trading Post Deku Stick,Deku Stick,
+Trading Post Arrow 30,Trading Post 30 Arrows,30 Arrows,West Clock Town,Item,Trading Post 30 Arrows,30 Arrows,
+Trading Post Nut 10,Trading Post 10 Deku Nuts,10 Deku Nuts,West Clock Town,Item,Trading Post 10 Deku Nuts,10 Deku Nuts,
+Trading Post Arrow 50,Trading Post 50 Arrows,50 Arrows,West Clock Town,Item,Trading Post 50 Arrows,50 Arrows,
+Witch Shop Blue Potion,Witch Shop Blue Potion,Blue Potion,Southern Swamp,Item,Witch Shop Blue Potion,Blue Potion,
+Witch Shop Red Potion,Witch Shop Red Potion,Red Potion,Southern Swamp,Item,Witch Shop Red Potion,Red Potion,
+Witch Shop Green Potion,Witch Shop Green Potion,Green Potion,Southern Swamp,Item,Witch Shop Green Potion,Green Potion,
+Bomb Shop Bomb 10,Bomb Shop 10 Bombs,10 Bombs,West Clock Town,Item,Bomb Shop 10 Bombs,10 Bombs,
+Bomb Shop Chu 10,Bomb Shop 10 Bombchu,10 Bombchu,West Clock Town,Item,Bomb Shop 10 Bombchu,10 Bombchu,
+Goron Shop Bomb 10,Goron Shop 10 Bombs,10 Bombs,Goron Village,Item,Goron Shop 10 Bombs,10 Bombs,
+Goron Shop Arrow 10,Goron Shop 10 Arrows,10 Arrows,Goron Village,Item,Goron Shop 10 Arrows,10 Arrows,
+Goron Shop Red Potion,Goron Shop Red Potion,Red Potion,Goron Village,Item,Goron Shop Red Potion,Red Potion,
+Zora Shop Shield,Zora Shop Hero's Shield,Hero's Shield,Zora Hall,Item,Zora Shop Hero's Shield,Hero's Shield,
+Zora Shop Arrow 10,Zora Shop 10 Arrows,10 Arrows,Zora Hall,Item,Zora Shop 10 Arrows,10 Arrows,
+Zora Shop Red Potion,Zora Shop Red Potion,Red Potion,Zora Hall,Item,Zora Shop Red Potion,Red Potion,
+Bottle: Fairy,Bottle: Fairy,Bottle: Fairy,Bottle Catch,Bottle,Bottle: Fairy,Bottle: Fairy,
+Bottle: Deku Princess,Bottle: Deku Princess,Bottle: Deku Princess,Bottle Catch,Bottle,Bottle: Deku Princess,Bottle: Deku Princess,
+Bottle: Fish,Bottle: Fish,Bottle: Fish,Bottle Catch,Bottle,Bottle: Fish,Bottle: Fish,
+Bottle: Bug,Bottle: Bug,Bottle: Bug,Bottle Catch,Bottle,Bottle: Bug,Bottle: Bug,
+Bottle: Poe,Bottle: Poe,Bottle: Poe,Bottle Catch,Bottle,Bottle: Poe,Bottle: Poe,
+Bottle: Big Poe,Bottle: Big Poe,Bottle: Big Poe,Bottle Catch,Bottle,Bottle: Big Poe,Bottle: Big Poe,
+Bottle: Spring Water,Bottle: Spring Water,Bottle: Spring Water,Bottle Catch,Bottle,Bottle: Spring Water,Bottle: Spring Water,
+Bottle: Hot Spring Water,Bottle: Hot Spring Water,Bottle: Hot Spring Water,Bottle Catch,Bottle,Bottle: Hot Spring Water,Bottle: Hot Spring Water,
+Bottle: Zora Egg,Bottle: Zora Egg,Bottle: Zora Egg,Bottle Catch,Bottle,Bottle: Zora Egg,Bottle: Zora Egg,
+Bottle: Mushroom,Bottle: Mushroom,Bottle: Mushroom,Bottle Catch,Bottle,Bottle: Mushroom,Bottle: Mushroom,
+Lens Cave 20r,Lens Cave Invisible Chest,Red Rupee,Goron Village,Item,Lens Cave Invisible Chest,Red Rupee,
+Lens Cave 50r,Lens Cave Rock Chest,Purple Rupee,Goron Village,Item,Lens Cave Rock Chest,Purple Rupee,
+Bean Grotto 20r,Bean Grotto,Red Rupee,Deku Palace,Item,Bean Grotto,Red Rupee,
+HSW Grotto 20r,Hot Spring Water Grotto,Red Rupee,Twin Islands,Item,Hot Spring Water Grotto,Red Rupee,
+Graveyard Bad Bats,Day 1 Grave Bats,Purple Rupee,Ikana Graveyard,Item,Day 1 Grave Bats,Purple Rupee,
+Ikana Grotto,Secret Shrine Grotto,5 Bombchu,Ikana Canyon,Item,Secret Shrine Grotto,5 Bombchu,
+PF 20r Lower,Pirates' Fortress Interior Lower Chest,Red Rupee,Pirates' Fortress Interior,Item,Pirates' Fortress Interior Lower Chest,Red Rupee,
+PF 20r Upper,Pirates' Fortress Interior Upper Chest,Red Rupee,Pirates' Fortress Interior,Item,Pirates' Fortress Interior Upper Chest,Red Rupee,
+PF Tank 20r,Pirates' Fortress Interior Tank Chest,Red Rupee,Pirates' Fortress Interior,Item,Pirates' Fortress Interior Tank Chest,Red Rupee,
+PF Guard Room 100r,Pirates' Fortress Interior Guard Room Chest,Silver Rupee,Pirates' Fortress Interior,Item,Pirates' Fortress Interior Guard Room Chest,Silver Rupee,
+PF HP Room 20r,Pirates' Fortress Cage Room Shallow Chest,Red Rupee,Pirates' Fortress Sewer,Item,Pirates' Fortress Cage Room Shallow Chest,Red Rupee,
+PF HP Room 5r,Pirates' Fortress Cage Room Deep Chest,Blue Rupee,Pirates' Fortress Sewer,Item,Pirates' Fortress Cage Room Deep Chest,Blue Rupee,
+PF Maze 20r,Pirates' Fortress Maze Chest,Red Rupee,Pirates' Fortress Sewer,Item,Pirates' Fortress Maze Chest,Red Rupee,
+PR 20r (1),Pinnacle Rock Lower Chest,Red Rupee,Pinnacle Rock,Item,Pinnacle Rock Lower Chest,Red Rupee,
+PR 20r (2),Pinnacle Rock Upper Chest,Red Rupee,Pinnacle Rock,Item,Pinnacle Rock Upper Chest,Red Rupee,
+Bombers' Hideout 100r,Bombers' Hideout Chest,Silver Rupee,East Clock Town,Item,Bombers' Hideout Chest,Silver Rupee,
+Termina Bombchu Grotto,Termina Field Pillar Grotto,Bombchu,Termina Field,Item,Termina Field Pillar Grotto,Bombchu,
+Termina 20r Grotto,Termina Field Grass Grotto,Red Rupee,Termina Field,Item,Termina Field Grass Grotto,Red Rupee,
+Termina Underwater 20r,Termina Field Underwater Chest,Red Rupee,Termina Field,Item,Termina Field Underwater Chest,Red Rupee,
+Termina Grass 20r,Termina Field Grass Chest,Red Rupee,Termina Field,Item,Termina Field Grass Chest,Red Rupee,
+Termina Stump 20r,Termina Field Stump Chest,Red Rupee,Termina Field,Item,Termina Field Stump Chest,Red Rupee,
+Great Bay Coast Grotto,Great Bay Coast Grotto,Red Rupee,Great Bay Coast,Item,Great Bay Coast Grotto,Red Rupee,
+Great Bay Cape Ledge (1),Zora Cape Ledge Without Tree Chest,Red Rupee,Zora Cape,Item,Zora Cape Ledge Without Tree Chest,Red Rupee,
+Great Bay Cape Ledge (2),Zora Cape Ledge With Tree Chest,Red Rupee,Zora Cape,Item,Zora Cape Ledge With Tree Chest,Red Rupee,
+Great Bay Cape Grotto,Zora Cape Grotto,Bombchu,Zora Cape,Item,Zora Cape Grotto,Bombchu,
+Great Bay Cape Underwater,Zora Cape Underwater Chest,Purple Rupee,Zora Cape,Item,Zora Cape Underwater Chest,Purple Rupee,
+PF Exterior 20r (1),Pirates' Fortress Exterior Log Chest,Red Rupee,Pirates' Fortress Exterior,Item,Pirates' Fortress Exterior Log Chest,Red Rupee,
+PF Exterior 20r (2),Pirates' Fortress Exterior Sand Chest,Red Rupee,Pirates' Fortress Exterior,Item,Pirates' Fortress Exterior Sand Chest,Red Rupee,
+PF Exterior 20r (3),Pirates' Fortress Exterior Corner Chest,Red Rupee,Pirates' Fortress Exterior,Item,Pirates' Fortress Exterior Corner Chest,Red Rupee,
+Path to Swamp Grotto,Path to Swamp Grotto,Red Rupee,Road to Southern Swamp,Item,Path to Swamp Grotto,Red Rupee,
+Doggy Racetrack 50r,Doggy Racetrack Roof Chest,Purple Rupee,Romani Ranch,Item,Doggy Racetrack Roof Chest,Purple Rupee,
+Graveyard Grotto,Ikana Graveyard Grotto,5 Bombchu,Ikana Graveyard,Item,Ikana Graveyard Grotto,5 Bombchu,
+Swamp Grotto,Near Swamp Spider House Grotto,Red Rupee,Southern Swamp,Item,Near Swamp Spider House Grotto,Red Rupee,
+Woodfall 5r,Behind Woodfall Owl Chest,Blue Rupee,Woodfall,Item,Behind Woodfall Owl Chest,Blue Rupee,
+Woodfall 20r,Entrance to Woodfall Chest,Red Rupee,Woodfall,Item,Entrance to Woodfall Chest,Red Rupee,
+Well Right Path 50r,Well Right Path Chest,Purple Rupee,Beneath the Well,Item,Well Right Path Chest,Purple Rupee,
+Well Left Path 50r,Well Left Path Chest,Purple Rupee,Beneath the Well,Item,Well Left Path Chest,Purple Rupee,
+Mountain Village Chest (Spring),Mountain Waterfall Chest,Red Rupee,Mountain Village,Item,Mountain Waterfall Chest,Red Rupee,
+Mountain Village Grotto (Spring) 20r,Mountain Spring Grotto,Red Rupee,Mountain Village,Item,Mountain Spring Grotto,Red Rupee,
+Path to Ikana 20r,Path to Ikana Pillar Chest,Red Rupee,Road to Ikana,Item,Path to Ikana Pillar Chest,Red Rupee,
+Path to Ikana Grotto,Path to Ikana Grotto,Bombchu,Road to Ikana,Item,Path to Ikana Grotto,Bombchu,
+Stone Tower 100r,Inverted Stone Tower Right Chest,Silver Rupee,Stone Tower,Item,Inverted Stone Tower Right Chest,Silver Rupee,
+Stone Tower Bombchu 10,Inverted Stone Tower Middle Chest,10 Bombchu,Stone Tower,Item,Inverted Stone Tower Middle Chest,10 Bombchu,
+Stone Tower Magic Bean,Inverted Stone Tower Left Chest,Magic Bean,Stone Tower,Item,Inverted Stone Tower Left Chest,Magic Bean,
+Path to Snowhead Grotto,Path to Snowhead Grotto,Red Rupee,Path to Snowhead,Item,Path to Snowhead Grotto,Red Rupee,
+Twin Islands 20r,Twin Islands Cave Chest,Red Rupee,Twin Islands,Item,Twin Islands Cave Chest,Red Rupee,
+Secret Shrine HP,Secret Shrine Final Chest,Piece of Heart,Secret Shrine,Item,Secret Shrine Final Chest,Piece of Heart,
+Secret Shrine Dinolfos,Secret Shrine Dinolfos Chest,Silver Rupee,Secret Shrine,Item,Secret Shrine Dinolfos Chest,Silver Rupee,
+Secret Shrine Wizzrobe,Secret Shrine Wizzrobe Chest,Silver Rupee,Secret Shrine,Item,Secret Shrine Wizzrobe Chest,Silver Rupee,
+Secret Shrine Wart,Secret Shrine Wart Chest,Silver Rupee,Secret Shrine,Item,Secret Shrine Wart Chest,Silver Rupee,
+Secret Shrine Garo Master,Secret Shrine Garo Master Chest,Silver Rupee,Secret Shrine,Item,Secret Shrine Garo Master Chest,Silver Rupee,
+Inn Staff Room,Inn Staff Room Chest,Silver Rupee,Stock Pot Inn,Item,Inn Staff Room Chest,Silver Rupee,
+Inn Guest Room,Inn Guest Room Chest,Silver Rupee,Stock Pot Inn,Item,Inn Guest Room Chest,Silver Rupee,
+Mystery Woods Grotto,Mystery Woods Grotto,Purple Rupee,Southern Swamp,Item,Mystery Woods Grotto,Purple Rupee,
+East Clock Town 100r,East Clock Town Chest,Silver Rupee,East Clock Town,Item,East Clock Town Chest,Silver Rupee,
+South Clock Town 20r,South Clock Town Straw Roof Chest,Red Rupee,South Clock Town,Item,South Clock Town Straw Roof Chest,Red Rupee,
+South Clock Town 50r,South Clock Town Final Day Chest,Purple Rupee,South Clock Town,Item,South Clock Town Final Day Chest,Purple Rupee,
+Bank HP,Bank Reward #3,Piece of Heart,West Clock Town,Item,Bank Reward #3,Piece of Heart,
+South Clock Town HP,Clock Tower Entrance,Piece of Heart,South Clock Town,Item,Clock Tower Entrance,Piece of Heart,
+North Clock Town HP,North Clock Town Tree,Piece of Heart,North Clock Town,Item,North Clock Town Tree,Piece of Heart,
+Path to Swamp HP,Path to Swamp Tree,Piece of Heart,Road to Southern Swamp,Item,Path to Swamp Tree,Piece of Heart,
+Swamp Scrub HP,Swamp Tourist Center Roof,Piece of Heart,Southern Swamp,Item,Swamp Tourist Center Roof,Piece of Heart,
+Deku Palace HP,Deku Palace West Garden,Piece of Heart,Deku Palace,Item,Deku Palace West Garden,Piece of Heart,
+Goron Village Scrub HP,Goron Village Ledge,Piece of Heart,Goron Village,Item,Goron Village Ledge,Piece of Heart,
+Bio Baba Grotto HP,Bio Baba Grotto,Piece of Heart,Termina Field,Item,Bio Baba Grotto,Piece of Heart,
+Lab Fish HP,Lab Fish,Piece of Heart,Great Bay Coast,Item,Lab Fish,Piece of Heart,
+Great Bay Like-Like HP,Zora Cape Like-Like,Piece of Heart,Zora Cape,Item,Zora Cape Like-Like,Piece of Heart,
+Pirates' Fortress HP,Pirates' Fortress Cage,Piece of Heart,Pirates' Fortress Sewer,Item,Pirates' Fortress Cage,Piece of Heart,
+Zora Hall Scrub HP,Lulu's Room Ledge,Piece of Heart,Zora Hall,Item,Lulu's Room Ledge,Piece of Heart,
+Path to Snowhead HP,Path to Snowhead Pillar,Piece of Heart,Path to Snowhead,Item,Path to Snowhead Pillar,Piece of Heart,
+Great Bay Coast HP,Great Bay Coast Ledge,Piece of Heart,Great Bay Coast,Item,Great Bay Coast Ledge,Piece of Heart,
+Ikana Scrub HP,Ikana Canyon Ledge,Piece of Heart,Ikana Canyon,Item,Ikana Canyon Ledge,Piece of Heart,
+Ikana Castle HP,Ikana Castle Pillar,Piece of Heart,Ikana Castle,Item,Ikana Castle Pillar,Piece of Heart,
+Odolwa Heart Container,Odolwa Heart Container,Heart Container,Woodfall Temple,Item,Odolwa Heart Container,Heart Container,
+Goht Heart Container,Goht Heart Container,Heart Container,Snowhead Temple,Item,Goht Heart Container,Heart Container,
+Gyorg Heart Container,Gyorg Heart Container,Heart Container,Great Bay Temple,Item,Gyorg Heart Container,Heart Container,
+Twinmold Heart Container,Twinmold Heart Container,Heart Container,Stone Tower Temple,Item,Twinmold Heart Container,Heart Container,
+Map: Clock Town,Clock Town Map Purchase,Map of Clock Town,Tingle Map,Item,Clock Town Map Purchase,Map of Clock Town,
+Map: Woodfall,Woodfall Map Purchase,Map of Woodfall,Tingle Map,Item,Woodfall Map Purchase,Map of Woodfall,
+Map: Snowhead,Snowhead Map Purchase,Map of Snowhead,Tingle Map,Item,Snowhead Map Purchase,Map of Snowhead,
+Map: Romani Ranch,Romani Ranch Map Purchase,Map of Romani Ranch,Tingle Map,Item,Romani Ranch Map Purchase,Map of Romani Ranch,
+Map: Great Bay,Great Bay Map Purchase,Map of Great Bay,Tingle Map,Item,Great Bay Map Purchase,Map of Great Bay,
+Map: Stone Tower,Stone Tower Map Purchase,Map of Stone Tower,Tingle Map,Item,Stone Tower Map Purchase,Map of Stone Tower,
+Goron Racetrack Grotto,Goron Racetrack Grotto,Bombchu,Twin Islands,Item,Goron Racetrack Grotto,Bombchu,
+Ikana Scrub 200r,Canyon Scrub Trade,Gold Rupee,Ikana Canyon,Item,Canyon Scrub Trade,Gold Rupee,
+Deku Trial HP,Deku Trial Bonus,Piece of Heart,The Moon,Item,Deku Trial Bonus,Piece of Heart,
+Goron Trial HP,Goron Trial Bonus,Piece of Heart,The Moon,Item,Goron Trial Bonus,Piece of Heart,
+Zora Trial HP,Zora Trial Bonus,Piece of Heart,The Moon,Item,Zora Trial Bonus,Piece of Heart,
+Link Trial HP,Link Trial Bonus,Piece of Heart,The Moon,Item,Link Trial Bonus,Piece of Heart,
+Fierce Deity's Mask,Majora Child,Fierce Deity's Mask,The Moon,Item,Majora Child,Fierce Deity's Mask,
+Link Trial 30 Arrows,Link Trial Garo Master Chest,30 Arrows,The Moon,Item,Link Trial Garo Master Chest,30 Arrows,
+Link Trial 10 Bombchu,Link Trial Iron Knuckle Chest,10 Bombchu,The Moon,Item,Link Trial Iron Knuckle Chest,10 Bombchu,
+Pre-Clocktown 10 Deku Nuts,Pre-Clocktown Chest,10 Deku Nuts,Beneath Clocktown,Item,Pre-Clocktown Chest,10 Deku Nuts,
+Starting Sword,Starting Sword,Kokiri Sword,Misc,Item,Starting Sword,Kokiri Sword,
+Starting Shield,Starting Shield,Hero's Shield,Misc,Item,Starting Shield,Hero's Shield,
+Starting Heart 1,Starting Heart Container #1,Heart Container,Misc,Item,Starting Heart Container #1,Heart Container,
+Starting Heart 2,Starting Heart Container #2,Heart Container,Misc,Item,Starting Heart Container #2,Heart Container,
+Ranch Cow #1 Milk,Ranch Cow #1,Milk,Romani Ranch,Item,Ranch Cow #1,Milk,
+Ranch Cow #2 Milk,Ranch Cow #2,Milk,Romani Ranch,Item,Ranch Cow #2,Milk,
+Ranch Cow #3 Milk,Ranch Cow #3,Milk,Romani Ranch,Item,Ranch Cow #3,Milk,
+Well Cow Milk,Cow Beneath the Well,Milk,Beneath the Well,Item,Cow Beneath the Well,Milk,
+Termina Grotto Cow #1 Milk,Termina Grotto Cow #1,Milk,Termina Field,Item,Termina Grotto Cow #1,Milk,
+Termina Grotto Cow #2 Milk,Termina Grotto Cow #2,Milk,Termina Field,Item,Termina Grotto Cow #2,Milk,
+Great Bay Coast Grotto Cow #1 Milk,Great Bay Coast Grotto Cow #1,Milk,Great Bay Coast,Item,Great Bay Coast Grotto Cow #1,Milk,
+Great Bay Coast Grotto Cow #2 Milk,Great Bay Coast Grotto Cow #2,Milk,Great Bay Coast,Item,Great Bay Coast Grotto Cow #2,Milk,
+Swamp Skulltula Main Room Near Ceiling,Swamp Skulltula Main Room Near Ceiling,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Main Room Near Ceiling,Swamp Skulltula Spirit,
+Swamp Skulltula Gold Room Near Ceiling,Swamp Skulltula Gold Room Near Ceiling,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Gold Room Near Ceiling,Swamp Skulltula Spirit,
+Swamp Skulltula Monument Room Torch,Swamp Skulltula Monument Room Torch,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Monument Room Torch,Swamp Skulltula Spirit,
+Swamp Skulltula Gold Room Pillar,Swamp Skulltula Gold Room Pillar,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Gold Room Pillar,Swamp Skulltula Spirit,
+Swamp Skulltula Pot Room Jar,Swamp Skulltula Pot Room Jar,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Pot Room Jar,Swamp Skulltula Spirit,
+Swamp Skulltula Tree Room Grass 1,Swamp Skulltula Tree Room Grass 1,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Tree Room Grass 1,Swamp Skulltula Spirit,
+Swamp Skulltula Tree Room Grass 2,Swamp Skulltula Tree Room Grass 2,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Tree Room Grass 2,Swamp Skulltula Spirit,
+Swamp Skulltula Main Room Water,Swamp Skulltula Main Room Water,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Main Room Water,Swamp Skulltula Spirit,
+Swamp Skulltula Main Room Lower Left Soft Soil,Swamp Skulltula Main Room Lower Left Soft Soil,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Main Room Lower Left Soft Soil,Swamp Skulltula Spirit,
+Swamp Skulltula Monument Room Crate 1,Swamp Skulltula Monument Room Crate 1,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Monument Room Crate 1,Swamp Skulltula Spirit,
+Swamp Skulltula Main Room Upper Soft Soil,Swamp Skulltula Main Room Upper Soft Soil,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Main Room Upper Soft Soil,Swamp Skulltula Spirit,
+Swamp Skulltula Main Room Lower Right Soft Soil,Swamp Skulltula Main Room Lower Right Soft Soil,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Main Room Lower Right Soft Soil,Swamp Skulltula Spirit,
+Swamp Skulltula Monument Room Lower Wall,Swamp Skulltula Monument Room Lower Wall,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Monument Room Lower Wall,Swamp Skulltula Spirit,
+Swamp Skulltula Monument Room On Monument,Swamp Skulltula Monument Room On Monument,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Monument Room On Monument,Swamp Skulltula Spirit,
+Swamp Skulltula Main Room Pillar,Swamp Skulltula Main Room Pillar,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Main Room Pillar,Swamp Skulltula Spirit,
+Swamp Skulltula Pot Room Pot 1,Swamp Skulltula Pot Room Pot 1,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Pot Room Pot 1,Swamp Skulltula Spirit,
+Swamp Skulltula Pot Room Pot 2,Swamp Skulltula Pot Room Pot 2,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Pot Room Pot 2,Swamp Skulltula Spirit,
+Swamp Skulltula Gold Room Hive,Swamp Skulltula Gold Room Hive,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Gold Room Hive,Swamp Skulltula Spirit,
+Swamp Skulltula Main Room Upper Pillar,Swamp Skulltula Main Room Upper Pillar,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Main Room Upper Pillar,Swamp Skulltula Spirit,
+Swamp Skulltula Pot Room Behind Vines,Swamp Skulltula Pot Room Behind Vines,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Pot Room Behind Vines,Swamp Skulltula Spirit,
+Swamp Skulltula Tree Room Tree 1,Swamp Skulltula Tree Room Tree 1,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Tree Room Tree 1,Swamp Skulltula Spirit,
+Swamp Skulltula Pot Room Wall,Swamp Skulltula Pot Room Wall,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Pot Room Wall,Swamp Skulltula Spirit,
+Swamp Skulltula Pot Room Hive 1,Swamp Skulltula Pot Room Hive 1,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Pot Room Hive 1,Swamp Skulltula Spirit,
+Swamp Skulltula Tree Room Tree 2,Swamp Skulltula Tree Room Tree 2,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Tree Room Tree 2,Swamp Skulltula Spirit,
+Swamp Skulltula Gold Room Wall,Swamp Skulltula Gold Room Wall,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Gold Room Wall,Swamp Skulltula Spirit,
+Swamp Skulltula Tree Room Hive,Swamp Skulltula Tree Room Hive,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Tree Room Hive,Swamp Skulltula Spirit,
+Swamp Skulltula Monument Room Crate 2,Swamp Skulltula Monument Room Crate 2,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Monument Room Crate 2,Swamp Skulltula Spirit,
+Swamp Skulltula Pot Room Hive 2,Swamp Skulltula Pot Room Hive 2,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Pot Room Hive 2,Swamp Skulltula Spirit,
+Swamp Skulltula Tree Room Tree 3,Swamp Skulltula Tree Room Tree 3,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Tree Room Tree 3,Swamp Skulltula Spirit,
+Swamp Skulltula Main Room Jar,Swamp Skulltula Main Room Jar,Swamp Skulltula Spirit,Swamp Skull House,Item,Swamp Skulltula Main Room Jar,Swamp Skulltula Spirit,
+Ocean Skulltula Storage Room Behind Boat,Ocean Skulltula Storage Room Behind Boat,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Storage Room Behind Boat,Ocean Skulltula Spirit,
+Ocean Skulltula Library Hole Behind Picture,Ocean Skulltula Library Hole Behind Picture,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Library Hole Behind Picture,Ocean Skulltula Spirit,
+Ocean Skulltula Library Hole Behind Cabinet,Ocean Skulltula Library Hole Behind Cabinet,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Library Hole Behind Cabinet,Ocean Skulltula Spirit,
+Ocean Skulltula Library On Corner Bookshelf,Ocean Skulltula Library On Corner Bookshelf,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Library On Corner Bookshelf,Ocean Skulltula Spirit,
+Ocean Skulltula 2nd Room Ceiling Edge,Ocean Skulltula 2nd Room Ceiling Edge,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula 2nd Room Ceiling Edge,Ocean Skulltula Spirit,
+Ocean Skulltula 2nd Room Ceiling Plank,Ocean Skulltula 2nd Room Ceiling Plank,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula 2nd Room Ceiling Plank,Ocean Skulltula Spirit,
+Ocean Skulltula Colored Skulls Ceiling Edge,Ocean Skulltula Colored Skulls Ceiling Edge,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Colored Skulls Ceiling Edge,Ocean Skulltula Spirit,
+Ocean Skulltula Library Ceiling Edge,Ocean Skulltula Library Ceiling Edge,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Library Ceiling Edge,Ocean Skulltula Spirit,
+Ocean Skulltula Storage Room Ceiling Web,Ocean Skulltula Storage Room Ceiling Web,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Storage Room Ceiling Web,Ocean Skulltula Spirit,
+Ocean Skulltula Storage Room Behind Crate,Ocean Skulltula Storage Room Behind Crate,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Storage Room Behind Crate,Ocean Skulltula Spirit,
+Ocean Skulltula 2nd Room Jar,Ocean Skulltula 2nd Room Jar,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula 2nd Room Jar,Ocean Skulltula Spirit,
+Ocean Skulltula Entrance Right Wall,Ocean Skulltula Entrance Right Wall,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Entrance Right Wall,Ocean Skulltula Spirit,
+Ocean Skulltula Entrance Left Wall,Ocean Skulltula Entrance Left Wall,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Entrance Left Wall,Ocean Skulltula Spirit,
+Ocean Skulltula 2nd Room Webbed Hole,Ocean Skulltula 2nd Room Webbed Hole,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula 2nd Room Webbed Hole,Ocean Skulltula Spirit,
+Ocean Skulltula Entrance Web,Ocean Skulltula Entrance Web,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Entrance Web,Ocean Skulltula Spirit,
+Ocean Skulltula Colored Skulls Chandelier 1,Ocean Skulltula Colored Skulls Chandelier 1,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Colored Skulls Chandelier 1,Ocean Skulltula Spirit,
+Ocean Skulltula Colored Skulls Chandelier 2,Ocean Skulltula Colored Skulls Chandelier 2,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Colored Skulls Chandelier 2,Ocean Skulltula Spirit,
+Ocean Skulltula Colored Skulls Chandelier 3,Ocean Skulltula Colored Skulls Chandelier 3,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Colored Skulls Chandelier 3,Ocean Skulltula Spirit,
+Ocean Skulltula Colored Skulls Behind Picture,Ocean Skulltula Colored Skulls Behind Picture,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Colored Skulls Behind Picture,Ocean Skulltula Spirit,
+Ocean Skulltula Library Behind Picture,Ocean Skulltula Library Behind Picture,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Library Behind Picture,Ocean Skulltula Spirit,
+Ocean Skulltula Library Behind Bookcase 1,Ocean Skulltula Library Behind Bookcase 1,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Library Behind Bookcase 1,Ocean Skulltula Spirit,
+Ocean Skulltula Storage Room Crate,Ocean Skulltula Storage Room Crate,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Storage Room Crate,Ocean Skulltula Spirit,
+Ocean Skulltula 2nd Room Webbed Pot,Ocean Skulltula 2nd Room Webbed Pot,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula 2nd Room Webbed Pot,Ocean Skulltula Spirit,
+Ocean Skulltula 2nd Room Upper Pot,Ocean Skulltula 2nd Room Upper Pot,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula 2nd Room Upper Pot,Ocean Skulltula Spirit,
+Ocean Skulltula Colored Skulls Pot,Ocean Skulltula Colored Skulls Pot,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Colored Skulls Pot,Ocean Skulltula Spirit,
+Ocean Skulltula Storage Room Jar,Ocean Skulltula Storage Room Jar,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Storage Room Jar,Ocean Skulltula Spirit,
+Ocean Skulltula 2nd Room Lower Pot,Ocean Skulltula 2nd Room Lower Pot,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula 2nd Room Lower Pot,Ocean Skulltula Spirit,
+Ocean Skulltula Library Behind Bookcase 2,Ocean Skulltula Library Behind Bookcase 2,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula Library Behind Bookcase 2,Ocean Skulltula Spirit,
+Ocean Skulltula 2nd Room Behind Skull 1,Ocean Skulltula 2nd Room Behind Skull 1,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula 2nd Room Behind Skull 1,Ocean Skulltula Spirit,
+Ocean Skulltula 2nd Room Behind Skull 2,Ocean Skulltula 2nd Room Behind Skull 2,Ocean Skulltula Spirit,Ocean Skull House,Item,Ocean Skulltula 2nd Room Behind Skull 2,Ocean Skulltula Spirit,
+Clock Town Stray Fairy,Clock Town Stray Fairy,Clock Town Stray Fairy,Laundry Pool,Item,Clock Town Stray Fairy,Clock Town Stray Fairy,
+Woodfall Pre-Boss Lower Right Bubble,Woodfall Pre-Boss Lower Right Bubble,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Pre-Boss Lower Right Bubble,Woodfall Stray Fairy,
+Woodfall Entrance Fairy,Woodfall Entrance Fairy,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Entrance Fairy,Woodfall Stray Fairy,
+Woodfall Pre-Boss Upper Left Bubble,Woodfall Pre-Boss Upper Left Bubble,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Pre-Boss Upper Left Bubble,Woodfall Stray Fairy,
+Woodfall Pre-Boss Pillar Bubble,Woodfall Pre-Boss Pillar Bubble,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Pre-Boss Pillar Bubble,Woodfall Stray Fairy,
+Woodfall Deku Baba,Woodfall Deku Baba,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Deku Baba,Woodfall Stray Fairy,
+Woodfall Poison Water Bubble,Woodfall Poison Water Bubble,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Poison Water Bubble,Woodfall Stray Fairy,
+Woodfall Main Room Bubble,Woodfall Main Room Bubble,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Main Room Bubble,Woodfall Stray Fairy,
+Woodfall Skulltula,Woodfall Skulltula,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Skulltula,Woodfall Stray Fairy,
+Woodfall Pre-Boss Upper Right Bubble,Woodfall Pre-Boss Upper Right Bubble,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Pre-Boss Upper Right Bubble,Woodfall Stray Fairy,
+Woodfall Main Room Switch,Woodfall Main Room Switch,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Main Room Switch,Woodfall Stray Fairy,
+Woodfall Entrance Platform,Woodfall Entrance Platform,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Entrance Platform,Woodfall Stray Fairy,
+Woodfall Dark Room,Woodfall Dark Room,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Dark Room,Woodfall Stray Fairy,
+Woodfall Jar Fairy,Woodfall Jar Fairy,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Jar Fairy,Woodfall Stray Fairy,
+Woodfall Bridge Room Hive,Woodfall Bridge Room Hive,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Bridge Room Hive,Woodfall Stray Fairy,
+Woodfall Platform Room Hive,Woodfall Platform Room Hive,Woodfall Stray Fairy,Woodfall Temple Fairies,Item,Woodfall Platform Room Hive,Woodfall Stray Fairy,
+Snowhead Snow Room Bubble,Snowhead Snow Room Bubble,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Snow Room Bubble,Snowhead Stray Fairy,
+Snowhead Ceiling Bubble,Snowhead Ceiling Bubble,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Ceiling Bubble,Snowhead Stray Fairy,
+Snowhead Dinolfos 1,Snowhead Dinolfos 1,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Dinolfos 1,Snowhead Stray Fairy,
+Snowhead Bridge Room Ledge Bubble,Snowhead Bridge Room Ledge Bubble,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Bridge Room Ledge Bubble,Snowhead Stray Fairy,
+Snowhead Bridge Room Pillar Bubble,Snowhead Bridge Room Pillar Bubble,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Bridge Room Pillar Bubble,Snowhead Stray Fairy,
+Snowhead Dinolfos 2,Snowhead Dinolfos 2,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Dinolfos 2,Snowhead Stray Fairy,
+Snowhead Map Room Fairy,Snowhead Map Room Fairy,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Map Room Fairy,Snowhead Stray Fairy,
+Snowhead Map Room Ledge,Snowhead Map Room Ledge,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Map Room Ledge,Snowhead Stray Fairy,
+Snowhead Basement,Snowhead Basement,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Basement,Snowhead Stray Fairy,
+Snowhead Twin Block,Snowhead Twin Block,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Twin Block,Snowhead Stray Fairy,
+Snowhead Icicle Room Wall,Snowhead Icicle Room Wall,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Icicle Room Wall,Snowhead Stray Fairy,
+Snowhead Main Room Wall,Snowhead Main Room Wall,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Main Room Wall,Snowhead Stray Fairy,
+Snowhead Pillar Freezards,Snowhead Pillar Freezards,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Pillar Freezards,Snowhead Stray Fairy,
+Snowhead Ice Puzzle,Snowhead Ice Puzzle,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Ice Puzzle,Snowhead Stray Fairy,
+Snowhead Crate,Snowhead Crate,Snowhead Stray Fairy,Snowhead Temple Fairies,Item,Snowhead Crate,Snowhead Stray Fairy,
+Great Bay Skulltula,Great Bay Skulltula,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Skulltula,Great Bay Stray Fairy,
+Great Bay Pre-Boss Room Underwater Bubble,Great Bay Pre-Boss Room Underwater Bubble,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Pre-Boss Room Underwater Bubble,Great Bay Stray Fairy,
+Great Bay Water Control Room Underwater Bubble,Great Bay Water Control Room Underwater Bubble,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Water Control Room Underwater Bubble,Great Bay Stray Fairy,
+Great Bay Pre-Boss Room Bubble,Great Bay Pre-Boss Room Bubble,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Pre-Boss Room Bubble,Great Bay Stray Fairy,
+Great Bay Waterwheel Room Upper,Great Bay Waterwheel Room Upper,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Waterwheel Room Upper,Great Bay Stray Fairy,
+Great Bay Green Valve,Great Bay Green Valve,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Green Valve,Great Bay Stray Fairy,
+Great Bay Seesaw Room,Great Bay Seesaw Room,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Seesaw Room,Great Bay Stray Fairy,
+Great Bay Waterwheel Room Lower,Great Bay Waterwheel Room Lower,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Waterwheel Room Lower,Great Bay Stray Fairy,
+Great Bay Entrance Torches,Great Bay Entrance Torches,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Entrance Torches,Great Bay Stray Fairy,
+Great Bay Bio Babas,Great Bay Bio Babas,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Bio Babas,Great Bay Stray Fairy,
+Great Bay Underwater Barrel,Great Bay Underwater Barrel,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Underwater Barrel,Great Bay Stray Fairy,
+Great Bay Whirlpool Jar,Great Bay Whirlpool Jar,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Whirlpool Jar,Great Bay Stray Fairy,
+Great Bay Whirlpool Barrel,Great Bay Whirlpool Barrel,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Whirlpool Barrel,Great Bay Stray Fairy,
+Great Bay Dexihands Jar,Great Bay Dexihands Jar,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Dexihands Jar,Great Bay Stray Fairy,
+Great Bay Ledge Jar,Great Bay Ledge Jar,Great Bay Stray Fairy,Great Bay Temple Fairies,Item,Great Bay Ledge Jar,Great Bay Stray Fairy,
+Stone Tower Mirror Sun Block,Stone Tower Mirror Sun Block,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Mirror Sun Block,Stone Tower Stray Fairy,
+Stone Tower Eyegore,Stone Tower Eyegore,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Eyegore,Stone Tower Stray Fairy,
+Stone Tower Lava Room Fire Ring,Stone Tower Lava Room Fire Ring,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Lava Room Fire Ring,Stone Tower Stray Fairy,
+Stone Tower Updraft Fire Ring,Stone Tower Updraft Fire Ring,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Updraft Fire Ring,Stone Tower Stray Fairy,
+Stone Tower Mirror Sun Switch,Stone Tower Mirror Sun Switch,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Mirror Sun Switch,Stone Tower Stray Fairy,
+Stone Tower Boss Warp,Stone Tower Boss Warp,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Boss Warp,Stone Tower Stray Fairy,
+Stone Tower Wizzrobe,Stone Tower Wizzrobe,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Wizzrobe,Stone Tower Stray Fairy,
+Stone Tower Death Armos,Stone Tower Death Armos,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Death Armos,Stone Tower Stray Fairy,
+Stone Tower Updraft Frozen Eye,Stone Tower Updraft Frozen Eye,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Updraft Frozen Eye,Stone Tower Stray Fairy,
+Stone Tower Thin Bridge,Stone Tower Thin Bridge,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Thin Bridge,Stone Tower Stray Fairy,
+Stone Tower Basement Ledge,Stone Tower Basement Ledge,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Basement Ledge,Stone Tower Stray Fairy,
+Stone Tower Statue Eye,Stone Tower Statue Eye,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Statue Eye,Stone Tower Stray Fairy,
+Stone Tower Underwater,Stone Tower Underwater,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Underwater,Stone Tower Stray Fairy,
+Stone Tower Bridge Crystal,Stone Tower Bridge Crystal,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Bridge Crystal,Stone Tower Stray Fairy,
+Stone Tower Lava Room Ledge,Stone Tower Lava Room Ledge,Stone Tower Stray Fairy,Stone Tower Temple Fairies,Item,Stone Tower Lava Room Ledge,Stone Tower Stray Fairy,
+Lottery 50r,Lottery,Purple Rupee,West Clock Town,Item,Lottery,Purple Rupee,
+Bank 5r,Bank Reward #2,Blue Rupee,West Clock Town,Item,Bank Reward #2,Blue Rupee,
+Milk Bar Chateau,Milk Bar Chateau,Chateau Romani,East Clock Town,Item,Milk Bar Chateau,Chateau Romani,
+Milk Bar Milk,Milk Bar Milk,Milk,East Clock Town,Item,Milk Bar Milk,Milk,
+Deku Playground 50r,Deku Playground Any Day,Purple Rupee,North Clock Town,Item,Deku Playground Any Day,Purple Rupee,
+Honey and Darling 50r,Honey and Darling Any Day,Purple Rupee,East Clock Town,Item,Honey and Darling Any Day,Purple Rupee,
+Kotake Mushroom Sale 20r,Kotake Mushroom Sale,Red Rupee,Southern Swamp,Item,Kotake Mushroom Sale,Red Rupee,
+Pictograph Contest 5r,Pictograph Contest Standard Photo,Blue Rupee,Southern Swamp,Item,Pictograph Contest Standard Photo,Blue Rupee,
+Pictograph Contest 20r,Pictograph Contest Good Photo,Red Rupee,Southern Swamp,Item,Pictograph Contest Good Photo,Red Rupee,
+Swamp Scrub Magic Bean,Swamp Scrub Purchase,Magic Bean,Southern Swamp,Item,Swamp Scrub Purchase,Magic Bean,
+Ocean Scrub Green Potion,Ocean Scrub Purchase,Green Potion,Zora Hall,Item,Ocean Scrub Purchase,Green Potion,
+Canyon Scrub Blue Potion,Canyon Scrub Purchase,Blue Potion,Ikana Canyon,Item,Canyon Scrub Purchase,Blue Potion,
+Zora Hall Stage Lights 5r,Zora Hall Stage Lights,Blue Rupee,Zora Hall,Item,Zora Hall Stage Lights,Blue Rupee,
+Gorman Bros Purchase Milk,Gorman Bros Milk Purchase,Milk,Milk Road,Item,Gorman Bros Milk Purchase,Milk,
+Ocean Spider House 50r,Ocean Spider House Day 2 Reward,Purple Rupee,Great Bay Coast,Item,Ocean Spider House Day 2 Reward,Purple Rupee,
+Ocean Spider House 20r,Ocean Spider House Day 3 Reward,Red Rupee,Great Bay Coast,Item,Ocean Spider House Day 3 Reward,Red Rupee,
+Lulu Pictograph 5r,Bad Pictograph of Lulu,Blue Rupee,Zora Hall,Item,Bad Pictograph of Lulu,Blue Rupee,
+Lulu Pictograph 20r,Good Pictograph of Lulu,Red Rupee,Zora Hall,Item,Good Pictograph of Lulu,Red Rupee,
+Treasure Chest Game 50r,Treasure Chest Game Human,Purple Rupee,East Clock Town,Item,Treasure Chest Game Human,Purple Rupee,
+Treasure Chest Game 20r,Treasure Chest Game Zora,Red Rupee,East Clock Town,Item,Treasure Chest Game Zora,Red Rupee,
+Treasure Chest Game Deku Nuts,Treasure Chest Game Deku,10 Deku Nuts,East Clock Town,Item,Treasure Chest Game Deku,10 Deku Nuts,
+Curiosity Shop 5r,Curiosity Shop Blue Rupee,Blue Rupee,West Clock Town,Item,Curiosity Shop Blue Rupee,Blue Rupee,
+Curiosity Shop 20r,Curiosity Shop Red Rupee,Red Rupee,West Clock Town,Item,Curiosity Shop Red Rupee,Red Rupee,
+Curiosity Shop 50r,Curiosity Shop Purple Rupee,Purple Rupee,West Clock Town,Item,Curiosity Shop Purple Rupee,Purple Rupee,
+Curiosity Shop 200r,Curiosity Shop Gold Rupee,Gold Rupee,West Clock Town,Item,Curiosity Shop Gold Rupee,Gold Rupee,
+Seahorse,Fisherman Pictograph,Seahorse,Great Bay Coast,Item,Fisherman Pictograph,Seahorse,
+EntranceMayorsResidenceFromEastClockTown,ECT > Mayor,Mayor < ECT,East Clock Town,Entrance,EntranceMayorsResidenceFromEastClockTown,EntranceMayorsResidenceFromEastClockTown,EntranceEastClockTownFromMayorsResidence
+EntranceMajorasLairFromTheMoon,Moon > Majora,Majora < Moon,The Moon,Entrance,EntranceMajorasLairFromTheMoon,EntranceMajorasLairFromTheMoon,
+EntranceMagicHagsPotionShopFromSouthernSwamp,Swamp > Witch Shop,Witch Shop < Swamp,Southern Swamp,Entrance,EntranceMagicHagsPotionShopFromSouthernSwamp,EntranceMagicHagsPotionShopFromSouthernSwamp,EntranceSouthernSwampFromMagicHagsPotionShop
+EntranceRanchBarnFromRomaniRanch,Ranch > Barn,Ranch Barn < Ranch,Romani Ranch,Entrance,EntranceRanchBarnFromRomaniRanch,EntranceRanchBarnFromRomaniRanch,EntranceRomaniRanchFromBarn
+EntranceRanchHouseFromRomaniRanch,Ranch > Ranch House,Ranch House < Ranch,Romani Ranch,Entrance,EntranceRanchHouseFromRomaniRanch,EntranceRanchHouseFromRomaniRanch,EntranceRomaniRanchFromRanchHouse
+EntranceHoneyDarlingsShopFromEastClockTown,ECT > Honey Darling,Honey Darling < ECT,East Clock Town,Entrance,EntranceHoneyDarlingsShopFromEastClockTown,EntranceHoneyDarlingsShopFromEastClockTown,EntranceEastClockTownFromHoneyDarlingsShop
+EntranceBeneathGraveyardFromIkanaGraveyardNight2,Graveyard > Grave 2,Beneath Grave < Grave 2,Ikana Graveyard,Entrance,EntranceBeneathGraveyardFromIkanaGraveyardNight2,EntranceBeneathGraveyardFromIkanaGraveyardNight2,EntranceIkanaGraveyardFromDay2Grave
+EntranceBeneathGraveyardFromIkanaGraveyardNight1,Graveyard > Grave1,Beneath Grave < Grave 1,Ikana Graveyard,Entrance,EntranceBeneathGraveyardFromIkanaGraveyardNight1,EntranceBeneathGraveyardFromIkanaGraveyardNight1,EntranceIkanaGraveyardFromDay1Grave
+EntranceSouthernSwampFromRoadtoSouthernSwamp,Swamp Road > Swamp,Swamp < Swamp Road,Road to Southern Swamp,Entrance,EntranceSouthernSwampFromRoadtoSouthernSwamp,EntranceSouthernSwampFromRoadtoSouthernSwamp,EntranceRoadtoSouthernSwampFromSouthernSwamp
+EntranceSouthernSwampFromTouristInformation,Tourist Center > Swamp,Swamp < Tourist Center,Interior,Entrance,EntranceSouthernSwampFromTouristInformation,EntranceSouthernSwampFromTouristInformation,EntranceTouristInformationFromSouthernSwamp
+EntranceSouthernSwampFromWoodfall,Woodfall > Swamp,Swamp < Woodfall,Woodfall,Entrance,EntranceSouthernSwampFromWoodfall,EntranceSouthernSwampFromWoodfall,EntranceWoodfallFromSouthernSwamp
+EntranceSouthernSwampFromDekuPalaceLower,Deku Palace > Swamp LOW,Swamp < Deku Palace LOW,Deku Palace,Entrance,EntranceSouthernSwampFromDekuPalaceLower,EntranceSouthernSwampFromDekuPalaceLower,EntranceDekuPalaceFromSouthernSwampLower
+EntranceSouthernSwampFromDekuPalaceUpper,Deku Palace > Swamp UP,Swamp < Deku Palace UP,Deku Palace,Entrance,EntranceSouthernSwampFromDekuPalaceUpper,EntranceSouthernSwampFromDekuPalaceUpper,EntranceDekuPalaceFromSouthernSwampUpper
+EntranceSouthernSwampFromMagicHagsPotionShop,Witch Shop > Swamp,Swamp < Witch Shop,Interior,Entrance,EntranceSouthernSwampFromMagicHagsPotionShop,EntranceSouthernSwampFromMagicHagsPotionShop,EntranceMagicHagsPotionShopFromSouthernSwamp
+EntranceSouthernSwampFromWoodsofMystery,Mystery Wood > Swamp,Swamp < Mystery Wood,Interior,Entrance,EntranceSouthernSwampFromWoodsofMystery,EntranceSouthernSwampFromWoodsofMystery,EntranceWoodsofMysteryFromSouthernSwamp
+EntranceSouthernSwampFromSwampSpiderHouse,Swamp Spider > Swamp,Swamp < Swamp Spider,Interior,Entrance,EntranceSouthernSwampFromSwampSpiderHouse,EntranceSouthernSwampFromSwampSpiderHouse,EntranceSwampSpiderHouseFromSouthernSwamp
+EntranceSouthernSwampFromIkanaCanyon,Ikana > Swamp,Swamp < Ikana,Ikana Canyon,Entrance,EntranceSouthernSwampFromIkanaCanyon,EntranceSouthernSwampFromIkanaCanyon,
+EntranceSouthernSwampFromOwlStatue,Owl Warp > Swamp,Swamp < Owl Warp,Owl Warp,Entrance,EntranceSouthernSwampFromOwlStatue,EntranceSouthernSwampFromOwlStatue,
+EntranceCuriosityShopFromWestClockTown,WCT > Curiosity Shop,Curiosity Shop < WCT,West Clock Town,Entrance,EntranceCuriosityShopFromWestClockTown,EntranceCuriosityShopFromWestClockTown,EntranceWestClockTownFromCuriosityShop
+EntranceKafeisHideoutFromLaundryPool,Laundry Pool > Kafei,Kafei < Laundry pool,Laundry Pool,Entrance,EntranceKafeisHideoutFromLaundryPool,EntranceKafeisHideoutFromLaundryPool,EntranceLaundryPoolFromKafeisHideout
+EntranceCuriosityShopFromKafeisHideout,Kafei > PeepHole,Kafei < Peephole,Interior,Entrance,EntranceCuriosityShopFromKafeisHideout,EntranceCuriosityShopFromKafeisHideout,EntranceKafeisHideoutFromCuriosityShop
+EntranceKafeisHideoutFromCuriosityShop,PeepHole > Kafei,PeepHole < Kafei,Interior,Entrance,EntranceKafeisHideoutFromCuriosityShop,EntranceKafeisHideoutFromCuriosityShop,EntranceCuriosityShopFromKafeisHideout
+EntranceGrottoGossipOceanFromTerminaField,Termina > Ocean Gossip,Ocean Gossip < Termina,Termina Field,Entrance,EntranceGrottoGossipOceanFromTerminaField,EntranceGrottoGossipOceanFromTerminaField,
+EntranceGrottoGossipSwampFromTerminaField,Termina > Swamp Gossip,Swamp Gossip < Termina,Termina Field,Entrance,EntranceGrottoGossipSwampFromTerminaField,EntranceGrottoGossipSwampFromTerminaField,
+EntranceGrottoGossipCanyonFromTerminaField,Termina > Canyon Gossip,Canyon Gossip < Termina,Termina Field,Entrance,EntranceGrottoGossipCanyonFromTerminaField,EntranceGrottoGossipCanyonFromTerminaField,
+EntranceGrottoGossipMountainFromTerminaField,Termina > Mountain Gossip,Mountain Gossip < Termina,Termina Field,Entrance,EntranceGrottoGossipMountainFromTerminaField,EntranceGrottoGossipMountainFromTerminaField,
+EntranceGrottoHotSpringWaterFromTwinIslands,Twin Island > HSW Grotto,HSW Grotto < Termina,Twin Islands,Entrance,EntranceGrottoHotSpringWaterFromTwinIslands,EntranceGrottoHotSpringWaterFromTwinIslands,
+EntranceGrottoPalaceStraightFromDekuPalaceA,,Palace Straight Grotto < Palace Garden East,Deku Palace,Entrance,EntranceGrottoPalaceStraightFromDekuPalaceA,EntranceGrottoPalaceStraightFromDekuPalaceA,EntranceDekuPalaceGardenEastFromPalaceStraightGrotto
+EntranceGrottoDodongoFromTerminaField,Termina > Dodongo Grotto,Dodongo Grotto < Termina,Termina Field,Entrance,EntranceGrottoDodongoFromTerminaField,EntranceGrottoDodongoFromTerminaField,
+EntranceGrottoPalaceVinesFromDekuPalaceLower,,Palace Vine Grotto < Palace Garden East,Deku Palace,Entrance,EntranceGrottoPalaceVinesFromDekuPalaceLower,EntranceGrottoPalaceVinesFromDekuPalaceLower,EntranceDekuPalaceGardenEastFromPalaceVinesGrotto
+EntranceGrottoDekuMerchantFromTerminaField,Termina > Deku Grotto,Deku Grotto < Termina,Termina Field,Entrance,EntranceGrottoDekuMerchantFromTerminaField,EntranceGrottoDekuMerchantFromTerminaField,
+EntranceGrottoBioBabaFromTerminaField,Termina > Bio Baba Grotto,Bio Baba Grotto < Termina,Termina Field,Entrance,EntranceGrottoBioBabaFromTerminaField,EntranceGrottoBioBabaFromTerminaField,
+EntranceGrottoBeanSellerFromDekuPalace,Deku Palace > Bean Seller Grotto,Bean Seller Grotto < Deku Palace,Deku Palace,Entrance,EntranceGrottoBeanSellerFromDekuPalace,EntranceGrottoBeanSellerFromDekuPalace,EntranceDekuPalaceGardenEastFromBeanSellerGrotto
+EntranceGrottoPeahatFromTerminaField,Termina > Peahat Grotto,Peahat Grotto < Termina,Termina Field,Entrance,EntranceGrottoPeahatFromTerminaField,EntranceGrottoPeahatFromTerminaField,
+EntranceGrottoPalaceStraightFromDekuPalaceB,,Palace Straight Grotto < Palace Garden West,Deku Palace,Entrance,EntranceGrottoPalaceStraightFromDekuPalaceB,EntranceGrottoPalaceStraightFromDekuPalaceB,EntranceDekuPalaceGardenWestFromPalaceStraightGrotto
+EntranceGrottoPalaceVinesFromDekuPalaceUpper,,Palace Vine Grotto < Palace Garden West,Deku Palace,Entrance,EntranceGrottoPalaceVinesFromDekuPalaceUpper,EntranceGrottoPalaceVinesFromDekuPalaceUpper,EntranceDekuPalaceGardenWestFromPalaceVinesGrotto
+EntranceGrottoLensCaveFromGoronVillage,Goron Village > Lens Cave,Lens Cave < Goron Village,Goron Village,Entrance,EntranceGrottoLensCaveFromGoronVillage,EntranceGrottoLensCaveFromGoronVillage,EntranceGoronVillageFromLensCave
+EntranceIkanaCanyonFromRoadtoIkana,Ikana Road > Ikana,Ikana < Ikana Road,Road to Ikana,Entrance,EntranceIkanaCanyonFromRoadtoIkana,EntranceIkanaCanyonFromRoadtoIkana,EntranceRoadtoIkanaFromIkanaCanyon
+EntranceIkanaCanyonFromPoeHut,Poe Hut > Ikana,Ikana < Poe Hut,Interior,Entrance,EntranceIkanaCanyonFromPoeHut,EntranceIkanaCanyonFromPoeHut,EntrancePoeHutFromIkanaCanyon
+EntranceIkanaCanyonFromMusicBoxHouse,Music House > Ikana,Ikana < Music House,Interior,Entrance,EntranceIkanaCanyonFromMusicBoxHouse,EntranceIkanaCanyonFromMusicBoxHouse,EntranceMusicBoxHouseFromIkanaCanyon
+EntranceIkanaCanyonFromStoneTower,Stone Tower > Ikana,Ikana < Stone Tower,Stone Tower,Entrance,EntranceIkanaCanyonFromStoneTower,EntranceIkanaCanyonFromStoneTower,EntranceStoneTowerFromIkanaCanyon
+EntranceIkanaCanyonFromOwlStatue,Owl Warp > Ikana,Ikana < Owl Warp,Owl Warp,Entrance,EntranceIkanaCanyonFromOwlStatue,EntranceIkanaCanyonFromOwlStatue,
+EntranceIkanaCanyonFromBeneaththeWell,Ikana Well > Ikana,Ikana < Ikana Well,Beneath the Well,Entrance,EntranceIkanaCanyonFromBeneaththeWell,EntranceIkanaCanyonFromBeneaththeWell,EntranceBeneaththeWellFromIkanaCanyon
+EntranceIkanaCanyonFromSakonsHideout,Sakon > Ikana,Ikana < Sakon,Interior,Entrance,EntranceIkanaCanyonFromSakonsHideout,EntranceIkanaCanyonFromSakonsHideout,EntranceSakonsHideoutFromIkanaCanyon
+EntranceIkanaCanyonFromIkanaClear,Twinmold Lair > Ikana,Ikana < Twinmold Lair,Stone Tower Temple,Entrance,EntranceIkanaCanyonFromIkanaClear,EntranceIkanaCanyonFromIkanaClear,
+EntranceIkanaCanyonFromAncientCastleofIkanaCourtyard,Ikana Castle > Ikana,Ikana < Ikana castle,Ikana Castle,Entrance,EntranceIkanaCanyonFromAncientCastleofIkanaCourtyard,EntranceIkanaCanyonFromAncientCastleofIkanaCourtyard,EntranceAncientCastleofIkanaCourtyardFromIkanaCanyon
+EntranceIkanaCanyonFromFairysFountain,Ikana Fairy > Ikana,Ikana < Ikana Fairy,Interior,Entrance,EntranceIkanaCanyonFromFairysFountain,EntranceIkanaCanyonFromFairysFountain,EntranceFairysFountainFromIkanaCanyon
+EntranceIkanaCanyonFromSecretShrine,Secret Shrine > ikana,Ikana < Secret Shrine,Interior,Entrance,EntranceIkanaCanyonFromSecretShrine,EntranceIkanaCanyonFromSecretShrine,EntranceSecretShrineFromIkanaCanyon
+EntranceIkanaCanyonFromSpringWaterCave,Spring Water Cave > ikana,Ikana < Spring Water Cave,Interior,Entrance,EntranceIkanaCanyonFromSpringWaterCave,EntranceIkanaCanyonFromSpringWaterCave,EntranceSpringWaterCaveFromIkanaCanyon
+EntranceSpringWaterCaveFromIkanaCanyon,Ikana > Spring Water Cave,Spring water Cave < Ikana,Ikana Canyon,Entrance,EntranceSpringWaterCaveFromIkanaCanyon,EntranceSpringWaterCaveFromIkanaCanyon,EntranceIkanaCanyonFromSpringWaterCave
+EntrancePiratesFortressFromMainEntrance,PF EXT > Pirate Fortress,Pirate Fortress < PF EXT,Pirates' Fortress Exterior,Entrance,EntrancePiratesFortressFromMainEntrance,EntrancePiratesFortressFromMainEntrance,EntrancePiratesFortressExteriorFromPiratesFortressMain
+EntrancePiratesFortressFromHookshotRoomLower,PF Hookshot > Pirate Fortress Low,Pirate Fortress < Hookshot Lower,Interior,Entrance,EntrancePiratesFortressFromHookshotRoomLower,EntrancePiratesFortressFromHookshotRoomLower,EntrancePiratesFortressHookshotRoomFromLowerDoor
+EntrancePiratesFortressFromHookshotRoomUpper,PF Hookshot > Pirate Fortress UP,Pirate Fortress < Hookshout Upper,Interior,Entrance,EntrancePiratesFortressFromHookshotRoomUpper,EntrancePiratesFortressFromHookshotRoomUpper,EntrancePiratesFortressHookshotRoomFromUpperDoor
+EntrancePiratesFortressFromGuardRoomFront,PF Guard > Pirate Fortress Front,Pirate Fortress < Guard Front,Interior,Entrance,EntrancePiratesFortressFromGuardRoomFront,EntrancePiratesFortressFromGuardRoomFront,EntrancePiratesFortressGuardRoomFromFrontDoor
+EntrancePiratesFortressFromGuardRoomBack,PF Guard > Pirate Fortress Back,Pirate Fortress < Guard Back,Interior,Entrance,EntrancePiratesFortressFromGuardRoomBack,EntrancePiratesFortressFromGuardRoomBack,EntrancePiratesFortressGuardRoomFromBackDoor
+EntrancePiratesFortressFromBarrelMazeFront,PF Barrel > Pirate Fortress Front,Pirate Fortress < Barrel Front,Interior,Entrance,EntrancePiratesFortressFromBarrelMazeFront,EntrancePiratesFortressFromBarrelMazeFront,EntrancePiratesFortressBarrelMazeFromFrontDoor
+EntrancePiratesFortressFromBarrelMazeBack,PF Barrel > Pirate Fortress Back,Pirate Fortress < Barrel Back,Interior,Entrance,EntrancePiratesFortressFromBarrelMazeBack,EntrancePiratesFortressFromBarrelMazeBack,EntrancePiratesFortressBarrelMazeFromBackDoor
+EntrancePiratesFortressFromOnePatrolFront,PF 1 Guard > pirate Fortress Front,Pirate Fortress < 1 Guard Front,Interior,Entrance,EntrancePiratesFortressFromOnePatrolFront,EntrancePiratesFortressFromOnePatrolFront,EntrancePiratesFortressOneGuardFrontFromPiratesFortress
+EntrancePiratesFortressFromOnePatrolBack,PF 1 Guard > Pirate Fortress Back,Pirate Fortress < 1 guard Back,Interior,Entrance,EntrancePiratesFortressFromOnePatrolBack,EntrancePiratesFortressFromOnePatrolBack,EntrancePiratesFortressOneGuardRearFromPiratesFortress
+EntrancePiratesFortressFromTelescope,PF Sewer > PF telescope,PF Telescope < PF Sewer,Interior,Entrance,EntrancePiratesFortressFromTelescope,EntrancePiratesFortressFromTelescope,EntrancePiratesFortressSewerFromTelescope
+EntrancePiratesFortressFromPiratesFortressExteriorBalcony,PF EXT > Pirate Fortress Balcony,Pirate Fortress < PF EXT Balcony,Pirates' Fortress Exterior,Entrance,EntrancePiratesFortressFromPiratesFortressExteriorBalcony,EntrancePiratesFortressFromPiratesFortressExteriorBalcony,EntrancePiratesFortressExteriorFromPiratesFortressBalcony
+EntranceMilkBarFromEastClockTown,ECT > Milk Bar,Milk Bar < ECT,East Clock Town,Entrance,EntranceMilkBarFromEastClockTown,EntranceMilkBarFromEastClockTown,EntranceEastClockTownFromMilkBar
+EntranceStoneTowerTempleFromStoneTower,Stone Tower > STT,STT < Stone Tower,Stone Tower,Entrance,EntranceStoneTowerTempleFromStoneTower,EntranceStoneTowerTempleFromStoneTower,EntranceStoneTowerFromStoneTowerTemple
+EntranceTreasureChestShopFromEastClockTown,ECT > Treasure Chest Shop,Treasure Shop < ECT,East Clock Town,Entrance,EntranceTreasureChestShopFromEastClockTown,EntranceTreasureChestShopFromEastClockTown,EntranceEastClockTownFromTreasureChestShop
+EntranceStoneTowerTempleInvertedFromStoneTowerInverted,Inverted Stone Tower > ISTT,ISTT < Inverted Stone Tower,Stone Tower,Entrance,EntranceStoneTowerTempleInvertedFromStoneTowerInverted,EntranceStoneTowerTempleInvertedFromStoneTowerInverted,EntranceStoneTowerInvertedFromStoneTowerTempleInverted
+EntranceStoneTowerTempleInvertedBossRoomFromStoneTowerTempleInverted,ISTT > ISTT Boss Room,ISTT Boss Room < ISTT,Stone Tower Temple,Entrance,EntranceStoneTowerTempleInvertedBossRoomFromStoneTowerTempleInverted,EntranceStoneTowerTempleInvertedBossRoomFromStoneTowerTempleInverted,
+EntranceClockTowerRooftopFromSouthClockTown,SCT > Clock Tower Roof,Clock Tower Roof < SCT,South Clock Town,Entrance,EntranceClockTowerRooftopFromSouthClockTown,EntranceClockTowerRooftopFromSouthClockTown,EntranceSouthClockTownFromClockTowerRooftop
+EntranceBeforethePortaltoTerminaFromClockTowerInterior,Inside Clock Tower > Lost Woods,Lost Woods < Inside Clock Tower,Interior,Entrance,EntranceBeforethePortaltoTerminaFromClockTowerInterior,EntranceBeforethePortaltoTerminaFromClockTowerInterior,EntranceClockTowerInteriorFromBeforethePortaltoTermina
+EntranceBeforethePortaltoTerminaFromBeforethePortaltoTermina,Lost Woods > Void Out,Lost Woods < Void Out,Beneath Clocktown,Entrance,EntranceBeforethePortaltoTerminaFromBeforethePortaltoTermina,EntranceBeforethePortaltoTerminaFromBeforethePortaltoTermina,
+EntranceWoodfallTempleFromWoodfall,Woodfall > Woodfall temple,Woodfall Temple < Woodfall,Woodfall,Entrance,EntranceWoodfallTempleFromWoodfall,EntranceWoodfallTempleFromWoodfall,EntranceWoodfallFromWoodfallTempleEntrance
+EntranceWoodfallTemplePrisonFromOdolwasLair,Odalwa Lair > Woodfall Prison,Woodfall Prison < Odalwa lair,Woodfall Temple,Entrance,EntranceWoodfallTemplePrisonFromOdolwasLair,EntranceWoodfallTemplePrisonFromOdolwasLair,
+EntranceWoodfallTemplePrisonFromWoodfall,Woodfall > Woodfall Prison,Woodfall Prison < Woodfall,Woodfall,Entrance,EntranceWoodfallTemplePrisonFromWoodfall,EntranceWoodfallTemplePrisonFromWoodfall,EntranceWoodfallFromWoodfallTempleExit
+EntrancePathtoMountainVillageFromTerminaField,Termina > Mountain Path,Mountain Path < Termina,Termina Field,Entrance,EntrancePathtoMountainVillageFromTerminaField,EntrancePathtoMountainVillageFromTerminaField,EntranceTerminaFieldFromPathtoMountainVillage
+EntrancePathtoMountainVillageFromMountainVillage,Mountain Village > Mountain path,Mountain Path < Mountain village,Mountain Village,Entrance,EntrancePathtoMountainVillageFromMountainVillage,EntrancePathtoMountainVillageFromMountainVillage,EntranceMountainVillageFromPathtoMountainVillage
+EntranceAncientCastleofIkanaCourtyardFromBeneaththeWell,Ikana Well > Ikana castle Outer,Ikana Castle Outer < Ikana Well,Beneath the Well,Entrance,EntranceAncientCastleofIkanaCourtyardFromBeneaththeWell,EntranceAncientCastleofIkanaCourtyardFromBeneaththeWell,EntranceBeneaththeWellFromAncientCastleofIkana
+EntranceAncientCastleofIkanaCourtyardFromIkanaCanyon,Ikana > Ikana Castle Outer,Ikana Castle Outer < Ikana,Ikana Canyon,Entrance,EntranceAncientCastleofIkanaCourtyardFromIkanaCanyon,EntranceAncientCastleofIkanaCourtyardFromIkanaCanyon,EntranceIkanaCanyonFromAncientCastleofIkanaCourtyard
+EntranceAncientCastleofIkanaCourtyardFromAncientCastleofIkana,Ikana Castle > Ikana Caslte Outer,Ikana Castle Outer < Ikana Castle,Ikana Castle,Entrance,EntranceAncientCastleofIkanaCourtyardFromAncientCastleofIkana,EntranceAncientCastleofIkanaCourtyardFromAncientCastleofIkana,EntranceAncientCastleofIkanaFromCourtyard
+EntranceAncientCastleofIkanaFromCourtyard,Ikana Castle Outer > Ikana Castle,Ikana Castle < Ikana Castle Outer,Ikana Castle,Entrance,EntranceAncientCastleofIkanaFromCourtyard,EntranceAncientCastleofIkanaFromCourtyard,EntranceAncientCastleofIkanaCourtyardFromAncientCastleofIkana
+EntranceAncientCastleofIkanaFromBlockHole,Ikana Castle Outer > Block Hole,Ikana Castle < Block Hole,Ikana Castle,Entrance,EntranceAncientCastleofIkanaFromBlockHole,EntranceAncientCastleofIkanaFromBlockHole,
+EntranceAncientCastleofIkanaFromKegHole,Ikana Castle Outer > Keg Hole,Ikana Castle < Keg Hole,Ikana Castle,Entrance,EntranceAncientCastleofIkanaFromKegHole,EntranceAncientCastleofIkanaFromKegHole,
+EntranceAncientCastleofIkanaFromIgosduIkanasLair,Igos Lair > Ikana Castle,Ikana Castle < Igos Lair,Interior,Entrance,EntranceAncientCastleofIkanaFromIgosduIkanasLair,EntranceAncientCastleofIkanaFromIgosduIkanasLair,EntranceIgosduIkanasLairFromAncientCastleofIkana
+EntranceDekuScrubPlaygroundFromNorthClockTown,NCT > Deku playground,Deku Playground < NCT,North Clock Town,Entrance,EntranceDekuScrubPlaygroundFromNorthClockTown,EntranceDekuScrubPlaygroundFromNorthClockTown,EntranceNorthClockTownFromDekuScrubPlayground
+EntranceOdolwasLairFromWoodfallTemple,Woodfall Temple > Odolwa,Odolwa Lair < Woodfall Temple,Woodfall Temple,Entrance,EntranceOdolwasLairFromWoodfallTemple,EntranceOdolwasLairFromWoodfallTemple,
+EntranceTownShootingGalleryFromEastClockTown,ECT > Town Shooting,Town Shooting < ECT,East Clock Town,Entrance,EntranceTownShootingGalleryFromEastClockTown,EntranceTownShootingGalleryFromEastClockTown,EntranceEastClockTownFromShootingGalleryClockTown
+EntranceSnowheadTempleFromSnowhead,Snowhead > Snowhead Temple,Snowhead Temple < Snowhead,Snowhead,Entrance,EntranceSnowheadTempleFromSnowhead,EntranceSnowheadTempleFromSnowhead,EntranceSnowheadFromSnowheadTemple
+EntranceMilkRoadFromTerminaField,Termina > Milk Road,Milk Road < Termina,Termina Field,Entrance,EntranceMilkRoadFromTerminaField,EntranceMilkRoadFromTerminaField,EntranceTerminaFieldFromMilkRoad
+EntranceMilkRoadFromRomaniRanch,Ranch > Milk Road,Milk Road < Ranch,Romani Ranch,Entrance,EntranceMilkRoadFromRomaniRanch,EntranceMilkRoadFromRomaniRanch,EntranceRomaniRanchFromMilkRoad
+EntranceMilkRoadFromGormanRacetrackTrack,Gorman Track > Milk Road Gate,Milk Road < Gorman Track Gate,Milk Road,Entrance,EntranceMilkRoadFromGormanRacetrackTrack,EntranceMilkRoadFromGormanRacetrackTrack,EntranceGormanTrackFromMilkRoadGated
+EntranceMilkRoadFromGormanRacetrackMain,Gorman Track > Milk Road Main,Milk Road < Gorman Track Main,Milk Road,Entrance,EntranceMilkRoadFromGormanRacetrackMain,EntranceMilkRoadFromGormanRacetrackMain,EntranceGormanTrackFromMilkRoadMain
+EntranceMilkRoadFromOwlStatue,Owl Warp > Milk Road,Milk Road < Owl Warp,Owl Warp,Entrance,EntranceMilkRoadFromOwlStatue,EntranceMilkRoadFromOwlStatue,
+EntrancePiratesFortressHookshotRoomFromLowerDoor,Pirate Fortress > PF Hookshot Low,PF Hookshot < Pirate Fortress Lower,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressHookshotRoomFromLowerDoor,EntrancePiratesFortressHookshotRoomFromLowerDoor,EntrancePiratesFortressFromHookshotRoomLower
+EntrancePiratesFortressHookshotRoomFromUpperDoor,Pirate Fortress > PF Hookshot UP,PF Hookshot < Pirate Fortress Upper,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressHookshotRoomFromUpperDoor,EntrancePiratesFortressHookshotRoomFromUpperDoor,EntrancePiratesFortressFromHookshotRoomUpper
+EntrancePiratesFortressGuardRoomFromFrontDoor,Pirate Fortress > PF Guard Front,PF Guard < Pirate Fortress Front,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressGuardRoomFromFrontDoor,EntrancePiratesFortressGuardRoomFromFrontDoor,EntrancePiratesFortressFromGuardRoomFront
+EntrancePiratesFortressGuardRoomFromBackDoor,Pirate Fortress > PF Guard Back,PF Guard < Pirate Fortress Back,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressGuardRoomFromBackDoor,EntrancePiratesFortressGuardRoomFromBackDoor,EntrancePiratesFortressFromGuardRoomBack
+EntrancePiratesFortressBarrelMazeFromFrontDoor,Pirate Fortress > PF Barrel Front,PF Barrel < Pirate Fortress Front,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressBarrelMazeFromFrontDoor,EntrancePiratesFortressBarrelMazeFromFrontDoor,EntrancePiratesFortressFromBarrelMazeFront
+EntrancePiratesFortressBarrelMazeFromBackDoor,Pirate Fortress > PF Barrel Back,PF Barrel < Pirate Fortress Back,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressBarrelMazeFromBackDoor,EntrancePiratesFortressBarrelMazeFromBackDoor,EntrancePiratesFortressFromBarrelMazeBack
+EntrancePiratesFortressOneGuardFrontFromPiratesFortress,Pirate Fortress > PF 1 Guard Front,PF 1 Guard < Pirate Fortress Front,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressOneGuardFrontFromPiratesFortress,EntrancePiratesFortressOneGuardFrontFromPiratesFortress,EntrancePiratesFortressFromOnePatrolFront
+EntrancePiratesFortressOneGuardRearFromPiratesFortress,Pirate Fortress > PF 1 Guard Back,PF 1 Guard < Pirate Fortress Back,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressOneGuardRearFromPiratesFortress,EntrancePiratesFortressOneGuardRearFromPiratesFortress,EntrancePiratesFortressFromOnePatrolBack
+EntrancePiratesFortressSewerFromTelescope,PF Telescope > PF Sewer,PF Sewer < PF Telescope,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressSewerFromTelescope,EntrancePiratesFortressSewerFromTelescope,EntrancePiratesFortressFromTelescope
+EntrancePiratesFortressSewerFromWater,PF EXT > PF Sewer Water,PF Sewer < PF EXT Water,Pirates' Fortress Exterior,Entrance,EntrancePiratesFortressSewerFromWater,EntrancePiratesFortressSewerFromWater,EntrancePiratesFortressExteriorFromPiratesFortressSewerMain
+EntrancePiratesFortressSewerFromRear,PF EXT > PF Sewer Ledge,PF Sewer < PF EXT Ledge,Pirates' Fortress Exterior,Entrance,EntrancePiratesFortressSewerFromRear,EntrancePiratesFortressSewerFromRear,EntrancePiratesFortressExteriorFromPiratesFortressSewerDoor
+EntranceSwampShootingGalleryFromRoadtoSouthernSwamp,Swamp Road > Swamp Shooting,Swamp Shooting < Swamp Road,Road to Southern Swamp,Entrance,EntranceSwampShootingGalleryFromRoadtoSouthernSwamp,EntranceSwampShootingGalleryFromRoadtoSouthernSwamp,EntranceRoadtoSouthernSwampFromSwampShootingGallery
+EntrancePinnacleRockFromGreatBayCoast,Great Bay > Pinnacle Rock,Pinnacle Rock < Great Bay,Great Bay Coast,Entrance,EntrancePinnacleRockFromGreatBayCoast,EntrancePinnacleRockFromGreatBayCoast,EntranceGreatBayCoastFromPinnacleRock
+EntrancePinnacleRockFromPinnacleRock,Pinnacle Rock > Void Out,Pinnacle Rock < Void Out,Pinnacle Rock,Entrance,EntrancePinnacleRockFromPinnacleRock,EntrancePinnacleRockFromPinnacleRock,
+EntranceFairysFountainFromNorthClockTown,NCT > Town Fairy,Town Fairy < NCT,North Clock Town,Entrance,EntranceFairysFountainFromNorthClockTown,EntranceFairysFountainFromNorthClockTown,EntranceNorthClockTownFromFairysFountain
+EntranceFairysFountainFromWoodfall,Woodfall > Woodfall Fairy,Woodfall Fairy < Woodfall,Woodfall,Entrance,EntranceFairysFountainFromWoodfall,EntranceFairysFountainFromWoodfall,EntranceWoodfallFromFairysFountain
+EntranceFairysFountainFromSnowhead,Snowhead > Snowhead Fairy,Snowhead Fairy < Snowhead,Snowhead,Entrance,EntranceFairysFountainFromSnowhead,EntranceFairysFountainFromSnowhead,EntranceSnowheadFromFairysFountain
+EntranceFairysFountainFromZoraCape,Zora Cape > Great Bay Fairy,Great Bay Fairy < Zora Cape,Zora Cape,Entrance,EntranceFairysFountainFromZoraCape,EntranceFairysFountainFromZoraCape,EntranceZoraCapeFromFairysFountain
+EntranceFairysFountainFromIkanaCanyon,Ikana > Ikana Fairy,Ikana Fairy < Ikana,Ikana Canyon,Entrance,EntranceFairysFountainFromIkanaCanyon,EntranceFairysFountainFromIkanaCanyon,EntranceIkanaCanyonFromFairysFountain
+EntranceSwampSpiderHouseFromSouthernSwamp,Swamp > Swamp Spider,Swamp Spider < Swamp,Southern Swamp,Entrance,EntranceSwampSpiderHouseFromSouthernSwamp,EntranceSwampSpiderHouseFromSouthernSwamp,EntranceSouthernSwampFromSwampSpiderHouse
+EntranceOceansideSpiderHouseFromGreatBayCoast,Great Bay > Ocean Spider,Ocean Spider < Great Bay,Great Bay Coast,Entrance,EntranceOceansideSpiderHouseFromGreatBayCoast,EntranceOceansideSpiderHouseFromGreatBayCoast,EntranceGreatBayCoastFromOceansideSpiderHouse
+EntranceAstralObservatoryFromEastClockTown,ECT > Sewer,Observatory < ECT,East Clock Town,Entrance,EntranceAstralObservatoryFromEastClockTown,EntranceAstralObservatoryFromEastClockTown,EntranceEastClockTownFromAstralObservatory
+EntranceAstralObservatoryFromTerminaField,Termina > Observatory,Observatory < Termina,Termina Field,Entrance,EntranceAstralObservatoryFromTerminaField,EntranceAstralObservatoryFromTerminaField,EntranceTerminaFieldFromAstralObservatory
+EntranceAstralObservatoryFromTelescope,Observatory Telescope > Observatory,Observatory < Observatory Telescope,Astral Observatory,Entrance,EntranceAstralObservatoryFromTelescope,EntranceAstralObservatoryFromTelescope,EntranceTerminaFieldFromAstralObservatoryTelescope
+EntranceDekuTrialFromTheMoon,Moon > Deku Trial,Deku Trial < Moon,The Moon,Entrance,EntranceDekuTrialFromTheMoon,EntranceDekuTrialFromTheMoon,EntranceTheMoonFromDekuTrial
+EntranceDekuPalaceFromSouthernSwampLower,Swamp > Deku Palace Lower,Deku Palace < Swamp Lower,Southern Swamp,Entrance,EntranceDekuPalaceFromSouthernSwampLower,EntranceDekuPalaceFromSouthernSwampLower,EntranceSouthernSwampFromDekuPalaceLower
+EntranceDekuPalaceFromDekuPalace,Deku Palace > Guards Caught,Deku Palace < Guards Caught,Deku Palace,Entrance,EntranceDekuPalaceFromDekuPalace,EntranceDekuPalaceFromDekuPalace,
+EntranceDekuPalaceFromDekuKingsChamberMain,Deku King > Deku Palace,Deku Palace < Deku King,Interior,Entrance,EntranceDekuPalaceFromDekuKingsChamberMain,EntranceDekuPalaceFromDekuKingsChamberMain,EntranceDekuKingsChamberFromDekuPalace
+EntranceDekuPalaceFromDekuKingsChamberGardenWest,Deku King > Palace Garden,Deku Palace < Monkey Prison,Interior,Entrance,EntranceDekuPalaceFromDekuKingsChamberGardenWest,EntranceDekuPalaceFromDekuKingsChamberGardenWest,EntranceDekuKingsChamberFromDekuPalaceWestGarden
+EntranceDekuPalaceFromDekuShrine,Deku Shrine > Deku Palace,Deku Palace < Deku Shrine,Interior,Entrance,EntranceDekuPalaceFromDekuShrine,EntranceDekuPalaceFromDekuShrine,EntranceDekuShrineFromDekuPalace
+EntranceDekuPalaceFromSouthernSwampUpper,Swamp > Deku Palace Upper,Deku Palace < Swamp Upper,Southern Swamp,Entrance,EntranceDekuPalaceFromSouthernSwampUpper,EntranceDekuPalaceFromSouthernSwampUpper,EntranceSouthernSwampFromDekuPalaceUpper
+EntranceDekuPalaceGardenWestFromPalaceVinesGrotto,Palace Vine Grotto > Garden West,Deku Palace < Palace Vine Grotto West,Grottos,Entrance,EntranceDekuPalaceGardenWestFromPalaceVinesGrotto,EntranceDekuPalaceGardenWestFromPalaceVinesGrotto,EntranceGrottoPalaceVinesFromDekuPalaceUpper
+EntranceDekuPalaceGardenWestFromPalaceStraightGrotto,Palace Garden Grotto > Garden West,Deku Palace < Palace Garden Grotto West,Grottos,Entrance,EntranceDekuPalaceGardenWestFromPalaceStraightGrotto,EntranceDekuPalaceGardenWestFromPalaceStraightGrotto,EntranceGrottoPalaceStraightFromDekuPalaceB
+EntranceDekuPalaceGardenEastFromPalaceStraightGrotto,Palace Garden Grotto > Garden East,Deku Palace < Palace Garden Grotto East,Grottos,Entrance,EntranceDekuPalaceGardenEastFromPalaceStraightGrotto,EntranceDekuPalaceGardenEastFromPalaceStraightGrotto,EntranceGrottoPalaceStraightFromDekuPalaceA
+EntranceDekuPalaceGardenEastFromBeanSellerGrotto,Bean Seller Grotto > Deku palace,Deku Palace < Bean seller Grotto,Grottos,Entrance,EntranceDekuPalaceGardenEastFromBeanSellerGrotto,EntranceDekuPalaceGardenEastFromBeanSellerGrotto,EntranceGrottoBeanSellerFromDekuPalace
+EntranceDekuPalaceGardenEastFromPalaceVinesGrotto,Palace Vine Grotto > Garden East,Deku Palace < Palace Vine grotto East,Grottos,Entrance,EntranceDekuPalaceGardenEastFromPalaceVinesGrotto,EntranceDekuPalaceGardenEastFromPalaceVinesGrotto,EntranceGrottoPalaceVinesFromDekuPalaceLower
+EntranceMountainSmithyFromMountainVillage,Mountain Village > Smithy,Mountain Smithy < Mountain Smithy,Mountain Village,Entrance,EntranceMountainSmithyFromMountainVillage,EntranceMountainSmithyFromMountainVillage,EntranceMountainVillageFromMountainSmithy
+EntranceTerminaFieldFromWestClockTown,WCT > Termina,Termina < WCT,West Clock Town,Entrance,EntranceTerminaFieldFromWestClockTown,EntranceTerminaFieldFromWestClockTown,EntranceWestClockTownFromTerminaField
+EntranceTerminaFieldFromRoadtoSouthernSwamp,Swamp Road > Termina,Termina < Swamp Road,Road to Southern Swamp,Entrance,EntranceTerminaFieldFromRoadtoSouthernSwamp,EntranceTerminaFieldFromRoadtoSouthernSwamp,EntranceRoadtoSouthernSwampFromTerminaField
+EntranceTerminaFieldFromGreatBayCoast,Great Bay > Termina,Termina < Great bay,Great Bay Coast,Entrance,EntranceTerminaFieldFromGreatBayCoast,EntranceTerminaFieldFromGreatBayCoast,EntranceGreatBayCoastFromTerminaField
+EntranceTerminaFieldFromPathtoMountainVillage,Mountain Path > Termina,Termina < Mountain Path,Path to Mountain Village,Entrance,EntranceTerminaFieldFromPathtoMountainVillage,EntranceTerminaFieldFromPathtoMountainVillage,EntrancePathtoMountainVillageFromTerminaField
+EntranceTerminaFieldFromRoadtoIkana,Ikana Road > Termina,Termina < Ikana Road,Road to Ikana,Entrance,EntranceTerminaFieldFromRoadtoIkana,EntranceTerminaFieldFromRoadtoIkana,EntranceRoadtoIkanaFromTerminaField
+EntranceTerminaFieldFromMilkRoad,Milk Road > Termina,Termina < Milk Road,Milk Road,Entrance,EntranceTerminaFieldFromMilkRoad,EntranceTerminaFieldFromMilkRoad,EntranceMilkRoadFromTerminaField
+EntranceTerminaFieldFromSouthClockTown,SCT > Termina,Termina < SCT,South Clock Town,Entrance,EntranceTerminaFieldFromSouthClockTown,EntranceTerminaFieldFromSouthClockTown,EntranceSouthClockTownFromTerminaField
+EntranceTerminaFieldFromEastClockTown,ECT > Termina,Termina < ECT,East Clock Town,Entrance,EntranceTerminaFieldFromEastClockTown,EntranceTerminaFieldFromEastClockTown,EntranceEastClockTownFromTerminaField
+EntranceTerminaFieldFromNorthClockTown,NCT > Termina,Termina < NCT,North Clock Town,Entrance,EntranceTerminaFieldFromNorthClockTown,EntranceTerminaFieldFromNorthClockTown,EntranceNorthClockTownFromTerminaField
+EntranceTerminaFieldFromAstralObservatory,Observatory > Termina,Termina < Observatory,Astral Observatory,Entrance,EntranceTerminaFieldFromAstralObservatory,EntranceTerminaFieldFromAstralObservatory,EntranceAstralObservatoryFromTerminaField
+EntranceTerminaFieldFromAstralObservatoryTelescope,Observatory > Observatory Telescope,Observatory Telescope < Observatory,Astral Observatory,Entrance,EntranceTerminaFieldFromAstralObservatoryTelescope,EntranceTerminaFieldFromAstralObservatoryTelescope,EntranceAstralObservatoryFromTelescope
+EntranceTerminaFieldFromCremiaEscort,Ranch > Cremia Escort,Termina < Cremia Escort,Romani Ranch,Entrance,EntranceTerminaFieldFromCremiaEscort,EntranceTerminaFieldFromCremiaEscort,
+EntrancePostOfficeFromWestClockTown,WCT > Post Office,Post Office < WCT,West Clock Town,Entrance,EntrancePostOfficeFromWestClockTown,EntrancePostOfficeFromWestClockTown,EntranceWestClockTownFromPostOffice
+EntranceMarineResearchLabFromGreatBayCoast,Great Bay > Great Bay Lab,Great Bay Lab < Great Bay,Great Bay Coast,Entrance,EntranceMarineResearchLabFromGreatBayCoast,EntranceMarineResearchLabFromGreatBayCoast,EntranceGreatBayCoastFromMarineResearchLab
+EntranceDampsHouseFromIkanaGraveyardGrave,Graveyard > Day 3 Grave,Dampe House < Graveyard Day 3,Ikana Graveyard,Entrance,EntranceDampesHouseFromIkanaGraveyardGrave,EntranceDampsHouseFromIkanaGraveyardGrave,EntranceIkanaGraveyardFromDay3Grave
+EntranceDampsHouseFromIkanaGraveyardDoor,Graveyard > Dampes House,Dampe House < Front door,Ikana Graveyard,Entrance,EntranceDampesHouseFromIkanaGraveyardDoor,EntranceDampsHouseFromIkanaGraveyardDoor,EntranceIkanaGraveyardFromDampesHouse
+EntranceGoronShrineFromGoronVillage,Goron Village > Goron Shrine,Goron Shrine < Goron Village,Goron Village,Entrance,EntranceGoronShrineFromGoronVillage,EntranceGoronShrineFromGoronVillage,EntranceGoronVillageFromGoronShrine
+EntranceGoronShrineFromGoronShop,Goron Shop > Goron Shrine,Goron Shrine < Goron Shop,Interior,Entrance,EntranceGoronShrineFromGoronShop,EntranceGoronShrineFromGoronShop,EntranceGoronShopFromGoronVillage
+EntranceZoraHallFromZoraCapeLand,Zora Cape > Zora Hall Back,Zora Hall < Zora Cape Back,Zora Cape,Entrance,EntranceZoraHallFromZoraCapeLand,EntranceZoraHallFromZoraCapeLand,EntranceZoraCapeFromZoraHallLand
+EntranceZoraHallFromZoraCapeWater,Zora Cape > Zora Hall Main,Zora Hall < Zora Cape Main,Zora Cape,Entrance,EntranceZoraHallFromZoraCapeWater,EntranceZoraHallFromZoraCapeWater,EntranceZoraCapeFromZoraHallWater
+EntranceZoraHallFromZoraShop,Zora Shop > Zora Hall,Zora Hall < Zora Shop,Interior,Entrance,EntranceZoraHallFromZoraShop,EntranceZoraHallFromZoraShop,EntranceZoraHallRoomsZoraShopFromZoraHall
+EntranceZoraHallFromLulusRoom,Lulus Room > Zora Hall,Zora Hall < Lulus room,Interior,Entrance,EntranceZoraHallFromLulusRoom,EntranceZoraHallFromLulusRoom,EntranceZoraHallRoomsLulusRoomFromZoraHall
+EntranceZoraHallFromEvansRoom,Evans Room > Zora Hall,Zora Hall < Evans Room,Interior,Entrance,EntranceZoraHallFromEvansRoom,EntranceZoraHallFromEvansRoom,EntranceZoraHallRoomsEvansRoomFromZoraHall
+EntranceZoraHallFromJapasRoom,Japas Room > Zora Hall,Zora Hall < Japas room,Interior,Entrance,EntranceZoraHallFromJapasRoom,EntranceZoraHallFromJapasRoom,EntranceZoraHallRoomsJapasRoomFromZoraHall
+EntranceZoraHallFromMikauTijosRoom,Tijos Room > Zora Hall,Zora Hall < Tijos Room,Interior,Entrance,EntranceZoraHallFromMikauTijosRoom,EntranceZoraHallFromMikauTijosRoom,EntranceZoraHallRoomsMikauTijosRoomFromZoraHall
+EntranceTradingPostFromWestClockTown,WCT > Trading post,Trading Post < WCT,West Clock Town,Entrance,EntranceTradingPostFromWestClockTown,EntranceTradingPostFromWestClockTown,EntranceWestClockTownFromTradingPost
+EntranceRomaniRanchFromMilkRoad,Milk Road > Ranch,Ranch < Milk Road,Milk Road,Entrance,EntranceRomaniRanchFromMilkRoad,EntranceRomaniRanchFromMilkRoad,EntranceMilkRoadFromRomaniRanch
+EntranceRomaniRanchFromBarn,Ranch Barn > Ranch,Ranch < Barn,Interior,Entrance,EntranceRomaniRanchFromBarn,EntranceRomaniRanchFromBarn,EntranceRanchBarnFromRomaniRanch
+EntranceRomaniRanchFromRanchHouse,Ranch House > Ranch,Ranch < House,Interior,Entrance,EntranceRomaniRanchFromRanchHouse,EntranceRomaniRanchFromRanchHouse,EntranceRanchHouseFromRomaniRanch
+EntranceRomaniRanchFromCuccoShack,Cucco Shack > Ranch,Ranch < Cucco Shack,Interior,Entrance,EntranceRomaniRanchFromCuccoShack,EntranceRomaniRanchFromCuccoShack,EntranceCuccoShackFromRomaniRanch
+EntranceRomaniRanchFromDoggyRacetrack,Dog Race > Ranch,Ranch < Dog Race,Interior,Entrance,EntranceRomaniRanchFromDoggyRacetrack,EntranceRomaniRanchFromDoggyRacetrack,EntranceDoggyRacetrackFromRomaniRanch
+EntranceTwinmoldsLairFromStoneTowerTempleInverted,ISTT Boss Room > Twinmold Lair,Twinmold Lair < ISTT Boss Room,Stone Tower Temple,Entrance,EntranceTwinmoldsLairFromStoneTowerTempleInverted,EntranceTwinmoldsLairFromStoneTowerTempleInverted,
+EntranceGreatBayCoastFromTerminaField,Termina > Great Bay,Great Bay < Termina,Termina Field,Entrance,EntranceGreatBayCoastFromTerminaField,EntranceGreatBayCoastFromTerminaField,EntranceTerminaFieldFromGreatBayCoast
+EntranceGreatBayCoastFromZoraCape,Zora Cape > Great Bay,Great Bay < Zora Cape,Zora Cape,Entrance,EntranceGreatBayCoastFromZoraCape,EntranceGreatBayCoastFromZoraCape,EntranceZoraCapeFromGreatBayCoast
+EntranceGreatBayCoastFromGreatBayCoastBeach,Great Bay > Void Out Left,Great Bay < Void Out Left,Great Bay Coast,Entrance,EntranceGreatBayCoastFromGreatBayCoastBeach,EntranceGreatBayCoastFromGreatBayCoastBeach,
+EntranceGreatBayCoastFromPinnacleRock,Pinnacle Rock > Great Bay,Great Bay < Pinnacle Rock,Pinnacle Rock,Entrance,EntranceGreatBayCoastFromPinnacleRock,EntranceGreatBayCoastFromPinnacleRock,EntrancePinnacleRockFromGreatBayCoast
+EntranceGreatBayCoastFromFishermansHut,Fisherman Hut > Great Bay,Great Bay < Fisherman Hut,Interior,Entrance,EntranceGreatBayCoastFromFishermansHut,EntranceGreatBayCoastFromFishermansHut,EntranceFishermansHutFromGreatBayCoast
+EntranceGreatBayCoastFromPiratesFortress,PF EXT > Great Bay,Great Bay < Pirate fortress,Pirates' Fortress Exterior,Entrance,EntranceGreatBayCoastFromPiratesFortress,EntranceGreatBayCoastFromPiratesFortress,EntrancePiratesFortressExteriorFromGreatBayCoast
+EntranceGreatBayCoastFromGreatBayCoastNearFortress,Great Bay > Void Out Right,Great Bay < Void Out Right,Great Bay Coast,Entrance,EntranceGreatBayCoastFromGreatBayCoastNearFortress,EntranceGreatBayCoastFromGreatBayCoastNearFortress,
+EntranceGreatBayCoastFromMarineResearchLab,Great Bay Lab > Great Bay,Great Bay < Lab,Interior,Entrance,EntranceGreatBayCoastFromMarineResearchLab,EntranceGreatBayCoastFromMarineResearchLab,EntranceMarineResearchLabFromGreatBayCoast
+EntranceGreatBayCoastFromOceansideSpiderHouse,Ocean Spider > Great Bay,Great Bay < Ocean spider,Interior,Entrance,EntranceGreatBayCoastFromOceansideSpiderHouse,EntranceGreatBayCoastFromOceansideSpiderHouse,EntranceOceansideSpiderHouseFromGreatBayCoast
+EntranceGreatBayCoastFromOwlStatue,Owl Warp > Great Bay,Great Bay < Owl Warp,Owl Warp,Entrance,EntranceGreatBayCoastFromOwlStatue,EntranceGreatBayCoastFromOwlStatue,
+EntranceGreatBayCoastFromPiratesFortressThrownOut,PF EXT > Guard Caught,Great Bay < PF EXT Guard Caught,Pirates' Fortress Exterior,Entrance,EntranceGreatBayCoastFromPiratesFortressThrownOut,EntranceGreatBayCoastFromPiratesFortressThrownOut,
+EntranceZoraCapeFromGreatBayCoast,Great Bay > Zora Cape,Zora Cape < Great Bay,Great Bay Coast,Entrance,EntranceZoraCapeFromGreatBayCoast,EntranceZoraCapeFromGreatBayCoast,EntranceGreatBayCoastFromZoraCape
+EntranceZoraCapeFromZoraHallLand,Zora Hall > Zora Cape Back,Zora Cape < Zora Hall Back,Zora Hall,Entrance,EntranceZoraCapeFromZoraHallLand,EntranceZoraCapeFromZoraHallLand,EntranceZoraHallFromZoraCapeLand
+EntranceZoraCapeFromZoraHallWater,Zora Hall > Zora Cape Main,Zora Cape < Zora Hall Main,Zora Hall,Entrance,EntranceZoraCapeFromZoraHallWater,EntranceZoraCapeFromZoraHallWater,EntranceZoraHallFromZoraCapeWater
+EntranceZoraCapeFromZoraCape,Zora Cape > Void Out,Zora Cape < Void Out,Zora Cape,Entrance,EntranceZoraCapeFromZoraCape,EntranceZoraCapeFromZoraCape,
+EntranceZoraCapeFromWaterfallRapids,Beaver Race > Zora Cape,Zora Cape < Beaver Race,Interior,Entrance,EntranceZoraCapeFromWaterfallRapids,EntranceZoraCapeFromWaterfallRapids,EntranceWaterfallRapidsFromZoraCape
+EntranceZoraCapeFromFairysFountain,Great Bay Fairy > Zora Cape,Zora Cape < Great bay Fairy,Interior,Entrance,EntranceZoraCapeFromFairysFountain,EntranceZoraCapeFromFairysFountain,EntranceFairysFountainFromZoraCape
+EntranceZoraCapeFromOwlStatue,Owl Warp > Zora Cape,Zora Cape < Owl Warp,Owl Warp,Entrance,EntranceZoraCapeFromOwlStatue,EntranceZoraCapeFromOwlStatue,
+EntranceZoraCapeFromGreatBayTemple,Great Bay Temple > Zora Cape,Zora Cape < Great Bay Temple,Great Bay Temple,Entrance,EntranceZoraCapeFromGreatBayTemple,EntranceZoraCapeFromGreatBayTemple,EntranceGreatBayTempleFromZoraCape
+EntranceZoraCapeFromGreatBayTempleClear,Gyorgs Lair > Zora Cape,Zora Cape < Gyorg Lair,Great Bay Temple,Entrance,EntranceZoraCapeFromGreatBayTempleClear,EntranceZoraCapeFromGreatBayTempleClear,
+EntranceLotteryShopFromWestClockTown,WCT > Lottery,Lottery < WCT,West Clock Town,Entrance,EntranceLotteryShopFromWestClockTown,EntranceLotteryShopFromWestClockTown,EntranceWestClockTownFromLotteryShop
+EntrancePiratesFortressExteriorFromGreatBayCoast,Great Bay > Pirates Fortress,Pirate Fortress < Great Bay,Great Bay Coast,Entrance,EntrancePiratesFortressExteriorFromGreatBayCoast,EntrancePiratesFortressExteriorFromGreatBayCoast,EntranceGreatBayCoastFromPiratesFortress
+EntrancePiratesFortressExteriorFromPiratesFortressMain,Pirate Fortress > PF EXT,PF EXT < Pirate Fortress,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressExteriorFromPiratesFortressMain,EntrancePiratesFortressExteriorFromPiratesFortressMain,EntrancePiratesFortressFromMainEntrance
+EntrancePiratesFortressExteriorFromPiratesFortressSewerMain,PF Sewer > PF EXT Water,PF EXT < PF Sewer Water,Pirates' Fortress Sewer,Entrance,EntrancePiratesFortressExteriorFromPiratesFortressSewerMain,EntrancePiratesFortressExteriorFromPiratesFortressSewerMain,EntrancePiratesFortressSewerFromWater
+EntrancePiratesFortressExteriorFromPiratesFortressSewerExhaust,PF Sewer > Exaust,PF EXT < Exaust,Pirates' Fortress Sewer,Entrance,EntrancePiratesFortressExteriorFromPiratesFortressSewerExhaust,EntrancePiratesFortressExteriorFromPiratesFortressSewerExhaust,
+EntrancePiratesFortressExteriorFromThrownOut,Pirate Fortress > Guard Caught,PF EXT < PF Guards Caught,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressExteriorFromThrownOut,EntrancePiratesFortressExteriorFromThrownOut,
+EntrancePiratesFortressExteriorFromPiratesFortressBalcony,Pirate Fortress > PF EXT Balcony,PF EXT < Pirate Fortress Balcony,Pirates' Fortress Interior,Entrance,EntrancePiratesFortressExteriorFromPiratesFortressBalcony,EntrancePiratesFortressExteriorFromPiratesFortressBalcony,EntrancePiratesFortressFromPiratesFortressExteriorBalcony
+EntrancePiratesFortressExteriorFromPiratesFortressSewerDoor,PF Sewer > PF EXT Ledge,PF EXT < PF Sewer ledge,Pirates' Fortress Sewer,Entrance,EntrancePiratesFortressExteriorFromPiratesFortressSewerDoor,EntrancePiratesFortressExteriorFromPiratesFortressSewerDoor,EntrancePiratesFortressSewerFromRear
+EntranceFishermansHutFromGreatBayCoast,Great Bay > Fisherman Hut,Fisherman Hut < Great Bay,Great Bay Coast,Entrance,EntranceFishermansHutFromGreatBayCoast,EntranceFishermansHutFromGreatBayCoast,EntranceGreatBayCoastFromFishermansHut
+EntranceGoronShopFromGoronVillage,Goron Shrine > Goron Shop,Goron Shop < Goron Shrine,Goron Village,Entrance,EntranceGoronShopFromGoronVillage,EntranceGoronShopFromGoronVillage,EntranceGoronShrineFromGoronShop
+EntranceDekuKingsChamberFromDekuPalace,Deku Palace > Deku King,Deku King < Deku Palace,Deku Palace,Entrance,EntranceDekuKingsChamberFromDekuPalace,EntranceDekuKingsChamberFromDekuPalace,EntranceDekuPalaceFromDekuKingsChamberMain
+EntranceDekuKingsChamberFromDekuPalaceWestGarden,Deku Palace > Monkey Prison,Deku King < Palace Prison Entry,Deku Palace,Entrance,EntranceDekuKingsChamberFromDekuPalaceWestGarden,EntranceDekuKingsChamberFromDekuPalaceWestGarden,EntranceDekuPalaceFromDekuKingsChamberGardenWest
+EntranceGoronTrialFromTheMoon,Moon > Goron trial,Goron Trial < Moon,The Moon,Entrance,EntranceGoronTrialFromTheMoon,EntranceGoronTrialFromTheMoon,EntranceTheMoonFromGoronTrial
+EntranceRoadtoSouthernSwampFromTerminaField,Termina > Swamp road,Swamp Road < Termina,Termina Field,Entrance,EntranceRoadtoSouthernSwampFromTerminaField,EntranceRoadtoSouthernSwampFromTerminaField,EntranceTerminaFieldFromRoadtoSouthernSwamp
+EntranceRoadtoSouthernSwampFromSouthernSwamp,Swamp > Swamp Road,Swamp Road < Swamp,Southern Swamp,Entrance,EntranceRoadtoSouthernSwampFromSouthernSwamp,EntranceRoadtoSouthernSwampFromSouthernSwamp,EntranceSouthernSwampFromRoadtoSouthernSwamp
+EntranceRoadtoSouthernSwampFromSwampShootingGallery,Swamp Shooting > Swamp Road,Swamp Road < Swamp Shooting,Interior,Entrance,EntranceRoadtoSouthernSwampFromSwampShootingGallery,EntranceRoadtoSouthernSwampFromSwampShootingGallery,EntranceSwampShootingGalleryFromRoadtoSouthernSwamp
+EntranceDoggyRacetrackFromRomaniRanch,Ranch > Dog Race,Dog Race < Ranch,Romani Ranch,Entrance,EntranceDoggyRacetrackFromRomaniRanch,EntranceDoggyRacetrackFromRomaniRanch,EntranceRomaniRanchFromDoggyRacetrack
+EntranceCuccoShackFromRomaniRanch,Ranch > Cucco Shack,Cucco Shack < Ranch,Romani Ranch,Entrance,EntranceCuccoShackFromRomaniRanch,EntranceCuccoShackFromRomaniRanch,EntranceRomaniRanchFromCuccoShack
+EntranceIkanaGraveyardFromRoadtoIkana,Ikana Road > Graveyard,Graveyard < Ikana road,Road to Ikana,Entrance,EntranceIkanaGraveyardFromRoadtoIkana,EntranceIkanaGraveyardFromRoadtoIkana,EntranceRoadtoIkanaFromIkanaGraveyard
+EntranceIkanaGraveyardFromDay3Grave,,Graveyard < Day 3 Grave,Interior,Entrance,EntranceIkanaGraveyardFromDay3Grave,EntranceIkanaGraveyardFromDay3Grave,EntranceDampesHouseFromIkanaGraveyardGrave
+EntranceIkanaGraveyardFromDay2Grave,Beneath Grave > Day 2 Exit,Graveyard < Day 2 Grave,Interior,Entrance,EntranceIkanaGraveyardFromDay2Grave,EntranceIkanaGraveyardFromDay2Grave,EntranceBeneathGraveyardFromIkanaGraveyardNight2
+EntranceIkanaGraveyardFromDay1Grave,Beneath Grave > Day 1 Exit,Graveyard < Day 1 Grave,Interior,Entrance,EntranceIkanaGraveyardFromDay1Grave,EntranceIkanaGraveyardFromDay1Grave,EntranceBeneathGraveyardFromIkanaGraveyardNight1
+EntranceIkanaGraveyardFromDampesHouse,Dampe House > Door Exit,Graveyard < Dampe House,Interior,Entrance,EntranceIkanaGraveyardFromDampesHouse,EntranceIkanaGraveyardFromDampesHouse,EntranceDampesHouseFromIkanaGraveyardDoor
+EntranceGohtsLairFromSnowheadTemple,Snowhead Temple > Gohts Lair,Gohts Lair < Snowhead Temple,Snowhead Temple,Entrance,EntranceGohtsLairFromSnowheadTemple,EntranceGohtsLairFromSnowheadTemple,
+EntranceWoodfallFromSouthernSwamp,Swamp > Woodfall,Woodfall < Swamp,Southern Swamp,Entrance,EntranceWoodfallFromSouthernSwamp,EntranceWoodfallFromSouthernSwamp,EntranceSouthernSwampFromWoodfall
+EntranceWoodfallFromWoodfallTempleEntrance,Woodfall Temple > Woodfall,Woodfall < Woodfall Temple,Woodfall Temple,Entrance,EntranceWoodfallFromWoodfallTempleEntrance,EntranceWoodfallFromWoodfallTempleEntrance,EntranceWoodfallTempleFromWoodfall
+EntranceWoodfallFromFairysFountain,Woodfall Fairy > Woodfall,Woodfall < Woodfall fairy,Interior,Entrance,EntranceWoodfallFromFairysFountain,EntranceWoodfallFromFairysFountain,EntranceFairysFountainFromWoodfall
+EntranceWoodfallFromWoodfallTempleExit,Woodfall Prison > Woodfall,Woodfall < Woodfall Prison,Woodfall Temple,Entrance,EntranceWoodfallFromWoodfallTempleExit,EntranceWoodfallFromWoodfallTempleExit,EntranceWoodfallTemplePrisonFromWoodfall
+EntranceWoodfallFromOwlStatue,Owl Warp > Woodfall,Woodfall < Owl Warp,Owl Warp,Entrance,EntranceWoodfallFromOwlStatue,EntranceWoodfallFromOwlStatue,
+EntranceZoraTrialFromTheMoon,Moon > Zora trial,Zora Trial < Moon,The Moon,Entrance,EntranceZoraTrialFromTheMoon,EntranceZoraTrialFromTheMoon,EntranceTheMoonFromZoraTrial
+EntranceZoraTrialFromZoraTrial,Zora Trial > Void Out,Zora Trial < Void,The Moon,Entrance,EntranceZoraTrialFromZoraTrial,EntranceZoraTrialFromZoraTrial,
+EntranceGoronVillageFromPathtoGoronVillage,Twin Island > Goron Village,Goron Village < Twin island,Twin Islands,Entrance,EntranceGoronVillageFromPathtoGoronVillage,EntranceGoronVillageFromPathtoGoronVillage,EntrancePathtoGoronVillageFromGoronVillage
+EntranceGoronVillageFromGoronShrine,Goron Shrine > Goron Village,Goron Village < Goron Shrine,Goron Village,Entrance,EntranceGoronVillageFromGoronShrine,EntranceGoronVillageFromGoronShrine,EntranceGoronShrineFromGoronVillage
+EntranceGoronVillageFromLonePeakShrine,Lens Cave > Goron Village,Goron Village < Lens cave,Grottos,Entrance,EntranceGoronVillageFromLensCave,EntranceGoronVillageFromLonePeakShrine,EntranceGrottoLensCaveFromGoronVillage
+EntranceGreatBayTempleFromZoraCape,Zora Cape > Great Bay Temple,Great Bay Temple < Zora cape,Zora Cape,Entrance,EntranceGreatBayTempleFromZoraCape,EntranceGreatBayTempleFromZoraCape,EntranceZoraCapeFromGreatBayTemple
+EntranceWaterfallRapidsFromZoraCape,Zora Cape > Beaver Race,Beaver Race < Zora Cape,Zora Cape,Entrance,EntranceWaterfallRapidsFromZoraCape,EntranceWaterfallRapidsFromZoraCape,EntranceZoraCapeFromWaterfallRapids
+EntranceBeneaththeWellFromIkanaCanyon,Ikana > Ikana Well,Ikana Well < Ikana,Ikana Canyon,Entrance,EntranceBeneaththeWellFromIkanaCanyon,EntranceBeneaththeWellFromIkanaCanyon,EntranceIkanaCanyonFromBeneaththeWell
+EntranceBeneaththeWellFromAncientCastleofIkana,Ikana Castle > Ikana well,Ikana Well < ikana Castle,Ikana Castle,Entrance,EntranceBeneaththeWellFromAncientCastleofIkana,EntranceBeneaththeWellFromAncientCastleofIkana,EntranceAncientCastleofIkanaCourtyardFromBeneaththeWell
+EntranceZoraHallRoomsMikauTijosRoomFromZoraHall,Zora Hall > Tijos Room,Tijos Room < Zora Hall,Zora Hall,Entrance,EntranceZoraHallRoomsMikauTijosRoomFromZoraHall,EntranceZoraHallRoomsMikauTijosRoomFromZoraHall,EntranceZoraHallFromMikauTijosRoom
+EntranceZoraHallRoomsJapasRoomFromZoraHall,Zora Hall > Japas Room,Japas Room < Zora Hall,Zora Hall,Entrance,EntranceZoraHallRoomsJapasRoomFromZoraHall,EntranceZoraHallRoomsJapasRoomFromZoraHall,EntranceZoraHallFromJapasRoom
+EntranceZoraHallRoomsLulusRoomFromZoraHall,Zora Hall > Lulus Room,Lulus Room < Zora Hall,Zora Hall,Entrance,EntranceZoraHallRoomsLulusRoomFromZoraHall,EntranceZoraHallRoomsLulusRoomFromZoraHall,EntranceZoraHallFromLulusRoom
+EntranceZoraHallRoomsEvansRoomFromZoraHall,Zora Hall > Evans room,Evans Room < Zora Hall,Zora Hall,Entrance,EntranceZoraHallRoomsEvansRoomFromZoraHall,EntranceZoraHallRoomsEvansRoomFromZoraHall,EntranceZoraHallFromEvansRoom
+EntranceZoraHallRoomsJapasRoomFromJapasRoom,Japas Room > Jam Session,Japas Room < Jam Session,Interior,Entrance,EntranceZoraHallRoomsJapasRoomFromJapasRoom,EntranceZoraHallRoomsJapasRoomFromJapasRoom,
+EntranceZoraHallRoomsZoraShopFromZoraHall,Zora Hall > Zora Shop,Zora Shop < Zora Hall,Interior,Entrance,EntranceZoraHallRoomsZoraShopFromZoraHall,EntranceZoraHallRoomsZoraShopFromZoraHall,EntranceZoraHallFromZoraShop
+EntranceGoronGraveyardFromMountainVillage,Mountain Village > Darmanies Grave,Darmanis Grave < Mountain village,Mountain Village,Entrance,EntranceGoronGraveyardFromMountainVillage,EntranceGoronGraveyardFromMountainVillage,EntranceMountainVillageFromGoronGraveyard
+EntranceSakonsHideoutFromIkanaCanyon,Ikana > Sakon,Sakon < ikana,Ikana Canyon,Entrance,EntranceSakonsHideoutFromIkanaCanyon,EntranceSakonsHideoutFromIkanaCanyon,EntranceIkanaCanyonFromSakonsHideout
+EntranceMountainVillageFromMountainSmithy,Mountain Smithy > Mountain Village,Mountain Village < Mountain Smithy,Interior,Entrance,EntranceMountainVillageFromMountainSmithy,EntranceMountainVillageFromMountainSmithy,EntranceMountainSmithyFromMountainVillage
+EntranceMountainVillageFromPathtoGoronVillage,Twin Island > Mountain Village,Mountain Village < Twin Island,Twin Islands,Entrance,EntranceMountainVillageFromPathtoGoronVillage,EntranceMountainVillageFromPathtoGoronVillage,EntrancePathtoGoronVillageFromMountainVillage
+EntranceMountainVillageFromGoronGraveyard,Darmanis Grave > Mountain village,Mountain Village < Darmanis Grave,Interior,Entrance,EntranceMountainVillageFromGoronGraveyard,EntranceMountainVillageFromGoronGraveyard,EntranceGoronGraveyardFromMountainVillage
+EntranceMountainVillageFromPathtoSnowhead,Snowhead Path > Mountain village,Mountain Village < Snowhead Path,Path to Snowhead,Entrance,EntranceMountainVillageFromPathtoSnowhead,EntranceMountainVillageFromPathtoSnowhead,EntrancePathtoSnowheadFromMountainVillage
+EntranceMountainVillageFromPathtoMountainVillage,Mountain Path > Mountain Village,Mountain Village < Mountain path,Path to Mountain Village,Entrance,EntranceMountainVillageFromPathtoMountainVillage,EntranceMountainVillageFromPathtoMountainVillage,EntrancePathtoMountainVillageFromMountainVillage
+EntranceMountainVillageFromSnowheadClear,Ghots Lair > Mountain Village,Mountain Village < Ghots Lair,Snowhead Temple,Entrance,EntranceMountainVillageFromSnowheadClear,EntranceMountainVillageFromSnowheadClear,
+EntranceMountainVillageFromOwlStatue,Owl Warp > Mountain Village,Mountain Village < Owl Warp,Owl Warp,Entrance,EntranceMountainVillageFromOwlStatue,EntranceMountainVillageFromOwlStatue,
+EntrancePoeHutFromIkanaCanyon,Ikana > Poe Hut,Poe Hut < Ikana,Ikana Canyon,Entrance,EntrancePoeHutFromIkanaCanyon,EntrancePoeHutFromIkanaCanyon,EntranceIkanaCanyonFromPoeHut
+EntranceDekuShrineFromDekuPalace,Deku Palace > Deku Shrine,Deku Shrine < Deku Palace,Deku Palace,Entrance,EntranceDekuShrineFromDekuPalace,EntranceDekuShrineFromDekuPalace,EntranceDekuPalaceFromDekuShrine
+EntranceRoadtoIkanaFromTerminaField,Termina > Ikana road,Ikana Road < termina,Termina Field,Entrance,EntranceRoadtoIkanaFromTerminaField,EntranceRoadtoIkanaFromTerminaField,EntranceTerminaFieldFromRoadtoIkana
+EntranceRoadtoIkanaFromIkanaCanyon,Ikana > Ikana road,Ikana Road < Ikana,Ikana Canyon,Entrance,EntranceRoadtoIkanaFromIkanaCanyon,EntranceRoadtoIkanaFromIkanaCanyon,EntranceIkanaCanyonFromRoadtoIkana
+EntranceRoadtoIkanaFromIkanaGraveyard,Graveyard > Ikana Road,Ikana Road < Graveyard,Ikana Graveyard,Entrance,EntranceRoadtoIkanaFromIkanaGraveyard,EntranceRoadtoIkanaFromIkanaGraveyard,EntranceIkanaGraveyardFromRoadtoIkana
+EntranceSwordsmansSchoolFromWestClockTown,WCT > Sword School,Sword School < WCT,West Clock Town,Entrance,EntranceSwordsmansSchoolFromWestClockTown,EntranceSwordsmansSchoolFromWestClockTown,EntranceWestClockTownFromSwordsmansSchool
+EntranceMusicBoxHouseFromIkanaCanyon,Ikana > Music House,Music House < Ikana,Ikana Canyon,Entrance,EntranceMusicBoxHouseFromIkanaCanyon,EntranceMusicBoxHouseFromIkanaCanyon,EntranceIkanaCanyonFromMusicBoxHouse
+EntranceIgosduIkanasLairFromAncientCastleofIkana,Ikana Castle > Igos Lair,Igos Lair < Ikana Castle,Ikana Castle,Entrance,EntranceIgosduIkanasLairFromAncientCastleofIkana,EntranceIgosduIkanasLairFromAncientCastleofIkana,EntranceAncientCastleofIkanaFromIgosduIkanasLair
+EntranceTouristInformationFromSouthernSwamp,Swamp > Tourist Center,Tourist Center < Swamp,Southern Swamp,Entrance,EntranceTouristInformationFromSouthernSwamp,EntranceTouristInformationFromSouthernSwamp,EntranceSouthernSwampFromTouristInformation
+EntranceStoneTowerFromIkanaCanyon,Ikana > Stone Tower,Stone Tower < Ikana,Ikana Canyon,Entrance,EntranceStoneTowerFromIkanaCanyon,EntranceStoneTowerFromIkanaCanyon,EntranceIkanaCanyonFromStoneTower
+EntranceStoneTowerFromStoneTowerTemple,STT > Stone Tower,Stone Tower < STT,Stone Tower Temple,Entrance,EntranceStoneTowerFromStoneTowerTemple,EntranceStoneTowerFromStoneTowerTemple,EntranceStoneTowerTempleFromStoneTower
+EntranceStoneTowerFromOwlStatue,Owl Warp > Stone Tower,Stone Tower < Owl Warp,Owl Warp,Entrance,EntranceStoneTowerFromOwlStatue,EntranceStoneTowerFromOwlStatue,
+EntrancePathtoSnowheadFromMountainVillage,Mountain Village > Snowhead Path,Snowhead Path < Mountain Village,Mountain Village,Entrance,EntrancePathtoSnowheadFromMountainVillage,EntrancePathtoSnowheadFromMountainVillage,EntranceMountainVillageFromPathtoSnowhead
+EntrancePathtoSnowheadFromSnowhead,Snowhead > Snowhead Path,Snowhead Path < Snowhead,Snowhead,Entrance,EntrancePathtoSnowheadFromSnowhead,EntrancePathtoSnowheadFromSnowhead,EntranceSnowheadFromPathtoSnowhead
+EntranceSnowheadFromPathtoSnowhead,Snowhead Path > Snowhead,Snowhead < Snowhead Path,Path to Snowhead,Entrance,EntranceSnowheadFromPathtoSnowhead,EntranceSnowheadFromPathtoSnowhead,EntrancePathtoSnowheadFromSnowhead
+EntranceSnowheadFromSnowheadTemple,Snowhead Temple > Snowhead,Snowhead < Snowhead Temple,Snowhead Temple,Entrance,EntranceSnowheadFromSnowheadTemple,EntranceSnowheadFromSnowheadTemple,EntranceSnowheadTempleFromSnowhead
+EntranceSnowheadFromFairysFountain,Snowhead Fairy > snowhead,Snowhead < Snowhead Fairy,Interior,Entrance,EntranceSnowheadFromFairysFountain,EntranceSnowheadFromFairysFountain,EntranceFairysFountainFromSnowhead
+EntranceSnowheadFromOwlStatue,Owl Warp > Snowhead,Snowhead < Owl Warp,Owl Warp,Entrance,EntranceSnowheadFromOwlStatue,EntranceSnowheadFromOwlStatue,
+EntrancePathtoGoronVillageFromMountainVillage,Mountain Village > Twin Island,Twin Island < Mountain Village,Mountain Village,Entrance,EntrancePathtoGoronVillageFromMountainVillage,EntrancePathtoGoronVillageFromMountainVillage,EntranceMountainVillageFromPathtoGoronVillage
+EntrancePathtoGoronVillageFromGoronVillage,Goron Village > Twin Island,Twin Island < Goron Village,Goron Village,Entrance,EntrancePathtoGoronVillageFromGoronVillage,EntrancePathtoGoronVillageFromGoronVillage,EntranceGoronVillageFromPathtoGoronVillage
+EntrancePathtoGoronVillageFromGoronRacetrack,Goron Racetrack > Goron Village,Goron Village < Goron Racetrack,Interior,Entrance,EntrancePathtoGoronVillageFromGoronRacetrack,EntrancePathtoGoronVillageFromGoronRacetrack,EntranceGoronRacetrackFromPathtoGoronVillage
+EntranceGyorgsLairFromGreatBayTemple,Great Bay Temple > Gyorgs lair,Gyorgs Lair < Great bay Temple,Great Bay Temple,Entrance,EntranceGyorgsLairFromGreatBayTemple,EntranceGyorgsLairFromGreatBayTemple,
+EntranceSecretShrineFromIkanaCanyon,Ikana > Secret Shrine,Secret Shrine < Ikana,Ikana Canyon,Entrance,EntranceSecretShrineFromIkanaCanyon,EntranceSecretShrineFromIkanaCanyon,EntranceIkanaCanyonFromSecretShrine
+EntranceStockPotInnLowerFromEastClockTown,ECT > StockPot Lower,Stock Pot Inn < ECT Lower,East Clock Town,Entrance,EntranceStockPotInnLowerFromEastClockTown,EntranceStockPotInnLowerFromEastClockTown,EntranceEastClockTownFromStockPotInnLower
+EntranceStockPotInnUpperFromEastClockTown,ECT > StockPot Upper,Stock Pot Inn < ECT Upper,East Clock Town,Entrance,EntranceStockPotInnUpperFromEastClockTown,EntranceStockPotInnUpperFromEastClockTown,EntranceEastClockTownFromStockPotInnUpper
+EntranceClockTowerInteriorFromBeforethePortaltoTermina,Lost Woods > Inside Clock Tower,Inside Clock Tower < Lost Woods,Beneath Clocktown,Entrance,EntranceClockTowerInteriorFromBeforethePortaltoTermina,EntranceClockTowerInteriorFromBeforethePortaltoTermina,EntranceBeforethePortaltoTerminaFromClockTowerInterior
+EntranceClockTowerInteriorFromSouthClockTown,SCT > Inside Clock Tower,Inside Clock Tower < SCT,South Clock Town,Entrance,EntranceClockTowerInteriorFromSouthClockTown,EntranceClockTowerInteriorFromSouthClockTown,EntranceSouthClockTownFromClockTowerInterior
+EntranceWoodsofMysteryFromSouthernSwamp,Swamp > Mystery Woods,Mystery Woods < Swamp,Southern Swamp,Entrance,EntranceWoodsofMysteryFromSouthernSwamp,EntranceWoodsofMysteryFromSouthernSwamp,EntranceSouthernSwampFromWoodsofMystery
+EntranceLinkTrialFromTheMoon,Moon > Links trial,Link Trial < Moon,The Moon,Entrance,EntranceLinkTrialFromTheMoon,EntranceLinkTrialFromTheMoon,EntranceTheMoonFromLinkTrial
+EntranceTheMoonFromClockTowerRooftop,Clock Tower Roof > Moon,Moon < Clock Tower Roof,The Moon,Entrance,EntranceTheMoonFromClockTowerRooftop,EntranceTheMoonFromClockTowerRooftop,
+EntranceTheMoonFromDekuTrial,Deku Trial > Moon,Moon < Deku Trial,The Moon,Entrance,EntranceTheMoonFromDekuTrial,EntranceTheMoonFromDekuTrial,EntranceDekuTrialFromTheMoon
+EntranceTheMoonFromGoronTrial,Goron Trial > Moon,Moon < Goron Trial,The Moon,Entrance,EntranceTheMoonFromGoronTrial,EntranceTheMoonFromGoronTrial,EntranceGoronTrialFromTheMoon
+EntranceTheMoonFromZoraTrial,Zora Trial > Moon,Moon < Zora Trial,The Moon,Entrance,EntranceTheMoonFromZoraTrial,EntranceTheMoonFromZoraTrial,EntranceZoraTrialFromTheMoon
+EntranceTheMoonFromLinkTrial,Link Trial > Moon,Moon < Link Trial,The Moon,Entrance,EntranceTheMoonFromLinkTrial,EntranceTheMoonFromLinkTrial,EntranceLinkTrialFromTheMoon
+EntranceBombShopFromWestClockTown,WCT > Bomb Shop,Bomb Shop < WCT,West Clock Town,Entrance,EntranceBombShopFromWestClockTown,EntranceBombShopFromWestClockTown,EntranceWestClockTownFromBombShop
+EntranceGormanTrackFromMilkRoadMain,Milk Road > Gorman Track Main,Gorman Track < Milk Road Main,Milk Road,Entrance,EntranceGormanTrackFromMilkRoadMain,EntranceGormanTrackFromMilkRoadMain,EntranceMilkRoadFromGormanRacetrackMain
+EntranceGormanTrackFromMilkRoadGated,Milk Road > Gorman Track Gate,Gorman Track < Milk Road Gate,Milk Road,Entrance,EntranceGormanTrackFromMilkRoadGated,EntranceGormanTrackFromMilkRoadGated,EntranceMilkRoadFromGormanRacetrackTrack
+EntranceGoronRacetrackFromPathtoMountainVillage,Twin Island > Goron Racetrack,Goron Racetrack < Twin island,Twin Islands,Entrance,EntranceGoronRacetrackFromPathtoGoronVillage,EntranceGoronRacetrackFromPathtoMountainVillage,EntrancePathtoGoronVillageFromGoronRacetrack
+EntranceEastClockTownFromTerminaField,Termina > ECT,ECT < Termina,Termina Field,Entrance,EntranceEastClockTownFromTerminaField,EntranceEastClockTownFromTerminaField,EntranceTerminaFieldFromEastClockTown
+EntranceEastClockTownFromSouthClockTownNorthern,SCT > ECT North,ECT < SCT North,South Clock Town,Entrance,EntranceEastClockTownFromSouthClockTownNorthern,EntranceEastClockTownFromSouthClockTownNorthern,EntranceSouthClockTownFromEastClockTownNorthern
+EntranceEastClockTownFromAstralObservatory,Observatory > ECT,ECT < Observatory,Astral Observatory,Entrance,EntranceEastClockTownFromAstralObservatory,EntranceEastClockTownFromAstralObservatory,EntranceAstralObservatoryFromEastClockTown
+EntranceEastClockTownFromSouthClockTownSouthern,SCT > ECT South,ECT < SCT South,South Clock Town,Entrance,EntranceEastClockTownFromSouthClockTownSouthern,EntranceEastClockTownFromSouthClockTownSouthern,EntranceSouthClockTownFromEastClockTownSouthern
+EntranceEastClockTownFromTreasureChestShop,Treasure Shop > ECT,ECT < Treasure Shop,Interior,Entrance,EntranceEastClockTownFromTreasureChestShop,EntranceEastClockTownFromTreasureChestShop,EntranceTreasureChestShopFromEastClockTown
+EntranceEastClockTownFromNorthClockTown,NCT > ECT,ECT < NCT,North Clock Town,Entrance,EntranceEastClockTownFromNorthClockTown,EntranceEastClockTownFromNorthClockTown,EntranceNorthClockTownFromEastClockTown
+EntranceEastClockTownFromHoneyDarlingsShop,Honey Darling > ECT,ECT < Honey Darling,Interior,Entrance,EntranceEastClockTownFromHoneyDarlingsShop,EntranceEastClockTownFromHoneyDarlingsShop,EntranceHoneyDarlingsShopFromEastClockTown
+EntranceEastClockTownFromMayorsResidence,Mayor House > ECT,ECT < Mayor House,Interior,Entrance,EntranceEastClockTownFromMayorsResidence,EntranceEastClockTownFromMayorsResidence,EntranceMayorsResidenceFromEastClockTown
+EntranceEastClockTownFromShootingGalleryClockTown,Town Shooting > ECT,ECT < Town Shooting,Interior,Entrance,EntranceEastClockTownFromShootingGalleryClockTown,EntranceEastClockTownFromShootingGalleryClockTown,EntranceTownShootingGalleryFromEastClockTown
+EntranceEastClockTownFromStockPotInnLower,Stock Pot Inn > ECT Lower,ECT < Stock Pot Inn Lower,Interior,Entrance,EntranceEastClockTownFromStockPotInnLower,EntranceEastClockTownFromStockPotInnLower,EntranceStockPotInnLowerFromEastClockTown
+EntranceEastClockTownFromStockPotInnUpper,Stock Pot Inn > ECT Upper,ECT < Stock Pot Inn Upper,Interior,Entrance,EntranceEastClockTownFromStockPotInnUpper,EntranceEastClockTownFromStockPotInnUpper,EntranceStockPotInnUpperFromEastClockTown
+EntranceEastClockTownFromMilkBar,Milk Bar > ECT,ECT < Milk Bar,Interior,Entrance,EntranceEastClockTownFromMilkBar,EntranceEastClockTownFromMilkBar,EntranceMilkBarFromEastClockTown
+EntranceWestClockTownFromTerminaField,Termina > WCT,WCT < Termina,Termina Field,Entrance,EntranceWestClockTownFromTerminaField,EntranceWestClockTownFromTerminaField,EntranceTerminaFieldFromWestClockTown
+EntranceWestClockTownFromSouthClockTownSouthern,SCT > WCT South,WCT < SCT South,South Clock Town,Entrance,EntranceWestClockTownFromSouthClockTownSouthern,EntranceWestClockTownFromSouthClockTownSouthern,EntranceSouthClockTownFromWestClockTownSouthern
+EntranceWestClockTownFromSouthClockTownNorthern,SCT > WCT North,WCT < SCT North,South Clock Town,Entrance,EntranceWestClockTownFromSouthClockTownNorthern,EntranceWestClockTownFromSouthClockTownNorthern,EntranceSouthClockTownFromWestClockTownNorthern
+EntranceWestClockTownFromSwordsmansSchool,Sword School > WCT,WCT < Sword School,Interior,Entrance,EntranceWestClockTownFromSwordsmansSchool,EntranceWestClockTownFromSwordsmansSchool,EntranceSwordsmansSchoolFromWestClockTown
+EntranceWestClockTownFromCuriosityShop,Curiosity Shop > WCT,WCT < Curiosity Shop,Interior,Entrance,EntranceWestClockTownFromCuriosityShop,EntranceWestClockTownFromCuriosityShop,EntranceCuriosityShopFromWestClockTown
+EntranceWestClockTownFromTradingPost,Trading Post > WCT,WCT < Trading Post,Interior,Entrance,EntranceWestClockTownFromTradingPost,EntranceWestClockTownFromTradingPost,EntranceTradingPostFromWestClockTown
+EntranceWestClockTownFromBombShop,Bomb Shop > WCT,WCT < Bomb Shop,Interior,Entrance,EntranceWestClockTownFromBombShop,EntranceWestClockTownFromBombShop,EntranceBombShopFromWestClockTown
+EntranceWestClockTownFromPostOffice,Post Office > WCT,WCT < Post Office,Interior,Entrance,EntranceWestClockTownFromPostOffice,EntranceWestClockTownFromPostOffice,EntrancePostOfficeFromWestClockTown
+EntranceWestClockTownFromLotteryShop,Lottery > WCT,WCT < Lottery,Interior,Entrance,EntranceWestClockTownFromLotteryShop,EntranceWestClockTownFromLotteryShop,EntranceLotteryShopFromWestClockTown
+EntranceNorthClockTownFromTerminaField,Termina > NCT,NCT < Termina,Termina Field,Entrance,EntranceNorthClockTownFromTerminaField,EntranceNorthClockTownFromTerminaField,EntranceTerminaFieldFromNorthClockTown
+EntranceNorthClockTownFromEastClockTown,ECT > NCT,NCT < ECT,East Clock Town,Entrance,EntranceNorthClockTownFromEastClockTown,EntranceNorthClockTownFromEastClockTown,EntranceEastClockTownFromNorthClockTown
+EntranceNorthClockTownFromSouthClockTown,SCT > NCT,NCT < SCT,South Clock Town,Entrance,EntranceNorthClockTownFromSouthClockTown,EntranceNorthClockTownFromSouthClockTown,EntranceSouthClockTownFromNorthClockTown
+EntranceNorthClockTownFromFairysFountain,Town Fairy > NCT,NCT < Town Fairy,Interior,Entrance,EntranceNorthClockTownFromFairysFountain,EntranceNorthClockTownFromFairysFountain,EntranceFairysFountainFromNorthClockTown
+EntranceNorthClockTownFromDekuScrubPlayground,Deku Playground > NCT,NCT < Deku Playground,Interior,Entrance,EntranceNorthClockTownFromDekuScrubPlayground,EntranceNorthClockTownFromDekuScrubPlayground,EntranceDekuScrubPlaygroundFromNorthClockTown
+EntranceSouthClockTownFromClockTowerInterior,Inside Clock Tower > SCT,SCT < Inside Clock Tower,Misc,Entrance,EntranceSouthClockTownFromClockTowerInterior,EntranceSouthClockTownFromClockTowerInterior,EntranceClockTowerInteriorFromSouthClockTown
+EntranceSouthClockTownFromTerminaField,Termina > SCT,SCT < Termina,Termina Field,Entrance,EntranceSouthClockTownFromTerminaField,EntranceSouthClockTownFromTerminaField,EntranceTerminaFieldFromSouthClockTown
+EntranceSouthClockTownFromEastClockTownNorthern,ECT > SCT North,SCT < ECT North,East Clock Town,Entrance,EntranceSouthClockTownFromEastClockTownNorthern,EntranceSouthClockTownFromEastClockTownNorthern,EntranceEastClockTownFromSouthClockTownNorthern
+EntranceSouthClockTownFromWestClockTownNorthern,WCT > SCT North,SCT < WCT North,West Clock Town,Entrance,EntranceSouthClockTownFromWestClockTownNorthern,EntranceSouthClockTownFromWestClockTownNorthern,EntranceWestClockTownFromSouthClockTownNorthern
+EntranceSouthClockTownFromNorthClockTown,NCT > SCT,SCT < NCT,North Clock Town,Entrance,EntranceSouthClockTownFromNorthClockTown,EntranceSouthClockTownFromNorthClockTown,EntranceNorthClockTownFromSouthClockTown
+EntranceSouthClockTownFromWestClockTownSouthern,WCT > SCT South,SCT < WCT South,West Clock Town,Entrance,EntranceSouthClockTownFromWestClockTownSouthern,EntranceSouthClockTownFromWestClockTownSouthern,EntranceWestClockTownFromSouthClockTownSouthern
+EntranceSouthClockTownFromLaundryPool,Laundry Pool > SCT,SCT < Laundry Pool,Laundry Pool,Entrance,EntranceSouthClockTownFromLaundryPool,EntranceSouthClockTownFromLaundryPool,EntranceLaundryPoolFromSouthClockTown
+EntranceSouthClockTownFromEastClockTownSouthern,ECT > SCT South,SCT < ECT South,East Clock Town,Entrance,EntranceSouthClockTownFromEastClockTownSouthern,EntranceSouthClockTownFromEastClockTownSouthern,EntranceEastClockTownFromSouthClockTownSouthern
+EntranceSouthClockTownFromClockTowerRooftop,,SCT < Clock Tower Roof,The Moon,Entrance,EntranceSouthClockTownFromClockTowerRooftop,EntranceSouthClockTownFromClockTowerRooftop,EntranceClockTowerRooftopFromSouthClockTown
+EntranceSouthClockTownFromOwlStatue,Owl Warp > SCT,SCT < Owl Warp,Owl Warp,Entrance,EntranceSouthClockTownFromOwlStatue,EntranceSouthClockTownFromOwlStatue,
+EntranceLaundryPoolFromSouthClockTown,SCT > Laundry pool,Laundry Pool < SCT,South Clock Town,Entrance,EntranceLaundryPoolFromSouthClockTown,EntranceLaundryPoolFromSouthClockTown,EntranceSouthClockTownFromLaundryPool
+EntranceLaundryPoolFromKafeisHideout,Kafei > Laundry pool,Laundry Pool < Kafei,Interior,Entrance,EntranceLaundryPoolFromKafeisHideout,EntranceLaundryPoolFromKafeisHideout,EntranceKafeisHideoutFromLaundryPool
+EntranceStoneTowerInvertedFromStoneTowerTempleInverted,ISTT > Inverted Stone Tower,Inverted Stone Tower < ISTT,Stone Tower,Entrance,EntranceStoneTowerInvertedFromStoneTowerTempleInverted,EntranceStoneTowerInvertedFromStoneTowerTempleInverted,EntranceStoneTowerTempleInvertedFromStoneTowerInverted
+Great Bay Owl,Activate Great Bay Owl,Great Bay Owl,Great Bay Coast,Owl Statue,Great Bay Owl Statue,Great Bay Owl,
+Zora Cape Owl,Activate Zora Cape Owl,Zora Cape Owl,Zora Cape,Owl Statue,Zora Cape Owl Statue,Zora Cape Owl,
+Snowhead Owl,Activate Snowhead Owl,Snowhead Owl,Snowhead,Owl Statue,Snowhead Owl Statue,Snowhead Owl,
+Mountain Village Owl,Activate Mountain Village Owl,Mountain Village Owl,Mountain Village,Owl Statue,Mountain Village Owl Statue,Mountain Village Owl,
+Clock Town Owl,Activate Clock Town Owl,Clock Town Owl,South Clock Town,Owl Statue,Clock Town Owl Statue,Clock Town Owl,
+Milk Road Owl,Activate Milk Road Owl,Milk Road Owl,Milk Road,Owl Statue,Milk Road Owl Statue,Milk Road Owl,
+Woodfall Owl,Activate Woodfall Owl,Woodfall Owl,Woodfall,Owl Statue,Woodfall Owl Statue,Woodfall Owl,
+Southern Swamp Owl,Activate Southern Swamp Owl,Southern Swamp Owl,Southern Swamp,Owl Statue,Southern Swamp Owl Statue,Southern Swamp Owl,
+Ikana Canyon Owl,Activate Ikana Canyon Owl,Ikana Canyon Owl,Ikana Canyon,Owl Statue,Ikana Canyon Owl Statue,Ikana Canyon Owl,
+Stone Tower Owl,Activate Stone Tower Owl,Stone Tower Owl,Stone Tower,Owl Statue,Stone Tower Owl Statue,Stone Tower Owl,
+Ice Trap,,Ice Trap,,Item,,,

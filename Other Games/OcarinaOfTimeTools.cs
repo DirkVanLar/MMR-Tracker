@@ -232,7 +232,7 @@ namespace MMR_Tracker.Forms.Other_Games
                     Debugging.Log($"===========================================================");
                     Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Was not found");
                     var EntrancePair = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == DictionaryItem.EntrancePair);
-                    if (EntrancePair == null || !CoupledEntrances)
+                    if (EntrancePair == null || !CoupledEntrances || EntrancePair.SpoilerItem == null || EntrancePair.SpoilerLocation == null)
                     {
                         Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Did not have a pair. Setting it vanilla.");
                         FileContent.Add(DictionaryItem.SpoilerLocation.Split('|')[0] + "->" + DictionaryItem.SpoilerItem.Split('|')[0]);

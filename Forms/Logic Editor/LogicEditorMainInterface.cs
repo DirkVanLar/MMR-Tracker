@@ -1212,5 +1212,36 @@ namespace MMR_Tracker.Forms
         {
             UserSettings.HandleUserPreset(sender, e);
         }
+
+        private void showAllFakeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<LogicObjects.LogicEntry> Fake = new List<LogicObjects.LogicEntry>();
+            foreach (var i in EditorInstance.Logic)
+            {
+                if (i.IsFake) { Fake.Add(i); }
+            }
+
+            if (Fake.Count() > 0)
+            {
+                try
+                {
+                    MiscSingleItemSelect Selector = new MiscSingleItemSelect
+                    {
+                        ListContent = Fake,
+                        Display = 6,
+                        Text = $"Fake Items:\n\n"
+                    };
+                    Selector.ShowDialog();
+                    if (Selector.DialogResult != DialogResult.OK) { return; }
+                    var index = Selector.SelectedObject.ID;
+                    //GoBackList.Add(currentEntry.ID);
+                    nudIndex.Value = index;
+                    WriteCurentItem(index);
+                    return;
+                }
+                catch { }
+            }
+            MessageBox.Show($"No fake items found", "No entries found", MessageBoxButtons.OK);
+        }
     }
 }

@@ -1373,6 +1373,9 @@ namespace MMR_Tracker_V2
 
         public void FormatMenuItems()
         {
+            //Disable other Game support until I can find a way to handle it better.
+            spoilerLogConverterToolStripMenuItem.Visible = false;
+
             saveAsToolStripMenuItem.Visible = (Tools.SaveFilePath != "");
             importSpoilerLogToolStripMenuItem.Text = (Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) ? "Remove Spoiler Log" : "Import Spoiler Log";
             useSongOfTimeInPathfinderToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.UseSongOfTime);

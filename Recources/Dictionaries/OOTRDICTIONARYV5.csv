@@ -9,7 +9,7 @@ Nocturne of Shadow Warp => Shadow Temple Warp Region,Nocturne of Shadow Warp > S
 Prelude of Light Warp => Temple of Time,Prelude of Light Warp > Temple of Time,Temple of Time < Prelude of Light Warp,Castle Town,Entrance,Prelude of Light Warp>Temple of Time,Temple of Time<Prelude of Light Warp,
 Requiem of Spirit Warp => Desert Colossus,Requiem of Spirit Warp > Desert Colossus,Desert Colossus < Requiem of Spirit Warp,Gerudo Desert,Entrance,Requiem of Spirit Warp>Desert Colossus,Desert Colossus<Requiem of Spirit Warp,
 Serenade of Water Warp => Lake Hylia,Serenade of Water Warp > Lake Hylia,Lake Hylia < Serenade of Water Warp,Lake Hylia,Entrance,Serenade of Water Warp>Lake Hylia,Lake Hylia<Serenade of Water Warp,
-Death Mountain Owl Flight => Kakariko Impa Ledge,Death Mountain Owl Flight > Kakariko Impa Ledge,Kakariko Impa Ledge < Death Mountain Owl Flight,Death Mountain,Entrance,DMT Owl Flight>Kak Impas Ledge,Kak Impas Ledge<DMT Owl Flight,
+Death Mountain Owl Flight => Kakariko Impa Ledge,Death Mountain Owl Flight > Kakariko Impa Ledge,Kakariko Impa Ledge < Death Mountain Owl Flight,Death Mountain,Entrance,DMT Owl Flight>Kak Impas Rooftop,Kak Impas Ledge<DMT Owl Flight,
 Lake Hylia Owl Flight => Hyrule Field,Lake Hylia Owl Flight > Hyrule Field,Hyrule Field < Lake Hylia Owl Flight,Lake Hylia,Entrance,LH Owl Flight>Hyrule Field,Hyrule Field<LH Owl Flight,
 Castle Grounds => Castle Town,Castle Grounds > Castle Town,Castle Town < Castle Grounds,Castle Town,Entrance,Castle Grounds>Market,Market<Castle Grounds,Castle Town => Castle Grounds
 Castle Town => Castle Grounds,Castle Town > Castle Grounds,Castle Grounds < Castle Town,Castle Town,Entrance,Market>Castle Grounds,Castle Grounds<Market,Castle Grounds => Castle Town
@@ -378,7 +378,7 @@ Bombchu Shop Item 5,Market Bombchu Shop Item 5,Buy Bombchu (20),Castle Town,Item
 Bombchu Shop Item 6,Market Bombchu Shop Item 6,Buy Bombchu (20),Castle Town,Item,Market Bombchu Shop Item 6,Buy Bombchu (20),
 Bombchu Shop Item 7,Market Bombchu Shop Item 7,Buy Bombchu (20),Castle Town,Item,Market Bombchu Shop Item 7,Buy Bombchu (20),
 Bombchu Shop Item 8,Market Bombchu Shop Item 8,Buy Bombchu (20),Castle Town,Item,Market Bombchu Shop Item 8,Buy Bombchu (20),
-Dog Lady,Market Dog Lady,Piece of Heart,Castle Town,Item,Market Dog Lady,Piece of Heart,
+Dog Lady,Market Dog Lady,Piece of Heart,Castle Town,Item,Market Lost Dog,Piece of Heart,
 Anju as Adult,Kak Anju as Adult,Pocket Egg,Kakariko Village,Item,Kak Anju as Adult,Pocket Egg,
 Anjus Chickens,Kak Anju as Child,Bottle,Kakariko Village,Item,Kak Anju as Child,Bottle,
 GS Kakariko House Under Construction,Kak GS House Under Construction,Gold Skulltula Token,Kakariko Village,Item,Kak GS House Under Construction,Gold Skulltula Token,
@@ -400,7 +400,7 @@ Kakariko Bazaar Item 5,Kak Bazaar Item 5,Buy Arrows (50),Kakariko Village,Item,K
 Kakariko Bazaar Item 6,Kak Bazaar Item 6,Buy Arrows (50),Kakariko Village,Item,Kak Bazaar Item 6,Buy Arrows (50),
 Kakariko Bazaar Item 7,Kak Bazaar Item 7,Buy Deku Stick (1),Kakariko Village,Item,Kak Bazaar Item 7,Buy Deku Stick (1),
 Kakariko Bazaar Item 8,Kak Bazaar Item 8,Buy Arrows (10),Kakariko Village,Item,Kak Bazaar Item 8,Buy Arrows (10),
-Adult Shooting Gallery,Kak Shooting Gallery,Bow,Kakariko Village,Item,Kak Shooting Gallery,Bow,
+Adult Shooting Gallery,Kak Shooting Gallery,Bow,Kakariko Village,Item,Kak Shooting Gallery Reward,Bow,
 Kakariko Potion Shop Item 5,Kak Potion Shop Item 5,Buy Bottle Fish,Kakariko Village,Item,Kak Potion Shop Item 5,Buy Bottle Fish,
 Kakariko Potion Shop Item 6,Kak Potion Shop Item 6,Buy Bottle Bug,Kakariko Village,Item,Kak Potion Shop Item 6,Buy Bottle Bug,
 Kakariko Potion Shop Item 7,Kak Potion Shop Item 7,Buy Bottle Poe,Kakariko Village,Item,Kak Potion Shop Item 7,Buy Bottle Poe,

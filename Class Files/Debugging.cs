@@ -137,8 +137,9 @@ namespace MMR_Tracker_V2
             //MInishCapTools.FillMinishLogic();
             //MInishCapTools.PrintMinishLogic();
             //GetAllLocations();
+            //SStesting();
 
-            SStesting();
+            Fix113EntrandoLogic();
 
             void OOTRTesting()
             {
@@ -489,6 +490,86 @@ namespace MMR_Tracker_V2
             {
                 Console.WriteLine(i);
             }
+        }
+
+        public static void Fix113EntrandoLogic()
+        {
+            LogicObjects.TrackerInstance Instance = new LogicObjects.TrackerInstance();
+            string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt)|*.txt");
+            Instance.RawLogicFile = File.ReadAllLines(file);
+            Instance.LogicDictionary = null;
+            LogicEditing.PopulateTrackerInstance(Instance);
+
+            bool PastGossips = false;
+            bool BeginPushback = false;
+
+            foreach (var i in Instance.Logic)
+            {
+                if (BeginPushback && !PastGossips)
+                {
+                    Instance.Logic[i.ID - 28].Required = i.Required;
+                    Instance.Logic[i.ID - 28].Conditionals = i.Conditionals;
+                    i.Required = null;
+                    i.Conditionals = null;
+                }
+
+                if (i.DictionaryName == "GossipTerminaGossipDrums") { PastGossips = true; }
+                if (i.DictionaryName == "EntranceGrottoPalaceStraightFromDekuPalaceA") { BeginPushback = true; }
+            }
+
+            foreach (var i in Instance.Logic)
+            {
+                
+                if (i.Required != null)
+                {
+                    for (var r = 0; r < i.Required.Count(); r++)
+                    {
+                        if (EntryIsEntranceTest(i.Required[r]))
+                        {
+                            i.Required[r] = i.Required[r] - 28;
+                        }
+                    }
+                }
+
+                if (i.Conditionals != null)
+                {
+                    foreach (var c in i.Conditionals)
+                    {
+                        for (var r = 0; r < c.Count(); r++)
+                        {
+                            if (EntryIsEntranceTest(c[r]))
+                            {
+                                c[r] = c[r] - 28;
+                            }
+                        }
+                    }
+                }
+
+
+            }
+
+            bool EntryIsEntranceTest(int Entry)
+            {
+                return Entry > 432 && Entry < 742;
+            }
+
+            if (LogicEditor.EditorForm == null)
+            {
+                LogicEditor.EditorForm = new LogicEditor();
+                LogicEditor.EditorForm.Show();
+            }
+            else
+            {
+                LogicEditor.EditorForm.Show();
+                LogicEditor.EditorForm.Focus();
+            }
+
+            LogicEditor.EditorForm.nudIndex.Value = 0;
+            LogicEditor.EditorInstance = Instance;
+            LogicEditor.EditorForm.FormatForm();
+            LogicEditor.AssignUniqueItemnames(LogicEditor.EditorInstance.Logic);
+            LogicEditor.EditorForm.CreateContextMenus();
+
         }
 
     }

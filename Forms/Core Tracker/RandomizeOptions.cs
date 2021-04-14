@@ -177,6 +177,7 @@ namespace MMR_Tracker_V2
 
         private void btnApplyString_Click(object sender, EventArgs e)
         {
+            ItemStringLogic = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && (IsInMMRItemList(x) || !LogicObjects.MainTrackerInstance.IsMM())).ToList();
             var ItemLogic = ItemStringLogic.Where(x => !x.IsEntrance()).ToList();
             var ItemGroupCount = (int)Math.Ceiling(ItemLogic.Count / 32.0);
 
@@ -348,6 +349,7 @@ namespace MMR_Tracker_V2
                 return true;
             }
 
+
             foreach (var entry in logic)
             {
                 if (!isValid(entry)) { continue; }
@@ -425,6 +427,18 @@ namespace MMR_Tracker_V2
                 CreateEntranceString();
                 CreateStartingItemString();
             }
+
+            var CountRand = logic.Where(x => !x.IsFake && x.RandomizedState() == 0).Count();
+            var CountUnRand = logic.Where(x => !x.IsFake && x.RandomizedState() == 1).Count();
+            var CountUnRandMan = logic.Where(x => !x.IsFake && x.RandomizedState() == 2).Count();
+            var CountJunk = logic.Where(x => !x.IsFake && x.RandomizedState() == 3).Count();
+            var CountStarting = logic.Where(x => !x.IsFake && x.StartingItem()).Count();
+
+            chkShowRandom.Text = $"Show Randomized ({CountRand})";
+            chkShowUnrand.Text = $"Show UnRandomized ({CountUnRand})";
+            chkShowUnrandMan.Text = $"Show UnRando (Man) ({CountUnRandMan})";
+            chkShowJunk.Text = $"Show Forced Junk ({CountJunk})";
+            chkShowStartingItems.Text = $"Show Starting Items ({CountStarting})";
 
             updating = false;
         }
