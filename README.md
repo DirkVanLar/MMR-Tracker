@@ -1,3 +1,8 @@
+# This project is no longer being worked on
+
+## The last version of MMR compatible with this tracker is version 1.13. The 600+ freestanding item added in 1.14 will not work at. The limited support for WWR, SSR and OOTR were already outdated and will most definitely not work, aside from maybe WWR. 
+## This project may be revisited in the future when I find the time and motivation to redo it from the ground up. Much of this was a learning project and a large amount of the code from early on is poorly written and not feasibly maintainable for one person. If you would like to continue this project in the meantime feel free.
+
 # MMR-Tracker
 An Item, Location and Entrance Tracker for the Majoras Mask Randomizer
 
