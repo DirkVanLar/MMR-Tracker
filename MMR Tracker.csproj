@@ -289,7 +289,7 @@
     <None Include="Recources\Dictionaries\MMRDICTIONARYV15.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\MMRDICTIONARYV16.csv">
+    <None Include="Recources\Dictionaries\MMRDICTIONARYV18.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Recources\Dictionaries\MMRDICTIONARYV8.csv">
@@ -331,21 +331,16 @@
     <Content Include="Recources\Other Files\Categories.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Recources\Other Files\Other Game Premade Logic\OOTR Logic.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Recources\Other Files\Other Game Premade Logic\SSR Logic.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Recources\Other Files\Custom Logic Presets\Web Presets Old.txt" />
+    <Content Include="Recources\Other Files\Other Game Premade Logic\OOTR Logic.txt" />
+    <Content Include="Recources\Other Files\Other Game Premade Logic\SSR Logic.txt" />
     <Content Include="Recources\Other Files\Custom Logic Presets\Web Presets.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Recources\Other Files\README Information for files in this folder.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Recources\Other Files\Other Game Premade Logic\WWR Logic.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Recources\Other Files\Other Game Premade Logic\WWR Logic.txt" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="NATUPNPLib">

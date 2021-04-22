@@ -219,9 +219,9 @@ namespace MMR_Tracker.Forms
 
             var UniqueCombinations = Utility.CountUniqueCombinations(Selector.SelectedItems.Count(), (int)Selector.numericUpDown1.Value);
 
-            if (UniqueCombinations > MaxEntries)
+            if (UniqueCombinations > MaxEntries || (int)Selector.numericUpDown1.Value > Selector.SelectedItems.Count || UniqueCombinations < MaxEntries*-1)
             {
-                MessageBox.Show($"{UniqueCombinations} Entries would be created with your selected parameters. This is greater than the max number of entries ({MaxEntries}) this process can easily handle, the proccess will now terminate.", "To many combinations exist!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"{UniqueCombinations} Entries would be created with your selected parameters. This is greater than the max number of entries ({MaxEntries}) this process can easily handle, the entry will not be created.", "To many combinations exist!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

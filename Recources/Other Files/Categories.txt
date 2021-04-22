@@ -102,5 +102,6 @@ Single Gratitude Crystal
 #GAMECODEEND:
 
 Misc
+Gossip Stone
 Multiworld
 Starting Items

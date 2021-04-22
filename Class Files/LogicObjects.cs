@@ -119,6 +119,7 @@ namespace MMR_Tracker_V2
         public class GameplaySettings
         {
             public bool UseCustomItemList { get; set; } = false;
+            public string[] CategoriesRandomized { get; set; } = null;
             public bool AddDungeonItems { get; set; } = false;
             public bool AddShopItems { get; set; } = false;
             public bool AddMoonItems { get; set; } = false;
@@ -143,6 +144,7 @@ namespace MMR_Tracker_V2
             public string RandomizedEntrancesString { get; set; } = "";
             public string CustomJunkLocationsString { get; set; } = "";
             public string CustomStartingItemListString { get; set; } = "";
+            public string GossipHintStyle { get; set; } = "Default";
             public List<int> EnabledTricks { get; set; } = new List<int>();
         }
         public class MapPoint

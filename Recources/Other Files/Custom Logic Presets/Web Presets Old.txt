@@ -1,0 +1,24 @@
+﻿//To add a new Preset, start by adding the "Name:" line to define the presets name.
+//Next the "Address:" line followed by the web address containing the logic files raw Text.
+//Each new entry is defined by the "Name:" line
+//Example:
+//Name: Example Logic
+//Address: https://pastebin.com/raw/ExAmPlElOgIc123
+
+Name: MMR Casual
+Address: https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt
+
+Name: MMR Glitched
+Address: https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt
+
+//Name: Ocarina of Time
+//Dictionary: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Dictionaries/OOTRDICTIONARYV5.csv
+//Address: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%20Game%20Premade%20Logic/OOTR%20Logic.txt
+
+//Name: Wind Waker
+//Dictionary: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Dictionaries/WWRDICTIONARYV170.csv
+//Address: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%20Game%20Premade%20Logic/WWR%20Logic.txt
+
+//Name: Skyward Sword
+//Dictionary: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Dictionaries/SSRDICTIONARYV1.csv
+//Address: https://raw.githubusercontent.com/Thedrummonger/MMR-Tracker/master/Recources/Other%20Files/Other%20Game%20Premade%20Logic/SSR%20Logic.txt

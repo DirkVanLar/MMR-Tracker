@@ -40,6 +40,7 @@ namespace MMR_Tracker.Class_Files
             NeededItems = NeededItems.Distinct().ToList();
             return new LogicObjects.ItemUnlockData {Playthrough = playthrough, FakeItems = FakeItems, ResolvedRealItems = NeededItems, UsedItems =UsedItems };
         }
+
         public static void CreateDictionary()
         {
             string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt)|*.txt");
@@ -109,6 +110,7 @@ namespace MMR_Tracker.Class_Files
             saveDic.ShowDialog();
             File.WriteAllLines(saveDic.FileName, csv);
         }
+
         public static List<LogicObjects.SpoilerData> ReadTextSpoilerlog(LogicObjects.TrackerInstance instance, string[] Spoiler = null)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
@@ -380,6 +382,7 @@ namespace MMR_Tracker.Class_Files
 
             return SpoilerData;
         }
+
         public static bool SaveInstance(LogicObjects.TrackerInstance Instance, bool SetPath = false , string FilePath = "")
         {
             Debugging.Log("Begin Save");
@@ -451,6 +454,7 @@ namespace MMR_Tracker.Class_Files
             Tools.SaveFilePath = file;
             return;
         }
+
         public static bool TryLoadOldSaveFile(string file)
         {
             //Pre Spoiler Location/Spoiler Item Changes
@@ -486,6 +490,7 @@ namespace MMR_Tracker.Class_Files
             { }
             return false;
         }
+
         public static void SaveState(LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicEntry> Logic = null )
         {
             int MaxUndoCount = (int)Math.Floor(Math.Pow(((double)5000 / (double)Instance.Logic.Count()), 1.5)); //Reduce the max count based on the size of the logic.
@@ -496,6 +501,7 @@ namespace MMR_Tracker.Class_Files
             Instance.RedoList = new List<List<LogicObjects.LogicEntry>>();
             MainInterface.CurrentProgram.Tools_StateListChanged();
         }
+
         public static void Undo(LogicObjects.TrackerInstance Instance)
         {
             if (Instance.UndoList.Any())
@@ -508,6 +514,7 @@ namespace MMR_Tracker.Class_Files
                 MainInterface.CurrentProgram.Tools_StateListChanged();
             }
         }
+
         public static void Redo(LogicObjects.TrackerInstance Instance)
         {
             if (Instance.RedoList.Any())
@@ -520,6 +527,7 @@ namespace MMR_Tracker.Class_Files
                 MainInterface.CurrentProgram.Tools_StateListChanged();
             }
         }
+
         public static bool PromptSave(LogicObjects.TrackerInstance Instance, bool OnlyIfUnsaved = true)
         {
             if (Instance.UnsavedChanges || !OnlyIfUnsaved)
@@ -538,6 +546,7 @@ namespace MMR_Tracker.Class_Files
             }
             return true;
         }
+
         public static Dictionary<int, int> CreateRandItemDic(List<LogicObjects.LogicEntry> logic, bool Spoiler = false)
         {
             var spoilerDic = new Dictionary<int, int>();
@@ -551,6 +560,7 @@ namespace MMR_Tracker.Class_Files
             }
             return spoilerDic;
         }
+
         public static void CreateOptionsFile()
         {
             if (!File.Exists("options.txt"))
@@ -616,6 +626,7 @@ namespace MMR_Tracker.Class_Files
 
             }
         }
+
         public static List<int> ResolveFakeToRealItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic)
         {
             //Find all the real items that were used to unlock this fake item
@@ -633,6 +644,7 @@ namespace MMR_Tracker.Class_Files
             }
             return RealItems;
         }
+
         public static List<int> FindAllFakeItems(LogicObjects.PlaythroughItem item, List<LogicObjects.PlaythroughItem> Playthrough, List<LogicObjects.LogicEntry> logic)
         {
             //Find all fake items used to unlock the given item
@@ -649,6 +661,7 @@ namespace MMR_Tracker.Class_Files
             }
             return FakeItems;
         }
+
         public static bool SameItemMultipleChecks(int item, LogicObjects.TrackerInstance Instance)
         {
             if (item < 0 || (!Instance.Options.StrictLogicHandeling && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld)) { return false; }
@@ -659,6 +672,7 @@ namespace MMR_Tracker.Class_Files
             }
             return count > 1;
         }
+
         public static void CreateTrackerInstance(LogicObjects.TrackerInstance Instance, string[] RawLogic)
         {
             Tools.SaveFilePath = "";
@@ -697,6 +711,7 @@ namespace MMR_Tracker.Class_Files
                 }
             }
         }
+
         public static void WhatUnlockedThis(LogicObjects.LogicEntry Entry)
         {
             if (!Entry.Available)
@@ -739,6 +754,7 @@ namespace MMR_Tracker.Class_Files
             InformationDisplay.Playthrough = message.Split(new[] { "\n" }, StringSplitOptions.None).ToList();
             Display.Show();
         }
+
         public static List<int> ParseLocationAndJunkSettingString(string c, int ItemCount)
         {
             var result = new List<int>();
@@ -771,6 +787,7 @@ namespace MMR_Tracker.Class_Files
             }
             return result;
         }
+
         public static List<LogicObjects.LogicEntry> ParseEntranceandStartingString(string c, List<LogicObjects.LogicEntry> Subsection )
         {
             if (string.IsNullOrWhiteSpace(c))
@@ -819,6 +836,7 @@ namespace MMR_Tracker.Class_Files
             }
             return result;
         }
+
         public static bool ParseLogicFile(string file = "")
         {
             if (file == "")
@@ -934,6 +952,7 @@ namespace MMR_Tracker.Class_Files
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
             return true;
         }
+
         public static bool TestForTextSpoiler(string[] RawLogicFile)
         {
             foreach (var line in RawLogicFile)
@@ -949,8 +968,6 @@ namespace MMR_Tracker.Class_Files
             }
             return false;
         }
-
-
 
     }
 }

@@ -201,7 +201,7 @@ namespace MMR_Tracker
                 MessageBox.Show("The selected Game Clear Item can not be obtained in this seed. A playthrough can not be generated.");
                 return;
             }
-            PlaythroughGenerator.DisplayPlaythrough(Playthrough.ImportantPlaythrough, Playthrough.PlaythroughInstance, Playthrough.GameClearItem.Check.ID);
+            PlaythroughGenerator.DisplayPlaythrough(Playthrough.ImportantPlaythrough, Playthrough.PlaythroughInstance, Playthrough.GameClearItem.Check.ID, CheckerInstance.Logic);
         }
 
         private void spoilerLogLookupToolStripMenuItem_Click(object sender, EventArgs e)

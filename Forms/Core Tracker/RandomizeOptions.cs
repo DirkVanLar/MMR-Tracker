@@ -434,11 +434,21 @@ namespace MMR_Tracker_V2
             var CountJunk = logic.Where(x => !x.IsFake && x.RandomizedState() == 3).Count();
             var CountStarting = logic.Where(x => !x.IsFake && x.StartingItem()).Count();
 
+            var CountEnabledTricks = logic.Where(x => x.IsFake && x.IsTrick && x.TrickEnabled).Count();
+            var CountDisabledTricks = logic.Where(x => x.IsFake && x.IsTrick && !x.TrickEnabled).Count();
+
+            var CountAllLogic = logic.Where(x => !x.IsFake).Count();
+            var CountAllTrick = logic.Where(x => x.IsFake && x.IsTrick).Count();
+
             chkShowRandom.Text = $"Show Randomized ({CountRand})";
             chkShowUnrand.Text = $"Show UnRandomized ({CountUnRand})";
             chkShowUnrandMan.Text = $"Show UnRando (Man) ({CountUnRandMan})";
             chkShowJunk.Text = $"Show Forced Junk ({CountJunk})";
             chkShowStartingItems.Text = $"Show Starting Items ({CountStarting})";
+            chkShowEnabledTricks.Text = $"Show Enabled Tricks ({CountEnabledTricks})";
+            chkShowDisabledTricks.Text = $"Show Disabled Tricks ({CountDisabledTricks})";
+            chkTricks.Text = $"({CountAllTrick})";
+            chkRandomState.Text = $"({CountAllLogic})";
 
             updating = false;
         }
@@ -541,43 +551,92 @@ namespace MMR_Tracker_V2
             //Apply Items Settings
             if (!Settings.UseCustomItemList)
             {
-                //Dungeon Items
-                SetRange("Woodfall Map", "Stone Tower Key 4 - death armos maze", Settings.AddDungeonItems);
-                //Shop Items
-                SetRange("Trading Post Red Potion", "Zora Shop Red Potion", Settings.AddShopItems);
-                SetRange("Bomb Bag (20)", "Bomb Bag (20)", Settings.AddShopItems);
-                SetRange("Town Bomb Bag (30)", "Town Bomb Bag (30)", Settings.AddShopItems);
-                SetRange("Milk Bar Chateau", "Milk Bar Milk", Settings.AddShopItems);
-                SetRange("Swamp Scrub Magic Bean", "Canyon Scrub Blue Potion", Settings.AddShopItems);
-                SetRange("Gorman Bros Purchase Milk", "Gorman Bros Purchase Milk", Settings.AddShopItems);
-                //Misc
-                SetRange("Lens Cave 20r", "Ikana Scrub 200r", Settings.AddOther);
-                //Bottle Catch
-                SetRange("Bottle: Fairy", "Bottle: Mushroom", Settings.RandomizeBottleCatchContents);
-                //Moon
-                SetRange("Deku Trial HP", "Link Trial 10 Bombchu", Settings.AddMoonItems);
-                //Fairy Rewards
-                SetRange("Great Fairy Magic Meter", "Great Fairy's Sword", Settings.AddFairyRewards);
-                SetRange("Great Fairy's Mask", "Great Fairy's Mask", Settings.AddFairyRewards);
-                //Pre Clocktown
-                SetRange("Pre-Clocktown 10 Deku Nuts", "Pre-Clocktown 10 Deku Nuts", Settings.AddNutChest);
-                //Starting Items
-                SetRange("Starting Sword", "Starting Heart 2", Settings.CrazyStartingItems);
-                //Cows
-                SetRange("Ranch Cow #1 Milk", "Great Bay Coast Grotto Cow #2 Milk", Settings.AddCowMilk);
-                //Skulls
-                SetRange("Swamp Skulltula Main Room Near Ceiling", "Ocean Skulltula 2nd Room Behind Skull 2", Settings.AddSkulltulaTokens);
-                //Fairies
-                SetRange("Clock Town Stray Fairy", "Stone Tower Lava Room Ledge", Settings.AddStrayFairies);
-                //Mundane
-                SetRange("Lottery 50r", "Seahorse", Settings.AddMundaneRewards);
-                //Preserve Soaring
-                SetRange("Song of Soaring", "Song of Soaring", !Settings.ExcludeSongOfSoaring);
-                //Dungeon Entrances
-                SetRange("Woodfall Temple access", "Woodfall Temple access", Settings.RandomizeDungeonEntrances);
-                SetRange("Snowhead Temple access", "Snowhead Temple access", Settings.RandomizeDungeonEntrances);
-                SetRange("Great Bay Temple access", "Great Bay Temple access", Settings.RandomizeDungeonEntrances);
-                SetRange("Inverted Stone Tower Temple access", "Inverted Stone Tower Temple access", Settings.RandomizeDungeonEntrances);
+                //The CategoriesRandomized array only exits in 1.14. So if it was found in settings use the 1.14 Category List
+                if (Settings.CategoriesRandomized == null)
+                {
+                    #region OldRandoCategories
+                    //Dungeon Items
+                    SetRange("Woodfall Map", "Stone Tower Key 4 - death armos maze", Settings.AddDungeonItems);
+                    //Shop Items
+                    SetRange("Trading Post Red Potion", "Zora Shop Red Potion", Settings.AddShopItems);
+                    SetRange("Bomb Bag (20)", "Bomb Bag (20)", Settings.AddShopItems);
+                    SetRange("Town Bomb Bag (30)", "Town Bomb Bag (30)", Settings.AddShopItems);
+                    SetRange("Milk Bar Chateau", "Milk Bar Milk", Settings.AddShopItems);
+                    SetRange("Swamp Scrub Magic Bean", "Canyon Scrub Blue Potion", Settings.AddShopItems);
+                    SetRange("Gorman Bros Purchase Milk", "Gorman Bros Purchase Milk", Settings.AddShopItems);
+                    //Misc
+                    SetRange("Lens Cave 20r", "Ikana Scrub 200r", Settings.AddOther);
+                    //Bottle Catch
+                    SetRange("Bottle: Fairy", "Bottle: Mushroom", Settings.RandomizeBottleCatchContents);
+                    //Moon
+                    SetRange("Deku Trial HP", "Link Trial 10 Bombchu", Settings.AddMoonItems);
+                    //Fairy Rewards
+                    SetRange("Great Fairy Magic Meter", "Great Fairy's Sword", Settings.AddFairyRewards);
+                    SetRange("Great Fairy's Mask", "Great Fairy's Mask", Settings.AddFairyRewards);
+                    //Pre Clocktown
+                    SetRange("Pre-Clocktown 10 Deku Nuts", "Pre-Clocktown 10 Deku Nuts", Settings.AddNutChest);
+                    //Starting Items
+                    SetRange("Starting Sword", "Starting Heart 2", Settings.CrazyStartingItems);
+                    //Cows
+                    SetRange("Ranch Cow #1 Milk", "Great Bay Coast Grotto Cow #2 Milk", Settings.AddCowMilk);
+                    //Skulls
+                    SetRange("Swamp Skulltula Main Room Near Ceiling", "Ocean Skulltula 2nd Room Behind Skull 2", Settings.AddSkulltulaTokens);
+                    //Fairies
+                    SetRange("Clock Town Stray Fairy", "Stone Tower Lava Room Ledge", Settings.AddStrayFairies);
+                    //Mundane
+                    SetRange("Lottery 50r", "Seahorse", Settings.AddMundaneRewards);
+                    //Preserve Soaring
+                    SetRange("Song of Soaring", "Song of Soaring", !Settings.ExcludeSongOfSoaring);
+                    //Dungeon Entrances
+                    SetRange("Woodfall Temple access", "Woodfall Temple access", Settings.RandomizeDungeonEntrances);
+                    SetRange("Snowhead Temple access", "Snowhead Temple access", Settings.RandomizeDungeonEntrances);
+                    SetRange("Great Bay Temple access", "Great Bay Temple access", Settings.RandomizeDungeonEntrances);
+                    SetRange("Inverted Stone Tower Temple access", "Inverted Stone Tower Temple access", Settings.RandomizeDungeonEntrances);
+                    #endregion OldRandoCategories
+                }
+                else
+                {
+                    #region Temp114Categories
+                    //Categories are now group by item so handle setting by item name.
+                    SetRangebyItem("GreenRupees", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName == "Green Rupee"));
+                    SetRangebyItem("RedRupees", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName == "Red Rupee"));
+                    SetRangebyItem("Ammo", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x =>
+                        x.ItemName.Contains("Bombs") ||
+                        x.ItemName.Contains("Arrows") ||
+                        x.ItemName.Contains("Deku Nuts") ||
+                        x.ItemName == "Deku Stick" ||
+                        x.ItemName.Contains("Magic Bean")
+                    ));
+                    SetRangebyItem("Bombchu", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName.Contains("Bombchu")));
+                    SetRangebyItem("MagicJars", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName == "Small Magic Jar" || x.ItemName == "Large Magic Jar"));
+                    SetRangebyItem("RecoveryHearts", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName == "Recovery Heart"));
+                    SetRangebyItem("BlueRupees", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName == "Blue Rupee"));
+                    SetRangebyItem("PurpleRupees", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName == "Purple Rupee"));
+                    SetRangebyItem("GoldRupees", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName == "Gold Rupee"));
+                    SetRangebyItem("SilverRupees", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName == "Silver Rupee"));
+                    SetRangebyItem("PiecesOfHeart", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName == "Piece of Heart"));
+                    SetRangebyItem("DungeonKeys", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName.Contains("Small Key") || x.ItemName.Contains("Boss Key")));
+                    SetRangebyItem("StrayFairies", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName == "Stray Fairy"));
+                    SetRangebyItem("SkulltulaTokens", LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName != null).Where(x => x.ItemName == "Skulltula Spirit"));
+                    //Use the old method for categories that existed in the old version
+                    SetRange("Song of Soaring", "Song of Soaring", Settings.CategoriesRandomized.Contains("SongOfSoaring"));
+                    SetRange("Starting Sword", "Starting Heart 2", Settings.CategoriesRandomized.Contains("CrazyStartingItems"));
+                    SetRange("Seahorse", "Seahorse", Settings.CategoriesRandomized.Contains("Misc"));
+                    SetRange("Great Fairy Magic Meter", "Great Fairy's Sword", Settings.CategoriesRandomized.Contains("GreatFairyRewards"));
+                    SetRange("Trading Post Red Potion", "Zora Shop Red Potion", Settings.CategoriesRandomized.Contains("ShopItems"));
+                    SetRange("Bomb Bag (20)", "Bomb Bag (20)", Settings.CategoriesRandomized.Contains("ShopItems"));
+                    SetRange("Town Bomb Bag (30)", "Town Bomb Bag (30)", Settings.CategoriesRandomized.Contains("ShopItems"));
+                    SetRange("Milk Bar Chateau", "Milk Bar Milk", Settings.CategoriesRandomized.Contains("ShopItems"));
+                    SetRange("Swamp Scrub Magic Bean", "Canyon Scrub Blue Potion", Settings.CategoriesRandomized.Contains("ShopItems"));
+                    SetRange("Gorman Bros Purchase Milk", "Gorman Bros Purchase Milk", Settings.CategoriesRandomized.Contains("ShopItems"));
+                    SetRange("Ranch Cow #1 Milk", "Great Bay Coast Grotto Cow #2 Milk", Settings.CategoriesRandomized.Contains("CowMilk"));
+                    SetRange("Bottle: Fairy", "Bottle: Mushroom", Settings.CategoriesRandomized.Contains("CaughtBottleContents"));
+                    //Do Glitch Checks last since their items exist in other categories but we want to override these specific checks
+                    SetRange("Deku Palace Out of Bounds Item", "Deku Palace Out of Bounds Item", Settings.CategoriesRandomized.Contains("GlitchesRequired"));
+                    SetRange("Pre-Clocktown 10 Deku Nuts", "Pre-Clocktown 10 Deku Nuts", Settings.CategoriesRandomized.Contains("GlitchesRequired"));
+
+                    #endregion Temp114Categories
+                }
             }
 
             //Junk Starting Items
@@ -602,6 +661,13 @@ namespace MMR_Tracker_V2
                 }
 
             }
+
+            //If the gossip stone items exist in logic, Enable them only if they are set to contain hints (Not "Default")
+            if (LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "GossipTerminaSouth") != null && LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "GossipTerminaGossipDrums") != null)
+            {
+                SetGossipRange("GossipTerminaSouth", "GossipTerminaGossipDrums", Settings.GossipHintStyle != "Default");
+            }
+
             void SetRange(string start, string end, bool Randomized)
             {
                 var StartingItem = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == start);
@@ -615,6 +681,30 @@ namespace MMR_Tracker_V2
                     LogicObjects.MainTrackerInstance.Logic[i].Options = O;
                 }
 
+            }
+
+            void SetGossipRange(string start, string end, bool Randomized)
+            {
+                var StartingItem = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == start);
+                var EndingItem = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == end);
+                if (StartingItem == null || EndingItem == null) { return; }
+
+                for (var i = StartingItem.ID; i <= EndingItem.ID; i++)
+                {
+                    LogicObjects.MainTrackerInstance.Logic[i].Options = (Randomized) ? 2 : 1;
+                }
+
+            }
+
+            void SetRangebyItem(string CategoryName, IEnumerable<LogicObjects.LogicEntry> LogicSet)
+            {
+                bool SettingActive = Settings.CategoriesRandomized.Contains(CategoryName);
+                foreach (var i in LogicSet)
+                {
+                    int O = (SettingActive) ? 0 : 1;
+                    O = (i.StartingItem()) ? O + 4 : O;
+                    i.Options = O;
+                }
             }
         }
 

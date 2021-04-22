@@ -108,7 +108,7 @@ namespace MMR_Tracker.Class_Files
 
         
 
-        public static void DisplayPlaythrough(List<LogicObjects.PlaythroughItem> Playthrough, LogicObjects.TrackerInstance CopyInstance, int GameclearItem)
+        public static void DisplayPlaythrough(List<LogicObjects.PlaythroughItem> Playthrough, LogicObjects.TrackerInstance CopyInstance, int GameclearItem, List<LogicObjects.LogicEntry> MainLogic)
         {
             List<string> PlaythroughString = new List<string>();
             int lastSphere = -1;
@@ -128,7 +128,9 @@ namespace MMR_Tracker.Class_Files
                 if (i.Check.ID == GameclearItem) { PlaythroughString.Add(FinalTask); }
                 else
                 {
-                    PlaythroughString.Add("Check \"" + i.Check.LocationName + "\" to obtain \"" + CopyInstance.Logic[i.Check.RandomizedItem].ItemName + "\"");
+                    var ObtainLine = "Check \"" + i.Check.LocationName + "\" to obtain \"" + CopyInstance.Logic[i.Check.RandomizedItem].ItemName + "\"";
+                    if (MainLogic.Count() > i.Check.ID && MainLogic[i.Check.ID].Checked) { ObtainLine += " ✅"; }
+                    PlaythroughString.Add(ObtainLine);
                 }
                 string items = "    Using Items: ";
                 foreach (var j in i.ItemsUsed) { items = items + CopyInstance.Logic[j].ItemName + ", "; }

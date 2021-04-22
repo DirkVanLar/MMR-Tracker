@@ -190,7 +190,7 @@ namespace MMR_Tracker.Class_Files
             }
             void AddPersonalPresets(string[] TextFile)
             {
-                if (Debugging.ISDebugging || Environment.MachineName == "TIMOTHY-PC")
+                if (Debugging.ISDebugging || Environment.MachineName == "DESKTOP-HBDL7AN")
                 {
                     if (!TextFile.Contains("Name: Thedrummonger Glitched Logic"))
                     {
