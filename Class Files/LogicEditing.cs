@@ -125,23 +125,23 @@ namespace MMR_Tracker_V2
             foreach (var i in Instance.Logic) { if (Instance.Logic.Where(x=> x.ItemSubType == i.ItemSubType).Count() < 2) { i.Options = (i.StartingItem()) ? 6 : 2; } }
         }
 
-        public static bool RequirementsMet(int[] list, List<LogicObjects.LogicEntry> logic, List<int> usedItems = null)
+        public static bool RequirementsMet(int[] list, LogicObjects.TrackerInstance logic, List<int> usedItems = null)
         {
             usedItems = usedItems ?? new List<int>();
             if (list == null) { return true; }
             foreach(var i in list)
             {
-                if (!logic[i].ItemUseable(usedItems)) { return false; }
+                if (!logic.Logic[i].ItemUseable(logic, usedItems)) { return false; }
             }
             return true;
         }
 
-        public static bool CondtionalsMet(int[][] list, List<LogicObjects.LogicEntry> logic, List<int> usedItems = null)
+        public static bool CondtionalsMet(int[][] list, LogicObjects.TrackerInstance logic, List<int> usedItems = null)
         {
             usedItems = usedItems ?? new List<int>();
             if (list == null) { return true; }
             //Remove any lines from the conditional that contain disabled tricks
-            var ValidListEntries = list.Where(x => !x.Where(y => logic[y].IsTrick && !logic[y].TrickEnabled).Any());
+            var ValidListEntries = list.Where(x => !x.Where(y => logic.Logic[y].IsTrick && !logic.Logic[y].TrickEnabled).Any());
             if (!ValidListEntries.Any()) { return true; }
             foreach (var i in ValidListEntries)
             {

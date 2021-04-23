@@ -421,7 +421,7 @@ namespace MMR_Tracker_V2
 
                 List<int> UsedItems = new List<int>();
 
-                var aquired = BigBombBag.ItemUseable();
+                var aquired = BigBombBag.ItemUseable(LogicObjects.MainTrackerInstance);
 
                 Debugging.Log(aquired.ToString());
                 Debugging.Log("");

@@ -46,6 +46,7 @@ namespace MMR_Tracker.Class_Files
                 i.Available = false;
                 i.Checked = false;
                 i.Aquired = false;
+                if (!i.IsFake && i.Unrandomized() && i.SpoilerRandom < 0) { i.SpoilerRandom = i.ID; }
                 if (i.IsFake) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; i.LocationName = i.DictionaryName; i.ItemName = i.DictionaryName; }
                 if (i.Unrandomized() && i.ID == i.SpoilerRandom) { i.IsFake = true; }//If the item is unrandomized treat it as a fake item
                 if (i.SpoilerRandom > -1) { i.RandomizedItem = i.SpoilerRandom; }//Make the items randomized item its spoiler item, just for consitancy sake
@@ -193,7 +194,7 @@ namespace MMR_Tracker.Class_Files
         }
 
 
-        public static void CalculatePlaythrough(LogicObjects.TrackerInstance Instance, List<LogicObjects.PlaythroughItem> Playthrough, int sphere, List<int> ImportantItems)
+        public static void CalculatePlaythrough(LogicObjects.TrackerInstance Instance, List<LogicObjects.PlaythroughItem> Playthrough, int sphere, List<int> ImportantItems, bool First = true)
         {
             var logic = Instance.Logic;
             bool RealItemObtained = false;
@@ -226,7 +227,7 @@ namespace MMR_Tracker.Class_Files
 
             if (UnlockAllFake(Instance, ImportantItems, NewSphere, Playthrough)) { recalculate = true; }
 
-            if (recalculate) { CalculatePlaythrough(Instance, Playthrough, NewSphere, ImportantItems); }
+            if (recalculate) { CalculatePlaythrough(Instance, Playthrough, NewSphere, ImportantItems, false); }
         }
 
         public static bool UnlockAllFake(LogicObjects.TrackerInstance Instance, List<int> ImportantItems, int sphere, List<LogicObjects.PlaythroughItem> Playthrough)

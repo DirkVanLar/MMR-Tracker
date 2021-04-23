@@ -533,7 +533,7 @@ namespace MMR_Tracker.Forms
             if (Images.ContainsKey(PictureName)) { CurentImage = Images[PictureName]; }
             else { CurentImage = Images["Error"]; }
 
-            if (Entry != null && ((!FakeItem && !Entry.ItemUseable()) || (FakeItem && !Entry.Available)) && !DebugShowAll) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
+            if (Entry != null && ((!FakeItem && !Entry.ItemUseable(LogicObjects.MainTrackerInstance)) || (FakeItem && !Entry.Available)) && !DebugShowAll) { CurentImage = new Bitmap(GreyImage(CurentImage)); }
 
             string PBName = ("PB" + Image);
             var PBL = Controls.Find(PBName, true);
@@ -594,10 +594,10 @@ namespace MMR_Tracker.Forms
             foreach (KeyValuePair<string, string> i in Logicnames)
             {
                 LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == i.Key);
-                if (Entry != null && Entry.ItemUseable()) { CountNumber = i.Value; }
+                if (Entry != null && Entry.ItemUseable(LogicObjects.MainTrackerInstance)) { CountNumber = i.Value; }
                 if (Entry != null) { AllEntries.Add(Entry); }
                 if (Entry != null && Entry.GetItemsNewLocation(LogicObjects.MainTrackerInstance.Logic) != null & !Entry.Aquired) { Itemmarked = true; }
-                if (Entry != null && Entry.ItemUseable() && ProgressiveImages != null && count < ProgressiveImages.Count())
+                if (Entry != null && Entry.ItemUseable(LogicObjects.MainTrackerInstance) && ProgressiveImages != null && count < ProgressiveImages.Count())
                 {
                     if (Images.ContainsKey(ProgressiveImages[count]))
                     {
@@ -654,7 +654,7 @@ namespace MMR_Tracker.Forms
 
             var Instance = LogicObjects.MainTrackerInstance;
             var log = Instance.Logic;
-            int Obtained = log.Where(x => ItemNames.Contains(x.ItemName) && x.ItemUseable()).Count();
+            int Obtained = log.Where(x => ItemNames.Contains(x.ItemName) && x.ItemUseable(Instance)).Count();
             int Seen = log.Where(x => x.HasRandomItem(true) && ItemNames.Contains(x.RandomizedEntry(Instance).ItemName) && !x.Checked).Count();
             int TotalNumber = Seen + Obtained;
             string Display = "";

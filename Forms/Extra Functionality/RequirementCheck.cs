@@ -48,7 +48,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
                     }
 
 
-                    if (i.ItemUseable()) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
+                    if (i.ItemUseable(Instance)) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
                     var Printname = i.DictionaryName;
                     if (i.ItemName != null && !string.IsNullOrWhiteSpace(i.ItemName)) { Printname = i.ItemName; }
                     e.Graphics.DrawString(Printname, F, brush, test, e.Bounds.Y, StringFormat.GenericDefault);
@@ -80,7 +80,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             {
                 LogicObjects.LogicEntry entry = listBox1.Items[e.Index] as LogicObjects.LogicEntry;
 
-                if (entry.ItemUseable()) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
+                if (entry.ItemUseable(Instance)) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
                 var Printname = entry.DictionaryName;
                 if (entry.ItemName != null && !string.IsNullOrWhiteSpace(entry.ItemName)) { Printname = entry.ItemName; }
 

@@ -135,14 +135,14 @@ namespace MMR_Tracker.Class_Files
             var set = ProgressiveItemSets.Find(x => x.Contains(entry));
             return set;
         }
-        public static bool ItemUseable(this LogicObjects.LogicEntry entry, List<int> usedItems = null)
+        public static bool ItemUseable(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
         {
             if (usedItems == null) { usedItems = new List<int>(); }
-            var Set = entry.ProgressiveItemSet(LogicObjects.MainTrackerInstance);
+            var Set = entry.ProgressiveItemSet(Instance);
             if (Set == null) { return NonProgressiveItemUseable(); }
 
             var AquiredSet = Set.Where(x => x.LogicItemAquired()).ToList();
-            var ItemsNeeded = entry.ProgressiveItemsNeeded(LogicObjects.MainTrackerInstance);
+            var ItemsNeeded = entry.ProgressiveItemsNeeded(Instance);
             if (AquiredSet.Count() >= ItemsNeeded)
             {
                 for (var i = 0; i < ItemsNeeded; i++) { usedItems.Add(AquiredSet[i].ID); }
@@ -175,12 +175,12 @@ namespace MMR_Tracker.Class_Files
                 int ConditionalsAquired = 0;
                 if (int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out int ConditionalsNeeded))
                 {
-                    if (!Required.Any() || LogicEditing.RequirementsMet(Required, logic, CondItemsUsed))
+                    if (!Required.Any() || LogicEditing.RequirementsMet(Required, Instance, CondItemsUsed))
                     {
                         foreach (var i in entry.Conditionals)
                         {
                             List<int> ReqItemsUsed = new List<int>();
-                            if (LogicEditing.RequirementsMet(i, logic, ReqItemsUsed))
+                            if (LogicEditing.RequirementsMet(i, Instance, ReqItemsUsed))
                             {
                                 foreach (var q in ReqItemsUsed) { CondItemsUsed.Add(q); }
                                 ConditionalsAquired++;
@@ -219,15 +219,15 @@ namespace MMR_Tracker.Class_Files
                 if (RandClearLogic == null) { return false; }
                 else
                 {
-                    return LogicEditing.RequirementsMet(RandClearLogic.Required, Instance.Logic, usedItems) &&
-                            LogicEditing.CondtionalsMet(RandClearLogic.Conditionals, Instance.Logic, usedItems);
+                    return LogicEditing.RequirementsMet(RandClearLogic.Required, Instance, usedItems) &&
+                            LogicEditing.CondtionalsMet(RandClearLogic.Conditionals, Instance, usedItems);
                 }
             }
             //Check availability the standard way
             else
             {
-                return LogicEditing.RequirementsMet(entry.Required, Instance.Logic, usedItems) &&
-                            LogicEditing.CondtionalsMet(entry.Conditionals, Instance.Logic, usedItems);
+                return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
+                            LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
             }
         }
         public static bool FakeItemStatusChange(this LogicObjects.LogicEntry entry)
