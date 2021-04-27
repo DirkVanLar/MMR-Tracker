@@ -52,6 +52,15 @@ A larger Conditionals window for viewing complex conditionals.
 
 Copy/Pasting entries.
 
+Tools to more easily add conditionals in bulk.
+
 The ability to reorder fake items while auto updating values in other entries.
 
+The Ability to clean logic entries by removing duplicate and unnecessary conditionals
+
 The ability to rename fake items.
+
+The ability to easily add "Any A of XYZ" entries (Example: any four of the 20 Mask)
+
+The ability to write a logic entry as a logical expression and convert it to a form MMR will recognize
+Example: ( (Zora Mask | (Deku Mask & Magic Meter)) & ((Gilded Sword | Razor Sword) | Great Fairy Sword) )
