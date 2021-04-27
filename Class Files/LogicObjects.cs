@@ -118,7 +118,7 @@ namespace MMR_Tracker_V2
 
         public class GameplaySettings
         {
-            public bool UseCustomItemList { get; set; } = false;
+            public bool UseCustomItemList { get; set; } = true;
             public string[] CategoriesRandomized { get; set; } = null;
             public bool AddDungeonItems { get; set; } = false;
             public bool AddShopItems { get; set; } = false;
@@ -135,6 +135,7 @@ namespace MMR_Tracker_V2
             public bool ExcludeSongOfSoaring { get; set; } = false;
             public bool RandomizeDungeonEntrances { get; set; } = false;
             public bool NoStartingItems { get; set; } = false;
+            public string StartingItemMode { get; set; } = "";
             public bool AddSongs { get; set; } = false;
             public bool ProgressiveUpgrades { get; set; } = false;
             public bool DecoupleEntrances { get; set; } = false;

@@ -549,6 +549,7 @@ namespace MMR_Tracker_V2
             }
 
             //Apply Items Settings
+            //The new 1.14 setting always uses custom item list, the UseCustomItemList option is gone so it will always be true
             if (!Settings.UseCustomItemList)
             {
                 //The CategoriesRandomized array only exits in 1.14. So if it was found in settings use the 1.14 Category List
@@ -594,7 +595,7 @@ namespace MMR_Tracker_V2
                     SetRange("Inverted Stone Tower Temple access", "Inverted Stone Tower Temple access", Settings.RandomizeDungeonEntrances);
                     #endregion OldRandoCategories
                 }
-                else
+                else //Original 1.14 categories. Never really used expcept in like 2 betas
                 {
                     #region Temp114Categories
                     //Categories are now group by item so handle setting by item name.
@@ -640,7 +641,7 @@ namespace MMR_Tracker_V2
             }
 
             //Junk Starting Items
-            if (Settings.NoStartingItems)
+            if (Settings.NoStartingItems || Settings.StartingItemMode == "None")
             {
                 List<string> StartingItems = new List<string>
                 {
@@ -708,7 +709,6 @@ namespace MMR_Tracker_V2
             }
         }
 
-
         private void CreateJunkItemString()
         {
             var ItemLogic = ItemStringLogic.Where(x => !x.IsEntrance()).ToList();
@@ -734,7 +734,6 @@ namespace MMR_Tracker_V2
 
             int[] n = new int[ItemGroupCount];
             string[] ns = new string[ItemGroupCount];
-
 
             foreach (var item in ItemLogic.Where(x => x.RandomizedState() != 1 && x.RandomizedState() != 2))
             {
