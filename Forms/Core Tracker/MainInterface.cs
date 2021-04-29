@@ -1389,7 +1389,7 @@ namespace MMR_Tracker_V2
             undoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             redoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             saveToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            seedCheckerToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0) && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld;
+            seedCheckerToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0) && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld && Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic);
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             changeLogicToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             popoutPathfinderToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.EntranceRando);
@@ -1417,7 +1417,7 @@ namespace MMR_Tracker_V2
             bool ShowMMOnly = LogicObjects.MainTrackerInstance.IsMM() || Debugging.ISDebugging;
 
             //MM specific Controls
-            importSpoilerLogToolStripMenuItem.Visible = SpoilerLogConverter.SpoilerLogConvertable.Contains(LogicObjects.MainTrackerInstance.GameCode.ToUpper());
+            importSpoilerLogToolStripMenuItem.Visible = SpoilerLogConverter.SpoilerLogConvertable.Contains(LogicObjects.MainTrackerInstance.GameCode.ToUpper()) && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             useSongOfTimeInPathfinderToolStripMenuItem.Visible = ShowMMOnly && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = ShowMMOnly && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             FilterMapToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);

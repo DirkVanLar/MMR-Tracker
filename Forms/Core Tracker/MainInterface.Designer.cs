@@ -62,7 +62,6 @@ namespace MMR_Tracker_V2
             this.logicOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editRadnomizationOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableProgressiveItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importSpoilerLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stricterLogicHandelingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entranceRandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,6 +104,7 @@ namespace MMR_Tracker_V2
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.importSpoilerLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -416,11 +416,10 @@ namespace MMR_Tracker_V2
             this.logicOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editRadnomizationOptionsToolStripMenuItem,
             this.enableProgressiveItemsToolStripMenuItem,
-            this.importSpoilerLogToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem,
             this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             this.logicOptionsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.PresetDropDownOpening);
             // 
@@ -437,13 +436,6 @@ namespace MMR_Tracker_V2
             this.enableProgressiveItemsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.enableProgressiveItemsToolStripMenuItem.Text = "Enable Progressive Items";
             this.enableProgressiveItemsToolStripMenuItem.Click += new System.EventHandler(this.enableProgressiveItemsToolStripMenuItem_Click);
-            // 
-            // importSpoilerLogToolStripMenuItem
-            // 
-            this.importSpoilerLogToolStripMenuItem.Name = "importSpoilerLogToolStripMenuItem";
-            this.importSpoilerLogToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.importSpoilerLogToolStripMenuItem.Text = "Import Spoiler Log";
-            this.importSpoilerLogToolStripMenuItem.Click += new System.EventHandler(this.ImportSpoilerLogToolStripMenuItem_Click);
             // 
             // stricterLogicHandelingToolStripMenuItem
             // 
@@ -467,7 +459,7 @@ namespace MMR_Tracker_V2
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -506,7 +498,7 @@ namespace MMR_Tracker_V2
             this.changeMiddleClickToStarToolStripMenuItem,
             this.changeFontToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // showEntryNameToolTipToolStripMenuItem
@@ -540,13 +532,14 @@ namespace MMR_Tracker_V2
             // onlinePlayToolStripMenuItem
             // 
             this.onlinePlayToolStripMenuItem.Name = "onlinePlayToolStripMenuItem";
-            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.onlinePlayToolStripMenuItem.Text = "Online Play";
             this.onlinePlayToolStripMenuItem.Click += new System.EventHandler(this.onlinePlayToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importSpoilerLogToolStripMenuItem,
             this.seedCheckerToolStripMenuItem,
             this.whatUnlockedThisToolStripMenuItem,
             this.logicEditorToolStripMenuItem,
@@ -555,55 +548,55 @@ namespace MMR_Tracker_V2
             this.itemTrackerToolStripMenuItem,
             this.spoilerLogConverterToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // seedCheckerToolStripMenuItem
             // 
             this.seedCheckerToolStripMenuItem.Name = "seedCheckerToolStripMenuItem";
-            this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.seedCheckerToolStripMenuItem.Text = "Spoiler Log Tools";
             this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.SeedCheckerToolStripMenuItem_Click);
             // 
             // whatUnlockedThisToolStripMenuItem
             // 
             this.whatUnlockedThisToolStripMenuItem.Name = "whatUnlockedThisToolStripMenuItem";
-            this.whatUnlockedThisToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.whatUnlockedThisToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.whatUnlockedThisToolStripMenuItem.Text = "What Unlocked This?";
             this.whatUnlockedThisToolStripMenuItem.Click += new System.EventHandler(this.WhatUnlockedThisToolStripMenuItem_Click);
             // 
             // logicEditorToolStripMenuItem
             // 
             this.logicEditorToolStripMenuItem.Name = "logicEditorToolStripMenuItem";
-            this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.logicEditorToolStripMenuItem.Text = "Logic Editor";
             this.logicEditorToolStripMenuItem.Click += new System.EventHandler(this.LogicEditorToolStripMenuItem_Click);
             // 
             // popoutPathfinderToolStripMenuItem
             // 
             this.popoutPathfinderToolStripMenuItem.Name = "popoutPathfinderToolStripMenuItem";
-            this.popoutPathfinderToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.popoutPathfinderToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.popoutPathfinderToolStripMenuItem.Text = "Popout Pathfinder";
             this.popoutPathfinderToolStripMenuItem.Click += new System.EventHandler(this.PopoutPathfinderToolStripMenuItem_Click);
             // 
             // FilterMapToolStripMenuItem
             // 
             this.FilterMapToolStripMenuItem.Name = "FilterMapToolStripMenuItem";
-            this.FilterMapToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.FilterMapToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.FilterMapToolStripMenuItem.Text = "Filter Map";
             this.FilterMapToolStripMenuItem.Click += new System.EventHandler(this.FilterMapToolStripMenuItem_Click);
             // 
             // itemTrackerToolStripMenuItem
             // 
             this.itemTrackerToolStripMenuItem.Name = "itemTrackerToolStripMenuItem";
-            this.itemTrackerToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.itemTrackerToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.itemTrackerToolStripMenuItem.Text = "Item Tracker";
             this.itemTrackerToolStripMenuItem.Click += new System.EventHandler(this.ItemTrackerToolStripMenuItem_Click);
             // 
             // spoilerLogConverterToolStripMenuItem
             // 
             this.spoilerLogConverterToolStripMenuItem.Name = "spoilerLogConverterToolStripMenuItem";
-            this.spoilerLogConverterToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.spoilerLogConverterToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.spoilerLogConverterToolStripMenuItem.Text = "Other Game Support";
             this.spoilerLogConverterToolStripMenuItem.Click += new System.EventHandler(this.spoilerLogConverterToolStripMenuItem_Click);
             // 
@@ -764,6 +757,13 @@ namespace MMR_Tracker_V2
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
+            // importSpoilerLogToolStripMenuItem
+            // 
+            this.importSpoilerLogToolStripMenuItem.Name = "importSpoilerLogToolStripMenuItem";
+            this.importSpoilerLogToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.importSpoilerLogToolStripMenuItem.Text = "Import Spoiler Log";
+            this.importSpoilerLogToolStripMenuItem.Click += new System.EventHandler(this.ImportSpoilerLogToolStripMenuItem_Click);
+            // 
             // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -837,7 +837,6 @@ namespace MMR_Tracker_V2
         private System.Windows.Forms.ToolStripMenuItem toggleEntranceRandoFeaturesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logicOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editRadnomizationOptionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importSpoilerLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stricterLogicHandelingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem miscOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showEntryNameToolTipToolStripMenuItem;
@@ -884,6 +883,7 @@ namespace MMR_Tracker_V2
         public System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem presetsToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem changeLogicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importSpoilerLogToolStripMenuItem;
     }
 }
 
