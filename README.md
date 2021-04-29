@@ -1,8 +1,3 @@
-# This project is no longer being worked on
-
-## The last version of MMR compatible with this tracker is version 1.13. The 600+ freestanding item added in 1.14 will not work at. The limited support for WWR, SSR and OOTR were already outdated and will most definitely not work, aside from maybe WWR. 
-## This project may be revisited in the future when I find the time and motivation to redo it from the ground up. Much of this was a learning project and a large amount of the code from early on is poorly written and not feasibly maintainable for one person. If you would like to continue this project in the meantime feel free.
-
 # MMR-Tracker
 An Item, Location and Entrance Tracker for the Majoras Mask Randomizer
 
@@ -57,6 +52,15 @@ A larger Conditionals window for viewing complex conditionals.
 
 Copy/Pasting entries.
 
+Tools to more easily add conditionals in bulk.
+
 The ability to reorder fake items while auto updating values in other entries.
 
+The Ability to clean logic entries by removing duplicate and unnecessary conditionals
+
 The ability to rename fake items.
+
+The ability to easily add "Any A of XYZ" entries (Example: any four of the 20 Mask)
+
+The ability to write a logic entry as a logical expression and convert it to a form MMR will recognize
+Example: ( (Zora Mask | (Deku Mask & Magic Meter)) & ((Gilded Sword | Razor Sword) | Great Fairy Sword) )
