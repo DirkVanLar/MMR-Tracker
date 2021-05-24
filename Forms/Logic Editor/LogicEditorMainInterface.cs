@@ -658,11 +658,19 @@ namespace MMR_Tracker.Forms
             return true;
         }
 
-        public bool SaveInstance(bool UseTrickData = true)
+        public bool SaveInstance(bool UseTrickData = true, bool UseJson = false)
         {
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "Logic File (*.txt)|*.txt", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
-            var logicText = LogicEditing.WriteLogicToArray(EditorInstance, UseTrickData).ToList();
+            List<string> logicText = new List<string>();
+            if (UseJson)
+            {
+
+            }
+            else
+            {
+                logicText = LogicEditing.WriteLogicToArray(EditorInstance, UseTrickData).ToList();
+            }
             StreamWriter LogicFile = new StreamWriter(File.Open(saveDialog.FileName, FileMode.Create));
             for (int i = 0; i < logicText.Count; i++)
             {
@@ -672,6 +680,11 @@ namespace MMR_Tracker.Forms
             LogicFile.Close();
             EditorInstance.UnsavedChanges = false;
             return true;
+        }
+
+        private void saveLogicInJSONFormatBetaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveInstance(UseJson: true);
         }
 
         public void MoveItem(int direction)
@@ -1243,5 +1256,6 @@ namespace MMR_Tracker.Forms
             }
             MessageBox.Show($"No fake items found", "No entries found", MessageBoxButtons.OK);
         }
+
     }
 }
