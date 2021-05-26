@@ -139,7 +139,9 @@ namespace MMR_Tracker_V2
             //GetAllLocations();
             //SStesting();
 
-            Fix113EntrandoLogic();
+            //Fix113EntrandoLogic();
+
+            //Get115IDs();
 
             void OOTRTesting()
             {
@@ -489,6 +491,19 @@ namespace MMR_Tracker_V2
             foreach (var i in LogicObjects.MainTrackerInstance.Logic.Select(x => x.LocationArea).Distinct().OrderBy(x => x))
             {
                 Console.WriteLine(i);
+            }
+        }
+
+        public static void Get115IDs()
+        {
+            var file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
+            if (file == "") { return; }
+            bool SettingsFile = file.EndsWith(".MMRTSET");
+            var Lines = (SettingsFile) ? File.ReadAllLines(file).Skip(2).ToArray() : File.ReadAllLines(file).ToArray();
+            LogicObjects.LogicFile NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", Lines));
+            foreach(var i in NewformatLogicFile.Logic)
+            {
+                Console.WriteLine(i.Id);
             }
         }
 

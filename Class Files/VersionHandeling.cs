@@ -25,19 +25,34 @@ namespace MMR_Tracker_V2
         //Entrance Rando Dev Build 1.11.0.2 = Logic Version 16 (Used to test entrance rando features)
 
 
-        public static string GetDictionaryPath(LogicObjects.TrackerInstance Instance)
+        public static string GetDictionaryPath(LogicObjects.TrackerInstance Instance, bool JSON = false)
         {
             var Currentversion = Instance.LogicVersion;
             //Get the dictionary
             Dictionary<int, string> dictionaries = new Dictionary<int, string>();//< Int (Version),String (Path to the that dictionary)>
             var dic = Instance.GameCode + "DICTIONARY";
-            foreach (var i in Directory.GetFiles(@"Recources\Dictionaries").Where(x => x.Contains(dic)).ToArray())
+
+            if (JSON)
             {
-                var entry = i.Replace("Recources\\Dictionaries\\" + dic + "V", "").Replace(".csv", "");
-                int version = 0;
-                try { version = Int32.Parse(entry); }
-                catch { continue; }
-                dictionaries.Add(version, i);
+                foreach (var i in Directory.GetFiles(@"Recources\Dictionaries").Where(x => x.Contains(dic)).ToArray())
+                {
+                    var entry = i.Replace("Recources\\Dictionaries\\" + dic + "V", "").Replace(".csv", "");
+                    int version = 0;
+                    try { version = Int32.Parse(entry); }
+                    catch { continue; }
+                    dictionaries.Add(version, i);
+                }
+            }
+            else
+            {
+                foreach (var i in Directory.GetFiles(@"Recources\Dictionaries\Legacy and non MM").Where(x => x.Contains(dic)).ToArray())
+                {
+                    var entry = i.Replace("Recources\\Dictionaries\\Legacy and non MM\\" + dic + "V", "").Replace(".csv", "");
+                    int version = 0;
+                    try { version = Int32.Parse(entry); }
+                    catch { continue; }
+                    dictionaries.Add(version, i);
+                }
             }
 
             string currentdictionary;

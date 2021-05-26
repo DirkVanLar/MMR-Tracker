@@ -28,6 +28,7 @@ namespace MMR_Tracker_V2
             public string[] RawLogicFile { get; set; }
             public bool UnsavedChanges { get; set; } = false;
             public bool EntranceRando { get; set; } = false;
+            public bool JsonLogic { get; set; } = false;
             public List<List<LogicEntry>> UndoList { get; set; } = new List<List<LogicEntry>>();
             public List<List<LogicEntry>> RedoList { get; set; } = new List<List<LogicEntry>>();
         }

@@ -304,29 +304,32 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Recources\Dictionaries\MMRDICTIONARYV13.csv">
+    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV13.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\MMRDICTIONARYV14.csv">
+    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV14.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\MMRDICTIONARYV15.csv">
+    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV15.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\MMRDICTIONARYV18.csv">
+    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV18.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\MMRDICTIONARYV8.csv">
+    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV8.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\MMRDICTIONARYV99.csv" />
-    <None Include="Recources\Dictionaries\OOTRDICTIONARYV5.csv">
+    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV99.csv" />
+    <None Include="Recources\Dictionaries\Legacy and non MM\OOTRDICTIONARYV5.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\SSRDICTIONARYV1.csv">
+    <None Include="Recources\Dictionaries\Legacy and non MM\SSRDICTIONARYV1.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\WWRDICTIONARYV170.csv">
+    <None Include="Recources\Dictionaries\Legacy and non MM\WWRDICTIONARYV170.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Recources\Dictionaries\MMRDICTIONARYV3.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

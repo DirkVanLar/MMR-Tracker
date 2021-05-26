@@ -248,7 +248,7 @@ namespace MMR_Tracker.Forms
             catch { }
 
             WriteCurentItem((int)nudIndex.Value);
-            Debugging.Log("Finish Write ITems");
+            Debugging.Log("Finish Write Items");
         }
 
         private void BtnRemoveReq_Click(object sender, EventArgs e)
@@ -608,6 +608,7 @@ namespace MMR_Tracker.Forms
         public void WriteTimeDependecies(LogicObjects.LogicEntry entry)
         {
             entry.AvailableOn = 0;
+            entry.NeededBy = 0;
             if (chkOnDay1.Checked) { entry.AvailableOn += 1; };
             if (chkOnNight1.Checked) { entry.AvailableOn += 2; };
             if (chkOnDay2.Checked) { entry.AvailableOn += 4; };
@@ -665,7 +666,7 @@ namespace MMR_Tracker.Forms
             List<string> logicText = new List<string>();
             if (UseJson)
             {
-
+                logicText = LogicEditing.WriteLogicToJson(EditorInstance).ToList();
             }
             else
             {

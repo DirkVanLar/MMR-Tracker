@@ -21,10 +21,12 @@ namespace MMR_Tracker_V2
 
             if (NewformatLogicFile == null)
             {
+                instance.JsonLogic = false;
                 return PopulatePre115TrackerInstance(instance);
             }
             else
             {
+                instance.JsonLogic = true;
                 return PopulatePost115TrackerInstance(instance);
             }
 
@@ -41,7 +43,7 @@ namespace MMR_Tracker_V2
 
             if (instance.LogicDictionary == null || instance.LogicDictionary.Count < 1)
             {
-                string DictionaryPath = VersionHandeling.GetDictionaryPath(instance);
+                string DictionaryPath = VersionHandeling.GetDictionaryPath(instance, true);
                 if (!string.IsNullOrWhiteSpace(DictionaryPath))
                 {
                     try
@@ -455,9 +457,12 @@ namespace MMR_Tracker_V2
 
         public static string[] WriteLogicToJson(LogicObjects.TrackerInstance Instance)
         {
-            LogicObjects.LogicFile LogicFile = new LogicObjects.LogicFile();
-            LogicFile.Version = Instance.LogicVersion;
-            foreach(var i in Instance.Logic)
+            LogicObjects.LogicFile LogicFile = new LogicObjects.LogicFile
+            {
+                Logic = new List<LogicObjects.JsonFormatLogicItem>(),
+                Version = Instance.LogicVersion
+            };
+            foreach (var i in Instance.Logic)
             {
                 LogicObjects.JsonFormatLogicItem Newentry = new LogicObjects.JsonFormatLogicItem();
                 Newentry.Id = i.DictionaryName;
