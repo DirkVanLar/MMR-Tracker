@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Windows.Controls;
 
 namespace MMR_Tracker_V2
@@ -25,6 +28,7 @@ namespace MMR_Tracker_V2
             public string[] RawLogicFile { get; set; }
             public bool UnsavedChanges { get; set; } = false;
             public bool EntranceRando { get; set; } = false;
+            public bool JsonLogic { get; set; } = false;
             public List<List<LogicEntry>> UndoList { get; set; } = new List<List<LogicEntry>>();
             public List<List<LogicEntry>> RedoList { get; set; } = new List<List<LogicEntry>>();
         }
@@ -227,6 +231,81 @@ namespace MMR_Tracker_V2
             public int RequestingUpdate { get; set; } = 0; //0= Sending Only, 1= Requesting Only, 2 = Both
             public List<LogicObjects.NetData> LogicData { get; set; }
 
+        }
+        public class JsonFormatLogicItem
+        {
+            public string Id { get; set; }
+            public List<string> RequiredItems { get; set; } = new List<string>();
+            public List<List<string>> ConditionalItems { get; set; } = new List<List<string>>();
+            public TimeOfDay TimeNeeded { get; set; }
+            public TimeOfDay TimeAvailable { get; set; }
+            public bool IsTrick { get; set; }
+            public string TrickTooltip { get; set; } = string.Empty;
+        }
+
+        public enum TimeOfDay
+        {
+            None,
+            Day1 = 1,
+            Night1 = 2,
+            Day2 = 4,
+            Night2 = 8,
+            Day3 = 16,
+            Night3 = 32,
+        }
+        public class LogicFile
+        {
+            public int Version { get; set; }
+            public List<JsonFormatLogicItem> Logic { get; set; }
+
+            public override string ToString()
+            {
+                return JsonSerializer.Serialize(this, _jsonSerializerOptions);
+            }
+
+            public static LogicFile FromJson(string json)
+            {
+                return JsonSerializer.Deserialize<LogicFile>(json, _jsonSerializerOptions);
+            }
+
+            private readonly static JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                IgnoreReadOnlyFields = true,
+                IgnoreReadOnlyProperties = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                WriteIndented = true,
+                Converters =
+                {
+                    new JsonColorConverter(),
+                    new JsonStringEnumConverter(),
+                }
+            };
+            public class JsonColorConverter : JsonConverter<Color>
+            {
+                public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+                {
+                    // TODO: Can optimize this further by using ReadOnlySpan<char> to split without allocations.
+                    var text = reader.GetString();
+                    var tokens = text.Split(new string[] { ", " }, StringSplitOptions.None);
+                    if (tokens.Length == 3)
+                    {
+                        // Assume color values.
+                        var values = tokens.Select(x => byte.Parse(x)).ToArray();
+                        return Color.FromArgb(values[0], values[1], values[2]);
+                    }
+                    else
+                    {
+                        // Assume color name.
+                        return Color.FromName(text);
+                    }
+                }
+
+                public override void Write(Utf8JsonWriter writer, Color value, JsonSerializerOptions options)
+                {
+                    writer.WriteStringValue(string.Format("{0}, {1}, {2}", value.R, value.G, value.B));
+                }
+            }
         }
     }
 

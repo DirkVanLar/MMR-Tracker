@@ -15,6 +15,102 @@ namespace MMR_Tracker_V2
 
         public static bool PopulateTrackerInstance(LogicObjects.TrackerInstance instance)
         {
+            LogicObjects.LogicFile NewformatLogicFile = null;
+            try { NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile)); }
+            catch { }
+
+            if (NewformatLogicFile == null)
+            {
+                instance.JsonLogic = false;
+                return PopulatePre115TrackerInstance(instance);
+            }
+            else
+            {
+                instance.JsonLogic = true;
+                return PopulatePost115TrackerInstance(instance);
+            }
+
+        }
+
+        public static bool PopulatePost115TrackerInstance(LogicObjects.TrackerInstance instance)
+        {
+            LogicObjects.LogicFile NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile));
+            instance.Logic.Clear();
+            instance.DicNameToID.Clear();
+            instance.EntrancePairs.Clear();
+            instance.LogicVersion = NewformatLogicFile.Version;
+            instance.GameCode = "MMR";
+
+            if (instance.LogicDictionary == null || instance.LogicDictionary.Count < 1)
+            {
+                string DictionaryPath = VersionHandeling.GetDictionaryPath(instance, true);
+                if (!string.IsNullOrWhiteSpace(DictionaryPath))
+                {
+                    try
+                    {
+                        instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(File.ReadAllLines(DictionaryPath)));
+                    }
+                    catch { MessageBox.Show($"The Dictionary File \"{DictionaryPath}\" has been corrupted. The tracker will not function correctly."); }
+                }
+                else { MessageBox.Show($"A valid dictionary file could not be found for this logic. The tracker will not function correctly."); }
+            }
+
+            Dictionary<string, int> LogicNametoId = new Dictionary<string, int>();
+            int DicCounter = 0;
+            foreach (var i in NewformatLogicFile.Logic)
+            {
+                LogicNametoId.Add(i.Id, DicCounter);
+                DicCounter++;
+            }
+
+            LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
+            foreach (var i in NewformatLogicFile.Logic)
+            {
+                LogicEntry1.ID = NewformatLogicFile.Logic.IndexOf(i);
+                LogicEntry1.DictionaryName = i.Id;
+                LogicEntry1.Checked = false;
+                LogicEntry1.RandomizedItem = -2;
+                LogicEntry1.IsFake = true;
+                LogicEntry1.SpoilerRandom = -2;
+                LogicEntry1.Required = i.RequiredItems.Select(x => LogicNametoId[x]).ToArray();
+                LogicEntry1.Conditionals = i.ConditionalItems.Select(x => x.Select(y => LogicNametoId[y]).ToArray()).ToArray();
+                LogicEntry1.NeededBy = (int)i.TimeNeeded;
+                LogicEntry1.AvailableOn = (int)i.TimeAvailable;
+                LogicEntry1.IsTrick = i.IsTrick;
+                LogicEntry1.TrickEnabled = i.IsTrick;
+                LogicEntry1.TrickToolTip = i.TrickTooltip;
+
+                var DicEntry = instance.LogicDictionary.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
+                if (DicEntry != null)
+                {
+                    LogicEntry1.IsFake = false;
+                    LogicEntry1.ItemName = (string.IsNullOrWhiteSpace(DicEntry.ItemName)) ? null : DicEntry.ItemName;
+                    LogicEntry1.LocationName = (string.IsNullOrWhiteSpace(DicEntry.LocationName)) ? null : DicEntry.LocationName;
+                    LogicEntry1.LocationArea = (string.IsNullOrWhiteSpace(DicEntry.LocationArea)) ? "Misc" : DicEntry.LocationArea;
+                    LogicEntry1.ItemSubType = (string.IsNullOrWhiteSpace(DicEntry.ItemSubType)) ? "Item" : DicEntry.ItemSubType;
+                    LogicEntry1.SpoilerLocation = (string.IsNullOrWhiteSpace(DicEntry.SpoilerLocation))
+                        ? new List<string> { LogicEntry1.LocationName } : DicEntry.SpoilerLocation.Split('|').ToList();
+                    LogicEntry1.SpoilerItem = (string.IsNullOrWhiteSpace(DicEntry.SpoilerItem))
+                        ? new List<string> { LogicEntry1.ItemName } : DicEntry.SpoilerItem.Split('|').ToList();
+                }
+
+                //Push Data to the instance
+                instance.Logic.Add(LogicEntry1);
+                LogicEntry1 = new LogicObjects.LogicEntry();
+            }
+
+            instance.EntranceRando = instance.IsEntranceRando();
+            instance.EntranceAreaDic = CreateAreaClearDictionary(instance);
+            CreateDicNameToID(instance);
+            if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
+            MarkUniqeItemsUnrandomizedManual(instance);
+
+            return true;
+
+        }
+
+        public static bool PopulatePre115TrackerInstance(LogicObjects.TrackerInstance instance)
+        {
             /* Sets the Values of the follwing using the data in instance.RawLogicFile
              * Version
              * Game
@@ -32,7 +128,6 @@ namespace MMR_Tracker_V2
             instance.GameCode = versionData.Gamecode;
             int SubCounter = 0;
             int idCounter = 0;
-            LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
 
             if (instance.LogicDictionary == null || instance.LogicDictionary.Count < 1)
             {
@@ -48,6 +143,7 @@ namespace MMR_Tracker_V2
                 else { MessageBox.Show($"A valid dictionary file could not be found for this logic. The tracker will not function correctly."); }
             }
 
+            LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
             var NextLine = 1;
             foreach (string line in instance.RawLogicFile)
             {
@@ -74,9 +170,9 @@ namespace MMR_Tracker_V2
                         LogicEntry1.LocationName = (string.IsNullOrWhiteSpace(DicEntry.LocationName)) ? null : DicEntry.LocationName;
                         LogicEntry1.LocationArea = (string.IsNullOrWhiteSpace(DicEntry.LocationArea)) ? "Misc" : DicEntry.LocationArea;
                         LogicEntry1.ItemSubType = (string.IsNullOrWhiteSpace(DicEntry.ItemSubType)) ? "Item" : DicEntry.ItemSubType;
-                        LogicEntry1.SpoilerLocation = (string.IsNullOrWhiteSpace(DicEntry.SpoilerLocation)) 
+                        LogicEntry1.SpoilerLocation = (string.IsNullOrWhiteSpace(DicEntry.SpoilerLocation))
                             ? new List<string> { LogicEntry1.LocationName } : DicEntry.SpoilerLocation.Split('|').ToList();
-                        LogicEntry1.SpoilerItem = (string.IsNullOrWhiteSpace(DicEntry.SpoilerItem)) 
+                        LogicEntry1.SpoilerItem = (string.IsNullOrWhiteSpace(DicEntry.SpoilerItem))
                             ? new List<string> { LogicEntry1.ItemName } : DicEntry.SpoilerItem.Split('|').ToList();
                         break;
                     case 1:
@@ -122,14 +218,14 @@ namespace MMR_Tracker_V2
 
         public static void MarkUniqeItemsUnrandomizedManual(LogicObjects.TrackerInstance Instance)
         {
-            foreach (var i in Instance.Logic) { if (Instance.Logic.Where(x=> x.ItemSubType == i.ItemSubType).Count() < 2) { i.Options = (i.StartingItem()) ? 6 : 2; } }
+            foreach (var i in Instance.Logic) { if (Instance.Logic.Where(x => x.ItemSubType == i.ItemSubType).Count() < 2) { i.Options = (i.StartingItem()) ? 6 : 2; } }
         }
 
         public static bool RequirementsMet(int[] list, LogicObjects.TrackerInstance logic, List<int> usedItems = null)
         {
             usedItems = usedItems ?? new List<int>();
             if (list == null) { return true; }
-            foreach(var i in list)
+            foreach (var i in list)
             {
                 if (!logic.Logic[i].ItemUseable(logic, usedItems)) { return false; }
             }
@@ -170,13 +266,13 @@ namespace MMR_Tracker_V2
         public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
-            if (path.Contains(".txt") || path.Contains(".json")) 
+            if (path.Contains(".txt") || path.Contains(".json"))
             {
                 bool TXTOverride = false;
                 if (Instance.IsMM())
                 {
                     var txs = MessageBox.Show("If possible, the HTML spoiler log should always be imported in place of the text spoiler log.\n\n The text spoiler log will work most of the time but may be inconsistent.\n\nWould you like to select an HTML spoiler log instead?", "Text log used", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (txs == DialogResult.Yes) 
+                    if (txs == DialogResult.Yes)
                     {
                         var HTMLPath = Utility.FileSelect("Select an HTML Spoiler Log", "Spoiler Log (*html)|*html");
                         if (HTMLPath != "")
@@ -189,7 +285,7 @@ namespace MMR_Tracker_V2
                 if (!TXTOverride) { SpoilerData = Tools.ReadTextSpoilerlog(Instance, File.ReadAllLines(path)); }
             }
             else if (path.Contains(".html")) { SpoilerData = Tools.ReadHTMLSpoilerLog(path, Instance); }
-            else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return;  }
+            else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return; }
 
             foreach (LogicObjects.SpoilerData data in SpoilerData)
             {
@@ -294,12 +390,12 @@ namespace MMR_Tracker_V2
 
         public static void CreatedEntrancepairDcitionary(LogicObjects.TrackerInstance instance)
         {
-            foreach(var i in instance.Logic.Where(x => x.IsEntrance()))
+            foreach (var i in instance.Logic.Where(x => x.IsEntrance()))
             {
                 var Pair = instance.LogicDictionary.Find(x => x.EntrancePair == i.DictionaryName);
                 if (Pair == null || !instance.DicNameToID.ContainsKey(Pair.DictionaryName)) { continue; }
                 instance.EntrancePairs.Add(i.ID, instance.DicNameToID[Pair.DictionaryName]);
-            }   
+            }
         }
 
         public static void CreateDicNameToID(LogicObjects.TrackerInstance instance)
@@ -345,11 +441,11 @@ namespace MMR_Tracker_V2
                 lines.Add(cond);
                 lines.Add(line.NeededBy.ToString());
                 lines.Add(line.AvailableOn.ToString());
-                if (IncludeTrickData) 
+                if (IncludeTrickData)
                 {
                     string trickLine = "";
-                    if (line.IsTrick) 
-                    { 
+                    if (line.IsTrick)
+                    {
                         trickLine = ";";
                         if (line.TrickToolTip != "No Tooltip Available") { trickLine += line.TrickToolTip; }
                     }
@@ -357,6 +453,28 @@ namespace MMR_Tracker_V2
                 }
             }
             return lines.ToArray();
+        }
+
+        public static string[] WriteLogicToJson(LogicObjects.TrackerInstance Instance)
+        {
+            LogicObjects.LogicFile LogicFile = new LogicObjects.LogicFile
+            {
+                Logic = new List<LogicObjects.JsonFormatLogicItem>(),
+                Version = Instance.LogicVersion
+            };
+            foreach (var i in Instance.Logic)
+            {
+                LogicObjects.JsonFormatLogicItem Newentry = new LogicObjects.JsonFormatLogicItem();
+                Newentry.Id = i.DictionaryName;
+                Newentry.RequiredItems = i.Required.Select(x => Instance.Logic[x].DictionaryName).ToList();
+                Newentry.ConditionalItems = i.Conditionals.Select(x => x.Select(y => Instance.Logic[y].DictionaryName).ToList()).ToList();
+                Newentry.TimeAvailable = (LogicObjects.TimeOfDay)i.AvailableOn;
+                Newentry.TimeNeeded = (LogicObjects.TimeOfDay)i.NeededBy;
+                Newentry.IsTrick = i.IsTrick;
+                Newentry.TrickTooltip = i.TrickToolTip;
+                LogicFile.Logic.Add(Newentry);
+            }
+            return new string[] { LogicFile.ToString() };
         }
 
         public static Dictionary<int, int> CreateAreaClearDictionary(LogicObjects.TrackerInstance Instance)

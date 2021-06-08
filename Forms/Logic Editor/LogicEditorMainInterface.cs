@@ -248,7 +248,7 @@ namespace MMR_Tracker.Forms
             catch { }
 
             WriteCurentItem((int)nudIndex.Value);
-            Debugging.Log("Finish Write ITems");
+            Debugging.Log("Finish Write Items");
         }
 
         private void BtnRemoveReq_Click(object sender, EventArgs e)
@@ -608,6 +608,7 @@ namespace MMR_Tracker.Forms
         public void WriteTimeDependecies(LogicObjects.LogicEntry entry)
         {
             entry.AvailableOn = 0;
+            entry.NeededBy = 0;
             if (chkOnDay1.Checked) { entry.AvailableOn += 1; };
             if (chkOnNight1.Checked) { entry.AvailableOn += 2; };
             if (chkOnDay2.Checked) { entry.AvailableOn += 4; };
@@ -658,11 +659,19 @@ namespace MMR_Tracker.Forms
             return true;
         }
 
-        public bool SaveInstance(bool UseTrickData = true)
+        public bool SaveInstance(bool UseTrickData = true, bool UseJson = false)
         {
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "Logic File (*.txt)|*.txt", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return false; }
-            var logicText = LogicEditing.WriteLogicToArray(EditorInstance, UseTrickData).ToList();
+            List<string> logicText = new List<string>();
+            if (UseJson)
+            {
+                logicText = LogicEditing.WriteLogicToJson(EditorInstance).ToList();
+            }
+            else
+            {
+                logicText = LogicEditing.WriteLogicToArray(EditorInstance, UseTrickData).ToList();
+            }
             StreamWriter LogicFile = new StreamWriter(File.Open(saveDialog.FileName, FileMode.Create));
             for (int i = 0; i < logicText.Count; i++)
             {
@@ -672,6 +681,11 @@ namespace MMR_Tracker.Forms
             LogicFile.Close();
             EditorInstance.UnsavedChanges = false;
             return true;
+        }
+
+        private void saveLogicInJSONFormatBetaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveInstance(UseJson: true);
         }
 
         public void MoveItem(int direction)
@@ -1243,5 +1257,6 @@ namespace MMR_Tracker.Forms
             }
             MessageBox.Show($"No fake items found", "No entries found", MessageBoxButtons.OK);
         }
+
     }
 }

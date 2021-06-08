@@ -688,7 +688,7 @@ namespace MMR_Tracker.Class_Files
                 catch { }
 
             }
-            else if (Instance.LogicVersion < 8 && Instance.IsMM())
+            else if (Instance.LogicVersion < 8 && Instance.IsMM() && !Instance.JsonLogic)
             {
                 DialogResult dialogResult = MessageBox.Show("You are using a version of logic that is not supported by this tracker. Any logic version lower than version 8 (Randomizer version 1.8) may not work as intended. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }
