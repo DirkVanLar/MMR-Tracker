@@ -873,7 +873,7 @@ namespace MMR_Tracker.Class_Files
                         var newLine = line.Replace("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">", "{\"GameplaySettings\":");
                         newLine = newLine.Replace("</code><br/>", "}");
                         try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(newLine).GameplaySettings; }
-                        catch { MessageBox.Show("Not a valid HTML Spoiler Log!"); return false; }
+                        catch { MessageBox.Show("Spoiler log had incorrect data!"); return false; }
                         break;
                     }
                 }
@@ -888,7 +888,8 @@ namespace MMR_Tracker.Class_Files
                     {
                         var Newline = line.Replace("Settings:", "\"GameplaySettings\":");
                         Newline = "{" + Newline + "}";
-                        SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings;
+                        try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings; }
+                        catch { MessageBox.Show("Spoiler log had incorrect data!"); return false; }
                         break;
                     }
                 }
@@ -911,8 +912,20 @@ namespace MMR_Tracker.Class_Files
                 }
                 else
                 {
-                    if (!File.Exists(SettingFile.UserLogicFileName)) { return false; }
-                    RawLogicFile = File.ReadAllLines(SettingFile.UserLogicFileName);
+                    if (!File.Exists(SettingFile.UserLogicFileName)) { MessageBox.Show("Spoiler Log did not have Usable Logic Data!"); return false; }
+
+                    if (SettingFile.UserLogicFileName.EndsWith(".json"))
+                    {
+                        LogicObjects.GameplaySettings SettingJSONfromSpoilerLog = null;
+                        try { SettingJSONfromSpoilerLog = JsonConvert.DeserializeObject<LogicObjects.Configuration>(File.ReadAllText(SettingFile.UserLogicFileName)).GameplaySettings; }
+                        catch { MessageBox.Show("Spoiler Log did not have Usable Logic Data!"); return false; }
+                        if (SettingJSONfromSpoilerLog.Logic == "") { MessageBox.Show("Logic not found!"); return false; }
+                        RawLogicFile = SettingJSONfromSpoilerLog.Logic.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                    }
+                    else
+                    {
+                        RawLogicFile = File.ReadAllLines(SettingFile.UserLogicFileName);
+                    }
                 }
                 return true;
             }

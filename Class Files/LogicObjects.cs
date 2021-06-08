@@ -136,6 +136,7 @@ namespace MMR_Tracker_V2
             public bool RandomizeDungeonEntrances { get; set; } = false;
             public bool NoStartingItems { get; set; } = false;
             public string StartingItemMode { get; set; } = "";
+            public string Logic { get; set; } = "";
             public bool AddSongs { get; set; } = false;
             public bool ProgressiveUpgrades { get; set; } = false;
             public bool DecoupleEntrances { get; set; } = false;
