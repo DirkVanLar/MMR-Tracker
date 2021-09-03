@@ -108,11 +108,12 @@ namespace MMR_Tracker_V2
             var client = new GitHubClient(new ProductHeaderValue("MMR-Tracker"));
             var lateset = client.Repository.Release.GetLatest("Thedrummonger", "MMR-Tracker").Result;
 
-            Debugging.Log($"Latest Version: { lateset.TagName } Current Version { trackerVersion }");
-            if (VersionHandeling.CompareVersions(lateset.TagName, trackerVersion) == 0) { Debugging.Log($"Using Current Version"); }
-            if (VersionHandeling.CompareVersions(lateset.TagName, trackerVersion) < 0) { Debugging.Log($"Using Unreleased Dev Version"); TrackerVersionStatus = 1; }
+            var VersionSatus = VersionHandeling.CompareVersions(lateset.TagName, trackerVersion);
 
-            if (VersionHandeling.CompareVersions(lateset.TagName, trackerVersion) > 0)
+            Debugging.Log($"Latest Version: { lateset.TagName } Current Version { trackerVersion }");
+            if (VersionSatus == 0) { Debugging.Log($"Using Current Version"); }
+            else if (VersionSatus < 0) { Debugging.Log($"Using Unreleased Dev Version"); TrackerVersionStatus = 1; }
+            else if (VersionSatus > 0)
             {
                 if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Debugging.Log($"Using Outdated Version"); }
                 else
