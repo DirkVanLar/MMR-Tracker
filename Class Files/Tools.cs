@@ -862,7 +862,8 @@ namespace MMR_Tracker.Class_Files
                     MessageBox.Show("Save File Not Valid.");
                     return false;
                 }
-                RawLogicFile = SaveFileTemplate.RawLogicFile;
+                LogicObjects.MainTrackerInstance = SaveFileTemplate;
+                return true;
             }
             else if (HTMLLog)
             {
@@ -912,7 +913,11 @@ namespace MMR_Tracker.Class_Files
                 }
                 else
                 {
-                    if (!File.Exists(SettingFile.UserLogicFileName)) { MessageBox.Show("Spoiler Log did not have Usable Logic Data!"); return false; }
+                    if (!File.Exists(SettingFile.UserLogicFileName)) 
+                    { 
+                        MessageBox.Show("The logic file used to create this seed could not be found! Ensure it is in the same location and has the same name as when the seed whas generated!");
+                        return false; 
+                    }
 
                     if (SettingFile.UserLogicFileName.EndsWith(".json"))
                     {
@@ -934,20 +939,7 @@ namespace MMR_Tracker.Class_Files
 
             Tools.CreateTrackerInstance(LogicObjects.MainTrackerInstance, RawLogicFile.ToArray());
 
-            if (saveFile)
-            {
-                LogicObjects.MainTrackerInstance.Options = SaveFileTemplate.Options;
-                foreach (var i in LogicObjects.MainTrackerInstance.Logic)
-                {
-                    var TemplateData = SaveFileTemplate.Logic.Find(x => x.DictionaryName == i.DictionaryName);
-                    if (TemplateData != null)
-                    {
-                        i.Options = TemplateData.Options;
-                        i.TrickEnabled = TemplateData.TrickEnabled;
-                    }
-                }
-            }
-            else if (HTMLLog || TextLog)
+            if (HTMLLog || TextLog)
             {
                 LogicEditing.WriteSpoilerLogToLogic(LogicObjects.MainTrackerInstance, file);
                 if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) { MessageBox.Show("No spoiler data found!"); }
