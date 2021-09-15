@@ -48,9 +48,24 @@ namespace MMR_Tracker.Other_Games
 
         public static void ReadSpoiler()
         {
+            string SpoilerLogFile = "";
+            List<string> SpoilerLogFileLocations =  new List<string> 
+            { 
+                @"D:\Games\Emulated Games\Emulator\Wii\Dolphin-x64 Ocarina of Time Randomizer\Roms\OoT_D98CE_JKI93B07ON_Spoiler.json",
+                @"C:\CodeTest\OoT_D98CE_JKI93B07ON_Spoiler.json"
+            };
+            foreach (var i in SpoilerLogFileLocations)
+            {
+                if (File.Exists(i))
+                {
+                    SpoilerLogFile = i;
+                    break;
+                }
+            }
+
             var jsonSerializerSettings = new JsonSerializerSettings();
             jsonSerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
-            var Log = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(@"D:\Games\Emulated Games\Emulator\Wii\Dolphin-x64 Ocarina of Time Randomizer\Roms\OoT_D98CE_JKI93B07ON_Spoiler.json"), jsonSerializerSettings);
+            var Log = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(SpoilerLogFile), jsonSerializerSettings);
 
             var Entrances = Log.entrances.Keys.ToList();
 
@@ -65,7 +80,7 @@ namespace MMR_Tracker.Other_Games
                         var data = j.Split(new string[] { " -> " }, StringSplitOptions.None);
                         if (data[0].Trim() == sValue)
                         {
-                            FullExitValue = data[0] + " <- " + data[1];
+                            FullExitValue = (data[0] + " -> " + data[1] + "," + data[0] + " -> " + data[1] + "," + data[1] + " <- " + data[0] + "," + data[1] + " -> " + data[0]);
                             break;
                         }
                     }
@@ -74,7 +89,7 @@ namespace MMR_Tracker.Other_Games
                 else
                 {
                     RegionExit R = i.Value.ToObject<RegionExit>();
-                    Console.WriteLine(R.region + " <- " + R.from);
+                    Console.WriteLine(R.region + " -> " + R.from + "," + R.region + " -> " + R.from + "," + R.from + " <- " + R.region + "," + R.from + " -> " + R.region);
                 }
             }
 
