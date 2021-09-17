@@ -27,12 +27,103 @@ namespace MMR_Tracker.Other_Games
             public Dictionary<string, string> dungeons = new Dictionary<string, string>();
             public Dictionary<string, dynamic> entrances = new Dictionary<string, dynamic>();
             public Dictionary<string, dynamic> locations = new Dictionary<string, dynamic>();
+            public Dictionary<string, int> item_pool = new Dictionary<string, int>();
         }
 
         public class RegionExit
         {
             public string region = "";
             public string from = "";
+        }
+
+        //Other
+
+        public static void GenerateDictionary()
+        {
+            //DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem,EntrancePair
+            var jsonSerializerSettings = new JsonSerializerSettings();
+            jsonSerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
+            var VanillaLocations = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(@"C:\CodeTest\Vanilla_Locations.json"), jsonSerializerSettings);
+
+            foreach(var i in VanillaLocations.locations)
+            {
+                Console.WriteLine($"{i.Key},{i.Key},{i.Value},,Item,{i.Key},{i.Value},");
+            }
+
+        }
+
+        public static void GetItemAmounts()
+        {
+            Dictionary<string, int> ItemAmontAverages = new Dictionary<string, int>();
+            var jsonSerializerSettings = new JsonSerializerSettings();
+            jsonSerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
+            var VanillaLocations = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(@"C:\CodeTest\Vanilla_Locations.json"), jsonSerializerSettings);
+
+            foreach (var i in Directory.GetFiles(@"C:\CodeTest\SpoilerLogs"))
+            {
+                var Log = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(i), jsonSerializerSettings);
+                foreach(var j in Log.item_pool.Keys)
+                {
+                    if (ItemAmontAverages.ContainsKey(j))
+                    {
+                        if (ItemAmontAverages[j] < Log.item_pool[j]) { ItemAmontAverages[j] = Log.item_pool[j];}
+                    }
+                    else { ItemAmontAverages.Add(j, Log.item_pool[j]); }
+                }
+            }
+
+
+            foreach (var i in ItemAmontAverages.OrderBy(x => x.Key))
+            {
+                int CountInVanilla = VanillaLocations.locations.Where(x => x.Value == i.Key).Count();
+                if (i.Value > CountInVanilla)
+                {
+                    Console.WriteLine($"Missing {i.Value - CountInVanilla} {i.Key}. {CountInVanilla}/{i.Value} ");
+                    var ammounttoadd = (i.Value) >= 5 ? Math.Ceiling((Decimal)(i.Value - CountInVanilla + 5) / 5) * 5 : (i.Value - CountInVanilla);
+                    Console.WriteLine($"Adding {(int)ammounttoadd} {i.Key}");
+                    Console.WriteLine($"======================================");
+                }
+            }
+        }
+
+        public static void CheckMissingItemLocations()
+        {
+            Dictionary<string, string> Locations = new Dictionary<string, string>();
+            var jsonSerializerSettings = new JsonSerializerSettings();
+            jsonSerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
+            var VanillaLocations = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(@"C:\CodeTest\Vanilla_Locations.json"), jsonSerializerSettings);
+
+            foreach (var i in Directory.GetFiles(@"C:\CodeTest\SpoilerLogs"))
+            {
+                var Log = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(i), jsonSerializerSettings);
+                foreach (var j in Log.locations)
+                {
+                    if (!Locations.ContainsKey(j.Key))
+                    {
+                        Locations.Add(j.Key, "");
+                    }
+                }
+            }
+
+            Console.WriteLine("================================================================");
+            Console.WriteLine("Vanilla Lcoation Not In Spoiler");
+            foreach (var i in VanillaLocations.locations)
+            {
+                if (Locations.Where(x => i.Key == x.Key).Count() == 0)
+                {
+                    Console.WriteLine(i.Key);
+                }
+            }
+            Console.WriteLine("================================================================");
+            Console.WriteLine("Spoiler Lcoations Not in Vanilla list");
+            foreach (var i in Locations)
+            {
+                if (VanillaLocations.locations.Where(x => i.Key == x.Key).Count() == 0)
+                {
+                    Console.WriteLine(i.Key);
+                }
+            }
+
         }
 
         //Spoiler=====================================================================================================================================================
@@ -84,12 +175,42 @@ namespace MMR_Tracker.Other_Games
                             break;
                         }
                     }
-                    Console.WriteLine(FullExitValue);
+                    //Console.WriteLine(FullExitValue);
                 }
                 else
                 {
                     RegionExit R = i.Value.ToObject<RegionExit>();
-                    Console.WriteLine(R.region + " -> " + R.from + "," + R.region + " -> " + R.from + "," + R.from + " <- " + R.region + "," + R.from + " -> " + R.region);
+                    //Console.WriteLine(R.region + " -> " + R.from + "," + R.region + " -> " + R.from + "," + R.from + " <- " + R.region + "," + R.from + " -> " + R.region);
+                }
+            }
+
+            var VanillaLocations = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(@"C:\CodeTest\Vanilla_Locations.json"), jsonSerializerSettings);
+            
+            //Console.WriteLine("================================================================");
+            //Console.WriteLine("Vanilla Lcoation Not In Spoiler");
+            foreach(var i in VanillaLocations.locations)
+            {
+                if (Log.locations.Where(x => i.Key == x.Key).Count() == 0)
+                {
+                    //Console.WriteLine(i.Key);
+                }
+            }
+            //Console.WriteLine("================================================================");
+            //Console.WriteLine("Spoiler Lcoations Not in Vanilla list");
+            foreach(var i in Log.locations)
+            {
+                if (VanillaLocations.locations.Where(x => i.Key == x.Key).Count() == 0)
+                {
+                    //Console.WriteLine(i.Key);
+                }
+            }
+
+            foreach(var i in Log.item_pool)
+            {
+                int CountInVanilla = VanillaLocations.locations.Where(x => x.Value == i.Key).Count();
+                if (i.Value > CountInVanilla)
+                {
+                    Console.WriteLine($"{i.Value} {i.Key} In Spoiler, Missing {i.Value - CountInVanilla}");
                 }
             }
 

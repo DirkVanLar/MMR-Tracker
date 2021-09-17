@@ -294,6 +294,20 @@
     <EmbeddedResource Include="Forms\Extra Functionality\SeedChecker.resx">
       <DependentUpon>SeedChecker.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_27968_SCC8TE1C01_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_27968_WM0JCLZ3ZK_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_63C97_FE1MKEQ00T_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_63C97_OMO9R6MECL_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_65B30_ARI6CAA2RR_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_65B30_VOCRPUFZXS_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_92361_BQG1RWJFPD_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_92361_N67XARDIQN_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_92361_ZLVK8VZ0UT_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_B73A1_6ZNLKZCN36_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_B73A1_J69FCOOV1I_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_D98CE_6A6XVAISL0_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_D98CE_JKI93B07ON_Spoiler.json" />
+    <None Include="Misc\OOTRTestFiles\Vanilla_Locations.json" />
     <None Include="packages.config" />
     <None Include="Misc\packages.config" />
     <None Include="Properties\Settings.settings">

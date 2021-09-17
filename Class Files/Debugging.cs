@@ -126,7 +126,7 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-            OcarinaOfTimeRando.ReadSpoiler();
+            OcarinaOfTimeRando.GenerateDictionary();
 
             void SetTestMultiworldData()
             {
