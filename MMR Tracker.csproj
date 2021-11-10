@@ -375,6 +375,9 @@
     <None Include="Recources\Dictionaries\MMRDICTIONARYV3.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Recources\Dictionaries\MMRDICTIONARYV8.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Misc\App.config" />
