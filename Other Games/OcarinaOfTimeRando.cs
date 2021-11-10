@@ -43,11 +43,47 @@ namespace MMR_Tracker.Other_Games
             //DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem,EntrancePair
             var jsonSerializerSettings = new JsonSerializerSettings();
             jsonSerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
-            var VanillaLocations = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(@"C:\CodeTest\Vanilla_Locations.json"), jsonSerializerSettings);
+            var VanillaLocations = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(@"lib\Misc\OOTRTestFiles\Vanilla_Locations.json"), jsonSerializerSettings);
+            Dictionary<string, dynamic> EntranceList = new Dictionary<string, dynamic>();
 
-            foreach(var i in VanillaLocations.locations)
+            //Print all Locations and items from the Vanilla Locations List
+            foreach (var i in VanillaLocations.locations)
             {
                 Console.WriteLine($"{i.Key},{i.Key},{i.Value},,Item,{i.Key},{i.Value},");
+            }
+
+            //Search through all Test spoiler logs for entrances and combine them into one file
+            foreach (var i in Directory.GetFiles(@"lib\Misc\OOTRTestFiles\Spoiler Logs"))
+            {
+                var Log = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(i), jsonSerializerSettings);
+                foreach (var j in Log.entrances)
+                {
+                    if (!EntranceList.ContainsKey(j.Key))
+                    {
+                        EntranceList.Add(j.Key, j.Value);
+                    }
+                }
+            }
+            var Entrances = EntranceList.Keys.ToList();
+            //Print All Entrances
+            foreach (var i in Entrances)
+            {
+                var data = i.Split(new string[] { " -> " }, StringSplitOptions.None);
+                var From = data[0];
+                var To = data[1];
+
+                string CoupledEntrance = "";
+                if (Entrances.Contains($"{To} -> {From}")) { CoupledEntrance = $"{To} -> {From}"; }
+
+                Console.WriteLine(
+                    $"{From} -> {To}," +
+                    $"{From} -> {To}," +
+                    $"{To} <- {From}," +
+                    $",Entrance," +
+                    $"{From} -> {To}," +
+                    $"{To} <- {From}," +
+                    CoupledEntrance
+                );
             }
 
         }
