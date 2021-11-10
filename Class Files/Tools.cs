@@ -320,11 +320,19 @@ namespace MMR_Tracker.Class_Files
                     try
                     {
                         SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(newLine).GameplaySettings;
+                    }
+                    catch 
+                    {
+                        //In 1.15 the setting file in the spoiler log is no longer a single line. New function to read multiline settings.
+                        SettingFile = ParseSpoilerLogSettingsWithLineBreak(File.ReadAllLines(Path));
+                    }
+                    if (SettingFile != null)
+                    {
                         RandomizeOptions ApplySettings = new RandomizeOptions();
                         ApplySettings.ApplyRandomizerSettings(SettingFile);
                         Debugging.Log("Settings Applied");
                     }
-                    catch { Debugging.Log(newLine); }
+                    else { Debugging.Log("Settings Applied"); }
                 }
 
                 if (line.Contains("<tr class=\"region\">"))
@@ -874,7 +882,18 @@ namespace MMR_Tracker.Class_Files
                         var newLine = line.Replace("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">", "{\"GameplaySettings\":");
                         newLine = newLine.Replace("</code><br/>", "}");
                         try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(newLine).GameplaySettings; }
-                        catch { MessageBox.Show("Spoiler log had incorrect data!"); return false; }
+                        catch  (Exception e)
+                        {
+                            Console.WriteLine(e);
+                            //In 1.15 the setting file in the spoiler log is no longer a single line. New function to read multiline settings.
+                            SettingFile = ParseSpoilerLogSettingsWithLineBreak(RawLogicFile);
+                            if (SettingFile == null)
+                            {
+                                MessageBox.Show("HTML Spoiler log had incorrect data!");
+                                return false;
+                            }
+                        }
+                        Console.WriteLine(SettingFile.CustomItemListString);
                         break;
                     }
                 }
@@ -890,7 +909,7 @@ namespace MMR_Tracker.Class_Files
                         var Newline = line.Replace("Settings:", "\"GameplaySettings\":");
                         Newline = "{" + Newline + "}";
                         try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings; }
-                        catch { MessageBox.Show("Spoiler log had incorrect data!"); return false; }
+                        catch { MessageBox.Show("Text Spoiler log had incorrect data!"); return false; }
                         break;
                     }
                 }
@@ -943,7 +962,7 @@ namespace MMR_Tracker.Class_Files
             {
                 LogicEditing.WriteSpoilerLogToLogic(LogicObjects.MainTrackerInstance, file);
                 if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) { MessageBox.Show("No spoiler data found!"); }
-                else if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic, true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
+                else if (!Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic, true, Log: true)) { MessageBox.Show("Not all checks have been assigned spoiler data!"); }
             }
             else if (LogicObjects.MainTrackerInstance.EntranceRando && LogicObjects.MainTrackerInstance.Options.UnradnomizeEntranesOnStartup)
             {
@@ -972,6 +991,35 @@ namespace MMR_Tracker.Class_Files
                 }
             }
             return false;
+        }
+
+        public static LogicObjects.GameplaySettings ParseSpoilerLogSettingsWithLineBreak(string[] RawLogicFile)
+        {
+            LogicObjects.GameplaySettings SettingFile = null;
+            bool inSettings = false;
+            string SettingString = "{\"GameplaySettings\":{";
+            foreach (var line in RawLogicFile)
+            {
+                if (line.StartsWith("}</code><br/>") && inSettings)
+                {
+                    SettingString += "}}";
+                    break;
+                }
+                if (inSettings)
+                {
+                    SettingString += line;
+                }
+                if (line.StartsWith("<label><b>Settings:")) { inSettings = true; }
+            }
+
+
+            try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(SettingString).GameplaySettings; }
+            catch (Exception e)
+            {
+                Console.WriteLine(e); 
+                return null; 
+            }
+            return SettingFile;
         }
 
     }

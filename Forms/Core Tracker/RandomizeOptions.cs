@@ -588,11 +588,6 @@ namespace MMR_Tracker_V2
                     SetRange("Lottery 50r", "Seahorse", Settings.AddMundaneRewards);
                     //Preserve Soaring
                     SetRange("Song of Soaring", "Song of Soaring", !Settings.ExcludeSongOfSoaring);
-                    //Dungeon Entrances
-                    SetRange("Woodfall Temple access", "Woodfall Temple access", Settings.RandomizeDungeonEntrances);
-                    SetRange("Snowhead Temple access", "Snowhead Temple access", Settings.RandomizeDungeonEntrances);
-                    SetRange("Great Bay Temple access", "Great Bay Temple access", Settings.RandomizeDungeonEntrances);
-                    SetRange("Inverted Stone Tower Temple access", "Inverted Stone Tower Temple access", Settings.RandomizeDungeonEntrances);
                     #endregion OldRandoCategories
                 }
                 else //Original 1.14 categories. Never really used expcept in like 2 betas
@@ -639,6 +634,19 @@ namespace MMR_Tracker_V2
                     #endregion Temp114Categories
                 }
             }
+
+            //Set Dungeon randomizations
+            //The dungeons aren't in the custom item list so the always need to be set based on the setting.
+            //Pre LogicNameChanges
+            SetRange("Woodfall Temple access", "Woodfall Temple access", Settings.RandomizeDungeonEntrances);
+            SetRange("Snowhead Temple access", "Snowhead Temple access", Settings.RandomizeDungeonEntrances);
+            SetRange("Great Bay Temple access", "Great Bay Temple access", Settings.RandomizeDungeonEntrances);
+            SetRange("Inverted Stone Tower Temple access", "Inverted Stone Tower Temple access", Settings.RandomizeDungeonEntrances);
+            //Post Logic Name Changes
+            SetRange("AreaWoodFallTempleAccess", "AreaWoodFallTempleAccess", Settings.RandomizeDungeonEntrances);
+            SetRange("AreaSnowheadTempleAccess", "AreaSnowheadTempleAccess", Settings.RandomizeDungeonEntrances);
+            SetRange("AreaGreatBayTempleAccess", "AreaGreatBayTempleAccess", Settings.RandomizeDungeonEntrances);
+            SetRange("AreaInvertedStoneTowerTempleAccess", "AreaInvertedStoneTowerTempleAccess", Settings.RandomizeDungeonEntrances);
 
             //Junk Starting Items
             if (Settings.NoStartingItems || Settings.StartingItemMode == "None")

@@ -126,7 +126,18 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-            OcarinaOfTimeRando.GenerateDictionary();
+            int Startingcount = 0;
+            foreach (var i in LogicObjects.MainTrackerInstance.Logic)
+            {
+                if (i.CanBeStartingItem(LogicObjects.MainTrackerInstance))
+                {
+                    Startingcount++;
+                    Console.WriteLine($"\"{i.DictionaryName}\"," );
+                }
+            }
+            Console.WriteLine(Startingcount + " Starting items Found");
+
+            //OcarinaOfTimeRando.GenerateDictionary();
 
             void SetTestMultiworldData()
             {
