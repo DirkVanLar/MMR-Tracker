@@ -89,6 +89,7 @@ namespace MMR_Tracker_V2
             public bool IsTrick { get; set; } //Whether or not the entry is a trick
             public bool TrickEnabled { get; set; } //Whether or not the trick is enabled
             public string TrickToolTip { get; set; } //The tool tip describing what the trick is
+            public int Price { get; set; } = -1; //The price to purchase the item at a shop, used in Price Randomizer.
             public PlayerData PlayerData { get; set; } = new PlayerData(); //Data for multiworld
             public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
             public override string ToString()

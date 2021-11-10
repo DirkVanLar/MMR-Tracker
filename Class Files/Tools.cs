@@ -738,7 +738,7 @@ namespace MMR_Tracker.Class_Files
                 return;
             }
             string message = "Logic Entries used:\n";
-            foreach (var i in ItemsUsed) { message = message + (LogicObjects.MainTrackerInstance.Logic[i].ItemName ?? LogicObjects.MainTrackerInstance.Logic[i].DictionaryName) + "\n"; }
+            foreach (var i in ItemsUsed.Distinct()) { message = message + (LogicObjects.MainTrackerInstance.Logic[i].ItemName ?? LogicObjects.MainTrackerInstance.Logic[i].DictionaryName) + "\n"; }
             message += "\nReal items used:\n";
             foreach (var i in Requirements) { message = message + LogicObjects.MainTrackerInstance.Logic[i].ItemName + "\n"; }
             message += "\nFake Items Breakdown:\n";

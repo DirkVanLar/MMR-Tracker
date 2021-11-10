@@ -386,6 +386,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Recources\Other Files\Other Game Premade Logic\WWR Logic.txt" />
+    <Content Include="Recources\Other Files\WalletValues.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="NATUPNPLib">
