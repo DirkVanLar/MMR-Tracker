@@ -788,6 +788,8 @@ namespace MMR_Tracker_V2
             Star.Click += (sender, e) => { StarItemSelected(LBValidLocations); };
             ToolStripItem RemoveSpoiler = LocationContextMenu.Items.Add("Remove Spoiler Data");
             RemoveSpoiler.Click += (sender, e) => { RunMenuItems(7, LBValidLocations); };
+            ToolStripItem SetItemPrice = LocationContextMenu.Items.Add("Set Check Price");
+            SetItemPrice.Click += (sender, e) => { RunMenuItems(10, LBValidLocations); };
             LBValidLocations.ContextMenuStrip = LocationContextMenu;
 
             //LBValidEntrances List Box
@@ -877,8 +879,9 @@ namespace MMR_Tracker_V2
             {
                 var LB = sender as ListBox;
                 var index = LB.IndexFromPoint(LB.PointToClient(Cursor.Position));
-                if (index < 0) { e.Cancel = true; return; }
+                if (index < 0) { e.Cancel = true; }
                 if (!(LB.Items[index] is LogicObjects.ListItem)) { e.Cancel = true; }
+                if ((LB.Items[index] as LogicObjects.ListItem) == null) { e.Cancel = true; return; }
                 if ((LB.Items[index] as LogicObjects.ListItem).LocationEntry.ID < 0) { e.Cancel = true; }
             }
             catch { e.Cancel = true; }
@@ -895,74 +898,94 @@ namespace MMR_Tracker_V2
             { ActiveItem = (LBCheckedLocations.SelectedItem as LogicObjects.ListItem).LocationEntry; }
             else { return; }
 
-            if (Function == 0) { Tools.WhatUnlockedThis(ActiveItem); }
-            if (Function == 1) { CheckItemSelected(ActiveListBox, true); }
-            if (Function == 2) { CheckItemSelected(ActiveListBox, false); }
-            if (Function == 3) 
-            { 
-                if ((ActiveListBox == LBValidLocations)) { TXTLocSearch.Text = "=#" + ActiveItem.LocationArea; }
-                else if ((ActiveListBox == LBValidEntrances)) { TXTEntSearch.Text = "=#" + ActiveItem.LocationArea; }
-                else if ((ActiveListBox == LBCheckedLocations)) { TXTCheckedSearch.Text = "=#" + ActiveItem.LocationArea; }
-            }
-            if (Function == 4)
+            switch (Function)
             {
-                TextBox SearchBox;
-                if ((ActiveListBox == LBValidLocations)) { SearchBox = TXTLocSearch; }
-                else if ((ActiveListBox == LBValidEntrances)) { SearchBox = TXTEntSearch; }
-                else if ((ActiveListBox == LBCheckedLocations)) { SearchBox = TXTCheckedSearch; }
-                else { return; }
-                List<Map.LocationArea> LocationDic = new List<Map.LocationArea>();
-                Map MapUtils = new Map();
-                MapUtils.setLocationDic(LocationDic);
-                foreach (var i in LocationDic)
-                {
-                    foreach (var j in i.SubAreas)
+                case 0:
+                    Tools.WhatUnlockedThis(ActiveItem);
+                    break;
+                case 1:
+                    CheckItemSelected(ActiveListBox, true);
+                    break;
+                case 2:
+                    CheckItemSelected(ActiveListBox, false);
+                    break;
+                case 3:
+                    if ((ActiveListBox == LBValidLocations)) { TXTLocSearch.Text = "=#" + ActiveItem.LocationArea; }
+                    else if ((ActiveListBox == LBValidEntrances)) { TXTEntSearch.Text = "=#" + ActiveItem.LocationArea; }
+                    else if ((ActiveListBox == LBCheckedLocations)) { TXTCheckedSearch.Text = "=#" + ActiveItem.LocationArea; }
+                    break;
+                case 4:
+                    TextBox SearchBox;
+                    if ((ActiveListBox == LBValidLocations)) { SearchBox = TXTLocSearch; }
+                    else if ((ActiveListBox == LBValidEntrances)) { SearchBox = TXTEntSearch; }
+                    else if ((ActiveListBox == LBCheckedLocations)) { SearchBox = TXTCheckedSearch; }
+                    else { return; }
+                    List<Map.LocationArea> LocationDic = new List<Map.LocationArea>();
+                    Map MapUtils = new Map();
+                    MapUtils.setLocationDic(LocationDic);
+                    foreach (var i in LocationDic)
                     {
-                        if (ActiveItem.LocationArea.ToLower() == j.Replace("#", "").ToLower())
+                        foreach (var j in i.SubAreas)
                         {
-                            SearchBox.Text = MapUtils.CreateFilter(0, i.SubAreas);
-                            return;
+                            if (ActiveItem.LocationArea.ToLower() == j.Replace("#", "").ToLower())
+                            {
+                                SearchBox.Text = MapUtils.CreateFilter(0, i.SubAreas);
+                                return;
+                            }
                         }
                     }
-                }
+                    break;
+                case 5:
+                    CMBEnd.DataSource = new BindingSource(new Dictionary<int, string> { { ActiveItem.ID, ActiveItem.LocationName } }, null);
+                    CMBEnd.DisplayMember = "Value";
+                    CMBEnd.ValueMember = "key";
+                    CMBEnd.SelectedIndex = 0;
+                    break;
+                case 6:
+                    CheckItemSelected(ActiveListBox, true, 0, true);
+                    break;
+                case 7:
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to remove this items spoiler data? The only way to recover spoiler data is reimporting the spoiler log.", "Remove Spoiler Data?", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes) { ActiveItem.SpoilerRandom = -2; }
+                    break;
+                case 8:
+                    Tools.SaveState(LogicObjects.MainTrackerInstance, LogicObjects.MainTrackerInstance.Logic);
+                    for (var i = 0; i < 2; i++)
+                    {
+                        ListBox ItemList = new ListBox();
+                        ItemList.Items.Add(ActiveItem);
+                        ItemList.SelectedItems.Add(ItemList.Items[0]);
+                        CheckItemSelected(ItemList, true);
+                    }
+                    break;
+                case 9:
+                    RequirementCheck Req = new RequirementCheck
+                    {
+                        Instance = LogicObjects.MainTrackerInstance,
+                        entry = ActiveItem
+                    };
+                    Req.Show();
+                    break;
+                case 10:
+                    string CurrenPrice = ActiveItem.Price > -1 ? ActiveItem.Price.ToString() : "";
+                    string input = Interaction.InputBox("Enter the price of this check. Leave blank for no price.", "Enter Price", CurrenPrice);
+                    int CheckPrice = -1;
+                    if (string.IsNullOrWhiteSpace(input))
+                    {
+                        ActiveItem.Price = -1;
+                    }
+                    else
+                    {
+                        try { CheckPrice = int.Parse(input); }
+                        catch { }
+                        if (CheckPrice > -2) { ActiveItem.Price = CheckPrice; }
+                        else { MessageBox.Show("Price not Valid, must be a number greater than 0"); }
+                    }
+                    LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+                    PrintToListBox();
+                    break;
             }
-            if (Function == 5)
-            {
-                CMBEnd.DataSource = new BindingSource(new Dictionary<int, string> { { ActiveItem.ID, ActiveItem.LocationName } }, null);
-                CMBEnd.DisplayMember = "Value";
-                CMBEnd.ValueMember = "key";
-                CMBEnd.SelectedIndex = 0;
-            }
-            if (Function == 6)
-            {
-                CheckItemSelected(ActiveListBox, true, 0, true) ;
-            }
-            if (Function == 7)
-            {
-                DialogResult dialogResult = MessageBox.Show("Are you sure you want to remove this items spoiler data? The only way to recover spoiler data is reimporting the spoiler log.", "Remove Spoiler Data?", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes) { ActiveItem.SpoilerRandom = -2; }
-            }
-            if (Function == 8)
-            {
-                Tools.SaveState(LogicObjects.MainTrackerInstance, LogicObjects.MainTrackerInstance.Logic);
-                for(var i = 0; i<2; i++)
-                {
-                    ListBox ItemList = new ListBox();
-                    ItemList.Items.Add(ActiveItem);
-                    ItemList.SelectedItems.Add(ItemList.Items[0]);
-                    CheckItemSelected(ItemList, true);
-                }
 
-            }
-            if (Function == 9)
-            {
-                RequirementCheck Req = new RequirementCheck
-                {
-                    Instance = LogicObjects.MainTrackerInstance,
-                    entry = ActiveItem
-                };
-                Req.Show();
-            }
         }
         #endregion Context Menu
         // List/combo Box Functions---------------------------------------------------------------------------
@@ -989,7 +1012,7 @@ namespace MMR_Tracker_V2
                 //    .Select((value, index) => new { value, index })
                 //    .ToDictionary(pair => pair.value, pair => pair.index);
 
-                bool AtGame = false;
+                bool AtGame = true;
                 foreach (var i in File.ReadAllLines(@"Recources\Other Files\Categories.txt"))
                 {
                     var x = i.ToLower().Trim();
@@ -1556,7 +1579,9 @@ namespace MMR_Tracker_V2
             var checkedName = (ItemName == "") ? LocationName : ItemName + addPlayerName + ": " + LocationName;
             var AvailableName = (ItemName == "") ? LocationName : LocationName + ": " + ItemName + addPlayerName;
             var fullName = (Checked) ? checkedName : AvailableName;
-            return fullName + ((entry.Starred) ? "*" : "");
+            fullName = fullName + ((entry.Starred) ? "*" : "");
+            fullName = fullName + ((entry.Price > -1 && entry.HasRandomItem(false)) ? $"$({entry.Price})" : "");
+            return fullName;
         }
 
         public void Tools_StateListChanged()

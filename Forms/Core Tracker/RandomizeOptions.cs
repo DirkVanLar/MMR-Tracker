@@ -186,7 +186,9 @@ namespace MMR_Tracker_V2
             var EntranceList = Tools.ParseEntranceandStartingString(txtRandEntString.Text, ItemStringLogic.Where(x => x.IsEntrance()).ToList());
 
             var StartingStringLogic = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && (IsInMMRItemList(x, true) || !LogicObjects.MainTrackerInstance.IsMM())).ToList();
-            RemoveDuplicateStartingItems(StartingStringLogic, LogicObjects.MainTrackerInstance);
+            //RemoveDuplicateStartingItems() is deprecated in MMR 1.15 + which just so happens to be the same time JSON logic wa implemented.
+            //There used to only be one copy of each duplicate item (like the hylian sheild for example) in the starting items list, but now each sepearate item is an option
+            if (!LogicObjects.MainTrackerInstance.JsonLogic) { RemoveDuplicateStartingItems(StartingStringLogic, LogicObjects.MainTrackerInstance); }
             var StartingList = Tools.ParseEntranceandStartingString(txtStartingitemString.Text, StartingStringLogic.Where(x => x.CanBeStartingItem(LogicObjects.MainTrackerInstance)).ToList());
 
             label3.Text = "Custom Item String";

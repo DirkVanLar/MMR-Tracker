@@ -1,6 +1,7 @@
 ﻿using MMR_Tracker_V2;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -175,12 +176,12 @@ namespace MMR_Tracker.Class_Files
                 int ConditionalsAquired = 0;
                 if (int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out int ConditionalsNeeded))
                 {
-                    if (!Required.Any() || LogicEditing.RequirementsMet(Required, Instance, CondItemsUsed))
+                    if (!Required.Any() || LogicEditing.RequirementsMet(Required, Instance, entry, CondItemsUsed))
                     {
                         foreach (var i in entry.Conditionals)
                         {
                             List<int> ReqItemsUsed = new List<int>();
-                            if (LogicEditing.RequirementsMet(i, Instance, ReqItemsUsed))
+                            if (LogicEditing.RequirementsMet(i, Instance, entry, ReqItemsUsed))
                             {
                                 foreach (var q in ReqItemsUsed) { CondItemsUsed.Add(q); }
                                 ConditionalsAquired++;
@@ -219,15 +220,15 @@ namespace MMR_Tracker.Class_Files
                 if (RandClearLogic == null) { return false; }
                 else
                 {
-                    return LogicEditing.RequirementsMet(RandClearLogic.Required, Instance, usedItems) &&
-                            LogicEditing.CondtionalsMet(RandClearLogic.Conditionals, Instance, usedItems);
+                    return LogicEditing.RequirementsMet(RandClearLogic.Required, Instance, RandClearLogic, usedItems) &&
+                            LogicEditing.CondtionalsMet(RandClearLogic.Conditionals, Instance, RandClearLogic, usedItems);
                 }
             }
             //Check availability the standard way
             else
             {
-                return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
-                            LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
+                return LogicEditing.RequirementsMet(entry.Required, Instance, entry, usedItems) &&
+                        LogicEditing.CondtionalsMet(entry.Conditionals, Instance, entry, usedItems);
             }
         }
         public static bool FakeItemStatusChange(this LogicObjects.LogicEntry entry)
