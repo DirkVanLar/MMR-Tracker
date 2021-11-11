@@ -302,19 +302,19 @@ namespace MMR_Tracker_V2
         }
         public static List<List<LogicObjects.LogicEntry>> GetProgressiveItemSets(LogicObjects.TrackerInstance instance)
         {
-            var SW1 = instance.Logic.Find(x => x.DictionaryName == "Starting Sword");
-            var SW2 = instance.Logic.Find(x => x.DictionaryName == "Razor Sword");
-            var SW3 = instance.Logic.Find(x => x.DictionaryName == "Gilded Sword");
-            var MM1 = instance.Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter");
-            var MM2 = instance.Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic");
-            var WL1 = instance.Logic.Find(x => x.DictionaryName == "Town Wallet (200)");
-            var WL2 = instance.Logic.Find(x => x.DictionaryName == "Ocean Wallet (500)");
-            var BB1 = instance.Logic.Find(x => x.DictionaryName == "Bomb Bag (20)");
-            var BB2 = instance.Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)");
-            var BB3 = instance.Logic.Find(x => x.DictionaryName == "Mountain Bomb Bag (40)");
-            var BW1 = instance.Logic.Find(x => x.DictionaryName == "Hero's Bow");
-            var BW2 = instance.Logic.Find(x => x.DictionaryName == "Town Archery Quiver (40)");
-            var BW3 = instance.Logic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)");
+            var SW1 = instance.Logic.Find(x => x.DictionaryName == "Starting Sword" || x.DictionaryName == "StartingSword");
+            var SW2 = instance.Logic.Find(x => x.DictionaryName == "Razor Sword" || x.DictionaryName == "UpgradeRazorSword");
+            var SW3 = instance.Logic.Find(x => x.DictionaryName == "Gilded Sword" || x.DictionaryName == "UpgradeGildedSword");
+            var MM1 = instance.Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter" || x.DictionaryName == "FairyMagic");
+            var MM2 = instance.Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic" || x.DictionaryName == "FairyDoubleMagic");
+            var WL1 = instance.Logic.Find(x => x.DictionaryName == "Town Wallet (200)" || x.DictionaryName == "UpgradeAdultWallet");
+            var WL2 = instance.Logic.Find(x => x.DictionaryName == "Ocean Wallet (500)" || x.DictionaryName == "UpgradeGiantWallet");
+            var BB1 = instance.Logic.Find(x => x.DictionaryName == "Bomb Bag (20)" || x.DictionaryName == "ItemBombBag");
+            var BB2 = instance.Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)" || x.DictionaryName == "UpgradeBigBombBag");
+            var BB3 = instance.Logic.Find(x => x.DictionaryName == "Mountain Bomb Bag (40)" || x.DictionaryName == "UpgradeBiggestBombBag");
+            var BW1 = instance.Logic.Find(x => x.DictionaryName == "Hero's Bow" || x.DictionaryName == "ItemBow");
+            var BW2 = instance.Logic.Find(x => x.DictionaryName == "Town Archery Quiver (40)" || x.DictionaryName == "UpgradeBigQuiver");
+            var BW3 = instance.Logic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)" || x.DictionaryName == "UpgradeBiggestQuiver");
 
             List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = new List<List<LogicObjects.LogicEntry>>
             {

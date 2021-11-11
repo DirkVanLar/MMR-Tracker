@@ -504,23 +504,23 @@ namespace MMR_Tracker_V2
 
             if (!Instance.IsMM()) { return EntAreaDict; }
 
-            var WoodfallClear = Instance.Logic.Find(x => x.DictionaryName == "Woodfall clear");
-            var WoodfallAccess = Instance.Logic.Find(x => x.DictionaryName == "Woodfall Temple access" && !x.IsFake);
+            var WoodfallClear = Instance.Logic.Find(x => x.DictionaryName == "Woodfall clear" || x.DictionaryName == "AreaWoodFallTempleClear");
+            var WoodfallAccess = Instance.Logic.Find(x => (x.DictionaryName == "Woodfall Temple access" || x.DictionaryName == "AreaWoodFallTempleAccess") && !x.IsFake);
             if (WoodfallAccess == null || WoodfallClear == null) { return new Dictionary<int, int>(); }
             EntAreaDict.Add(WoodfallClear.ID, WoodfallAccess.ID);
 
-            var SnowheadClear = Instance.Logic.Find(x => x.DictionaryName == "Snowhead clear");
-            var SnowheadAccess = Instance.Logic.Find(x => x.DictionaryName == "Snowhead Temple access" && !x.IsFake);
+            var SnowheadClear = Instance.Logic.Find(x => x.DictionaryName == "Snowhead clear" || x.DictionaryName == "AreaSnowheadTempleClear");
+            var SnowheadAccess = Instance.Logic.Find(x => (x.DictionaryName == "Snowhead Temple access" || x.DictionaryName == "AreaSnowheadTempleAccess") && !x.IsFake);
             if (SnowheadAccess == null || SnowheadClear == null) { return new Dictionary<int, int>(); }
             EntAreaDict.Add(SnowheadClear.ID, SnowheadAccess.ID);
 
-            var GreatBayClear = Instance.Logic.Find(x => x.DictionaryName == "Great Bay clear");
-            var GreatBayAccess = Instance.Logic.Find(x => x.DictionaryName == "Great Bay Temple access" && !x.IsFake);
+            var GreatBayClear = Instance.Logic.Find(x => x.DictionaryName == "Great Bay clear" || x.DictionaryName == "AreaGreatBayTempleClear");
+            var GreatBayAccess = Instance.Logic.Find(x => (x.DictionaryName == "Great Bay Temple access" || x.DictionaryName == "AreaGreatBayTempleAccess") && !x.IsFake);
             if (GreatBayAccess == null || GreatBayClear == null) { return new Dictionary<int, int>(); }
             EntAreaDict.Add(GreatBayClear.ID, GreatBayAccess.ID);
 
-            var StoneTowerClear = Instance.Logic.Find(x => x.DictionaryName == "Ikana clear");
-            var StoneTowerAccess = Instance.Logic.Find(x => x.DictionaryName == "Inverted Stone Tower Temple access" && !x.IsFake);
+            var StoneTowerClear = Instance.Logic.Find(x => x.DictionaryName == "Ikana clear" || x.DictionaryName == "AreaStoneTowerClear");
+            var StoneTowerAccess = Instance.Logic.Find(x => (x.DictionaryName == "Inverted Stone Tower Temple access" || x.DictionaryName == "AreaStoneTowerTempleAccess") && !x.IsFake);
             if (StoneTowerAccess == null || StoneTowerClear == null) { return new Dictionary<int, int>(); }
             EntAreaDict.Add(StoneTowerClear.ID, StoneTowerAccess.ID);
 
