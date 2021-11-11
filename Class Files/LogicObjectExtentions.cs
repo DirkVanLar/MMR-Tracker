@@ -161,7 +161,7 @@ namespace MMR_Tracker.Class_Files
                 else { return false; }
             }
         }
-        public static bool CheckAvailability(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
+        public static bool CheckAvailability(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null, bool FromScratch = true, bool ForceStrictLogicHendeling = false)
         {
             var logic = Instance.Logic;
             usedItems = usedItems ?? new List<int>();
@@ -278,6 +278,15 @@ namespace MMR_Tracker.Class_Files
             //Check availability the standard way
             else
             {
+                //Disable skipping entry if Strictlogic is enable or logic is being calculated from scratch such as firsy run
+                if (FromScratch == false && ForceStrictLogicHendeling == false && Instance.Options.StrictLogicHandeling == false)
+                {
+                    
+                    bool shouldupdate = false;
+                    foreach (var i in entry.Required) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } }
+                    foreach (var k in entry.Conditionals) { foreach (var i in k) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } } }
+                    if (!shouldupdate) { return entry.Available; }
+                }
                 return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
                         LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
             }
@@ -288,6 +297,7 @@ namespace MMR_Tracker.Class_Files
         {
             if (entry.Aquired != entry.Available && entry.IsFake)
             {
+                LogicEditing.LastUpdated.Add(entry.ID);
                 entry.Aquired = entry.Available;
                 return true;
             }

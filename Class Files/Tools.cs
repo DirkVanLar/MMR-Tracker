@@ -1050,5 +1050,18 @@ namespace MMR_Tracker.Class_Files
             return SettingFile;
         }
 
+        public static void GetWhatchanged(List<LogicObjects.LogicEntry> Newlogic, List<LogicObjects.LogicEntry> OldLogic)
+        {
+            LogicEditing.LastUpdated = new List<int>();
+            foreach(var i in Newlogic)
+            {
+                if (i.Checked != OldLogic[i.ID].Checked)
+                {
+                    if (i.Checked) { LogicEditing.LastUpdated.Add(Newlogic[i.ID].RandomizedItem); }
+                    else { LogicEditing.LastUpdated.Add(OldLogic[i.ID].RandomizedItem); }
+                }
+            }
+        }
+
     }
 }

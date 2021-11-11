@@ -12,7 +12,7 @@ namespace MMR_Tracker_V2
 {
     class LogicEditing
     {
-
+        public static List<int> LastUpdated = new List<int>();
         public static bool PopulateTrackerInstance(LogicObjects.TrackerInstance instance)
         {
             LogicObjects.LogicFile NewformatLogicFile = null;
@@ -251,7 +251,7 @@ namespace MMR_Tracker_V2
             return false;
         }
 
-        public static void CalculateItems(LogicObjects.TrackerInstance Instance, bool ForceStrictLogicHendeling = false, bool InitialRun = true)
+        public static void CalculateItems(LogicObjects.TrackerInstance Instance, bool ForceStrictLogicHendeling = false, bool InitialRun = true, bool fromScratch = true)
         {
             if (InitialRun)
             {
@@ -261,10 +261,10 @@ namespace MMR_Tracker_V2
             bool recalculate = false;
             foreach (var item in Instance.Logic)
             {
-                item.Available = item.CheckAvailability(Instance);
+                item.Available = item.CheckAvailability(Instance, FromScratch: fromScratch, ForceStrictLogicHendeling: ForceStrictLogicHendeling);
                 if (item.FakeItemStatusChange()) { recalculate = true; }
             }
-            if (recalculate) { CalculateItems(Instance, false, false); }
+            if (recalculate) { CalculateItems(Instance, false, false, fromScratch); }
         }
 
         public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path)

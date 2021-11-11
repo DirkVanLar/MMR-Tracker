@@ -1335,11 +1335,15 @@ namespace MMR_Tracker_V2
                 FromNetPlayer = ItemsCameFromPlayer
             };
             CIF.BeginCheckItem();
+            Tools.GetWhatchanged(LogicObjects.MainTrackerInstance.Logic, Templogic);
 
             if (!CIF.ItemStateChanged && ItemsCameFromPlayer == -2) { return; }
-            Tools.SaveState(LogicObjects.MainTrackerInstance, Templogic); //Now that we have successfully checked/Marked an object we can commit to a full save state
-            Tools.SetUnsavedChanges(LogicObjects.MainTrackerInstance);
-            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            if (FullCheck)
+            {
+                Tools.SaveState(LogicObjects.MainTrackerInstance, Templogic); //Now that we have successfully checked/Marked an object we can commit to a full save state
+                Tools.SetUnsavedChanges(LogicObjects.MainTrackerInstance);
+                LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance, fromScratch: false); 
+            }
 
             if (!FromNet) { OnlinePlay.SendData(OnlinePlay.IPS); }
 
