@@ -258,13 +258,22 @@ namespace MMR_Tracker_V2
                 Instance.GetWalletsFromConfigFile();
                 if ((Instance.Options.StrictLogicHandeling || ForceStrictLogicHendeling)) { Instance.RefreshFakeItems(); }
             }
+            //Calculate all fake items. If the fake item is available, set it to aquired
             bool recalculate = false;
-            foreach (var item in Instance.Logic)
+            foreach (var item in Instance.Logic.Where(x => x.IsFake || x.Unrandomized()))
             {
                 item.Available = item.CheckAvailability(Instance, FromScratch: fromScratch, ForceStrictLogicHendeling: ForceStrictLogicHendeling);
                 if (item.FakeItemStatusChange()) { recalculate = true; }
             }
-            if (recalculate) { CalculateItems(Instance, false, false, fromScratch); }
+            if (recalculate) { CalculateItems(Instance, false, false, fromScratch); } //If any fake items are unlocked run this funtion again to check if they unlock any more.
+            //Once all the fake items are unlocked, see what real items are available.
+            if (InitialRun)
+            {
+                foreach (var item in Instance.Logic.Where(x => !x.IsFake && !x.Unrandomized()))
+                {
+                    item.Available = item.CheckAvailability(Instance, FromScratch: fromScratch, ForceStrictLogicHendeling: ForceStrictLogicHendeling);
+                }
+            }
         }
 
         public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path)
