@@ -233,12 +233,18 @@ namespace MMR_Tracker
         private void WriteSpoilerItemsToBox()
         {
             listBox1.Items.Clear();
-            foreach (var i in CheckerInstance.Logic)
+            listBox1.Items.Add("Real Items ==========");
+            foreach (var i in CheckerInstance.Logic.Where(x => !x.IsFake))
             {
-                var SPOILERlOCATION = (i.IsFake) ? null : i.GetItemsSpoilerLocation(CheckerInstance.Logic);
+                var SPOILERlOCATION = i.GetItemsSpoilerLocation(CheckerInstance.Logic);
 
                 if (Utility.FilterSearch(i, textBox1.Text, i.ItemName ?? i.DictionaryName))
                 {
+                    var LBDisplayName = i.ItemName ?? i.DictionaryName;
+                    if (CheckerInstance.Logic.Where(x => x.ItemName == i.ItemName).Count() > 1 && !string.IsNullOrWhiteSpace(i.ItemName) && !string.IsNullOrWhiteSpace(i.LocationName))
+                    {
+                        LBDisplayName = $"{i.ItemName} (From: {i.LocationName})";
+                    }
                     if (SPOILERlOCATION != null)
                     {
                         var ListItem = new LogicObjects.ListItem
@@ -246,21 +252,25 @@ namespace MMR_Tracker
                             ItemEntry = i,
                             LocationEntry = SPOILERlOCATION,
                             PathID = SPOILERlOCATION.ID,
-                            DisplayName = i.ItemName ?? i.DictionaryName
+                            DisplayName = LBDisplayName
                         };
                         listBox1.Items.Add(ListItem);
                     }
-                    if (i.IsFake)
+                }
+            }
+            listBox1.Items.Add("Fake Items ==========");
+            foreach (var i in CheckerInstance.Logic.Where(x => x.IsFake))
+            {
+                if (Utility.FilterSearch(i, textBox1.Text, i.ItemName ?? i.DictionaryName))
+                {
+                    var ListItem = new LogicObjects.ListItem
                     {
-                        var ListItem = new LogicObjects.ListItem
-                        {
-                            ItemEntry = i,
-                            LocationEntry = i,
-                            PathID = i.ID,
-                            DisplayName = i.ItemName ?? i.DictionaryName
-                        };
-                        listBox1.Items.Add(ListItem);
-                    }
+                        ItemEntry = i,
+                        LocationEntry = i,
+                        PathID = i.ID,
+                        DisplayName = i.ItemName ?? i.DictionaryName
+                    };
+                    listBox1.Items.Add(ListItem);
                 }
             }
 
@@ -293,7 +303,12 @@ namespace MMR_Tracker
             button2.Enabled = true;
             button3.Enabled = true;
 
-            if (!(listBox1.SelectedItem is LogicObjects.ListItem)) { return; }
+            if (!(listBox1.SelectedItem is LogicObjects.ListItem))
+            {
+                button2.Enabled = false;
+                button3.Enabled = false;
+                return; 
+            }
             var Item = (listBox1.SelectedItem as LogicObjects.ListItem).ItemEntry;
             button2.Enabled = !Item.IsFake;
 

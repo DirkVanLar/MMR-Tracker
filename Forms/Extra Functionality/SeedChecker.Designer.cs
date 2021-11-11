@@ -71,7 +71,7 @@
             this.LBResult.HorizontalScrollbar = true;
             this.LBResult.Location = new System.Drawing.Point(138, 41);
             this.LBResult.Name = "LBResult";
-            this.LBResult.Size = new System.Drawing.Size(275, 342);
+            this.LBResult.Size = new System.Drawing.Size(275, 446);
             this.LBResult.TabIndex = 1;
             // 
             // LBIgnoredChecks
@@ -79,7 +79,7 @@
             this.LBIgnoredChecks.FormattingEnabled = true;
             this.LBIgnoredChecks.Location = new System.Drawing.Point(6, 223);
             this.LBIgnoredChecks.Name = "LBIgnoredChecks";
-            this.LBIgnoredChecks.Size = new System.Drawing.Size(126, 160);
+            this.LBIgnoredChecks.Size = new System.Drawing.Size(126, 264);
             this.LBIgnoredChecks.TabIndex = 2;
             this.LBIgnoredChecks.DoubleClick += new System.EventHandler(this.LBIgnoredChecks_DoubleClick);
             // 
@@ -180,7 +180,7 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(421, 390);
+            this.groupBox1.Size = new System.Drawing.Size(421, 492);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seed Checker";
@@ -199,7 +199,7 @@
             // button2
             // 
             this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(6, 137);
+            this.button2.Location = new System.Drawing.Point(7, 234);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(118, 23);
             this.button2.TabIndex = 14;
@@ -213,7 +213,7 @@
             this.listBox1.HorizontalScrollbar = true;
             this.listBox1.Location = new System.Drawing.Point(6, 60);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(233, 69);
+            this.listBox1.Size = new System.Drawing.Size(233, 173);
             this.listBox1.TabIndex = 15;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -229,7 +229,7 @@
             // button3
             // 
             this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(129, 137);
+            this.button3.Location = new System.Drawing.Point(130, 234);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(109, 23);
             this.button3.TabIndex = 17;
@@ -288,9 +288,9 @@
             this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox3.Location = new System.Drawing.Point(439, 235);
+            this.groupBox3.Location = new System.Drawing.Point(439, 240);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(244, 167);
+            this.groupBox3.Size = new System.Drawing.Size(244, 264);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Spoiler Log Search";
@@ -310,7 +310,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(694, 411);
+            this.ClientSize = new System.Drawing.Size(694, 509);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
