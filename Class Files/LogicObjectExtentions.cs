@@ -281,10 +281,9 @@ namespace MMR_Tracker.Class_Files
                 //Disable skipping entry if Strictlogic is enable or logic is being calculated from scratch such as firsy run
                 if (FromScratch == false && ForceStrictLogicHendeling == false && Instance.Options.StrictLogicHandeling == false)
                 {
-                    
                     bool shouldupdate = false;
-                    foreach (var i in entry.Required) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } }
-                    foreach (var k in entry.Conditionals) { foreach (var i in k) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } } }
+                    foreach (var i in entry.Required) { if (LogicEditing.LastUpdated.Contains(i) || Instance.Logic[i].IsProgressiveItem(Instance)) { shouldupdate = true; } }
+                    foreach (var k in entry.Conditionals) { foreach (var i in k) { if (LogicEditing.LastUpdated.Contains(i) || Instance.Logic[i].IsProgressiveItem(Instance)) { shouldupdate = true; } } }
                     if (!shouldupdate) { return entry.Available; }
                 }
                 return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
@@ -295,11 +294,14 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool FakeItemStatusChange(this LogicObjects.LogicEntry entry)
         {
-            if (entry.Aquired != entry.Available && entry.IsFake)
+            if (entry.Aquired != entry.Available)
             {
                 LogicEditing.LastUpdated.Add(entry.ID);
-                entry.Aquired = entry.Available;
-                return true;
+                if (entry.IsFake)
+                {
+                    entry.Aquired = entry.Available;
+                    return true;
+                }
             }
             return false;
         }

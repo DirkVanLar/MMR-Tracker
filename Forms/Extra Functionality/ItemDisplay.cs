@@ -231,131 +231,131 @@ namespace MMR_Tracker.Forms
 
             var start = System.DateTime.Now.Ticks; //Timing how long this takes for testing purposes
 
-            CreatePictureBox("Ocarina", "Ocarina of Time", Spacing);
-            CreateProgressivePictureBox("Bow", new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } }, Spacing);
-            CreatePictureBox("FireArrow", "Fire Arrow", Spacing);
-            CreatePictureBox("IceArrow", "Ice Arrow", Spacing);
-            CreatePictureBox("LightArrow", "Light Arrow", Spacing);
-            CreatePictureBox("SongTime", "Song of Time", Spacing);
-            CreatePictureBox("Sonata", "Sonata of Awakening", Spacing);
-            CreatePictureBox("MoonTear", "Moon's Tear", Spacing);
+            CreatePictureBox("Ocarina", "ItemOcarina", Spacing);
+            CreateProgressivePictureBox("Bow", new Dictionary<string, string> { { "ItemBow", "30" }, { "UpgradeBigQuiver", "40" }, { "UpgradeBiggestQuiver", "50" } }, Spacing);
+            CreatePictureBox("FireArrow", "ItemFireArrow", Spacing);
+            CreatePictureBox("IceArrow", "ItemIceArrow", Spacing);
+            CreatePictureBox("LightArrow", "ItemLightArrow", Spacing);
+            CreatePictureBox("SongTime", "SongTime", Spacing);
+            CreatePictureBox("Sonata", "SongSonata", Spacing);
+            CreatePictureBox("MoonTear", "TradeItemMoonTear", Spacing);
 
-            CreateProgressivePictureBox("Bombs", new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } }, Spacing);
+            CreateProgressivePictureBox("Bombs", new Dictionary<string, string> { { "ItemBombBag", "20" }, { "UpgradeBigBombBag", "30" }, { "UpgradeBiggestBombBag", "40" } }, Spacing);
             CreateCountablePictureBox("Bombchus", new List<string> { "10 Bombchu", "5 Bombchu", "Bombchu" }, Spacing);
             CreateCountablePictureBox("DekuSticks", new List<string> { "Deku Stick" }, Spacing);
             CreateCountablePictureBox("DekuNuts", new List<string> { "10 Deku Nuts", "Deku Nuts" }, Spacing);
             CreateCountablePictureBox("MagicBeans", new List<string> { "Magic Bean", "Any Magic Bean" }, Spacing);
-            CreatePictureBox("SongHealing", "Song of Healing", Spacing);
-            CreatePictureBox("Lullaby", "Goron Lullaby", Spacing);
-            CreatePictureBox("LandDeed", "Land Title Deed", Spacing);
+            CreatePictureBox("SongHealing", "SongHealing", Spacing);
+            CreatePictureBox("Lullaby", "SongLullaby", Spacing);
+            CreatePictureBox("LandDeed", "TradeItemLandDeed", Spacing);
 
             CreateCountablePictureBox("PowderKeg", new List<string> { "Powder Keg" }, Spacing);
-            CreatePictureBox("PictoBox", "Pictobox", Spacing);
-            CreatePictureBox("LensOfTruth", "Lens of Truth", Spacing);
-            CreatePictureBox("HookShot", "Hookshot", Spacing);
-            CreatePictureBox("GreatFairySword", "Great Fairy's Sword", Spacing);
-            CreatePictureBox("SongEpona", "Epona's Song", Spacing);
-            CreatePictureBox("BossaNova", "New Wave Bossa Nova", Spacing);
-            CreatePictureBox("SwampDeed", "Swamp Title Deed", Spacing);
+            CreatePictureBox("PictoBox", "ItemPictobox", Spacing);
+            CreatePictureBox("LensOfTruth", "ItemLens", Spacing);
+            CreatePictureBox("HookShot", "ItemHookshot", Spacing);
+            CreatePictureBox("GreatFairySword", "ItemFairySword", Spacing);
+            CreatePictureBox("SongEpona", "SongEpona", Spacing);
+            CreatePictureBox("BossaNova", "SongNewWaveBossaNova", Spacing);
+            CreatePictureBox("SwampDeed", "TradeItemSwampDeed", Spacing);
 
             CreateCountablePictureBox("Bottle", new List<string> { "Bottle with Red Potion", "Bottle with Milk", "Bottle with Gold Dust", "Empty Bottle", "Bottle with Chateau Romani" }, Spacing);
             CreateCountablePictureBox("Milk", new List<string> { "Milk", "Bottle with Milk" }, Spacing);
-            CreatePictureBox("GoldDust", "Goron Race Bottle", Spacing);
-            CreatePictureBox("SeaHorse", "Seahorse", Spacing);
+            CreatePictureBox("GoldDust", "ItemBottleGoronRace", Spacing);
+            CreatePictureBox("SeaHorse", "MundaneItemSeahorse", Spacing);
             CreateCountablePictureBox("Chateau", new List<string> { "Chateau Romani", "Bottle with Chateau Romani" }, Spacing);
-            CreatePictureBox("SongSoaring", "Song of Soaring", Spacing);
-            CreatePictureBox("Elegy", "Elegy of Emptiness", Spacing);
-            CreatePictureBox("MountainDeed", "Mountain Title Deed", Spacing);
+            CreatePictureBox("SongSoaring", "SongSoaring", Spacing);
+            CreatePictureBox("Elegy", "SongElegy", Spacing);
+            CreatePictureBox("MountainDeed", "TradeItemMountainDeed", Spacing);
 
-            CreatePictureBox("Fairy", "Bottle: Fairy", Spacing);
-            CreatePictureBox("DekuPrincess", "Bottle: Deku Princess", Spacing);
-            CreatePictureBox("Fish", "Bottle: Fish", Spacing);
-            CreatePictureBox("Bug", "Bottle: Bug", Spacing);
-            CreatePictureBox("SmallPoe", "Bottle: Poe", Spacing);
-            CreatePictureBox("SongStorms", "Song of Storms", Spacing);
-            CreatePictureBox("Oath", "Oath to Order", Spacing);
-            CreatePictureBox("OceanDeed", "Ocean Title Deed", Spacing);
+            CreatePictureBox("Fairy", "BottleCatchFairy", Spacing);
+            CreatePictureBox("DekuPrincess", "BottleCatchPrincess", Spacing);
+            CreatePictureBox("Fish", "BottleCatchFish", Spacing);
+            CreatePictureBox("Bug", "BottleCatchBug", Spacing);
+            CreatePictureBox("SmallPoe", "BottleCatchPoe", Spacing);
+            CreatePictureBox("SongStorms", "SongStorms", Spacing);
+            CreatePictureBox("Oath", "SongStorms", Spacing);
+            CreatePictureBox("OceanDeed", "TradeItemOceanDeed", Spacing);
 
-            CreatePictureBox("BigPoe", "Bottle: Big Poe", Spacing);
-            CreatePictureBox("Water", "Bottle: Spring Water", Spacing);
-            CreatePictureBox("HotSpringWater", "Bottle: Hot Spring Water", Spacing);
-            CreatePictureBox("ZoraEgg", "Bottle: Zora Egg", Spacing);
-            CreatePictureBox("Mushroom", "Bottle: Mushroom", Spacing);
+            CreatePictureBox("BigPoe", "BottleCatchBigPoe", Spacing);
+            CreatePictureBox("Water", "BottleCatchSpringWater", Spacing);
+            CreatePictureBox("HotSpringWater", "BottleCatchHotSpringWater", Spacing);
+            CreatePictureBox("ZoraEgg", "BottleCatchEgg", Spacing);
+            CreatePictureBox("Mushroom", "BottleCatchMushroom", Spacing);
             CreateCountablePictureBox("HeartPiece", new List<string> { "Piece of Heart" }, Spacing);
             CreateCountablePictureBox("HeartContainer", new List<string> { "Heart Container" }, Spacing);
-            CreatePictureBox("RoomKey", "Room Key", Spacing);
+            CreatePictureBox("RoomKey", "TradeItemRoomKey", Spacing);
 
-            CreatePictureBox("PostmansHat", "Postman's Hat", Spacing);
-            CreatePictureBox("AllNightMask", "All Night Mask", Spacing);
-            CreatePictureBox("BlastMask", "Blast Mask", Spacing);
-            CreatePictureBox("StoneMask", "Stone Mask", Spacing);
-            CreatePictureBox("GreatFairyMask", "Great Fairy's Mask", Spacing);
-            CreatePictureBox("DekuMask", "Deku Mask", Spacing);
+            CreatePictureBox("PostmansHat", "MaskPostmanHat", Spacing);
+            CreatePictureBox("AllNightMask", "MaskAllNight", Spacing);
+            CreatePictureBox("BlastMask", "MaskBlast", Spacing);
+            CreatePictureBox("StoneMask", "MaskStone", Spacing);
+            CreatePictureBox("GreatFairyMask", "MaskGreatFairy", Spacing);
+            CreatePictureBox("DekuMask", "MaskDeku", Spacing);
             CreateCountablePictureBox("RedPotion", new List<string> { "Red Potion", "Bottle with Red Potion" }, Spacing);
-            CreatePictureBox("MamaLetter", "Letter to Mama", Spacing);
+            CreatePictureBox("MamaLetter", "TradeItemMamaLetter", Spacing);
 
-            CreatePictureBox("Keatonmask", "Keaton Mask", Spacing);
-            CreatePictureBox("BremonMask", "Bremen Mask", Spacing);
-            CreatePictureBox("BunnyHood", "Bunny Hood", Spacing);
-            CreatePictureBox("DonGeroMask", "Don Gero's Mask", Spacing);
-            CreatePictureBox("MaskOfScents", "Mask of Scents", Spacing);
-            CreatePictureBox("GoronMask", "Goron Mask", Spacing);
+            CreatePictureBox("Keatonmask", "MaskKeaton", Spacing);
+            CreatePictureBox("BremonMask", "MaskBremen", Spacing);
+            CreatePictureBox("BunnyHood", "MaskBunnyHood", Spacing);
+            CreatePictureBox("DonGeroMask", "MaskDonGero", Spacing);
+            CreatePictureBox("MaskOfScents", "MaskScents", Spacing);
+            CreatePictureBox("GoronMask", "MaskGoron", Spacing);
             CreateCountablePictureBox("GreenPotion", new List<string> { "Green Potion" }, Spacing);
-            CreatePictureBox("KafeiLetter", "Letter to Kafei", Spacing);
+            CreatePictureBox("KafeiLetter", "TradeItemKafeiLetter", Spacing);
 
-            CreatePictureBox("RomaniMask", "Romani Mask", Spacing);
-            CreatePictureBox("CircusLeadersMask", "Circus Leader's Mask", Spacing);
-            CreatePictureBox("KafeisMask", "Kafei's Mask", Spacing);
-            CreatePictureBox("CouplesMask", "Couple's Mask", Spacing);
-            CreatePictureBox("MaskOftruth", "Mask of Truth", Spacing);
-            CreatePictureBox("ZoraMask", "Zora Mask", Spacing);
+            CreatePictureBox("RomaniMask", "MaskRomani", Spacing);
+            CreatePictureBox("CircusLeadersMask", "MaskCircusLeader", Spacing);
+            CreatePictureBox("KafeisMask", "MaskKafei", Spacing);
+            CreatePictureBox("CouplesMask", "MaskCouple", Spacing);
+            CreatePictureBox("MaskOftruth", "MaskTruth", Spacing);
+            CreatePictureBox("ZoraMask", "MaskZora", Spacing);
             CreateCountablePictureBox("BluePotion", new List<string> { "Blue Potion" }, Spacing);
-            CreatePictureBox("Pendant", "Pendant of Memories", Spacing);
+            CreatePictureBox("Pendant", "TradeItemPendant", Spacing);
 
-            CreatePictureBox("KamaroMask", "Kamaro's Mask", Spacing);
-            CreatePictureBox("GibdoMask", "Gibdo Mask", Spacing);
-            CreatePictureBox("GaroMask", "Garo Mask", Spacing);
-            CreatePictureBox("CaptainsHat", "Captain's Hat", Spacing);
-            CreatePictureBox("GiantsMask", "Giant's Mask", Spacing);
-            CreatePictureBox("FierceDeityMask", "Fierce Deity's Mask", Spacing);
-            CreatePictureBox("ClockTownFairy", "Clock Town Stray Fairy", Spacing);
-            CreatePictureBox("BombersNotebook", "Bombers' Notebook", Spacing);
+            CreatePictureBox("KamaroMask", "MaskKamaro", Spacing);
+            CreatePictureBox("GibdoMask", "MaskGibdo", Spacing);
+            CreatePictureBox("GaroMask", "MaskGaro", Spacing);
+            CreatePictureBox("CaptainsHat", "MaskCaptainHat", Spacing);
+            CreatePictureBox("GiantsMask", "MaskGiant", Spacing);
+            CreatePictureBox("FierceDeityMask", "MaskFierceDeity", Spacing);
+            CreatePictureBox("ClockTownFairy", "CollectibleStrayFairyClockTown", Spacing);
+            CreatePictureBox("BombersNotebook", "ItemNotebook", Spacing);
 
-            CreateProgressivePictureBox("KokiriSword", new Dictionary<string, string> { { "Starting Sword", "null" }, { "Razor Sword", "null" }, { "Gilded Sword", "null" } }, Spacing);
-            CreatePictureBox("OdolwasRemains", "Woodfall clear", Spacing);
-            CreatePictureBox("Map|1", "Woodfall Map", Spacing);
-            CreatePictureBox("Compass|1", "Woodfall Compass", Spacing);
-            CreatePictureBox("BossKey|1", "Woodfall Boss Key", Spacing);
-            CreatePictureBox("SmallKey|1", "Woodfall Key 1", Spacing);
+            CreateProgressivePictureBox("KokiriSword", new Dictionary<string, string> { { "StartingSword", "null" }, { "UpgradeRazorSword", "null" }, { "UpgradeGildedSword", "null" } }, Spacing);
+            CreatePictureBox("OdolwasRemains", "RemainsOdolwa", Spacing);
+            CreatePictureBox("Map|1", "ItemWoodfallMap", Spacing);
+            CreatePictureBox("Compass|1", "ItemWoodfallCompass", Spacing);
+            CreatePictureBox("BossKey|1", "ItemWoodfallBossKey", Spacing);
+            CreatePictureBox("SmallKey|1", "ItemWoodfallKey1", Spacing);
             CreateCountablePictureBox("WoodfallFairy", new List<string> { "Woodfall Stray Fairy" }, Spacing);
             CreateCountablePictureBox("SwampSkullToken", new List<string> { "Swamp Skulltula Spirit" }, Spacing);
 
-            CreateProgressivePictureBox("HeroShield", new Dictionary<string, string> { { "Trading Post Shield", "null" }, { "Zora Shop Shield", "null" }, { "Starting Shield", "null" }, { "Mirror Shield", "null" } }, Spacing);
-            CreatePictureBox("GohtsRemains", "Snowhead clear", Spacing);
-            CreatePictureBox("Map|2", "Snowhead Map", Spacing);
-            CreatePictureBox("Compass|2", "Snowhead Compass", Spacing);
-            CreatePictureBox("BossKey|2", "Snowhead Boss Key", Spacing);
+            CreateProgressivePictureBox("HeroShield", new Dictionary<string, string> { { "ShopItemTradingPostShield", "null" }, { "ShopItemZoraShield", "null" }, { "StartingShield", "null" }, { "UpgradeMirrorShield", "null" } }, Spacing);
+            CreatePictureBox("GohtsRemains", "RemainsGoht", Spacing);
+            CreatePictureBox("Map|2", "ItemSnowheadMap", Spacing);
+            CreatePictureBox("Compass|2", "ItemSnowheadCompass", Spacing);
+            CreatePictureBox("BossKey|2", "ItemSnowheadBossKey", Spacing);
             CreateCountablePictureBox("SmallKey|2", new List<string> { "Snowhead Small Key" }, Spacing);
             CreateCountablePictureBox("SnowheadFairy", new List<string> { "Snowhead Stray Fairy" }, Spacing);
             CreateCountablePictureBox("Magic", new List<string> { "Magic Power", "Extended Magic Power" }, Spacing);
 
-            CreateProgressivePictureBox("AdultWallet", new Dictionary<string, string> { { "Town Wallet (200)", "null" }, { "Ocean Wallet (500)", "null" } }, Spacing);
-            CreatePictureBox("GyorgsRemains", "Great Bay clear", Spacing);
-            CreatePictureBox("Map|3", "Great Bay Map", Spacing);
-            CreatePictureBox("Compass|3", "Great Bay Compass", Spacing);
-            CreatePictureBox("BossKey|3", "Great Bay Boss Key", Spacing);
-            CreatePictureBox("SmallKey|3", "Great Bay Key 1", Spacing);
+            CreateProgressivePictureBox("AdultWallet", new Dictionary<string, string> { { "UpgradeAdultWallet", "null" }, { "UpgradeGiantWallet", "null" } }, Spacing);
+            CreatePictureBox("GyorgsRemains", "RemainsGyorg", Spacing);
+            CreatePictureBox("Map|3", "ItemGreatBayMap", Spacing);
+            CreatePictureBox("Compass|3", "ItemGreatBayCompass", Spacing);
+            CreatePictureBox("BossKey|3", "ItemGreatBayBossKey", Spacing);
+            CreatePictureBox("SmallKey|3", "ItemGreatBayKey1", Spacing);
             CreateCountablePictureBox("GreatBayFairy", new List<string> { "Great Bay Stray Fairy" }, Spacing);
             CreateCountablePictureBox("OceanSkullToken", new List<string> { "Ocean Skulltula Spirit" }, Spacing);
 
-            CreatePictureBox("Moon", "Moon Access", Spacing);
-            CreatePictureBox("TwimoldsRemains", "Ikana clear", Spacing);
-            CreatePictureBox("Map|4", "Stone Tower Map", Spacing);
-            CreatePictureBox("Compass|4", "Stone Tower Compass", Spacing);
-            CreatePictureBox("BossKey|4", "Stone Tower Boss Key", Spacing);
+            CreatePictureBox("Moon", "AreaMoonAccess", Spacing);
+            CreatePictureBox("TwimoldsRemains", "RemainsTwinmold", Spacing);
+            CreatePictureBox("Map|4", "ItemStoneTowerMap", Spacing);
+            CreatePictureBox("Compass|4", "ItemStoneTowerCompass", Spacing);
+            CreatePictureBox("BossKey|4", "ItemStoneTowerBossKey", Spacing);
             CreateCountablePictureBox("SmallKey|4", new List<string> { "Stone Tower Small Key" }, Spacing);
             CreateCountablePictureBox("StoneTowerFairy", new List<string> { "Stone Tower Stray Fairy" }, Spacing);
-            CreatePictureBox("DoubleDefence", "Great Fairy Double Defense", Spacing);
+            CreatePictureBox("DoubleDefence", "FairyDoubleMagic", Spacing);
 
             var End = System.DateTime.Now.Ticks;
             var total = (End - start) / 10000;
@@ -368,135 +368,133 @@ namespace MMR_Tracker.Forms
 
             var start = System.DateTime.Now.Ticks;
 
-            DrawItem("Ocarina", "Ocarina of Time", Spacing);
-            DrawHighestTierItem("Bow", new Dictionary<string, string> { { "Hero's Bow", "30" }, { "Town Archery Quiver (40)", "40" }, { "Swamp Archery Quiver (50)", "50" } }, Spacing);
-            DrawItem("FireArrow", "Fire Arrow", Spacing);
-            DrawItem("IceArrow", "Ice Arrow", Spacing);
-            DrawItem("LightArrow", "Light Arrow", Spacing);
-            DrawItem("SongTime", "Song of Time", Spacing, "Time");
-            DrawItem("Sonata", "Sonata of Awakening", Spacing, "Sonata");
-            DrawItem("MoonTear", "Moon's Tear", Spacing);
+            DrawItem("Ocarina", "ItemOcarina", Spacing);
+            DrawHighestTierItem("Bow", new Dictionary<string, string> { { "ItemBow", "30" }, { "UpgradeBigQuiver", "40" }, { "UpgradeBiggestQuiver", "50" } }, Spacing);
+            DrawItem("FireArrow", "ItemFireArrow", Spacing);
+            DrawItem("IceArrow", "ItemIceArrow", Spacing);
+            DrawItem("LightArrow", "ItemLightArrow", Spacing);
+            DrawItem("SongTime", "SongTime", Spacing, "SOT");
+            DrawItem("Sonata", "SongSonata", Spacing, "SOA");
+            DrawItem("MoonTear", "TradeItemMoonTear", Spacing);
 
-            DrawHighestTierItem("Bombs", new Dictionary<string, string> { { "Bomb Bag (20)", "20" }, { "Town Bomb Bag (30)", "30" }, { "Mountain Bomb Bag (40)", "40" } }, Spacing);
+            DrawHighestTierItem("Bombs", new Dictionary<string, string> { { "ItemBombBag", "20" }, { "UpgradeBigBombBag", "30" }, { "UpgradeBiggestBombBag", "40" } }, Spacing);
             DrawCountableItem("Bombchus", new List<string> { "10 Bombchu", "5 Bombchu", "Bombchu" }, Spacing);
             DrawCountableItem("DekuSticks", new List<string> { "Deku Stick" }, Spacing);
             DrawCountableItem("DekuNuts", new List<string> { "10 Deku Nuts", "Deku Nuts" }, Spacing);
             DrawCountableItem("MagicBeans", new List<string> { "Magic Bean", "Any Magic Bean" }, Spacing);
-            DrawItem("SongHealing", "Song of Healing", Spacing, "Healing");
-            DrawItem("Lullaby", "Goron Lullaby", Spacing, "Lullaby");
-            DrawItem("LandDeed", "Land Title Deed", Spacing);
+            DrawItem("SongHealing", "SongHealing", Spacing, "SOH");
+            DrawItem("Lullaby", "SongLullaby", Spacing, "GL");
+            DrawItem("LandDeed", "TradeItemLandDeed", Spacing);
 
             DrawCountableItem("PowderKeg", new List<string> { "Powder Keg" }, Spacing);
-            DrawItem("PictoBox", "Pictobox", Spacing);
-            DrawItem("LensOfTruth", "Lens of Truth", Spacing);
-            DrawItem("HookShot", "Hookshot", Spacing);
-            DrawItem("GreatFairySword", "Great Fairy's Sword", Spacing);
-            DrawItem("SongEpona", "Epona's Song", Spacing, "Epona");
-            DrawItem("BossaNova", "New Wave Bossa Nova", Spacing, "Bossanova");
-            DrawItem("SwampDeed", "Swamp Title Deed", Spacing);
+            DrawItem("PictoBox", "ItemPictobox", Spacing);
+            DrawItem("LensOfTruth", "ItemLens", Spacing);
+            DrawItem("HookShot", "ItemHookshot", Spacing);
+            DrawItem("GreatFairySword", "ItemFairySword", Spacing);
+            DrawItem("SongEpona", "SongEpona", Spacing, "ES");
+            DrawItem("BossaNova", "SongNewWaveBossaNova", Spacing, "NWBS");
+            DrawItem("SwampDeed", "TradeItemSwampDeed", Spacing);
 
             DrawCountableItem("Bottle", new List<string> { "Bottle with Red Potion", "Bottle with Milk", "Bottle with Gold Dust", "Empty Bottle", "Bottle with Chateau Romani" }, Spacing, true);
             DrawCountableItem("Milk", new List<string> { "Milk", "Bottle with Milk" }, Spacing);
-            DrawItem("GoldDust", "Goron Race Bottle", Spacing);
-            DrawItem("SeaHorse", "Seahorse", Spacing);
+            DrawItem("GoldDust", "ItemBottleGoronRace", Spacing);
+            DrawItem("SeaHorse", "MundaneItemSeahorse", Spacing);
             DrawCountableItem("Chateau", new List<string> { "Chateau Romani", "Bottle with Chateau Romani" }, Spacing);
-            DrawItem("SongSoaring", "Song of Soaring", Spacing, "Soaring");
-            DrawItem("Elegy", "Elegy of Emptiness", Spacing, "Elegy");
-            DrawItem("MountainDeed", "Mountain Title Deed", Spacing);
+            DrawItem("SongSoaring", "SongSoaring", Spacing, "SOS");
+            DrawItem("Elegy", "SongElegy", Spacing, "EOE");
+            DrawItem("MountainDeed", "TradeItemMountainDeed", Spacing);
 
-            DrawItem("Fairy", "Bottle: Fairy", Spacing);
-            DrawItem("DekuPrincess", "Bottle: Deku Princess", Spacing);
-            DrawItem("Fish", "Bottle: Fish", Spacing);
-            DrawItem("Bug", "Bottle: Bug", Spacing);
-            DrawItem("SmallPoe", "Bottle: Poe", Spacing);
-            DrawItem("SongStorms", "Song of Storms", Spacing, "Storms");
-            DrawItem("Oath", "Oath to Order", Spacing, "Oath");
-            DrawItem("OceanDeed", "Ocean Title Deed", Spacing);
+            DrawItem("Fairy", "BottleCatchFairy", Spacing);
+            DrawItem("DekuPrincess", "BottleCatchPrincess", Spacing);
+            DrawItem("Fish", "BottleCatchFish", Spacing);
+            DrawItem("Bug", "BottleCatchBug", Spacing);
+            DrawItem("SmallPoe", "BottleCatchPoe", Spacing);
+            DrawItem("SongStorms", "SongStorms", Spacing);
+            DrawItem("Oath", "SongStorms", Spacing);
+            DrawItem("OceanDeed", "TradeItemOceanDeed", Spacing);
 
-
-            DrawItem("BigPoe", "Bottle: Big Poe", Spacing);
-            DrawItem("Water", "Bottle: Spring Water", Spacing);
-            DrawItem("HotSpringWater", "Bottle: Hot Spring Water", Spacing);
-            DrawItem("ZoraEgg", "Bottle: Zora Egg", Spacing);
-            DrawItem("Mushroom", "Bottle: Mushroom", Spacing);
+            DrawItem("BigPoe", "BottleCatchBigPoe", Spacing);
+            DrawItem("Water", "BottleCatchSpringWater", Spacing);
+            DrawItem("HotSpringWater", "BottleCatchHotSpringWater", Spacing);
+            DrawItem("ZoraEgg", "BottleCatchEgg", Spacing);
+            DrawItem("Mushroom", "BottleCatchMushroom", Spacing);
             DrawCountableItem("HeartPiece", new List<string> { "Piece of Heart" }, Spacing, true);
             DrawCountableItem("HeartContainer", new List<string> { "Heart Container" }, Spacing, true);
-            DrawItem("RoomKey", "Room Key", Spacing);
+            DrawItem("RoomKey", "TradeItemRoomKey", Spacing);
 
-            DrawItem("PostmansHat", "Postman's Hat", Spacing);
-            DrawItem("AllNightMask", "All Night Mask", Spacing);
-            DrawItem("BlastMask", "Blast Mask", Spacing);
-            DrawItem("StoneMask", "Stone Mask", Spacing);
-            DrawItem("GreatFairyMask", "Great Fairy's Mask", Spacing);
-            DrawItem("DekuMask", "Deku Mask", Spacing);
+            DrawItem("PostmansHat", "MaskPostmanHat", Spacing);
+            DrawItem("AllNightMask", "MaskAllNight", Spacing);
+            DrawItem("BlastMask", "MaskBlast", Spacing);
+            DrawItem("StoneMask", "MaskStone", Spacing);
+            DrawItem("GreatFairyMask", "MaskGreatFairy", Spacing);
+            DrawItem("DekuMask", "MaskDeku", Spacing);
             DrawCountableItem("RedPotion", new List<string> { "Red Potion", "Bottle with Red Potion" }, Spacing);
-            DrawItem("MamaLetter", "Letter to Mama", Spacing);
+            DrawItem("MamaLetter", "TradeItemMamaLetter", Spacing);
 
-
-
-            DrawItem("Keatonmask", "Keaton Mask", Spacing);
-            DrawItem("BremonMask", "Bremen Mask", Spacing);
-            DrawItem("BunnyHood", "Bunny Hood", Spacing);
-            DrawItem("DonGeroMask", "Don Gero's Mask", Spacing);
-            DrawItem("MaskOfScents", "Mask of Scents", Spacing);
-            DrawItem("GoronMask", "Goron Mask", Spacing);
+            DrawItem("Keatonmask", "MaskKeaton", Spacing);
+            DrawItem("BremonMask", "MaskBremen", Spacing);
+            DrawItem("BunnyHood", "MaskBunnyHood", Spacing);
+            DrawItem("DonGeroMask", "MaskDonGero", Spacing);
+            DrawItem("MaskOfScents", "MaskScents", Spacing);
+            DrawItem("GoronMask", "MaskGoron", Spacing);
             DrawCountableItem("GreenPotion", new List<string> { "Green Potion" }, Spacing);
-            DrawItem("KafeiLetter", "Letter to Kafei", Spacing);
+            DrawItem("KafeiLetter", "TradeItemKafeiLetter", Spacing);
 
-            DrawItem("RomaniMask", "Romani Mask", Spacing);
-            DrawItem("CircusLeadersMask", "Circus Leader's Mask", Spacing);
-            DrawItem("KafeisMask", "Kafei's Mask", Spacing);
-            DrawItem("CouplesMask", "Couple's Mask", Spacing);
-            DrawItem("MaskOftruth", "Mask of Truth", Spacing);
-            DrawItem("ZoraMask", "Zora Mask", Spacing);
+            DrawItem("RomaniMask", "MaskRomani", Spacing);
+            DrawItem("CircusLeadersMask", "MaskCircusLeader", Spacing);
+            DrawItem("KafeisMask", "MaskKafei", Spacing);
+            DrawItem("CouplesMask", "MaskCouple", Spacing);
+            DrawItem("MaskOftruth", "MaskTruth", Spacing);
+            DrawItem("ZoraMask", "MaskZora", Spacing);
             DrawCountableItem("BluePotion", new List<string> { "Blue Potion" }, Spacing);
-            DrawItem("Pendant", "Pendant of Memories", Spacing);
+            DrawItem("Pendant", "TradeItemPendant", Spacing);
 
-            DrawItem("KamaroMask", "Kamaro's Mask", Spacing);
-            DrawItem("GibdoMask", "Gibdo Mask", Spacing);
-            DrawItem("GaroMask", "Garo Mask", Spacing);
-            DrawItem("CaptainsHat", "Captain's Hat", Spacing);
-            DrawItem("GiantsMask", "Giant's Mask", Spacing);
-            DrawItem("FierceDeityMask", "Fierce Deity's Mask", Spacing);
-            DrawItem("ClockTownFairy", "Clock Town Stray Fairy", Spacing);
-            DrawItem("BombersNotebook", "Bombers' Notebook", Spacing);
-            DrawHighestTierItem("KokiriSword", new Dictionary<string, string> { { "Starting Sword", "null" }, { "Razor Sword", "null" }, { "Gilded Sword", "null" } }, Spacing, new List<string> { "KokiriSword", "RazorSword", "GildedSword" });
+            DrawItem("KamaroMask", "MaskKamaro", Spacing);
+            DrawItem("GibdoMask", "MaskGibdo", Spacing);
+            DrawItem("GaroMask", "MaskGaro", Spacing);
+            DrawItem("CaptainsHat", "MaskCaptainHat", Spacing);
+            DrawItem("GiantsMask", "MaskGiant", Spacing);
+            DrawItem("FierceDeityMask", "MaskFierceDeity", Spacing);
+            DrawItem("ClockTownFairy", "CollectibleStrayFairyClockTown", Spacing);
+            DrawItem("BombersNotebook", "ItemNotebook", Spacing);
 
-            DrawItem("OdolwasRemains", "Woodfall clear", Spacing, "", true);
-            DrawItem("Map|1", "Woodfall Map", Spacing);
-            DrawItem("Compass|1", "Woodfall Compass", Spacing);
-            DrawItem("BossKey|1", "Woodfall Boss Key", Spacing);
-            DrawItem("SmallKey|1", "Woodfall Key 1", Spacing);
+            DrawHighestTierItem("KokiriSword", new Dictionary<string, string> { { "StartingSword", "null" }, { "UpgradeRazorSword", "null" }, { "UpgradeGildedSword", "null" } }, Spacing, new List<string> { "KokiriSword", "RazorSword", "GildedSword" });
+            DrawItem("OdolwasRemains", "RemainsOdolwa", Spacing);
+            DrawItem("Map|1", "ItemWoodfallMap", Spacing);
+            DrawItem("Compass|1", "ItemWoodfallCompass", Spacing);
+            DrawItem("BossKey|1", "ItemWoodfallBossKey", Spacing);
+            DrawItem("SmallKey|1", "ItemWoodfallKey1", Spacing);
             DrawCountableItem("WoodfallFairy", new List<string> { "Woodfall Stray Fairy" }, Spacing, true);
             DrawCountableItem("SwampSkullToken", new List<string> { "Swamp Skulltula Spirit" }, Spacing, true);
 
-            DrawHighestTierItem("HeroShield", new Dictionary<string, string> { { "Trading Post Shield", "null" }, { "Zora Shop Shield", "null" }, { "Starting Shield", "null" }, { "Mirror Shield", "null" } }, Spacing, new List<string> { "HeroShield", "HeroShield", "HeroShield", "MirrorShield" });
-            DrawItem("GohtsRemains", "Snowhead clear", Spacing, "", true);
-            DrawItem("Map|2", "Snowhead Map", Spacing);
-            DrawItem("Compass|2", "Snowhead Compass", Spacing);
-            DrawItem("BossKey|2", "Snowhead Boss Key", Spacing);
+            DrawHighestTierItem("HeroShield", new Dictionary<string, string> { { "ShopItemTradingPostShield", "null" }, { "ShopItemZoraShield", "null" }, { "StartingShield", "null" }, { "UpgradeMirrorShield", "null" } }, Spacing, new List<string> { "HeroShield", "HeroShield", "HeroShield", "MirrorShield" });
+            DrawItem("GohtsRemains", "RemainsGoht", Spacing);
+            DrawItem("Map|2", "ItemSnowheadMap", Spacing);
+            DrawItem("Compass|2", "ItemSnowheadCompass", Spacing);
+            DrawItem("BossKey|2", "ItemSnowheadBossKey", Spacing);
             DrawCountableItem("SmallKey|2", new List<string> { "Snowhead Small Key" }, Spacing, true);
             DrawCountableItem("SnowheadFairy", new List<string> { "Snowhead Stray Fairy" }, Spacing, true);
             DrawCountableItem("Magic", new List<string> { "Magic Power", "Extended Magic Power" }, Spacing);
-            DrawHighestTierItem("AdultWallet", new Dictionary<string, string> { { "Town Wallet (200)", "null" }, { "Ocean Wallet (500)", "null" } }, Spacing, new List<string> { "AdultWallet", "GiantWallet" });
 
-
-            DrawItem("GyorgsRemains", "Great Bay clear", Spacing, "", true);
-            DrawItem("Map|3", "Great Bay Map", Spacing);
-            DrawItem("Compass|3", "Great Bay Compass", Spacing);
-            DrawItem("BossKey|3", "Great Bay Boss Key", Spacing);
-            DrawItem("SmallKey|3", "Great Bay Key 1", Spacing);
+            DrawHighestTierItem("AdultWallet", new Dictionary<string, string> { { "UpgradeAdultWallet", "null" }, { "UpgradeGiantWallet", "null" } }, Spacing, new List<string> { "AdultWallet", "GiantWallet" });
+            DrawItem("GyorgsRemains", "RemainsGyorg", Spacing);
+            DrawItem("Map|3", "ItemGreatBayMap", Spacing);
+            DrawItem("Compass|3", "ItemGreatBayCompass", Spacing);
+            DrawItem("BossKey|3", "ItemGreatBayBossKey", Spacing);
+            DrawItem("SmallKey|3", "ItemGreatBayKey1", Spacing);
             DrawCountableItem("GreatBayFairy", new List<string> { "Great Bay Stray Fairy" }, Spacing, true);
             DrawCountableItem("OceanSkullToken", new List<string> { "Ocean Skulltula Spirit" }, Spacing, true);
 
-            DrawItem("Moon", "Moon Access", Spacing, "", true);
-            DrawItem("TwimoldsRemains", "Ikana clear", Spacing, "", true);
-            DrawItem("Map|4", "Stone Tower Map", Spacing);
-            DrawItem("Compass|4", "Stone Tower Compass", Spacing);
-            DrawItem("BossKey|4", "Stone Tower Boss Key", Spacing);
+            DrawItem("Moon", "AreaMoonAccess", Spacing);
+            DrawItem("TwimoldsRemains", "RemainsTwinmold", Spacing);
+            DrawItem("Map|4", "ItemStoneTowerMap", Spacing);
+            DrawItem("Compass|4", "ItemStoneTowerCompass", Spacing);
+            DrawItem("BossKey|4", "ItemStoneTowerBossKey", Spacing);
             DrawCountableItem("SmallKey|4", new List<string> { "Stone Tower Small Key" }, Spacing, true);
             DrawCountableItem("StoneTowerFairy", new List<string> { "Stone Tower Stray Fairy" }, Spacing, true);
-            DrawItem("DoubleDefence", "Great Fairy Double Defense", Spacing);
+            DrawItem("DoubleDefence", "FairyDoubleMagic", Spacing);
+
+
 
             var End = System.DateTime.Now.Ticks;
             var total = (End - start) / 10000;
@@ -659,6 +657,8 @@ namespace MMR_Tracker.Forms
             int TotalNumber = Seen + Obtained;
             string Display = "";
 
+            Console.WriteLine($"Total {ItemNames[0]} Found: {TotalNumber}");
+
             if (Obtained < 1 && !DebugShowAll) { CurentImage = GreyImage(CurentImage); }
             if (ShowCount && TotalNumber > 0)
             {
@@ -700,7 +700,9 @@ namespace MMR_Tracker.Forms
             int colomn = Position[1];
             Increaseposition();
 
+            Console.WriteLine($"Finding Dictionary entry {Logicname}");
             LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == Logicname);
+            Console.WriteLine($"Success: {Entry != null}");
 
             var PB = new PictureBox
             {
