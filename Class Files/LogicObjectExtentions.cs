@@ -176,12 +176,12 @@ namespace MMR_Tracker.Class_Files
                 int ConditionalsAquired = 0;
                 if (int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out int ConditionalsNeeded))
                 {
-                    if (!Required.Any() || LogicEditing.RequirementsMet(Required, Instance, entry, CondItemsUsed))
+                    if (!Required.Any() || LogicEditing.RequirementsMet(Required, Instance, CondItemsUsed))
                     {
                         foreach (var i in entry.Conditionals)
                         {
                             List<int> ReqItemsUsed = new List<int>();
-                            if (LogicEditing.RequirementsMet(i, Instance, entry, ReqItemsUsed))
+                            if (LogicEditing.RequirementsMet(i, Instance, ReqItemsUsed))
                             {
                                 foreach (var q in ReqItemsUsed) { CondItemsUsed.Add(q); }
                                 ConditionalsAquired++;
@@ -220,16 +220,69 @@ namespace MMR_Tracker.Class_Files
                 if (RandClearLogic == null) { return false; }
                 else
                 {
-                    return LogicEditing.RequirementsMet(RandClearLogic.Required, Instance, RandClearLogic, usedItems) &&
-                            LogicEditing.CondtionalsMet(RandClearLogic.Conditionals, Instance, RandClearLogic, usedItems);
+                    return LogicEditing.RequirementsMet(RandClearLogic.Required, Instance, usedItems) &&
+                            LogicEditing.CondtionalsMet(RandClearLogic.Conditionals, Instance, usedItems);
                 }
+            }
+            //If a check was assigned a custom price, Change wallet logic entries to ensure the item is purchasable.
+            else if (entry.Price > -1)
+            {
+
+                var ValidWallets = Instance.WalletDictionary.Where(x => x.Value >= entry.Price).ToDictionary(x => x.Key, x => x.Value).Keys.ToArray();
+                var ValidWalletObjects = ValidWallets.Where(x => Instance.Logic.Find(y => y.DictionaryName == x) != null).Select(x => Instance.Logic.Find(y => y.DictionaryName == x)).ToArray();
+                var ValidWalletIDs = ValidWalletObjects.Select(x => x.ID).ToArray();
+                if (ValidWalletObjects.Count() == 0)
+                {
+                    Console.WriteLine("Critical error there are no wallets big enough to buy this item!");
+                    return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
+                            LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
+                }
+                List<int> NewRequired = new List<int>();
+                List<List<int>> NewConditionals = new List<List<int>>();
+                List<List<int>> NewConditionalsWithWallet = new List<List<int>>();
+                foreach (var i in entry.Required.Where(x => !ValidWalletIDs.Contains(x)))
+                {
+                    NewRequired.Add(i);
+                }
+
+                foreach (var conditional in entry.Conditionals)
+                {
+                    List<int> NewCondtitional = new List<int>();
+                    foreach (var i in conditional.Where(x => !ValidWalletIDs.Contains(x))) { NewCondtitional.Add(i); }
+                    NewConditionals.Add(NewCondtitional);
+                }
+
+                bool hasconditionals = false;
+                foreach(var i in NewConditionals) { foreach (var j in i) { hasconditionals = true; } }
+                if (!hasconditionals)
+                {
+                    NewConditionalsWithWallet = ValidWalletIDs.Select(x => new List<int> { x }).ToList();
+                }
+                else
+                {
+                    foreach (var Wallet in ValidWalletIDs)
+                    {
+                        foreach (var Conitional in NewConditionals)
+                        {
+                            List<int> NewCondtitional = new List<int>() { Wallet };
+                            foreach (var i in Conitional) { NewCondtitional.Add(i); }
+                            NewConditionalsWithWallet.Add(NewCondtitional);
+                        }
+                    }
+                }
+                
+
+                return LogicEditing.RequirementsMet(NewRequired.ToArray(), Instance, usedItems) &&
+                        LogicEditing.CondtionalsMet(NewConditionalsWithWallet.Select(x=>x.ToArray()).ToArray(), Instance, usedItems);
             }
             //Check availability the standard way
             else
             {
-                return LogicEditing.RequirementsMet(entry.Required, Instance, entry, usedItems) &&
-                        LogicEditing.CondtionalsMet(entry.Conditionals, Instance, entry, usedItems);
+                return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
+                        LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
             }
+
+            
         }
         public static bool FakeItemStatusChange(this LogicObjects.LogicEntry entry)
         {
@@ -355,6 +408,39 @@ namespace MMR_Tracker.Class_Files
         public static bool ItemInRange(this LogicObjects.TrackerInstance Instance, int Item)
         {
             return Item > -1 && Item < Instance.Logic.Count;
+        }
+        public static void GetWalletsFromConfigFile(this LogicObjects.TrackerInstance Instance)
+        {
+            Dictionary<string, int> Wallets = new Dictionary<string, int>();
+            if (File.Exists(@"Recources\Other Files\WalletValues.txt"))
+            {
+                //Console.WriteLine("Wallet Config Found");
+                bool AtGame = true;
+                List<int> UsedItemsForLargestWallet = new List<int>();
+                foreach (var i in File.ReadAllLines(@"Recources\Other Files\WalletValues.txt"))
+                {
+                    var x = i.Trim();
+                    if (string.IsNullOrWhiteSpace(x) || x.StartsWith("//")) { continue; }
+                    if (x.ToLower().StartsWith("#gamecodestart:"))
+                    {
+                        AtGame = x.ToLower().Replace("#gamecodestart:", "").Trim().Split(',')
+                            .Select(y => y.Trim()).Contains(Instance.GameCode.ToLower());
+                        continue;
+                    }
+                    if (x.ToLower().StartsWith("#gamecodeend:")) { AtGame = true; continue; }
+                    if (!AtGame) { continue; }
+
+
+                    var info = x.Split(':').Select(y => y.Trim()).ToArray();
+                    if (info.Count() != 2) { continue; }
+                    string Wallet = info[0];
+                    int capacity = 0;
+                    try { capacity = int.Parse(info[1]); } catch { continue; }
+
+                    if (!Wallets.ContainsKey(Wallet)) { Wallets.Add(Wallet, capacity); }
+                }
+            }
+            Instance.WalletDictionary = Wallets;
         }
     }
 }

@@ -31,6 +31,7 @@ namespace MMR_Tracker_V2
             public bool JsonLogic { get; set; } = false;
             public List<List<LogicEntry>> UndoList { get; set; } = new List<List<LogicEntry>>();
             public List<List<LogicEntry>> RedoList { get; set; } = new List<List<LogicEntry>>();
+            public Dictionary<string, int> WalletDictionary { get; set; } = new Dictionary<string, int>();
         }
 
         public class Options
@@ -160,6 +161,11 @@ namespace MMR_Tracker_V2
             public int EntranceToTake { get; set; } //The entrance you can go through
             public int ResultingExit { get; set; } //The resulting exit you will end up at
         }
+        public class SpoilerLogData
+        {
+            public List<LogicObjects.SpoilerData> SpoilerDatas { get; set; } = new List<SpoilerData>();
+            public Dictionary<string, int> Pricedata { get; set; } = new Dictionary<string, int>();
+        }
         public class SpoilerData
         {
             public int LocationID { get; set; }
@@ -168,7 +174,7 @@ namespace MMR_Tracker_V2
             public string ItemName { get; set; }
             public string LocationArea { get; set; }
             public int BelongsTo { get; set; } = -1;
-        }
+    }
         public class ListItem
         {
             public LogicObjects.LogicEntry LocationEntry { get; set; }

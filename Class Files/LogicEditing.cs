@@ -221,23 +221,18 @@ namespace MMR_Tracker_V2
             foreach (var i in Instance.Logic) { if (Instance.Logic.Where(x => x.ItemSubType == i.ItemSubType).Count() < 2) { i.Options = (i.StartingItem()) ? 6 : 2; } }
         }
 
-        public static bool RequirementsMet(int[] DefaultItemlist, LogicObjects.TrackerInstance logic, LogicObjects.LogicEntry Entry, List<int> usedItems = null)
+        public static bool RequirementsMet(int[] DefaultItemlist, LogicObjects.TrackerInstance logic, List<int> usedItems = null)
         {
             usedItems = usedItems ?? new List<int>();
-            //If the item list does not contain a wallet in logic but the price is random, add a wallet.
-            int[] List = Entry.Price > -1 ? AddSmallestWallet(logic, Entry, DefaultItemlist) : DefaultItemlist;
-            if (DefaultItemlist == null) { return true; }
-            foreach (var i in List)
+            if (DefaultItemlist == null || DefaultItemlist.Count() < 1) { return true; }
+            foreach (var i in DefaultItemlist)
             {
-                int j = RandomPriceWalletSwap(logic, Entry, i); //If prices are random. hotswap any wallets with the minimum wallet needed to purchase the item.
-                if (j < 0) { continue; }
-
-                if (!logic.Logic[j].ItemUseable(logic, usedItems)) { return false; }
+                if (!logic.Logic[i].ItemUseable(logic, usedItems)) { return false; }
             }
             return true;
         }
 
-        public static bool CondtionalsMet(int[][] list, LogicObjects.TrackerInstance logic, LogicObjects.LogicEntry Entry, List<int> usedItems = null)
+        public static bool CondtionalsMet(int[][] list, LogicObjects.TrackerInstance logic, List<int> usedItems = null)
         {
             usedItems = usedItems ?? new List<int>();
             if (list == null) { return true; }
@@ -247,7 +242,7 @@ namespace MMR_Tracker_V2
             foreach (var i in ValidListEntries)
             {
                 List<int> UsedItemsSet = new List<int>();
-                if (RequirementsMet(i, logic, Entry, UsedItemsSet))
+                if (RequirementsMet(i, logic, UsedItemsSet))
                 {
                     foreach (var set in UsedItemsSet) { usedItems.Add(set); }
                     return true;
@@ -258,7 +253,11 @@ namespace MMR_Tracker_V2
 
         public static void CalculateItems(LogicObjects.TrackerInstance Instance, bool ForceStrictLogicHendeling = false, bool InitialRun = true)
         {
-            if (InitialRun && (Instance.Options.StrictLogicHandeling || ForceStrictLogicHendeling)) { Instance.RefreshFakeItems(); }
+            if (InitialRun)
+            {
+                Instance.GetWalletsFromConfigFile();
+                if ((Instance.Options.StrictLogicHandeling || ForceStrictLogicHendeling)) { Instance.RefreshFakeItems(); }
+            }
             bool recalculate = false;
             foreach (var item in Instance.Logic)
             {
@@ -271,6 +270,7 @@ namespace MMR_Tracker_V2
         public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
+            Dictionary<string, int> Pricedata = new Dictionary<string, int>();
             if (path.Contains(".txt") || path.Contains(".json"))
             {
                 bool TXTOverride = false;
@@ -283,13 +283,20 @@ namespace MMR_Tracker_V2
                         if (HTMLPath != "")
                         {
                             TXTOverride = true;
-                            SpoilerData = Tools.ReadHTMLSpoilerLog(HTMLPath, Instance);
+                            LogicObjects.SpoilerLogData SPLD = Tools.ReadHTMLSpoilerLog(HTMLPath, Instance);
+                            SpoilerData = SPLD.SpoilerDatas;
+                            Pricedata = SPLD.Pricedata;
                         }
                     }
                 }
                 if (!TXTOverride) { SpoilerData = Tools.ReadTextSpoilerlog(Instance, File.ReadAllLines(path)); }
             }
-            else if (path.Contains(".html")) { SpoilerData = Tools.ReadHTMLSpoilerLog(path, Instance); }
+            else if (path.Contains(".html")) 
+            { 
+                LogicObjects.SpoilerLogData SPLD = Tools.ReadHTMLSpoilerLog(path, Instance);
+                SpoilerData = SPLD.SpoilerDatas;
+                Pricedata = SPLD.Pricedata;
+            }
             else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return; }
 
             foreach (LogicObjects.SpoilerData data in SpoilerData)
@@ -298,6 +305,15 @@ namespace MMR_Tracker_V2
                 {
                     Instance.Logic[data.LocationID].SpoilerRandom = data.ItemID;
                     if (data.BelongsTo > -1) { Instance.Logic[data.LocationID].PlayerData.ItemBelongedToPlayer = data.BelongsTo; }
+                }
+            }
+
+            foreach (var data in Pricedata)
+            {
+                var PriceLoc = Instance.Logic.Find(x => x.SpoilerLocation.Contains(data.Key));
+                if (PriceLoc != null)
+                {
+                    PriceLoc.Price = data.Value;
                 }
             }
 
@@ -509,119 +525,6 @@ namespace MMR_Tracker_V2
             EntAreaDict.Add(StoneTowerClear.ID, StoneTowerAccess.ID);
 
             return EntAreaDict;
-        }
-
-        public static int RandomPriceWalletSwap(LogicObjects.TrackerInstance Instance, LogicObjects.LogicEntry Entry, int Item)
-        {
-            if (Entry.Price == -1) { return Item; } //Does the location being check have a price attached to it
-            var Wallets = GetWalletsFromConfigFile(Instance);
-            if (Wallets.Count() < 1) { return Item; } //Did the wallet config file have any valid wallets
-            if (!Wallets.ContainsKey(Instance.Logic[Item].DictionaryName)) { return Item; } //Is the item needed a wallet
-
-            LogicObjects.LogicEntry Wallet = null;
-            int Value = 0;
-            var ValidWallets = Wallets.Where(x => Entry.Price <= x.Value); //A list of all wallets that can afford this item
-            if (ValidWallets.Count() < 1)
-            {
-                Console.WriteLine($"Something went wrong, Location {Entry.LocationName} was given a price that no wallet can afford. Check your WalletValues Config file");
-                return -1; //Return -1 so this item will effectively have the wallet requirement removed, ensuring this bug still allows seed completion in the tracker.
-            }
-            //First look for wallets that are obtained and usable
-            FindSmallestWallet(true);
-            //if no wallets are obtained add the smallest usable wallet
-            if (Wallet == null) { FindSmallestWallet(false); }
-
-            void FindSmallestWallet(bool Usable)
-            {
-                foreach (var i in ValidWallets)
-                {
-                    var WalletItem = Instance.Logic.Find(x => x.DictionaryName == i.Key);
-                    if ((i.Key == "MMRTDefault" || WalletItem != null) && (Wallet == null || Value > i.Value) && (WalletItem.ItemUseable(Instance) || !Usable))
-                    {
-                        Wallet = i.Key == "MMRTDefault" ? new LogicObjects.LogicEntry { ID = -1 } : WalletItem;
-                        Value = i.Value;
-                    }
-                }
-            }
-
-            if (Wallet.ID > -1)
-            {
-                Console.WriteLine($"Wallet {Instance.Logic[Item].ItemName} Was replaced by {Instance.Logic[Wallet.ID].ItemName} in check {Entry.LocationName}");
-            }
-            else
-            {
-                Console.WriteLine($"Wallet {Instance.Logic[Item].ItemName} Was replaced by {Wallet.ID} in check {Entry.LocationName}");
-            }
-            return Wallet.ID;
-
-        }
-
-        public static int[] AddSmallestWallet(LogicObjects.TrackerInstance Instance, LogicObjects.LogicEntry Entry, int[] DefaultItemlist)
-        {
-            if (Entry.Price < 0) { return DefaultItemlist; }
-            Console.WriteLine($"{Entry.LocationName} Had Random Price");
-            var wallets = GetWalletsFromConfigFile(Instance);
-            if (wallets.Count() < 1) { return DefaultItemlist; }
-            Console.WriteLine($"Wallet Config Returned Wallets");
-            LogicObjects.LogicEntry Wallet = null;
-            int Value = 0;
-            foreach (var i in wallets)
-            {
-                var WalletItem = Instance.Logic.Find(x => x.DictionaryName == i.Key);
-                Console.WriteLine(i.Key + " Was found in logic " + WalletItem != null);
-                if ((WalletItem != null) && (Wallet == null || Value > i.Value))
-                {
-                    Wallet = WalletItem;
-                    Value = i.Value;
-                }
-            }
-            if (Wallet == null) { Console.WriteLine("No Smallest Wallet Found"); return DefaultItemlist; }
-            if (DefaultItemlist != null)
-            {
-                Console.WriteLine($"{Instance.Logic[Wallet.ID].ItemName} Was added as a requirement for {Entry.LocationName}");
-                List<int> NewItemList = DefaultItemlist.ToList();
-                NewItemList.Add(Wallet.ID);
-                return NewItemList.ToArray();
-            }
-            else
-            {
-                Console.WriteLine($"{Instance.Logic[Wallet.ID].ItemName} Was added as a requirement for {Entry.LocationName}");
-                return new int[] { Wallet.ID };
-            }
-        }
-        
-        public static Dictionary<string, int> GetWalletsFromConfigFile(LogicObjects.TrackerInstance Instance)
-        {
-            Dictionary<string, int> Wallets = new Dictionary<string, int>();
-            if (File.Exists(@"Recources\Other Files\WalletValues.txt"))
-            {
-                //Console.WriteLine("Wallet Config Found");
-                bool AtGame = true;
-                List<int> UsedItemsForLargestWallet = new List<int>();
-                foreach (var i in File.ReadAllLines(@"Recources\Other Files\WalletValues.txt"))
-                {
-                    var x = i.Trim();
-                    if (string.IsNullOrWhiteSpace(x) || x.StartsWith("//")) { continue; }
-                    if (x.StartsWith("#gamecodestart:"))
-                    {
-                        AtGame = x.Replace("#gamecodestart:", "").Trim().Split(',')
-                            .Select(y => y.Trim()).Contains(Instance.GameCode.ToLower());
-                        continue;
-                    }
-                    if (x.StartsWith("#gamecodeend:")) { AtGame = true; continue; }
-                    if (!AtGame) { continue; }
-
-                    //Console.WriteLine(x);
-
-                    var info = x.Split(':').Select(y => y.Trim()).ToArray();
-                    if (info.Count() != 2) { continue; }
-                    string Wallet = info[0];
-                    int capacity = 0;
-                    try { capacity = int.Parse(info[1]); } catch { continue; }
-                    if (!Wallets.ContainsKey(Wallet)) { Wallets.Add(Wallet, capacity); }
-                }
-            }
-            return Wallets;
         }
     }
 }

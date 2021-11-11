@@ -50,7 +50,7 @@ namespace MMR_Tracker.Class_Files
             int LogicVersion = VersionHandeling.GetVersionDataFromLogicFile(File.ReadAllLines(file)).Version;
             LogicEditing.PopulateTrackerInstance(CDLogic);
 
-            List<LogicObjects.SpoilerData> SpoilerLog = Tools.ReadHTMLSpoilerLog("", CDLogic);
+            List<LogicObjects.SpoilerData> SpoilerLog = Tools.ReadHTMLSpoilerLog("", CDLogic).SpoilerDatas;
             if (SpoilerLog.Count == 0) { return; }
 
             //For each entry in your logic list, check each entry in your spoiler log to find the rest of the data
@@ -291,7 +291,7 @@ namespace MMR_Tracker.Class_Files
             return SpoilerData;
         }
         
-        public static List<LogicObjects.SpoilerData> ReadHTMLSpoilerLog(string Path, LogicObjects.TrackerInstance Instance)
+        public static LogicObjects.SpoilerLogData ReadHTMLSpoilerLog(string Path, LogicObjects.TrackerInstance Instance)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
 
@@ -304,7 +304,7 @@ namespace MMR_Tracker.Class_Files
                     FilterIndex = 1,
                     Multiselect = false
                 };
-                if (SpoilerFile.ShowDialog() != DialogResult.OK) { return SpoilerData; }
+                if (SpoilerFile.ShowDialog() != DialogResult.OK) { return new LogicObjects.SpoilerLogData { SpoilerDatas = SpoilerData }; }
                 Path = SpoilerFile.FileName;
             }
 
@@ -374,7 +374,35 @@ namespace MMR_Tracker.Class_Files
                 if (line.Contains("<h2>Item Locations</h2>")) { break; }
             }
 
-            if (Instance.EntranceRando) { return SpoilerData; }
+            Dictionary<string, int> Pricedata = new Dictionary<string, int>();
+            bool AtPricedata = false;
+            string PriceCheck = "";
+            int Pricenumb = 0;
+            foreach (string line in File.ReadAllLines(Path))
+            {
+                if (line.Trim().StartsWith("<h2>Randomized Prices</h2>") && Instance.IsMM()) { AtPricedata = true; }
+                if (AtPricedata)
+                {
+                    if (line.Trim().StartsWith("<td>"))
+                    {
+                        var X = line.Trim();
+                        X = X.Replace("<td>", "");
+                        X = X.Replace("</td>", "");
+                        PriceCheck = X;
+                    }
+                    if (line.Trim().StartsWith("<td class=\"spoiler\"><span data-content="))
+                    {
+                        var X = line.Trim();
+                        X = X.Replace("<td class=\"spoiler\"><span data-content=\"", "");
+                        X = X.Replace("\"></span></td>", "");
+                        try { Pricenumb = int.Parse(X); }
+                        catch { Pricenumb = 69; }
+                        if (!Pricedata.ContainsKey(PriceCheck)) { Pricedata.Add(PriceCheck, Pricenumb); }
+                    }
+                }
+            }
+
+            if (Instance.EntranceRando) { return new LogicObjects.SpoilerLogData { SpoilerDatas = SpoilerData, Pricedata = Pricedata }; }
 
             //Fix Dungeon Entrances
             Dictionary<string, int> EntIDMatch = new Dictionary<string, int>();
@@ -388,7 +416,7 @@ namespace MMR_Tracker.Class_Files
                 if (EntIDMatch.ContainsKey(Thing.LocationName)) { Thing.LocationID = EntIDMatch[Thing.LocationName]; }
             }
 
-            return SpoilerData;
+            return new LogicObjects.SpoilerLogData { SpoilerDatas = SpoilerData, Pricedata = Pricedata };
         }
 
         public static bool SaveInstance(LogicObjects.TrackerInstance Instance, bool SetPath = false , string FilePath = "")
