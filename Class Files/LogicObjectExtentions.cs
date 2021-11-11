@@ -282,8 +282,8 @@ namespace MMR_Tracker.Class_Files
                 if (FromScratch == false && ForceStrictLogicHendeling == false && Instance.Options.StrictLogicHandeling == false)
                 {
                     bool shouldupdate = false;
-                    foreach (var i in entry.Required) { if (LogicEditing.LastUpdated.Contains(i) || Instance.Logic[i].IsProgressiveItem(Instance)) { shouldupdate = true; } }
-                    foreach (var k in entry.Conditionals) { foreach (var i in k) { if (LogicEditing.LastUpdated.Contains(i) || Instance.Logic[i].IsProgressiveItem(Instance)) { shouldupdate = true; } } }
+                    foreach (var i in entry.Required) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } }
+                    foreach (var k in entry.Conditionals) { foreach (var i in k) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } } }
                     if (!shouldupdate) { return entry.Available; }
                 }
                 return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
