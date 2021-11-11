@@ -282,10 +282,10 @@ namespace MMR_Tracker.Class_Files
                     IsFake = true,
                     Conditionals = new int[][]
                     {
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Town Archery Quiver (40)").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Hero's Bow").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Zora Mask").ID }
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Town Archery Quiver (40)" ||  x.DictionaryName == "UpgradeBigQuiver").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)" || x.DictionaryName == "UpgradeBiggestQuiver").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Hero's Bow" || x.DictionaryName == "ItemBow").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Zora Mask" || x.DictionaryName == "MaskZora").ID }
                     }
                 });
 
@@ -297,10 +297,10 @@ namespace MMR_Tracker.Class_Files
                     IsFake = true,
                     Conditionals = new int[][]
                     {
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Starting Sword").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Razor Sword").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Gilded Sword").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Great Fairy's Sword").ID }
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Starting Sword" || x.DictionaryName == "StartingSword").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Razor Sword" || x.DictionaryName == "UpgradeRazorSword").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Gilded Sword" || x.DictionaryName == "UpgradeGildedSword").ID },
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Great Fairy's Sword" || x.DictionaryName == "ItemFairySword").ID }
                     }
                 });
 
@@ -311,12 +311,15 @@ namespace MMR_Tracker.Class_Files
                     DictionaryName = "MMRTGameClear",
                     IsFake = true,
                     Required = (!EntranceRadno) ?
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Moon Access").ID } :
+                        new int[] { playLogic.Find(x => x.DictionaryName == "Moon Access" || x.DictionaryName == "AreaMoonAccess").ID } :
                         new int[] { playLogic.Find(x => x.DictionaryName == "EntranceMajorasLairFromTheMoon").ID },
                     Conditionals = new int[][]
                     {
                         new int[] { StunMajora, DamageMajora },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Fierce Deity's Mask").ID, playLogic.Find(x => x.DictionaryName == "Magic Meter").ID }
+                        new int[] { 
+                            playLogic.Find(x => x.DictionaryName == "Fierce Deity's Mask" || x.DictionaryName == "MaskFierceDeity").ID, 
+                            playLogic.Find(x => x.DictionaryName == "Magic Meter").ID 
+                        }
                     }
                 });
             }
