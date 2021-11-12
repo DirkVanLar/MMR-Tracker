@@ -245,41 +245,45 @@ namespace MMR_Tracker.Class_Files
                 }
                 List<int> NewRequired = new List<int>();
                 List<List<int>> NewConditionals = new List<List<int>>();
-                List<List<int>> NewConditionalsWithWallet = new List<List<int>>();
-                foreach (var i in entry.Required.Where(x => !ValidWalletIDs.Contains(x)))
-                {
-                    NewRequired.Add(i);
-                }
+                int[] NewRequiredArray = null;
+                int[][] NewConditionalsArray = null;
+
+                foreach (var i in entry.Required.Where(x => !ValidWalletIDs.Contains(x))) { NewRequired.Add(i); }
+                if (NewRequired.Any()) { NewRequiredArray = NewRequired.ToArray(); }
 
                 foreach (var conditional in entry.Conditionals)
                 {
                     List<int> NewCondtitional = new List<int>();
                     foreach (var i in conditional.Where(x => !ValidWalletIDs.Contains(x))) { NewCondtitional.Add(i); }
-                    NewConditionals.Add(NewCondtitional);
+                    if (NewCondtitional.Any()) { NewConditionals.Add(NewCondtitional); }
                 }
 
-                bool hasconditionals = false;
-                foreach(var i in NewConditionals) { foreach (var j in i) { hasconditionals = true; } }
-                if (!hasconditionals)
+                if (!NewConditionals.Any())
                 {
-                    NewConditionalsWithWallet = ValidWalletIDs.Select(x => new List<int> { x }).ToList();
+                    if (NoWalletNeed) { NewConditionalsArray = null; }
+                    else { NewConditionalsArray = ValidWalletIDs.Select(x => new int[] { x }).ToArray(); } 
                 }
                 else
                 {
-                    foreach (var Wallet in ValidWalletIDs)
+                    if (NoWalletNeed) { NewConditionalsArray = NewConditionals.Select(x => x.ToArray()).ToArray(); }
+                    else
                     {
-                        foreach (var Conitional in NewConditionals)
+                        List<List<int>> NewConditionalsWithWallet = new List<List<int>>();
+                        foreach (var Wallet in ValidWalletIDs)
                         {
-                            List<int> NewCondtitional = new List<int>() { Wallet };
-                            foreach (var i in Conitional) { NewCondtitional.Add(i); }
-                            NewConditionalsWithWallet.Add(NewCondtitional);
+                            foreach (var Conitional in NewConditionals)
+                            {
+                                List<int> NewCondtitional = new List<int>() { Wallet };
+                                foreach (var i in Conitional) { NewCondtitional.Add(i); }
+                                NewConditionalsWithWallet.Add(NewCondtitional);
+                            }
                         }
+                        NewConditionalsArray = NewConditionalsWithWallet.Select(x => x.ToArray()).ToArray();
                     }
                 }
                 
-
-                return LogicEditing.RequirementsMet(NewRequired.ToArray(), Instance, usedItems) &&
-                        LogicEditing.CondtionalsMet(NewConditionalsWithWallet.Select(x=>x.ToArray()).ToArray(), Instance, usedItems);
+                return LogicEditing.RequirementsMet(NewRequiredArray, Instance, usedItems) &&
+                        LogicEditing.CondtionalsMet(NewConditionalsArray, Instance, usedItems);
             }
             //Check availability the standard way
             else
