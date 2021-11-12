@@ -170,120 +170,22 @@ namespace MMR_Tracker.Class_Files
             //Check for a "Combinations" Entry
             if (entry.Required != null && entry.Conditionals != null && entry.Required.Where(x => logic[x].DictionaryName.StartsWith("MMRTCombinations")).Any())
             {
-                List<int> CondItemsUsed = new List<int>();
-                int ComboEntry = entry.Required.ToList().Find(x => logic[x].DictionaryName.StartsWith("MMRTCombinations"));
-                var Required = entry.Required.Where(x => !logic[x].DictionaryName.StartsWith("MMRTCombinations")).ToArray();
-                int ConditionalsAquired = 0;
-                if (int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out int ConditionalsNeeded))
-                {
-                    if (!Required.Any() || LogicEditing.RequirementsMet(Required, Instance, CondItemsUsed))
-                    {
-                        foreach (var i in entry.Conditionals)
-                        {
-                            List<int> ReqItemsUsed = new List<int>();
-                            if (LogicEditing.RequirementsMet(i, Instance, ReqItemsUsed))
-                            {
-                                foreach (var q in ReqItemsUsed) { CondItemsUsed.Add(q); }
-                                ConditionalsAquired++;
-                            }
-                            if (ConditionalsAquired >= ConditionalsNeeded)
-                            {
-                                foreach (var q in CondItemsUsed) { usedItems.Add(q); }
-                                return true;
-                            }
-                        }
-                    }
-                }
-                return false;
+                return LogicEditing.HandleMMRTCombinationLogic(entry, Instance, usedItems);
             }
             //Check for a "Check contains Item" Entry
             else if (entry.Required != null && entry.Conditionals != null && entry.Required.Where(x => logic[x].DictionaryName == "MMRTCheckContains").Any())
             {
-                var Checks = entry.Required.Where(x => logic[x].DictionaryName != "MMRTCheckContains").ToArray();
-                if (!Checks.Any()) { return false; }
-                var entries = Math.Min(Checks.Count(), entry.Conditionals.Count());
-                for (var i = 0; i < entries; i++)
-                {
-                    var Check = logic[entry.Required[i]].RandomizedItem;
-                    var Items = entry.Conditionals[i];
-                    foreach(var j in Items)
-                    {
-                        if (Check == j) { usedItems.Add(j); return true; }
-                    }
-                }
-                return false;
+                return LogicEditing.HandleMMRTCheckContainsItemLogic(entry, Instance, usedItems);
             }
             //Check for a MMR Dungeon clear Entry
             else if (Instance.IsMM() && entry.IsFake && Instance.EntranceAreaDic.Count > 0 && Instance.EntranceAreaDic.ContainsKey(entry.ID))
             {
-                var RandClearLogic = entry.ClearRandomizedDungeonInThisArea(Instance);
-                if (RandClearLogic == null) { return false; }
-                else
-                {
-                    return LogicEditing.RequirementsMet(RandClearLogic.Required, Instance, usedItems) &&
-                            LogicEditing.CondtionalsMet(RandClearLogic.Conditionals, Instance, usedItems);
-                }
+                return LogicEditing.HandleMMRTDungeonClearLogic(entry, Instance, usedItems);
             }
             //If a check was assigned a custom price, Change wallet logic entries to ensure the item is purchasable.
             else if (entry.Price > -1)
             {
-                int DefaultCapacity = 0;
-                if (Instance.WalletDictionary.ContainsKey("MMRTDefault"))
-                {
-                    DefaultCapacity = Instance.WalletDictionary["MMRTDefault"];
-                }
-                bool NoWalletNeed = entry.Price <= DefaultCapacity;
-
-                var ValidWallets = Instance.WalletDictionary.Where(x => x.Value >= entry.Price).ToDictionary(x => x.Key, x => x.Value).Keys.ToArray();
-                var ValidWalletObjects = ValidWallets.Where(x => Instance.Logic.Find(y => y.DictionaryName == x) != null).Select(x => Instance.Logic.Find(y => y.DictionaryName == x)).ToArray();
-                var ValidWalletIDs = ValidWalletObjects.Select(x => x.ID).ToArray();
-                if (ValidWalletObjects.Count() == 0 && !NoWalletNeed)
-                {
-                    Console.WriteLine("Critical error there are no wallets big enough to buy this item!");
-                    return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
-                            LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
-                }
-                List<int> NewRequired = new List<int>();
-                List<List<int>> NewConditionals = new List<List<int>>();
-                int[] NewRequiredArray = null;
-                int[][] NewConditionalsArray = null;
-
-                foreach (var i in entry.Required.Where(x => !ValidWalletIDs.Contains(x))) { NewRequired.Add(i); }
-                if (NewRequired.Any()) { NewRequiredArray = NewRequired.ToArray(); }
-
-                foreach (var conditional in entry.Conditionals)
-                {
-                    List<int> NewCondtitional = new List<int>();
-                    foreach (var i in conditional.Where(x => !ValidWalletIDs.Contains(x))) { NewCondtitional.Add(i); }
-                    if (NewCondtitional.Any()) { NewConditionals.Add(NewCondtitional); }
-                }
-
-                if (!NewConditionals.Any())
-                {
-                    if (NoWalletNeed) { NewConditionalsArray = null; }
-                    else { NewConditionalsArray = ValidWalletIDs.Select(x => new int[] { x }).ToArray(); } 
-                }
-                else
-                {
-                    if (NoWalletNeed) { NewConditionalsArray = NewConditionals.Select(x => x.ToArray()).ToArray(); }
-                    else
-                    {
-                        List<List<int>> NewConditionalsWithWallet = new List<List<int>>();
-                        foreach (var Wallet in ValidWalletIDs)
-                        {
-                            foreach (var Conitional in NewConditionals)
-                            {
-                                List<int> NewCondtitional = new List<int>() { Wallet };
-                                foreach (var i in Conitional) { NewCondtitional.Add(i); }
-                                NewConditionalsWithWallet.Add(NewCondtitional);
-                            }
-                        }
-                        NewConditionalsArray = NewConditionalsWithWallet.Select(x => x.ToArray()).ToArray();
-                    }
-                }
-                
-                return LogicEditing.RequirementsMet(NewRequiredArray, Instance, usedItems) &&
-                        LogicEditing.CondtionalsMet(NewConditionalsArray, Instance, usedItems);
+                return LogicEditing.HandleMMRTrandomPriceLogic(entry, Instance, usedItems);
             }
             //Check availability the standard way
             else
@@ -301,7 +203,6 @@ namespace MMR_Tracker.Class_Files
                         LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
             }
 
-            
         }
         public static bool FakeItemStatusChange(this LogicObjects.LogicEntry entry)
         {

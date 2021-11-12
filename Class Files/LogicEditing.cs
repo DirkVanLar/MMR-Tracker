@@ -516,25 +516,163 @@ namespace MMR_Tracker_V2
 
             var WoodfallClear = Instance.Logic.Find(x => x.DictionaryName == "Woodfall clear" || x.DictionaryName == "AreaWoodFallTempleClear");
             var WoodfallAccess = Instance.Logic.Find(x => (x.DictionaryName == "Woodfall Temple access" || x.DictionaryName == "AreaWoodFallTempleAccess") && !x.IsFake);
-            if (WoodfallAccess == null || WoodfallClear == null) { return new Dictionary<int, int>(); }
+            if (WoodfallAccess == null || WoodfallClear == null) 
+            { 
+                Console.WriteLine($"Coul not find Woodfall Data. Access found {WoodfallAccess != null}. Clear found {WoodfallClear != null}."); 
+                return new Dictionary<int, int>(); 
+            }
             EntAreaDict.Add(WoodfallClear.ID, WoodfallAccess.ID);
 
             var SnowheadClear = Instance.Logic.Find(x => x.DictionaryName == "Snowhead clear" || x.DictionaryName == "AreaSnowheadTempleClear");
             var SnowheadAccess = Instance.Logic.Find(x => (x.DictionaryName == "Snowhead Temple access" || x.DictionaryName == "AreaSnowheadTempleAccess") && !x.IsFake);
-            if (SnowheadAccess == null || SnowheadClear == null) { return new Dictionary<int, int>(); }
+            if (SnowheadAccess == null || SnowheadClear == null) 
+            { 
+                Console.WriteLine($"Coul not find Snowhead Data. Access found {SnowheadAccess != null} Clear {SnowheadClear != null}"); 
+                return new Dictionary<int, int>(); 
+            }
             EntAreaDict.Add(SnowheadClear.ID, SnowheadAccess.ID);
 
             var GreatBayClear = Instance.Logic.Find(x => x.DictionaryName == "Great Bay clear" || x.DictionaryName == "AreaGreatBayTempleClear");
             var GreatBayAccess = Instance.Logic.Find(x => (x.DictionaryName == "Great Bay Temple access" || x.DictionaryName == "AreaGreatBayTempleAccess") && !x.IsFake);
-            if (GreatBayAccess == null || GreatBayClear == null) { return new Dictionary<int, int>(); }
+            if (GreatBayAccess == null || GreatBayClear == null) 
+            { 
+                Console.WriteLine($"Coul not find Great Bay Data. Access found {GreatBayAccess != null} Clear {GreatBayClear != null}"); 
+                return new Dictionary<int, int>(); 
+            }
             EntAreaDict.Add(GreatBayClear.ID, GreatBayAccess.ID);
 
             var StoneTowerClear = Instance.Logic.Find(x => x.DictionaryName == "Ikana clear" || x.DictionaryName == "AreaStoneTowerClear");
-            var StoneTowerAccess = Instance.Logic.Find(x => (x.DictionaryName == "Inverted Stone Tower Temple access" || x.DictionaryName == "AreaStoneTowerTempleAccess") && !x.IsFake);
-            if (StoneTowerAccess == null || StoneTowerClear == null) { return new Dictionary<int, int>(); }
+            var StoneTowerAccess = Instance.Logic.Find(x => (x.DictionaryName == "Inverted Stone Tower Temple access" || x.DictionaryName == "AreaInvertedStoneTowerTempleAccess") && !x.IsFake);
+            if (StoneTowerAccess == null || StoneTowerClear == null) 
+            { 
+                Console.WriteLine($"Coul not find Ikana Data. Access found {StoneTowerAccess != null} Clear {StoneTowerClear != null}"); 
+                return new Dictionary<int, int>(); 
+            }
             EntAreaDict.Add(StoneTowerClear.ID, StoneTowerAccess.ID);
 
             return EntAreaDict;
+        }
+
+        public static bool HandleMMRTCombinationLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
+        {
+            var logic = Instance.Logic;
+            List<int> CondItemsUsed = new List<int>();
+            int ComboEntry = entry.Required.ToList().Find(x => logic[x].DictionaryName.StartsWith("MMRTCombinations"));
+            var Required = entry.Required.Where(x => !logic[x].DictionaryName.StartsWith("MMRTCombinations")).ToArray();
+            int ConditionalsAquired = 0;
+            if (int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out int ConditionalsNeeded))
+            {
+                if (!Required.Any() || LogicEditing.RequirementsMet(Required, Instance, CondItemsUsed))
+                {
+                    foreach (var i in entry.Conditionals)
+                    {
+                        List<int> ReqItemsUsed = new List<int>();
+                        if (LogicEditing.RequirementsMet(i, Instance, ReqItemsUsed))
+                        {
+                            foreach (var q in ReqItemsUsed) { CondItemsUsed.Add(q); }
+                            ConditionalsAquired++;
+                        }
+                        if (ConditionalsAquired >= ConditionalsNeeded)
+                        {
+                            foreach (var q in CondItemsUsed) { usedItems.Add(q); }
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool HandleMMRTCheckContainsItemLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
+        {
+            var logic = Instance.Logic;
+            var Checks = entry.Required.Where(x => logic[x].DictionaryName != "MMRTCheckContains").ToArray();
+            if (!Checks.Any()) { return false; }
+            var entries = Math.Min(Checks.Count(), entry.Conditionals.Count());
+            for (var i = 0; i < entries; i++)
+            {
+                var Check = logic[entry.Required[i]].RandomizedItem;
+                var Items = entry.Conditionals[i];
+                foreach (var j in Items)
+                {
+                    if (Check == j) { usedItems.Add(j); return true; }
+                }
+            }
+            return false;
+        }
+
+        public static bool HandleMMRTDungeonClearLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
+        {
+            var RandClearLogic = entry.ClearRandomizedDungeonInThisArea(Instance);
+            if (RandClearLogic == null) { return false; }
+            else
+            {
+                Console.WriteLine($"Checking Logic for {RandClearLogic.DictionaryName} Instead of {entry.DictionaryName}");
+                return LogicEditing.RequirementsMet(RandClearLogic.Required, Instance, usedItems) &&
+                        LogicEditing.CondtionalsMet(RandClearLogic.Conditionals, Instance, usedItems);
+            }
+        }
+
+        public static bool HandleMMRTrandomPriceLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
+        {
+
+            int DefaultCapacity = 0;
+            if (Instance.WalletDictionary.ContainsKey("MMRTDefault"))
+            {
+                DefaultCapacity = Instance.WalletDictionary["MMRTDefault"];
+            }
+            bool NoWalletNeed = entry.Price <= DefaultCapacity;
+
+            var ValidWallets = Instance.WalletDictionary.Where(x => x.Value >= entry.Price).ToDictionary(x => x.Key, x => x.Value).Keys.ToArray();
+            var ValidWalletObjects = ValidWallets.Where(x => Instance.Logic.Find(y => y.DictionaryName == x) != null).Select(x => Instance.Logic.Find(y => y.DictionaryName == x)).ToArray();
+            var ValidWalletIDs = ValidWalletObjects.Select(x => x.ID).ToArray();
+            if (ValidWalletObjects.Count() == 0 && !NoWalletNeed)
+            {
+                Console.WriteLine("Critical error there are no wallets big enough to buy this item!");
+                return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
+                        LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
+            }
+            List<int> NewRequired = new List<int>();
+            List<List<int>> NewConditionals = new List<List<int>>();
+            int[] NewRequiredArray = null;
+            int[][] NewConditionalsArray = null;
+
+            foreach (var i in entry.Required.Where(x => !ValidWalletIDs.Contains(x))) { NewRequired.Add(i); }
+            if (NewRequired.Any()) { NewRequiredArray = NewRequired.ToArray(); }
+
+            foreach (var conditional in entry.Conditionals)
+            {
+                List<int> NewCondtitional = new List<int>();
+                foreach (var i in conditional.Where(x => !ValidWalletIDs.Contains(x))) { NewCondtitional.Add(i); }
+                if (NewCondtitional.Any()) { NewConditionals.Add(NewCondtitional); }
+            }
+
+            if (!NewConditionals.Any())
+            {
+                if (NoWalletNeed) { NewConditionalsArray = null; }
+                else { NewConditionalsArray = ValidWalletIDs.Select(x => new int[] { x }).ToArray(); }
+            }
+            else
+            {
+                if (NoWalletNeed) { NewConditionalsArray = NewConditionals.Select(x => x.ToArray()).ToArray(); }
+                else
+                {
+                    List<List<int>> NewConditionalsWithWallet = new List<List<int>>();
+                    foreach (var Wallet in ValidWalletIDs)
+                    {
+                        foreach (var Conitional in NewConditionals)
+                        {
+                            List<int> NewCondtitional = new List<int>() { Wallet };
+                            foreach (var i in Conitional) { NewCondtitional.Add(i); }
+                            NewConditionalsWithWallet.Add(NewCondtitional);
+                        }
+                    }
+                    NewConditionalsArray = NewConditionalsWithWallet.Select(x => x.ToArray()).ToArray();
+                }
+            }
+
+            return LogicEditing.RequirementsMet(NewRequiredArray, Instance, usedItems) &&
+                    LogicEditing.CondtionalsMet(NewConditionalsArray, Instance, usedItems);
         }
     }
 }

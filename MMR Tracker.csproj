@@ -110,6 +110,7 @@
     <Compile Include="Class Files\MMR Code Reference\Definitions.cs" />
     <Compile Include="Class Files\MMR Code Reference\GameplaySettings.cs" />
     <Compile Include="Class Files\MMR Code Reference\items.cs" />
+    <Compile Include="Class Files\MMR Code Reference\MMRCodeTools.cs" />
     <Compile Include="Class Files\MMR Code Reference\OtherObjects.cs" />
     <Compile Include="Class Files\MMR Code Reference\Resources.cs" />
     <Compile Include="Class Files\PlaythroughGenerator.cs" />
