@@ -227,11 +227,17 @@ namespace MMR_Tracker.Class_Files
             //If a check was assigned a custom price, Change wallet logic entries to ensure the item is purchasable.
             else if (entry.Price > -1)
             {
+                int DefaultCapacity = 0;
+                if (Instance.WalletDictionary.ContainsKey("MMRTDefault"))
+                {
+                    DefaultCapacity = Instance.WalletDictionary["MMRTDefault"];
+                }
+                bool NoWalletNeed = entry.Price <= DefaultCapacity;
 
                 var ValidWallets = Instance.WalletDictionary.Where(x => x.Value >= entry.Price).ToDictionary(x => x.Key, x => x.Value).Keys.ToArray();
                 var ValidWalletObjects = ValidWallets.Where(x => Instance.Logic.Find(y => y.DictionaryName == x) != null).Select(x => Instance.Logic.Find(y => y.DictionaryName == x)).ToArray();
                 var ValidWalletIDs = ValidWalletObjects.Select(x => x.ID).ToArray();
-                if (ValidWalletObjects.Count() == 0)
+                if (ValidWalletObjects.Count() == 0 && !NoWalletNeed)
                 {
                     Console.WriteLine("Critical error there are no wallets big enough to buy this item!");
                     return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
