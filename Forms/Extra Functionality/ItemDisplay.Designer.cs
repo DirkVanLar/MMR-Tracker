@@ -41,8 +41,9 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ItemDisplay";
-            this.Text = "ItemDisplay";
+            this.Text = "MMR Item Tracker";
             this.Load += new System.EventHandler(this.ItemDisplay_Load);
+            this.ResizeBegin += new System.EventHandler(this.ItemDisplay_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.ItemDisplay_Resize);
             this.ResumeLayout(false);
 

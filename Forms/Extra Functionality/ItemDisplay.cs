@@ -24,6 +24,8 @@ namespace MMR_Tracker.Forms
         public List<LogicObjects.LogicEntry> CurrentLogicState = new List<LogicObjects.LogicEntry>();
         public List<LogicObjects.LogicEntry> LogicChanges = new List<LogicObjects.LogicEntry>();
         public bool IsPogressive = LogicObjects.MainTrackerInstance.Options.ProgressiveItems;
+        public int[] currentFormDimentions = new int[] { 0, 0 }; //Width, Height
+        public bool MakeInvisibleListBoxes = false;
 
         //Form Functions
         public ItemDisplay()
@@ -34,10 +36,15 @@ namespace MMR_Tracker.Forms
         private void ItemDisplay_Load(object sender, EventArgs e)
         {
             GetImageFromImageSheet();
+
+            this.Width = 344;
+            this.Height = 613;
+
             RefreshPage();
         }
         private void ItemDisplay_Resize(object sender, EventArgs e)
         {
+            
             RefreshPage();
         }
 
@@ -225,7 +232,7 @@ namespace MMR_Tracker.Forms
 
             Controls.Clear();
 
-            int Spacing = (this.Width - 16) / ItemsOnScreen;
+            int Spacing = (this.Width-16) / ItemsOnScreen;
             Position[0] = 0;
             Position[1] = 0;
 
@@ -273,7 +280,7 @@ namespace MMR_Tracker.Forms
             CreatePictureBox("Bug", "BottleCatchBug", Spacing);
             CreatePictureBox("SmallPoe", "BottleCatchPoe", Spacing);
             CreatePictureBox("SongStorms", "SongStorms", Spacing);
-            CreatePictureBox("Oath", "SongStorms", Spacing);
+            CreatePictureBox("Oath", "SongOath", Spacing);
             CreatePictureBox("OceanDeed", "TradeItemOceanDeed", Spacing);
 
             CreatePictureBox("BigPoe", "BottleCatchBigPoe", Spacing);
@@ -355,7 +362,7 @@ namespace MMR_Tracker.Forms
             CreatePictureBox("BossKey|4", "ItemStoneTowerBossKey", Spacing);
             CreateCountablePictureBox("SmallKey|4", new List<string> { "Stone Tower Small Key" }, Spacing);
             CreateCountablePictureBox("StoneTowerFairy", new List<string> { "Stone Tower Stray Fairy" }, Spacing);
-            CreatePictureBox("DoubleDefence", "FairyDoubleMagic", Spacing);
+            CreatePictureBox("DoubleDefence", "FairyDoubleDefense", Spacing);
 
             var End = System.DateTime.Now.Ticks;
             var total = (End - start) / 10000;
@@ -392,7 +399,7 @@ namespace MMR_Tracker.Forms
             DrawItem("HookShot", "ItemHookshot", Spacing);
             DrawItem("GreatFairySword", "ItemFairySword", Spacing);
             DrawItem("SongEpona", "SongEpona", Spacing, "ES");
-            DrawItem("BossaNova", "SongNewWaveBossaNova", Spacing, "NWBS");
+            DrawItem("BossaNova", "SongNewWaveBossaNova", Spacing, "NWBN");
             DrawItem("SwampDeed", "TradeItemSwampDeed", Spacing);
 
             DrawCountableItem("Bottle", new List<string> { "Bottle with Red Potion", "Bottle with Milk", "Bottle with Gold Dust", "Empty Bottle", "Bottle with Chateau Romani" }, Spacing, true);
@@ -400,7 +407,7 @@ namespace MMR_Tracker.Forms
             DrawItem("GoldDust", "ItemBottleGoronRace", Spacing);
             DrawItem("SeaHorse", "MundaneItemSeahorse", Spacing);
             DrawCountableItem("Chateau", new List<string> { "Chateau Romani", "Bottle with Chateau Romani" }, Spacing);
-            DrawItem("SongSoaring", "SongSoaring", Spacing, "SOS");
+            DrawItem("SongSoaring", "SongSoaring", Spacing, "SOAR");
             DrawItem("Elegy", "SongElegy", Spacing, "EOE");
             DrawItem("MountainDeed", "TradeItemMountainDeed", Spacing);
 
@@ -409,8 +416,8 @@ namespace MMR_Tracker.Forms
             DrawItem("Fish", "BottleCatchFish", Spacing);
             DrawItem("Bug", "BottleCatchBug", Spacing);
             DrawItem("SmallPoe", "BottleCatchPoe", Spacing);
-            DrawItem("SongStorms", "SongStorms", Spacing);
-            DrawItem("Oath", "SongStorms", Spacing);
+            DrawItem("SongStorms", "SongStorms", Spacing, "STORM");
+            DrawItem("Oath", "SongOath", Spacing, "OTO");
             DrawItem("OceanDeed", "TradeItemOceanDeed", Spacing);
 
             DrawItem("BigPoe", "BottleCatchBigPoe", Spacing);
@@ -700,9 +707,7 @@ namespace MMR_Tracker.Forms
             int colomn = Position[1];
             Increaseposition();
 
-            Console.WriteLine($"Finding Dictionary entry {Logicname}");
             LogicObjects.LogicEntry Entry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == Logicname);
-            Console.WriteLine($"Success: {Entry != null}");
 
             var PB = new PictureBox
             {
@@ -714,7 +719,8 @@ namespace MMR_Tracker.Forms
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Location = PostionItem(row, colomn, Spacing),
                 BackColor = Color.Transparent,
-                BackgroundImageLayout = ImageLayout.Stretch
+                BackgroundImageLayout = ImageLayout.Stretch,
+                Visible = MakeInvisibleListBoxes
             };
             Controls.Add(PB);
             PB.Click += (s, ee) => FilterRegularItem(Entry);
@@ -753,7 +759,8 @@ namespace MMR_Tracker.Forms
                 Height = Spacing,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Location = PostionItem(row, colomn, Spacing),
-                BackColor = Color.Transparent
+                BackColor = Color.Transparent,
+                Visible = MakeInvisibleListBoxes
             };
             Controls.Add(PB);
             PB.Click += (s, ee) => FilterProgressiveItem(AllEntries);
@@ -787,7 +794,8 @@ namespace MMR_Tracker.Forms
                 Height = Spacing,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Location = PostionItem(row, colomn, Spacing),
-                BackColor = Color.Transparent
+                BackColor = Color.Transparent,
+                Visible = MakeInvisibleListBoxes
             };
             Controls.Add(PB);
             PB.Click += (s, ee) => FilterMultipleItems(ItemNames);
@@ -901,9 +909,28 @@ namespace MMR_Tracker.Forms
         }
         private void RefreshPage()
         {
+            MakeInvisibleListBoxes = false;
+            CreatePictureBoxes();//Run this function just to determine the number of veritcal rows. This is really jank but it works and is easier than rewriting this stupid thing
+            MakeInvisibleListBoxes = true;
+
+            var WidthChange = Math.Abs(currentFormDimentions[0] - this.Width);
+            var HeightChange = Math.Abs(currentFormDimentions[1] - this.Height);
+
+            Console.WriteLine("Width Change = " + WidthChange);
+            Console.WriteLine("Height Change = " + HeightChange);
+
+            var ItemsOnScreenVertical = Position[0];
+            var ItemsOnScreenHorizontal = ItemsOnScreen;
+
+            if (WidthChange > HeightChange) { this.Height = ((this.Width - 16) / ItemsOnScreenHorizontal) * ItemsOnScreenVertical + 38; }
+            else { this.Width = ((this.Height - 10) / ItemsOnScreenVertical) * ItemsOnScreenHorizontal; }
+
+            Console.WriteLine("Width = " + this.Width);
+            Console.WriteLine("Height = " + this.Height);
+
             CreatePictureBoxes();
             UpdateScreen();
-            this.Height = ((this.Width - 16) / ItemsOnScreen) * Position[0] + 38;
+            Console.WriteLine(Position[0]);
         }
         private void UpdateScreen()
         {
@@ -937,5 +964,10 @@ namespace MMR_Tracker.Forms
             DisplayImages();
         }
 
+        private void ItemDisplay_ResizeBegin(object sender, EventArgs e)
+        {
+            currentFormDimentions[0] = this.Width;
+            currentFormDimentions[1] = this.Height;
+        }
     }
 }

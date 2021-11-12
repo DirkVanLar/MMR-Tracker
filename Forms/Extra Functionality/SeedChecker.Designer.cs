@@ -51,6 +51,9 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -61,7 +64,7 @@
             this.LBNeededItems.FormattingEnabled = true;
             this.LBNeededItems.Location = new System.Drawing.Point(6, 41);
             this.LBNeededItems.Name = "LBNeededItems";
-            this.LBNeededItems.Size = new System.Drawing.Size(126, 160);
+            this.LBNeededItems.Size = new System.Drawing.Size(129, 160);
             this.LBNeededItems.TabIndex = 0;
             this.LBNeededItems.DoubleClick += new System.EventHandler(this.LBNeededItems_DoubleClick);
             // 
@@ -69,9 +72,9 @@
             // 
             this.LBResult.FormattingEnabled = true;
             this.LBResult.HorizontalScrollbar = true;
-            this.LBResult.Location = new System.Drawing.Point(138, 41);
+            this.LBResult.Location = new System.Drawing.Point(141, 41);
             this.LBResult.Name = "LBResult";
-            this.LBResult.Size = new System.Drawing.Size(275, 446);
+            this.LBResult.Size = new System.Drawing.Size(272, 446);
             this.LBResult.TabIndex = 1;
             // 
             // LBIgnoredChecks
@@ -79,7 +82,7 @@
             this.LBIgnoredChecks.FormattingEnabled = true;
             this.LBIgnoredChecks.Location = new System.Drawing.Point(6, 223);
             this.LBIgnoredChecks.Name = "LBIgnoredChecks";
-            this.LBIgnoredChecks.Size = new System.Drawing.Size(126, 264);
+            this.LBIgnoredChecks.Size = new System.Drawing.Size(129, 264);
             this.LBIgnoredChecks.TabIndex = 2;
             this.LBIgnoredChecks.DoubleClick += new System.EventHandler(this.LBIgnoredChecks_DoubleClick);
             // 
@@ -101,16 +104,16 @@
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(3, 204);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 13);
+            this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Checks to Ignore";
+            this.label2.Text = "Ignored Checks";
             // 
             // btnAddNeeded
             // 
             this.btnAddNeeded.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAddNeeded.Location = new System.Drawing.Point(91, 21);
+            this.btnAddNeeded.Location = new System.Drawing.Point(98, 21);
             this.btnAddNeeded.Name = "btnAddNeeded";
-            this.btnAddNeeded.Size = new System.Drawing.Size(41, 19);
+            this.btnAddNeeded.Size = new System.Drawing.Size(34, 19);
             this.btnAddNeeded.TabIndex = 5;
             this.btnAddNeeded.Text = "Add";
             this.btnAddNeeded.UseVisualStyleBackColor = true;
@@ -119,9 +122,9 @@
             // btnAddIgnored
             // 
             this.btnAddIgnored.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAddIgnored.Location = new System.Drawing.Point(91, 203);
+            this.btnAddIgnored.Location = new System.Drawing.Point(98, 202);
             this.btnAddIgnored.Name = "btnAddIgnored";
-            this.btnAddIgnored.Size = new System.Drawing.Size(41, 19);
+            this.btnAddIgnored.Size = new System.Drawing.Size(37, 19);
             this.btnAddIgnored.TabIndex = 6;
             this.btnAddIgnored.Text = "Add";
             this.btnAddIgnored.UseVisualStyleBackColor = true;
@@ -167,6 +170,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.LBResult);
             this.groupBox1.Controls.Add(this.chkShowUnobtainable);
             this.groupBox1.Controls.Add(this.LBNeededItems);
@@ -240,6 +245,7 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.listBox2);
@@ -304,6 +310,39 @@
             this.label4.TabIndex = 18;
             this.label4.Text = "Select An Item";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(219, 46);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(19, 20);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "?";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(81, 20);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(19, 20);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "?";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(81, 202);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(19, 20);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "?";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
             // SeedChecker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -352,5 +391,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }

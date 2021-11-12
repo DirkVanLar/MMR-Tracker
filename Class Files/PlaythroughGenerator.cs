@@ -272,8 +272,41 @@ namespace MMR_Tracker.Class_Files
             if (MMRTGameClear != null) { return MMRTGameClear.ID; }
 
             int GameClear = -1;
+
+            Dictionary<string, LogicObjects.LogicEntry> LogicItems = new Dictionary<string, LogicObjects.LogicEntry>()
+            {
+                { "BigQuiver", playLogic.Find(x => x.DictionaryName == "Town Archery Quiver (40)" || x.DictionaryName == "UpgradeBigQuiver")},
+                { "BiggestQuiver",  playLogic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)" || x.DictionaryName == "UpgradeBiggestQuiver") },
+                { "Bow", playLogic.Find(x => x.DictionaryName == "Hero's Bow" || x.DictionaryName == "ItemBow") },
+                { "Zora", playLogic.Find(x => x.DictionaryName == "Zora Mask" || x.DictionaryName == "MaskZora") },
+                { "StartingSword", playLogic.Find(x => x.DictionaryName == "Starting Sword" || x.DictionaryName == "StartingSword") },
+                { "RazorSword", playLogic.Find(x => x.DictionaryName == "Razor Sword" || x.DictionaryName == "UpgradeRazorSword") },
+                { "GildedSword", playLogic.Find(x => x.DictionaryName == "Gilded Sword" || x.DictionaryName == "UpgradeGildedSword") },
+                { "FairySword", playLogic.Find(x => x.DictionaryName == "Great Fairy's Sword" || x.DictionaryName == "ItemFairySword") },
+                { "MajorasLair", playLogic.Find(x => x.DictionaryName == "Moon Access" || x.DictionaryName == "AreaMoonAccess") },
+                { "Deity", playLogic.Find(x => x.DictionaryName == "Fierce Deity's Mask" || x.DictionaryName == "MaskFierceDeity") },
+                { "Magic", playLogic.Find(x => x.DictionaryName == "Magic Meter") }
+            };
+            //If any of the above entries are not found in logic, the game clear object can not be created.
+            foreach(var i in LogicItems) { if (i.Value == null) { return -1; } }
+
+            //If entrance rando is being used, the "EntranceMajorasLairFromTheMoon" should be used in place of Moon access, since just being on the moon no longer means access to majoras lair
+            if (EntranceRadno)
+            {
+                if (playLogic.Find(x => x.DictionaryName == "EntranceMajorasLairFromTheMoon") == null) { return -1; }
+                else { LogicItems["MajorasLair"] = playLogic.Find(x => x.DictionaryName == "EntranceMajorasLairFromTheMoon"); }
+            }
+
+            //If ocarina and song of time are in the item pool, they should be required for game completion.
+            if (playLogic.Find(x => x.DictionaryName == "SongTime") != null && playLogic.Find(x => x.DictionaryName == "ItemOcarina") != null)
+            {
+                LogicItems.Add("SongTime", playLogic.Find(x => x.DictionaryName == "SongTime"));
+                LogicItems.Add("ItemOcarina", playLogic.Find(x => x.DictionaryName == "ItemOcarina"));
+            }
+
             try
             {
+                //An entry that details the ability to stun majora. This is not expressly needed but IMO should be expected casually
                 int StunMajora = playLogic.Count();
                 playLogic.Add(new LogicObjects.LogicEntry
                 {
@@ -282,13 +315,15 @@ namespace MMR_Tracker.Class_Files
                     IsFake = true,
                     Conditionals = new int[][]
                     {
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Town Archery Quiver (40)" ||  x.DictionaryName == "UpgradeBigQuiver").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)" || x.DictionaryName == "UpgradeBiggestQuiver").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Hero's Bow" || x.DictionaryName == "ItemBow").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Zora Mask" || x.DictionaryName == "MaskZora").ID }
+                        new int[] { LogicItems["Bow"].ID },
+                        new int[] { LogicItems["BigQuiver"].ID },
+                        new int[] { LogicItems["BiggestQuiver"].ID },
+                        new int[] { LogicItems["Zora"].ID },
+                        new int[] { LogicItems["Deity"].ID, LogicItems["Magic"].ID  }
                     }
                 });
 
+                //An entry that details the ability to Damage majora.
                 int DamageMajora = playLogic.Count();
                 playLogic.Add(new LogicObjects.LogicEntry
                 {
@@ -297,31 +332,30 @@ namespace MMR_Tracker.Class_Files
                     IsFake = true,
                     Conditionals = new int[][]
                     {
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Starting Sword" || x.DictionaryName == "StartingSword").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Razor Sword" || x.DictionaryName == "UpgradeRazorSword").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Gilded Sword" || x.DictionaryName == "UpgradeGildedSword").ID },
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Great Fairy's Sword" || x.DictionaryName == "ItemFairySword").ID }
+                        new int[] { LogicItems["StartingSword"].ID },
+                        new int[] { LogicItems["RazorSword"].ID },
+                        new int[] { LogicItems["GildedSword"].ID },
+                        new int[] { LogicItems["FairySword"].ID },
+                        new int[] { LogicItems["Deity"].ID }
                     }
                 });
 
+                //An entry that details the ability to reach and defeat Majora
                 GameClear = playLogic.Count();
                 playLogic.Add(new LogicObjects.LogicEntry
                 {
                     ID = GameClear,
                     DictionaryName = "MMRTGameClear",
                     IsFake = true,
-                    Required = (!EntranceRadno) ?
-                        new int[] { playLogic.Find(x => x.DictionaryName == "Moon Access" || x.DictionaryName == "AreaMoonAccess").ID } :
-                        new int[] { playLogic.Find(x => x.DictionaryName == "EntranceMajorasLairFromTheMoon").ID },
-                    Conditionals = new int[][]
-                    {
-                        new int[] { StunMajora, DamageMajora },
-                        new int[] { 
-                            playLogic.Find(x => x.DictionaryName == "Fierce Deity's Mask" || x.DictionaryName == "MaskFierceDeity").ID, 
-                            playLogic.Find(x => x.DictionaryName == "Magic Meter").ID 
-                        }
-                    }
+                    Required = new int[] { LogicItems["MajorasLair"].ID, StunMajora, DamageMajora },
+                    Conditionals = null
                 });
+
+                //Add Ocarina and song of time to MMRTGameClear logic if they are in the item pool.
+                if (LogicItems.ContainsKey("SongTime"))
+                {
+                    playLogic[GameClear].Required = playLogic[GameClear].Required.Concat(new int[] { LogicItems["SongTime"].ID, LogicItems["ItemOcarina"].ID }).ToArray();
+                }
             }
             catch { GameClear = -1; }
             return GameClear;
