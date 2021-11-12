@@ -414,144 +414,99 @@ namespace MMR_Tracker_V2
                 }
             }
         }
-    }
-    public class Crypto
-    {
-
-        //While an app specific salt is not the best practice for
-        //password based encryption, it's probably safe enough as long as
-        //it is truly uncommon. Also too much work to alter this answer otherwise.
-        private static byte[] _salt = Encoding.ASCII.GetBytes("YesThisIsBadEncryptionButItDoesntNeedToBeGood");
-
-        /// <summary>
-        /// Encrypt the given string using AES.  The string can be decrypted using 
-        /// DecryptStringAES().  The sharedSecret parameters must match.
-        /// </summary>
-        /// <param name="plainText">The text to encrypt.</param>
-        /// <param name="sharedSecret">A password used to generate a key for encryption.</param>
-        public static string EncryptStringAES(string plainText, string sharedSecret)
+        public static string SpoilerLogShopPriceAltName(string input, bool DicToSpoiler = false, bool trimoutput = false)
         {
-            if (string.IsNullOrEmpty(plainText))
-                throw new ArgumentNullException("plainText");
-            if (string.IsNullOrEmpty(sharedSecret))
-                throw new ArgumentNullException("sharedSecret");
-
-            string outStr = null;                       // Encrypted string to return
-            RijndaelManaged aesAlg = null;              // RijndaelManaged object used to encrypt the data.
-
-            try
+            var AltNames = new Dictionary<string, string>
             {
-                // generate the key from the shared secret and the salt
-                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(sharedSecret, _salt);
-
-                // Create a RijndaelManaged object
-                aesAlg = new RijndaelManaged();
-                aesAlg.Key = key.GetBytes(aesAlg.KeySize / 8);
-
-                // Create a decryptor to perform the stream transform.
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-
-                // Create the streams used for encryption.
-                using (MemoryStream msEncrypt = new MemoryStream())
+                {"ShopItemGoronBomb10InWinter","Goron Shop 10 Bombs (InWinter)"},
+                {"ShopItemGoronBomb10InSpring","Goron Shop 10 Bombs (InSpring)"},
+                {"ShopItemGoronArrow10InWinter","Goron Shop 10 Arrows (InWinter)"},
+                {"ShopItemGoronArrow10InSpring","Goron Shop 10 Arrows (InSpring)"},
+                {"ShopItemGoronRedPotionInWinter","Goron Shop Red Potion (InWinter)"},
+                {"ShopItemGoronRedPotionInSpring","Goron Shop Red Potion (InSpring)"},
+                {"ShopItemBusinessScrubMagicBeanInSwamp","ShopItemBusinessScrubMagicBeanInSwamp"},
+                {"ShopItemBusinessScrubMagicBeanInTown","ShopItemBusinessScrubMagicBeanInTown"},
+                {"UpgradeBiggestBombBagInMountain","UpgradeBiggestBombBagInMountain"},
+                {"UpgradeBiggestBombBagInSwamp","UpgradeBiggestBombBagInSwamp"},
+                {"ShopItemBusinessScrubGreenPotionInOcean","ShopItemBusinessScrubGreenPotionInOcean"},
+                {"ShopItemBusinessScrubGreenPotionInMountain","ShopItemBusinessScrubGreenPotionInMountain"},
+                {"ShopItemBusinessScrubBluePotionInCanyon","ShopItemBusinessScrubBluePotionInCanyon"},
+                {"ShopItemBusinessScrubBluePotionInOcean","ShopItemBusinessScrubBluePotionInOcean"},
+                {"ItemTingleMapTownInTown","Clock Town Map Purchase (InTown)"},
+                {"ItemTingleMapTownInCanyon","Clock Town Map Purchase (InCanyon)"},
+                {"ItemTingleMapWoodfallInSwamp","Woodfall Map Purchase (InSwamp)"},
+                {"ItemTingleMapWoodfallInTown","Woodfall Map Purchase (InTown)"},
+                {"ItemTingleMapSnowheadInMountain","Snowhead Map Purchase (InMountain)"},
+                {"ItemTingleMapSnowheadInSwamp","Snowhead Map Purchase (InSwamp)"},
+                {"ItemTingleMapRanchInRanch","Romani Ranch Map Purchase (InRanch)"},
+                {"ItemTingleMapRanchInMountain","Romani Ranch Map Purchase (InMountain)"},
+                {"ItemTingleMapGreatBayInOcean","Great Bay Map Purchase (InOcean)"},
+                {"ItemTingleMapGreatBayInRanch","Great Bay Map Purchase (InRanch)"},
+                {"ItemTingleMapStoneTowerInCanyon","Stone Tower Map Purchase (InCanyon)"},
+                {"ItemTingleMapStoneTowerInOcean","Stone Tower Map Purchase (InOcean)"}
+            };
+            if (DicToSpoiler)
+            {
+                return AltNames.ContainsKey(input) ? (trimoutput ? TrimPriceDisplay(AltNames[input]) : AltNames[input]) : input;
+            }
+            else
+            {
+                foreach (var i in AltNames)
                 {
-                    // prepend the IV
-                    msEncrypt.Write(BitConverter.GetBytes(aesAlg.IV.Length), 0, sizeof(int));
-                    msEncrypt.Write(aesAlg.IV, 0, aesAlg.IV.Length);
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    if (i.Value == input) { return i.Key; }
+                }
+                return input;
+            }
+        }
+
+        public static string TrimPriceDisplay(string input)
+        {
+            if (input.IndexOf("(") > -1 && input.IndexOf(")") > -1 && input.IndexOf('(') < input.IndexOf(')'))
+            {
+                Console.WriteLine(input);
+                Console.WriteLine(input.IndexOf("(") + 1);
+                Console.WriteLine(input.IndexOf(")") + 1);
+                return input.Substring(input.IndexOf("(")+1, input.IndexOf(")") - input.IndexOf("(")-1);
+            }
+            return input;
+        }
+
+        public static string GetPriceText(LogicObjects.LogicEntry Entry, LogicObjects.TrackerInstance Instance)
+        {
+            if (Entry.Price > -1) { return $" (${Entry.Price})"; }
+
+            bool SubPriceFound = false;
+            string MutliPrice = " (";
+            if (Entry.Required != null)
+            {
+                foreach(var i in Entry.Required)
+                {
+                    if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake)
                     {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        SubPriceFound = true;
+                        string DisName = SpoilerLogShopPriceAltName(Instance.Logic[i].DictionaryName, true, true);
+                        MutliPrice += $"{DisName}: ${Instance.Logic[i].Price}, ";
+                    }
+                }
+            }
+            if (Entry.Conditionals != null)
+            {
+                foreach(var conditional in Entry.Conditionals)
+                {
+                    foreach (var i in conditional)
+                    {
+                        if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake)
                         {
-                            //Write all data to the stream.
-                            swEncrypt.Write(plainText);
+                            SubPriceFound = true;
+                            string DisName = SpoilerLogShopPriceAltName(Instance.Logic[i].DictionaryName, true, true);
+                            MutliPrice += $"{DisName}: ${Instance.Logic[i].Price}, ";
                         }
                     }
-                    outStr = Convert.ToBase64String(msEncrypt.ToArray());
                 }
             }
-            finally
-            {
-                // Clear the RijndaelManaged object.
-                if (aesAlg != null)
-                    aesAlg.Clear();
-            }
-
-            // Return the encrypted bytes from the memory stream.
-            return outStr;
-        }
-
-        /// <summary>
-        /// Decrypt the given string.  Assumes the string was encrypted using 
-        /// EncryptStringAES(), using an identical sharedSecret.
-        /// </summary>
-        /// <param name="cipherText">The text to decrypt.</param>
-        /// <param name="sharedSecret">A password used to generate a key for decryption.</param>
-        public static string DecryptStringAES(string cipherText, string sharedSecret)
-        {
-            if (string.IsNullOrEmpty(cipherText))
-                throw new ArgumentNullException("cipherText");
-            if (string.IsNullOrEmpty(sharedSecret))
-                throw new ArgumentNullException("sharedSecret");
-
-            // Declare the RijndaelManaged object
-            // used to decrypt the data.
-            RijndaelManaged aesAlg = null;
-
-            // Declare the string used to hold
-            // the decrypted text.
-            string plaintext = null;
-
-            try
-            {
-                // generate the key from the shared secret and the salt
-                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(sharedSecret, _salt);
-
-                // Create the streams used for decryption.                
-                byte[] bytes = Convert.FromBase64String(cipherText);
-                using (MemoryStream msDecrypt = new MemoryStream(bytes))
-                {
-                    // Create a RijndaelManaged object
-                    // with the specified key and IV.
-                    aesAlg = new RijndaelManaged();
-                    aesAlg.Key = key.GetBytes(aesAlg.KeySize / 8);
-                    // Get the initialization vector from the encrypted stream
-                    aesAlg.IV = ReadByteArray(msDecrypt);
-                    // Create a decrytor to perform the stream transform.
-                    ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-
-                            // Read the decrypted bytes from the decrypting stream
-                            // and place them in a string.
-                            plaintext = srDecrypt.ReadToEnd();
-                    }
-                }
-            }
-            finally
-            {
-                // Clear the RijndaelManaged object.
-                if (aesAlg != null)
-                    aesAlg.Clear();
-            }
-
-            return plaintext;
-        }
-
-        private static byte[] ReadByteArray(Stream s)
-        {
-            byte[] rawLength = new byte[sizeof(int)];
-            if (s.Read(rawLength, 0, rawLength.Length) != rawLength.Length)
-            {
-                throw new SystemException("Stream did not contain properly formatted byte array");
-            }
-
-            byte[] buffer = new byte[BitConverter.ToInt32(rawLength, 0)];
-            if (s.Read(buffer, 0, buffer.Length) != buffer.Length)
-            {
-                throw new SystemException("Did not read byte array properly");
-            }
-
-            return buffer;
+            if (MutliPrice.EndsWith(", ")) { MutliPrice = MutliPrice.Substring(0, MutliPrice.Length - 2); }
+            MutliPrice += ")";
+            return SubPriceFound ? MutliPrice : "";
         }
     }
 }

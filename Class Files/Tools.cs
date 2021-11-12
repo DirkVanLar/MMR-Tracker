@@ -380,6 +380,7 @@ namespace MMR_Tracker.Class_Files
             int Pricenumb = 0;
             foreach (string line in File.ReadAllLines(Path))
             {
+                if (line.Trim().StartsWith("<h2>Gossip Stone Hints</h2>")) { break; }
                 if (line.Trim().StartsWith("<h2>Randomized Prices</h2>") && Instance.IsMM()) { AtPricedata = true; }
                 if (AtPricedata)
                 {
@@ -396,8 +397,8 @@ namespace MMR_Tracker.Class_Files
                         X = X.Replace("<td class=\"spoiler\"><span data-content=\"", "");
                         X = X.Replace("\"></span></td>", "");
                         try { Pricenumb = int.Parse(X); }
-                        catch { Pricenumb = 69; }
-                        if (!Pricedata.ContainsKey(PriceCheck)) { Pricedata.Add(PriceCheck, Pricenumb); }
+                        catch { Pricenumb = 69; Console.WriteLine("Could not parse Line \n" + line); }
+                        if (!Pricedata.ContainsKey(PriceCheck)) { Pricedata.Add(PriceCheck, Pricenumb); Console.WriteLine("Added Price Data\n" + PriceCheck + " Costs: " + Pricenumb); }
                     }
                 }
             }

@@ -319,7 +319,8 @@ namespace MMR_Tracker_V2
 
             foreach (var data in Pricedata)
             {
-                var PriceLoc = Instance.Logic.Find(x => x.SpoilerLocation.Contains(data.Key));
+                var CheckName = Utility.SpoilerLogShopPriceAltName(data.Key);
+                var PriceLoc = Instance.Logic.Find(x => x.SpoilerLocation.Contains(CheckName) || x.DictionaryName == CheckName);
                 if (PriceLoc != null)
                 {
                     PriceLoc.Price = data.Value;

@@ -107,6 +107,11 @@
   <ItemGroup>
     <Compile Include="Class Files\Debugging.cs" />
     <Compile Include="Class Files\LogicObjectExtentions.cs" />
+    <Compile Include="Class Files\MMR Code Reference\Definitions.cs" />
+    <Compile Include="Class Files\MMR Code Reference\GameplaySettings.cs" />
+    <Compile Include="Class Files\MMR Code Reference\items.cs" />
+    <Compile Include="Class Files\MMR Code Reference\OtherObjects.cs" />
+    <Compile Include="Class Files\MMR Code Reference\Resources.cs" />
     <Compile Include="Class Files\PlaythroughGenerator.cs" />
     <Compile Include="Class Files\Tools.cs" />
     <Compile Include="Class Files\UserSettings.cs" />

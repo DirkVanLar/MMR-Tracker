@@ -1584,7 +1584,8 @@ namespace MMR_Tracker_V2
             var AvailableName = (ItemName == "") ? LocationName : LocationName + ": " + ItemName + addPlayerName;
             var fullName = (Checked) ? checkedName : AvailableName;
             fullName = fullName + ((entry.Starred) ? "*" : "");
-            fullName = fullName + ((entry.Price > -1 && entry.HasRandomItem(false)) ? $"$({entry.Price})" : "");
+            var CheckPrice = Utility.GetPriceText(entry, instance);
+            fullName = fullName + ((entry.HasRandomItem(false)) ? CheckPrice : "");
             return fullName;
         }
 

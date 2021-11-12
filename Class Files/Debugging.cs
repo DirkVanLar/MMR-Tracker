@@ -21,6 +21,7 @@ using System.Windows.Documents;
 using MMR_Tracker.Forms.Other_Games;
 using MMR_Tracker.Other_Games;
 using MMR_Tracker.Forms.Extra_Functionality;
+using static MMR_Tracker.Class_Files.MMR_Code_Reference.items;
 
 namespace MMR_Tracker_V2
 {
@@ -126,16 +127,27 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-            int Startingcount = 0;
-            foreach (var i in LogicObjects.MainTrackerInstance.Logic)
+            var itemPool = Enum.GetValues(typeof(Item)).Cast<Item>();
+            var itemPoolNames = itemPool.Select(x => x.ToString()).ToArray();
+            var LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(File.ReadAllLines(@"Recources\Dictionaries\MMRDICTIONARYV8.csv")));
+
+            Console.WriteLine("Logic Items Missing From Dictionary=====================");
+            foreach (var i in itemPoolNames)
             {
-                if (i.CanBeStartingItem(LogicObjects.MainTrackerInstance))
+                if (LogicDictionary.Find(x => x.DictionaryName == i) == null)
                 {
-                    Startingcount++;
-                    Console.WriteLine($"\"{i.DictionaryName}\"," );
+                    Console.WriteLine(i);
                 }
             }
-            Console.WriteLine(Startingcount + " Starting items Found");
+            Console.WriteLine("\nDictionary Items Missing From Logic=====================");
+            foreach (var i in LogicDictionary)
+            {
+                string EntryName = i.DictionaryName;
+                if (!itemPoolNames.Contains(EntryName))
+                {
+                    Console.WriteLine(i);
+                }
+            }
 
             //OcarinaOfTimeRando.GenerateDictionary();
 
