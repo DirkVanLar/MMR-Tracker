@@ -101,6 +101,7 @@ namespace MMR_Tracker_V2
 
             instance.EntranceRando = instance.IsEntranceRando();
             instance.EntranceAreaDic = CreateAreaClearDictionary(instance);
+            instance.GetWalletsFromConfigFile();
             CreateDicNameToID(instance);
             if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
             MarkUniqeItemsUnrandomizedManual(instance);
@@ -209,6 +210,7 @@ namespace MMR_Tracker_V2
 
             instance.EntranceRando = instance.IsEntranceRando();
             instance.EntranceAreaDic = CreateAreaClearDictionary(instance);
+            instance.GetWalletsFromConfigFile();
             CreateDicNameToID(instance);
             if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
             MarkUniqeItemsUnrandomizedManual(instance);
@@ -255,7 +257,6 @@ namespace MMR_Tracker_V2
         {
             if (InitialRun)
             {
-                Instance.GetWalletsFromConfigFile();
                 if ((Instance.Options.StrictLogicHandeling || ForceStrictLogicHendeling)) { Instance.RefreshFakeItems(); }
             }
             //Calculate all fake items. If the fake item is available, set it to aquired
@@ -279,7 +280,9 @@ namespace MMR_Tracker_V2
         public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
+            LogicObjects.GameplaySettings SettingsData = null;
             Dictionary<string, int> Pricedata = new Dictionary<string, int>();
+            Dictionary<string, string> Hintdata = new Dictionary<string, string>();
             if (path.Contains(".txt") || path.Contains(".json"))
             {
                 bool TXTOverride = false;
@@ -295,6 +298,8 @@ namespace MMR_Tracker_V2
                             LogicObjects.SpoilerLogData SPLD = Tools.ReadHTMLSpoilerLog(HTMLPath, Instance);
                             SpoilerData = SPLD.SpoilerDatas;
                             Pricedata = SPLD.Pricedata;
+                            SettingsData = SPLD.SettingString;
+                            Hintdata = SPLD.GossipHints;
                         }
                     }
                 }
@@ -305,8 +310,17 @@ namespace MMR_Tracker_V2
                 LogicObjects.SpoilerLogData SPLD = Tools.ReadHTMLSpoilerLog(path, Instance);
                 SpoilerData = SPLD.SpoilerDatas;
                 Pricedata = SPLD.Pricedata;
+                SettingsData = SPLD.SettingString;
+                Hintdata = SPLD.GossipHints;
             }
             else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return; }
+
+            if (SettingsData != null)
+            {
+                RandomizeOptions ApplySettings = new RandomizeOptions();
+                ApplySettings.ApplyRandomizerSettings(SettingsData);
+                Debugging.Log("Settings Applied");
+            }
 
             foreach (LogicObjects.SpoilerData data in SpoilerData)
             {
@@ -324,6 +338,15 @@ namespace MMR_Tracker_V2
                 if (PriceLoc != null)
                 {
                     PriceLoc.Price = data.Value;
+                }
+            }
+
+            foreach (var data in Hintdata)
+            {
+                var PriceLoc = Instance.Logic.Find(x => x.DictionaryName == "Gossip"+data.Key);
+                if (PriceLoc != null)
+                {
+                    PriceLoc.GossipHint = "$"+data.Value;
                 }
             }
 

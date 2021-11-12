@@ -15,6 +15,10 @@ namespace MMR_Tracker.Class_Files
         {
             return entry.ItemSubType == "Entrance";
         }
+        public static bool IsGossipStone(this LogicObjects.LogicEntry entry)
+        {
+            return entry.ItemSubType.StartsWith("Gossip");
+        }
         public static LogicObjects.LogicEntry RandomizedEntry(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool ReturnJunkAsItem = false)
         {
             if (ReturnJunkAsItem && entry.HasRandomItem(false) && !entry.HasRandomItem(true))

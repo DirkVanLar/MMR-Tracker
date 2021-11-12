@@ -1,4 +1,5 @@
-﻿using MMR_Tracker.Class_Files;
+﻿using Microsoft.VisualBasic;
+using MMR_Tracker.Class_Files;
 using MMR_Tracker_V2;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,11 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 {
                     if (SetFunction == 1 && Item.HasRandomItem(false)) { continue; }
                     if (SetFunction == 2 && !Item.HasRandomItem(false)) { continue; }
+                }
+                if (Item.IsGossipStone())
+                {
+                    GossipStoneCheck(Item);
+                    continue;
                 }
                 if (!ActionDic.ContainsKey(Item.ID)) { ActionDic.Add(Item.ID, Item.Checked); }
                 ToCheck.Add(Item);
@@ -284,6 +290,27 @@ namespace MMR_Tracker.Forms.Sub_Forms
         }
 
         //Functions
+
+        private void GossipStoneCheck(LogicObjects.LogicEntry Item)
+        {
+            if (Item.Checked)
+            {
+                if (!Item.GossipHint.StartsWith("$")) //Hint was not set via spoiler log
+                {
+                    Item.GossipHint = "";
+                }
+            }
+            else
+            {
+                if (Item.GossipHint == "")
+                {
+                    string input = Interaction.InputBox("Enter Gossip Stone Hint.", "Enter Hint");
+                    Item.GossipHint = input;
+                }
+            }
+            Item.Checked = !Item.Checked;
+            ItemStateChanged = true;
+        }
 
         public void SeperateLists(List<LogicObjects.LogicEntry> ToCheck)
         {

@@ -293,6 +293,8 @@ namespace MMR_Tracker.Class_Files
         
         public static LogicObjects.SpoilerLogData ReadHTMLSpoilerLog(string Path, LogicObjects.TrackerInstance Instance)
         {
+            var ReturnData = new LogicObjects.SpoilerLogData();
+
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
 
             if (Path == "")
@@ -316,7 +318,7 @@ namespace MMR_Tracker.Class_Files
                 {
                     var newLine = line.Replace("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">", "{\"GameplaySettings\":");
                     newLine = newLine.Replace("</code><br/>", "}");
-                    LogicObjects.GameplaySettings SettingFile = new LogicObjects.GameplaySettings();
+                    LogicObjects.GameplaySettings SettingFile = null;
                     try
                     {
                         SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(newLine).GameplaySettings;
@@ -326,13 +328,7 @@ namespace MMR_Tracker.Class_Files
                         //In 1.15 the setting file in the spoiler log is no longer a single line. New function to read multiline settings.
                         SettingFile = ParseSpoilerLogSettingsWithLineBreak(File.ReadAllLines(Path));
                     }
-                    if (SettingFile != null)
-                    {
-                        RandomizeOptions ApplySettings = new RandomizeOptions();
-                        ApplySettings.ApplyRandomizerSettings(SettingFile);
-                        Debugging.Log("Settings Applied");
-                    }
-                    else { Debugging.Log("Settings Applied"); }
+                    ReturnData.SettingString = SettingFile;
                 }
 
                 if (line.Contains("<tr class=\"region\">"))
@@ -403,7 +399,40 @@ namespace MMR_Tracker.Class_Files
                 }
             }
 
-            if (Instance.EntranceRando) { return new LogicObjects.SpoilerLogData { SpoilerDatas = SpoilerData, Pricedata = Pricedata }; }
+            Dictionary<string, string> GossipData = new Dictionary<string, string>();
+            bool AtGossipdata = false;
+            string GossipStone = "";
+            string Hint = "";
+            foreach (string line in File.ReadAllLines(Path))
+            {
+                if (line.Trim().StartsWith("<script>")) { break; }
+                if (line.Trim().StartsWith("<h2>Gossip Stone Hints</h2>") && Instance.IsMM()) { AtGossipdata = true; }
+                if (AtGossipdata)
+                {
+                    if (line.Trim().StartsWith("<td>"))
+                    {
+                        var X = line.Trim();
+                        X = X.Replace("<td>", "");
+                        X = X.Replace("</td>", "");
+                        GossipStone = X;
+                    }
+                    if (line.Trim().StartsWith("<td class=\"spoiler\"><span data-content="))
+                    {
+                        var X = line.Trim();
+                        X = X.Replace("<td class=\"spoiler\"><span data-content=\"", "");
+                        X = X.Replace("\"></span></td>", "");
+                        Hint = X;
+                        if (!GossipData.ContainsKey(GossipStone)) { GossipData.Add(GossipStone, Hint); Console.WriteLine("Added Gossip Data\n" + GossipStone + " Hint: " + Hint); }
+                    }
+                }
+            }
+
+            ReturnData.SpoilerDatas = SpoilerData;
+            ReturnData.Pricedata = Pricedata;
+            ReturnData.GossipHints = GossipData;
+
+
+            if (Instance.EntranceRando) { return ReturnData; }
 
             //Fix Dungeon Entrances
             Dictionary<string, int> EntIDMatch = new Dictionary<string, int>();
@@ -417,7 +446,7 @@ namespace MMR_Tracker.Class_Files
                 if (EntIDMatch.ContainsKey(Thing.LocationName)) { Thing.LocationID = EntIDMatch[Thing.LocationName]; }
             }
 
-            return new LogicObjects.SpoilerLogData { SpoilerDatas = SpoilerData, Pricedata = Pricedata };
+            return ReturnData;
         }
 
         public static bool SaveInstance(LogicObjects.TrackerInstance Instance, bool SetPath = false , string FilePath = "")

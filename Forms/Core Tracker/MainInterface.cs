@@ -178,7 +178,15 @@ namespace MMR_Tracker_V2
             var instance = LogicObjects.MainTrackerInstance;
             if (Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic))
             {
-                foreach (var entry in LogicObjects.MainTrackerInstance.Logic) { entry.SpoilerRandom = -2; }
+                var result = MessageBox.Show("are you sure you want to remove all spoiler data?", "Remove Spoiler Data", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes) { return; }
+
+                foreach (var entry in LogicObjects.MainTrackerInstance.Logic) 
+                { 
+                    entry.SpoilerRandom = -2;
+                    entry.Price = -1;
+                    entry.GossipHint = "";
+                }
             }
             else
             {
@@ -946,7 +954,7 @@ namespace MMR_Tracker_V2
                     break;
                 case 7:
                     DialogResult dialogResult = MessageBox.Show("Are you sure you want to remove this items spoiler data? The only way to recover spoiler data is reimporting the spoiler log.", "Remove Spoiler Data?", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes) { ActiveItem.SpoilerRandom = -2; }
+                    if (dialogResult == DialogResult.Yes) { ActiveItem.SpoilerRandom = -2; ActiveItem.GossipHint = ""; ActiveItem.Price = -1; }
                     break;
                 case 8:
                     Tools.SaveState(LogicObjects.MainTrackerInstance, LogicObjects.MainTrackerInstance.Logic);
@@ -1577,6 +1585,15 @@ namespace MMR_Tracker_V2
 
         private string createDisplayName(bool Checked, LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance instance)
         {
+            if (entry.IsGossipStone())
+            {
+                if (entry.Checked)
+                {
+                    if (entry.GossipHint != "") { return (entry.LocationName ?? entry.DictionaryName) + ": " + entry.GossipHint.Replace("$","") + ((entry.Starred) ? "*" : ""); }
+                    else { return (entry.LocationName ?? entry.DictionaryName) + ": No Hint" + ((entry.Starred) ? "*" : ""); }
+                }
+                else { return (entry.LocationName ?? entry.DictionaryName) + ((entry.Starred) ? "*" : ""); }
+            }
             var addPlayerName = entry.ItemBelongsToMe() ? "" : $" (Player {entry.PlayerData.ItemBelongedToPlayer})";
             var LocationName = entry.LocationName ?? entry.DictionaryName;
             var ItemName = (entry.HasRandomItem(false)) ? entry.RandomizedEntry(instance, true).ProgressiveItemName(instance) : "";

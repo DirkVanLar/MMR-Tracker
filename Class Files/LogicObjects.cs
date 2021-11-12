@@ -84,12 +84,13 @@ namespace MMR_Tracker_V2
             public string ItemSubType { get; set; } //The type of item it is
             public List<string> SpoilerLocation { get; set; } = new List<string>(); //The name of this location in the spoiler Log
             public List<string> SpoilerItem { get; set; } = new List<string>(); //The name of this item in the spoiler log
-            public int SpoilerRandom { get; set; } //The item the spoiler log says is in this location //The name of this location in the spoiler Log
+            public int SpoilerRandom { get; set; } //The item the spoiler log says is in this location
             public int AvailableOn { get; set; } //When the Check is available
             public int NeededBy { get; set; } //When the item is Needed
             public bool IsTrick { get; set; } //Whether or not the entry is a trick
             public bool TrickEnabled { get; set; } //Whether or not the trick is enabled
             public string TrickToolTip { get; set; } //The tool tip describing what the trick is
+            public string GossipHint { get; set; } = ""; //The text assigned to this gossip stone. Only applicable if the check is a gossip stone.
             public int Price { get; set; } = -1; //The price to purchase the item at a shop, used in Price Randomizer.
             public PlayerData PlayerData { get; set; } = new PlayerData(); //Data for multiworld
             public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
@@ -165,6 +166,8 @@ namespace MMR_Tracker_V2
         {
             public List<LogicObjects.SpoilerData> SpoilerDatas { get; set; } = new List<SpoilerData>();
             public Dictionary<string, int> Pricedata { get; set; } = new Dictionary<string, int>();
+            public Dictionary<string, string> GossipHints { get; set; } = new Dictionary<string, string>();
+            public LogicObjects.GameplaySettings SettingString { get; set; } = new LogicObjects.GameplaySettings();
         }
         public class SpoilerData
         {
