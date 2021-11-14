@@ -277,7 +277,7 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path)
+        public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path, bool ApplySetting = true)
         {
             List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
             LogicObjects.GameplaySettings SettingsData = null;
@@ -305,8 +305,8 @@ namespace MMR_Tracker_V2
                 }
                 if (!TXTOverride) { SpoilerData = Tools.ReadTextSpoilerlog(Instance, File.ReadAllLines(path)); }
             }
-            else if (path.Contains(".html")) 
-            { 
+            else if (path.Contains(".html"))
+            {
                 LogicObjects.SpoilerLogData SPLD = Tools.ReadHTMLSpoilerLog(path, Instance);
                 SpoilerData = SPLD.SpoilerDatas;
                 Pricedata = SPLD.Pricedata;
@@ -315,7 +315,7 @@ namespace MMR_Tracker_V2
             }
             else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return; }
 
-            if (SettingsData != null)
+            if (SettingsData != null && ApplySetting)
             {
                 RandomizeOptions ApplySettings = new RandomizeOptions();
                 ApplySettings.ApplyRandomizerSettings(SettingsData);
@@ -331,22 +331,15 @@ namespace MMR_Tracker_V2
                 }
             }
 
-            foreach (var data in Pricedata)
-            {
-                var CheckName = Utility.SpoilerLogShopPriceAltName(data.Key);
-                var PriceLoc = Instance.Logic.Find(x => x.SpoilerLocation.Contains(CheckName) || x.DictionaryName == CheckName);
-                if (PriceLoc != null)
-                {
-                    PriceLoc.Price = data.Value;
-                }
-            }
+            var SpoilerPriceLogicMap = Utility.ReadSpoilerLogPriceLogicMap(Instance, Pricedata);
+            foreach(var i in SpoilerPriceLogicMap) { Instance.GetLogicObjectFromDicName(i.Key).Price = i.Value; }
 
             foreach (var data in Hintdata)
             {
-                var PriceLoc = Instance.Logic.Find(x => x.DictionaryName == "Gossip"+data.Key);
-                if (PriceLoc != null)
+                var GStone = Instance.Logic.Find(x => x.DictionaryName == "Gossip" + data.Key);
+                if (GStone != null)
                 {
-                    PriceLoc.GossipHint = "$"+data.Value;
+                    GStone.GossipHint = "$" + data.Value;
                 }
             }
 
@@ -355,6 +348,10 @@ namespace MMR_Tracker_V2
             {
                 i.SpoilerRandom = i.ID;
             }
+
+            Instance.CurrentSpoilerLog.type = Path.GetExtension(path);
+            Instance.CurrentSpoilerLog.Log = File.ReadAllLines(path);
+
         }
 
         public static void CheckEntrancePair(LogicObjects.LogicEntry Location, LogicObjects.TrackerInstance Instance, bool Checking)
@@ -413,12 +410,35 @@ namespace MMR_Tracker_V2
                 logicEntry.Aquired = entry.Aquired;
                 logicEntry.Checked = entry.Checked;
                 logicEntry.RandomizedItem = entry.RandomizedItem;
-                logicEntry.SpoilerRandom = entry.SpoilerRandom;
                 logicEntry.Starred = entry.Starred;
                 logicEntry.Options = entry.Options;
                 logicEntry.TrickEnabled = entry.TrickEnabled;
                 logicEntry.PlayerData = entry.PlayerData;
             }
+
+            if (Instance.CurrentSpoilerLog.Log != null)
+            {
+                var path = Path.GetTempPath();
+                var fileName = Guid.NewGuid().ToString() + Instance.CurrentSpoilerLog.type;
+                var fullPath = Path.Combine(path, fileName);
+
+                File.WriteAllLines(fullPath, Instance.CurrentSpoilerLog.Log);
+                WriteSpoilerLogToLogic(Instance, fullPath, false);
+                try { if (File.Exists(fullPath)) { File.Delete(fullPath); } }
+                catch (Exception ex) { Console.WriteLine("Error deleteing TEMP file: " + ex.Message); }
+            }
+            else
+            {
+                foreach (var entry in OldLogic)
+                {
+                    var logicEntry = logic.Find(x => x.DictionaryName == entry.DictionaryName);
+                    if (logicEntry == null) { continue; }
+                    logicEntry.SpoilerRandom = entry.SpoilerRandom;
+                    logicEntry.Price = entry.Price;
+                    logicEntry.GossipHint = entry.GossipHint;
+                }
+            }
+
             if (saveFile)
             {
                 var Options = MessageBox.Show("Would you like to import the general tracker options from this save file?", "Options", MessageBoxButtons.YesNo);
@@ -456,7 +476,7 @@ namespace MMR_Tracker_V2
         {
             foreach (var LogicEntry1 in instance.Logic)
             {
-                if (!instance.DicNameToID.ContainsKey(LogicEntry1.DictionaryName) && !LogicEntry1.IsFake)
+                if (!instance.DicNameToID.ContainsKey(LogicEntry1.DictionaryName))
                 { instance.DicNameToID.Add(LogicEntry1.DictionaryName, LogicEntry1.ID); }
             }
         }
@@ -539,37 +559,37 @@ namespace MMR_Tracker_V2
 
             var WoodfallClear = Instance.Logic.Find(x => x.DictionaryName == "Woodfall clear" || x.DictionaryName == "AreaWoodFallTempleClear");
             var WoodfallAccess = Instance.Logic.Find(x => (x.DictionaryName == "Woodfall Temple access" || x.DictionaryName == "AreaWoodFallTempleAccess") && !x.IsFake);
-            if (WoodfallAccess == null || WoodfallClear == null) 
-            { 
-                Console.WriteLine($"Coul not find Woodfall Data. Access found {WoodfallAccess != null}. Clear found {WoodfallClear != null}."); 
-                return new Dictionary<int, int>(); 
+            if (WoodfallAccess == null || WoodfallClear == null)
+            {
+                Console.WriteLine($"Coul not find Woodfall Data. Access found {WoodfallAccess != null}. Clear found {WoodfallClear != null}.");
+                return new Dictionary<int, int>();
             }
             EntAreaDict.Add(WoodfallClear.ID, WoodfallAccess.ID);
 
             var SnowheadClear = Instance.Logic.Find(x => x.DictionaryName == "Snowhead clear" || x.DictionaryName == "AreaSnowheadTempleClear");
             var SnowheadAccess = Instance.Logic.Find(x => (x.DictionaryName == "Snowhead Temple access" || x.DictionaryName == "AreaSnowheadTempleAccess") && !x.IsFake);
-            if (SnowheadAccess == null || SnowheadClear == null) 
-            { 
-                Console.WriteLine($"Coul not find Snowhead Data. Access found {SnowheadAccess != null} Clear {SnowheadClear != null}"); 
-                return new Dictionary<int, int>(); 
+            if (SnowheadAccess == null || SnowheadClear == null)
+            {
+                Console.WriteLine($"Coul not find Snowhead Data. Access found {SnowheadAccess != null} Clear {SnowheadClear != null}");
+                return new Dictionary<int, int>();
             }
             EntAreaDict.Add(SnowheadClear.ID, SnowheadAccess.ID);
 
             var GreatBayClear = Instance.Logic.Find(x => x.DictionaryName == "Great Bay clear" || x.DictionaryName == "AreaGreatBayTempleClear");
             var GreatBayAccess = Instance.Logic.Find(x => (x.DictionaryName == "Great Bay Temple access" || x.DictionaryName == "AreaGreatBayTempleAccess") && !x.IsFake);
-            if (GreatBayAccess == null || GreatBayClear == null) 
-            { 
-                Console.WriteLine($"Coul not find Great Bay Data. Access found {GreatBayAccess != null} Clear {GreatBayClear != null}"); 
-                return new Dictionary<int, int>(); 
+            if (GreatBayAccess == null || GreatBayClear == null)
+            {
+                Console.WriteLine($"Coul not find Great Bay Data. Access found {GreatBayAccess != null} Clear {GreatBayClear != null}");
+                return new Dictionary<int, int>();
             }
             EntAreaDict.Add(GreatBayClear.ID, GreatBayAccess.ID);
 
             var StoneTowerClear = Instance.Logic.Find(x => x.DictionaryName == "Ikana clear" || x.DictionaryName == "AreaStoneTowerClear");
             var StoneTowerAccess = Instance.Logic.Find(x => (x.DictionaryName == "Inverted Stone Tower Temple access" || x.DictionaryName == "AreaInvertedStoneTowerTempleAccess") && !x.IsFake);
-            if (StoneTowerAccess == null || StoneTowerClear == null) 
-            { 
-                Console.WriteLine($"Coul not find Ikana Data. Access found {StoneTowerAccess != null} Clear {StoneTowerClear != null}"); 
-                return new Dictionary<int, int>(); 
+            if (StoneTowerAccess == null || StoneTowerClear == null)
+            {
+                Console.WriteLine($"Coul not find Ikana Data. Access found {StoneTowerAccess != null} Clear {StoneTowerClear != null}");
+                return new Dictionary<int, int>();
             }
             EntAreaDict.Add(StoneTowerClear.ID, StoneTowerAccess.ID);
 
@@ -626,7 +646,9 @@ namespace MMR_Tracker_V2
 
         public static bool HandleMMRTDungeonClearLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
         {
+            var dungeonEntranceObject = Instance.Logic[Instance.EntranceAreaDic[entry.ID]];
             var RandClearLogic = entry.ClearRandomizedDungeonInThisArea(Instance);
+            if (dungeonEntranceObject.Unrandomized(2)) { RandClearLogic = entry; }
             if (RandClearLogic == null) { return false; }
             else
             {
@@ -646,56 +668,78 @@ namespace MMR_Tracker_V2
             }
             bool NoWalletNeed = entry.Price <= DefaultCapacity;
 
-            var ValidWallets = Instance.WalletDictionary.Where(x => x.Value >= entry.Price).ToDictionary(x => x.Key, x => x.Value).Keys.ToArray();
-            var ValidWalletObjects = ValidWallets.Where(x => Instance.Logic.Find(y => y.DictionaryName == x) != null).Select(x => Instance.Logic.Find(y => y.DictionaryName == x)).ToArray();
+            var ValidWallets = Instance.WalletDictionary.Where(x => x.Value >= entry.Price).ToDictionary(x => x.Key, x => x.Value).Keys;
+            var ValidWalletObjects = ValidWallets.Select(x => Instance.GetLogicObjectFromDicName(x)).Where(x => x != null);
             var ValidWalletIDs = ValidWalletObjects.Select(x => x.ID).ToArray();
-            if (ValidWalletObjects.Count() == 0 && !NoWalletNeed)
+            if (ValidWallets.Count() < 1)
             {
                 Console.WriteLine("Critical error there are no wallets big enough to buy this item!");
                 return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
                         LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
             }
-            List<int> NewRequired = new List<int>();
-            List<List<int>> NewConditionals = new List<List<int>>();
             int[] NewRequiredArray = null;
             int[][] NewConditionalsArray = null;
 
-            foreach (var i in entry.Required.Where(x => !ValidWalletIDs.Contains(x))) { NewRequired.Add(i); }
-            if (NewRequired.Any()) { NewRequiredArray = NewRequired.ToArray(); }
-
-            foreach (var conditional in entry.Conditionals)
-            {
-                List<int> NewCondtitional = new List<int>();
-                foreach (var i in conditional.Where(x => !ValidWalletIDs.Contains(x))) { NewCondtitional.Add(i); }
-                if (NewCondtitional.Any()) { NewConditionals.Add(NewCondtitional); }
-            }
-
-            if (!NewConditionals.Any())
-            {
-                if (NoWalletNeed) { NewConditionalsArray = null; }
-                else { NewConditionalsArray = ValidWalletIDs.Select(x => new int[] { x }).ToArray(); }
-            }
-            else
-            {
-                if (NoWalletNeed) { NewConditionalsArray = NewConditionals.Select(x => x.ToArray()).ToArray(); }
-                else
-                {
-                    List<List<int>> NewConditionalsWithWallet = new List<List<int>>();
-                    foreach (var Wallet in ValidWalletIDs)
-                    {
-                        foreach (var Conitional in NewConditionals)
-                        {
-                            List<int> NewCondtitional = new List<int>() { Wallet };
-                            foreach (var i in Conitional) { NewCondtitional.Add(i); }
-                            NewConditionalsWithWallet.Add(NewCondtitional);
-                        }
-                    }
-                    NewConditionalsArray = NewConditionalsWithWallet.Select(x => x.ToArray()).ToArray();
-                }
-            }
+            NewRequiredArray = removeItemFromRequirement(entry.Required, ValidWalletIDs);
+            NewConditionalsArray = removeItemFromConditionals(entry.Conditionals, ValidWalletIDs, false);
+            if (!NoWalletNeed) { NewConditionalsArray = AddConditionalAsRequirement(NewConditionalsArray, ValidWalletIDs); }
 
             return LogicEditing.RequirementsMet(NewRequiredArray, Instance, usedItems) &&
                     LogicEditing.CondtionalsMet(NewConditionalsArray, Instance, usedItems);
+        }
+
+        public static int[] AddRequirement(int[] entry, int[] Requirements)
+        {
+            List<int> NewRequirements = Requirements.ToList();
+            if (entry == null) { NewRequirements.ToArray(); }
+            foreach (var i in entry) { NewRequirements.Add(i); }
+            return NewRequirements.ToArray();
+        }
+        public static int[][] AddConditional(int[][] entry, int[] Conditional)
+        {
+            List<int[]> NewRequirements = new List<int[]> { Conditional };
+            if (entry == null) { NewRequirements.ToArray(); }
+            foreach (var i in entry) { NewRequirements.Add(i); }
+            return NewRequirements.ToArray();
+        }
+        public static int[][] AddConditionalAsRequirement(int[][] entry, int[] Conditional)
+        {
+            List<List<int>> NewConditonals = new List<List<int>>();
+            foreach (var item in Conditional)
+            {
+                if (entry == null) { NewConditonals.Add(new List<int> { item }); continue; }
+                foreach (var Conitional in entry)
+                {
+                    List<int> NewCondtitional = new List<int>() { item };
+                    foreach (var i in Conitional) { NewCondtitional.Add(i); }
+                    NewConditonals.Add(NewCondtitional);
+                }
+            }
+            return NewConditonals.Select(x => x.ToArray()).ToArray();
+        }
+        public static int[] removeItemFromRequirement(int[] entry, int[] Requirements)
+        {
+            List<int> NewRequirements = new List<int>();
+            var reqWithoutItem = entry.Where(x => !Requirements.Contains(x));
+            if (!reqWithoutItem.Any()) { return null; }
+            foreach(var i in reqWithoutItem) { NewRequirements.Add(i); }
+            return NewRequirements.ToArray();
+        }
+        public static int[][] removeItemFromConditionals(int[][] entry, int[] Conditional, bool RemovedItemIsAlwaysAvailable)
+        {
+            List<List<int>> NewConditionals = new List<List<int>>();
+            foreach (var conditional in entry)
+            {
+                List<int> NewCondtitional = new List<int>();
+                foreach (var i in conditional.Where(x => !Conditional.Contains(x))) { NewCondtitional.Add(i); }
+                if (NewCondtitional.Any()) { NewConditionals.Add(NewCondtitional); }
+                else if (RemovedItemIsAlwaysAvailable) { return null; }
+                //If RemovedItemIsAlwaysAvailable is false, the items are being removed from conditionals because it should not be considered as a valid option for completing the check,
+                //Meaning other conditionals still apply.
+                //If it's true, since that item is always available and if it was the only item in a conditional the conditional set can never be false, so set it to null
+            }
+            if (!NewConditionals.Any()) { return null; }
+            return NewConditionals.Select(x => x.ToArray()).ToArray();
         }
     }
 }

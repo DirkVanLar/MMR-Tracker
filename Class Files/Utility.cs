@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace MMR_Tracker_V2
@@ -414,58 +415,37 @@ namespace MMR_Tracker_V2
                 }
             }
         }
-        public static string SpoilerLogShopPriceAltName(string input, bool DicToSpoiler = false, bool trimoutput = false)
+        //TODO Possible make this configurable? It's very niche but configuration will probably be needed in the case of custom logic
+        public static string MutliPriceDisginguisingText(string input)
         {
             var AltNames = new Dictionary<string, string>
             {
-                {"ShopItemGoronBomb10InWinter","Goron Shop 10 Bombs (InWinter)"},
-                {"ShopItemGoronBomb10InSpring","Goron Shop 10 Bombs (InSpring)"},
-                {"ShopItemGoronArrow10InWinter","Goron Shop 10 Arrows (InWinter)"},
-                {"ShopItemGoronArrow10InSpring","Goron Shop 10 Arrows (InSpring)"},
-                {"ShopItemGoronRedPotionInWinter","Goron Shop Red Potion (InWinter)"},
-                {"ShopItemGoronRedPotionInSpring","Goron Shop Red Potion (InSpring)"},
-                {"ShopItemBusinessScrubMagicBeanInSwamp","ShopItemBusinessScrubMagicBeanInSwamp"},
-                {"ShopItemBusinessScrubMagicBeanInTown","ShopItemBusinessScrubMagicBeanInTown"},
-                {"UpgradeBiggestBombBagInMountain","UpgradeBiggestBombBagInMountain"},
-                {"UpgradeBiggestBombBagInSwamp","UpgradeBiggestBombBagInSwamp"},
-                {"ShopItemBusinessScrubGreenPotionInOcean","ShopItemBusinessScrubGreenPotionInOcean"},
-                {"ShopItemBusinessScrubGreenPotionInMountain","ShopItemBusinessScrubGreenPotionInMountain"},
-                {"ShopItemBusinessScrubBluePotionInCanyon","ShopItemBusinessScrubBluePotionInCanyon"},
-                {"ShopItemBusinessScrubBluePotionInOcean","ShopItemBusinessScrubBluePotionInOcean"},
-                {"ItemTingleMapTownInTown","Clock Town Map Purchase (InTown)"},
-                {"ItemTingleMapTownInCanyon","Clock Town Map Purchase (InCanyon)"},
-                {"ItemTingleMapWoodfallInSwamp","Woodfall Map Purchase (InSwamp)"},
-                {"ItemTingleMapWoodfallInTown","Woodfall Map Purchase (InTown)"},
-                {"ItemTingleMapSnowheadInMountain","Snowhead Map Purchase (InMountain)"},
-                {"ItemTingleMapSnowheadInSwamp","Snowhead Map Purchase (InSwamp)"},
-                {"ItemTingleMapRanchInRanch","Romani Ranch Map Purchase (InRanch)"},
-                {"ItemTingleMapRanchInMountain","Romani Ranch Map Purchase (InMountain)"},
-                {"ItemTingleMapGreatBayInOcean","Great Bay Map Purchase (InOcean)"},
-                {"ItemTingleMapGreatBayInRanch","Great Bay Map Purchase (InRanch)"},
-                {"ItemTingleMapStoneTowerInCanyon","Stone Tower Map Purchase (InCanyon)"},
-                {"ItemTingleMapStoneTowerInOcean","Stone Tower Map Purchase (InOcean)"}
+                {"ShopItemGoronBomb10InWinter","Winter"},
+                {"ShopItemGoronBomb10InSpring","Spring"},
+                {"ShopItemGoronArrow10InWinter","Winter"},
+                {"ShopItemGoronArrow10InSpring","Spring"},
+                {"ShopItemGoronRedPotionInWinter","Winter"},
+                {"ShopItemGoronRedPotionInSpring","Spring"},
+                {"ItemTingleMapTownInTown","Town"},
+                {"ItemTingleMapTownInCanyon","Canyon"},
+                {"ItemTingleMapWoodfallInSwamp","Swamp"},
+                {"ItemTingleMapWoodfallInTown","Town"},
+                {"ItemTingleMapSnowheadInMountain","Mountain"},
+                {"ItemTingleMapSnowheadInSwamp","Swamp"},
+                {"ItemTingleMapRanchInRanch","Ranch"},
+                {"ItemTingleMapRanchInMountain","Mountain"},
+                {"ItemTingleMapGreatBayInOcean","Ocean"},
+                {"ItemTingleMapGreatBayInRanch","Ranch"},
+                {"ItemTingleMapStoneTowerInCanyon","Canyon"},
+                {"ItemTingleMapStoneTowerInOcean","Ocean"}
             };
-            if (DicToSpoiler)
-            {
-                return AltNames.ContainsKey(input) ? (trimoutput ? TrimPriceDisplay(AltNames[input]) : AltNames[input]) : input;
-            }
-            else
-            {
-                foreach (var i in AltNames)
-                {
-                    if (i.Value == input) { return i.Key; }
-                }
-                return input;
-            }
+            return AltNames.ContainsKey(input) ? AltNames[input] : input;
         }
 
         public static string TrimPriceDisplay(string input)
         {
             if (input.IndexOf("(") > -1 && input.IndexOf(")") > -1 && input.IndexOf('(') < input.IndexOf(')'))
             {
-                Console.WriteLine(input);
-                Console.WriteLine(input.IndexOf("(") + 1);
-                Console.WriteLine(input.IndexOf(")") + 1);
                 return input.Substring(input.IndexOf("(")+1, input.IndexOf(")") - input.IndexOf("(")-1);
             }
             return input;
@@ -475,7 +455,7 @@ namespace MMR_Tracker_V2
         {
             if (Entry.Price > -1) { return $" (${Entry.Price})"; }
 
-            bool SubPriceFound = false;
+            int SubPricesFound = 0;
             string MutliPrice = " (";
             if (Entry.Required != null)
             {
@@ -483,8 +463,8 @@ namespace MMR_Tracker_V2
                 {
                     if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake)
                     {
-                        SubPriceFound = true;
-                        string DisName = SpoilerLogShopPriceAltName(Instance.Logic[i].DictionaryName, true, true);
+                        SubPricesFound++;
+                        string DisName = MutliPriceDisginguisingText(Instance.Logic[i].DictionaryName);
                         MutliPrice += $"{DisName}: ${Instance.Logic[i].Price}, ";
                     }
                 }
@@ -497,8 +477,8 @@ namespace MMR_Tracker_V2
                     {
                         if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake)
                         {
-                            SubPriceFound = true;
-                            string DisName = SpoilerLogShopPriceAltName(Instance.Logic[i].DictionaryName, true, true);
+                            SubPricesFound++;
+                            string DisName = MutliPriceDisginguisingText(Instance.Logic[i].DictionaryName);
                             MutliPrice += $"{DisName}: ${Instance.Logic[i].Price}, ";
                         }
                     }
@@ -506,7 +486,72 @@ namespace MMR_Tracker_V2
             }
             if (MutliPrice.EndsWith(", ")) { MutliPrice = MutliPrice.Substring(0, MutliPrice.Length - 2); }
             MutliPrice += ")";
-            return SubPriceFound ? MutliPrice : "";
+            return SubPricesFound > 0 ? (SubPricesFound > 1 ? MutliPrice : $" (${Entry.Price})")  : "";
+        }
+
+        public static Dictionary<string, int> ReadSpoilerLogPriceLogicMap(LogicObjects.TrackerInstance Instance, Dictionary<string, int> Pricedata)
+        {
+            var SpoilerPriceDic = new Dictionary<string, int>();
+            var TextFile = File.ReadAllLines(@"Recources\Other Files\SpoilerLogPriceLogicMap.txt");
+
+            bool AtGame = true;
+            foreach (var line in TextFile)
+            {
+                var x = line.Trim();
+                x = Regex.Replace(x, @"\s+", " ");
+                if (string.IsNullOrWhiteSpace(x) || x.StartsWith("//")) { continue; }
+                if (x.Contains("//")) { x = x.Substring(0, x.IndexOf("//")); }
+                if (x.ToLower().StartsWith("#gamecodestart:"))
+                {
+                    AtGame = x.ToLower().Replace("#gamecodestart:", "").Trim().Split(',').Select(y => y.Trim()).Contains(Instance.GameCode.ToLower());
+                    continue;
+                }
+                if (x.ToLower().StartsWith("#gamecodeend:")) { AtGame = true; continue; }
+                if (!AtGame) { continue; }
+
+                var RestrictionSplit = x.Split('!');
+                bool LineValid = true;
+                if (RestrictionSplit.Count() > 1)
+                {
+                    for(var y = 1; y < RestrictionSplit.Count(); y++)
+                    {
+                        var RestrictionAndSplit = RestrictionSplit[y].Split('&');
+                        bool AllItemsInLogic = true;
+                        foreach (var j in RestrictionAndSplit) { if (!Instance.DicNameToID.ContainsKey(j.Trim())) { AllItemsInLogic = false; } }
+                        if (AllItemsInLogic) { LineValid = false;  }
+                    }
+                }
+                if (!LineValid) { continue; }
+
+                var DicAndPriceData = RestrictionSplit[0].Split('|');
+                if (DicAndPriceData.Count() < 2) { continue; }
+                var dictionaryNameData = DicAndPriceData[0].Split(',');
+                var SpoilerNamedata = DicAndPriceData[1].Split(',');
+
+                string DictionaryName = null;
+                int LowestPrice = -1;
+
+                foreach(var i in dictionaryNameData)
+                {
+                    if (Instance.DicNameToID.ContainsKey(i.Trim()))
+                    {
+                        DictionaryName = i.Trim();
+                        break;
+                    }
+                }
+                foreach (var i in SpoilerNamedata)
+                {
+                    if (Pricedata.ContainsKey(i.Trim()))
+                    {
+                        if (LowestPrice == -1 || Pricedata[i.Trim()] < LowestPrice) { LowestPrice = Pricedata[i.Trim()]; }
+                    }
+                }
+
+                if (DictionaryName != null && LowestPrice > -1 && !SpoilerPriceDic.ContainsKey(DictionaryName)) { SpoilerPriceDic.Add(DictionaryName, LowestPrice); }
+
+            }
+            return SpoilerPriceDic;
+
         }
     }
 }

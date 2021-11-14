@@ -32,6 +32,7 @@ namespace MMR_Tracker_V2
             public List<List<LogicEntry>> UndoList { get; set; } = new List<List<LogicEntry>>();
             public List<List<LogicEntry>> RedoList { get; set; } = new List<List<LogicEntry>>();
             public Dictionary<string, int> WalletDictionary { get; set; } = new Dictionary<string, int>();
+            public SavedSpoilerLog CurrentSpoilerLog { get; set; } = new SavedSpoilerLog { Log = null, type = null };
         }
 
         public class Options
@@ -161,6 +162,11 @@ namespace MMR_Tracker_V2
             public int CurrentExit { get; set; } //The exit you are curretly at
             public int EntranceToTake { get; set; } //The entrance you can go through
             public int ResultingExit { get; set; } //The resulting exit you will end up at
+        }
+        public class SavedSpoilerLog
+        {
+            public string type { get; set; } = null;
+            public string[] Log { get; set; } = null;
         }
         public class SpoilerLogData
         {

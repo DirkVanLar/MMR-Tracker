@@ -2,7 +2,7 @@
 //Use format "WALLETLOGICID:MAXMONEYAMOUNT"
 //MMRTDefault is the default capacity of your wallet without any item
 //example: "MMRTDefault:99"
-//Using "#GAMECODESTART: 'Your Games Game Code'" will make the following wallet values only be assigned if the corrisponding game code is not loaded
+//Using "#GAMECODESTART: 'Your Games Game Code'" will make the following wallet values only be assigned if the corresponding game code is loaded
 //Multiple gamecodes can be defined in a comma seperated lits ex: (#GAMECODESTART:MMR,OOTR)
 //Using "#GAMECODEEND:" will exit the game code restriction
 

@@ -187,6 +187,8 @@ namespace MMR_Tracker_V2
                     entry.Price = -1;
                     entry.GossipHint = "";
                 }
+                instance.CurrentSpoilerLog.type = null;
+                instance.CurrentSpoilerLog.Log = null;
             }
             else
             {

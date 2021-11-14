@@ -64,6 +64,7 @@
             this.saveLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveLogicWithTrickDataDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveLogicInJSONFormatBetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applyToTrackerLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,7 +90,6 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.chkIsTrick = new System.Windows.Forms.CheckBox();
-            this.saveLogicInJSONFormatBetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -306,6 +306,7 @@
             this.lblDicName.Size = new System.Drawing.Size(61, 13);
             this.lblDicName.TabIndex = 15;
             this.lblDicName.Text = "Item_Name";
+            this.lblDicName.Click += new System.EventHandler(this.lblDicName_Click);
             // 
             // btnAddReq
             // 
@@ -380,6 +381,7 @@
             this.lblItemName.Size = new System.Drawing.Size(61, 13);
             this.lblItemName.TabIndex = 27;
             this.lblItemName.Text = "Item Name:";
+            this.lblItemName.Click += new System.EventHandler(this.lblItemName_Click);
             // 
             // lblLocName
             // 
@@ -392,6 +394,7 @@
             this.lblLocName.Size = new System.Drawing.Size(82, 13);
             this.lblLocName.TabIndex = 28;
             this.lblLocName.Text = "Location Name:";
+            this.lblLocName.Click += new System.EventHandler(this.lblLocName_Click);
             // 
             // btnBack
             // 
@@ -494,55 +497,62 @@
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem,
             this.saveLogicInJSONFormatBetaToolStripMenuItem});
             this.saveLogicToolStripMenuItem.Name = "saveLogicToolStripMenuItem";
-            this.saveLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.saveLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.saveLogicToolStripMenuItem.Text = "Save Logic";
             this.saveLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // saveLogicWithTrickDataDefaultToolStripMenuItem
             // 
             this.saveLogicWithTrickDataDefaultToolStripMenuItem.Name = "saveLogicWithTrickDataDefaultToolStripMenuItem";
-            this.saveLogicWithTrickDataDefaultToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
+            this.saveLogicWithTrickDataDefaultToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
             this.saveLogicWithTrickDataDefaultToolStripMenuItem.Text = "Save Logic With Trick Data (Default)";
             this.saveLogicWithTrickDataDefaultToolStripMenuItem.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // saveLogicWothoutTrickDataLegacyToolStripMenuItem
             // 
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Name = "saveLogicWothoutTrickDataLegacyToolStripMenuItem";
-            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
+            this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Text = "Save Logic Without Trick Data (Legacy)";
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Click += new System.EventHandler(this.saveLogicWothoutTrickDataLegacyToolStripMenuItem_Click);
+            // 
+            // saveLogicInJSONFormatBetaToolStripMenuItem
+            // 
+            this.saveLogicInJSONFormatBetaToolStripMenuItem.Name = "saveLogicInJSONFormatBetaToolStripMenuItem";
+            this.saveLogicInJSONFormatBetaToolStripMenuItem.Size = new System.Drawing.Size(278, 22);
+            this.saveLogicInJSONFormatBetaToolStripMenuItem.Text = "Save Logic In JSON Format (Beta)";
+            this.saveLogicInJSONFormatBetaToolStripMenuItem.Click += new System.EventHandler(this.saveLogicInJSONFormatBetaToolStripMenuItem_Click);
             // 
             // applyToTrackerLogicToolStripMenuItem
             // 
             this.applyToTrackerLogicToolStripMenuItem.Name = "applyToTrackerLogicToolStripMenuItem";
-            this.applyToTrackerLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.applyToTrackerLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.applyToTrackerLogicToolStripMenuItem.Text = "Apply Logic to Tracker";
             this.applyToTrackerLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // loadLogicToolStripMenuItem
             // 
             this.loadLogicToolStripMenuItem.Name = "loadLogicToolStripMenuItem";
-            this.loadLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.loadLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.loadLogicToolStripMenuItem.Text = "Load Logic";
             this.loadLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnLoad_Click);
             // 
             // templatesToolStripMenuItem
             // 
             this.templatesToolStripMenuItem.Name = "templatesToolStripMenuItem";
-            this.templatesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.templatesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.templatesToolStripMenuItem.Text = "Templates";
             // 
             // newLogicToolStripMenuItem
             // 
             this.newLogicToolStripMenuItem.Name = "newLogicToolStripMenuItem";
-            this.newLogicToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.newLogicToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.newLogicToolStripMenuItem.Text = "New Logic";
             this.newLogicToolStripMenuItem.Click += new System.EventHandler(this.BtnNewLogic_Click);
             // 
             // clearLogicDataToolStripMenuItem
             // 
             this.clearLogicDataToolStripMenuItem.Name = "clearLogicDataToolStripMenuItem";
-            this.clearLogicDataToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.clearLogicDataToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.clearLogicDataToolStripMenuItem.Text = "Clear Logic Data";
             this.clearLogicDataToolStripMenuItem.Click += new System.EventHandler(this.clearLogicDataToolStripMenuItem_Click);
             // 
@@ -722,13 +732,6 @@
             this.chkIsTrick.Text = "Is Trick";
             this.chkIsTrick.UseVisualStyleBackColor = false;
             this.chkIsTrick.CheckedChanged += new System.EventHandler(this.chkIsTrick_CheckedChanged);
-            // 
-            // saveLogicInJSONFormatBetaToolStripMenuItem
-            // 
-            this.saveLogicInJSONFormatBetaToolStripMenuItem.Name = "saveLogicInJSONFormatBetaToolStripMenuItem";
-            this.saveLogicInJSONFormatBetaToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
-            this.saveLogicInJSONFormatBetaToolStripMenuItem.Text = "Save Logic In JSON Format (Beta)";
-            this.saveLogicInJSONFormatBetaToolStripMenuItem.Click += new System.EventHandler(this.saveLogicInJSONFormatBetaToolStripMenuItem_Click);
             // 
             // LogicEditor
             // 

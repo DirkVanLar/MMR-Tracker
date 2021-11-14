@@ -1258,5 +1258,19 @@ namespace MMR_Tracker.Forms
             MessageBox.Show($"No fake items found", "No entries found", MessageBoxButtons.OK);
         }
 
+        private void lblDicName_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lblDicName.Text);
+        }
+
+        private void lblItemName_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lblItemName.Text);
+        }
+
+        private void lblLocName_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lblLocName.Text);
+        }
     }
 }

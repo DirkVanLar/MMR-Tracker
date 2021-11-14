@@ -394,7 +394,16 @@ namespace MMR_Tracker.Class_Files
                         X = X.Replace("\"></span></td>", "");
                         try { Pricenumb = int.Parse(X); }
                         catch { Pricenumb = 69; Console.WriteLine("Could not parse Line \n" + line); }
-                        if (!Pricedata.ContainsKey(PriceCheck)) { Pricedata.Add(PriceCheck, Pricenumb); Console.WriteLine("Added Price Data\n" + PriceCheck + " Costs: " + Pricenumb); }
+
+                        int AppendCounter = 0;
+                        string CurrentKey = PriceCheck;
+                        while (Pricedata.ContainsKey(CurrentKey))
+                        {
+                            AppendCounter += 1;
+                            CurrentKey = PriceCheck + " " + AppendCounter.ToString();
+                        }
+
+                        Pricedata.Add(CurrentKey, Pricenumb); Console.WriteLine("Added Price Data\n" + CurrentKey + " Costs: " + Pricenumb);
                     }
                 }
             }

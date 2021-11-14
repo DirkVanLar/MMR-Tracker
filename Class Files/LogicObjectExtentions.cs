@@ -168,6 +168,7 @@ namespace MMR_Tracker.Class_Files
         public static bool CheckAvailability(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null, bool FromScratch = true, bool ForceStrictLogicHendeling = false)
         {
             var logic = Instance.Logic;
+            var DicID = Instance.DicNameToID;
             usedItems = usedItems ?? new List<int>();
             if (string.IsNullOrWhiteSpace(entry.LocationName) && !entry.IsFake) { return false; }
 
@@ -190,6 +191,16 @@ namespace MMR_Tracker.Class_Files
             else if (entry.Price > -1)
             {
                 return LogicEditing.HandleMMRTrandomPriceLogic(entry, Instance, usedItems);
+            }
+            //Remove the Pendant of Memories and Letter to Kafei requirements for the Old Lady and Big Bomb Bag check. They are only required for randomization, not tracking.
+            //TODO make this togglable
+            else if ((entry.DictionaryName == "UpgradeBigBombBag" || entry.DictionaryName == "MaskBlast") && DicID.ContainsKey("TradeItemPendant") && DicID.ContainsKey("TradeItemKafeiLetter"))
+            {
+
+                var NewReq = LogicEditing.removeItemFromRequirement(entry.Required, new int[] { DicID["TradeItemPendant"] , DicID["TradeItemKafeiLetter"] });
+
+                return LogicEditing.RequirementsMet(NewReq, Instance, usedItems) &&
+                        LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
             }
             //Check availability the standard way
             else
@@ -221,6 +232,7 @@ namespace MMR_Tracker.Class_Files
             }
             return false;
         }
+        //TODO make this list a config file
         public static bool CanBeStartingItem(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
             if (!Instance.IsMM()) { return true; }
@@ -369,6 +381,11 @@ namespace MMR_Tracker.Class_Files
                 }
             }
             Instance.WalletDictionary = Wallets;
+        }
+        public static LogicObjects.LogicEntry GetLogicObjectFromDicName(this LogicObjects.TrackerInstance Instance, string DicName)
+        {
+            if (Instance.DicNameToID.ContainsKey(DicName)) { return Instance.Logic[Instance.DicNameToID[DicName]]; }
+            else { return null; }
         }
     }
 }

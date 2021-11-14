@@ -1,0 +1,93 @@
+﻿//This file keeps track of what spoiler log Price values should be assigned to what entries in logic
+//Below is an example of this system making full use of all its features 
+
+//UpgradeBigBombBag,BombBagUpgrade | Big Bomb Bag Purchase, Big Bomb Bag Purchase (Town), Big Bomb Bag Purchase (Mountain) !AltBombBagPurchase & CanBuyinMountains !CanBuyBombBags
+
+//How it works:
+//First it will look for an item in your logic called "UpgradeBigBombBag" and if it can't find that, it will then look for "BombBagUpgrade".
+//You can add any number of Logic names in this way using a comma seperated list. It will Prioritize them from left to right.
+//If it finds either of the above it will the look for "Big Bomb Bag Purchase", "Big Bomb Bag Purchase (Town)" and "Big Bomb Bag Purchase (Mountain)" in your spoiler log.
+//If it finds any of those it will assign the Logic check the lowest price out the objects in that list that it found in the spoiler log.
+//You can add any number of values in this way using a comma seperated list.
+//The ! defines conditions in which this line will be ignored. If the Logic name following the ! is found in your logic, the current line will be ignored.
+//You can define multiple Logic names in one statement using an &. In this case each of those logic names must exist in your logic for the line to be ignored.
+//Having more than one ! is like using an OR statement. If any of the ! procede an entry that exists in your logic the line will be ignored.
+//In the example above, the logic can be read as "IF (AltBombBagPurchase AND CanBuyinMountains) OR (CanBuyBombBags) Exists in logic, the Line will be ignored"
+
+//Using "#GAMECODESTART: 'Your Games Game Code'" will make the following lines only be processed if the corresponding game code is loaded
+//Multiple gamecodes can be defined in a comma seperated lits ex: (#GAMECODESTART:MMR,OOTR)
+//Using "#GAMECODEEND:" will exit the game code restriction
+
+#GAMECODESTART: MMR
+
+HeartPieceHoneyAndDarling               |  Honey and Darling
+MundaneItemHoneyAndDarlingPurpleRupee   |  Honey and Darling 
+HeartPieceTownArchery                   |  Town Archery
+UpgradeBigQuiver                        |  Town Archery
+MundaneItemTreasureChestGameDekuNuts    |  Treasure Chest Game Deku
+MundaneItemTreasureChestGamePurpleRupee |  Treasure Chest Game Human
+HeartPieceTreasureChestGame             |  Treasure Chest Game Goron
+MundaneItemTreasureChestGameRedRupee    |  Treasure Chest Game Zora
+HeartPieceBoatArchery                   |  Boat Archery
+UpgradeBiggestQuiver                    |  Swamp Archery
+HeartPieceSwampArchery                  |  Swamp Archery
+UpgradeRazorSword                       |  Mountain Smithy Day 1
+HeartPieceFishermanGame                 |  Fisherman Game
+ShopItemBusinessScrubMagicBean          |  Swamp Scrub Purchase
+UpgradeBiggestBombBag                   |  Biggest Bomb Bag Purchase
+ShopItemBusinessScrubGreenPotion        |  Ocean Scrub Purchase
+ShopItemBusinessScrubBluePotion         |  Canyon Scrub Purchase
+ShopItemGoronBomb10InWinter             |  Goron Shop 10 Bombs (InWinter)
+ShopItemGoronBomb10InSpring             |  Goron Shop 10 Bombs (InSpring)
+ShopItemGoronArrow10InWinter            |  Goron Shop 10 Arrows (InWinter)
+ShopItemGoronArrow10InSpring            |  Goron Shop 10 Arrows (InSpring)
+ShopItemGoronRedPotionInWinter          |  Goron Shop Red Potion (InWinter)
+ShopItemGoronRedPotionInSpring          |  Goron Shop Red Potion (InSpring)
+ItemTingleMapTownInTown                 |  Clock Town Map Purchase (InTown)
+ItemTingleMapTownInCanyon               |  Clock Town Map Purchase (InCanyon)
+ItemTingleMapWoodfallInSwamp            |  Woodfall Map Purchase (InSwamp)
+ItemTingleMapWoodfallInTown             |  Woodfall Map Purchase (InTown)
+ItemTingleMapSnowheadInMountain         |  Snowhead Map Purchase (InMountain)
+ItemTingleMapSnowheadInSwamp            |  Snowhead Map Purchase (InSwamp)
+ItemTingleMapRanchInRanch               |  Romani Ranch Map Purchase (InRanch)
+ItemTingleMapRanchInMountain            |  Romani Ranch Map Purchase (InMountain)
+ItemTingleMapGreatBayInOcean            |  Great Bay Map Purchase (InOcean)
+ItemTingleMapGreatBayInRanch            |  Great Bay Map Purchase (InRanch)
+ItemTingleMapStoneTowerInCanyon         |  Stone Tower Map Purchase (InCanyon)
+ItemTingleMapStoneTowerInOcean          |  Stone Tower Map Purchase (InOcean)
+HeartPieceSwordsmanSchool               |  Swordsman's School
+PlayDekuPlayground						|  Playground 								//Allows deku playgroud rupees to be locked conditionally behind playing the game
+HeartPieceDekuPlayground                |  Deku Playground                  		!   PlayDekuPlayground             
+MundaneItemDekuPlaygroundPurpleRupee    |  Deku Playground                  		!   PlayDekuPlayground  
+ShopItemMilkBarMilk                     |  Milk Bar Milk
+ShopItemMilkBarChateau                  |  Milk Bar Chateau
+MundaneItemLotteryPurpleRupee           |  Lottery
+ShopItemGormanBrosMilk                  |  Gorman Bros Milk Purchase
+MaskGaro                                |  Gorman Bros Race
+ShopItemBombsBomb10                     |  Bomb Shop 10 Bombs
+ShopItemBombsBombchu10                  |  Bomb Shop 10 Bombchu
+ItemBombBag                             |  Bomb Bag Purchase
+UpgradeBigBombBag                       |  Big Bomb Bag Purchase            		!   ShopItemGoronBomb10InCuriosityShop & ShopItemGoronBomb10InCuriosityShop
+ShopItemGoronBomb10InBombShop           |  Big Bomb Bag Purchase            
+ShopItemGoronBomb10InCuriosityShop      |  Big Bomb Bag Purchase            		//allows buying the bomb Bag from the curiosity shop in logic 
+ShopItemWitchRedPotion                  |  Witch Shop Red Potion
+ShopItemWitchGreenPotion                |  Witch Shop Green Potion
+ShopItemWitchBluePotion                 |  Witch Shop Blue Potion
+ShopItemZoraShield                      |  Zora Shop Hero's Shield
+ShopItemZoraArrow10                     |  Zora Shop 10 Arrows
+ShopItemZoraRedPotion                   |  Zora Shop Red Potion
+MaskAllNight                            |  All-Night Mask Purchase
+PlayPoeHut,HeartPiecePoeHut             |  Poe Hut                         			//Allows playing the song of healing for the poe hut huy to use the healed price
+PlayPoeHutHealed                        |  Healed Poe Hut
+
+HeartPieceTerminaBusinessScrub          | Business Scrub Purchase 1         		, Business Scrub Purchase 2		//Both the offers are random, We only care about the lowest
+ShopItemTradingPostRedPotion            | Trading Post Red Potion           		, Trading Post Red Potion 1
+ShopItemTradingPostShield               | Trading Post Hero's Shield        		, Trading Post Hero's Shield 1  //The night and day shops have different prices
+ShopItemTradingPostNut10                | Trading Post 10 Deku Nuts         		, Trading Post 10 Deku Nuts 1   //Logically it doesn't really matter which one is used
+ShopItemTradingPostGreenPotion          | Trading Post Green Potion         		, Trading Post Green Potion 1 	//So just pick they lowest once
+ShopItemTradingPostStick                | Trading Post Deku Stick           		, Trading Post Deku Stick 1     
+ShopItemTradingPostFairy                | Trading Post Fairy                		, Trading Post Fairy 1 			//The 1 after these names is currently done by the Tracker
+ShopItemTradingPostArrow30              | Trading Post 30 Arrows            		, Trading Post 30 Arrows 1 		//The names for the night and day price are exactly the same in the spoiler log
+ShopItemTradingPostArrow50              | Trading Post 50 Arrows            		, Trading Post 50 Arrow 1       //and if thats the case the tracker will add an incrementing number after duplicates
+
+#GAMECODEEND:
