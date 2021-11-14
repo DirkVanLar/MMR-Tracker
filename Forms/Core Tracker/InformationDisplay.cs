@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Windows.Forms;
 using MMR_Tracker.Class_Files;
 
@@ -92,71 +95,21 @@ namespace MMR_Tracker_V2
             this.Text = "Logic Object";
             List<LogicObjects.LogicEntry> Logic = Instance.Logic;
             listBox1.BeginUpdate();
-            for (int i = 0; i < Logic.Count; i++)
+
+            JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
             {
-                listBox1.Items.Add("---------------------------------------");
-                listBox1.Items.Add("ID: " + Logic[i].ID);
-                listBox1.Items.Add("Name: " + Logic[i].DictionaryName);
-                listBox1.Items.Add("Location: " + Logic[i].LocationName);
-                listBox1.Items.Add("Item: " + Logic[i].ItemName);
-                listBox1.Items.Add("Location area: " + Logic[i].LocationArea);
-                listBox1.Items.Add("Item Sub Type: " + Logic[i].ItemSubType);
-                listBox1.Items.Add("Available: " + Logic[i].Available);
-                listBox1.Items.Add("Aquired: " + Logic[i].Aquired);
-                listBox1.Items.Add("Checked: " + Logic[i].Checked);
-                listBox1.Items.Add("Fake Item: " + Logic[i].IsFake);
-                listBox1.Items.Add("Random Item: " + Logic[i].RandomizedItem);
-                listBox1.Items.Add("Spoiler Log Location name: " + string.Join(",", Logic[i].SpoilerLocation));
-                listBox1.Items.Add("Spoiler Log Item name: " + string.Join(",", Logic[i].SpoilerItem));
-                listBox1.Items.Add("Spoiler Log Randomized Item: " + Logic[i].SpoilerRandom);
-                if (Logic[i].RandomizedState() == 0) { listBox1.Items.Add("Randomized State: Randomized"); }
-                if (Logic[i].RandomizedState() == 1) { listBox1.Items.Add("Randomized State: Unrandomized"); }
-                if (Logic[i].RandomizedState() == 2) { listBox1.Items.Add("Randomized State: Forced Fake"); }
-                if (Logic[i].RandomizedState() == 3) { listBox1.Items.Add("Randomized State: Forced Junk"); }
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                IgnoreReadOnlyFields = true,
+                IgnoreReadOnlyProperties = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                WriteIndented = true
+            };
+            string LogicPrint = System.Text.Json.JsonSerializer.Serialize(Logic, _jsonSerializerOptions);
+            char[] delims = new[] { '\r', '\n' };
+            string[] LogicPrintLines = LogicPrint.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 
-                listBox1.Items.Add("Starting Item: " + Logic[i].StartingItem());
+            foreach(var i in LogicPrintLines) { listBox1.Items.Add(i); }
 
-                string av = "Available On: ";
-                if (((Logic[i].AvailableOn >> 0) & 1) == 1) { av += "Day 1, "; }
-                if (((Logic[i].AvailableOn >> 2) & 1) == 1) { av += "Day 2, "; }
-                if (((Logic[i].AvailableOn >> 4) & 1) == 1) { av += "Day 3, "; }
-                if (((Logic[i].AvailableOn >> 1) & 1) == 1) { av += "Night 1, "; }
-                if (((Logic[i].AvailableOn >> 3) & 1) == 1) { av += "Night 2, "; }
-                if (((Logic[i].AvailableOn >> 5) & 1) == 1) { av += "Night 3, "; }
-                listBox1.Items.Add(av);
-                av = "Needed By: ";
-                if (((Logic[i].NeededBy >> 0) & 1) == 1) { av += "Day 1, "; }
-                if (((Logic[i].NeededBy >> 2) & 1) == 1) { av += "Day 2, "; }
-                if (((Logic[i].NeededBy >> 4) & 1) == 1) { av += "Day 3, "; }
-                if (((Logic[i].NeededBy >> 1) & 1) == 1) { av += "Night 1, "; }
-                if (((Logic[i].NeededBy >> 3) & 1) == 1) { av += "Night 2, "; }
-                if (((Logic[i].NeededBy >> 5) & 1) == 1) { av += "Night 3, "; }
-                listBox1.Items.Add(av);
-
-                var test2 = Logic[i].Required;
-                if (test2 == null) { listBox1.Items.Add("NO REQUIREMENTS"); }
-                else
-                {
-                    listBox1.Items.Add("Required");
-                    for (int j = 0; j < test2.Length; j++)
-                    {
-                        listBox1.Items.Add(Logic[test2[j]].ItemName ?? Logic[test2[j]].DictionaryName);
-                    }
-                }
-                var test3 = Logic[i].Conditionals;
-                if (test3 == null) { listBox1.Items.Add("NO CONDITIONALS"); }
-                else
-                {
-                    for (int j = 0; j < test3.Length; j++)
-                    {
-                        listBox1.Items.Add("Conditional " + j);
-                        for (int k = 0; k < test3[j].Length; k++)
-                        {
-                            listBox1.Items.Add(Logic[test3[j][k]].ItemName ?? Logic[test3[j][k]].DictionaryName);
-                        }
-                    }
-                }
-            }
             listBox1.EndUpdate();
         }
 

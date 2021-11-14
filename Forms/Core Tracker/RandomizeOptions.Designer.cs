@@ -67,6 +67,7 @@
             this.txtRandEntString = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtStartingitemString = new System.Windows.Forms.TextBox();
+            this.chkShowLogicName = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // listView1
@@ -439,6 +440,19 @@
             this.txtStartingitemString.Size = new System.Drawing.Size(153, 20);
             this.txtStartingitemString.TabIndex = 30;
             // 
+            // chkShowLogicName
+            // 
+            this.chkShowLogicName.AutoSize = true;
+            this.chkShowLogicName.BackColor = System.Drawing.Color.Transparent;
+            this.chkShowLogicName.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkShowLogicName.Location = new System.Drawing.Point(769, 283);
+            this.chkShowLogicName.Name = "chkShowLogicName";
+            this.chkShowLogicName.Size = new System.Drawing.Size(111, 17);
+            this.chkShowLogicName.TabIndex = 32;
+            this.chkShowLogicName.Text = "Show Logic name";
+            this.chkShowLogicName.UseVisualStyleBackColor = false;
+            this.chkShowLogicName.CheckedChanged += new System.EventHandler(this.CHK_CheckedChanged);
+            // 
             // RandomizeOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,6 +460,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(883, 718);
+            this.Controls.Add(this.chkShowLogicName);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtStartingitemString);
             this.Controls.Add(this.label6);
@@ -526,5 +541,6 @@
         private System.Windows.Forms.TextBox txtRandEntString;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtStartingitemString;
+        private System.Windows.Forms.CheckBox chkShowLogicName;
     }
 }

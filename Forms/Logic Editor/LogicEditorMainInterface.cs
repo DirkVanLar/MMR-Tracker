@@ -101,6 +101,13 @@ namespace MMR_Tracker.Forms
             chkNeedNight1.Enabled = enabled;
             chkNeedNight2.Enabled = enabled;
             chkNeedNight3.Enabled = enabled;
+            chkSetDay1.Enabled = enabled;
+            chkSetDay2.Enabled = enabled;
+            chkSetDay3.Enabled = enabled;
+            chkSetNight1.Enabled = enabled;
+            chkSetNight2.Enabled = enabled;
+            chkSetNight3.Enabled = enabled;
+
             undoToolStripMenuItem.Visible = enabled;
             redoToolStripMenuItem.Visible = enabled;
             renameCurrentItemToolStripMenuItem.Visible = enabled;
@@ -597,6 +604,13 @@ namespace MMR_Tracker.Forms
             chkNeedNight1.Checked = (((entry.NeededBy >> 1) & 1) == 1);
             chkNeedNight2.Checked = (((entry.NeededBy >> 3) & 1) == 1);
             chkNeedNight3.Checked = (((entry.NeededBy >> 5) & 1) == 1);
+            chkSetDay1.Checked = (((entry.TimeSetup >> 0) & 1) == 1);
+            chkSetDay2.Checked = (((entry.TimeSetup >> 2) & 1) == 1);
+            chkSetDay3.Checked = (((entry.TimeSetup >> 4) & 1) == 1);
+            chkSetNight1.Checked = (((entry.TimeSetup >> 1) & 1) == 1);
+            chkSetNight2.Checked = (((entry.TimeSetup >> 3) & 1) == 1);
+            chkSetNight3.Checked = (((entry.TimeSetup >> 5) & 1) == 1);
+
             chkIsTrick.Checked = entry.IsTrick;
             chkIsTrick.Enabled = entry.IsFake;
 
@@ -609,6 +623,7 @@ namespace MMR_Tracker.Forms
         {
             entry.AvailableOn = 0;
             entry.NeededBy = 0;
+            entry.TimeSetup = 0;
             if (chkOnDay1.Checked) { entry.AvailableOn += 1; };
             if (chkOnNight1.Checked) { entry.AvailableOn += 2; };
             if (chkOnDay2.Checked) { entry.AvailableOn += 4; };
@@ -621,6 +636,12 @@ namespace MMR_Tracker.Forms
             if (chkNeedNight2.Checked) { entry.NeededBy += 8; };
             if (chkNeedDay3.Checked) { entry.NeededBy += 16; };
             if (chkNeedNight3.Checked) { entry.NeededBy += 32; };
+            if (chkSetDay1.Checked) { entry.TimeSetup += 1; };
+            if (chkSetNight1.Checked) { entry.TimeSetup += 2; };
+            if (chkSetDay2.Checked) { entry.TimeSetup += 4; };
+            if (chkSetNight2.Checked) { entry.TimeSetup += 8; };
+            if (chkSetDay3.Checked) { entry.TimeSetup += 16; };
+            if (chkSetNight3.Checked) { entry.TimeSetup += 32; };
         }
 
         public void UpdateReqAndCond()

@@ -5,6 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -460,6 +463,14 @@ namespace MMR_Tracker.Class_Files
 
         public static bool SaveInstance(LogicObjects.TrackerInstance Instance, bool SetPath = false , string FilePath = "")
         {
+            JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                IgnoreReadOnlyFields = true,
+                IgnoreReadOnlyProperties = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                WriteIndented = true
+            };
             Debugging.Log("Begin Save");
             if (FilePath == "" || !File.Exists(FilePath))
             {
@@ -475,7 +486,8 @@ namespace MMR_Tracker.Class_Files
             SaveInstance.UndoList.Clear();
             SaveInstance.RedoList.Clear();
             Debugging.Log("Write Data");
-            File.WriteAllText(FilePath, JsonConvert.SerializeObject(SaveInstance));
+            File.WriteAllText(FilePath, System.Text.Json.JsonSerializer.Serialize(SaveInstance, _jsonSerializerOptions));
+            //File.WriteAllText(FilePath, JsonConvert.SerializeObject(SaveInstance, _jsonSerializerOptions));
             Debugging.Log("Format tracker");
             if (SetPath) { Tools.SaveFilePath = FilePath; }
             UpdateTrackerTitle();

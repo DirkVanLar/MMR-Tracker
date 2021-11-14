@@ -22,6 +22,9 @@ using MMR_Tracker.Forms.Other_Games;
 using MMR_Tracker.Other_Games;
 using MMR_Tracker.Forms.Extra_Functionality;
 using static MMR_Tracker.Class_Files.MMR_Code_Reference.items;
+using System.Text.Json;
+using System.Text.Encodings.Web;
+using System.Text.Json.Serialization;
 
 namespace MMR_Tracker_V2
 {
@@ -36,79 +39,17 @@ namespace MMR_Tracker_V2
 
         public static void PrintLogicObject(List<LogicObjects.LogicEntry> Logic, int start = -1, int end = -1)
         {
-            start -= 1;
-
-            if (start < 0) { start = 0; }
-            if (end == -1) { end = Logic.Count; }
-            if (end < start) { end = start + 1; }
-            if (end > Logic.Count) { end = Logic.Count; }
-
-            if (start < 0) { start = 0; }
-            for (int i = start; i < end; i++)
+            JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
             {
-                Debugging.Log("---------------------------------------");
-                Debugging.Log("ID: " + Logic[i].ID);
-                Debugging.Log("Name: " + Logic[i].DictionaryName);
-                Debugging.Log("Location: " + Logic[i].LocationName);
-                Debugging.Log("Item: " + Logic[i].ItemName);
-                Debugging.Log("Location area: " + Logic[i].LocationArea);
-                Debugging.Log("Item Sub Type: " + Logic[i].ItemSubType);
-                Debugging.Log("Available: " + Logic[i].Available);
-                Debugging.Log("Aquired: " + Logic[i].Aquired);
-                Debugging.Log("Checked: " + Logic[i].Checked);
-                Debugging.Log("Fake Item: " + Logic[i].IsFake);
-                Debugging.Log("Random Item: " + Logic[i].RandomizedItem);
-                Debugging.Log("Spoiler Log Location name: " + string.Join(",", Logic[i].SpoilerLocation));
-                Debugging.Log("Spoiler Log Item name: " + string.Join(",", Logic[i].SpoilerItem));
-                Debugging.Log("Spoiler Log Randomized Item: " + Logic[i].SpoilerRandom);
-                if (Logic[i].RandomizedState() == 0) { Debugging.Log("Randomized State: Randomized"); }
-                if (Logic[i].RandomizedState() == 1) { Debugging.Log("Randomized State: Unrandomized"); }
-                if (Logic[i].RandomizedState() == 2) { Debugging.Log("Randomized State: Forced Fake"); }
-                if (Logic[i].RandomizedState() == 3) { Debugging.Log("Randomized State: Forced Junk"); }
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                IgnoreReadOnlyFields = true,
+                IgnoreReadOnlyProperties = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                WriteIndented = true
+            };
+            string LogicPrint = System.Text.Json.JsonSerializer.Serialize(Logic, _jsonSerializerOptions);
 
-                Debugging.Log("Starting Item: " + Logic[i].StartingItem());
-
-                string av = "Available On: ";
-                if (((Logic[i].AvailableOn >> 0) & 1) == 1) { av += "Day 1, "; }
-                if (((Logic[i].AvailableOn >> 2) & 1) == 1) { av += "Day 2, "; }
-                if (((Logic[i].AvailableOn >> 4) & 1) == 1) { av += "Day 3, "; }
-                if (((Logic[i].AvailableOn >> 1) & 1) == 1) { av += "Night 1, "; }
-                if (((Logic[i].AvailableOn >> 3) & 1) == 1) { av += "Night 2, "; }
-                if (((Logic[i].AvailableOn >> 5) & 1) == 1) { av += "Night 3, "; }
-                Debugging.Log(av);
-                av = "Needed By: ";
-                if (((Logic[i].NeededBy >> 0) & 1) == 1) { av += "Day 1, "; }
-                if (((Logic[i].NeededBy >> 2) & 1) == 1) { av += "Day 2, "; }
-                if (((Logic[i].NeededBy >> 4) & 1) == 1) { av += "Day 3, "; }
-                if (((Logic[i].NeededBy >> 1) & 1) == 1) { av += "Night 1, "; }
-                if (((Logic[i].NeededBy >> 3) & 1) == 1) { av += "Night 2, "; }
-                if (((Logic[i].NeededBy >> 5) & 1) == 1) { av += "Night 3, "; }
-                Debugging.Log(av);
-
-                var test2 = Logic[i].Required;
-                if (test2 == null) { Debugging.Log("NO REQUIREMENTS"); }
-                else
-                {
-                    Debugging.Log("Required");
-                    for (int j = 0; j < test2.Length; j++)
-                    {
-                        Debugging.Log(Logic[test2[j]].ItemName ?? Logic[test2[j]].DictionaryName);
-                    }
-                }
-                var test3 = Logic[i].Conditionals;
-                if (test3 == null) { Debugging.Log("NO CONDITIONALS"); }
-                else
-                {
-                    for (int j = 0; j < test3.Length; j++)
-                    {
-                        Debugging.Log("Conditional " + j);
-                        for (int k = 0; k < test3[j].Length; k++)
-                        {
-                            Debugging.Log(Logic[test3[j][k]].ItemName ?? Logic[test3[j][k]].DictionaryName);
-                        }
-                    }
-                }
-            }
+            Console.WriteLine(LogicPrint);
         }
 
         public static void Log(string Data, int LogLevel = 0)
@@ -127,7 +68,36 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-            Console.WriteLine(LogicObjects.MainTrackerInstance.EntranceAreaDic.Count);
+
+            FixLogicSavedWithoutSetupTime();
+            void FixLogicSavedWithoutSetupTime()
+            {
+                var Currentfile = Utility.FileSelect("Select your broken Logic File", "MMR Tracker Save (*.txt)|*.txt");
+                if (Currentfile == "") { return; }
+
+                var Basefile = Utility.FileSelect("Select a Logic File with Time Setup Data", "MMR Tracker Save (*.txt)|*.txt");
+                if (Basefile == "") { return; }
+
+                var BrokeLogic = LogicObjects.LogicFile.FromJson(File.ReadAllText(Currentfile));
+                var baseLogic = LogicObjects.LogicFile.FromJson(File.ReadAllText(Basefile));
+
+                foreach(var i in BrokeLogic.Logic)
+                {
+                    var entryinbase = baseLogic.Logic.Find(x => x.Id == i.Id);
+                    if (entryinbase == null) { continue; }
+                    i.TimeSetup = entryinbase.TimeSetup;
+                }
+
+                var fixedLogic = BrokeLogic.ToString();
+
+                SaveFileDialog saveDialog = new SaveFileDialog { Filter = "Logic File (*.txt)|*.txt", FilterIndex = 1 };
+                if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+
+                StreamWriter LogicFile = new StreamWriter(File.Open(saveDialog.FileName, FileMode.Create));
+                LogicFile.WriteLine(fixedLogic);
+                LogicFile.Close();
+
+            }
 
 
             //OcarinaOfTimeRando.GenerateDictionary();

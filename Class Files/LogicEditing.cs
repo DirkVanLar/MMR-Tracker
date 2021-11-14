@@ -76,6 +76,7 @@ namespace MMR_Tracker_V2
                 LogicEntry1.Conditionals = i.ConditionalItems.Select(x => x.Select(y => LogicNametoId[y]).ToArray()).ToArray();
                 LogicEntry1.NeededBy = (int)i.TimeNeeded;
                 LogicEntry1.AvailableOn = (int)i.TimeAvailable;
+                LogicEntry1.TimeSetup = (int)i.TimeSetup;
                 LogicEntry1.IsTrick = i.IsTrick;
                 LogicEntry1.TrickEnabled = i.IsTrick;
                 LogicEntry1.TrickToolTip = i.TrickTooltip;
@@ -540,12 +541,13 @@ namespace MMR_Tracker_V2
             {
                 LogicObjects.JsonFormatLogicItem Newentry = new LogicObjects.JsonFormatLogicItem();
                 Newentry.Id = i.DictionaryName;
-                Newentry.RequiredItems = i.Required.Select(x => Instance.Logic[x].DictionaryName).ToList();
-                Newentry.ConditionalItems = i.Conditionals.Select(x => x.Select(y => Instance.Logic[y].DictionaryName).ToList()).ToList();
+                Newentry.RequiredItems = i.Required == null ? new List<string>() : i.Required.Select(x => Instance.Logic[x].DictionaryName).ToList();
+                Newentry.ConditionalItems = i.Conditionals == null ? new List<List<string>>() : i.Conditionals.Select(x => x.Select(y => Instance.Logic[y].DictionaryName).ToList()).ToList();
                 Newentry.TimeAvailable = (LogicObjects.TimeOfDay)i.AvailableOn;
                 Newentry.TimeNeeded = (LogicObjects.TimeOfDay)i.NeededBy;
+                Newentry.TimeSetup = (LogicObjects.TimeOfDay)i.TimeSetup;
                 Newentry.IsTrick = i.IsTrick;
-                Newentry.TrickTooltip = i.TrickToolTip;
+                Newentry.TrickTooltip = i.TrickToolTip == "No Tooltip Available" ? null : i.TrickToolTip;
                 LogicFile.Logic.Add(Newentry);
             }
             return new string[] { LogicFile.ToString() };

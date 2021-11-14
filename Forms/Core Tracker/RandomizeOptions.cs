@@ -335,14 +335,14 @@ namespace MMR_Tracker_V2
                 TempList.Add(RandomITemHeader);
             }
 
-            bool isValid(LogicObjects.LogicEntry x)
+            bool isValid(LogicObjects.LogicEntry x, string Displayname)
             {
                 if (x.IsFake 
                     || x.LocationArea == "%Settings%" 
                     || x.LocationArea == "Hidden" 
                     || x.ItemSubType.Contains("Setting") 
                     || string.IsNullOrWhiteSpace(x.ItemSubType)) { return false; }
-                if (!Utility.FilterSearch(x, txtSearch.Text, x.DictionaryName)) { return false; }
+                if (!Utility.FilterSearch(x, txtSearch.Text, Displayname)) { return false; }
                 if (x.StartingItem() && chkShowStartingItems.Checked) { return true; }
                 if (x.RandomizedState() == 0 && !chkShowRandom.Checked) { return false; }
                 if (x.RandomizedState() == 1 && !chkShowUnrand.Checked) { return false; }
@@ -354,8 +354,14 @@ namespace MMR_Tracker_V2
 
             foreach (var entry in logic)
             {
-                if (!isValid(entry)) { continue; }
-                string[] row = { entry.DictionaryName, randomizedOptions[entry.RandomizedState()], entry.StartingItem().ToString(), "" };
+                var Disname = entry.DictionaryName;
+                if (!string.IsNullOrWhiteSpace(entry.LocationName))
+                {
+                    Disname = chkShowLogicName.Checked ? $"{Disname} ({entry.LocationName})" : entry.LocationName;
+                    if (!string.IsNullOrWhiteSpace(entry.ItemName)) { Disname += $" ({entry.ItemName})"; }
+                }
+                if (!isValid(entry, Disname)) { continue; }
+                string[] row = { Disname, randomizedOptions[entry.RandomizedState()], entry.StartingItem().ToString(), "" };
                 ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };
                 TempList.Add(listViewItem);
             }
@@ -821,6 +827,5 @@ namespace MMR_Tracker_V2
                 usedItems.Add(StartingItems[i].ItemName);
             }
         }
-
     }
 }

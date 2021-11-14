@@ -88,6 +88,7 @@ namespace MMR_Tracker_V2
             public int SpoilerRandom { get; set; } //The item the spoiler log says is in this location
             public int AvailableOn { get; set; } //When the Check is available
             public int NeededBy { get; set; } //When the item is Needed
+            public int TimeSetup { get; set; } //Idk what this is, I think the randomizer uses it for advanced song of time/ocarina logic
             public bool IsTrick { get; set; } //Whether or not the entry is a trick
             public bool TrickEnabled { get; set; } //Whether or not the trick is enabled
             public string TrickToolTip { get; set; } //The tool tip describing what the trick is
@@ -255,10 +256,24 @@ namespace MMR_Tracker_V2
             public List<List<string>> ConditionalItems { get; set; } = new List<List<string>>();
             public TimeOfDay TimeNeeded { get; set; }
             public TimeOfDay TimeAvailable { get; set; }
+            public TimeOfDay TimeSetup { get; set; }
             public bool IsTrick { get; set; }
-            public string TrickTooltip { get; set; } = string.Empty;
+
+            private string _trickTooltip;
+            public string TrickTooltip
+            {
+                get
+                {
+                    return IsTrick ? _trickTooltip : null;
+                }
+                set
+                {
+                    _trickTooltip = value;
+                }
+            }
         }
 
+        [Flags]
         public enum TimeOfDay
         {
             None,
@@ -291,6 +306,7 @@ namespace MMR_Tracker_V2
                 IgnoreReadOnlyProperties = true,
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 WriteIndented = true,
+                AllowTrailingCommas = true,
                 Converters =
                 {
                     new JsonColorConverter(),
