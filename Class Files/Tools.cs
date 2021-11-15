@@ -404,7 +404,7 @@ namespace MMR_Tracker.Class_Files
                             CurrentKey = PriceCheck + " " + AppendCounter.ToString();
                         }
 
-                        Pricedata.Add(CurrentKey, Pricenumb); Console.WriteLine("Added Price Data\n" + CurrentKey + " Costs: " + Pricenumb);
+                        Pricedata.Add(CurrentKey, Pricenumb);
                     }
                 }
             }
@@ -432,7 +432,7 @@ namespace MMR_Tracker.Class_Files
                         X = X.Replace("<td class=\"spoiler\"><span data-content=\"", "");
                         X = X.Replace("\"></span></td>", "");
                         Hint = X;
-                        if (!GossipData.ContainsKey(GossipStone)) { GossipData.Add(GossipStone, Hint); Console.WriteLine("Added Gossip Data\n" + GossipStone + " Hint: " + Hint); }
+                        if (!GossipData.ContainsKey(GossipStone)) { GossipData.Add(GossipStone, Hint); }
                     }
                 }
             }

@@ -660,7 +660,6 @@ namespace MMR_Tracker_V2
             if (RandClearLogic == null) { return false; }
             else
             {
-                Console.WriteLine($"Checking Logic for {RandClearLogic.DictionaryName} Instead of {entry.DictionaryName}");
                 return LogicEditing.RequirementsMet(RandClearLogic.Required, Instance, usedItems) &&
                         LogicEditing.CondtionalsMet(RandClearLogic.Conditionals, Instance, usedItems);
             }
