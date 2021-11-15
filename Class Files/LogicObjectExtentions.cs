@@ -187,24 +187,22 @@ namespace MMR_Tracker.Class_Files
             {
                 return LogicEditing.HandleMMRTDungeonClearLogic(entry, Instance, usedItems);
             }
-            //If a check was assigned a custom price, Change wallet logic entries to ensure the item is purchasable.
-            else if (entry.Price > -1)
-            {
-                return LogicEditing.HandleMMRTrandomPriceLogic(entry, Instance, usedItems);
-            }
-            //Remove the Pendant of Memories and Letter to Kafei requirements for the Old Lady and Big Bomb Bag check. They are only required for randomization, not tracking.
-            //TODO make this togglable
-            else if ((entry.DictionaryName == "UpgradeBigBombBag" || entry.DictionaryName == "MaskBlast") && DicID.ContainsKey("TradeItemPendant") && DicID.ContainsKey("TradeItemKafeiLetter"))
-            {
-
-                var NewReq = LogicEditing.removeItemFromRequirement(entry.Required, new int[] { DicID["TradeItemPendant"] , DicID["TradeItemKafeiLetter"] });
-
-                return LogicEditing.RequirementsMet(NewReq, Instance, usedItems) &&
-                        LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
-            }
             //Check availability the standard way
             else
             {
+                var NewReq = entry.Required;
+                var NewCon = entry.Conditionals;
+                //If a check was assigned a custom price, Change wallet logic entries to ensure the item is purchasable.
+                if (entry.Price > -1)
+                {
+                    var NewEntry = LogicEditing.HandleMMRTrandomPriceLogic(entry, Instance, usedItems);
+                    NewReq = NewEntry.Required;
+                    NewCon = NewEntry.Conditionals;
+                }
+                if ((entry.DictionaryName == "UpgradeBigBombBag" || entry.DictionaryName == "MaskBlast") && DicID.ContainsKey("TradeItemPendant") && DicID.ContainsKey("TradeItemKafeiLetter"))
+                {
+                    NewReq = LogicEditing.removeItemFromRequirement(NewReq, new int[] { DicID["TradeItemPendant"], DicID["TradeItemKafeiLetter"] });
+                }
                 //Disable skipping entry if Strictlogic is enable or logic is being calculated from scratch such as firsy run
                 if (FromScratch == false && ForceStrictLogicHendeling == false && Instance.Options.StrictLogicHandeling == false)
                 {

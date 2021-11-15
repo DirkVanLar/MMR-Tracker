@@ -666,7 +666,7 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public static bool HandleMMRTrandomPriceLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
+        public static LogicObjects.LogicEntry HandleMMRTrandomPriceLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
         {
 
             int DefaultCapacity = 0;
@@ -682,8 +682,7 @@ namespace MMR_Tracker_V2
             if (ValidWallets.Count() < 1)
             {
                 Console.WriteLine("Critical error there are no wallets big enough to buy this item!");
-                return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
-                        LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
+                return entry;
             }
             int[] NewRequiredArray = null;
             int[][] NewConditionalsArray = null;
@@ -692,8 +691,7 @@ namespace MMR_Tracker_V2
             NewConditionalsArray = removeItemFromConditionals(entry.Conditionals, ValidWalletIDs, false);
             if (!NoWalletNeed) { NewConditionalsArray = AddConditionalAsRequirement(NewConditionalsArray, ValidWalletIDs); }
 
-            return LogicEditing.RequirementsMet(NewRequiredArray, Instance, usedItems) &&
-                    LogicEditing.CondtionalsMet(NewConditionalsArray, Instance, usedItems);
+            return new LogicObjects.LogicEntry() { ID = -1, Required = NewRequiredArray, Conditionals = NewConditionalsArray };
         }
 
         public static int[] AddRequirement(int[] entry, int[] Requirements)
