@@ -289,7 +289,8 @@ namespace MMR_Tracker_V2
                 bool TXTOverride = false;
                 if (Instance.IsMM())
                 {
-                    var txs = MessageBox.Show("If possible, the HTML spoiler log should always be imported in place of the text spoiler log.\n\n The text spoiler log will work most of the time but may be inconsistent.\n\nWould you like to select an HTML spoiler log instead?", "Text log used", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    var txs = MessageBox.Show("If possible, the HTML spoiler log should always be imported in place of the text spoiler log.\n\n The text spoiler log will " +
+                        "work most of the time but may be inconsistent.\n\nWould you like to select an HTML spoiler log instead?", "Text log used", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (txs == DialogResult.Yes)
                     {
                         var HTMLPath = Utility.FileSelect("Select an HTML Spoiler Log", "Spoiler Log (*html)|*html");
@@ -304,7 +305,12 @@ namespace MMR_Tracker_V2
                         }
                     }
                 }
-                if (!TXTOverride) { SpoilerData = Tools.ReadTextSpoilerlog(Instance, File.ReadAllLines(path)); }
+                if (!TXTOverride) 
+                {
+                    var LogData = Tools.ReadTextSpoilerlog(Instance, File.ReadAllLines(path));
+                    SpoilerData = LogData.SpoilerDatas;
+                    SettingsData = LogData.SettingString;
+                }
             }
             else if (path.Contains(".html"))
             {

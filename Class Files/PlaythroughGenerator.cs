@@ -32,7 +32,7 @@ namespace MMR_Tracker.Class_Files
 
             if (!Utility.CheckforSpoilerLog(container.PlaythroughInstance.Logic))
             {
-                var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html");
+                var file = Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt)|*.txt");
                 if (file == "") { return null; }
                 LogicEditing.WriteSpoilerLogToLogic(container.PlaythroughInstance, file);
             }

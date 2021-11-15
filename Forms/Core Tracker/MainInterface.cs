@@ -193,7 +193,7 @@ namespace MMR_Tracker_V2
             else
             {
                 string file = (instance.GameCode == "MMR") ? 
-                    Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*.txt;*html)|*.txt;*html") :
+                    Utility.FileSelect("Select A Spoiler Log", "Spoiler Log (*html)|*html") :
                     Utility.FileSelect("Select A Spoiler Log", "Spoiler Log(*.txt;*.json)|*.txt;*.json");
                 if (file == "") { return; }
                 LogicEditing.WriteSpoilerLogToLogic(instance, file);

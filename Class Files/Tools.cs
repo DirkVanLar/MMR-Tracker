@@ -114,9 +114,9 @@ namespace MMR_Tracker.Class_Files
             File.WriteAllLines(saveDic.FileName, csv);
         }
 
-        public static List<LogicObjects.SpoilerData> ReadTextSpoilerlog(LogicObjects.TrackerInstance instance, string[] Spoiler = null)
+        public static LogicObjects.SpoilerLogData ReadTextSpoilerlog(LogicObjects.TrackerInstance instance, string[] Spoiler = null)
         {
-            List<LogicObjects.SpoilerData> SpoilerData = new List<LogicObjects.SpoilerData>();
+            LogicObjects.SpoilerLogData SpoilerData = new LogicObjects.SpoilerLogData();
 
             if (Spoiler == null)
             {
@@ -160,15 +160,13 @@ namespace MMR_Tracker.Class_Files
                 {
                     line = line.Replace("Settings:", "\"GameplaySettings\":");
                     line = "{" + line + "}";
-                    LogicObjects.GameplaySettings SettingFile = new LogicObjects.GameplaySettings();
                     try
                     {
-                        SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(line).GameplaySettings;
-                        RandomizeOptions ApplySettings = new RandomizeOptions();
-                        ApplySettings.ApplyRandomizerSettings(SettingFile);
-                        Debugging.Log("Settings Applied");
+                        SpoilerData.SettingString = JsonConvert.DeserializeObject<LogicObjects.Configuration>(line).GameplaySettings;
                     }
-                    catch { Debugging.Log(line); }
+                    catch {
+                        SpoilerData.SettingString  = ParseSpoilerLogSettingsWithLineBreak(Spoiler, text: true);
+                    }
                 }
 
                 if (line.Contains("Gossip Stone ") && line.Contains("Message")) { break; }
@@ -249,7 +247,7 @@ namespace MMR_Tracker.Class_Files
                         entry.ItemID = Item.ID;
                         entry.LocationID = location.ID;
                         if (instance.IsMM() || !Item.IsEntrance()) usedId[entry.BelongsTo].Add(Item.ID);
-                        SpoilerData.Add(entry);
+                        SpoilerData.SpoilerDatas.Add(entry);
                     }
                 }
             }
@@ -988,7 +986,15 @@ namespace MMR_Tracker.Class_Files
                         var Newline = line.Replace("Settings:", "\"GameplaySettings\":");
                         Newline = "{" + Newline + "}";
                         try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings; }
-                        catch { MessageBox.Show("Text Spoiler log had incorrect data!"); return false; }
+                        catch 
+                        {
+                            SettingFile = ParseSpoilerLogSettingsWithLineBreak(RawLogicFile, text: true);
+                            if (SettingFile == null)
+                            {
+                                MessageBox.Show("Text Spoiler log had incorrect data!");
+                                return false;
+                            }
+                        }
                         break;
                     }
                 }
@@ -1065,30 +1071,33 @@ namespace MMR_Tracker.Class_Files
                     var Newline = line.Replace("Settings:", "\"GameplaySettings\":");
                     Newline = "{" + Newline + "}";
                     try { LogicObjects.GameplaySettings SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings; }
-                    catch { return false; }
+                    catch { LogicObjects.GameplaySettings SettingFile = ParseSpoilerLogSettingsWithLineBreak(RawLogicFile, text: true); if (SettingFile == null){ return false; }}
                     return true;
                 }
             }
             return false;
         }
 
-        public static LogicObjects.GameplaySettings ParseSpoilerLogSettingsWithLineBreak(string[] RawLogicFile)
+        public static LogicObjects.GameplaySettings ParseSpoilerLogSettingsWithLineBreak(string[] RawLogicFile, bool text = false)
         {
+            string SettingStart = text ? "Settings:" : "<label><b>Settings:";
+            string SettingEnd = text ? "Seed:" : "}</code><br/>";
+
             LogicObjects.GameplaySettings SettingFile = null;
             bool inSettings = false;
             string SettingString = "{\"GameplaySettings\":{";
             foreach (var line in RawLogicFile)
             {
-                if (line.StartsWith("}</code><br/>") && inSettings)
+                if (line.StartsWith(SettingEnd) && inSettings)
                 {
-                    SettingString += "}}";
+                    SettingString += text ? "}" : "}}";
                     break;
                 }
                 if (inSettings)
                 {
                     SettingString += line;
                 }
-                if (line.StartsWith("<label><b>Settings:")) { inSettings = true; }
+                if (line.StartsWith(SettingStart)) { inSettings = true; }
             }
 
 
