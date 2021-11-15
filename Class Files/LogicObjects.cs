@@ -41,6 +41,8 @@ namespace MMR_Tracker_V2
             public bool StrictLogicHandeling { get; set; } = false;
             public bool RemoveObtainedItemsfromList { get; set; } = true;
             public bool ProgressiveItems { get; set; } = false;
+            public bool BringYourOwnAmmo { get; set; } = false;
+            public bool RemoveUselessLogic { get; set; } = true;    
             //Entrance rando Options
             public bool EntranceRadnoEnabled { get; set; } = false;
             public bool OverRideAutoEntranceRandoEnable { get; set; } = false;
@@ -148,6 +150,7 @@ namespace MMR_Tracker_V2
             public string Logic { get; set; } = "";
             public bool AddSongs { get; set; } = false;
             public bool ProgressiveUpgrades { get; set; } = false;
+            public bool ByoAmmo { get; set; } = false;
             public bool DecoupleEntrances { get; set; } = false;
             public string LogicMode { get; set; } = "Casual";
             public string UserLogicFileName { get; set; } = "";

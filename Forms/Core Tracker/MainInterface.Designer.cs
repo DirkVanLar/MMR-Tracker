@@ -61,7 +61,6 @@ namespace MMR_Tracker_V2
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editRadnomizationOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enableProgressiveItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stricterLogicHandelingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entranceRandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,6 +75,7 @@ namespace MMR_Tracker_V2
             this.changeFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onlinePlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importSpoilerLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seedCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whatUnlockedThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,7 +104,9 @@ namespace MMR_Tracker_V2
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.importSpoilerLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.randoSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableProgressiveItemsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableBringYourOwnAmmoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -415,8 +417,8 @@ namespace MMR_Tracker_V2
             // 
             this.logicOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editRadnomizationOptionsToolStripMenuItem,
-            this.enableProgressiveItemsToolStripMenuItem,
             this.stricterLogicHandelingToolStripMenuItem,
+            this.randoSettingsToolStripMenuItem,
             this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
             this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
@@ -429,13 +431,6 @@ namespace MMR_Tracker_V2
             this.editRadnomizationOptionsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.editRadnomizationOptionsToolStripMenuItem.Text = "Edit Randomization Options";
             this.editRadnomizationOptionsToolStripMenuItem.Click += new System.EventHandler(this.EditRadnomizationOptionsToolStripMenuItem_Click);
-            // 
-            // enableProgressiveItemsToolStripMenuItem
-            // 
-            this.enableProgressiveItemsToolStripMenuItem.Name = "enableProgressiveItemsToolStripMenuItem";
-            this.enableProgressiveItemsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.enableProgressiveItemsToolStripMenuItem.Text = "Enable Progressive Items";
-            this.enableProgressiveItemsToolStripMenuItem.Click += new System.EventHandler(this.enableProgressiveItemsToolStripMenuItem_Click);
             // 
             // stricterLogicHandelingToolStripMenuItem
             // 
@@ -548,55 +543,62 @@ namespace MMR_Tracker_V2
             this.itemTrackerToolStripMenuItem,
             this.spoilerLogConverterToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // importSpoilerLogToolStripMenuItem
+            // 
+            this.importSpoilerLogToolStripMenuItem.Name = "importSpoilerLogToolStripMenuItem";
+            this.importSpoilerLogToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.importSpoilerLogToolStripMenuItem.Text = "Import Spoiler Log";
+            this.importSpoilerLogToolStripMenuItem.Click += new System.EventHandler(this.ImportSpoilerLogToolStripMenuItem_Click);
             // 
             // seedCheckerToolStripMenuItem
             // 
             this.seedCheckerToolStripMenuItem.Name = "seedCheckerToolStripMenuItem";
-            this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.seedCheckerToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.seedCheckerToolStripMenuItem.Text = "Spoiler Log Tools";
             this.seedCheckerToolStripMenuItem.Click += new System.EventHandler(this.SeedCheckerToolStripMenuItem_Click);
             // 
             // whatUnlockedThisToolStripMenuItem
             // 
             this.whatUnlockedThisToolStripMenuItem.Name = "whatUnlockedThisToolStripMenuItem";
-            this.whatUnlockedThisToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.whatUnlockedThisToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.whatUnlockedThisToolStripMenuItem.Text = "What Unlocked This?";
             this.whatUnlockedThisToolStripMenuItem.Click += new System.EventHandler(this.WhatUnlockedThisToolStripMenuItem_Click);
             // 
             // logicEditorToolStripMenuItem
             // 
             this.logicEditorToolStripMenuItem.Name = "logicEditorToolStripMenuItem";
-            this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.logicEditorToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.logicEditorToolStripMenuItem.Text = "Logic Editor";
             this.logicEditorToolStripMenuItem.Click += new System.EventHandler(this.LogicEditorToolStripMenuItem_Click);
             // 
             // popoutPathfinderToolStripMenuItem
             // 
             this.popoutPathfinderToolStripMenuItem.Name = "popoutPathfinderToolStripMenuItem";
-            this.popoutPathfinderToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.popoutPathfinderToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.popoutPathfinderToolStripMenuItem.Text = "Popout Pathfinder";
             this.popoutPathfinderToolStripMenuItem.Click += new System.EventHandler(this.PopoutPathfinderToolStripMenuItem_Click);
             // 
             // FilterMapToolStripMenuItem
             // 
             this.FilterMapToolStripMenuItem.Name = "FilterMapToolStripMenuItem";
-            this.FilterMapToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.FilterMapToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.FilterMapToolStripMenuItem.Text = "Filter Map";
             this.FilterMapToolStripMenuItem.Click += new System.EventHandler(this.FilterMapToolStripMenuItem_Click);
             // 
             // itemTrackerToolStripMenuItem
             // 
             this.itemTrackerToolStripMenuItem.Name = "itemTrackerToolStripMenuItem";
-            this.itemTrackerToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.itemTrackerToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.itemTrackerToolStripMenuItem.Text = "Item Tracker";
             this.itemTrackerToolStripMenuItem.Click += new System.EventHandler(this.ItemTrackerToolStripMenuItem_Click);
             // 
             // spoilerLogConverterToolStripMenuItem
             // 
             this.spoilerLogConverterToolStripMenuItem.Name = "spoilerLogConverterToolStripMenuItem";
-            this.spoilerLogConverterToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.spoilerLogConverterToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.spoilerLogConverterToolStripMenuItem.Text = "Other Game Support";
             this.spoilerLogConverterToolStripMenuItem.Click += new System.EventHandler(this.spoilerLogConverterToolStripMenuItem_Click);
             // 
@@ -757,12 +759,28 @@ namespace MMR_Tracker_V2
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // importSpoilerLogToolStripMenuItem
+            // randoSettingsToolStripMenuItem
             // 
-            this.importSpoilerLogToolStripMenuItem.Name = "importSpoilerLogToolStripMenuItem";
-            this.importSpoilerLogToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.importSpoilerLogToolStripMenuItem.Text = "Import Spoiler Log";
-            this.importSpoilerLogToolStripMenuItem.Click += new System.EventHandler(this.ImportSpoilerLogToolStripMenuItem_Click);
+            this.randoSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.enableProgressiveItemsToolStripMenuItem1,
+            this.enableBringYourOwnAmmoToolStripMenuItem});
+            this.randoSettingsToolStripMenuItem.Name = "randoSettingsToolStripMenuItem";
+            this.randoSettingsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.randoSettingsToolStripMenuItem.Text = "Rando Settings";
+            // 
+            // enableProgressiveItemsToolStripMenuItem1
+            // 
+            this.enableProgressiveItemsToolStripMenuItem1.Name = "enableProgressiveItemsToolStripMenuItem1";
+            this.enableProgressiveItemsToolStripMenuItem1.Size = new System.Drawing.Size(235, 22);
+            this.enableProgressiveItemsToolStripMenuItem1.Text = "Enable Progressive Items";
+            this.enableProgressiveItemsToolStripMenuItem1.Click += new System.EventHandler(this.enableProgressiveItemsToolStripMenuItem_Click);
+            // 
+            // enableBringYourOwnAmmoToolStripMenuItem
+            // 
+            this.enableBringYourOwnAmmoToolStripMenuItem.Name = "enableBringYourOwnAmmoToolStripMenuItem";
+            this.enableBringYourOwnAmmoToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.enableBringYourOwnAmmoToolStripMenuItem.Text = "Enable Bring Your Own Ammo";
+            this.enableBringYourOwnAmmoToolStripMenuItem.Click += new System.EventHandler(this.enableBringYourOwnAmmoToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -874,7 +892,6 @@ namespace MMR_Tracker_V2
         private System.Windows.Forms.ToolStripMenuItem lensCavePathsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spoilerLogConverterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem enableProgressiveItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAsUserToolStripMenuItem;
         public System.Windows.Forms.ListBox LBValidLocations;
         public System.Windows.Forms.ListBox LBValidEntrances;
@@ -884,6 +901,9 @@ namespace MMR_Tracker_V2
         public System.Windows.Forms.ToolStripMenuItem presetsToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem changeLogicToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importSpoilerLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem randoSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem enableProgressiveItemsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem enableBringYourOwnAmmoToolStripMenuItem;
     }
 }
 
