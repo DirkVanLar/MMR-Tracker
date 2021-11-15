@@ -193,50 +193,21 @@ namespace MMR_Tracker.Class_Files
             //Check availability the standard way
             else
             {
-                var NewReq = entry.Required;
-                var NewCon = entry.Conditionals;
-                //If a check was assigned a custom price, Change wallet logic entries to ensure the item is purchasable.
-                if (entry.Price > -1)
-                {
-                    //Console.WriteLine(entry.DictionaryName + " needed Price adjustment");
-                    var NewEntry =  LogicEditing.HandleMMRTrandomPriceLogic(entry.Price, NewReq, NewCon, Instance);
-                    NewReq = NewEntry.Required;
-                    NewCon = NewEntry.Conditionals;
-                }
-                //Removes logic entries that are only neccesary during randomization and don't actually represent the items requirements
-                //An example is the pendant of memeories and letter to kafei being required for old lady and big bomb bag purchase check
-                if (Instance.Options.RemoveUselessLogic && UselessLogicEntries.ContainsKey(entry.DictionaryName) && NewReq != null)
-                {
-                    //Console.WriteLine(entry.DictionaryName + " Contained Useless Logic");
-                    foreach (var i in UselessLogicEntries[entry.DictionaryName])
-                    {
-                        if (DicID.ContainsKey(i))
-                        {
-                            NewReq = LogicEditing.removeItemFromRequirement(NewReq, new int[] { DicID[i] });
-                        }
-                    }
-                }
-                //If bring your own ammo is enabled, add required items to logic.
-                if (Instance.Options.BringYourOwnAmmo && BYOAData.ContainsKey(entry.DictionaryName))
-                {
-                    Console.WriteLine(entry.DictionaryName + " Was effected by BYOAmmo");
-                    if (!BYOAData[entry.DictionaryName].Where(x => !DicID.ContainsKey(x)).Any())
-                    {
-                        //Console.WriteLine($"Adding the following to {entry.DictionaryName}");
-                        NewCon = LogicEditing.AddConditionalAsRequirement(NewCon, BYOAData[entry.DictionaryName].Select(x => DicID[x]).ToArray());
-                    }
-                }
+                var NewEntry = new LogicObjects.LogicEntry() { DictionaryName = entry.DictionaryName, Price = entry.Price, Required = entry.Required, Conditionals = entry.Conditionals };
+                NewEntry = LogicEditing.PerformLogicEdits(NewEntry, Instance);
+
                 //Disable skipping entry if Strictlogic is enable or logic is being calculated from scratch such as firsy run
                 if (FromScratch == false && ForceStrictLogicHendeling == false && Instance.Options.StrictLogicHandeling == false)
                 {
                     bool shouldupdate = false;
-                    if (NewReq != null) { foreach (var i in NewReq) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } } }
-                    if (NewCon != null) { foreach (var k in NewCon) { foreach (var i in k) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } } } }
-                    
+                    if (NewEntry.Required != null) { foreach (var i in NewEntry.Required) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } } }
+                    if (NewEntry.Conditionals != null) { foreach (var k in NewEntry.Conditionals) { foreach (var i in k) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } } } }
+
                     if (!shouldupdate) { return entry.Available; }
                 }
-                return LogicEditing.RequirementsMet(NewReq, Instance, usedItems) &&
-                        LogicEditing.CondtionalsMet(NewCon, Instance, usedItems);
+
+                return LogicEditing.RequirementsMet(NewEntry.Required, Instance, usedItems) &&
+                        LogicEditing.CondtionalsMet(NewEntry.Conditionals, Instance, usedItems);
             }
 
         }

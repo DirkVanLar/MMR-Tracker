@@ -665,7 +665,7 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public static LogicObjects.LogicEntry HandleMMRTrandomPriceLogic(int Price, int[] Req, int[][] Con, LogicObjects.TrackerInstance Instance)
+        public static LogicObjects.LogicEntry HandleMMRTrandomPriceLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
 
             int DefaultCapacity = 0;
@@ -673,26 +673,63 @@ namespace MMR_Tracker_V2
             {
                 DefaultCapacity = Instance.WalletDictionary["MMRTDefault"];
             }
-            bool NoWalletNeed = Price <= DefaultCapacity;
+            bool NoWalletNeed = entry.Price <= DefaultCapacity;
 
-            var ValidWallets = Instance.WalletDictionary.Where(x => x.Value >= Price).ToDictionary(x => x.Key, x => x.Value).Keys;
+            var ValidWallets = Instance.WalletDictionary.Where(x => x.Value >= entry.Price).ToDictionary(x => x.Key, x => x.Value).Keys;
             var ValidWalletObjects = ValidWallets.Select(x => Instance.GetLogicObjectFromDicName(x)).Where(x => x != null);
             var ValidWalletIDs = ValidWalletObjects.Select(x => x.ID).ToArray();
             if (ValidWallets.Count() < 1)
             {
                 Console.WriteLine("Critical error there are no wallets big enough to buy this item!");
-                return new LogicObjects.LogicEntry() { ID = -1, Required = Req, Conditionals = Con };
+                return entry;
             }
             int[] NewRequiredArray = null;
             int[][] NewConditionalsArray = null;
 
-            NewRequiredArray = removeItemFromRequirement(Req, ValidWalletIDs);
-            NewConditionalsArray = removeItemFromConditionals(Con, ValidWalletIDs, false);
+            NewRequiredArray = removeItemFromRequirement(entry.Required, ValidWalletIDs);
+            NewConditionalsArray = removeItemFromConditionals(entry.Conditionals, ValidWalletIDs, false);
             if (!NoWalletNeed) { NewConditionalsArray = AddConditionalAsRequirement(NewConditionalsArray, ValidWalletIDs); }
 
-            return new LogicObjects.LogicEntry() { ID = -1, Required = NewRequiredArray, Conditionals = NewConditionalsArray };
+            return new LogicObjects.LogicEntry() { DictionaryName = entry.DictionaryName, ID = -1, Required = NewRequiredArray, Conditionals = NewConditionalsArray , Price = entry.Price};
         }
 
+        public static LogicObjects.LogicEntry PerformLogicEdits(LogicObjects.LogicEntry NewEntry, LogicObjects.TrackerInstance Instance)
+        {
+            var DicID = Instance.DicNameToID;
+            var UselessLogicEntries = Utility.uselessLogicItems();
+            var BYOAData = Utility.BYOAmmoData();
+
+            //If a check was assigned a custom price, Change wallet logic entries to ensure the item is purchasable.
+            if (NewEntry.Price > -1)
+            {
+                //Console.WriteLine(entry.DictionaryName + " needed Price adjustment");
+                NewEntry = LogicEditing.HandleMMRTrandomPriceLogic(NewEntry, Instance);
+                NewEntry.LogicWasEdited = true;
+            }
+            //Removes logic entries that are only neccesary during randomization and don't actually represent the items requirements
+            //An example is the pendant of memeories and letter to kafei being required for old lady and big bomb bag purchase check
+            if (Instance.Options.RemoveUselessLogic && UselessLogicEntries.ContainsKey(NewEntry.DictionaryName) && NewEntry.Required != null)
+            {
+                //Console.WriteLine(entry.DictionaryName + " Contained Useless Logic");
+                foreach (var i in UselessLogicEntries[NewEntry.DictionaryName])
+                {
+                    if (DicID.ContainsKey(i)) { NewEntry.Required = LogicEditing.removeItemFromRequirement(NewEntry.Required, new int[] { DicID[i] }); }
+                }
+                NewEntry.LogicWasEdited = true;
+            }
+            //If bring your own ammo is enabled, add required items to logic.
+            if (Instance.Options.BringYourOwnAmmo && BYOAData.ContainsKey(NewEntry.DictionaryName))
+            {
+                //Console.WriteLine(entry.DictionaryName + " Was effected by BYOAmmo");
+                if (!BYOAData[NewEntry.DictionaryName].Where(x => !DicID.ContainsKey(x)).Any())
+                {
+                    //Console.WriteLine($"Adding the following to {entry.DictionaryName}");
+                    NewEntry.Conditionals = LogicEditing.AddConditionalAsRequirement(NewEntry.Conditionals, BYOAData[NewEntry.DictionaryName].Select(x => DicID[x]).ToArray());
+                    NewEntry.LogicWasEdited = true;
+                }
+            }
+            return NewEntry;
+        }
         public static int[] AddRequirement(int[] entry, int[] Requirements)
         {
             List<int> NewRequirements = Requirements.ToList();

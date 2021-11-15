@@ -123,21 +123,33 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             listBox2.Items.Clear();
             listBox2.HorizontalExtent = 0;
             this.Text = $"Requirements for {entry.LocationName ?? entry.DictionaryName}";
-            foreach (var i in entry.Required ?? new int[0])
+
+            var NewEntry = new LogicObjects.LogicEntry() { DictionaryName = entry.DictionaryName, Price = entry.Price, Required = entry.Required, Conditionals = entry.Conditionals };
+            NewEntry = LogicEditing.PerformLogicEdits(NewEntry, Instance);
+            LogicEditor.CleanLogicEntry(NewEntry, Instance);
+            chkShowUnaltered.Visible = NewEntry.LogicWasEdited;
+
+            if (chkShowUnaltered.Checked)
+            {
+                NewEntry.Required = entry.Required;
+                NewEntry.Conditionals = entry.Conditionals;
+            }
+
+            foreach (var i in NewEntry.Required ?? new int[0])
             {
                 var ReqEntry = Instance.Logic[i];
                 ReqEntry.DisplayName = ReqEntry.DisplayName ?? ReqEntry.DictionaryName;
                 listBox1.Items.Add(ReqEntry);
             }
 
-            if (entry.Conditionals != null && entry.Conditionals.Count() > 10000)
+            if (NewEntry.Conditionals != null && NewEntry.Conditionals.Count() > 10000)
             {
                 listBox2.Items.Add("To many conditionals to display");
             }
             else
             {
 
-                foreach (var j in entry.Conditionals ?? new int[0][])
+                foreach (var j in NewEntry.Conditionals ?? new int[0][])
                 {
                     var CondEntry = new LogicEditor.RequiementConditional { ItemIDs = new List<LogicObjects.LogicEntry>() };
                     foreach (var i in j ?? new int[0])
@@ -245,6 +257,11 @@ namespace MMR_Tracker.Forms.Extra_Functionality
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void chkShowUnaltered_CheckedChanged(object sender, EventArgs e)
+        {
+            WriteEntry();
         }
     }
 }

@@ -44,6 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.chkShowUnaltered = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // listBox1
@@ -227,6 +228,19 @@
             this.label5.Text = "Bold";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
+            // chkShowUnaltered
+            // 
+            this.chkShowUnaltered.AutoSize = true;
+            this.chkShowUnaltered.BackColor = System.Drawing.Color.Transparent;
+            this.chkShowUnaltered.ForeColor = System.Drawing.SystemColors.Control;
+            this.chkShowUnaltered.Location = new System.Drawing.Point(386, 8);
+            this.chkShowUnaltered.Name = "chkShowUnaltered";
+            this.chkShowUnaltered.Size = new System.Drawing.Size(125, 17);
+            this.chkShowUnaltered.TabIndex = 16;
+            this.chkShowUnaltered.Text = "Show unaltered logic";
+            this.chkShowUnaltered.UseVisualStyleBackColor = false;
+            this.chkShowUnaltered.CheckedChanged += new System.EventHandler(this.chkShowUnaltered_CheckedChanged);
+            // 
             // RequirementCheck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -234,6 +248,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(610, 392);
+            this.Controls.Add(this.chkShowUnaltered);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -275,5 +290,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox chkShowUnaltered;
     }
 }

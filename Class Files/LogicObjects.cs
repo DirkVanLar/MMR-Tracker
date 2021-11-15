@@ -96,6 +96,7 @@ namespace MMR_Tracker_V2
             public string TrickToolTip { get; set; } //The tool tip describing what the trick is
             public string GossipHint { get; set; } = ""; //The text assigned to this gossip stone. Only applicable if the check is a gossip stone.
             public int Price { get; set; } = -1; //The price to purchase the item at a shop, used in Price Randomizer.
+            public bool LogicWasEdited { get; set; } = false; //Used to track if edits were made to the logic of this item.
             public PlayerData PlayerData { get; set; } = new PlayerData(); //Data for multiworld
             public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
             public override string ToString()
