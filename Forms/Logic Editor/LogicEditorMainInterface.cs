@@ -706,6 +706,7 @@ namespace MMR_Tracker.Forms
 
         private void saveLogicInJSONFormatBetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.fileToolStripMenuItem.HideDropDown();
             SaveInstance(UseJson: true);
         }
 
@@ -985,6 +986,7 @@ namespace MMR_Tracker.Forms
 
         private void saveLogicWothoutTrickDataLegacyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.fileToolStripMenuItem.HideDropDown();
             SaveInstance(false);
         }
 
