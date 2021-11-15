@@ -164,15 +164,6 @@ namespace MMR_Tracker_V2
             PrintToListBox();
         }
 
-        private void enableProgressiveItemsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LogicObjects.MainTrackerInstance.Options.ProgressiveItems = !LogicObjects.MainTrackerInstance.Options.ProgressiveItems;
-            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
-            FormatMenuItems();
-            ResizeObject();
-            PrintToListBox();
-        }
-
         private void ImportSpoilerLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var instance = LogicObjects.MainTrackerInstance;
@@ -231,6 +222,26 @@ namespace MMR_Tracker_V2
             ResizeObject();
             FormatMenuItems();
         }
+        //Menu Strip => Options => Logic Options = > Rando Options----------------------------------------------------------
+
+        private void enableProgressiveItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicObjects.MainTrackerInstance.Options.ProgressiveItems = !LogicObjects.MainTrackerInstance.Options.ProgressiveItems;
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+        }
+
+        private void enableBringYourOwnAmmoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicObjects.MainTrackerInstance.Options.BringYourOwnAmmo = !LogicObjects.MainTrackerInstance.Options.BringYourOwnAmmo;
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+        }
+
         #endregion Logic Options
         //Menu Strip => Options => Entrance Rando---------------------------------------------------------------------------
         #region Entrance Rando
@@ -1416,7 +1427,8 @@ namespace MMR_Tracker_V2
             saveAsToolStripMenuItem.Visible = (Tools.SaveFilePath != "");
             importSpoilerLogToolStripMenuItem.Text = (Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) ? "Remove Spoiler Log" : "Import Spoiler Log";
             useSongOfTimeInPathfinderToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.UseSongOfTime);
-            enableProgressiveItemsToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.ProgressiveItems);
+            enableProgressiveItemsToolStripMenuItem1.Checked = (LogicObjects.MainTrackerInstance.Options.ProgressiveItems);
+            enableBringYourOwnAmmoToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.BringYourOwnAmmo);
             stricterLogicHandelingToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling);
             showEntryNameToolTipToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip);
             includeItemLocationsAsDestinationToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations);
@@ -1459,7 +1471,8 @@ namespace MMR_Tracker_V2
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = ShowMMOnly && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             FilterMapToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             itemTrackerToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            enableProgressiveItemsToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            enableProgressiveItemsToolStripMenuItem1.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            enableBringYourOwnAmmoToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
 
             Tools_StateListChanged();
             LogicStateUpdated(null, null);

@@ -549,6 +549,7 @@ namespace MMR_Tracker_V2
             btnApplyString_Click(null, null);
 
             LogicObjects.MainTrackerInstance.Options.ProgressiveItems = Settings.ProgressiveUpgrades;
+            LogicObjects.MainTrackerInstance.Options.BringYourOwnAmmo = Settings.ByoAmmo;
 
             //Apply tricks
             foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.IsTrick))

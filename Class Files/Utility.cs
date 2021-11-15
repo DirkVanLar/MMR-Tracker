@@ -553,5 +553,27 @@ namespace MMR_Tracker_V2
             return SpoilerPriceDic;
 
         }
+
+        public static Dictionary<string, string[]> uselessLogicItems()
+        {
+            return new Dictionary<string, string[]>()
+            {
+                { "UpgradeBigBombBag", new string[] { "TradeItemKafeiLetter", "TradeItemPendant" } },
+                { "MaskBlast", new string[] { "TradeItemKafeiLetter", "TradeItemPendant" } }
+            };
+        }
+
+        public static Dictionary<string, string[]> BYOAmmoData()
+        {
+            return new Dictionary<string, string[]>()
+            {
+                { "UpgradeBigQuiver", new string[] { "UpgradeBigQuiver ", "UpgradeBiggestQuiver " } },
+                { "UpgradeBiggestQuiver", new string[] { "UpgradeBigQuiver ", "UpgradeBiggestQuiver " } },
+                { "HeartPieceSwampArchery", new string[] { "UpgradeBigQuiver ", "UpgradeBiggestQuiver " } },
+                { "HeartPieceTownArchery", new string[] { "UpgradeBigQuiver ", "UpgradeBiggestQuiver " } },
+                { "MaskRomani", new string[] { "OtherArrow", "MaskCircusLeader" } },
+                { "HeartPieceHoneyAndDarling", new string[] { "ChestInvertedStoneTowerBombchu10", "ChestLinkTrialBombchu10", "ShopItemBombsBombchu10" } }
+            };
+        }
     }
 }

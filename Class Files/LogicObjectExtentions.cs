@@ -169,6 +169,8 @@ namespace MMR_Tracker.Class_Files
         {
             var logic = Instance.Logic;
             var DicID = Instance.DicNameToID;
+            var UselessLogicEntries = Utility.uselessLogicItems();
+            var BYOAData = Utility.BYOAmmoData();
             usedItems = usedItems ?? new List<int>();
             if (string.IsNullOrWhiteSpace(entry.LocationName) && !entry.IsFake) { return false; }
 
@@ -185,24 +187,49 @@ namespace MMR_Tracker.Class_Files
             //Check for a MMR Dungeon clear Entry
             else if (Instance.IsMM() && entry.IsFake && Instance.EntranceAreaDic.Count > 0 && Instance.EntranceAreaDic.ContainsKey(entry.ID))
             {
+                Console.WriteLine(entry.DictionaryName + " Was Dungeon Clear");
                 return LogicEditing.HandleMMRTDungeonClearLogic(entry, Instance, usedItems);
+            }
+            //If a check was assigned a custom price, Change wallet logic entries to ensure the item is purchasable.
+            else if (entry.Price > -1)
+            {
+                Console.WriteLine(entry.DictionaryName + " needed Price adjustment");
+                return LogicEditing.HandleMMRTrandomPriceLogic(entry, Instance, usedItems);
+            }
+            //Removes logic entries that are only neccesary during randomization and don't actually represent the items requirements
+            //An example is the pendant of memeories and letter to kafei being required for old lady and big bomb bag purchase check
+            else if (Instance.Options.RemoveUselessLogic && UselessLogicEntries.ContainsKey(entry.DictionaryName) && entry.Required != null)
+            {
+                Console.WriteLine(entry.DictionaryName + " Contained Useless Logic");
+                int[] NewReq = entry.Required;
+                foreach (var i in UselessLogicEntries[entry.DictionaryName])
+                {
+                    if (DicID.ContainsKey(i))
+                    {
+                        NewReq = LogicEditing.removeItemFromRequirement(NewReq, new int[] { DicID[i] });
+                    }
+                }
+
+                return LogicEditing.RequirementsMet(NewReq, Instance, usedItems) &&
+                        LogicEditing.CondtionalsMet(entry.Conditionals, Instance, usedItems);
+            }
+            //If bring your own ammo is enabled, add required items to logic.
+            else if (Instance.Options.BringYourOwnAmmo && BYOAData.ContainsKey(entry.DictionaryName))
+            {
+                Console.WriteLine(entry.DictionaryName + " Was effected by BYOAmmo");
+                int[][] NewCond = entry.Conditionals;
+                if (!BYOAData[entry.DictionaryName].Where(x => !DicID.ContainsKey(x)).Any())
+                {
+                    NewCond = LogicEditing.AddConditionalAsRequirement(NewCond, BYOAData[entry.DictionaryName].Select(x => DicID[x]).ToArray());
+                }
+
+                return LogicEditing.RequirementsMet(entry.Required, Instance, usedItems) &&
+                        LogicEditing.CondtionalsMet(NewCond, Instance, usedItems);
+
             }
             //Check availability the standard way
             else
             {
-                var NewReq = entry.Required;
-                var NewCon = entry.Conditionals;
-                //If a check was assigned a custom price, Change wallet logic entries to ensure the item is purchasable.
-                if (entry.Price > -1)
-                {
-                    var NewEntry = LogicEditing.HandleMMRTrandomPriceLogic(entry, Instance, usedItems);
-                    NewReq = NewEntry.Required;
-                    NewCon = NewEntry.Conditionals;
-                }
-                if ((entry.DictionaryName == "UpgradeBigBombBag" || entry.DictionaryName == "MaskBlast") && DicID.ContainsKey("TradeItemPendant") && DicID.ContainsKey("TradeItemKafeiLetter"))
-                {
-                    NewReq = LogicEditing.removeItemFromRequirement(NewReq, new int[] { DicID["TradeItemPendant"], DicID["TradeItemKafeiLetter"] });
-                }
                 //Disable skipping entry if Strictlogic is enable or logic is being calculated from scratch such as firsy run
                 if (FromScratch == false && ForceStrictLogicHendeling == false && Instance.Options.StrictLogicHandeling == false)
                 {
