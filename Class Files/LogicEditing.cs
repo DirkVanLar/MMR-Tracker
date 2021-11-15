@@ -666,7 +666,7 @@ namespace MMR_Tracker_V2
             }
         }
 
-        public static LogicObjects.LogicEntry HandleMMRTrandomPriceLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
+        public static LogicObjects.LogicEntry HandleMMRTrandomPriceLogic(int Price, int[] Req, int[][] Con, LogicObjects.TrackerInstance Instance)
         {
 
             int DefaultCapacity = 0;
@@ -674,21 +674,21 @@ namespace MMR_Tracker_V2
             {
                 DefaultCapacity = Instance.WalletDictionary["MMRTDefault"];
             }
-            bool NoWalletNeed = entry.Price <= DefaultCapacity;
+            bool NoWalletNeed = Price <= DefaultCapacity;
 
-            var ValidWallets = Instance.WalletDictionary.Where(x => x.Value >= entry.Price).ToDictionary(x => x.Key, x => x.Value).Keys;
+            var ValidWallets = Instance.WalletDictionary.Where(x => x.Value >= Price).ToDictionary(x => x.Key, x => x.Value).Keys;
             var ValidWalletObjects = ValidWallets.Select(x => Instance.GetLogicObjectFromDicName(x)).Where(x => x != null);
             var ValidWalletIDs = ValidWalletObjects.Select(x => x.ID).ToArray();
             if (ValidWallets.Count() < 1)
             {
                 Console.WriteLine("Critical error there are no wallets big enough to buy this item!");
-                return entry;
+                return new LogicObjects.LogicEntry() { ID = -1, Required = Req, Conditionals = Con };
             }
             int[] NewRequiredArray = null;
             int[][] NewConditionalsArray = null;
 
-            NewRequiredArray = removeItemFromRequirement(entry.Required, ValidWalletIDs);
-            NewConditionalsArray = removeItemFromConditionals(entry.Conditionals, ValidWalletIDs, false);
+            NewRequiredArray = removeItemFromRequirement(Req, ValidWalletIDs);
+            NewConditionalsArray = removeItemFromConditionals(Con, ValidWalletIDs, false);
             if (!NoWalletNeed) { NewConditionalsArray = AddConditionalAsRequirement(NewConditionalsArray, ValidWalletIDs); }
 
             return new LogicObjects.LogicEntry() { ID = -1, Required = NewRequiredArray, Conditionals = NewConditionalsArray };
