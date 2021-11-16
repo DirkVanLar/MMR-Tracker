@@ -291,7 +291,7 @@ namespace MMR_Tracker_V2
             if (LogicObjects.MainTrackerInstance.Options.CoupleEntrances)
             {
                 Tools.SetUnsavedChanges(LogicObjects.MainTrackerInstance);
-                Tools.SaveState(LogicObjects.MainTrackerInstance);
+                Tools.SaveState(LogicObjects.MainTrackerInstance, new LogicObjects.UndoData() { Logic = LogicObjects.MainTrackerInstance.Logic });
                 foreach (var entry in LogicObjects.MainTrackerInstance.Logic)
                 {
                     if (entry.Checked && entry.RandomizedItem > -1)
@@ -1011,7 +1011,7 @@ namespace MMR_Tracker_V2
                     if (dialogResult == DialogResult.Yes) { ActiveItem.SpoilerRandom = -2; ActiveItem.GossipHint = ""; ActiveItem.Price = -1; }
                     break;
                 case 8:
-                    Tools.SaveState(LogicObjects.MainTrackerInstance, LogicObjects.MainTrackerInstance.Logic);
+                    Tools.SaveState(LogicObjects.MainTrackerInstance, new LogicObjects.UndoData() { Logic = LogicObjects.MainTrackerInstance.Logic });
                     for (var i = 0; i < 2; i++)
                     {
                         ListBox ItemList = new ListBox();
@@ -1391,14 +1391,16 @@ namespace MMR_Tracker_V2
             Debugging.Log("Initial Formatting took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
             StartTime = System.DateTime.Now.Ticks;
 
-            var Templogic = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic); //We want to save logic at this point but don't want to comit to a full save state
-
-            Debugging.Log("Logic Cloning Method old took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
-            StartTime = System.DateTime.Now.Ticks;
-
             Tools.GetWhatchanged(LogicObjects.MainTrackerInstance.Logic, LB);
 
             Debugging.Log("Get What Changed 1 took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
+            StartTime = System.DateTime.Now.Ticks;
+
+            //We want to save logic at this point but don't want to comit to a full save state
+            //var Templogic = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
+            var CheckedItems = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic);
+
+            Debugging.Log("populating Undo List 1 took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
             StartTime = System.DateTime.Now.Ticks;
 
             CheckItemForm CIF = new CheckItemForm
@@ -1423,7 +1425,7 @@ namespace MMR_Tracker_V2
             if (!CIF.ItemStateChanged && ItemsCameFromPlayer == -2) { return; }
             if (FullCheck)
             {
-                Tools.SaveState(LogicObjects.MainTrackerInstance, Templogic); //Now that we have successfully checked/Marked an object we can commit to a full save state
+                Tools.SaveState(LogicObjects.MainTrackerInstance, new LogicObjects.UndoData() { Logic = CheckedItems }); //Now that we have successfully checked/Marked an object we can commit to a full save state
                 Tools.SetUnsavedChanges(LogicObjects.MainTrackerInstance);
                 Debugging.Log("Save State Application took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
                 StartTime = System.DateTime.Now.Ticks;

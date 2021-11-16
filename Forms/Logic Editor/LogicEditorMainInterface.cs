@@ -199,7 +199,7 @@ namespace MMR_Tracker.Forms
         private void BtnAddReq_Click(object sender, EventArgs e)
         {
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance);
+            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
             MiscMultiItemSelect NeededSelect = new MiscMultiItemSelect
             {
                 UsedInstance = EditorInstance,
@@ -240,7 +240,7 @@ namespace MMR_Tracker.Forms
             }
 
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance);
+            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
 
             Debugging.Log($"Begin create {UniqueCombinations} permutatios");
             try
@@ -268,7 +268,7 @@ namespace MMR_Tracker.Forms
         private void BtnRemoveReq_Click(object sender, EventArgs e)
         {
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance);
+            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
             LBRequired.BeginUpdate();
             for (int x = LBRequired.SelectedIndices.Count - 1; x >= 0; x--)
             {
@@ -294,7 +294,7 @@ namespace MMR_Tracker.Forms
         private void BtnRemoveCond_Click(object sender, EventArgs e)
         {
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance);
+            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
             LBConditional.BeginUpdate();
             for (int x = LBConditional.SelectedIndices.Count - 1; x >= 0; x--)
             {
@@ -342,7 +342,7 @@ namespace MMR_Tracker.Forms
         private void BtnNewItem_Click(object sender, EventArgs e)
         {
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance);
+            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
             string name = Interaction.InputBox("Input New Item Name", "New Item", "");
             if (name == "") { return; }
             CreatingNewItem = true;
@@ -358,7 +358,7 @@ namespace MMR_Tracker.Forms
         private void BtnEditSelected_Click(object sender, EventArgs e)
         {
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance);
+            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
             for (var n = 0; n < LBConditional.Items.Count; n++)
             {
                 if (LBConditional.GetSelected(n))
@@ -454,7 +454,7 @@ namespace MMR_Tracker.Forms
         {
             if (PrintingItem) { return; }
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance);
+            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
             WriteTimeDependecies(currentEntry);
         }
 
@@ -827,7 +827,7 @@ namespace MMR_Tracker.Forms
             Selector.ShowDialog();
             if(Selector.DialogResult != DialogResult.OK) { return; }
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance);
+            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
             int counter = 0;
             Dictionary<int, int> newOrder = new Dictionary<int, int>();
             foreach(var i in Selector.SelectedItems)
@@ -878,7 +878,7 @@ namespace MMR_Tracker.Forms
         private void RenameCurrentItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!currentEntry.IsFake) { MessageBox.Show("Only fake Items Can be Renamed"); return; }
-            Tools.SaveState(EditorInstance);
+            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
             string name = Interaction.InputBox("Input New Item Name", "New Item", currentEntry.DictionaryName);
             if (name == "") { return; }
             EditorInstance.UnsavedChanges = true;
@@ -896,7 +896,7 @@ namespace MMR_Tracker.Forms
         {
             if (PrintingItem) { return; }
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance);
+            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
             currentEntry.IsTrick = chkIsTrick.Checked;
             setTrickToolTipToolStripMenuItem.Visible = currentEntry.IsTrick;
         }
@@ -1072,7 +1072,7 @@ namespace MMR_Tracker.Forms
             if (result == DialogResult.OK)
             {
                 EditorInstance.UnsavedChanges = true;
-                Tools.SaveState(EditorInstance);
+                Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
                 if (currentEntry.Conditionals == null)
                 {
                     currentEntry.Conditionals = LogicParser.Conditionals;

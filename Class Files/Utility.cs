@@ -44,14 +44,6 @@ namespace MMR_Tracker_V2
 
             return JsonConvert.SerializeObject(listObjResult);
         }
-        public static List<T> CloneList<T>(List<T> oldList)
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            MemoryStream stream = new MemoryStream();
-            formatter.Serialize(stream, oldList);
-            stream.Position = 0;
-            return (List<T>)formatter.Deserialize(stream);
-        }
         public static List<LogicObjects.LogicEntry> CloneLogicList(List<LogicObjects.LogicEntry> logic)
         {
             //Create a deep copy of a logic object by converting it to a json and coverting it back.
@@ -62,6 +54,11 @@ namespace MMR_Tracker_V2
         {
             //Create a deep copy of a tracker object by converting it to a json and coverting it back.
             return JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(JsonConvert.SerializeObject(instance));
+        }
+        public static LogicObjects.LogicEntry CloneLogicObject(LogicObjects.LogicEntry source)
+        {
+            var serialized = JsonConvert.SerializeObject(source);
+            return JsonConvert.DeserializeObject<LogicObjects.LogicEntry>(serialized);
         }
         public static string FileSelect(string title, string filter)
         {

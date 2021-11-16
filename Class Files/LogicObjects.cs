@@ -29,8 +29,8 @@ namespace MMR_Tracker_V2
             public bool UnsavedChanges { get; set; } = false;
             public bool EntranceRando { get; set; } = false;
             public bool JsonLogic { get; set; } = false;
-            public List<List<LogicEntry>> UndoList { get; set; } = new List<List<LogicEntry>>();
-            public List<List<LogicEntry>> RedoList { get; set; } = new List<List<LogicEntry>>();
+            public List<UndoData> UndoList { get; set; } = new List<UndoData>();
+            public List<UndoData> RedoList { get; set; } = new List<UndoData>();
             public Dictionary<string, int> WalletDictionary { get; set; } = new Dictionary<string, int>();
             public Dictionary<string, List<int>> Keys { get; set; } = new Dictionary<string, List<int>>() { {"SmallKeys", new List<int>() }, { "BossKeys", new List<int>() }, { "ChecksNeedingKeys", new List<int>() } };
             public SavedSpoilerLog CurrentSpoilerLog { get; set; } = new SavedSpoilerLog { Log = null, type = null };
@@ -127,6 +127,13 @@ namespace MMR_Tracker_V2
             public string EntrancePair { get; set; } //The Paired entrance for this entry
         }
 
+        public class UndoData
+        {
+            public LogicObjects.TrackerInstance trackerInstance { get; set; } = null;
+            public List<LogicObjects.LogicEntry> Logic { get; set; } = null;
+            public List<LogicObjects.LogicEntry> SingleItems { get; set; } = null;
+        }
+
         public class Configuration
         {
             public GameplaySettings GameplaySettings { get; set; }
@@ -194,7 +201,7 @@ namespace MMR_Tracker_V2
             public string ItemName { get; set; }
             public string LocationArea { get; set; }
             public int BelongsTo { get; set; } = -1;
-    }
+        }
         public class ListItem
         {
             public LogicObjects.LogicEntry LocationEntry { get; set; }
