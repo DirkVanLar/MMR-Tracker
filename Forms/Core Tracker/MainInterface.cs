@@ -335,6 +335,13 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
         }
 
+        private void horizontalLayoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicObjects.MainTrackerInstance.Options.HorizontalLayout = !LogicObjects.MainTrackerInstance.Options.HorizontalLayout;
+            ResizeObject();
+            FormatMenuItems();
+        }
+
         private void SeperateMarkedItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom = !LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom;
@@ -777,6 +784,10 @@ namespace MMR_Tracker_V2
                 CMBEnd.SelectedIndex = 0;
             }
             catch { }
+        }
+        private void PresetDropDownOpening(object sender, EventArgs e)
+        {
+            UserSettings.HandleUserPreset(sender, e);
         }
         #endregion Other
         #endregion Form Objects
@@ -1441,6 +1452,7 @@ namespace MMR_Tracker_V2
             seedCheckerToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0) && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld && Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic);
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             changeLogicToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             popoutPathfinderToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.EntranceRando);
             if (!LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable) 
             {
@@ -1453,7 +1465,8 @@ namespace MMR_Tracker_V2
             coupleEntrancesToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.CoupleEntrances);
             seperateMarkedItemsToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom);
             coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
-            whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            horizontalLayoutToolStripMenuItem.Visible = (!LogicObjects.MainTrackerInstance.EntranceRando || !LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled);
+            horizontalLayoutToolStripMenuItem.Checked = LogicObjects.MainTrackerInstance.Options.HorizontalLayout;
 
             //Manage Dev Menus
             devToolStripMenuItem.Visible = Debugging.ISDebugging || Debugging.ViewAsUserMode;
@@ -1541,21 +1554,42 @@ namespace MMR_Tracker_V2
             else
             {
                 SetObjectVisibility(true, false);
-                UpperLeftLBL.Location = new Point(locX, locY + 2);
-                BTNSetItem.Location = new Point(FormWidth - BTNSetItem.Width, Menuhieght + 1);
-                TXTLocSearch.Location = new Point(locX, locY + UpperLeftLBL.Height + 6);
-                TXTLocSearch.Width = FormWidth - 2;
-                LBValidLocations.Location = new Point(locX, locY + UpperLeftLBL.Height + TXTLocSearch.Height + 8);
-                LBValidLocations.Width = FormWidth - 2;
-                LBValidLocations.Height = FormHalfHeight - UpperLeftLBL.Height - TXTLocSearch.Height - 14;
+                if (LogicObjects.MainTrackerInstance.Options.HorizontalLayout)
+                {
+                    UpperLeftLBL.Location = new Point(locX, locY + 2);
+                    BTNSetItem.Location = new Point(FormHalfWidth - BTNSetItem.Width, Menuhieght + 1);
+                    TXTLocSearch.Location = new Point(locX, locY + UpperLeftLBL.Height + 6);
+                    TXTLocSearch.Width = FormHalfWidth - 2;
+                    LBValidLocations.Location = new Point(locX, locY + UpperLeftLBL.Height + TXTLocSearch.Height + 8);
+                    LBValidLocations.Width = FormHalfWidth - 2;
+                    LBValidLocations.Height = FormHeight - UpperLeftLBL.Height - TXTLocSearch.Height - 14;
 
-                LowerLeftLBL.Location = new Point(locX, FormHalfHeight + locY - 2);
-                CHKShowAll.Location = new Point(FormWidth - CHKShowAll.Width, Menuhieght + FormHalfHeight - 2);
-                TXTCheckedSearch.Location = new Point(locX, locY + UpperLeftLBL.Height + 2 + FormHalfHeight);
-                TXTCheckedSearch.Width = FormWidth - 2;
-                LBCheckedLocations.Location = new Point(locX, locY + UpperLeftLBL.Height + TXTCheckedSearch.Height + 4 + FormHalfHeight);
-                LBCheckedLocations.Width = FormWidth - 2;
-                LBCheckedLocations.Height = FormHalfHeight - UpperLeftLBL.Height - TXTCheckedSearch.Height - 8;
+                    LowerLeftLBL.Location = new Point(FormHalfWidth + locX, locY + 2);
+                    CHKShowAll.Location = new Point(FormWidth - CHKShowAll.Width, Menuhieght + 3);
+                    TXTCheckedSearch.Location = new Point(FormHalfWidth + locX, locY + UpperRightLBL.Height + 6);
+                    TXTCheckedSearch.Width = FormHalfWidth - 2;
+                    LBCheckedLocations.Location = new Point(FormHalfWidth + locX, locY + UpperRightLBL.Height + TXTEntSearch.Height + 8);
+                    LBCheckedLocations.Width = FormHalfWidth - 2;
+                    LBCheckedLocations.Height = FormHeight - UpperRightLBL.Height - TXTEntSearch.Height - 14;
+                }
+                else
+                {
+                    UpperLeftLBL.Location = new Point(locX, locY + 2);
+                    BTNSetItem.Location = new Point(FormWidth - BTNSetItem.Width, Menuhieght + 1);
+                    TXTLocSearch.Location = new Point(locX, locY + UpperLeftLBL.Height + 6);
+                    TXTLocSearch.Width = FormWidth - 2;
+                    LBValidLocations.Location = new Point(locX, locY + UpperLeftLBL.Height + TXTLocSearch.Height + 8);
+                    LBValidLocations.Width = FormWidth - 2;
+                    LBValidLocations.Height = FormHalfHeight - UpperLeftLBL.Height - TXTLocSearch.Height - 14;
+
+                    LowerLeftLBL.Location = new Point(locX, FormHalfHeight + locY - 2);
+                    CHKShowAll.Location = new Point(FormWidth - CHKShowAll.Width, Menuhieght + FormHalfHeight - 2);
+                    TXTCheckedSearch.Location = new Point(locX, locY + UpperLeftLBL.Height + 2 + FormHalfHeight);
+                    TXTCheckedSearch.Width = FormWidth - 2;
+                    LBCheckedLocations.Location = new Point(locX, locY + UpperLeftLBL.Height + TXTCheckedSearch.Height + 4 + FormHalfHeight);
+                    LBCheckedLocations.Width = FormWidth - 2;
+                    LBCheckedLocations.Height = FormHalfHeight - UpperLeftLBL.Height - TXTCheckedSearch.Height - 8;
+                }
             }
             PrintToListBox();
             this.Refresh();
@@ -1632,9 +1666,5 @@ namespace MMR_Tracker_V2
 
         #endregion Functions
 
-        private void PresetDropDownOpening(object sender, EventArgs e)
-        {
-            UserSettings.HandleUserPreset(sender, e);
-        }
     }
 }

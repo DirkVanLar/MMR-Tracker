@@ -54,6 +54,7 @@ namespace MMR_Tracker_V2
             public bool MoveMarkedToBottom { get; set; } = false;
             public bool ShowEntryNameTooltip { get; set; } = true;
             public bool MiddleClickStarNotMark { get; set; } = false;
+            public bool HorizontalLayout { get; set; } = false;
             public string BomberCode { get; set; } = "";
             public string LotteryNumber { get; set; } = "";
             public Font FormFont { get; set; } = SystemFonts.DefaultFont;

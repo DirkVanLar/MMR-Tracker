@@ -62,6 +62,9 @@ namespace MMR_Tracker_V2
             this.logicOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editRadnomizationOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stricterLogicHandelingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.randoSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableProgressiveItemsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableBringYourOwnAmmoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entranceRandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useSongOfTimeInPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,9 +107,7 @@ namespace MMR_Tracker_V2
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.randoSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enableProgressiveItemsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.enableBringYourOwnAmmoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizontalLayoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -439,6 +440,29 @@ namespace MMR_Tracker_V2
             this.stricterLogicHandelingToolStripMenuItem.Text = "Stricter Logic Handeling";
             this.stricterLogicHandelingToolStripMenuItem.Click += new System.EventHandler(this.StricterLogicHandelingToolStripMenuItem_Click);
             // 
+            // randoSettingsToolStripMenuItem
+            // 
+            this.randoSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.enableProgressiveItemsToolStripMenuItem1,
+            this.enableBringYourOwnAmmoToolStripMenuItem});
+            this.randoSettingsToolStripMenuItem.Name = "randoSettingsToolStripMenuItem";
+            this.randoSettingsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.randoSettingsToolStripMenuItem.Text = "Rando Settings";
+            // 
+            // enableProgressiveItemsToolStripMenuItem1
+            // 
+            this.enableProgressiveItemsToolStripMenuItem1.Name = "enableProgressiveItemsToolStripMenuItem1";
+            this.enableProgressiveItemsToolStripMenuItem1.Size = new System.Drawing.Size(235, 22);
+            this.enableProgressiveItemsToolStripMenuItem1.Text = "Enable Progressive Items";
+            this.enableProgressiveItemsToolStripMenuItem1.Click += new System.EventHandler(this.enableProgressiveItemsToolStripMenuItem_Click);
+            // 
+            // enableBringYourOwnAmmoToolStripMenuItem
+            // 
+            this.enableBringYourOwnAmmoToolStripMenuItem.Name = "enableBringYourOwnAmmoToolStripMenuItem";
+            this.enableBringYourOwnAmmoToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.enableBringYourOwnAmmoToolStripMenuItem.Text = "Enable Bring Your Own Ammo";
+            this.enableBringYourOwnAmmoToolStripMenuItem.Click += new System.EventHandler(this.enableBringYourOwnAmmoToolStripMenuItem_Click);
+            // 
             // changeLogicToolStripMenuItem
             // 
             this.changeLogicToolStripMenuItem.Name = "changeLogicToolStripMenuItem";
@@ -488,6 +512,7 @@ namespace MMR_Tracker_V2
             // miscOptionsToolStripMenuItem
             // 
             this.miscOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.horizontalLayoutToolStripMenuItem,
             this.showEntryNameToolTipToolStripMenuItem,
             this.seperateMarkedItemsToolStripMenuItem,
             this.changeMiddleClickToStarToolStripMenuItem,
@@ -759,28 +784,12 @@ namespace MMR_Tracker_V2
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // randoSettingsToolStripMenuItem
+            // horizontalLayoutToolStripMenuItem
             // 
-            this.randoSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.enableProgressiveItemsToolStripMenuItem1,
-            this.enableBringYourOwnAmmoToolStripMenuItem});
-            this.randoSettingsToolStripMenuItem.Name = "randoSettingsToolStripMenuItem";
-            this.randoSettingsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.randoSettingsToolStripMenuItem.Text = "Rando Settings";
-            // 
-            // enableProgressiveItemsToolStripMenuItem1
-            // 
-            this.enableProgressiveItemsToolStripMenuItem1.Name = "enableProgressiveItemsToolStripMenuItem1";
-            this.enableProgressiveItemsToolStripMenuItem1.Size = new System.Drawing.Size(235, 22);
-            this.enableProgressiveItemsToolStripMenuItem1.Text = "Enable Progressive Items";
-            this.enableProgressiveItemsToolStripMenuItem1.Click += new System.EventHandler(this.enableProgressiveItemsToolStripMenuItem_Click);
-            // 
-            // enableBringYourOwnAmmoToolStripMenuItem
-            // 
-            this.enableBringYourOwnAmmoToolStripMenuItem.Name = "enableBringYourOwnAmmoToolStripMenuItem";
-            this.enableBringYourOwnAmmoToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.enableBringYourOwnAmmoToolStripMenuItem.Text = "Enable Bring Your Own Ammo";
-            this.enableBringYourOwnAmmoToolStripMenuItem.Click += new System.EventHandler(this.enableBringYourOwnAmmoToolStripMenuItem_Click);
+            this.horizontalLayoutToolStripMenuItem.Name = "horizontalLayoutToolStripMenuItem";
+            this.horizontalLayoutToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.horizontalLayoutToolStripMenuItem.Text = "Horizontal Layout";
+            this.horizontalLayoutToolStripMenuItem.Click += new System.EventHandler(this.horizontalLayoutToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -904,6 +913,7 @@ namespace MMR_Tracker_V2
         private System.Windows.Forms.ToolStripMenuItem randoSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enableProgressiveItemsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem enableBringYourOwnAmmoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem horizontalLayoutToolStripMenuItem;
     }
 }
 
