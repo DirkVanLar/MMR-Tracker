@@ -1110,16 +1110,17 @@ namespace MMR_Tracker.Class_Files
             return SettingFile;
         }
 
-        public static void GetWhatchanged(List<LogicObjects.LogicEntry> Newlogic, List<LogicObjects.LogicEntry> OldLogic)
+        public static void GetWhatchanged(List<LogicObjects.LogicEntry> Logic, ListBox LB, bool Adding = false)
         {
-            LogicEditing.LastUpdated = new List<int>();
-            foreach(var i in Newlogic)
+            if (!Adding) { LogicEditing.LastUpdated = new List<int>(); }
+            foreach (var lbi in LB.SelectedItems)
             {
-                if (i.Checked != OldLogic[i.ID].Checked)
-                {
-                    if (i.Checked) { LogicEditing.LastUpdated.Add(Newlogic[i.ID].RandomizedItem); }
-                    else { LogicEditing.LastUpdated.Add(OldLogic[i.ID].RandomizedItem); }
-                }
+                var i = (lbi is LogicObjects.ListItem) ? (lbi as LogicObjects.ListItem).LocationEntry : lbi;
+                if (!(i is LogicObjects.LogicEntry)) { continue; }
+                var Item = i as LogicObjects.LogicEntry;
+                if (Item.ID < 0) { continue; }
+                if (Logic[Item.ID].RandomizedItem < 0) { continue; }
+                LogicEditing.LastUpdated.Add(Logic[Item.ID].RandomizedItem);
             }
         }
 

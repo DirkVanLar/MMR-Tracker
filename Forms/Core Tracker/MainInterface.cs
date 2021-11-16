@@ -932,6 +932,19 @@ namespace MMR_Tracker_V2
                 if (!(LB.Items[index] is LogicObjects.ListItem)) { e.Cancel = true; }
                 if ((LB.Items[index] as LogicObjects.ListItem) == null) { e.Cancel = true; return; }
                 if ((LB.Items[index] as LogicObjects.ListItem).LocationEntry.ID < 0) { e.Cancel = true; }
+
+                //If the entry has spoiler data, the change checked item function does nothing
+                if (sender is ListBox && (sender as ListBox).ContextMenuStrip != null)
+                {
+                    foreach (var j in (sender as ListBox).ContextMenuStrip.Items)
+                    {
+                        if (j is ToolStripItem && j.ToString() == "Change Checked Item")
+                        {
+                            (j as ToolStripItem).Visible = (LB.Items[index] as LogicObjects.ListItem).LocationEntry.SpoilerRandom < -1;
+                        }
+                    }
+                }
+
             }
             catch { e.Cancel = true; }
         }
@@ -1366,7 +1379,7 @@ namespace MMR_Tracker_V2
         {
             var TotalStartTime = System.DateTime.Now.Ticks;
             var StartTime = System.DateTime.Now.Ticks; //Timing how long this takes for testing purposes
-            Console.WriteLine("Starting Check");
+            Console.WriteLine("Starting Check=========================================");
             //Set Function: 0 = none, 1 = Always Set, 2 = Always Unset
             if (TXTLocSearch.Text.ToLower() == "enabledev" && LB == LBValidLocations && !FullCheck)
             {
@@ -1383,6 +1396,11 @@ namespace MMR_Tracker_V2
             Debugging.Log("Logic Cloning Method old took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
             StartTime = System.DateTime.Now.Ticks;
 
+            Tools.GetWhatchanged(LogicObjects.MainTrackerInstance.Logic, LB);
+
+            Debugging.Log("Get What Changed 1 took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
+            StartTime = System.DateTime.Now.Ticks;
+
             CheckItemForm CIF = new CheckItemForm
             {
                 Instance = LogicObjects.MainTrackerInstance,
@@ -1397,9 +1415,9 @@ namespace MMR_Tracker_V2
             Debugging.Log("Check form took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
             StartTime = System.DateTime.Now.Ticks;
 
-            Tools.GetWhatchanged(LogicObjects.MainTrackerInstance.Logic, Templogic);
+            Tools.GetWhatchanged(LogicObjects.MainTrackerInstance.Logic, LB, true);
 
-            Debugging.Log("Get What Changed took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
+            Debugging.Log("Get What Changed 2 took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
             StartTime = System.DateTime.Now.Ticks;
 
             if (!CIF.ItemStateChanged && ItemsCameFromPlayer == -2) { return; }
