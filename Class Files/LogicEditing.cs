@@ -678,7 +678,7 @@ namespace MMR_Tracker_V2
             var ValidWallets = Instance.WalletDictionary.Where(x => x.Value >= entry.Price).ToDictionary(x => x.Key, x => x.Value).Keys;
             var ValidWalletObjects = ValidWallets.Select(x => Instance.GetLogicObjectFromDicName(x)).Where(x => x != null);
             var ValidWalletIDs = ValidWalletObjects.Select(x => x.ID).ToArray();
-            if (ValidWallets.Count() < 1)
+            if (ValidWallets.Count() < 1 ||  ValidWalletIDs == null)
             {
                 Console.WriteLine("Critical error there are no wallets big enough to buy this item!");
                 return entry;
@@ -761,6 +761,7 @@ namespace MMR_Tracker_V2
         }
         public static int[] removeItemFromRequirement(int[] entry, int[] Requirements)
         {
+            if (Requirements == null || entry == null) { return null; }
             List<int> NewRequirements = new List<int>();
             var reqWithoutItem = entry.Where(x => !Requirements.Contains(x));
             if (!reqWithoutItem.Any()) { return null; }
@@ -769,6 +770,7 @@ namespace MMR_Tracker_V2
         }
         public static int[][] removeItemFromConditionals(int[][] entry, int[] Conditional, bool RemovedItemIsAlwaysAvailable)
         {
+            if (Conditional == null || entry == null) { return null; }
             List<List<int>> NewConditionals = new List<List<int>>();
             foreach (var conditional in entry)
             {

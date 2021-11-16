@@ -46,12 +46,15 @@ namespace MMR_Tracker.Class_Files
                 i.Available = false;
                 i.Checked = false;
                 i.Aquired = false;
-                if (!i.IsFake && i.Unrandomized() && i.SpoilerRandom < 0) { i.SpoilerRandom = i.ID; }
+                if (!i.IsFake && i.Unrandomized(2) && i.SpoilerRandom < 0) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; }
                 if (i.IsFake) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; i.LocationName = i.DictionaryName; i.ItemName = i.DictionaryName; }
-                if (i.Unrandomized() && i.ID == i.SpoilerRandom) { i.IsFake = true; }//If the item is unrandomized treat it as a fake item
+                if (i.Unrandomized(2) && i.ID == i.SpoilerRandom) 
+                {
+                    if (i.StartingItem()) { i.Options = 4; }
+                    else { i.Options = 0; }
+                }//If the item is unrandomized, Randomize it so it shows up in the correct sphere.
                 if (i.SpoilerRandom > -1) { i.RandomizedItem = i.SpoilerRandom; }//Make the items randomized item its spoiler item, just for consitancy sake
                 else if (i.RandomizedItem > -1) { i.SpoilerRandom = i.RandomizedItem; }//If the item doesn't have spoiler data, but does have a randomized item. set it's spoiler data to the randomized item
-                else if (i.Unrandomized(1)) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; }//If the item doesn't have spoiler data or a randomized item and is unrandomized (manual), set it's spoiler item to it's self
                 if (SpoilerToID.ContainsKey(i.SpoilerRandom) || i.SpoilerRandom < 0) { continue; }
                 SpoilerToID.Add(i.SpoilerRandom, i.ID);
                 //Check for all items mentioned in the logic file
@@ -82,16 +85,17 @@ namespace MMR_Tracker.Class_Files
             var GameClearPlaythroughItem = Playthrough.Find(x => x.Check.ID == GameClear);
             if (GameClearPlaythroughItem == null)
             {
-                container.Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
+                container.Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenByDescending(x => container.PlaythroughInstance.Logic[x.Check.RandomizedItem].StartingItem()).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
                 return container;
             }
+
 
             container.GameClearItem = GameClearPlaythroughItem;
 
             importantItems.Add(GameClearPlaythroughItem.Check.ID);
             FindImportantItems(GameClearPlaythroughItem, importantItems, Playthrough, SpoilerToID);
 
-            container.Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
+            container.Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenByDescending(x => container.PlaythroughInstance.Logic[x.Check.RandomizedItem].StartingItem()).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
 
             container.RealItemPlaythrough = JsonConvert.DeserializeObject<List<LogicObjects.PlaythroughItem>>(JsonConvert.SerializeObject(container.Playthrough));
             //Replace all fake items with the real items used to unlock those fake items
@@ -129,7 +133,7 @@ namespace MMR_Tracker.Class_Files
                 if (i.Check.ID == GameclearItem) { PlaythroughString.Add(FinalTask); }
                 else
                 {
-                    var ObtainLine = "Check \"" + i.Check.LocationName + "\" to obtain \"" + CopyInstance.Logic[i.Check.RandomizedItem].ItemName + "\"";
+                    var ObtainLine = "Check \"" + ( MainLogic[i.Check.RandomizedItem].StartingItem() ? "Starting items" : i.Check.LocationName) + "\" to obtain \"" + CopyInstance.Logic[i.Check.RandomizedItem].ItemName + "\"";
                     if (MainLogic.Count() > i.Check.ID && MainLogic[i.Check.ID].Checked) { ObtainLine += " ✅"; }
                     PlaythroughString.Add(ObtainLine);
                 }
@@ -205,7 +209,14 @@ namespace MMR_Tracker.Class_Files
             foreach (var item in logic)
             {
                 List<int> UsedItems = new List<int>();
-                item.Available = item.CheckAvailability(Instance, UsedItems);
+                if (Instance.Logic[item.SpoilerRandom].StartingItem()) 
+                { 
+                    item.Available = true; 
+                }
+                else
+                {
+                    item.Available = item.CheckAvailability(Instance, UsedItems);
+                }
 
                 if (!item.IsFake && item.SpoilerRandom > -1 && item.Available && !logic[item.SpoilerRandom].Aquired)
                 {
@@ -363,63 +374,74 @@ namespace MMR_Tracker.Class_Files
 
         public static void MarkAreaClearAsEntry(LogicObjects.TrackerInstance instance)
         {
-
-            var EntAreaDict = instance.EntranceAreaDic;
+            if (!instance.IsMM()) { return; }
             LogicObjects.LogicEntry Default = new LogicObjects.LogicEntry();
-            var WoodFallClear = instance.Logic.Find(x => x.DictionaryName == "Woodfall clear") ?? Default;
-            var SnowheadClear = instance.Logic.Find(x => x.DictionaryName == "Snowhead clear") ?? Default;
-            var GreatBayClear = instance.Logic.Find(x => x.DictionaryName == "Great Bay clear") ?? Default;
-            var IkanaClear = instance.Logic.Find(x => x.DictionaryName == "Ikana clear") ?? Default;
+            var WoodFallClear = instance.Logic.Find(x => x.DictionaryName == "Woodfall clear" || x.DictionaryName == "AreaWoodFallTempleClear");
+            var SnowheadClear = instance.Logic.Find(x => x.DictionaryName == "Snowhead clear" || x.DictionaryName == "AreaSnowheadTempleClear");
+            var GreatBayClear = instance.Logic.Find(x => x.DictionaryName == "Great Bay clear" || x.DictionaryName == "AreaGreatBayTempleClear");
+            var IkanaClear = instance.Logic.Find(x => x.DictionaryName == "Ikana clear" || x.DictionaryName == "AreaStoneTowerClear");
+
+            WoodFallClear.LocationName = "Defeat Odolwa";
+            SnowheadClear.LocationName = "Defeat Goht";
+            GreatBayClear.LocationName = "Defeat Gyorg";
+            IkanaClear.LocationName = "Defeat Twinmold";
+
+            WoodFallClear.ItemName = "Woodfall Clear";
+            SnowheadClear.ItemName = "Snowhead Clear";
+            GreatBayClear.ItemName = "Great Bay Clear";
+            IkanaClear.ItemName = "Ikana Clear";
 
             WoodFallClear.IsFake = false;
             SnowheadClear.IsFake = false;
             GreatBayClear.IsFake = false;
             IkanaClear.IsFake = false;
-            //Set the area clear name to their defualt
-            WoodFallClear.LocationName = "Defeat Odolwa";
-            WoodFallClear.ItemName = "Odolwas Remians";
-            SnowheadClear.LocationName = "Defeat Goht";
-            SnowheadClear.ItemName = "Gohts Remians";
-            GreatBayClear.LocationName = "Defeat Gyrog";
-            GreatBayClear.ItemName = "Gyrogs Remians";
-            IkanaClear.LocationName = "Defeat Twinmold";
-            IkanaClear.ItemName = "Twinmolds Remians";
-            //Find the name of the randomized area clear
-            var newWoodfallLocation = (WoodFallClear.ClearRandomizedDungeonInThisArea(instance) ?? WoodFallClear).LocationName;
-            var newWoodfallItem = (WoodFallClear.ClearRandomizedDungeonInThisArea(instance) ?? WoodFallClear).ItemName;
-            var newSnowheadLocation = (SnowheadClear.ClearRandomizedDungeonInThisArea(instance) ?? SnowheadClear).LocationName;
-            var newSnowheadItem = (SnowheadClear.ClearRandomizedDungeonInThisArea(instance) ?? SnowheadClear).ItemName;
-            var newGreatBayLocation = (GreatBayClear.ClearRandomizedDungeonInThisArea(instance) ?? GreatBayClear).LocationName;
-            var newGreatBayItem = (GreatBayClear.ClearRandomizedDungeonInThisArea(instance) ?? GreatBayClear).ItemName;
-            var newIkanaLocation = (IkanaClear.ClearRandomizedDungeonInThisArea(instance) ?? IkanaClear).LocationName;
-            var newIkanaItem = (IkanaClear.ClearRandomizedDungeonInThisArea(instance) ?? IkanaClear).ItemName;
-            //Set the randomized area clear name to the original area clear
-            WoodFallClear.LocationName = newWoodfallLocation;
-            WoodFallClear.ItemName = newWoodfallItem;
-            SnowheadClear.LocationName = newSnowheadLocation;
-            SnowheadClear.ItemName = newSnowheadItem;
-            GreatBayClear.LocationName = newGreatBayLocation;
-            GreatBayClear.ItemName = newGreatBayItem;
-            IkanaClear.LocationName = newIkanaLocation;
-            IkanaClear.ItemName = newIkanaItem;
+
+            if (instance.IsEntranceRando()) { return; }
+
+            var WoodfallLocationName = WoodFallClear.ClearRandomizedDungeonInThisArea(instance).LocationName;
+            var SnowheadLocationName = SnowheadClear.ClearRandomizedDungeonInThisArea(instance).LocationName;
+            var GreatBayLocationName = SnowheadClear.ClearRandomizedDungeonInThisArea(instance).LocationName;
+            var IkanaLocationName = SnowheadClear.ClearRandomizedDungeonInThisArea(instance).LocationName;
+
+            WoodFallClear.LocationName = WoodfallLocationName;
+            SnowheadClear.LocationName = SnowheadLocationName;
+            GreatBayClear.LocationName = GreatBayLocationName;
+            IkanaClear.LocationName = IkanaLocationName;
+
         }
 
         public static void SwapAreaClearLogic(LogicObjects.TrackerInstance Instance)
         {
-            var areaClearData = Instance.EntranceAreaDic;
-            var ReferenceLogic = Utility.CloneLogicList(Instance.Logic);
-            foreach (var i in Instance.Logic)
-            {
-                if (areaClearData.ContainsKey(i.ID))
-                {
-                    var Dungeon = Instance.Logic[areaClearData[i.ID]];
-                    if (Dungeon.RandomizedItem < 0) { return; }
-                    var DungoneRandItem = Dungeon.RandomizedItem;
-                    var RandomClear = areaClearData.FirstOrDefault(x => x.Value == DungoneRandItem).Key;
-                    Instance.Logic[i.ID].Required = ReferenceLogic[RandomClear].Required;
-                    Instance.Logic[i.ID].Conditionals = ReferenceLogic[RandomClear].Conditionals;
-                }
-            }
+            //Since these checks are be converted to real items, the will not get parsed by the function in checkavailablility that usually swaps their logic
+            //So here we do it manually.
+            var EntAreaDict = Instance.EntranceAreaDic;
+            if (!EntAreaDict.Any()) { return; }
+            var ClearAreas = EntAreaDict.Keys.ToArray();
+
+            var WoodFallClear = Instance.Logic[ClearAreas[0]];
+            var SnowheadClear = Instance.Logic[ClearAreas[1]];
+            var GreatBayClear = Instance.Logic[ClearAreas[2]];
+            var IkanaClear = Instance.Logic[ClearAreas[3]];
+
+            var newWoodfallReq = WoodFallClear.ClearRandomizedDungeonInThisArea(Instance).Required;
+            var newWoodfallCond = WoodFallClear.ClearRandomizedDungeonInThisArea(Instance).Conditionals;
+            var newSnowheadReq = SnowheadClear.ClearRandomizedDungeonInThisArea(Instance).Required;
+            var newSnowheadCond = SnowheadClear.ClearRandomizedDungeonInThisArea(Instance).Conditionals;
+            var newGreatBayreq = GreatBayClear.ClearRandomizedDungeonInThisArea(Instance).Required;
+            var newgreatBayCond = GreatBayClear.ClearRandomizedDungeonInThisArea(Instance).Conditionals;
+            var newIkanaReq = IkanaClear.ClearRandomizedDungeonInThisArea(Instance).Required;
+            var newIkanaCond = IkanaClear.ClearRandomizedDungeonInThisArea(Instance).Conditionals;
+
+            WoodFallClear.Required = newWoodfallReq;
+            WoodFallClear.Conditionals = newWoodfallCond;
+            SnowheadClear.Required = newSnowheadReq;
+            SnowheadClear.Conditionals = newSnowheadCond;
+            GreatBayClear.Required = newGreatBayreq;
+            GreatBayClear.Conditionals = newgreatBayCond;
+            IkanaClear.Required = newIkanaReq;
+            IkanaClear.Conditionals = newIkanaCond;
+
+
         }
     }
 }

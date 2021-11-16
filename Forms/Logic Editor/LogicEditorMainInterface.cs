@@ -182,7 +182,14 @@ namespace MMR_Tracker.Forms
         {
             if (Tools.PromptSave(LogicObjects.MainTrackerInstance))
             {
-                LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance, LogicEditing.WriteLogicToArray(EditorInstance));
+                if (EditorInstance.JsonLogic)
+                {
+                    LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance, LogicEditing.WriteLogicToJson(EditorInstance));
+                }
+                else
+                {
+                    LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance, LogicEditing.WriteLogicToArray(EditorInstance));
+                }
             }
             MainInterface.CurrentProgram.PrintToListBox();
             MainInterface.CurrentProgram.ResizeObject();
