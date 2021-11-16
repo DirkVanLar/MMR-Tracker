@@ -69,7 +69,13 @@ namespace MMR_Tracker_V2
         public static void TestDumbStuff()
         {
 
-            FixLogicSavedWithoutSetupTime();
+            Expression LogicSet = Infix.ParseOrThrow("(A*B)+(B*C)");
+            var TestOutput = Algebraic.Factors(LogicSet)[0];
+            string ExpandedLogic = Infix.Format(TestOutput).Replace(" ", "");
+            Console.WriteLine(ExpandedLogic);
+
+
+            //FixLogicSavedWithoutSetupTime();
             void FixLogicSavedWithoutSetupTime()
             {
                 var Currentfile = Utility.FileSelect("Select your broken Logic File", "MMR Tracker Save (*.txt)|*.txt");
