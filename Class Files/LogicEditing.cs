@@ -104,6 +104,9 @@ namespace MMR_Tracker_V2
             instance.EntranceAreaDic = CreateAreaClearDictionary(instance);
             instance.GetWalletsFromConfigFile();
             CreateDicNameToID(instance);
+            instance.Keys["SmallKeys"] = instance.GetSmallKeys();
+            instance.Keys["BossKeys"] = instance.GetBossKeys();
+            instance.Keys["ChecksNeedingKeys"] = instance.GetChecksNeedingKeys();
             if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
             MarkUniqeItemsUnrandomizedManual(instance);
 
@@ -652,17 +655,18 @@ namespace MMR_Tracker_V2
             return false;
         }
 
-        public static bool HandleMMRTDungeonClearLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
+        public static LogicObjects.LogicEntry HandleMMRTDungeonClearLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
         {
             var dungeonEntranceObject = Instance.Logic[Instance.EntranceAreaDic[entry.ID]];
             var RandClearLogic = entry.ClearRandomizedDungeonInThisArea(Instance);
             if (dungeonEntranceObject.Unrandomized(2)) { RandClearLogic = entry; }
-            if (RandClearLogic == null) { return false; }
-            else
+            if (RandClearLogic != null)
             {
-                return LogicEditing.RequirementsMet(RandClearLogic.Required, Instance, usedItems) &&
-                        LogicEditing.CondtionalsMet(RandClearLogic.Conditionals, Instance, usedItems);
+                //Console.WriteLine($"Checking Logic for {RandClearLogic.DictionaryName} instead of {entry.DictionaryName}");
+                entry.Required = RandClearLogic.Required;
+                entry.Conditionals = RandClearLogic.Conditionals;
             }
+            return entry;
         }
 
         public static LogicObjects.LogicEntry HandleMMRTrandomPriceLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
@@ -699,11 +703,19 @@ namespace MMR_Tracker_V2
             var UselessLogicEntries = Utility.uselessLogicItems();
             var BYOAData = Utility.BYOAmmoData();
 
+            //Check for a MMR Dungeon clear Entry
+            if (Instance.IsMM() && NewEntry.IsFake && Instance.EntranceAreaDic.Count > 0 && Instance.EntranceAreaDic.ContainsKey(NewEntry.ID))
+            {
+                NewEntry = LogicEditing.HandleMMRTDungeonClearLogic(NewEntry, Instance);
+                //Console.WriteLine($"{NewEntry.DictionaryName} Had it's Dungeon Logic Swapped");
+                NewEntry.LogicWasEdited = true;
+            }
             //If a check was assigned a custom price, Change wallet logic entries to ensure the item is purchasable.
             if (NewEntry.Price > -1)
             {
                 //Console.WriteLine(entry.DictionaryName + " needed Price adjustment");
                 NewEntry = LogicEditing.HandleMMRTrandomPriceLogic(NewEntry, Instance);
+                //Console.WriteLine($"{NewEntry.DictionaryName} Had it's Wallet Logic Swapped");
                 NewEntry.LogicWasEdited = true;
             }
             //Removes logic entries that are only neccesary during randomization and don't actually represent the items requirements
@@ -713,9 +725,13 @@ namespace MMR_Tracker_V2
                 //Console.WriteLine(entry.DictionaryName + " Contained Useless Logic");
                 foreach (var i in UselessLogicEntries[NewEntry.DictionaryName])
                 {
-                    if (DicID.ContainsKey(i)) { NewEntry.Required = LogicEditing.removeItemFromRequirement(NewEntry.Required, new int[] { DicID[i] }); }
+                    if (DicID.ContainsKey(i)) 
+                    { 
+                        NewEntry.Required = LogicEditing.removeItemFromRequirement(NewEntry.Required, new int[] { DicID[i] });
+                        //Console.WriteLine($"{NewEntry.DictionaryName} Had Useless Item {i} Removed");
+                        NewEntry.LogicWasEdited = true;
+                    }
                 }
-                NewEntry.LogicWasEdited = true;
             }
             //If bring your own ammo is enabled, add required items to logic.
             if (Instance.Options.BringYourOwnAmmo && BYOAData.ContainsKey(NewEntry.DictionaryName))
@@ -725,6 +741,27 @@ namespace MMR_Tracker_V2
                 {
                     //Console.WriteLine($"Adding the following to {entry.DictionaryName}");
                     NewEntry.Conditionals = LogicEditing.AddConditionalAsRequirement(NewEntry.Conditionals, BYOAData[NewEntry.DictionaryName].Select(x => DicID[x]).ToArray());
+                    //Console.WriteLine($"{NewEntry.DictionaryName} Had Ammo Logic added");
+                    NewEntry.LogicWasEdited = true;
+                }
+            }
+            if (Instance.Options.Keysy["SmallKey"])
+            {
+                if (Instance.Keys["ChecksNeedingKeys"].Contains(NewEntry.ID))
+                {
+                    NewEntry.Required = removeItemFromRequirement(NewEntry.Required, Instance.Keys["SmallKeys"].ToArray());
+                    NewEntry.Conditionals = removeItemFromConditionals(NewEntry.Conditionals, Instance.Keys["SmallKeys"].ToArray(), true);
+                    //Console.WriteLine($"{NewEntry.DictionaryName} Had Small Keys removed");
+                    NewEntry.LogicWasEdited = true;
+                }
+            }
+            if (Instance.Options.Keysy["BossKey"])
+            {
+                if (Instance.Keys["ChecksNeedingKeys"].Contains(NewEntry.ID))
+                {
+                    NewEntry.Required = removeItemFromRequirement(NewEntry.Required, Instance.Keys["BossKeys"].ToArray());
+                    NewEntry.Conditionals = removeItemFromConditionals(NewEntry.Conditionals, Instance.Keys["BossKeys"].ToArray(), true);
+                    //Console.WriteLine($"{NewEntry.DictionaryName} Had Boss Keys removed");
                     NewEntry.LogicWasEdited = true;
                 }
             }

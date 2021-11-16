@@ -32,6 +32,7 @@ namespace MMR_Tracker_V2
             public List<List<LogicEntry>> UndoList { get; set; } = new List<List<LogicEntry>>();
             public List<List<LogicEntry>> RedoList { get; set; } = new List<List<LogicEntry>>();
             public Dictionary<string, int> WalletDictionary { get; set; } = new Dictionary<string, int>();
+            public Dictionary<string, List<int>> Keys { get; set; } = new Dictionary<string, List<int>>() { {"SmallKeys", new List<int>() }, { "BossKeys", new List<int>() }, { "ChecksNeedingKeys", new List<int>() } };
             public SavedSpoilerLog CurrentSpoilerLog { get; set; } = new SavedSpoilerLog { Log = null, type = null };
         }
 
@@ -42,6 +43,7 @@ namespace MMR_Tracker_V2
             public bool RemoveObtainedItemsfromList { get; set; } = true;
             public bool ProgressiveItems { get; set; } = false;
             public bool BringYourOwnAmmo { get; set; } = false;
+            public Dictionary<string, bool> Keysy { get; set; } = new Dictionary<string, bool>() { { "SmallKey", false }, { "BossKey", false } };
             public bool RemoveUselessLogic { get; set; } = true;    
             //Entrance rando Options
             public bool EntranceRadnoEnabled { get; set; } = false;
@@ -69,6 +71,7 @@ namespace MMR_Tracker_V2
             public bool StrictIP { get; set; } = false;
             public int PortNumber { get; set; } = 2112;
         }
+        [Serializable]
         public class LogicEntry
         {
             public int ID { get; set; } //The id of the item. Will match the id used in the Logic file
@@ -102,10 +105,10 @@ namespace MMR_Tracker_V2
             public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
             public override string ToString()
             {
-                return DisplayName;
+                return DisplayName ?? DictionaryName;
             }
         }
-
+        [Serializable]
         public class PlayerData
         {
             public int ItemBelongedToPlayer { get; set; } = -1; //(Future proofing for multi world) What player the item at this check belonged to
@@ -154,6 +157,8 @@ namespace MMR_Tracker_V2
             public bool ProgressiveUpgrades { get; set; } = false;
             public bool ByoAmmo { get; set; } = false;
             public bool DecoupleEntrances { get; set; } = false;
+            public string SmallKeyMode { get; set; } = "Default";
+            public string BossKeyMode { get; set; } = "Default";
             public string LogicMode { get; set; } = "Casual";
             public string UserLogicFileName { get; set; } = "";
             public string CustomItemListString { get; set; } = "";

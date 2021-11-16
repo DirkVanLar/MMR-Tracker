@@ -550,6 +550,16 @@ namespace MMR_Tracker_V2
 
             LogicObjects.MainTrackerInstance.Options.ProgressiveItems = Settings.ProgressiveUpgrades;
             LogicObjects.MainTrackerInstance.Options.BringYourOwnAmmo = Settings.ByoAmmo;
+            LogicObjects.MainTrackerInstance.Options.Keysy["SmallKey"] = false;
+            LogicObjects.MainTrackerInstance.Options.Keysy["BossKey"] = false;
+            if (Settings.SmallKeyMode.Contains("DoorsOpen"))
+            {
+                LogicObjects.MainTrackerInstance.Options.Keysy["SmallKey"] = true;
+            }
+            if (Settings.BossKeyMode.Contains("DoorsOpen"))
+            {
+                LogicObjects.MainTrackerInstance.Options.Keysy["BossKey"] = true;
+            }
 
             //Apply tricks
             foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.IsTrick))

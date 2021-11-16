@@ -241,6 +241,23 @@ namespace MMR_Tracker_V2
             ResizeObject();
             PrintToListBox();
         }
+        private void smallKeyDoorsAlwaysOpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicObjects.MainTrackerInstance.Options.Keysy["SmallKey"] = !LogicObjects.MainTrackerInstance.Options.Keysy["SmallKey"];
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+        }
+
+        private void bossKeyDoorsAlwaysOpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicObjects.MainTrackerInstance.Options.Keysy["BossKey"] = !LogicObjects.MainTrackerInstance.Options.Keysy["SmallKey"];
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            FormatMenuItems();
+            ResizeObject();
+            PrintToListBox();
+        }
 
         #endregion Logic Options
         //Menu Strip => Options => Entrance Rando---------------------------------------------------------------------------
@@ -1347,6 +1364,9 @@ namespace MMR_Tracker_V2
 
         public void CheckItemSelected(ListBox LB, bool FullCheck, int SetFunction = 0, bool UncheckAndMark = false, int ItemsCameFromPlayer = -2, bool FromNet = false)
         {
+            var TotalStartTime = System.DateTime.Now.Ticks;
+            var StartTime = System.DateTime.Now.Ticks; //Timing how long this takes for testing purposes
+            Console.WriteLine("Starting Check");
             //Set Function: 0 = none, 1 = Always Set, 2 = Always Unset
             if (TXTLocSearch.Text.ToLower() == "enabledev" && LB == LBValidLocations && !FullCheck)
             {
@@ -1355,7 +1375,13 @@ namespace MMR_Tracker_V2
                 TXTLocSearch.Clear();
                 return;
             }
+            Debugging.Log("Initial Formatting took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
+            StartTime = System.DateTime.Now.Ticks;
+
             var Templogic = Utility.CloneLogicList(LogicObjects.MainTrackerInstance.Logic); //We want to save logic at this point but don't want to comit to a full save state
+
+            Debugging.Log("Logic Cloning Method old took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
+            StartTime = System.DateTime.Now.Ticks;
 
             CheckItemForm CIF = new CheckItemForm
             {
@@ -1367,20 +1393,33 @@ namespace MMR_Tracker_V2
                 FromNetPlayer = ItemsCameFromPlayer
             };
             CIF.BeginCheckItem();
+
+            Debugging.Log("Check form took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
+            StartTime = System.DateTime.Now.Ticks;
+
             Tools.GetWhatchanged(LogicObjects.MainTrackerInstance.Logic, Templogic);
+
+            Debugging.Log("Get What Changed took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
+            StartTime = System.DateTime.Now.Ticks;
 
             if (!CIF.ItemStateChanged && ItemsCameFromPlayer == -2) { return; }
             if (FullCheck)
             {
                 Tools.SaveState(LogicObjects.MainTrackerInstance, Templogic); //Now that we have successfully checked/Marked an object we can commit to a full save state
                 Tools.SetUnsavedChanges(LogicObjects.MainTrackerInstance);
-                LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance, fromScratch: false); 
+                Debugging.Log("Save State Application took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
+                StartTime = System.DateTime.Now.Ticks;
+                LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance, fromScratch: false);
+                Debugging.Log("Item Calculation took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
+                StartTime = System.DateTime.Now.Ticks;
             }
 
             if (!FromNet) { OnlinePlay.SendData(OnlinePlay.IPS); }
 
             PrintToListBox();
+            Debugging.Log("List Box Print took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
             LogicStateUpdated(null, null);
+            Debugging.Log("Total Time for Check " + ((System.DateTime.Now.Ticks - TotalStartTime) / 10000) + " Milisecconds");
         }
 
         public void StarItemSelected(ListBox LB, int SetFunction = 0)
@@ -1453,6 +1492,9 @@ namespace MMR_Tracker_V2
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             changeLogicToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            smallKeyDoorsAlwaysOpenToolStripMenuItem.Checked = LogicObjects.MainTrackerInstance.Options.Keysy["SmallKey"];
+            bossKeyDoorsAlwaysOpenToolStripMenuItem.Checked = LogicObjects.MainTrackerInstance.Options.Keysy["BossKey"];
+
             popoutPathfinderToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.EntranceRando);
             if (!LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable) 
             {

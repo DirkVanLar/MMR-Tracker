@@ -124,7 +124,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             listBox2.HorizontalExtent = 0;
             this.Text = $"Requirements for {entry.LocationName ?? entry.DictionaryName}";
 
-            var NewEntry = new LogicObjects.LogicEntry() { DictionaryName = entry.DictionaryName, Price = entry.Price, Required = entry.Required, Conditionals = entry.Conditionals };
+            var NewEntry = new LogicObjects.LogicEntry() { ID = entry.ID, DictionaryName = entry.DictionaryName, IsFake = entry.IsFake, Price = entry.Price, Required = entry.Required, Conditionals = entry.Conditionals };
             NewEntry = LogicEditing.PerformLogicEdits(NewEntry, Instance);
             LogicEditor.CleanLogicEntry(NewEntry, Instance);
             chkShowUnaltered.Visible = NewEntry.LogicWasEdited;

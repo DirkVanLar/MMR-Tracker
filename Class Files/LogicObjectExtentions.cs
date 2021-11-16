@@ -184,16 +184,10 @@ namespace MMR_Tracker.Class_Files
             {
                 return LogicEditing.HandleMMRTCheckContainsItemLogic(entry, Instance, usedItems);
             }
-            //Check for a MMR Dungeon clear Entry
-            else if (Instance.IsMM() && entry.IsFake && Instance.EntranceAreaDic.Count > 0 && Instance.EntranceAreaDic.ContainsKey(entry.ID))
-            {
-                //Console.WriteLine(entry.DictionaryName + " Was Dungeon Clear");
-                return LogicEditing.HandleMMRTDungeonClearLogic(entry, Instance, usedItems);
-            }
             //Check availability the standard way
             else
             {
-                var NewEntry = new LogicObjects.LogicEntry() { DictionaryName = entry.DictionaryName, Price = entry.Price, Required = entry.Required, Conditionals = entry.Conditionals };
+                var NewEntry = new LogicObjects.LogicEntry() { ID = entry.ID, DictionaryName = entry.DictionaryName, IsFake = entry.IsFake, Price = entry.Price, Required = entry.Required, Conditionals = entry.Conditionals };
                 NewEntry = LogicEditing.PerformLogicEdits(NewEntry, Instance);
 
                 //Disable skipping entry if Strictlogic is enable or logic is being calculated from scratch such as firsy run
@@ -378,6 +372,46 @@ namespace MMR_Tracker.Class_Files
         {
             if (Instance.DicNameToID.ContainsKey(DicName)) { return Instance.Logic[Instance.DicNameToID[DicName]]; }
             else { return null; }
+        }
+        public static List<int> GetBossKeys(this LogicObjects.TrackerInstance Instance)
+        {
+            List<string> Keynames = new List<string>() { "ItemWoodfallBossKey", "ItemSnowheadBossKey", "ItemGreatBayBossKey", "ItemStoneTowerBossKey" };
+            var keys = Instance.Logic.Where(x => Keynames.Contains(x.DictionaryName));
+            if (keys == null) { return new List<int>(); }
+            return keys.Select(x => x.ID).ToList();
+        }
+        public static List<int> GetSmallKeys(this LogicObjects.TrackerInstance Instance)
+        {
+            List<string> Keynames = new List<string>() 
+            { "ItemWoodfallKey1", "ItemGreatBayKey1", "ItemSnowheadKey1", "ItemSnowheadKey2", "ItemSnowheadKey3", "ItemStoneTowerKey1", "ItemStoneTowerKey2", "ItemStoneTowerKey3", "ItemStoneTowerKey4" };
+            var keys = Instance.Logic.Where(x => Keynames.Contains(x.DictionaryName));
+            if (keys == null) { return new List<int>(); }
+            return keys.Select(x => x.ID).ToList();
+        }
+        public static List<int> GetChecksNeedingKeys(this LogicObjects.TrackerInstance Instance)
+        {
+            var ChecksNeedingKeys = new List<int>();
+            foreach(var NewEntry in Instance.Logic)
+            {
+                bool HasKeys = false;
+                if (NewEntry.Required != null)
+                {
+                    foreach (var i in NewEntry.Required) { if (Instance.Keys["BossKeys"].Contains(i) || Instance.Keys["SmallKeys"].Contains(i)) { HasKeys = true; break; } }
+                }
+                if (NewEntry.Conditionals != null)
+                {
+                    foreach (var Cond in NewEntry.Conditionals) { foreach (var i in Cond) { if (Instance.Keys["BossKeys"].Contains(i) || Instance.Keys["SmallKeys"].Contains(i)) { HasKeys = true; break; } } }
+                }
+                if (HasKeys) { ChecksNeedingKeys.Add(NewEntry.ID); }
+            }
+            if (Instance.EntranceAreaDic != null && Instance.EntranceAreaDic.Count > 0)
+            {
+                foreach (var i in Instance.EntranceAreaDic)
+                {
+                    ChecksNeedingKeys.Add(i.Key);
+                }
+            }
+            return ChecksNeedingKeys;
         }
     }
 }

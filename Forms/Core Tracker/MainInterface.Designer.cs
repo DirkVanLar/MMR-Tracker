@@ -72,6 +72,7 @@ namespace MMR_Tracker_V2
             this.includeItemLocationsAsDestinationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.coupleEntrancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.miscOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizontalLayoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showEntryNameToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seperateMarkedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeMiddleClickToStarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,7 +108,8 @@ namespace MMR_Tracker_V2
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.horizontalLayoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.smallKeyDoorsAlwaysOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bossKeyDoorsAlwaysOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -444,7 +446,9 @@ namespace MMR_Tracker_V2
             // 
             this.randoSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.enableProgressiveItemsToolStripMenuItem1,
-            this.enableBringYourOwnAmmoToolStripMenuItem});
+            this.enableBringYourOwnAmmoToolStripMenuItem,
+            this.smallKeyDoorsAlwaysOpenToolStripMenuItem,
+            this.bossKeyDoorsAlwaysOpenToolStripMenuItem});
             this.randoSettingsToolStripMenuItem.Name = "randoSettingsToolStripMenuItem";
             this.randoSettingsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.randoSettingsToolStripMenuItem.Text = "Rando Settings";
@@ -520,6 +524,13 @@ namespace MMR_Tracker_V2
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
             this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
+            // 
+            // horizontalLayoutToolStripMenuItem
+            // 
+            this.horizontalLayoutToolStripMenuItem.Name = "horizontalLayoutToolStripMenuItem";
+            this.horizontalLayoutToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.horizontalLayoutToolStripMenuItem.Text = "Horizontal Layout";
+            this.horizontalLayoutToolStripMenuItem.Click += new System.EventHandler(this.horizontalLayoutToolStripMenuItem_Click);
             // 
             // showEntryNameToolTipToolStripMenuItem
             // 
@@ -784,12 +795,19 @@ namespace MMR_Tracker_V2
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
             // 
-            // horizontalLayoutToolStripMenuItem
+            // smallKeyDoorsAlwaysOpenToolStripMenuItem
             // 
-            this.horizontalLayoutToolStripMenuItem.Name = "horizontalLayoutToolStripMenuItem";
-            this.horizontalLayoutToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.horizontalLayoutToolStripMenuItem.Text = "Horizontal Layout";
-            this.horizontalLayoutToolStripMenuItem.Click += new System.EventHandler(this.horizontalLayoutToolStripMenuItem_Click);
+            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Name = "smallKeyDoorsAlwaysOpenToolStripMenuItem";
+            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Text = "Small Key Doors Always Open";
+            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Click += new System.EventHandler(this.smallKeyDoorsAlwaysOpenToolStripMenuItem_Click);
+            // 
+            // bossKeyDoorsAlwaysOpenToolStripMenuItem
+            // 
+            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Name = "bossKeyDoorsAlwaysOpenToolStripMenuItem";
+            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Text = "Boss Key Doors Always Open";
+            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Click += new System.EventHandler(this.bossKeyDoorsAlwaysOpenToolStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -914,6 +932,8 @@ namespace MMR_Tracker_V2
         private System.Windows.Forms.ToolStripMenuItem enableProgressiveItemsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem enableBringYourOwnAmmoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem horizontalLayoutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem smallKeyDoorsAlwaysOpenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bossKeyDoorsAlwaysOpenToolStripMenuItem;
     }
 }
 
