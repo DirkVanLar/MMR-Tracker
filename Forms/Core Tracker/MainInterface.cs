@@ -1729,5 +1729,22 @@ namespace MMR_Tracker_V2
 
         #endregion Functions
 
+        private void LB_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.A && Control.ModifierKeys == Keys.Control)
+            {
+                (sender as ListBox).BeginUpdate();
+                for (int i = 0; i < (sender as ListBox).Items.Count; i++)
+                {
+                    (sender as ListBox).SetSelected(i, true);
+                }
+                (sender as ListBox).EndUpdate();
+            }
+        }
+
+        private void preventKeyShortcuts(object sender, KeyPressEventArgs e)
+        {
+            if (Control.ModifierKeys == Keys.Control) { e.Handled = true; }
+        }
     }
 }

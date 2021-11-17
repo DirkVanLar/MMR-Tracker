@@ -22,6 +22,13 @@ namespace MMR_Tracker.Class_Files
             List<int> ImportantItems = new List<int>();
             List<LogicObjects.PlaythroughItem> playthrough = new List<LogicObjects.PlaythroughItem>();
             var LogicCopy = Utility.CloneTrackerInstance(Instance);
+
+            var RandomizedEntry = LogicCopy.Logic[Item.ID].RandomizedEntry(LogicCopy);
+            if (RandomizedEntry != null && RandomizedEntry.Aquired)
+            {
+                RandomizedEntry.Aquired = false;
+            }
+
             foreach (var i in LogicCopy.Logic)
             {
                 if (i.Unrandomized()) { i.IsFake = true; }

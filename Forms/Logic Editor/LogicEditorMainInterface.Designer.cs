@@ -119,6 +119,7 @@
             this.LBRequired.SelectedIndexChanged += new System.EventHandler(this.LBRequired_SelectedIndexChanged);
             this.LBRequired.DoubleClick += new System.EventHandler(this.LBRequired_DoubleClick);
             this.LBRequired.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LBRequired_KeyDown);
+            this.LBRequired.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.preventKeyShortcuts);
             // 
             // LBConditional
             // 
@@ -135,6 +136,7 @@
             this.LBConditional.SelectedIndexChanged += new System.EventHandler(this.LBConditional_SelectedIndexChanged);
             this.LBConditional.DoubleClick += new System.EventHandler(this.LBConditional_DoubleClick);
             this.LBConditional.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LBConditional_KeyDown);
+            this.LBConditional.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.preventKeyShortcuts);
             // 
             // chkNeedDay1
             // 

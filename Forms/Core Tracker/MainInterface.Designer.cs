@@ -65,6 +65,8 @@ namespace MMR_Tracker_V2
             this.randoSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableProgressiveItemsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.enableBringYourOwnAmmoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.smallKeyDoorsAlwaysOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bossKeyDoorsAlwaysOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entranceRandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useSongOfTimeInPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,8 +110,6 @@ namespace MMR_Tracker_V2
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.smallKeyDoorsAlwaysOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bossKeyDoorsAlwaysOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -280,6 +280,8 @@ namespace MMR_Tracker_V2
             this.LBValidLocations.TabIndex = 16;
             this.LBValidLocations.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LB_DrawItem);
             this.LBValidLocations.DoubleClick += new System.EventHandler(this.LB_DoubleClick);
+            this.LBValidLocations.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LB_KeyDown);
+            this.LBValidLocations.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.preventKeyShortcuts);
             this.LBValidLocations.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LB_MouseMove);
             this.LBValidLocations.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LB_MouseUp);
             // 
@@ -296,6 +298,8 @@ namespace MMR_Tracker_V2
             this.LBValidEntrances.TabIndex = 17;
             this.LBValidEntrances.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LB_DrawItem);
             this.LBValidEntrances.DoubleClick += new System.EventHandler(this.LB_DoubleClick);
+            this.LBValidEntrances.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LB_KeyDown);
+            this.LBValidEntrances.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.preventKeyShortcuts);
             this.LBValidEntrances.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LB_MouseMove);
             this.LBValidEntrances.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LB_MouseUp);
             // 
@@ -312,6 +316,8 @@ namespace MMR_Tracker_V2
             this.LBCheckedLocations.TabIndex = 18;
             this.LBCheckedLocations.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.LB_DrawItem);
             this.LBCheckedLocations.DoubleClick += new System.EventHandler(this.LB_DoubleClick);
+            this.LBCheckedLocations.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LB_KeyDown);
+            this.LBCheckedLocations.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.preventKeyShortcuts);
             this.LBCheckedLocations.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LB_MouseMove);
             this.LBCheckedLocations.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LB_MouseUp);
             // 
@@ -424,7 +430,7 @@ namespace MMR_Tracker_V2
             this.randoSettingsToolStripMenuItem,
             this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             this.logicOptionsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.PresetDropDownOpening);
             // 
@@ -467,6 +473,20 @@ namespace MMR_Tracker_V2
             this.enableBringYourOwnAmmoToolStripMenuItem.Text = "Enable Bring Your Own Ammo";
             this.enableBringYourOwnAmmoToolStripMenuItem.Click += new System.EventHandler(this.enableBringYourOwnAmmoToolStripMenuItem_Click);
             // 
+            // smallKeyDoorsAlwaysOpenToolStripMenuItem
+            // 
+            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Name = "smallKeyDoorsAlwaysOpenToolStripMenuItem";
+            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Text = "Small Key Doors Always Open";
+            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Click += new System.EventHandler(this.smallKeyDoorsAlwaysOpenToolStripMenuItem_Click);
+            // 
+            // bossKeyDoorsAlwaysOpenToolStripMenuItem
+            // 
+            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Name = "bossKeyDoorsAlwaysOpenToolStripMenuItem";
+            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Text = "Boss Key Doors Always Open";
+            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Click += new System.EventHandler(this.bossKeyDoorsAlwaysOpenToolStripMenuItem_Click);
+            // 
             // changeLogicToolStripMenuItem
             // 
             this.changeLogicToolStripMenuItem.Name = "changeLogicToolStripMenuItem";
@@ -482,7 +502,7 @@ namespace MMR_Tracker_V2
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // useSongOfTimeInPathfinderToolStripMenuItem
@@ -522,7 +542,7 @@ namespace MMR_Tracker_V2
             this.changeMiddleClickToStarToolStripMenuItem,
             this.changeFontToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // horizontalLayoutToolStripMenuItem
@@ -563,7 +583,7 @@ namespace MMR_Tracker_V2
             // onlinePlayToolStripMenuItem
             // 
             this.onlinePlayToolStripMenuItem.Name = "onlinePlayToolStripMenuItem";
-            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.onlinePlayToolStripMenuItem.Text = "Online Play";
             this.onlinePlayToolStripMenuItem.Click += new System.EventHandler(this.onlinePlayToolStripMenuItem_Click);
             // 
@@ -794,20 +814,6 @@ namespace MMR_Tracker_V2
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.RedoToolStripMenuItem_Click);
-            // 
-            // smallKeyDoorsAlwaysOpenToolStripMenuItem
-            // 
-            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Name = "smallKeyDoorsAlwaysOpenToolStripMenuItem";
-            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Text = "Small Key Doors Always Open";
-            this.smallKeyDoorsAlwaysOpenToolStripMenuItem.Click += new System.EventHandler(this.smallKeyDoorsAlwaysOpenToolStripMenuItem_Click);
-            // 
-            // bossKeyDoorsAlwaysOpenToolStripMenuItem
-            // 
-            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Name = "bossKeyDoorsAlwaysOpenToolStripMenuItem";
-            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Text = "Boss Key Doors Always Open";
-            this.bossKeyDoorsAlwaysOpenToolStripMenuItem.Click += new System.EventHandler(this.bossKeyDoorsAlwaysOpenToolStripMenuItem_Click);
             // 
             // MainInterface
             // 

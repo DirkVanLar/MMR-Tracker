@@ -859,6 +859,11 @@ namespace MMR_Tracker.Forms
             }
         }
 
+        private void preventKeyShortcuts(object sender, KeyPressEventArgs e)
+        {
+            if (Control.ModifierKeys == Keys.Control) { e.Handled = true; }
+        }
+
         private void ReorderLogicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogicEditorReorder Selector = new LogicEditorReorder();
