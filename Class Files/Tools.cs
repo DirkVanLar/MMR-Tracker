@@ -480,9 +480,6 @@ namespace MMR_Tracker.Class_Files
             Instance.UnsavedChanges = false;
             Debugging.Log("Start Clone");
             var SaveInstance = Utility.CloneTrackerInstance(Instance);
-            Debugging.Log("Clear undo/redo");
-            SaveInstance.UndoList.Clear();
-            SaveInstance.RedoList.Clear();
             Debugging.Log("Write Data");
             File.WriteAllText(FilePath, System.Text.Json.JsonSerializer.Serialize(SaveInstance, _jsonSerializerOptions));
             //File.WriteAllText(FilePath, JsonConvert.SerializeObject(SaveInstance, _jsonSerializerOptions));
@@ -576,65 +573,96 @@ namespace MMR_Tracker.Class_Files
             return false;
         }
 
-        public static void SaveState(LogicObjects.TrackerInstance Instance, LogicObjects.UndoData Data )
+        public static void SaveState(LogicObjects.TrackerInstance Instance, LogicObjects.SaveState Data, LogicObjects.UndoRedoData UndoredoData, bool CloneData = true)
         {
+            if (CloneData)
+            {
+                if (Data.trackerInstance != null)
+                {
+                    Data.trackerInstance = Utility.CloneTrackerInstance(Data.trackerInstance);
+                }
+                else if (Data.Logic != null)
+                {
+                    Data.Logic = Utility.CloneLogicList(Data.Logic);
+                }
+                else if (Data.SingleItems != null)
+                {
+                    Data.SingleItems = Utility.CloneLogicList(Data.SingleItems);
+                }
+            }
             int MaxUndoCount = (int)Math.Floor(Math.Pow(((double)5000 / (double)Instance.Logic.Count()), 1.5)); //Reduce the max count based on the size of the logic.
             if (MaxUndoCount < 3) { MaxUndoCount = 3; }
-            Instance.UndoList.Add(Data);
-            if (Instance.UndoList.Count() > MaxUndoCount) { Instance.UndoList.RemoveAt(0); }
-            Instance.RedoList = new List<LogicObjects.UndoData>();
+            UndoredoData.UndoList.Add(Data);
+            if (UndoredoData.UndoList.Count() > MaxUndoCount) { UndoredoData.UndoList.RemoveAt(0); }
+            UndoredoData.RedoList = new List<LogicObjects.SaveState>();
             MainInterface.CurrentProgram.Tools_StateListChanged();
-            Console.WriteLine(Instance.UndoList.Count);
+
         }
 
-        public static void Undo(LogicObjects.TrackerInstance Instance)
+        public static void Undo(LogicObjects.TrackerInstance Instance, LogicObjects.UndoRedoData UndoredoData)
         {
-            if (Instance.UndoList.Any())
+            if (UndoredoData.UndoList.Any())
             {
                 SetUnsavedChanges(Instance);
-                var lastItem = Instance.UndoList.Count - 1;
-                Console.WriteLine(Instance.UndoList.Count);
+                var lastItem = UndoredoData.UndoList.Count - 1;
 
-                if (Instance.UndoList[lastItem] == null) { Console.WriteLine("Last Entry Was empty"); return; }
+                if (UndoredoData.UndoList[lastItem] == null) { return; }
 
-                if (Instance.UndoList[lastItem].trackerInstance != null)
+                if (UndoredoData.UndoList[lastItem].trackerInstance != null)
                 {
-                    Instance.RedoList.Add(new LogicObjects.UndoData() { trackerInstance = Utility.CloneTrackerInstance(Instance) });
-                    var NewInstance = Utility.CloneTrackerInstance(Instance.UndoList[lastItem].trackerInstance);
-                    NewInstance.UndoList = Instance.UndoList;
-                    NewInstance.RedoList = Instance.RedoList;
+                    UndoredoData.RedoList.Add(new LogicObjects.SaveState() { trackerInstance = Utility.CloneTrackerInstance(Instance) });
+                    var NewInstance = Utility.CloneTrackerInstance(UndoredoData.UndoList[lastItem].trackerInstance);
                     Instance = NewInstance;
                 }
-                else if (Instance.UndoList[lastItem].Logic != null)
+                else if (UndoredoData.UndoList[lastItem].Logic != null)
                 {
-                    Instance.RedoList.Add(new LogicObjects.UndoData() { Logic = Utility.CloneLogicList(Instance.Logic) });
-                    Instance.Logic = Utility.CloneLogicList(Instance.UndoList[lastItem].Logic);
+                    UndoredoData.RedoList.Add(new LogicObjects.SaveState() { Logic = Utility.CloneLogicList(Instance.Logic) });
+                    Instance.Logic = Utility.CloneLogicList(UndoredoData.UndoList[lastItem].Logic);
                 }
-                else if (Instance.UndoList[lastItem].SingleItems != null)
+                else if (UndoredoData.UndoList[lastItem].SingleItems != null)
                 {
-                    Instance.RedoList.Add(new LogicObjects.UndoData() { Logic = Utility.CloneLogicList(Instance.Logic) });
-                    foreach (var i in Instance.UndoList[lastItem].SingleItems)
+                    UndoredoData.RedoList.Add(new LogicObjects.SaveState() { Logic = Utility.CloneLogicList(Instance.Logic) });
+                    foreach (var i in UndoredoData.UndoList[lastItem].SingleItems)
                     {
                         Instance.Logic[i.ID] = Utility.CloneLogicObject(i);
                     }
                 }
 
-                Instance.UndoList.RemoveAt(lastItem);
+                UndoredoData.UndoList.RemoveAt(lastItem);
                 MainInterface.CurrentProgram.Tools_StateListChanged();
             }
         }
 
-        public static void Redo(LogicObjects.TrackerInstance Instance)
+        public static void Redo(LogicObjects.TrackerInstance Instance, LogicObjects.UndoRedoData UndoredoData)
         {
-            if (Instance.RedoList.Any())
+            if (UndoredoData.RedoList.Any())
             {
                 SetUnsavedChanges(Instance);
-                var lastItem = Instance.RedoList.Count - 1;
-                Instance.UndoList.Add(new LogicObjects.UndoData() { trackerInstance = Utility.CloneTrackerInstance(Instance) });
-                var NewInstance = Utility.CloneTrackerInstance(Instance.UndoList[lastItem].trackerInstance);
-                NewInstance.UndoList = Instance.UndoList;
-                NewInstance.RedoList = Instance.RedoList;
-                Instance = NewInstance;
+                var lastItem = UndoredoData.RedoList.Count - 1;
+
+                if (UndoredoData.RedoList[lastItem].trackerInstance != null)
+                {
+                    UndoredoData.UndoList.Add(new LogicObjects.SaveState() { trackerInstance = Utility.CloneTrackerInstance(Instance) });
+                    var NewInstance = Utility.CloneTrackerInstance(UndoredoData.RedoList[lastItem].trackerInstance);
+                    Instance = NewInstance;
+                }
+                else if (UndoredoData.RedoList[lastItem].Logic != null)
+                {
+                    UndoredoData.UndoList.Add(new LogicObjects.SaveState() { Logic = Utility.CloneLogicList(Instance.Logic) });
+                    Instance.Logic = Utility.CloneLogicList(UndoredoData.RedoList[lastItem].Logic);
+                }
+                else if (UndoredoData.RedoList[lastItem].SingleItems != null)
+                {
+                    UndoredoData.UndoList.Add(new LogicObjects.SaveState() { Logic = Utility.CloneLogicList(Instance.Logic) });
+                    foreach (var i in UndoredoData.RedoList[lastItem].SingleItems)
+                    {
+                        Instance.Logic[i.ID] = Utility.CloneLogicObject(i);
+                    }
+                }
+
+                UndoredoData.RedoList.RemoveAt(lastItem);
+                MainInterface.CurrentProgram.Tools_StateListChanged();
+
             }
         }
 

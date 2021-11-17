@@ -126,7 +126,10 @@ namespace MMR_Tracker.Forms.Extra_Functionality
 
             var NewEntry = new LogicObjects.LogicEntry() { ID = entry.ID, DictionaryName = entry.DictionaryName, IsFake = entry.IsFake, Price = entry.Price, Required = entry.Required, Conditionals = entry.Conditionals };
             NewEntry = LogicEditing.PerformLogicEdits(NewEntry, Instance);
-            LogicEditor.CleanLogicEntry(NewEntry, Instance);
+            if (NewEntry.LogicWasEdited)
+            {
+                LogicEditor.CleanLogicEntry(NewEntry, Instance);
+            }
             chkShowUnaltered.Visible = NewEntry.LogicWasEdited;
 
             if (chkShowUnaltered.Checked)

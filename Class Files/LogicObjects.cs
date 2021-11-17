@@ -14,6 +14,7 @@ namespace MMR_Tracker_V2
     public class LogicObjects
     {
         public static TrackerInstance MainTrackerInstance = new TrackerInstance();
+        public static UndoRedoData MaintrackerInstanceUndoRedoData = new UndoRedoData();
 
         public class TrackerInstance
         {
@@ -29,8 +30,6 @@ namespace MMR_Tracker_V2
             public bool UnsavedChanges { get; set; } = false;
             public bool EntranceRando { get; set; } = false;
             public bool JsonLogic { get; set; } = false;
-            public List<UndoData> UndoList { get; set; } = new List<UndoData>();
-            public List<UndoData> RedoList { get; set; } = new List<UndoData>();
             public Dictionary<string, int> WalletDictionary { get; set; } = new Dictionary<string, int>();
             public Dictionary<string, List<int>> Keys { get; set; } = new Dictionary<string, List<int>>() { {"SmallKeys", new List<int>() }, { "BossKeys", new List<int>() }, { "ChecksNeedingKeys", new List<int>() } };
             public SavedSpoilerLog CurrentSpoilerLog { get; set; } = new SavedSpoilerLog { Log = null, type = null };
@@ -74,35 +73,35 @@ namespace MMR_Tracker_V2
         [Serializable]
         public class LogicEntry
         {
-            public int ID { get; set; } //The id of the item. Will match the id used in the Logic file
-            public string DictionaryName { get; set; } //The name the logic file uses for the item
-            public string LocationName { get; set; } //The name that will be displayed as the location you check
-            public string ItemName { get; set; } //The name that will be displayed as the item you recieve
-            public int[] Required { get; set; } //An array of the items required to check this location
-            public int[][] Conditionals { get; set; } //A 2d array of each set of conditionals required to check this location
-            public bool Available { get; set; } //Whether or not the location is available to be checked
-            public bool Aquired { get; set; } //Whether or not the item is aquired
-            public bool Checked { get; set; } //Whether or not the location has been checked
-            public int RandomizedItem { get; set; } //The random Item that was placed at the location
-            public bool IsFake { get; set; } //Whether or not the entry is a logic shortcut aka "Fake Item"
-            public int Options { get; set; } //Whether or not the location is randomized, unrandomized or forced Junk and whether or not it's a starting Item
+            public int ID { get; set; } = -2; //The id of the item. Will match the id used in the Logic file
+            public string DictionaryName { get; set; } = "ERROR"; //The name the logic file uses for the item
+            public string LocationName { get; set; } = null; //The name that will be displayed as the location you check
+            public string ItemName { get; set; } = null; //The name that will be displayed as the item you recieve
+            public int[] Required { get; set; } = null; //An array of the items required to check this location
+            public int[][] Conditionals { get; set; } = null; //A 2d array of each set of conditionals required to check this location
+            public bool Available { get; set; } = false; //Whether or not the location is available to be checked
+            public bool Aquired { get; set; } = false; //Whether or not the item is aquired
+            public bool Checked { get; set; } = false; //Whether or not the location has been checked
+            public int RandomizedItem { get; set; } = -2; //The random Item that was placed at the location
+            public bool IsFake { get; set; } = true; //Whether or not the entry is a logic shortcut aka "Fake Item"
+            public int Options { get; set; } = 0; //Whether or not the location is randomized, unrandomized or forced Junk and whether or not it's a starting Item
             public bool Starred { get; set; } = false; //Whether the check has been starred
-            public string LocationArea { get; set; } //The General Area the location is in
-            public string ItemSubType { get; set; } //The type of item it is
+            public string LocationArea { get; set; } = ""; //The General Area the location is in
+            public string ItemSubType { get; set; } = ""; //The type of item it is
             public List<string> SpoilerLocation { get; set; } = new List<string>(); //The name of this location in the spoiler Log
             public List<string> SpoilerItem { get; set; } = new List<string>(); //The name of this item in the spoiler log
-            public int SpoilerRandom { get; set; } //The item the spoiler log says is in this location
-            public int AvailableOn { get; set; } //When the Check is available
-            public int NeededBy { get; set; } //When the item is Needed
-            public int TimeSetup { get; set; } //Idk what this is, I think the randomizer uses it for advanced song of time/ocarina logic
-            public bool IsTrick { get; set; } //Whether or not the entry is a trick
-            public bool TrickEnabled { get; set; } //Whether or not the trick is enabled
-            public string TrickToolTip { get; set; } //The tool tip describing what the trick is
+            public int SpoilerRandom { get; set; } = -2; //The item the spoiler log says is in this location
+            public int AvailableOn { get; set; } = 0; //When the Check is available
+            public int NeededBy { get; set; } = 0; //When the item is Needed
+            public int TimeSetup { get; set; } = 0; //Idk what this is, I think the randomizer uses it for advanced song of time/ocarina logic
+            public bool IsTrick { get; set; } = false; //Whether or not the entry is a trick
+            public bool TrickEnabled { get; set; } = false; //Whether or not the trick is enabled
+            public string TrickToolTip { get; set; } = null; //The tool tip describing what the trick is
             public string GossipHint { get; set; } = ""; //The text assigned to this gossip stone. Only applicable if the check is a gossip stone.
             public int Price { get; set; } = -1; //The price to purchase the item at a shop, used in Price Randomizer.
             public bool LogicWasEdited { get; set; } = false; //Used to track if edits were made to the logic of this item.
             public PlayerData PlayerData { get; set; } = new PlayerData(); //Data for multiworld
-            public string DisplayName { get; set; } //The value that is displayed if this object is displayed as a string
+            public string DisplayName { get; set; } = ""; //The value that is displayed if this object is displayed as a string
             public override string ToString()
             {
                 return DisplayName ?? DictionaryName;
@@ -127,11 +126,17 @@ namespace MMR_Tracker_V2
             public string EntrancePair { get; set; } //The Paired entrance for this entry
         }
 
-        public class UndoData
+        public class SaveState
         {
             public LogicObjects.TrackerInstance trackerInstance { get; set; } = null;
             public List<LogicObjects.LogicEntry> Logic { get; set; } = null;
             public List<LogicObjects.LogicEntry> SingleItems { get; set; } = null;
+        }
+
+        public class UndoRedoData
+        {
+            public List<SaveState> UndoList { get; set; } = new List<SaveState>();
+            public List<SaveState> RedoList { get; set; } = new List<SaveState>();
         }
 
         public class Configuration

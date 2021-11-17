@@ -52,6 +52,23 @@ namespace MMR_Tracker_V2
             Console.WriteLine(LogicPrint);
         }
 
+        public static void PrintLogic(LogicObjects.LogicEntry Entry, int Whattoprint = 0)
+        {
+            Console.WriteLine($"Logic for {Entry.DictionaryName ?? "Unkown"}");
+            if (Whattoprint == 0 || Whattoprint == 1)
+            {
+                if (Entry.Required == null) { Console.WriteLine("No requirements"); }
+                else { Console.WriteLine("Requirements:"); foreach (var i in Entry.Required) { Console.WriteLine(i); } }
+            }
+            if (Whattoprint == 0 || Whattoprint == 2)
+            {
+                if (Entry.Conditionals == null) { Console.WriteLine("No Conditionals"); }
+                else { Console.WriteLine("Conditionals:"); foreach (var i in Entry.Conditionals) { Console.Write("|"); foreach (var j in i) { Console.Write(j); } } }
+            }
+            Console.WriteLine($"");
+            Console.WriteLine($"End write Logic");
+        }
+
         public static void Log(string Data, int LogLevel = 0)
         {
             //0 = Print to Console, 1 = Print to LogFile, 2 = Print to Both

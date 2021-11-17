@@ -82,7 +82,7 @@ namespace MMR_Tracker_V2
         #region Form Events
         private void RedoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Tools.Redo(LogicObjects.MainTrackerInstance);
+            Tools.Redo(LogicObjects.MainTrackerInstance, LogicObjects.MaintrackerInstanceUndoRedoData);
             PrintToListBox();
             FormatMenuItems();
             FireEvents(sender, e);
@@ -90,7 +90,7 @@ namespace MMR_Tracker_V2
 
         private void UndoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Tools.Undo(LogicObjects.MainTrackerInstance);
+            Tools.Undo(LogicObjects.MainTrackerInstance, LogicObjects.MaintrackerInstanceUndoRedoData);
             PrintToListBox();
             FormatMenuItems();
             FireEvents(sender, e);
@@ -291,7 +291,7 @@ namespace MMR_Tracker_V2
             if (LogicObjects.MainTrackerInstance.Options.CoupleEntrances)
             {
                 Tools.SetUnsavedChanges(LogicObjects.MainTrackerInstance);
-                Tools.SaveState(LogicObjects.MainTrackerInstance, new LogicObjects.UndoData() { Logic = LogicObjects.MainTrackerInstance.Logic });
+                Tools.SaveState(LogicObjects.MainTrackerInstance, new LogicObjects.SaveState() { Logic = LogicObjects.MainTrackerInstance.Logic }, LogicObjects.MaintrackerInstanceUndoRedoData);
                 foreach (var entry in LogicObjects.MainTrackerInstance.Logic)
                 {
                     if (entry.Checked && entry.RandomizedItem > -1)
@@ -1011,7 +1011,7 @@ namespace MMR_Tracker_V2
                     if (dialogResult == DialogResult.Yes) { ActiveItem.SpoilerRandom = -2; ActiveItem.GossipHint = ""; ActiveItem.Price = -1; }
                     break;
                 case 8:
-                    Tools.SaveState(LogicObjects.MainTrackerInstance, new LogicObjects.UndoData() { Logic = LogicObjects.MainTrackerInstance.Logic });
+                    Tools.SaveState(LogicObjects.MainTrackerInstance, new LogicObjects.SaveState() { Logic = LogicObjects.MainTrackerInstance.Logic }, LogicObjects.MaintrackerInstanceUndoRedoData);
                     for (var i = 0; i < 2; i++)
                     {
                         ListBox ItemList = new ListBox();
@@ -1424,8 +1424,9 @@ namespace MMR_Tracker_V2
 
             if (!CIF.ItemStateChanged && ItemsCameFromPlayer == -2) { return; }
             if (FullCheck)
-            {
-                Tools.SaveState(LogicObjects.MainTrackerInstance, new LogicObjects.UndoData() { Logic = CheckedItems }); //Now that we have successfully checked/Marked an object we can commit to a full save state
+            {  
+                //Now that we have successfully checked/Marked an object we can commit to a full save state
+                Tools.SaveState(LogicObjects.MainTrackerInstance, new LogicObjects.SaveState() { Logic = CheckedItems }, LogicObjects.MaintrackerInstanceUndoRedoData, false);
                 Tools.SetUnsavedChanges(LogicObjects.MainTrackerInstance);
                 Debugging.Log("Save State Application took " + ((System.DateTime.Now.Ticks - StartTime) / 10000) + " Milisecconds");
                 StartTime = System.DateTime.Now.Ticks;
@@ -1719,8 +1720,8 @@ namespace MMR_Tracker_V2
 
         public void Tools_StateListChanged()
         {
-            undoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.UndoList.Count > 0;
-            redoToolStripMenuItem.Enabled = LogicObjects.MainTrackerInstance.RedoList.Count > 0;
+            undoToolStripMenuItem.Enabled = LogicObjects.MaintrackerInstanceUndoRedoData.UndoList.Count > 0;
+            redoToolStripMenuItem.Enabled = LogicObjects.MaintrackerInstanceUndoRedoData.RedoList.Count > 0;
         }
 
 

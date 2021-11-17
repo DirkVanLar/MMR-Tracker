@@ -581,5 +581,13 @@ namespace MMR_Tracker_V2
                 { "HeartPieceHoneyAndDarling", new string[] { "ChestInvertedStoneTowerBombchu10", "ChestLinkTrialBombchu10", "ShopItemBombsBombchu10" } }
             };
         }
+        public static void nullLogicItems(List<LogicObjects.LogicEntry> Logic)
+        {
+            foreach(var i in Logic)
+            {
+                if (i.Required == null || !i.Required.Any()) { i.Required = null; }
+                if (i.Conditionals == null || !i.Conditionals.Any()) { i.Conditionals = null; }
+            }
+        }
     }
 }

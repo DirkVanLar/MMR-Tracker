@@ -22,6 +22,8 @@ namespace MMR_Tracker.Forms
         //Main Lists
         public static LogicObjects.TrackerInstance EditorInstance = new LogicObjects.TrackerInstance();
 
+        public static LogicObjects.UndoRedoData EditorInstanceUndoRedoData = new LogicObjects.UndoRedoData();
+
         //Utility Lists
         public static List<LogicObjects.LogicEntry> CopiedRequirement = new List<LogicObjects.LogicEntry>();
         public static List<RequiementConditional> CopiedConditional = new List<RequiementConditional>();
@@ -199,7 +201,7 @@ namespace MMR_Tracker.Forms
         private void BtnAddReq_Click(object sender, EventArgs e)
         {
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             MiscMultiItemSelect NeededSelect = new MiscMultiItemSelect
             {
                 UsedInstance = EditorInstance,
@@ -240,7 +242,7 @@ namespace MMR_Tracker.Forms
             }
 
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
 
             Debugging.Log($"Begin create {UniqueCombinations} permutatios");
             try
@@ -268,7 +270,7 @@ namespace MMR_Tracker.Forms
         private void BtnRemoveReq_Click(object sender, EventArgs e)
         {
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             LBRequired.BeginUpdate();
             for (int x = LBRequired.SelectedIndices.Count - 1; x >= 0; x--)
             {
@@ -294,7 +296,7 @@ namespace MMR_Tracker.Forms
         private void BtnRemoveCond_Click(object sender, EventArgs e)
         {
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             LBConditional.BeginUpdate();
             for (int x = LBConditional.SelectedIndices.Count - 1; x >= 0; x--)
             {
@@ -329,20 +331,20 @@ namespace MMR_Tracker.Forms
 
         private void BtnUndo_Click(object sender, EventArgs e)
         {
-            Tools.Undo(EditorInstance);
+            Tools.Undo(EditorInstance, EditorInstanceUndoRedoData);
             WriteCurentItem(currentEntry.ID);
         }
 
         private void BtnRedo_Click(object sender, EventArgs e)
         {
-            Tools.Redo(EditorInstance);
+            Tools.Redo(EditorInstance, EditorInstanceUndoRedoData);
             WriteCurentItem(currentEntry.ID);
         }
 
         private void BtnNewItem_Click(object sender, EventArgs e)
         {
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             string name = Interaction.InputBox("Input New Item Name", "New Item", "");
             if (name == "") { return; }
             CreatingNewItem = true;
@@ -358,7 +360,7 @@ namespace MMR_Tracker.Forms
         private void BtnEditSelected_Click(object sender, EventArgs e)
         {
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             for (var n = 0; n < LBConditional.Items.Count; n++)
             {
                 if (LBConditional.GetSelected(n))
@@ -454,7 +456,7 @@ namespace MMR_Tracker.Forms
         {
             if (PrintingItem) { return; }
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             WriteTimeDependecies(currentEntry);
         }
 
@@ -827,7 +829,7 @@ namespace MMR_Tracker.Forms
             Selector.ShowDialog();
             if(Selector.DialogResult != DialogResult.OK) { return; }
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             int counter = 0;
             Dictionary<int, int> newOrder = new Dictionary<int, int>();
             foreach(var i in Selector.SelectedItems)
@@ -878,7 +880,7 @@ namespace MMR_Tracker.Forms
         private void RenameCurrentItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!currentEntry.IsFake) { MessageBox.Show("Only fake Items Can be Renamed"); return; }
-            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             string name = Interaction.InputBox("Input New Item Name", "New Item", currentEntry.DictionaryName);
             if (name == "") { return; }
             EditorInstance.UnsavedChanges = true;
@@ -896,7 +898,7 @@ namespace MMR_Tracker.Forms
         {
             if (PrintingItem) { return; }
             EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             currentEntry.IsTrick = chkIsTrick.Checked;
             setTrickToolTipToolStripMenuItem.Visible = currentEntry.IsTrick;
         }
@@ -1072,7 +1074,7 @@ namespace MMR_Tracker.Forms
             if (result == DialogResult.OK)
             {
                 EditorInstance.UnsavedChanges = true;
-                Tools.SaveState(EditorInstance, new LogicObjects.UndoData() { Logic = EditorInstance.Logic });
+                Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
                 if (currentEntry.Conditionals == null)
                 {
                     currentEntry.Conditionals = LogicParser.Conditionals;
@@ -1109,6 +1111,7 @@ namespace MMR_Tracker.Forms
 
         public static void CleanLogicEntry(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool RemoveRedundant = true, bool Extractreq = true)
         {
+            Utility.nullLogicItems(Instance.Logic);
             if (entry.Required == null && entry.Conditionals == null) { return; }
             var l = Instance.Logic;
             if (entry.Required != null && 
@@ -1168,7 +1171,6 @@ namespace MMR_Tracker.Forms
                 TempConditionals = NewConditionals.ToList();
                 TempConditionals.RemoveAll(x => !x.Any());
             }
-
             entry.Conditionals = (TempConditionals.Any()) ? TempConditionals.Select(x => x.ToArray()).ToArray() : null;
 
             return ChangesMade;
@@ -1218,12 +1220,14 @@ namespace MMR_Tracker.Forms
 
         private void extractRequiredItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             CleanLogicEntry(currentEntry, EditorInstance, false);
             WriteCurentItem(currentEntry.ID);
         }
 
         private void removeRedundantConditionalsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             CleanLogicEntry(currentEntry, EditorInstance, true, false);
             WriteCurentItem(currentEntry.ID);
         }

@@ -406,7 +406,7 @@ namespace MMR_Tracker_V2
                 LogicFile = (saveFile) ? SaveFileRawLogicFile : File.ReadAllLines(file);
             }
 
-            Tools.SaveState(Instance, new LogicObjects.UndoData() { trackerInstance = Instance });
+            Tools.SaveState(Instance, new LogicObjects.SaveState() { trackerInstance = Instance }, LogicObjects.MaintrackerInstanceUndoRedoData);
 
             var OldLogic = Utility.CloneLogicList(Instance.Logic);
             Instance.RawLogicFile = LogicFile;

@@ -180,7 +180,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
         private void Addconditional()
         {
             LogicEditor.EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(LogicEditor.EditorInstance, new LogicObjects.UndoData() { Logic = LogicEditor.EditorInstance.Logic });
+            Tools.SaveState(LogicEditor.EditorInstance, new LogicObjects.SaveState() { Logic = LogicEditor.EditorInstance.Logic }, LogicEditor.EditorInstanceUndoRedoData);
             if (SelectedItems.Count < 1) { return; }
             if (AddCondSeperately)
             {
