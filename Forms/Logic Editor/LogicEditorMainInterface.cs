@@ -109,6 +109,9 @@ namespace MMR_Tracker.Forms
             chkSetNight1.Enabled = enabled;
             chkSetNight2.Enabled = enabled;
             chkSetNight3.Enabled = enabled;
+            groupBox1.Enabled = enabled;
+            groupBox2.Enabled = enabled;
+            groupBox3.Enabled = enabled;
 
             undoToolStripMenuItem.Visible = enabled;
             redoToolStripMenuItem.Visible = enabled;
@@ -149,6 +152,40 @@ namespace MMR_Tracker.Forms
                 if (file == "") { return; }
                 bool SettingsFile = file.EndsWith(".MMRTSET");
                 Lines = (SettingsFile) ? File.ReadAllLines(file).Skip(2).ToArray() : File.ReadAllLines(file).ToArray();
+            }
+
+            if (Tools.TestForTextSpoiler(Lines))
+            {
+                LogicObjects.GameplaySettings SettingFile = null;
+                foreach (var line in Lines)
+                {
+                    if (line.StartsWith("Settings:"))
+                    {
+                        var Newline = line.Replace("Settings:", "\"GameplaySettings\":");
+                        Newline = "{" + Newline + "}";
+                        try { SettingFile = JsonConvert.DeserializeObject<LogicObjects.Configuration>(Newline).GameplaySettings; }
+                        catch
+                        {
+                            SettingFile = Tools.ParseSpoilerLogSettingsWithLineBreak(Lines, text: true);
+                            if (SettingFile == null)
+                            {
+                                MessageBox.Show("File could nto be read. Please select a logic file");
+                                return;
+                            }
+                        }
+                        break;
+                    }
+                }
+                if (SettingFile == null)
+                {
+                    MessageBox.Show("File could nto be read. Please select a logic file");
+                    return;
+                }
+                else
+                {
+                    Lines = Tools.GetLogicFileFromSettings(SettingFile);
+                    if (Lines == null) { return; }
+                }
             }
 
             GoBackList = new List<int>();

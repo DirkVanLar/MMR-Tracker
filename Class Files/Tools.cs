@@ -1027,7 +1027,8 @@ namespace MMR_Tracker.Class_Files
                         break;
                     }
                 }
-                if (!setLogicFile()) { return false; }
+                RawLogicFile = GetLogicFileFromSettings(SettingFile);
+                if (RawLogicFile == null) { return false; }
 
             }
             else if (TextLog)
@@ -1051,45 +1052,8 @@ namespace MMR_Tracker.Class_Files
                         break;
                     }
                 }
-                if (!setLogicFile()) { return false; }
-            }
-
-            bool setLogicFile()
-            {
-                if (SettingFile.LogicMode == "Casual")
-                {
-                    System.Net.WebClient wc = new System.Net.WebClient();
-                    string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
-                    RawLogicFile = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                }
-                else if (SettingFile.LogicMode == "Glitched")
-                {
-                    System.Net.WebClient wc = new System.Net.WebClient();
-                    string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
-                    RawLogicFile = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                }
-                else
-                {
-                    if (!File.Exists(SettingFile.UserLogicFileName)) 
-                    { 
-                        MessageBox.Show("The logic file used to create this seed could not be found! Ensure it is in the same location and has the same name as when the seed whas generated!");
-                        return false; 
-                    }
-
-                    if (SettingFile.UserLogicFileName.EndsWith(".json"))
-                    {
-                        LogicObjects.GameplaySettings SettingJSONfromSpoilerLog = null;
-                        try { SettingJSONfromSpoilerLog = JsonConvert.DeserializeObject<LogicObjects.Configuration>(File.ReadAllText(SettingFile.UserLogicFileName)).GameplaySettings; }
-                        catch { MessageBox.Show("Spoiler Log did not have Usable Logic Data!"); return false; }
-                        if (SettingJSONfromSpoilerLog.Logic == "") { MessageBox.Show("Logic not found!"); return false; }
-                        RawLogicFile = SettingJSONfromSpoilerLog.Logic.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-                    }
-                    else
-                    {
-                        RawLogicFile = File.ReadAllLines(SettingFile.UserLogicFileName);
-                    }
-                }
-                return true;
+                RawLogicFile = GetLogicFileFromSettings(SettingFile);
+                if (RawLogicFile == null) { return false; }
             }
 
             LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
@@ -1113,6 +1077,45 @@ namespace MMR_Tracker.Class_Files
             }
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
             return true;
+        }
+
+        public static string[] GetLogicFileFromSettings(LogicObjects.GameplaySettings SettingFile)
+        {
+            string[] RawLogicFile;
+            if (SettingFile.LogicMode == "Casual")
+            {
+                System.Net.WebClient wc = new System.Net.WebClient();
+                string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_CASUAL.txt");
+                RawLogicFile = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            }
+            else if (SettingFile.LogicMode == "Glitched")
+            {
+                System.Net.WebClient wc = new System.Net.WebClient();
+                string webData = wc.DownloadString("https://raw.githubusercontent.com/ZoeyZolotova/mm-rando/dev/MMR.Randomizer/Resources/REQ_GLITCH.txt");
+                RawLogicFile = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            }
+            else
+            {
+                if (!File.Exists(SettingFile.UserLogicFileName))
+                {
+                    MessageBox.Show("The logic file used to create this seed could not be found! Ensure it is in the same location and has the same name as when the seed whas generated!");
+                    return null;
+                }
+
+                if (SettingFile.UserLogicFileName.EndsWith(".json"))
+                {
+                    LogicObjects.GameplaySettings SettingJSONfromSpoilerLog = null;
+                    try { SettingJSONfromSpoilerLog = JsonConvert.DeserializeObject<LogicObjects.Configuration>(File.ReadAllText(SettingFile.UserLogicFileName)).GameplaySettings; }
+                    catch { MessageBox.Show("Spoiler Log did not have Usable Logic Data!"); return null; }
+                    if (SettingJSONfromSpoilerLog.Logic == "") { MessageBox.Show("Logic not found!"); return null; }
+                    RawLogicFile = SettingJSONfromSpoilerLog.Logic.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                }
+                else
+                {
+                    RawLogicFile = File.ReadAllLines(SettingFile.UserLogicFileName);
+                }
+            }
+            return RawLogicFile;
         }
 
         public static bool TestForTextSpoiler(string[] RawLogicFile)

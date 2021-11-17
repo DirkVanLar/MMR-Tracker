@@ -49,8 +49,6 @@
             this.btnAddCond = new System.Windows.Forms.Button();
             this.btnRemoveReq = new System.Windows.Forms.Button();
             this.btnRemoveCond = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblItemName = new System.Windows.Forms.Label();
             this.lblLocName = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
@@ -62,9 +60,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveLogicInJSONFormatBetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveLogicWithTrickDataDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveLogicInJSONFormatBetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applyToTrackerLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,15 +88,20 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.chkIsTrick = new System.Windows.Forms.CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.chkSetNight3 = new System.Windows.Forms.CheckBox();
             this.chkSetDay3 = new System.Windows.Forms.CheckBox();
             this.chkSetNight2 = new System.Windows.Forms.CheckBox();
             this.chkSetDay2 = new System.Windows.Forms.CheckBox();
             this.chkSetNight1 = new System.Windows.Forms.CheckBox();
             this.chkSetDay1 = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // LBRequired
@@ -138,7 +141,7 @@
             this.chkNeedDay1.AutoSize = true;
             this.chkNeedDay1.BackColor = System.Drawing.Color.Transparent;
             this.chkNeedDay1.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkNeedDay1.Location = new System.Drawing.Point(12, 426);
+            this.chkNeedDay1.Location = new System.Drawing.Point(6, 16);
             this.chkNeedDay1.Name = "chkNeedDay1";
             this.chkNeedDay1.Size = new System.Drawing.Size(54, 17);
             this.chkNeedDay1.TabIndex = 2;
@@ -151,7 +154,7 @@
             this.chkNeedNight1.AutoSize = true;
             this.chkNeedNight1.BackColor = System.Drawing.Color.Transparent;
             this.chkNeedNight1.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkNeedNight1.Location = new System.Drawing.Point(63, 426);
+            this.chkNeedNight1.Location = new System.Drawing.Point(60, 16);
             this.chkNeedNight1.Name = "chkNeedNight1";
             this.chkNeedNight1.Size = new System.Drawing.Size(60, 17);
             this.chkNeedNight1.TabIndex = 3;
@@ -164,7 +167,7 @@
             this.chkNeedDay2.AutoSize = true;
             this.chkNeedDay2.BackColor = System.Drawing.Color.Transparent;
             this.chkNeedDay2.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkNeedDay2.Location = new System.Drawing.Point(12, 449);
+            this.chkNeedDay2.Location = new System.Drawing.Point(6, 38);
             this.chkNeedDay2.Name = "chkNeedDay2";
             this.chkNeedDay2.Size = new System.Drawing.Size(54, 17);
             this.chkNeedDay2.TabIndex = 4;
@@ -177,7 +180,7 @@
             this.chkNeedNight2.AutoSize = true;
             this.chkNeedNight2.BackColor = System.Drawing.Color.Transparent;
             this.chkNeedNight2.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkNeedNight2.Location = new System.Drawing.Point(63, 449);
+            this.chkNeedNight2.Location = new System.Drawing.Point(60, 39);
             this.chkNeedNight2.Name = "chkNeedNight2";
             this.chkNeedNight2.Size = new System.Drawing.Size(60, 17);
             this.chkNeedNight2.TabIndex = 5;
@@ -190,7 +193,7 @@
             this.chkNeedDay3.AutoSize = true;
             this.chkNeedDay3.BackColor = System.Drawing.Color.Transparent;
             this.chkNeedDay3.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkNeedDay3.Location = new System.Drawing.Point(12, 472);
+            this.chkNeedDay3.Location = new System.Drawing.Point(6, 61);
             this.chkNeedDay3.Name = "chkNeedDay3";
             this.chkNeedDay3.Size = new System.Drawing.Size(54, 17);
             this.chkNeedDay3.TabIndex = 6;
@@ -203,7 +206,7 @@
             this.chkNeedNight3.AutoSize = true;
             this.chkNeedNight3.BackColor = System.Drawing.Color.Transparent;
             this.chkNeedNight3.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkNeedNight3.Location = new System.Drawing.Point(63, 472);
+            this.chkNeedNight3.Location = new System.Drawing.Point(60, 62);
             this.chkNeedNight3.Name = "chkNeedNight3";
             this.chkNeedNight3.Size = new System.Drawing.Size(60, 17);
             this.chkNeedNight3.TabIndex = 7;
@@ -216,7 +219,7 @@
             this.chkOnDay1.AutoSize = true;
             this.chkOnDay1.BackColor = System.Drawing.Color.Transparent;
             this.chkOnDay1.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkOnDay1.Location = new System.Drawing.Point(122, 426);
+            this.chkOnDay1.Location = new System.Drawing.Point(6, 16);
             this.chkOnDay1.Name = "chkOnDay1";
             this.chkOnDay1.Size = new System.Drawing.Size(54, 17);
             this.chkOnDay1.TabIndex = 8;
@@ -229,7 +232,7 @@
             this.chkOnNight1.AutoSize = true;
             this.chkOnNight1.BackColor = System.Drawing.Color.Transparent;
             this.chkOnNight1.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkOnNight1.Location = new System.Drawing.Point(173, 427);
+            this.chkOnNight1.Location = new System.Drawing.Point(60, 16);
             this.chkOnNight1.Name = "chkOnNight1";
             this.chkOnNight1.Size = new System.Drawing.Size(60, 17);
             this.chkOnNight1.TabIndex = 9;
@@ -242,7 +245,7 @@
             this.chkOnDay2.AutoSize = true;
             this.chkOnDay2.BackColor = System.Drawing.Color.Transparent;
             this.chkOnDay2.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkOnDay2.Location = new System.Drawing.Point(122, 449);
+            this.chkOnDay2.Location = new System.Drawing.Point(6, 38);
             this.chkOnDay2.Name = "chkOnDay2";
             this.chkOnDay2.Size = new System.Drawing.Size(54, 17);
             this.chkOnDay2.TabIndex = 10;
@@ -255,7 +258,7 @@
             this.chkOnNight2.AutoSize = true;
             this.chkOnNight2.BackColor = System.Drawing.Color.Transparent;
             this.chkOnNight2.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkOnNight2.Location = new System.Drawing.Point(173, 450);
+            this.chkOnNight2.Location = new System.Drawing.Point(60, 39);
             this.chkOnNight2.Name = "chkOnNight2";
             this.chkOnNight2.Size = new System.Drawing.Size(60, 17);
             this.chkOnNight2.TabIndex = 11;
@@ -268,7 +271,7 @@
             this.chkOnDay3.AutoSize = true;
             this.chkOnDay3.BackColor = System.Drawing.Color.Transparent;
             this.chkOnDay3.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkOnDay3.Location = new System.Drawing.Point(122, 472);
+            this.chkOnDay3.Location = new System.Drawing.Point(6, 61);
             this.chkOnDay3.Name = "chkOnDay3";
             this.chkOnDay3.Size = new System.Drawing.Size(54, 17);
             this.chkOnDay3.TabIndex = 12;
@@ -281,7 +284,7 @@
             this.chkOnNight3.AutoSize = true;
             this.chkOnNight3.BackColor = System.Drawing.Color.Transparent;
             this.chkOnNight3.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkOnNight3.Location = new System.Drawing.Point(173, 473);
+            this.chkOnNight3.Location = new System.Drawing.Point(60, 62);
             this.chkOnNight3.Name = "chkOnNight3";
             this.chkOnNight3.Size = new System.Drawing.Size(60, 17);
             this.chkOnNight3.TabIndex = 13;
@@ -308,7 +311,7 @@
             this.lblDicName.BackColor = System.Drawing.Color.Transparent;
             this.lblDicName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDicName.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblDicName.Location = new System.Drawing.Point(344, 423);
+            this.lblDicName.Location = new System.Drawing.Point(390, 419);
             this.lblDicName.Name = "lblDicName";
             this.lblDicName.Size = new System.Drawing.Size(61, 13);
             this.lblDicName.TabIndex = 15;
@@ -355,35 +358,13 @@
             this.btnRemoveCond.UseVisualStyleBackColor = true;
             this.btnRemoveCond.Click += new System.EventHandler(this.BtnRemoveCond_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(9, 410);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Needed By";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(119, 410);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "Available On";
-            // 
             // lblItemName
             // 
             this.lblItemName.AutoSize = true;
             this.lblItemName.BackColor = System.Drawing.Color.Transparent;
             this.lblItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblItemName.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblItemName.Location = new System.Drawing.Point(344, 452);
+            this.lblItemName.Location = new System.Drawing.Point(390, 448);
             this.lblItemName.Name = "lblItemName";
             this.lblItemName.Size = new System.Drawing.Size(61, 13);
             this.lblItemName.TabIndex = 27;
@@ -396,7 +377,7 @@
             this.lblLocName.BackColor = System.Drawing.Color.Transparent;
             this.lblLocName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocName.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblLocName.Location = new System.Drawing.Point(344, 480);
+            this.lblLocName.Location = new System.Drawing.Point(390, 476);
             this.lblLocName.Name = "lblLocName";
             this.lblLocName.Size = new System.Drawing.Size(82, 13);
             this.lblLocName.TabIndex = 28;
@@ -429,7 +410,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label3.Location = new System.Drawing.Point(344, 410);
+            this.label3.Location = new System.Drawing.Point(390, 406);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 13);
             this.label3.TabIndex = 33;
@@ -441,7 +422,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label4.Location = new System.Drawing.Point(344, 439);
+            this.label4.Location = new System.Drawing.Point(390, 435);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 13);
             this.label4.TabIndex = 34;
@@ -453,7 +434,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label5.Location = new System.Drawing.Point(344, 467);
+            this.label5.Location = new System.Drawing.Point(390, 463);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(96, 13);
             this.label5.TabIndex = 35;
@@ -508,6 +489,13 @@
             this.saveLogicToolStripMenuItem.Text = "Save Logic";
             this.saveLogicToolStripMenuItem.Click += new System.EventHandler(this.saveLogicInJSONFormatBetaToolStripMenuItem_Click);
             // 
+            // saveLogicInJSONFormatBetaToolStripMenuItem
+            // 
+            this.saveLogicInJSONFormatBetaToolStripMenuItem.Name = "saveLogicInJSONFormatBetaToolStripMenuItem";
+            this.saveLogicInJSONFormatBetaToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
+            this.saveLogicInJSONFormatBetaToolStripMenuItem.Text = "Default, 1.15+, JSON Format";
+            this.saveLogicInJSONFormatBetaToolStripMenuItem.Click += new System.EventHandler(this.saveLogicInJSONFormatBetaToolStripMenuItem_Click);
+            // 
             // saveLogicWithTrickDataDefaultToolStripMenuItem
             // 
             this.saveLogicWithTrickDataDefaultToolStripMenuItem.Name = "saveLogicWithTrickDataDefaultToolStripMenuItem";
@@ -521,13 +509,6 @@
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Text = "Pre 1.12, Plain Text Format, No Trick Data";
             this.saveLogicWothoutTrickDataLegacyToolStripMenuItem.Click += new System.EventHandler(this.saveLogicWothoutTrickDataLegacyToolStripMenuItem_Click);
-            // 
-            // saveLogicInJSONFormatBetaToolStripMenuItem
-            // 
-            this.saveLogicInJSONFormatBetaToolStripMenuItem.Name = "saveLogicInJSONFormatBetaToolStripMenuItem";
-            this.saveLogicInJSONFormatBetaToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
-            this.saveLogicInJSONFormatBetaToolStripMenuItem.Text = "Default, 1.15+, JSON Format";
-            this.saveLogicInJSONFormatBetaToolStripMenuItem.Click += new System.EventHandler(this.saveLogicInJSONFormatBetaToolStripMenuItem_Click);
             // 
             // applyToTrackerLogicToolStripMenuItem
             // 
@@ -740,23 +721,12 @@
             this.chkIsTrick.UseVisualStyleBackColor = false;
             this.chkIsTrick.CheckedChanged += new System.EventHandler(this.chkIsTrick_CheckedChanged);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.ForeColor = System.Drawing.SystemColors.Control;
-            this.label8.Location = new System.Drawing.Point(228, 410);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 13);
-            this.label8.TabIndex = 50;
-            this.label8.Text = "Setup On";
-            // 
             // chkSetNight3
             // 
             this.chkSetNight3.AutoSize = true;
             this.chkSetNight3.BackColor = System.Drawing.Color.Transparent;
             this.chkSetNight3.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkSetNight3.Location = new System.Drawing.Point(282, 473);
+            this.chkSetNight3.Location = new System.Drawing.Point(60, 63);
             this.chkSetNight3.Name = "chkSetNight3";
             this.chkSetNight3.Size = new System.Drawing.Size(60, 17);
             this.chkSetNight3.TabIndex = 49;
@@ -769,7 +739,7 @@
             this.chkSetDay3.AutoSize = true;
             this.chkSetDay3.BackColor = System.Drawing.Color.Transparent;
             this.chkSetDay3.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkSetDay3.Location = new System.Drawing.Point(231, 472);
+            this.chkSetDay3.Location = new System.Drawing.Point(6, 62);
             this.chkSetDay3.Name = "chkSetDay3";
             this.chkSetDay3.Size = new System.Drawing.Size(54, 17);
             this.chkSetDay3.TabIndex = 48;
@@ -782,7 +752,7 @@
             this.chkSetNight2.AutoSize = true;
             this.chkSetNight2.BackColor = System.Drawing.Color.Transparent;
             this.chkSetNight2.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkSetNight2.Location = new System.Drawing.Point(282, 450);
+            this.chkSetNight2.Location = new System.Drawing.Point(60, 40);
             this.chkSetNight2.Name = "chkSetNight2";
             this.chkSetNight2.Size = new System.Drawing.Size(60, 17);
             this.chkSetNight2.TabIndex = 47;
@@ -795,7 +765,7 @@
             this.chkSetDay2.AutoSize = true;
             this.chkSetDay2.BackColor = System.Drawing.Color.Transparent;
             this.chkSetDay2.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkSetDay2.Location = new System.Drawing.Point(231, 449);
+            this.chkSetDay2.Location = new System.Drawing.Point(6, 39);
             this.chkSetDay2.Name = "chkSetDay2";
             this.chkSetDay2.Size = new System.Drawing.Size(54, 17);
             this.chkSetDay2.TabIndex = 46;
@@ -808,7 +778,7 @@
             this.chkSetNight1.AutoSize = true;
             this.chkSetNight1.BackColor = System.Drawing.Color.Transparent;
             this.chkSetNight1.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkSetNight1.Location = new System.Drawing.Point(282, 427);
+            this.chkSetNight1.Location = new System.Drawing.Point(60, 16);
             this.chkSetNight1.Name = "chkSetNight1";
             this.chkSetNight1.Size = new System.Drawing.Size(60, 17);
             this.chkSetNight1.TabIndex = 45;
@@ -821,7 +791,7 @@
             this.chkSetDay1.AutoSize = true;
             this.chkSetDay1.BackColor = System.Drawing.Color.Transparent;
             this.chkSetDay1.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkSetDay1.Location = new System.Drawing.Point(231, 426);
+            this.chkSetDay1.Location = new System.Drawing.Point(6, 16);
             this.chkSetDay1.Name = "chkSetDay1";
             this.chkSetDay1.Size = new System.Drawing.Size(54, 17);
             this.chkSetDay1.TabIndex = 44;
@@ -829,20 +799,67 @@
             this.chkSetDay1.UseVisualStyleBackColor = false;
             this.chkSetDay1.CheckedChanged += new System.EventHandler(this.TimeCheckBox_CheckedChanged);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.chkNeedDay1);
+            this.groupBox1.Controls.Add(this.chkNeedNight1);
+            this.groupBox1.Controls.Add(this.chkNeedDay2);
+            this.groupBox1.Controls.Add(this.chkNeedNight2);
+            this.groupBox1.Controls.Add(this.chkNeedDay3);
+            this.groupBox1.Controls.Add(this.chkNeedNight3);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Location = new System.Drawing.Point(12, 406);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(120, 83);
+            this.groupBox1.TabIndex = 51;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Needed By";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.chkOnDay1);
+            this.groupBox2.Controls.Add(this.chkOnNight1);
+            this.groupBox2.Controls.Add(this.chkOnDay2);
+            this.groupBox2.Controls.Add(this.chkOnNight2);
+            this.groupBox2.Controls.Add(this.chkOnDay3);
+            this.groupBox2.Controls.Add(this.chkOnNight3);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox2.Location = new System.Drawing.Point(138, 406);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(120, 83);
+            this.groupBox2.TabIndex = 52;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Available on";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox3.Controls.Add(this.chkSetDay1);
+            this.groupBox3.Controls.Add(this.chkSetNight1);
+            this.groupBox3.Controls.Add(this.chkSetDay2);
+            this.groupBox3.Controls.Add(this.chkSetNight2);
+            this.groupBox3.Controls.Add(this.chkSetNight3);
+            this.groupBox3.Controls.Add(this.chkSetDay3);
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Location = new System.Drawing.Point(264, 406);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(120, 83);
+            this.groupBox3.TabIndex = 53;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Setup On";
+            // 
             // LogicEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(810, 495);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.chkSetNight3);
-            this.Controls.Add(this.chkSetDay3);
-            this.Controls.Add(this.chkSetNight2);
-            this.Controls.Add(this.chkSetDay2);
-            this.Controls.Add(this.chkSetNight1);
-            this.Controls.Add(this.chkSetDay1);
+            this.ClientSize = new System.Drawing.Size(810, 500);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chkIsTrick);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
@@ -856,26 +873,12 @@
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblLocName);
             this.Controls.Add(this.lblItemName);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRemoveCond);
             this.Controls.Add(this.btnRemoveReq);
             this.Controls.Add(this.btnAddCond);
             this.Controls.Add(this.btnAddReq);
             this.Controls.Add(this.lblDicName);
             this.Controls.Add(this.nudIndex);
-            this.Controls.Add(this.chkOnNight3);
-            this.Controls.Add(this.chkOnDay3);
-            this.Controls.Add(this.chkOnNight2);
-            this.Controls.Add(this.chkOnDay2);
-            this.Controls.Add(this.chkOnNight1);
-            this.Controls.Add(this.chkOnDay1);
-            this.Controls.Add(this.chkNeedNight3);
-            this.Controls.Add(this.chkNeedDay3);
-            this.Controls.Add(this.chkNeedNight2);
-            this.Controls.Add(this.chkNeedDay2);
-            this.Controls.Add(this.chkNeedNight1);
-            this.Controls.Add(this.chkNeedDay1);
             this.Controls.Add(this.LBConditional);
             this.Controls.Add(this.LBRequired);
             this.Controls.Add(this.menuStrip1);
@@ -891,6 +894,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -914,8 +923,6 @@
         private System.Windows.Forms.Button btnAddCond;
         private System.Windows.Forms.Button btnRemoveReq;
         private System.Windows.Forms.Button btnRemoveCond;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblItemName;
         private System.Windows.Forms.Label lblLocName;
         private System.Windows.Forms.Button btnBack;
@@ -958,12 +965,14 @@
         public System.Windows.Forms.ToolStripMenuItem templatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showAllFakeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveLogicInJSONFormatBetaToolStripMenuItem;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox chkSetNight3;
         private System.Windows.Forms.CheckBox chkSetDay3;
         private System.Windows.Forms.CheckBox chkSetNight2;
         private System.Windows.Forms.CheckBox chkSetDay2;
         private System.Windows.Forms.CheckBox chkSetNight1;
         private System.Windows.Forms.CheckBox chkSetDay1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
