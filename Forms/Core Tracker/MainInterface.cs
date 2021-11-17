@@ -252,7 +252,7 @@ namespace MMR_Tracker_V2
 
         private void bossKeyDoorsAlwaysOpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LogicObjects.MainTrackerInstance.Options.Keysy["BossKey"] = !LogicObjects.MainTrackerInstance.Options.Keysy["SmallKey"];
+            LogicObjects.MainTrackerInstance.Options.Keysy["BossKey"] = !LogicObjects.MainTrackerInstance.Options.Keysy["BossKey"];
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
             FormatMenuItems();
             ResizeObject();

@@ -208,6 +208,7 @@ namespace MMR_Tracker.Class_Files
 
             foreach (var item in logic)
             {
+                if (item.SpoilerRandom < 0) { continue; }
                 List<int> UsedItems = new List<int>();
                 if (Instance.Logic[item.SpoilerRandom].StartingItem()) 
                 { 
@@ -400,8 +401,8 @@ namespace MMR_Tracker.Class_Files
 
             var WoodfallLocationName = WoodFallClear.ClearRandomizedDungeonInThisArea(instance).LocationName;
             var SnowheadLocationName = SnowheadClear.ClearRandomizedDungeonInThisArea(instance).LocationName;
-            var GreatBayLocationName = SnowheadClear.ClearRandomizedDungeonInThisArea(instance).LocationName;
-            var IkanaLocationName = SnowheadClear.ClearRandomizedDungeonInThisArea(instance).LocationName;
+            var GreatBayLocationName = GreatBayClear.ClearRandomizedDungeonInThisArea(instance).LocationName;
+            var IkanaLocationName = IkanaClear.ClearRandomizedDungeonInThisArea(instance).LocationName;
 
             WoodFallClear.LocationName = WoodfallLocationName;
             SnowheadClear.LocationName = SnowheadLocationName;

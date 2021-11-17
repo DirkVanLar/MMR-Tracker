@@ -109,6 +109,7 @@ namespace MMR_Tracker_V2
             instance.Keys["ChecksNeedingKeys"] = instance.GetChecksNeedingKeys();
             if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
             MarkUniqeItemsUnrandomizedManual(instance);
+            Utility.nullEmptyLogicItems(instance.Logic);
 
             return true;
 
@@ -218,6 +219,7 @@ namespace MMR_Tracker_V2
             CreateDicNameToID(instance);
             if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
             MarkUniqeItemsUnrandomizedManual(instance);
+            Utility.nullEmptyLogicItems(instance.Logic);
 
             return true;
         }
@@ -241,10 +243,10 @@ namespace MMR_Tracker_V2
         public static bool CondtionalsMet(int[][] list, LogicObjects.TrackerInstance logic, List<int> usedItems = null)
         {
             usedItems = usedItems ?? new List<int>();
-            if (list == null) { return true; }
+            if (list == null || !list.Any()) { return true; }
             //Remove any lines from the conditional that contain disabled tricks
             var ValidListEntries = list.Where(x => !x.Where(y => logic.Logic[y].IsTrick && !logic.Logic[y].TrickEnabled).Any());
-            if (!ValidListEntries.Any()) { return true; }
+            if (!ValidListEntries.Any()) { return false; ; } //See: Conditional with only tricks
             foreach (var i in ValidListEntries)
             {
                 List<int> UsedItemsSet = new List<int>();
@@ -255,12 +257,26 @@ namespace MMR_Tracker_V2
                 }
             }
             return false;
+
+            #region Conditional with only tricks
+            /*This function will return false if there are no conditional entries left after disabled tricks have been removed.
+            The randomizer does the opposite, returning true if the conditional only contained tricks and all those tricks were removed.
+            This works for the randomizer because it assumes the conditional will always have at least one entry with no tricks to fall back on.
+            In the randomizer, if a check is unobtainable it is given moon access as a requirement, or conditinal if tricks can make it obtainable.
+            It has to do this since, while moon access does make sure the location can't contain something needed to beat the game, it is eventually obtainable.
+            The randomizer errors if any check is unobtainable, even if the check is not needed to beat the game. The tracker doesn't care.
+            By having the tracker return false if all conditionals are inavlid tricks it gives the tracker an option to make checks unobtainable.
+            Since the randomizer expects logic will always have at least one conditional with no tricks to fall back on, 
+            this will only cause inconsistancy if logic was used that is invalid in the randomizer anyway.*/
+            #endregion
+
         }
 
         public static void CalculateItems(LogicObjects.TrackerInstance Instance, bool ForceStrictLogicHendeling = false, bool InitialRun = true, bool fromScratch = true)
         {
             if (InitialRun)
             {
+                Utility.nullEmptyLogicItems(Instance.Logic);
                 if ((Instance.Options.StrictLogicHandeling || ForceStrictLogicHendeling)) { Instance.RefreshFakeItems(); }
             }
             //Calculate all fake items. If the fake item is available, set it to aquired
@@ -746,25 +762,19 @@ namespace MMR_Tracker_V2
                     NewEntry.LogicWasEdited = true;
                 }
             }
-            if (Instance.Options.Keysy["SmallKey"])
+            if (Instance.Options.Keysy["SmallKey"] && (Instance.Keys["ChecksNeedingKeys"].Contains(NewEntry.ID) || NewEntry.LogicWasEdited)) //If logic was editied, run it anyway to be safe.
             {
-                if (Instance.Keys["ChecksNeedingKeys"].Contains(NewEntry.ID))
-                {
-                    NewEntry.Required = removeItemFromRequirement(NewEntry.Required, Instance.Keys["SmallKeys"].ToArray());
-                    NewEntry.Conditionals = removeItemFromConditionals(NewEntry.Conditionals, Instance.Keys["SmallKeys"].ToArray(), true);
-                    //Console.WriteLine($"{NewEntry.DictionaryName} Had Small Keys removed");
-                    NewEntry.LogicWasEdited = true;
-                }
+                NewEntry.Required = removeItemFromRequirement(NewEntry.Required, Instance.Keys["SmallKeys"].ToArray());
+                NewEntry.Conditionals = removeItemFromConditionals(NewEntry.Conditionals, Instance.Keys["SmallKeys"].ToArray(), true);
+                //Console.WriteLine($"{NewEntry.DictionaryName} Had Small Keys removed");
+                NewEntry.LogicWasEdited = true;
             }
-            if (Instance.Options.Keysy["BossKey"])
+            if (Instance.Options.Keysy["BossKey"] && (Instance.Keys["ChecksNeedingKeys"].Contains(NewEntry.ID) || NewEntry.LogicWasEdited)) //If logic was editied, run it anyway to be safe.
             {
-                if (Instance.Keys["ChecksNeedingKeys"].Contains(NewEntry.ID))
-                {
-                    NewEntry.Required = removeItemFromRequirement(NewEntry.Required, Instance.Keys["BossKeys"].ToArray());
-                    NewEntry.Conditionals = removeItemFromConditionals(NewEntry.Conditionals, Instance.Keys["BossKeys"].ToArray(), true);
-                    //Console.WriteLine($"{NewEntry.DictionaryName} Had Boss Keys removed");
-                    NewEntry.LogicWasEdited = true;
-                }
+                NewEntry.Required = removeItemFromRequirement(NewEntry.Required, Instance.Keys["BossKeys"].ToArray());
+                NewEntry.Conditionals = removeItemFromConditionals(NewEntry.Conditionals, Instance.Keys["BossKeys"].ToArray(), true);
+                //Console.WriteLine($"{NewEntry.DictionaryName} Had Boss Keys removed");
+                NewEntry.LogicWasEdited = true;
             }
             return NewEntry;
         }

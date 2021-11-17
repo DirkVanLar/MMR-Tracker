@@ -126,13 +126,6 @@ namespace MMR_Tracker.Class_Files
             int offset = (IndexValue) ? 0 : 1;
             return set.IndexOf(entry) + offset;
         }
-        public static int ProgressiveItemsAquired(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool Unique = true)
-        {
-            var set = entry.ProgressiveItemSet(Instance).Where(x => x.LogicItemAquired()).ToList();
-            var setIDs = set.Select(x => x.ID);
-            if (Unique) { return set.Where(x => x.LogicItemAquired()).Count(); }
-            return Instance.Logic.Where(x => setIDs.Contains(x.RandomizedItem) && x.Checked).Count();
-        }
         public static List<LogicObjects.LogicEntry> ProgressiveItemSet(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
             if (!Instance.Options.ProgressiveItems || !Instance.IsMM()) { return null; }
@@ -168,9 +161,6 @@ namespace MMR_Tracker.Class_Files
         public static bool CheckAvailability(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null, bool FromScratch = true, bool ForceStrictLogicHendeling = false)
         {
             var logic = Instance.Logic;
-            var DicID = Instance.DicNameToID;
-            var UselessLogicEntries = Utility.uselessLogicItems();
-            var BYOAData = Utility.BYOAmmoData();
             usedItems = usedItems ?? new List<int>();
             if (string.IsNullOrWhiteSpace(entry.LocationName) && !entry.IsFake) { return false; }
 
@@ -199,6 +189,8 @@ namespace MMR_Tracker.Class_Files
 
                     if (!shouldupdate) { return entry.Available; }
                 }
+
+                NewEntry.Conditionals = NewEntry.Conditionals == null ? NewEntry.Conditionals : NewEntry.Conditionals.OrderBy(x => x.Length).ToArray();
 
                 return LogicEditing.RequirementsMet(NewEntry.Required, Instance, usedItems) &&
                         LogicEditing.CondtionalsMet(NewEntry.Conditionals, Instance, usedItems);
@@ -403,13 +395,6 @@ namespace MMR_Tracker.Class_Files
                     foreach (var Cond in NewEntry.Conditionals) { foreach (var i in Cond) { if (Instance.Keys["BossKeys"].Contains(i) || Instance.Keys["SmallKeys"].Contains(i)) { HasKeys = true; break; } } }
                 }
                 if (HasKeys) { ChecksNeedingKeys.Add(NewEntry.ID); }
-            }
-            if (Instance.EntranceAreaDic != null && Instance.EntranceAreaDic.Count > 0)
-            {
-                foreach (var i in Instance.EntranceAreaDic)
-                {
-                    ChecksNeedingKeys.Add(i.Key);
-                }
             }
             return ChecksNeedingKeys;
         }

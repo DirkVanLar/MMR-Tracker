@@ -1148,7 +1148,7 @@ namespace MMR_Tracker.Forms
 
         public static void CleanLogicEntry(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool RemoveRedundant = true, bool Extractreq = true)
         {
-            Utility.nullLogicItems(Instance.Logic);
+            Utility.nullEmptyLogicItems(Instance.Logic);
             if (entry.Required == null && entry.Conditionals == null) { return; }
             var l = Instance.Logic;
             if (entry.Required != null && 

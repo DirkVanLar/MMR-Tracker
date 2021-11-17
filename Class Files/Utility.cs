@@ -581,7 +581,7 @@ namespace MMR_Tracker_V2
                 { "HeartPieceHoneyAndDarling", new string[] { "ChestInvertedStoneTowerBombchu10", "ChestLinkTrialBombchu10", "ShopItemBombsBombchu10" } }
             };
         }
-        public static void nullLogicItems(List<LogicObjects.LogicEntry> Logic)
+        public static void nullEmptyLogicItems(List<LogicObjects.LogicEntry> Logic)
         {
             foreach(var i in Logic)
             {
