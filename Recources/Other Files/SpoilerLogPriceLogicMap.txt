@@ -29,6 +29,7 @@ MundaneItemTreasureChestGamePurpleRupee |  Treasure Chest Game Human
 HeartPieceTreasureChestGame             |  Treasure Chest Game Goron
 MundaneItemTreasureChestGameRedRupee    |  Treasure Chest Game Zora
 HeartPieceBoatArchery                   |  Boat Archery
+OtherLimitlessBeans						|  Bean Salesman
 UpgradeBiggestQuiver                    |  Swamp Archery
 HeartPieceSwampArchery                  |  Swamp Archery
 UpgradeRazorSword                       |  Mountain Smithy Day 1
@@ -56,9 +57,9 @@ ItemTingleMapGreatBayInRanch            |  Great Bay Map Purchase (InRanch)
 ItemTingleMapStoneTowerInCanyon         |  Stone Tower Map Purchase (InCanyon)
 ItemTingleMapStoneTowerInOcean          |  Stone Tower Map Purchase (InOcean)
 HeartPieceSwordsmanSchool               |  Swordsman's School
-PlayDekuPlayground						|  Playground 								//Allows deku playgroud rupees to be locked conditionally behind playing the game
-HeartPieceDekuPlayground                |  Deku Playground                  		!   PlayDekuPlayground             
-MundaneItemDekuPlaygroundPurpleRupee    |  Deku Playground                  		!   PlayDekuPlayground  
+OtherPlayDekuPlayground                 |  Deku Playground 							//Allows deku playgroud rupees to be locked conditionally behind playing the game
+HeartPieceDekuPlayground                |  Deku Playground                  		!   OtherPlayDekuPlayground             
+MundaneItemDekuPlaygroundPurpleRupee    |  Deku Playground                  		!   OtherPlayDekuPlayground  
 ShopItemMilkBarMilk                     |  Milk Bar Milk
 ShopItemMilkBarChateau                  |  Milk Bar Chateau
 MundaneItemLotteryPurpleRupee           |  Lottery

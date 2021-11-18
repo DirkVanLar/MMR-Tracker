@@ -443,7 +443,9 @@ namespace MMR_Tracker_V2
                 {"ItemTingleMapGreatBayInOcean","Ocean"},
                 {"ItemTingleMapGreatBayInRanch","Ranch"},
                 {"ItemTingleMapStoneTowerInCanyon","Canyon"},
-                {"ItemTingleMapStoneTowerInOcean","Ocean"}
+                {"ItemTingleMapStoneTowerInOcean","Ocean"},
+                {"OtherLimitlessBeans","Buy Beans" },
+                {"OtherPlayDekuPlayground","Play Deku Playground" }
             };
             return AltNames.ContainsKey(input) ? AltNames[input] : input;
         }
@@ -461,14 +463,17 @@ namespace MMR_Tracker_V2
         {
             if (Entry.Price > -1) { return $" (${Entry.Price})"; }
 
+            List<int> addedentries = new List<int>();
+
             int SubPricesFound = 0;
             string MutliPrice = " (";
             if (Entry.Required != null)
             {
                 foreach(var i in Entry.Required)
                 {
-                    if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake)
+                    if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake && !addedentries.Contains(i))
                     {
+                        addedentries.Add(i);
                         SubPricesFound++;
                         string DisName = MutliPriceDisginguisingText(Instance.Logic[i].DictionaryName);
                         MutliPrice += $"{DisName}: ${Instance.Logic[i].Price}, ";
@@ -481,8 +486,9 @@ namespace MMR_Tracker_V2
                 {
                     foreach (var i in conditional)
                     {
-                        if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake)
+                        if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake && !addedentries.Contains(i))
                         {
+                            addedentries.Add(i);
                             SubPricesFound++;
                             string DisName = MutliPriceDisginguisingText(Instance.Logic[i].DictionaryName);
                             MutliPrice += $"{DisName}: ${Instance.Logic[i].Price}, ";
@@ -492,7 +498,7 @@ namespace MMR_Tracker_V2
             }
             if (MutliPrice.EndsWith(", ")) { MutliPrice = MutliPrice.Substring(0, MutliPrice.Length - 2); }
             MutliPrice += ")";
-            return SubPricesFound > 0 ? (SubPricesFound > 1 ? MutliPrice : $" (${Entry.Price})")  : "";
+            return SubPricesFound > 0 ? MutliPrice : "";
         }
 
         public static Dictionary<string, int> ReadSpoilerLogPriceLogicMap(LogicObjects.TrackerInstance Instance, Dictionary<string, int> Pricedata)
