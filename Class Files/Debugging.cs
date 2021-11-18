@@ -22,7 +22,6 @@ using MMR_Tracker.Forms.Other_Games;
 using MMR_Tracker.Other_Games;
 using MMR_Tracker.Forms.Extra_Functionality;
 using static MMR_Tracker.Class_Files.MMR_Code_Reference.items;
-using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 
@@ -39,15 +38,11 @@ namespace MMR_Tracker_V2
 
         public static void PrintLogicObject(List<LogicObjects.LogicEntry> Logic, int start = -1, int end = -1)
         {
-            JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
+            JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
             {
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                IgnoreReadOnlyFields = true,
-                IgnoreReadOnlyProperties = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                WriteIndented = true
+                Formatting = Formatting.Indented
             };
-            string LogicPrint = System.Text.Json.JsonSerializer.Serialize(Logic, _jsonSerializerOptions);
+            string LogicPrint = JsonConvert.SerializeObject(Logic, _jsonSerializerOptions);
 
             Console.WriteLine(LogicPrint);
         }

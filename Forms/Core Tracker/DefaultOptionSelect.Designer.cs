@@ -49,6 +49,13 @@ namespace MMR_Tracker.Forms.Core_Tracker
             this.btnSave = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.nudFontSize = new System.Windows.Forms.NumericUpDown();
+            this.cmbFontStyle = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFontSize)).BeginInit();
             this.SuspendLayout();
             // 
             // chkShowTooltips
@@ -242,7 +249,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(12, 127);
+            this.btnSave.Location = new System.Drawing.Point(12, 174);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(57, 23);
             this.btnSave.TabIndex = 22;
@@ -252,7 +259,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(75, 127);
+            this.btnApply.Location = new System.Drawing.Point(75, 174);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(153, 23);
             this.btnApply.TabIndex = 23;
@@ -267,12 +274,88 @@ namespace MMR_Tracker.Forms.Core_Tracker
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ReshowDelay = 10;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.Control;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label3.Location = new System.Drawing.Point(33, 126);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Font Size";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.SystemColors.Control;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label10.Location = new System.Drawing.Point(33, 149);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(71, 13);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Font Family";
+            // 
+            // nudFontSize
+            // 
+            this.nudFontSize.DecimalPlaces = 2;
+            this.nudFontSize.Location = new System.Drawing.Point(176, 124);
+            this.nudFontSize.Name = "nudFontSize";
+            this.nudFontSize.Size = new System.Drawing.Size(52, 20);
+            this.nudFontSize.TabIndex = 26;
+            this.nudFontSize.ValueChanged += new System.EventHandler(this.nudFontSize_ValueChanged);
+            // 
+            // cmbFontStyle
+            // 
+            this.cmbFontStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFontStyle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cmbFontStyle.FormattingEnabled = true;
+            this.cmbFontStyle.Items.AddRange(new object[] {
+            "Set",
+            "Star"});
+            this.cmbFontStyle.Location = new System.Drawing.Point(110, 146);
+            this.cmbFontStyle.Name = "cmbFontStyle";
+            this.cmbFontStyle.Size = new System.Drawing.Size(118, 21);
+            this.cmbFontStyle.TabIndex = 27;
+            this.cmbFontStyle.SelectedIndexChanged += new System.EventHandler(this.cmbFontStyle_SelectedIndexChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label13.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(12, 135);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(15, 19);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "?";
+            this.toolTip1.SetToolTip(this.label13, "The font the tracker will try to display most list entries in.\r\n\r\n");
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(110, 126);
+            this.textBox1.MaximumSize = new System.Drawing.Size(60, 60);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(60, 13);
+            this.textBox1.TabIndex = 29;
+            // 
             // DefaultOptionSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(237, 160);
+            this.ClientSize = new System.Drawing.Size(237, 206);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.cmbFontStyle);
+            this.Controls.Add(this.nudFontSize);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label12);
@@ -292,8 +375,9 @@ namespace MMR_Tracker.Forms.Core_Tracker
             this.Controls.Add(this.chkSeperate);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DefaultOptionSelect";
-            this.Text = "Default options";
+            this.Text = "Options.txt";
             this.Load += new System.EventHandler(this.DefaultOptionSelect_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudFontSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,5 +403,11 @@ namespace MMR_Tracker.Forms.Core_Tracker
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown nudFontSize;
+        private System.Windows.Forms.ComboBox cmbFontStyle;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

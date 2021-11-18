@@ -148,6 +148,7 @@ namespace MMR_Tracker_V2
             public bool HorizontalLayout { get; set; } = false;
             public bool OtherGamesOK { get; set; } = false;
             public string MiddleClickFunction { get; set; } = "Set";
+            public Font FormFont { get; set; } = SystemFonts.DefaultFont;
         }
 
 

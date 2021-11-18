@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Windows.Forms;
 using MMR_Tracker.Class_Files;
+using Newtonsoft.Json;
 
 namespace MMR_Tracker_V2
 {
@@ -96,15 +95,11 @@ namespace MMR_Tracker_V2
             List<LogicObjects.LogicEntry> Logic = Instance.Logic;
             listBox1.BeginUpdate();
 
-            JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
+            JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
             {
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                IgnoreReadOnlyFields = true,
-                IgnoreReadOnlyProperties = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                WriteIndented = true
+                Formatting = Formatting.Indented
             };
-            string LogicPrint = System.Text.Json.JsonSerializer.Serialize(Logic, _jsonSerializerOptions);
+            string LogicPrint = JsonConvert.SerializeObject(Logic, _jsonSerializerOptions);
             char[] delims = new[] { '\r', '\n' };
             string[] LogicPrintLines = LogicPrint.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 

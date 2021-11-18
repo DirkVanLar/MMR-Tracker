@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -469,13 +467,9 @@ namespace MMR_Tracker.Class_Files
 
         public static bool SaveInstance(LogicObjects.TrackerInstance Instance, bool SetPath = false , string FilePath = "")
         {
-            JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
+            JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
             {
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                IgnoreReadOnlyFields = true,
-                IgnoreReadOnlyProperties = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                WriteIndented = true
+                Formatting = Formatting.Indented
             };
             Debugging.Log("Begin Save");
             if (FilePath == "" || !File.Exists(FilePath))
@@ -489,8 +483,7 @@ namespace MMR_Tracker.Class_Files
             Debugging.Log("Start Clone");
             var SaveInstance = Utility.CloneTrackerInstance(Instance);
             Debugging.Log("Write Data");
-            File.WriteAllText(FilePath, System.Text.Json.JsonSerializer.Serialize(SaveInstance, _jsonSerializerOptions));
-            //File.WriteAllText(FilePath, JsonConvert.SerializeObject(SaveInstance, _jsonSerializerOptions));
+            File.WriteAllText(FilePath, JsonConvert.SerializeObject(SaveInstance, _jsonSerializerOptions));
             Debugging.Log("Format tracker");
             if (SetPath) { Tools.SaveFilePath = FilePath; }
             UpdateTrackerTitle();
@@ -711,15 +704,9 @@ namespace MMR_Tracker.Class_Files
         {
             var options = new LogicObjects.DefaultTrackerOption();
 
-            JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
+            JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
             {
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                IgnoreReadOnlyFields = true,
-                IgnoreReadOnlyProperties = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                WriteIndented = true,
-                AllowTrailingCommas = true,
-                Converters = { new JsonStringEnumConverter(), }
+                Formatting = Formatting.Indented
             };
 
             if (!File.Exists("options.txt"))
@@ -750,14 +737,14 @@ namespace MMR_Tracker.Class_Files
                     if (DefaultSetting == DialogResult.Yes) { PromptForUserOptions(); }
                 }
 
-                File.WriteAllText("options.txt", System.Text.Json.JsonSerializer.Serialize(options, _jsonSerializerOptions));
+                File.WriteAllText("options.txt", JsonConvert.SerializeObject(options, _jsonSerializerOptions));
             }
             else if (Recreate)
             {
-                try { options = System.Text.Json.JsonSerializer.Deserialize<LogicObjects.DefaultTrackerOption>(File.ReadAllText("options.txt"), _jsonSerializerOptions); }
+                try { options = JsonConvert.DeserializeObject<LogicObjects.DefaultTrackerOption>(File.ReadAllText("options.txt"), _jsonSerializerOptions); }
                 catch { Console.WriteLine("could not parse options.txt"); }
                 PromptForUserOptions();
-                File.WriteAllText("options.txt", System.Text.Json.JsonSerializer.Serialize(options, _jsonSerializerOptions));
+                File.WriteAllText("options.txt", JsonConvert.SerializeObject(options, _jsonSerializerOptions));
             }
 
             void PromptForUserOptions()
@@ -816,15 +803,9 @@ namespace MMR_Tracker.Class_Files
 
         public static void CreateTrackerInstance(LogicObjects.TrackerInstance Instance, string[] RawLogic)
         {
-            JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
+            JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
             {
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-                IgnoreReadOnlyFields = true,
-                IgnoreReadOnlyProperties = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                WriteIndented = true,
-                AllowTrailingCommas = true,
-                Converters = { new JsonStringEnumConverter(), }
+                Formatting = Formatting.Indented
             };
             Tools.SaveFilePath = "";
             Instance.RawLogicFile = RawLogic;
@@ -834,7 +815,7 @@ namespace MMR_Tracker.Class_Files
             LogicObjects.DefaultTrackerOption TrackerDefaultOptions = new LogicObjects.DefaultTrackerOption();
             if (File.Exists("options.txt"))
             {
-                try { TrackerDefaultOptions = System.Text.Json.JsonSerializer.Deserialize<LogicObjects.DefaultTrackerOption>(File.ReadAllText("options.txt"), _jsonSerializerOptions); }
+                try { TrackerDefaultOptions = JsonConvert.DeserializeObject<LogicObjects.DefaultTrackerOption>(File.ReadAllText("options.txt"), _jsonSerializerOptions); }
                 catch { Console.WriteLine("could not parse options.txt"); }
                 Instance.Options.ShowEntryNameTooltip = TrackerDefaultOptions.ToolTips;
                 Instance.Options.MoveMarkedToBottom = TrackerDefaultOptions.Seperatemarked;
@@ -842,6 +823,7 @@ namespace MMR_Tracker.Class_Files
                 Instance.Options.CheckForUpdate = TrackerDefaultOptions.CheckForUpdates;
                 Instance.Options.HorizontalLayout = TrackerDefaultOptions.HorizontalLayout;
                 Instance.Options.MiddleClickStarNotMark = TrackerDefaultOptions.MiddleClickFunction == "Star";
+                Instance.Options.FormFont = TrackerDefaultOptions.FormFont;
             }
 
             if (!Instance.IsMM() && !TrackerDefaultOptions.OtherGamesOK && !Debugging.ISDebugging)
@@ -851,7 +833,7 @@ namespace MMR_Tracker.Class_Files
                 TrackerDefaultOptions.OtherGamesOK = true;
                 try 
                 {
-                    if (File.Exists("options.txt")) { File.WriteAllText("options.txt", System.Text.Json.JsonSerializer.Serialize(TrackerDefaultOptions, _jsonSerializerOptions)); }
+                    if (File.Exists("options.txt")) { File.WriteAllText("options.txt", JsonConvert.SerializeObject(TrackerDefaultOptions, _jsonSerializerOptions)); }
                 }
                 catch { }
 
