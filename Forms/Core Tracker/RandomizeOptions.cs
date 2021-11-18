@@ -561,10 +561,21 @@ namespace MMR_Tracker_V2
                 LogicObjects.MainTrackerInstance.Options.Keysy["BossKey"] = true;
             }
 
+            for(var i =0; i < Settings.EnabledTricks.Count(); i++)
+            {
+                int number2 = -2;
+                var numString = Settings.EnabledTricks[i];
+                bool canConvert = int.TryParse(numString, out number2);
+                if (canConvert && LogicObjects.MainTrackerInstance.ItemInRange(number2))
+                {
+                    Settings.EnabledTricks[i] = LogicObjects.MainTrackerInstance.Logic[number2].DictionaryName;
+                }
+            }
+
             //Apply tricks
             foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.IsTrick))
             {
-                i.TrickEnabled = Settings.EnabledTricks.Contains(i.ID);
+                i.TrickEnabled = Settings.EnabledTricks.Contains(i.DictionaryName);
             }
 
             //Apply Items Settings

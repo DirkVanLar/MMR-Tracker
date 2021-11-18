@@ -191,7 +191,7 @@ namespace MMR_Tracker_V2
             public string CustomJunkLocationsString { get; set; } = "";
             public string CustomStartingItemListString { get; set; } = "";
             public string GossipHintStyle { get; set; } = "Default";
-            public List<int> EnabledTricks { get; set; } = new List<int>();
+            public List<string> EnabledTricks { get; set; } = new List<string>();
         }
         public class MapPoint
         {
