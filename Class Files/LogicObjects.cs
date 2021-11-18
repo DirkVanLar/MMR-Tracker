@@ -270,16 +270,10 @@ namespace MMR_Tracker_V2
                 return DisplayName;
             }
         }
-        public class IPDATASerializable
-        {
-            public string IP { get; set; }
-            public int PORT { get; set; }
-            public string DisplayName { get; set; }
-        }
         public class MMRTpacket
         {
             public int PlayerID { get; set; }
-            public IPDATASerializable IPData { get; set; } = new IPDATASerializable();
+            public IPDATA IPData { get; set; } = new IPDATA();
             public int RequestingUpdate { get; set; } = 0; //0= Sending Only, 1= Requesting Only, 2 = Both
             public List<LogicObjects.NetData> LogicData { get; set; }
 

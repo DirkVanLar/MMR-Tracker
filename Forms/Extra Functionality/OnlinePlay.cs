@@ -55,9 +55,9 @@ namespace MMR_Tracker.Forms
                 LogicData = (Type == 1) ? new List<LogicObjects.NetData>() : NetData,
                 PlayerID = LogicObjects.MainTrackerInstance.Options.MyPlayerID,
                 RequestingUpdate = Type,
-                IPData = new LogicObjects.IPDATASerializable
+                IPData = new LogicObjects.IPDATA
                 {
-                    IP = MyIP.ToString(),
+                    IP = MyIP,
                     PORT = LogicObjects.MainTrackerInstance.Options.PortNumber
                 }
             };
@@ -101,7 +101,11 @@ namespace MMR_Tracker.Forms
         public async static void SendData(List<LogicObjects.IPDATA> SendList, int TYPE = 0)
         {
             if (!Sending && TYPE != 1) { return; }
-            string m = JsonConvert.SerializeObject(CreateNetData(TYPE));
+
+            var jsonSettings = new JsonSerializerSettings();
+            jsonSettings.Converters.Add(new IPConverter());
+
+            string m = JsonConvert.SerializeObject(CreateNetData(TYPE), jsonSettings);
             foreach (var ip in SendList)
             {
                 await Task.Run(() => StartClient(m, ip));
@@ -124,7 +128,7 @@ namespace MMR_Tracker.Forms
                 string receivedValue = string.Empty;
                 byte[] bytes = null;
                 int counter = 0;
-                while (counter < 1024)
+                while (counter < 4096)
                 {
                     counter++;
                     bytes = new byte[socket.Available];
@@ -169,7 +173,9 @@ namespace MMR_Tracker.Forms
                 {
                     try
                     {
-                        NetData = JsonConvert.DeserializeObject<LogicObjects.MMRTpacket>(Logic);
+                        var jsonSettings = new JsonSerializerSettings();
+                        jsonSettings.Converters.Add(new IPConverter());
+                        NetData = JsonConvert.DeserializeObject<LogicObjects.MMRTpacket>(Logic, jsonSettings);
                         ManageNetData(NetData);
                         Debugging.Log($"Data Processed");
                     }
@@ -203,7 +209,10 @@ namespace MMR_Tracker.Forms
 
         private void CopyNetDataToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(JsonConvert.SerializeObject(CreateNetData(0)));
+
+            var jsonSettings = new JsonSerializerSettings();
+            jsonSettings.Converters.Add(new IPConverter());
+            Clipboard.SetText(JsonConvert.SerializeObject(CreateNetData(0), jsonSettings));
         }
 
         private void SendingDataToolStripMenuItem_Click(object sender, EventArgs e)
@@ -303,8 +312,7 @@ namespace MMR_Tracker.Forms
             {
                 try
                 {
-                    IPAddress NIP = IPAddress.Parse(Data.IPData.IP);
-                    SendData(new List<LogicObjects.IPDATA> { new LogicObjects.IPDATA { IP = NIP, PORT = Data.IPData.PORT } }, 0);
+                    SendData(new List<LogicObjects.IPDATA> { new LogicObjects.IPDATA { IP = Data.IPData.IP, PORT = Data.IPData.PORT } }, 0);
                 }
                 catch (Exception e) { Debugging.Log($"Could not send requested data\nReason: Send Request Errored with\n{e}"); }
             }
@@ -316,7 +324,7 @@ namespace MMR_Tracker.Forms
         {
             var log = LogicObjects.MainTrackerInstance.Logic;
             var Instance = LogicObjects.MainTrackerInstance;
-            var IPInSendingList = IPS.FindIndex(f => f.IP.ToString() == Data.IPData.IP && f.PORT == Data.IPData.PORT) > -1;
+            var IPInSendingList = IPS.FindIndex(f => f.IP.ToString() == Data.IPData.IP.ToString() && f.PORT == Data.IPData.PORT) > -1;
             //bool SameLAN = (Data.IPData.IP == MyIP.ToString() && Data.IPData.PORT != LogicObjects.MainTrackerInstance.Options.PortNumber);
 
             if (!IPInSendingList)
@@ -426,7 +434,7 @@ namespace MMR_Tracker.Forms
         public static void OnlinePlay_TriggerAddRemoteToIPList(LogicObjects.MMRTpacket Data)
         {
             LogicObjects.IPDATA NewIP = new LogicObjects.IPDATA();
-            try { NewIP.IP = IPAddress.Parse(Data.IPData.IP); } catch { return; }
+            NewIP.IP = Data.IPData.IP;
             NewIP.PORT = Data.IPData.PORT;
             NewIP.DisplayName = $"{NewIP.IP}:{NewIP.PORT}";
             IPS.Add(NewIP); 
@@ -442,37 +450,39 @@ namespace MMR_Tracker.Forms
             SaveFileDialog saveDialog = new SaveFileDialog { Filter = "MMR Tracker IP List (*.MMRTIP)|*.MMRTIP", FilterIndex = 1 };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
 
-            List<LogicObjects.IPDATASerializable> SaveIPS = new List<LogicObjects.IPDATASerializable> { new LogicObjects.IPDATASerializable { IP = MyIP.ToString(), PORT = LogicObjects.MainTrackerInstance.Options.PortNumber } };
+            List<LogicObjects.IPDATA> SaveIPS = new List<LogicObjects.IPDATA> { new LogicObjects.IPDATA { IP = MyIP, PORT = LogicObjects.MainTrackerInstance.Options.PortNumber } };
             foreach(var i in IPS)
             {
-                SaveIPS.Add(new LogicObjects.IPDATASerializable { IP = i.IP.ToString(), PORT = i.PORT, DisplayName = i.DisplayName });
+                SaveIPS.Add(new LogicObjects.IPDATA { IP = i.IP, PORT = i.PORT, DisplayName = i.DisplayName });
             }
-
-            File.WriteAllText(saveDialog.FileName, JsonConvert.SerializeObject(SaveIPS));
+            var jsonSettings = new JsonSerializerSettings();
+            jsonSettings.Converters.Add(new IPConverter());
+            File.WriteAllText(saveDialog.FileName, JsonConvert.SerializeObject(SaveIPS, jsonSettings));
         }
 
         private void LoadIPListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string file = Utility.FileSelect("Select An IP List", "MMR Tracker IP List (*.MMRTIP)|*.MMRTIP");
             if (file == "") { return; }
-            List<LogicObjects.IPDATASerializable> LoadData = new List<LogicObjects.IPDATASerializable>();
-            try { LoadData = JsonConvert.DeserializeObject<List<LogicObjects.IPDATASerializable>>(File.ReadAllText(file)); }
-            catch
+            List<LogicObjects.IPDATA> LoadData = new List<LogicObjects.IPDATA>();
+            var jsonSettings = new JsonSerializerSettings();
+            jsonSettings.Converters.Add(new IPConverter());
+            try { LoadData = JsonConvert.DeserializeObject<List<LogicObjects.IPDATA>>(File.ReadAllText(file), jsonSettings); }
+            catch (Exception f)
             {
+                Console.WriteLine(f);
                 MessageBox.Show("File Invalid!");
                 return;
             }
             Debugging.Log($"File Valid");
             foreach (var i in LoadData)
             {
-                Debugging.Log($"Checking {i.IP.Trim()}");
-                if (i.IP != MyIP.ToString() && IPS.FindIndex(f => f.IP.ToString() == i.IP && f.PORT == i.PORT) < 0)
+                Debugging.Log($"Checking {i.IP}");
+                if (i.IP.ToString() != MyIP.ToString() && IPS.FindIndex(f => f.IP.ToString() == i.IP.ToString() && f.PORT.ToString() == i.PORT.ToString()) < 0)
                 {
-                    IPAddress NIP;
-                    try { NIP = IPAddress.Parse(i.IP.Trim()); } catch { Debugging.Log($"{i.IP.Trim()} Invalid"); continue; }
-                    string dist = (i.DisplayName == null || i.DisplayName == "") ? $"{NIP}:{i.PORT}" : i.DisplayName;
-                    IPS.Add(new LogicObjects.IPDATA { IP = NIP, PORT = i.PORT, DisplayName = dist });
-                    Debugging.Log($"{i.IP.Trim()} Added");
+                    string dist = (i.DisplayName == null || i.DisplayName == "") ? $"{i.IP}:{i.PORT}" : i.DisplayName;
+                    IPS.Add(new LogicObjects.IPDATA { IP = i.IP, PORT = i.PORT, DisplayName = dist });
+                    Debugging.Log($"{i.IP} Added");
                 }
             }
             UpdateFormItems();

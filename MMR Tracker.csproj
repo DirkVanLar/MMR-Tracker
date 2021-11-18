@@ -113,6 +113,7 @@
     <Compile Include="Class Files\MMR Code Reference\MMRCodeTools.cs" />
     <Compile Include="Class Files\MMR Code Reference\OtherObjects.cs" />
     <Compile Include="Class Files\MMR Code Reference\Resources.cs" />
+    <Compile Include="Class Files\NewtonSoftHelper.cs" />
     <Compile Include="Class Files\PlaythroughGenerator.cs" />
     <Compile Include="Class Files\Tools.cs" />
     <Compile Include="Class Files\UserSettings.cs" />
