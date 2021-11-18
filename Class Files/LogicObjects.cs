@@ -139,6 +139,18 @@ namespace MMR_Tracker_V2
             public List<SaveState> RedoList { get; set; } = new List<SaveState>();
         }
 
+        public class DefaultTrackerOption
+        {
+            public bool ToolTips { get; set; } = true;
+            public bool Seperatemarked { get; set; } = false;
+            public bool DisableEntrancesOnStartup { get; set; } = false;
+            public bool CheckForUpdates { get; set; } = true;
+            public bool HorizontalLayout { get; set; } = false;
+            public bool OtherGamesOK { get; set; } = false;
+            public string MiddleClickFunction { get; set; } = "Set";
+        }
+
+
         public class Configuration
         {
             public GameplaySettings GameplaySettings { get; set; }

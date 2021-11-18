@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using System.Threading;
 using MMR_Tracker.Forms.Sub_Forms;
 using MMR_Tracker.Forms.Extra_Functionality;
+using MMR_Tracker.Forms.Core_Tracker;
 
 namespace MMR_Tracker_V2
 {
@@ -1745,6 +1746,13 @@ namespace MMR_Tracker_V2
         private void preventKeyShortcuts(object sender, KeyPressEventArgs e)
         {
             if (Control.ModifierKeys == Keys.Control) { e.Handled = true; }
+        }
+
+        private void changeDefaultSetingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tools.CreateOptionsFile(true);
+            ResizeObject();
+            FormatMenuItems();
         }
     }
 }

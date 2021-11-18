@@ -1,4 +1,5 @@
 ﻿using MMR_Tracker.Forms;
+using MMR_Tracker.Forms.Core_Tracker;
 using MMR_Tracker_V2;
 using Newtonsoft.Json;
 using System;
@@ -706,11 +707,23 @@ namespace MMR_Tracker.Class_Files
             return spoilerDic;
         }
 
-        public static void CreateOptionsFile()
+        public static void CreateOptionsFile(bool Recreate = false)
         {
+            var options = new LogicObjects.DefaultTrackerOption();
+
+            JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                IgnoreReadOnlyFields = true,
+                IgnoreReadOnlyProperties = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                WriteIndented = true,
+                AllowTrailingCommas = true,
+                Converters = { new JsonStringEnumConverter(), }
+            };
+
             if (!File.Exists("options.txt"))
             {
-                List<string> options = new List<string>();
                 try
                 {
                     var file = File.Create("options.txt");
@@ -719,56 +732,39 @@ namespace MMR_Tracker.Class_Files
                 catch
                 {
                     MessageBox.Show("Access Denied. Ensure you have proper access to the folder you are running the tracker from.");
-                    System.Windows.Forms.Application.Exit();
+                    if (Recreate) { return; }
+                    else { System.Windows.Forms.Application.Exit(); }
                 }
 
-                if (!Debugging.ISDebugging || (Control.ModifierKeys == Keys.Shift))
+                if ((!Debugging.ISDebugging || (Control.ModifierKeys == Keys.Shift)) && !Recreate)
                 {
-                    var firsttime = MessageBox.Show("It looks like this is your first time running this tracker. If so select Yes. Otherwise, select No.", "First Time Setup", MessageBoxButtons.YesNo);
+                    var firsttime = MessageBox.Show("It looks like this is your first time running this tracker, would you like to see first time use information?", "First Time Setup", MessageBoxButtons.YesNo);
                     if (firsttime == DialogResult.Yes)
                     {
-                        MessageBox.Show("Please Take this opportunity to familliarize yourself with how to use this tracker. There are many features that are not obvious or explained anywhere outside of the about page. This information can be accessed at any time by selecting 'Info' -> 'About'. Click OK to show the About Page. Once you have read through the information, close the window to return to setup.", "How to Use", MessageBoxButtons.OK);
+                        MessageBox.Show("Please Take this opportunity to familliarize yourself with how to use this tracker. \n\nClick OK to display the About page detailing how the tracker functions. \n\nThis information can be accessed at any time by selecting 'Info' -> 'About'.", "How to Use", MessageBoxButtons.OK);
                         InformationDisplay DebugScreen = new InformationDisplay { DebugFunction = 2 };
                         DebugScreen.ShowDialog();
                     }
 
-                    var DefaultSetting = MessageBox.Show("If you would like to change the default options, press Yes. Otherwise, press No. Selecting Cancel at an option prompt will leave it default. These can be changed later in the Options text document that will be created in your tracker folder. The can also be changed per instance in the options tab", "Default Setting", MessageBoxButtons.YesNo);
-                    if (DefaultSetting == DialogResult.Yes) 
-                    {
-                        var ShowToolTips = MessageBox.Show("Would you like to see tooltips that display the full name of an item when you mouse over it?", "Show Tool Tips", MessageBoxButtons.YesNoCancel);
-                        if (ShowToolTips == DialogResult.No) { options.Add("ToolTips:0"); }
-                        else { options.Add("ToolTips:1"); }
-
-                        var SeperateMArkedItems = MessageBox.Show("Would you like Marked locations to be moved to the bottom of the list?", "Show Tool Tips", MessageBoxButtons.YesNoCancel);
-                        if (SeperateMArkedItems == DialogResult.Yes) { options.Add("SeperateMarked:1"); }
-                        else { options.Add("SeperateMarked:0"); }
-
-                        var MiddleClickFunction = MessageBox.Show("Would you like Middle Click to star a location instead of Setting it? Staring a location will allow you to mark it as important so you can easily refrence it later. Setting a location will add what item or entrance is placed at that location. (Yes: Star, No: Set)", "Star or Set", MessageBoxButtons.YesNoCancel);
-                        if (MiddleClickFunction == DialogResult.Yes) { options.Add("MiddleClickFunction:1"); }
-                        else { options.Add("MiddleClickFunction:0"); }
-
-                        var DisableEntrances = MessageBox.Show("Would you like the tracker to automatically mark entrances as unrandomized when creating an instance? This is usefull if you don't plan to use entrance randomizer often.", "Start with Entrance Rando", MessageBoxButtons.YesNoCancel);
-                        if (DisableEntrances == DialogResult.No) { options.Add("DisableEntrancesOnStartup:0"); }
-                        else { options.Add("DisableEntrancesOnStartup:1"); }
-
-                        var UpdateCheck = MessageBox.Show("Would you like the tracker to notify you when a newer version has been released?", "Check For Updates", MessageBoxButtons.YesNoCancel);
-                        if (UpdateCheck == DialogResult.No) { options.Add("CheckForUpdates:0"); }
-                        else { options.Add("CheckForUpdates:1"); }
-                    }
+                    var DefaultSetting = MessageBox.Show("Would you like to edit the default options?.\n\nThese can be changed later by selecting\nOptions -> Misc options -> Change Default settings\nor by editing the options.txt that will be created in your tracker folder. \nThese settings can also be changed per instance in the options tab", "Default Setting", MessageBoxButtons.YesNo);
+                    if (DefaultSetting == DialogResult.Yes) { PromptForUserOptions(); }
                 }
 
-                SetDefault();
-                File.WriteAllLines("options.txt", options);
+                File.WriteAllText("options.txt", System.Text.Json.JsonSerializer.Serialize(options, _jsonSerializerOptions));
+            }
+            else if (Recreate)
+            {
+                try { options = System.Text.Json.JsonSerializer.Deserialize<LogicObjects.DefaultTrackerOption>(File.ReadAllText("options.txt"), _jsonSerializerOptions); }
+                catch { Console.WriteLine("could not parse options.txt"); }
+                PromptForUserOptions();
+                File.WriteAllText("options.txt", System.Text.Json.JsonSerializer.Serialize(options, _jsonSerializerOptions));
+            }
 
-                void SetDefault()
-                {
-                    if (!options.Any(x => x.Contains("ToolTips"))) { options.Add("ToolTips:1"); }
-                    if (!options.Any(x => x.Contains("SeperateMarked"))) { options.Add("SeperateMarked:0"); }
-                    if (!options.Any(x => x.Contains("MiddleClickFunction"))) { options.Add("MiddleClickFunction:0"); }
-                    if (!options.Any(x => x.Contains("DisableEntrancesOnStartup"))) { options.Add("DisableEntrancesOnStartup:0"); }
-                    if (!options.Any(x => x.Contains("CheckForUpdates"))) { options.Add("CheckForUpdates:1"); }
-                }
-
+            void PromptForUserOptions()
+            {
+                DefaultOptionSelect SelectForm = new DefaultOptionSelect();
+                SelectForm.Options = options;
+                SelectForm.ShowDialog();
             }
         }
 
@@ -820,16 +816,43 @@ namespace MMR_Tracker.Class_Files
 
         public static void CreateTrackerInstance(LogicObjects.TrackerInstance Instance, string[] RawLogic)
         {
+            JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                IgnoreReadOnlyFields = true,
+                IgnoreReadOnlyProperties = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                WriteIndented = true,
+                AllowTrailingCommas = true,
+                Converters = { new JsonStringEnumConverter(), }
+            };
             Tools.SaveFilePath = "";
             Instance.RawLogicFile = RawLogic;
             LogicEditing.PopulateTrackerInstance(Instance);
             LogicEditing.CalculateItems(Instance);
 
-            if (!Instance.IsMM() && (!File.Exists("options.txt") || File.ReadAllLines("options.txt").ToList().Find(x => x.Contains("OtherLogicOK")) == null) && !Debugging.ISDebugging)
+            LogicObjects.DefaultTrackerOption TrackerDefaultOptions = new LogicObjects.DefaultTrackerOption();
+            if (File.Exists("options.txt"))
+            {
+                try { TrackerDefaultOptions = System.Text.Json.JsonSerializer.Deserialize<LogicObjects.DefaultTrackerOption>(File.ReadAllText("options.txt"), _jsonSerializerOptions); }
+                catch { Console.WriteLine("could not parse options.txt"); }
+                Instance.Options.ShowEntryNameTooltip = TrackerDefaultOptions.ToolTips;
+                Instance.Options.MoveMarkedToBottom = TrackerDefaultOptions.Seperatemarked;
+                Instance.Options.UnradnomizeEntranesOnStartup = TrackerDefaultOptions.DisableEntrancesOnStartup;
+                Instance.Options.CheckForUpdate = TrackerDefaultOptions.CheckForUpdates;
+                Instance.Options.HorizontalLayout = TrackerDefaultOptions.HorizontalLayout;
+                Instance.Options.MiddleClickStarNotMark = TrackerDefaultOptions.MiddleClickFunction == "Star";
+            }
+
+            if (!Instance.IsMM() && !TrackerDefaultOptions.OtherGamesOK && !Debugging.ISDebugging)
             {
                 DialogResult dialogResult = MessageBox.Show("This logic file was NOT created for the Majoras Mask Randomizer. While this tracker can support other games, support is very Limited. Many features will be disabled and core features might not work as intended. Do you wish to continue? If so this prompt will no longer display.", "Other Randomizer", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }
-                try { using (StreamWriter w = File.AppendText("options.txt")) { w.WriteLine("OtherLogicOK"); } }
+                TrackerDefaultOptions.OtherGamesOK = true;
+                try 
+                {
+                    if (File.Exists("options.txt")) { File.WriteAllText("options.txt", System.Text.Json.JsonSerializer.Serialize(TrackerDefaultOptions, _jsonSerializerOptions)); }
+                }
                 catch { }
 
             }
@@ -837,23 +860,6 @@ namespace MMR_Tracker.Class_Files
             {
                 DialogResult dialogResult = MessageBox.Show("You are using a version of logic that is not supported by this tracker. Any logic version lower than version 8 (Randomizer version 1.8) may not work as intended. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }
-            }
-
-            if (File.Exists("options.txt"))
-            {
-                Instance.Options.ShowEntryNameTooltip = true;
-                Instance.Options.MoveMarkedToBottom = false;
-                Instance.Options.UnradnomizeEntranesOnStartup = true;
-                Instance.Options.CheckForUpdate = true;
-                Instance.Options.MiddleClickStarNotMark = false;
-                foreach (var i in File.ReadAllLines("options.txt"))
-                {
-                    if (i.Contains("ToolTips:0")) { Instance.Options.ShowEntryNameTooltip = false; }
-                    if (i.Contains("SeperateMarked:1")) { Instance.Options.MoveMarkedToBottom = true; }
-                    if (i.Contains("DisableEntrancesOnStartup:0")) { Instance.Options.UnradnomizeEntranesOnStartup = false; }
-                    if (i.Contains("CheckForUpdates:0")) { Instance.Options.CheckForUpdate = false; }
-                    if (i.Contains("MiddleClickFunction:1")) { Instance.Options.MiddleClickStarNotMark = true; }
-                }
             }
         }
 

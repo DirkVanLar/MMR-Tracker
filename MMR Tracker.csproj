@@ -116,6 +116,12 @@
     <Compile Include="Class Files\PlaythroughGenerator.cs" />
     <Compile Include="Class Files\Tools.cs" />
     <Compile Include="Class Files\UserSettings.cs" />
+    <Compile Include="Forms\Core Tracker\DefaultOptionSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Core Tracker\DefaultOptionSelect.Designer.cs">
+      <DependentUpon>DefaultOptionSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Extra Functionality\ItemDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </Compile>
     <Compile Include="Class Files\Utility.cs" />
     <Compile Include="Class Files\VersionHandeling.cs" />
+    <EmbeddedResource Include="Forms\Core Tracker\DefaultOptionSelect.resx">
+      <DependentUpon>DefaultOptionSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Core Tracker\InformationDisplay.resx">
       <DependentUpon>InformationDisplay.cs</DependentUpon>
       <SubType>Designer</SubType>
