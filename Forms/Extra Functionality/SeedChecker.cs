@@ -276,8 +276,9 @@ namespace MMR_Tracker
 
             if (listBox1.SelectedIndex < 0)
             {
-                button2.Enabled = false;
-                button3.Enabled = false;
+                btnLocationLookup.Enabled = false;
+                btnShpereLookup.Enabled = false;
+                btnAreaLookup.Enabled = false;
             }
         }
 
@@ -300,22 +301,26 @@ namespace MMR_Tracker
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            button2.Enabled = true;
-            button3.Enabled = true;
+            btnLocationLookup.Enabled = true;
+            btnShpereLookup.Enabled = true;
+            btnAreaLookup.Enabled = true;
 
             if (!(listBox1.SelectedItem is LogicObjects.ListItem))
             {
-                button2.Enabled = false;
-                button3.Enabled = false;
+                btnLocationLookup.Enabled = false;
+                btnShpereLookup.Enabled = false;
+                btnAreaLookup.Enabled = false;
                 return; 
             }
             var Item = (listBox1.SelectedItem as LogicObjects.ListItem).ItemEntry;
-            button2.Enabled = !Item.IsFake;
+            btnLocationLookup.Enabled = !Item.IsFake;
+            btnAreaLookup.Enabled = !Item.IsFake;
 
             if (listBox1.SelectedIndex < 0)
             {
-                button2.Enabled = false;
-                button3.Enabled = false;
+                btnLocationLookup.Enabled = false;
+                btnShpereLookup.Enabled = false;
+                btnAreaLookup.Enabled = false;
             }
         }
 
@@ -382,6 +387,14 @@ namespace MMR_Tracker
             MessageBox.Show("Add a check to this list to have the seed checker ignore it when checking if an item is obtainable. \n\nFor example, if you add the woodfall great " +
                 "fairy reward to this list and that check contains the goron mask, any items in the above list that are in a location that requires the goron mask " +
                 "will be marked as unavailable.\n\n This is usefull to check if you can beat a seed without doing a specific check.");
+        }
+
+        private void btnAreaLookup_Click(object sender, EventArgs e)
+        {
+            if (!(listBox1.SelectedItem is LogicObjects.ListItem)) { return; }
+            var Location = (listBox1.SelectedItem as LogicObjects.ListItem).LocationEntry;
+            var Item = (listBox1.SelectedItem as LogicObjects.ListItem).ItemEntry;
+            MessageBox.Show($"{Item.ItemName ?? Item.DictionaryName} is found in {Location.LocationArea ?? "Unknown"}", $"{ Item.DictionaryName} Found at: ");
         }
     }
 }
