@@ -238,7 +238,7 @@ namespace MMR_Tracker.Forms
 
             var start = System.DateTime.Now.Ticks; //Timing how long this takes for testing purposes
 
-            if (LogicObjects.MainTrackerInstance.JsonLogic)
+            if (LogicObjects.MainTrackerInstance.LogicFormat == "json")
             {
 
                 CreatePictureBox("Ocarina", "ItemOcarina", Spacing);
@@ -506,7 +506,7 @@ namespace MMR_Tracker.Forms
             int Spacing = (this.Width - 16) / ItemsOnScreen;
 
             var start = System.DateTime.Now.Ticks;
-            if (LogicObjects.MainTrackerInstance.JsonLogic)
+            if (LogicObjects.MainTrackerInstance.LogicFormat == "json")
             {
                 DrawItem("Ocarina", "ItemOcarina", Spacing);
                 DrawHighestTierItem("Bow", new Dictionary<string, string> { { "ItemBow", "30" }, { "UpgradeBigQuiver", "40" }, { "UpgradeBiggestQuiver", "50" } }, Spacing);
@@ -632,7 +632,7 @@ namespace MMR_Tracker.Forms
                 DrawItem("BossKey|4", "ItemStoneTowerBossKey", Spacing);
                 DrawCountableItem("SmallKey|4", new List<string> { "Stone Tower Small Key" }, Spacing, true);
                 DrawCountableItem("StoneTowerFairy", new List<string> { "Stone Tower Stray Fairy" }, Spacing, true);
-                DrawItem("DoubleDefence", "FairyDoubleMagic", Spacing);
+                DrawItem("DoubleDefence", "FairyDoubleDefense", Spacing);
             }
             else
             {

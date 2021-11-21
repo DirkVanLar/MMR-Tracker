@@ -983,6 +983,8 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             OtherExplosive,
             OtherArrow,
             OtherMagicBean,
+            OtherLimitlessBeans,
+            OtherPlayDekuPlayground,
             OtherTimeTravel,
             AreaWoodfallNew,
             AreaSnowheadNew,
@@ -1007,7 +1009,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x3F), ItemPool(ItemCategory.Navigation, LocationCategory.Chests)]
             ItemWoodfallCompass,
 
-            [Repeatable, Temporary]
+            [Repeatable, Temporary(nameof(GameplaySettings.BossKeyMode), (int)SmallKeyMode.KeepThroughTime, false)]
             [ItemName("Woodfall Boss Key"), LocationName("Woodfall Boss Key Chest"), Region(Region.WoodfallTemple)]
             [GossipLocationHint("Woodfall Temple", "the sleeping temple"), GossipItemHint("an important key", "entry to evil's lair")]
             [ShopText("The key for the boss room in Woodfall Temple.")]
@@ -1015,7 +1017,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x3D), ItemPool(ItemCategory.DungeonKeys, LocationCategory.BossFights)]
             ItemWoodfallBossKey,
 
-            [Repeatable, Temporary, Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
+            [Repeatable, Temporary(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, false), Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
             [ItemName("Woodfall Small Key"), LocationName("Woodfall Small Key Chest"), Region(Region.WoodfallTemple)]
             [GossipLocationHint("Woodfall Temple", "the sleeping temple"), GossipItemHint("access to a locked door", "a useful key")]
             [ShopText("A small key for use in Woodfall Temple.")]
@@ -1039,7 +1041,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x57), ItemPool(ItemCategory.Navigation, LocationCategory.Chests)]
             ItemSnowheadCompass,
 
-            [Repeatable, Temporary]
+            [Repeatable, Temporary(nameof(GameplaySettings.BossKeyMode), (int)SmallKeyMode.KeepThroughTime, false)]
             [ItemName("Snowhead Boss Key"), LocationName("Snowhead Boss Key Chest"), Region(Region.SnowheadTemple)]
             [GossipLocationHint("Snowhead Temple", "an icy gale"), GossipItemHint("an important key", "entry to evil's lair")]
             [ShopText("The key for the boss room in Snowhead Temple.")]
@@ -1047,7 +1049,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x4E), ItemPool(ItemCategory.DungeonKeys, LocationCategory.BossFights)]
             ItemSnowheadBossKey,
 
-            [Repeatable, Temporary, Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
+            [Repeatable, Temporary(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, false), Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
             [ItemName("Snowhead Small Key"), LocationName("Snowhead Block Room Chest"), Region(Region.SnowheadTemple)]
             [GossipLocationHint("Snowhead Temple", "an icy gale"), GossipItemHint("access to a locked door", "a useful key")]
             [ShopText("A small key for use in Snowhead Temple.")]
@@ -1055,7 +1057,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x46), ItemPool(ItemCategory.DungeonKeys, LocationCategory.Chests)]
             ItemSnowheadKey1,
 
-            [Repeatable, Temporary, Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
+            [Repeatable, Temporary(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, false), Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
             [ItemName("Snowhead Small Key"), LocationName("Snowhead Icicle Room Chest"), Region(Region.SnowheadTemple)]
             [GossipLocationHint("Snowhead Temple", "an icy gale"), GossipItemHint("access to a locked door", "a useful key")]
             [ShopText("A small key for use in Snowhead Temple.")]
@@ -1063,7 +1065,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x47), ItemPool(ItemCategory.DungeonKeys, LocationCategory.Chests)]
             ItemSnowheadKey2,
 
-            [Repeatable, Temporary, Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
+            [Repeatable, Temporary(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, false), Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
             [ItemName("Snowhead Small Key"), LocationName("Snowhead Bridge Room Chest"), Region(Region.SnowheadTemple)]
             [GossipLocationHint("Snowhead Temple", "an icy gale"), GossipItemHint("access to a locked door", "a useful key")]
             [ShopText("A small key for use in Snowhead Temple.")]
@@ -1087,7 +1089,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x58), ItemPool(ItemCategory.Navigation, LocationCategory.Chests)]
             ItemGreatBayCompass,
 
-            [Repeatable, Temporary]
+            [Repeatable, Temporary(nameof(GameplaySettings.BossKeyMode), (int)SmallKeyMode.KeepThroughTime, false)]
             [ItemName("Great Bay Boss Key"), LocationName("Great Bay Boss Key Chest"), Region(Region.GreatBayTemple)]
             [GossipLocationHint("Great Bay Temple", "the ocean temple"), GossipItemHint("an important key", "entry to evil's lair")]
             [ShopText("The key for the boss room in Great Bay Temple.")]
@@ -1095,7 +1097,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x4F), ItemPool(ItemCategory.DungeonKeys, LocationCategory.BossFights)]
             ItemGreatBayBossKey,
 
-            [Repeatable, Temporary, Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
+            [Repeatable, Temporary(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, false), Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
             [ItemName("Great Bay Small Key"), LocationName("Great Bay Small Key Chest"), Region(Region.GreatBayTemple)]
             [GossipLocationHint("Great Bay Temple", "the ocean temple"), GossipItemHint("access to a locked door", "a useful key")]
             [ShopText("A small key for use in Great Bay Temple.")]
@@ -1119,7 +1121,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x6C), ItemPool(ItemCategory.Navigation, LocationCategory.Chests)]
             ItemStoneTowerCompass,
 
-            [Repeatable, Temporary]
+            [Repeatable, Temporary(nameof(GameplaySettings.BossKeyMode), (int)SmallKeyMode.KeepThroughTime, false)]
             [ItemName("Stone Tower Boss Key"), LocationName("Stone Tower Boss Key Chest"), Region(Region.StoneTowerTemple)]
             [GossipLocationHint("Stone Tower Temple", "the cursed temple"), GossipItemHint("an important key", "entry to evil's lair")]
             [ShopText("The key for the boss room in Stone Tower Temple.")]
@@ -1127,7 +1129,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x53), ItemPool(ItemCategory.DungeonKeys, LocationCategory.BossFights)]
             ItemStoneTowerBossKey,
 
-            [Repeatable, Temporary, Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
+            [Repeatable, Temporary(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, false), Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
             [ItemName("Stone Tower Small Key"), LocationName("Stone Tower Armos Room Chest"), Region(Region.StoneTowerTemple)]
             [GossipLocationHint("Stone Tower Temple", "the cursed temple"), GossipItemHint("access to a locked door", "a useful key")]
             [ShopText("A small key for use in Stone Tower Temple.")]
@@ -1135,7 +1137,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x49), ItemPool(ItemCategory.DungeonKeys, LocationCategory.Chests)]
             ItemStoneTowerKey1,
 
-            [Repeatable, Temporary, Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
+            [Repeatable, Temporary(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, false), Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
             [ItemName("Stone Tower Small Key"), LocationName("Stone Tower Eyegore Room Chest"), Region(Region.StoneTowerTemple)]
             [GossipLocationHint("Stone Tower Temple", "the cursed temple"), GossipItemHint("access to a locked door", "a useful key")]
             [ShopText("A small key for use in Stone Tower Temple.")]
@@ -1143,7 +1145,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x4A), ItemPool(ItemCategory.DungeonKeys, LocationCategory.Chests)]
             ItemStoneTowerKey2,
 
-            [Repeatable, Temporary, Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
+            [Repeatable, Temporary(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, false), Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
             [ItemName("Stone Tower Small Key"), LocationName("Stone Tower Updraft Room Chest"), Region(Region.StoneTowerTemple)]
             [GossipLocationHint("Stone Tower Temple", "the cursed temple"), GossipItemHint("access to a locked door", "a useful key")]
             [ShopText("A small key for use in Stone Tower Temple.")]
@@ -1151,7 +1153,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x4B), ItemPool(ItemCategory.DungeonKeys, LocationCategory.Chests)]
             ItemStoneTowerKey3,
 
-            [Repeatable, Temporary, Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
+            [Repeatable, Temporary(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, false), Returnable(nameof(GameplaySettings.SmallKeyMode), (int)SmallKeyMode.KeepThroughTime, true)]
             [ItemName("Stone Tower Small Key"), LocationName("Stone Tower Death Armos Maze Chest"), Region(Region.StoneTowerTemple)]
             [GossipLocationHint("Stone Tower Temple", "the cursed temple"), GossipItemHint("access to a locked door", "a useful key")]
             [ShopText("A small key for use in Stone Tower Temple.")]

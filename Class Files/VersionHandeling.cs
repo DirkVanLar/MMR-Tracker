@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using MMR_Tracker.Class_Files;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace MMR_Tracker_V2
 {
@@ -67,6 +68,33 @@ namespace MMR_Tracker_V2
             }
 
             Debugging.Log(currentdictionary);
+            return currentdictionary;
+        }
+
+        public static string GetJSONDictionaryPath(LogicObjects.TrackerInstance Instance)
+        {
+            string currentdictionary = "";
+            int Versionoffset = -1;
+            foreach (var i in Directory.GetFiles(@"Recources\Dictionaries").ToArray())
+            {
+                LogicObjects.LogicDictionary LogicDic = new LogicObjects.LogicDictionary();
+                try 
+                {
+                    LogicDic = JsonConvert.DeserializeObject<LogicObjects.LogicDictionary>(File.ReadAllText(i));
+                    if (Instance.GameCode == LogicDic.GameCode && Instance.LogicFormat == LogicDic.LogicFormat)
+                    {
+                        int offset = Math.Abs(Instance.LogicVersion - LogicDic.LogicVersion);
+                        if (Versionoffset == -1 || Versionoffset < offset)
+                        {
+                            currentdictionary = i;
+                            Versionoffset = offset;
+                        }
+                    }
+                } 
+                catch { continue; }
+            }
+            Debugging.Log("Json Dictionary " + currentdictionary);
+            Debugging.Log($"Dictionary was {Versionoffset} versions off");
             return currentdictionary;
         }
 

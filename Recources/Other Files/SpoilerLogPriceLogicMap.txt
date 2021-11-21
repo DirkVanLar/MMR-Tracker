@@ -78,7 +78,7 @@ ShopItemZoraShield                      |  Zora Shop Hero's Shield
 ShopItemZoraArrow10                     |  Zora Shop 10 Arrows
 ShopItemZoraRedPotion                   |  Zora Shop Red Potion
 MaskAllNight                            |  All-Night Mask Purchase
-PlayPoeHut,HeartPiecePoeHut             |  Poe Hut                         			//Allows playing the song of healing for the poe hut huy to use the healed price
+HeartPiecePoeHut             |  Poe Hut                         			//Allows playing the song of healing for the poe hut huy to use the healed price
 PlayPoeHutHealed                        |  Healed Poe Hut
 
 HeartPieceTerminaBusinessScrub          | Business Scrub Purchase 1         		, Business Scrub Purchase 2		//Both the offers are random, We only care about the lowest

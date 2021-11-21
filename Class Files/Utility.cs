@@ -504,54 +504,14 @@ namespace MMR_Tracker_V2
         public static Dictionary<string, int> ReadSpoilerLogPriceLogicMap(LogicObjects.TrackerInstance Instance, Dictionary<string, int> Pricedata)
         {
             var SpoilerPriceDic = new Dictionary<string, int>();
-            var TextFile = File.ReadAllLines(@"Recources\Other Files\SpoilerLogPriceLogicMap.txt");
-
-            bool AtGame = true;
-            foreach (var line in TextFile)
+            foreach (var Entry in Instance.Logic)
             {
-                var x = line.Trim();
-                x = Regex.Replace(x, @"\s+", " ");
-                if (string.IsNullOrWhiteSpace(x) || x.StartsWith("//")) { continue; }
-                if (x.Contains("//")) { x = x.Substring(0, x.IndexOf("//")); }
-                if (x.ToLower().StartsWith("#gamecodestart:"))
-                {
-                    AtGame = x.ToLower().Replace("#gamecodestart:", "").Trim().Split(',').Select(y => y.Trim()).Contains(Instance.GameCode.ToLower());
-                    continue;
-                }
-                if (x.ToLower().StartsWith("#gamecodeend:")) { AtGame = true; continue; }
-                if (!AtGame) { continue; }
+                if (Entry.SpoilerPriceName == null) { continue; }
 
-                var RestrictionSplit = x.Split('!');
-                bool LineValid = true;
-                if (RestrictionSplit.Count() > 1)
-                {
-                    for(var y = 1; y < RestrictionSplit.Count(); y++)
-                    {
-                        var RestrictionAndSplit = RestrictionSplit[y].Split('&');
-                        bool AllItemsInLogic = true;
-                        foreach (var j in RestrictionAndSplit) { if (!Instance.DicNameToID.ContainsKey(j.Trim())) { AllItemsInLogic = false; } }
-                        if (AllItemsInLogic) { LineValid = false;  }
-                    }
-                }
-                if (!LineValid) { continue; }
-
-                var DicAndPriceData = RestrictionSplit[0].Split('|');
-                if (DicAndPriceData.Count() < 2) { continue; }
-                var dictionaryNameData = DicAndPriceData[0].Split(',');
-                var SpoilerNamedata = DicAndPriceData[1].Split(',');
-
-                string DictionaryName = null;
+                string DictionaryName = Entry.DictionaryName;
                 int LowestPrice = -1;
 
-                foreach(var i in dictionaryNameData)
-                {
-                    if (Instance.DicNameToID.ContainsKey(i.Trim()))
-                    {
-                        DictionaryName = i.Trim();
-                        break;
-                    }
-                }
-                foreach (var i in SpoilerNamedata)
+                foreach (var i in Entry.SpoilerPriceName)
                 {
                     if (Pricedata.ContainsKey(i.Trim()))
                     {

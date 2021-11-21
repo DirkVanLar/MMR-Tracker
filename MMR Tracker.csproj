@@ -388,12 +388,10 @@
     <None Include="Recources\Dictionaries\Legacy and non MM\WWRDICTIONARYV170.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\MMRDICTIONARYV3.csv">
+    <None Include="Recources\Dictionaries\MMR V9 Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\MMRDICTIONARYV8.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Recources\Dictionaries\Pre Json Dictionaries\MMRDICTIONARYV8.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Misc\App.config" />

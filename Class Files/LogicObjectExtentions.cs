@@ -327,58 +327,59 @@ namespace MMR_Tracker.Class_Files
         {
             return Item > -1 && Item < Instance.Logic.Count;
         }
-        public static void GetWalletsFromConfigFile(this LogicObjects.TrackerInstance Instance)
+        public static void GetWalletsFromJsonDictionary(this LogicObjects.TrackerInstance Instance, LogicObjects.LogicDictionary Dictionary)
         {
-            Dictionary<string, int> Wallets = new Dictionary<string, int>();
-            if (File.Exists(@"Recources\Other Files\WalletValues.txt"))
+            Instance.WalletDictionary = new Dictionary<string, int>();
+            Instance.WalletDictionary.Add("MMRTDefault", Dictionary.DefaultWalletCapacity);
+            Console.WriteLine($"Adding Wallet MMRTDefault: {Dictionary.DefaultWalletCapacity}");
+            foreach (var i in Dictionary.LogicDictionaryList)
             {
-                //Console.WriteLine("Wallet Config Found");
-                bool AtGame = true;
-                List<int> UsedItemsForLargestWallet = new List<int>();
-                foreach (var i in File.ReadAllLines(@"Recources\Other Files\WalletValues.txt"))
+                if (Instance.Logic.Find(x => x.DictionaryName == i.DictionaryName) != null && i.WalletCapacity != null && !Instance.WalletDictionary.ContainsKey(i.DictionaryName))
                 {
-                    var x = i.Trim();
-                    if (string.IsNullOrWhiteSpace(x) || x.StartsWith("//")) { continue; }
-                    if (x.ToLower().StartsWith("#gamecodestart:"))
-                    {
-                        AtGame = x.ToLower().Replace("#gamecodestart:", "").Trim().Split(',')
-                            .Select(y => y.Trim()).Contains(Instance.GameCode.ToLower());
-                        continue;
-                    }
-                    if (x.ToLower().StartsWith("#gamecodeend:")) { AtGame = true; continue; }
-                    if (!AtGame) { continue; }
-
-
-                    var info = x.Split(':').Select(y => y.Trim()).ToArray();
-                    if (info.Count() != 2) { continue; }
-                    string Wallet = info[0];
-                    int capacity = 0;
-                    try { capacity = int.Parse(info[1]); } catch { continue; }
-
-                    if (!Wallets.ContainsKey(Wallet)) { Wallets.Add(Wallet, capacity); }
+                    Console.WriteLine($"Adding Wallet {i.DictionaryName}: {(int)i.WalletCapacity}");
+                    Instance.WalletDictionary.Add(i.DictionaryName, (int)i.WalletCapacity);
                 }
             }
-            Instance.WalletDictionary = Wallets;
+        }
+        public static void CreateAreaClearDictionaryFromJsonDict(this LogicObjects.TrackerInstance Instance, LogicObjects.LogicDictionary Dictionary)
+        {
+            Instance.EntranceAreaDic = new Dictionary<int, int>();
+            foreach (var i in Dictionary.LogicDictionaryList)
+            {
+
+                if (i.GameClearDungeonEntrance != null)
+                {
+                    var AreaClear = Instance.Logic.Find(x => x.DictionaryName == i.DictionaryName);
+                    var DungeonEntrance = Instance.Logic.Find(x => x.DictionaryName == i.GameClearDungeonEntrance);
+                    if (AreaClear != null && DungeonEntrance != null)
+                    {
+                        Console.WriteLine($"Adding Entrance Area Pair {AreaClear.DictionaryName}: {DungeonEntrance.DictionaryName}");
+                        Instance.EntranceAreaDic.Add(AreaClear.ID, DungeonEntrance.ID);
+                    }
+                }
+            }
         }
         public static LogicObjects.LogicEntry GetLogicObjectFromDicName(this LogicObjects.TrackerInstance Instance, string DicName)
         {
             if (Instance.DicNameToID.ContainsKey(DicName)) { return Instance.Logic[Instance.DicNameToID[DicName]]; }
             else { return null; }
         }
-        public static List<int> GetBossKeys(this LogicObjects.TrackerInstance Instance)
+
+        public static List<int> GetKeysFromJsonDictionary(this LogicObjects.TrackerInstance Instance, LogicObjects.LogicDictionary Dict, string KeyType)
         {
-            List<string> Keynames = new List<string>() { "ItemWoodfallBossKey", "ItemSnowheadBossKey", "ItemGreatBayBossKey", "ItemStoneTowerBossKey" };
-            var keys = Instance.Logic.Where(x => Keynames.Contains(x.DictionaryName));
-            if (keys == null) { return new List<int>(); }
-            return keys.Select(x => x.ID).ToList();
-        }
-        public static List<int> GetSmallKeys(this LogicObjects.TrackerInstance Instance)
-        {
-            List<string> Keynames = new List<string>() 
-            { "ItemWoodfallKey1", "ItemGreatBayKey1", "ItemSnowheadKey1", "ItemSnowheadKey2", "ItemSnowheadKey3", "ItemStoneTowerKey1", "ItemStoneTowerKey2", "ItemStoneTowerKey3", "ItemStoneTowerKey4" };
-            var keys = Instance.Logic.Where(x => Keynames.Contains(x.DictionaryName));
-            if (keys == null) { return new List<int>(); }
-            return keys.Select(x => x.ID).ToList();
+            List<int> KeyList = new List<int>();
+            var Keys = Dict.LogicDictionaryList.Where(x => x.KeyType != null && x.KeyType == KeyType);
+            if (!Keys.Any()) { return KeyList; }
+            foreach (var i in Keys)
+            {
+                var LogicEntry = Instance.Logic.Find(x => x.DictionaryName == i.DictionaryName);
+                if (LogicEntry != null)
+                {
+                    Console.WriteLine($"Found {KeyType} key: {LogicEntry.ItemName ?? LogicEntry.DictionaryName}");
+                    KeyList.Add(LogicEntry.ID);
+                }
+            }
+            return KeyList;
         }
         public static List<int> GetChecksNeedingKeys(this LogicObjects.TrackerInstance Instance)
         {
@@ -397,6 +398,14 @@ namespace MMR_Tracker.Class_Files
                 if (HasKeys) { ChecksNeedingKeys.Add(NewEntry.ID); }
             }
             return ChecksNeedingKeys;
+        }
+        public static void CreateDicNameToID(this LogicObjects.TrackerInstance Instance)
+        {
+            foreach (var LogicEntry1 in Instance.Logic)
+            {
+                if (!Instance.DicNameToID.ContainsKey(LogicEntry1.DictionaryName))
+                { Instance.DicNameToID.Add(LogicEntry1.DictionaryName, LogicEntry1.ID); }
+            }
         }
     }
 }

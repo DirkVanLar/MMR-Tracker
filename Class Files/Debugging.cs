@@ -24,6 +24,7 @@ using MMR_Tracker.Forms.Extra_Functionality;
 using static MMR_Tracker.Class_Files.MMR_Code_Reference.items;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
+using MMR_Tracker.Class_Files.MMR_Code_Reference;
 
 namespace MMR_Tracker_V2
 {
@@ -80,11 +81,109 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
+            CreateJsonLogicDic();
 
-            Expression LogicSet = Infix.ParseOrThrow("(A*B)+(B*C)");
-            var TestOutput = Algebraic.Factors(LogicSet)[0];
-            string ExpandedLogic = Infix.Format(TestOutput).Replace(" ", "");
-            Console.WriteLine(ExpandedLogic);
+            void CreateJsonLogicDic()
+            {
+                LogicObjects.LogicDictionary NewLogicDic = new LogicObjects.LogicDictionary()
+                {
+                    LogicFormat = LogicObjects.MainTrackerInstance.LogicFormat,
+                    LogicVersion = LogicObjects.MainTrackerInstance.LogicVersion,
+                    GameCode = LogicObjects.MainTrackerInstance.GameCode,
+                    DefaultWalletCapacity = 99,
+                    LogicDictionaryList = new List<LogicObjects.LogicDictionaryEntry>()
+                };
+
+                var priceData = TempReadPRiceFile();
+                var entareadic = LogicObjects.MainTrackerInstance.EntranceAreaDic;
+
+                foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.ID < 1143)) 
+                {
+                    var DicEntry = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == i.DictionaryName);
+                    var itemPool = Enum.GetValues(typeof(Item)).Cast<Item>().ToArray();
+                    var item = itemPool.FirstOrDefault(x => x.ToString() == i.DictionaryName);
+                    var gossipLocations = item.HasAttribute<Definitions.GossipLocationHintAttribute>() ? item.GetAttribute<Definitions.GossipLocationHintAttribute>().Values : null;
+                    var GossipItems = item.HasAttribute<Definitions.GossipItemHintAttribute>() ? item.GetAttribute<Definitions.GossipItemHintAttribute>().Values : null;
+                    var locationarea = item.HasAttribute<Definitions.RegionNameAttribute>() ? item.GetAttribute<Definitions.RegionNameAttribute>().Name : null;
+                    var locationname = item.HasAttribute<Definitions.LocationNameAttribute>() ? item.GetAttribute<Definitions.LocationNameAttribute>().Name : null;
+                    var itemname = item.HasAttribute<Definitions.ItemNameAttribute>() ? item.GetAttribute<Definitions.ItemNameAttribute>().Name : null;
+                    int? WalletCapacity = null;
+                    List<string> BossKeynames = new List<string>() { "ItemWoodfallBossKey", "ItemSnowheadBossKey", "ItemGreatBayBossKey", "ItemStoneTowerBossKey" };
+                    List<string> SmallKeynames = new List<string>()
+                    { "ItemWoodfallKey1", "ItemGreatBayKey1", "ItemSnowheadKey1", "ItemSnowheadKey2", "ItemSnowheadKey3", 
+                        "ItemStoneTowerKey1", "ItemStoneTowerKey2", "ItemStoneTowerKey3", "ItemStoneTowerKey4" };
+
+                    if (!itemPool.Where(x => x.ToString() == i.DictionaryName).Any()) { Console.WriteLine($"{i.DictionaryName} Was not found in MMR files"); }
+
+                    if (i.DictionaryName == "UpgradeAdultWallet") { WalletCapacity = 200; }
+                    else if (i.DictionaryName == "UpgradeGiantWallet") { WalletCapacity = 500; }
+
+                    NewLogicDic.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry()
+                    {
+                        DictionaryName = i.DictionaryName,
+                        LocationName = locationname != null ? locationname : i.LocationName,
+                        ItemName = itemname != null ? itemname : i.ItemName,
+                        LocationArea = locationarea != null ? locationarea : (string.IsNullOrWhiteSpace(i.LocationArea) ? null : i.LocationArea),
+                        ItemSubType = (string.IsNullOrWhiteSpace(i.ItemSubType) ? null : i.ItemSubType),
+                        FakeItem = DicEntry == null,
+                        SpoilerLocation = locationname != null ? locationname : (DicEntry == null ? null : DicEntry.SpoilerLocation),
+                        SpoilerItem = itemname != null ? itemname : (DicEntry == null ? null : DicEntry.SpoilerItem),
+                        GossipLocation = gossipLocations == null ? null : string.Join("|", gossipLocations),
+                        GossipItem = GossipItems == null ? null : string.Join("|", GossipItems),
+                        WalletCapacity = WalletCapacity,
+                        SpoilerPriceName = priceData.ContainsKey(i.DictionaryName) ? priceData[i.DictionaryName] : null,
+                        GameClearDungeonEntrance = entareadic.ContainsKey(i.ID) ? LogicObjects.MainTrackerInstance.Logic[entareadic[i.ID]].DictionaryName : null,
+                        EntrancePair = null,
+                        KeyType = BossKeynames.Contains(i.DictionaryName) ? "boss" : (SmallKeynames.Contains(i.DictionaryName) ? "small" : null)
+                    }) ;
+                }
+
+                string FilePath = "";
+                SaveFileDialog saveDialog = new SaveFileDialog 
+                { 
+                    Filter = "MMR Tracker Save (*.json)|*.json", 
+                    FilterIndex = 1, 
+                    FileName = $"{NewLogicDic.GameCode} V{NewLogicDic.LogicVersion} Logic Dictionary" 
+                };
+                if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+                FilePath = saveDialog.FileName;
+                JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented,
+                    NullValueHandling = NullValueHandling.Ignore
+                };
+                File.WriteAllText(FilePath, JsonConvert.SerializeObject(NewLogicDic, _jsonSerializerOptions));
+            }
+
+            Dictionary<string,string> TempReadPRiceFile()
+            {
+                var finaldic = new Dictionary<string, string>();
+                var SpoilerPriceDic = new Dictionary<string, int>();
+                var TextFile = File.ReadAllLines(@"Recources\Other Files\SpoilerLogPriceLogicMap.txt");
+
+                bool AtGame = true;
+                foreach (var line in TextFile)
+                {
+                    var x = line.Trim();
+                    x = Regex.Replace(x, @"\s+", " ");
+                    if (string.IsNullOrWhiteSpace(x) || x.StartsWith("//")) { continue; }
+                    if (x.Contains("//")) { x = x.Substring(0, x.IndexOf("//")); }
+                    if (x.ToLower().StartsWith("#gamecodestart:"))
+                    {
+                        AtGame = x.ToLower().Replace("#gamecodestart:", "").Trim().Split(',').Select(y => y.Trim()).Contains(LogicObjects.MainTrackerInstance.GameCode.ToLower());
+                        continue;
+                    }
+                    if (x.ToLower().StartsWith("#gamecodeend:")) { AtGame = true; continue; }
+                    if (!AtGame) { continue; }
+
+                    var RestrictionSplit = x.Split('!');
+
+                    var DicAndPriceData = RestrictionSplit[0].Split('|');
+                    if (DicAndPriceData.Count() < 2) { continue; }
+                    finaldic.Add(DicAndPriceData[0].Trim(), DicAndPriceData[1].Trim());
+                }
+                return finaldic;
+            }
 
 
             //FixLogicSavedWithoutSetupTime();

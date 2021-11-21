@@ -529,12 +529,25 @@ namespace MMR_Tracker.Class_Files
                 }
             }
             //Extra saftey checks for older save files
+            if (LogicObjects.MainTrackerInstance.LogicFormat == "none")
+            {
+                Console.WriteLine("Logic format not found, attempting repairs.");
+                var rawlogic = LogicObjects.MainTrackerInstance.RawLogicFile;
+                LogicObjects.MainTrackerInstance.LogicFormat = "txt";
+                if (rawlogic !=null && rawlogic.Count() > 0 && rawlogic[0].StartsWith("{"))
+                {
+                    LogicObjects.MainTrackerInstance.LogicFormat = "json";
+                }
+            }
             LogicObjects.MainTrackerInstance.EntranceRando = LogicObjects.MainTrackerInstance.IsEntranceRando();
             if (LogicObjects.MainTrackerInstance.LogicVersion == 0)
             {
                 LogicObjects.MainTrackerInstance.LogicVersion = VersionHandeling.GetVersionDataFromLogicFile(LogicObjects.MainTrackerInstance.RawLogicFile).Version;
             }
             Tools.SaveFilePath = file;
+
+            Console.WriteLine("Loaded Logic was " + LogicObjects.MainTrackerInstance.LogicFormat);
+
             return;
         }
 
@@ -838,7 +851,7 @@ namespace MMR_Tracker.Class_Files
                 catch { }
 
             }
-            else if (Instance.LogicVersion < 8 && Instance.IsMM() && !Instance.JsonLogic)
+            else if (Instance.LogicVersion < 8 && Instance.IsMM() && Instance.LogicFormat == "txt")
             {
                 DialogResult dialogResult = MessageBox.Show("You are using a version of logic that is not supported by this tracker. Any logic version lower than version 8 (Randomizer version 1.8) may not work as intended. Do you wish to continue?", "Unsupported Version", MessageBoxButtons.YesNo);
                 if (dialogResult != DialogResult.Yes) { Instance = new LogicObjects.TrackerInstance(); return; }

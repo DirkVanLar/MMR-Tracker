@@ -29,7 +29,8 @@ namespace MMR_Tracker_V2
             public string[] RawLogicFile { get; set; }
             public bool UnsavedChanges { get; set; } = false;
             public bool EntranceRando { get; set; } = false;
-            public bool JsonLogic { get; set; } = false;
+            public string LogicFormat { get; set; } = "none";
+            //public bool JsonLogic { get; set; } = false;
             public Dictionary<string, int> WalletDictionary { get; set; } = new Dictionary<string, int>();
             public Dictionary<string, List<int>> Keys { get; set; } = new Dictionary<string, List<int>>() { {"SmallKeys", new List<int>() }, { "BossKeys", new List<int>() }, { "ChecksNeedingKeys", new List<int>() } };
             public SavedSpoilerLog CurrentSpoilerLog { get; set; } = new SavedSpoilerLog { Log = null, type = null };
@@ -84,6 +85,7 @@ namespace MMR_Tracker_V2
             public bool Checked { get; set; } = false; //Whether or not the location has been checked
             public int RandomizedItem { get; set; } = -2; //The random Item that was placed at the location
             public bool IsFake { get; set; } = true; //Whether or not the entry is a logic shortcut aka "Fake Item"
+            public bool RandomizerStaticFakeItem { get; set; } = true; //I fthe entry was fake, was it a static fake item created by the randomizer
             public int Options { get; set; } = 0; //Whether or not the location is randomized, unrandomized or forced Junk and whether or not it's a starting Item
             public bool Starred { get; set; } = false; //Whether the check has been starred
             public string LocationArea { get; set; } = ""; //The General Area the location is in
@@ -98,8 +100,11 @@ namespace MMR_Tracker_V2
             public bool TrickEnabled { get; set; } = false; //Whether or not the trick is enabled
             public string TrickToolTip { get; set; } = null; //The tool tip describing what the trick is
             public string GossipHint { get; set; } = ""; //The text assigned to this gossip stone. Only applicable if the check is a gossip stone.
+            public List<string> GossipLocation { get; set; } = new List<string>(); //Names gossip stones will refer to this location as
+            public List<string> GossipItem { get; set; } = new List<string>(); //Names gossip stones will refer to this Item as
             public int Price { get; set; } = -1; //The price to purchase the item at a shop, used in Price Randomizer.
-            public bool LogicWasEdited { get; set; } = false; //Used to track if edits were made to the logic of this item.
+            public List<string> SpoilerPriceName { get; set; } = new List<string>(); //The names the spoiler log will use when refering to the price of this location
+            public bool LogicWasEdited { get; set; } = false; //Used to track if edits were made to the logic of this item. should never be true in the master copy
             public PlayerData PlayerData { get; set; } = new PlayerData(); //Data for multiworld
             public string DisplayName { get; set; } = ""; //The value that is displayed if this object is displayed as a string
             public override string ToString()
@@ -114,6 +119,15 @@ namespace MMR_Tracker_V2
             public int ItemCameFromPlayer { get; set; } = -1; //(Future proofing for multi world) What the player this item came from
         }
 
+        public class LogicDictionary
+        {
+            public int LogicVersion { get; set; }
+            public string LogicFormat { get; set; }
+            public string GameCode { get; set; }
+            public int DefaultWalletCapacity { get; set; } = 200;
+            public List<LogicDictionaryEntry> LogicDictionaryList { get; set; }
+        }
+
         public class LogicDictionaryEntry
         {
             public string DictionaryName { get; set; } //The name the logic file uses for the item
@@ -121,8 +135,15 @@ namespace MMR_Tracker_V2
             public string ItemName { get; set; } //The name that will be displayed as the item you recieve
             public string LocationArea { get; set; } //The General Area the location is in
             public string ItemSubType { get; set; } //The type of item it is
+            public bool FakeItem { get; set; } = false; //Is the item fake. Currently unused and should always be false;
             public string SpoilerLocation { get; set; } //The name of this location in the spoiler Log
             public string SpoilerItem { get; set; } //The name of this item in the spoiler log
+            public string GossipLocation { get; set; } //The name Gossip stone refer to this location as
+            public string GossipItem { get; set; } //The name Gossip stone refer to this item as
+            public string KeyType { get; set; } //If this Object is a wallet, how much can it hold
+            public int? WalletCapacity { get; set; } //If this Object is a wallet, how much can it hold
+            public string SpoilerPriceName { get; set; } //The names of the entry that details the price of this check in the spoiler log
+            public string GameClearDungeonEntrance { get; set; } //If this Object is a dungeonclear entry, this is it's dungeon entrance
             public string EntrancePair { get; set; } //The Paired entrance for this entry
         }
 

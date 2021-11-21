@@ -221,13 +221,18 @@ namespace MMR_Tracker.Forms
         {
             if (Tools.PromptSave(LogicObjects.MainTrackerInstance))
             {
-                if (EditorInstance.JsonLogic)
+                if (EditorInstance.LogicFormat == "json")
                 {
                     LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance, LogicEditing.WriteLogicToJson(EditorInstance));
                 }
-                else
+                else if (EditorInstance.LogicFormat == "txt")
                 {
                     LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance, LogicEditing.WriteLogicToArray(EditorInstance));
+                }
+                else
+                {
+                    MessageBox.Show("Logic type was incorrect or not supported");
+                    return;
                 }
             }
             MainInterface.CurrentProgram.PrintToListBox();
