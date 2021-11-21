@@ -22,17 +22,17 @@ namespace MMR_Tracker_V2
             if (NewformatLogicFile == null)
             {
                 instance.LogicFormat = "txt";
-                return PopulatePre115TrackerInstance(instance);
+                return PopulateTXTTrackerInstance(instance);
             }
             else
             {
                 instance.LogicFormat = "json";
-                return PopulatePost115TrackerInstance(instance);
+                return PopulateJSONTrackerInstance(instance);
             }
 
         }
 
-        public static bool PopulatePost115TrackerInstance(LogicObjects.TrackerInstance instance)
+        public static bool PopulateJSONTrackerInstance(LogicObjects.TrackerInstance instance)
         {
             LogicObjects.LogicFile NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile));
             instance.Logic.Clear();
@@ -130,7 +130,7 @@ namespace MMR_Tracker_V2
 
         }
 
-        public static bool PopulatePre115TrackerInstance(LogicObjects.TrackerInstance instance)
+        public static bool PopulateTXTTrackerInstance(LogicObjects.TrackerInstance instance)
         {
             /* Sets the Values of the follwing using the data in instance.RawLogicFile
              * Version
@@ -150,14 +150,26 @@ namespace MMR_Tracker_V2
             int SubCounter = 0;
             int idCounter = 0;
 
+            foreach(var i in instance.RawLogicFile)
+            {
+                if (i.Trim() == "- EntranceMajorasLairFromTheMoon")
+                {
+                    instance.LogicFormat = "entrance";
+                    break;
+                }
+            }
+
+            LogicObjects.LogicDictionary MasterDic = null;
+
             if (instance.LogicDictionary == null || instance.LogicDictionary.Count < 1)
             {
-                string DictionaryPath = VersionHandeling.GetDictionaryPath(instance);
+                string DictionaryPath = VersionHandeling.GetJSONDictionaryPath(instance);
                 if (!string.IsNullOrWhiteSpace(DictionaryPath))
                 {
                     try
                     {
-                        instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(File.ReadAllLines(DictionaryPath)));
+                        MasterDic = JsonConvert.DeserializeObject<LogicObjects.LogicDictionary>(File.ReadAllText(DictionaryPath));
+                        instance.LogicDictionary = MasterDic.LogicDictionaryList;
                     }
                     catch { MessageBox.Show($"The Dictionary File \"{DictionaryPath}\" has been corrupted. The tracker will not function correctly."); }
                 }
@@ -229,7 +241,7 @@ namespace MMR_Tracker_V2
             }
 
             instance.EntranceRando = instance.IsEntranceRando();
-            instance.EntranceAreaDic = CreateAreaClearDictionary(instance);
+            instance.CreateAreaClearDictionaryFromJsonDict(MasterDic);
             instance.CreateDicNameToID();
             if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
             MarkUniqeItemsUnrandomizedManual(instance);

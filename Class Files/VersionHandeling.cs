@@ -84,7 +84,7 @@ namespace MMR_Tracker_V2
                     if (Instance.GameCode == LogicDic.GameCode && Instance.LogicFormat == LogicDic.LogicFormat)
                     {
                         int offset = Math.Abs(Instance.LogicVersion - LogicDic.LogicVersion);
-                        if (Versionoffset == -1 || Versionoffset < offset)
+                        if (Versionoffset == -1 || Versionoffset > offset)
                         {
                             currentdictionary = i;
                             Versionoffset = offset;

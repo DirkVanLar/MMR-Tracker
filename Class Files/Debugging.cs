@@ -81,9 +81,67 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-            CreateJsonLogicDic();
+            //BackupLoadLogic();
 
-            void CreateJsonLogicDic()
+            CreateJsonLogicDicWithTxtLogic();
+            void CreateJsonLogicDicWithTxtLogic()
+            {
+                LogicObjects.LogicDictionary NewLogicDic = new LogicObjects.LogicDictionary()
+                {
+                    LogicFormat = LogicObjects.MainTrackerInstance.LogicFormat,
+                    LogicVersion = LogicObjects.MainTrackerInstance.LogicVersion,
+                    GameCode = LogicObjects.MainTrackerInstance.GameCode,
+                    DefaultWalletCapacity = 99,
+                    LogicDictionaryList = new List<LogicObjects.LogicDictionaryEntry>()
+                };
+
+                var entareadic = LogicObjects.MainTrackerInstance.EntranceAreaDic;
+
+                var LastEntry = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "Magic Meter");
+                if (LastEntry == null) { Console.WriteLine("Could not find end of Logic Item \"Magic Meter\""); return; }
+
+                foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.ID < LastEntry.ID))
+                {
+                    var DicEntry = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == i.DictionaryName);
+
+                    NewLogicDic.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry()
+                    {
+                        DictionaryName = i.DictionaryName,
+                        LocationName = i.LocationName,
+                        ItemName = i.ItemName,
+                        LocationArea = string.IsNullOrWhiteSpace(i.LocationArea) ? null : i.LocationArea,
+                        ItemSubType = string.IsNullOrWhiteSpace(i.ItemSubType) ? null : i.ItemSubType,
+                        FakeItem = DicEntry == null,
+                        SpoilerLocation = (DicEntry == null ? null : DicEntry.SpoilerLocation),
+                        SpoilerItem = (DicEntry == null ? null : DicEntry.SpoilerItem),
+                        GossipLocation = null,
+                        GossipItem = null,
+                        WalletCapacity = null,
+                        SpoilerPriceName = null,
+                        GameClearDungeonEntrance = entareadic.ContainsKey(i.ID) ? LogicObjects.MainTrackerInstance.Logic[entareadic[i.ID]].DictionaryName : null,
+                        EntrancePair = DicEntry == null ? null : DicEntry.EntrancePair,
+                        KeyType = null
+                    });
+                }
+                string FilePath = "";
+                SaveFileDialog saveDialog = new SaveFileDialog
+                {
+                    Filter = "MMR Tracker Save (*.json)|*.json",
+                    FilterIndex = 1,
+                    FileName = $"{NewLogicDic.GameCode} V{NewLogicDic.LogicVersion} {NewLogicDic.LogicFormat} Logic Dictionary"
+                };
+                if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+                FilePath = saveDialog.FileName;
+                JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented,
+                    NullValueHandling = NullValueHandling.Ignore
+                };
+                File.WriteAllText(FilePath, JsonConvert.SerializeObject(NewLogicDic, _jsonSerializerOptions));
+
+            }
+
+            void CreateJsonLogicDicWithJsonLogic()
             {
                 LogicObjects.LogicDictionary NewLogicDic = new LogicObjects.LogicDictionary()
                 {
@@ -125,7 +183,7 @@ namespace MMR_Tracker_V2
                         ItemName = itemname != null ? itemname : i.ItemName,
                         LocationArea = locationarea != null ? locationarea : (string.IsNullOrWhiteSpace(i.LocationArea) ? null : i.LocationArea),
                         ItemSubType = (string.IsNullOrWhiteSpace(i.ItemSubType) ? null : i.ItemSubType),
-                        FakeItem = DicEntry == null,
+                        FakeItem = DicEntry == null || DicEntry.FakeItem,
                         SpoilerLocation = locationname != null ? locationname : (DicEntry == null ? null : DicEntry.SpoilerLocation),
                         SpoilerItem = itemname != null ? itemname : (DicEntry == null ? null : DicEntry.SpoilerItem),
                         GossipLocation = gossipLocations == null ? null : string.Join("|", gossipLocations),
@@ -143,7 +201,7 @@ namespace MMR_Tracker_V2
                 { 
                     Filter = "MMR Tracker Save (*.json)|*.json", 
                     FilterIndex = 1, 
-                    FileName = $"{NewLogicDic.GameCode} V{NewLogicDic.LogicVersion} Logic Dictionary" 
+                    FileName = $"{NewLogicDic.GameCode} V{NewLogicDic.LogicVersion} {NewLogicDic.LogicFormat} Logic Dictionary" 
                 };
                 if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
                 FilePath = saveDialog.FileName;
@@ -399,6 +457,171 @@ namespace MMR_Tracker_V2
             LogicEditor.AssignUniqueItemnames(LogicEditor.EditorInstance.Logic);
             LogicEditor.EditorForm.CreateContextMenus();
 
+        }
+
+        public static bool BackupPopulatePre115TrackerInstance(LogicObjects.TrackerInstance instance)
+        {
+            /* Sets the Values of the follwing using the data in instance.RawLogicFile
+             * Version
+             * Game
+             * Entrance Area Dictionary
+             * Logic
+             * LogicDictionary
+             * Name to ID Dictionary
+             * Entrance pair Dictionary
+             */
+            instance.Logic.Clear();
+            instance.DicNameToID.Clear();
+            instance.EntrancePairs.Clear();
+            LogicObjects.VersionInfo versionData = VersionHandeling.GetVersionDataFromLogicFile(instance.RawLogicFile);
+            instance.LogicVersion = versionData.Version;
+            instance.GameCode = versionData.Gamecode;
+            int SubCounter = 0;
+            int idCounter = 0;
+
+            if (instance.LogicDictionary == null || instance.LogicDictionary.Count < 1)
+            {
+                string DictionaryPath = VersionHandeling.GetDictionaryPath(instance);
+                if (!string.IsNullOrWhiteSpace(DictionaryPath))
+                {
+                    try
+                    {
+                        instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(File.ReadAllLines(DictionaryPath)));
+                    }
+                    catch { MessageBox.Show($"The Dictionary File \"{DictionaryPath}\" has been corrupted. The tracker will not function correctly."); }
+                }
+                else { MessageBox.Show($"A valid dictionary file could not be found for this logic. The tracker will not function correctly."); }
+            }
+
+            LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
+            var NextLine = 1;
+            foreach (string line in instance.RawLogicFile)
+            {
+                if (NextLine == 1) { NextLine++; continue; }
+                if (line.StartsWith("-")) { SubCounter = 0; }
+                switch (SubCounter)
+                {
+                    case 0:
+                        LogicEntry1.ID = idCounter;
+                        LogicEntry1.DictionaryName = line.Substring(2);
+                        LogicEntry1.Checked = false;
+                        LogicEntry1.RandomizedItem = -2;
+                        LogicEntry1.IsFake = true;
+                        LogicEntry1.SpoilerRandom = -2;
+
+                        var DicEntry = instance.LogicDictionary.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
+                        if (DicEntry == null) { break; }
+
+                        LogicEntry1.IsFake = false;
+                        LogicEntry1.IsTrick = false;
+                        LogicEntry1.TrickEnabled = true;
+                        LogicEntry1.TrickToolTip = "";
+                        LogicEntry1.ItemName = (string.IsNullOrWhiteSpace(DicEntry.ItemName)) ? null : DicEntry.ItemName;
+                        LogicEntry1.LocationName = (string.IsNullOrWhiteSpace(DicEntry.LocationName)) ? null : DicEntry.LocationName;
+                        LogicEntry1.LocationArea = (string.IsNullOrWhiteSpace(DicEntry.LocationArea)) ? "Misc" : DicEntry.LocationArea;
+                        LogicEntry1.ItemSubType = (string.IsNullOrWhiteSpace(DicEntry.ItemSubType)) ? "Item" : DicEntry.ItemSubType;
+                        LogicEntry1.SpoilerLocation = (string.IsNullOrWhiteSpace(DicEntry.SpoilerLocation))
+                            ? new List<string> { LogicEntry1.LocationName } : DicEntry.SpoilerLocation.Split('|').ToList();
+                        LogicEntry1.SpoilerItem = (string.IsNullOrWhiteSpace(DicEntry.SpoilerItem))
+                            ? new List<string> { LogicEntry1.ItemName } : DicEntry.SpoilerItem.Split('|').ToList();
+                        break;
+                    case 1:
+                        if (string.IsNullOrWhiteSpace(line)) { LogicEntry1.Required = null; break; }
+                        LogicEntry1.Required = line.Split(',').Select(y => int.Parse(y)).ToArray();
+                        break;
+                    case 2:
+                        if (string.IsNullOrWhiteSpace(line)) { LogicEntry1.Conditionals = null; break; }
+                        LogicEntry1.Conditionals = line.Split(';').Select(x => x.Split(',').Select(y => int.Parse(y)).ToArray()).ToArray();
+                        break;
+                    case 3:
+                        LogicEntry1.NeededBy = System.Convert.ToInt32(line);
+                        break;
+                    case 4:
+                        LogicEntry1.AvailableOn = System.Convert.ToInt32(line);
+                        break;
+                    case 5:
+                        LogicEntry1.IsTrick = (line.StartsWith(";"));
+                        LogicEntry1.TrickEnabled = true;
+                        LogicEntry1.TrickToolTip = (line.Length > 1) ? line.Substring(1) : "No Tooltip Available";
+                        //if (LogicEntry1.IsTrick) { Debugging.Log($"Trick {LogicEntry1.DictionaryName} Found. ToolTip =  { LogicEntry1.TrickToolTip }"); }
+                        break;
+                }
+                if ((NextLine) >= instance.RawLogicFile.Count() || instance.RawLogicFile[NextLine].StartsWith("-"))
+                {
+                    //Push Data to the instance
+                    instance.Logic.Add(LogicEntry1);
+                    LogicEntry1 = new LogicObjects.LogicEntry();
+                    idCounter++;
+                }
+                NextLine++;
+                SubCounter++;
+            }
+
+            instance.EntranceRando = instance.IsEntranceRando();
+            instance.EntranceAreaDic = BackupCreateAreaClearDictionary(instance);
+            instance.CreateDicNameToID();
+            Utility.nullEmptyLogicItems(instance.Logic);
+
+            return true;
+        }
+
+        public static Dictionary<int, int> BackupCreateAreaClearDictionary(LogicObjects.TrackerInstance Instance)
+        {
+            var EntAreaDict = new Dictionary<int, int>();
+
+            if (!Instance.IsMM()) { return EntAreaDict; }
+
+            var WoodfallClear = Instance.Logic.Find(x => x.DictionaryName == "Woodfall clear" || x.DictionaryName == "AreaWoodFallTempleClear");
+            var WoodfallAccess = Instance.Logic.Find(x => (x.DictionaryName == "Woodfall Temple access" || x.DictionaryName == "AreaWoodFallTempleAccess") && !x.IsFake);
+            if (WoodfallAccess == null || WoodfallClear == null)
+            {
+                Console.WriteLine($"Coul not find Woodfall Data. Access found {WoodfallAccess != null}. Clear found {WoodfallClear != null}.");
+                return new Dictionary<int, int>();
+            }
+            EntAreaDict.Add(WoodfallClear.ID, WoodfallAccess.ID);
+
+            var SnowheadClear = Instance.Logic.Find(x => x.DictionaryName == "Snowhead clear" || x.DictionaryName == "AreaSnowheadTempleClear");
+            var SnowheadAccess = Instance.Logic.Find(x => (x.DictionaryName == "Snowhead Temple access" || x.DictionaryName == "AreaSnowheadTempleAccess") && !x.IsFake);
+            if (SnowheadAccess == null || SnowheadClear == null)
+            {
+                Console.WriteLine($"Coul not find Snowhead Data. Access found {SnowheadAccess != null} Clear {SnowheadClear != null}");
+                return new Dictionary<int, int>();
+            }
+            EntAreaDict.Add(SnowheadClear.ID, SnowheadAccess.ID);
+
+            var GreatBayClear = Instance.Logic.Find(x => x.DictionaryName == "Great Bay clear" || x.DictionaryName == "AreaGreatBayTempleClear");
+            var GreatBayAccess = Instance.Logic.Find(x => (x.DictionaryName == "Great Bay Temple access" || x.DictionaryName == "AreaGreatBayTempleAccess") && !x.IsFake);
+            if (GreatBayAccess == null || GreatBayClear == null)
+            {
+                Console.WriteLine($"Coul not find Great Bay Data. Access found {GreatBayAccess != null} Clear {GreatBayClear != null}");
+                return new Dictionary<int, int>();
+            }
+            EntAreaDict.Add(GreatBayClear.ID, GreatBayAccess.ID);
+
+            var StoneTowerClear = Instance.Logic.Find(x => x.DictionaryName == "Ikana clear" || x.DictionaryName == "AreaStoneTowerClear");
+            var StoneTowerAccess = Instance.Logic.Find(x => (x.DictionaryName == "Inverted Stone Tower Temple access" || x.DictionaryName == "AreaInvertedStoneTowerTempleAccess") && !x.IsFake);
+            if (StoneTowerAccess == null || StoneTowerClear == null)
+            {
+                Console.WriteLine($"Coul not find Ikana Data. Access found {StoneTowerAccess != null} Clear {StoneTowerClear != null}");
+                return new Dictionary<int, int>();
+            }
+            EntAreaDict.Add(StoneTowerClear.ID, StoneTowerAccess.ID);
+
+            return EntAreaDict;
+        }
+        public static void BackupLoadLogic()
+        {
+            var file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
+            if (file == "") { return; }
+            bool SettingsFile = file.EndsWith(".MMRTSET");
+            var Lines = (SettingsFile) ? File.ReadAllLines(file).Skip(2).ToArray() : File.ReadAllLines(file).ToArray();
+
+            LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
+
+            LogicObjects.MainTrackerInstance.LogicFormat = "txt";
+
+            LogicObjects.MainTrackerInstance.RawLogicFile = Lines;
+            BackupPopulatePre115TrackerInstance(LogicObjects.MainTrackerInstance);
         }
 
     }

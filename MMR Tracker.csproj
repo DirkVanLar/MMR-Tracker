@@ -388,7 +388,16 @@
     <None Include="Recources\Dictionaries\Legacy and non MM\WWRDICTIONARYV170.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\MMR V9 Logic Dictionary.json">
+    <None Include="Recources\Dictionaries\MMR V15 txt Logic Dictionary.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Recources\Dictionaries\MMR V17 entrance Logic Dictionary.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Recources\Dictionaries\MMR V18 txt Logic Dictionary.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Recources\Dictionaries\MMR V9 json Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Recources\Dictionaries\Pre Json Dictionaries\MMRDICTIONARYV8.csv" />

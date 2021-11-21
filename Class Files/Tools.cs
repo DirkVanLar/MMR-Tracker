@@ -538,6 +538,10 @@ namespace MMR_Tracker.Class_Files
                 {
                     LogicObjects.MainTrackerInstance.LogicFormat = "json";
                 }
+                else if (LogicObjects.MainTrackerInstance.IsEntranceRando())
+                {
+                    LogicObjects.MainTrackerInstance.LogicFormat = "entrance";
+                }
             }
             LogicObjects.MainTrackerInstance.EntranceRando = LogicObjects.MainTrackerInstance.IsEntranceRando();
             if (LogicObjects.MainTrackerInstance.LogicVersion == 0)

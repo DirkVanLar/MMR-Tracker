@@ -225,7 +225,7 @@ namespace MMR_Tracker.Forms
                 {
                     LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance, LogicEditing.WriteLogicToJson(EditorInstance));
                 }
-                else if (EditorInstance.LogicFormat == "txt")
+                else if (EditorInstance.LogicFormat == "txt" || EditorInstance.LogicFormat == "entrance")
                 {
                     LogicEditing.RecreateLogic(LogicObjects.MainTrackerInstance, LogicEditing.WriteLogicToArray(EditorInstance));
                 }
