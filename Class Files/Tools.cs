@@ -369,6 +369,7 @@ namespace MMR_Tracker.Class_Files
                     if (entry.ItemName.Contains("Ice Trap"))
                     {
                         entry.ItemID = -1;
+                        entry.JunkItemType = "Ice Trap";
                     }
 
                     SpoilerData.Add(entry);

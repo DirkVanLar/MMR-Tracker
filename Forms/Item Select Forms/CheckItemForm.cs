@@ -25,6 +25,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
         public bool ItemStateChanged = false;
         public bool KeepChecked = false;
         public bool FullCheck = false;
+        public string GlobalJunkType = "Junk";
 
         public CheckItemForm()
         {
@@ -83,6 +84,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                         LogicEditing.CheckEntrancePair(CheckedObject, Instance, false);
                     }
                     CheckedObject.Checked = false;
+                    if (CheckedObject.RandomizedItem == -1 && CheckedObject.SpoilerRandom != -1 && CheckedObject.JunkItemType != "Junk") { CheckedObject.JunkItemType = "Junk"; }
                     if (!KeepChecked) { CheckedObject.RandomizedItem = -2; }
                     ItemStateChanged = true;
                     continue;
@@ -117,8 +119,9 @@ namespace MMR_Tracker.Forms.Sub_Forms
             foreach (var CheckedObject in AutoSelect)
             {
                 if (CheckedObject.ID < -1) { continue; }
-                if (CheckedObject.RandomizedItem > -2) 
-                { 
+                if (CheckedObject.RandomizedItem > -2)
+                {
+                    if (CheckedObject.RandomizedItem == -1 && CheckedObject.SpoilerRandom != -1 && CheckedObject.JunkItemType != "Junk") { CheckedObject.JunkItemType = "Junk"; }
                     CheckedObject.RandomizedItem = -2;
                     ItemStateChanged = true;
                     continue;
@@ -144,8 +147,29 @@ namespace MMR_Tracker.Forms.Sub_Forms
         private void CheckItemForm_Load(object sender, EventArgs e)
         {
             PositionItems();
+            CreateJunkContextmenu();
             LBItemSelect.Sorted = chkSort.Checked;
             NextManualItem();
+        }
+
+        private void CreateJunkContextmenu()
+        {
+            ContextMenuStrip JunkMenu = new ContextMenuStrip();
+            ToolStripItem Junk = JunkMenu.Items.Add("Junk");
+            Junk.Click += (sender, e) => { HandleItemJunkType(sender, e, "Junk"); };
+            ToolStripItem Rupees = JunkMenu.Items.Add("Rupees");
+            Rupees.Click += (sender, e) => { HandleItemJunkType(sender, e, "Rupees"); };
+            ToolStripItem Ammo = JunkMenu.Items.Add("Ammo");
+            Ammo.Click += (sender, e) => { HandleItemJunkType(sender, e, "Ammo"); };
+            ToolStripItem IceTrap = JunkMenu.Items.Add("Ice Trap");
+            IceTrap.Click += (sender, e) => { HandleItemJunkType(sender, e, "Ice Trap"); };
+            btnJunk.ContextMenuStrip = JunkMenu;
+        }
+
+        private void HandleItemJunkType(object sender, EventArgs e, string JunkType)
+        {
+            GlobalJunkType = JunkType;
+            HandleSelectedItem(sender, e);
         }
 
         public void PositionItems()
@@ -245,6 +269,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             if (FullCheck) { ChangesMade = CheckManualItem(sender, e); }
             else { ChangesMade = MarkManualItem(sender, e); }
             if (ChangesMade) { ItemStateChanged = true; }
+            GlobalJunkType = "Junk";
 
             ManualSelect.RemoveAt(0);
             NextManualItem();
@@ -264,6 +289,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             if (LogicObjects.MainTrackerInstance.Options.IsMultiWorld) { CheckedObject.PlayerData.ItemBelongedToPlayer = (int)numericUpDown1.Value; }
             if (SelectedItem.ID < 0)
             {
+                if (SelectedItem.ID == -1) { CheckedObject.JunkItemType = GlobalJunkType; }
                 CheckedObject.RandomizedItem = -1;
                 return true;
             }
@@ -285,6 +311,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 if (!(LBItemSelect.SelectedItem is LogicObjects.LogicEntry)) { return false; }
                 SelectedItem = LBItemSelect.SelectedItem as LogicObjects.LogicEntry;
             }
+            if (SelectedItem.ID == -1) { CheckedObject.JunkItemType = GlobalJunkType; }
             CheckedObject.RandomizedItem = SelectedItem.ID;
             return true;
         }

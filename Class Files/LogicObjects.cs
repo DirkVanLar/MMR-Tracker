@@ -84,6 +84,7 @@ namespace MMR_Tracker_V2
             public bool Aquired { get; set; } = false; //Whether or not the item is aquired
             public bool Checked { get; set; } = false; //Whether or not the location has been checked
             public int RandomizedItem { get; set; } = -2; //The random Item that was placed at the location
+            public string JunkItemType { get; set; } = "Junk"; //if the item is a junk item, what kind of junk item if applicable
             public bool IsFake { get; set; } = true; //Whether or not the entry is a logic shortcut aka "Fake Item"
             public bool RandomizerStaticFakeItem { get; set; } = true; //I fthe entry was fake, was it a static fake item created by the randomizer
             public int Options { get; set; } = 0; //Whether or not the location is randomized, unrandomized or forced Junk and whether or not it's a starting Item
@@ -240,6 +241,7 @@ namespace MMR_Tracker_V2
             public string ItemName { get; set; }
             public string LocationArea { get; set; }
             public int BelongsTo { get; set; } = -1;
+            public string JunkItemType { get; set; } = "Junk";
         }
         public class ListItem
         {

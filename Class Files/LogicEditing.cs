@@ -365,7 +365,7 @@ namespace MMR_Tracker_V2
                 SettingsData = SPLD.SettingString;
                 Hintdata = SPLD.GossipHints;
             }
-            else { MessageBox.Show("This Spoiler log is not valid. Please use either an HTML or TXT file."); return; }
+            else { MessageBox.Show("This Spoiler log is not valid. Please use an HTML file."); return; }
 
             if (SettingsData != null && ApplySetting)
             {
@@ -379,6 +379,7 @@ namespace MMR_Tracker_V2
                 if (data.LocationID > -1 && data.ItemID > -2 && data.LocationID < Instance.Logic.Count && data.ItemID < Instance.Logic.Count)
                 {
                     Instance.Logic[data.LocationID].SpoilerRandom = data.ItemID;
+                    if (data.ItemID == -1) { Instance.Logic[data.LocationID].JunkItemType = data.JunkItemType; }
                     if (data.BelongsTo > -1) { Instance.Logic[data.LocationID].PlayerData.ItemBelongedToPlayer = data.BelongsTo; }
                 }
             }

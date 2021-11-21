@@ -22,7 +22,15 @@ namespace MMR_Tracker.Class_Files
         public static LogicObjects.LogicEntry RandomizedEntry(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool ReturnJunkAsItem = false)
         {
             if (ReturnJunkAsItem && entry.HasRandomItem(false) && !entry.HasRandomItem(true))
-            { return new LogicObjects.LogicEntry { ID = -1, DictionaryName = "Junk", DisplayName = "Junk", LocationName = "Junk", ItemName = "Junk" }; }
+            { 
+                return new LogicObjects.LogicEntry { 
+                    ID = -1, 
+                    DictionaryName = entry.JunkItemType, 
+                    DisplayName = entry.JunkItemType, 
+                    LocationName = entry.JunkItemType, 
+                    ItemName = entry.JunkItemType 
+                }; 
+            }
             if (!entry.HasRandomItem(true) || entry.RandomizedItem >= Instance.Logic.Count) { return null; }
             return Instance.Logic[entry.RandomizedItem];
         }
