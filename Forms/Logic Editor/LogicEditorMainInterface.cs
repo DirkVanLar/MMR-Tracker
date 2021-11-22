@@ -581,9 +581,9 @@ namespace MMR_Tracker.Forms
             }
 
             currentEntry = entry;
-            renameCurrentItemToolStripMenuItem.Visible = currentEntry.UserCreatedFakeItem(EditorInstance.Logic);
-            deleteCurrentItemToolStripMenuItem.Visible = currentEntry.UserCreatedFakeItem(EditorInstance.Logic);
-            setTrickToolTipToolStripMenuItem.Visible = currentEntry.UserCreatedFakeItem(EditorInstance.Logic);
+            renameCurrentItemToolStripMenuItem.Visible = currentEntry.UserCreatedFakeItem();
+            deleteCurrentItemToolStripMenuItem.Visible = currentEntry.UserCreatedFakeItem();
+            setTrickToolTipToolStripMenuItem.Visible = currentEntry.UserCreatedFakeItem();
 
             LBRequired.BeginUpdate();
             LBConditional.BeginUpdate();

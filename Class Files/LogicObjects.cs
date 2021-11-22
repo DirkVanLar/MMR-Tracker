@@ -105,6 +105,7 @@ namespace MMR_Tracker_V2
             public List<string> GossipItem { get; set; } = new List<string>(); //Names gossip stones will refer to this Item as
             public int Price { get; set; } = -1; //The price to purchase the item at a shop, used in Price Randomizer.
             public List<string> SpoilerPriceName { get; set; } = new List<string>(); //The names the spoiler log will use when refering to the price of this location
+            public ProgressiveItemData ProgressiveItemData { get; set; } = null; //Progressive Item Data
             public bool LogicWasEdited { get; set; } = false; //Used to track if edits were made to the logic of this item. should never be true in the master copy
             public PlayerData PlayerData { get; set; } = new PlayerData(); //Data for multiworld
             public string DisplayName { get; set; } = ""; //The value that is displayed if this object is displayed as a string
@@ -136,7 +137,7 @@ namespace MMR_Tracker_V2
             public string ItemName { get; set; } //The name that will be displayed as the item you recieve
             public string LocationArea { get; set; } //The General Area the location is in
             public string ItemSubType { get; set; } //The type of item it is
-            public bool FakeItem { get; set; } = false; //Is the item fake. Currently unused and should always be false;
+            public bool FakeItem { get; set; } = false; //Is the item fake.
             public string SpoilerLocation { get; set; } //The name of this location in the spoiler Log
             public string SpoilerItem { get; set; } //The name of this item in the spoiler log
             public string GossipLocation { get; set; } //The name Gossip stone refer to this location as
@@ -145,8 +146,17 @@ namespace MMR_Tracker_V2
             public int? WalletCapacity { get; set; } //If this Object is a wallet, how much can it hold
             public string SpoilerPriceName { get; set; } //The names of the entry that details the price of this check in the spoiler log
             public string GameClearDungeonEntrance { get; set; } //If this Object is a dungeonclear entry, this is it's dungeon entrance
+            public ProgressiveItemData ProgressiveItemData { get; set; } = null; //Progressive Item Data
             public string EntrancePair { get; set; } //The Paired entrance for this entry
             public string RandoOnlyRequiredLogic { get; set; } //The Paired entrance for this entry
+        }
+
+        public class ProgressiveItemData
+        {
+            public bool IsProgressiveItem { get; set; } = true;
+            public string[] ProgressiveItemSet { get; set; } = null;
+            public int CountNeededForItem { get; set; } = 0;
+            public string ProgressiveItemName { get; set; } = null;
         }
 
         public class SaveState

@@ -94,6 +94,7 @@ namespace MMR_Tracker_V2
 
                     LogicEntry1.ItemName = (string.IsNullOrWhiteSpace(DicEntry.ItemName)) ? null : DicEntry.ItemName;
                     LogicEntry1.LocationName = (string.IsNullOrWhiteSpace(DicEntry.LocationName)) ? null : DicEntry.LocationName;
+                    LogicEntry1.ProgressiveItemData = DicEntry.ProgressiveItemData;
 
                     if (!LogicEntry1.IsFake)
                     {
@@ -126,6 +127,19 @@ namespace MMR_Tracker_V2
             if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
             MarkUniqeItemsUnrandomizedManual(instance);
             Utility.nullEmptyLogicItems(instance.Logic);
+
+            foreach(var i in instance.Logic)
+            {
+                if (i.ProgressiveItemData != null && i.ProgressiveItemData.IsProgressiveItem)
+                {
+                    var ValidProggressiveItems = i.ProgressiveItemData.ProgressiveItemSet.Where(x => instance.DicNameToID.ContainsKey(x)).Select(x => instance.Logic[instance.DicNameToID[x]]);
+
+                    if (!ValidProggressiveItems.Any() || i.ProgressiveItemData.CountNeededForItem > ValidProggressiveItems.Count()) { continue; }
+                    Console.WriteLine("========================================================");
+                    Console.WriteLine($"{(i.ItemName ?? i.DictionaryName)} Was progressive Item with name: {i.ProgressiveItemData.ProgressiveItemName}");
+                    Console.WriteLine($"{i.ProgressiveItemData.CountNeededForItem} of the following are needed: {string.Join(", ", ValidProggressiveItems.Select(x => x.ItemName))}");
+                }
+            }
 
             return true;
 

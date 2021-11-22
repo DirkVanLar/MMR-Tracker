@@ -24,9 +24,19 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Hero's Bow Chest",
-      "SpoilerItem": "Hero's Bow",
+      "SpoilerItem": "Hero's Bow|Bow Upgrade",
       "GossipLocation": "the sleeping temple|Woodfall Temple",
-      "GossipItem": "a ranged weapon|a projectile"
+      "GossipItem": "a ranged weapon|a projectile",
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "ItemBow",
+          "UpgradeBigQuiver",
+          "UpgradeBiggestQuiver"
+        ],
+        "CountNeededForItem": 1,
+        "ProgressiveItemName": "Bow Upgrade"
+      }
     },
     {
       "DictionaryName": "ItemFireArrow",
@@ -72,11 +82,21 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Bomb Bag Purchase",
-      "SpoilerItem": "Bomb Bag",
+      "SpoilerItem": "Bomb Bag|Bomb Bag Upgrade",
       "GossipLocation": "a town shop",
       "GossipItem": "a vessel of explosives|an item carrier",
       "SpoilerPriceName": "Bomb Bag Purchase",
-      "RandoOnlyRequiredLogic": "TradeItemKafeiLetter|TradeItemPendant"
+      "RandoOnlyRequiredLogic": "TradeItemKafeiLetter|TradeItemPendant",
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "ItemBombBag",
+          "UpgradeBigBombBag",
+          "UpgradeBiggestBombBag"
+        ],
+        "CountNeededForItem": 1,
+        "ProgressiveItemName": "Bomb Bag Upgrade"
+      }
     },
     {
       "DictionaryName": "ItemMagicBean",
@@ -146,9 +166,18 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Town Great Fairy Non-Human",
-      "SpoilerItem": "Magic Power",
+      "SpoilerItem": "Magic Power|Magic Power Upgrade",
       "GossipLocation": "a magical being",
-      "GossipItem": "magic power"
+      "GossipItem": "magic power",
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "FairyMagic",
+          "FairyDoubleMagic"
+        ],
+        "CountNeededForItem": 1,
+        "ProgressiveItemName": "Magic Power Upgrade"
+      }
     },
     {
       "DictionaryName": "FairySpinAttack",
@@ -170,9 +199,18 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Snowhead Great Fairy",
-      "SpoilerItem": "Extended Magic Power",
+      "SpoilerItem": "Extended Magic Power|Magic Power Upgrade",
       "GossipLocation": "a magical being",
-      "GossipItem": "magic power"
+      "GossipItem": "magic power",
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "FairyMagic",
+          "FairyDoubleMagic"
+        ],
+        "CountNeededForItem": 2,
+        "ProgressiveItemName": "Magic Power Upgrade"
+      }
     },
     {
       "DictionaryName": "FairyDoubleDefense",
@@ -290,10 +328,20 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Mountain Smithy Day 1",
-      "SpoilerItem": "Razor Sword",
+      "SpoilerItem": "Razor Sword|Sword Upgrade",
       "GossipLocation": "the mountain smith",
       "GossipItem": "a sharp blade",
-      "SpoilerPriceName": "Mountain Smithy Day 1"
+      "SpoilerPriceName": "Mountain Smithy Day 1",
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "StartingSword",
+          "UpgradeRazorSword",
+          "UpgradeGildedSword"
+        ],
+        "CountNeededForItem": 2,
+        "ProgressiveItemName": "Sword Upgrade"
+      }
     },
     {
       "DictionaryName": "UpgradeGildedSword",
@@ -303,9 +351,19 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Mountain Smithy Day 2",
-      "SpoilerItem": "Gilded Sword",
+      "SpoilerItem": "Gilded Sword|Sword Upgrade",
       "GossipLocation": "the mountain smith",
-      "GossipItem": "a sharp blade"
+      "GossipItem": "a sharp blade",
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "StartingSword",
+          "UpgradeRazorSword",
+          "UpgradeGildedSword"
+        ],
+        "CountNeededForItem": 3,
+        "ProgressiveItemName": "Sword Upgrade"
+      }
     },
     {
       "DictionaryName": "UpgradeMirrorShield",
@@ -327,10 +385,20 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Town Archery #1",
-      "SpoilerItem": "Large Quiver",
+      "SpoilerItem": "Large Quiver|Bow Upgrade",
       "GossipLocation": "a town activity",
       "GossipItem": "a ranged weapon|a projectile",
-      "SpoilerPriceName": "Town Archery"
+      "SpoilerPriceName": "Town Archery",
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "ItemBow",
+          "UpgradeBigQuiver",
+          "UpgradeBiggestQuiver"
+        ],
+        "CountNeededForItem": 2,
+        "ProgressiveItemName": "Bow Upgrade"
+      }
     },
     {
       "DictionaryName": "UpgradeBiggestQuiver",
@@ -340,10 +408,20 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Swamp Archery #1",
-      "SpoilerItem": "Largest Quiver",
+      "SpoilerItem": "Largest Quiver|Bow Upgrade",
       "GossipLocation": "a swamp game",
       "GossipItem": "a ranged weapon|a projectile",
-      "SpoilerPriceName": "Swamp Archery"
+      "SpoilerPriceName": "Swamp Archery",
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "ItemBow",
+          "UpgradeBigQuiver",
+          "UpgradeBiggestQuiver"
+        ],
+        "CountNeededForItem": 3,
+        "ProgressiveItemName": "Bow Upgrade"
+      }
     },
     {
       "DictionaryName": "UpgradeBigBombBag",
@@ -353,10 +431,20 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Big Bomb Bag Purchase",
-      "SpoilerItem": "Big Bomb Bag",
+      "SpoilerItem": "Big Bomb Bag|Bomb Bag Upgrade",
       "GossipLocation": "a town shop",
       "GossipItem": "a vessel of explosives|an item carrier",
-      "SpoilerPriceName": "Big Bomb Bag Purchase"
+      "SpoilerPriceName": "Big Bomb Bag Purchase",
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "ItemBombBag",
+          "UpgradeBigBombBag",
+          "UpgradeBiggestBombBag"
+        ],
+        "CountNeededForItem": 2,
+        "ProgressiveItemName": "Bomb Bag Upgrade"
+      }
     },
     {
       "DictionaryName": "UpgradeBiggestBombBag",
@@ -366,10 +454,20 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Biggest Bomb Bag Purchase",
-      "SpoilerItem": "Biggest Bomb Bag",
+      "SpoilerItem": "Biggest Bomb Bag|Bomb Bag Upgrade",
       "GossipLocation": "a northern merchant",
       "GossipItem": "a vessel of explosives|an item carrier",
-      "SpoilerPriceName": "Biggest Bomb Bag Purchase"
+      "SpoilerPriceName": "Biggest Bomb Bag Purchase",
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "ItemBombBag",
+          "UpgradeBigBombBag",
+          "UpgradeBiggestBombBag"
+        ],
+        "CountNeededForItem": 3,
+        "ProgressiveItemName": "Bomb Bag Upgrade"
+      }
     },
     {
       "DictionaryName": "UpgradeAdultWallet",
@@ -379,10 +477,19 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Bank Reward #1",
-      "SpoilerItem": "Adult Wallet",
+      "SpoilerItem": "Adult Wallet|Wallet Upgrade",
       "GossipLocation": "a keeper of wealth",
       "GossipItem": "great wealth|a coin case",
-      "WalletCapacity": 200
+      "WalletCapacity": 200,
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "UpgradeAdultWallet",
+          "UpgradeGiantWallet"
+        ],
+        "CountNeededForItem": 1,
+        "ProgressiveItemName": "Wallet Upgrade"
+      }
     },
     {
       "DictionaryName": "UpgradeGiantWallet",
@@ -392,10 +499,19 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Ocean Spider House Day 1 Reward",
-      "SpoilerItem": "Giant Wallet",
+      "SpoilerItem": "Giant Wallet|Wallet Upgrade",
       "GossipLocation": "a gold spider",
       "GossipItem": "great wealth|a coin case",
-      "WalletCapacity": 500
+      "WalletCapacity": 500,
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "UpgradeAdultWallet",
+          "UpgradeGiantWallet"
+        ],
+        "CountNeededForItem": 2,
+        "ProgressiveItemName": "Wallet Upgrade"
+      }
     },
     {
       "DictionaryName": "TradeItemMoonTear",
@@ -3197,9 +3313,19 @@
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": "Starting Sword",
-      "SpoilerItem": "Kokiri Sword",
+      "SpoilerItem": "Kokiri Sword|Sword Upgrade",
       "GossipLocation": "a quest's inception|a new file",
-      "GossipItem": "a forest blade"
+      "GossipItem": "a forest blade",
+      "ProgressiveItemData": {
+        "IsProgressiveItem": true,
+        "ProgressiveItemSet": [
+          "StartingSword",
+          "UpgradeRazorSword",
+          "UpgradeGildedSword"
+        ],
+        "CountNeededForItem": 1,
+        "ProgressiveItemName": "Sword Upgrade"
+      }
     },
     {
       "DictionaryName": "StartingShield",

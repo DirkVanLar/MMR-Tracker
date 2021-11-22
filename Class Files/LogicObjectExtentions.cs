@@ -100,14 +100,9 @@ namespace MMR_Tracker.Class_Files
         {
             return Logic.Where(x => x.RandomizedItem == entry.ID || x.SpoilerRandom == entry.ID).Any();
         }
-        public static bool UserCreatedFakeItem(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
+        public static bool UserCreatedFakeItem(this LogicObjects.LogicEntry entry)
         {
-            int lastRealItem = -1;
-            foreach (var i in Logic)
-            {
-                if (!i.IsFake) { lastRealItem = i.ID; }
-            }
-            return (entry.ID > lastRealItem);
+            return !entry.RandomizerStaticFakeItem;
         }
         public static bool ItemBelongsToMe(this LogicObjects.LogicEntry entry)
         {
@@ -115,46 +110,39 @@ namespace MMR_Tracker.Class_Files
             if (entry.IsEntrance()) { return true; }
             return entry.PlayerData.ItemBelongedToPlayer == -1 || entry.PlayerData.ItemBelongedToPlayer == LogicObjects.MainTrackerInstance.Options.MyPlayerID;
         }
-        public static bool IsProgressiveItem(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
-        {
-            return entry.ProgressiveItemSet(Instance) != null;
-        }
         public static string ProgressiveItemName(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
-            if (entry.IsProgressiveItem(Instance) && Instance.Options.ProgressiveItems && Instance.IsMM())
+            if (Instance.Options.ProgressiveItems && entry.ProgressiveItemData != null && entry.ProgressiveItemData.IsProgressiveItem)
             {
-                return (entry.SpoilerItem.Count() > 1) ? entry.SpoilerItem[1] : entry.ItemName ?? entry.DictionaryName;
+                return entry.ProgressiveItemData.ProgressiveItemName;
             }
-            return entry.ItemName ?? entry.DictionaryName;
-        }
-        public static int ProgressiveItemsNeeded(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool IndexValue = false)
-        {
-            var set = entry.ProgressiveItemSet(Instance);
-            if (set == null) { return 0; }
-            int offset = (IndexValue) ? 0 : 1;
-            return set.IndexOf(entry) + offset;
-        }
-        public static List<LogicObjects.LogicEntry> ProgressiveItemSet(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
-        {
-            if (!Instance.Options.ProgressiveItems || !Instance.IsMM()) { return null; }
-            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = Utility.GetProgressiveItemSets(Instance);
-            var set = ProgressiveItemSets.Find(x => x.Contains(entry));
-            return set;
+            else
+            {
+                return entry.ItemName ?? entry.DictionaryName;
+            }
         }
         public static bool ItemUseable(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
         {
-            if (usedItems == null) { usedItems = new List<int>(); }
-            var Set = entry.ProgressiveItemSet(Instance);
-            if (Set == null) { return NonProgressiveItemUseable(); }
-
-            var AquiredSet = Set.Where(x => x.LogicItemAquired()).ToList();
-            var ItemsNeeded = entry.ProgressiveItemsNeeded(Instance);
-            if (AquiredSet.Count() >= ItemsNeeded)
+            usedItems = usedItems ?? new List<int>();
+            if (Instance.Options.ProgressiveItems && entry.ProgressiveItemData != null && entry.ProgressiveItemData.ProgressiveItemSet != null && entry.ProgressiveItemData.IsProgressiveItem)
             {
-                for (var i = 0; i < ItemsNeeded; i++) { usedItems.Add(AquiredSet[i].ID); }
-                return true;
+                var ValidProggressiveItems = entry.ProgressiveItemData.ProgressiveItemSet
+                    .Where(x => Instance.DicNameToID.ContainsKey(x))
+                    .Select(x => Instance.Logic[Instance.DicNameToID[x]]);
+                if (!ValidProggressiveItems.Any()) { return NonProgressiveItemUseable(); }
+                var ItemsNeeded = entry.ProgressiveItemData.CountNeededForItem;
+                var AquiredItems = ValidProggressiveItems.Where(x => x.LogicItemAquired()).ToList();
+                if (AquiredItems.Count() >= ItemsNeeded)
+                {
+                    for (var i = 0; i < ItemsNeeded; i++) { usedItems.Add(AquiredItems[i].ID); }
+                    return true;
+                }
+                return false;
             }
-            return false;
+            else
+            {
+                return NonProgressiveItemUseable();
+            }
 
             bool NonProgressiveItemUseable()
             {
@@ -189,11 +177,12 @@ namespace MMR_Tracker.Class_Files
                 NewEntry = LogicEditing.PerformLogicEdits(NewEntry, Instance);
 
                 //Disable skipping entry if Strictlogic is enable or logic is being calculated from scratch such as firsy run
-                if (FromScratch == false && ForceStrictLogicHendeling == false && Instance.Options.StrictLogicHandeling == false)
+
+                if (FromScratch == false && ForceStrictLogicHendeling == false && Instance.Options.StrictLogicHandeling == false && !entry.LogicWasEdited)
                 {
                     bool shouldupdate = false;
-                    if (NewEntry.Required != null) { foreach (var i in NewEntry.Required) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } } }
-                    if (NewEntry.Conditionals != null) { foreach (var k in NewEntry.Conditionals) { foreach (var i in k) { if (LogicEditing.LastUpdated.Contains(i)) { shouldupdate = true; } } } }
+                    if (NewEntry.Required != null && LogicItemChanged(new List<int[]> { NewEntry.Required }.ToArray())) { shouldupdate = true; }
+                    if (NewEntry.Conditionals != null && LogicItemChanged(NewEntry.Conditionals)) { shouldupdate = true; }
 
                     if (!shouldupdate) { return entry.Available; }
                 }
@@ -202,6 +191,20 @@ namespace MMR_Tracker.Class_Files
 
                 return LogicEditing.RequirementsMet(NewEntry.Required, Instance, usedItems) &&
                         LogicEditing.CondtionalsMet(NewEntry.Conditionals, Instance, usedItems);
+            }
+
+            bool LogicItemChanged(int [][] Entry)
+            {
+                foreach (var k in Entry)
+                {
+                    foreach (var i in k)
+                    {
+                        if (LogicEditing.LastUpdated.Contains(i) || 
+                            (Instance.Logic[i].ProgressiveItemData != null && Instance.Logic[i].ProgressiveItemData.IsProgressiveItem))
+                        { return true; }
+                    }
+                }
+                return false;
             }
 
         }
