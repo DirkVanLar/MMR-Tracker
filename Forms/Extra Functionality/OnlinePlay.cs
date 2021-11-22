@@ -393,7 +393,7 @@ namespace MMR_Tracker.Forms
             foreach (var i in log)
             {
                 if (i.IsFake) { continue; }
-                if (i.LogicItemAquired()) { itemsAquired.Add(i); itemsInUse.Add(i); }
+                if (i.ActualItemAquired()) { itemsAquired.Add(i); itemsInUse.Add(i); }
                 if (i.ItemHasBeenPlaced(Instance.Logic)) { itemsInUse.Add(i); }
             }
 

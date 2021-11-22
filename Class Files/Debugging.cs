@@ -81,9 +81,15 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
+            foreach(var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.CanBeStartingItem(LogicObjects.MainTrackerInstance)))
+            {
+                Console.WriteLine($"{i.DictionaryName} is a valid starting item");
+            }
+            Console.WriteLine(LogicObjects.MainTrackerInstance.Logic.Where(x => x.CanBeStartingItem(LogicObjects.MainTrackerInstance)).Count() + "Starting items found");
+
             //BackupLoadLogic();
 
-            CreateJsonLogicDicWithTxtLogic();
+            //CreateJsonLogicDicWithTxtLogic();
             void CreateJsonLogicDicWithTxtLogic()
             {
                 LogicObjects.LogicDictionary NewLogicDic = new LogicObjects.LogicDictionary()

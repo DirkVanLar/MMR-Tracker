@@ -146,6 +146,7 @@ namespace MMR_Tracker_V2
             public int? WalletCapacity { get; set; } //If this Object is a wallet, how much can it hold
             public string SpoilerPriceName { get; set; } //The names of the entry that details the price of this check in the spoiler log
             public string GameClearDungeonEntrance { get; set; } //If this Object is a dungeonclear entry, this is it's dungeon entrance
+            public bool ValidRandomizerStartingItem { get; set; } = false; //Can the entry be a strartingitemin the randomizer
             public ProgressiveItemData ProgressiveItemData { get; set; } = null; //Progressive Item Data
             public string EntrancePair { get; set; } //The Paired entrance for this entry
             public string RandoOnlyRequiredLogic { get; set; } //The Paired entrance for this entry

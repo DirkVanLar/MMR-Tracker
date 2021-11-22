@@ -14,7 +14,8 @@
       "SpoilerLocation": "Starting Item",
       "SpoilerItem": "Deku Mask",
       "GossipLocation": "a quest's inception|a new file",
-      "GossipItem": "a woodland spirit"
+      "GossipItem": "a woodland spirit",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemBow",
@@ -36,7 +37,8 @@
         ],
         "CountNeededForItem": 1,
         "ProgressiveItemName": "Bow Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemFireArrow",
@@ -48,7 +50,8 @@
       "SpoilerLocation": "Fire Arrow Chest",
       "SpoilerItem": "Fire Arrow",
       "GossipLocation": "an icy gale|Snowhead Temple",
-      "GossipItem": "a magical item|the power of fire"
+      "GossipItem": "a magical item|the power of fire",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemIceArrow",
@@ -60,7 +63,8 @@
       "SpoilerLocation": "Ice Arrow Chest",
       "SpoilerItem": "Ice Arrow",
       "GossipLocation": "the ocean temple|Great Bay Temple",
-      "GossipItem": "a magical item|the power of ice"
+      "GossipItem": "a magical item|the power of ice",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemLightArrow",
@@ -72,7 +76,8 @@
       "SpoilerLocation": "Light Arrow Chest",
       "SpoilerItem": "Light Arrow",
       "GossipLocation": "the cursed temple|Stone Tower Temple",
-      "GossipItem": "a magical item|the power of light"
+      "GossipItem": "a magical item|the power of light",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemBombBag",
@@ -96,7 +101,8 @@
         ],
         "CountNeededForItem": 1,
         "ProgressiveItemName": "Bomb Bag Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemMagicBean",
@@ -108,7 +114,8 @@
       "SpoilerLocation": "Bean Man",
       "SpoilerItem": "Magic Bean",
       "GossipLocation": "a gorging merchant|a hidden merchant",
-      "GossipItem": "a plant seed"
+      "GossipItem": "a plant seed",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemPowderKeg",
@@ -120,7 +127,8 @@
       "SpoilerLocation": "Powder Keg Challenge",
       "SpoilerItem": "Powder Keg",
       "GossipLocation": "a large goron",
-      "GossipItem": "a dangerous item|an explosive barrel|gunpowder"
+      "GossipItem": "a dangerous item|an explosive barrel|gunpowder",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemPictobox",
@@ -132,7 +140,8 @@
       "SpoilerLocation": "Koume",
       "SpoilerItem": "Pictobox",
       "GossipLocation": "a witch",
-      "GossipItem": "a capture device|a light recorder"
+      "GossipItem": "a capture device|a light recorder",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemLens",
@@ -144,7 +153,8 @@
       "SpoilerLocation": "Lens of Truth Chest",
       "SpoilerItem": "Lens of Truth",
       "GossipLocation": "a lonely peak",
-      "GossipItem": "the truth|focused vision|eyeglasses"
+      "GossipItem": "the truth|focused vision|eyeglasses",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemHookshot",
@@ -156,7 +166,8 @@
       "SpoilerLocation": "Hookshot Chest",
       "SpoilerItem": "Hookshot",
       "GossipLocation": "the home of pirates",
-      "GossipItem": "a chain and grapple"
+      "GossipItem": "a chain and grapple",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "FairyMagic",
@@ -177,7 +188,8 @@
         ],
         "CountNeededForItem": 1,
         "ProgressiveItemName": "Magic Power Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "FairySpinAttack",
@@ -189,7 +201,8 @@
       "SpoilerLocation": "Woodfall Great Fairy",
       "SpoilerItem": "Spin Attack",
       "GossipLocation": "a magical being",
-      "GossipItem": "a magic attack"
+      "GossipItem": "a magic attack",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "FairyDoubleMagic",
@@ -210,7 +223,8 @@
         ],
         "CountNeededForItem": 2,
         "ProgressiveItemName": "Magic Power Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "FairyDoubleDefense",
@@ -222,7 +236,8 @@
       "SpoilerLocation": "Ocean Great Fairy",
       "SpoilerItem": "Double Defense",
       "GossipLocation": "a magical being",
-      "GossipItem": "magical defense"
+      "GossipItem": "magical defense",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemFairySword",
@@ -234,7 +249,8 @@
       "SpoilerLocation": "Ikana Great Fairy",
       "SpoilerItem": "Great Fairy's Sword",
       "GossipLocation": "a magical being",
-      "GossipItem": "a powerful blade|a black rose"
+      "GossipItem": "a powerful blade|a black rose",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemBottleWitch",
@@ -246,7 +262,8 @@
       "SpoilerLocation": "Kotake",
       "SpoilerItem": "Bottle with Red Potion",
       "GossipLocation": "the sleeping witch",
-      "GossipItem": "bottled fortitude|a vessel of health"
+      "GossipItem": "bottled fortitude|a vessel of health",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemBottleAliens",
@@ -258,7 +275,8 @@
       "SpoilerLocation": "Aliens Defense",
       "SpoilerItem": "Bottle with Milk",
       "GossipLocation": "a good deed|the ranch girl",
-      "GossipItem": "the produce of cows|a dairy product"
+      "GossipItem": "the produce of cows|a dairy product",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemBottleGoronRace",
@@ -270,7 +288,8 @@
       "SpoilerLocation": "Goron Race",
       "SpoilerItem": "Bottle with Gold Dust",
       "GossipLocation": "a sporting event",
-      "GossipItem": "a gleaming powder"
+      "GossipItem": "a gleaming powder",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemBottleBeavers",
@@ -282,7 +301,8 @@
       "SpoilerLocation": "Beaver Race #1",
       "SpoilerItem": "Empty Bottle",
       "GossipLocation": "a river dweller",
-      "GossipItem": "a glass container|an empty vessel"
+      "GossipItem": "a glass container|an empty vessel",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemBottleDampe",
@@ -294,7 +314,8 @@
       "SpoilerLocation": "Dampe Digging",
       "SpoilerItem": "Empty Bottle",
       "GossipLocation": "a fearful basement",
-      "GossipItem": "a glass container|an empty vessel"
+      "GossipItem": "a glass container|an empty vessel",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemBottleMadameAroma",
@@ -306,7 +327,8 @@
       "SpoilerLocation": "Madame Aroma in Bar",
       "SpoilerItem": "Bottle with Chateau Romani",
       "GossipLocation": "an important lady",
-      "GossipItem": "an adult beverage|a dairy product"
+      "GossipItem": "an adult beverage|a dairy product",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemNotebook",
@@ -318,7 +340,8 @@
       "SpoilerLocation": "Bombers' Hide and Seek",
       "SpoilerItem": "Bombers' Notebook",
       "GossipLocation": "a town game|a group of children",
-      "GossipItem": "a quest logbook|a handy notepad"
+      "GossipItem": "a quest logbook|a handy notepad",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "UpgradeRazorSword",
@@ -341,7 +364,8 @@
         ],
         "CountNeededForItem": 2,
         "ProgressiveItemName": "Sword Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "UpgradeGildedSword",
@@ -363,7 +387,8 @@
         ],
         "CountNeededForItem": 3,
         "ProgressiveItemName": "Sword Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "UpgradeMirrorShield",
@@ -375,7 +400,8 @@
       "SpoilerLocation": "Mirror Shield Chest",
       "SpoilerItem": "Mirror Shield",
       "GossipLocation": "a hollow ground",
-      "GossipItem": "echoing protection|a reflective guard"
+      "GossipItem": "echoing protection|a reflective guard",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "UpgradeBigQuiver",
@@ -398,7 +424,8 @@
         ],
         "CountNeededForItem": 2,
         "ProgressiveItemName": "Bow Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "UpgradeBiggestQuiver",
@@ -421,7 +448,8 @@
         ],
         "CountNeededForItem": 3,
         "ProgressiveItemName": "Bow Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "UpgradeBigBombBag",
@@ -444,7 +472,8 @@
         ],
         "CountNeededForItem": 2,
         "ProgressiveItemName": "Bomb Bag Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "UpgradeBiggestBombBag",
@@ -467,7 +496,8 @@
         ],
         "CountNeededForItem": 3,
         "ProgressiveItemName": "Bomb Bag Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "UpgradeAdultWallet",
@@ -489,7 +519,8 @@
         ],
         "CountNeededForItem": 1,
         "ProgressiveItemName": "Wallet Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "UpgradeGiantWallet",
@@ -511,7 +542,8 @@
         ],
         "CountNeededForItem": 2,
         "ProgressiveItemName": "Wallet Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "TradeItemMoonTear",
@@ -1013,7 +1045,8 @@
       "SpoilerLocation": "Postman's Freedom Reward",
       "SpoilerItem": "Postman's Hat",
       "GossipLocation": "one last job|a special delivery",
-      "GossipItem": "a hard worker's hat"
+      "GossipItem": "a hard worker's hat",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskAllNight",
@@ -1026,7 +1059,8 @@
       "SpoilerItem": "All-Night Mask",
       "GossipLocation": "a dodgy seller|a shady dealer|a shady gentleman",
       "GossipItem": "insomnia",
-      "SpoilerPriceName": "All-Night Mask Purchase"
+      "SpoilerPriceName": "All-Night Mask Purchase",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskBlast",
@@ -1039,7 +1073,8 @@
       "SpoilerItem": "Blast Mask",
       "GossipLocation": "an old lady's struggle|a good deed",
       "GossipItem": "a dangerous mask",
-      "RandoOnlyRequiredLogic": "TradeItemKafeiLetter|TradeItemPendant"
+      "RandoOnlyRequiredLogic": "TradeItemKafeiLetter|TradeItemPendant",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskStone",
@@ -1051,7 +1086,8 @@
       "SpoilerLocation": "Invisible Soldier",
       "SpoilerItem": "Stone Mask",
       "GossipLocation": "a stone circle|a hidden soldier",
-      "GossipItem": "inconspicuousness"
+      "GossipItem": "inconspicuousness",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskGreatFairy",
@@ -1063,7 +1099,8 @@
       "SpoilerLocation": "Town Great Fairy",
       "SpoilerItem": "Great Fairy's Mask",
       "GossipLocation": "a magical being",
-      "GossipItem": "a friend of fairies"
+      "GossipItem": "a friend of fairies",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskKeaton",
@@ -1075,7 +1112,8 @@
       "SpoilerLocation": "Curiosity Shop Man #1",
       "SpoilerItem": "Keaton Mask",
       "GossipLocation": "a dodgy seller|a shady dealer|a shady gentleman",
-      "GossipItem": "a fox's mask|a popular mask"
+      "GossipItem": "a fox's mask|a popular mask",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskBremen",
@@ -1087,7 +1125,8 @@
       "SpoilerLocation": "Guru Guru",
       "SpoilerItem": "Bremen Mask",
       "GossipLocation": "an entertainer|a musician",
-      "GossipItem": "a bird's mask|a mask of leadership"
+      "GossipItem": "a bird's mask|a mask of leadership",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskBunnyHood",
@@ -1099,7 +1138,8 @@
       "SpoilerLocation": "Grog",
       "SpoilerItem": "Bunny Hood",
       "GossipLocation": "a lover of chickens|an ugly but kind heart",
-      "GossipItem": "a rabbit's hearing|the ears of the wild"
+      "GossipItem": "a rabbit's hearing|the ears of the wild",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskDonGero",
@@ -1111,7 +1151,8 @@
       "SpoilerLocation": "Hungry Goron",
       "SpoilerItem": "Don Gero's Mask",
       "GossipLocation": "a person in need|a hungry goron",
-      "GossipItem": "an amphibious mask|a conductor's mask"
+      "GossipItem": "an amphibious mask|a conductor's mask",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskScents",
@@ -1123,7 +1164,8 @@
       "SpoilerLocation": "Butler",
       "SpoilerItem": "Mask of Scents",
       "GossipLocation": "the royal servant|a servant of royalty",
-      "GossipItem": "a pig's mask|heightened senses"
+      "GossipItem": "a pig's mask|heightened senses",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskRomani",
@@ -1135,7 +1177,8 @@
       "SpoilerLocation": "Cremia",
       "SpoilerItem": "Romani's Mask",
       "GossipLocation": "an older sister|the ranch lady",
-      "GossipItem": "a cow's mask|proof of membership"
+      "GossipItem": "a cow's mask|proof of membership",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskCircusLeader",
@@ -1147,7 +1190,8 @@
       "SpoilerLocation": "Gorman",
       "SpoilerItem": "Circus Leader's Mask",
       "GossipLocation": "a miserable leader|an entertainer",
-      "GossipItem": "a mask of sadness"
+      "GossipItem": "a mask of sadness",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskKafei",
@@ -1159,7 +1203,8 @@
       "SpoilerLocation": "Madame Aroma in Office",
       "SpoilerItem": "Kafei's Mask",
       "GossipLocation": "an esteemed woman|an important lady",
-      "GossipItem": "a son's mask|the mask of a missing one"
+      "GossipItem": "a son's mask|the mask of a missing one",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskCouple",
@@ -1171,7 +1216,8 @@
       "SpoilerLocation": "Anju and Kafei",
       "SpoilerItem": "Couple's Mask",
       "GossipLocation": "a lovers' reunion|a reunion",
-      "GossipItem": "the mark of a couple|a sign of love"
+      "GossipItem": "the mark of a couple|a sign of love",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskTruth",
@@ -1183,7 +1229,8 @@
       "SpoilerLocation": "Swamp Spider House Reward",
       "SpoilerItem": "Mask of Truth",
       "GossipLocation": "a gold spider",
-      "GossipItem": "a piercing gaze"
+      "GossipItem": "a piercing gaze",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskKamaro",
@@ -1195,7 +1242,8 @@
       "SpoilerLocation": "Kamaro",
       "SpoilerItem": "Kamaro's Mask",
       "GossipLocation": "a dancer|a ghostly dancer",
-      "GossipItem": "dance moves"
+      "GossipItem": "dance moves",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskGibdo",
@@ -1207,7 +1255,8 @@
       "SpoilerLocation": "Pamela's Father",
       "SpoilerItem": "Gibdo Mask",
       "GossipLocation": "a lost father|a healed spirit",
-      "GossipItem": "a mask of monsters"
+      "GossipItem": "a mask of monsters",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskGaro",
@@ -1220,7 +1269,8 @@
       "SpoilerItem": "Garo's Mask",
       "GossipLocation": "a sporting event",
       "GossipItem": "the mask of spies",
-      "SpoilerPriceName": "Gorman Bros Race"
+      "SpoilerPriceName": "Gorman Bros Race",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskCaptainHat",
@@ -1232,7 +1282,8 @@
       "SpoilerLocation": "Captain Keeta's Chest",
       "SpoilerItem": "Captain's Hat",
       "GossipLocation": "a skeletal leader|a ghostly battle",
-      "GossipItem": "a commanding presence"
+      "GossipItem": "a commanding presence",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskGiant",
@@ -1244,7 +1295,8 @@
       "SpoilerLocation": "Giant's Mask Chest",
       "SpoilerItem": "Giant's Mask",
       "GossipLocation": "the cursed temple|Stone Tower Temple",
-      "GossipItem": "a growth spurt"
+      "GossipItem": "a growth spurt",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskGoron",
@@ -1256,7 +1308,8 @@
       "SpoilerLocation": "Darmani",
       "SpoilerItem": "Goron Mask",
       "GossipLocation": "the lost champion|a healed spirit",
-      "GossipItem": "a mountain spirit"
+      "GossipItem": "a mountain spirit",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "MaskZora",
@@ -1268,7 +1321,8 @@
       "SpoilerLocation": "Mikau",
       "SpoilerItem": "Zora Mask",
       "GossipLocation": "a fallen guitarist|a healed spirit",
-      "GossipItem": "an ocean spirit"
+      "GossipItem": "an ocean spirit",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemOcarina",
@@ -1280,7 +1334,8 @@
       "SpoilerLocation": "Skull Kid",
       "SpoilerItem": "Ocarina of Time",
       "GossipLocation": "a stolen possession",
-      "GossipItem": "a musical instrument"
+      "GossipItem": "a musical instrument",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "SongTime",
@@ -1292,7 +1347,8 @@
       "SpoilerLocation": "Skull Kid Song",
       "SpoilerItem": "Song of Time",
       "GossipLocation": "a distant memory",
-      "GossipItem": "a forgotten melody"
+      "GossipItem": "a forgotten melody",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "SongHealing",
@@ -1304,7 +1360,8 @@
       "SpoilerLocation": "Starting Song",
       "SpoilerItem": "Song of Healing",
       "GossipLocation": "a quest's inception|a new file",
-      "GossipItem": "a soothing melody"
+      "GossipItem": "a soothing melody",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "SongSoaring",
@@ -1316,7 +1373,8 @@
       "SpoilerLocation": "Swamp Music Statue",
       "SpoilerItem": "Song of Soaring",
       "GossipLocation": "a stone tablet",
-      "GossipItem": "white wings"
+      "GossipItem": "white wings",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "SongEpona",
@@ -1328,7 +1386,8 @@
       "SpoilerLocation": "Romani's Game",
       "SpoilerItem": "Epona's Song",
       "GossipLocation": "a reunion",
-      "GossipItem": "a song of the field|a horse's song"
+      "GossipItem": "a song of the field|a horse's song",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "SongStorms",
@@ -1340,7 +1399,8 @@
       "SpoilerLocation": "Day 1 Grave Tablet",
       "SpoilerItem": "Song of Storms",
       "GossipLocation": "a stone tablet|a hollow ground",
-      "GossipItem": "stormy weather|rain and thunder"
+      "GossipItem": "stormy weather|rain and thunder",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "SongSonata",
@@ -1352,7 +1412,8 @@
       "SpoilerLocation": "Imprisoned Monkey",
       "SpoilerItem": "Sonata of Awakening",
       "GossipLocation": "a false imprisonment|a prisoner",
-      "GossipItem": "an awakening melody|a royal song"
+      "GossipItem": "an awakening melody|a royal song",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "SongLullaby",
@@ -1364,7 +1425,8 @@
       "SpoilerLocation": "Baby Goron",
       "SpoilerItem": "Goron Lullaby",
       "GossipLocation": "an elder's son|a lonely child",
-      "GossipItem": "a father's lullaby|a sleepy melody"
+      "GossipItem": "a father's lullaby|a sleepy melody",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "SongNewWaveBossaNova",
@@ -1376,7 +1438,8 @@
       "SpoilerLocation": "Baby Zoras",
       "SpoilerItem": "New Wave Bossa Nova",
       "GossipLocation": "the pirates' loot|the lost children",
-      "GossipItem": "a song of newborns|an ocean roar"
+      "GossipItem": "a song of newborns|an ocean roar",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "SongElegy",
@@ -1388,7 +1451,8 @@
       "SpoilerLocation": "Ikana King",
       "SpoilerItem": "Elegy of Emptiness",
       "GossipLocation": "a battle in darkness|a fallen king",
-      "GossipItem": "skin shedding|empty shells"
+      "GossipItem": "skin shedding|empty shells",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "SongOath",
@@ -1400,7 +1464,8 @@
       "SpoilerLocation": "Boss Blue Warp",
       "SpoilerItem": "Oath to Order",
       "GossipLocation": "a fallen evil|cleansed evil",
-      "GossipItem": "a song of giants|a song of summoning"
+      "GossipItem": "a song of giants|a song of summoning",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "AreaSouthAccess",
@@ -1550,7 +1615,8 @@
       "SpoilerLocation": "Woodfall Map Chest",
       "SpoilerItem": "Woodfall Map",
       "GossipLocation": "the sleeping temple|Woodfall Temple",
-      "GossipItem": "a paper guide|a navigation aid"
+      "GossipItem": "a paper guide|a navigation aid",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemWoodfallCompass",
@@ -1562,7 +1628,8 @@
       "SpoilerLocation": "Woodfall Compass Chest",
       "SpoilerItem": "Woodfall Compass",
       "GossipLocation": "the sleeping temple|Woodfall Temple",
-      "GossipItem": "a magnetic needle|a navigation aid"
+      "GossipItem": "a magnetic needle|a navigation aid",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemWoodfallBossKey",
@@ -1600,7 +1667,8 @@
       "SpoilerLocation": "Snowhead Map Chest",
       "SpoilerItem": "Snowhead Map",
       "GossipLocation": "an icy gale|Snowhead Temple",
-      "GossipItem": "a paper guide|a navigation aid"
+      "GossipItem": "a paper guide|a navigation aid",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemSnowheadCompass",
@@ -1612,7 +1680,8 @@
       "SpoilerLocation": "Snowhead Compass Chest",
       "SpoilerItem": "Snowhead Compass",
       "GossipLocation": "an icy gale|Snowhead Temple",
-      "GossipItem": "a magnetic needle|a navigation aid"
+      "GossipItem": "a magnetic needle|a navigation aid",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemSnowheadBossKey",
@@ -1676,7 +1745,8 @@
       "SpoilerLocation": "Great Bay Map Chest",
       "SpoilerItem": "Great Bay Map",
       "GossipLocation": "the ocean temple|Great Bay Temple",
-      "GossipItem": "a paper guide|a navigation aid"
+      "GossipItem": "a paper guide|a navigation aid",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemGreatBayCompass",
@@ -1688,7 +1758,8 @@
       "SpoilerLocation": "Great Bay Compass Chest",
       "SpoilerItem": "Great Bay Compass",
       "GossipLocation": "the ocean temple|Great Bay Temple",
-      "GossipItem": "a magnetic needle|a navigation aid"
+      "GossipItem": "a magnetic needle|a navigation aid",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemGreatBayBossKey",
@@ -1726,7 +1797,8 @@
       "SpoilerLocation": "Stone Tower Map Chest",
       "SpoilerItem": "Stone Tower Map",
       "GossipLocation": "the cursed temple|Stone Tower Temple",
-      "GossipItem": "a paper guide|a navigation aid"
+      "GossipItem": "a paper guide|a navigation aid",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemStoneTowerCompass",
@@ -1738,7 +1810,8 @@
       "SpoilerLocation": "Stone Tower Compass Chest",
       "SpoilerItem": "Stone Tower Compass",
       "GossipLocation": "the cursed temple|Stone Tower Temple",
-      "GossipItem": "a magnetic needle|a navigation aid"
+      "GossipItem": "a magnetic needle|a navigation aid",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemStoneTowerBossKey",
@@ -2695,7 +2768,8 @@
       "SpoilerLocation": "Inverted Stone Tower Left Chest",
       "SpoilerItem": "Magic Bean",
       "GossipLocation": "a sky below",
-      "GossipItem": "a plant seed"
+      "GossipItem": "a plant seed",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ChestToSnowheadGrotto",
@@ -3103,7 +3177,8 @@
       "SpoilerLocation": "Clock Town Map Purchase",
       "SpoilerItem": "Map of Clock Town",
       "GossipLocation": "a forest fairy|a map maker",
-      "GossipItem": "a world map"
+      "GossipItem": "a world map",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemTingleMapWoodfall",
@@ -3115,7 +3190,8 @@
       "SpoilerLocation": "Woodfall Map Purchase",
       "SpoilerItem": "Map of Woodfall",
       "GossipLocation": "a forest fairy|a map maker",
-      "GossipItem": "a world map"
+      "GossipItem": "a world map",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemTingleMapSnowhead",
@@ -3127,7 +3203,8 @@
       "SpoilerLocation": "Snowhead Map Purchase",
       "SpoilerItem": "Map of Snowhead",
       "GossipLocation": "a forest fairy|a map maker",
-      "GossipItem": "a world map"
+      "GossipItem": "a world map",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemTingleMapRanch",
@@ -3139,7 +3216,8 @@
       "SpoilerLocation": "Romani Ranch Map Purchase",
       "SpoilerItem": "Map of Romani Ranch",
       "GossipLocation": "a forest fairy|a map maker",
-      "GossipItem": "a world map"
+      "GossipItem": "a world map",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemTingleMapGreatBay",
@@ -3151,7 +3229,8 @@
       "SpoilerLocation": "Great Bay Map Purchase",
       "SpoilerItem": "Map of Great Bay",
       "GossipLocation": "a forest fairy|a map maker",
-      "GossipItem": "a world map"
+      "GossipItem": "a world map",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemTingleMapStoneTower",
@@ -3163,7 +3242,8 @@
       "SpoilerLocation": "Stone Tower Map Purchase",
       "SpoilerItem": "Map of Stone Tower",
       "GossipLocation": "a forest fairy|a map maker",
-      "GossipItem": "a world map"
+      "GossipItem": "a world map",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ChestToGoronRaceGrotto",
@@ -3267,7 +3347,8 @@
       "SpoilerLocation": "Majora Child",
       "SpoilerItem": "Fierce Deity's Mask",
       "GossipLocation": "the lonely child",
-      "GossipItem": "the wrath of a god"
+      "GossipItem": "the wrath of a god",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ChestLinkTrialArrow30",
@@ -3325,7 +3406,8 @@
         ],
         "CountNeededForItem": 1,
         "ProgressiveItemName": "Sword Upgrade"
-      }
+      },
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "StartingShield",
@@ -3337,7 +3419,8 @@
       "SpoilerLocation": "Starting Shield",
       "SpoilerItem": "Hero's Shield",
       "GossipLocation": "a quest's inception|a new file",
-      "GossipItem": "protection|a basic guard"
+      "GossipItem": "protection|a basic guard",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "StartingHeartContainer1",
@@ -5035,7 +5118,8 @@
       "SpoilerItem": "Magic Bean",
       "GossipLocation": "a southern merchant",
       "GossipItem": "a plant seed",
-      "SpoilerPriceName": "Swamp Scrub Purchase"
+      "SpoilerPriceName": "Swamp Scrub Purchase",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ShopItemBusinessScrubGreenPotion",
@@ -12877,7 +12961,8 @@
       "SpoilerLocation": "Woodfall Boss Warp",
       "SpoilerItem": "Odolwa's Remains",
       "GossipLocation": "a masked evil",
-      "GossipItem": "an evil mask"
+      "GossipItem": "an evil mask",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "RemainsGoht",
@@ -12889,7 +12974,8 @@
       "SpoilerLocation": "Snowhead Boss Warp",
       "SpoilerItem": "Goht's Remains",
       "GossipLocation": "a masked evil",
-      "GossipItem": "an evil mask"
+      "GossipItem": "an evil mask",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "RemainsGyorg",
@@ -12901,7 +12987,8 @@
       "SpoilerLocation": "Great Bay Boss Warp",
       "SpoilerItem": "Gyorg's Remains",
       "GossipLocation": "a masked evil",
-      "GossipItem": "an evil mask"
+      "GossipItem": "an evil mask",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "RemainsTwinmold",
@@ -12913,7 +13000,8 @@
       "SpoilerLocation": "Stone Tower Boss Warp",
       "SpoilerItem": "Twinmold's Remains",
       "GossipLocation": "a masked evil",
-      "GossipItem": "an evil mask"
+      "GossipItem": "an evil mask",
+      "ValidRandomizerStartingItem": true
     },
     {
       "DictionaryName": "ItemTingleMapTownInTown",

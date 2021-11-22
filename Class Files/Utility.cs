@@ -309,29 +309,22 @@ namespace MMR_Tracker_V2
         }
         public static List<List<LogicObjects.LogicEntry>> GetProgressiveItemSets(LogicObjects.TrackerInstance instance)
         {
-            var SW1 = instance.Logic.Find(x => x.DictionaryName == "Starting Sword" || x.DictionaryName == "StartingSword");
-            var SW2 = instance.Logic.Find(x => x.DictionaryName == "Razor Sword" || x.DictionaryName == "UpgradeRazorSword");
-            var SW3 = instance.Logic.Find(x => x.DictionaryName == "Gilded Sword" || x.DictionaryName == "UpgradeGildedSword");
-            var MM1 = instance.Logic.Find(x => x.DictionaryName == "Great Fairy Magic Meter" || x.DictionaryName == "FairyMagic");
-            var MM2 = instance.Logic.Find(x => x.DictionaryName == "Great Fairy Extended Magic" || x.DictionaryName == "FairyDoubleMagic");
-            var WL1 = instance.Logic.Find(x => x.DictionaryName == "Town Wallet (200)" || x.DictionaryName == "UpgradeAdultWallet");
-            var WL2 = instance.Logic.Find(x => x.DictionaryName == "Ocean Wallet (500)" || x.DictionaryName == "UpgradeGiantWallet");
-            var BB1 = instance.Logic.Find(x => x.DictionaryName == "Bomb Bag (20)" || x.DictionaryName == "ItemBombBag");
-            var BB2 = instance.Logic.Find(x => x.DictionaryName == "Town Bomb Bag (30)" || x.DictionaryName == "UpgradeBigBombBag");
-            var BB3 = instance.Logic.Find(x => x.DictionaryName == "Mountain Bomb Bag (40)" || x.DictionaryName == "UpgradeBiggestBombBag");
-            var BW1 = instance.Logic.Find(x => x.DictionaryName == "Hero's Bow" || x.DictionaryName == "ItemBow");
-            var BW2 = instance.Logic.Find(x => x.DictionaryName == "Town Archery Quiver (40)" || x.DictionaryName == "UpgradeBigQuiver");
-            var BW3 = instance.Logic.Find(x => x.DictionaryName == "Swamp Archery Quiver (50)" || x.DictionaryName == "UpgradeBiggestQuiver");
+            List<List<LogicObjects.LogicEntry>> Sets = new List<List<LogicObjects.LogicEntry>>();
 
-            List<List<LogicObjects.LogicEntry>> ProgressiveItemSets = new List<List<LogicObjects.LogicEntry>>
+            List<string> ItemSetsAdded = new List<string>();
+
+            foreach(var i in instance.Logic)
             {
-                new List<LogicObjects.LogicEntry> { SW1, SW2, SW3 }.Where(x => x != null).ToList(),
-                new List<LogicObjects.LogicEntry> { MM1, MM2 }.Where(x => x != null).ToList(),
-                new List<LogicObjects.LogicEntry> { WL1, WL2 }.Where(x => x != null).ToList(),
-                new List<LogicObjects.LogicEntry> { BB1, BB2, BB3 }.Where(x => x != null).ToList(),
-                new List<LogicObjects.LogicEntry> { BW1, BW2, BW3 }.Where(x => x != null).ToList(),
-            };
-            return ProgressiveItemSets.Where(x => x.Any()).ToList();
+                if (i.ProgressiveItemData != null && i.ProgressiveItemData.IsProgressiveItem && i.ProgressiveItemData.ProgressiveItemSet != null)
+                {
+                    if (ItemSetsAdded.Contains(i.ProgressiveItemData.ProgressiveItemName)) { continue; }
+                    var ItemSet = i.ProgressiveItemData.ProgressiveItemSet.Where(x => instance.DicNameToID.ContainsKey(x));
+                    var LogicItemSet = ItemSet.Select(x => instance.GetLogicObjectFromDicName(x)).ToList();
+                    Sets.Add(LogicItemSet);
+                    ItemSetsAdded.Add(i.ProgressiveItemData.ProgressiveItemName);
+                }
+            }
+            return Sets;
         }
 
         public static void EditFont()

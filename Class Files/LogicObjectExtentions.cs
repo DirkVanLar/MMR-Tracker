@@ -70,7 +70,7 @@ namespace MMR_Tracker.Class_Files
         public static int RandomizedState(this LogicObjects.LogicEntry entry)
         {
             int option = entry.Options;
-            return (entry.Options > 3) ? option - 4 : option;
+            return (entry.StartingItem()) ? option - 4 : option;
         }
         public static bool StartingItem(this LogicObjects.LogicEntry entry)
         {
@@ -84,7 +84,7 @@ namespace MMR_Tracker.Class_Files
         {
             return (entry.Randomized() || entry.Unrandomized(1)) && !entry.IsFake && !string.IsNullOrWhiteSpace(entry.LocationName);
         }
-        public static bool LogicItemAquired(this LogicObjects.LogicEntry entry)
+        public static bool ActualItemAquired(this LogicObjects.LogicEntry entry)
         {
             return (entry.Aquired || entry.StartingItem() || (entry.Unrandomized() && entry.Available));
         }
@@ -98,7 +98,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool ItemHasBeenPlaced(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
         {
-            return Logic.Where(x => x.RandomizedItem == entry.ID || x.SpoilerRandom == entry.ID).Any();
+            return entry.GetItemsNewLocation(Logic) != null || entry.GetItemsSpoilerLocation(Logic) != null;
         }
         public static bool UserCreatedFakeItem(this LogicObjects.LogicEntry entry)
         {
@@ -124,36 +124,40 @@ namespace MMR_Tracker.Class_Files
         public static bool ItemUseable(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
         {
             usedItems = usedItems ?? new List<int>();
-            if (Instance.Options.ProgressiveItems && entry.ProgressiveItemData != null && entry.ProgressiveItemData.ProgressiveItemSet != null && entry.ProgressiveItemData.IsProgressiveItem)
-            {
-                var ValidProggressiveItems = entry.ProgressiveItemData.ProgressiveItemSet
-                    .Where(x => Instance.DicNameToID.ContainsKey(x))
-                    .Select(x => Instance.Logic[Instance.DicNameToID[x]]);
-                if (!ValidProggressiveItems.Any()) { return NonProgressiveItemUseable(); }
-                var ItemsNeeded = entry.ProgressiveItemData.CountNeededForItem;
-                var AquiredItems = ValidProggressiveItems.Where(x => x.LogicItemAquired()).ToList();
-                if (AquiredItems.Count() >= ItemsNeeded)
-                {
-                    for (var i = 0; i < ItemsNeeded; i++) { usedItems.Add(AquiredItems[i].ID); }
-                    return true;
-                }
-                return false;
-            }
-            else
-            {
-                return NonProgressiveItemUseable();
-            }
+            if (Instance.Options.ProgressiveItems && entry.ProgressiveItemData != null && entry.ProgressiveItemData.IsProgressiveItem) 
+            { return entry.ProgressiveItemUsable(Instance, usedItems); }
+            else 
+            { return entry.NonProgressiveItemUseable(usedItems); }
 
-            bool NonProgressiveItemUseable()
-            {
-                if (entry.LogicItemAquired())
-                {
-                    usedItems.Add(entry.ID);
-                    return true;
-                }
-                else { return false; }
-            }
         }
+
+        public static bool ProgressiveItemUsable(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
+        {
+            var ItemSet = entry.ProgressiveItemData.ProgressiveItemSet;
+            if (ItemSet == null) { return entry.NonProgressiveItemUseable(usedItems); }
+            var ValidProggressiveItems = ItemSet.Where(x => Instance.DicNameToID.ContainsKey(x)).Select(x => Instance.Logic[Instance.DicNameToID[x]]);
+            if (!ValidProggressiveItems.Any()) { return entry.NonProgressiveItemUseable(usedItems); }
+
+            var ItemsNeeded = entry.ProgressiveItemData.CountNeededForItem;
+            var AquiredItems = ValidProggressiveItems.Where(x => x.ActualItemAquired()).ToList();
+            if (AquiredItems.Count() >= ItemsNeeded)
+            {
+                for (var i = 0; i < ItemsNeeded; i++) { usedItems.Add(AquiredItems[i].ID); }
+                return true;
+            }
+            return false;
+        }
+
+        public static bool NonProgressiveItemUseable(this LogicObjects.LogicEntry entry, List<int> usedItems = null)
+        {
+            if (entry.ActualItemAquired())
+            {
+                usedItems.Add(entry.ID);
+                return true;
+            }
+            else { return false; }
+        }
+
         public static bool CheckAvailability(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null, bool FromScratch = true, bool ForceStrictLogicHendeling = false)
         {
             var logic = Instance.Logic;
@@ -210,116 +214,19 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool FakeItemStatusChange(this LogicObjects.LogicEntry entry)
         {
-            if (entry.Aquired != entry.Available)
+            if (entry.Aquired != entry.Available && entry.IsFake)
             {
                 LogicEditing.LastUpdated.Add(entry.ID);
-                if (entry.IsFake)
-                {
-                    entry.Aquired = entry.Available;
-                    return true;
-                }
+                entry.Aquired = entry.Available;
+                return true;
             }
             return false;
         }
         //TODO make this list a config file
         public static bool CanBeStartingItem(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
-            if (!Instance.IsMM()) { return true; }
-            List<string> StartingItems = new List<string>
-            {
-                "MaskDeku",
-                "ItemBow",
-                "ItemFireArrow",
-                "ItemIceArrow",
-                "ItemLightArrow",
-                "ItemBombBag",
-                "ItemMagicBean",
-                "ItemPowderKeg",
-                "ItemPictobox",
-                "ItemLens",
-                "ItemHookshot",
-                "FairyMagic",
-                "FairySpinAttack",
-                "FairyDoubleMagic",
-                "FairyDoubleDefense",
-                "ItemFairySword",
-                "ItemBottleWitch",
-                "ItemBottleAliens",
-                "ItemBottleGoronRace",
-                "ItemBottleBeavers",
-                "ItemBottleDampe",
-                "ItemBottleMadameAroma",
-                "ItemNotebook",
-                "UpgradeRazorSword",
-                "UpgradeGildedSword",
-                "UpgradeMirrorShield",
-                "UpgradeBigQuiver",
-                "UpgradeBiggestQuiver",
-                "UpgradeBigBombBag",
-                "UpgradeBiggestBombBag",
-                "UpgradeAdultWallet",
-                "UpgradeGiantWallet",
-                "MaskPostmanHat",
-                "MaskAllNight",
-                "MaskBlast",
-                "MaskStone",
-                "MaskGreatFairy",
-                "MaskKeaton",
-                "MaskBremen",
-                "MaskBunnyHood",
-                "MaskDonGero",
-                "MaskScents",
-                "MaskRomani",
-                "MaskCircusLeader",
-                "MaskKafei",
-                "MaskCouple",
-                "MaskTruth",
-                "MaskKamaro",
-                "MaskGibdo",
-                "MaskGaro",
-                "MaskCaptainHat",
-                "MaskGiant",
-                "MaskGoron",
-                "MaskZora",
-                "ItemOcarina",
-                "SongTime",
-                "SongHealing",
-                "SongSoaring",
-                "SongEpona",
-                "SongStorms",
-                "SongSonata",
-                "SongLullaby",
-                "SongNewWaveBossaNova",
-                "SongElegy",
-                "SongOath",
-                "ItemWoodfallMap",
-                "ItemWoodfallCompass",
-                "ItemSnowheadMap",
-                "ItemSnowheadCompass",
-                "ItemGreatBayMap",
-                "ItemGreatBayCompass",
-                "ItemStoneTowerMap",
-                "ItemStoneTowerCompass",
-                //"ShopItemTradingPostShield", //For Some reason these can't be starting items???
-                //"ShopItemZoraShield",
-                "ChestInvertedStoneTowerBean",
-                "ItemTingleMapTown",
-                "ItemTingleMapWoodfall",
-                "ItemTingleMapSnowhead",
-                "ItemTingleMapRanch",
-                "ItemTingleMapGreatBay",
-                "ItemTingleMapStoneTower",
-                "MaskFierceDeity",
-                "StartingSword",
-                "StartingShield",
-                "ShopItemBusinessScrubMagicBean",
-                "RemainsOdolwa",
-                "RemainsGoht",
-                "RemainsGyorg",
-                "RemainsTwinmold",
 
-            };
-            return StartingItems.Contains(entry.DictionaryName);
+            return Instance.LogicDictionary.LogicDictionaryList.Where(x => x.DictionaryName == entry.DictionaryName && x.ValidRandomizerStartingItem).Any();
         }
         //Logic Instance Extentions
         public static void RefreshFakeItems(this LogicObjects.TrackerInstance Instance)
