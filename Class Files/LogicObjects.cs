@@ -126,7 +126,7 @@ namespace MMR_Tracker_V2
             public string LogicFormat { get; set; }
             public string GameCode { get; set; }
             public int DefaultWalletCapacity { get; set; } = 200;
-            public List<LogicDictionaryEntry> LogicDictionaryList { get; set; }
+            public List<LogicDictionaryEntry> LogicDictionaryList { get; set; } = new List<LogicDictionaryEntry>();
         }
 
         public class LogicDictionaryEntry

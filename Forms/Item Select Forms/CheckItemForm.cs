@@ -335,6 +335,31 @@ namespace MMR_Tracker.Forms.Sub_Forms
                     Item.GossipHint = input;
                 }
             }
+
+            if (Item.GossipHint.StartsWith("$"))
+            {
+                var MidMessage = Class_Files.MMR_Code_Reference.Definitions.Gossip.MessageMidSentences.ToArray();
+                var StartMessage = Class_Files.MMR_Code_Reference.Definitions.Gossip.MessageStartSentences.ToArray();
+                string ParsedHint = Item.GossipHint;
+                ParsedHint = ParsedHint.Replace("$", "");
+                ParsedHint = ParsedHint.Replace(".", "");
+                foreach (var i in MidMessage)
+                {
+                    if (ParsedHint.Contains(i)) { ParsedHint = ParsedHint.Replace(i, "|"); }
+                }
+                foreach (var i in StartMessage)
+                {
+                    if (ParsedHint.Contains(i)) { ParsedHint = ParsedHint.Replace(i, ""); }
+                }
+
+                var messageSegments = ParsedHint.Split('|').Select(x => x.Trim()).ToArray();
+
+                if (messageSegments.Count() == 2)
+                {
+                    Console.WriteLine($"Hint parsed as [{messageSegments[0]}] contains [{messageSegments[1]}]");
+                }
+            }
+
             Item.Checked = !Item.Checked;
             ItemStateChanged = true;
         }
