@@ -75,7 +75,8 @@
       "SpoilerItem": "Bomb Bag",
       "GossipLocation": "a town shop",
       "GossipItem": "a vessel of explosives|an item carrier",
-      "SpoilerPriceName": "Bomb Bag Purchase"
+      "SpoilerPriceName": "Bomb Bag Purchase",
+      "RandoOnlyRequiredLogic": "TradeItemKafeiLetter|TradeItemPendant"
     },
     {
       "DictionaryName": "ItemMagicBean",
@@ -921,7 +922,8 @@
       "SpoilerLocation": "Old Lady",
       "SpoilerItem": "Blast Mask",
       "GossipLocation": "an old lady's struggle|a good deed",
-      "GossipItem": "a dangerous mask"
+      "GossipItem": "a dangerous mask",
+      "RandoOnlyRequiredLogic": "TradeItemKafeiLetter|TradeItemPendant"
     },
     {
       "DictionaryName": "MaskStone",

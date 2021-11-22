@@ -262,7 +262,7 @@ namespace MMR_Tracker.Class_Files
                     Debugging.Log(WebPath);
                 }
 
-                List<LogicObjects.LogicDictionaryEntry> DicOverride = null;
+                LogicObjects.LogicDictionary DicOverride = null;
                 if (WebDicOverride != "")
                 {
                     try
@@ -271,7 +271,7 @@ namespace MMR_Tracker.Class_Files
                         string webData = wc.DownloadString(WebDicOverride);
                         var DicLines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                         var csv = Utility.ConvertCsvFileToJsonObject(DicLines);
-                        DicOverride = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(csv);
+                        DicOverride = JsonConvert.DeserializeObject<LogicObjects.LogicDictionary>(csv);
                         Debugging.Log(WebDicOverride);
                     }
                     catch (Exception j)
@@ -326,7 +326,7 @@ namespace MMR_Tracker.Class_Files
                     Debugging.Log(WebPath);
                 }
 
-                List<LogicObjects.LogicDictionaryEntry> DicOverride = null;
+                LogicObjects.LogicDictionary DicOverride = null;
                 if (WebDicOverride != "")
                 {
                     try
@@ -335,7 +335,7 @@ namespace MMR_Tracker.Class_Files
                         string webData = wc.DownloadString(WebDicOverride);
                         var DicLines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                         var csv = Utility.ConvertCsvFileToJsonObject(DicLines);
-                        DicOverride = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(csv);
+                        DicOverride = JsonConvert.DeserializeObject<LogicObjects.LogicDictionary>(csv);
                         Debugging.Log(WebDicOverride);
                     }
                     catch { DicOverride = null; }

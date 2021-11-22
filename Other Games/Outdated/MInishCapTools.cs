@@ -25,7 +25,7 @@ namespace MMR_Tracker.Forms.Other_Games
             LogicObjects.TrackerInstance MinishLogic = new LogicObjects.TrackerInstance
             {
                 Logic = new List<LogicObjects.LogicEntry>(),
-                LogicDictionary = new List<LogicObjects.LogicDictionaryEntry>(),
+                LogicDictionary = new LogicObjects.LogicDictionary(),
                 GameCode = "MCR",
                 LogicVersion = 1
             };
@@ -110,7 +110,7 @@ namespace MMR_Tracker.Forms.Other_Games
                     Dic.SpoilerItem = DicItemName;
                     Dic.ItemName = ItemName;
                     Dic.ItemSubType = "Item";
-                    MinishLogic.LogicDictionary.Add(Dic);
+                    MinishLogic.LogicDictionary.LogicDictionaryList.Add(Dic);
 
                     Entry.LocationArea = CurrentLocation;
                     Entry.LocationName = string.Concat(Data[0].Select(x => Char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
@@ -128,7 +128,7 @@ namespace MMR_Tracker.Forms.Other_Games
             MainInterface.CurrentProgram.FormatMenuItems();
 
             List<string> csv = new List<string> { "DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem" };
-            foreach (LogicObjects.LogicDictionaryEntry entry in MinishLogic.LogicDictionary)
+            foreach (LogicObjects.LogicDictionaryEntry entry in MinishLogic.LogicDictionary.LogicDictionaryList)
             {
                 csv.Add(string.Format("{0},{1},{2},{3},{4},{5},{6}",
                      entry.DictionaryName, entry.LocationName, entry.ItemName, entry.LocationArea,

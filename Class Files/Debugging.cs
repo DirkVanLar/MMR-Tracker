@@ -102,7 +102,7 @@ namespace MMR_Tracker_V2
 
                 foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.ID < LastEntry.ID))
                 {
-                    var DicEntry = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == i.DictionaryName);
+                    var DicEntry = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == i.DictionaryName);
 
                     NewLogicDic.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry()
                     {
@@ -157,7 +157,7 @@ namespace MMR_Tracker_V2
 
                 foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.ID < 1143)) 
                 {
-                    var DicEntry = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == i.DictionaryName);
+                    var DicEntry = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == i.DictionaryName);
                     var itemPool = Enum.GetValues(typeof(Item)).Cast<Item>().ToArray();
                     var item = itemPool.FirstOrDefault(x => x.ToString() == i.DictionaryName);
                     var gossipLocations = item.HasAttribute<Definitions.GossipLocationHintAttribute>() ? item.GetAttribute<Definitions.GossipLocationHintAttribute>().Values : null;
@@ -478,15 +478,18 @@ namespace MMR_Tracker_V2
             instance.GameCode = versionData.Gamecode;
             int SubCounter = 0;
             int idCounter = 0;
+            LogicObjects.LogicDictionary MasterDic = null;
 
-            if (instance.LogicDictionary == null || instance.LogicDictionary.Count < 1)
+            if (instance.LogicDictionary == null || instance.LogicDictionary.LogicDictionaryList.Count < 1)
             {
                 string DictionaryPath = VersionHandeling.GetDictionaryPath(instance);
                 if (!string.IsNullOrWhiteSpace(DictionaryPath))
                 {
                     try
                     {
-                        instance.LogicDictionary = JsonConvert.DeserializeObject<List<LogicObjects.LogicDictionaryEntry>>(Utility.ConvertCsvFileToJsonObject(File.ReadAllLines(DictionaryPath)));
+
+                        MasterDic = JsonConvert.DeserializeObject<LogicObjects.LogicDictionary>(File.ReadAllText(DictionaryPath));
+                        instance.LogicDictionary = MasterDic;
                     }
                     catch { MessageBox.Show($"The Dictionary File \"{DictionaryPath}\" has been corrupted. The tracker will not function correctly."); }
                 }
@@ -509,7 +512,7 @@ namespace MMR_Tracker_V2
                         LogicEntry1.IsFake = true;
                         LogicEntry1.SpoilerRandom = -2;
 
-                        var DicEntry = instance.LogicDictionary.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
+                        var DicEntry = instance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
                         if (DicEntry == null) { break; }
 
                         LogicEntry1.IsFake = false;

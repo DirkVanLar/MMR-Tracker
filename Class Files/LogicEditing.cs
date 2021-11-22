@@ -43,7 +43,7 @@ namespace MMR_Tracker_V2
 
             LogicObjects.LogicDictionary MasterDic = null;
 
-            if (instance.LogicDictionary == null || instance.LogicDictionary.Count < 1)
+            if (instance.LogicDictionary == null || instance.LogicDictionary.LogicDictionaryList.Count < 1)
             {
                 string DictionaryPath = VersionHandeling.GetJSONDictionaryPath(instance);
                 if (!string.IsNullOrWhiteSpace(DictionaryPath))
@@ -51,7 +51,7 @@ namespace MMR_Tracker_V2
                     try
                     {
                         MasterDic = JsonConvert.DeserializeObject<LogicObjects.LogicDictionary>(File.ReadAllText(DictionaryPath));
-                        instance.LogicDictionary = MasterDic.LogicDictionaryList;
+                        instance.LogicDictionary = MasterDic;
                     }
                     catch { MessageBox.Show($"The Dictionary File \"{DictionaryPath}\" has been corrupted. The tracker will not function correctly."); }
                 }
@@ -84,7 +84,7 @@ namespace MMR_Tracker_V2
                 LogicEntry1.TrickEnabled = i.IsTrick;
                 LogicEntry1.TrickToolTip = i.TrickTooltip;
 
-                var DicEntry = instance.LogicDictionary.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
+                var DicEntry = instance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
                 if (DicEntry != null)
                 {
                     LogicEntry1.IsFake = DicEntry.FakeItem;
@@ -116,12 +116,13 @@ namespace MMR_Tracker_V2
             }
 
             instance.EntranceRando = instance.IsEntranceRando();
-            instance.CreateAreaClearDictionaryFromJsonDict(MasterDic);
-            instance.GetWalletsFromJsonDictionary(MasterDic);
+            instance.CreateAreaClearDictionary(instance.LogicDictionary.LogicDictionaryList);
+            instance.CreateWalletDictionary(MasterDic);
             instance.CreateDicNameToID();
-            instance.Keys["SmallKeys"] = instance.GetKeysFromJsonDictionary(MasterDic, "small");
-            instance.Keys["BossKeys"] = instance.GetKeysFromJsonDictionary(MasterDic, "boss");
+            instance.Keys["SmallKeys"] = instance.CreateKeyDictionary(instance.LogicDictionary.LogicDictionaryList, "small");
+            instance.Keys["BossKeys"] = instance.CreateKeyDictionary(instance.LogicDictionary.LogicDictionaryList, "boss");
             instance.Keys["ChecksNeedingKeys"] = instance.GetChecksNeedingKeys();
+            instance.RandoOnlyLogicRequirements = instance.GetUselessLogicItems();
             if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
             MarkUniqeItemsUnrandomizedManual(instance);
             Utility.nullEmptyLogicItems(instance.Logic);
@@ -161,7 +162,7 @@ namespace MMR_Tracker_V2
 
             LogicObjects.LogicDictionary MasterDic = null;
 
-            if (instance.LogicDictionary == null || instance.LogicDictionary.Count < 1)
+            if (instance.LogicDictionary == null || instance.LogicDictionary.LogicDictionaryList.Count < 1)
             {
                 string DictionaryPath = VersionHandeling.GetJSONDictionaryPath(instance);
                 if (!string.IsNullOrWhiteSpace(DictionaryPath))
@@ -169,7 +170,7 @@ namespace MMR_Tracker_V2
                     try
                     {
                         MasterDic = JsonConvert.DeserializeObject<LogicObjects.LogicDictionary>(File.ReadAllText(DictionaryPath));
-                        instance.LogicDictionary = MasterDic.LogicDictionaryList;
+                        instance.LogicDictionary = MasterDic;
                     }
                     catch { MessageBox.Show($"The Dictionary File \"{DictionaryPath}\" has been corrupted. The tracker will not function correctly."); }
                 }
@@ -192,7 +193,7 @@ namespace MMR_Tracker_V2
                         LogicEntry1.IsFake = true;
                         LogicEntry1.SpoilerRandom = -2;
 
-                        var DicEntry = instance.LogicDictionary.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
+                        var DicEntry = instance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
                         if (DicEntry == null) { break; }
 
                         LogicEntry1.IsFake = false;
@@ -241,7 +242,7 @@ namespace MMR_Tracker_V2
             }
 
             instance.EntranceRando = instance.IsEntranceRando();
-            instance.CreateAreaClearDictionaryFromJsonDict(MasterDic);
+            instance.CreateAreaClearDictionary(instance.LogicDictionary.LogicDictionaryList);
             instance.CreateDicNameToID();
             if (instance.EntranceRando) { CreatedEntrancepairDcitionary(instance); }
             MarkUniqeItemsUnrandomizedManual(instance);
@@ -520,7 +521,7 @@ namespace MMR_Tracker_V2
         {
             foreach (var i in instance.Logic.Where(x => x.IsEntrance()))
             {
-                var Pair = instance.LogicDictionary.Find(x => x.EntrancePair == i.DictionaryName);
+                var Pair = instance.LogicDictionary.LogicDictionaryList.Find(x => x.EntrancePair == i.DictionaryName);
                 if (Pair == null || !instance.DicNameToID.ContainsKey(Pair.DictionaryName)) { continue; }
                 instance.EntrancePairs.Add(i.ID, instance.DicNameToID[Pair.DictionaryName]);
             }
@@ -756,7 +757,7 @@ namespace MMR_Tracker_V2
         public static LogicObjects.LogicEntry PerformLogicEdits(LogicObjects.LogicEntry NewEntry, LogicObjects.TrackerInstance Instance)
         {
             var DicID = Instance.DicNameToID;
-            var UselessLogicEntries = Utility.uselessLogicItems();
+            var UselessLogicEntries = Instance.RandoOnlyLogicRequirements;
             var BYOAData = Utility.BYOAmmoData();
 
             //Check for a MMR Dungeon clear Entry

@@ -19,7 +19,7 @@ namespace MMR_Tracker_V2
         public class TrackerInstance
         {
             public List<LogicEntry> Logic { get; set; } = new List<LogicEntry>();
-            public List<LogicDictionaryEntry> LogicDictionary { get; set; } = new List<LogicDictionaryEntry>();
+            public LogicDictionary LogicDictionary { get; set; } = new LogicDictionary();
             public Dictionary<int, int> EntrancePairs { get; set; } = new Dictionary<int, int>();
             public Dictionary<string, int> DicNameToID { get; set; } = new Dictionary<string, int>();
             public Dictionary<int, int> EntranceAreaDic { get; set; } = new Dictionary<int, int>();
@@ -30,8 +30,8 @@ namespace MMR_Tracker_V2
             public bool UnsavedChanges { get; set; } = false;
             public bool EntranceRando { get; set; } = false;
             public string LogicFormat { get; set; } = "none";
-            //public bool JsonLogic { get; set; } = false;
             public Dictionary<string, int> WalletDictionary { get; set; } = new Dictionary<string, int>();
+            public Dictionary<string, string[]> RandoOnlyLogicRequirements { get; set; } = new Dictionary<string, string[]>();
             public Dictionary<string, List<int>> Keys { get; set; } = new Dictionary<string, List<int>>() { {"SmallKeys", new List<int>() }, { "BossKeys", new List<int>() }, { "ChecksNeedingKeys", new List<int>() } };
             public SavedSpoilerLog CurrentSpoilerLog { get; set; } = new SavedSpoilerLog { Log = null, type = null };
         }
@@ -146,6 +146,7 @@ namespace MMR_Tracker_V2
             public string SpoilerPriceName { get; set; } //The names of the entry that details the price of this check in the spoiler log
             public string GameClearDungeonEntrance { get; set; } //If this Object is a dungeonclear entry, this is it's dungeon entrance
             public string EntrancePair { get; set; } //The Paired entrance for this entry
+            public string RandoOnlyRequiredLogic { get; set; } //The Paired entrance for this entry
         }
 
         public class SaveState

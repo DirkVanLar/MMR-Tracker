@@ -335,7 +335,7 @@ namespace MMR_Tracker.Class_Files
         {
             return Item > -1 && Item < Instance.Logic.Count;
         }
-        public static void GetWalletsFromJsonDictionary(this LogicObjects.TrackerInstance Instance, LogicObjects.LogicDictionary Dictionary)
+        public static void CreateWalletDictionary(this LogicObjects.TrackerInstance Instance, LogicObjects.LogicDictionary Dictionary)
         {
             Instance.WalletDictionary = new Dictionary<string, int>();
             Instance.WalletDictionary.Add("MMRTDefault", Dictionary.DefaultWalletCapacity);
@@ -349,10 +349,10 @@ namespace MMR_Tracker.Class_Files
                 }
             }
         }
-        public static void CreateAreaClearDictionaryFromJsonDict(this LogicObjects.TrackerInstance Instance, LogicObjects.LogicDictionary Dictionary)
+        public static void CreateAreaClearDictionary(this LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicDictionaryEntry> Dictionary)
         {
             Instance.EntranceAreaDic = new Dictionary<int, int>();
-            foreach (var i in Dictionary.LogicDictionaryList)
+            foreach (var i in Dictionary)
             {
 
                 if (i.GameClearDungeonEntrance != null)
@@ -373,10 +373,10 @@ namespace MMR_Tracker.Class_Files
             else { return null; }
         }
 
-        public static List<int> GetKeysFromJsonDictionary(this LogicObjects.TrackerInstance Instance, LogicObjects.LogicDictionary Dict, string KeyType)
+        public static List<int> CreateKeyDictionary(this LogicObjects.TrackerInstance Instance, List<LogicObjects.LogicDictionaryEntry> Dict, string KeyType)
         {
             List<int> KeyList = new List<int>();
-            var Keys = Dict.LogicDictionaryList.Where(x => x.KeyType != null && x.KeyType == KeyType);
+            var Keys = Dict.Where(x => x.KeyType != null && x.KeyType == KeyType);
             if (!Keys.Any()) { return KeyList; }
             foreach (var i in Keys)
             {
@@ -414,6 +414,19 @@ namespace MMR_Tracker.Class_Files
                 if (!Instance.DicNameToID.ContainsKey(LogicEntry1.DictionaryName))
                 { Instance.DicNameToID.Add(LogicEntry1.DictionaryName, LogicEntry1.ID); }
             }
+        }
+
+        public static Dictionary<string, string[]> GetUselessLogicItems(this LogicObjects.TrackerInstance Instance)
+        {
+            var ChecksWithuselessLogic = Instance.LogicDictionary.LogicDictionaryList.Where(x => x.RandoOnlyRequiredLogic != null && Instance.DicNameToID.ContainsKey(x.DictionaryName));
+            if (!ChecksWithuselessLogic.Any()) { return new Dictionary<string, string[]>(); }
+            Dictionary<string, string[]> UselessLogicData = new Dictionary<string, string[]>();
+            foreach (var i in ChecksWithuselessLogic)
+            {
+                Console.WriteLine($"Adding Useless Logic Data for {i.DictionaryName}: {i.RandoOnlyRequiredLogic}");
+                UselessLogicData.Add(i.DictionaryName, i.RandoOnlyRequiredLogic.Split('|').Select(x => x.Trim()).ToArray());
+            }
+            return UselessLogicData;
         }
     }
 }

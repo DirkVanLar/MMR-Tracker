@@ -519,8 +519,9 @@ namespace MMR_Tracker.Class_Files
             LogicObjects.MainTrackerInstance = new LogicObjects.TrackerInstance();
             //Try to load the save file with the new system. If that fails try wth the old system. If that fails restore the current instance and show an error.
             try { LogicObjects.MainTrackerInstance = JsonConvert.DeserializeObject<LogicObjects.TrackerInstance>(File.ReadAllText(file)); }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 bool OldSave = TryLoadOldSaveFile(file);
                 if (!OldSave)
                 {
@@ -571,7 +572,7 @@ namespace MMR_Tracker.Class_Files
                 }
                 foreach (var i in LogicObjects.MainTrackerInstance.Logic)
                 {
-                    var dicentry = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == i.DictionaryName);
+                    var dicentry = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == i.DictionaryName);
                     if (dicentry == null) { continue; }
                     i.SpoilerLocation = (string.IsNullOrWhiteSpace(dicentry.SpoilerLocation))
                             ? new List<string> { i.LocationName } : dicentry.SpoilerLocation.Split('|').ToList();

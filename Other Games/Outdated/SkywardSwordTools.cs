@@ -122,7 +122,7 @@ namespace MMR_Tracker.Other_Games
         public static void SaveDictionary(LogicObjects.TrackerInstance SSInstance)
         {
             List<string> csv = new List<string> { "DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem" };
-            foreach (LogicObjects.LogicDictionaryEntry entry in SSInstance.LogicDictionary)
+            foreach (LogicObjects.LogicDictionaryEntry entry in SSInstance.LogicDictionary.LogicDictionaryList)
             {
                 csv.Add(string.Format("{0},{1},{2},{3},{4},{5},{6}",
                      entry.DictionaryName, entry.LocationName, entry.ItemName, entry.LocationArea,
@@ -674,7 +674,7 @@ namespace MMR_Tracker.Other_Games
 
         }
 
-        public static List<LogicObjects.LogicDictionaryEntry> CreateSSDictionary(List<SSLocation> SSData)
+        public static LogicObjects.LogicDictionary CreateSSDictionary(List<SSLocation> SSData)
         {
             List<LogicObjects.LogicDictionaryEntry> ssDictionary = new List<LogicObjects.LogicDictionaryEntry>();
             foreach(var i in SSData.Where(x=>!x.isFake))
@@ -682,7 +682,7 @@ namespace MMR_Tracker.Other_Games
                 ssDictionary.Add(new LogicObjects.LogicDictionaryEntry { DictionaryName = i.DictionaryName, ItemName = i.ItemName, ItemSubType = i.ItemSubType, LocationArea = i.LocationArea, LocationName = i.LocationName, SpoilerItem = i.SpoilerItem, SpoilerLocation = i.SpoilerLocation });
             }
 
-            return ssDictionary;
+            return new LogicObjects.LogicDictionary() { LogicDictionaryList = ssDictionary, GameCode = "SSR", DefaultWalletCapacity = 300, LogicFormat = "json", LogicVersion = 1 };
         }
 
         public static string[] CreateSSLogic(List<SSLocation> SSData)

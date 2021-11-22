@@ -526,15 +526,6 @@ namespace MMR_Tracker_V2
 
         }
 
-        public static Dictionary<string, string[]> uselessLogicItems()
-        {
-            return new Dictionary<string, string[]>()
-            {
-                { "UpgradeBigBombBag", new string[] { "TradeItemKafeiLetter", "TradeItemPendant" } },
-                { "MaskBlast", new string[] { "TradeItemKafeiLetter", "TradeItemPendant" } }
-            };
-        }
-
         public static Dictionary<string, string[]> BYOAmmoData()
         {
             return new Dictionary<string, string[]>()

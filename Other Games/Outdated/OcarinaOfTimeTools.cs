@@ -55,7 +55,7 @@ namespace MMR_Tracker.Forms.Other_Games
 
             var dic = LogicObjects.MainTrackerInstance.LogicDictionary;
 
-            if (dic.Count < 1 || LogicObjects.MainTrackerInstance.GameCode != "OOTR")
+            if (dic.LogicDictionaryList.Count < 1 || LogicObjects.MainTrackerInstance.GameCode != "OOTR")
             {
                 if (!Debugging.ISDebugging) { MessageBox.Show("You must first import an OOTR Logic File"); }
                 else { CreateOOTRLogicFile(); }
@@ -217,12 +217,12 @@ namespace MMR_Tracker.Forms.Other_Games
             bool IsOneWay(string i)
             {
                 var j = i.Split(new string[] { "->" }, StringSplitOptions.None)[0];
-                var k = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerLocation.Split('|').Contains(j));
+                var k = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.SpoilerLocation.Split('|').Contains(j));
                 return string.IsNullOrWhiteSpace(k.EntrancePair) || i.Contains("Adult Spawn") || i.Contains("Child Spawn");
             }
 
             //Attempt to add Entrances that were left out of the spoiler log
-            foreach (var DictionaryItem in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Entrance"))
+            foreach (var DictionaryItem in LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Where(x => x.ItemSubType == "Entrance"))
             {
 
                 if (DictionaryItem.SpoilerItem.Split('|').Where(x => x.Contains("=>")).Any() || DictionaryItem.SpoilerLocation.Split('|').Where(x => x.Contains("=>")).Any()) { continue; }
@@ -231,7 +231,7 @@ namespace MMR_Tracker.Forms.Other_Games
                 {
                     Debugging.Log($"===========================================================");
                     Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Was not found");
-                    var EntrancePair = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == DictionaryItem.EntrancePair);
+                    var EntrancePair = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == DictionaryItem.EntrancePair);
                     if (EntrancePair == null || !CoupledEntrances || EntrancePair.SpoilerItem == null || EntrancePair.SpoilerLocation == null)
                     {
                         Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Did not have a pair. Setting it vanilla.");
@@ -246,12 +246,12 @@ namespace MMR_Tracker.Forms.Other_Games
                         {
                             Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Reverse Data found at {EntrancePairSpoilerLogEntry}");
                             var g = EntrancePairSpoilerLogEntry.Split(new string[] { "->" }, StringSplitOptions.None);
-                            var h0 = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerLocation.Split('|').Contains(g[0])
+                            var h0 = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.SpoilerLocation.Split('|').Contains(g[0])
                                 && !x.SpoilerLocation.Split('|').Where(o => o.Contains("Spawn")).Any());
-                            var j0 = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.SpoilerItem.Split('|').Contains(g[1])
+                            var j0 = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.SpoilerItem.Split('|').Contains(g[1])
                                 && !x.SpoilerLocation.Split('|').Where(o => o.Contains("Spawn")).Any());
-                            var h = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == h0.EntrancePair);
-                            var j = LogicObjects.MainTrackerInstance.LogicDictionary.Find(x => x.DictionaryName == j0.EntrancePair);
+                            var h = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == h0.EntrancePair);
+                            var j = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == j0.EntrancePair);
 
                             if (h == null || j == null) { Debugging.Log($"{EntrancePairSpoilerLogEntry} Did not have reverse Data! This is an error!"); continue; }
 
@@ -385,7 +385,7 @@ namespace MMR_Tracker.Forms.Other_Games
 
             }
 
-            foreach (var i in LogicObjects.MainTrackerInstance.LogicDictionary.Where(x => x.ItemSubType == "Item"
+            foreach (var i in LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Where(x => x.ItemSubType == "Item"
             || x.ItemSubType == "Boss Token"
             || x.ItemSubType == "AgeIndicator"
             || x.DictionaryName == "Temple of Time Light Arrow Cutscene"))
