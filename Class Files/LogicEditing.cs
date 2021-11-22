@@ -726,7 +726,27 @@ namespace MMR_Tracker_V2
             int[] NewRequiredArray = null;
             int[][] NewConditionalsArray = null;
 
+            List<int> AnyWalletFakeItems = new List<int>();
+            foreach (var i in entry.Required ?? new int[0])
+            {
+                bool AllWallets = true;
+                var RequiremtnItem = Instance.Logic[i];
+                if (!RequiremtnItem.IsFake) { continue; }
+                if (RequiremtnItem.Required != null) { continue; }
+                if (RequiremtnItem.Conditionals == null) { AllWallets = false; continue; }
+                foreach (var Cond in RequiremtnItem.Conditionals ?? new int[0][])
+                {
+                    foreach (var j in Cond)
+                    {
+                        var RequiremtnItem2 = Instance.Logic[j];
+                        if (!Instance.WalletDictionary.ContainsKey(RequiremtnItem2.DictionaryName)) { AllWallets = false; }
+                    }
+                }
+                if (AllWallets) { AnyWalletFakeItems.Add(i); }
+            }
+
             NewRequiredArray = removeItemFromRequirement(entry.Required, ValidWalletIDs);
+            NewRequiredArray = removeItemFromRequirement(NewRequiredArray, AnyWalletFakeItems.ToArray());
             NewConditionalsArray = removeItemFromConditionals(entry.Conditionals, ValidWalletIDs, false);
             if (!NoWalletNeed) { NewConditionalsArray = AddConditionalAsRequirement(NewConditionalsArray, ValidWalletIDs); }
 
