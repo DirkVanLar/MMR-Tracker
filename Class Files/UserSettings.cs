@@ -276,7 +276,7 @@ namespace MMR_Tracker.Class_Files
                     }
                     catch (Exception j)
                     {
-                        Console.WriteLine("Dictionary Invalid");
+                        Console.WriteLine("Dictionary Invalid\n" + j);
                         DicOverride = null;
                     }
                 }

@@ -102,7 +102,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool UserCreatedFakeItem(this LogicObjects.LogicEntry entry)
         {
-            return !entry.RandomizerStaticFakeItem;
+            return entry.IsFake && !entry.RandomizerStaticFakeItem;
         }
         public static bool ItemBelongsToMe(this LogicObjects.LogicEntry entry)
         {
