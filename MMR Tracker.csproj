@@ -400,7 +400,6 @@
     <None Include="Recources\Dictionaries\MMR V9 json Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\Pre Json Dictionaries\MMRDICTIONARYV8.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Misc\App.config" />

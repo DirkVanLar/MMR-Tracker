@@ -111,7 +111,7 @@ namespace MMR_Tracker_V2
 
             instance.EntranceRando = instance.IsEntranceRando();
             instance.CreateAreaClearDictionary(instance.LogicDictionary.LogicDictionaryList);
-            instance.CreateWalletDictionary(MasterDic);
+            instance.CreateWalletDictionary(instance.LogicDictionary);
             instance.CreateDicNameToID();
             instance.Keys["SmallKeys"] = instance.CreateKeyDictionary(instance.LogicDictionary.LogicDictionaryList, "small");
             instance.Keys["BossKeys"] = instance.CreateKeyDictionary(instance.LogicDictionary.LogicDictionaryList, "boss");
