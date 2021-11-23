@@ -81,15 +81,68 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-            foreach(var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.CanBeStartingItem(LogicObjects.MainTrackerInstance)))
-            {
-                Console.WriteLine($"{i.DictionaryName} is a valid starting item");
-            }
-            Console.WriteLine(LogicObjects.MainTrackerInstance.Logic.Where(x => x.CanBeStartingItem(LogicObjects.MainTrackerInstance)).Count() + "Starting items found");
-
             //BackupLoadLogic();
 
-            //CreateJsonLogicDicWithTxtLogic();
+            //CreateJsonLogicDicWithTxtLogic
+            //
+            remakeLogicDict();
+
+            void remakeLogicDict()
+            {
+                var olddict = LogicObjects.MainTrackerInstance.LogicDictionary;
+                LogicObjects.LogicDictionary newdict = new LogicObjects.LogicDictionary()
+                {
+                    DefaultWalletCapacity = olddict.DefaultWalletCapacity,
+                    GameCode = olddict.GameCode,
+                    LogicFormat = olddict.LogicFormat,
+                    LogicVersion = olddict.LogicVersion,
+                    LogicDictionaryList = new List<LogicObjects.LogicDictionaryEntry>()
+                };
+
+                foreach(var i in olddict.LogicDictionaryList)
+                {
+                    LogicObjects.LogicDictionaryEntry newentry = new LogicObjects.LogicDictionaryEntry()
+                    {
+                        DictionaryName = i.DictionaryName,
+                        GameClearDungeonEntrance = i.GameClearDungeonEntrance,
+                        ProgressiveItemData = i.ProgressiveItemData,
+                        ItemName = i.ItemName,
+                        EntrancePair = i.EntrancePair,
+                        FakeItem = i.FakeItem,
+                        GossipItem = i.GossipItem,
+                        GossipLocation = i.GossipLocation,
+                        ItemSubType = i.ItemSubType,
+                        KeyType = i.KeyType,
+                        LocationArea = i.LocationArea,
+                        LocationName = i.LocationName,
+                        RandoOnlyRequiredLogic = i.RandoOnlyRequiredLogic,
+                        SpoilerItem = i.SpoilerItem,
+                        SpoilerLocation = i.SpoilerLocation,
+                        SpoilerPriceLocations = i.SpoilerPriceLocations,
+                        ValidRandomizerStartingItem = i.ValidRandomizerStartingItem,
+                        WalletCapacity = i.WalletCapacity
+                    };
+                    newdict.LogicDictionaryList.Add(newentry);
+                }
+
+                string FilePath = "";
+                SaveFileDialog saveDialog = new SaveFileDialog
+                {
+                    Filter = "MMR Tracker Save (*.json)|*.json",
+                    FilterIndex = 1,
+                    FileName = $"{newdict.GameCode} V{newdict.LogicVersion} {newdict.LogicFormat} Logic Dictionary"
+                };
+                if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+                FilePath = saveDialog.FileName;
+                JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented,
+                    NullValueHandling = NullValueHandling.Ignore
+                };
+                File.WriteAllText(FilePath, JsonConvert.SerializeObject(newdict, _jsonSerializerOptions));
+
+            }
+
             void CreateJsonLogicDicWithTxtLogic()
             {
                 LogicObjects.LogicDictionary NewLogicDic = new LogicObjects.LogicDictionary()
@@ -123,7 +176,7 @@ namespace MMR_Tracker_V2
                         GossipLocation = null,
                         GossipItem = null,
                         WalletCapacity = null,
-                        SpoilerPriceName = null,
+                        SpoilerPriceLocations = null,
                         GameClearDungeonEntrance = entareadic.ContainsKey(i.ID) ? LogicObjects.MainTrackerInstance.Logic[entareadic[i.ID]].DictionaryName : null,
                         EntrancePair = DicEntry == null ? null : DicEntry.EntrancePair,
                         KeyType = null
@@ -190,12 +243,12 @@ namespace MMR_Tracker_V2
                         LocationArea = locationarea != null ? locationarea : (string.IsNullOrWhiteSpace(i.LocationArea) ? null : i.LocationArea),
                         ItemSubType = (string.IsNullOrWhiteSpace(i.ItemSubType) ? null : i.ItemSubType),
                         FakeItem = DicEntry == null || DicEntry.FakeItem,
-                        SpoilerLocation = locationname != null ? locationname : (DicEntry == null ? null : DicEntry.SpoilerLocation),
-                        SpoilerItem = itemname != null ? itemname : (DicEntry == null ? null : DicEntry.SpoilerItem),
-                        GossipLocation = gossipLocations == null ? null : string.Join("|", gossipLocations),
-                        GossipItem = GossipItems == null ? null : string.Join("|", GossipItems),
+                        SpoilerLocation = locationname != null ? new List<string> { locationname }.ToArray() : (DicEntry == null ? null : DicEntry.SpoilerLocation),
+                        SpoilerItem = itemname != null ? new List<string> { itemname }.ToArray()  : (DicEntry == null ? null : DicEntry.SpoilerItem),
+                        GossipLocation = gossipLocations == null ? null : gossipLocations,
+                        GossipItem = GossipItems == null ? null : GossipItems,
                         WalletCapacity = WalletCapacity,
-                        SpoilerPriceName = priceData.ContainsKey(i.DictionaryName) ? priceData[i.DictionaryName] : null,
+                        SpoilerPriceLocations = priceData.ContainsKey(i.DictionaryName) ? priceData[i.DictionaryName].Split(',') : null,
                         GameClearDungeonEntrance = entareadic.ContainsKey(i.ID) ? LogicObjects.MainTrackerInstance.Logic[entareadic[i.ID]].DictionaryName : null,
                         EntrancePair = null,
                         KeyType = BossKeynames.Contains(i.DictionaryName) ? "boss" : (SmallKeynames.Contains(i.DictionaryName) ? "small" : null)
@@ -529,10 +582,8 @@ namespace MMR_Tracker_V2
                         LogicEntry1.LocationName = (string.IsNullOrWhiteSpace(DicEntry.LocationName)) ? null : DicEntry.LocationName;
                         LogicEntry1.LocationArea = (string.IsNullOrWhiteSpace(DicEntry.LocationArea)) ? "Misc" : DicEntry.LocationArea;
                         LogicEntry1.ItemSubType = (string.IsNullOrWhiteSpace(DicEntry.ItemSubType)) ? "Item" : DicEntry.ItemSubType;
-                        LogicEntry1.SpoilerLocation = (string.IsNullOrWhiteSpace(DicEntry.SpoilerLocation))
-                            ? new List<string> { LogicEntry1.LocationName } : DicEntry.SpoilerLocation.Split('|').ToList();
-                        LogicEntry1.SpoilerItem = (string.IsNullOrWhiteSpace(DicEntry.SpoilerItem))
-                            ? new List<string> { LogicEntry1.ItemName } : DicEntry.SpoilerItem.Split('|').ToList();
+                        LogicEntry1.SpoilerLocation = DicEntry.SpoilerLocation.ToList();
+                        LogicEntry1.SpoilerItem = DicEntry.SpoilerItem.ToList();
                         break;
                     case 1:
                         if (string.IsNullOrWhiteSpace(line)) { LogicEntry1.Required = null; break; }

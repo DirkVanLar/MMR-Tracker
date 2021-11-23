@@ -333,8 +333,8 @@ namespace MMR_Tracker.Class_Files
             Dictionary<string, string[]> UselessLogicData = new Dictionary<string, string[]>();
             foreach (var i in ChecksWithuselessLogic)
             {
-                Console.WriteLine($"Adding Useless Logic Data for {i.DictionaryName}: {i.RandoOnlyRequiredLogic}");
-                UselessLogicData.Add(i.DictionaryName, i.RandoOnlyRequiredLogic.Split('|').Select(x => x.Trim()).ToArray());
+                Console.WriteLine($"Adding Useless Logic Data for {i.DictionaryName}: {string.Join(", ", i.RandoOnlyRequiredLogic)}");
+                UselessLogicData.Add(i.DictionaryName, i.RandoOnlyRequiredLogic.Select(x => x.Trim()).ToArray());
             }
             return UselessLogicData;
         }

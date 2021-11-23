@@ -101,8 +101,6 @@ namespace MMR_Tracker_V2
             public bool TrickEnabled { get; set; } = false; //Whether or not the trick is enabled
             public string TrickToolTip { get; set; } = null; //The tool tip describing what the trick is
             public string GossipHint { get; set; } = ""; //The text assigned to this gossip stone. Only applicable if the check is a gossip stone.
-            public List<string> GossipLocation { get; set; } = new List<string>(); //Names gossip stones will refer to this location as
-            public List<string> GossipItem { get; set; } = new List<string>(); //Names gossip stones will refer to this Item as
             public int Price { get; set; } = -1; //The price to purchase the item at a shop, used in Price Randomizer.
             public List<string> SpoilerPriceName { get; set; } = new List<string>(); //The names the spoiler log will use when refering to the price of this location
             public ProgressiveItemData ProgressiveItemData { get; set; } = null; //Progressive Item Data
@@ -138,18 +136,18 @@ namespace MMR_Tracker_V2
             public string LocationArea { get; set; } //The General Area the location is in
             public string ItemSubType { get; set; } //The type of item it is
             public bool FakeItem { get; set; } = false; //Is the item fake.
-            public string SpoilerLocation { get; set; } //The name of this location in the spoiler Log
-            public string SpoilerItem { get; set; } //The name of this item in the spoiler log
-            public string GossipLocation { get; set; } //The name Gossip stone refer to this location as
-            public string GossipItem { get; set; } //The name Gossip stone refer to this item as
-            public string KeyType { get; set; } //If this Object is a wallet, how much can it hold
+            public string[] SpoilerLocation { get; set; } //The name of this location in the spoiler Log
+            public string[] SpoilerItem { get; set; } //The name of this item in the spoiler log
+            public string[] GossipLocation { get; set; } //The name Gossip stone refer to this location as
+            public string[] GossipItem { get; set; } //The name Gossip stone refer to this item as
+            public string KeyType { get; set; } //If this is a key, what type is it
             public int? WalletCapacity { get; set; } //If this Object is a wallet, how much can it hold
-            public string SpoilerPriceName { get; set; } //The names of the entry that details the price of this check in the spoiler log
+            public string[] SpoilerPriceLocations { get; set; } //The names of the entry that details the price of this check in the spoiler log
             public string GameClearDungeonEntrance { get; set; } //If this Object is a dungeonclear entry, this is it's dungeon entrance
             public bool ValidRandomizerStartingItem { get; set; } = false; //Can the entry be a strartingitemin the randomizer
             public ProgressiveItemData ProgressiveItemData { get; set; } = null; //Progressive Item Data
             public string EntrancePair { get; set; } //The Paired entrance for this entry
-            public string RandoOnlyRequiredLogic { get; set; } //The Paired entrance for this entry
+            public string[] RandoOnlyRequiredLogic { get; set; } //The Paired entrance for this entry
         }
 
         public class ProgressiveItemData

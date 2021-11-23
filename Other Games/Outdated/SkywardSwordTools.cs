@@ -679,7 +679,7 @@ namespace MMR_Tracker.Other_Games
             List<LogicObjects.LogicDictionaryEntry> ssDictionary = new List<LogicObjects.LogicDictionaryEntry>();
             foreach(var i in SSData.Where(x=>!x.isFake))
             {
-                ssDictionary.Add(new LogicObjects.LogicDictionaryEntry { DictionaryName = i.DictionaryName, ItemName = i.ItemName, ItemSubType = i.ItemSubType, LocationArea = i.LocationArea, LocationName = i.LocationName, SpoilerItem = i.SpoilerItem, SpoilerLocation = i.SpoilerLocation });
+                ssDictionary.Add(new LogicObjects.LogicDictionaryEntry { DictionaryName = i.DictionaryName, ItemName = i.ItemName, ItemSubType = i.ItemSubType, LocationArea = i.LocationArea, LocationName = i.LocationName, SpoilerItem = new string[] { i.SpoilerItem } , SpoilerLocation = new string[] { i.SpoilerLocation } });
             }
 
             return new LogicObjects.LogicDictionary() { LogicDictionaryList = ssDictionary, GameCode = "SSR", DefaultWalletCapacity = 300, LogicFormat = "json", LogicVersion = 1 };

@@ -88,7 +88,7 @@ namespace MMR_Tracker.Forms.Other_Games
                     Dic.DictionaryName = Entry.DictionaryName;
                     Dic.LocationArea = CurrentLocation;
                     Dic.LocationName = string.Concat(Data[0].Select(x => Char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
-                    Dic.SpoilerLocation = Data[0];
+                    Dic.SpoilerLocation = new string[] { Data[0] };
 
                     string ItemName = "";
                     string DicItemName = "";
@@ -107,7 +107,7 @@ namespace MMR_Tracker.Forms.Other_Games
                         ItemName = string.Concat(DicItemName.Select(x => Char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
                     }
 
-                    Dic.SpoilerItem = DicItemName;
+                    Dic.SpoilerItem = new string[] { DicItemName };
                     Dic.ItemName = ItemName;
                     Dic.ItemSubType = "Item";
                     MinishLogic.LogicDictionary.LogicDictionaryList.Add(Dic);

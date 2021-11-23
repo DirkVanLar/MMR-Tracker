@@ -175,14 +175,14 @@ namespace MMR_Tracker.Forms.Other_Games
                     Item.ItemSubType = "Item";
                     Item.LocationArea = Parts[0].Trim().Replace("#", "");
                     Item.LocationName = Parts[1].Substring(0, Parts[1].IndexOf(":")).Trim();
-                    Item.SpoilerLocation = Item.LocationName;
+                    Item.SpoilerLocation = new string[] { Item.LocationName };
                     Item.DictionaryName = Item.LocationArea + " " + rgx.Replace(Parts[1].Trim(), "").Replace("-", "");
                     Item.LocationName = (Unimplimented) ? "" : Item.LocationName;
                 }
                 if (Line.Contains("Original item:"))
                 {
                     Item.ItemName = Line.Split(':')[1].Trim();
-                    Item.SpoilerItem = Item.ItemName;
+                    Item.SpoilerItem = new string[] { Item.ItemName };
                 }
             }
             SaveFileDialog saveDic = new SaveFileDialog

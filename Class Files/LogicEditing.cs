@@ -89,8 +89,7 @@ namespace MMR_Tracker_V2
                 {
                     LogicEntry1.IsFake = DicEntry.FakeItem;
                     LogicEntry1.RandomizerStaticFakeItem = DicEntry.FakeItem;
-                    LogicEntry1.SpoilerPriceName = (string.IsNullOrWhiteSpace(DicEntry.SpoilerPriceName))
-                        ? null : DicEntry.SpoilerPriceName.Split(',').Select(x => x.Trim()).ToList();
+                    LogicEntry1.SpoilerPriceName = DicEntry.SpoilerPriceLocations == null ? null : DicEntry.SpoilerPriceLocations.ToList();
 
                     LogicEntry1.ItemName = (string.IsNullOrWhiteSpace(DicEntry.ItemName)) ? null : DicEntry.ItemName;
                     LogicEntry1.LocationName = (string.IsNullOrWhiteSpace(DicEntry.LocationName)) ? null : DicEntry.LocationName;
@@ -100,14 +99,8 @@ namespace MMR_Tracker_V2
                     {
                         LogicEntry1.LocationArea = (string.IsNullOrWhiteSpace(DicEntry.LocationArea)) ? "Misc" : DicEntry.LocationArea;
                         LogicEntry1.ItemSubType = (string.IsNullOrWhiteSpace(DicEntry.ItemSubType)) ? "Item" : DicEntry.ItemSubType;
-                        LogicEntry1.SpoilerLocation = (string.IsNullOrWhiteSpace(DicEntry.SpoilerLocation))
-                            ? new List<string> { LogicEntry1.LocationName } : DicEntry.SpoilerLocation.Split('|').Select(x => x.Trim()).ToList();
-                        LogicEntry1.SpoilerItem = (string.IsNullOrWhiteSpace(DicEntry.SpoilerItem))
-                            ? new List<string> { LogicEntry1.ItemName } : DicEntry.SpoilerItem.Split('|').Select(x => x.Trim()).ToList();
-                        LogicEntry1.GossipLocation = (string.IsNullOrWhiteSpace(DicEntry.GossipLocation))
-                            ? new List<string> { LogicEntry1.LocationName } : DicEntry.GossipLocation.Split('|').Select(x => x.Trim()).ToList();
-                        LogicEntry1.GossipItem = (string.IsNullOrWhiteSpace(DicEntry.GossipItem))
-                            ? new List<string> { LogicEntry1.ItemName } : DicEntry.GossipItem.Split('|').Select(x => x.Trim()).ToList();
+                        LogicEntry1.SpoilerLocation = DicEntry.SpoilerLocation == null ? null : DicEntry.SpoilerLocation.ToList();
+                        LogicEntry1.SpoilerItem = DicEntry.SpoilerItem == null ? null : DicEntry.SpoilerItem.ToList();
                     }
                 }
 
@@ -205,10 +198,8 @@ namespace MMR_Tracker_V2
                         LogicEntry1.LocationName = (string.IsNullOrWhiteSpace(DicEntry.LocationName)) ? null : DicEntry.LocationName;
                         LogicEntry1.LocationArea = (string.IsNullOrWhiteSpace(DicEntry.LocationArea)) ? "Misc" : DicEntry.LocationArea;
                         LogicEntry1.ItemSubType = (string.IsNullOrWhiteSpace(DicEntry.ItemSubType)) ? "Item" : DicEntry.ItemSubType;
-                        LogicEntry1.SpoilerLocation = (string.IsNullOrWhiteSpace(DicEntry.SpoilerLocation))
-                            ? new List<string> { LogicEntry1.LocationName } : DicEntry.SpoilerLocation.Split('|').ToList();
-                        LogicEntry1.SpoilerItem = (string.IsNullOrWhiteSpace(DicEntry.SpoilerItem))
-                            ? new List<string> { LogicEntry1.ItemName } : DicEntry.SpoilerItem.Split('|').ToList();
+                        LogicEntry1.SpoilerLocation = DicEntry.SpoilerLocation.ToList();
+                        LogicEntry1.SpoilerItem = DicEntry.SpoilerItem.ToList();
                         break;
                     case 1:
                         if (string.IsNullOrWhiteSpace(line)) { LogicEntry1.Required = null; break; }

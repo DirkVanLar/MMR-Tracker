@@ -217,7 +217,7 @@ namespace MMR_Tracker.Forms.Other_Games
             bool IsOneWay(string i)
             {
                 var j = i.Split(new string[] { "->" }, StringSplitOptions.None)[0];
-                var k = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.SpoilerLocation.Split('|').Contains(j));
+                var k = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.SpoilerLocation.Contains(j));
                 return string.IsNullOrWhiteSpace(k.EntrancePair) || i.Contains("Adult Spawn") || i.Contains("Child Spawn");
             }
 
@@ -225,44 +225,44 @@ namespace MMR_Tracker.Forms.Other_Games
             foreach (var DictionaryItem in LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Where(x => x.ItemSubType == "Entrance"))
             {
 
-                if (DictionaryItem.SpoilerItem.Split('|').Where(x => x.Contains("=>")).Any() || DictionaryItem.SpoilerLocation.Split('|').Where(x => x.Contains("=>")).Any()) { continue; }
-                var SpoilerLogLine = FileContent.Find(x => DictionaryItem.SpoilerLocation.Split('|').Contains((x.Split(new string[] { "->" }, StringSplitOptions.None)[0])));
+                if (DictionaryItem.SpoilerItem.Where(x => x.Contains("=>")).Any() || DictionaryItem.SpoilerLocation.Where(x => x.Contains("=>")).Any()) { continue; }
+                var SpoilerLogLine = FileContent.Find(x => DictionaryItem.SpoilerLocation.Contains((x.Split(new string[] { "->" }, StringSplitOptions.None)[0])));
                 if (SpoilerLogLine == null)
                 {
                     Debugging.Log($"===========================================================");
-                    Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Was not found");
+                    Debugging.Log($"{DictionaryItem.SpoilerLocation[0]} Was not found");
                     var EntrancePair = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == DictionaryItem.EntrancePair);
                     if (EntrancePair == null || !CoupledEntrances || EntrancePair.SpoilerItem == null || EntrancePair.SpoilerLocation == null)
                     {
-                        Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Did not have a pair. Setting it vanilla.");
-                        FileContent.Add(DictionaryItem.SpoilerLocation.Split('|')[0] + "->" + DictionaryItem.SpoilerItem.Split('|')[0]);
+                        Debugging.Log($"{DictionaryItem.SpoilerLocation[0]} Did not have a pair. Setting it vanilla.");
+                        FileContent.Add(DictionaryItem.SpoilerLocation[0] + "->" + DictionaryItem.SpoilerItem[0]);
                     }
                     else
                     {
                         var EntrancePairSpoilerLogEntry =
                             FileContent.Where(x => x.Contains("->")).ToList()
-                            .Find(x => EntrancePair.SpoilerItem.Split('|').Contains(x.Split(new string[] { "->" }, StringSplitOptions.None)[1]) && !IsOneWay(x));
+                            .Find(x => EntrancePair.SpoilerItem.Contains(x.Split(new string[] { "->" }, StringSplitOptions.None)[1]) && !IsOneWay(x));
                         if (EntrancePairSpoilerLogEntry != null)
                         {
-                            Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Reverse Data found at {EntrancePairSpoilerLogEntry}");
+                            Debugging.Log($"{DictionaryItem.SpoilerLocation[0]} Reverse Data found at {EntrancePairSpoilerLogEntry}");
                             var g = EntrancePairSpoilerLogEntry.Split(new string[] { "->" }, StringSplitOptions.None);
-                            var h0 = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.SpoilerLocation.Split('|').Contains(g[0])
-                                && !x.SpoilerLocation.Split('|').Where(o => o.Contains("Spawn")).Any());
-                            var j0 = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.SpoilerItem.Split('|').Contains(g[1])
-                                && !x.SpoilerLocation.Split('|').Where(o => o.Contains("Spawn")).Any());
+                            var h0 = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.SpoilerLocation.Contains(g[0])
+                                && !x.SpoilerLocation.Where(o => o.Contains("Spawn")).Any());
+                            var j0 = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.SpoilerItem.Contains(g[1])
+                                && !x.SpoilerLocation.Where(o => o.Contains("Spawn")).Any());
                             var h = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == h0.EntrancePair);
                             var j = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == j0.EntrancePair);
 
                             if (h == null || j == null) { Debugging.Log($"{EntrancePairSpoilerLogEntry} Did not have reverse Data! This is an error!"); continue; }
 
-                            Debugging.Log($"New Entry Created: {j.SpoilerLocation.Split('|')[0] + "->" + h.SpoilerItem.Split('|')[0]}");
+                            Debugging.Log($"New Entry Created: {j.SpoilerLocation[0] + "->" + h.SpoilerItem[0]}");
 
-                            FileContent.Add(j.SpoilerLocation.Split('|')[0] + "->" + h.SpoilerItem.Split('|')[0]);
+                            FileContent.Add(j.SpoilerLocation[0] + "->" + h.SpoilerItem[0]);
                         }
                         else
                         {
-                            Debugging.Log($"{DictionaryItem.SpoilerLocation.Split('|')[0]} Did not have reverse Data. Setting it Vanilla.");
-                            FileContent.Add(DictionaryItem.SpoilerLocation.Split('|')[0] + "->" + DictionaryItem.SpoilerItem.Split('|')[0]);
+                            Debugging.Log($"{DictionaryItem.SpoilerLocation[0]} Did not have reverse Data. Setting it Vanilla.");
+                            FileContent.Add(DictionaryItem.SpoilerLocation[0] + "->" + DictionaryItem.SpoilerItem[0]);
                         }
                     }
                 }
@@ -391,7 +391,7 @@ namespace MMR_Tracker.Forms.Other_Games
             || x.DictionaryName == "Temple of Time Light Arrow Cutscene"))
             {
                 if (string.IsNullOrWhiteSpace(i.LocationName)) { continue; }
-                var e = FileContent.Find(x => i.SpoilerLocation.Split('|').Contains(x.Split(new string[] { "->" }, StringSplitOptions.None)[0]));
+                var e = FileContent.Find(x => i.SpoilerLocation.Contains(x.Split(new string[] { "->" }, StringSplitOptions.None)[0]));
                 if (e == null)
                 {
                     if (i.DictionaryName == "Temple of Time Light Arrow Cutscene" && GanonKeyOnLACS)
@@ -400,7 +400,7 @@ namespace MMR_Tracker.Forms.Other_Games
                     }
                     else
                     {
-                        FileContent.Add($"{i.SpoilerLocation.Split('|')[0]}->{i.SpoilerItem.Split('|')[0]}");
+                        FileContent.Add($"{i.SpoilerLocation[0]}->{i.SpoilerItem[0]}");
                     }
                 }
             }

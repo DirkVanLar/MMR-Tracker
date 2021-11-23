@@ -574,10 +574,10 @@ namespace MMR_Tracker.Class_Files
                 {
                     var dicentry = LogicObjects.MainTrackerInstance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == i.DictionaryName);
                     if (dicentry == null) { continue; }
-                    i.SpoilerLocation = (string.IsNullOrWhiteSpace(dicentry.SpoilerLocation))
-                            ? new List<string> { i.LocationName } : dicentry.SpoilerLocation.Split('|').ToList();
-                    i.SpoilerItem = (string.IsNullOrWhiteSpace(dicentry.SpoilerItem))
-                        ? new List<string> { i.ItemName } : dicentry.SpoilerItem.Split('|').ToList();
+                    i.SpoilerLocation = (string.IsNullOrWhiteSpace(dicentry.SpoilerLocation[0]))
+                            ? new List<string> { i.LocationName } : dicentry.SpoilerLocation.ToList();
+                    i.SpoilerItem = (string.IsNullOrWhiteSpace(dicentry.SpoilerItem[0]))
+                        ? new List<string> { i.ItemName } : dicentry.SpoilerItem.ToList();
                 }
                 return true;
             } catch { }
