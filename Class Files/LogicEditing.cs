@@ -190,7 +190,8 @@ namespace MMR_Tracker_V2
                         var DicEntry = instance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
                         if (DicEntry == null) { break; }
 
-                        LogicEntry1.IsFake = false;
+                        LogicEntry1.IsFake = DicEntry.FakeItem;
+                        LogicEntry1.RandomizerStaticFakeItem = DicEntry.FakeItem;
                         LogicEntry1.IsTrick = false;
                         LogicEntry1.TrickEnabled = true;
                         LogicEntry1.TrickToolTip = "";
@@ -198,8 +199,8 @@ namespace MMR_Tracker_V2
                         LogicEntry1.LocationName = (string.IsNullOrWhiteSpace(DicEntry.LocationName)) ? null : DicEntry.LocationName;
                         LogicEntry1.LocationArea = (string.IsNullOrWhiteSpace(DicEntry.LocationArea)) ? "Misc" : DicEntry.LocationArea;
                         LogicEntry1.ItemSubType = (string.IsNullOrWhiteSpace(DicEntry.ItemSubType)) ? "Item" : DicEntry.ItemSubType;
-                        LogicEntry1.SpoilerLocation = DicEntry.SpoilerLocation.ToList();
-                        LogicEntry1.SpoilerItem = DicEntry.SpoilerItem.ToList();
+                        LogicEntry1.SpoilerLocation = DicEntry.SpoilerLocation == null ? null : DicEntry.SpoilerLocation.ToList();
+                        LogicEntry1.SpoilerItem = DicEntry.SpoilerItem == null ? null : DicEntry.SpoilerItem.ToList();
                         break;
                     case 1:
                         if (string.IsNullOrWhiteSpace(line)) { LogicEntry1.Required = null; break; }
@@ -406,6 +407,8 @@ namespace MMR_Tracker_V2
             var reverseLocation = Location.PairedEntry(Instance, true);
             var reverseItem = Location.PairedEntry(Instance);
             if (reverseItem == null || reverseLocation == null) return;
+            LastUpdated.Add(reverseItem.ID);
+            LastUpdated.Add(reverseLocation.ID);
             //is the reverse entrance already checked and randomized to something
             if ((reverseLocation.Checked || (reverseLocation.HasRandomItem(true) && reverseLocation.RandomizedEntry(Instance) != reverseItem) || reverseItem.Aquired) && Checking) { return; }
             //Does the spoiler log conflict with what the reverse check is trying to do
@@ -820,7 +823,7 @@ namespace MMR_Tracker_V2
         public static int[][] AddConditional(int[][] entry, int[] Conditional)
         {
             List<int[]> NewRequirements = new List<int[]> { Conditional };
-            if (entry == null) { NewRequirements.ToArray(); }
+            if (entry == null) { return NewRequirements.ToArray(); }
             foreach (var i in entry) { NewRequirements.Add(i); }
             return NewRequirements.ToArray();
         }

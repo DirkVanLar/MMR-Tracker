@@ -907,7 +907,7 @@ namespace MMR_Tracker.Class_Files
             Display.Show();
         }
 
-        public static List<int> ParseLocationAndJunkSettingString(string c, int ItemCount)
+        public static List<int> ParseLocationAndJunkSettingString(string c, int ItemCount, string ParseType)
         {
             var result = new List<int>();
             if (string.IsNullOrWhiteSpace(c))
@@ -918,7 +918,7 @@ namespace MMR_Tracker.Class_Files
             result.Clear();
             string[] Sections = c.Split('-');
             int[] NewSections = new int[ItemCount];
-            if (Sections.Length != NewSections.Length) { Console.WriteLine($"Didin't match {Sections.Length}, {NewSections.Length}"); return null; }
+            if (Sections.Length != NewSections.Length) { Console.WriteLine($"{ParseType} String Didin't match {Sections.Length}, {NewSections.Length}"); return null; }
 
             try
             {
@@ -940,7 +940,7 @@ namespace MMR_Tracker.Class_Files
             return result;
         }
 
-        public static List<LogicObjects.LogicEntry> ParseEntranceandStartingString(string c, List<LogicObjects.LogicEntry> Subsection )
+        public static List<LogicObjects.LogicEntry> ParseEntranceandStartingString(string c, List<LogicObjects.LogicEntry> Subsection, string ParseType )
         {
             if (string.IsNullOrWhiteSpace(c))
             {
@@ -960,6 +960,7 @@ namespace MMR_Tracker.Class_Files
                 int[] vi = new int[sectionCount];
                 if (v.Length != vi.Length)
                 {
+                    Console.WriteLine($"{ParseType} String Didin't match {v.Length}, {vi.Length}");
                     return null;
                 }
                 for (int i = 0; i < sectionCount; i++)

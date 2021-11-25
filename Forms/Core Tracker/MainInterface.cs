@@ -31,6 +31,8 @@ namespace MMR_Tracker_V2
 
         public static MainInterface CurrentProgram;
 
+        public static PathFinder MainInterfacePathfinderInsance;
+
         //Event Triggers
 
         public static event EventHandler LogicStateUpdated = delegate { };
@@ -263,11 +265,6 @@ namespace MMR_Tracker_V2
         #endregion Logic Options
         //Menu Strip => Options => Entrance Rando---------------------------------------------------------------------------
         #region Entrance Rando
-        private void UseSongOfTimeInPathfinderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LogicObjects.MainTrackerInstance.Options.UseSongOfTime = !LogicObjects.MainTrackerInstance.Options.UseSongOfTime;
-            FormatMenuItems();
-        }
 
         private void ToggleEntranceRandoFeaturesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -644,15 +641,9 @@ namespace MMR_Tracker_V2
         #region List Boxes
         private void LB_DoubleClick(object sender, EventArgs e) 
         { 
-            if (sender as ListBox == LBPathFinder)
+            if (sender as ListBox == LBPathFinder && MainInterfacePathfinderInsance != null)
             {
-                if (LBPathFinder.SelectedItem is LogicObjects.ListItem)
-                {
-                    var item = LBPathFinder.SelectedItem as LogicObjects.ListItem;
-                    var partition = item.PathPartition;
-                    PrintPaths(item.PathID, partition);
-                }
-                else { return; }
+                MainInterfacePathfinderInsance.LBPathFinder_DoubleClick(sender, e);
             }
             else
             {
@@ -711,49 +702,11 @@ namespace MMR_Tracker_V2
 
         private void BTNSetEntrance_Click(object sender, EventArgs e) { CheckItemSelected(LBValidEntrances, false); }
 
-        private async void BTNFindPath_Click(object sender, EventArgs e)
+        private void BTNFindPath_Click(object sender, EventArgs e)
         {
-            int partition = PathFinder.paths.Count();
-            PathFinder.paths.Add(new List<List<LogicObjects.MapPoint>>());
-            LBPathFinder.Items.Clear();
+            MainInterfacePathfinderInsance = new PathFinder();
+            MainInterfacePathfinderInsance.GetAndPrintPaths(LBPathFinder, CMBStart, CMBEnd);
 
-            if (!(CMBStart.SelectedItem is KeyValuePair<int, string>) || !(CMBEnd.SelectedItem is KeyValuePair<int, string>)) { return; }
-            var Startindex = Int32.Parse(CMBStart.SelectedValue.ToString());
-            var DestIndex = Int32.Parse(CMBEnd.SelectedValue.ToString());
-            if (Startindex < 0 || DestIndex < 0) { return; }
-            LBPathFinder.Items.Add("Finding Path.....");
-            LBPathFinder.Items.Add("Please Wait");
-            LBPathFinder.Refresh();
-
-            bool DestinationAtStarting = await Task.Run(() => PathFinder.Calculatepath(Startindex, DestIndex, partition));
-
-            LBPathFinder.Items.Clear();
-
-            if (DestinationAtStarting)
-            {
-                foreach (var i in Utility.WrapStringInListBox(LBPathFinder, "Your destination is available from your starting area.", "")) { LBPathFinder.Items.Add(i); }
-                return;
-            }
-
-            if (PathFinder.paths[partition].Count == 0)
-            {
-                LBPathFinder.Items.Add("No Path Found!");
-                LBPathFinder.Items.Add("");
-
-                foreach (var i in Utility.WrapStringInListBox(LBPathFinder, "This path finder is still in beta and may not always work as intended.", "")) { LBPathFinder.Items.Add(i); }
-                LBPathFinder.Items.Add("");
-                if (!LogicObjects.MainTrackerInstance.Options.UseSongOfTime)
-                {
-                    var sotT = "Your destination may not be reachable without song of time. The use of Song of Time is not considered by default. To enable Song of Time toggle it in the options menu";
-                    foreach (var i in Utility.WrapStringInListBox(LBPathFinder, sotT, "")) { LBPathFinder.Items.Add(i); }
-                }
-                LBPathFinder.Items.Add("");
-                var ErrT = "If you believe this is an error try navigating to a different entrance close to your destination or try a different starting point.";
-                foreach (var i in Utility.WrapStringInListBox(LBPathFinder, ErrT, "")) { LBPathFinder.Items.Add(i); }
-
-                return;
-            }
-            PrintPaths(-1, partition);
         }
         #endregion Buttons
         //Other---------------------------------------------------------------------------
@@ -1240,66 +1193,6 @@ namespace MMR_Tracker_V2
             return (returnLastArea);
         }
 
-        private void PrintPaths(int PathToPrint, int partition)
-        {
-            LBPathFinder.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
-            LBPathFinder.Items.Clear();
-            var sortedpaths = PathFinder.paths[partition].OrderBy(x => x.Count);
-
-            if (PathToPrint == -1 || PathFinder.paths[partition].ElementAtOrDefault(PathToPrint) == null)
-            {
-                int counter = 1;
-                foreach (var path in sortedpaths)
-                {
-                    var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", PathID = counter - 1, PathPartition = partition };
-                    LBPathFinder.Items.Add(ListTitle);
-                    var firstStop = true;
-                    foreach (var stop in path)
-                    {
-                        var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
-                        var ListItem = new LogicObjects.ListItem
-                        {
-                            DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
-                            PathID = counter - 1,
-                            PathPartition = partition
-                        };
-                        LBPathFinder.Items.Add(ListItem); firstStop = false;
-                    }
-                    LBPathFinder.Items.Add(new LogicObjects.ListItem
-                    {
-                        DisplayName = "===============================",
-                        PathID = counter - 1,
-                        PathPartition = partition
-                    });
-                    counter++;
-                }
-            }
-            else
-            {
-                var path = sortedpaths.ToArray()[PathToPrint];
-                var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + (PathToPrint + 1) + " (" + path.Count + " Steps)", PathID = -1, PathPartition = partition };
-                LBPathFinder.Items.Add(ListTitle);
-                var firstStop = true;
-                foreach (var stop in path)
-                {
-                    var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
-                    var ListItem = new LogicObjects.ListItem
-                    {
-                        DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
-                        PathID = -1,
-                        PathPartition = partition
-                    };
-                    LBPathFinder.Items.Add(ListItem);
-                    firstStop = false;
-                }
-                LBPathFinder.Items.Add(new LogicObjects.ListItem
-                {
-                    DisplayName = "===============================",
-                    PathID = -1,
-                    PathPartition = partition
-                });
-            }
-        }
 
         public void ShowtoolTip(MouseEventArgs e, ListBox lb)
         {
@@ -1498,7 +1391,6 @@ namespace MMR_Tracker_V2
 
             saveAsToolStripMenuItem.Visible = (Tools.SaveFilePath != "");
             importSpoilerLogToolStripMenuItem.Text = (Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic)) ? "Remove Spoiler Log" : "Import Spoiler Log";
-            useSongOfTimeInPathfinderToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.UseSongOfTime);
             enableProgressiveItemsToolStripMenuItem1.Checked = (LogicObjects.MainTrackerInstance.Options.ProgressiveItems);
             enableBringYourOwnAmmoToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.BringYourOwnAmmo);
             stricterLogicHandelingToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling);
@@ -1522,7 +1414,6 @@ namespace MMR_Tracker_V2
             {
                 LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled = LogicObjects.MainTrackerInstance.EntranceRando; 
             }
-            useSongOfTimeInPathfinderToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             coupleEntrancesToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             toggleEntranceRandoFeaturesToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled);
@@ -1544,7 +1435,6 @@ namespace MMR_Tracker_V2
 
             //MM specific Controls
             importSpoilerLogToolStripMenuItem.Visible = SpoilerLogConverter.SpoilerLogConvertable.Contains(LogicObjects.MainTrackerInstance.GameCode.ToUpper()) && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            useSongOfTimeInPathfinderToolStripMenuItem.Visible = ShowMMOnly && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = ShowMMOnly && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             FilterMapToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             itemTrackerToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
@@ -1606,6 +1496,7 @@ namespace MMR_Tracker_V2
                 LowerRightLBL.Location = new Point(FormHalfWidth + locX, FormHalfHeight + locY - 2);
                 BTNFindPath.Location = new Point(FormWidth - BTNFindPath.Width, Menuhieght + FormHalfHeight - 3);
                 LowerRight2LBL.Location = new Point(FormHalfWidth + locX, FormHalfHeight + locY + LowerRightLBL.Height + 6);
+                lblSwapPathfinder.Location = new Point(LowerRight2LBL.Location.X + LowerRight2LBL.Width + 4, LowerRight2LBL.Location.Y - 3 );
                 LowerRight3LBL.Location = new Point(FormHalfWidth + locX, FormHalfHeight + locY + LowerRightLBL.Height + 7 + CMBStart.Height);
                 CMBStart.Location = new Point(FormHalfWidth + locX + LowerRight3LBL.Width + 2, FormHalfHeight + locY + LowerRightLBL.Height + 2);
                 CMBEnd.Location = new Point(FormHalfWidth + locX + LowerRight3LBL.Width + 2, FormHalfHeight + locY + LowerRightLBL.Height + CMBStart.Height + 5);
@@ -1689,6 +1580,7 @@ namespace MMR_Tracker_V2
             CMBStart.Visible = location;
             CMBEnd.Visible = location;
             LBPathFinder.Visible = location;
+            lblSwapPathfinder.Visible = location;
         }
 
         public static void FireEvents(object sender, EventArgs e, bool TrackerUpdated = true, bool LocationCheck = true)
@@ -1753,6 +1645,43 @@ namespace MMR_Tracker_V2
             Tools.CreateOptionsFile(true);
             ResizeObject();
             FormatMenuItems();
+        }
+
+        private void lblSwapPathfinder_Click(object sender, EventArgs e)
+        {
+            LogicObjects.LogicEntry newStart = null;
+            LogicObjects.LogicEntry newDest = null;
+            try
+            {
+                int DestIndex = Int32.Parse(CMBEnd.SelectedValue.ToString());
+                newStart = LogicObjects.MainTrackerInstance.Logic[DestIndex].PairedEntry(LogicObjects.MainTrackerInstance);
+            }
+            catch { }
+            try
+            {
+                int StartIndex = Int32.Parse(CMBStart.SelectedValue.ToString());
+                newDest = LogicObjects.MainTrackerInstance.Logic[StartIndex].PairedEntry(LogicObjects.MainTrackerInstance);
+            }
+            catch { }
+
+            if (newStart == null || newDest == null) { return; }
+
+            try
+            {
+                CMBStart.DataSource = new BindingSource(new Dictionary<int, string> { { newStart.ID, newStart.ItemName } }, null);
+                CMBStart.DisplayMember = "Value";
+                CMBStart.ValueMember = "key";
+                CMBStart.SelectedIndex = 0;
+            }
+            catch { }
+            try
+            {
+                CMBEnd.DataSource = new BindingSource(new Dictionary<int, string> { { newDest.ID, newDest.LocationName } }, null);
+                CMBEnd.DisplayMember = "Value";
+                CMBEnd.ValueMember = "key";
+                CMBEnd.SelectedIndex = 0;
+            }
+            catch { }
         }
     }
 }

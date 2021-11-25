@@ -181,16 +181,15 @@ namespace MMR_Tracker_V2
             var ItemLogic = ItemStringLogic.Where(x => !x.IsEntrance()).ToList();
             var ItemGroupCount = (int)Math.Ceiling(ItemLogic.Count / 32.0);
 
-            var CustomItemList = Tools.ParseLocationAndJunkSettingString(txtCustomItemString.Text, ItemGroupCount);
-            var ForceJunkList = Tools.ParseLocationAndJunkSettingString(txtJunkItemString.Text, ItemGroupCount);
-            var EntranceList = Tools.ParseEntranceandStartingString(txtRandEntString.Text, ItemStringLogic.Where(x => x.IsEntrance()).ToList());
+            var CustomItemList = Tools.ParseLocationAndJunkSettingString(txtCustomItemString.Text, ItemGroupCount, "Item");
+            var ForceJunkList = Tools.ParseLocationAndJunkSettingString(txtJunkItemString.Text, ItemGroupCount, "Junk");
+            var EntranceList = Tools.ParseEntranceandStartingString(txtRandEntString.Text, ItemStringLogic.Where(x => x.IsEntrance()).ToList(), "Entrance");
 
             var StartingStringLogic = LogicObjects.MainTrackerInstance.Logic.Where(x => !x.IsFake && (IsInMMRItemList(x, true) || !LogicObjects.MainTrackerInstance.IsMM())).ToList();
-            //RemoveDuplicateStartingItems() is deprecated in MMR 1.15 + which just so happens to be the same time JSON logic wa implemented.
-            //There used to only be one copy of each duplicate item (like the hylian sheild for example) in the starting items list, but now each sepearate item is an option
-            if (LogicObjects.MainTrackerInstance.LogicFormat == "txt" || LogicObjects.MainTrackerInstance.LogicFormat == "entrance") 
-            { RemoveDuplicateStartingItems(StartingStringLogic, LogicObjects.MainTrackerInstance); }
-            var StartingList = Tools.ParseEntranceandStartingString(txtStartingitemString.Text, StartingStringLogic.Where(x => x.CanBeStartingItem(LogicObjects.MainTrackerInstance)).ToList());
+            //Should be obsolete with the new Dictionary based starting item system since it marks the actual items as starting items.
+            //if (LogicObjects.MainTrackerInstance.LogicFormat == "txt" || LogicObjects.MainTrackerInstance.LogicFormat == "entrance") 
+            //{ RemoveDuplicateStartingItems(StartingStringLogic, LogicObjects.MainTrackerInstance); }
+            var StartingList = Tools.ParseEntranceandStartingString(txtStartingitemString.Text, StartingStringLogic.Where(x => x.CanBeStartingItem(LogicObjects.MainTrackerInstance)).ToList(), "Starting item");
 
             label3.Text = "Custom Item String";
             if (CustomItemList == null) { label3.Text = "Custom Item String (INVALID!)"; }

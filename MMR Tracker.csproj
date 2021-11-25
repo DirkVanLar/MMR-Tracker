@@ -394,6 +394,9 @@
     <None Include="Recources\Dictionaries\MMR V17 entrance Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Recources\Dictionaries\MMR V18 entrance Logic Dictionary.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Recources\Dictionaries\MMR V18 txt Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -405,6 +408,7 @@
     <None Include="Misc\App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Class Files\MMR Code Reference\DictionaryCreationCodeForRandomizer.txt" />
     <Content Include="Misc\unnamed.jpg" />
     <Content Include="Misc\10_106247_moon_from_majoras_mask_render_majoras_mask_moon_WIL_icon.ico" />
     <Content Include="Misc\Notes.txt" />

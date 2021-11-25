@@ -1,0 +1,178 @@
+public class LogicDictionary
+{
+    public int LogicVersion { get; set; }
+    public string LogicFormat { get; set; }
+    public string GameCode { get; set; }
+    public int DefaultWalletCapacity { get; set; } = 200;
+    public List<LogicDictionaryEntry> LogicDictionaryList { get; set; } = new List<LogicDictionaryEntry>();
+}
+
+public class LogicDictionaryEntry
+{
+    public string DictionaryName { get; set; } //The name the logic file uses for the item
+    public string LocationName { get; set; } //The name that will be displayed as the location you check
+    public string ItemName { get; set; } //The name that will be displayed as the item you recieve
+    public string LocationArea { get; set; } //The General Area the location is in
+    public string ItemSubType { get; set; } //The type of item it is
+    public bool? FakeItem { get; set; } = false; //Is the item fake.
+    public string[] SpoilerLocation { get; set; } //The name of this location in the spoiler Log
+    public string[] SpoilerItem { get; set; } //The name of this item in the spoiler log
+    public string[] GossipLocation { get; set; } //The name Gossip stone refer to this location as
+    public string[] GossipItem { get; set; } //The name Gossip stone refer to this item as
+    public string KeyType { get; set; } //If this is a key, what type is it
+    public int? WalletCapacity { get; set; } //If this Object is a wallet, how much can it hold
+    public string[] SpoilerPriceLocations { get; set; } //The names of the entry that details the price of this check in the spoiler log
+    public string GameClearDungeonEntrance { get; set; } //If this Object is a dungeonclear entry, this is it's dungeon entrance
+    public bool? ValidRandomizerStartingItem { get; set; } = false; //Can the entry be a strartingitemin the randomizer
+    public ProgressiveItemData ProgressiveItemData { get; set; } = null; //Progressive Item Data
+    public string EntrancePair { get; set; } //The Paired entrance for this entry
+    public string[] RandoOnlyRequiredLogic { get; set; } //The Paired entrance for this entry
+}
+public class ProgressiveItemData
+{
+    public bool IsProgressiveItem { get; set; } = true;
+    public string[] ProgressiveItemSet { get; set; } = null;
+    public int CountNeededForItem { get; set; } = 0;
+    public string ProgressiveItemName { get; set; } = null;
+}
+public class TrackerTools
+{
+    public static void CreateLogicDicaiotnary()
+    {
+        var itemPool = Enum.GetValues(typeof(Item)).Cast<Item>();
+
+        LogicDictionary LogicDict = new LogicDictionary()
+        {
+            GameCode = "MMR",
+            DefaultWalletCapacity = 99,
+            LogicFormat = "entrance",
+            LogicVersion = LogicMigrator.Migrator.CurrentVersion,
+            LogicDictionaryList = new List<LogicDictionaryEntry>()
+        };
+
+        var _startingItems = ItemUtils.StartingItems().Where(item => !item.Name().Contains("Heart")).ToList();
+
+        int Counter = 0;
+        foreach(var i in itemPool)
+        {
+            if (i == Item.RecoveryHeart || i == Item.IceTrap) { break; }
+            bool IsDungeonEntrance = (i.HasAttribute<DungeonEntranceAttribute>() && i.HasAttribute<EntranceNameAttribute>() && LogicDict.LogicFormat != "entrance");
+            bool IsItem = i.HasAttribute<GetItemIndexAttribute>();
+            bool IsEntrance = i.IsEntrance();
+            bool FakeItem = i.IsFake() && !IsDungeonEntrance;
+            bool IsStartingItem = _startingItems.Contains(i);
+            bool IsGossip = i.ToString().StartsWith("Gossip") && FakeItem;
+            bool IsOwlWarp = i.HasAttribute<RegionAttribute>() && i.GetAttribute<RegionAttribute>().Region == Region.OwlWarp;
+            string EntrancePair = IsEntrance && i.HasAttribute<PairAttribute>() ? i.GetAttribute<PairAttribute>().Pair.ToString() : null;
+            string[] GossipLocations = i.HasAttribute<GossipLocationHintAttribute>() ? i.GetAttribute<GossipLocationHintAttribute>().Values : null;
+            string[] GossipItems = i.HasAttribute<GossipItemHintAttribute>() ? i.GetAttribute<GossipItemHintAttribute>().Values : null;
+
+            string ItemName = i.GetAttribute<ItemNameAttribute>()?.Name ?? i.ToString();
+            string LocationName = i.GetAttribute<LocationNameAttribute>()?.Name ?? i.ToString();
+
+
+            LogicDictionaryEntry entry = new LogicDictionaryEntry();
+            Console.WriteLine(i.ToString());
+            entry.DictionaryName = DEFAULT_ITEM_NAMES[Counter];
+            entry.EntrancePair = EntrancePair;
+            entry.FakeItem = null;
+            if (FakeItem && !IsGossip) { entry.FakeItem = true; }
+            entry.GameClearDungeonEntrance = null; //Do this manually for now
+            entry.GossipItem = GossipItems;
+            entry.GossipLocation = GossipLocations;
+            entry.ItemName = ItemName;
+            entry.LocationName = LocationName;
+            if (IsGossip)
+            {
+                entry.ItemSubType = entry.DictionaryName;
+            }
+            else if (FakeItem)
+            {
+                entry.ItemSubType = null;
+            }
+            else if (IsDungeonEntrance)
+            {
+                entry.ItemSubType = "Dungeon Entrance";
+            }
+            else if (i.IsBottleCatchContent())
+            {
+                entry.ItemSubType = "Bottle";
+            }
+            else if (IsOwlWarp)
+            {
+                entry.ItemSubType = "Entrance";
+            }
+            else if (IsEntrance)
+            {
+                entry.ItemSubType = "Entrance";
+            }
+            else if (IsItem)
+            {
+                entry.ItemSubType = "Item";
+            }
+            entry.KeyType = null;
+            entry.LocationArea = FakeItem ? null : ((IsOwlWarp) ? "Owl Warp" : (i.HasAttribute<RegionAttribute>() ? i.GetAttribute<RegionAttribute>().Region.ToString() : "Misc"));
+            entry.ProgressiveItemData = i.HasAttribute<ProgressiveAttribute>() ? new ProgressiveItemData()
+            {
+                IsProgressiveItem = i.HasAttribute<ProgressiveAttribute>(),
+                ProgressiveItemName = i.ProgressiveUpgradeName(true),
+                ProgressiveItemSet = new string[0]
+            } : null;
+            entry.RandoOnlyRequiredLogic = null;
+            entry.SpoilerLocation = FakeItem ? null : new List<string>() { entry.LocationName ?? i.ToString() }.ToArray();
+
+            List<string> SpoilerItems = new List<string>() { entry.ItemName ?? i.ToString() };
+            if (i.HasAttribute<ProgressiveAttribute>()) { SpoilerItems.Add(i.ProgressiveUpgradeName(true)); }
+            entry.SpoilerItem = FakeItem ? null : SpoilerItems.ToArray();
+
+            entry.SpoilerPriceLocations = null;
+            entry.ValidRandomizerStartingItem = null;
+            if (IsStartingItem && !FakeItem) entry.ValidRandomizerStartingItem = true;
+            entry.WalletCapacity = null;
+
+
+            if (IsDungeonEntrance) { entry.ItemName = i.GetAttribute<EntranceNameAttribute>().Name + " Temple"; }
+            else if (IsEntrance)
+            {
+                var Name = i.Name() ?? i.ToString();
+                Name = Name.Replace("Entrance", "");
+                Name = Name.Replace("From", "|");
+                var Names = Name.Split('|');
+                var newname = Names[0] + " <" + Names[1];
+                entry.ItemName = Regex.Replace(newname, @"((?<=\p{Ll})\p{Lu})|((?!\A)\p{Lu}(?>\p{Ll}))", " $0"); ;
+            }
+            else if (FakeItem) { entry.ItemName = null; }
+
+            if (IsDungeonEntrance) { entry.LocationName = i.GetAttribute<EntranceNameAttribute>().Name + " Temple Entrance"; }
+            else if (IsEntrance)
+            {
+                var Name = i.Name() ?? i.ToString();
+                Name = Name.Replace("Entrance", "");
+                Name = Name.Replace("From", "|");
+                var Names = Name.Split('|');
+                var newname = Names[1] + " >" + Names[0];
+                entry.LocationName = Regex.Replace(newname, @"((?<=\p{Ll})\p{Lu})|((?!\A)\p{Lu}(?>\p{Ll}))", " $0"); ; ;
+            }
+            else if (FakeItem) { entry.LocationName = null; }
+
+
+            LogicDict.LogicDictionaryList.Add(entry);
+            Counter++;
+        }
+
+        SaveFileDialog saveDialog = new SaveFileDialog
+        {
+            Filter = "MMR Tracker Save (*.json)|*.json",
+            FilterIndex = 1,
+            FileName = $"{LogicDict.GameCode} V{LogicDict.LogicVersion} {LogicDict.LogicFormat} Logic Dictionary"
+        };
+        if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+        string FilePath = saveDialog.FileName;
+        JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
+        {
+            Formatting = Formatting.Indented,
+            NullValueHandling = NullValueHandling.Ignore
+        };
+        File.WriteAllText(FilePath, JsonConvert.SerializeObject(LogicDict, _jsonSerializerOptions));
+    }
+}

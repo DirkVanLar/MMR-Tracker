@@ -69,7 +69,6 @@ namespace MMR_Tracker_V2
             this.bossKeyDoorsAlwaysOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entranceRandoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useSongOfTimeInPathfinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleEntranceRandoFeaturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includeItemLocationsAsDestinationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.coupleEntrancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,6 +110,7 @@ namespace MMR_Tracker_V2
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lblSwapPathfinder = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -431,7 +431,7 @@ namespace MMR_Tracker_V2
             this.randoSettingsToolStripMenuItem,
             this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             this.logicOptionsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.PresetDropDownOpening);
             // 
@@ -498,20 +498,12 @@ namespace MMR_Tracker_V2
             // entranceRandoToolStripMenuItem
             // 
             this.entranceRandoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.useSongOfTimeInPathfinderToolStripMenuItem,
             this.toggleEntranceRandoFeaturesToolStripMenuItem,
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
-            // 
-            // useSongOfTimeInPathfinderToolStripMenuItem
-            // 
-            this.useSongOfTimeInPathfinderToolStripMenuItem.Name = "useSongOfTimeInPathfinderToolStripMenuItem";
-            this.useSongOfTimeInPathfinderToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
-            this.useSongOfTimeInPathfinderToolStripMenuItem.Text = "Use Song of Time in Pathfinder";
-            this.useSongOfTimeInPathfinderToolStripMenuItem.Click += new System.EventHandler(this.UseSongOfTimeInPathfinderToolStripMenuItem_Click);
             // 
             // toggleEntranceRandoFeaturesToolStripMenuItem
             // 
@@ -544,7 +536,7 @@ namespace MMR_Tracker_V2
             this.changeFontToolStripMenuItem,
             this.changeDefaultSetingsToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // horizontalLayoutToolStripMenuItem
@@ -592,7 +584,7 @@ namespace MMR_Tracker_V2
             // onlinePlayToolStripMenuItem
             // 
             this.onlinePlayToolStripMenuItem.Name = "onlinePlayToolStripMenuItem";
-            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.onlinePlayToolStripMenuItem.Text = "Online Play";
             this.onlinePlayToolStripMenuItem.Click += new System.EventHandler(this.onlinePlayToolStripMenuItem_Click);
             // 
@@ -830,6 +822,19 @@ namespace MMR_Tracker_V2
             this.toolTip1.InitialDelay = 10;
             this.toolTip1.ReshowDelay = 100;
             // 
+            // lblSwapPathfinder
+            // 
+            this.lblSwapPathfinder.AutoSize = true;
+            this.lblSwapPathfinder.BackColor = System.Drawing.Color.Transparent;
+            this.lblSwapPathfinder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSwapPathfinder.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblSwapPathfinder.Location = new System.Drawing.Point(106, 239);
+            this.lblSwapPathfinder.Name = "lblSwapPathfinder";
+            this.lblSwapPathfinder.Size = new System.Drawing.Size(24, 16);
+            this.lblSwapPathfinder.TabIndex = 22;
+            this.lblSwapPathfinder.Text = "↑↓";
+            this.lblSwapPathfinder.Click += new System.EventHandler(this.lblSwapPathfinder_Click);
+            // 
             // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -838,6 +843,7 @@ namespace MMR_Tracker_V2
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(339, 578);
+            this.Controls.Add(this.lblSwapPathfinder);
             this.Controls.Add(this.BTNFindPath);
             this.Controls.Add(this.LBPathFinder);
             this.Controls.Add(this.LBCheckedLocations);
@@ -899,7 +905,6 @@ namespace MMR_Tracker_V2
         private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripMenuItem entranceRandoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem useSongOfTimeInPathfinderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleEntranceRandoFeaturesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logicOptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editRadnomizationOptionsToolStripMenuItem;
@@ -956,6 +961,7 @@ namespace MMR_Tracker_V2
         private System.Windows.Forms.ToolStripMenuItem smallKeyDoorsAlwaysOpenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bossKeyDoorsAlwaysOpenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeDefaultSetingsToolStripMenuItem;
+        private System.Windows.Forms.Label lblSwapPathfinder;
     }
 }
 

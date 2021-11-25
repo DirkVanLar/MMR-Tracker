@@ -13,7 +13,7 @@ namespace MMR_Tracker.Forms
 {
     public partial class PathFinder : Form
     {
-        public static List<List<List<LogicObjects.MapPoint>>> paths = new List<List<List<LogicObjects.MapPoint>>>();
+        public List<List<LogicObjects.MapPoint>> InstancePaths = new List<List<LogicObjects.MapPoint>>();
 
         public PathFinder()
         {
@@ -22,70 +22,71 @@ namespace MMR_Tracker.Forms
 
         //Form Handeling
 
-        private async void BTNFindPath_Click(object sender, EventArgs e)
+        public void BTNFindPath_Click(object sender, EventArgs e)
+        {
+            GetAndPrintPaths(LBPathFinder, CMBStart, CMBEnd);
+        }
+
+        public async void GetAndPrintPaths(ListBox LB, ComboBox cmbStart, ComboBox cmbEnd, bool UseSOT = false)
         {
             //Find grab the ID of the last path currently in the list. TODO delete that path from the "paths" to free up junk space.
-            if (LBPathFinder.Items.Count > 1)
+            if (LB.Items.Count > 1)
             {
-                var item = LBPathFinder.Items[1] as LogicObjects.ListItem;
-                var part = item.PathPartition;
-                Debugging.Log(part.ToString());
+                var item = LB.Items[1] as LogicObjects.ListItem;
             }
+            Console.WriteLine($"Use SOT {UseSOT}");
 
-            int partition = paths.Count();
-            paths.Add(new List<List<LogicObjects.MapPoint>>());
-            LBPathFinder.Items.Clear();
+            LB.Items.Clear();
 
-            if (!(CMBStart.SelectedItem is KeyValuePair<int, string>) || !(CMBEnd.SelectedItem is KeyValuePair<int, string>)) { return; }
-            var Startindex = Int32.Parse(CMBStart.SelectedValue.ToString());
-            var DestIndex = Int32.Parse(CMBEnd.SelectedValue.ToString());
+            if (!(cmbStart.SelectedItem is KeyValuePair<int, string>) || !(cmbEnd.SelectedItem is KeyValuePair<int, string>)) { return; }
+            var Startindex = Int32.Parse(cmbStart.SelectedValue.ToString());
+            var DestIndex = Int32.Parse(cmbEnd.SelectedValue.ToString());
             if (Startindex < 0 || DestIndex < 0) { return; }
-            LBPathFinder.Items.Add("Finding Path.....");
-            LBPathFinder.Items.Add("Please Wait");
-            LBPathFinder.Refresh();
+            LB.Items.Add("Finding Path.....");
+            LB.Items.Add("Please Wait");
+            LB.Refresh();
 
-            bool DestinationAtStarting = await Task.Run(() => PathFinder.Calculatepath(Startindex, DestIndex, partition));
+            bool DestinationAtStarting = await Task.Run(() => Calculatepath(Startindex, DestIndex, UseSOT));
 
-            LBPathFinder.Items.Clear();
+            LB.Items.Clear();
 
             if (DestinationAtStarting)
             {
-                foreach (var i in Utility.WrapStringInListBox(LBPathFinder, "Your destination is available from your starting area.", "")) { LBPathFinder.Items.Add(i); }
+                foreach (var i in Utility.WrapStringInListBox(LB, "Your destination is available from your starting area.", "")) { LB.Items.Add(i); }
                 return;
             }
 
-            if (PathFinder.paths[partition].Count == 0)
+            if (InstancePaths.Count == 0)
             {
-                LBPathFinder.Items.Add("No Path Found!");
-                LBPathFinder.Items.Add("");
-
-                foreach (var i in Utility.WrapStringInListBox(LBPathFinder, "This path finder is still in beta and may not always work as intended.", "")) { LBPathFinder.Items.Add(i); }
-                LBPathFinder.Items.Add("");
-                if (!LogicObjects.MainTrackerInstance.Options.UseSongOfTime)
+                if (!UseSOT) 
                 {
-                    var sotT = "Your destination may not be reachable without song of time. The use of Song of Time is not considered by default. To enable Song of Time toggle it in the options menu";
-                    foreach (var i in Utility.WrapStringInListBox(LBPathFinder, sotT, "")) { LBPathFinder.Items.Add(i); }
+                    Console.WriteLine("No path found, attempting with Song of Time");
+                    GetAndPrintPaths(LB, cmbStart, cmbEnd, true);
+                    return;
                 }
-                LBPathFinder.Items.Add("");
+
+                foreach (var i in Utility.WrapStringInListBox(LB, "The path finder could not valid path to your destination!", "")) { LB.Items.Add(i); }
+                LB.Items.Add("");
+                foreach (var i in Utility.WrapStringInListBox(LB, "This path finder is still in beta and may not always work as intended.", "")) { LB.Items.Add(i); }
                 var ErrT = "If you believe this is an error try navigating to a different entrance close to your destination or try a different starting point.";
-                foreach (var i in Utility.WrapStringInListBox(LBPathFinder, ErrT, "")) { LBPathFinder.Items.Add(i); }
+                foreach (var i in Utility.WrapStringInListBox(LB, ErrT, "")) { LB.Items.Add(i); }
 
                 return;
             }
-            PrintPaths(-1, partition);
+            PrintPaths(-1, LB, UseSOT);
         }
 
-        public static bool Calculatepath(int Startindex, int DestIndex, int PathPartition)
+        public bool Calculatepath(int Startindex, int DestIndex, bool UseSOT)
         {
             var startinglocation = LogicObjects.MainTrackerInstance.Logic[Startindex];
             var destination = LogicObjects.MainTrackerInstance.Logic[DestIndex];
-            var maps = FindLogicalEntranceConnections(LogicObjects.MainTrackerInstance, startinglocation);
+            var maps = FindLogicalEntranceConnections(LogicObjects.MainTrackerInstance, startinglocation, UseSOT);
             var Fullmap = maps[0]; //A map of all available exit from each entrance
             var ResultMap = maps[1]; //A map of all available entrances from each exit as long as the result of that entrance is known
 
             if (Fullmap.Find(x => x.CurrentExit == startinglocation.ID && x.EntranceToTake == destination.ID) != null) { return true; }
 
-            Findpath(LogicObjects.MainTrackerInstance, ResultMap, Fullmap, startinglocation.ID, destination.ID, new List<int>(), new List<int>(), new List<LogicObjects.MapPoint>(), PathPartition, true);
+            Findpath(LogicObjects.MainTrackerInstance, ResultMap, Fullmap, startinglocation.ID, destination.ID, new List<int>(), new List<int>(), new List<LogicObjects.MapPoint>(),true);
             return false;
         }
 
@@ -168,35 +169,45 @@ namespace MMR_Tracker.Forms
 
         //Pathfinding
 
-        private void PrintPaths(int PathToPrint, int partition)
+        public void PrintPaths(int PathToPrint, ListBox ListBox, bool SOTUsed = false)
         {
-            LBPathFinder.Items.Clear();
-            var sortedpaths = PathFinder.paths[partition].OrderBy(x => x.Count);
+            if (!(ListBox is ListBox)) { return; }
+            var listbox = ListBox as ListBox;
+            listbox.Items.Clear();
 
-            if (PathToPrint == -1 || PathFinder.paths[partition].ElementAtOrDefault(PathToPrint) == null)
+            if (SOTUsed)
+            {
+                foreach (var i in Utility.WrapStringInListBox(ListBox, "A valid path could not be found without the use of Song of Time!", "")) 
+                {
+                    listbox.Items.Add(new LogicObjects.ListItem { DisplayName = i, PathID = -1 });
+                }
+                listbox.Items.Add(new LogicObjects.ListItem { DisplayName = "===============================", PathID = -1 });
+            }
+
+            var sortedpaths = InstancePaths.OrderBy(x => x.Count);
+
+            if (PathToPrint == -1 || InstancePaths.ElementAtOrDefault(PathToPrint) == null)
             {
                 int counter = 1;
                 foreach (var path in sortedpaths)
                 {
-                    var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", PathID = counter - 1, PathPartition = partition };
-                    LBPathFinder.Items.Add(ListTitle);
+                    var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + counter + " (" + path.Count + " Steps)", PathID = counter - 1 };
+                    listbox.Items.Add(ListTitle);
                     var firstStop = true;
                     foreach (var stop in path)
                     {
-                        var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
+                        var start = (firstStop) ? SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
                         var ListItem = new LogicObjects.ListItem
                         {
                             DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
-                            PathID = counter - 1,
-                            PathPartition = partition
+                            PathID = counter - 1
                         };
-                        LBPathFinder.Items.Add(ListItem); firstStop = false;
+                        listbox.Items.Add(ListItem); firstStop = false;
                     }
-                    LBPathFinder.Items.Add(new LogicObjects.ListItem
+                    listbox.Items.Add(new LogicObjects.ListItem
                     {
                         DisplayName = "===============================",
-                        PathID = counter - 1,
-                        PathPartition = partition
+                        PathID = counter - 1
                     });
                     counter++;
                 }
@@ -204,42 +215,40 @@ namespace MMR_Tracker.Forms
             else
             {
                 var path = sortedpaths.ToArray()[PathToPrint];
-                var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + (PathToPrint + 1) + " (" + path.Count + " Steps)", PathID = -1, PathPartition = partition };
-                LBPathFinder.Items.Add(ListTitle);
+                var ListTitle = new LogicObjects.ListItem { DisplayName = "Path: " + (PathToPrint + 1) + " (" + path.Count + " Steps)", PathID = -1 };
+                listbox.Items.Add(ListTitle);
                 var firstStop = true;
                 foreach (var stop in path)
                 {
-                    var start = (firstStop) ? PathFinder.SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
+                    var start = (firstStop) ? SetSOTName(LogicObjects.MainTrackerInstance, stop) : LogicObjects.MainTrackerInstance.Logic[stop.EntranceToTake].LocationName;
                     var ListItem = new LogicObjects.ListItem
                     {
                         DisplayName = start + " => " + LogicObjects.MainTrackerInstance.Logic[stop.ResultingExit].ItemName,
-                        PathID = -1,
-                        PathPartition = partition
+                        PathID = -1
                     };
-                    LBPathFinder.Items.Add(ListItem);
+                    listbox.Items.Add(ListItem);
                     firstStop = false;
                 }
-                LBPathFinder.Items.Add(new LogicObjects.ListItem
+                listbox.Items.Add(new LogicObjects.ListItem
                 {
                     DisplayName = "===============================",
-                    PathID = -1,
-                    PathPartition = partition
+                    PathID = -1
                 });
             }
         }
 
-        private void LBPathFinder_DoubleClick(object sender, EventArgs e)
+        public void LBPathFinder_DoubleClick(object sender, EventArgs e)
         {
-            if (LBPathFinder.SelectedItem is LogicObjects.ListItem)
+            ListBox LB = sender as ListBox;
+            if (LB.SelectedItem is LogicObjects.ListItem)
             {
-                var item = LBPathFinder.SelectedItem as LogicObjects.ListItem;
-                var partition = item.PathPartition;
-                PrintPaths(item.PathID, partition);
+                var item = LB.SelectedItem as LogicObjects.ListItem;
+                PrintPaths(item.PathID, LB);
             }
             else { return; }
         }
 
-        public static List<List<LogicObjects.MapPoint>> FindLogicalEntranceConnections(LogicObjects.TrackerInstance Instance, LogicObjects.LogicEntry startinglocation)
+        public List<List<LogicObjects.MapPoint>> FindLogicalEntranceConnections(LogicObjects.TrackerInstance Instance, LogicObjects.LogicEntry startinglocation, bool useSOT)
         {
             //Result[0] = A map of all available exit from each entrance, Result[1] = A map of all available entrances from each exit as long as the result of that entrance is known.
             var result = new List<List<LogicObjects.MapPoint>> { new List<LogicObjects.MapPoint>(), new List<LogicObjects.MapPoint>() };
@@ -251,7 +260,7 @@ namespace MMR_Tracker.Forms
             };
             UnmarkEntrances(logicTemplate.Logic);
 
-            AddRequirementstoClocktower(logicTemplate);
+            AddConditionalsToInsideClockTower(logicTemplate, useSOT);
 
             //Add all available owl warps as valid exits from our starting point.
             foreach (LogicObjects.LogicEntry OwlEntry in Instance.Logic.Where(x => x.IsWarpSong() && x.Available))
@@ -290,7 +299,7 @@ namespace MMR_Tracker.Forms
             return result;
         }
 
-        public static void UnmarkEntrances(List<LogicObjects.LogicEntry> Logic)
+        public void UnmarkEntrances(List<LogicObjects.LogicEntry> Logic)
         {
             foreach (LogicObjects.LogicEntry Entry in Logic)
             {
@@ -302,12 +311,12 @@ namespace MMR_Tracker.Forms
             }
         }
 
-        public static bool EntranceConnectionValid(LogicObjects.LogicEntry x, LogicObjects.LogicEntry ExitToCheck, LogicObjects.TrackerInstance lt)
+        public bool EntranceConnectionValid(LogicObjects.LogicEntry x, LogicObjects.LogicEntry ExitToCheck, LogicObjects.TrackerInstance lt)
         {
             return (x.Available && !x.IsFake && !x.IsWarpSong() && (x.IsEntrance() || lt.Options.IncludeItemLocations));
         }
 
-        public static void Findpath(LogicObjects.TrackerInstance Instance, List<LogicObjects.MapPoint> map, List<LogicObjects.MapPoint> FullMap, int startinglocation, int destination, List<int> ExitsKnown, List<int> ExitsVisited, List<LogicObjects.MapPoint> Path, int PathPartition, bool InitialRun = false)
+        public void Findpath(LogicObjects.TrackerInstance Instance, List<LogicObjects.MapPoint> map, List<LogicObjects.MapPoint> FullMap, int startinglocation, int destination, List<int> ExitsKnown, List<int> ExitsVisited, List<LogicObjects.MapPoint> Path, bool InitialRun = false)
         {
             #region
             //map               :A map of all available entrances from each exit as long as the result of that entrance is known
@@ -317,10 +326,9 @@ namespace MMR_Tracker.Forms
             //ExitsKnown        :The IDs of each entrance we've seen from areas we've been to and areas we've scanned using the NewExitsInResultingArea function
             //ExitsVisited      :The IDs of each entrance we've seen from area we have actually been to or could have been to earlier in the path
             //Path              :A list of exits you have taken to get to your current point
-            //PathPartition     :The index of the global paths variable where this path will be stored
             //InitialRun        :Is this code being run from the original source (True) or from it's self (False)
             #endregion
-            if (InitialRun) { paths[PathPartition] = new List<List<LogicObjects.MapPoint>>(); }
+            if (InitialRun) { InstancePaths = new List<List<LogicObjects.MapPoint>>(); }
             //Make a copy to edit and pass to the next funtion
             var ExitsKnownCopy = JsonConvert.DeserializeObject<List<int>>(JsonConvert.SerializeObject(ExitsKnown));
             var ExitsVisitedCopy = JsonConvert.DeserializeObject<List<int>>(JsonConvert.SerializeObject(ExitsKnown));
@@ -328,7 +336,7 @@ namespace MMR_Tracker.Forms
             var validExits = new List<LogicObjects.MapPoint>();
 
             //If we can reach our destination from this point, add the path we took to get here to the valid paths list.
-            if (FullMap.Find(x => x.CurrentExit == startinglocation && x.EntranceToTake == destination) != null) { paths[PathPartition].Add(Path); }
+            if (FullMap.Find(x => x.CurrentExit == startinglocation && x.EntranceToTake == destination) != null) { InstancePaths.Add(Path); }
 
             //For each exit from our current location
             foreach (var point in map.Where(x => x.CurrentExit == startinglocation))
@@ -350,11 +358,11 @@ namespace MMR_Tracker.Forms
             {
                 var UpdatedPath = JsonConvert.DeserializeObject<List<LogicObjects.MapPoint>>(JsonConvert.SerializeObject(Path));
                 UpdatedPath.Add(exit);
-                Findpath(Instance, map, FullMap, exit.ResultingExit, destination, ExitsKnownCopy, ExitsVisitedCopy, UpdatedPath, PathPartition);
+                Findpath(Instance, map, FullMap, exit.ResultingExit, destination, ExitsKnownCopy, ExitsVisitedCopy, UpdatedPath);
             }
         }
 
-        public static bool ScanExitResults(List<LogicObjects.MapPoint> map, int startinglocation, List<int> ExitsSeen)
+        public bool ScanExitResults(List<LogicObjects.MapPoint> map, int startinglocation, List<int> ExitsSeen)
         {
             // This checks all of the exits in the area we would go to if we took this exit. If we have seen all of these exits before there is no need to take this exit.
             var Newexits = false;
@@ -369,19 +377,20 @@ namespace MMR_Tracker.Forms
             return Newexits;
         }
 
-        private static void AddRequirementstoClocktower(LogicObjects.TrackerInstance Instance)
+        private void AddConditionalsToInsideClockTower(LogicObjects.TrackerInstance Instance, bool useSOT)
         {
             var ClockTowerToClockTown = Instance.Logic.Find(x => x.DictionaryName == "EntranceSouthClockTownFromClockTowerInterior");
             var ClockTownToClockTower = Instance.Logic.Find(x => x.DictionaryName == "EntranceClockTowerInteriorFromSouthClockTown");
             var LostWoodsToTermina = Instance.Logic.Find(x => x.DictionaryName == "EntranceClockTowerInteriorFromBeforethePortaltoTermina");
-            if (ClockTowerToClockTown == null || ClockTowerToClockTown == null || ClockTowerToClockTown == null || Instance.Options.UseSongOfTime) { return; }
-            var Conditionals = (ClockTowerToClockTown.Conditionals != null) ? ClockTowerToClockTown.Conditionals.ToList() : new List<int[]>();
-            Conditionals.Add(new int[] { ClockTownToClockTower.ID });
-            Conditionals.Add(new int[] { LostWoodsToTermina.ID });
-            ClockTowerToClockTown.Conditionals = Conditionals.ToArray();
+            if (ClockTowerToClockTown == null || ClockTowerToClockTown == null || ClockTowerToClockTown == null || useSOT) { Console.WriteLine("Skip COnd SOT used"); return; }
+            Console.WriteLine("Conditionals were added to Beneath CT");
+            var NewConditionals = ClockTowerToClockTown.Conditionals;
+            NewConditionals = LogicEditing.AddConditional(NewConditionals, new int[] { ClockTownToClockTower.ID });
+            NewConditionals = LogicEditing.AddConditional(NewConditionals, new int[] { LostWoodsToTermina.ID });
+            ClockTowerToClockTown.Conditionals = NewConditionals;
         }
 
-        public static string SetSOTName(LogicObjects.TrackerInstance Instance, LogicObjects.MapPoint stop)
+        public string SetSOTName(LogicObjects.TrackerInstance Instance, LogicObjects.MapPoint stop)
         {
             var StartName = Instance.Logic[stop.CurrentExit].DictionaryName;
             var entName = Instance.Logic[stop.EntranceToTake].DictionaryName;
@@ -396,7 +405,7 @@ namespace MMR_Tracker.Forms
             return Instance.Logic[stop.EntranceToTake].LocationName; ;
         }
 
-        public static bool NotAreaAccess(LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
+        public bool NotAreaAccess(LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
         {
             //Attempts to check if a fake item details area access. If the fake item can be unlocked with only real item entries it should represent access to an area
             //And shouldn't need to be unaquired for the pathfinder
@@ -418,6 +427,43 @@ namespace MMR_Tracker.Forms
                 if (RealEntry) { return true; }
             }
             return false;
+        }
+
+        private void lblSwapPathfinder_Click(object sender, EventArgs e)
+        {
+            LogicObjects.LogicEntry newStart = null;
+            LogicObjects.LogicEntry newDest = null;
+            try
+            {
+                int DestIndex = Int32.Parse(CMBEnd.SelectedValue.ToString());
+                newStart = LogicObjects.MainTrackerInstance.Logic[DestIndex].PairedEntry(LogicObjects.MainTrackerInstance);
+            }
+            catch { }
+            try
+            {
+                int StartIndex = Int32.Parse(CMBStart.SelectedValue.ToString());
+                newDest = LogicObjects.MainTrackerInstance.Logic[StartIndex].PairedEntry(LogicObjects.MainTrackerInstance);
+            }
+            catch { }
+
+            if (newStart == null || newDest == null) { return; }
+
+            try
+            {
+                CMBStart.DataSource = new BindingSource(new Dictionary<int, string> { { newStart.ID, newStart.ItemName } }, null);
+                CMBStart.DisplayMember = "Value";
+                CMBStart.ValueMember = "key";
+                CMBStart.SelectedIndex = 0;
+            }
+            catch { }
+            try
+            {
+                CMBEnd.DataSource = new BindingSource(new Dictionary<int, string> { { newDest.ID, newDest.LocationName } }, null);
+                CMBEnd.DisplayMember = "Value";
+                CMBEnd.ValueMember = "key";
+                CMBEnd.SelectedIndex = 0;
+            }
+            catch { }
         }
     }
 }

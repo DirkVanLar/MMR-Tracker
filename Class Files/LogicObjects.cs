@@ -50,7 +50,6 @@ namespace MMR_Tracker_V2
             public bool OverRideAutoEntranceRandoEnable { get; set; } = false;
             public bool CoupleEntrances { get; set; } = true;
             public bool UnradnomizeEntranesOnStartup { get; set; } = true;
-            public bool UseSongOfTime { get; set; } = false;
             public bool IncludeItemLocations { get; set; } = false;
             //UI Options
             public bool MoveMarkedToBottom { get; set; } = false;
@@ -124,7 +123,7 @@ namespace MMR_Tracker_V2
             public int LogicVersion { get; set; }
             public string LogicFormat { get; set; }
             public string GameCode { get; set; }
-            public int DefaultWalletCapacity { get; set; } = 200;
+            public int DefaultWalletCapacity { get; set; } = 99;
             public List<LogicDictionaryEntry> LogicDictionaryList { get; set; } = new List<LogicDictionaryEntry>();
         }
 

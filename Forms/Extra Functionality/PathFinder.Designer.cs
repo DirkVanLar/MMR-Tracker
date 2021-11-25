@@ -36,6 +36,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblSwapPathfinder = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BTNFindPath
@@ -114,6 +115,19 @@
             this.label4.TabIndex = 27;
             this.label4.Text = "Path Finder";
             // 
+            // lblSwapPathfinder
+            // 
+            this.lblSwapPathfinder.AutoSize = true;
+            this.lblSwapPathfinder.BackColor = System.Drawing.Color.Transparent;
+            this.lblSwapPathfinder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSwapPathfinder.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblSwapPathfinder.Location = new System.Drawing.Point(44, 35);
+            this.lblSwapPathfinder.Name = "lblSwapPathfinder";
+            this.lblSwapPathfinder.Size = new System.Drawing.Size(24, 16);
+            this.lblSwapPathfinder.TabIndex = 28;
+            this.lblSwapPathfinder.Text = "↑↓";
+            this.lblSwapPathfinder.Click += new System.EventHandler(this.lblSwapPathfinder_Click);
+            // 
             // PathFinder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,6 +135,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(347, 608);
+            this.Controls.Add(this.lblSwapPathfinder);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.BTNFindPath);
             this.Controls.Add(this.LBPathFinder);
@@ -145,5 +160,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblSwapPathfinder;
     }
 }
