@@ -96,6 +96,63 @@ namespace MMR_Tracker.Forms
             return ExpandedLogic.Split('+').Select(x => x.Split('*').Select(y => int.Parse(y)).ToArray()).ToArray();
         }
 
+        public List<List<string>> ConvertLogicToConditionalString(string Logic)
+        {
+            Dictionary<string, string> LetterToNum = new Dictionary<string, string>();
+            Dictionary<string, string> LetterToNumReverse = new Dictionary<string, string>();
+            int Counter = 1;
+            foreach (var i in GetEntries(Logic))
+            {
+                string CleanedEntry = i.Trim();
+                if (string.IsNullOrWhiteSpace(CleanedEntry) || string.IsNullOrEmpty(CleanedEntry) || ISLogicChar(CleanedEntry[0]) || LetterToNum.ContainsKey(CleanedEntry)) 
+                { continue; }
+                var Letter = IndexToColumn(Counter);
+                Counter++;
+                LetterToNum.Add(CleanedEntry, Letter);
+                LetterToNumReverse.Add(Letter, CleanedEntry);
+            }
+            LetterToNum = LetterToNum.OrderBy(x => x.Value).Reverse().ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+            var LogicEntries = GetEntries(Logic);
+            for (var i= 0; i < LogicEntries.Count(); i++)
+            {
+                string CleanedEntry = LogicEntries[i].Trim();
+                if (string.IsNullOrWhiteSpace(CleanedEntry) || string.IsNullOrEmpty(CleanedEntry) || ISLogicChar(CleanedEntry[0]) || !LetterToNum.ContainsKey(CleanedEntry))
+                { continue; }
+
+                LogicEntries[i] = LetterToNum[CleanedEntry];
+            }
+
+            var ReconstructedLoigc = string.Join(" ", LogicEntries).Replace("&&", "*").Replace("||", "+").Replace("&", "*").Replace("|", "+");
+            ReconstructedLoigc = ReconstructedLoigc.Replace("&&", "*").Replace("||", "+").Replace("&", "*").Replace("|", "+");
+
+            if (string.IsNullOrEmpty(ReconstructedLoigc)) { return null; }
+
+            //Debugging.Log("Reconstructed Logc = " + ReconstructedLoigc);
+            Expression LogicSet = Infix.ParseOrThrow(ReconstructedLoigc);
+            var Output = Algebraic.Expand(LogicSet);
+            string ExpandedLogic = Infix.Format(Output).Replace(" ", "");
+            //Debugging.Log(ExpandedLogic);
+
+            ExpandedLogic = HandlePowers(ExpandedLogic.Replace(" ", ""));
+            ExpandedLogic = ExpandedLogic.Replace("*", "&").Replace("+", "|");
+
+            var ExpandedLogicEntries = GetEntries(ExpandedLogic);
+            for (var i = 0; i < ExpandedLogicEntries.Count(); i++)
+            {
+                string CleanedEntry = ExpandedLogicEntries[i].Trim();
+
+                if (string.IsNullOrWhiteSpace(CleanedEntry) || string.IsNullOrEmpty(CleanedEntry) || ISLogicChar(CleanedEntry[0]) || !LetterToNumReverse.ContainsKey(CleanedEntry))
+                { continue; }
+
+                ExpandedLogicEntries[i] = LetterToNumReverse[CleanedEntry];
+            }
+
+            var FinalLogic = string.Join(" ", ExpandedLogicEntries);
+
+            return FinalLogic.Split('|').Select(x => x.Split('&').ToList()).ToList();
+        }
+
         public string SimplifyLetters(string Input)
         {
             string NewInput = Input;

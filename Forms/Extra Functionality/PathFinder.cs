@@ -29,11 +29,6 @@ namespace MMR_Tracker.Forms
 
         public async void GetAndPrintPaths(ListBox LB, ComboBox cmbStart, ComboBox cmbEnd, bool UseSOT = false)
         {
-            //Find grab the ID of the last path currently in the list. TODO delete that path from the "paths" to free up junk space.
-            if (LB.Items.Count > 1)
-            {
-                var item = LB.Items[1] as LogicObjects.ListItem;
-            }
             Console.WriteLine($"Use SOT {UseSOT}");
 
             LB.Items.Clear();
