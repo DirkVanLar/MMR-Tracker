@@ -23,7 +23,7 @@ namespace MMR_Tracker.Other_Games
 
     class SkywardSwordRando
     {
-        public static void SkywardSwordTesting(bool Applylive)
+        public static void SkywardSwordTesting(bool Applylive, bool CreateDict, string LogicURL, string LogicFileName = "")
         {
             
 
@@ -32,8 +32,9 @@ namespace MMR_Tracker.Other_Games
             System.Net.WebClient wc = new System.Net.WebClient();
             Dictionary<string, SSRCheck> Checks = new Dictionary<string, SSRCheck>();
             Checks = JsonConvert.DeserializeObject<Dictionary<string, SSRCheck>>(YamlToJson(wc.DownloadString("https://raw.githubusercontent.com/ssrando/ssrando/master/checks.yaml")));
+
             Dictionary<string, string> Logic = new Dictionary<string, string>();
-            Logic = JsonConvert.DeserializeObject<Dictionary<string, string>>(YamlToJson(wc.DownloadString("https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitched%20Requirements.yaml")));
+            Logic = JsonConvert.DeserializeObject<Dictionary<string, string>>(YamlToJson(wc.DownloadString(LogicURL)));
 
             List<LogicObjects.JsonFormatLogicItem> MasterLogic = new List<LogicObjects.JsonFormatLogicItem>();
             LogicObjects.LogicDictionary MasterDictionary = new LogicObjects.LogicDictionary()
@@ -152,7 +153,7 @@ namespace MMR_Tracker.Other_Games
             }
 
             //Convert Item List to an MMRTracker Logic Dictionary
-            foreach(var i in Checks)
+            foreach (var i in Checks)
             {
                 var entry = new LogicObjects.LogicDictionaryEntry()
                 {
@@ -187,14 +188,19 @@ namespace MMR_Tracker.Other_Games
             }
 
             //Add Item only checks that don't appear in the Check list but are needed in logic
-            List<string> MissingItems = new List<string>() { 
-                "Faron Song of the Hero Part", 
-                "Eldin Song of the Hero Part", 
-                "Lanayru Song of the Hero Part", 
-                "Emerald Tablet", "Spiral Charge", 
-                "Goddess Cube in Lanayru Gorge" 
+            List<string> MissingItems = new List<string>() {
+                "Faron Song of the Hero Part",
+                "Eldin Song of the Hero Part",
+                "Lanayru Song of the Hero Part",
+                "Emerald Tablet", 
+                "Spiral Charge",
+                "Goddess Cube in Lanayru Gorge",
+                "Hylian Shield"
             };
             foreach (var i in MissingItems) { AddMissiongrealItem(i); }
+            AddMissiongrealItem("Extra Bottle", "Empty Bottle");
+            AddMissiongrealItem("Extra Quiver", "Small Quiver");
+            AddMissiongrealItem("Extra HP", "Heart Piece");
 
             //Add Dungeon entrances
             //The randomizer defines logic items as "Can access dungeon entrance on *Location Name*" 
@@ -231,7 +237,7 @@ namespace MMR_Tracker.Other_Games
             AddDungeonEntrance("Can Access Eldin Silent Realm", "Trial Gate in Eldin Volcano", "Eldin Silent Realm", "Can Open Trial Gate in Eldin Volcano");
 
 
-            AddOptionEntry("got-sword-requirement", "Requires Goddess Longsword", new string[] { "Requires Goddess Sword" , "Requires Goddess Whitesword", "Requires Master Sword", "Requires True Master Sword" }, "Gate of Time Sword Requirement");
+            AddOptionEntry("got-sword-requirement", "Requires Goddess Longsword", new string[] { "Requires Goddess Sword", "Requires Goddess Whitesword", "Requires Master Sword", "Requires True Master Sword" }, "Gate of Time Sword Requirement");
             AddOptionEntry("hero-mode", "Enabled", new string[] { "Disabled" }, "Hero Mode");
             AddOptionEntry("open-lmf", "Nodes", new string[] { "Open" }, "Lanayru Mining Facility Accessibility");
             AddOptionEntry("open-thunderhead", "Ballad", new string[] { "Open" }, "Thunder Head Accessibility");
@@ -325,11 +331,11 @@ namespace MMR_Tracker.Other_Games
 
             bool LogicNotComplete = false;
 
-            foreach(var entry in MasterLogic)
+            foreach (var entry in MasterLogic)
             {
                 if (entry.RequiredItems != null)
                 {
-                    foreach(var i in entry.RequiredItems)
+                    foreach (var i in entry.RequiredItems)
                     {
                         if (!MasterLogic.Where(x => x.Id == i).Any())
                         {
@@ -342,7 +348,7 @@ namespace MMR_Tracker.Other_Games
                 {
                     foreach (var cond in entry.ConditionalItems)
                     {
-                        foreach(var i in cond)
+                        foreach (var i in cond)
                         {
                             if (!MasterLogic.Where(x => x.Id == i).Any())
                             {
@@ -367,21 +373,25 @@ namespace MMR_Tracker.Other_Games
             if (Applylive) { goto MakeTracker; }
 
             string FilePath = "";
-            SaveFileDialog saveDialog = new SaveFileDialog
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            if (CreateDict)
             {
-                Filter = "MMR Tracker Save (*.json)|*.json",
-                FilterIndex = 1,
-                FileName = $"{MasterDictionary.GameCode} V{MasterDictionary.LogicVersion} {MasterDictionary.LogicFormat} Logic Dictionary"
-            };
-            if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
-            FilePath = saveDialog.FileName;
-            File.WriteAllText(FilePath, JsonConvert.SerializeObject(MasterDictionary, _jsonSerializerOptions));
+                saveDialog = new SaveFileDialog
+                {
+                    Filter = "MMR Tracker Dictionary (*.json)|*.json",
+                    FilterIndex = 1,
+                    FileName = $"{MasterDictionary.GameCode} V{MasterDictionary.LogicVersion} {MasterDictionary.LogicFormat} Logic Dictionary"
+                };
+                if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+                FilePath = saveDialog.FileName;
+                File.WriteAllText(FilePath, JsonConvert.SerializeObject(MasterDictionary, _jsonSerializerOptions));
+            }
 
             saveDialog = new SaveFileDialog
             {
                 Filter = "Logic File (*.txt)|*.txt",
                 FilterIndex = 1,
-                FileName = $"{MasterDictionary.GameCode} V{MasterDictionary.LogicVersion} {MasterDictionary.LogicFormat} Logic"
+                FileName = LogicFileName == "" ? $"{MasterDictionary.GameCode} V{MasterDictionary.LogicVersion} {MasterDictionary.LogicFormat} Logic" : LogicFileName
             };
             if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
             FilePath = saveDialog.FileName;
@@ -389,9 +399,9 @@ namespace MMR_Tracker.Other_Games
 
             return;
 
-            MakeTracker:
+        MakeTracker:
 
-            string[] LogicText = JsonConvert.SerializeObject(LogicFile, _jsonSerializerOptions).Split( new string[] { Environment.NewLine }, StringSplitOptions.None);
+            string[] LogicText = JsonConvert.SerializeObject(LogicFile, _jsonSerializerOptions).Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
 
             LogicObjects.MainTrackerInstance.RawLogicFile = LogicText;
             LogicObjects.MainTrackerInstance.LogicDictionary = MasterDictionary;
@@ -406,13 +416,14 @@ namespace MMR_Tracker.Other_Games
 
             //PrintLogic(MasterLogic);
 
-            void AddMissiongrealItem(string Name)
+            void AddMissiongrealItem(string Name, string ItemName = "")
             {
+                if (ItemName == "") { ItemName = Name; }
                 MasterDictionary.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
                 {
                     DictionaryName = Name,
-                    ItemName = Name,
-                    SpoilerItem = new string[] { Name },
+                    ItemName = ItemName,
+                    SpoilerItem = new string[] { ItemName },
                     ItemSubType = "Item"
                 });
                 MasterLogic.Add(new LogicObjects.JsonFormatLogicItem { Id = Name });
@@ -473,9 +484,9 @@ namespace MMR_Tracker.Other_Games
                 if (Grouping == "") { Grouping = $"Option {OptionText}"; }
                 if (FriendlyLocationName == "") { FriendlyLocationName = Defaultvalue; }
                 CommitOptionEntry(OptionText, Defaultvalue, FriendlyLocationName, Category, Grouping, $"Option {OptionText}", $"Option {OptionText} Is {Defaultvalue}");
-                foreach(var i in Othervalues)
+                foreach (var i in Othervalues)
                 {
-                    CommitOptionEntry(OptionText, i, null, Category, Grouping, null, $"Option {OptionText} Is {Defaultvalue}");
+                    CommitOptionEntry(OptionText, i, null, Category, Grouping, null, $"Option {OptionText} Is {i}");
                 }
 
             }
@@ -492,7 +503,7 @@ namespace MMR_Tracker.Other_Games
                     ItemSubType = Grouping,
                     LocationArea = Category
                 });
-                MasterLogic.Add(new LogicObjects.JsonFormatLogicItem { Id = $"Option \"{OptionText}\" Is \"{Defaultvalue}\""} );
+                MasterLogic.Add(new LogicObjects.JsonFormatLogicItem { Id = $"Option \"{OptionText}\" Is \"{Defaultvalue}\"" });
             }
 
 
@@ -538,6 +549,203 @@ namespace MMR_Tracker.Other_Games
                 Formatting = Formatting.Indented
             };
             return JsonConvert.SerializeObject(yamlObject, _jsonSerializerOptions);
+        }
+
+        public static bool HandleSSRSpoilerLog(LogicObjects.TrackerInstance Instance, string[] Spoiler)
+        {
+            List<int> LocationsWithItems = new List<int>();
+            List<int> ItemsWithLocations = new List<int>();
+            List<string> StartingItems = new List<string>();
+            string CurrentSection = "start";
+            string Region = "";
+
+            Dictionary<string, LogicObjects.LogicEntry> ReqDungeons = SetuprequiredDungeons(Instance);
+            SetBinaryOptionsDefault(Instance);
+
+            foreach (var i in Spoiler)
+            {
+                if (string.IsNullOrWhiteSpace(i)) { continue; }
+                if (i == "Options selected:") { CurrentSection = "options"; continue; }
+                if (i == "Cosmetic Options:") { CurrentSection = "cosmetic"; continue; }
+                if (i == "Starting items:") { CurrentSection = "starting"; continue; }
+                if (i.StartsWith("Required Dungeon 1:")) { CurrentSection = "req1"; }
+                if (i.StartsWith("Required Dungeon 2:")) { CurrentSection = "req2"; }
+                if (i.StartsWith("Required Dungeon 3:")) { CurrentSection = "req3"; }
+                if (i.StartsWith("Required Dungeon 4:")) { CurrentSection = "req4"; }
+                if (i.StartsWith("Required Dungeon 5:")) { CurrentSection = "req5"; }
+                if (i.StartsWith("Required Dungeon 6:")) { CurrentSection = "req6"; }
+                if (i == "SotS:") { CurrentSection = "SotS"; continue; }
+                if (i == "Barren Regions:") { CurrentSection = "Barren Regions"; continue; }
+                if (i == "Playthrough:") { CurrentSection = "Nonprogress Regions"; continue; }
+                if (i == "All item locations:") { CurrentSection = "items"; continue; }
+                if (i == "Entrances:") { CurrentSection = "entrances"; continue; }
+                if (i == "Trial Gates:") { CurrentSection = "trials"; continue; }
+                if (i == "Hints:") { CurrentSection = "hints"; continue; }
+
+                if (CurrentSection == "starting")
+                {
+                    var item = i.Trim();
+                    StartingItems.Add(item);
+                }
+
+                if (CurrentSection == "options")
+                {
+                    string Line = i.Trim();
+                    if (Line == "hero-mode") { Line = "hero-mode:Enabled"; }
+                    if (Line == "skip-skykeep") { Line = "skip-skykeep:Enabled"; }
+                    if (Line == "randomize-trials") { Line = "randomize-trials:Enabled"; }
+                    var Parts = Line.Split(':').Select(x => x.Trim()).ToArray();
+                    if (Parts.Length < 2) { continue; }
+
+                    string OptionName = $"Option {Parts[0]}";
+                    string Selectedoptionsname = $"Option {Parts[0]} Is {Parts[1]}";
+                    string SelectedoptionsnameAlt = $"Option {Parts[0]} Is Requires {Parts[1]}";
+
+                    Console.WriteLine($"====================================================");
+                    Console.WriteLine($"looking for setting with name: {OptionName}");
+                    Console.WriteLine($"To assign Option Data: {Selectedoptionsname} OR {SelectedoptionsnameAlt}");
+
+                    var OptionEntry = Instance.Logic.Find(x => x.SpoilerLocation != null && x.SpoilerLocation.Contains(OptionName));
+                    var SelectedOptionEntry = Instance.Logic.Find(x => x.SpoilerItem != null && 
+                                                                (x.SpoilerItem.Contains(Selectedoptionsname) || x.SpoilerItem.Contains(SelectedoptionsnameAlt)));
+
+                    if (OptionEntry == null || SelectedOptionEntry == null) { continue; }
+                    OptionEntry.SpoilerRandom = SelectedOptionEntry.ID;
+                }
+
+                if (CurrentSection.StartsWith("req"))
+                {
+                    var data = i.Split(':').Select(x => x.Trim()).ToArray();
+                    if (CurrentSection == "req1") { ReqDungeons["Skyview"].SpoilerRandom = ReqDungeons[data[1]].ID; }
+                    if (CurrentSection == "req2") { ReqDungeons["Earth Temple"].SpoilerRandom = ReqDungeons[data[1]].ID;}
+                    if (CurrentSection == "req3") { ReqDungeons["Lanayru Mining Facility"].SpoilerRandom = ReqDungeons[data[1]].ID; }
+                    if (CurrentSection == "req4") { ReqDungeons["Ancient Cistern"].SpoilerRandom = ReqDungeons[data[1]].ID;}
+                    if (CurrentSection == "req5") { ReqDungeons["Sandship"].SpoilerRandom = ReqDungeons[data[1]].ID; }
+                    if (CurrentSection == "req6") { ReqDungeons["Fire Sanctuary"].SpoilerRandom = ReqDungeons[data[1]].ID;}
+                }
+
+                if (CurrentSection == "items" || CurrentSection == "entrances" || CurrentSection == "trials")
+                {
+                    var Parts = i.Split(':').Select(x => x.Trim()).ToArray();
+                    if (string.IsNullOrWhiteSpace(Parts[1])) { Region = Parts[0].Trim() + " - "; continue; }
+                    if (CurrentSection != "items") { Region = ""; }
+                    if (Parts.Length < 2) { continue; }
+
+                    string LocationWithregion = Region + Parts[0];
+
+                    var Locations = Instance.Logic.Where(x => x.SpoilerLocation != null && x.SpoilerLocation.Contains(LocationWithregion)).ToList();
+                    var Items = Instance.Logic.Where(x => x.SpoilerItem != null && x.SpoilerItem.Contains(Parts[1])).ToList();
+                    if (!Locations.Any() || !Items.Any()) 
+                    { Console.WriteLine($"Could not find logic data for line \n[{LocationWithregion}]:[{Parts[1]}] \nLoc: {Locations.Any()} item: {Items.Any()}"); continue; }
+
+                    var UnusedLocation = Locations.Find(x => !LocationsWithItems.Contains(x.ID));
+                    var UnusedItem = Items.Find(x => !ItemsWithLocations.Contains(x.ID));
+                    if (UnusedLocation == null) 
+                    { 
+                        Console.WriteLine($"[{LocationWithregion}] Has already been assigned spoiler data"); 
+                        continue; 
+                    }
+                    if (UnusedItem == null)
+                    {
+                        if (Parts[1].EndsWith("Treasure") || Parts[1].EndsWith("Rupoor") || Parts[1].EndsWith("Rupee"))
+                        {
+                            UnusedItem = new LogicObjects.LogicEntry() { ID = -1 };
+                        }
+                        else
+                        {
+                            Console.WriteLine($"All items with spoiler name [{Parts[1]}] have already been assigned to locations");
+                            continue;
+                        }
+                    }
+
+                    LocationsWithItems.Add(UnusedLocation.ID);
+                    ItemsWithLocations.Add(UnusedItem.ID);
+
+                    UnusedLocation.SpoilerRandom = UnusedItem.ID;
+                }
+            }
+
+            foreach(var i in StartingItems)
+            {
+                Console.WriteLine(i + " Was Marked as a starting Item");
+                var Item = Instance.Logic.Find(x => x.SpoilerItem.Contains(i) && x.GetItemsSpoilerLocation(Instance.Logic) == null && !x.StartingItem());
+                if (Item != null)
+                {
+                    Console.WriteLine(Item.DictionaryName + " Was not randomized to a location, setting as starting Item");
+                    if (Item.Options < 4) { Item.Options += 4; }
+                }
+            }
+
+            foreach(var i in UnrandomizedSingleGratitudeCrystals())
+            {
+                var SingleCrystalLocation = Instance.Logic.Find(x => x.DictionaryName == i);
+                if (SingleCrystalLocation != null) { SingleCrystalLocation.Options = 2; }
+            }
+
+            return true;
+        }
+
+        public static List<string> UnrandomizedSingleGratitudeCrystals()
+        {
+            return new List<string>()
+            {
+                "Knight Academy - Crystal in Link's Room",
+                "Knight Academy - Crystal in Knight Academy Plant",
+                "Knight Academy - Crystal in Zelda's Room",
+                "Knight Academy - Crystal in Sparring Hall",
+                "Central Skyloft - Crystal between Wooden Planks",
+                "Central Skyloft - Crystal on West Cliff",
+                "Central Skyloft - Crystal in Orielle and Parrow's House",
+                "Central Skyloft - Crystal on Light Tower",
+                "Skyloft Village - Crystal near Pumpkin Patch",
+                "Central Skyloft - Crystal after Waterfall Cave",
+                "Central Skyloft - Crystal in Loftwing Prison",
+                "Central Skyloft - Crystal on Waterfall Island",
+                "Sky - Crystal outside Lumpy Pumpkin",
+                "Sky - Crystal inside Lumpy Pumpkin",
+                "Sky - Crystal on Beedle's Ship"
+            };
+        }
+
+        public static Dictionary<string, LogicObjects.LogicEntry> SetuprequiredDungeons(LogicObjects.TrackerInstance Instance)
+        {
+            Dictionary<string, LogicObjects.LogicEntry> ReqDungeons = new Dictionary<string, LogicObjects.LogicEntry>()
+                    {
+                        { "Skyview", Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon1\" Is \"Skyview\"")},
+                        { "Earth Temple", Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon2\" Is \"Earth Temple\"")},
+                        { "Sandship", Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon3\" Is \"Sandship\"")},
+                        { "Ancient Cistern", Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon4\" Is \"Ancient Cistern\"")},
+                        { "Lanayru Mining Facility", Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon5\" Is \"Lanayru Mining Facility\"")},
+                        { "Fire Sanctuary", Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon6\" Is \"Fire Sanctuary\"")}
+                    };
+            var ReqDungeon1None = Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon1\" Is \"None\"");
+            var ReqDungeon2None = Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon2\" Is \"None\"");
+            var ReqDungeon3None = Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon3\" Is \"None\"");
+            var ReqDungeon4None = Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon4\" Is \"None\"");
+            var ReqDungeon5None = Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon5\" Is \"None\"");
+            var ReqDungeon6None = Instance.Logic.Find(x => x.DictionaryName == "Option \"RequiredDungeon6\" Is \"None\"");
+
+            ReqDungeons["Skyview"].SpoilerRandom = ReqDungeon1None.ID;
+            ReqDungeons["Earth Temple"].SpoilerRandom = ReqDungeon2None.ID;
+            ReqDungeons["Sandship"].SpoilerRandom = ReqDungeon3None.ID;
+            ReqDungeons["Ancient Cistern"].SpoilerRandom = ReqDungeon4None.ID;
+            ReqDungeons["Lanayru Mining Facility"].SpoilerRandom = ReqDungeon5None.ID;
+            ReqDungeons["Fire Sanctuary"].SpoilerRandom = ReqDungeon6None.ID;
+            return ReqDungeons;
+        }
+
+        public static void SetBinaryOptionsDefault(LogicObjects.TrackerInstance Instance)
+        {
+            var HeroModeEntry = Instance.Logic.Find(x => x.DictionaryName == "Option \"hero-mode\" Is \"Enabled\"");
+            var HeroModeDefault = Instance.Logic.Find(x => x.DictionaryName == "Option \"hero-mode\" Is \"Disabled\"");
+            var skipskykeepEntry = Instance.Logic.Find(x => x.DictionaryName == "Option \"skip-skykeep\" Is \"Enabled\"");
+            var skipskykeepDefault = Instance.Logic.Find(x => x.DictionaryName == "Option \"skip-skykeep\" Is \"Disabled\"");
+            var RandomTrialsEntry = Instance.Logic.Find(x => x.DictionaryName == "Option \"randomize-trials\" Is \"Enabled\"");
+            var RandomTrialsDefault = Instance.Logic.Find(x => x.DictionaryName == "Option \"randomize-trials\" Is \"Disabled\"");
+            HeroModeEntry.SpoilerRandom = HeroModeDefault.ID;
+            skipskykeepEntry.SpoilerRandom = skipskykeepDefault.ID;
+            RandomTrialsEntry.SpoilerRandom = RandomTrialsDefault.ID;
+
         }
     }
 }

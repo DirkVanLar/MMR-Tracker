@@ -3609,6 +3609,46 @@
       "ValidRandomizerStartingItem": false
     },
     {
+      "DictionaryName": "Hylian Shield",
+      "ItemName": "Hylian Shield",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Hylian Shield"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Bottle",
+      "ItemName": "Empty Bottle",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Empty Bottle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Quiver",
+      "ItemName": "Small Quiver",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Small Quiver"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra HP",
+      "ItemName": "Heart Piece",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
       "DictionaryName": "Can Access Ancient Cistern",
       "LocationName": "Dungeon Entrance in Lake Floria",
       "ItemName": "Ancient Cistern",
@@ -3826,7 +3866,7 @@
       "ItemSubType": "Option got-sword-requirement",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option got-sword-requirement Is Requires Goddess Longsword"
+        "Option got-sword-requirement Is Requires Goddess Sword"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -3837,7 +3877,7 @@
       "ItemSubType": "Option got-sword-requirement",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option got-sword-requirement Is Requires Goddess Longsword"
+        "Option got-sword-requirement Is Requires Goddess Whitesword"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -3848,7 +3888,7 @@
       "ItemSubType": "Option got-sword-requirement",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option got-sword-requirement Is Requires Goddess Longsword"
+        "Option got-sword-requirement Is Requires Master Sword"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -3859,7 +3899,7 @@
       "ItemSubType": "Option got-sword-requirement",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option got-sword-requirement Is Requires Goddess Longsword"
+        "Option got-sword-requirement Is Requires True Master Sword"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -3885,7 +3925,7 @@
       "ItemSubType": "Option hero-mode",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option hero-mode Is Enabled"
+        "Option hero-mode Is Disabled"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -3911,7 +3951,7 @@
       "ItemSubType": "Option open-lmf",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option open-lmf Is Nodes"
+        "Option open-lmf Is Open"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -3937,7 +3977,7 @@
       "ItemSubType": "Option open-thunderhead",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option open-thunderhead Is Ballad"
+        "Option open-thunderhead Is Open"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -3963,7 +4003,7 @@
       "ItemSubType": "Option Required Dungeon",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option RequiredDungeon1 Is Skyview"
+        "Option RequiredDungeon1 Is None"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -3989,7 +4029,7 @@
       "ItemSubType": "Option Required Dungeon",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option RequiredDungeon2 Is Earth Temple"
+        "Option RequiredDungeon2 Is None"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -4015,7 +4055,7 @@
       "ItemSubType": "Option Required Dungeon",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option RequiredDungeon3 Is Sandship"
+        "Option RequiredDungeon3 Is None"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -4041,7 +4081,7 @@
       "ItemSubType": "Option Required Dungeon",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option RequiredDungeon4 Is Ancient Cistern"
+        "Option RequiredDungeon4 Is None"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -4067,7 +4107,7 @@
       "ItemSubType": "Option Required Dungeon",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option RequiredDungeon5 Is Lanayru Mining Facility"
+        "Option RequiredDungeon5 Is None"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -4093,7 +4133,7 @@
       "ItemSubType": "Option Required Dungeon",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option RequiredDungeon6 Is Fire Sanctuary"
+        "Option RequiredDungeon6 Is None"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -4119,7 +4159,7 @@
       "ItemSubType": "Option shop-mode",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option shop-mode Is Randomized"
+        "Option shop-mode Is Vanilla"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -4130,7 +4170,7 @@
       "ItemSubType": "Option shop-mode",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option shop-mode Is Randomized"
+        "Option shop-mode Is Always Junk"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -4156,7 +4196,7 @@
       "ItemSubType": "Option skip-skykeep",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option skip-skykeep Is Enabled"
+        "Option skip-skykeep Is Disabled"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -4182,7 +4222,7 @@
       "ItemSubType": "Option randomize-trials",
       "FakeItem": false,
       "SpoilerItem": [
-        "Option randomize-trials Is Enabled"
+        "Option randomize-trials Is Disabled"
       ],
       "ValidRandomizerStartingItem": false
     }

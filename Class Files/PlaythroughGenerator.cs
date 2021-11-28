@@ -126,6 +126,7 @@ namespace MMR_Tracker.Class_Files
             }
             foreach (var i in Playthrough)
             {
+                if (i.Check.ItemSubType.StartsWith("Option ")) { continue; }
                 if (i.SphereNumber != lastSphere)
                 {
                     PlaythroughString.Add("Sphere: " + i.SphereNumber + " ====================================="); lastSphere = i.SphereNumber;
@@ -270,6 +271,7 @@ namespace MMR_Tracker.Class_Files
         {
             foreach (var i in EntryToCheck.ItemsUsed ?? new List<int>())
             {
+                if (!SpoilerToID.ContainsKey(i)) { continue; }
                 var locToCheck = SpoilerToID[i];
                 if (importantItems.Contains(locToCheck)) { continue; }
                 importantItems.Add(locToCheck);

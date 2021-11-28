@@ -236,6 +236,26 @@
         [
           "Sky - Lumpy Pumpkin - Outside Goddess Chest",
           "Fire Sanctuary - Chest on Balcony"
+        ],
+        [
+          "Knight Academy - Fledge's Gift",
+          "Extra Bottle"
+        ],
+        [
+          "Beedle - 300 Rupee Item",
+          "Extra Bottle"
+        ],
+        [
+          "Beedle - 600 Rupee Item",
+          "Extra Bottle"
+        ],
+        [
+          "Beedle - 1200 Rupee Item",
+          "Extra Bottle"
+        ],
+        [
+          "Sky - Lumpy Pumpkin - Outside Goddess Chest",
+          "Extra Bottle"
         ]
       ],
       "TimeNeeded": 0,
@@ -9203,6 +9223,34 @@
     },
     {
       "Id": "Goddess Cube in Lanayru Gorge",
+      "TimeNeeded": 0,
+      "TimeAvailable": 0,
+      "TimeSetup": 0,
+      "IsTrick": false
+    },
+    {
+      "Id": "Hylian Shield",
+      "TimeNeeded": 0,
+      "TimeAvailable": 0,
+      "TimeSetup": 0,
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Bottle",
+      "TimeNeeded": 0,
+      "TimeAvailable": 0,
+      "TimeSetup": 0,
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Quiver",
+      "TimeNeeded": 0,
+      "TimeAvailable": 0,
+      "TimeSetup": 0,
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra HP",
       "TimeNeeded": 0,
       "TimeAvailable": 0,
       "TimeSetup": 0,

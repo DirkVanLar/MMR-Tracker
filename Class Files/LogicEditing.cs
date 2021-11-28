@@ -347,6 +347,7 @@ namespace MMR_Tracker_V2
                 if (!TXTOverride) 
                 {
                     var LogData = Tools.ReadTextSpoilerlog(Instance, File.ReadAllLines(path));
+                    if (LogData == null) { return; }
                     SpoilerData = LogData.SpoilerDatas;
                     SettingsData = LogData.SettingString;
                 }

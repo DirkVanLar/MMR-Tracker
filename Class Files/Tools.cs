@@ -1,5 +1,6 @@
 ﻿using MMR_Tracker.Forms;
 using MMR_Tracker.Forms.Core_Tracker;
+using MMR_Tracker.Other_Games;
 using MMR_Tracker_V2;
 using Newtonsoft.Json;
 using System;
@@ -137,7 +138,14 @@ namespace MMR_Tracker.Class_Files
                 Spoiler = File.ReadLines(SpoilerFile.FileName).ToArray();
             }
 
-            Spoiler = SpoilerLogConverter.AutoConverter(instance, Spoiler);
+            if (instance.GameCode != "MMR")
+            {
+                if (!GlobalHandeler.HandleOtherGameSpoilerLog(instance, Spoiler))
+                {
+                    MessageBox.Show("Spoiler Logs are either not supported for this game or you spoiler log was in the wrong format");
+                }
+                return null;
+            }
 
             Dictionary<int, List<int>> usedId = new Dictionary<int, List<int>>();
             int PlayerID = instance.Options.MyPlayerID;

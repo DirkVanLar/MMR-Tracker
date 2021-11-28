@@ -203,7 +203,7 @@ namespace MMR_Tracker_V2
                     instance.Options.OverRideAutoEntranceRandoEnable = (instance.Options.EntranceRadnoEnabled != LogicObjects.MainTrackerInstance.EntranceRando);
                 }
 
-                LogicEditing.CalculateItems(instance);
+                LogicEditing.CalculateItems(instance, fromScratch: true);
             }
             FormatMenuItems();
             ResizeObject();
@@ -1055,6 +1055,25 @@ namespace MMR_Tracker_V2
             List<LogicObjects.ListItem> ListItems = new List<LogicObjects.ListItem>();
             foreach(var entry in LogicObjects.MainTrackerInstance.Logic)
             {
+                //Add starting items to Checked Items
+                if (entry.StartingItem())
+                {
+                    var MultiWorldEntry = new LogicObjects.LogicEntry
+                    {
+                        ID = -2,
+                        DictionaryName = "Starting Item",
+                        Checked = true,
+                        RandomizedItem = entry.ID,
+                        SpoilerRandom = entry.ID,
+                        Options = 0,
+                        LocationArea = "Starting Items",
+                        ItemSubType = "Item"
+                    };
+                    var Name = createDisplayName(true, MultiWorldEntry, mi);
+                    var LBItem = new LogicObjects.ListItem() { Container = 3, LocationEntry = MultiWorldEntry, ItemEntry = entry, DisplayName = Name, Header = MultiWorldEntry.LocationArea };
+                    totalchk++;
+                    if (Utility.FilterSearch(MultiWorldEntry, TXTCheckedSearch.Text, Name, entry)) { ListItems.Add(LBItem); }
+                }
                 if (!entry.AppearsInListbox() || entry.LocationName == null) { continue; }
                 //Add Entry to Available Locations
                 if (!entry.Checked && (entry.Available || entry.HasRandomItem(true) || CHKShowAll.Checked || TXTLocSearch.Text.StartsWith("^")))
@@ -1098,25 +1117,6 @@ namespace MMR_Tracker_V2
                         SpoilerRandom = entry.ID,
                         Options = 0,
                         LocationArea = (entry.PlayerData.ItemCameFromPlayer == -1 || entry.PlayerData.ItemCameFromPlayer == LogicObjects.MainTrackerInstance.Options.MyPlayerID) ? "MISC" : "Multiworld",
-                        ItemSubType = "Item"
-                    };
-                    var Name = createDisplayName(true, MultiWorldEntry, mi);
-                    var LBItem = new LogicObjects.ListItem() { Container = 3, LocationEntry = MultiWorldEntry, ItemEntry = entry, DisplayName = Name, Header = MultiWorldEntry.LocationArea };
-                    totalchk++;
-                    if (Utility.FilterSearch(MultiWorldEntry, TXTCheckedSearch.Text, Name, entry)) { ListItems.Add(LBItem); }
-                }
-                //Add starting items to Checked Items
-                if (entry.StartingItem())
-                {
-                    var MultiWorldEntry = new LogicObjects.LogicEntry
-                    {
-                        ID = -2,
-                        DictionaryName = "Starting Item",
-                        Checked = true,
-                        RandomizedItem = entry.ID,
-                        SpoilerRandom = entry.ID,
-                        Options = 0,
-                        LocationArea = "Starting Items",
                         ItemSubType = "Item"
                     };
                     var Name = createDisplayName(true, MultiWorldEntry, mi);

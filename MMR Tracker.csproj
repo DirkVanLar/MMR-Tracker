@@ -214,6 +214,7 @@
     <Compile Include="Forms\Extra Functionality\PathFinder.Designer.cs">
       <DependentUpon>PathFinder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Other Games\GlobalHandeler.cs" />
     <Compile Include="Other Games\OcarinaOfTimeRando.cs" />
     <Compile Include="Other Games\Outdated\MInishCapTools.cs" />
     <Compile Include="Other Games\Outdated\OcarinaOfTimeTools.cs" />
