@@ -1406,6 +1406,7 @@ namespace MMR_Tracker_V2
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             changeLogicToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            enableProgressiveItemsToolStripMenuItem1.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             smallKeyDoorsAlwaysOpenToolStripMenuItem.Checked = LogicObjects.MainTrackerInstance.Options.Keysy["SmallKey"];
             bossKeyDoorsAlwaysOpenToolStripMenuItem.Checked = LogicObjects.MainTrackerInstance.Options.Keysy["BossKey"];
 
@@ -1438,7 +1439,6 @@ namespace MMR_Tracker_V2
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = ShowMMOnly && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             FilterMapToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             itemTrackerToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
-            enableProgressiveItemsToolStripMenuItem1.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             enableBringYourOwnAmmoToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
 
             Tools_StateListChanged();

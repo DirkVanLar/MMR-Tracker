@@ -69,8 +69,8 @@ Grottos
 #GAMECODEEND:
 
 #GAMECODESTART: SSR
-%Settings%
-%Required Dungeon%
+%Options%
+%Required Dungeons%
 Skyloft
 Sky
 Skyloft Silent Realm

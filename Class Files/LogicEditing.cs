@@ -17,7 +17,7 @@ namespace MMR_Tracker_V2
         {
             LogicObjects.LogicFile NewformatLogicFile = null;
             try { NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile)); }
-            catch { }
+            catch { Console.WriteLine("Json Logic parse Failed"); }
 
             if (NewformatLogicFile == null)
             {
@@ -39,7 +39,7 @@ namespace MMR_Tracker_V2
             instance.DicNameToID.Clear();
             instance.EntrancePairs.Clear();
             instance.LogicVersion = NewformatLogicFile.Version;
-            instance.GameCode = "MMR";
+            instance.GameCode = NewformatLogicFile.GameCode ?? "MMR";
 
             LogicObjects.LogicDictionary MasterDic = null;
 
@@ -75,8 +75,8 @@ namespace MMR_Tracker_V2
                 LogicEntry1.RandomizedItem = -2;
                 LogicEntry1.RandomizerStaticFakeItem = false;
                 LogicEntry1.SpoilerRandom = -2;
-                LogicEntry1.Required = i.RequiredItems.Select(x => LogicNametoId[x]).ToArray();
-                LogicEntry1.Conditionals = i.ConditionalItems.Select(x => x.Select(y => LogicNametoId[y]).ToArray()).ToArray();
+                LogicEntry1.Required = i.RequiredItems == null ? null : i.RequiredItems.Select(x => LogicNametoId[x]).ToArray();
+                LogicEntry1.Conditionals = i.ConditionalItems == null ? null : i.ConditionalItems.Select(x => x.Select(y => LogicNametoId[y]).ToArray()).ToArray();
                 LogicEntry1.NeededBy = (int)i.TimeNeeded;
                 LogicEntry1.AvailableOn = (int)i.TimeAvailable;
                 LogicEntry1.TimeSetup = (int)i.TimeSetup;
@@ -576,7 +576,8 @@ namespace MMR_Tracker_V2
             LogicObjects.LogicFile LogicFile = new LogicObjects.LogicFile
             {
                 Logic = new List<LogicObjects.JsonFormatLogicItem>(),
-                Version = Instance.LogicVersion
+                Version = Instance.LogicVersion,
+                GameCode = Instance.GameCode == "MMR" ? null : Instance.GameCode
             };
             foreach (var i in Instance.Logic)
             {

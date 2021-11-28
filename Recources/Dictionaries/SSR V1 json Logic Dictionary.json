@@ -1,0 +1,4190 @@
+{
+  "LogicVersion": 1,
+  "LogicFormat": "json",
+  "GameCode": "SSR",
+  "DefaultWalletCapacity": 300,
+  "LogicDictionaryList": [
+    {
+      "DictionaryName": "Knight Academy - Fledge's Gift",
+      "LocationName": "Knight Academy - Fledge's Gift",
+      "ItemName": "Progressive Pouch",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Fledge's Gift"
+      ],
+      "SpoilerItem": [
+        "Progressive Pouch"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Owlan's Gift",
+      "LocationName": "Knight Academy - Owlan's Gift",
+      "ItemName": "Wooden Shield",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Owlan's Gift"
+      ],
+      "SpoilerItem": [
+        "Wooden Shield"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Sparring Hall Chest",
+      "LocationName": "Knight Academy - Sparring Hall Chest",
+      "ItemName": "Progressive Sword",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Sparring Hall Chest"
+      ],
+      "SpoilerItem": [
+        "Progressive Sword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Potion Lady's Gift",
+      "LocationName": "Central Skyloft - Potion Lady's Gift",
+      "ItemName": "Empty Bottle",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Potion Lady's Gift"
+      ],
+      "SpoilerItem": [
+        "Empty Bottle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Waterfall Cave First Chest",
+      "LocationName": "Central Skyloft - Waterfall Cave First Chest",
+      "ItemName": "Red Rupee",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Waterfall Cave First Chest"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Waterfall Cave Second Chest",
+      "LocationName": "Central Skyloft - Waterfall Cave Second Chest",
+      "ItemName": "Red Rupee",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Waterfall Cave Second Chest"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Chest near Goddess Statue",
+      "LocationName": "Knight Academy - Chest near Goddess Statue",
+      "ItemName": "Red Rupee",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Chest near Goddess Statue"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Chest in Goddess Statue",
+      "LocationName": "Knight Academy - Chest in Goddess Statue",
+      "ItemName": "Progressive Sword",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Chest in Goddess Statue"
+      ],
+      "SpoilerItem": [
+        "Progressive Sword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Bazaar Goddess Chest",
+      "LocationName": "Central Skyloft - Bazaar Goddess Chest",
+      "ItemName": "Gold Rupee",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Bazaar Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Gold Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Shed Chest",
+      "LocationName": "Central Skyloft - Shed Chest",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Shed Chest"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Shed Goddess Chest",
+      "LocationName": "Central Skyloft - Shed Goddess Chest",
+      "ItemName": "Heart Piece",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Shed Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - West Cliff Goddess Chest",
+      "LocationName": "Central Skyloft - West Cliff Goddess Chest",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - West Cliff Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Floating Island Goddess Chest",
+      "LocationName": "Central Skyloft - Floating Island Goddess Chest",
+      "ItemName": "Gold Rupee",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Floating Island Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Gold Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Waterfall Goddess Chest",
+      "LocationName": "Central Skyloft - Waterfall Goddess Chest",
+      "ItemName": "Heart Piece",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Waterfall Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Pumpkin Archery - 600 Points",
+      "LocationName": "Knight Academy - Pumpkin Archery - 600 Points",
+      "ItemName": "Heart Piece",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Pumpkin Archery - 600 Points"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - In Zelda's Closet",
+      "LocationName": "Knight Academy - In Zelda's Closet",
+      "ItemName": "Heart Piece",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - In Zelda's Closet"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Item in Bird Nest",
+      "LocationName": "Central Skyloft - Item in Bird Nest",
+      "ItemName": "Baby Rattle",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Item in Bird Nest"
+      ],
+      "SpoilerItem": [
+        "Baby Rattle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Parrow's Gift",
+      "LocationName": "Central Skyloft - Parrow's Gift",
+      "ItemName": "Empty Bottle",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Parrow's Gift"
+      ],
+      "SpoilerItem": [
+        "Empty Bottle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Cawlin's Letter",
+      "LocationName": "Knight Academy - Cawlin's Letter",
+      "ItemName": "Cawlin's Letter",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Cawlin's Letter"
+      ],
+      "SpoilerItem": [
+        "Cawlin's Letter"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Wryna's Crystals",
+      "LocationName": "Central Skyloft - Wryna's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Wryna's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Peater/Peatrice's Crystals",
+      "LocationName": "Central Skyloft - Peater/Peatrice's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Peater/Peatrice's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Parrow's Crystals",
+      "LocationName": "Central Skyloft - Parrow's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Parrow's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Fledge's Crystals",
+      "LocationName": "Knight Academy - Fledge's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Fledge's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyloft Village - Bertie's Crystals",
+      "LocationName": "Skyloft Village - Bertie's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyloft Village - Bertie's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Ghost/Pipit's Crystals",
+      "LocationName": "Knight Academy - Ghost/Pipit's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Ghost/Pipit's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyloft Village - Sparrot's Crystals",
+      "LocationName": "Skyloft Village - Sparrot's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyloft Village - Sparrot's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyloft Village - Mallara's Crystals",
+      "LocationName": "Skyloft Village - Mallara's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyloft Village - Mallara's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Owlan's Crystals",
+      "LocationName": "Knight Academy - Owlan's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Owlan's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Batreaux - 5 Crystals",
+      "LocationName": "Batreaux - 5 Crystals",
+      "ItemName": "Progressive Wallet",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Batreaux - 5 Crystals"
+      ],
+      "SpoilerItem": [
+        "Progressive Wallet"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Batreaux - 10 Crystals",
+      "LocationName": "Batreaux - 10 Crystals",
+      "ItemName": "Heart Piece",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Batreaux - 10 Crystals"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Batreaux - 30 Crystals",
+      "LocationName": "Batreaux - 30 Crystals",
+      "ItemName": "Progressive Wallet",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Batreaux - 30 Crystals"
+      ],
+      "SpoilerItem": [
+        "Progressive Wallet"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Batreaux - 30 Crystals Chest",
+      "LocationName": "Batreaux - 30 Crystals Chest",
+      "ItemName": "Cursed Medal",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Batreaux - 30 Crystals Chest"
+      ],
+      "SpoilerItem": [
+        "Cursed Medal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Batreaux - 40 Crystals",
+      "LocationName": "Batreaux - 40 Crystals",
+      "ItemName": "Gold Rupee",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Batreaux - 40 Crystals"
+      ],
+      "SpoilerItem": [
+        "Gold Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Batreaux - 50 Crystals",
+      "LocationName": "Batreaux - 50 Crystals",
+      "ItemName": "Progressive Wallet",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Batreaux - 50 Crystals"
+      ],
+      "SpoilerItem": [
+        "Progressive Wallet"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Batreaux - 70 Crystals",
+      "LocationName": "Batreaux - 70 Crystals",
+      "ItemName": "Gold Rupee",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Batreaux - 70 Crystals"
+      ],
+      "SpoilerItem": [
+        "Gold Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Batreaux - 70 Crystals Second Reward",
+      "LocationName": "Batreaux - 70 Crystals Second Reward",
+      "ItemName": "Gold Rupee",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Batreaux - 70 Crystals Second Reward"
+      ],
+      "SpoilerItem": [
+        "Gold Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Batreaux - 80 Crystals",
+      "LocationName": "Batreaux - 80 Crystals",
+      "ItemName": "Progressive Wallet",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Batreaux - 80 Crystals"
+      ],
+      "SpoilerItem": [
+        "Progressive Wallet"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Beedle - 300 Rupee Item",
+      "LocationName": "Beedle - 300 Rupee Item",
+      "ItemName": "Progressive Pouch",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Beedle - 300 Rupee Item"
+      ],
+      "SpoilerItem": [
+        "Progressive Pouch"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Beedle - 600 Rupee Item",
+      "LocationName": "Beedle - 600 Rupee Item",
+      "ItemName": "Progressive Pouch",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Beedle - 600 Rupee Item"
+      ],
+      "SpoilerItem": [
+        "Progressive Pouch"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Beedle - 1200 Rupee Item",
+      "LocationName": "Beedle - 1200 Rupee Item",
+      "ItemName": "Progressive Pouch",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Beedle - 1200 Rupee Item"
+      ],
+      "SpoilerItem": [
+        "Progressive Pouch"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Beedle - 800 Rupee Item",
+      "LocationName": "Beedle - 800 Rupee Item",
+      "ItemName": "Life Medal",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Beedle - 800 Rupee Item"
+      ],
+      "SpoilerItem": [
+        "Life Medal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Beedle - 1600 Rupee Item",
+      "LocationName": "Beedle - 1600 Rupee Item",
+      "ItemName": "Heart Piece",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Beedle - 1600 Rupee Item"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Beedle - First 100 Rupee Item",
+      "LocationName": "Beedle - First 100 Rupee Item",
+      "ItemName": "Extra Wallet",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Beedle - First 100 Rupee Item"
+      ],
+      "SpoilerItem": [
+        "Extra Wallet"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Beedle - Second 100 Rupee Item",
+      "LocationName": "Beedle - Second 100 Rupee Item",
+      "ItemName": "Extra Wallet",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Beedle - Second 100 Rupee Item"
+      ],
+      "SpoilerItem": [
+        "Extra Wallet"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Beedle - Third 100 Rupee Item",
+      "LocationName": "Beedle - Third 100 Rupee Item",
+      "ItemName": "Extra Wallet",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Beedle - Third 100 Rupee Item"
+      ],
+      "SpoilerItem": [
+        "Extra Wallet"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Beedle - 50 Rupee Item",
+      "LocationName": "Beedle - 50 Rupee Item",
+      "ItemName": "Bug Net",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Beedle - 50 Rupee Item"
+      ],
+      "SpoilerItem": [
+        "Bug Net"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Beedle - 1000 Rupee Item",
+      "LocationName": "Beedle - 1000 Rupee Item",
+      "ItemName": "Bug Medal",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Beedle - 1000 Rupee Item"
+      ],
+      "SpoilerItem": [
+        "Bug Medal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Crystal in Link's Room",
+      "LocationName": "Knight Academy - Crystal in Link's Room",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Crystal in Link's Room"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Crystal on Light Tower",
+      "LocationName": "Central Skyloft - Crystal on Light Tower",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Crystal on Light Tower"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyloft Village - Crystal near Pumpkin Patch",
+      "LocationName": "Skyloft Village - Crystal near Pumpkin Patch",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyloft Village - Crystal near Pumpkin Patch"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Crystal in Orielle and Parrow's House",
+      "LocationName": "Central Skyloft - Crystal in Orielle and Parrow's House",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Crystal in Orielle and Parrow's House"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Crystal between Wooden Planks",
+      "LocationName": "Central Skyloft - Crystal between Wooden Planks",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Crystal between Wooden Planks"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Crystal in Knight Academy Plant",
+      "LocationName": "Knight Academy - Crystal in Knight Academy Plant",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Crystal in Knight Academy Plant"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Crystal on West Cliff",
+      "LocationName": "Central Skyloft - Crystal on West Cliff",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Crystal on West Cliff"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Crystal after Waterfall Cave",
+      "LocationName": "Central Skyloft - Crystal after Waterfall Cave",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Crystal after Waterfall Cave"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Crystal in Loftwing Prison",
+      "LocationName": "Central Skyloft - Crystal in Loftwing Prison",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Crystal in Loftwing Prison"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Crystal in Sparring Hall",
+      "LocationName": "Knight Academy - Crystal in Sparring Hall",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Crystal in Sparring Hall"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Central Skyloft - Crystal on Waterfall Island",
+      "LocationName": "Central Skyloft - Crystal on Waterfall Island",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Crystal on Waterfall Island"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Knight Academy - Crystal in Zelda's Room",
+      "LocationName": "Knight Academy - Crystal in Zelda's Room",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Knight Academy - Crystal in Zelda's Room"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Lumpy Pumpkin - Chandelier",
+      "LocationName": "Sky - Lumpy Pumpkin - Chandelier",
+      "ItemName": "Heart Piece",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Lumpy Pumpkin - Chandelier"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Lumpy Pumpkin - Goddess Chest on the Roof",
+      "LocationName": "Sky - Lumpy Pumpkin - Goddess Chest on the Roof",
+      "ItemName": "Gold Rupee",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Lumpy Pumpkin - Goddess Chest on the Roof"
+      ],
+      "SpoilerItem": [
+        "Gold Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Lumpy Pumpkin - Outside Goddess Chest",
+      "LocationName": "Sky - Lumpy Pumpkin - Outside Goddess Chest",
+      "ItemName": "Progressive Pouch",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Lumpy Pumpkin - Outside Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Progressive Pouch"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Lumpy Pumpkin Harp Minigame",
+      "LocationName": "Sky - Lumpy Pumpkin Harp Minigame",
+      "ItemName": "Heart Piece",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Lumpy Pumpkin Harp Minigame"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Bamboo Island Goddess Chest",
+      "LocationName": "Sky - Bamboo Island Goddess Chest",
+      "ItemName": "Gold Rupee",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Bamboo Island Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Gold Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Goddess Chest on Island next to Bamboo Island",
+      "LocationName": "Sky - Goddess Chest on Island next to Bamboo Island",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Goddess Chest on Island next to Bamboo Island"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Goddess Chest in Cave on Island Next to Bamboo Island",
+      "LocationName": "Sky - Goddess Chest in Cave on Island Next to Bamboo Island",
+      "ItemName": "Heart Medal",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Goddess Chest in Cave on Island Next to Bamboo Island"
+      ],
+      "SpoilerItem": [
+        "Heart Medal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Beedle's Island Goddess Chest",
+      "LocationName": "Sky - Beedle's Island Goddess Chest",
+      "ItemName": "Heart Piece",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Beedle's Island Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Beedle's Island Cage Goddess Chest",
+      "LocationName": "Sky - Beedle's Island Cage Goddess Chest",
+      "ItemName": "Rupee Medal",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Beedle's Island Cage Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Rupee Medal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Northeast Island Goddess Chest behind Bombable Rocks",
+      "LocationName": "Sky - Northeast Island Goddess Chest behind Bombable Rocks",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Northeast Island Goddess Chest behind Bombable Rocks"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Northeast Island Cage Goddess Chest",
+      "LocationName": "Sky - Northeast Island Cage Goddess Chest",
+      "ItemName": "Treasure Medal",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Northeast Island Cage Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Treasure Medal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Goddess Chest on Island Closest to Faron Pillar",
+      "LocationName": "Sky - Goddess Chest on Island Closest to Faron Pillar",
+      "ItemName": "Heart Piece",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Goddess Chest on Island Closest to Faron Pillar"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Goddess Chest outside Volcanic Island",
+      "LocationName": "Sky - Goddess Chest outside Volcanic Island",
+      "ItemName": "Heart Medal",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Goddess Chest outside Volcanic Island"
+      ],
+      "SpoilerItem": [
+        "Heart Medal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Goddess Chest inside Volcanic Island",
+      "LocationName": "Sky - Goddess Chest inside Volcanic Island",
+      "ItemName": "Heart Piece",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Goddess Chest inside Volcanic Island"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Goddess Chest under Fun Fun Island",
+      "LocationName": "Sky - Goddess Chest under Fun Fun Island",
+      "ItemName": "Gold Rupee",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Goddess Chest under Fun Fun Island"
+      ],
+      "SpoilerItem": [
+        "Gold Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Southwest Triple Island Upper Goddess Chest",
+      "LocationName": "Sky - Southwest Triple Island Upper Goddess Chest",
+      "ItemName": "Small Seed Satchel",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Southwest Triple Island Upper Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Small Seed Satchel"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Southwest Triple Island Lower Goddess Chest",
+      "LocationName": "Sky - Southwest Triple Island Lower Goddess Chest",
+      "ItemName": "Life Medal",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Southwest Triple Island Lower Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Life Medal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Southwest Triple Island Cage Goddess Chest",
+      "LocationName": "Sky - Southwest Triple Island Cage Goddess Chest",
+      "ItemName": "Potion Medal",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Southwest Triple Island Cage Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Potion Medal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Dodoh's Crystals",
+      "LocationName": "Sky - Dodoh's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Dodoh's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Fun Fun Island Minigame - 500 Rupees",
+      "LocationName": "Sky - Fun Fun Island Minigame - 500 Rupees",
+      "ItemName": "Heart Piece",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Fun Fun Island Minigame - 500 Rupees"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Orielle's Crystals",
+      "LocationName": "Sky - Orielle's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Orielle's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Kina's Crystals",
+      "LocationName": "Sky - Kina's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Kina's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Beedle's Crystals",
+      "LocationName": "Sky - Beedle's Crystals",
+      "ItemName": "Gratitude Crystal Pack",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Beedle's Crystals"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal Pack"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Chest in Breakable Boulder near Fun Fun Island",
+      "LocationName": "Sky - Chest in Breakable Boulder near Fun Fun Island",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Chest in Breakable Boulder near Fun Fun Island"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Chest in Breakable Boulder near Lumpy Pumpkin",
+      "LocationName": "Sky - Chest in Breakable Boulder near Lumpy Pumpkin",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "sky",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Chest in Breakable Boulder near Lumpy Pumpkin"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Crystal outside Lumpy Pumpkin",
+      "LocationName": "Sky - Crystal outside Lumpy Pumpkin",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Crystal outside Lumpy Pumpkin"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Crystal inside Lumpy Pumpkin",
+      "LocationName": "Sky - Crystal inside Lumpy Pumpkin",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Crystal inside Lumpy Pumpkin"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Crystal on Beedle's Ship",
+      "LocationName": "Sky - Crystal on Beedle's Ship",
+      "ItemName": "Gratitude Crystal",
+      "LocationArea": "crystal",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Crystal on Beedle's Ship"
+      ],
+      "SpoilerItem": [
+        "Gratitude Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - Goddess Chest outside Isle of Songs",
+      "LocationName": "Thunderhead - Goddess Chest outside Isle of Songs",
+      "ItemName": "Gold Rupee",
+      "LocationArea": "thunderhead",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - Goddess Chest outside Isle of Songs"
+      ],
+      "SpoilerItem": [
+        "Gold Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - Goddess Chest on top of Isle of Songs",
+      "LocationName": "Thunderhead - Goddess Chest on top of Isle of Songs",
+      "ItemName": "Small Bomb Bag",
+      "LocationArea": "thunderhead",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - Goddess Chest on top of Isle of Songs"
+      ],
+      "SpoilerItem": [
+        "Small Bomb Bag"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - East Island Goddess Chest",
+      "LocationName": "Thunderhead - East Island Goddess Chest",
+      "ItemName": "Rupee Medal",
+      "LocationArea": "thunderhead",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - East Island Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Rupee Medal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - East Island Chest",
+      "LocationName": "Thunderhead - East Island Chest",
+      "ItemName": "Evil Crystal",
+      "LocationArea": "thunderhead",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - East Island Chest"
+      ],
+      "SpoilerItem": [
+        "Evil Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - Bug Heaven Goddess Chest",
+      "LocationName": "Thunderhead - Bug Heaven Goddess Chest",
+      "ItemName": "Heart Piece",
+      "LocationArea": "thunderhead",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - Bug Heaven Goddess Chest"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - First Goddess Chest on Mogma Mitts Island",
+      "LocationName": "Thunderhead - First Goddess Chest on Mogma Mitts Island",
+      "ItemName": "Empty Bottle",
+      "LocationArea": "thunderhead",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - First Goddess Chest on Mogma Mitts Island"
+      ],
+      "SpoilerItem": [
+        "Empty Bottle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - Bug Heaven - 10 Bugs in 3 Minutes",
+      "LocationName": "Thunderhead - Bug Heaven - 10 Bugs in 3 Minutes",
+      "ItemName": "Horned Colossus Beetle",
+      "LocationArea": "thunderhead",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - Bug Heaven - 10 Bugs in 3 Minutes"
+      ],
+      "SpoilerItem": [
+        "Horned Colossus Beetle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - Song from Levias",
+      "LocationName": "Thunderhead - Song from Levias",
+      "ItemName": "Song of the Hero",
+      "LocationArea": "thunderhead",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - Song from Levias"
+      ],
+      "SpoilerItem": [
+        "Song of the Hero"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - Isle of Songs - Farore's Courage",
+      "LocationName": "Thunderhead - Isle of Songs - Farore's Courage",
+      "ItemName": "Farore's Courage",
+      "LocationArea": "thunderhead",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - Isle of Songs - Farore's Courage"
+      ],
+      "SpoilerItem": [
+        "Farore's Courage"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - Isle of Songs - Nayru's Wisdom",
+      "LocationName": "Thunderhead - Isle of Songs - Nayru's Wisdom",
+      "ItemName": "Nayru's Wisdom",
+      "LocationArea": "thunderhead",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - Isle of Songs - Nayru's Wisdom"
+      ],
+      "SpoilerItem": [
+        "Nayru's Wisdom"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - Isle of Songs - Din's Power",
+      "LocationName": "Thunderhead - Isle of Songs - Din's Power",
+      "ItemName": "Din's Power",
+      "LocationArea": "thunderhead",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - Isle of Songs - Din's Power"
+      ],
+      "SpoilerItem": [
+        "Din's Power"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sealed Grounds - Chest inside Sealed Temple",
+      "LocationName": "Sealed Grounds - Chest inside Sealed Temple",
+      "ItemName": "Revitalizing Potion",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sealed Grounds - Chest inside Sealed Temple"
+      ],
+      "SpoilerItem": [
+        "Revitalizing Potion"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sealed Grounds - Song from Impa",
+      "LocationName": "Sealed Grounds - Song from Impa",
+      "ItemName": "Ballad of the Goddess",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sealed Grounds - Song from Impa"
+      ],
+      "SpoilerItem": [
+        "Ballad of the Goddess"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sealed Grounds - Gorko's Goddess Wall Reward",
+      "LocationName": "Sealed Grounds - Gorko's Goddess Wall Reward",
+      "ItemName": "Heart Piece",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sealed Grounds - Gorko's Goddess Wall Reward"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sealed Grounds - Zelda's Blessing",
+      "LocationName": "Sealed Grounds - Zelda's Blessing",
+      "ItemName": "Progressive Sword",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sealed Grounds - Zelda's Blessing"
+      ],
+      "SpoilerItem": [
+        "Progressive Sword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Faron Woods - Item on Tree",
+      "LocationName": "Faron Woods - Item on Tree",
+      "ItemName": "Heart Piece",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Faron Woods - Item on Tree"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Faron Woods - Slingshot",
+      "LocationName": "Faron Woods - Slingshot",
+      "ItemName": "Slingshot",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Faron Woods - Slingshot"
+      ],
+      "SpoilerItem": [
+        "Slingshot"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Faron Woods - Deep Woods Chest",
+      "LocationName": "Faron Woods - Deep Woods Chest",
+      "ItemName": "Red Rupee",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Faron Woods - Deep Woods Chest"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Faron Woods - Item behind Bombable Rock",
+      "LocationName": "Faron Woods - Item behind Bombable Rock",
+      "ItemName": "Heart Piece",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Faron Woods - Item behind Bombable Rock"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Faron Woods - Chest behind Bombable Rocks near Erla",
+      "LocationName": "Faron Woods - Chest behind Bombable Rocks near Erla",
+      "ItemName": "Semi Rare Treasure",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Faron Woods - Chest behind Bombable Rocks near Erla"
+      ],
+      "SpoilerItem": [
+        "Semi Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Faron Woods - Chest inside Great Tree",
+      "LocationName": "Faron Woods - Chest inside Great Tree",
+      "ItemName": "Gold Rupee",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Faron Woods - Chest inside Great Tree"
+      ],
+      "SpoilerItem": [
+        "Gold Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lake Floria - Lake Floria Chest",
+      "LocationName": "Lake Floria - Lake Floria Chest",
+      "ItemName": "Goddess Plume",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lake Floria - Lake Floria Chest"
+      ],
+      "SpoilerItem": [
+        "Goddess Plume"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lake Floria - Dragon Lair East Chest",
+      "LocationName": "Lake Floria - Dragon Lair East Chest",
+      "ItemName": "Semi Rare Treasure",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lake Floria - Dragon Lair East Chest"
+      ],
+      "SpoilerItem": [
+        "Semi Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lake Floria - Dragon Lair South Chest",
+      "LocationName": "Lake Floria - Dragon Lair South Chest",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lake Floria - Dragon Lair South Chest"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Chest behind Bombable Wall in First Room",
+      "LocationName": "Eldin Volcano - Chest behind Bombable Wall in First Room",
+      "ItemName": "Red Rupee",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Chest behind Bombable Wall in First Room"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Chest after Crawlspace",
+      "LocationName": "Eldin Volcano - Chest after Crawlspace",
+      "ItemName": "Red Rupee",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Chest after Crawlspace"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Chest behind Bombable Wall near Cliff",
+      "LocationName": "Eldin Volcano - Chest behind Bombable Wall near Cliff",
+      "ItemName": "Red Rupee",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Chest behind Bombable Wall near Cliff"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Item on Cliff",
+      "LocationName": "Eldin Volcano - Item on Cliff",
+      "ItemName": "Heart Piece",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Item on Cliff"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Chest behind Bombable Wall near Volcano Ascent",
+      "LocationName": "Eldin Volcano - Chest behind Bombable Wall near Volcano Ascent",
+      "ItemName": "Red Rupee",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Chest behind Bombable Wall near Volcano Ascent"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Digging Spot in front of Earth Temple",
+      "LocationName": "Eldin Volcano - Digging Spot in front of Earth Temple",
+      "ItemName": "Key Piece",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Digging Spot in front of Earth Temple"
+      ],
+      "SpoilerItem": [
+        "Key Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Digging Spot below Tower",
+      "LocationName": "Eldin Volcano - Digging Spot below Tower",
+      "ItemName": "Key Piece",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Digging Spot below Tower"
+      ],
+      "SpoilerItem": [
+        "Key Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Digging Spot behind Boulder on Sandy Slope",
+      "LocationName": "Eldin Volcano - Digging Spot behind Boulder on Sandy Slope",
+      "ItemName": "Key Piece",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Digging Spot behind Boulder on Sandy Slope"
+      ],
+      "SpoilerItem": [
+        "Key Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Digging Spot after Vents",
+      "LocationName": "Eldin Volcano - Digging Spot after Vents",
+      "ItemName": "Key Piece",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Digging Spot after Vents"
+      ],
+      "SpoilerItem": [
+        "Key Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Digging Spot after Draining Lava",
+      "LocationName": "Eldin Volcano - Digging Spot after Draining Lava",
+      "ItemName": "Key Piece",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Digging Spot after Draining Lava"
+      ],
+      "SpoilerItem": [
+        "Key Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Mogma Turf - Free Fall Chest",
+      "LocationName": "Mogma Turf - Free Fall Chest",
+      "ItemName": "Eldin Ore",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Mogma Turf - Free Fall Chest"
+      ],
+      "SpoilerItem": [
+        "Eldin Ore"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Mogma Turf - Chest behind Bombable Wall at Entrance",
+      "LocationName": "Mogma Turf - Chest behind Bombable Wall at Entrance",
+      "ItemName": "Golden Skull",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Mogma Turf - Chest behind Bombable Wall at Entrance"
+      ],
+      "SpoilerItem": [
+        "Golden Skull"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Mogma Turf - Sand Slide Chest",
+      "LocationName": "Mogma Turf - Sand Slide Chest",
+      "ItemName": "Eldin Ore",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Mogma Turf - Sand Slide Chest"
+      ],
+      "SpoilerItem": [
+        "Eldin Ore"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Mogma Turf - Digging Mitts Fight",
+      "LocationName": "Mogma Turf - Digging Mitts Fight",
+      "ItemName": "Progressive Mitts",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Mogma Turf - Digging Mitts Fight"
+      ],
+      "SpoilerItem": [
+        "Progressive Mitts"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Mogma Turf - Chest behind Bombable Wall in Fire Maze",
+      "LocationName": "Mogma Turf - Chest behind Bombable Wall in Fire Maze",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Mogma Turf - Chest behind Bombable Wall in Fire Maze"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Volcano Summit - Small Chest in Volcano Summit",
+      "LocationName": "Volcano Summit - Small Chest in Volcano Summit",
+      "ItemName": "Blue Rupee",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Volcano Summit - Small Chest in Volcano Summit"
+      ],
+      "SpoilerItem": [
+        "Blue Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Volcano Summit - Boko Base Pouch Chest",
+      "LocationName": "Volcano Summit - Boko Base Pouch Chest",
+      "ItemName": "Pouch & extra items",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Volcano Summit - Boko Base Pouch Chest"
+      ],
+      "SpoilerItem": [
+        "Pouch & extra items"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Volcano Summit - Item behind Digging",
+      "LocationName": "Volcano Summit - Item behind Digging",
+      "ItemName": "Heart Piece",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Volcano Summit - Item behind Digging"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Volcano Summit - Chest behind Bombable Wall in Waterfall Area",
+      "LocationName": "Volcano Summit - Chest behind Bombable Wall in Waterfall Area",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Volcano Summit - Chest behind Bombable Wall in Waterfall Area"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mines - Chest behind First Landing",
+      "LocationName": "Lanayru Mines - Chest behind First Landing",
+      "ItemName": "Evil Crystal",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mines - Chest behind First Landing"
+      ],
+      "SpoilerItem": [
+        "Evil Crystal"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mines - Chest near First Timeshift Stone",
+      "LocationName": "Lanayru Mines - Chest near First Timeshift Stone",
+      "ItemName": "Red Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mines - Chest near First Timeshift Stone"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mines - Chest behind Statue",
+      "LocationName": "Lanayru Mines - Chest behind Statue",
+      "ItemName": "Red Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mines - Chest behind Statue"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mines - Chest at the End of Mines",
+      "LocationName": "Lanayru Mines - Chest at the End of Mines",
+      "ItemName": "Rare Treasure",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mines - Chest at the End of Mines"
+      ],
+      "SpoilerItem": [
+        "Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Chest near Party Wheel",
+      "LocationName": "Lanayru Desert - Chest near Party Wheel",
+      "ItemName": "Golden Skull",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Chest near Party Wheel"
+      ],
+      "SpoilerItem": [
+        "Golden Skull"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Chest near Hook Beetle Fight",
+      "LocationName": "Lanayru Desert - Chest near Hook Beetle Fight",
+      "ItemName": "Tumbleweed",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Chest near Hook Beetle Fight"
+      ],
+      "SpoilerItem": [
+        "Tumbleweed"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Hook Beetle Fight",
+      "LocationName": "Lanayru Desert - Hook Beetle Fight",
+      "ItemName": "Progressive Beetle",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Hook Beetle Fight"
+      ],
+      "SpoilerItem": [
+        "Progressive Beetle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Secret Passageway Chest",
+      "LocationName": "Lanayru Desert - Secret Passageway Chest",
+      "ItemName": "Heart Piece",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Secret Passageway Chest"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Chest on top of Lanayru Mining Facility",
+      "LocationName": "Lanayru Desert - Chest on top of Lanayru Mining Facility",
+      "ItemName": "Rare Treasure",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Chest on top of Lanayru Mining Facility"
+      ],
+      "SpoilerItem": [
+        "Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Chest on Platform near Lightning Node",
+      "LocationName": "Lanayru Desert - Chest on Platform near Lightning Node",
+      "ItemName": "Dusk Relic",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Chest on Platform near Lightning Node"
+      ],
+      "SpoilerItem": [
+        "Dusk Relic"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Chest on Platform near Fire Node",
+      "LocationName": "Lanayru Desert - Chest on Platform near Fire Node",
+      "ItemName": "Red Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Chest on Platform near Fire Node"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Chest near Sand Oasis",
+      "LocationName": "Lanayru Desert - Chest near Sand Oasis",
+      "ItemName": "Red Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Chest near Sand Oasis"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Lightning Node - First Chest",
+      "LocationName": "Lanayru Desert - Lightning Node - First Chest",
+      "ItemName": "Red Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Lightning Node - First Chest"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Lightning Node - Second Chest",
+      "LocationName": "Lanayru Desert - Lightning Node - Second Chest",
+      "ItemName": "Blue Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Lightning Node - Second Chest"
+      ],
+      "SpoilerItem": [
+        "Blue Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Lightning Node - Raised Chest near Generator",
+      "LocationName": "Lanayru Desert - Lightning Node - Raised Chest near Generator",
+      "ItemName": "Rare Treasure",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Lightning Node - Raised Chest near Generator"
+      ],
+      "SpoilerItem": [
+        "Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Fire Node - Shortcut Chest",
+      "LocationName": "Lanayru Desert - Fire Node - Shortcut Chest",
+      "ItemName": "Rare Treasure",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Fire Node - Shortcut Chest"
+      ],
+      "SpoilerItem": [
+        "Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Fire Node - First Small Chest",
+      "LocationName": "Lanayru Desert - Fire Node - First Small Chest",
+      "ItemName": "Blue Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Fire Node - First Small Chest"
+      ],
+      "SpoilerItem": [
+        "Blue Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Fire Node - Second Small Chest",
+      "LocationName": "Lanayru Desert - Fire Node - Second Small Chest",
+      "ItemName": "Blue Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Fire Node - Second Small Chest"
+      ],
+      "SpoilerItem": [
+        "Blue Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Fire Node - Left Ending Chest",
+      "LocationName": "Lanayru Desert - Fire Node - Left Ending Chest",
+      "ItemName": "Golden Skull",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Fire Node - Left Ending Chest"
+      ],
+      "SpoilerItem": [
+        "Golden Skull"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Fire Node - Right Ending Chest",
+      "LocationName": "Lanayru Desert - Fire Node - Right Ending Chest",
+      "ItemName": "Blue Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Fire Node - Right Ending Chest"
+      ],
+      "SpoilerItem": [
+        "Blue Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Caves - Chest",
+      "LocationName": "Lanayru Caves - Chest",
+      "ItemName": "Golden Skull",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Caves - Chest"
+      ],
+      "SpoilerItem": [
+        "Golden Skull"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Caves - Golo's Gift",
+      "LocationName": "Lanayru Caves - Golo's Gift",
+      "ItemName": "LanayruCaves Small Key",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Caves - Golo's Gift"
+      ],
+      "SpoilerItem": [
+        "LanayruCaves Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Sand Sea - Skipper's Retreat - Chest after Moblin",
+      "LocationName": "Lanayru Sand Sea - Skipper's Retreat - Chest after Moblin",
+      "ItemName": "Red Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Sand Sea - Skipper's Retreat - Chest after Moblin"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Sand Sea - Skipper's Retreat - Chest on top of Cacti Pillar",
+      "LocationName": "Lanayru Sand Sea - Skipper's Retreat - Chest on top of Cacti Pillar",
+      "ItemName": "Semi Rare Treasure",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Sand Sea - Skipper's Retreat - Chest on top of Cacti Pillar"
+      ],
+      "SpoilerItem": [
+        "Semi Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Sand Sea - Skipper's Retreat - Chest in Shack",
+      "LocationName": "Lanayru Sand Sea - Skipper's Retreat - Chest in Shack",
+      "ItemName": "Sea Chart",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Sand Sea - Skipper's Retreat - Chest in Shack"
+      ],
+      "SpoilerItem": [
+        "Sea Chart"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Sand Sea - Skipper's Retreat - Skydive Chest",
+      "LocationName": "Lanayru Sand Sea - Skipper's Retreat - Skydive Chest",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Sand Sea - Skipper's Retreat - Skydive Chest"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Sand Sea - Rickety Coaster - Heart Stopping Track in 1'05",
+      "LocationName": "Lanayru Sand Sea - Rickety Coaster - Heart Stopping Track in 1'05",
+      "ItemName": "Heart Piece",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Sand Sea - Rickety Coaster - Heart Stopping Track in 1'05"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Sand Sea - Pirate Stronghold - First Chest",
+      "LocationName": "Lanayru Sand Sea - Pirate Stronghold - First Chest",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Sand Sea - Pirate Stronghold - First Chest"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Sand Sea - Pirate Stronghold - Second Chest",
+      "LocationName": "Lanayru Sand Sea - Pirate Stronghold - Second Chest",
+      "ItemName": "Semi Rare Treasure",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Sand Sea - Pirate Stronghold - Second Chest"
+      ],
+      "SpoilerItem": [
+        "Semi Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Sand Sea - Pirate Stronghold - Third Chest",
+      "LocationName": "Lanayru Sand Sea - Pirate Stronghold - Third Chest",
+      "ItemName": "Semi Rare Treasure",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Sand Sea - Pirate Stronghold - Third Chest"
+      ],
+      "SpoilerItem": [
+        "Semi Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyview - Chest on Tree Branch",
+      "LocationName": "Skyview - Chest on Tree Branch",
+      "ItemName": "SV Map",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyview - Chest on Tree Branch"
+      ],
+      "SpoilerItem": [
+        "SV Map"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyview - Digging Spot in Crawlspace",
+      "LocationName": "Skyview - Digging Spot in Crawlspace",
+      "ItemName": "SV Small Key",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyview - Digging Spot in Crawlspace"
+      ],
+      "SpoilerItem": [
+        "SV Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyview - Chest behind Two Eyes",
+      "LocationName": "Skyview - Chest behind Two Eyes",
+      "ItemName": "SV Small Key",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyview - Chest behind Two Eyes"
+      ],
+      "SpoilerItem": [
+        "SV Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyview - Beetle",
+      "LocationName": "Skyview - Beetle",
+      "ItemName": "Progressive Beetle",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyview - Beetle"
+      ],
+      "SpoilerItem": [
+        "Progressive Beetle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyview - Item behind Bars",
+      "LocationName": "Skyview - Item behind Bars",
+      "ItemName": "Heart Piece",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyview - Item behind Bars"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyview - Chest behind Three Eyes",
+      "LocationName": "Skyview - Chest behind Three Eyes",
+      "ItemName": "SV Small Key",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyview - Chest behind Three Eyes"
+      ],
+      "SpoilerItem": [
+        "SV Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyview - Chest near Boss Door",
+      "LocationName": "Skyview - Chest near Boss Door",
+      "ItemName": "Red Rupee",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyview - Chest near Boss Door"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyview - Boss Key Chest",
+      "LocationName": "Skyview - Boss Key Chest",
+      "ItemName": "SV Boss Key",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyview - Boss Key Chest"
+      ],
+      "SpoilerItem": [
+        "SV Boss Key"
+      ],
+      "KeyType": "boss",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyview - Ghirahim Heart Container",
+      "LocationName": "Skyview - Ghirahim Heart Container",
+      "ItemName": "Heart Container",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyview - Ghirahim Heart Container"
+      ],
+      "SpoilerItem": [
+        "Heart Container"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyview - Ruby Tablet",
+      "LocationName": "Skyview - Ruby Tablet",
+      "ItemName": "Ruby Tablet",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyview - Ruby Tablet"
+      ],
+      "SpoilerItem": [
+        "Ruby Tablet"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Earth Temple - Vent Chest",
+      "LocationName": "Earth Temple - Vent Chest",
+      "ItemName": "Red Rupee",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Earth Temple - Vent Chest"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Earth Temple - Chest behind Bombable Rock",
+      "LocationName": "Earth Temple - Chest behind Bombable Rock",
+      "ItemName": "Golden Skull",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Earth Temple - Chest behind Bombable Rock"
+      ],
+      "SpoilerItem": [
+        "Golden Skull"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Earth Temple - Chest Left of Main Room Bridge",
+      "LocationName": "Earth Temple - Chest Left of Main Room Bridge",
+      "ItemName": "Golden Skull",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Earth Temple - Chest Left of Main Room Bridge"
+      ],
+      "SpoilerItem": [
+        "Golden Skull"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Earth Temple - Chest in West Room",
+      "LocationName": "Earth Temple - Chest in West Room",
+      "ItemName": "ET Map",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Earth Temple - Chest in West Room"
+      ],
+      "SpoilerItem": [
+        "ET Map"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Earth Temple - Bomb Bag",
+      "LocationName": "Earth Temple - Bomb Bag",
+      "ItemName": "Bomb Bag",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Earth Temple - Bomb Bag"
+      ],
+      "SpoilerItem": [
+        "Bomb Bag"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Earth Temple - Ledd's Gift",
+      "LocationName": "Earth Temple - Ledd's Gift",
+      "ItemName": "5 Bombs",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Earth Temple - Ledd's Gift"
+      ],
+      "SpoilerItem": [
+        "5 Bombs"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Earth Temple - Chest Guarded by Lizalfos",
+      "LocationName": "Earth Temple - Chest Guarded by Lizalfos",
+      "ItemName": "Red Rupee",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Earth Temple - Chest Guarded by Lizalfos"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Earth Temple - Boss Key Chest",
+      "LocationName": "Earth Temple - Boss Key Chest",
+      "ItemName": "ET Boss Key",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Earth Temple - Boss Key Chest"
+      ],
+      "SpoilerItem": [
+        "ET Boss Key"
+      ],
+      "KeyType": "boss",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Earth Temple - Scaldera Heart Container",
+      "LocationName": "Earth Temple - Scaldera Heart Container",
+      "ItemName": "Heart Container",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Earth Temple - Scaldera Heart Container"
+      ],
+      "SpoilerItem": [
+        "Heart Container"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Earth Temple - Amber Tablet",
+      "LocationName": "Earth Temple - Amber Tablet",
+      "ItemName": "Amber Tablet",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Earth Temple - Amber Tablet"
+      ],
+      "SpoilerItem": [
+        "Amber Tablet"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Chest behind Bars",
+      "LocationName": "Lanayru Mining Facility - Chest behind Bars",
+      "ItemName": "Red Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Chest behind Bars"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - First Chest in Hub Room",
+      "LocationName": "Lanayru Mining Facility - First Chest in Hub Room",
+      "ItemName": "LMF Small Key",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - First Chest in Hub Room"
+      ],
+      "SpoilerItem": [
+        "LMF Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Chest in Key Locked Room",
+      "LocationName": "Lanayru Mining Facility - Chest in Key Locked Room",
+      "ItemName": "Red Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Chest in Key Locked Room"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Gust Bellows",
+      "LocationName": "Lanayru Mining Facility - Gust Bellows",
+      "ItemName": "Gust Bellows",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Gust Bellows"
+      ],
+      "SpoilerItem": [
+        "Gust Bellows"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Chest inside Gust Bellows Room",
+      "LocationName": "Lanayru Mining Facility - Chest inside Gust Bellows Room",
+      "ItemName": "Golden Skull",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Chest inside Gust Bellows Room"
+      ],
+      "SpoilerItem": [
+        "Golden Skull"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Chest in First West Room",
+      "LocationName": "Lanayru Mining Facility - Chest in First West Room",
+      "ItemName": "Golden Skull",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Chest in First West Room"
+      ],
+      "SpoilerItem": [
+        "Golden Skull"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Chest after Armos Fight",
+      "LocationName": "Lanayru Mining Facility - Chest after Armos Fight",
+      "ItemName": "LMF Map",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Chest after Armos Fight"
+      ],
+      "SpoilerItem": [
+        "LMF Map"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Chest behind First Crawlspace",
+      "LocationName": "Lanayru Mining Facility - Chest behind First Crawlspace",
+      "ItemName": "Golden Skull",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Chest behind First Crawlspace"
+      ],
+      "SpoilerItem": [
+        "Golden Skull"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Chest in Spike Maze",
+      "LocationName": "Lanayru Mining Facility - Chest in Spike Maze",
+      "ItemName": "Red Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Chest in Spike Maze"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Boss Key Chest",
+      "LocationName": "Lanayru Mining Facility - Boss Key Chest",
+      "ItemName": "LMF Boss Key",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Boss Key Chest"
+      ],
+      "SpoilerItem": [
+        "LMF Boss Key"
+      ],
+      "KeyType": "boss",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Shortcut Chest in Main Hub",
+      "LocationName": "Lanayru Mining Facility - Shortcut Chest in Main Hub",
+      "ItemName": "Red Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Shortcut Chest in Main Hub"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Molderach Heart Container",
+      "LocationName": "Lanayru Mining Facility - Molderach Heart Container",
+      "ItemName": "Heart Container",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Molderach Heart Container"
+      ],
+      "SpoilerItem": [
+        "Heart Container"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Mining Facility - Goddess Harp",
+      "LocationName": "Lanayru Mining Facility - Goddess Harp",
+      "ItemName": "Goddess Harp",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Mining Facility - Goddess Harp"
+      ],
+      "SpoilerItem": [
+        "Goddess Harp"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Ancient Cistern - Chest in East Part",
+      "LocationName": "Ancient Cistern - Chest in East Part",
+      "ItemName": "AC Small Key",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Ancient Cistern - Chest in East Part"
+      ],
+      "SpoilerItem": [
+        "AC Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Ancient Cistern - Whip",
+      "LocationName": "Ancient Cistern - Whip",
+      "ItemName": "Whip",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Ancient Cistern - Whip"
+      ],
+      "SpoilerItem": [
+        "Whip"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Ancient Cistern - Chest after Whip Hooks",
+      "LocationName": "Ancient Cistern - Chest after Whip Hooks",
+      "ItemName": "AC Map",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Ancient Cistern - Chest after Whip Hooks"
+      ],
+      "SpoilerItem": [
+        "AC Map"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Ancient Cistern - Chest near Vines",
+      "LocationName": "Ancient Cistern - Chest near Vines",
+      "ItemName": "Red Rupee",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Ancient Cistern - Chest near Vines"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Ancient Cistern - Chest behind the Waterfall",
+      "LocationName": "Ancient Cistern - Chest behind the Waterfall",
+      "ItemName": "Red Rupee",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Ancient Cistern - Chest behind the Waterfall"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Ancient Cistern - Bokoblin",
+      "LocationName": "Ancient Cistern - Bokoblin",
+      "ItemName": "AC Small Key",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Ancient Cistern - Bokoblin"
+      ],
+      "SpoilerItem": [
+        "AC Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Ancient Cistern - Boss Key Chest",
+      "LocationName": "Ancient Cistern - Boss Key Chest",
+      "ItemName": "AC Boss Key",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Ancient Cistern - Boss Key Chest"
+      ],
+      "SpoilerItem": [
+        "AC Boss Key"
+      ],
+      "KeyType": "boss",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Ancient Cistern - Koloktos Heart Container",
+      "LocationName": "Ancient Cistern - Koloktos Heart Container",
+      "ItemName": "Heart Container",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Ancient Cistern - Koloktos Heart Container"
+      ],
+      "SpoilerItem": [
+        "Heart Container"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Ancient Cistern - Farore's Flame",
+      "LocationName": "Ancient Cistern - Farore's Flame",
+      "ItemName": "Progressive Sword",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Ancient Cistern - Farore's Flame"
+      ],
+      "SpoilerItem": [
+        "Progressive Sword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Chest behind Combination Lock",
+      "LocationName": "Sandship - Chest behind Combination Lock",
+      "ItemName": "SS Small Key",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Chest behind Combination Lock"
+      ],
+      "SpoilerItem": [
+        "SS Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Bow",
+      "LocationName": "Sandship - Bow",
+      "ItemName": "Bow",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Bow"
+      ],
+      "SpoilerItem": [
+        "Bow"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Chest at the Stern",
+      "LocationName": "Sandship - Chest at the Stern",
+      "ItemName": "Heart Piece",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Chest at the Stern"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Chest before 4-Door Corridor",
+      "LocationName": "Sandship - Chest before 4-Door Corridor",
+      "ItemName": "SS Map",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Chest before 4-Door Corridor"
+      ],
+      "SpoilerItem": [
+        "SS Map"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Treasure Room First Chest",
+      "LocationName": "Sandship - Treasure Room First Chest",
+      "ItemName": "Semi Rare Treasure",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Treasure Room First Chest"
+      ],
+      "SpoilerItem": [
+        "Semi Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Treasure Room Second Chest",
+      "LocationName": "Sandship - Treasure Room Second Chest",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Treasure Room Second Chest"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Treasure Room Third Chest",
+      "LocationName": "Sandship - Treasure Room Third Chest",
+      "ItemName": "Semi Rare Treasure",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Treasure Room Third Chest"
+      ],
+      "SpoilerItem": [
+        "Semi Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Treasure Room Fourth Chest",
+      "LocationName": "Sandship - Treasure Room Fourth Chest",
+      "ItemName": "Silver Rupee",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Treasure Room Fourth Chest"
+      ],
+      "SpoilerItem": [
+        "Silver Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Treasure Room Fifth Chest",
+      "LocationName": "Sandship - Treasure Room Fifth Chest",
+      "ItemName": "Semi Rare Treasure",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Treasure Room Fifth Chest"
+      ],
+      "SpoilerItem": [
+        "Semi Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Robot in Brig's Reward",
+      "LocationName": "Sandship - Robot in Brig's Reward",
+      "ItemName": "SS Small Key",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Robot in Brig's Reward"
+      ],
+      "SpoilerItem": [
+        "SS Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Boss Key Chest",
+      "LocationName": "Sandship - Boss Key Chest",
+      "ItemName": "SS Boss Key",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Boss Key Chest"
+      ],
+      "SpoilerItem": [
+        "SS Boss Key"
+      ],
+      "KeyType": "boss",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Tentalus Heart Container",
+      "LocationName": "Sandship - Tentalus Heart Container",
+      "ItemName": "Heart Container",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Tentalus Heart Container"
+      ],
+      "SpoilerItem": [
+        "Heart Container"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sandship - Nayru's Flame",
+      "LocationName": "Sandship - Nayru's Flame",
+      "ItemName": "Progressive Sword",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sandship - Nayru's Flame"
+      ],
+      "SpoilerItem": [
+        "Progressive Sword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Chest in First Room",
+      "LocationName": "Fire Sanctuary - Chest in First Room",
+      "ItemName": "FS Small Key",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Chest in First Room"
+      ],
+      "SpoilerItem": [
+        "FS Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Chest in Second Room",
+      "LocationName": "Fire Sanctuary - Chest in Second Room",
+      "ItemName": "Red Rupee",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Chest in Second Room"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Chest near First Trapped Mogma",
+      "LocationName": "Fire Sanctuary - Chest near First Trapped Mogma",
+      "ItemName": "FS Small Key",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Chest near First Trapped Mogma"
+      ],
+      "SpoilerItem": [
+        "FS Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - First Chest in Water Fruit Room",
+      "LocationName": "Fire Sanctuary - First Chest in Water Fruit Room",
+      "ItemName": "Red Rupee",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - First Chest in Water Fruit Room"
+      ],
+      "SpoilerItem": [
+        "Red Rupee"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Second Chest in Water Fruit Room",
+      "LocationName": "Fire Sanctuary - Second Chest in Water Fruit Room",
+      "ItemName": "Semi Rare Treasure",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Second Chest in Water Fruit Room"
+      ],
+      "SpoilerItem": [
+        "Semi Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Mogma Mitts",
+      "LocationName": "Fire Sanctuary - Mogma Mitts",
+      "ItemName": "Progressive Mitts",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Mogma Mitts"
+      ],
+      "SpoilerItem": [
+        "Progressive Mitts"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Chest on Balcony",
+      "LocationName": "Fire Sanctuary - Chest on Balcony",
+      "ItemName": "Empty Bottle",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Chest on Balcony"
+      ],
+      "SpoilerItem": [
+        "Empty Bottle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Chest after Second Trapped Mogma",
+      "LocationName": "Fire Sanctuary - Chest after Second Trapped Mogma",
+      "ItemName": "FS Map",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Chest after Second Trapped Mogma"
+      ],
+      "SpoilerItem": [
+        "FS Map"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Chest after Bombable Wall",
+      "LocationName": "Fire Sanctuary - Chest after Bombable Wall",
+      "ItemName": "FS Small Key",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Chest after Bombable Wall"
+      ],
+      "SpoilerItem": [
+        "FS Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Plats' Chest",
+      "LocationName": "Fire Sanctuary - Plats' Chest",
+      "ItemName": "Heart Piece",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Plats' Chest"
+      ],
+      "SpoilerItem": [
+        "Heart Piece"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Chest in Staircase Room",
+      "LocationName": "Fire Sanctuary - Chest in Staircase Room",
+      "ItemName": "Semi Rare Treasure",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Chest in Staircase Room"
+      ],
+      "SpoilerItem": [
+        "Semi Rare Treasure"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Boss Key Chest",
+      "LocationName": "Fire Sanctuary - Boss Key Chest",
+      "ItemName": "FS Boss Key",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Boss Key Chest"
+      ],
+      "SpoilerItem": [
+        "FS Boss Key"
+      ],
+      "KeyType": "boss",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Ghirahim Heart Container",
+      "LocationName": "Fire Sanctuary - Ghirahim Heart Container",
+      "ItemName": "Heart Container",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Ghirahim Heart Container"
+      ],
+      "SpoilerItem": [
+        "Heart Container"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Fire Sanctuary - Din's Flame",
+      "LocationName": "Fire Sanctuary - Din's Flame",
+      "ItemName": "Progressive Sword",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Fire Sanctuary - Din's Flame"
+      ],
+      "SpoilerItem": [
+        "Progressive Sword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky Keep - First Chest",
+      "LocationName": "Sky Keep - First Chest",
+      "ItemName": "SK Map",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky Keep - First Chest"
+      ],
+      "SpoilerItem": [
+        "SK Map"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky Keep - Chest after Dreadfuse",
+      "LocationName": "Sky Keep - Chest after Dreadfuse",
+      "ItemName": "SK Small Key",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky Keep - Chest after Dreadfuse"
+      ],
+      "SpoilerItem": [
+        "SK Small Key"
+      ],
+      "KeyType": "small",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Skyloft Silent Realm - Stone of Trials",
+      "LocationName": "Skyloft Silent Realm - Stone of Trials",
+      "ItemName": "Stone of Trials",
+      "LocationArea": "skyloft",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Skyloft Silent Realm - Stone of Trials"
+      ],
+      "SpoilerItem": [
+        "Stone of Trials"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Faron Silent Realm - Water Scale",
+      "LocationName": "Faron Silent Realm - Water Scale",
+      "ItemName": "Water Scale",
+      "LocationArea": "faron",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Faron Silent Realm - Water Scale"
+      ],
+      "SpoilerItem": [
+        "Water Scale"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Silent Realm - Clawshots",
+      "LocationName": "Lanayru Silent Realm - Clawshots",
+      "ItemName": "Clawshots",
+      "LocationArea": "lanayru",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Silent Realm - Clawshots"
+      ],
+      "SpoilerItem": [
+        "Clawshots"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Silent Realm - Fireshield Earrings",
+      "LocationName": "Eldin Silent Realm - Fireshield Earrings",
+      "ItemName": "Fireshield Earrings",
+      "LocationArea": "eldin",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Silent Realm - Fireshield Earrings"
+      ],
+      "SpoilerItem": [
+        "Fireshield Earrings"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Faron Song of the Hero Part",
+      "ItemName": "Faron Song of the Hero Part",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Faron Song of the Hero Part"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Song of the Hero Part",
+      "ItemName": "Eldin Song of the Hero Part",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Eldin Song of the Hero Part"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Song of the Hero Part",
+      "ItemName": "Lanayru Song of the Hero Part",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Lanayru Song of the Hero Part"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Emerald Tablet",
+      "ItemName": "Emerald Tablet",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Emerald Tablet"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Spiral Charge",
+      "ItemName": "Spiral Charge",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Spiral Charge"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Lanayru Gorge",
+      "ItemName": "Goddess Cube in Lanayru Gorge",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Goddess Cube in Lanayru Gorge"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Access Ancient Cistern",
+      "LocationName": "Dungeon Entrance in Lake Floria",
+      "ItemName": "Ancient Cistern",
+      "ItemSubType": "Dungeon Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Dungeon Entrance in Lake Floria"
+      ],
+      "SpoilerItem": [
+        "Ancient Cistern"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Access Earth Temple",
+      "LocationName": "Dungeon Entrance in Eldin Volcano",
+      "ItemName": "Earth Temple",
+      "ItemSubType": "Dungeon Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Dungeon Entrance in Eldin Volcano"
+      ],
+      "SpoilerItem": [
+        "Earth Temple"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Access Fire Sanctuary",
+      "LocationName": "Dungeon Entrance in Volcano Summit",
+      "ItemName": "Fire Sanctuary",
+      "ItemSubType": "Dungeon Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Dungeon Entrance in Volcano Summit"
+      ],
+      "SpoilerItem": [
+        "Fire Sanctuary"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Access Lanayru Mining Facility",
+      "LocationName": "Dungeon Entrance in Lanayru Desert",
+      "ItemName": "Lanayru Mining Facility",
+      "ItemSubType": "Dungeon Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Dungeon Entrance in Lanayru Desert"
+      ],
+      "SpoilerItem": [
+        "Lanayru Mining Facility"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Access Sandship",
+      "LocationName": "Dungeon Entrance in Sand Sea",
+      "ItemName": "Sandship",
+      "ItemSubType": "Dungeon Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Dungeon Entrance in Sand Sea"
+      ],
+      "SpoilerItem": [
+        "Sandship"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Access Sky Keep",
+      "LocationName": "Dungeon Entrance on Skyloft",
+      "ItemName": "Sky Keep",
+      "ItemSubType": "Dungeon Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Dungeon Entrance on Skyloft"
+      ],
+      "SpoilerItem": [
+        "Sky Keep"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Access Skyview",
+      "LocationName": "Dungeon Entrance in Deep Woods",
+      "ItemName": "Skyview",
+      "ItemSubType": "Dungeon Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Dungeon Entrance in Deep Woods"
+      ],
+      "SpoilerItem": [
+        "Skyview"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Beat Dungeon Entrance in Lake Floria",
+      "FakeItem": true,
+      "GameClearDungeonEntrance": "Can Access Ancient Cistern",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Beat Dungeon Entrance in Eldin Volcano",
+      "FakeItem": true,
+      "GameClearDungeonEntrance": "Can Access Earth Temple",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Beat Dungeon Entrance in Volcano Summit",
+      "FakeItem": true,
+      "GameClearDungeonEntrance": "Can Access Fire Sanctuary",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Beat Dungeon Entrance in Lanayru Desert",
+      "FakeItem": true,
+      "GameClearDungeonEntrance": "Can Access Lanayru Mining Facility",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Beat Dungeon Entrance in Sand Sea",
+      "FakeItem": true,
+      "GameClearDungeonEntrance": "Can Access Sandship",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Beat Dungeon Entrance on Skyloft",
+      "FakeItem": true,
+      "GameClearDungeonEntrance": "Can Access Sky Keep",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Beat Dungeon Entrance in Deep Woods",
+      "FakeItem": true,
+      "GameClearDungeonEntrance": "Can Access Skyview",
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Access Skyloft Silent Realm",
+      "LocationName": "Trial Gate on Skyloft",
+      "ItemName": "Skyloft Silent Realm",
+      "ItemSubType": "Dungeon Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Trial Gate on Skyloft"
+      ],
+      "SpoilerItem": [
+        "Skyloft Silent Realm"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Access Lanayru Silent Realm",
+      "LocationName": "Trial Gate in Lanayru Desert",
+      "ItemName": "Lanayru Silent Realm",
+      "ItemSubType": "Dungeon Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Trial Gate in Lanayru Desert"
+      ],
+      "SpoilerItem": [
+        "Lanayru Silent Realm"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Access Faron Silent Realm",
+      "LocationName": "Trial Gate in Faron Woods",
+      "ItemName": "Faron Silent Realm",
+      "ItemSubType": "Dungeon Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Trial Gate in Faron Woods"
+      ],
+      "SpoilerItem": [
+        "Faron Silent Realm"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Can Access Eldin Silent Realm",
+      "LocationName": "Trial Gate in Eldin Volcano",
+      "ItemName": "Eldin Silent Realm",
+      "ItemSubType": "Dungeon Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Trial Gate in Eldin Volcano"
+      ],
+      "SpoilerItem": [
+        "Eldin Silent Realm"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"got-sword-requirement\" Is \"Requires Goddess Longsword\"",
+      "LocationName": "Gate of Time Sword Requirement",
+      "ItemName": "Requires Goddess Longsword",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option got-sword-requirement",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option got-sword-requirement"
+      ],
+      "SpoilerItem": [
+        "Option got-sword-requirement Is Requires Goddess Longsword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"got-sword-requirement\" Is \"Requires Goddess Sword\"",
+      "ItemName": "Requires Goddess Sword",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option got-sword-requirement",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option got-sword-requirement Is Requires Goddess Longsword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"got-sword-requirement\" Is \"Requires Goddess Whitesword\"",
+      "ItemName": "Requires Goddess Whitesword",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option got-sword-requirement",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option got-sword-requirement Is Requires Goddess Longsword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"got-sword-requirement\" Is \"Requires Master Sword\"",
+      "ItemName": "Requires Master Sword",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option got-sword-requirement",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option got-sword-requirement Is Requires Goddess Longsword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"got-sword-requirement\" Is \"Requires True Master Sword\"",
+      "ItemName": "Requires True Master Sword",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option got-sword-requirement",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option got-sword-requirement Is Requires Goddess Longsword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"hero-mode\" Is \"Enabled\"",
+      "LocationName": "Hero Mode",
+      "ItemName": "Enabled",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option hero-mode",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option hero-mode"
+      ],
+      "SpoilerItem": [
+        "Option hero-mode Is Enabled"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"hero-mode\" Is \"Disabled\"",
+      "ItemName": "Disabled",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option hero-mode",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option hero-mode Is Enabled"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"open-lmf\" Is \"Nodes\"",
+      "LocationName": "Lanayru Mining Facility Accessibility",
+      "ItemName": "Nodes",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option open-lmf",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option open-lmf"
+      ],
+      "SpoilerItem": [
+        "Option open-lmf Is Nodes"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"open-lmf\" Is \"Open\"",
+      "ItemName": "Open",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option open-lmf",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option open-lmf Is Nodes"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"open-thunderhead\" Is \"Ballad\"",
+      "LocationName": "Thunder Head Accessibility",
+      "ItemName": "Ballad",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option open-thunderhead",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option open-thunderhead"
+      ],
+      "SpoilerItem": [
+        "Option open-thunderhead Is Ballad"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"open-thunderhead\" Is \"Open\"",
+      "ItemName": "Open",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option open-thunderhead",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option open-thunderhead Is Ballad"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon1\" Is \"Skyview\"",
+      "LocationName": "Required Dungeon 1",
+      "ItemName": "Skyview",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option RequiredDungeon1"
+      ],
+      "SpoilerItem": [
+        "Option RequiredDungeon1 Is Skyview"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon1\" Is \"None\"",
+      "ItemName": "None",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option RequiredDungeon1 Is Skyview"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon2\" Is \"Earth Temple\"",
+      "LocationName": "Required Dungeon 2",
+      "ItemName": "Earth Temple",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option RequiredDungeon2"
+      ],
+      "SpoilerItem": [
+        "Option RequiredDungeon2 Is Earth Temple"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon2\" Is \"None\"",
+      "ItemName": "None",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option RequiredDungeon2 Is Earth Temple"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon3\" Is \"Sandship\"",
+      "LocationName": "Required Dungeon 3",
+      "ItemName": "Sandship",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option RequiredDungeon3"
+      ],
+      "SpoilerItem": [
+        "Option RequiredDungeon3 Is Sandship"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon3\" Is \"None\"",
+      "ItemName": "None",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option RequiredDungeon3 Is Sandship"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon4\" Is \"Ancient Cistern\"",
+      "LocationName": "Required Dungeon 4",
+      "ItemName": "Ancient Cistern",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option RequiredDungeon4"
+      ],
+      "SpoilerItem": [
+        "Option RequiredDungeon4 Is Ancient Cistern"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon4\" Is \"None\"",
+      "ItemName": "None",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option RequiredDungeon4 Is Ancient Cistern"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon5\" Is \"Lanayru Mining Facility\"",
+      "LocationName": "Required Dungeon 5",
+      "ItemName": "Lanayru Mining Facility",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option RequiredDungeon5"
+      ],
+      "SpoilerItem": [
+        "Option RequiredDungeon5 Is Lanayru Mining Facility"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon5\" Is \"None\"",
+      "ItemName": "None",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option RequiredDungeon5 Is Lanayru Mining Facility"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon6\" Is \"Fire Sanctuary\"",
+      "LocationName": "Required Dungeon 6",
+      "ItemName": "Fire Sanctuary",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option RequiredDungeon6"
+      ],
+      "SpoilerItem": [
+        "Option RequiredDungeon6 Is Fire Sanctuary"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"RequiredDungeon6\" Is \"None\"",
+      "ItemName": "None",
+      "LocationArea": "%Required Dungeons%",
+      "ItemSubType": "Option Required Dungeon",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option RequiredDungeon6 Is Fire Sanctuary"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"shop-mode\" Is \"Randomized\"",
+      "LocationName": "Shop Mode",
+      "ItemName": "Randomized",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option shop-mode",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option shop-mode"
+      ],
+      "SpoilerItem": [
+        "Option shop-mode Is Randomized"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"shop-mode\" Is \"Vanilla\"",
+      "ItemName": "Vanilla",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option shop-mode",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option shop-mode Is Randomized"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"shop-mode\" Is \"Always Junk\"",
+      "ItemName": "Always Junk",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option shop-mode",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option shop-mode Is Randomized"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"skip-skykeep\" Is \"Enabled\"",
+      "LocationName": "Skip Skykeep",
+      "ItemName": "Enabled",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option skip-skykeep",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option skip-skykeep"
+      ],
+      "SpoilerItem": [
+        "Option skip-skykeep Is Enabled"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"skip-skykeep\" Is \"Disabled\"",
+      "ItemName": "Disabled",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option skip-skykeep",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option skip-skykeep Is Enabled"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"randomize-trials\" Is \"Enabled\"",
+      "LocationName": "Randomize Trials",
+      "ItemName": "Enabled",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option randomize-trials",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Option randomize-trials"
+      ],
+      "SpoilerItem": [
+        "Option randomize-trials Is Enabled"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Option \"randomize-trials\" Is \"Disabled\"",
+      "ItemName": "Disabled",
+      "LocationArea": "%Options%",
+      "ItemSubType": "Option randomize-trials",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Option randomize-trials Is Enabled"
+      ],
+      "ValidRandomizerStartingItem": false
+    }
+  ]
+}

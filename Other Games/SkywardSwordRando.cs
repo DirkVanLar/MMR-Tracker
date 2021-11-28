@@ -9,6 +9,8 @@ using YamlDotNet.Serialization;
 using MMR_Tracker.Forms;
 using System.Text.RegularExpressions;
 using MMR_Tracker_V2;
+using MMR_Tracker.Class_Files;
+using System.Windows.Forms;
 
 namespace MMR_Tracker.Other_Games
 {
@@ -21,39 +23,9 @@ namespace MMR_Tracker.Other_Games
 
     class SkywardSwordRando
     {
-        public static void SkywardSwordTesting()
+        public static void SkywardSwordTesting(bool Applylive)
         {
-            Dictionary<string, string> SilentRealmReplacements = new Dictionary<string, string>()
-            {
-                { "Can Open Trial Gate in Faron Woods", "Can Access Eldin Silent Realm" },
-                { "Can Open Trial Gate in Eldin Volcano", "Can Access Faron Silent Realm" },
-                { "Can Open Trial Gate in Lanayru Desert", "Can Access Lanayru Silent Realm" },
-                { "Can Open Trial Gate on Skyloft", "Can Access Skyloft Silent Realm" }
-            };
-
-            //Key needs to be static, Value needs to be real item
-            Dictionary<string, string> DungeonEntranceReplacements = new Dictionary<string, string>() 
-            {
-                { "Can Access Dungeon Entrance in Lake Floria", "Can Access Ancient Cistern" },
-                { "Can Access Dungeon Entrance in Eldin Volcano", "Can Access Earth Temple" },
-                { "Can Access Dungeon Entrance in Volcano Summit", "Can Access Fire Sanctuary" },
-                { "Can Access Dungeon Entrance in Lanayru Desert", "Can Access Lanayru Mining Facility" },
-                { "Can Access Dungeon Entrance in Sand Sea", "Can Access Sandship" },
-                { "Can Access Dungeon Entrance on Skyloft", "Can Access Sky Keep" },
-                { "Can Access Dungeon Entrance in Deep Woods", "Can Access Skyview" }
-            };
-
-            //Key needs to be static, Value is dungeon clear item that will have it's logic swapped
-            Dictionary<string, string> DungeonClearReplacements = new Dictionary<string, string>()
-            {
-                { "Can Beat Ancient Cistern", "Can Beat Dungeon Entrance in Lake Floria" },
-                { "Can Beat Earth Temple", "Can Beat Dungeon Entrance in Eldin Volcano" },
-                { "Can Beat Fire Sanctuary", "Can Beat Dungeon Entrance in Volcano Summit" },
-                { "Can Beat Lanayru Mining Facility", "Can Beat Dungeon Entrance in Lanayru Desert" },
-                { "Can Beat Sandship", "Can Beat Dungeon Entrance in Sand Sea" },
-                { "Can Beat Sky Keep", "Can Beat Dungeon Entrance in Skyloft" },
-                { "Can Beat Skyview", "Can Beat Dungeon Entrance in Deep Woods" }
-            };
+            
 
             LogicParser Parser = new LogicParser();
 
@@ -61,7 +33,7 @@ namespace MMR_Tracker.Other_Games
             Dictionary<string, SSRCheck> Checks = new Dictionary<string, SSRCheck>();
             Checks = JsonConvert.DeserializeObject<Dictionary<string, SSRCheck>>(YamlToJson(wc.DownloadString("https://raw.githubusercontent.com/ssrando/ssrando/master/checks.yaml")));
             Dictionary<string, string> Logic = new Dictionary<string, string>();
-            Logic = JsonConvert.DeserializeObject<Dictionary<string, string>>(YamlToJson(wc.DownloadString("https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitchless%20Requirements.yaml")));
+            Logic = JsonConvert.DeserializeObject<Dictionary<string, string>>(YamlToJson(wc.DownloadString("https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitched%20Requirements.yaml")));
 
             List<LogicObjects.JsonFormatLogicItem> MasterLogic = new List<LogicObjects.JsonFormatLogicItem>();
             LogicObjects.LogicDictionary MasterDictionary = new LogicObjects.LogicDictionary()
@@ -75,6 +47,40 @@ namespace MMR_Tracker.Other_Games
 
             //Inaccesable
             Logic.Remove("Thunderhead - Second Goddess Chest on Mogma Mitts Island");
+
+            //Fix the one option with an "Is not" Operator which is not as easily handled
+            Logic.Add("Option \"shop-mode\" Is Not \"Vanilla\"", "Option \"shop-mode\" Is \"Randomized\" | Option \"shop-mode\" Is \"Always Junk\"");
+
+            //Make the Enabled options logic entries match the other option entries in formatting
+            Logic.Add("Option \"hero-mode\" Enabled", "Option \"hero-mode\" Is \"Enabled\"");
+            Logic.Add("Option \"skip-skykeep\" Enabled", "Option \"skip-skykeep\" Is \"Enabled\"");
+            Logic.Add("Option \"randomize-trials\" Disabled", "Option \"randomize-trials\" Is \"Disabled\"");
+
+            //Create Can access Past Logic.
+            Logic.Add("Can Beat Required Dungeons",
+                "MMRTCombinations6 & (" +
+                "(Option \"RequiredDungeon1\" Is \"Skyview\" & Can Beat Skyview) |" +
+                "(Option \"RequiredDungeon2\" Is \"Earth Temple\" & Can Beat Earth Temple) |" +
+                "(Option \"RequiredDungeon3\" Is \"Sandship\" & Can Beat Sandship) |" +
+                "(Option \"RequiredDungeon4\" Is \"Ancient Cistern\" & Can Beat Ancient Cistern) |" +
+                "(Option \"RequiredDungeon5\" Is \"Lanayru Mining Facility\" & Can Beat Lanayru Mining Facility) |" +
+                "(Option \"RequiredDungeon6\" Is \"Fire Sanctuary\" & Can Beat Fire Sanctuary) |" +
+                "(Option \"RequiredDungeon1\" Is \"None\") |" +
+                "(Option \"RequiredDungeon2\" Is \"None\") |" +
+                "(Option \"RequiredDungeon3\" Is \"None\") |" +
+                "(Option \"RequiredDungeon4\" Is \"None\") |" +
+                "(Option \"RequiredDungeon5\" Is \"None\") |" +
+                "(Option \"RequiredDungeon6\" Is \"None\")" +
+            ")");
+            Logic.Add("Can Access Past", "Can Beat Required Dungeons & Can Access Sealed Temple & Meets Gate of Time Sword Requirement & Can Raise Gate of Time");
+
+            //The item Names for the got-sword-requirement options are ambiguous with the actual sword items which breaks logic. This is dumb but it fixed it
+            Logic.Add("Option \"got-sword-requirement\" Is \"Goddess Longsword\"", "Option \"got-sword-requirement\" Is \"Requires Goddess Longsword\"");
+            Logic.Add("Option \"got-sword-requirement\" Is \"Goddess Whitesword\"", "Option \"got-sword-requirement\" Is \"Requires Goddess Whitesword\"");
+            Logic.Add("Option \"got-sword-requirement\" Is \"Goddess Sword\"", "Option \"got-sword-requirement\" Is \"Requires Goddess Sword\"");
+            Logic.Add("Option \"got-sword-requirement\" Is \"Master Sword\"", "Option \"got-sword-requirement\" Is \"Requires Master Sword\"");
+            Logic.Add("Option \"got-sword-requirement\" Is \"True Master Sword\"", "Option \"got-sword-requirement\" Is \"Requires True Master Sword\"");
+
             //Fix Misspellings in Item List
             foreach (var i in Checks)
             {
@@ -128,6 +134,7 @@ namespace MMR_Tracker.Other_Games
                 }
             }
 
+            //Convert Logic to MMR Json Logic
             foreach (var i in Logic)
             {
                 Console.WriteLine(i.Key);
@@ -144,6 +151,7 @@ namespace MMR_Tracker.Other_Games
                 MasterLogic.Add(Logicentry);
             }
 
+            //Convert Item List to an MMRTracker Logic Dictionary
             foreach(var i in Checks)
             {
                 var entry = new LogicObjects.LogicDictionaryEntry()
@@ -151,7 +159,7 @@ namespace MMR_Tracker.Other_Games
                     DictionaryName = i.Key,
                     LocationName = i.Key,
                     ItemName = i.Value.original_item,
-                    ItemSubType = "Item",
+                    ItemSubType = IsGoddessCubeAccessEntry(i.Key) ? "Goddess Cube" : "Item",
                     FakeItem = false,
                     KeyType = i.Value.original_item.EndsWith("Boss Key") ? "boss" : (i.Value.original_item.EndsWith("Small Key") ? "small" : null),
                     SpoilerItem = new string[] { i.Value.original_item },
@@ -162,6 +170,7 @@ namespace MMR_Tracker.Other_Games
 
             }
 
+            //Add trick entries to logic as tricks
             foreach (var i in Logic.Values.ToArray())
             {
                 var entries = LogicParser.GetEntries(i).ToArray();
@@ -177,18 +186,66 @@ namespace MMR_Tracker.Other_Games
                 }
             }
 
-            List<string> MissingItems = new List<string>()
-            {
-                "Faron Song of the Hero Part",
-                "Eldin Song of the Hero Part",
-                "Lanayru Song of the Hero Part",
-                "Emerald Tablet",
-                "Spiral Charge",
-                "Goddess Cube in Lanayru Gorge"
+            //Add Item only checks that don't appear in the Check list but are needed in logic
+            List<string> MissingItems = new List<string>() { 
+                "Faron Song of the Hero Part", 
+                "Eldin Song of the Hero Part", 
+                "Lanayru Song of the Hero Part", 
+                "Emerald Tablet", "Spiral Charge", 
+                "Goddess Cube in Lanayru Gorge" 
             };
+            foreach (var i in MissingItems) { AddMissiongrealItem(i); }
 
-            foreach(var i in MissingItems) { AddMissiongrealItem(i); }
+            //Add Dungeon entrances
+            //The randomizer defines logic items as "Can access dungeon entrance on *Location Name*" 
+            //And looks for logic items called "Can access *Dungeon Name*" 
+            //It renames the "dungeon entrance on *Location Name*" to the randomized "*Dungeon Name*" during randomization
+            //However, the "Can access dungeon entrance on *Location Name*" is also refered to in logic specifically for lanayru mining facility
+            //Due to differences in how the randomizer and the tracker handle this, We are adding a seperate new entry using the "Can access *Dungeon Name*"
+            //WHich will require the "Can access dungeon entrance on *Location Name*" entry as its only requirement,
+            //This allows the "Can access dungeon entrance on *Location Name*" entry to stay the same for the one instance in lanayru mining facility
+            //while allowing the "Can access *Dungeon Name*" entries to be randomized like real items
+            AddDungeonEntrance("Can Access Ancient Cistern", "Dungeon Entrance in Lake Floria", "Ancient Cistern", "Can Access Dungeon Entrance in Lake Floria");
+            AddDungeonEntrance("Can Access Earth Temple", "Dungeon Entrance in Eldin Volcano", "Earth Temple", "Can Access Dungeon Entrance in Eldin Volcano");
+            AddDungeonEntrance("Can Access Fire Sanctuary", "Dungeon Entrance in Volcano Summit", "Fire Sanctuary", "Can Access Dungeon Entrance in Volcano Summit");
+            AddDungeonEntrance("Can Access Lanayru Mining Facility", "Dungeon Entrance in Lanayru Desert", "Lanayru Mining Facility", "Can Access Dungeon Entrance in Lanayru Desert");
+            AddDungeonEntrance("Can Access Sandship", "Dungeon Entrance in Sand Sea", "Sandship", "Can Access Dungeon Entrance in Sand Sea");
+            AddDungeonEntrance("Can Access Sky Keep", "Dungeon Entrance on Skyloft", "Sky Keep", "Can Access Dungeon Entrance on Skyloft");
+            AddDungeonEntrance("Can Access Skyview", "Dungeon Entrance in Deep Woods", "Skyview", "Can Access Dungeon Entrance in Deep Woods");
 
+            //Same story as above the naming is reversed. "can beat *Dungeon name* is being kept the same while "Can access dungeon entrance on *Location Name*"
+            //is being created and used as the "Area access clear" entry. This allows this system to mimic MMRs dungeon rando logic system so it works in the tracker
+            AddDungeonClears("Can Beat Dungeon Entrance in Lake Floria", "Can Beat Ancient Cistern", "Can Access Ancient Cistern");
+            AddDungeonClears("Can Beat Dungeon Entrance in Eldin Volcano", "Can Beat Earth Temple", "Can Access Earth Temple");
+            AddDungeonClears("Can Beat Dungeon Entrance in Volcano Summit", "Can Beat Fire Sanctuary", "Can Access Fire Sanctuary");
+            AddDungeonClears("Can Beat Dungeon Entrance in Lanayru Desert", "Can Beat Lanayru Mining Facility", "Can Access Lanayru Mining Facility");
+            AddDungeonClears("Can Beat Dungeon Entrance in Sand Sea", "Can Beat Sandship", "Can Access Sandship");
+            AddDungeonClears("Can Beat Dungeon Entrance on Skyloft", "Can Beat Sky Keep", "Can Access Sky Keep");
+            AddDungeonClears("Can Beat Dungeon Entrance in Deep Woods", "Can Beat Skyview", "Can Access Skyview");
+
+            //Same as above but these don't have any area clear logic or entries that use the original "Can access *Location* Silent realm"
+            //But we add it just like a dungeon entrance for consistency.
+            AddDungeonEntrance("Can Access Skyloft Silent Realm", "Trial Gate on Skyloft", "Skyloft Silent Realm", "Can Open Trial Gate on Skyloft");
+            AddDungeonEntrance("Can Access Lanayru Silent Realm", "Trial Gate in Lanayru Desert", "Lanayru Silent Realm", "Can Open Trial Gate in Lanayru Desert");
+            AddDungeonEntrance("Can Access Faron Silent Realm", "Trial Gate in Faron Woods", "Faron Silent Realm", "Can Open Trial Gate in Faron Woods");
+            AddDungeonEntrance("Can Access Eldin Silent Realm", "Trial Gate in Eldin Volcano", "Eldin Silent Realm", "Can Open Trial Gate in Eldin Volcano");
+
+
+            AddOptionEntry("got-sword-requirement", "Requires Goddess Longsword", new string[] { "Requires Goddess Sword" , "Requires Goddess Whitesword", "Requires Master Sword", "Requires True Master Sword" }, "Gate of Time Sword Requirement");
+            AddOptionEntry("hero-mode", "Enabled", new string[] { "Disabled" }, "Hero Mode");
+            AddOptionEntry("open-lmf", "Nodes", new string[] { "Open" }, "Lanayru Mining Facility Accessibility");
+            AddOptionEntry("open-thunderhead", "Ballad", new string[] { "Open" }, "Thunder Head Accessibility");
+            AddOptionEntry("RequiredDungeon1", "Skyview", new string[] { "None" }, "Required Dungeon 1", "%Required Dungeons%", "Option Required Dungeon");
+            AddOptionEntry("RequiredDungeon2", "Earth Temple", new string[] { "None" }, "Required Dungeon 2", "%Required Dungeons%", "Option Required Dungeon");
+            AddOptionEntry("RequiredDungeon3", "Sandship", new string[] { "None" }, "Required Dungeon 3", "%Required Dungeons%", "Option Required Dungeon");
+            AddOptionEntry("RequiredDungeon4", "Ancient Cistern", new string[] { "None" }, "Required Dungeon 4", "%Required Dungeons%", "Option Required Dungeon");
+            AddOptionEntry("RequiredDungeon5", "Lanayru Mining Facility", new string[] { "None" }, "Required Dungeon 5", "%Required Dungeons%", "Option Required Dungeon");
+            AddOptionEntry("RequiredDungeon6", "Fire Sanctuary", new string[] { "None" }, "Required Dungeon 6", "%Required Dungeons%", "Option Required Dungeon");
+            AddOptionEntry("shop-mode", "Randomized", new string[] { "Vanilla", "Always Junk" }, "Shop Mode");
+            AddOptionEntry("skip-skykeep", "Enabled", new string[] { "Disabled" }, "Skip Skykeep");
+            AddOptionEntry("randomize-trials", "Enabled", new string[] { "Disabled" }, "Randomize Trials");
+
+            //Convert all item names in logic to dictionary entries, since thats what the tracker uses.
             List<string> InvalidItems = new List<string>();
             foreach (var k in MasterLogic)
             {
@@ -252,6 +309,7 @@ namespace MMR_Tracker.Other_Games
                 k.ConditionalItems = Parsedlogic == null ? new List<List<string>>() : Parsedlogic.Select(x => x.Select(y => y.Trim()).ToList()).ToList();
             }
 
+            //Print out all items used in logic that were not found
             Console.WriteLine($"Undefiend Logic Requirements ================================");
             Console.WriteLine($"=================================================");
             foreach (var i in InvalidItems.Distinct().OrderBy(x => x))
@@ -259,14 +317,94 @@ namespace MMR_Tracker.Other_Games
                 Console.WriteLine(i);
             }
 
+            //move all entries that exist in every conditional to the requiremnts
             foreach (var Logicentry in MasterLogic)
             {
                 ExtractRequirements(Logicentry);
             }
 
+            bool LogicNotComplete = false;
 
+            foreach(var entry in MasterLogic)
+            {
+                if (entry.RequiredItems != null)
+                {
+                    foreach(var i in entry.RequiredItems)
+                    {
+                        if (!MasterLogic.Where(x => x.Id == i).Any())
+                        {
+                            Console.WriteLine(i + " Was missing from logic");
+                            LogicNotComplete = true;
+                        }
+                    }
+                }
+                if (entry.ConditionalItems != null)
+                {
+                    foreach (var cond in entry.ConditionalItems)
+                    {
+                        foreach(var i in cond)
+                        {
+                            if (!MasterLogic.Where(x => x.Id == i).Any())
+                            {
+                                Console.WriteLine(i + " Was missing from logic");
+                                LogicNotComplete = true;
+                            }
+                        }
+                    }
+                }
+            }
 
-            PrintLogic(MasterLogic);
+            if (LogicNotComplete) { MessageBox.Show("A logic entry requires an item that does not exist in logic"); return; }
+
+            JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            LogicObjects.LogicFile LogicFile = new LogicObjects.LogicFile() { Logic = MasterLogic, Version = 1, GameCode = "SSR" };
+
+            if (Applylive) { goto MakeTracker; }
+
+            string FilePath = "";
+            SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                Filter = "MMR Tracker Save (*.json)|*.json",
+                FilterIndex = 1,
+                FileName = $"{MasterDictionary.GameCode} V{MasterDictionary.LogicVersion} {MasterDictionary.LogicFormat} Logic Dictionary"
+            };
+            if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+            FilePath = saveDialog.FileName;
+            File.WriteAllText(FilePath, JsonConvert.SerializeObject(MasterDictionary, _jsonSerializerOptions));
+
+            saveDialog = new SaveFileDialog
+            {
+                Filter = "Logic File (*.txt)|*.txt",
+                FilterIndex = 1,
+                FileName = $"{MasterDictionary.GameCode} V{MasterDictionary.LogicVersion} {MasterDictionary.LogicFormat} Logic"
+            };
+            if (saveDialog.ShowDialog() != DialogResult.OK) { return; }
+            FilePath = saveDialog.FileName;
+            File.WriteAllText(FilePath, JsonConvert.SerializeObject(LogicFile, _jsonSerializerOptions));
+
+            return;
+
+            MakeTracker:
+
+            string[] LogicText = JsonConvert.SerializeObject(LogicFile, _jsonSerializerOptions).Split( new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+            LogicObjects.MainTrackerInstance.RawLogicFile = LogicText;
+            LogicObjects.MainTrackerInstance.LogicDictionary = MasterDictionary;
+            LogicEditing.PopulateTrackerInstance(LogicObjects.MainTrackerInstance);
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+
+            MainInterface.CurrentProgram.FormatMenuItems();
+            MainInterface.CurrentProgram.ResizeObject();
+            MainInterface.CurrentProgram.PrintToListBox();
+            Tools.UpdateTrackerTitle();
+            Tools.SaveFilePath = "";
+
+            //PrintLogic(MasterLogic);
 
             void AddMissiongrealItem(string Name)
             {
@@ -278,6 +416,32 @@ namespace MMR_Tracker.Other_Games
                     ItemSubType = "Item"
                 });
                 MasterLogic.Add(new LogicObjects.JsonFormatLogicItem { Id = Name });
+            }
+
+            void AddDungeonEntrance(string LogicName, string LocationName, string Itemname, string EntranceRequirment, string ItemSubType = "Dungeon Entrance")
+            {
+                MasterDictionary.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
+                {
+                    DictionaryName = LogicName,
+                    LocationName = LocationName,
+                    ItemName = Itemname,
+                    SpoilerLocation = new string[] { LocationName },
+                    SpoilerItem = new string[] { Itemname },
+                    ItemSubType = ItemSubType
+                });
+                MasterLogic.Add(new LogicObjects.JsonFormatLogicItem { Id = LogicName, RequiredItems = new List<string>() { EntranceRequirment } });
+            }
+
+
+            void AddDungeonClears(string LogicName, string ClearRequirment, string DungeonEntranceItem)
+            {
+                MasterDictionary.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
+                {
+                    DictionaryName = LogicName,
+                    FakeItem = true,
+                    GameClearDungeonEntrance = DungeonEntranceItem
+                });
+                MasterLogic.Add(new LogicObjects.JsonFormatLogicItem { Id = LogicName, RequiredItems = new List<string>() { ClearRequirment } });
             }
 
             void PrintLogic(List<LogicObjects.JsonFormatLogicItem> PrintedLogic)
@@ -304,39 +468,32 @@ namespace MMR_Tracker.Other_Games
                 }
             }
 
-
-            return;
-
-
-            //Add Dungeon Entrance Dungeon Clear and Silent Realm Entries
-            foreach (var i in DungeonEntranceReplacements) 
+            void AddOptionEntry(string OptionText, string Defaultvalue, string[] Othervalues, string FriendlyLocationName = "", string Category = "%Options%", string Grouping = "")
             {
-                Checks.Add(i.Value, new SSRCheck() { original_item = i.Value, type = "Dungeon Entrance" });
-                Logic.Add(i.Value, i.Key); 
-            }
-            foreach (var i in DungeonClearReplacements) { Logic.Add(i.Value, i.Key); }
-            foreach (var i in SilentRealmReplacements)
-            {
-                Checks.Add(i.Value, new SSRCheck() { original_item = i.Value, type = "Silent realm" });
-                Logic.Add(i.Value, i.Key); 
-            }
-
-            //Add Tricks as logic Items
-            foreach (var i in Logic.Values.ToArray())
-            {
-                var entries = LogicParser.GetEntries(i).ToArray();
-                foreach (var entry in entries)
+                if (Grouping == "") { Grouping = $"Option {OptionText}"; }
+                if (FriendlyLocationName == "") { FriendlyLocationName = Defaultvalue; }
+                CommitOptionEntry(OptionText, Defaultvalue, FriendlyLocationName, Category, Grouping, $"Option {OptionText}", $"Option {OptionText} Is {Defaultvalue}");
+                foreach(var i in Othervalues)
                 {
-                    var CleanEntry = entry.Trim();
-                    if (Logic.ContainsKey(CleanEntry)) { continue; }
-                    if (CleanEntry.EndsWith(" Trick"))
-                    {
-                        Logic.Add(CleanEntry, "Nothing");
-                    }
+                    CommitOptionEntry(OptionText, i, null, Category, Grouping, null, $"Option {OptionText} Is {Defaultvalue}");
                 }
+
             }
 
-            
+            void CommitOptionEntry(string OptionText, string Defaultvalue, string FriendlyLocationName, string Category, string Grouping, string SpoilerLocation, string SpoilerItem)
+            {
+                MasterDictionary.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
+                {
+                    DictionaryName = $"Option \"{OptionText}\" Is \"{Defaultvalue}\"",
+                    LocationName = FriendlyLocationName,
+                    ItemName = Defaultvalue,
+                    SpoilerLocation = SpoilerLocation == null ? null : new string[] { SpoilerLocation },
+                    SpoilerItem = new string[] { SpoilerItem },
+                    ItemSubType = Grouping,
+                    LocationArea = Category
+                });
+                MasterLogic.Add(new LogicObjects.JsonFormatLogicItem { Id = $"Option \"{OptionText}\" Is \"{Defaultvalue}\""} );
+            }
 
 
         }
@@ -362,6 +519,11 @@ namespace MMR_Tracker.Other_Games
             NewConditionals.RemoveAll(x => !x.Any());
             entry.ConditionalItems = (NewConditionals.Any()) ? NewConditionals.Select(x => x.ToList()).ToList() : null;
             return ChangesMade;
+        }
+
+        public static bool IsGoddessCubeAccessEntry(string Name)
+        {
+            return Name.StartsWith("Goddess Cube ") || Name == "Initial Goddess Cube";
         }
 
         public static string YamlToJson(string Input)

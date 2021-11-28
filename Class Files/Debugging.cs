@@ -84,8 +84,10 @@ namespace MMR_Tracker_V2
             //BackupLoadLogic();
 
             //CreateJsonLogicDicWithTxtLogic
-            //
-            remakeLogicDict();
+
+            //remakeLogicDict();
+
+            SkywardSwordRando.SkywardSwordTesting(false);
 
             void remakeLogicDict()
             {
@@ -242,7 +244,7 @@ namespace MMR_Tracker_V2
                         ItemName = itemname != null ? itemname : i.ItemName,
                         LocationArea = locationarea != null ? locationarea : (string.IsNullOrWhiteSpace(i.LocationArea) ? null : i.LocationArea),
                         ItemSubType = (string.IsNullOrWhiteSpace(i.ItemSubType) ? null : i.ItemSubType),
-                        FakeItem = DicEntry == null || DicEntry.FakeItem,
+                        FakeItem = DicEntry == null || (bool)DicEntry.FakeItem,
                         SpoilerLocation = locationname != null ? new List<string> { locationname }.ToArray() : (DicEntry == null ? null : DicEntry.SpoilerLocation),
                         SpoilerItem = itemname != null ? new List<string> { itemname }.ToArray()  : (DicEntry == null ? null : DicEntry.SpoilerItem),
                         GossipLocation = gossipLocations == null ? null : gossipLocations,

@@ -348,6 +348,7 @@ namespace MMR_Tracker_V2
         public class LogicFile
         {
             public int Version { get; set; }
+            public string GameCode { get; set; } = null;
             public List<JsonFormatLogicItem> Logic { get; set; }
 
             public override string ToString()
