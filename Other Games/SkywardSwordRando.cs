@@ -187,6 +187,44 @@ namespace MMR_Tracker.Other_Games
                 }
             }
 
+            //Add Gossip Stones to dictionary
+            foreach(var i in MasterLogic)
+            {
+                if (i.Id.Contains(" - Gossip Stone ") && !MasterDictionary.LogicDictionaryList.Where(x => x.DictionaryName == i.Id).Any())
+                {
+                    var entry = new LogicObjects.LogicDictionaryEntry()
+                    {
+                        DictionaryName = i.Id,
+                        LocationName = i.Id,
+                        ItemName = i.Id,
+                        ItemSubType = "Gossip " + i.Id,
+                        FakeItem = false,
+                        SpoilerLocation = new string[] { i.Id },
+                        LocationArea = "Gossip Hints"
+                    };
+                    MasterDictionary.LogicDictionaryList.Add(entry);
+                }
+            }
+
+            //Add Gossip Stones to dictionary
+            foreach (var i in MasterLogic)
+            {
+                if ((i.Id.StartsWith("Goddess Cube ") || i.Id == "Initial Goddess Cube") && !MasterDictionary.LogicDictionaryList.Where(x => x.DictionaryName == i.Id).Any())
+                {
+                    var entry = new LogicObjects.LogicDictionaryEntry()
+                    {
+                        DictionaryName = i.Id,
+                        LocationName = i.Id,
+                        ItemName = i.Id,
+                        ItemSubType = "Goddess Cube " + i.Id,
+                        FakeItem = false,
+                        SpoilerLocation = new string[] { i.Id },
+                        LocationArea = "Goddess Cube"
+                    };
+                    MasterDictionary.LogicDictionaryList.Add(entry);
+                }
+            }
+
             //Add Item only checks that don't appear in the Check list but are needed in logic
             List<string> MissingItems = new List<string>() {
                 "Faron Song of the Hero Part",
@@ -582,6 +620,16 @@ namespace MMR_Tracker.Other_Games
                 if (i == "Trial Gates:") { CurrentSection = "trials"; continue; }
                 if (i == "Hints:") { CurrentSection = "hints"; continue; }
 
+                if (CurrentSection == "hints")
+                {
+                    var data = i.Split(':').Select(x => x.Trim()).ToArray();
+                    var GossipHintLocation = Instance.Logic.Find(x => x.SpoilerLocation != null && x.SpoilerLocation.Contains(data[0]));
+                    if (GossipHintLocation != null)
+                    {
+                        GossipHintLocation.GossipHint = $"${data[1]}";
+                    }
+                }
+
                 if (CurrentSection == "starting")
                 {
                     var item = i.Trim();
@@ -635,11 +683,31 @@ namespace MMR_Tracker.Other_Games
 
                     var Locations = Instance.Logic.Where(x => x.SpoilerLocation != null && x.SpoilerLocation.Contains(LocationWithregion)).ToList();
                     var Items = Instance.Logic.Where(x => x.SpoilerItem != null && x.SpoilerItem.Contains(Parts[1])).ToList();
-                    if (!Locations.Any() || !Items.Any()) 
-                    { Console.WriteLine($"Could not find logic data for line \n[{LocationWithregion}]:[{Parts[1]}] \nLoc: {Locations.Any()} item: {Items.Any()}"); continue; }
 
-                    var UnusedLocation = Locations.Find(x => !LocationsWithItems.Contains(x.ID));
-                    var UnusedItem = Items.Find(x => !ItemsWithLocations.Contains(x.ID));
+
+                    LogicObjects.LogicEntry UnusedLocation = null;
+                    LogicObjects.LogicEntry UnusedItem = null;
+
+                    if (!Locations.Any() || !Items.Any()) 
+                    { 
+                        if (Locations.Any() && Parts[1] == "Rupoor")
+                        {
+                            UnusedLocation = Locations.Find(x => !LocationsWithItems.Contains(x.ID));
+                            UnusedItem = new LogicObjects.LogicEntry() { ID = -1 };
+                            UnusedLocation.JunkItemType = "Rupoor";
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Could not find logic data for line \n[{LocationWithregion}]:[{Parts[1]}] \nLoc: {Locations.Any()} item: {Items.Any()}");
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        UnusedLocation = Locations.Find(x => !LocationsWithItems.Contains(x.ID));
+                        UnusedItem = Items.Find(x => !ItemsWithLocations.Contains(x.ID));
+                    }
+
                     if (UnusedLocation == null) 
                     { 
                         Console.WriteLine($"[{LocationWithregion}] Has already been assigned spoiler data"); 
@@ -647,9 +715,11 @@ namespace MMR_Tracker.Other_Games
                     }
                     if (UnusedItem == null)
                     {
-                        if (Parts[1].EndsWith("Treasure") || Parts[1].EndsWith("Rupoor") || Parts[1].EndsWith("Rupee"))
+                        if (Parts[1].EndsWith("Treasure") || Parts[1].EndsWith("Rupee"))
                         {
                             UnusedItem = new LogicObjects.LogicEntry() { ID = -1 };
+                            if (Parts[1].EndsWith("Rupee")) { UnusedLocation.JunkItemType = "Rupee"; }
+                            if (Parts[1].EndsWith("Treasure")) { UnusedLocation.JunkItemType = "Treasure"; }
                         }
                         else
                         {

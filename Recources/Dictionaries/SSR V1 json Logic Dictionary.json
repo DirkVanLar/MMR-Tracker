@@ -3549,6 +3549,498 @@
       "ValidRandomizerStartingItem": false
     },
     {
+      "DictionaryName": "Central Skyloft - Gossip Stone on Floating Island",
+      "LocationName": "Central Skyloft - Gossip Stone on Floating Island",
+      "ItemName": "Central Skyloft - Gossip Stone on Floating Island",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Central Skyloft - Gossip Stone on Floating Island",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Central Skyloft - Gossip Stone on Floating Island"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Gossip Stone in Volcanic Island",
+      "LocationName": "Sky - Gossip Stone in Volcanic Island",
+      "ItemName": "Sky - Gossip Stone in Volcanic Island",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Sky - Gossip Stone in Volcanic Island",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Gossip Stone in Volcanic Island"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Gossip Stone on Lumpy Pumpkin",
+      "LocationName": "Sky - Gossip Stone on Lumpy Pumpkin",
+      "ItemName": "Sky - Gossip Stone on Lumpy Pumpkin",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Sky - Gossip Stone on Lumpy Pumpkin",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Gossip Stone on Lumpy Pumpkin"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sky - Gossip Stone in Bamboo Island",
+      "LocationName": "Sky - Gossip Stone in Bamboo Island",
+      "ItemName": "Sky - Gossip Stone in Bamboo Island",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Sky - Gossip Stone in Bamboo Island",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sky - Gossip Stone in Bamboo Island"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Thunderhead - Gossip Stone near Bug Heaven",
+      "LocationName": "Thunderhead - Gossip Stone near Bug Heaven",
+      "ItemName": "Thunderhead - Gossip Stone near Bug Heaven",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Thunderhead - Gossip Stone near Bug Heaven",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Thunderhead - Gossip Stone near Bug Heaven"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sealed Grounds - Gossip Stone behind the Temple",
+      "LocationName": "Sealed Grounds - Gossip Stone behind the Temple",
+      "ItemName": "Sealed Grounds - Gossip Stone behind the Temple",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Sealed Grounds - Gossip Stone behind the Temple",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sealed Grounds - Gossip Stone behind the Temple"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Faron Woods - Gossip Stone in Deep Woods",
+      "LocationName": "Faron Woods - Gossip Stone in Deep Woods",
+      "ItemName": "Faron Woods - Gossip Stone in Deep Woods",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Faron Woods - Gossip Stone in Deep Woods",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Faron Woods - Gossip Stone in Deep Woods"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lake Floria - Gossip Stone outside Ancient Cistern",
+      "LocationName": "Lake Floria - Gossip Stone outside Ancient Cistern",
+      "ItemName": "Lake Floria - Gossip Stone outside Ancient Cistern",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Lake Floria - Gossip Stone outside Ancient Cistern",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lake Floria - Gossip Stone outside Ancient Cistern"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Gossip Stone in Thrill Digger Cave",
+      "LocationName": "Eldin Volcano - Gossip Stone in Thrill Digger Cave",
+      "ItemName": "Eldin Volcano - Gossip Stone in Thrill Digger Cave",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Eldin Volcano - Gossip Stone in Thrill Digger Cave",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Gossip Stone in Thrill Digger Cave"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Eldin Volcano - Gossip Stone next to Earth Temple",
+      "LocationName": "Eldin Volcano - Gossip Stone next to Earth Temple",
+      "ItemName": "Eldin Volcano - Gossip Stone next to Earth Temple",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Eldin Volcano - Gossip Stone next to Earth Temple",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Eldin Volcano - Gossip Stone next to Earth Temple"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Volcano Summit - Gossip Stone in Waterfall Area",
+      "LocationName": "Volcano Summit - Gossip Stone in Waterfall Area",
+      "ItemName": "Volcano Summit - Gossip Stone in Waterfall Area",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Volcano Summit - Gossip Stone in Waterfall Area",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Volcano Summit - Gossip Stone in Waterfall Area"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Volcano Summit - Gossip Stone near Second Thirsty Frog",
+      "LocationName": "Volcano Summit - Gossip Stone near Second Thirsty Frog",
+      "ItemName": "Volcano Summit - Gossip Stone near Second Thirsty Frog",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Volcano Summit - Gossip Stone near Second Thirsty Frog",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Volcano Summit - Gossip Stone near Second Thirsty Frog"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Desert - Gossip Stone in Temple of Time Area",
+      "LocationName": "Lanayru Desert - Gossip Stone in Temple of Time Area",
+      "ItemName": "Lanayru Desert - Gossip Stone in Temple of Time Area",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Lanayru Desert - Gossip Stone in Temple of Time Area",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Desert - Gossip Stone in Temple of Time Area"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Lanayru Caves - Gossip Stone in Center",
+      "LocationName": "Lanayru Caves - Gossip Stone in Center",
+      "ItemName": "Lanayru Caves - Gossip Stone in Center",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Lanayru Caves - Gossip Stone in Center",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Lanayru Caves - Gossip Stone in Center"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Sand Sea - Gossip Stone in Shipyard",
+      "LocationName": "Sand Sea - Gossip Stone in Shipyard",
+      "ItemName": "Sand Sea - Gossip Stone in Shipyard",
+      "LocationArea": "Gossip Hints",
+      "ItemSubType": "Gossip Sand Sea - Gossip Stone in Shipyard",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Sand Sea - Gossip Stone in Shipyard"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube on West Great Tree near Exit",
+      "LocationName": "Goddess Cube on West Great Tree near Exit",
+      "ItemName": "Goddess Cube on West Great Tree near Exit",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube on West Great Tree near Exit",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube on West Great Tree near Exit"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube on East Great Tree with Rope",
+      "LocationName": "Goddess Cube on East Great Tree with Rope",
+      "ItemName": "Goddess Cube on East Great Tree with Rope",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube on East Great Tree with Rope",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube on East Great Tree with Rope"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube on East Great Tree with Clawshot Target",
+      "LocationName": "Goddess Cube on East Great Tree with Clawshot Target",
+      "ItemName": "Goddess Cube on East Great Tree with Clawshot Target",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube on East Great Tree with Clawshot Target",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube on East Great Tree with Clawshot Target"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Initial Goddess Cube",
+      "LocationName": "Initial Goddess Cube",
+      "ItemName": "Initial Goddess Cube",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Initial Goddess Cube",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Initial Goddess Cube"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Deep Woods",
+      "LocationName": "Goddess Cube in Deep Woods",
+      "ItemName": "Goddess Cube in Deep Woods",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Deep Woods",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Deep Woods"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube on top of Skyview",
+      "LocationName": "Goddess Cube on top of Skyview",
+      "ItemName": "Goddess Cube on top of Skyview",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube on top of Skyview",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube on top of Skyview"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Lake Floria",
+      "LocationName": "Goddess Cube in Lake Floria",
+      "ItemName": "Goddess Cube in Lake Floria",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Lake Floria",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Lake Floria"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Floria Waterfall",
+      "LocationName": "Goddess Cube in Floria Waterfall",
+      "ItemName": "Goddess Cube in Floria Waterfall",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Floria Waterfall",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Floria Waterfall"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube at Eldin Entrance",
+      "LocationName": "Goddess Cube at Eldin Entrance",
+      "ItemName": "Goddess Cube at Eldin Entrance",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube at Eldin Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube at Eldin Entrance"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube near Mogma Turf Entrance",
+      "LocationName": "Goddess Cube near Mogma Turf Entrance",
+      "ItemName": "Goddess Cube near Mogma Turf Entrance",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube near Mogma Turf Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube near Mogma Turf Entrance"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube West of Earth Temple Entrance",
+      "LocationName": "Goddess Cube West of Earth Temple Entrance",
+      "ItemName": "Goddess Cube West of Earth Temple Entrance",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube West of Earth Temple Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube West of Earth Temple Entrance"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube East of Earth Temple Entrance",
+      "LocationName": "Goddess Cube East of Earth Temple Entrance",
+      "ItemName": "Goddess Cube East of Earth Temple Entrance",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube East of Earth Temple Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube East of Earth Temple Entrance"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Eldin Slide",
+      "LocationName": "Goddess Cube in Eldin Slide",
+      "ItemName": "Goddess Cube in Eldin Slide",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Eldin Slide",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Eldin Slide"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Mogma Turf",
+      "LocationName": "Goddess Cube in Mogma Turf",
+      "ItemName": "Goddess Cube in Mogma Turf",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Mogma Turf",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Mogma Turf"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube inside Volcano Summit",
+      "LocationName": "Goddess Cube inside Volcano Summit",
+      "ItemName": "Goddess Cube inside Volcano Summit",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube inside Volcano Summit",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube inside Volcano Summit"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Summit Waterfall",
+      "LocationName": "Goddess Cube in Summit Waterfall",
+      "ItemName": "Goddess Cube in Summit Waterfall",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Summit Waterfall",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Summit Waterfall"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube near FS Entrance",
+      "LocationName": "Goddess Cube near FS Entrance",
+      "ItemName": "Goddess Cube near FS Entrance",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube near FS Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube near FS Entrance"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube at Lanayru Mines Entrance",
+      "LocationName": "Goddess Cube at Lanayru Mines Entrance",
+      "ItemName": "Goddess Cube at Lanayru Mines Entrance",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube at Lanayru Mines Entrance",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube at Lanayru Mines Entrance"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube near Hook Beetle Fight",
+      "LocationName": "Goddess Cube near Hook Beetle Fight",
+      "ItemName": "Goddess Cube near Hook Beetle Fight",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube near Hook Beetle Fight",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube near Hook Beetle Fight"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Sand Oasis",
+      "LocationName": "Goddess Cube in Sand Oasis",
+      "ItemName": "Goddess Cube in Sand Oasis",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Sand Oasis",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Sand Oasis"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube at Ride near Temple of Time",
+      "LocationName": "Goddess Cube at Ride near Temple of Time",
+      "ItemName": "Goddess Cube at Ride near Temple of Time",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube at Ride near Temple of Time",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube at Ride near Temple of Time"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Secret Passageway in Desert",
+      "LocationName": "Goddess Cube in Secret Passageway in Desert",
+      "ItemName": "Goddess Cube in Secret Passageway in Desert",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Secret Passageway in Desert",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Secret Passageway in Desert"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Ancient Harbour",
+      "LocationName": "Goddess Cube in Ancient Harbour",
+      "ItemName": "Goddess Cube in Ancient Harbour",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Ancient Harbour",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Ancient Harbour"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Skipper's Retreat",
+      "LocationName": "Goddess Cube in Skipper's Retreat",
+      "ItemName": "Goddess Cube in Skipper's Retreat",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Skipper's Retreat",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Skipper's Retreat"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Pirate Stronghold",
+      "LocationName": "Goddess Cube in Pirate Stronghold",
+      "ItemName": "Goddess Cube in Pirate Stronghold",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Pirate Stronghold",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Pirate Stronghold"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Goddess Cube in Skyview Spring",
+      "LocationName": "Goddess Cube in Skyview Spring",
+      "ItemName": "Goddess Cube in Skyview Spring",
+      "LocationArea": "Goddess Cube",
+      "ItemSubType": "Goddess Cube Goddess Cube in Skyview Spring",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Goddess Cube in Skyview Spring"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
       "DictionaryName": "Faron Song of the Hero Part",
       "ItemName": "Faron Song of the Hero Part",
       "ItemSubType": "Item",
