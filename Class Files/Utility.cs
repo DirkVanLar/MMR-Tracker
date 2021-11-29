@@ -454,6 +454,7 @@ namespace MMR_Tracker_V2
 
         public static string GetPriceText(LogicObjects.LogicEntry Entry, LogicObjects.TrackerInstance Instance)
         {
+            if (!Entry.Available) { return ""; }
             if (Entry.Price > -1) { return $" (${Entry.Price})"; }
 
             List<int> addedentries = new List<int>();

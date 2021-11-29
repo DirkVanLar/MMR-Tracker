@@ -26,6 +26,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
         public bool KeepChecked = false;
         public bool FullCheck = false;
         public string GlobalJunkType = "Junk";
+        public List<LogicObjects.LogicEntry> GossipChecksFound = new List<LogicObjects.LogicEntry>();
 
         public CheckItemForm()
         {
@@ -63,6 +64,10 @@ namespace MMR_Tracker.Forms.Sub_Forms
             if (ManualSelect.Count() > 0)
             {
                 this.ShowDialog();
+            }
+            if (GossipChecksFound.Count() > 0)
+            {
+                MarkGossipEntries();
             }
         }
 
@@ -138,6 +143,19 @@ namespace MMR_Tracker.Forms.Sub_Forms
                     ItemStateChanged = true;
                     continue;
                 }
+            }
+            return ItemStateChanged;
+        }
+
+        public bool MarkGossipEntries()
+        {
+            bool ItemStateChanged = false;
+            foreach (var CheckedObject in GossipChecksFound)
+            {
+                if (CheckedObject.ID < -1 || CheckedObject.SpoilerRandom < 0 || CheckedObject.RandomizedItem > -2 || CheckedObject.Checked) { continue; }
+                CheckedObject.RandomizedItem = CheckedObject.SpoilerRandom;
+                ItemStateChanged = true;
+                continue;
             }
             return ItemStateChanged;
         }
@@ -322,7 +340,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
         {
             if (Item.Checked)
             {
-                if (!Item.GossipHint.StartsWith("$")) //Hint was not set via spoiler log
+                if (!Item.GossipHint.StartsWith("$")) //Hints set via spoiler log contain a $ at the beggining of the string, don't erase those.
                 {
                     Item.GossipHint = "";
                 }
@@ -338,6 +356,78 @@ namespace MMR_Tracker.Forms.Sub_Forms
 
             Item.Checked = !Item.Checked;
             ItemStateChanged = true;
+
+            if (Item.GossipHint != "" && Item.GossipHint.StartsWith("$") && Item.Checked)
+            {
+                var GossipLocationToCheck = GetGossipHintReferenceLocation(Item);
+                if (GossipLocationToCheck != null) { GossipChecksFound.Add(GossipLocationToCheck); }
+            }
+
+        }
+
+        public LogicObjects.LogicEntry GetGossipHintReferenceLocation(LogicObjects.LogicEntry Item)
+        {
+            var MidMessage = Class_Files.MMR_Code_Reference.Definitions.Gossip.MessageMidSentences.ToArray();
+            var StartMessage = Class_Files.MMR_Code_Reference.Definitions.Gossip.MessageStartSentences.ToArray();
+            string ParsedHint = Item.GossipHint;
+            ParsedHint = ParsedHint.Replace("$", "");
+            ParsedHint = ParsedHint.Replace(".", "");
+            foreach (var i in MidMessage)
+            {
+                if (ParsedHint.Contains(i)) { ParsedHint = ParsedHint.Replace(i, "|"); }
+            }
+            foreach (var i in StartMessage)
+            {
+                if (ParsedHint.Contains(i)) { ParsedHint = ParsedHint.Replace(i, ""); }
+            }
+
+            Console.WriteLine($"------------------------------------------------");
+            Console.WriteLine($"Parsing Gossip Hint{ParsedHint}");
+            var messageSegments = ParsedHint.Split('|').Select(x => x.Trim()).ToArray();
+
+            if (messageSegments.Count() == 2)
+            {
+                Console.WriteLine($"Hint Prased as [{messageSegments[0]}]: [{messageSegments[1]}]");
+                var PossibleLocation = Instance.LogicDictionary.LogicDictionaryList
+                    .Where(x => (x.GossipLocation != null && x.GossipLocation.Contains(messageSegments[0])) || (x.SpoilerLocation != null && x.SpoilerLocation.Contains(messageSegments[0])));
+                var PossibleItems = Instance.LogicDictionary.LogicDictionaryList
+                    .Where(x => (x.GossipItem != null && x.GossipItem.Contains(messageSegments[1])) || (x.SpoilerItem != null && x.SpoilerItem.Contains(messageSegments[1])));
+
+                //Console.WriteLine($"From Dictionary: Found {PossibleLocation.Count()} Possible Locations and {PossibleLocation.Count()} possible items");
+
+                if (!PossibleLocation.Any())
+                {
+                    //Console.WriteLine("Cleaning Symbols From Locations...");
+                    PossibleLocation = Instance.LogicDictionary.LogicDictionaryList
+                    .Where(x => (x.GossipLocation != null && x.GossipLocation.Select(y => y.Replace("#", "")).Contains(messageSegments[0]))
+                    || (x.SpoilerLocation != null && x.SpoilerLocation.Select(y => y.Replace("#", "")).Contains(messageSegments[0])));
+                    //Console.WriteLine($"Found {PossibleLocation.Count()} Possible Locations after Cleaning");
+                }
+
+                if (PossibleLocation.Any() && PossibleItems.Any())
+                {
+                    //Console.WriteLine($"From Logic: Found {PossibleLocation.Count()} Possible Locations and {PossibleLocation.Count()} possible items");
+                    var ValidPossibleLocations = PossibleLocation.Where(x => Instance.DicNameToID.ContainsKey(x.DictionaryName))?
+                        .Select(x => Instance.DicNameToID[x.DictionaryName]);
+                    var ValidPossibleItems = PossibleItems.Where(x => Instance.DicNameToID.ContainsKey(x.DictionaryName))?
+                        .Select(x => Instance.DicNameToID[x.DictionaryName]);
+
+
+                    //Console.WriteLine($"From Logic: Found {ValidPossibleLocations.Count()} Possible Locations and {ValidPossibleItems.Count()} possible items");
+                    foreach (var i in Instance.Logic)
+                    {
+                        if (ValidPossibleLocations.Contains(i.ID) && i.SpoilerRandom > -1 && ValidPossibleItems.Contains(i.SpoilerRandom) && !i.HasRandomItem(false))
+                        {
+                            Console.WriteLine($"Valid Location {i.DictionaryName} had valid item {Instance.Logic[i.SpoilerRandom].DictionaryName}");
+                            Console.WriteLine($"------------------------------------------------");
+                            return i;
+                        }
+                    }
+                    //Console.WriteLine($"No valid Locations Containd a Valid Item");
+                }
+            }
+            Console.WriteLine($"------------------------------------------------");
+            return null;
         }
 
         public void SeperateLists(List<LogicObjects.LogicEntry> ToCheck)
