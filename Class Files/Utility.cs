@@ -464,7 +464,7 @@ namespace MMR_Tracker_V2
             {
                 foreach(var i in Entry.Required)
                 {
-                    if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake && !addedentries.Contains(i))
+                    if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake && Instance.Logic[i].Available && !addedentries.Contains(i))
                     {
                         addedentries.Add(i);
                         SubPricesFound++;
@@ -479,7 +479,7 @@ namespace MMR_Tracker_V2
                 {
                     foreach (var i in conditional)
                     {
-                        if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake && !addedentries.Contains(i))
+                        if (Instance.Logic[i].Price > -1 && Instance.Logic[i].IsFake && Instance.Logic[i].Available && !addedentries.Contains(i))
                         {
                             addedentries.Add(i);
                             SubPricesFound++;
