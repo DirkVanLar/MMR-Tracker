@@ -393,47 +393,34 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV13.csv">
+    <None Include="Recources\Dictionaries\Legacy\MMRDICTIONARYV13.csv" />
+    <None Include="Recources\Dictionaries\Legacy\MMRDICTIONARYV14.csv" />
+    <None Include="Recources\Dictionaries\Legacy\MMRDICTIONARYV15.csv" />
+    <None Include="Recources\Dictionaries\Legacy\MMRDICTIONARYV18.csv" />
+    <None Include="Recources\Dictionaries\Legacy\MMRDICTIONARYV8.csv" />
+    <None Include="Recources\Dictionaries\Legacy\MMRDICTIONARYV99.csv" />
+    <None Include="Recources\Dictionaries\Legacy\OOTRDICTIONARYV5.csv" />
+    <None Include="Recources\Dictionaries\Legacy\SSRDICTIONARYV1.csv" />
+    <None Include="Recources\Dictionaries\Legacy\WWRDICTIONARYV170.csv" />
+    <None Include="Recources\Dictionaries\Pre Json Logic\MMR V15 txt Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV14.csv">
+    <None Include="Recources\Dictionaries\Misc\MMR V17 entrance Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV15.csv">
+    <None Include="Recources\Dictionaries\Misc\MMR V18 entrance Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV18.csv">
+    <None Include="Recources\Dictionaries\Pre Json Logic\MMR V18 txt Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV8.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Recources\Dictionaries\Legacy and non MM\MMRDICTIONARYV99.csv" />
-    <None Include="Recources\Dictionaries\Legacy and non MM\OOTRDICTIONARYV5.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Recources\Dictionaries\Legacy and non MM\SSRDICTIONARYV1.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Recources\Dictionaries\Legacy and non MM\WWRDICTIONARYV170.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Recources\Dictionaries\MMR V15 txt Logic Dictionary.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Recources\Dictionaries\MMR V17 entrance Logic Dictionary.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Recources\Dictionaries\MMR V18 entrance Logic Dictionary.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Recources\Dictionaries\MMR V18 txt Logic Dictionary.json">
+    <None Include="Recources\Dictionaries\MMR V10 json Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Recources\Dictionaries\MMR V9 json Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Dictionaries\SSR V1 json Logic Dictionary.json">
+    <None Include="Recources\Dictionaries\Other Games\SSR V1 json Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -463,26 +450,12 @@
     <Content Include="Recources\Other Files\Categories.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Recources\Other Files\Custom Logic Presets\Skyward Sword Rando Casual %28Beta%29.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Recources\Other Files\Custom Logic Presets\Skyward Sword Rando Glitched %28Beta%29.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Recources\Other Files\Custom Logic Presets\Web Presets Old.txt" />
-    <Content Include="Recources\Other Files\Other Game Premade Logic\OOTR Logic.txt" />
-    <Content Include="Recources\Other Files\Other Game Premade Logic\SSR Logic.txt" />
     <Content Include="Recources\Other Files\Custom Logic Presets\Web Presets.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Recources\Other Files\Other Game Premade Logic\Skyward Sword Rando Casual %28Beta%29.txt" />
+    <Content Include="Recources\Other Files\Other Game Premade Logic\Skyward Sword Rando Glitched %28Beta%29.txt" />
     <Content Include="Recources\Other Files\README Information for files in this folder.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Recources\Other Files\Other Game Premade Logic\WWR Logic.txt" />
-    <Content Include="Recources\Other Files\SpoilerLogPriceLogicMap.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Recources\Other Files\WalletValues.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

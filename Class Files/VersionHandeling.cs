@@ -75,7 +75,7 @@ namespace MMR_Tracker_V2
         {
             string currentdictionary = "";
             int Versionoffset = -1;
-            foreach (var i in Directory.GetFiles(@"Recources\Dictionaries").ToArray())
+            foreach (var i in Directory.GetFiles(@"Recources\Dictionaries", "*", SearchOption.AllDirectories).ToArray())
             {
                 LogicObjects.LogicDictionary LogicDic = new LogicObjects.LogicDictionary();
                 try 

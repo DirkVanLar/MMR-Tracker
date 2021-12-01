@@ -214,7 +214,6 @@ namespace MMR_Tracker_V2
                     LogicDictionaryList = new List<LogicObjects.LogicDictionaryEntry>()
                 };
 
-                var priceData = TempReadPRiceFile();
                 var entareadic = LogicObjects.MainTrackerInstance.EntranceAreaDic;
 
                 foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.ID < 1143)) 
@@ -228,10 +227,25 @@ namespace MMR_Tracker_V2
                     var locationname = item.HasAttribute<Definitions.LocationNameAttribute>() ? item.GetAttribute<Definitions.LocationNameAttribute>().Name : null;
                     var itemname = item.HasAttribute<Definitions.ItemNameAttribute>() ? item.GetAttribute<Definitions.ItemNameAttribute>().Name : null;
                     int? WalletCapacity = null;
-                    List<string> BossKeynames = new List<string>() { "ItemWoodfallBossKey", "ItemSnowheadBossKey", "ItemGreatBayBossKey", "ItemStoneTowerBossKey" };
+                    List<string> BossKeynames = new List<string>() 
+                    { 
+                        "ItemWoodfallBossKey", 
+                        "ItemSnowheadBossKey", 
+                        "ItemGreatBayBossKey", 
+                        "ItemStoneTowerBossKey" 
+                    };
                     List<string> SmallKeynames = new List<string>()
-                    { "ItemWoodfallKey1", "ItemGreatBayKey1", "ItemSnowheadKey1", "ItemSnowheadKey2", "ItemSnowheadKey3", 
-                        "ItemStoneTowerKey1", "ItemStoneTowerKey2", "ItemStoneTowerKey3", "ItemStoneTowerKey4" };
+                    { 
+                        "ItemWoodfallKey1", //woodfall
+                        "ItemGreatBayKey1", //greatbay
+                        "ItemSnowheadKey1", //snowhead
+                        "ItemSnowheadKey2", 
+                        "ItemSnowheadKey3", 
+                        "ItemStoneTowerKey1", //stonetower
+                        "ItemStoneTowerKey2", 
+                        "ItemStoneTowerKey3", 
+                        "ItemStoneTowerKey4" 
+                    };
 
                     if (!itemPool.Where(x => x.ToString() == i.DictionaryName).Any()) { Console.WriteLine($"{i.DictionaryName} Was not found in MMR files"); }
 
@@ -241,17 +255,16 @@ namespace MMR_Tracker_V2
                     NewLogicDic.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry()
                     {
                         DictionaryName = i.DictionaryName,
-                        LocationName = locationname != null ? locationname : i.LocationName,
-                        ItemName = itemname != null ? itemname : i.ItemName,
-                        LocationArea = locationarea != null ? locationarea : (string.IsNullOrWhiteSpace(i.LocationArea) ? null : i.LocationArea),
+                        LocationName = locationname ?? i.LocationName,
+                        ItemName = itemname ?? i.ItemName,
+                        LocationArea = locationarea ?? (string.IsNullOrWhiteSpace(i.LocationArea) ? null : i.LocationArea),
                         ItemSubType = (string.IsNullOrWhiteSpace(i.ItemSubType) ? null : i.ItemSubType),
                         FakeItem = DicEntry == null || (bool)DicEntry.FakeItem,
                         SpoilerLocation = locationname != null ? new List<string> { locationname }.ToArray() : (DicEntry == null ? null : DicEntry.SpoilerLocation),
                         SpoilerItem = itemname != null ? new List<string> { itemname }.ToArray()  : (DicEntry == null ? null : DicEntry.SpoilerItem),
-                        GossipLocation = gossipLocations == null ? null : gossipLocations,
-                        GossipItem = GossipItems == null ? null : GossipItems,
+                        GossipLocation = gossipLocations ?? null,
+                        GossipItem = GossipItems ?? null,
                         WalletCapacity = WalletCapacity,
-                        SpoilerPriceLocations = priceData.ContainsKey(i.DictionaryName) ? priceData[i.DictionaryName].Split(',') : null,
                         GameClearDungeonEntrance = entareadic.ContainsKey(i.ID) ? LogicObjects.MainTrackerInstance.Logic[entareadic[i.ID]].DictionaryName : null,
                         EntrancePair = null,
                         KeyType = BossKeynames.Contains(i.DictionaryName) ? "boss" : (SmallKeynames.Contains(i.DictionaryName) ? "small" : null)
@@ -273,36 +286,6 @@ namespace MMR_Tracker_V2
                     NullValueHandling = NullValueHandling.Ignore
                 };
                 File.WriteAllText(FilePath, JsonConvert.SerializeObject(NewLogicDic, _jsonSerializerOptions));
-            }
-
-            Dictionary<string,string> TempReadPRiceFile()
-            {
-                var finaldic = new Dictionary<string, string>();
-                var SpoilerPriceDic = new Dictionary<string, int>();
-                var TextFile = File.ReadAllLines(@"Recources\Other Files\SpoilerLogPriceLogicMap.txt");
-
-                bool AtGame = true;
-                foreach (var line in TextFile)
-                {
-                    var x = line.Trim();
-                    x = Regex.Replace(x, @"\s+", " ");
-                    if (string.IsNullOrWhiteSpace(x) || x.StartsWith("//")) { continue; }
-                    if (x.Contains("//")) { x = x.Substring(0, x.IndexOf("//")); }
-                    if (x.ToLower().StartsWith("#gamecodestart:"))
-                    {
-                        AtGame = x.ToLower().Replace("#gamecodestart:", "").Trim().Split(',').Select(y => y.Trim()).Contains(LogicObjects.MainTrackerInstance.GameCode.ToLower());
-                        continue;
-                    }
-                    if (x.ToLower().StartsWith("#gamecodeend:")) { AtGame = true; continue; }
-                    if (!AtGame) { continue; }
-
-                    var RestrictionSplit = x.Split('!');
-
-                    var DicAndPriceData = RestrictionSplit[0].Split('|');
-                    if (DicAndPriceData.Count() < 2) { continue; }
-                    finaldic.Add(DicAndPriceData[0].Trim(), DicAndPriceData[1].Trim());
-                }
-                return finaldic;
             }
 
 
