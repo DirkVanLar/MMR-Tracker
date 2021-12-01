@@ -888,6 +888,9 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
 
             [Description("Randomize Ocarina and Song of Time.")]
             TimeTravel,
+
+            [Description("Add the Royal Wallet to the item pool.")]
+            RoyalWallet,
         }
 
         public enum LocationCategory

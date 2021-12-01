@@ -124,6 +124,9 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             public bool FreeScarecrow
             { get; set; }
 
+            public bool DoubleArcheryRewards
+            { get; set; }
+
             #endregion
 
             #region Random Elements

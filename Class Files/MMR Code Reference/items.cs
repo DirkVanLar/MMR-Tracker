@@ -325,6 +325,16 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [GetItemIndex(0x09), ItemPool(ItemCategory.MainInventory, LocationCategory.NpcRewards)]
             UpgradeGiantWallet,
 
+            [Progressive]
+            [Downgradable]
+            [StartingItem(0xC5CE6E, 0x30)]
+            [ItemName("Royal Wallet"), LocationName("Removed by Royal Wallet"), Region(Region.Misc)]
+            [GossipItemHint("a coin case", "great wealth")]
+            [ShopText("This can hold up to a maximum of 999 rupees.")]
+            [ChestType(ChestTypeAttribute.ChestType.LargeGold)]
+            [GetItemIndex(0x44D), ItemPool(ItemCategory.RoyalWallet, LocationCategory.Fake)]
+            UpgradeRoyalWallet,
+
             //trades
             [Visible]
             [Repeatable, Temporary, Overwritable]
@@ -471,7 +481,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [RupeeRepeatable]
             [StartingItem(0xC5CE70, 0x10, true)]
             [ItemName("Piece of Heart"), LocationName("Town Archery #2"), Region(Region.EastClockTown)]
-            [GossipLocationHint("a town game"), GossipItemHint("a segment of health"), GossipCompetitiveHint(1)]
+            [GossipLocationHint("a town game"), GossipItemHint("a segment of health"), GossipCompetitiveHint(1, nameof(GameplaySettings.DoubleArcheryRewards), false)]
             [GossipCombineOrder(1), GossipCombine(UpgradeBigQuiver, "Town Archery")]
             [ShopText("Collect four to assemble a new Heart Container.")]
             [ChestType(ChestTypeAttribute.ChestType.SmallWooden)]
@@ -524,7 +534,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [RupeeRepeatable]
             [StartingItem(0xC5CE70, 0x10, true)]
             [ItemName("Piece of Heart"), LocationName("Swamp Archery #2"), Region(Region.RoadToSouthernSwamp)]
-            [GossipLocationHint("a swamp game"), GossipItemHint("a segment of health"), GossipCompetitiveHint(1)]
+            [GossipLocationHint("a swamp game"), GossipItemHint("a segment of health"), GossipCompetitiveHint(1, nameof(GameplaySettings.DoubleArcheryRewards), false)]
             [GossipCombineOrder(1), GossipCombine(UpgradeBiggestQuiver, "Swamp Archery")]
             [ShopText("Collect four to assemble a new Heart Container.")]
             [ChestType(ChestTypeAttribute.ChestType.SmallWooden)]
@@ -10096,6 +10106,7 @@ namespace MMR_Tracker.Class_Files.MMR_Code_Reference
             [ShopText("Replenishes a small amount of your life energy.")]
             [GetItemIndex(0x0A), ItemPool(ItemCategory.Fake, LocationCategory.Fake)]
             RecoveryHeart = -2,
+
         }
     }
 }
