@@ -76,11 +76,17 @@ namespace MMR_Tracker_V2
         {
             if (NameToCompare == null) { NameToCompare = logic.DictionaryName; }
             if (searchTerm == "") { return true; }
-            if (searchTerm[0] == '^')
+
+            bool StarredOnly = false;
+            char[] GlobalModifiers = new char[] { '^', '*' };
+            while (searchTerm.Count() > 0 && GlobalModifiers.Contains(searchTerm[0]))
             {
+                if (searchTerm[0] == '*') { StarredOnly = true; }
                 searchTerm = searchTerm.Substring(1);
-                if (searchTerm == "") { return true; }
             }
+            if (StarredOnly && !logic.Starred) { return false; }
+            if (searchTerm == "") { return true; }
+
             string[] searchTerms = searchTerm.Split('|');
             foreach (string term in searchTerms)
             {
@@ -92,66 +98,62 @@ namespace MMR_Tracker_V2
                     bool Perfect = false;
                     var subterm = i;
                     if (subterm == "") { continue; }
-                    if (subterm[0] == '!')
+                    char[] Modifiers = new char[] { '!', '=' };
+
+                    if (subterm == "") { continue; }
+                    while (subterm.Count() > 0 && Modifiers.Contains(subterm[0]))
                     {
-                        Inverse = true;
-                        subterm = subterm.Substring(1);
-                    }
-                    else if (subterm[0] == '=')
-                    {
-                        Perfect = true;
+                        if (subterm[0] == '!') { Inverse = true; }
+                        if (subterm[0] == '=') { Perfect = true; }
                         subterm = subterm.Substring(1);
                     }
                     if (subterm == "") { continue; }
-                    if (subterm[0] == '#')//Search By Location Area
+
+                    if (subterm[0] == '_' && RandomizedItem == null) { subterm = subterm.Substring(1); }
+                    if (subterm == "") { continue; }
+
+                    switch (subterm[0])
                     {
-                        if (subterm.Substring(1) == "" || logic.LocationArea == null) { continue; }
-                        if (logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
-                        if (Perfect && logic.LocationArea.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
+                        case '_': //Search By Randomized Item
+                            if (subterm.Substring(1) == "") { continue; }
+                            if (RandomizedItem == null) { valid = false; }
+                            else
+                            {
+                                string NewTerm = Perfect ? "=" + subterm.Substring(1) : subterm.Substring(1);
+                                if (FilterSearch(RandomizedItem, NewTerm, NameToCompare) == Inverse) { valid = false; }
+                            }
+                            break;
+                        case '#'://Search By Location Area
+                            if (subterm.Substring(1) == "" || logic.LocationArea == null) { continue; }
+                            if (Perfect && logic.LocationArea.ToLower() != subterm.Substring(1).ToLower() == Inverse) { valid = false; }
+                            else if (!Perfect && logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
+                            break;
+                        case '@'://Search By Item Type
+                            if (subterm.Substring(1) == "" || logic.ItemSubType == null) { continue; }
+                            if (Perfect && logic.ItemSubType.ToLower() != subterm.Substring(1).ToLower() == Inverse) { valid = false; }
+                            else if ((!Perfect && logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
+                            break;
+                        case '~'://Search By Dictionary Name
+                            if (subterm.Substring(1) == "" || logic.DictionaryName == null) { continue; }
+                            if (Perfect && logic.DictionaryName.ToLower() != subterm.Substring(1).ToLower() == Inverse) { valid = false; }
+                            else if ((!Perfect && logic.DictionaryName.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
+                            break;
+                        case '$'://Search By Item Name
+                            if (subterm.Substring(1) == "" || logic.ItemName == null) { continue; }
+                            if (Perfect && logic.ItemName.ToLower() != subterm.Substring(1).ToLower() == Inverse) { valid = false; }
+                            else if (!Perfect && logic.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
+                            break;
+                        case '%'://Search By Location Name
+                            if (subterm.Substring(1) == "" || logic.LocationName == null) { continue; }
+                            if (Perfect && logic.LocationName.ToLower() != subterm.Substring(1).ToLower() == Inverse) { valid = false; }
+                            else if (!Perfect && logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
+                            break;
+                        default: //Search By "NameToCompare" variable
+                            if (Perfect && NameToCompare.ToLower() == subterm.ToLower() == Inverse) { valid = false; }
+                            else if (!Perfect && (NameToCompare.ToLower().Contains(subterm.ToLower()) == Inverse)) { valid = false; }
+                            break;
                     }
-                    else if (subterm[0] == '@')//Search By Item Type
-                    {
-                        if (subterm.Substring(1) == "" || logic.ItemSubType == null) { continue; }
-                        if ((logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
-                        if (Perfect && logic.ItemSubType.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
-                    }
-                    else if (subterm[0] == '~')//Search By Dictionary Name
-                    {
-                        if (subterm.Substring(1) == "" || logic.DictionaryName == null) { continue; }
-                        if ((logic.DictionaryName.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
-                        if (Perfect && logic.DictionaryName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
-                    }
-                    else if (subterm[0] == '$')//Search By Item Name
-                    {
-                        if (subterm.Substring(1) == "" || logic.ItemName == null) { continue; }
-                        if (logic.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
-                        if (Perfect && logic.ItemName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
-                    }
-                    else if (subterm[0] == '%')//Search By Location Name
-                    {
-                        if (subterm.Substring(1) == "" || logic.LocationName == null) { continue; }
-                        if (logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
-                        if (Perfect && logic.LocationName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
-                    }
-                    else if (subterm[0] == '_')//Search By Randomized Item
-                    {
-                        if (subterm.Substring(1) == "") { continue; }
-                        if (RandomizedItem == null) { valid = false; }
-                        else if ((RandomizedItem.ItemName ?? RandomizedItem.DictionaryName).ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
-                        if (Perfect && logic.ItemName.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
-                    }
-                    else if (subterm[0] == '*')//Search Starred Items
-                    {
-                        if (subterm.Substring(1) == "") { continue; }
-                        if (NameToCompare.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
-                        if (Perfect && NameToCompare.ToLower() != subterm.Substring(1).ToLower()) { valid = false; }
-                        if (!logic.Starred) { valid = false; }
-                    }
-                    else //Search By "NameToCompare" variable
-                    {
-                        if (!NameToCompare.ToLower().Contains(subterm.ToLower()) == !Inverse) { valid = false; }
-                        if (Perfect && NameToCompare.ToLower() != subterm.ToLower()) { valid = false; }
-                    }
+                    if (valid == false) { break; }
                 }
                 if (valid) { return true; }
             }
