@@ -127,6 +127,7 @@ namespace MMR_Tracker.Forms
             Images.Add("GreatFairySword", GetImage(4, 4));
             Images.Add("AdultWallet", GetImage(5, 3));
             Images.Add("GiantWallet", GetImage(5, 4));
+            Images.Add("RoyalWallet", GetImage(5, 2));
             //Trade Items
             Images.Add("MoonTear", GetImage(0, 6));
             Images.Add("LandDeed", GetImage(1, 6));
@@ -349,7 +350,7 @@ namespace MMR_Tracker.Forms
                 CreateCountablePictureBox("SnowheadFairy", new List<string> { "Snowhead Stray Fairy" }, Spacing);
                 CreateCountablePictureBox("Magic", new List<string> { "Magic Power", "Extended Magic Power" }, Spacing);
 
-                CreateProgressivePictureBox("AdultWallet", new Dictionary<string, string> { { "UpgradeAdultWallet", "null" }, { "UpgradeGiantWallet", "null" } }, Spacing);
+                CreateProgressivePictureBox("AdultWallet", new Dictionary<string, string> { { "UpgradeAdultWallet", "null" }, { "UpgradeGiantWallet", "null" }, { "UpgradeRoyalWallet", "null" } }, Spacing);
                 CreatePictureBox("GyorgsRemains", "RemainsGyorg", Spacing);
                 CreatePictureBox("Map|3", "ItemGreatBayMap", Spacing);
                 CreatePictureBox("Compass|3", "ItemGreatBayCompass", Spacing);
@@ -615,8 +616,8 @@ namespace MMR_Tracker.Forms
                 DrawCountableItem("SmallKey|2", new List<string> { "Snowhead Small Key" }, Spacing, true);
                 DrawCountableItem("SnowheadFairy", new List<string> { "Snowhead Stray Fairy" }, Spacing, true);
                 DrawCountableItem("Magic", new List<string> { "Magic Power", "Extended Magic Power" }, Spacing);
-
-                DrawHighestTierItem("AdultWallet", new Dictionary<string, string> { { "UpgradeAdultWallet", "null" }, { "UpgradeGiantWallet", "null" } }, Spacing, new List<string> { "AdultWallet", "GiantWallet" });
+                
+                DrawHighestTierItem("AdultWallet", new Dictionary<string, string> { { "UpgradeAdultWallet", "null" }, { "UpgradeGiantWallet", "null" }, { "UpgradeRoyalWallet", "null" } }, Spacing, new List<string> { "AdultWallet", "GiantWallet", "RoyalWallet" });
                 DrawItem("GyorgsRemains", "RemainsGyorg", Spacing);
                 DrawItem("Map|3", "ItemGreatBayMap", Spacing);
                 DrawItem("Compass|3", "ItemGreatBayCompass", Spacing);
