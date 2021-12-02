@@ -171,9 +171,9 @@ namespace MMR_Tracker
             }
 
             List<string> NewMisc = new List<string> { "#Misc" };
-            foreach (var i in Groups)
+            foreach (var i in ValidLocations)
             {
-                if (!Assignedlocations.Contains(i) && ValidLocations.Contains(i)) { NewMisc.Add(i); Debugging.Log(i); }
+                if (!Assignedlocations.Contains(i)) { NewMisc.Add(i); Debugging.Log(i); }
             }
             LocationDic.Find(x => x.locationArea == "Misc").SubAreas = NewMisc.ToArray();
         }

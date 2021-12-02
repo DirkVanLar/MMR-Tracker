@@ -125,27 +125,27 @@ namespace MMR_Tracker_V2
                             break;
                         case '#'://Search By Location Area
                             if (subterm.Substring(1) == "" || logic.LocationArea == null) { continue; }
-                            if (Perfect && logic.LocationArea.ToLower() != subterm.Substring(1).ToLower() == Inverse) { valid = false; }
+                            if (Perfect && logic.LocationArea.ToLower() == subterm.Substring(1).ToLower() == Inverse) { valid = false; }
                             else if (!Perfect && logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                             break;
                         case '@'://Search By Item Type
                             if (subterm.Substring(1) == "" || logic.ItemSubType == null) { continue; }
-                            if (Perfect && logic.ItemSubType.ToLower() != subterm.Substring(1).ToLower() == Inverse) { valid = false; }
+                            if (Perfect && logic.ItemSubType.ToLower() == subterm.Substring(1).ToLower() == Inverse) { valid = false; }
                             else if ((!Perfect && logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
                             break;
                         case '~'://Search By Dictionary Name
                             if (subterm.Substring(1) == "" || logic.DictionaryName == null) { continue; }
-                            if (Perfect && logic.DictionaryName.ToLower() != subterm.Substring(1).ToLower() == Inverse) { valid = false; }
+                            if (Perfect && logic.DictionaryName.ToLower() == subterm.Substring(1).ToLower() == Inverse) { valid = false; }
                             else if ((!Perfect && logic.DictionaryName.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
                             break;
                         case '$'://Search By Item Name
                             if (subterm.Substring(1) == "" || logic.ItemName == null) { continue; }
-                            if (Perfect && logic.ItemName.ToLower() != subterm.Substring(1).ToLower() == Inverse) { valid = false; }
+                            if (Perfect && logic.ItemName.ToLower() == subterm.Substring(1).ToLower() == Inverse) { valid = false; }
                             else if (!Perfect && logic.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                             break;
                         case '%'://Search By Location Name
                             if (subterm.Substring(1) == "" || logic.LocationName == null) { continue; }
-                            if (Perfect && logic.LocationName.ToLower() != subterm.Substring(1).ToLower() == Inverse) { valid = false; }
+                            if (Perfect && logic.LocationName.ToLower() == subterm.Substring(1).ToLower() == Inverse) { valid = false; }
                             else if (!Perfect && logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
                             break;
                         default: //Search By "NameToCompare" variable
