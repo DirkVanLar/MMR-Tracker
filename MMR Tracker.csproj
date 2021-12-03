@@ -340,48 +340,6 @@
     <EmbeddedResource Include="Forms\Extra Functionality\SeedChecker.resx">
       <DependentUpon>SeedChecker.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_27968_SCC8TE1C01_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_27968_WM0JCLZ3ZK_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_63C97_FE1MKEQ00T_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_63C97_OMO9R6MECL_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_65B30_ARI6CAA2RR_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_65B30_VOCRPUFZXS_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_92361_BQG1RWJFPD_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_92361_N67XARDIQN_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_92361_ZLVK8VZ0UT_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_B73A1_6ZNLKZCN36_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_B73A1_J69FCOOV1I_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_D98CE_6A6XVAISL0_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Spoiler Logs\OoT_D98CE_JKI93B07ON_Spoiler.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Misc\OOTRTestFiles\Vanilla_Locations.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Misc\packages.config" />
     <None Include="Properties\Settings.settings">
@@ -432,6 +390,7 @@
     <Content Include="Misc\unnamed.jpg" />
     <Content Include="Misc\10_106247_moon_from_majoras_mask_render_majoras_mask_moon_WIL_icon.ico" />
     <Content Include="Misc\Notes.txt" />
+    <Content Include="Other Games\OOTR Data.txt" />
     <Content Include="Recources\Images\IndexWarp.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -470,7 +429,9 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Misc\OOTRTestFiles\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>; Move all assemblies and related files to lib folder

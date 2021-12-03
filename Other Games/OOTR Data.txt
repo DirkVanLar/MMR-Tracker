@@ -1,0 +1,1111 @@
+
+//Dungeons
+'KF Outside Deku Tree -> Deku Tree Lobby',                         
+'Deku Tree Lobby -> KF Outside Deku Tree',                         
+'Death Mountain -> Dodongos Cavern Beginning',                     
+'Dodongos Cavern Beginning -> Death Mountain',                     
+'Zoras Fountain -> Jabu Jabus Belly Beginning',                    
+'Jabu Jabus Belly Beginning -> Zoras Fountain',                    
+'SFM Forest Temple Entrance Ledge -> Forest Temple Lobby',         
+'Forest Temple Lobby -> SFM Forest Temple Entrance Ledge',         
+'DMC Fire Temple Entrance -> Fire Temple Lower',                   
+'Fire Temple Lower -> DMC Fire Temple Entrance',                   
+'Lake Hylia -> Water Temple Lobby',                                
+'Water Temple Lobby -> Lake Hylia',                                
+'Desert Colossus -> Spirit Temple Lobby',                          
+'Spirit Temple Lobby -> Desert Colossus From Spirit Lobby',        
+'Graveyard Warp Pad Region -> Shadow Temple Entryway',             
+'Shadow Temple Entryway -> Graveyard Warp Pad Region',             
+'Kakariko Village -> Bottom of the Well',                          
+'Bottom of the Well -> Kakariko Village',                          
+'ZF Ice Ledge -> Ice Cavern Beginning',                            
+'Ice Cavern Beginning -> ZF Ice Ledge',                            
+'Gerudo Fortress -> Gerudo Training Ground Lobby',                 
+'Gerudo Training Ground Lobby -> Gerudo Fortress',                 
+
+//Interior
+'Kokiri Forest -> KF Midos House',                                 
+'KF Midos House -> Kokiri Forest',                                 
+'Kokiri Forest -> KF Sarias House',                                
+'KF Sarias House -> Kokiri Forest',                                
+'Kokiri Forest -> KF House of Twins',                              
+'KF House of Twins -> Kokiri Forest',                              
+'Kokiri Forest -> KF Know It All House',                           
+'KF Know It All House -> Kokiri Forest',                           
+'Kokiri Forest -> KF Kokiri Shop',                                 
+'KF Kokiri Shop -> Kokiri Forest',                                 
+'Lake Hylia -> LH Lab',                                            
+'LH Lab -> Lake Hylia',                                            
+'LH Fishing Island -> LH Fishing Hole',                            
+'LH Fishing Hole -> LH Fishing Island',                            
+'GV Fortress Side -> GV Carpenter Tent',                           
+'GV Carpenter Tent -> GV Fortress Side',                           
+'Market Entrance -> Market Guard House',                           
+'Market Guard House -> Market Entrance',                           
+'Market -> Market Mask Shop',                                      
+'Market Mask Shop -> Market',                                      
+'Market -> Market Bombchu Bowling',                                
+'Market Bombchu Bowling -> Market',                                
+'Market -> Market Potion Shop',                                    
+'Market Potion Shop -> Market',                                    
+'Market -> Market Treasure Chest Game',                            
+'Market Treasure Chest Game -> Market',                            
+'Market Back Alley -> Market Bombchu Shop',                        
+'Market Bombchu Shop -> Market Back Alley',                        
+'Market Back Alley -> Market Man in Green House',                  
+'Market Man in Green House -> Market Back Alley',                  
+'Kakariko Village -> Kak Carpenter Boss House',                    
+'Kak Carpenter Boss House -> Kakariko Village',                    
+'Kakariko Village -> Kak House of Skulltula',                      
+'Kak House of Skulltula -> Kakariko Village',                      
+'Kakariko Village -> Kak Impas House',                             
+'Kak Impas House -> Kakariko Village',                             
+'Kak Impas Ledge -> Kak Impas House Back',                         
+'Kak Impas House Back -> Kak Impas Ledge',                         
+'Kak Backyard -> Kak Odd Medicine Building',                       
+'Kak Odd Medicine Building -> Kak Backyard',                       
+'Graveyard -> Graveyard Dampes House',                             
+'Graveyard Dampes House -> Graveyard',                             
+'Goron City -> GC Shop',                                           
+'GC Shop -> Goron City',                                           
+'Zoras Domain -> ZD Shop',                                         
+'ZD Shop -> Zoras Domain',                                         
+'Lon Lon Ranch -> LLR Talons House',                               
+'LLR Talons House -> Lon Lon Ranch',                               
+'Lon Lon Ranch -> LLR Stables',                                    
+'LLR Stables -> Lon Lon Ranch',                                    
+'Lon Lon Ranch -> LLR Tower',                                      
+'LLR Tower -> Lon Lon Ranch',                                      
+'Market -> Market Bazaar',                                         
+'Market Bazaar -> Market',                                         
+'Market -> Market Shooting Gallery',                               
+'Market Shooting Gallery -> Market',                               
+'Kakariko Village -> Kak Bazaar',                                  
+'Kak Bazaar -> Kakariko Village',                                  
+'Kakariko Village -> Kak Shooting Gallery',                        
+'Kak Shooting Gallery -> Kakariko Village',                        
+'Desert Colossus -> Colossus Great Fairy Fountain',                
+'Colossus Great Fairy Fountain -> Desert Colossus',                
+'Hyrule Castle Grounds -> HC Great Fairy Fountain',                
+'HC Great Fairy Fountain -> Castle Grounds',                       
+'Ganons Castle Grounds -> OGC Great Fairy Fountain',               
+'OGC Great Fairy Fountain -> Castle Grounds',                      
+'DMC Lower Nearby -> DMC Great Fairy Fountain',                    
+'DMC Great Fairy Fountain -> DMC Lower Local',                     
+'Death Mountain Summit -> DMT Great Fairy Fountain',               
+'DMT Great Fairy Fountain -> Death Mountain Summit',               
+'Zoras Fountain -> ZF Great Fairy Fountain',                       
+'ZF Great Fairy Fountain -> Zoras Fountain',                       
+'Kokiri Forest -> KF Links House',                                 
+'KF Links House -> Kokiri Forest',                                 
+'ToT Entrance -> Temple of Time',                                  
+'Temple of Time -> ToT Entrance',                                  
+'Kakariko Village -> Kak Windmill',                                
+'Kak Windmill -> Kakariko Village',                                
+'Kakariko Village -> Kak Potion Shop Front',                       
+'Kak Potion Shop Front -> Kakariko Village',                       
+'Kak Backyard -> Kak Potion Shop Back',                            
+'Kak Potion Shop Back -> Kak Backyard',                            
+
+//Grottos
+'Desert Colossus -> Colossus Grotto',                              
+'Colossus Grotto -> Desert Colossus',                              
+'Lake Hylia -> LH Grotto',                                         
+'LH Grotto -> Lake Hylia',                                         
+'Zora River -> ZR Storms Grotto',                                  
+'ZR Storms Grotto -> Zora River',                                  
+'Zora River -> ZR Fairy Grotto',                                   
+'ZR Fairy Grotto -> Zora River',                                   
+'Zora River -> ZR Open Grotto',                                    
+'ZR Open Grotto -> Zora River',                                    
+'DMC Lower Nearby -> DMC Hammer Grotto',                           
+'DMC Hammer Grotto -> DMC Lower Local',                            
+'DMC Upper Nearby -> DMC Upper Grotto',                            
+'DMC Upper Grotto -> DMC Upper Local',                             
+'GC Grotto Platform -> GC Grotto',                                 
+'GC Grotto -> GC Grotto Platform',                                 
+'Death Mountain -> DMT Storms Grotto',                             
+'DMT Storms Grotto -> Death Mountain',                             
+'Death Mountain Summit -> DMT Cow Grotto',                         
+'DMT Cow Grotto -> Death Mountain Summit',                         
+'Kak Backyard -> Kak Open Grotto',                                 
+'Kak Open Grotto -> Kak Backyard',                                 
+'Kakariko Village -> Kak Redead Grotto',                           
+'Kak Redead Grotto -> Kakariko Village',                           
+'Hyrule Castle Grounds -> HC Storms Grotto',                       
+'HC Storms Grotto -> Castle Grounds',                              
+'Hyrule Field -> HF Tektite Grotto',                               
+'HF Tektite Grotto -> Hyrule Field',                               
+'Hyrule Field -> HF Near Kak Grotto',                              
+'HF Near Kak Grotto -> Hyrule Field',                              
+'Hyrule Field -> HF Fairy Grotto',                                 
+'HF Fairy Grotto -> Hyrule Field',                                 
+'Hyrule Field -> HF Near Market Grotto',                           
+'HF Near Market Grotto -> Hyrule Field',                           
+'Hyrule Field -> HF Cow Grotto',                                   
+'HF Cow Grotto -> Hyrule Field',                                   
+'Hyrule Field -> HF Inside Fence Grotto',                          
+'HF Inside Fence Grotto -> Hyrule Field',                          
+'Hyrule Field -> HF Open Grotto',                                  
+'HF Open Grotto -> Hyrule Field',                                  
+'Hyrule Field -> HF Southeast Grotto',                             
+'HF Southeast Grotto -> Hyrule Field',                             
+'Lon Lon Ranch -> LLR Grotto',                                     
+'LLR Grotto -> Lon Lon Ranch',                                     
+'SFM Entryway -> SFM Wolfos Grotto',                               
+'SFM Wolfos Grotto -> SFM Entryway',                               
+'Sacred Forest Meadow -> SFM Storms Grotto',                       
+'SFM Storms Grotto -> Sacred Forest Meadow',                       
+'Sacred Forest Meadow -> SFM Fairy Grotto',                        
+'SFM Fairy Grotto -> Sacred Forest Meadow',                        
+'LW Beyond Mido -> LW Scrubs Grotto',                              
+'LW Scrubs Grotto -> LW Beyond Mido',                              
+'Lost Woods -> LW Near Shortcuts Grotto',                          
+'LW Near Shortcuts Grotto -> Lost Woods',                          
+'Kokiri Forest -> KF Storms Grotto',                               
+'KF Storms Grotto -> Kokiri Forest',                               
+'Zoras Domain -> ZD Storms Grotto',                                
+'ZD Storms Grotto -> Zoras Domain',                                
+'Gerudo Fortress -> GF Storms Grotto',                             
+'GF Storms Grotto -> Gerudo Fortress',                             
+'GV Fortress Side -> GV Storms Grotto',                            
+'GV Storms Grotto -> GV Fortress Side',                            
+'GV Grotto Ledge -> GV Octorok Grotto',                            
+'GV Octorok Grotto -> GV Grotto Ledge',                            
+'LW Beyond Mido -> Deku Theater',                                  
+'Deku Theater -> LW Beyond Mido',
+'Graveyard -> Graveyard Shield Grave',                             
+'Graveyard Shield Grave -> Graveyard',                             
+'Graveyard -> Graveyard Heart Piece Grave',                        
+'Graveyard Heart Piece Grave -> Graveyard',                        
+'Graveyard -> Graveyard Royal Familys Tomb',                       
+'Graveyard Royal Familys Tomb -> Graveyard',                       
+'Graveyard -> Graveyard Dampes Grave',                             
+'Graveyard Dampes Grave -> Graveyard',                             
+
+//Overworld
+'Kokiri Forest -> LW Bridge From Forest',                          
+'LW Bridge -> Kokiri Forest',                                      
+'Kokiri Forest -> Lost Woods',                                     
+'LW Forest Exit -> Kokiri Forest',                                 
+'Lost Woods -> GC Woods Warp',                                     
+'GC Woods Warp -> Lost Woods',                                     
+'Lost Woods -> Zora River',                                        
+'Zora River -> Lost Woods',                                        
+'LW Beyond Mido -> SFM Entryway',                                  
+'SFM Entryway -> LW Beyond Mido',                                  
+'LW Bridge -> Hyrule Field',                                       
+'Hyrule Field -> LW Bridge',                                       
+'Hyrule Field -> Lake Hylia',                                      
+'Lake Hylia -> Hyrule Field',                                      
+'Hyrule Field -> Gerudo Valley',                                   
+'Gerudo Valley -> Hyrule Field',                                   
+'Hyrule Field -> Market Entrance',                                 
+'Market Entrance -> Hyrule Field',                                 
+'Hyrule Field -> Kakariko Village',                                
+'Kakariko Village -> Hyrule Field',                                
+'Hyrule Field -> ZR Front',                                        
+'ZR Front -> Hyrule Field',                                        
+'Hyrule Field -> Lon Lon Ranch',                                   
+'Lon Lon Ranch -> Hyrule Field',                                   
+'Lake Hylia -> Zoras Domain',                                      
+'Zoras Domain -> Lake Hylia',                                      
+'GV Fortress Side -> Gerudo Fortress',                             
+'Gerudo Fortress -> GV Fortress Side',                             
+'GF Outside Gate -> Wasteland Near Fortress',                      
+'Wasteland Near Fortress -> GF Outside Gate',                      
+'Wasteland Near Colossus -> Desert Colossus',                      
+'Desert Colossus -> Wasteland Near Colossus',                      
+'Market Entrance -> Market',                                       
+'Market -> Market Entrance',                                       
+'Market -> Castle Grounds',                                        
+'Castle Grounds -> Market',                                        
+'Market -> ToT Entrance',                                          
+'ToT Entrance -> Market',                                          
+'Kakariko Village -> Graveyard',                                   
+'Graveyard -> Kakariko Village',                                   
+'Kak Behind Gate -> Death Mountain',                               
+'Death Mountain -> Kak Behind Gate',                               
+'Death Mountain -> Goron City',                                    
+'Goron City -> Death Mountain',                                    
+'GC Darunias Chamber -> DMC Lower Local',                          
+'DMC Lower Nearby -> GC Darunias Chamber',                         
+'Death Mountain Summit -> DMC Upper Local',                        
+'DMC Upper Nearby -> Death Mountain Summit',                       
+'ZR Behind Waterfall -> Zoras Domain',                             
+'Zoras Domain -> ZR Behind Waterfall',                             
+'ZD Behind King Zora -> Zoras Fountain',                           
+'Zoras Fountain -> ZD Behind King Zora',                           
+
+//One-way
+'LH Owl Flight -> Hyrule Field',                                   
+'DMT Owl Flight -> Kak Impas Rooftop',                             
+'Child Spawn -> KF Links House',                                   
+'Adult Spawn -> Temple of Time',                                   
+'Minuet of Forest Warp -> Sacred Forest Meadow',                   
+'Bolero of Fire Warp -> DMC Central Local',                        
+'Serenade of Water Warp -> Lake Hylia',                            
+'Requiem of Spirit Warp -> Desert Colossus',                       
+'Nocturne of Shadow Warp -> Graveyard Warp Pad Region',            
+'Prelude of Light Warp -> Temple of Time',                         
+'ZD Eyeball Frog Timeout -> Zoras Domain',                         
+'ZR Top of Waterfall -> Zora River',                               
+
+
+//Items
+"Links Pocket",                                                 'Light Medallion',                       None
+"Queen Gohma",                                                  'Kokiri Emerald',                        None
+"King Dodongo",                                                 'Goron Ruby',                            None
+"Barinade",                                                     'Zora Sapphire',                         None
+"Phantom Ganon",                                                'Forest Medallion',                      None
+"Volvagia",                                                     'Fire Medallion',                        None
+"Morpha",                                                       'Water Medallion',                       None
+"Bongo Bongo",                                                  'Shadow Medallion',                      None
+"Twinrova",                                                     'Spirit Medallion',                      None
+"Ganon",                                                        'Triforce',                              None
+"Gift from Sages",                                               None,                                   None
+
+# So
+"Song from Impa",                                               'Zeldas Lullaby',                        ("Hyrule Castle", "Market", "Songs")
+"Song from Malon",                                              'Eponas Song',                           ("Lon Lon Ranch", "Songs",)
+"Song from Saria",                                              'Sarias Song',                           ("Sacred Forest Meadow", "Forest", "Songs")
+"Song from Royal Familys Tomb",                                 'Suns Song',                             ("the Graveyard", "Kakariko", "Songs")
+"Song from Ocarina of Time",                                    'Song of Time',                          ("Hyrule Field", "Songs", "Need Spiritual Stones")
+"Song from Windmill",                                           'Song of Storms',                        ("Kakariko Village", "Kakariko", "Songs")
+"Sheik in Forest",                                              'Minuet of Forest',                      ("Sacred Forest Meadow", "Forest", "Songs")
+"Sheik in Crater",                                              'Bolero of Fire',                        ("Death Mountain Crater", "Death Mountain", "Songs")
+"Sheik in Ice Cavern",                                          'Serenade of Water',                     ("Ice Cavern", "Songs",)
+"Sheik at Colossus",                                            'Requiem of Spirit',                     ("Desert Colossus", "Songs",)
+"Sheik in Kakariko",                                            'Nocturne of Shadow',                    ("Kakariko Village", "Kakariko", "Songs")
+"Sheik at Temple",                                              'Prelude of Light',                      ("Temple of Time", "Market", "Songs")
+
+# Overwo
+//Kokiri For
+"KF Midos Top Left Chest",                                      'Rupees (5)',                            ("Kokiri Forest", "Forest",)
+"KF Midos Top Right Chest",                                     'Rupees (5)',                            ("Kokiri Forest", "Forest",)
+"KF Midos Bottom Left Chest",                                   'Rupee (1)',                             ("Kokiri Forest", "Forest",)
+"KF Midos Bottom Right Chest",                                  'Recovery Heart',                        ("Kokiri Forest", "Forest",)
+"KF Kokiri Sword Chest",                                        'Kokiri Sword',                          ("Kokiri Forest", "Forest",)
+"KF Storms Grotto Chest",                                       'Rupees (20)',                           ("Kokiri Forest", "Forest", "Grottos")
+"KF Links House Cow",                                           'Milk',                                  ("Kokiri Forest", "Forest", "Cow", "Minigames")
+"KF GS Know It All House",                                      'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",)
+"KF GS Bean Patch",                                             'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",)
+"KF GS House of Twins",                                         'Gold Skulltula Token',                  ("Kokiri Forest", "Skulltulas",)
+"KF Shop Item 1",                                               'Buy Deku Shield',                       ("Kokiri Forest", "Forest", "Shops")
+"KF Shop Item 2",                                               'Buy Deku Nut (5)',                      ("Kokiri Forest", "Forest", "Shops")
+"KF Shop Item 3",                                               'Buy Deku Nut (10)',                     ("Kokiri Forest", "Forest", "Shops")
+"KF Shop Item 4",                                               'Buy Deku Stick (1)',                    ("Kokiri Forest", "Forest", "Shops")
+"KF Shop Item 5",                                               'Buy Deku Seeds (30)',                   ("Kokiri Forest", "Forest", "Shops")
+"KF Shop Item 6",                                               'Buy Arrows (10)',                       ("Kokiri Forest", "Forest", "Shops")
+"KF Shop Item 7",                                               'Buy Arrows (30)',                       ("Kokiri Forest", "Forest", "Shops")
+"KF Shop Item 8",                                               'Buy Heart',                             ("Kokiri Forest", "Forest", "Shops")
+
+//Lost Wo
+"LW Gift from Saria",                                           'Ocarina',                               ("the Lost Woods", "Forest",)
+"LW Ocarina Memory Game",                                       'Piece of Heart',                        ("the Lost Woods", "Forest", "Minigames")
+"LW Target in Woods",                                           'Slingshot',                             ("the Lost Woods", "Forest",)
+"LW Near Shortcuts Grotto Chest",                               'Rupees (5)',                            ("the Lost Woods", "Forest", "Grottos")
+"Deku Theater Skull Mask",                                      'Deku Stick Capacity',                   ("the Lost Woods", "Forest", "Grottos")
+"Deku Theater Mask of Truth",                                   'Deku Nut Capacity',                     ("the Lost Woods", "Forest", "Need Spiritual Stones", "Grottos")
+"LW Skull Kid",                                                 'Piece of Heart',                        ("the Lost Woods", "Forest",)
+"LW Deku Scrub Near Bridge",                                    'Deku Stick Capacity',                   ("the Lost Woods", "Forest", "Deku Scrub", "Deku Scrub Upgrades")
+"LW Deku Scrub Near Deku Theater Left",                         'Buy Deku Stick (1)',                    ("the Lost Woods", "Forest", "Deku Scrub")
+"LW Deku Scrub Near Deku Theater Right",                        'Buy Deku Nut (5)',                      ("the Lost Woods", "Forest", "Deku Scrub")
+"LW Deku Scrub Grotto Front",                                   'Deku Nut Capacity',                     ("the Lost Woods", "Forest", "Deku Scrub", "Deku Scrub Upgrades", "Grottos")
+"LW Deku Scrub Grotto Rear",                                    'Buy Deku Seeds (30)',                   ("the Lost Woods", "Forest", "Deku Scrub", "Grottos")
+"LW GS Bean Patch Near Bridge",                                 'Gold Skulltula Token',                  ("the Lost Woods", "Skulltulas",)
+"LW GS Bean Patch Near Theater",                                'Gold Skulltula Token',                  ("the Lost Woods", "Skulltulas",)
+"LW GS Above Theater",                                          'Gold Skulltula Token',                  ("the Lost Woods", "Skulltulas",)
+
+//Sacred Forest Mea
+"SFM Wolfos Grotto Chest",                                      'Rupees (50)',                           ("Sacred Forest Meadow", "Forest", "Grottos")
+"SFM Deku Scrub Grotto Front",                                  'Buy Green Potion',                      ("Sacred Forest Meadow", "Forest", "Deku Scrub", "Grottos")
+"SFM Deku Scrub Grotto Rear",                                   'Buy Red Potion [30]',                   ("Sacred Forest Meadow", "Forest", "Deku Scrub", "Grottos")
+"SFM GS",                                                       'Gold Skulltula Token',                  ("Sacred Forest Meadow", "Skulltulas",)
+
+//Hyrule Fi
+"HF Ocarina of Time Item",                                      'Ocarina',                               ("Hyrule Field", "Need Spiritual Stones",)
+"HF Near Market Grotto Chest",                                  'Rupees (5)',                            ("Hyrule Field", "Grottos",)
+"HF Tektite Grotto Freestanding PoH",                           'Piece of Heart',                        ("Hyrule Field", "Grottos",)
+"HF Southeast Grotto Chest",                                    'Rupees (20)',                           ("Hyrule Field", "Grottos",)
+"HF Open Grotto Chest",                                         'Rupees (5)',                            ("Hyrule Field", "Grottos",)
+"HF Deku Scrub Grotto",                                         'Piece of Heart',                        ("Hyrule Field", "Deku Scrub", "Deku Scrub Upgrades", "Grottos")
+"HF Cow Grotto Cow",                                            'Milk',                                  ("Hyrule Field", "Cow", "Grottos")
+"HF GS Cow Grotto",                                             'Gold Skulltula Token',                  ("Hyrule Field", "Skulltulas", "Grottos")
+"HF GS Near Kak Grotto",                                        'Gold Skulltula Token',                  ("Hyrule Field", "Skulltulas", "Grottos")
+
+//Mar
+"Market Shooting Gallery Reward",                               'Slingshot',                             ("the Market", "Market", "Minigames")
+"Market Bombchu Bowling First Prize",                           'Bomb Bag',                              ("the Market", "Market", "Minigames")
+"Market Bombchu Bowling Second Prize",                          'Piece of Heart',                        ("the Market", "Market", "Minigames")
+"Market Bombchu Bowling Bombchus",                              'Bombchu Drop',                          ("the Market", "Market", "Minigames")
+"Market Lost Dog",                                              'Piece of Heart',                        ("the Market", "Market",)
+"Market Treasure Chest Game Reward",                            'Piece of Heart (Treasure Chest Game)',  ("the Market", "Market", "Minigames")
+"Market 10 Big Poes",                                           'Bottle',                                ("the Market", "Hyrule Castle",)
+"Market GS Guard House",                                        'Gold Skulltula Token',                  ("the Market", "Skulltulas",)
+"Market Bazaar Item 1",                                         'Buy Hylian Shield',                     ("the Market", "Market", "Shops")
+"Market Bazaar Item 2",                                         'Buy Bombs (5) [35]',                    ("the Market", "Market", "Shops")
+"Market Bazaar Item 3",                                         'Buy Deku Nut (5)',                      ("the Market", "Market", "Shops")
+"Market Bazaar Item 4",                                         'Buy Heart',                             ("the Market", "Market", "Shops")
+"Market Bazaar Item 5",                                         'Buy Arrows (10)',                       ("the Market", "Market", "Shops")
+"Market Bazaar Item 6",                                         'Buy Arrows (50)',                       ("the Market", "Market", "Shops")
+"Market Bazaar Item 7",                                         'Buy Deku Stick (1)',                    ("the Market", "Market", "Shops")
+"Market Bazaar Item 8",                                         'Buy Arrows (30)',                       ("the Market", "Market", "Shops")
+"Market Potion Shop Item 1",                                    'Buy Green Potion',                      ("the Market", "Market", "Shops")
+"Market Potion Shop Item 2",                                    'Buy Blue Fire',                         ("the Market", "Market", "Shops")
+"Market Potion Shop Item 3",                                    'Buy Red Potion [30]',                   ("the Market", "Market", "Shops")
+"Market Potion Shop Item 4",                                    'Buy Fairy\'s Spirit',                   ("the Market", "Market", "Shops")
+"Market Potion Shop Item 5",                                    'Buy Deku Nut (5)',                      ("the Market", "Market", "Shops")
+"Market Potion Shop Item 6",                                    'Buy Bottle Bug',                        ("the Market", "Market", "Shops")
+"Market Potion Shop Item 7",                                    'Buy Poe',                               ("the Market", "Market", "Shops")
+"Market Potion Shop Item 8",                                    'Buy Fish',                              ("the Market", "Market", "Shops")
+"Market Bombchu Shop Item 1",                                   'Buy Bombchu (5)',                       ("the Market", "Market", "Shops")
+"Market Bombchu Shop Item 2",                                   'Buy Bombchu (10)',                      ("the Market", "Market", "Shops")
+"Market Bombchu Shop Item 3",                                   'Buy Bombchu (10)',                      ("the Market", "Market", "Shops")
+"Market Bombchu Shop Item 4",                                   'Buy Bombchu (10)',                      ("the Market", "Market", "Shops")
+"Market Bombchu Shop Item 5",                                   'Buy Bombchu (20)',                      ("the Market", "Market", "Shops")
+"Market Bombchu Shop Item 6",                                   'Buy Bombchu (20)',                      ("the Market", "Market", "Shops")
+"Market Bombchu Shop Item 7",                                   'Buy Bombchu (20)',                      ("the Market", "Market", "Shops")
+"Market Bombchu Shop Item 8",                                   'Buy Bombchu (20)',                      ("the Market", "Market", "Shops")
+"ToT Light Arrows Cutscene",                                    'Light Arrows',                          ("Temple of Time", "Market",)
+
+//Hyrule Cas
+"HC Malon Egg",                                                 'Weird Egg',                             ("Hyrule Castle", "Market",)
+"HC Zeldas Letter",                                             'Zeldas Letter',                         ("Hyrule Castle", "Market",)
+"HC Great Fairy Reward",                                        'Dins Fire',                             ("Hyrule Castle", "Market", "Fairies")
+"HC GS Tree",                                                   'Gold Skulltula Token',                  ("Hyrule Castle", "Skulltulas",)
+"HC GS Storms Grotto",                                          'Gold Skulltula Token',                  ("Hyrule Castle", "Skulltulas", "Grottos")
+
+//Lon Lon Ra
+"LLR Talons Chickens",                                          'Bottle with Milk',                      ("Lon Lon Ranch", "Minigames")
+"LLR Freestanding PoH",                                         'Piece of Heart',                        ("Lon Lon Ranch",)
+"LLR Deku Scrub Grotto Left",                                   'Buy Deku Nut (5)',                      ("Lon Lon Ranch", "Deku Scrub", "Grottos")
+"LLR Deku Scrub Grotto Center",                                 'Buy Deku Seeds (30)',                   ("Lon Lon Ranch", "Deku Scrub", "Grottos")
+"LLR Deku Scrub Grotto Right",                                  'Buy Bombs (5) [35]',                    ("Lon Lon Ranch", "Deku Scrub", "Grottos")
+"LLR Stables Left Cow",                                         'Milk',                                  ("Lon Lon Ranch", "Cow",)
+"LLR Stables Right Cow",                                        'Milk',                                  ("Lon Lon Ranch", "Cow",)
+"LLR Tower Left Cow",                                           'Milk',                                  ("Lon Lon Ranch", "Cow",)
+"LLR Tower Right Cow",                                          'Milk',                                  ("Lon Lon Ranch", "Cow",)
+"LLR GS House Window",                                          'Gold Skulltula Token',                  ("Lon Lon Ranch", "Skulltulas",)
+"LLR GS Tree",                                                  'Gold Skulltula Token',                  ("Lon Lon Ranch", "Skulltulas",)
+"LLR GS Rain Shed",                                             'Gold Skulltula Token',                  ("Lon Lon Ranch", "Skulltulas",)
+"LLR GS Back Wall",                                             'Gold Skulltula Token',                  ("Lon Lon Ranch", "Skulltulas",)
+
+//Kakar
+"Kak Anju as Child",                                            'Bottle',                                ("Kakariko Village", "Kakariko", "Minigames")
+"Kak Anju as Adult",                                            'Pocket Egg',                            ("Kakariko Village", "Kakariko",)
+"Kak Impas House Freestanding PoH",                             'Piece of Heart',                        ("Kakariko Village", "Kakariko",)
+"Kak Windmill Freestanding PoH",                                'Piece of Heart',                        ("Kakariko Village", "Kakariko",)
+"Kak Man on Roof",                                              'Piece of Heart',                        ("Kakariko Village", "Kakariko",)
+"Kak Open Grotto Chest",                                        'Rupees (20)',                           ("Kakariko Village", "Kakariko", "Grottos")
+"Kak Redead Grotto Chest",                                      'Rupees (200)',                          ("Kakariko Village", "Kakariko", "Grottos")
+"Kak Shooting Gallery Reward",                                  'Bow',                                   ("Kakariko Village", "Kakariko", "Minigames")
+"Kak 10 Gold Skulltula Reward",                                 'Progressive Wallet',                    ("Kakariko Village", "Kakariko", "Skulltula House")
+"Kak 20 Gold Skulltula Reward",                                 'Stone of Agony',                        ("Kakariko Village", "Kakariko", "Skulltula House")
+"Kak 30 Gold Skulltula Reward",                                 'Progressive Wallet',                    ("Kakariko Village", "Kakariko", "Skulltula House")
+"Kak 40 Gold Skulltula Reward",                                 'Bombchus (10)',                         ("Kakariko Village", "Kakariko", "Skulltula House")
+"Kak 50 Gold Skulltula Reward",                                 'Piece of Heart',                        ("Kakariko Village", "Kakariko", "Skulltula House")
+"Kak Impas House Cow",                                          'Milk',                                  ("Kakariko Village", "Kakariko", "Cow")
+"Kak GS Tree",                                                  'Gold Skulltula Token',                  ("Kakariko Village", "Skulltulas",)
+"Kak GS Guards House",                                          'Gold Skulltula Token',                  ("Kakariko Village", "Skulltulas",)
+"Kak GS Watchtower",                                            'Gold Skulltula Token',                  ("Kakariko Village", "Skulltulas",)
+"Kak GS Skulltula House",                                       'Gold Skulltula Token',                  ("Kakariko Village", "Skulltulas",)
+"Kak GS House Under Construction",                              'Gold Skulltula Token',                  ("Kakariko Village", "Skulltulas",)
+"Kak GS Above Impas House",                                     'Gold Skulltula Token',                  ("Kakariko Village", "Skulltulas",)
+"Kak Bazaar Item 1",                                            'Buy Hylian Shield',                     ("Kakariko Village", "Kakariko", "Shops")
+"Kak Bazaar Item 2",                                            'Buy Bombs (5) [35]',                    ("Kakariko Village", "Kakariko", "Shops")
+"Kak Bazaar Item 3",                                            'Buy Deku Nut (5)',                      ("Kakariko Village", "Kakariko", "Shops")
+"Kak Bazaar Item 4",                                            'Buy Heart',                             ("Kakariko Village", "Kakariko", "Shops")
+"Kak Bazaar Item 5",                                            'Buy Arrows (10)',                       ("Kakariko Village", "Kakariko", "Shops")
+"Kak Bazaar Item 6",                                            'Buy Arrows (50)',                       ("Kakariko Village", "Kakariko", "Shops")
+"Kak Bazaar Item 7",                                            'Buy Deku Stick (1)',                    ("Kakariko Village", "Kakariko", "Shops")
+"Kak Bazaar Item 8",                                            'Buy Arrows (30)',                       ("Kakariko Village", "Kakariko", "Shops")
+"Kak Potion Shop Item 1",                                       'Buy Deku Nut (5)',                      ("Kakariko Village", "Kakariko", "Shops")
+"Kak Potion Shop Item 2",                                       'Buy Fish',                              ("Kakariko Village", "Kakariko", "Shops")
+"Kak Potion Shop Item 3",                                       'Buy Red Potion [30]',                   ("Kakariko Village", "Kakariko", "Shops")
+"Kak Potion Shop Item 4",                                       'Buy Green Potion',                      ("Kakariko Village", "Kakariko", "Shops")
+"Kak Potion Shop Item 5",                                       'Buy Blue Fire',                         ("Kakariko Village", "Kakariko", "Shops")
+"Kak Potion Shop Item 6",                                       'Buy Bottle Bug',                        ("Kakariko Village", "Kakariko", "Shops")
+"Kak Potion Shop Item 7",                                       'Buy Poe',                               ("Kakariko Village", "Kakariko", "Shops")
+"Kak Potion Shop Item 8",                                       'Buy Fairy\'s Spirit',                   ("Kakariko Village", "Kakariko", "Shops")
+
+//Gravey
+"Graveyard Shield Grave Chest",                                 'Hylian Shield',                         ("the Graveyard", "Kakariko",)
+"Graveyard Heart Piece Grave Chest",                            'Piece of Heart',                        ("the Graveyard", "Kakariko",)
+"Graveyard Royal Familys Tomb Chest",                           'Bombs (5)',                             ("the Graveyard", "Kakariko",)
+"Graveyard Freestanding PoH",                                   'Piece of Heart',                        ("the Graveyard", "Kakariko",)
+"Graveyard Dampe Gravedigging Tour",                            'Piece of Heart',                        ("the Graveyard", "Kakariko",)
+"Graveyard Hookshot Chest",                                     'Progressive Hookshot',                  ("the Graveyard", "Kakariko",)
+"Graveyard Dampe Race Freestanding PoH",                        'Piece of Heart',                        ("the Graveyard", "Kakariko", "Minigames")
+"Graveyard GS Bean Patch",                                      'Gold Skulltula Token',                  ("the Graveyard", "Skulltulas",)
+"Graveyard GS Wall",                                            'Gold Skulltula Token',                  ("the Graveyard", "Skulltulas",)
+
+//Death Mountain Tr
+"DMT Freestanding PoH",                                         'Piece of Heart',                        ("Death Mountain Trail", "Death Mountain",)
+"DMT Chest",                                                    'Rupees (50)',                           ("Death Mountain Trail", "Death Mountain",)
+"DMT Storms Grotto Chest",                                      'Rupees (200)',                          ("Death Mountain Trail", "Death Mountain", "Grottos")
+"DMT Great Fairy Reward",                                       'Magic Meter',                           ("Death Mountain Trail", "Death Mountain", "Fairies")
+"DMT Biggoron",                                                 'Biggoron Sword',                        ("Death Mountain Trail", "Death Mountain",)
+"DMT Cow Grotto Cow",                                           'Milk',                                  ("Death Mountain Trail", "Death Mountain", "Cow", "Grottos")
+"DMT GS Near Kak",                                              'Gold Skulltula Token',                  ("Death Mountain Trail", "Skulltulas",)
+"DMT GS Bean Patch",                                            'Gold Skulltula Token',                  ("Death Mountain Trail", "Skulltulas",)
+"DMT GS Above Dodongos Cavern",                                 'Gold Skulltula Token',                  ("Death Mountain Trail", "Skulltulas",)
+"DMT GS Falling Rocks Path",                                    'Gold Skulltula Token',                  ("Death Mountain Trail", "Skulltulas",)
+
+//Goron C
+"GC Darunias Joy",                                              'Progressive Strength Upgrade',          ("Goron City",)
+"GC Pot Freestanding PoH",                                      'Piece of Heart',                        ("Goron City", "Goron City",)
+"GC Rolling Goron as Child",                                    'Bomb Bag',                              ("Goron City",)
+"GC Rolling Goron as Adult",                                    'Goron Tunic',                           ("Goron City",)
+"GC Medigoron",                                                 'Giants Knife',                          ("Goron City",)
+"GC Maze Left Chest",                                           'Rupees (200)',                          ("Goron City",)
+"GC Maze Right Chest",                                          'Rupees (50)',                           ("Goron City",)
+"GC Maze Center Chest",                                         'Rupees (50)',                           ("Goron City",)
+"GC Deku Scrub Grotto Left",                                    'Buy Deku Nut (5)',                      ("Goron City", "Deku Scrub", "Grottos")
+"GC Deku Scrub Grotto Center",                                  'Buy Arrows (30)',                       ("Goron City", "Deku Scrub", "Grottos")
+"GC Deku Scrub Grotto Right",                                   'Buy Bombs (5) [35]',                    ("Goron City", "Deku Scrub", "Grottos")
+"GC GS Center Platform",                                        'Gold Skulltula Token',                  ("Goron City", "Skulltulas",)
+"GC GS Boulder Maze",                                           'Gold Skulltula Token',                  ("Goron City", "Skulltulas",)
+"GC Shop Item 1",                                               'Buy Bombs (5) [25]',                    ("Goron City", "Shops",)
+"GC Shop Item 2",                                               'Buy Bombs (10)',                        ("Goron City", "Shops",)
+"GC Shop Item 3",                                               'Buy Bombs (20)',                        ("Goron City", "Shops",)
+"GC Shop Item 4",                                               'Buy Bombs (30)',                        ("Goron City", "Shops",)
+"GC Shop Item 5",                                               'Buy Goron Tunic',                       ("Goron City", "Shops",)
+"GC Shop Item 6",                                               'Buy Heart',                             ("Goron City", "Shops",)
+"GC Shop Item 7",                                               'Buy Red Potion [40]',                   ("Goron City", "Shops",)
+"GC Shop Item 8",                                               'Buy Heart',                             ("Goron City", "Shops",)
+
+//Death Mountain Cra
+"DMC Volcano Freestanding PoH",                                 'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",)
+"DMC Wall Freestanding PoH",                                    'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",)
+"DMC Upper Grotto Chest",                                       'Bombs (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos")
+"DMC Great Fairy Reward",                                       'Magic Meter',                           ("Death Mountain Crater", "Death Mountain", "Fairies",)
+"DMC Deku Scrub",                                               'Buy Bombs (5) [35]',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub")
+"DMC Deku Scrub Grotto Left",                                   'Buy Deku Nut (5)',                      ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos")
+"DMC Deku Scrub Grotto Center",                                 'Buy Arrows (30)',                       ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos")
+"DMC Deku Scrub Grotto Right",                                  'Buy Bombs (5) [35]',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos")
+"DMC GS Crate",                                                 'Gold Skulltula Token',                  ("Death Mountain Crater", "Skulltulas",)
+"DMC GS Bean Patch",                                            'Gold Skulltula Token',                  ("Death Mountain Crater", "Skulltulas",)
+
+//Zora's Ri
+"ZR Magic Bean Salesman",                                       'Magic Bean',                            ("Zora's River",)
+"ZR Open Grotto Chest",                                         'Rupees (20)',                           ("Zora's River", "Grottos",)
+"ZR Frogs in the Rain",                                         'Piece of Heart',                        ("Zora's River", "Minigames",)
+"ZR Frogs Ocarina Game",                                        'Piece of Heart',                        ("Zora's River",)
+"ZR Near Open Grotto Freestanding PoH",                         'Piece of Heart',                        ("Zora's River",)
+"ZR Near Domain Freestanding PoH",                              'Piece of Heart',                        ("Zora's River",)
+"ZR Deku Scrub Grotto Front",                                   'Buy Green Potion',                      ("Zora's River", "Deku Scrub", "Grottos")
+"ZR Deku Scrub Grotto Rear",                                    'Buy Red Potion [30]',                   ("Zora's River", "Deku Scrub", "Grottos")
+"ZR GS Tree",                                                   'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",)
+"ZR GS Ladder",                                                 'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",)
+"ZR GS Near Raised Grottos",                                    'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",)
+"ZR GS Above Bridge",                                           'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",)
+
+//Zora's Dom
+"ZD Diving Minigame",                                           'Progressive Scale',                     ("Zora's Domain", "Minigames",)
+"ZD Chest",                                                     'Piece of Heart',                        ("Zora's Domain", )
+"ZD King Zora Thawed",                                          'Zora Tunic',                            ("Zora's Domain",)
+"ZD GS Frozen Waterfall",                                       'Gold Skulltula Token',                  ("Zora's Domain", "Skulltulas",)
+"ZD Shop Item 1",                                               'Buy Zora Tunic',                        ("Zora's Domain", "Shops",)
+"ZD Shop Item 2",                                               'Buy Arrows (10)',                       ("Zora's Domain", "Shops",)
+"ZD Shop Item 3",                                               'Buy Heart',                             ("Zora's Domain", "Shops",)
+"ZD Shop Item 4",                                               'Buy Arrows (30)',                       ("Zora's Domain", "Shops",)
+"ZD Shop Item 5",                                               'Buy Deku Nut (5)',                      ("Zora's Domain", "Shops",)
+"ZD Shop Item 6",                                               'Buy Arrows (50)',                       ("Zora's Domain", "Shops",)
+"ZD Shop Item 7",                                               'Buy Fish',                              ("Zora's Domain", "Shops",)
+"ZD Shop Item 8",                                               'Buy Red Potion [50]',                   ("Zora's Domain", "Shops",)
+
+//Zora's Fount
+"ZF Great Fairy Reward",                                        'Farores Wind',                          ("Zora's Fountain", "Fairies",)
+"ZF Iceberg Freestanding PoH",                                  'Piece of Heart',                        ("Zora's Fountain",)
+"ZF Bottom Freestanding PoH",                                   'Piece of Heart',                        ("Zora's Fountain",)
+"ZF GS Above the Log",                                          'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",)
+"ZF GS Tree",                                                   'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",)
+"ZF GS Hidden Cave",                                            'Gold Skulltula Token',                  ("Zora's Fountain", "Skulltulas",)
+
+//Lake Hy
+"LH Underwater Item",                                           'Rutos Letter',                          ("Lake Hylia",)
+"LH Child Fishing",                                             'Piece of Heart',                        ("Lake Hylia", "Minigames",)
+"LH Adult Fishing",                                             'Progressive Scale',                     ("Lake Hylia", "Minigames",)
+"LH Lab Dive",                                                  'Piece of Heart',                        ("Lake Hylia",)
+"LH Freestanding PoH",                                          'Piece of Heart',                        ("Lake Hylia",)
+"LH Sun",                                                       'Fire Arrows',                           ("Lake Hylia",)
+"LH Deku Scrub Grotto Left",                                    'Buy Deku Nut (5)',                      ("Lake Hylia", "Deku Scrub", "Grottos")
+"LH Deku Scrub Grotto Center",                                  'Buy Deku Seeds (30)',                   ("Lake Hylia", "Deku Scrub", "Grottos")
+"LH Deku Scrub Grotto Right",                                   'Buy Bombs (5) [35]',                    ("Lake Hylia", "Deku Scrub", "Grottos")
+"LH GS Bean Patch",                                             'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",)
+"LH GS Lab Wall",                                               'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",)
+"LH GS Small Island",                                           'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",)
+"LH GS Lab Crate",                                              'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",)
+"LH GS Tree",                                                   'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",)
+
+//Gerudo Val
+"GV Crate Freestanding PoH",                                    'Piece of Heart',                        ("Gerudo Valley", "Gerudo",)
+"GV Waterfall Freestanding PoH",                                'Piece of Heart',                        ("Gerudo Valley", "Gerudo",)
+"GV Chest",                                                     'Rupees (50)',                           ("Gerudo Valley", "Gerudo",)
+"GV Deku Scrub Grotto Front",                                   'Buy Green Potion',                      ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos")
+"GV Deku Scrub Grotto Rear",                                    'Buy Red Potion [30]',                   ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos")
+"GV Cow",                                                       'Milk',                                  ("Gerudo Valley", "Gerudo", "Cow")
+"GV GS Small Bridge",                                           'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",)
+"GV GS Bean Patch",                                             'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",)
+"GV GS Behind Tent",                                            'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",)
+"GV GS Pillar",                                                 'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",)
+
+//Gerudo's Fortr
+"GF Chest",                                                     'Piece of Heart',                        ("Gerudo's Fortress", "Gerudo",)
+"GF HBA 1000 Points",                                           'Piece of Heart',                        ("Gerudo's Fortress", "Gerudo", "Minigames")
+"GF HBA 1500 Points",                                           'Bow',                                   ("Gerudo's Fortress", "Gerudo", "Minigames")
+"GF GS Top Floor",                                              'Gold Skulltula Token',                  ("Gerudo's Fortress", "Skulltulas",)
+"GF GS Archery Range",                                          'Gold Skulltula Token',                  ("Gerudo's Fortress", "Skulltulas",)
+
+//Thieves' Hide
+"Hideout Jail Guard (1 Torch)",                                 'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",)
+"Hideout Jail Guard (2 Torches)",                               'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",)
+"Hideout Jail Guard (3 Torches)",                               'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",)
+"Hideout Jail Guard (4 Torches)",                               'Small Key (Thieves Hideout)',           ("Thieves' Hideout", "Gerudo",)
+"Hideout Gerudo Membership Card",                               'Gerudo Membership Card',                ("Thieves' Hideout", "Gerudo",)
+
+//Wastel
+"Wasteland Bombchu Salesman",                                   'Bombchus (10)',                         ("Haunted Wasteland",)
+"Wasteland Chest",                                              'Rupees (50)',                           ("Haunted Wasteland",)
+"Wasteland GS",                                                 'Gold Skulltula Token',                  ("Haunted Wasteland", "Skulltulas",)
+
+//Colos
+"Colossus Great Fairy Reward",                                  'Nayrus Love',                           ("Desert Colossus", "Fairies",)
+"Colossus Freestanding PoH",                                    'Piece of Heart',                        ("Desert Colossus",)
+"Colossus Deku Scrub Grotto Front",                             'Buy Green Potion',                      ("Desert Colossus", "Deku Scrub", "Grottos")
+"Colossus Deku Scrub Grotto Rear",                              'Buy Red Potion [30]',                   ("Desert Colossus", "Deku Scrub", "Grottos")
+"Colossus GS Bean Patch",                                       'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",)
+"Colossus GS Tree",                                             'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",)
+"Colossus GS Hill",                                             'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",)
+
+//Outside Ganon's Cas
+"OGC Great Fairy Reward",                                       'Double Defense',                        ("Outside Ganon's Castle", "Market", "Fairies")
+"OGC GS",                                                       'Gold Skulltula Token',                  ("Outside Ganon's Castle", "Skulltulas",)
+
+# Dunge
+//Deku Tree vani
+"Deku Tree Map Chest",                                          'Map (Deku Tree)',                       ("Deku Tree", "Vanilla",)
+"Deku Tree Slingshot Room Side Chest",                          'Recovery Heart',                        ("Deku Tree", "Vanilla",)
+"Deku Tree Slingshot Chest",                                    'Slingshot',                             ("Deku Tree", "Vanilla",)
+"Deku Tree Compass Chest",                                      'Compass (Deku Tree)',                   ("Deku Tree", "Vanilla",)
+"Deku Tree Compass Room Side Chest",                            'Recovery Heart',                        ("Deku Tree", "Vanilla",)
+"Deku Tree Basement Chest",                                     'Recovery Heart',                        ("Deku Tree", "Vanilla",)
+"Deku Tree GS Compass Room",                                    'Gold Skulltula Token',                  ("Deku Tree", "Vanilla", "Skulltulas",)
+"Deku Tree GS Basement Vines",                                  'Gold Skulltula Token',                  ("Deku Tree", "Vanilla", "Skulltulas",)
+"Deku Tree GS Basement Gate",                                   'Gold Skulltula Token',                  ("Deku Tree", "Vanilla", "Skulltulas",)
+"Deku Tree GS Basement Back Room",                              'Gold Skulltula Token',                  ("Deku Tree", "Vanilla", "Skulltulas",)
+
+//Deku Tree
+"Deku Tree MQ Map Chest",                                       'Map (Deku Tree)',                       ("Deku Tree", "Master Quest",)
+"Deku Tree MQ Slingshot Chest",                                 'Slingshot',                             ("Deku Tree", "Master Quest",)
+"Deku Tree MQ Slingshot Room Back Chest",                       'Deku Shield',                           ("Deku Tree", "Master Quest",)
+"Deku Tree MQ Compass Chest",                                   'Compass (Deku Tree)',                   ("Deku Tree", "Master Quest",)
+"Deku Tree MQ Basement Chest",                                  'Deku Shield',                           ("Deku Tree", "Master Quest",)
+"Deku Tree MQ Before Spinning Log Chest",                       'Recovery Heart',                        ("Deku Tree", "Master Quest",)
+"Deku Tree MQ After Spinning Log Chest",                        'Rupees (50)',                           ("Deku Tree", "Master Quest",)
+"Deku Tree MQ Deku Scrub",                                      'Buy Deku Shield',                       ("Deku Tree", "Master Quest", "Deku Scrub",)
+"Deku Tree MQ GS Lobby",                                        'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",)
+"Deku Tree MQ GS Compass Room",                                 'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",)
+"Deku Tree MQ GS Basement Graves Room",                         'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",)
+"Deku Tree MQ GS Basement Back Room",                           'Gold Skulltula Token',                  ("Deku Tree", "Master Quest", "Skulltulas",)
+
+//Deku Tree sha
+"Deku Tree Queen Gohma Heart",                                  'Heart Container',                       ("Deku Tree", "Vanilla", "Master Quest",)
+
+//Dodongo's Cavern vani
+"Dodongos Cavern Map Chest",                                    'Map (Dodongos Cavern)',                 ("Dodongo's Cavern", "Vanilla",)
+"Dodongos Cavern Compass Chest",                                'Compass (Dodongos Cavern)',             ("Dodongo's Cavern", "Vanilla",)
+"Dodongos Cavern Bomb Flower Platform Chest",                   'Rupees (20)',                           ("Dodongo's Cavern", "Vanilla",)
+"Dodongos Cavern Bomb Bag Chest",                               'Bomb Bag',                              ("Dodongo's Cavern", "Vanilla",)
+"Dodongos Cavern End of Bridge Chest",                          'Deku Shield',                           ("Dodongo's Cavern", "Vanilla",)
+"Dodongos Cavern Deku Scrub Side Room Near Dodongos",           'Buy Deku Stick (1)',                    ("Dodongo's Cavern", "Vanilla", "Deku Scrub",)
+"Dodongos Cavern Deku Scrub Lobby",                             'Buy Deku Shield',                       ("Dodongo's Cavern", "Vanilla", "Deku Scrub",)
+"Dodongos Cavern Deku Scrub Near Bomb Bag Left",                'Buy Deku Nut (5)',                      ("Dodongo's Cavern", "Vanilla", "Deku Scrub",)
+"Dodongos Cavern Deku Scrub Near Bomb Bag Right",               'Buy Deku Seeds (30)',                   ("Dodongo's Cavern", "Vanilla", "Deku Scrub",)
+"Dodongos Cavern GS Side Room Near Lower Lizalfos",             'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",)
+"Dodongos Cavern GS Scarecrow",                                 'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",)
+"Dodongos Cavern GS Alcove Above Stairs",                       'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",)
+"Dodongos Cavern GS Vines Above Stairs",                        'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",)
+"Dodongos Cavern GS Back Room",                                 'Gold Skulltula Token',                  ("Dodongo's Cavern", "Vanilla", "Skulltulas",)
+
+//Dodongo's Cavern
+"Dodongos Cavern MQ Map Chest",                                 'Map (Dodongos Cavern)',                 ("Dodongo's Cavern", "Master Quest",)
+"Dodongos Cavern MQ Bomb Bag Chest",                            'Bomb Bag',                              ("Dodongo's Cavern", "Master Quest",)
+"Dodongos Cavern MQ Torch Puzzle Room Chest",                   'Rupees (5)',                            ("Dodongo's Cavern", "Master Quest",)
+"Dodongos Cavern MQ Larvae Room Chest",                         'Deku Shield',                           ("Dodongo's Cavern", "Master Quest",)
+"Dodongos Cavern MQ Compass Chest",                             'Compass (Dodongos Cavern)',             ("Dodongo's Cavern", "Master Quest",)
+"Dodongos Cavern MQ Under Grave Chest",                         'Hylian Shield',                         ("Dodongo's Cavern", "Master Quest",)
+"Dodongos Cavern MQ Deku Scrub Lobby Front",                    'Buy Deku Seeds (30)',                   ("Dodongo's Cavern", "Master Quest", "Deku Scrub",)
+"Dodongos Cavern MQ Deku Scrub Lobby Rear",                     'Buy Deku Stick (1)',                    ("Dodongo's Cavern", "Master Quest", "Deku Scrub",)
+"Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos",  'Buy Red Potion [30]',                   ("Dodongo's Cavern", "Master Quest", "Deku Scrub",)
+"Dodongos Cavern MQ Deku Scrub Staircase",                      'Buy Deku Shield',                       ("Dodongo's Cavern", "Master Quest", "Deku Scrub",)
+"Dodongos Cavern MQ GS Scrub Room",                             'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",)
+"Dodongos Cavern MQ GS Larvae Room",                            'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",)
+"Dodongos Cavern MQ GS Lizalfos Room",                          'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",)
+"Dodongos Cavern MQ GS Song of Time Block Room",                'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",)
+"Dodongos Cavern MQ GS Back Area",                              'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",)
+
+//Dodongo's Cavern sha
+"Dodongos Cavern Boss Room Chest",                              'Bombs (5)',                             ("Dodongo's Cavern", "Vanilla", "Master Quest",)
+"Dodongos Cavern King Dodongo Heart",                           'Heart Container',                       ("Dodongo's Cavern", "Vanilla", "Master Quest",)
+
+//Jabu Jabu's Belly vani
+"Jabu Jabus Belly Boomerang Chest",                             'Boomerang',                             ("Jabu Jabu's Belly", "Vanilla",)
+"Jabu Jabus Belly Map Chest",                                   'Map (Jabu Jabus Belly)',                ("Jabu Jabu's Belly", "Vanilla",)
+"Jabu Jabus Belly Compass Chest",                               'Compass (Jabu Jabus Belly)',            ("Jabu Jabu's Belly", "Vanilla",)
+"Jabu Jabus Belly Deku Scrub",                                  'Buy Deku Nut (5)',                      ("Jabu Jabu's Belly", "Vanilla", "Deku Scrub",)
+"Jabu Jabus Belly GS Water Switch Room",                        'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",)
+"Jabu Jabus Belly GS Lobby Basement Lower",                     'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",)
+"Jabu Jabus Belly GS Lobby Basement Upper",                     'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",)
+"Jabu Jabus Belly GS Near Boss",                                'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Vanilla", "Skulltulas",)
+
+//Jabu Jabu's Belly
+"Jabu Jabus Belly MQ Map Chest",                                'Map (Jabu Jabus Belly)',                ("Jabu Jabu's Belly", "Master Quest",)
+"Jabu Jabus Belly MQ First Room Side Chest",                    'Deku Nuts (5)',                         ("Jabu Jabu's Belly", "Master Quest",)
+"Jabu Jabus Belly MQ Second Room Lower Chest",                  'Deku Nuts (5)',                         ("Jabu Jabu's Belly", "Master Quest",)
+"Jabu Jabus Belly MQ Compass Chest",                            'Compass (Jabu Jabus Belly)',            ("Jabu Jabu's Belly", "Master Quest",)
+"Jabu Jabus Belly MQ Basement Near Switches Chest",             'Deku Nuts (5)',                         ("Jabu Jabu's Belly", "Master Quest",)
+"Jabu Jabus Belly MQ Basement Near Vines Chest",                'Bombchus (10)',                         ("Jabu Jabu's Belly", "Master Quest",)
+"Jabu Jabus Belly MQ Boomerang Room Small Chest",               'Deku Nuts (5)',                         ("Jabu Jabu's Belly", "Master Quest",)
+"Jabu Jabus Belly MQ Boomerang Chest",                          'Boomerang',                             ("Jabu Jabu's Belly", "Master Quest",)
+"Jabu Jabus Belly MQ Falling Like Like Room Chest",             'Deku Stick (1)',                        ("Jabu Jabu's Belly", "Master Quest",)
+"Jabu Jabus Belly MQ Second Room Upper Chest",                  'Recovery Heart',                        ("Jabu Jabu's Belly", "Master Quest",)
+"Jabu Jabus Belly MQ Near Boss Chest",                          'Deku Shield',                           ("Jabu Jabu's Belly", "Master Quest",)
+"Jabu Jabus Belly MQ Cow",                                      'Milk',                                  ("Jabu Jabu's Belly", "Master Quest", "Cow",)
+"Jabu Jabus Belly MQ GS Boomerang Chest Room",                  'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",)
+"Jabu Jabus Belly MQ GS Tailpasaran Room",                      'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",)
+"Jabu Jabus Belly MQ GS Invisible Enemies Room",                'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",)
+"Jabu Jabus Belly MQ GS Near Boss",                             'Gold Skulltula Token',                  ("Jabu Jabu's Belly", "Master Quest", "Skulltulas",)
+
+//Jabu Jabu's Belly sha
+"Jabu Jabus Belly Barinade Heart",                              'Heart Container',                       ("Jabu Jabu's Belly", "Vanilla", "Master Quest",)
+
+//Bottom of the Well vani
+"Bottom of the Well Front Left Fake Wall Chest",                'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Front Center Bombable Chest",               'Bombchus (10)',                         ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Back Left Bombable Chest",                  'Deku Nuts (10)',                        ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Underwater Left Chest",                     'Recovery Heart',                        ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Freestanding Key",                          'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Compass Chest",                             'Compass (Bottom of the Well)',          ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Center Skulltula Chest",                    'Deku Nuts (5)',                         ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Right Bottom Fake Wall Chest",              'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Fire Keese Chest",                          'Deku Shield',                           ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Like Like Chest",                           'Hylian Shield',                         ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Map Chest",                                 'Map (Bottom of the Well)',              ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Underwater Front Chest",                    'Bombs (10)',                            ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Invisible Chest",                           'Rupees (200)',                          ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well Lens of Truth Chest",                       'Lens of Truth',                         ("Bottom of the Well", "Vanilla",)
+"Bottom of the Well GS West Inner Room",                        'Gold Skulltula Token',                  ("Bottom of the Well", "Vanilla", "Skulltulas",)
+"Bottom of the Well GS East Inner Room",                        'Gold Skulltula Token',                  ("Bottom of the Well", "Vanilla", "Skulltulas",)
+"Bottom of the Well GS Like Like Cage",                         'Gold Skulltula Token',                  ("Bottom of the Well", "Vanilla", "Skulltulas",)
+
+//Bottom of the Well
+"Bottom of the Well MQ Map Chest",                              'Map (Bottom of the Well)',              ("Bottom of the Well", "Master Quest",)
+"Bottom of the Well MQ East Inner Room Freestanding Key",       'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Master Quest",)
+"Bottom of the Well MQ Compass Chest",                          'Compass (Bottom of the Well)',          ("Bottom of the Well", "Master Quest",)
+"Bottom of the Well MQ Dead Hand Freestanding Key",             'Small Key (Bottom of the Well)',        ("Bottom of the Well", "Master Quest",)
+"Bottom of the Well MQ Lens of Truth Chest",                    'Lens of Truth',                         ("Bottom of the Well", "Master Quest",)
+"Bottom of the Well MQ GS Coffin Room",                         'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",)
+"Bottom of the Well MQ GS West Inner Room",                     'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",)
+"Bottom of the Well MQ GS Basement",                            'Gold Skulltula Token',                  ("Bottom of the Well", "Master Quest", "Skulltulas",)
+
+//Forest Temple vani
+"Forest Temple First Room Chest",                               'Small Key (Forest Temple)',             ("Forest Temple", "Vanilla",)
+"Forest Temple First Stalfos Chest",                            'Small Key (Forest Temple)',             ("Forest Temple", "Vanilla",)
+"Forest Temple Raised Island Courtyard Chest",                  'Recovery Heart',                        ("Forest Temple", "Vanilla",)
+"Forest Temple Map Chest",                                      'Map (Forest Temple)',                   ("Forest Temple", "Vanilla",)
+"Forest Temple Well Chest",                                     'Small Key (Forest Temple)',             ("Forest Temple", "Vanilla",)
+"Forest Temple Eye Switch Chest",                               'Arrows (30)',                           ("Forest Temple", "Vanilla",)
+"Forest Temple Boss Key Chest",                                 'Boss Key (Forest Temple)',              ("Forest Temple", "Vanilla",)
+"Forest Temple Floormaster Chest",                              'Small Key (Forest Temple)',             ("Forest Temple", "Vanilla",)
+"Forest Temple Red Poe Chest",                                  'Small Key (Forest Temple)',             ("Forest Temple", "Vanilla",)
+"Forest Temple Bow Chest",                                      'Bow',                                   ("Forest Temple", "Vanilla",)
+"Forest Temple Blue Poe Chest",                                 'Compass (Forest Temple)',               ("Forest Temple", "Vanilla",)
+"Forest Temple Falling Ceiling Room Chest",                     'Arrows (10)',                           ("Forest Temple", "Vanilla",)
+"Forest Temple Basement Chest",                                 'Arrows (5)',                            ("Forest Temple", "Vanilla",)
+"Forest Temple GS First Room",                                  'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",)
+"Forest Temple GS Lobby",                                       'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",)
+"Forest Temple GS Raised Island Courtyard",                     'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",)
+"Forest Temple GS Level Island Courtyard",                      'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",)
+"Forest Temple GS Basement",                                    'Gold Skulltula Token',                  ("Forest Temple", "Vanilla", "Skulltulas",)
+
+//Forest Temple
+"Forest Temple MQ First Room Chest",                            'Small Key (Forest Temple)',             ("Forest Temple", "Master Quest",)
+"Forest Temple MQ Wolfos Chest",                                'Small Key (Forest Temple)',             ("Forest Temple", "Master Quest",)
+"Forest Temple MQ Well Chest",                                  'Small Key (Forest Temple)',             ("Forest Temple", "Master Quest",)
+"Forest Temple MQ Raised Island Courtyard Lower Chest",         'Small Key (Forest Temple)',             ("Forest Temple", "Master Quest",)
+"Forest Temple MQ Raised Island Courtyard Upper Chest",         'Small Key (Forest Temple)',             ("Forest Temple", "Master Quest",)
+"Forest Temple MQ Boss Key Chest",                              'Boss Key (Forest Temple)',              ("Forest Temple", "Master Quest",)
+"Forest Temple MQ Redead Chest",                                'Small Key (Forest Temple)',             ("Forest Temple", "Master Quest",)
+"Forest Temple MQ Map Chest",                                   'Map (Forest Temple)',                   ("Forest Temple", "Master Quest",)
+"Forest Temple MQ Bow Chest",                                   'Bow',                                   ("Forest Temple", "Master Quest",)
+"Forest Temple MQ Compass Chest",                               'Compass (Forest Temple)',               ("Forest Temple", "Master Quest",)
+"Forest Temple MQ Falling Ceiling Room Chest",                  'Arrows (5)',                            ("Forest Temple", "Master Quest",)
+"Forest Temple MQ Basement Chest",                              'Arrows (5)',                            ("Forest Temple", "Master Quest",)
+"Forest Temple MQ GS First Hallway",                            'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",)
+"Forest Temple MQ GS Raised Island Courtyard",                  'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",)
+"Forest Temple MQ GS Level Island Courtyard",                   'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",)
+"Forest Temple MQ GS Well",                                     'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",)
+"Forest Temple MQ GS Block Push Room",                          'Gold Skulltula Token',                  ("Forest Temple", "Master Quest", "Skulltulas",)
+
+//Forest Temple sha
+"Forest Temple Phantom Ganon Heart",                            'Heart Container',                       ("Forest Temple", "Vanilla", "Master Quest",)
+
+//Fire Temple vani
+"Fire Temple Near Boss Chest",                                  'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",)
+"Fire Temple Flare Dancer Chest",                               'Bombs (10)',                            ("Fire Temple", "Vanilla",)
+"Fire Temple Boss Key Chest",                                   'Boss Key (Fire Temple)',                ("Fire Temple", "Vanilla",)
+"Fire Temple Big Lava Room Lower Open Door Chest",              'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",)
+"Fire Temple Big Lava Room Blocked Door Chest",                 'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",)
+"Fire Temple Boulder Maze Lower Chest",                         'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",)
+"Fire Temple Boulder Maze Side Room Chest",                     'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",)
+"Fire Temple Map Chest",                                        'Map (Fire Temple)',                     ("Fire Temple", "Vanilla",)
+"Fire Temple Boulder Maze Shortcut Chest",                      'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",)
+"Fire Temple Boulder Maze Upper Chest",                         'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",)
+"Fire Temple Scarecrow Chest",                                  'Rupees (200)',                          ("Fire Temple", "Vanilla",)
+"Fire Temple Compass Chest",                                    'Compass (Fire Temple)',                 ("Fire Temple", "Vanilla",)
+"Fire Temple Megaton Hammer Chest",                             'Megaton Hammer',                        ("Fire Temple", "Vanilla",)
+"Fire Temple Highest Goron Chest",                              'Small Key (Fire Temple)',               ("Fire Temple", "Vanilla",)
+"Fire Temple GS Boss Key Loop",                                 'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",)
+"Fire Temple GS Song of Time Room",                             'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",)
+"Fire Temple GS Boulder Maze",                                  'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",)
+"Fire Temple GS Scarecrow Climb",                               'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",)
+"Fire Temple GS Scarecrow Top",                                 'Gold Skulltula Token',                  ("Fire Temple", "Vanilla", "Skulltulas",)
+
+//Fire Temple
+"Fire Temple MQ Map Room Side Chest",                           'Hylian Shield',                         ("Fire Temple", "Master Quest",)
+"Fire Temple MQ Megaton Hammer Chest",                          'Megaton Hammer',                        ("Fire Temple", "Master Quest",)
+"Fire Temple MQ Map Chest",                                     'Map (Fire Temple)',                     ("Fire Temple", "Master Quest",)
+"Fire Temple MQ Near Boss Chest",                               'Small Key (Fire Temple)',               ("Fire Temple", "Master Quest",)
+"Fire Temple MQ Big Lava Room Blocked Door Chest",              'Small Key (Fire Temple)',               ("Fire Temple", "Master Quest",)
+"Fire Temple MQ Boss Key Chest",                                'Boss Key (Fire Temple)',                ("Fire Temple", "Master Quest",)
+"Fire Temple MQ Lizalfos Maze Side Room Chest",                 'Small Key (Fire Temple)',               ("Fire Temple", "Master Quest",)
+"Fire Temple MQ Compass Chest",                                 'Compass (Fire Temple)',                 ("Fire Temple", "Master Quest",)
+"Fire Temple MQ Lizalfos Maze Upper Chest",                     'Bombs (10)',                            ("Fire Temple", "Master Quest",)
+"Fire Temple MQ Lizalfos Maze Lower Chest",                     'Bombs (10)',                            ("Fire Temple", "Master Quest",)
+"Fire Temple MQ Freestanding Key",                              'Small Key (Fire Temple)',               ("Fire Temple", "Master Quest",)
+"Fire Temple MQ Chest On Fire",                                 'Small Key (Fire Temple)',               ("Fire Temple", "Master Quest",)
+"Fire Temple MQ GS Big Lava Room Open Door",                    'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",)
+"Fire Temple MQ GS Skull On Fire",                              'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",)
+"Fire Temple MQ GS Fire Wall Maze Center",                      'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",)
+"Fire Temple MQ GS Fire Wall Maze Side Room",                   'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",)
+"Fire Temple MQ GS Above Fire Wall Maze",                       'Gold Skulltula Token',                  ("Fire Temple", "Master Quest", "Skulltulas",)
+
+//Fire Temple sha
+"Fire Temple Volvagia Heart",                                   'Heart Container',                       ("Fire Temple", "Vanilla", "Master Quest",)
+
+//Water Temple vani
+"Water Temple Compass Chest",                                   'Compass (Water Temple)',                ("Water Temple", "Vanilla",)
+"Water Temple Map Chest",                                       'Map (Water Temple)',                    ("Water Temple", "Vanilla",)
+"Water Temple Cracked Wall Chest",                              'Small Key (Water Temple)',              ("Water Temple", "Vanilla",)
+"Water Temple Torches Chest",                                   'Small Key (Water Temple)',              ("Water Temple", "Vanilla",)
+"Water Temple Boss Key Chest",                                  'Boss Key (Water Temple)',               ("Water Temple", "Vanilla",)
+"Water Temple Central Pillar Chest",                            'Small Key (Water Temple)',              ("Water Temple", "Vanilla",)
+"Water Temple Central Bow Target Chest",                        'Small Key (Water Temple)',              ("Water Temple", "Vanilla",)
+"Water Temple Longshot Chest",                                  'Progressive Hookshot',                  ("Water Temple", "Vanilla",)
+"Water Temple River Chest",                                     'Small Key (Water Temple)',              ("Water Temple", "Vanilla",)
+"Water Temple Dragon Chest",                                    'Small Key (Water Temple)',              ("Water Temple", "Vanilla",)
+"Water Temple GS Behind Gate",                                  'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",)
+"Water Temple GS Near Boss Key Chest",                          'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",)
+"Water Temple GS Central Pillar",                               'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",)
+"Water Temple GS Falling Platform Room",                        'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",)
+"Water Temple GS River",                                        'Gold Skulltula Token',                  ("Water Temple", "Vanilla", "Skulltulas",)
+
+//Water Temple
+"Water Temple MQ Longshot Chest",                               'Progressive Hookshot',                  ("Water Temple", "Master Quest",)
+"Water Temple MQ Map Chest",                                    'Map (Water Temple)',                    ("Water Temple", "Master Quest",)
+"Water Temple MQ Compass Chest",                                'Compass (Water Temple)',                ("Water Temple", "Master Quest",)
+"Water Temple MQ Central Pillar Chest",                         'Small Key (Water Temple)',              ("Water Temple", "Master Quest",)
+"Water Temple MQ Boss Key Chest",                               'Boss Key (Water Temple)',               ("Water Temple", "Master Quest",)
+"Water Temple MQ Freestanding Key",                             'Small Key (Water Temple)',              ("Water Temple", "Master Quest",)
+"Water Temple MQ GS Lizalfos Hallway",                          'Gold Skulltula Token',                  ("Water Temple", "Master Quest", "Skulltulas",)
+"Water Temple MQ GS Before Upper Water Switch",                 'Gold Skulltula Token',                  ("Water Temple", "Master Quest", "Skulltulas",)
+"Water Temple MQ GS River",                                     'Gold Skulltula Token',                  ("Water Temple", "Master Quest", "Skulltulas",)
+"Water Temple MQ GS Freestanding Key Area",                     'Gold Skulltula Token',                  ("Water Temple", "Master Quest", "Skulltulas",)
+"Water Temple MQ GS Triple Wall Torch",                         'Gold Skulltula Token',                  ("Water Temple", "Master Quest", "Skulltulas",)
+
+//Water Temple sha
+"Water Temple Morpha Heart",                                    'Heart Container',                       ("Water Temple", "Vanilla", "Master Quest",)
+
+//Shadow Temple vani
+"Shadow Temple Map Chest",                                      'Map (Shadow Temple)',                   ("Shadow Temple", "Vanilla",)
+"Shadow Temple Hover Boots Chest",                              'Hover Boots',                           ("Shadow Temple", "Vanilla",)
+"Shadow Temple Compass Chest",                                  'Compass (Shadow Temple)',               ("Shadow Temple", "Vanilla",)
+"Shadow Temple Early Silver Rupee Chest",                       'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",)
+"Shadow Temple Invisible Blades Visible Chest",                 'Rupees (5)',                            ("Shadow Temple", "Vanilla",)
+"Shadow Temple Invisible Blades Invisible Chest",               'Arrows (30)',                           ("Shadow Temple", "Vanilla",)
+"Shadow Temple Falling Spikes Lower Chest",                     'Arrows (10)',                           ("Shadow Temple", "Vanilla",)
+"Shadow Temple Falling Spikes Upper Chest",                     'Rupees (5)',                            ("Shadow Temple", "Vanilla",)
+"Shadow Temple Falling Spikes Switch Chest",                    'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",)
+"Shadow Temple Invisible Spikes Chest",                         'Rupees (5)',                            ("Shadow Temple", "Vanilla",)
+"Shadow Temple Freestanding Key",                               'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",)
+"Shadow Temple Wind Hint Chest",                                'Arrows (10)',                           ("Shadow Temple", "Vanilla",)
+"Shadow Temple After Wind Enemy Chest",                         'Rupees (5)',                            ("Shadow Temple", "Vanilla",)
+"Shadow Temple After Wind Hidden Chest",                        'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",)
+"Shadow Temple Spike Walls Left Chest",                         'Rupees (5)',                            ("Shadow Temple", "Vanilla",)
+"Shadow Temple Boss Key Chest",                                 'Boss Key (Shadow Temple)',              ("Shadow Temple", "Vanilla",)
+"Shadow Temple Invisible Floormaster Chest",                    'Small Key (Shadow Temple)',             ("Shadow Temple", "Vanilla",)
+"Shadow Temple GS Like Like Room",                              'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",)
+"Shadow Temple GS Falling Spikes Room",                         'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",)
+"Shadow Temple GS Single Giant Pot",                            'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",)
+"Shadow Temple GS Near Ship",                                   'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",)
+"Shadow Temple GS Triple Giant Pot",                            'Gold Skulltula Token',                  ("Shadow Temple", "Vanilla", "Skulltulas",)
+
+//Shadow Temple
+"Shadow Temple MQ Early Gibdos Chest",                          'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Map Chest",                                   'Map (Shadow Temple)',                   ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Near Ship Invisible Chest",                   'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Compass Chest",                               'Compass (Shadow Temple)',               ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Hover Boots Chest",                           'Hover Boots',                           ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Invisible Blades Invisible Chest",            'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Invisible Blades Visible Chest",              'Rupees (5)',                            ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Beamos Silver Rupees Chest",                  'Arrows (5)',                            ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Falling Spikes Lower Chest",                  'Arrows (10)',                           ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Falling Spikes Upper Chest",                  'Rupees (5)',                            ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Falling Spikes Switch Chest",                 'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Invisible Spikes Chest",                      'Rupees (5)',                            ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Stalfos Room Chest",                          'Rupees (20)',                           ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Wind Hint Chest",                             'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ After Wind Hidden Chest",                     'Arrows (5)',                            ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ After Wind Enemy Chest",                      'Rupees (5)',                            ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Boss Key Chest",                              'Boss Key (Shadow Temple)',              ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Spike Walls Left Chest",                      'Rupees (5)',                            ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Freestanding Key",                            'Small Key (Shadow Temple)',             ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ Bomb Flower Chest",                           'Arrows (10)',                           ("Shadow Temple", "Master Quest",)
+"Shadow Temple MQ GS Falling Spikes Room",                      'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",)
+"Shadow Temple MQ GS Wind Hint Room",                           'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",)
+"Shadow Temple MQ GS After Wind",                               'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",)
+"Shadow Temple MQ GS After Ship",                               'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",)
+"Shadow Temple MQ GS Near Boss",                                'Gold Skulltula Token',                  ("Shadow Temple", "Master Quest", "Skulltulas",)
+
+//Shadow Temple sha
+"Shadow Temple Bongo Bongo Heart",                              'Heart Container',                       ("Shadow Temple", "Vanilla", "Master Quest",)
+
+//Spirit Temple sha
+"Spirit Temple Child Bridge Chest",                             'Deku Shield',                           ("Spirit Temple", "Vanilla",)
+"Spirit Temple Child Early Torches Chest",                      'Small Key (Spirit Temple)',             ("Spirit Temple", "Vanilla",)
+"Spirit Temple Child Climb North Chest",                        'Bombchus (10)',                         ("Spirit Temple", "Vanilla",)
+"Spirit Temple Child Climb East Chest",                         'Deku Shield',                           ("Spirit Temple", "Vanilla",)
+"Spirit Temple Map Chest",                                      'Map (Spirit Temple)',                   ("Spirit Temple", "Vanilla",)
+"Spirit Temple Sun Block Room Chest",                           'Small Key (Spirit Temple)',             ("Spirit Temple", "Vanilla",)
+"Spirit Temple MQ Entrance Front Left Chest",                   'Bombchus (10)',                         ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Entrance Back Right Chest",                   'Bombchus (10)',                         ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Entrance Front Right Chest",                  'Small Key (Spirit Temple)',             ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Entrance Back Left Chest",                    'Small Key (Spirit Temple)',             ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Map Chest",                                   'Map (Spirit Temple)',                   ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Map Room Enemy Chest",                        'Small Key (Spirit Temple)',             ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Child Climb North Chest",                     'Bombchus (10)',                         ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Child Climb South Chest",                     'Small Key (Spirit Temple)',             ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Compass Chest",                               'Compass (Spirit Temple)',               ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Silver Block Hallway Chest",                  'Small Key (Spirit Temple)',             ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Sun Block Room Chest",                        'Recovery Heart',                        ("Spirit Temple", "Master Quest",)
+"Spirit Temple Silver Gauntlets Chest",                         'Progressive Strength Upgrade',          ("Spirit Temple", "Vanilla", "Master Quest", "Desert Colossus")
+"Spirit Temple Compass Chest",                                  'Compass (Spirit Temple)',               ("Spirit Temple", "Vanilla",)
+"Spirit Temple Early Adult Right Chest",                        'Small Key (Spirit Temple)',             ("Spirit Temple", "Vanilla",)
+"Spirit Temple First Mirror Left Chest",                        'Ice Trap',                              ("Spirit Temple", "Vanilla",)
+"Spirit Temple First Mirror Right Chest",                       'Recovery Heart',                        ("Spirit Temple", "Vanilla",)
+"Spirit Temple Statue Room Northeast Chest",                    'Rupees (5)',                            ("Spirit Temple", "Vanilla",)
+"Spirit Temple Statue Room Hand Chest",                         'Small Key (Spirit Temple)',             ("Spirit Temple", "Vanilla",)
+"Spirit Temple Near Four Armos Chest",                          'Small Key (Spirit Temple)',             ("Spirit Temple", "Vanilla",)
+"Spirit Temple Hallway Right Invisible Chest",                  'Recovery Heart',                        ("Spirit Temple", "Vanilla",)
+"Spirit Temple Hallway Left Invisible Chest",                   'Recovery Heart',                        ("Spirit Temple", "Vanilla",)
+"Spirit Temple MQ Child Hammer Switch Chest",                   'Small Key (Spirit Temple)',             ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Statue Room Lullaby Chest",                   'Rupees (5)',                            ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Statue Room Invisible Chest",                 'Recovery Heart',                        ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Leever Room Chest",                           'Rupees (50)',                           ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Symphony Room Chest",                         'Rupees (50)',                           ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Beamos Room Chest",                           'Recovery Heart',                        ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Chest Switch Chest",                          'Ice Trap',                              ("Spirit Temple", "Master Quest",)
+"Spirit Temple MQ Boss Key Chest",                              'Boss Key (Spirit Temple)',              ("Spirit Temple", "Master Quest",)
+"Spirit Temple Mirror Shield Chest",                            'Mirror Shield',                         ("Spirit Temple", "Vanilla", "Master Quest", "Desert Colossus")
+"Spirit Temple Boss Key Chest",                                 'Boss Key (Spirit Temple)',              ("Spirit Temple", "Vanilla",)
+"Spirit Temple Topmost Chest",                                  'Bombs (20)',                            ("Spirit Temple", "Vanilla",)
+"Spirit Temple MQ Mirror Puzzle Invisible Chest",               'Small Key (Spirit Temple)',             ("Spirit Temple", "Master Quest",)
+"Spirit Temple GS Metal Fence",                                 'Gold Skulltula Token',                  ("Spirit Temple", "Vanilla", "Skulltulas",)
+"Spirit Temple GS Sun on Floor Room",                           'Gold Skulltula Token',                  ("Spirit Temple", "Vanilla", "Skulltulas",)
+"Spirit Temple GS Hall After Sun Block Room",                   'Gold Skulltula Token',                  ("Spirit Temple", "Vanilla", "Skulltulas",)
+"Spirit Temple GS Lobby",                                       'Gold Skulltula Token',                  ("Spirit Temple", "Vanilla", "Skulltulas",)
+"Spirit Temple GS Boulder Room",                                'Gold Skulltula Token',                  ("Spirit Temple", "Vanilla", "Skulltulas",)
+"Spirit Temple MQ GS Sun Block Room",                           'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",)
+"Spirit Temple MQ GS Leever Room",                              'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",)
+"Spirit Temple MQ GS Symphony Room",                            'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",)
+"Spirit Temple MQ GS Nine Thrones Room West",                   'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",)
+"Spirit Temple MQ GS Nine Thrones Room North",                  'Gold Skulltula Token',                  ("Spirit Temple", "Master Quest", "Skulltulas",)
+"Spirit Temple Twinrova Heart",                                 'Heart Container',                       ("Spirit Temple", "Vanilla", "Master Quest",)
+
+//Ice Cavern vani
+"Ice Cavern Map Chest",                                         'Map (Ice Cavern)',                      ("Ice Cavern", "Vanilla",)
+"Ice Cavern Compass Chest",                                     'Compass (Ice Cavern)',                  ("Ice Cavern", "Vanilla",)
+"Ice Cavern Freestanding PoH",                                  'Piece of Heart',                        ("Ice Cavern", "Vanilla",)
+"Ice Cavern Iron Boots Chest",                                  'Iron Boots',                            ("Ice Cavern", "Vanilla",)
+"Ice Cavern GS Spinning Scythe Room",                           'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",)
+"Ice Cavern GS Heart Piece Room",                               'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",)
+"Ice Cavern GS Push Block Room",                                'Gold Skulltula Token',                  ("Ice Cavern", "Vanilla", "Skulltulas",)
+
+//Ice Cavern
+"Ice Cavern MQ Map Chest",                                      'Map (Ice Cavern)',                      ("Ice Cavern", "Master Quest",)
+"Ice Cavern MQ Compass Chest",                                  'Compass (Ice Cavern)',                  ("Ice Cavern", "Master Quest",)
+"Ice Cavern MQ Freestanding PoH",                               'Piece of Heart',                        ("Ice Cavern", "Master Quest",)
+"Ice Cavern MQ Iron Boots Chest",                               'Iron Boots',                            ("Ice Cavern", "Master Quest",)
+"Ice Cavern MQ GS Red Ice",                                     'Gold Skulltula Token',                  ("Ice Cavern", "Master Quest", "Skulltulas",)
+"Ice Cavern MQ GS Ice Block",                                   'Gold Skulltula Token',                  ("Ice Cavern", "Master Quest", "Skulltulas",)
+"Ice Cavern MQ GS Scarecrow",                                   'Gold Skulltula Token',                  ("Ice Cavern", "Master Quest", "Skulltulas",)
+
+//Gerudo Training Ground vani
+"Gerudo Training Ground Lobby Left Chest",                      'Rupees (5)',                            ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Lobby Right Chest",                     'Arrows (10)',                           ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Stalfos Chest",                         'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Before Heavy Block Chest",              'Arrows (30)',                           ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Heavy Block First Chest",               'Rupees (200)',                          ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Heavy Block Second Chest",              'Rupees (5)',                            ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Heavy Block Third Chest",               'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Heavy Block Fourth Chest",              'Ice Trap',                              ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Eye Statue Chest",                      'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Near Scarecrow Chest",                  'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Hammer Room Clear Chest",               'Arrows (10)',                           ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Hammer Room Switch Chest",              'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Freestanding Key",                      'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Maze Right Central Chest",              'Bombchus (5)',                          ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Maze Right Side Chest",                 'Arrows (30)',                           ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Underwater Silver Rupee Chest",         'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Beamos Chest",                          'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Hidden Ceiling Chest",                  'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Maze Path First Chest",                 'Rupees (50)',                           ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Maze Path Second Chest",                'Rupees (20)',                           ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Maze Path Third Chest",                 'Arrows (30)',                           ("Gerudo Training Ground", "Vanilla",)
+"Gerudo Training Ground Maze Path Final Chest",                 'Ice Arrows',                            ("Gerudo Training Ground", "Vanilla",)
+
+//Gerudo Training Ground
+"Gerudo Training Ground MQ Lobby Left Chest",                   'Arrows (10)',                           ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Lobby Right Chest",                  'Bombchus (5)',                          ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ First Iron Knuckle Chest",           'Rupees (5)',                            ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Before Heavy Block Chest",           'Arrows (10)',                           ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Heavy Block Chest",                  'Rupees (50)',                           ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Eye Statue Chest",                   'Bombchus (10)',                         ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Ice Arrows Chest",                   'Ice Arrows',                            ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Second Iron Knuckle Chest",          'Arrows (10)',                           ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Flame Circle Chest",                 'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Maze Right Central Chest",           'Rupees (5)',                            ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Maze Right Side Chest",              'Rupee (Treasure Chest Game)',           ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Underwater Silver Rupee Chest",      'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Dinolfos Chest",                     'Small Key (Gerudo Training Ground)',    ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Hidden Ceiling Chest",               'Rupees (50)',                           ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Maze Path First Chest",              'Rupee (1)',                             ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Maze Path Third Chest",              'Rupee (Treasure Chest Game)',           ("Gerudo Training Ground", "Master Quest",)
+"Gerudo Training Ground MQ Maze Path Second Chest",             'Rupees (20)',                           ("Gerudo Training Ground", "Master Quest",)
+
+//Ganon's Castle vani
+"Ganons Castle Forest Trial Chest",                             'Rupees (5)',                            ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Water Trial Left Chest",                         'Ice Trap',                              ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Water Trial Right Chest",                        'Recovery Heart',                        ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Shadow Trial Front Chest",                       'Rupees (5)',                            ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Shadow Trial Golden Gauntlets Chest",            'Progressive Strength Upgrade',          ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Light Trial First Left Chest",                   'Rupees (5)',                            ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Light Trial Second Left Chest",                  'Ice Trap',                              ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Light Trial Third Left Chest",                   'Recovery Heart',                        ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Light Trial First Right Chest",                  'Ice Trap',                              ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Light Trial Second Right Chest",                 'Arrows (30)',                           ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Light Trial Third Right Chest",                  'Ice Trap',                              ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Light Trial Invisible Enemies Chest",            'Small Key (Ganons Castle)',             ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Light Trial Lullaby Chest",                      'Small Key (Ganons Castle)',             ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Spirit Trial Crystal Switch Chest",              'Bombchus (20)',                         ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Spirit Trial Invisible Chest",                   'Arrows (10)',                           ("Ganon's Castle", "Vanilla",)
+"Ganons Castle Deku Scrub Left",                                'Buy Green Potion',                      ("Ganon's Castle", "Vanilla", "Deku Scrub",)
+"Ganons Castle Deku Scrub Center-Left",                         'Buy Bombs (5) [35]',                    ("Ganon's Castle", "Vanilla", "Deku Scrub",)
+"Ganons Castle Deku Scrub Center-Right",                        'Buy Arrows (30)',                       ("Ganon's Castle", "Vanilla", "Deku Scrub",)
+"Ganons Castle Deku Scrub Right",                               'Buy Red Potion [30]',                   ("Ganon's Castle", "Vanilla", "Deku Scrub",)
+
+//Ganon's Castle
+"Ganons Castle MQ Forest Trial Freestanding Key",               'Small Key (Ganons Castle)',             ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Forest Trial Eye Switch Chest",               'Arrows (10)',                           ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Forest Trial Frozen Eye Switch Chest",        'Bombs (5)',                             ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Water Trial Chest",                           'Rupees (20)',                           ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Shadow Trial Bomb Flower Chest",              'Arrows (10)',                           ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Shadow Trial Eye Switch Chest",               'Small Key (Ganons Castle)',             ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Light Trial Lullaby Chest",                   'Recovery Heart',                        ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Spirit Trial First Chest",                    'Bombchus (10)',                         ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Spirit Trial Invisible Chest",                'Arrows (10)',                           ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Spirit Trial Sun Front Left Chest",           'Recovery Heart',                        ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Spirit Trial Sun Back Left Chest",            'Small Key (Ganons Castle)',             ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Spirit Trial Sun Back Right Chest",           'Recovery Heart',                        ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Spirit Trial Golden Gauntlets Chest",         'Progressive Strength Upgrade',          ("Ganon's Castle", "Master Quest",)
+"Ganons Castle MQ Deku Scrub Left",                             'Buy Green Potion',                      ("Ganon's Castle", "Master Quest", "Deku Scrub",)
+"Ganons Castle MQ Deku Scrub Center-Left",                      'Buy Bombs (5) [35]',                    ("Ganon's Castle", "Master Quest", "Deku Scrub",)
+"Ganons Castle MQ Deku Scrub Center",                           'Buy Arrows (30)',                       ("Ganon's Castle", "Master Quest", "Deku Scrub",)
+"Ganons Castle MQ Deku Scrub Center-Right",                     'Buy Red Potion [30]',                   ("Ganon's Castle", "Master Quest", "Deku Scrub",)
+"Ganons Castle MQ Deku Scrub Right",                            'Buy Deku Nut (5)',                      ("Ganon's Castle", "Master Quest", "Deku Scrub",)
+
+//Ganon's Castle sha
+"Ganons Tower Boss Key Chest",                                  'Boss Key (Ganons Castle)',              ("Ganon's Castle", "Vanilla", "Master Quest",)
+
+//Gossip Stones
+"DMC Gossip Stone",                          
+"DMT Gossip Stone",                          
+"Colossus Gossip Stone",                     
+"Dodongos Cavern Gossip Stone",              
+"GV Gossip Stone",                           
+"GC Maze Gossip Stone",                      
+"GC Medigoron Gossip Stone",                 
+"Graveyard Gossip Stone",                    
+"HC Malon Gossip Stone",                     
+"HC Rock Wall Gossip Stone",                 
+"HC Storms Grotto Gossip Stone",             
+"HF Cow Grotto Gossip Stone",                
+"KF Deku Tree Gossip Stone (Left)",          
+"KF Deku Tree Gossip Stone (Right)",         
+"KF Gossip Stone",                           
+"LH Lab Gossip Stone",                       
+"LH Gossip Stone (Southeast)",               
+"LH Gossip Stone (Southwest)",               
+"LW Gossip Stone",                           
+"SFM Maze Gossip Stone (Lower)",             
+"SFM Maze Gossip Stone (Upper)",             
+"SFM Saria Gossip Stone",                    
+"ToT Gossip Stone (Left)",                   
+"ToT Gossip Stone (Left-Center)",            
+"ToT Gossip Stone (Right)",                  
+"ToT Gossip Stone (Right-Center)",           
+"ZD Gossip Stone",                           
+"ZF Fairy Gossip Stone",                     
+"ZF Jabu Gossip Stone",                      
+"ZR Near Grottos Gossip Stone",              
+"ZR Near Domain Gossip Stone",               
+
+"HF Near Market Grotto Gossip Stone",        
+"HF Southeast Grotto Gossip Stone",          
+"HF Open Grotto Gossip Stone",               
+"Kak Open Grotto Gossip Stone",              
+"ZR Open Grotto Gossip Stone",               
+"KF Storms Grotto Gossip Stone",             
+"LW Near Shortcuts Grotto Gossip Stone",     
+"DMT Storms Grotto Gossip Stone",            
+"DMC Upper Grotto Gossip Stone",             
+
+"Ganondorf Hint",                            
+
+//Events. Fake items but might need to have item names 
+"Pierre",                                                       'Scarecrow Song',         
+"Deliver Rutos Letter",                                         'Deliver Letter',         
+"Master Sword Pedestal",                                        'Time Travel',            
+
+"Deku Baba Sticks",                                             'Deku Stick Drop',        
+"Deku Baba Nuts",                                               'Deku Nut Drop',          
+"Stick Pot",                                                    'Deku Stick Drop',        
+"Nut Pot",                                                      'Deku Nut Drop',          
+"Nut Crate",                                                    'Deku Nut Drop',          
+"Blue Fire",                                                    'Blue Fire',              
+"Lone Fish",                                                    'Fish',                   
+"Fish Group",                                                   'Fish',                   
+"Bug Rock",                                                     'Bugs',                   
+"Bug Shrub",                                                    'Bugs',                   
+"Wandering Bugs",                                               'Bugs',                   
+"Fairy Pot",                                                    'Fairy',                  
+"Free Fairies",                                                 'Fairy',                  
+"Wall Fairy",                                                   'Fairy',                  
+"Butterfly Fairy",                                              'Fairy',                  
+"Gossip Stone Fairy",                                           'Fairy',                  
+"Bean Plant Fairy",                                             'Fairy',                  
+"Fairy Pond",                                                   'Fairy',                  
+"Big Poe Kill",                                                 'Big Poe',                
+

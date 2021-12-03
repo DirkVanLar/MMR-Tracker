@@ -150,7 +150,7 @@ namespace MMR_Tracker.Forms
 
             var FinalLogic = string.Join(" ", ExpandedLogicEntries);
 
-            return FinalLogic.Split('|').Select(x => x.Split('&').ToList()).ToList();
+            return FinalLogic.Split('|').Select(x => x.Split('&').Select(y => y.Trim()).ToList()).ToList();
         }
 
         public string SimplifyLetters(string Input)

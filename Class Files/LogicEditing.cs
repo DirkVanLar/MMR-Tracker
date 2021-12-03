@@ -646,25 +646,37 @@ namespace MMR_Tracker_V2
             var logic = Instance.Logic;
             List<int> CondItemsUsed = new List<int>();
             int ComboEntry = entry.Required.ToList().Find(x => logic[x].DictionaryName.StartsWith("MMRTCombinations"));
-            var Required = entry.Required.Where(x => !logic[x].DictionaryName.StartsWith("MMRTCombinations")).ToArray();
+            var Required = entry.Required.Where(x => !logic[x].DictionaryName.StartsWith("MMRTCombinations") && logic[x].CountCheckData == null).ToArray();
+            var DynamicComboData = entry.Required.Where(x => logic[x].CountCheckData != null).ToArray();
             int ConditionalsAquired = 0;
-            if (int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out int ConditionalsNeeded))
+            int ConditionalsNeeded = -1;
+            bool WasDynamicCount = logic[ComboEntry].DictionaryName == "MMRTCombinationsDynamic" && DynamicComboData.Any();
+            bool WasStaticCount = int.TryParse(logic[ComboEntry].DictionaryName.Replace("MMRTCombinations", ""), out ConditionalsNeeded);
+
+            if (WasDynamicCount)
             {
-                if (!Required.Any() || LogicEditing.RequirementsMet(Required, Instance, CondItemsUsed))
+                bool DynamicDataValid = int.TryParse(logic[DynamicComboData[0]].CountCheckData.Replace("$", ""), out ConditionalsNeeded);
+                if (!DynamicDataValid) { return false; }
+            }
+            else if (!WasStaticCount || ConditionalsNeeded < 0)
+            {
+                return false;
+            }
+
+            if (!Required.Any() || LogicEditing.RequirementsMet(Required, Instance, CondItemsUsed))
+            {
+                foreach (var i in entry.Conditionals)
                 {
-                    foreach (var i in entry.Conditionals)
+                    List<int> ReqItemsUsed = new List<int>();
+                    if (LogicEditing.RequirementsMet(i, Instance, ReqItemsUsed))
                     {
-                        List<int> ReqItemsUsed = new List<int>();
-                        if (LogicEditing.RequirementsMet(i, Instance, ReqItemsUsed))
-                        {
-                            foreach (var q in ReqItemsUsed) { CondItemsUsed.Add(q); }
-                            ConditionalsAquired++;
-                        }
-                        if (ConditionalsAquired >= ConditionalsNeeded)
-                        {
-                            foreach (var q in CondItemsUsed) { usedItems.Add(q); }
-                            return true;
-                        }
+                        foreach (var q in ReqItemsUsed) { CondItemsUsed.Add(q); }
+                        ConditionalsAquired++;
+                    }
+                    if (ConditionalsAquired >= ConditionalsNeeded)
+                    {
+                        foreach (var q in CondItemsUsed) { usedItems.Add(q); }
+                        return true;
                     }
                 }
             }

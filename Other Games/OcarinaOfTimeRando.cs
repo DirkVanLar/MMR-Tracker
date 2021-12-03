@@ -16,6 +16,8 @@ namespace MMR_Tracker.Other_Games
         public class OOTRLogicObject
         {
             public string region_name { get; set; } = "";
+            public string Dungeon { get; set; } = "";
+            public bool MQ { get; set; } = false;
             public Dictionary<string, string> events { get; set; } = new Dictionary<string, string>();
             public Dictionary<string, string> locations { get; set; } = new Dictionary<string, string>();
             public Dictionary<string, string> exits { get; set; } = new Dictionary<string, string>();
@@ -36,7 +38,233 @@ namespace MMR_Tracker.Other_Games
             public string from = "";
         }
 
-        //Other
+        //New Attempt
+
+        public static string CleanLogicEntry(string entry)
+        {
+            entry = entry.Replace(" and ", " & ").Replace(" or ", " | "); //change "and" and "or" logic operators to "&" and "|" which is what the tracker is able to parse
+            entry = entry.Replace(System.Environment.NewLine, " "); //Replace newlines with a space
+            entry = Regex.Replace(entry, @"\s+", " "); //Trim segments of multiple spaces to a single space
+            entry = entry.Trim();//Trim the front and end of the line
+
+            //For the most part, logic items can't contain spaces. Some entries however contain spaces and are grouped using '
+            //Remove the ' from these entries and change the spaces to _ so it's in a familiar format
+            var SpacedEntries = Regex.Matches(entry, @"\'(.*?)\'");
+            foreach (Match match in SpacedEntries)
+            {
+                var newValue = match.Groups[1].Value.Replace("'", "").Replace(" ", "_");
+                entry = entry.Replace(match.Groups[0].Value, $"{newValue}");
+            }
+
+            //Remove the parentheses from entries such as "can_use" and "can_play" so the logic parser can parse it properly
+            //"can_use(item)" becomes "can_use_item"
+            string[] CanPrefixs = new string[] { "can_play", "can_use", "has_projectile", "has_stones", "has_medallions", "has_dungeon_rewards" };
+
+            foreach (var i in CanPrefixs)
+            {
+                var Matches = Regex.Matches(entry, i + @"\((.*?)\)");
+                foreach (Match match in Matches) { entry = entry.Replace(match.Groups[0].Value, $"{i}_{match.Groups[1].Value}"); }
+            }
+
+            //Some entries use "at(location, item)" to mean "can use this item at this location". Since the tracker logic is not capable of that complex of logic parsing
+            //Replace it with an entry of "(location & item)" which is similar enough for the trackers sake
+            var AtEntries = Regex.Matches(entry, @"at\((.*?)\)");
+            foreach (Match match in AtEntries)
+            {
+                var newValue = match.Groups[1].Value.Replace("'", "").Replace(",", " &").Replace("and True", "");
+                entry = entry.Replace(match.Groups[0].Value, $"({newValue})");
+            }
+
+            //Similar to "at(location, item)" but only take the item as an argument and uses the current location.
+            //Since we always require the current location anyway we can simply change this from "here(item)" to "(item)"
+            var HereEntries = Regex.Matches(entry, @"here\((.*?)\)");
+            foreach (Match match in HereEntries)
+            {
+                entry = entry.Replace(match.Groups[0].Value, "(" + match.Groups[1].Value + ")");
+            }
+
+            //change any x of y entries "ex: (item, 4)" to a more familiar format (item x4)
+            //No real reason to do this but since SSR logic uses the latter format and we already have code to parse it it make life a bit easier.
+            var Countmatch = Regex.Matches(entry, @", \d+");
+            foreach (Match match in Countmatch)
+            {
+                var NewValue = match.Groups[0].Value.Replace(", ", " x");
+                entry = entry.Replace(match.Groups[0].Value, NewValue);
+            }
+
+            return entry;
+        }
+
+        public static void ReadOotrLogic()
+        {
+            System.Net.WebClient wc = new System.Net.WebClient();
+            List<string> LogicFiles = new List<string>
+            {
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Overworld.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Bottom%20of%20the%20Well.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Deku%20Tree.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Dodongos%20Cavern.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Fire%20Temple.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Forest%20Temple.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Ganons%20Castle.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Gerudo%20Training%20Ground.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Ice%20Cavern.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Jabu%20Jabus%20Belly.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Shadow%20Temple.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Spirit%20Temple.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Water%20Temple.json"
+
+            };
+
+            List<string> MQLogicFiles = new List<string>
+            {
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Bottom%20of%20the%20Well%20MQ.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Deku%20Tree%20MQ.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Dodongos%20Cavern%20MQ.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Fire%20Temple%20MQ.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Forest%20Temple%20MQ.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Ganons%20Castle%20MQ.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Gerudo%20Training%20Ground%20MQ.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Ice%20Cavern%20MQ.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Jabu%20Jabus%20Belly%20MQ.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Shadow%20Temple%20MQ.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Spirit%20Temple%20MQ.json",
+                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Water%20Temple%20MQ.json"
+
+            };
+
+            var Logic = new List<OOTRLogicObject>();
+            var ParsedLogic = new List<OOTRLogicObject>();
+
+            GetLogicDataFromFile(LogicFiles, false);
+            GetLogicDataFromFile(MQLogicFiles, true);
+
+            void GetLogicDataFromFile(List<string> LogicFileUrls, bool MQData)
+            {
+                foreach (var i in LogicFileUrls)
+                {
+                    Console.WriteLine(i);
+                    string ItemData = wc.DownloadString(i);
+                    string[] ItemDataLines = ItemData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                    var CleanedLogic = RemoveCommentsFromJSON(ItemDataLines);
+                    var tempLogic = JsonConvert.DeserializeObject<List<OOTRLogicObject>>(CleanedLogic, new JsonSerializerSettings() { MissingMemberHandling = MissingMemberHandling.Ignore });
+
+                    if (MQData) { foreach (var t in tempLogic) { t.MQ = true; } }
+                    Logic.AddRange(tempLogic);
+                }
+            }
+
+            string RawHelperLogic = wc.DownloadString("https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/LogicHelpers.json");
+            string[] RawHelperLogicLines = RawHelperLogic.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+
+            var CleanedHelperLogic = RemoveCommentsFromJSON(RawHelperLogicLines);
+
+            OOTRLogicObject HelperLogic = new OOTRLogicObject() { region_name = "Logic Helper", events = JsonConvert.DeserializeObject<Dictionary<string, string>>(CleanedHelperLogic) };
+            Logic.Add(HelperLogic);
+
+            foreach (var i in Logic)
+            {
+                var DungeonState = i.MQ ? "Master Quest" : "Vanilla";
+                Console.WriteLine();
+                Console.WriteLine($"====================");
+                Console.WriteLine($"Region: ({i.region_name})");
+                Console.WriteLine($"--------------------");
+                Console.WriteLine($"Locations:");
+                OOTRLogicObject NewLogicEntry = new OOTRLogicObject() { region_name = i.region_name };
+                foreach (var j in i.locations)
+                {
+                    string LogicLine = CleanLogicEntry(j.Value).Trim();
+                    LogicLine = i.region_name + $" & ({LogicLine})";
+                    if (i.Dungeon != "") { LogicLine = $"{i.Dungeon} {DungeonState} & ({LogicLine})"; }
+                    Console.WriteLine($"Logic for {j.Key}");
+                    Console.WriteLine($"[{LogicLine}]");
+                    NewLogicEntry.locations.Add(j.Key, LogicLine);
+                }
+                Console.WriteLine($"--------------------");
+                Console.WriteLine($"Events:");
+                foreach (var j in i.events)
+                {
+                    string[] BadLogicEntries = new string[] { "can_play(song)", "can_use(item)", "_is_magic_item(item)", "_is_adult_item(item)", "_is_child_item(item)", "_is_magic_arrow(item)", "has_projectile(for_age)" };
+                    if (BadLogicEntries.Contains(j.Key)) { continue; }
+                    string LogicLine = CleanLogicEntry(j.Value).Trim();
+                    LogicLine = (i.region_name == "Logic Helper") ? LogicLine : i.region_name + $" & ({LogicLine})";
+                    if (i.Dungeon != "") { LogicLine = $"{i.Dungeon} {DungeonState} & ({LogicLine})"; }
+                    Console.WriteLine($"Logic for {j.Key}");
+                    Console.WriteLine($"[{LogicLine}]");
+                    NewLogicEntry.events.Add(j.Key, LogicLine);
+                }
+                Console.WriteLine($"--------------------");
+                Console.WriteLine($"Entrances:");
+                foreach (var j in i.exits)
+                {
+                    string LogicLine = CleanLogicEntry(j.Value).Trim();
+                    LogicLine = i.region_name + $" & ({LogicLine})";
+                    if (i.Dungeon != "") { LogicLine = $"{i.Dungeon} {DungeonState} & ({LogicLine})"; }
+                    Console.WriteLine($"Logic for {i.region_name} -> {j.Key}");
+                    Console.WriteLine($"[{LogicLine}]");
+                    NewLogicEntry.exits.Add($"{i.region_name} -> {j.Key}", LogicLine);
+                }
+                if (!NewLogicEntry.locations.Any()) { NewLogicEntry.locations = null; }
+                if (!NewLogicEntry.events.Any()) { NewLogicEntry.events = null; }
+                if (!NewLogicEntry.exits.Any()) { NewLogicEntry.exits = null; }
+                ParsedLogic.Add(NewLogicEntry);
+            }
+
+            Dictionary<string, string> MasterLogic = new Dictionary<string, string>();
+
+            foreach (var i in ParsedLogic)
+            {
+                foreach (var j in i.locations ?? new Dictionary<string, string>())
+                {
+                    if (!MasterLogic.ContainsKey(j.Key)) { MasterLogic.Add(j.Key, $"({j.Value})"); }
+                    else { MasterLogic[j.Key] += $" | ({j.Value})"; }
+                }
+                foreach (var j in i.events ?? new Dictionary<string, string>())
+                {
+                    if (!MasterLogic.ContainsKey(j.Key)) { MasterLogic.Add(j.Key, $"({j.Value})"); }
+                    else { MasterLogic[j.Key] += $" | ({j.Value})"; }
+                }
+                foreach (var j in i.exits ?? new Dictionary<string, string>())
+                {
+                    if (!MasterLogic.ContainsKey(j.Key)) { MasterLogic.Add(j.Key, $"({j.Value})"); }
+                    else { MasterLogic[j.Key] += $" | ({j.Value})"; }
+                }
+            }
+
+            LogicObjects.LogicFile FormatedLogic = new LogicObjects.LogicFile();
+            FormatedLogic.GameCode = "OOTR";
+            FormatedLogic.Version = 1;
+            FormatedLogic.Logic = new List<LogicObjects.JsonFormatLogicItem>();
+
+            LogicParser Parser = new LogicParser();
+
+            foreach (var i in MasterLogic)
+            {
+                FormatedLogic.Logic.Add(new LogicObjects.JsonFormatLogicItem() { Id = i.Key, ConditionalItems = Parser.ConvertLogicToConditionalString(i.Value) });
+            }
+
+            File.WriteAllText("OOTRLogic.json", JsonConvert.SerializeObject(FormatedLogic, new JsonSerializerSettings() { Formatting = Formatting.Indented, NullValueHandling = NullValueHandling.Ignore }));
+
+        }
+
+        public static void ReadOOTRRefSheet()
+        {
+
+        }
+
+        public static string RemoveCommentsFromJSON(string[] ItemDataLines)
+        {
+            string CleanedLogic = "";
+            foreach (var i in ItemDataLines)
+            {
+                var CleanedLine = Utility.RemoveCommentLines(i);
+                if (!string.IsNullOrWhiteSpace(CleanedLine)) { CleanedLogic += CleanedLine; }
+            }
+            return CleanedLogic;
+        }
+
+
+        //OldStuff
 
         public static void GenerateDictionary()
         {
@@ -258,7 +486,7 @@ namespace MMR_Tracker.Other_Games
 
         //LOGIC=====================================================================================================================================================
 
-        public static void ReadOotrLogic()
+        public static void OLDReadOotrLogic()
         {
             IDictionary<string, string> LogicDictionary = new Dictionary<string, string>();
             List<string> NeededLogicEntries = new List<string>();
@@ -547,17 +775,6 @@ namespace MMR_Tracker.Other_Games
                 LogicItems.Add(CurrentEntry);
             }
             return LogicItems;
-        }
-
-        public static string RemoveCommentsFromJSON(string[] ItemDataLines)
-        {
-            string CleanedLogic = "";
-            foreach (var i in ItemDataLines)
-            {
-                var CleanedLine = Utility.RemoveCommentLines(i);
-                if (!string.IsNullOrWhiteSpace(CleanedLine)) { CleanedLogic += CleanedLine; }
-            }
-            return CleanedLogic;
         }
     }
 }

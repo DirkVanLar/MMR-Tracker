@@ -105,6 +105,7 @@ namespace MMR_Tracker_V2
             public ProgressiveItemData ProgressiveItemData { get; set; } = null; //Progressive Item Data
             public bool LogicWasEdited { get; set; } = false; //Used to track if edits were made to the logic of this item. should never be true in the master copy
             public PlayerData PlayerData { get; set; } = new PlayerData(); //Data for multiworld
+            public string CountCheckData { get; set; } = null; //Allows the check to carry a numeric value
             public string DisplayName { get; set; } = ""; //The value that is displayed if this object is displayed as a string
             public override string ToString()
             {

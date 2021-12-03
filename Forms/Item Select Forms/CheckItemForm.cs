@@ -51,6 +51,11 @@ namespace MMR_Tracker.Forms.Sub_Forms
                     GossipStoneCheck(Item);
                     continue;
                 }
+                if (Item.ItemSubType == "MMRTCountCheck")
+                {
+                    CountCheck(Item);
+                    continue;
+                }
                 if (!ActionDic.ContainsKey(Item.ID)) { ActionDic.Add(Item.ID, Item.Checked); }
                 ToCheck.Add(Item);
             }
@@ -335,6 +340,65 @@ namespace MMR_Tracker.Forms.Sub_Forms
         }
 
         //Functions
+        private void CountCheck(LogicObjects.LogicEntry Item)
+        {
+            if (Item.Checked)
+            {
+                Item.Checked = false;
+                Item.RandomizedItem = -2;
+                Item.JunkItemType = "Junk";
+                if (string.IsNullOrWhiteSpace(Item.CountCheckData) || (Item.CountCheckData.Count() > 0 && Item.CountCheckData[0] != '$'))
+                {
+                    Item.CountCheckData = null;
+                }
+            }
+            else if (Item.CountCheckData == null || Item.CountCheckData.Count() < 1)
+            {
+                Form fontSelect = new Form();
+                fontSelect.FormBorderStyle = FormBorderStyle.FixedSingle;
+                fontSelect.Text = "Count";
+                fontSelect.Width = (220);
+                fontSelect.Height = (112);
+                try { fontSelect.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon()); } catch { }
+                //Font Size lable
+                NumericUpDown lbSize = new NumericUpDown();
+                lbSize.Value = 1;
+                lbSize.Minimum = 1;
+                lbSize.DecimalPlaces = 0;
+                lbSize.Location = new Point(2, 2);
+                lbSize.Width = (200);
+                lbSize.Parent = fontSelect;
+                fontSelect.Controls.Add(lbSize);
+                Button Default = new Button();
+                Default.Text = "Set Count";
+                Default.Location = new Point(2, 2 + lbSize.Height);
+                Default.Width = lbSize.Width;
+                Default.Click += (s, ea) =>
+                {
+                    fontSelect.Close();
+                };
+                fontSelect.Height = (lbSize.Height *2 + Default.Height + 4 + SystemInformation.CaptionButtonSize.Height);
+                fontSelect.Controls.Add(Default);
+                fontSelect.ShowDialog();
+                Item.Checked = true;
+                Item.RandomizedItem = -1;
+                Item.CountCheckData = lbSize.Value.ToString();
+                Item.JunkItemType = Item.CountCheckData;
+            }
+            else if (Item.CountCheckData[0] == '$')
+            {
+                Item.Checked = true;
+                Item.RandomizedItem = -1;
+                Item.JunkItemType = Item.CountCheckData.Replace("$", "");
+            }
+            else
+            {
+                Item.Checked = true;
+                Item.RandomizedItem = -1;
+                Item.JunkItemType = Item.CountCheckData;
+            }
+            ItemStateChanged = true;
+        }
 
         private void GossipStoneCheck(LogicObjects.LogicEntry Item)
         {

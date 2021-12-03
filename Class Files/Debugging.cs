@@ -87,8 +87,47 @@ namespace MMR_Tracker_V2
 
             //remakeLogicDict();
 
-            SkywardSwordRando.SkywardSwordTesting(false, true, "https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitchless%20Requirements.yaml", "Skyward Sword Rando Casual (Beta)");
-            SkywardSwordRando.SkywardSwordTesting(false, false, "https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitched%20Requirements.yaml", "Skyward Sword Rando Glitched (Beta)");
+            //SkywardSwordRando.SkywardSwordTesting(false, true, "https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitchless%20Requirements.yaml", "Skyward Sword Rando Casual (Beta)");
+            //SkywardSwordRando.SkywardSwordTesting(false, false, "https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitched%20Requirements.yaml", "Skyward Sword Rando Glitched (Beta)");
+
+            //OcarinaOfTimeRando.ReadOotrLogic();
+
+            LogicObjects.MainTrackerInstance.Logic.Add(new LogicObjects.LogicEntry()
+            {
+                ID = LogicObjects.MainTrackerInstance.Logic.Count(),
+                DictionaryName = "MMRTCombinationsDynamic",
+                IsFake = true,
+            });
+
+            LogicObjects.MainTrackerInstance.Logic.Add(new LogicObjects.LogicEntry()
+            {
+                ID = LogicObjects.MainTrackerInstance.Logic.Count(),
+                DictionaryName = "CombinationCounterTest",
+                LocationName = "Skulltulla Needed",
+                LocationArea = "%Options%",
+                IsFake = false,
+                ItemSubType = "MMRTCountCheck"
+            });
+
+            var Skulltulas = LogicObjects.MainTrackerInstance.Logic.Where(x => x.ItemName == "Swamp Skulltula Spirit");
+            var hookshot = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == "ItemHookshot");
+
+            LogicObjects.MainTrackerInstance.Logic.Add(new LogicObjects.LogicEntry()
+            {
+                ID = LogicObjects.MainTrackerInstance.Logic.Count(),
+                DictionaryName = "CombinationCounterResult",
+                LocationName = "I WORK",
+                LocationArea = "%Options%",
+                IsFake = false,
+                ItemSubType = "Item",
+                Required = new int[] { LogicObjects.MainTrackerInstance.Logic.Count() - 1, LogicObjects.MainTrackerInstance.Logic.Count() - 2, hookshot.ID } ,
+                Conditionals = Skulltulas.Select(x => new int[] { x.ID }).ToArray()
+            });
+
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
+            MainInterface.CurrentProgram.FormatMenuItems();
+            MainInterface.CurrentProgram.ResizeObject();
+            MainInterface.CurrentProgram.PrintToListBox();
 
             void remakeLogicDict()
             {
