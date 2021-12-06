@@ -121,6 +121,8 @@ namespace MMR_Tracker_V2
             MarkUniqeItemsUnrandomizedManual(instance);
             Utility.nullEmptyLogicItems(instance.Logic);
 
+            if (instance.GameCode != "MMR") { instance.Options.StrictLogicHandeling = true; }
+
             return true;
 
         }

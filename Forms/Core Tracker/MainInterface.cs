@@ -1440,6 +1440,7 @@ namespace MMR_Tracker_V2
             FilterMapToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             itemTrackerToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             enableBringYourOwnAmmoToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            stricterLogicHandelingToolStripMenuItem.Text = LogicObjects.MainTrackerInstance.IsMM() ? "Stricter Logic Handeling" : "Stricter Logic Handeling (Recommended)";
 
             Tools_StateListChanged();
             LogicStateUpdated(null, null);
