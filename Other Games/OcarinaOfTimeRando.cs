@@ -60,6 +60,14 @@ namespace MMR_Tracker.Other_Games
             ConvertItemnamesinLogicToDictname(dict, Logic);
             //CheckFormissingLogicItems(dict, Logic);
 
+            //Ganons castle boss key and gerudo keys are not part of kysy since they are their own setting.
+            dict.LogicDictionaryList.Find(x => x.DictionaryName == "Ganons Tower Boss Key Chest").KeyType = null;
+            var GerudoKeys = dict.LogicDictionaryList.Where(x => x.ItemName == "Small Key Thieves Hideout");
+            foreach(var i in GerudoKeys)
+            {
+                i.KeyType = null;
+            }
+
             //FinalLogicCheck(Logic);
             JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
             {
@@ -88,6 +96,8 @@ namespace MMR_Tracker.Other_Games
                 i.Required = LogicEditing.removeItemFromRequirement(i.Required, new int[] { LogicObjects.MainTrackerInstance.DicNameToID["True"] });
             }
 
+            DoFinalLogicCleanup(LogicObjects.MainTrackerInstance.Logic);
+
 
             File.WriteAllLines("OOTRLogic.json", LogicEditing.WriteLogicToJson(LogicObjects.MainTrackerInstance));
             File.WriteAllText("OOTRDcitionary.json", JsonConvert.SerializeObject(LogicObjects.MainTrackerInstance.LogicDictionary, _jsonSerializerOptions));
@@ -98,6 +108,33 @@ namespace MMR_Tracker.Other_Games
 
             Console.WriteLine($"Logic File contained {Logic.Logic.Count()} Entries");
 
+        }
+
+        private static void DoFinalLogicCleanup(List<LogicObjects.LogicEntry> logic)
+        {
+            List<LogicObjects.LogicEntry> GanonsTowerChecks = new List<LogicObjects.LogicEntry>()
+            {
+                logic.Find(x => x.DictionaryName == "Ganons Tower Boss Key Chest"),
+                logic.Find(x => x.DictionaryName == "Ganondorf Hint"),
+                logic.Find(x => x.DictionaryName == "Ganon"),
+            };
+
+            var GCVanillaEntry = logic.Find(x => x.DictionaryName == "Ganons Castle Vanilla");
+
+            foreach (var i in GanonsTowerChecks)
+            {
+                //The ganons tower checks are given the ganons castle dungeon tag but don't have a MQ varient, so onyl the Vanilla tag gets added. Neither are needed.
+                i.Required = LogicEditing.removeItemFromRequirement(i.Required, new int[] { GCVanillaEntry.ID }); 
+            }
+
+            //Ganons boss 
+            var GanonBossKysy = logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey == remove");
+            GanonsTowerChecks[1].Required = LogicEditing.removeItemFromRequirement(GanonsTowerChecks[1].Required, new int[] { GanonsTowerChecks[0].ID });
+            GanonsTowerChecks[1].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[1].Conditionals, new int[] { GanonsTowerChecks[0].ID });
+            GanonsTowerChecks[1].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[1].Conditionals, new int[] { GanonBossKysy.ID });
+            GanonsTowerChecks[2].Required = LogicEditing.removeItemFromRequirement(GanonsTowerChecks[2].Required, new int[] { GanonsTowerChecks[0].ID });
+            GanonsTowerChecks[2].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[2].Conditionals, new int[] { GanonsTowerChecks[0].ID });
+            GanonsTowerChecks[2].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[2].Conditionals, new int[] { GanonBossKysy.ID });
         }
 
         public static void CheckFormissingLogicItems(LogicObjects.LogicDictionary dict, LogicObjects.LogicFile Logic)
@@ -886,7 +923,24 @@ namespace MMR_Tracker.Other_Games
                 "Water Temple"
             };
 
-            foreach(var d in Dungeons)
+            List<string> DungeonLogicReq = new List<string>()
+            {
+                "Bottom of the Well",
+                "Deku Tree Lobby",
+                "Dodongos Cavern Beginning",
+                "Fire Temple Lower",
+                "Forest Temple Lobby",
+                "Ganons Castle Lobby",
+                "Gerudo Training Ground Lobby",
+                "Ice Cavern Beginning",
+                "Jabu Jabus Belly Beginning",
+                "Shadow Temple Entryway",
+                "Spirit Temple Lobby",
+                "Water Temple Lobby"
+            };
+
+            int counter = 0;
+            foreach (var d in Dungeons)
             {
                 dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
                 {
@@ -896,7 +950,7 @@ namespace MMR_Tracker.Other_Games
                     ItemSubType = $"Option{d.Replace(" ","")}Layout",
                     LocationArea = "%Temple Layouts%"
                 });
-                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem { Id = d + " Vanilla" });
+                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem { Id = d + " Vanilla", RequiredItems = new List<string>() { DungeonLogicReq[counter] } });
                 dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
                 {
                     DictionaryName = d + " Master Quest",
@@ -904,6 +958,7 @@ namespace MMR_Tracker.Other_Games
                     ItemSubType = $"Option{d.Replace(" ", "")}Layout",
                 });
                 Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem { Id = d + " Master Quest" });
+                counter++;
             }
         }
 
@@ -917,7 +972,7 @@ namespace MMR_Tracker.Other_Games
             StageOption("lacs_condition", "vanilla", new string[] { "medallions", "stones", "tokens", "other", "dungeons" });
             StageOption("open_forest", "closed", new string[] { "deku", "open" });
             StageOption("open_kakariko", "closed", new string[] { "zelda", "open" });
-            StageOption("shuffle_ganon_bosskey", "other", new string[] { "medallions", "stones", "tokens", "dungeons" });
+            StageOption("shuffle_ganon_bosskey", "other", new string[] { "medallions", "stones", "tokens", "dungeons", "remove" });
             StageOption("shuffle_scrubs", "off", new string[] { "on" });
             StageOption("Starting Age", "child", new string[] { "adult" });
             StageOption("zora_fountain", "closed", new string[] { "adult", "open" });
@@ -985,19 +1040,19 @@ namespace MMR_Tracker.Other_Games
                 dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
                 {
                     DictionaryName = $"skipped_trials[{DictNameBase}]",
+                    ItemName = "Inactive",
+                    ItemSubType = $"Option_{DictNameBase}_trial_status"
+                });
+                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem { Id = $"skipped_trials[{DictNameBase}]"});
+                dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
+                {
+                    DictionaryName = $"not skipped_trials[{DictNameBase}]",
                     LocationName = $"{DictNameBase} Trial Status",
                     ItemName = "Active",
                     ItemSubType = $"Option_{DictNameBase}_trial_status",
                     LocationArea = "%Ganons Trials Status%"
                 });
-                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem { Id = $"skipped_trials[{DictNameBase}]" });
-                dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
-                {
-                    DictionaryName = $"not skipped_trials[{DictNameBase}]",
-                    ItemName = "inactive",
-                    ItemSubType = $"Option_{DictNameBase}_trial_status"
-                });
-                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem { Id = "not " + $"skipped_trials[{DictNameBase}]" });
+                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem { Id = "not " + $"skipped_trials[{DictNameBase}]", RequiredItems = new List<string> { "Ganons Castle Lobby" } });
             }
         }
 

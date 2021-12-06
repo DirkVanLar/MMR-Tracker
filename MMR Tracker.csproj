@@ -360,7 +360,9 @@
     <None Include="Recources\Dictionaries\Legacy\OOTRDICTIONARYV5.csv" />
     <None Include="Recources\Dictionaries\Legacy\SSRDICTIONARYV1.csv" />
     <None Include="Recources\Dictionaries\Legacy\WWRDICTIONARYV170.csv" />
-    <None Include="Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json" />
+    <None Include="Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Recources\Dictionaries\Pre Json Logic\MMR V15 txt Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -382,7 +384,6 @@
     <None Include="Recources\Dictionaries\Other Games\SSR V1 json Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Recources\Other Files\Other Game Premade Logic\Ocarina of Time Rando %28Beta%29.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Misc\App.config" />
@@ -414,6 +415,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Recources\Other Files\Custom Logic Presets\Web Presets.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Recources\Other Files\Other Game Premade Logic\Ocarina of Time Rando %28Beta%29.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Recources\Other Files\Other Game Premade Logic\Skyward Sword Rando Casual %28Beta%29.txt" />

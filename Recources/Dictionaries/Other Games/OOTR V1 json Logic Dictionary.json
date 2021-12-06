@@ -1,6 +1,6 @@
 {
   "LogicVersion": 1,
-  "LogicFormat": "JSON",
+  "LogicFormat": "json",
   "GameCode": "OOTR",
   "DefaultWalletCapacity": 99,
   "LogicDictionaryList": [
@@ -8197,7 +8197,6 @@
         "Small Key Thieves Hideout",
         "Small_Key_Thieves_Hideout"
       ],
-      "KeyType": "small",
       "ValidRandomizerStartingItem": false
     },
     {
@@ -8214,7 +8213,6 @@
         "Small Key Thieves Hideout",
         "Small_Key_Thieves_Hideout"
       ],
-      "KeyType": "small",
       "ValidRandomizerStartingItem": false
     },
     {
@@ -8231,7 +8229,6 @@
         "Small Key Thieves Hideout",
         "Small_Key_Thieves_Hideout"
       ],
-      "KeyType": "small",
       "ValidRandomizerStartingItem": false
     },
     {
@@ -8248,7 +8245,6 @@
         "Small Key Thieves Hideout",
         "Small_Key_Thieves_Hideout"
       ],
-      "KeyType": "small",
       "ValidRandomizerStartingItem": false
     },
     {
@@ -14942,7 +14938,6 @@
         "Boss Key Ganons Castle",
         "Boss_Key_Ganons_Castle"
       ],
-      "KeyType": "boss",
       "ValidRandomizerStartingItem": false
     },
     {
@@ -17991,6 +17986,14 @@
       "ValidRandomizerStartingItem": false
     },
     {
+      "DictionaryName": "shuffle_ganon_bosskey == remove",
+      "ItemName": "remove",
+      "LocationArea": "%Randomizer Options%",
+      "ItemSubType": "Option_shuffle_ganon_bosskey",
+      "FakeItem": false,
+      "ValidRandomizerStartingItem": false
+    },
+    {
       "DictionaryName": "shuffle_scrubs == off",
       "LocationName": "Shufflescrubs",
       "ItemName": "off",
@@ -18195,6 +18198,13 @@
     },
     {
       "DictionaryName": "skipped_trials[Fire]",
+      "ItemName": "Inactive",
+      "ItemSubType": "Option_Fire_trial_status",
+      "FakeItem": false,
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "not skipped_trials[Fire]",
       "LocationName": "Fire Trial Status",
       "ItemName": "Active",
       "LocationArea": "%Ganons Trials Status%",
@@ -18203,14 +18213,14 @@
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "not skipped_trials[Fire]",
-      "ItemName": "inactive",
-      "ItemSubType": "Option_Fire_trial_status",
+      "DictionaryName": "skipped_trials[Forest]",
+      "ItemName": "Inactive",
+      "ItemSubType": "Option_Forest_trial_status",
       "FakeItem": false,
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "skipped_trials[Forest]",
+      "DictionaryName": "not skipped_trials[Forest]",
       "LocationName": "Forest Trial Status",
       "ItemName": "Active",
       "LocationArea": "%Ganons Trials Status%",
@@ -18219,14 +18229,14 @@
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "not skipped_trials[Forest]",
-      "ItemName": "inactive",
-      "ItemSubType": "Option_Forest_trial_status",
+      "DictionaryName": "skipped_trials[Light]",
+      "ItemName": "Inactive",
+      "ItemSubType": "Option_Light_trial_status",
       "FakeItem": false,
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "skipped_trials[Light]",
+      "DictionaryName": "not skipped_trials[Light]",
       "LocationName": "Light Trial Status",
       "ItemName": "Active",
       "LocationArea": "%Ganons Trials Status%",
@@ -18235,14 +18245,14 @@
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "not skipped_trials[Light]",
-      "ItemName": "inactive",
-      "ItemSubType": "Option_Light_trial_status",
+      "DictionaryName": "skipped_trials[Shadow]",
+      "ItemName": "Inactive",
+      "ItemSubType": "Option_Shadow_trial_status",
       "FakeItem": false,
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "skipped_trials[Shadow]",
+      "DictionaryName": "not skipped_trials[Shadow]",
       "LocationName": "Shadow Trial Status",
       "ItemName": "Active",
       "LocationArea": "%Ganons Trials Status%",
@@ -18251,14 +18261,14 @@
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "not skipped_trials[Shadow]",
-      "ItemName": "inactive",
-      "ItemSubType": "Option_Shadow_trial_status",
+      "DictionaryName": "skipped_trials[Spirit]",
+      "ItemName": "Inactive",
+      "ItemSubType": "Option_Spirit_trial_status",
       "FakeItem": false,
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "skipped_trials[Spirit]",
+      "DictionaryName": "not skipped_trials[Spirit]",
       "LocationName": "Spirit Trial Status",
       "ItemName": "Active",
       "LocationArea": "%Ganons Trials Status%",
@@ -18267,24 +18277,17 @@
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "not skipped_trials[Spirit]",
-      "ItemName": "inactive",
-      "ItemSubType": "Option_Spirit_trial_status",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
       "DictionaryName": "skipped_trials[Water]",
-      "LocationName": "Water Trial Status",
-      "ItemName": "Active",
-      "LocationArea": "%Ganons Trials Status%",
+      "ItemName": "Inactive",
       "ItemSubType": "Option_Water_trial_status",
       "FakeItem": false,
       "ValidRandomizerStartingItem": false
     },
     {
       "DictionaryName": "not skipped_trials[Water]",
-      "ItemName": "inactive",
+      "LocationName": "Water Trial Status",
+      "ItemName": "Active",
+      "LocationArea": "%Ganons Trials Status%",
       "ItemSubType": "Option_Water_trial_status",
       "FakeItem": false,
       "ValidRandomizerStartingItem": false

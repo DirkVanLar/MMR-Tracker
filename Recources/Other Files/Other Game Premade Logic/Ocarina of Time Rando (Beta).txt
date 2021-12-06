@@ -10289,7 +10289,6 @@
     {
       "Id": "Ganons Tower Boss Key Chest",
       "RequiredItems": [
-        "Ganons Castle Vanilla",
         "Ganons Castle Tower"
       ],
       "ConditionalItems": [],
@@ -10301,11 +10300,16 @@
     {
       "Id": "Ganondorf Hint",
       "RequiredItems": [
-        "Ganons Castle Vanilla",
-        "Ganons Castle Tower",
-        "Ganons Tower Boss Key Chest"
+        "Ganons Castle Tower"
       ],
-      "ConditionalItems": [],
+      "ConditionalItems": [
+        [
+          "shuffle_ganon_bosskey == remove"
+        ],
+        [
+          "Ganons Tower Boss Key Chest"
+        ]
+      ],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
       "TimeSetup": "None",
@@ -10314,12 +10318,17 @@
     {
       "Id": "Ganon",
       "RequiredItems": [
-        "Ganons Castle Vanilla",
         "Ganons Castle Tower",
-        "Ganons Tower Boss Key Chest",
         "can_use_Light_Arrows"
       ],
-      "ConditionalItems": [],
+      "ConditionalItems": [
+        [
+          "shuffle_ganon_bosskey == remove"
+        ],
+        [
+          "Ganons Tower Boss Key Chest"
+        ]
+      ],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
       "TimeSetup": "None",
@@ -42789,7 +42798,9 @@
     },
     {
       "Id": "Bottom of the Well Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Bottom of the Well"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -42807,7 +42818,9 @@
     },
     {
       "Id": "Deku Tree Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Deku Tree Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -42825,7 +42838,9 @@
     },
     {
       "Id": "Dodongos Cavern Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Dodongos Cavern Beginning"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -42843,7 +42858,9 @@
     },
     {
       "Id": "Fire Temple Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Fire Temple Lower"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -42861,7 +42878,9 @@
     },
     {
       "Id": "Forest Temple Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Forest Temple Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -42879,7 +42898,9 @@
     },
     {
       "Id": "Ganons Castle Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Ganons Castle Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -42897,7 +42918,9 @@
     },
     {
       "Id": "Gerudo Training Ground Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Gerudo Training Ground Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -42915,7 +42938,9 @@
     },
     {
       "Id": "Ice Cavern Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Ice Cavern Beginning"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -42933,7 +42958,9 @@
     },
     {
       "Id": "Jabu Jabus Belly Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Jabu Jabus Belly Beginning"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -42951,7 +42978,9 @@
     },
     {
       "Id": "Shadow Temple Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Shadow Temple Entryway"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -42969,7 +42998,9 @@
     },
     {
       "Id": "Spirit Temple Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Spirit Temple Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -42987,7 +43018,9 @@
     },
     {
       "Id": "Water Temple Vanilla",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Water Temple Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -43292,6 +43325,15 @@
       "IsTrick": false
     },
     {
+      "Id": "shuffle_ganon_bosskey == remove",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
       "Id": "shuffle_scrubs == off",
       "RequiredItems": [],
       "ConditionalItems": [],
@@ -43527,7 +43569,9 @@
     },
     {
       "Id": "not skipped_trials[Fire]",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Ganons Castle Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -43545,7 +43589,9 @@
     },
     {
       "Id": "not skipped_trials[Forest]",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Ganons Castle Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -43563,7 +43609,9 @@
     },
     {
       "Id": "not skipped_trials[Light]",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Ganons Castle Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -43581,7 +43629,9 @@
     },
     {
       "Id": "not skipped_trials[Shadow]",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Ganons Castle Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -43599,7 +43649,9 @@
     },
     {
       "Id": "not skipped_trials[Spirit]",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Ganons Castle Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
@@ -43617,7 +43669,9 @@
     },
     {
       "Id": "not skipped_trials[Water]",
-      "RequiredItems": [],
+      "RequiredItems": [
+        "Ganons Castle Lobby"
+      ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
