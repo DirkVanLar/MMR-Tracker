@@ -1,257 +1,249 @@
+SECTION: Entrances
+KF Outside Deku Tree -> Deku Tree Lobby, Deku Tree Lobby -> KF Outside Deku Tree, Misc
+Deku Tree Lobby -> KF Outside Deku Tree, KF Outside Deku Tree -> Deku Tree Lobby, Misc
+Death Mountain -> Dodongos Cavern Beginning, Dodongos Cavern Beginning -> Death Mountain, Death Mountain
+Dodongos Cavern Beginning -> Death Mountain, Death Mountain -> Dodongos Cavern Beginning, Misc
+Zoras Fountain -> Jabu Jabus Belly Beginning, Jabu Jabus Belly Beginning -> Zoras Fountain, Zoras Fountain
+Jabu Jabus Belly Beginning -> Zoras Fountain, Zoras Fountain -> Jabu Jabus Belly Beginning, Misc
+SFM Forest Temple Entrance Ledge -> Forest Temple Lobby, Forest Temple Lobby -> SFM Forest Temple Entrance Ledge, Misc
+Forest Temple Lobby -> SFM Forest Temple Entrance Ledge, SFM Forest Temple Entrance Ledge -> Forest Temple Lobby, Misc
+DMC Fire Temple Entrance -> Fire Temple Lower, Fire Temple Lower -> DMC Fire Temple Entrance, Misc
+Fire Temple Lower -> DMC Fire Temple Entrance, DMC Fire Temple Entrance -> Fire Temple Lower, Misc
+Lake Hylia -> Water Temple Lobby, Water Temple Lobby -> Lake Hylia, Lake Hylia
+Water Temple Lobby -> Lake Hylia, Lake Hylia -> Water Temple Lobby, Misc
+Desert Colossus -> Spirit Temple Lobby, Spirit Temple Lobby -> Desert Colossus From Spirit Lobby, Desert Colossus
+Spirit Temple Lobby -> Desert Colossus From Spirit Lobby, Desert Colossus -> Spirit Temple Lobby, Misc
+Graveyard Warp Pad Region -> Shadow Temple Entryway, Shadow Temple Entryway -> Graveyard Warp Pad Region, Misc
+Shadow Temple Entryway -> Graveyard Warp Pad Region, Graveyard Warp Pad Region -> Shadow Temple Entryway, Misc
+Kakariko Village -> Bottom of the Well, Bottom of the Well -> Kakariko Village, Kakariko Village
+Bottom of the Well -> Kakariko Village, Kakariko Village -> Bottom of the Well, Misc
+ZF Ice Ledge -> Ice Cavern Beginning, Ice Cavern Beginning -> ZF Ice Ledge, Misc
+Ice Cavern Beginning -> ZF Ice Ledge, ZF Ice Ledge -> Ice Cavern Beginning, Misc
+Gerudo Fortress -> Gerudo Training Ground Lobby, Gerudo Training Ground Lobby -> Gerudo Fortress, Gerudo Fortress
+Gerudo Training Ground Lobby -> Gerudo Fortress, Gerudo Fortress -> Gerudo Training Ground Lobby, Misc
+Kokiri Forest -> KF Midos House, KF Midos House -> Kokiri Forest, Kokiri Forest
+KF Midos House -> Kokiri Forest, Kokiri Forest -> KF Midos House, Misc
+Kokiri Forest -> KF Sarias House, KF Sarias House -> Kokiri Forest, Kokiri Forest
+KF Sarias House -> Kokiri Forest, Kokiri Forest -> KF Sarias House, Misc
+Kokiri Forest -> KF House of Twins, KF House of Twins -> Kokiri Forest, Kokiri Forest
+KF House of Twins -> Kokiri Forest, Kokiri Forest -> KF House of Twins, Misc
+Kokiri Forest -> KF Know It All House, KF Know It All House -> Kokiri Forest, Kokiri Forest
+KF Know It All House -> Kokiri Forest, Kokiri Forest -> KF Know It All House, Misc
+Kokiri Forest -> KF Kokiri Shop, KF Kokiri Shop -> Kokiri Forest, Kokiri Forest
+KF Kokiri Shop -> Kokiri Forest, Kokiri Forest -> KF Kokiri Shop, Misc
+Lake Hylia -> LH Lab, LH Lab -> Lake Hylia, Lake Hylia
+LH Lab -> Lake Hylia, Lake Hylia -> LH Lab, Misc
+LH Fishing Island -> LH Fishing Hole, LH Fishing Hole -> LH Fishing Island, Misc
+LH Fishing Hole -> LH Fishing Island, LH Fishing Island -> LH Fishing Hole, Misc
+GV Fortress Side -> GV Carpenter Tent, GV Carpenter Tent -> GV Fortress Side, GV Fortress Side
+GV Carpenter Tent -> GV Fortress Side, GV Fortress Side -> GV Carpenter Tent, Misc
+Market Entrance -> Market Guard House, Market Guard House -> Market Entrance, Market Entrance
+Market Guard House -> Market Entrance, Market Entrance -> Market Guard House, Misc
+Market -> Market Mask Shop, Market Mask Shop -> Market, Market
+Market Mask Shop -> Market, Market -> Market Mask Shop, Misc
+Market -> Market Bombchu Bowling, Market Bombchu Bowling -> Market, Market
+Market Bombchu Bowling -> Market, Market -> Market Bombchu Bowling, Misc
+Market -> Market Potion Shop, Market Potion Shop -> Market, Market
+Market Potion Shop -> Market, Market -> Market Potion Shop, Misc
+Market -> Market Treasure Chest Game, Market Treasure Chest Game -> Market, Market
+Market Treasure Chest Game -> Market, Market -> Market Treasure Chest Game, Misc
+Market Back Alley -> Market Bombchu Shop, Market Bombchu Shop -> Market Back Alley, Market Back Alley
+Market Bombchu Shop -> Market Back Alley, Market Back Alley -> Market Bombchu Shop, Misc
+Market Back Alley -> Market Man in Green House, Market Man in Green House -> Market Back Alley, Market Back Alley
+Market Man in Green House -> Market Back Alley, Market Back Alley -> Market Man in Green House, Misc
+Kakariko Village -> Kak Carpenter Boss House, Kak Carpenter Boss House -> Kakariko Village, Kakariko Village
+Kak Carpenter Boss House -> Kakariko Village, Kakariko Village -> Kak Carpenter Boss House, Misc
+Kakariko Village -> Kak House of Skulltula, Kak House of Skulltula -> Kakariko Village, Kakariko Village
+Kak House of Skulltula -> Kakariko Village, Kakariko Village -> Kak House of Skulltula, Misc
+Kakariko Village -> Kak Impas House, Kak Impas House -> Kakariko Village, Kakariko Village
+Kak Impas House -> Kakariko Village, Kakariko Village -> Kak Impas House, Misc
+Kak Impas Ledge -> Kak Impas House Back, Kak Impas House Back -> Kak Impas Ledge, Misc
+Kak Impas House Back -> Kak Impas Ledge, Kak Impas Ledge -> Kak Impas House Back, Misc
+Kak Backyard -> Kak Odd Medicine Building, Kak Odd Medicine Building -> Kak Backyard, Kak Backyard
+Kak Odd Medicine Building -> Kak Backyard, Kak Backyard -> Kak Odd Medicine Building, Misc
+Graveyard -> Graveyard Dampes House, Graveyard Dampes House -> Graveyard, Graveyard
+Graveyard Dampes House -> Graveyard, Graveyard -> Graveyard Dampes House, Misc
+Goron City -> GC Shop, GC Shop -> Goron City, Goron City
+GC Shop -> Goron City, Goron City -> GC Shop, Misc
+Zoras Domain -> ZD Shop, ZD Shop -> Zoras Domain, Zoras Domain
+ZD Shop -> Zoras Domain, Zoras Domain -> ZD Shop, Misc
+Lon Lon Ranch -> LLR Talons House, LLR Talons House -> Lon Lon Ranch, Lon Lon Ranch
+LLR Talons House -> Lon Lon Ranch, Lon Lon Ranch -> LLR Talons House, Misc
+Lon Lon Ranch -> LLR Stables, LLR Stables -> Lon Lon Ranch, Lon Lon Ranch
+LLR Stables -> Lon Lon Ranch, Lon Lon Ranch -> LLR Stables, Misc
+Lon Lon Ranch -> LLR Tower, LLR Tower -> Lon Lon Ranch, Lon Lon Ranch
+LLR Tower -> Lon Lon Ranch, Lon Lon Ranch -> LLR Tower, Misc
+Market -> Market Bazaar, Market Bazaar -> Market, Market
+Market Bazaar -> Market, Market -> Market Bazaar, Misc
+Market -> Market Shooting Gallery, Market Shooting Gallery -> Market, Market
+Market Shooting Gallery -> Market, Market -> Market Shooting Gallery, Misc
+Kakariko Village -> Kak Bazaar, Kak Bazaar -> Kakariko Village, Kakariko Village
+Kak Bazaar -> Kakariko Village, Kakariko Village -> Kak Bazaar, Misc
+Kakariko Village -> Kak Shooting Gallery, Kak Shooting Gallery -> Kakariko Village, Kakariko Village
+Kak Shooting Gallery -> Kakariko Village, Kakariko Village -> Kak Shooting Gallery, Misc
+Desert Colossus -> Colossus Great Fairy Fountain, Colossus Great Fairy Fountain -> Desert Colossus, Desert Colossus
+Colossus Great Fairy Fountain -> Desert Colossus, Desert Colossus -> Colossus Great Fairy Fountain, Misc
+Hyrule Castle Grounds -> HC Great Fairy Fountain, HC Great Fairy Fountain -> Castle Grounds, Hyrule Castle Grounds
+HC Great Fairy Fountain -> Castle Grounds, Hyrule Castle Grounds -> HC Great Fairy Fountain, Misc
+Ganons Castle Grounds -> OGC Great Fairy Fountain, OGC Great Fairy Fountain -> Castle Grounds, Misc
+OGC Great Fairy Fountain -> Castle Grounds, Ganons Castle Grounds -> OGC Great Fairy Fountain, Misc
+DMC Lower Nearby -> DMC Great Fairy Fountain, DMC Great Fairy Fountain -> DMC Lower Local, DMC Lower Nearby
+DMC Great Fairy Fountain -> DMC Lower Local, DMC Lower Nearby -> DMC Great Fairy Fountain, Misc
+Death Mountain Summit -> DMT Great Fairy Fountain, DMT Great Fairy Fountain -> Death Mountain Summit, Death Mountain Summit
+DMT Great Fairy Fountain -> Death Mountain Summit, Death Mountain Summit -> DMT Great Fairy Fountain, Misc
+Zoras Fountain -> ZF Great Fairy Fountain, ZF Great Fairy Fountain -> Zoras Fountain, Zoras Fountain
+ZF Great Fairy Fountain -> Zoras Fountain, Zoras Fountain -> ZF Great Fairy Fountain, Misc
+Kokiri Forest -> KF Links House, KF Links House -> Kokiri Forest, Kokiri Forest
+KF Links House -> Kokiri Forest, Kokiri Forest -> KF Links House, Misc
+ToT Entrance -> Temple of Time, Temple of Time -> ToT Entrance, ToT Entrance
+Temple of Time -> ToT Entrance, ToT Entrance -> Temple of Time, Misc
+Kakariko Village -> Kak Windmill, Kak Windmill -> Kakariko Village, Kakariko Village
+Kak Windmill -> Kakariko Village, Kakariko Village -> Kak Windmill, Misc
+Kakariko Village -> Kak Potion Shop Front, Kak Potion Shop Front -> Kakariko Village, Kakariko Village
+Kak Potion Shop Front -> Kakariko Village, Kakariko Village -> Kak Potion Shop Front, Misc
+Kak Backyard -> Kak Potion Shop Back, Kak Potion Shop Back -> Kak Backyard, Kak Backyard
+Kak Potion Shop Back -> Kak Backyard, Kak Backyard -> Kak Potion Shop Back, Misc
+Desert Colossus -> Colossus Grotto, Colossus Grotto -> Desert Colossus, Desert Colossus
+Colossus Grotto -> Desert Colossus, Desert Colossus -> Colossus Grotto, Misc
+Lake Hylia -> LH Grotto, LH Grotto -> Lake Hylia, Lake Hylia
+LH Grotto -> Lake Hylia, Lake Hylia -> LH Grotto, Misc
+Zora River -> ZR Storms Grotto, ZR Storms Grotto -> Zora River, Zora River
+ZR Storms Grotto -> Zora River, Zora River -> ZR Storms Grotto, Misc
+Zora River -> ZR Fairy Grotto, ZR Fairy Grotto -> Zora River, Zora River
+ZR Fairy Grotto -> Zora River, Zora River -> ZR Fairy Grotto, Misc
+Zora River -> ZR Open Grotto, ZR Open Grotto -> Zora River, Zora River
+ZR Open Grotto -> Zora River, Zora River -> ZR Open Grotto, Misc
+DMC Lower Nearby -> DMC Hammer Grotto, DMC Hammer Grotto -> DMC Lower Local, DMC Lower Nearby
+DMC Hammer Grotto -> DMC Lower Local, DMC Lower Nearby -> DMC Hammer Grotto, Misc
+DMC Upper Nearby -> DMC Upper Grotto, DMC Upper Grotto -> DMC Upper Local, DMC Upper Nearby
+DMC Upper Grotto -> DMC Upper Local, DMC Upper Nearby -> DMC Upper Grotto, Misc
+GC Grotto Platform -> GC Grotto, GC Grotto -> GC Grotto Platform, Misc
+GC Grotto -> GC Grotto Platform, GC Grotto Platform -> GC Grotto, Misc
+Death Mountain -> DMT Storms Grotto, DMT Storms Grotto -> Death Mountain, Death Mountain
+DMT Storms Grotto -> Death Mountain, Death Mountain -> DMT Storms Grotto, Misc
+Death Mountain Summit -> DMT Cow Grotto, DMT Cow Grotto -> Death Mountain Summit, Death Mountain Summit
+DMT Cow Grotto -> Death Mountain Summit, Death Mountain Summit -> DMT Cow Grotto, Misc
+Kak Backyard -> Kak Open Grotto, Kak Open Grotto -> Kak Backyard, Kak Backyard
+Kak Open Grotto -> Kak Backyard, Kak Backyard -> Kak Open Grotto, Misc
+Kakariko Village -> Kak Redead Grotto, Kak Redead Grotto -> Kakariko Village, Kakariko Village
+Kak Redead Grotto -> Kakariko Village, Kakariko Village -> Kak Redead Grotto, Misc
+Hyrule Castle Grounds -> HC Storms Grotto, HC Storms Grotto -> Castle Grounds, Hyrule Castle Grounds
+HC Storms Grotto -> Castle Grounds, Hyrule Castle Grounds -> HC Storms Grotto, Misc
+Hyrule Field -> HF Tektite Grotto, HF Tektite Grotto -> Hyrule Field, Hyrule Field
+HF Tektite Grotto -> Hyrule Field, Hyrule Field -> HF Tektite Grotto, Misc
+Hyrule Field -> HF Near Kak Grotto, HF Near Kak Grotto -> Hyrule Field, Hyrule Field
+HF Near Kak Grotto -> Hyrule Field, Hyrule Field -> HF Near Kak Grotto, Misc
+Hyrule Field -> HF Fairy Grotto, HF Fairy Grotto -> Hyrule Field, Hyrule Field
+HF Fairy Grotto -> Hyrule Field, Hyrule Field -> HF Fairy Grotto, Misc
+Hyrule Field -> HF Near Market Grotto, HF Near Market Grotto -> Hyrule Field, Hyrule Field
+HF Near Market Grotto -> Hyrule Field, Hyrule Field -> HF Near Market Grotto, Misc
+Hyrule Field -> HF Cow Grotto, HF Cow Grotto -> Hyrule Field, Hyrule Field
+HF Cow Grotto -> Hyrule Field, Hyrule Field -> HF Cow Grotto, Misc
+Hyrule Field -> HF Inside Fence Grotto, HF Inside Fence Grotto -> Hyrule Field, Hyrule Field
+HF Inside Fence Grotto -> Hyrule Field, Hyrule Field -> HF Inside Fence Grotto, Misc
+Hyrule Field -> HF Open Grotto, HF Open Grotto -> Hyrule Field, Hyrule Field
+HF Open Grotto -> Hyrule Field, Hyrule Field -> HF Open Grotto, Misc
+Hyrule Field -> HF Southeast Grotto, HF Southeast Grotto -> Hyrule Field, Hyrule Field
+HF Southeast Grotto -> Hyrule Field, Hyrule Field -> HF Southeast Grotto, Misc
+Lon Lon Ranch -> LLR Grotto, LLR Grotto -> Lon Lon Ranch, Lon Lon Ranch
+LLR Grotto -> Lon Lon Ranch, Lon Lon Ranch -> LLR Grotto, Misc
+SFM Entryway -> SFM Wolfos Grotto, SFM Wolfos Grotto -> SFM Entryway, SFM Entryway
+SFM Wolfos Grotto -> SFM Entryway, SFM Entryway -> SFM Wolfos Grotto, Misc
+Sacred Forest Meadow -> SFM Storms Grotto, SFM Storms Grotto -> Sacred Forest Meadow, Sacred Forest Meadow
+SFM Storms Grotto -> Sacred Forest Meadow, Sacred Forest Meadow -> SFM Storms Grotto, Misc
+Sacred Forest Meadow -> SFM Fairy Grotto, SFM Fairy Grotto -> Sacred Forest Meadow, Sacred Forest Meadow
+SFM Fairy Grotto -> Sacred Forest Meadow, Sacred Forest Meadow -> SFM Fairy Grotto, Misc
+LW Beyond Mido -> LW Scrubs Grotto, LW Scrubs Grotto -> LW Beyond Mido, LW Beyond Mido
+LW Scrubs Grotto -> LW Beyond Mido, LW Beyond Mido -> LW Scrubs Grotto, Misc
+Lost Woods -> LW Near Shortcuts Grotto, LW Near Shortcuts Grotto -> Lost Woods, Lost Woods
+LW Near Shortcuts Grotto -> Lost Woods, Lost Woods -> LW Near Shortcuts Grotto, Misc
+Kokiri Forest -> KF Storms Grotto, KF Storms Grotto -> Kokiri Forest, Kokiri Forest
+KF Storms Grotto -> Kokiri Forest, Kokiri Forest -> KF Storms Grotto, Misc
+Zoras Domain -> ZD Storms Grotto, ZD Storms Grotto -> Zoras Domain, Zoras Domain
+ZD Storms Grotto -> Zoras Domain, Zoras Domain -> ZD Storms Grotto, Misc
+Gerudo Fortress -> GF Storms Grotto, GF Storms Grotto -> Gerudo Fortress, Gerudo Fortress
+GF Storms Grotto -> Gerudo Fortress, Gerudo Fortress -> GF Storms Grotto, Misc
+GV Fortress Side -> GV Storms Grotto, GV Storms Grotto -> GV Fortress Side, GV Fortress Side
+GV Storms Grotto -> GV Fortress Side, GV Fortress Side -> GV Storms Grotto, Misc
+GV Grotto Ledge -> GV Octorok Grotto, GV Octorok Grotto -> GV Grotto Ledge, Misc
+GV Octorok Grotto -> GV Grotto Ledge, GV Grotto Ledge -> GV Octorok Grotto, Misc
+LW Beyond Mido -> Deku Theater, Deku Theater -> LW Beyond Mido, LW Beyond Mido
+Deku Theater -> LW Beyond Mido, LW Beyond Mido -> Deku Theater, Misc
+Graveyard -> Graveyard Shield Grave, Graveyard Shield Grave -> Graveyard, Graveyard
+Graveyard Shield Grave -> Graveyard, Graveyard -> Graveyard Shield Grave, Misc
+Graveyard -> Graveyard Heart Piece Grave, Graveyard Heart Piece Grave -> Graveyard, Graveyard
+Graveyard Heart Piece Grave -> Graveyard, Graveyard -> Graveyard Heart Piece Grave, Misc
+Graveyard -> Graveyard Royal Familys Tomb, Graveyard Royal Familys Tomb -> Graveyard, Graveyard
+Graveyard Royal Familys Tomb -> Graveyard, Graveyard -> Graveyard Royal Familys Tomb, Misc
+Graveyard -> Graveyard Dampes Grave, Graveyard Dampes Grave -> Graveyard, Graveyard
+Graveyard Dampes Grave -> Graveyard, Graveyard -> Graveyard Dampes Grave, Misc
+Kokiri Forest -> LW Bridge From Forest, LW Bridge -> Kokiri Forest, Kokiri Forest
+LW Bridge -> Kokiri Forest, Kokiri Forest -> LW Bridge From Forest, LW Bridge
+Kokiri Forest -> Lost Woods, LW Forest Exit -> Kokiri Forest, Kokiri Forest
+LW Forest Exit -> Kokiri Forest, Kokiri Forest -> Lost Woods, Misc
+Lost Woods -> GC Woods Warp, GC Woods Warp -> Lost Woods, Lost Woods
+GC Woods Warp -> Lost Woods, Lost Woods -> GC Woods Warp, Misc
+Lost Woods -> Zora River, Zora River -> Lost Woods, Lost Woods
+Zora River -> Lost Woods, Lost Woods -> Zora River, Zora River
+LW Beyond Mido -> SFM Entryway, SFM Entryway -> LW Beyond Mido, LW Beyond Mido
+SFM Entryway -> LW Beyond Mido, LW Beyond Mido -> SFM Entryway, SFM Entryway
+LW Bridge -> Hyrule Field, Hyrule Field -> LW Bridge, LW Bridge
+Hyrule Field -> LW Bridge, LW Bridge -> Hyrule Field, Hyrule Field
+Hyrule Field -> Lake Hylia, Lake Hylia -> Hyrule Field, Hyrule Field
+Lake Hylia -> Hyrule Field, Hyrule Field -> Lake Hylia, Lake Hylia
+Hyrule Field -> Gerudo Valley, Gerudo Valley -> Hyrule Field, Hyrule Field
+Gerudo Valley -> Hyrule Field, Hyrule Field -> Gerudo Valley, Misc
+Hyrule Field -> Market Entrance, Market Entrance -> Hyrule Field, Hyrule Field
+Market Entrance -> Hyrule Field, Hyrule Field -> Market Entrance, Market Entrance
+Hyrule Field -> Kakariko Village, Kakariko Village -> Hyrule Field, Hyrule Field
+Kakariko Village -> Hyrule Field, Hyrule Field -> Kakariko Village, Kakariko Village
+Hyrule Field -> ZR Front, ZR Front -> Hyrule Field, Hyrule Field
+ZR Front -> Hyrule Field, Hyrule Field -> ZR Front, Misc
+Hyrule Field -> Lon Lon Ranch, Lon Lon Ranch -> Hyrule Field, Hyrule Field
+Lon Lon Ranch -> Hyrule Field, Hyrule Field -> Lon Lon Ranch, Lon Lon Ranch
+Lake Hylia -> Zoras Domain, Zoras Domain -> Lake Hylia, Lake Hylia
+Zoras Domain -> Lake Hylia, Lake Hylia -> Zoras Domain, Zoras Domain
+GV Fortress Side -> Gerudo Fortress, Gerudo Fortress -> GV Fortress Side, GV Fortress Side
+Gerudo Fortress -> GV Fortress Side, GV Fortress Side -> Gerudo Fortress, Gerudo Fortress
+GF Outside Gate -> Wasteland Near Fortress, Wasteland Near Fortress -> GF Outside Gate, Misc
+Wasteland Near Fortress -> GF Outside Gate, GF Outside Gate -> Wasteland Near Fortress, Misc
+Wasteland Near Colossus -> Desert Colossus, Desert Colossus -> Wasteland Near Colossus, Misc
+Desert Colossus -> Wasteland Near Colossus, Wasteland Near Colossus -> Desert Colossus, Desert Colossus
+Market Entrance -> Market, Market -> Market Entrance, Market Entrance
+Market -> Market Entrance, Market Entrance -> Market, Market
+Market -> Castle Grounds, Castle Grounds -> Market, Market
+Castle Grounds -> Market, Market -> Castle Grounds, Misc
+Market -> ToT Entrance, ToT Entrance -> Market, Market
+ToT Entrance -> Market, Market -> ToT Entrance, ToT Entrance
+Kakariko Village -> Graveyard, Graveyard -> Kakariko Village, Kakariko Village
+Graveyard -> Kakariko Village, Kakariko Village -> Graveyard, Graveyard
+Kak Behind Gate -> Death Mountain, Death Mountain -> Kak Behind Gate, Misc
+Death Mountain -> Kak Behind Gate, Kak Behind Gate -> Death Mountain, Death Mountain
+Death Mountain -> Goron City, Goron City -> Death Mountain, Death Mountain
+Goron City -> Death Mountain, Death Mountain -> Goron City, Goron City
+GC Darunias Chamber -> DMC Lower Local, DMC Lower Nearby -> GC Darunias Chamber, Misc
+DMC Lower Nearby -> GC Darunias Chamber, GC Darunias Chamber -> DMC Lower Local, DMC Lower Nearby
+Death Mountain Summit -> DMC Upper Local, DMC Upper Nearby -> Death Mountain Summit, Death Mountain Summit
+DMC Upper Nearby -> Death Mountain Summit, Death Mountain Summit -> DMC Upper Local, DMC Upper Nearby
+ZR Behind Waterfall -> Zoras Domain, Zoras Domain -> ZR Behind Waterfall, Misc
+Zoras Domain -> ZR Behind Waterfall, ZR Behind Waterfall -> Zoras Domain, Zoras Domain
+ZD Behind King Zora -> Zoras Fountain, Zoras Fountain -> ZD Behind King Zora, Misc
+Zoras Fountain -> ZD Behind King Zora, ZD Behind King Zora -> Zoras Fountain, Zoras Fountain
+LH Owl Flight -> Hyrule Field, OneWay, Misc
+DMT Owl Flight -> Kak Impas Rooftop, OneWay, Misc
+Child Spawn -> KF Links House, OneWay, Misc
+Adult Spawn -> Temple of Time, OneWay, Misc
+Minuet of Forest Warp -> Sacred Forest Meadow, OneWay, Misc
+Bolero of Fire Warp -> DMC Central Local, OneWay, Misc
+Serenade of Water Warp -> Lake Hylia, OneWay, Misc
+Requiem of Spirit Warp -> Desert Colossus, OneWay, Misc
+Nocturne of Shadow Warp -> Graveyard Warp Pad Region, OneWay, Misc
+Prelude of Light Warp -> Temple of Time, OneWay, Misc
+ZD Eyeball Frog Timeout -> Zoras Domain, OneWay, inaccessible
+ZR Top of Waterfall -> Zora River, OneWay, inaccessible
+Lost Woods Mushroom Timeout -> Lost Woods, OneWay, inaccessible
 
-//Dungeons
-'KF Outside Deku Tree -> Deku Tree Lobby',                         
-'Deku Tree Lobby -> KF Outside Deku Tree',                         
-'Death Mountain -> Dodongos Cavern Beginning',                     
-'Dodongos Cavern Beginning -> Death Mountain',                     
-'Zoras Fountain -> Jabu Jabus Belly Beginning',                    
-'Jabu Jabus Belly Beginning -> Zoras Fountain',                    
-'SFM Forest Temple Entrance Ledge -> Forest Temple Lobby',         
-'Forest Temple Lobby -> SFM Forest Temple Entrance Ledge',         
-'DMC Fire Temple Entrance -> Fire Temple Lower',                   
-'Fire Temple Lower -> DMC Fire Temple Entrance',                   
-'Lake Hylia -> Water Temple Lobby',                                
-'Water Temple Lobby -> Lake Hylia',                                
-'Desert Colossus -> Spirit Temple Lobby',                          
-'Spirit Temple Lobby -> Desert Colossus From Spirit Lobby',        
-'Graveyard Warp Pad Region -> Shadow Temple Entryway',             
-'Shadow Temple Entryway -> Graveyard Warp Pad Region',             
-'Kakariko Village -> Bottom of the Well',                          
-'Bottom of the Well -> Kakariko Village',                          
-'ZF Ice Ledge -> Ice Cavern Beginning',                            
-'Ice Cavern Beginning -> ZF Ice Ledge',                            
-'Gerudo Fortress -> Gerudo Training Ground Lobby',                 
-'Gerudo Training Ground Lobby -> Gerudo Fortress',                 
-
-//Interior
-'Kokiri Forest -> KF Midos House',                                 
-'KF Midos House -> Kokiri Forest',                                 
-'Kokiri Forest -> KF Sarias House',                                
-'KF Sarias House -> Kokiri Forest',                                
-'Kokiri Forest -> KF House of Twins',                              
-'KF House of Twins -> Kokiri Forest',                              
-'Kokiri Forest -> KF Know It All House',                           
-'KF Know It All House -> Kokiri Forest',                           
-'Kokiri Forest -> KF Kokiri Shop',                                 
-'KF Kokiri Shop -> Kokiri Forest',                                 
-'Lake Hylia -> LH Lab',                                            
-'LH Lab -> Lake Hylia',                                            
-'LH Fishing Island -> LH Fishing Hole',                            
-'LH Fishing Hole -> LH Fishing Island',                            
-'GV Fortress Side -> GV Carpenter Tent',                           
-'GV Carpenter Tent -> GV Fortress Side',                           
-'Market Entrance -> Market Guard House',                           
-'Market Guard House -> Market Entrance',                           
-'Market -> Market Mask Shop',                                      
-'Market Mask Shop -> Market',                                      
-'Market -> Market Bombchu Bowling',                                
-'Market Bombchu Bowling -> Market',                                
-'Market -> Market Potion Shop',                                    
-'Market Potion Shop -> Market',                                    
-'Market -> Market Treasure Chest Game',                            
-'Market Treasure Chest Game -> Market',                            
-'Market Back Alley -> Market Bombchu Shop',                        
-'Market Bombchu Shop -> Market Back Alley',                        
-'Market Back Alley -> Market Man in Green House',                  
-'Market Man in Green House -> Market Back Alley',                  
-'Kakariko Village -> Kak Carpenter Boss House',                    
-'Kak Carpenter Boss House -> Kakariko Village',                    
-'Kakariko Village -> Kak House of Skulltula',                      
-'Kak House of Skulltula -> Kakariko Village',                      
-'Kakariko Village -> Kak Impas House',                             
-'Kak Impas House -> Kakariko Village',                             
-'Kak Impas Ledge -> Kak Impas House Back',                         
-'Kak Impas House Back -> Kak Impas Ledge',                         
-'Kak Backyard -> Kak Odd Medicine Building',                       
-'Kak Odd Medicine Building -> Kak Backyard',                       
-'Graveyard -> Graveyard Dampes House',                             
-'Graveyard Dampes House -> Graveyard',                             
-'Goron City -> GC Shop',                                           
-'GC Shop -> Goron City',                                           
-'Zoras Domain -> ZD Shop',                                         
-'ZD Shop -> Zoras Domain',                                         
-'Lon Lon Ranch -> LLR Talons House',                               
-'LLR Talons House -> Lon Lon Ranch',                               
-'Lon Lon Ranch -> LLR Stables',                                    
-'LLR Stables -> Lon Lon Ranch',                                    
-'Lon Lon Ranch -> LLR Tower',                                      
-'LLR Tower -> Lon Lon Ranch',                                      
-'Market -> Market Bazaar',                                         
-'Market Bazaar -> Market',                                         
-'Market -> Market Shooting Gallery',                               
-'Market Shooting Gallery -> Market',                               
-'Kakariko Village -> Kak Bazaar',                                  
-'Kak Bazaar -> Kakariko Village',                                  
-'Kakariko Village -> Kak Shooting Gallery',                        
-'Kak Shooting Gallery -> Kakariko Village',                        
-'Desert Colossus -> Colossus Great Fairy Fountain',                
-'Colossus Great Fairy Fountain -> Desert Colossus',                
-'Hyrule Castle Grounds -> HC Great Fairy Fountain',                
-'HC Great Fairy Fountain -> Castle Grounds',                       
-'Ganons Castle Grounds -> OGC Great Fairy Fountain',               
-'OGC Great Fairy Fountain -> Castle Grounds',                      
-'DMC Lower Nearby -> DMC Great Fairy Fountain',                    
-'DMC Great Fairy Fountain -> DMC Lower Local',                     
-'Death Mountain Summit -> DMT Great Fairy Fountain',               
-'DMT Great Fairy Fountain -> Death Mountain Summit',               
-'Zoras Fountain -> ZF Great Fairy Fountain',                       
-'ZF Great Fairy Fountain -> Zoras Fountain',                       
-'Kokiri Forest -> KF Links House',                                 
-'KF Links House -> Kokiri Forest',                                 
-'ToT Entrance -> Temple of Time',                                  
-'Temple of Time -> ToT Entrance',                                  
-'Kakariko Village -> Kak Windmill',                                
-'Kak Windmill -> Kakariko Village',                                
-'Kakariko Village -> Kak Potion Shop Front',                       
-'Kak Potion Shop Front -> Kakariko Village',                       
-'Kak Backyard -> Kak Potion Shop Back',                            
-'Kak Potion Shop Back -> Kak Backyard',                            
-
-//Grottos
-'Desert Colossus -> Colossus Grotto',                              
-'Colossus Grotto -> Desert Colossus',                              
-'Lake Hylia -> LH Grotto',                                         
-'LH Grotto -> Lake Hylia',                                         
-'Zora River -> ZR Storms Grotto',                                  
-'ZR Storms Grotto -> Zora River',                                  
-'Zora River -> ZR Fairy Grotto',                                   
-'ZR Fairy Grotto -> Zora River',                                   
-'Zora River -> ZR Open Grotto',                                    
-'ZR Open Grotto -> Zora River',                                    
-'DMC Lower Nearby -> DMC Hammer Grotto',                           
-'DMC Hammer Grotto -> DMC Lower Local',                            
-'DMC Upper Nearby -> DMC Upper Grotto',                            
-'DMC Upper Grotto -> DMC Upper Local',                             
-'GC Grotto Platform -> GC Grotto',                                 
-'GC Grotto -> GC Grotto Platform',                                 
-'Death Mountain -> DMT Storms Grotto',                             
-'DMT Storms Grotto -> Death Mountain',                             
-'Death Mountain Summit -> DMT Cow Grotto',                         
-'DMT Cow Grotto -> Death Mountain Summit',                         
-'Kak Backyard -> Kak Open Grotto',                                 
-'Kak Open Grotto -> Kak Backyard',                                 
-'Kakariko Village -> Kak Redead Grotto',                           
-'Kak Redead Grotto -> Kakariko Village',                           
-'Hyrule Castle Grounds -> HC Storms Grotto',                       
-'HC Storms Grotto -> Castle Grounds',                              
-'Hyrule Field -> HF Tektite Grotto',                               
-'HF Tektite Grotto -> Hyrule Field',                               
-'Hyrule Field -> HF Near Kak Grotto',                              
-'HF Near Kak Grotto -> Hyrule Field',                              
-'Hyrule Field -> HF Fairy Grotto',                                 
-'HF Fairy Grotto -> Hyrule Field',                                 
-'Hyrule Field -> HF Near Market Grotto',                           
-'HF Near Market Grotto -> Hyrule Field',                           
-'Hyrule Field -> HF Cow Grotto',                                   
-'HF Cow Grotto -> Hyrule Field',                                   
-'Hyrule Field -> HF Inside Fence Grotto',                          
-'HF Inside Fence Grotto -> Hyrule Field',                          
-'Hyrule Field -> HF Open Grotto',                                  
-'HF Open Grotto -> Hyrule Field',                                  
-'Hyrule Field -> HF Southeast Grotto',                             
-'HF Southeast Grotto -> Hyrule Field',                             
-'Lon Lon Ranch -> LLR Grotto',                                     
-'LLR Grotto -> Lon Lon Ranch',                                     
-'SFM Entryway -> SFM Wolfos Grotto',                               
-'SFM Wolfos Grotto -> SFM Entryway',                               
-'Sacred Forest Meadow -> SFM Storms Grotto',                       
-'SFM Storms Grotto -> Sacred Forest Meadow',                       
-'Sacred Forest Meadow -> SFM Fairy Grotto',                        
-'SFM Fairy Grotto -> Sacred Forest Meadow',                        
-'LW Beyond Mido -> LW Scrubs Grotto',                              
-'LW Scrubs Grotto -> LW Beyond Mido',                              
-'Lost Woods -> LW Near Shortcuts Grotto',                          
-'LW Near Shortcuts Grotto -> Lost Woods',                          
-'Kokiri Forest -> KF Storms Grotto',                               
-'KF Storms Grotto -> Kokiri Forest',                               
-'Zoras Domain -> ZD Storms Grotto',                                
-'ZD Storms Grotto -> Zoras Domain',                                
-'Gerudo Fortress -> GF Storms Grotto',                             
-'GF Storms Grotto -> Gerudo Fortress',                             
-'GV Fortress Side -> GV Storms Grotto',                            
-'GV Storms Grotto -> GV Fortress Side',                            
-'GV Grotto Ledge -> GV Octorok Grotto',                            
-'GV Octorok Grotto -> GV Grotto Ledge',                            
-'LW Beyond Mido -> Deku Theater',                                  
-'Deku Theater -> LW Beyond Mido',
-'Graveyard -> Graveyard Shield Grave',                             
-'Graveyard Shield Grave -> Graveyard',                             
-'Graveyard -> Graveyard Heart Piece Grave',                        
-'Graveyard Heart Piece Grave -> Graveyard',                        
-'Graveyard -> Graveyard Royal Familys Tomb',                       
-'Graveyard Royal Familys Tomb -> Graveyard',                       
-'Graveyard -> Graveyard Dampes Grave',                             
-'Graveyard Dampes Grave -> Graveyard',                             
-
-//Overworld
-'Kokiri Forest -> LW Bridge From Forest',                          
-'LW Bridge -> Kokiri Forest',                                      
-'Kokiri Forest -> Lost Woods',                                     
-'LW Forest Exit -> Kokiri Forest',                                 
-'Lost Woods -> GC Woods Warp',                                     
-'GC Woods Warp -> Lost Woods',                                     
-'Lost Woods -> Zora River',                                        
-'Zora River -> Lost Woods',                                        
-'LW Beyond Mido -> SFM Entryway',                                  
-'SFM Entryway -> LW Beyond Mido',                                  
-'LW Bridge -> Hyrule Field',                                       
-'Hyrule Field -> LW Bridge',                                       
-'Hyrule Field -> Lake Hylia',                                      
-'Lake Hylia -> Hyrule Field',                                      
-'Hyrule Field -> Gerudo Valley',                                   
-'Gerudo Valley -> Hyrule Field',                                   
-'Hyrule Field -> Market Entrance',                                 
-'Market Entrance -> Hyrule Field',                                 
-'Hyrule Field -> Kakariko Village',                                
-'Kakariko Village -> Hyrule Field',                                
-'Hyrule Field -> ZR Front',                                        
-'ZR Front -> Hyrule Field',                                        
-'Hyrule Field -> Lon Lon Ranch',                                   
-'Lon Lon Ranch -> Hyrule Field',                                   
-'Lake Hylia -> Zoras Domain',                                      
-'Zoras Domain -> Lake Hylia',                                      
-'GV Fortress Side -> Gerudo Fortress',                             
-'Gerudo Fortress -> GV Fortress Side',                             
-'GF Outside Gate -> Wasteland Near Fortress',                      
-'Wasteland Near Fortress -> GF Outside Gate',                      
-'Wasteland Near Colossus -> Desert Colossus',                      
-'Desert Colossus -> Wasteland Near Colossus',                      
-'Market Entrance -> Market',                                       
-'Market -> Market Entrance',                                       
-'Market -> Castle Grounds',                                        
-'Castle Grounds -> Market',                                        
-'Market -> ToT Entrance',                                          
-'ToT Entrance -> Market',                                          
-'Kakariko Village -> Graveyard',                                   
-'Graveyard -> Kakariko Village',                                   
-'Kak Behind Gate -> Death Mountain',                               
-'Death Mountain -> Kak Behind Gate',                               
-'Death Mountain -> Goron City',                                    
-'Goron City -> Death Mountain',                                    
-'GC Darunias Chamber -> DMC Lower Local',                          
-'DMC Lower Nearby -> GC Darunias Chamber',                         
-'Death Mountain Summit -> DMC Upper Local',                        
-'DMC Upper Nearby -> Death Mountain Summit',                       
-'ZR Behind Waterfall -> Zoras Domain',                             
-'Zoras Domain -> ZR Behind Waterfall',                             
-'ZD Behind King Zora -> Zoras Fountain',                           
-'Zoras Fountain -> ZD Behind King Zora',                           
-
-//One-way
-'LH Owl Flight -> Hyrule Field',                                   
-'DMT Owl Flight -> Kak Impas Rooftop',                             
-'Child Spawn -> KF Links House',                                   
-'Adult Spawn -> Temple of Time',                                   
-'Minuet of Forest Warp -> Sacred Forest Meadow',                   
-'Bolero of Fire Warp -> DMC Central Local',                        
-'Serenade of Water Warp -> Lake Hylia',                            
-'Requiem of Spirit Warp -> Desert Colossus',                       
-'Nocturne of Shadow Warp -> Graveyard Warp Pad Region',            
-'Prelude of Light Warp -> Temple of Time',                         
-'ZD Eyeball Frog Timeout -> Zoras Domain',                         
-'ZR Top of Waterfall -> Zora River',                               
-
-
+SECTION: Locations
 //Items
 "Links Pocket",                                                 'Light Medallion',                       None
 "Queen Gohma",                                                  'Kokiri Emerald',                        None
@@ -354,7 +346,7 @@
 "Market Potion Shop Item 1",                                    'Buy Green Potion',                      ("the Market", "Market", "Shops")
 "Market Potion Shop Item 2",                                    'Buy Blue Fire',                         ("the Market", "Market", "Shops")
 "Market Potion Shop Item 3",                                    'Buy Red Potion [30]',                   ("the Market", "Market", "Shops")
-"Market Potion Shop Item 4",                                    'Buy Fairy\'s Spirit',                   ("the Market", "Market", "Shops")
+"Market Potion Shop Item 4",                                    'Buy Fairys Spirit',                   ("the Market", "Market", "Shops")
 "Market Potion Shop Item 5",                                    'Buy Deku Nut (5)',                      ("the Market", "Market", "Shops")
 "Market Potion Shop Item 6",                                    'Buy Bottle Bug',                        ("the Market", "Market", "Shops")
 "Market Potion Shop Item 7",                                    'Buy Poe',                               ("the Market", "Market", "Shops")
@@ -427,7 +419,7 @@
 "Kak Potion Shop Item 5",                                       'Buy Blue Fire',                         ("Kakariko Village", "Kakariko", "Shops")
 "Kak Potion Shop Item 6",                                       'Buy Bottle Bug',                        ("Kakariko Village", "Kakariko", "Shops")
 "Kak Potion Shop Item 7",                                       'Buy Poe',                               ("Kakariko Village", "Kakariko", "Shops")
-"Kak Potion Shop Item 8",                                       'Buy Fairy\'s Spirit',                   ("Kakariko Village", "Kakariko", "Shops")
+"Kak Potion Shop Item 8",                                       'Buy Fairys Spirit',                   ("Kakariko Village", "Kakariko", "Shops")
 
 //Gravey
 "Graveyard Shield Grave Chest",                                 'Hylian Shield',                         ("the Graveyard", "Kakariko",)
@@ -1039,6 +1031,7 @@
 //Ganon's Castle sha
 "Ganons Tower Boss Key Chest",                                  'Boss Key (Ganons Castle)',              ("Ganon's Castle", "Vanilla", "Master Quest",)
 
+SECTION: GOSSIP
 //Gossip Stones
 "DMC Gossip Stone",                          
 "DMT Gossip Stone",                          
@@ -1084,6 +1077,7 @@
 
 "Ganondorf Hint",                            
 
+SECTION: FAKE
 //Events. Fake items but might need to have item names 
 "Pierre",                                                       'Scarecrow Song',         
 "Deliver Rutos Letter",                                         'Deliver Letter',         
@@ -1094,18 +1088,18 @@
 "Stick Pot",                                                    'Deku Stick Drop',        
 "Nut Pot",                                                      'Deku Nut Drop',          
 "Nut Crate",                                                    'Deku Nut Drop',          
-"Blue Fire",                                                    'Blue Fire',              
-"Lone Fish",                                                    'Fish',                   
-"Fish Group",                                                   'Fish',                   
-"Bug Rock",                                                     'Bugs',                   
-"Bug Shrub",                                                    'Bugs',                   
-"Wandering Bugs",                                               'Bugs',                   
-"Fairy Pot",                                                    'Fairy',                  
-"Free Fairies",                                                 'Fairy',                  
-"Wall Fairy",                                                   'Fairy',                  
-"Butterfly Fairy",                                              'Fairy',                  
-"Gossip Stone Fairy",                                           'Fairy',                  
-"Bean Plant Fairy",                                             'Fairy',                  
-"Fairy Pond",                                                   'Fairy',                  
+"Item Blue Fire",                                               'Blue Fire',              
+"Lone Fish",                                                    'Item Fish',                   
+"Fish Group",                                                   'Item Fish',                   
+"Bug Rock",                                                     'Item Bugs',                   
+"Bug Shrub",                                                    'Item Bugs',                   
+"Wandering Bugs",                                               'Item Bugs',                   
+"Fairy Pot",                                                    'Item Fairy',                  
+"Free Fairies",                                                 'Item Fairy',                  
+"Wall Fairy",                                                   'Item Fairy',                  
+"Butterfly Fairy",                                              'Item Fairy',                  
+"Gossip Stone Fairy",                                           'Item Fairy',                  
+"Bean Plant Fairy",                                             'Item Fairy',                  
+"Fairy Pond",                                                   'Item Fairy',                  
 "Big Poe Kill",                                                 'Big Poe',                
 

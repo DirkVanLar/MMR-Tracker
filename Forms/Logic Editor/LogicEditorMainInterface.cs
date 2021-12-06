@@ -801,7 +801,7 @@ namespace MMR_Tracker.Forms
                 }
                 usedLocationNames.Add(LogicEntry1.ItemName);
 
-                if (LogicEntry1.SpoilerItem != null) 
+                if (LogicEntry1.SpoilerItem != null && LogicEntry1.SpoilerItem.Any()) 
                 {
                     originalName = LogicEntry1.SpoilerItem[0];
                     while (usedSpoilerNames.Contains(LogicEntry1.SpoilerItem[0]))
