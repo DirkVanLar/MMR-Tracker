@@ -16346,6 +16346,56 @@
       "ValidRandomizerStartingItem": false
     },
     {
+      "DictionaryName": "Extra Deku Shield 0",
+      "ItemName": "Deku Shield",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Deku Shield"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Deku Shield 1",
+      "ItemName": "Deku Shield",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Deku Shield"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Deku Shield 2",
+      "ItemName": "Deku Shield",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Deku Shield"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Deku Shield 3",
+      "ItemName": "Deku Shield",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Deku Shield"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Deku Shield 4",
+      "ItemName": "Deku Shield",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Deku Shield"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
       "DictionaryName": "Extra Deku Stick Capacity 0",
       "ItemName": "Deku Stick Capacity",
       "ItemSubType": "Item",

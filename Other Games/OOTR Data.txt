@@ -1142,7 +1142,7 @@ Buy Zora Tunic,1
 Claim Check,1
 Cojiro,1
 Deku Nut Capacity,3
-Deku Shield,7
+Deku Shield,9
 Deku Stick Capacity,3
 Dins Fire,2
 Double Defense,2

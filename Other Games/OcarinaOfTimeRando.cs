@@ -28,6 +28,7 @@ namespace MMR_Tracker.Other_Games
                 "Buy Arrows (",
                 "Arrows (",
                 "Deku Stick (",
+                "Deku Sticks (",
                 "Ice Trap",
                 "Buy Fairy",
                 "Buy Green Potion",
@@ -35,6 +36,21 @@ namespace MMR_Tracker.Other_Games
 
             };
         public static List<string> allBottles = new List<string>() { "Bottle with Red Potion", "Bottle with Green Potion", "Bottle with Blue Potion", "Bottle with Fairy", "Bottle with Fish", "Bottle with Blue Fire", "Bottle with Bugs", "Bottle with Big Poe", "Bottle with Poe", "Bottle", "Bottle with Milk" };
+        public static List<string> Dungeons = new List<string>()
+            {
+                "Bottom of the Well",
+                "Deku Tree",
+                "Dodongos Cavern",
+                "Fire Temple",
+                "Forest Temple",
+                "Ganons Castle",
+                "Gerudo Training Ground",
+                "Ice Cavern",
+                "Jabu Jabus Belly",
+                "Shadow Temple",
+                "Spirit Temple",
+                "Water Temple"
+            };
         public class OOTRLogicObject
         {
             public string region_name { get; set; } = "";
@@ -133,8 +149,8 @@ namespace MMR_Tracker.Other_Games
             DoFinalLogicCleanup(LogicObjects.MainTrackerInstance.Logic);
 
 
-            File.WriteAllLines("OOTRLogic.txt", LogicEditing.WriteLogicToJson(LogicObjects.MainTrackerInstance));
-            File.WriteAllText("OOTRDcitionary.json", JsonConvert.SerializeObject(LogicObjects.MainTrackerInstance.LogicDictionary, _jsonSerializerOptions));
+            File.WriteAllLines("Ocarina of Time Rando (Beta).txt", LogicEditing.WriteLogicToJson(LogicObjects.MainTrackerInstance));
+            File.WriteAllText("OOTR V1 json Logic Dictionary.json", JsonConvert.SerializeObject(LogicObjects.MainTrackerInstance.LogicDictionary, _jsonSerializerOptions));
             Process.Start(Directory.GetCurrentDirectory());
 
 
@@ -855,21 +871,7 @@ namespace MMR_Tracker.Other_Games
 
         public static void AddTempleLayoutTracking(LogicObjects.LogicDictionary dict, LogicObjects.LogicFile Logic)
         {
-            List<string> Dungeons = new List<string>()
-            {
-                "Bottom of the Well",
-                "Deku Tree",
-                "Dodongos Cavern",
-                "Fire Temple",
-                "Forest Temple",
-                "Ganons Castle",
-                "Gerudo Training Ground",
-                "Ice Cavern",
-                "Jabu Jabus Belly",
-                "Shadow Temple",
-                "Spirit Temple",
-                "Water Temple"
-            };
+            
 
             List<string> DungeonLogicReq = new List<string>()
             {
@@ -1474,6 +1476,19 @@ namespace MMR_Tracker.Other_Games
 
             var Log = JsonConvert.DeserializeObject<SpoilerLog>(string.Join(" ", Spoiler), jsonSerializerSettings);
 
+            //Prep Logic
+            foreach (var i in Instance.Logic)
+            {
+                if (!i.IsFake)
+                {
+                    i.Options = 0;
+                }
+                else if (i.IsTrick)
+                {
+                    i.TrickEnabled = false;
+                }
+            }
+
             #region OptionPrep
             //Define Option Entries
             var bombchus_in_logic = Instance.Logic.Find(x => x.DictionaryName == $"bombchus_in_logic");
@@ -1504,13 +1519,14 @@ namespace MMR_Tracker.Other_Games
             var not_shuffle_scrubs = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_scrubs == off");
             var shuffle_ganon_bosskey = Instance.Logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey == other");
             var GanonBossKey = Instance.Logic.Find(x => x.DictionaryName == $"Ganons Tower Boss Key Chest");
-            var no_guard_stealth = Instance.Logic.Find(x => x.DictionaryName == $"skip_child_zelda");
-            var not_no_guard_stealth = Instance.Logic.Find(x => x.DictionaryName == $"not skip_child_zelda");
+            var skip_child_zelda = Instance.Logic.Find(x => x.DictionaryName == $"skip_child_zelda");
+            var not_skip_child_zelda = Instance.Logic.Find(x => x.DictionaryName == $"not skip_child_zelda");
             var zora_fountain = Instance.Logic.Find(x => x.DictionaryName == "zora_fountain == closed");
             var starting_age = Instance.Logic.Find(x => x.DictionaryName == "Starting Age == child");
 
             //Set Defaults for some settings that don't always appear in the Spoiler
             starting_age.SpoilerRandom = starting_age.ID;
+            skip_child_zelda.SpoilerRandom = not_skip_child_zelda.ID;
 
             #endregion OptionPrep
 
@@ -1620,8 +1636,8 @@ namespace MMR_Tracker.Other_Games
                     case "shuffle_scrubs":
                         not_shuffle_scrubs.SpoilerRandom = i.Value == "off" ? not_shuffle_scrubs.ID : shuffle_scrubs.ID;
                         break;
-                    case "no_guard_stealth":
-                        no_guard_stealth.SpoilerRandom = i.Value ? no_guard_stealth.ID : not_no_guard_stealth.ID;
+                    case "skip_child_zelda": //Can't select the option in the randomizer so not sure what the actual option text is
+                        skip_child_zelda.SpoilerRandom = i.Value ? skip_child_zelda.ID : not_skip_child_zelda.ID;
                         break;
                     case "starting_age":
                         if (i.Value == "adult")
@@ -1659,6 +1675,20 @@ namespace MMR_Tracker.Other_Games
                         break;
                     case "ganon_bosskey_stones":
                         Instance.Logic.Find(x => x.DictionaryName == $"StonesNeededForGannonsBossKey").CountCheckData = $"${i.Value}";
+                        break;
+                    case "disabled_locations":
+                        foreach(string entry in i.Value)
+                        {
+                            var CurItem = Instance.Logic.Find(x => x.DictionaryName == entry);
+                            CurItem.Options = CurItem.StartingItem() ? 7 : 3;
+                        }
+                        break;
+                    case "allowed_tricks":
+                        foreach (string entry in i.Value)
+                        {
+                            var CurItem = Instance.Logic.Find(x => x.DictionaryName == entry);
+                            if (CurItem.IsTrick) { CurItem.TrickEnabled = true; }
+                        }
                         break;
                 }
             }
@@ -1710,7 +1740,7 @@ namespace MMR_Tracker.Other_Games
                     continue;
                 }
 
-                for(var n = 0; n < i.Value; n++)
+                for (var n = 0; n < i.Value; n++)
                 {
                     var ValidUnusedItems = Instance.Logic.Find(x => x.SpoilerItem != null && x.SpoilerItem.Contains(Item) && !UsedItems.Contains(x.ID));
                     if (ValidUnusedItems == null && Item.Contains("(") && Item.Contains(")"))
@@ -1775,7 +1805,7 @@ namespace MMR_Tracker.Other_Games
                         ValidLocation.SpoilerRandom = -1;
                         ValidLocation.JunkItemType = Item;
                     }
-                    else { Console.WriteLine($"Item: {Locations} Was not found in logic"); }
+                    else { Console.WriteLine($"Item: {Item} Was not found in logic"); }
                 }
                 else { Console.WriteLine($"Location: {Locations} Was not found in logic"); }
 
@@ -1786,21 +1816,36 @@ namespace MMR_Tracker.Other_Games
             {
                 if (item.SpoilerRandom < -1) //If a location was not given spoiler data
                 {
+                    Console.WriteLine("=======================================================");
                     if (!string.IsNullOrWhiteSpace(item.ItemName))
                     {
                         if (!UsedItems.Contains(item.ID)) //Set the locations randomized item to its self if its item wasn't already assigned
                         {
                             UsedItems.Add(item.ID);
                             item.SpoilerRandom = item.ID;
+                            Console.WriteLine($"Setting {item.LocationName ?? item.DictionaryName} to Vanilla Item {item.ItemName ?? item.DictionaryName}");
                         }
                         else //If this entrys item was already assigned, try to find another unused item with the same name
                         {
                             var ValidUnusedItems = Instance.Logic.Find(x => x.SpoilerItem != null && x.SpoilerItem.Contains(item.ItemName) && !UsedItems.Contains(x.ID));
-                            if (ValidUnusedItems != null) { item.SpoilerRandom = ValidUnusedItems.ID; }
+                            if (ValidUnusedItems != null) 
+                            { 
+                                item.SpoilerRandom = ValidUnusedItems.ID;
+                                Console.WriteLine($"Setting {item.LocationName ?? item.DictionaryName} to (French) Vanilla Item {ValidUnusedItems.ItemName ?? ValidUnusedItems.DictionaryName}");
+                            }
                             else
                             {
                                 item.SpoilerRandom = -1;
-                                item.JunkItemType = $"no unused {item.ItemName} Available";
+                                if (IgnoredJunk.Where(j => item.ItemName.StartsWith(j.Replace("(", "").Trim())).Any())
+                                {
+                                    item.JunkItemType = item.ItemName;
+                                    Console.WriteLine($"Placing Masked Junk Item {item.ItemName} at {item.LocationName ?? item.DictionaryName}");
+                                }
+                                else
+                                {
+                                    item.JunkItemType = $"no unused {item.ItemName} Available";
+                                    Console.WriteLine($"no unused {item.ItemName} Available to place at {item.LocationName ?? item.DictionaryName}. Setting to errored Junk");
+                                }
                             }
                         }
                     }
@@ -1808,6 +1853,7 @@ namespace MMR_Tracker.Other_Games
                     {
                         item.SpoilerRandom = -1;
                         item.JunkItemType = $"No Item Available";
+                        Console.WriteLine($"{item.LocationName??item.DictionaryName} Did not have a vanilla item. Setting to errored Junk");
                     }
                 }
             }
@@ -1944,7 +1990,7 @@ namespace MMR_Tracker.Other_Games
             #endregion Entrances
 
 
-            foreach(var i in Instance.Logic.Where(x => x.AppearsInListbox() && !x.IsCountCheck()))
+            foreach(var i in Instance.Logic.Where(x => x.AppearsInListbox() && !x.IsCountCheck() && !x.IsGossipStone()))
             {
                 if (i.SpoilerRandom < -1 && i.Randomized())
                 {
