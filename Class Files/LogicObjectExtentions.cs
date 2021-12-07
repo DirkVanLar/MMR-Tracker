@@ -15,9 +15,17 @@ namespace MMR_Tracker.Class_Files
         {
             return entry.ItemSubType == "Entrance";
         }
+        public static bool IsOneWayEntrance(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
+        {
+            return entry.PairedEntry(Instance) == null;
+        }
         public static bool IsGossipStone(this LogicObjects.LogicEntry entry)
         {
             return entry.ItemSubType.StartsWith("Gossip");
+        }
+        public static bool IsCountCheck(this LogicObjects.LogicEntry entry)
+        {
+            return entry.ItemSubType.StartsWith("MMRTCountCheck");
         }
         public static LogicObjects.LogicEntry RandomizedEntry(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool ReturnJunkAsItem = false)
         {

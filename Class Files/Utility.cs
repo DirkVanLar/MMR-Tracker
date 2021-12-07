@@ -165,16 +165,16 @@ namespace MMR_Tracker_V2
             bool Spoiler = false;
             foreach (var i in Logic)
             {
-                if (i.IsFake || string.IsNullOrWhiteSpace(i.LocationName) || i.Unrandomized(2)) { continue; }
+                if (i.IsFake || string.IsNullOrWhiteSpace(i.LocationName) || i.Unrandomized(2) || i.IsGossipStone() || i.IsCountCheck()) { continue; }
                 if (i.SpoilerRandom > (FakeAllowed ? -2 : -1)) 
                 { 
                     Spoiler = true;
-                    if (!full && Log) { Debugging.Log($"{string.Join(", ", i.SpoilerLocation[0])} Had SpoilerData: {string.Join(", ", i.SpoilerItem[0])}"); }
+                    if (!full && Log) { Debugging.Log($"{string.Join(", ", i.LocationName??i.DictionaryName)} Had SpoilerData: {string.Join(", ", i.SpoilerItem[0])}"); }
                 }
                 if (i.SpoilerRandom < (FakeAllowed ? -1 : 0)) 
                 { 
                     fullLog = false;
-                    if (full && Log) { Debugging.Log(string.Join(", ", i.SpoilerLocation[0]) + " Does not have SpoilerData"); }
+                    if (full && Log) { Debugging.Log(string.Join(", ", i.LocationName ?? i.DictionaryName) + " Does not have SpoilerData"); }
                 }
             }
             return (full) ? fullLog : Spoiler;

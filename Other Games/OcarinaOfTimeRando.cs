@@ -11,11 +11,24 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MMR_Tracker.Other_Games
 {
     class OcarinaOfTimeRando
     {
+        public static string[] IgnoredJunk = new string[]
+            {
+                "Rupees (",
+                "Deku Seeds (",
+                "Deku Nuts (",
+                "Buy Bombs (",
+                "Bombs (",
+                "Buy Arrows (",
+                "Arrows (",
+                "Deku Stick ("
+            };
+        public static List<string> allBottles = new List<string>() { "Bottle with Red Potion", "Bottle with Green Potion", "Bottle with Blue Potion", "Bottle with Fairy", "Bottle with Fish", "Bottle with Blue Fire", "Bottle with Bugs", "Bottle with Big Poe", "Bottle with Poe", "Bottle", "Bottle with Milk" };
         public class OOTRLogicObject
         {
             public string region_name { get; set; } = "";
@@ -29,16 +42,31 @@ namespace MMR_Tracker.Other_Games
         public class SpoilerLog
         {
             public Dictionary<string, dynamic> settings = new Dictionary<string, dynamic>();
+            public Dictionary<string, dynamic> randomized_settings = new Dictionary<string, dynamic>();
             public Dictionary<string, string> dungeons = new Dictionary<string, string>();
             public Dictionary<string, dynamic> entrances = new Dictionary<string, dynamic>();
             public Dictionary<string, dynamic> locations = new Dictionary<string, dynamic>();
             public Dictionary<string, int> item_pool = new Dictionary<string, int>();
+            public Dictionary<string, string> trials = new Dictionary<string, string>();
+            public Dictionary<string, int> starting_items = new Dictionary<string, int>();
+            public Dictionary<string, OOTRGossip> gossip_stones = new Dictionary<string, OOTRGossip>();
+        }
+
+        public class OOTRGossip
+        {
+            public string text = "";
+            public string[] colors = null;
         }
 
         public class RegionExit
         {
             public string region = "";
             public string from = "";
+        }
+        public class SpoilerLogPriceData
+        {
+            public string item = "";
+            public int price = 0;
         }
 
         //New Attempt
@@ -99,9 +127,10 @@ namespace MMR_Tracker.Other_Games
             DoFinalLogicCleanup(LogicObjects.MainTrackerInstance.Logic);
 
 
-            File.WriteAllLines("OOTRLogic.json", LogicEditing.WriteLogicToJson(LogicObjects.MainTrackerInstance));
+            File.WriteAllLines("OOTRLogic.txt", LogicEditing.WriteLogicToJson(LogicObjects.MainTrackerInstance));
             File.WriteAllText("OOTRDcitionary.json", JsonConvert.SerializeObject(LogicObjects.MainTrackerInstance.LogicDictionary, _jsonSerializerOptions));
             Process.Start(Directory.GetCurrentDirectory());
+
 
             return;
 
@@ -119,15 +148,15 @@ namespace MMR_Tracker.Other_Games
                 logic.Find(x => x.DictionaryName == "Ganon"),
             };
 
+            //The ganons tower checks are given the ganons castle dungeon tag but don't have a MQ varient, so onyl the Vanilla tag gets added. Neither are needed.
             var GCVanillaEntry = logic.Find(x => x.DictionaryName == "Ganons Castle Vanilla");
-
             foreach (var i in GanonsTowerChecks)
             {
-                //The ganons tower checks are given the ganons castle dungeon tag but don't have a MQ varient, so onyl the Vanilla tag gets added. Neither are needed.
                 i.Required = LogicEditing.removeItemFromRequirement(i.Required, new int[] { GCVanillaEntry.ID }); 
             }
 
-            //Ganons boss 
+            //Ganons boss key is not handle via normal boss keysy. We need to add the option for ganons boss key being removed as an alt conitional
+            //to having the boss key in all checks its used in. (only two)
             var GanonBossKysy = logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey == remove");
             GanonsTowerChecks[1].Required = LogicEditing.removeItemFromRequirement(GanonsTowerChecks[1].Required, new int[] { GanonsTowerChecks[0].ID });
             GanonsTowerChecks[1].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[1].Conditionals, new int[] { GanonsTowerChecks[0].ID });
@@ -135,6 +164,21 @@ namespace MMR_Tracker.Other_Games
             GanonsTowerChecks[2].Required = LogicEditing.removeItemFromRequirement(GanonsTowerChecks[2].Required, new int[] { GanonsTowerChecks[0].ID });
             GanonsTowerChecks[2].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[2].Conditionals, new int[] { GanonsTowerChecks[0].ID });
             GanonsTowerChecks[2].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[2].Conditionals, new int[] { GanonBossKysy.ID });
+
+            //For some reason logic has can recieve ganon boss key as available if the boss key is shuffled somewhere that isn't "Gift from Sages".
+            //The only use for the can_receive_ganon_bosskey logic entry is in "Gift from Sages" ans since we don't want to see that check if it doesn't contain
+            //Ganons boss key (since thats the onyl thing it can contain) remove the conditional that make can_receive_ganon_bosskey achievable if ganons
+            //Boss key is not on "Gift from Sages"
+            List<LogicObjects.LogicEntry> can_receive_ganon_bosskey_bad_conditionals = new List<LogicObjects.LogicEntry>()
+            {
+                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != stones"),
+                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != medallions"),
+                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != dungeons"),
+                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != tokens")
+            };
+            var can_receive_ganon_bosskey = logic.Find(x => x.DictionaryName == "can_receive_ganon_bosskey");
+            can_receive_ganon_bosskey.Conditionals = LogicEditing.removeItemFromConditionals(can_receive_ganon_bosskey.Conditionals, can_receive_ganon_bosskey_bad_conditionals.Select(x=>x.ID).ToArray(), false);
+
         }
 
         public static void CheckFormissingLogicItems(LogicObjects.LogicDictionary dict, LogicObjects.LogicFile Logic)
@@ -477,7 +521,7 @@ namespace MMR_Tracker.Other_Games
             {
                 DefaultWalletCapacity = 99,
                 GameCode = "OOTR",
-                LogicFormat = "JSON",
+                LogicFormat = "json",
                 LogicVersion = 1,
                 LogicDictionaryList = new List<LogicObjects.LogicDictionaryEntry>()
             };
@@ -629,18 +673,6 @@ namespace MMR_Tracker.Other_Games
                 }
             }
 
-            string[] IgnoredJunk = new string[]
-            {
-                "Rupees (",
-                "Deku Seeds (",
-                "Deku Nuts (",
-                "Buy Bombs (",
-                "Bombs (",
-                "Buy Arrows (",
-                "Arrows (",
-                "Deku Stick ("
-            };
-
             foreach (var i in ItemAmontAverages.OrderBy(x => x.Key))
             {
                 int CountInVanilla = dict.LogicDictionaryList.Where(x => x.SpoilerItem!=null && x.SpoilerItem.Contains(i.Key)).Count();
@@ -687,6 +719,7 @@ namespace MMR_Tracker.Other_Games
                 "Claim Check"
             };
 
+            //Add the trade items. Their original location is not randomized, but one of these items is randomly added to the pool as the starting trade item
             foreach (var i in TradeItems)
             {
                 dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
@@ -703,15 +736,17 @@ namespace MMR_Tracker.Other_Games
                 });
             }
 
-            List<string> allBottles = new List<string>() { "Bottle with Red Potion", "Bottle with Green Potion", "Bottle with Blue Potion", "Bottle with Fairy", "Bottle with Fish", "Bottle with Blue Fire", "Bottle with Bugs", "Bottle with Big Poe", "Bottle with Poe", "Bottle", "Bottle with Milk" };
-
+            //Add the mising has_bottle logic object, not sure where this is defined in the randomizer but it should just be any one bottle in the item list
+            
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"has_bottle",
                 ConditionalItems = allBottles.Select(x => new List<string>() { x }).ToList()
             });
 
-            foreach (var i in allBottles.Where(x => x != "Bottle"))
+            //In the randomizer, the bottles you ind are filled with a random item. These items don't exist in the vanilla item list so add them as possibilities
+            //Also add some extra real bottles since if you start with bottles they are all empty bottles
+            foreach (var i in allBottles)
             {
                 for (var j = 1; j < 4; j++)
                 {
@@ -771,6 +806,9 @@ namespace MMR_Tracker.Other_Games
 
             LogicParser parser = new LogicParser();
 
+            //The randomizer used a can_play() and can_use() macro which allows passing an item to see if its usable
+            //We can't do that kind of advced functionality in the tracker, so we parse down all the references to can can_play() and can_use() when reading logic
+            //and add them as entries here
             foreach (var i in UsablilityLogicItems)
             {
                 Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
@@ -780,6 +818,8 @@ namespace MMR_Tracker.Other_Games
                 });
             }
 
+            //The randomizer keeps track of and changes these values as its placing items. We can't really do that so we'll repurpose it to a 
+            // "Can be age" type value which will work for the tracker
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"age == adult",
@@ -791,6 +831,7 @@ namespace MMR_Tracker.Other_Games
                 ConditionalItems = parser.ConvertLogicToConditionalString("Starting Age == child | Time_Travel")
             });
 
+            //More of the Can_use style logic, but these are mush easier to define
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"has_projectile_adult",
@@ -811,6 +852,11 @@ namespace MMR_Tracker.Other_Games
                 Id = $"has_projectile_either",
                 ConditionalItems = parser.ConvertLogicToConditionalString("has_projectile_adult | has_projectile_child")
             });
+
+            //Since wallets are always progressive we can't really assign a price value to a specific wallet
+            //Here we make fake items that only exist to be added to price sanity checks
+            //Luckily the randomizer doesn have any wallets in any of the logic by default, it just adds it dynamically
+            //so we don't have to worry about removing any wallets from logic
             dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
             {
                 DictionaryName = $"AdultWallet",
@@ -845,7 +891,23 @@ namespace MMR_Tracker.Other_Games
                 ConditionalItems = new List<List<string>> { new List<string> { "Progressive Wallet x4" } }
             });
 
-
+            //The number of Gerudo fortress keys in the game is not listed under the item pool in he spoiler log
+            //so the "AddExtraItems" function misses these.
+            for(var i = 1; i < 3; i++)
+            {
+                dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
+                {
+                    DictionaryName = $"Extra_Small_Key_Thieves_Hideout {i}",
+                    FakeItem = false,
+                    ItemName = "Small Key Thieves Hideout",
+                    ItemSubType = "Item",
+                    SpoilerItem = new string[] { "Small Key Thieves Hideout", "Small_Key_Thieves_Hideout" }
+                });
+                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
+                {
+                    Id = $"Extra_Small_Key_Thieves_Hideout {i}"
+                });
+            }
 
         }
 
@@ -875,7 +937,7 @@ namespace MMR_Tracker.Other_Games
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"open_forest != closed",
-                ConditionalItems = parser.ConvertLogicToConditionalString("open_forest == deku | open_forest == open")
+                ConditionalItems = parser.ConvertLogicToConditionalString("open_forest == closed_deku | open_forest == open")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
@@ -970,7 +1032,7 @@ namespace MMR_Tracker.Other_Games
             StageOption("damage_multiplier", "normal", new string[] { "double", "half", "ohko", "quadruple" });
             StageOption("gerudo_fortress", "normal", new string[] { "fast", "open" });
             StageOption("lacs_condition", "vanilla", new string[] { "medallions", "stones", "tokens", "other", "dungeons" });
-            StageOption("open_forest", "closed", new string[] { "deku", "open" });
+            StageOption("open_forest", "closed", new string[] { "closed_deku", "open" });
             StageOption("open_kakariko", "closed", new string[] { "zelda", "open" });
             StageOption("shuffle_ganon_bosskey", "other", new string[] { "medallions", "stones", "tokens", "dungeons", "remove" });
             StageOption("shuffle_scrubs", "off", new string[] { "on" });
@@ -1360,6 +1422,462 @@ namespace MMR_Tracker.Other_Games
             }
         }
 
+        public static bool HandleOOTRSpoilerLog(LogicObjects.TrackerInstance Instance, string[] Spoiler)
+        {
+            MessageBox.Show("Add Settings for End Game Requirements");
+
+            Dictionary<string, int> ItemAmontAverages = new Dictionary<string, int>();
+            var jsonSerializerSettings = new JsonSerializerSettings();
+            jsonSerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
+
+            List<int> UsedItems = new List<int>();
+
+            var Log = JsonConvert.DeserializeObject<SpoilerLog>(string.Join(" ", Spoiler), jsonSerializerSettings);
+
+            //Set Defaults for some settings that don't always appear in logic
+            var starting_age = Instance.Logic.Find(x => x.DictionaryName == "Starting Age == child");
+            starting_age.SpoilerRandom = starting_age.ID;
+
+            foreach (var i in Log.settings)
+            {
+                switch (i.Key)
+                {
+                    case "big_poe_count":
+                        Instance.Logic.Find(x => x.DictionaryName == $"PoesNeededForPoeHutReward").CountCheckData = $"${i.Value}";
+                        break;
+                    case "bombchus_in_logic":
+                        var bombchus_in_logic = Instance.Logic.Find(x => x.DictionaryName == $"bombchus_in_logic");
+                        var not_bombchus_in_logic = Instance.Logic.Find(x => x.DictionaryName == $"not bombchus_in_logic");
+                        bombchus_in_logic.SpoilerRandom = i.Value ? bombchus_in_logic.ID : not_bombchus_in_logic.ID;
+                        break;
+                    case "bridge":
+                        var bridgeCheck = Instance.Logic.Find(x => x.DictionaryName == "bridge == vanilla");
+                        var bridgeOther = Instance.Logic.Find(x => x.DictionaryName == "bridge == other");
+                        bridgeCheck.SpoilerRandom = bridgeOther.ID;
+                        if (i.Value == "vanilla" || i.Value == "medallions" || i.Value == "open" || i.Value == "stones" || i.Value == "tokens" || i.Value == "dungeons")
+                        {
+                            bridgeCheck.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"bridge == {i.Value}").ID;
+                        }
+                        break;
+                    case "complete_mask_quest":
+                        var complete_mask_quest = Instance.Logic.Find(x => x.DictionaryName == $"complete_mask_quest");
+                        var not_complete_mask_quest = Instance.Logic.Find(x => x.DictionaryName == $"not complete_mask_quest");
+                        complete_mask_quest.SpoilerRandom = i.Value ? complete_mask_quest.ID : not_complete_mask_quest.ID;
+                        break;
+                    case "damage_multiplier":
+                        var damage_multiplier = Instance.Logic.Find(x => x.DictionaryName == "damage_multiplier == normal");
+                        damage_multiplier.SpoilerRandom = damage_multiplier.ID;
+                        if (i.Value == "double" || i.Value == "half" || i.Value == "ohko" || i.Value == "quadruple")
+                        {
+                            damage_multiplier.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"damage_multiplier == {i.Value}").ID;
+                        }
+                        break;
+                    case "free_scarecrow":
+                        var free_scarecrow = Instance.Logic.Find(x => x.DictionaryName == $"free_scarecrow");
+                        var not_free_scarecrow = Instance.Logic.Find(x => x.DictionaryName == $"not free_scarecrow");
+                        free_scarecrow.SpoilerRandom = i.Value ? free_scarecrow.ID : not_free_scarecrow.ID;
+                        break;
+                    case "gerudo_fortress":
+                        var gerudo_fortress = Instance.Logic.Find(x => x.DictionaryName == "gerudo_fortress == normal");
+                        gerudo_fortress.SpoilerRandom = gerudo_fortress.ID;
+                        if (i.Value == "fast" || i.Value == "open")
+                        {
+                            gerudo_fortress.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"gerudo_fortress == {i.Value}").ID;
+                        }
+                        break;
+                    case "shuffle_smallkeys":
+                        var shuffle_smallkeys = Instance.Logic.Find(x => x.DictionaryName == "keysanity");
+                        var not_shuffle_smallkeys = Instance.Logic.Find(x => x.DictionaryName == "not keysanity");
+                        shuffle_smallkeys.SpoilerRandom = i.Value == "vanilla" ? not_shuffle_smallkeys.ID : shuffle_smallkeys.ID;
+                        Instance.Options.Keysy["SmallKey"] = i.Value == "remove";
+                        break;
+                    case "shuffle_bosskeys":
+                        Instance.Options.Keysy["BossKey"] = i.Value == "remove";
+                        break;
+                    case "lacs_condition":
+                        var lacs_conditionCheck = Instance.Logic.Find(x => x.DictionaryName == "lacs_condition == vanilla");
+                        var lacs_conditionOther = Instance.Logic.Find(x => x.DictionaryName == "lacs_condition == other");
+                        lacs_conditionCheck.SpoilerRandom = lacs_conditionOther.ID;
+                        if (i.Value == "vanilla" || i.Value == "medallions" || i.Value == "stones" || i.Value == "tokens" || i.Value == "dungeons")
+                        {
+                            lacs_conditionCheck.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"lacs_condition == {i.Value}").ID;
+                        }
+                        break;
+                    case "open_door_of_time":
+                        var open_door_of_time = Instance.Logic.Find(x => x.DictionaryName == $"open_door_of_time");
+                        var not_open_door_of_time = Instance.Logic.Find(x => x.DictionaryName == $"not open_door_of_time");
+                        open_door_of_time.SpoilerRandom = i.Value ? open_door_of_time.ID : not_open_door_of_time.ID;
+                        break;
+                    case "open_forest":
+                        var open_forest = Instance.Logic.Find(x => x.DictionaryName == "open_forest == closed");
+                        open_forest.SpoilerRandom = open_forest.ID;
+                        if (i.Value == "closed_deku" || i.Value == "open")
+                        {
+                            open_forest.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"open_forest == {i.Value}").ID;
+                        }
+                        break;
+                    case "open_kakariko":
+                        var open_kakariko = Instance.Logic.Find(x => x.DictionaryName == "open_kakariko == closed");
+                        open_kakariko.SpoilerRandom = open_kakariko.ID;
+                        if (i.Value == "zelda" || i.Value == "open")
+                        {
+                            open_kakariko.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"open_kakariko == {i.Value}").ID;
+                        }
+                        break;
+                    case "shuffle_dungeon_entrances":
+                        var shuffle_dungeon_entrances = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_dungeon_entrances");
+                        var not_shuffle_dungeon_entrances = Instance.Logic.Find(x => x.DictionaryName == $"not shuffle_dungeon_entrances");
+                        shuffle_dungeon_entrances.SpoilerRandom = i.Value ? shuffle_dungeon_entrances.ID : not_shuffle_dungeon_entrances.ID;
+                        break;
+                    case "shuffle_overworld_entrances":
+                        var shuffle_overworld_entrances = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_overworld_entrances");
+                        var not_shuffle_overworld_entrances = Instance.Logic.Find(x => x.DictionaryName == $"not shuffle_overworld_entrances");
+                        shuffle_overworld_entrances.SpoilerRandom = i.Value ? shuffle_overworld_entrances.ID : not_shuffle_overworld_entrances.ID;
+                        break;
+                    case "shuffle_weird_egg":
+                        var shuffle_weird_egg = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_weird_egg");
+                        var not_shuffle_weird_egg = Instance.Logic.Find(x => x.DictionaryName == $"not shuffle_weird_egg");
+                        shuffle_weird_egg.SpoilerRandom = i.Value ? shuffle_weird_egg.ID : not_shuffle_weird_egg.ID;
+                        break;
+                    case "shuffle_ganon_bosskey":
+                        var shuffle_ganon_bosskey = Instance.Logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey == other");
+                        shuffle_ganon_bosskey.SpoilerRandom = shuffle_ganon_bosskey.ID;
+                        if (i.Value == "medallions" || i.Value == "stones" || i.Value == "tokens" || i.Value == "dungeons" || i.Value == "remove")
+                        {
+                            shuffle_ganon_bosskey.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_ganon_bosskey == {i.Value}").ID;
+                            if (i.Value != "remove")
+                            {
+                                var GanonBossKey = Instance.Logic.Find(x => x.DictionaryName == $"Ganons Tower Boss Key Chest");
+                                Instance.Logic.Find(x => x.DictionaryName == $"Gift from Sages").SpoilerRandom = GanonBossKey.ID;
+                                UsedItems.Add(GanonBossKey.ID);
+                            }
+                        }
+                        break;
+                    case "shuffle_scrubs":
+                        var shuffle_scrubs = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_scrubs == on");
+                        var not_shuffle_scrubs = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_scrubs == off");
+                        not_shuffle_scrubs.SpoilerRandom = i.Value == "off" ? not_shuffle_scrubs.ID : shuffle_scrubs.ID;
+                        break;
+                    case "no_guard_stealth":
+                        var no_guard_stealth = Instance.Logic.Find(x => x.DictionaryName == $"skip_child_zelda");
+                        var not_no_guard_stealth = Instance.Logic.Find(x => x.DictionaryName == $"not skip_child_zelda");
+                        no_guard_stealth.SpoilerRandom = i.Value ? no_guard_stealth.ID : not_no_guard_stealth.ID;
+                        break;
+                    case "starting_age":
+                        if (i.Value == "adult")
+                        {
+                            starting_age.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"Starting Age == adult").ID;
+                        }
+                        break;
+                    case "zora_fountain":
+                        var zora_fountain = Instance.Logic.Find(x => x.DictionaryName == "zora_fountain == closed");
+                        zora_fountain.SpoilerRandom = zora_fountain.ID;
+                        if (i.Value == "adult" || i.Value == "open")
+                        {
+                            zora_fountain.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"zora_fountain == {i.Value}").ID;
+                        }
+                        break;
+                }
+
+            }
+
+            foreach (var i in Log.randomized_settings)
+            {
+                switch (i.Key)
+                {
+                    case "starting_age":
+                        if (i.Value == "adult")
+                        {
+                            starting_age.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"Starting Age == adult").ID;
+                        }
+                        break;
+                }
+
+            }
+
+            foreach (var i in Log.dungeons)
+            {
+                var OptionVanilla = Instance.Logic.Find(x => x.DictionaryName == $"{i.Key} Vanilla");
+                var OptionmasterQuest = Instance.Logic.Find(x => x.DictionaryName == $"{i.Key} Master Quest");
+                if (i.Value == "vanilla")
+                {
+                    OptionVanilla.SpoilerRandom = OptionVanilla.ID;
+                }
+                else
+                {
+                    OptionVanilla.SpoilerRandom = OptionmasterQuest.ID;
+                }
+
+                Console.WriteLine($"{OptionVanilla.LocationName} is {Instance.Logic[OptionVanilla.SpoilerRandom].ItemName}");
+
+            }
+
+            foreach (var i in Log.trials)
+            {
+                var OptionSkiped = Instance.Logic.Find(x => x.DictionaryName == $"skipped_trials[{i.Key}]");
+                var OptionNotSkiped = Instance.Logic.Find(x => x.DictionaryName == $"not skipped_trials[{i.Key}]");
+                if (i.Value == "active")
+                {
+                    OptionNotSkiped.SpoilerRandom = OptionNotSkiped.ID;
+                }
+                else
+                {
+                    OptionNotSkiped.SpoilerRandom = OptionSkiped.ID;
+                }
+
+                Console.WriteLine($"{OptionNotSkiped.LocationName} is {Instance.Logic[OptionNotSkiped.SpoilerRandom].ItemName}");
+
+            }
+
+            #region StartingItems
+            foreach (var i in Log.starting_items)
+            {
+                var Item = i.Key;
+
+                if (IgnoredJunk.Select(x => x.Replace("(", "").Trim()).Contains(Item))
+                {
+                    continue;
+                }
+
+                for(var n = 0; n < i.Value; n++)
+                {
+                    var ValidUnusedItems = Instance.Logic.Find(x => x.SpoilerItem != null && x.SpoilerItem.Contains(Item) && !UsedItems.Contains(x.ID));
+                    if (ValidUnusedItems == null && Item.Contains("(") && Item.Contains(")"))
+                    {
+                        ValidUnusedItems = Instance.Logic.Find(x => x.SpoilerItem != null && x.SpoilerItem.Contains(Item.Replace("(", "").Replace(")", "")) && !UsedItems.Contains(x.ID));
+                    }
+                    if (ValidUnusedItems != null)
+                    {
+                        UsedItems.Add(ValidUnusedItems.ID);
+                        ValidUnusedItems.Options = ValidUnusedItems.Options > 3 ? ValidUnusedItems.Options : ValidUnusedItems.Options + 4;
+                    }
+                    else { Console.WriteLine($"Item: {Item} Was not found in logic"); }
+                }
+            }
+            #endregion StartingItems
+
+            #region Items
+
+            foreach (var j in Log.locations)
+            {
+                string Locations = j.Key;
+                string Item = "";
+                int Price = -1;
+
+                Type T = j.Value.GetType();
+                if (T == typeof(string)) { Item = j.Value.ToString(); }
+                else
+                {
+                    SpoilerLogPriceData Data = j.Value.ToObject<SpoilerLogPriceData>();
+                    Item = Data.item;
+                    Price = Data.price;
+                }
+
+                var ValidLocation = Instance.Logic.Find(x => x.SpoilerLocation != null && x.SpoilerLocation.Contains(Locations));
+                var ValidUnusedItems = Instance.Logic.Find(x => x.SpoilerItem != null && x.SpoilerItem.Contains(Item) && !UsedItems.Contains(x.ID));
+
+                if (ValidLocation == null && Locations.Contains("(") && Locations.Contains(")"))
+                {
+                    ValidLocation = Instance.Logic.Find(x => x.SpoilerLocation != null && x.SpoilerLocation.Contains(Locations.Replace("(", "").Replace(")", "")));
+                }
+                if (ValidUnusedItems == null && Item.Contains("(") && Item.Contains(")"))
+                {
+                    ValidUnusedItems = Instance.Logic.Find(x => x.SpoilerItem != null && x.SpoilerItem.Contains(Item.Replace("(", "").Replace(")", "")) && !UsedItems.Contains(x.ID));
+                }
+
+                if (ValidLocation != null)
+                {
+                    if (Price > -1) { ValidLocation.Price = Price; }
+                    if (ValidUnusedItems != null)
+                    {
+                        UsedItems.Add(ValidUnusedItems.ID);
+                        ValidLocation.SpoilerRandom = ValidUnusedItems.ID;
+                    }
+                    else if (IgnoredJunk.Where(x => Item.StartsWith(x)).Any()) //There are way more junk items (ruppes, ammo etc) than what exist in the dictionary.
+                    {
+                        ValidLocation.SpoilerRandom = -1;
+                        ValidLocation.JunkItemType = Item;
+                    }
+                    else { Console.WriteLine($"Item: {Locations} Was not found in logic"); }
+                }
+                else { Console.WriteLine($"Location: {Locations} Was not found in logic"); }
+
+
+            }
+
+            foreach(var item in Instance.Logic.Where(x => x.ItemSubType == "Item" && x.AppearsInListbox()))
+            {
+                if (item.SpoilerRandom < -1) //If a location was not given spoiler data
+                {
+                    if (!string.IsNullOrWhiteSpace(item.ItemName))
+                    {
+                        if (!UsedItems.Contains(item.ID)) //Set the locations randomized item to its self if its item wasn't already assigned
+                        {
+                            UsedItems.Add(item.ID);
+                            item.SpoilerRandom = item.ID;
+                        }
+                        else //If this entrys item was already assigned, try to find another unused item with the same name
+                        {
+                            var ValidUnusedItems = Instance.Logic.Find(x => x.SpoilerItem != null && x.SpoilerItem.Contains(item.ItemName) && !UsedItems.Contains(x.ID));
+                            if (ValidUnusedItems != null) { item.SpoilerRandom = ValidUnusedItems.ID; }
+                            else
+                            {
+                                item.SpoilerRandom = -1;
+                                item.JunkItemType = $"no unused {item.ItemName} Available";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        item.SpoilerRandom = -1;
+                        item.JunkItemType = $"No Item Available";
+                    }
+                }
+            }
+            #endregion Items
+
+            #region Entrances
+
+            List<int> Exitsused = new List<int>();
+            Dictionary<LogicObjects.LogicEntry, LogicObjects.LogicEntry> OneWayData = new Dictionary<LogicObjects.LogicEntry, LogicObjects.LogicEntry>();
+
+            foreach (var j in Log.entrances)
+            {
+                var entrance = j.Key;
+                string exit = null;
+
+                string sValue = j.Value as string;
+                if (sValue != null)
+                {
+                    //If an area only has one exit/entrance the spoiler log doesn't the "from" region meaning the full item name is not present
+                    //We need to "Guess" the from region by looking for entrances whos item name start with what we are given
+                    //Since these only have one valid entrance/exit anyway the guess should always be correct
+                    var GuessedExitname = Instance.Logic.Where(x =>
+                        x.IsEntrance() && !string.IsNullOrWhiteSpace(x.ItemName) &&
+                        x.ItemName.Split(new string[] { "<-" }, StringSplitOptions.None)[0].Trim() == sValue).ToArray();
+
+                    if (GuessedExitname.Any())
+                    {
+                        exit = GuessedExitname[GuessedExitname.Count() - 1].ItemName.Trim();
+                    }
+                }
+                else
+                {
+                    RegionExit R = j.Value.ToObject<RegionExit>();
+                    exit = $"{ R.region } <- { R.from }";
+                }
+
+                if (exit == null) { Console.WriteLine($"No valid exit found at {j.Key}"); continue; }
+
+                var ValidEntrances = Instance.Logic.Where(x => x.IsEntrance() && x.SpoilerLocation != null && x.SpoilerLocation.Contains(entrance));
+                var ValidExits = Instance.Logic.Where(x => x.IsEntrance() && x.SpoilerItem != null && x.SpoilerItem.Select(z => z.Trim()).Contains(exit));
+
+                if (!ValidEntrances.Any() || !ValidExits.Any())
+                {
+                    //Console.WriteLine($"=======================================");
+                    //Console.WriteLine($"Line {entrance} -> {exit} Not valid");
+                    //Console.WriteLine($"Valid entrance Count {ValidEntrances.Count()}");
+                    //Console.WriteLine($"Valid Exit Count {ValidExits.Count()}");
+                    continue;
+                }
+
+                var StashedEntrance = ValidEntrances.ToArray()[0];
+                var StashedExit = ValidExits.ToArray()[0];
+
+                ValidEntrances = ValidEntrances.Where(x => !x.IsOneWayEntrance(Instance));
+                ValidExits = ValidExits.Where(x => !x.IsOneWayEntrance(Instance));
+
+                //Since one way entrances lead to exits that exist elsewere, stash the entrance and exit data to apply at the end
+                //This is so we don't confuse the function that tries to fill in missing data based on entrance pairs
+                if (!ValidEntrances.Any() || !ValidExits.Any())
+                {
+                    //Console.WriteLine($"=======================================");
+                    //Console.WriteLine($"Skipping One Way entrance {StashedEntrance.LocationName}");
+                    //Console.WriteLine($"Entrance One Way {!ValidEntrances.Where(x => !x.IsOneWayEntrance(Instance)).Any()}");
+                    //Console.WriteLine($"Exit One Way {!ValidExits.Where(x => !x.IsOneWayEntrance(Instance)).Any()}");
+                    OneWayData.Add(StashedEntrance, StashedExit);
+                    continue;
+                }
+
+                var ExitToUse = ValidExits.ToList()[ValidExits.Count() - 1];
+
+                var UnusedValidExits = ValidExits.Where(x => !Exitsused.Contains(x.ID));
+                if (UnusedValidExits.Any())
+                {
+                    ExitToUse = UnusedValidExits.ToList()[UnusedValidExits.Count() - 1];
+                }
+                else { Console.WriteLine($"Warning Exit {ExitToUse.ItemName} Was used multiple times"); }
+
+                var EntranceTouse = ValidEntrances.ToList()[ValidEntrances.Count() - 1];
+
+                EntranceTouse.SpoilerRandom = ExitToUse.ID;
+
+            }
+
+            //If an area only has one entrance/exit the entrance is not listed in the spoiler log unless entrances are uncouple
+            //If entrances are couple however we can find where that entrance leads by going down an entrance pair rabbit hole
+            //And looking at what exit leads to the entrance we are trying to find
+            foreach(var e in Instance.Logic.Where(x => x.IsEntrance()))
+            {
+                if (e.SpoilerRandom < 0)
+                {
+                    if (Instance.Options.CoupleEntrances)
+                    {
+                        var PairedEntry = e.PairedEntry(Instance);
+                        if (PairedEntry != null && PairedEntry.SpoilerRandom > -1)
+                        {
+                            //Console.WriteLine($"=======================================================================");
+                            //Console.WriteLine($"[{e.LocationName}] Did not have spoiler data but entrances were couple");
+                            //Console.WriteLine($"[{e.LocationName}] Coupled Entrance was [{PairedEntry.LocationName}] or [{PairedEntry.ItemName}]");
+                            var PairedEntryLocation = PairedEntry.GetItemsSpoilerLocation(Instance.Logic);
+                            if (PairedEntryLocation != null)
+                            {
+                                //Console.WriteLine($"[{PairedEntry.ItemName}] Was Located at [{PairedEntryLocation.LocationName}]");
+                                var PairedEntryLocationPairedEntry = PairedEntryLocation.PairedEntry(Instance);
+                                if (PairedEntryLocationPairedEntry != null)
+                                {
+                                    //Console.WriteLine($"[{PairedEntryLocation.LocationName}] paired entry was [{PairedEntryLocationPairedEntry.LocationName}] or [{PairedEntryLocationPairedEntry.ItemName}]");
+                                    //Console.WriteLine($"[{e.LocationName}] Leads to [{PairedEntryLocationPairedEntry.ItemName}]");
+                                    e.SpoilerRandom = PairedEntryLocationPairedEntry.ID;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            //We can now commit one way entrances
+            foreach (var i in OneWayData)
+            {
+                //Console.WriteLine("Commiting One Way data");
+                //Console.WriteLine($"[{i.Key.LocationName}] leads to [{i.Value.ItemName}]");
+                i.Key.SpoilerRandom = i.Value.ID;
+            }
+
+            //unrandomized entrances don't show up in the spoiler log. If an entrance doesn't have data at this point we can assume it's unrandomized.
+            foreach (var e in Instance.Logic.Where(x => x.IsEntrance() && x.AppearsInListbox()))
+            {
+                if (e.SpoilerRandom < 0)
+                {
+                    e.SpoilerRandom = e.ID;
+                    e.Options = 1;
+                }
+            }
+
+            #endregion Entrances
+
+            //Entrances
+
+            foreach(var i in Instance.Logic.Where(x => x.AppearsInListbox() && !x.IsCountCheck()))
+            {
+                if (i.SpoilerRandom < -1 && i.Randomized())
+                {
+                    Console.WriteLine($"{i.LocationName ?? i.DictionaryName} Needs Spoiler Data");
+                }
+            }
+            return true;
+        }
+
 
         //Spoiler=====================================================================================================================================================
 
@@ -1372,13 +1890,14 @@ namespace MMR_Tracker.Other_Games
             }
         }
 
-        public static void ReadSpoiler()
+        public static void OLDReadSpoiler()
         {
             string SpoilerLogFile = "";
             List<string> SpoilerLogFileLocations =  new List<string> 
             { 
                 @"D:\Games\Emulated Games\Emulator\Wii\Dolphin-x64 Ocarina of Time Randomizer\Roms\OoT_D98CE_JKI93B07ON_Spoiler.json",
-                @"C:\CodeTest\OoT_D98CE_JKI93B07ON_Spoiler.json"
+                @"C:\CodeTest\OoT_D98CE_JKI93B07ON_Spoiler.json",
+                @"C:\Users\drumm\Downloads\OOTR Logs"
             };
             foreach (var i in SpoilerLogFileLocations)
             {

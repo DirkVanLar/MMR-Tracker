@@ -15860,6 +15860,39 @@
       "ValidRandomizerStartingItem": false
     },
     {
+      "DictionaryName": "Bottled Item Bottle 1",
+      "ItemName": "Bottle",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Bottle",
+        "Bottle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Bottled Item Bottle 2",
+      "ItemName": "Bottle",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Bottle",
+        "Bottle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Bottled Item Bottle 3",
+      "ItemName": "Bottle",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Bottle",
+        "Bottle"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
       "DictionaryName": "Bottled Item Bottle with Milk 1",
       "ItemName": "Bottle with Milk",
       "ItemSubType": "Item",
@@ -15908,6 +15941,28 @@
       "DictionaryName": "TycoonWallet",
       "FakeItem": true,
       "WalletCapacity": 999,
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra_Small_Key_Thieves_Hideout 1",
+      "ItemName": "Small Key Thieves Hideout",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Small Key Thieves Hideout",
+        "Small_Key_Thieves_Hideout"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra_Small_Key_Thieves_Hideout 2",
+      "ItemName": "Small Key Thieves Hideout",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Small Key Thieves Hideout",
+        "Small_Key_Thieves_Hideout"
+      ],
       "ValidRandomizerStartingItem": false
     },
     {
@@ -16031,6 +16086,26 @@
       "ValidRandomizerStartingItem": false
     },
     {
+      "DictionaryName": "Extra Broken Sword 0",
+      "ItemName": "Broken Sword",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Broken Sword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Broken Sword 1",
+      "ItemName": "Broken Sword",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Broken Sword"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
       "DictionaryName": "Extra Buy Blue Fire 0",
       "ItemName": "Buy Blue Fire",
       "ItemSubType": "Item",
@@ -16047,6 +16122,26 @@
       "FakeItem": false,
       "SpoilerItem": [
         "Buy Blue Fire"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Buy Bombchu (10) 0",
+      "ItemName": "Buy Bombchu (10)",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Buy Bombchu (10)"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Buy Bombchu (10) 1",
+      "ItemName": "Buy Bombchu (10)",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Buy Bombchu (10)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -16151,6 +16246,26 @@
       "ValidRandomizerStartingItem": false
     },
     {
+      "DictionaryName": "Extra Buy Hylian Shield 0",
+      "ItemName": "Buy Hylian Shield",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Buy Hylian Shield"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Buy Hylian Shield 1",
+      "ItemName": "Buy Hylian Shield",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Buy Hylian Shield"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
       "DictionaryName": "Extra Buy Red Potion [40] 0",
       "ItemName": "Buy Red Potion [40]",
       "ItemSubType": "Item",
@@ -16207,6 +16322,26 @@
       "FakeItem": false,
       "SpoilerItem": [
         "Buy Zora Tunic"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Claim Check 0",
+      "ItemName": "Claim Check",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Claim Check"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Claim Check 1",
+      "ItemName": "Claim Check",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Claim Check"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -16981,6 +17116,26 @@
       "ValidRandomizerStartingItem": false
     },
     {
+      "DictionaryName": "Extra Odd Mushroom 0",
+      "ItemName": "Odd Mushroom",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Odd Mushroom"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Odd Mushroom 1",
+      "ItemName": "Odd Mushroom",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Odd Mushroom"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
       "DictionaryName": "Extra Piece of Heart (Treasure Chest Game) 0",
       "ItemName": "Piece of Heart (Treasure Chest Game)",
       "ItemSubType": "Item",
@@ -17227,6 +17382,46 @@
       "FakeItem": false,
       "SpoilerItem": [
         "Requiem of Spirit"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Rupee (1) 0",
+      "ItemName": "Rupee (1)",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Rupee (1)"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Rupee (1) 1",
+      "ItemName": "Rupee (1)",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Rupee (1)"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Rupee (Treasure Chest Game) 0",
+      "ItemName": "Rupee (Treasure Chest Game)",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Rupee (Treasure Chest Game)"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Rupee (Treasure Chest Game) 1",
+      "ItemName": "Rupee (Treasure Chest Game)",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Rupee (Treasure Chest Game)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -17904,8 +18099,8 @@
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "open_forest == deku",
-      "ItemName": "deku",
+      "DictionaryName": "open_forest == closed_deku",
+      "ItemName": "closed_deku",
       "LocationArea": "%Randomizer Options%",
       "ItemSubType": "Option_open_forest",
       "FakeItem": false,

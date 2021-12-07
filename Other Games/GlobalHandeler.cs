@@ -15,9 +15,9 @@ namespace MMR_Tracker.Other_Games
             {
                 return false;
             }
-            else if (instance.GameCode == "OOTR" && Spoiler[0].Contains("Ocarina of Time Randomizer"))
+            else if (instance.GameCode == "OOTR" && Spoiler[1].Contains(":version"))
             {
-                return false;
+                return OcarinaOfTimeRando.HandleOOTRSpoilerLog(instance, Spoiler);
             }
             else if (instance.GameCode == "SSR" && Spoiler[0].Contains("Skyward Sword Randomizer"))
             {

@@ -645,6 +645,20 @@ namespace MMR_Tracker_V2
 
         public static bool HandleMMRTCombinationLogic(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, List<int> usedItems = null)
         {
+            bool AllBossKeys = true;
+            bool AllSmallKeys = true;
+            foreach (var cond in entry.Conditionals)
+            {
+                foreach(var i in cond)
+                {
+                    if (!Instance.Keys["SmallKeys"].Contains(i)) { AllSmallKeys = false; }
+                    if (!Instance.Keys["BossKeys"].Contains(i)) { AllBossKeys = false; }
+                }
+            }
+
+            if (AllBossKeys && Instance.Options.Keysy["BossKey"]) { return true; }
+            if (AllSmallKeys && Instance.Options.Keysy["SmallKey"]) { return true; }
+
             var logic = Instance.Logic;
             List<int> CondItemsUsed = new List<int>();
             int ComboEntry = entry.Required.ToList().Find(x => logic[x].DictionaryName.StartsWith("MMRTCombinations"));

@@ -156,7 +156,7 @@ namespace MMR_Tracker
                 if (!Utility.CheckforSpoilerLog(CheckerInstance.Logic, true))
                 { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
             }
-            else if (!Utility.CheckforSpoilerLog(CheckerInstance.Logic, true))
+            else if (!Utility.CheckforSpoilerLog(CheckerInstance.Logic, true, Log: true))
             { MessageBox.Show("Not all items have spoiler data. Your results may be incorrect."); }
 
 

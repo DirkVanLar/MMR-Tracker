@@ -33857,6 +33857,36 @@
           "Hideout Jail Guard 4 Torches"
         ],
         [
+          "is_adult",
+          "gerudo_fortress == fast",
+          "Extra_Small_Key_Thieves_Hideout 1"
+        ],
+        [
+          "is_glitched",
+          "gerudo_fortress == fast",
+          "Extra_Small_Key_Thieves_Hideout 1"
+        ],
+        [
+          "KF Kokiri Sword Chest",
+          "gerudo_fortress == fast",
+          "Extra_Small_Key_Thieves_Hideout 1"
+        ],
+        [
+          "is_adult",
+          "gerudo_fortress == fast",
+          "Extra_Small_Key_Thieves_Hideout 2"
+        ],
+        [
+          "is_glitched",
+          "gerudo_fortress == fast",
+          "Extra_Small_Key_Thieves_Hideout 2"
+        ],
+        [
+          "KF Kokiri Sword Chest",
+          "gerudo_fortress == fast",
+          "Extra_Small_Key_Thieves_Hideout 2"
+        ],
+        [
           "gerudo_fortress != normal",
           "gerudo_fortress != fast"
         ]
@@ -34096,12 +34126,6 @@
         [
           "shuffle_ganon_bosskey == tokens",
           "Gold_Skulltula_Token, ganon_bosskey_tokens"
-        ],
-        [
-          "shuffle_ganon_bosskey != stones",
-          "shuffle_ganon_bosskey != medallions",
-          "shuffle_ganon_bosskey != dungeons",
-          "shuffle_ganon_bosskey != tokens"
         ]
       ],
       "TimeNeeded": "None",
@@ -38315,6 +38339,15 @@
           "Kak Anju as Child"
         ],
         [
+          "Bottled Item Bottle 1"
+        ],
+        [
+          "Bottled Item Bottle 2"
+        ],
+        [
+          "Bottled Item Bottle 3"
+        ],
+        [
           "LLR Talons Chickens"
         ],
         [
@@ -38643,6 +38676,33 @@
     },
     {
       "Id": "Bottled Item Bottle with Poe 3",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Bottled Item Bottle 1",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Bottled Item Bottle 2",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Bottled Item Bottle 3",
       "RequiredItems": [],
       "ConditionalItems": [],
       "TimeNeeded": "None",
@@ -39653,6 +39713,24 @@
       "IsTrick": false
     },
     {
+      "Id": "Extra_Small_Key_Thieves_Hideout 1",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra_Small_Key_Thieves_Hideout 2",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
       "Id": "Extra Biggoron Sword 0",
       "RequiredItems": [],
       "ConditionalItems": [],
@@ -39761,6 +39839,24 @@
       "IsTrick": false
     },
     {
+      "Id": "Extra Broken Sword 0",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Broken Sword 1",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
       "Id": "Extra Buy Blue Fire 0",
       "RequiredItems": [],
       "ConditionalItems": [],
@@ -39771,6 +39867,24 @@
     },
     {
       "Id": "Extra Buy Blue Fire 1",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Buy Bombchu 10 0",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Buy Bombchu 10 1",
       "RequiredItems": [],
       "ConditionalItems": [],
       "TimeNeeded": "None",
@@ -39869,6 +39983,24 @@
       "IsTrick": false
     },
     {
+      "Id": "Extra Buy Hylian Shield 0",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Buy Hylian Shield 1",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
       "Id": "Extra Buy Red Potion [40] 0",
       "RequiredItems": [],
       "ConditionalItems": [],
@@ -39915,6 +40047,24 @@
     },
     {
       "Id": "Extra Buy Zora Tunic 1",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Claim Check 0",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Claim Check 1",
       "RequiredItems": [],
       "ConditionalItems": [],
       "TimeNeeded": "None",
@@ -40616,6 +40766,24 @@
       "IsTrick": false
     },
     {
+      "Id": "Extra Odd Mushroom 0",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Odd Mushroom 1",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
       "Id": "Extra Piece of Heart Treasure Chest Game 0",
       "RequiredItems": [],
       "ConditionalItems": [],
@@ -40833,6 +41001,42 @@
     },
     {
       "Id": "Extra Requiem of Spirit 2",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Rupee 1 0",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Rupee 1 1",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Rupee Treasure Chest Game 0",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Rupee Treasure Chest Game 1",
       "RequiredItems": [],
       "ConditionalItems": [],
       "TimeNeeded": "None",
@@ -42681,7 +42885,7 @@
       "RequiredItems": [],
       "ConditionalItems": [
         [
-          "open_forest == deku"
+          "open_forest == closed_deku"
         ],
         [
           "open_forest == open"
@@ -43235,7 +43439,7 @@
       "IsTrick": false
     },
     {
-      "Id": "open_forest == deku",
+      "Id": "open_forest == closed_deku",
       "RequiredItems": [],
       "ConditionalItems": [],
       "TimeNeeded": "None",
@@ -49686,6 +49890,12 @@
         ],
         [
           "Hideout Jail Guard 4 Torches"
+        ],
+        [
+          "Extra_Small_Key_Thieves_Hideout 1"
+        ],
+        [
+          "Extra_Small_Key_Thieves_Hideout 2"
         ]
       ],
       "TimeNeeded": "None",
