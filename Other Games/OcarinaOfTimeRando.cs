@@ -69,7 +69,7 @@ namespace MMR_Tracker.Other_Games
             public int price = 0;
         }
 
-        //New Attempt
+        //Create Function
         public static void CreateOOTRLogic()
         {
             LogicObjects.LogicFile Logic = ReadOotrLogic();
@@ -139,178 +139,7 @@ namespace MMR_Tracker.Other_Games
 
         }
 
-        private static void DoFinalLogicCleanup(List<LogicObjects.LogicEntry> logic)
-        {
-            List<LogicObjects.LogicEntry> GanonsTowerChecks = new List<LogicObjects.LogicEntry>()
-            {
-                logic.Find(x => x.DictionaryName == "Ganons Tower Boss Key Chest"),
-                logic.Find(x => x.DictionaryName == "Ganondorf Hint"),
-                logic.Find(x => x.DictionaryName == "Ganon"),
-            };
-
-            //The ganons tower checks are given the ganons castle dungeon tag but don't have a MQ varient, so onyl the Vanilla tag gets added. Neither are needed.
-            var GCVanillaEntry = logic.Find(x => x.DictionaryName == "Ganons Castle Vanilla");
-            foreach (var i in GanonsTowerChecks)
-            {
-                i.Required = LogicEditing.removeItemFromRequirement(i.Required, new int[] { GCVanillaEntry.ID }); 
-            }
-
-            //Ganons boss key is not handle via normal boss keysy. We need to add the option for ganons boss key being removed as an alt conitional
-            //to having the boss key in all checks its used in. (only two)
-            var GanonBossKysy = logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey == remove");
-            GanonsTowerChecks[1].Required = LogicEditing.removeItemFromRequirement(GanonsTowerChecks[1].Required, new int[] { GanonsTowerChecks[0].ID });
-            GanonsTowerChecks[1].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[1].Conditionals, new int[] { GanonsTowerChecks[0].ID });
-            GanonsTowerChecks[1].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[1].Conditionals, new int[] { GanonBossKysy.ID });
-            GanonsTowerChecks[2].Required = LogicEditing.removeItemFromRequirement(GanonsTowerChecks[2].Required, new int[] { GanonsTowerChecks[0].ID });
-            GanonsTowerChecks[2].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[2].Conditionals, new int[] { GanonsTowerChecks[0].ID });
-            GanonsTowerChecks[2].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[2].Conditionals, new int[] { GanonBossKysy.ID });
-
-            //For some reason logic has can recieve ganon boss key as available if the boss key is shuffled somewhere that isn't "Gift from Sages".
-            //The only use for the can_receive_ganon_bosskey logic entry is in "Gift from Sages" ans since we don't want to see that check if it doesn't contain
-            //Ganons boss key (since thats the onyl thing it can contain) remove the conditional that make can_receive_ganon_bosskey achievable if ganons
-            //Boss key is not on "Gift from Sages"
-            List<LogicObjects.LogicEntry> can_receive_ganon_bosskey_bad_conditionals = new List<LogicObjects.LogicEntry>()
-            {
-                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != stones"),
-                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != medallions"),
-                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != dungeons"),
-                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != tokens")
-            };
-            var can_receive_ganon_bosskey = logic.Find(x => x.DictionaryName == "can_receive_ganon_bosskey");
-            can_receive_ganon_bosskey.Conditionals = LogicEditing.removeItemFromConditionals(can_receive_ganon_bosskey.Conditionals, can_receive_ganon_bosskey_bad_conditionals.Select(x=>x.ID).ToArray(), false);
-
-        }
-
-        public static void CheckFormissingLogicItems(LogicObjects.LogicDictionary dict, LogicObjects.LogicFile Logic)
-        {
-            List<string> MissingEntries = new List<string>();
-            List<string> CircularReq = new List<string>();
-            foreach (var Entry in Logic.Logic)
-            {
-                if (Entry.ConditionalItems == null)
-                {
-                    continue;
-                }
-                foreach(var cond in Entry.ConditionalItems)
-                {
-                    foreach(var i in cond)
-                    {
-                        var PossibleItemnames = new List<string> { i };
-
-                        var LogicEntries = Logic.Logic.Where(x => PossibleItemnames.Contains(x.Id));
-                        var itemEntries = dict.LogicDictionaryList.Where(x => PossibleItemnames.Contains(x.ItemName) || 
-                                (x.SpoilerItem != null && x.SpoilerItem.Where(y => PossibleItemnames.Contains(y)).Any())
-                            );
-
-                        if (!LogicEntries.Any() && !itemEntries.Any())
-                        {
-                            if (!MissingEntries.Contains(i)) { MissingEntries.Add(i); }
-                        }
-                        if (i == Entry.Id)
-                        {
-                            if (!CircularReq.Contains(Entry.Id)) { CircularReq.Add(Entry.Id); }
-                        }
-                    }
-                }
-            }
-            if (MissingEntries.Any())
-            {
-                Console.WriteLine($"\nThe following Entries could not be found in logic or item list\n{string.Join(Environment.NewLine, MissingEntries.OrderBy(x => x))}");
-            }
-            if (CircularReq.Any())
-            {
-                Console.WriteLine($"\nThe following Entries contained its self in its logic\n{string.Join(Environment.NewLine, CircularReq.OrderBy(x => x))}");
-            }
-        }
-
-        public static void AddTricks(LogicObjects.LogicFile Logic)
-        {
-            List<string> AddedTricks = new List<string>();
-            foreach (var Entry in Logic.Logic)
-            {
-                if (Entry.ConditionalItems == null) { continue; }
-                foreach (var cond in Entry.ConditionalItems)
-                {
-                    foreach (var i in cond.Where(x => x.StartsWith("logic_")))
-                    {
-                        var LogicEntries = Logic.Logic.Where(x => x.Id == i);
-                        if (!LogicEntries.Any() && !AddedTricks.Contains(i))
-                        {
-                            AddedTricks.Add(i);
-                        }
-                    }
-                }
-            }
-            foreach(var i in AddedTricks)
-            {
-                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
-                {
-                    Id = i,
-                    IsTrick = true,
-                    TrickTooltip = i
-                });
-            }
-        }
-
-        public static string CleanLogicEntry(string entry)
-        {
-            entry = entry.Replace(" & ", " "); //If any logic has & in it by default it will mess things up
-
-            entry = entry.Replace(System.Environment.NewLine, " "); //Replace newlines with a space
-            entry = Regex.Replace(entry, @"\s+", " "); //Trim segments of multiple spaces to a single space
-            entry = entry.Trim();//Trim the front and end of the line
-
-            //For the most part, logic items can't contain spaces. Some entries however contain spaces and are grouped using '
-            //Remove the ' from these entries and change the spaces to _ so it's in a familiar format
-            var SpacedEntries = Regex.Matches(entry, @"\'(.*?)\'");
-            foreach (Match match in SpacedEntries)
-            {
-                var newValue = match.Groups[1].Value.Replace("'", "");//.Replace(" ", "_");
-                entry = entry.Replace(match.Groups[0].Value, $"{newValue}");
-            }
-
-            entry = entry.Replace(" and ", " & ").Replace(" or ", " | "); //change "and" and "or" logic operators to "&" and "|" which is what the tracker is able to parse
-
-
-            //change any x of y entries "ex: (item, 4)" to a more familiar format (item x4)
-            //No real reason to do this but since SSR logic uses the latter format and we already have code to parse it it make life a bit easier.
-            var Countmatch = Regex.Matches(entry, @", \d+");
-            foreach (Match match in Countmatch)
-            {
-                var NewValue = match.Groups[0].Value.Replace(", ", " x");
-                entry = entry.Replace(match.Groups[0].Value, NewValue);
-            }
-
-            //Remove the parentheses from entries such as "can_use" and "can_play" so the logic parser can parse it properly
-            //"can_use(item)" becomes "can_use_item"
-            string[] CanPrefixs = new string[] { "can_play", "can_use", "has_projectile", "has_stones", "has_medallions", "has_dungeon_rewards" };
-
-            foreach (var i in CanPrefixs)
-            {
-                var Matches = Regex.Matches(entry, i + @"\((.*?)\)");
-                foreach (Match match in Matches) { entry = entry.Replace(match.Groups[0].Value, $"{i}_{match.Groups[1].Value}"); }
-            }
-
-            //Some entries use "at(location, item)" to mean "can use this item at this location". Since the tracker logic is not capable of that complex of logic parsing
-            //Replace it with an entry of "(location & item)" which is similar enough for the trackers sake
-            var AtEntries = Regex.Matches(entry, @"at\((.*?)\)");
-            foreach (Match match in AtEntries)
-            {
-                var newValue = match.Groups[1].Value.Replace("'", "").Replace(",", " &").Replace("and True", "");
-                entry = entry.Replace(match.Groups[0].Value, $"({newValue})");
-            }
-
-            //Similar to "at(location, item)" but only take the item as an argument and uses the current location.
-            //Since we always require the current location anyway we can simply change this from "here(item)" to "(item)"
-            var HereEntries = Regex.Matches(entry, @"here\((.*?)\)");
-            foreach (Match match in HereEntries)
-            {
-                entry = entry.Replace(match.Groups[0].Value, "(" + match.Groups[1].Value + ")");
-            }
-
-            return entry;
-        }
-
+        //Read Data off the OOTR Github
         public static LogicObjects.LogicFile ReadOotrLogic()
         {
             System.Net.WebClient wc = new System.Net.WebClient();
@@ -380,7 +209,7 @@ namespace MMR_Tracker.Other_Games
             OOTRLogicObject HelperLogic = new OOTRLogicObject() { region_name = "Logic Helper", events = JsonConvert.DeserializeObject<Dictionary<string, string>>(CleanedHelperLogic) };
 
             Dictionary<string, string> CleanedEvents = new Dictionary<string, string>();
-            foreach(var i in HelperLogic.events)
+            foreach (var i in HelperLogic.events)
             {
                 CleanedEvents.Add(i.Key, i.Value.Replace("'Bugs'", "Item_Bugs").Replace("'Fish'", "Item_Fish").Replace("'Fairy'", "Item_Fairy"));
             }
@@ -443,9 +272,9 @@ namespace MMR_Tracker.Other_Games
                 }
             }
 
-            foreach(var Region in RegionLogic.Keys.ToArray())
+            foreach (var Region in RegionLogic.Keys.ToArray())
             {
-                foreach(var i in MasterLogic)
+                foreach (var i in MasterLogic)
                 {
                     if (i.Key.Contains("->"))
                     {
@@ -455,7 +284,7 @@ namespace MMR_Tracker.Other_Games
                 }
             }
 
-            foreach(var Region in RegionLogic)
+            foreach (var Region in RegionLogic)
             {
                 MasterLogic.Add(Region.Key, string.Join(" | ", Region.Value));
             }
@@ -498,7 +327,7 @@ namespace MMR_Tracker.Other_Games
 
             string CurrentSection = "";
             string[] RefFile = File.ReadAllLines(@"lib\Other Games\OOTR Data.txt");
-            foreach(var i in RefFile)
+            foreach (var i in RefFile)
             {
                 var Line = i.Trim();
                 if (Line.StartsWith("SECTION:"))
@@ -525,7 +354,7 @@ namespace MMR_Tracker.Other_Games
                 LogicVersion = 1,
                 LogicDictionaryList = new List<LogicObjects.LogicDictionaryEntry>()
             };
-            foreach(var i in Entrances)
+            foreach (var i in Entrances)
             {
                 var Data = i[0].Split(new string[] { "->" }, StringSplitOptions.None);
                 LogicObjects.LogicDictionaryEntry entry = new LogicObjects.LogicDictionaryEntry()
@@ -570,7 +399,7 @@ namespace MMR_Tracker.Other_Games
                     RandoOnlyRequiredLogic = null,
                     ValidRandomizerStartingItem = false,
                     WalletCapacity = null,
-                    SpoilerItem = new string[] { i[1] , i[1].Replace(" ", "_") },
+                    SpoilerItem = new string[] { i[1], i[1].Replace(" ", "_") },
                     SpoilerLocation = new string[] { i[0] }
                 };
 
@@ -581,9 +410,9 @@ namespace MMR_Tracker.Other_Games
                 }
                 if (entry.ItemName.StartsWith("Bombchus")) { entry.SpoilerItem = entry.SpoilerItem.Concat(new string[] { "Bombchus" }).ToArray(); }
 
-                if (entry.ItemName.Contains("Treasure Chest Game")) 
-                { 
-                    entry.SpoilerItem = entry.SpoilerItem.Concat(new string[] { entry.ItemName.Replace("Treasure Chest Game", "(Treasure Chest Game)") }).ToArray(); 
+                if (entry.ItemName.Contains("Treasure Chest Game"))
+                {
+                    entry.SpoilerItem = entry.SpoilerItem.Concat(new string[] { entry.ItemName.Replace("Treasure Chest Game", "(Treasure Chest Game)") }).ToArray();
                 }
 
                 OOTRDict.LogicDictionaryList.Add(entry);
@@ -641,16 +470,7 @@ namespace MMR_Tracker.Other_Games
 
         }
 
-        public static string RemoveCommentsFromJSON(string[] ItemDataLines)
-        {
-            string CleanedLogic = "";
-            foreach (var i in ItemDataLines)
-            {
-                var CleanedLine = Utility.RemoveCommentLines(i);
-                if (!string.IsNullOrWhiteSpace(CleanedLine)) { CleanedLogic += CleanedLine; }
-            }
-            return CleanedLogic;
-        }
+        //Add Items to logic and dictionary
 
         public static void AddExtraItems(LogicObjects.LogicDictionary dict, LogicObjects.LogicFile Logic)
         {
@@ -675,7 +495,7 @@ namespace MMR_Tracker.Other_Games
 
             foreach (var i in ItemAmontAverages.OrderBy(x => x.Key))
             {
-                int CountInVanilla = dict.LogicDictionaryList.Where(x => x.SpoilerItem!=null && x.SpoilerItem.Contains(i.Key)).Count();
+                int CountInVanilla = dict.LogicDictionaryList.Where(x => x.SpoilerItem != null && x.SpoilerItem.Contains(i.Key)).Count();
                 if (i.Value + 1 > CountInVanilla && !IgnoredJunk.Where(x => i.Key.StartsWith(x)).Any())
                 {
                     Console.WriteLine($"Missing {i.Value - CountInVanilla} {i.Key}. {CountInVanilla}/{i.Value} ");
@@ -737,7 +557,7 @@ namespace MMR_Tracker.Other_Games
             }
 
             //Add the mising has_bottle logic object, not sure where this is defined in the randomizer but it should just be any one bottle in the item list
-            
+
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"has_bottle",
@@ -893,7 +713,7 @@ namespace MMR_Tracker.Other_Games
 
             //The number of Gerudo fortress keys in the game is not listed under the item pool in he spoiler log
             //so the "AddExtraItems" function misses these.
-            for(var i = 1; i < 3; i++)
+            for (var i = 1; i < 3; i++)
             {
                 dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
                 {
@@ -911,12 +731,41 @@ namespace MMR_Tracker.Other_Games
 
         }
 
+        public static void AddTricks(LogicObjects.LogicFile Logic)
+        {
+            List<string> AddedTricks = new List<string>();
+            foreach (var Entry in Logic.Logic)
+            {
+                if (Entry.ConditionalItems == null) { continue; }
+                foreach (var cond in Entry.ConditionalItems)
+                {
+                    foreach (var i in cond.Where(x => x.StartsWith("logic_")))
+                    {
+                        var LogicEntries = Logic.Logic.Where(x => x.Id == i);
+                        if (!LogicEntries.Any() && !AddedTricks.Contains(i))
+                        {
+                            AddedTricks.Add(i);
+                        }
+                    }
+                }
+            }
+            foreach(var i in AddedTricks)
+            {
+                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
+                {
+                    Id = i,
+                    IsTrick = true,
+                    TrickTooltip = i
+                });
+            }
+        }
+
         public static void AddReverseOptionEntries(LogicObjects.LogicFile Logic)
         {
             LogicParser parser = new LogicParser();
-            Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem 
-            { 
-                Id = $"damage_multiplier != ohko" ,
+            Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
+            {
+                Id = $"damage_multiplier != ohko",
                 ConditionalItems = parser.ConvertLogicToConditionalString("damage_multiplier == half | damage_multiplier == normal | damage_multiplier == double | damage_multiplier == quadruple")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
@@ -1009,7 +858,7 @@ namespace MMR_Tracker.Other_Games
                     DictionaryName = d + " Vanilla",
                     LocationName = d + " Layout",
                     ItemName = "Vanilla",
-                    ItemSubType = $"Option{d.Replace(" ","")}Layout",
+                    ItemSubType = $"Option{d.Replace(" ", "")}Layout",
                     LocationArea = "%Temple Layouts%"
                 });
                 Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem { Id = d + " Vanilla", RequiredItems = new List<string>() { DungeonLogicReq[counter] } });
@@ -1041,8 +890,8 @@ namespace MMR_Tracker.Other_Games
 
             void StageOption(string DictNameBase, string DefaultOption, string[] OtherOptions)
             {
-                CommitOption(DictNameBase, DefaultOption, textInfo.ToTitleCase(DictNameBase.Replace("_", "")) );
-                foreach(var i in OtherOptions)
+                CommitOption(DictNameBase, DefaultOption, textInfo.ToTitleCase(DictNameBase.Replace("_", "")));
+                foreach (var i in OtherOptions)
                 {
                     CommitOption(DictNameBase, i);
                 }
@@ -1105,7 +954,7 @@ namespace MMR_Tracker.Other_Games
                     ItemName = "Inactive",
                     ItemSubType = $"Option_{DictNameBase}_trial_status"
                 });
-                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem { Id = $"skipped_trials[{DictNameBase}]"});
+                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem { Id = $"skipped_trials[{DictNameBase}]" });
                 dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
                 {
                     DictionaryName = $"not skipped_trials[{DictNameBase}]",
@@ -1170,7 +1019,7 @@ namespace MMR_Tracker.Other_Games
                 "Gold_Skulltula_Token, lacs_tokens"
             };
 
-            for(var i = 0; i < countOptions.Count(); i++)
+            for (var i = 0; i < countOptions.Count(); i++)
             {
                 dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
                 {
@@ -1249,9 +1098,9 @@ namespace MMR_Tracker.Other_Games
             foreach (var entry in Logic.Logic)
             {
                 if (entry.ConditionalItems == null || !entry.ConditionalItems.Any()) { continue; }
-                foreach(var cond in entry.ConditionalItems)
+                foreach (var cond in entry.ConditionalItems)
                 {
-                    foreach(var i in cond)
+                    foreach (var i in cond)
                     {
                         var match = Regex.Match(i, @"x\d+");
                         if (match.Success)
@@ -1284,8 +1133,79 @@ namespace MMR_Tracker.Other_Games
                 }
             }
 
-            foreach(var i in Additions) { Logic.Logic.Add(i); }
+            foreach (var i in Additions) { Logic.Logic.Add(i); }
 
+        }
+
+        //Clean and parse
+        public static string CleanLogicEntry(string entry)
+        {
+            entry = entry.Replace(" & ", " "); //If any logic has & in it by default it will mess things up
+
+            entry = entry.Replace(System.Environment.NewLine, " "); //Replace newlines with a space
+            entry = Regex.Replace(entry, @"\s+", " "); //Trim segments of multiple spaces to a single space
+            entry = entry.Trim();//Trim the front and end of the line
+
+            //For the most part, logic items can't contain spaces. Some entries however contain spaces and are grouped using '
+            //Remove the ' from these entries and change the spaces to _ so it's in a familiar format
+            var SpacedEntries = Regex.Matches(entry, @"\'(.*?)\'");
+            foreach (Match match in SpacedEntries)
+            {
+                var newValue = match.Groups[1].Value.Replace("'", "");//.Replace(" ", "_");
+                entry = entry.Replace(match.Groups[0].Value, $"{newValue}");
+            }
+
+            entry = entry.Replace(" and ", " & ").Replace(" or ", " | "); //change "and" and "or" logic operators to "&" and "|" which is what the tracker is able to parse
+
+
+            //change any x of y entries "ex: (item, 4)" to a more familiar format (item x4)
+            //No real reason to do this but since SSR logic uses the latter format and we already have code to parse it it make life a bit easier.
+            var Countmatch = Regex.Matches(entry, @", \d+");
+            foreach (Match match in Countmatch)
+            {
+                var NewValue = match.Groups[0].Value.Replace(", ", " x");
+                entry = entry.Replace(match.Groups[0].Value, NewValue);
+            }
+
+            //Remove the parentheses from entries such as "can_use" and "can_play" so the logic parser can parse it properly
+            //"can_use(item)" becomes "can_use_item"
+            string[] CanPrefixs = new string[] { "can_play", "can_use", "has_projectile", "has_stones", "has_medallions", "has_dungeon_rewards" };
+
+            foreach (var i in CanPrefixs)
+            {
+                var Matches = Regex.Matches(entry, i + @"\((.*?)\)");
+                foreach (Match match in Matches) { entry = entry.Replace(match.Groups[0].Value, $"{i}_{match.Groups[1].Value}"); }
+            }
+
+            //Some entries use "at(location, item)" to mean "can use this item at this location". Since the tracker logic is not capable of that complex of logic parsing
+            //Replace it with an entry of "(location & item)" which is similar enough for the trackers sake
+            var AtEntries = Regex.Matches(entry, @"at\((.*?)\)");
+            foreach (Match match in AtEntries)
+            {
+                var newValue = match.Groups[1].Value.Replace("'", "").Replace(",", " &").Replace("and True", "");
+                entry = entry.Replace(match.Groups[0].Value, $"({newValue})");
+            }
+
+            //Similar to "at(location, item)" but only take the item as an argument and uses the current location.
+            //Since we always require the current location anyway we can simply change this from "here(item)" to "(item)"
+            var HereEntries = Regex.Matches(entry, @"here\((.*?)\)");
+            foreach (Match match in HereEntries)
+            {
+                entry = entry.Replace(match.Groups[0].Value, "(" + match.Groups[1].Value + ")");
+            }
+
+            return entry;
+        }
+
+        public static string RemoveCommentsFromJSON(string[] ItemDataLines)
+        {
+            string CleanedLogic = "";
+            foreach (var i in ItemDataLines)
+            {
+                var CleanedLine = Utility.RemoveCommentLines(i);
+                if (!string.IsNullOrWhiteSpace(CleanedLine)) { CleanedLogic += CleanedLine; }
+            }
+            return CleanedLogic;
         }
 
         public static void CleanIllegalChar(LogicObjects.LogicFile Logic)
@@ -1369,6 +1289,49 @@ namespace MMR_Tracker.Other_Games
             }
         }
 
+        private static void DoFinalLogicCleanup(List<LogicObjects.LogicEntry> logic)
+        {
+            List<LogicObjects.LogicEntry> GanonsTowerChecks = new List<LogicObjects.LogicEntry>()
+            {
+                logic.Find(x => x.DictionaryName == "Ganons Tower Boss Key Chest"),
+                logic.Find(x => x.DictionaryName == "Ganondorf Hint"),
+                logic.Find(x => x.DictionaryName == "Ganon"),
+            };
+
+            //The ganons tower checks are given the ganons castle dungeon tag but don't have a MQ varient, so onyl the Vanilla tag gets added. Neither are needed.
+            var GCVanillaEntry = logic.Find(x => x.DictionaryName == "Ganons Castle Vanilla");
+            foreach (var i in GanonsTowerChecks)
+            {
+                i.Required = LogicEditing.removeItemFromRequirement(i.Required, new int[] { GCVanillaEntry.ID });
+            }
+
+            //Ganons boss key is not handle via normal boss keysy. We need to add the option for ganons boss key being removed as an alt conitional
+            //to having the boss key in all checks its used in. (only two)
+            var GanonBossKysy = logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey == remove");
+            GanonsTowerChecks[1].Required = LogicEditing.removeItemFromRequirement(GanonsTowerChecks[1].Required, new int[] { GanonsTowerChecks[0].ID });
+            GanonsTowerChecks[1].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[1].Conditionals, new int[] { GanonsTowerChecks[0].ID });
+            GanonsTowerChecks[1].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[1].Conditionals, new int[] { GanonBossKysy.ID });
+            GanonsTowerChecks[2].Required = LogicEditing.removeItemFromRequirement(GanonsTowerChecks[2].Required, new int[] { GanonsTowerChecks[0].ID });
+            GanonsTowerChecks[2].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[2].Conditionals, new int[] { GanonsTowerChecks[0].ID });
+            GanonsTowerChecks[2].Conditionals = LogicEditing.AddConditional(GanonsTowerChecks[2].Conditionals, new int[] { GanonBossKysy.ID });
+
+            //For some reason logic has can recieve ganon boss key as available if the boss key is shuffled somewhere that isn't "Gift from Sages".
+            //The only use for the can_receive_ganon_bosskey logic entry is in "Gift from Sages" ans since we don't want to see that check if it doesn't contain
+            //Ganons boss key (since thats the onyl thing it can contain) remove the conditional that make can_receive_ganon_bosskey achievable if ganons
+            //Boss key is not on "Gift from Sages"
+            List<LogicObjects.LogicEntry> can_receive_ganon_bosskey_bad_conditionals = new List<LogicObjects.LogicEntry>()
+            {
+                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != stones"),
+                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != medallions"),
+                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != dungeons"),
+                logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey != tokens")
+            };
+            var can_receive_ganon_bosskey = logic.Find(x => x.DictionaryName == "can_receive_ganon_bosskey");
+            can_receive_ganon_bosskey.Conditionals = LogicEditing.removeItemFromConditionals(can_receive_ganon_bosskey.Conditionals, can_receive_ganon_bosskey_bad_conditionals.Select(x => x.ID).ToArray(), false);
+
+        }
+
+        //Misc Checks
         public static void FindAmbiguosLogicNames(LogicObjects.LogicDictionary dict, LogicObjects.LogicFile Logic)
         {
             List<string> ExactNames = new List<string>();
@@ -1422,11 +1385,51 @@ namespace MMR_Tracker.Other_Games
             }
         }
 
+        public static void CheckFormissingLogicItems(LogicObjects.LogicDictionary dict, LogicObjects.LogicFile Logic)
+        {
+            List<string> MissingEntries = new List<string>();
+            List<string> CircularReq = new List<string>();
+            foreach (var Entry in Logic.Logic)
+            {
+                if (Entry.ConditionalItems == null)
+                {
+                    continue;
+                }
+                foreach (var cond in Entry.ConditionalItems)
+                {
+                    foreach (var i in cond)
+                    {
+                        var PossibleItemnames = new List<string> { i };
+
+                        var LogicEntries = Logic.Logic.Where(x => PossibleItemnames.Contains(x.Id));
+                        var itemEntries = dict.LogicDictionaryList.Where(x => PossibleItemnames.Contains(x.ItemName) ||
+                                (x.SpoilerItem != null && x.SpoilerItem.Where(y => PossibleItemnames.Contains(y)).Any())
+                            );
+
+                        if (!LogicEntries.Any() && !itemEntries.Any())
+                        {
+                            if (!MissingEntries.Contains(i)) { MissingEntries.Add(i); }
+                        }
+                        if (i == Entry.Id)
+                        {
+                            if (!CircularReq.Contains(Entry.Id)) { CircularReq.Add(Entry.Id); }
+                        }
+                    }
+                }
+            }
+            if (MissingEntries.Any())
+            {
+                Console.WriteLine($"\nThe following Entries could not be found in logic or item list\n{string.Join(Environment.NewLine, MissingEntries.OrderBy(x => x))}");
+            }
+            if (CircularReq.Any())
+            {
+                Console.WriteLine($"\nThe following Entries contained its self in its logic\n{string.Join(Environment.NewLine, CircularReq.OrderBy(x => x))}");
+            }
+        }
+
+        //Spoiler Log Importing
         public static bool HandleOOTRSpoilerLog(LogicObjects.TrackerInstance Instance, string[] Spoiler)
         {
-            MessageBox.Show("Add Settings for End Game Requirements");
-
-            Dictionary<string, int> ItemAmontAverages = new Dictionary<string, int>();
             var jsonSerializerSettings = new JsonSerializerSettings();
             jsonSerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
 
@@ -1434,11 +1437,61 @@ namespace MMR_Tracker.Other_Games
 
             var Log = JsonConvert.DeserializeObject<SpoilerLog>(string.Join(" ", Spoiler), jsonSerializerSettings);
 
-            //Set Defaults for some settings that don't always appear in logic
+            #region OptionPrep
+            //Define Option Entries
+            var bombchus_in_logic = Instance.Logic.Find(x => x.DictionaryName == $"bombchus_in_logic");
+            var not_bombchus_in_logic = Instance.Logic.Find(x => x.DictionaryName == $"not bombchus_in_logic");
+            var bridgeCheck = Instance.Logic.Find(x => x.DictionaryName == "bridge == vanilla");
+            var bridgeOther = Instance.Logic.Find(x => x.DictionaryName == "bridge == other");
+            var complete_mask_quest = Instance.Logic.Find(x => x.DictionaryName == $"complete_mask_quest");
+            var not_complete_mask_quest = Instance.Logic.Find(x => x.DictionaryName == $"not complete_mask_quest");
+            var damage_multiplier = Instance.Logic.Find(x => x.DictionaryName == "damage_multiplier == normal");
+            var free_scarecrow = Instance.Logic.Find(x => x.DictionaryName == $"free_scarecrow");
+            var not_free_scarecrow = Instance.Logic.Find(x => x.DictionaryName == $"not free_scarecrow");
+            var gerudo_fortress = Instance.Logic.Find(x => x.DictionaryName == "gerudo_fortress == normal");
+            var shuffle_smallkeys = Instance.Logic.Find(x => x.DictionaryName == "keysanity");
+            var not_shuffle_smallkeys = Instance.Logic.Find(x => x.DictionaryName == "not keysanity");
+            var lacs_conditionCheck = Instance.Logic.Find(x => x.DictionaryName == "lacs_condition == vanilla");
+            var lacs_conditionOther = Instance.Logic.Find(x => x.DictionaryName == "lacs_condition == other");
+            var open_door_of_time = Instance.Logic.Find(x => x.DictionaryName == $"open_door_of_time");
+            var not_open_door_of_time = Instance.Logic.Find(x => x.DictionaryName == $"not open_door_of_time");
+            var open_forest = Instance.Logic.Find(x => x.DictionaryName == "open_forest == closed");
+            var open_kakariko = Instance.Logic.Find(x => x.DictionaryName == "open_kakariko == closed");
+            var shuffle_dungeon_entrances = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_dungeon_entrances");
+            var not_shuffle_dungeon_entrances = Instance.Logic.Find(x => x.DictionaryName == $"not shuffle_dungeon_entrances");
+            var shuffle_overworld_entrances = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_overworld_entrances");
+            var not_shuffle_overworld_entrances = Instance.Logic.Find(x => x.DictionaryName == $"not shuffle_overworld_entrances");
+            var shuffle_weird_egg = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_weird_egg");
+            var not_shuffle_weird_egg = Instance.Logic.Find(x => x.DictionaryName == $"not shuffle_weird_egg");
+            var shuffle_scrubs = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_scrubs == on");
+            var not_shuffle_scrubs = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_scrubs == off");
+            var shuffle_ganon_bosskey = Instance.Logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey == other");
+            var GanonBossKey = Instance.Logic.Find(x => x.DictionaryName == $"Ganons Tower Boss Key Chest");
+            var no_guard_stealth = Instance.Logic.Find(x => x.DictionaryName == $"skip_child_zelda");
+            var not_no_guard_stealth = Instance.Logic.Find(x => x.DictionaryName == $"not skip_child_zelda");
+            var zora_fountain = Instance.Logic.Find(x => x.DictionaryName == "zora_fountain == closed");
             var starting_age = Instance.Logic.Find(x => x.DictionaryName == "Starting Age == child");
+
+            //Set Defaults for some settings that don't always appear in the Spoiler
             starting_age.SpoilerRandom = starting_age.ID;
 
+            #endregion OptionPrep
+
+            #region Radnomizer Settings
+            //Read Standard options
             foreach (var i in Log.settings)
+            {
+                ReadSettings(i);
+            }
+
+            //If an option is randomized, the data we want is located here.
+            foreach (var i in Log.randomized_settings)
+            {
+                ReadSettings(i);
+            }
+
+
+            void ReadSettings(KeyValuePair<string, dynamic> i)
             {
                 switch (i.Key)
                 {
@@ -1446,13 +1499,9 @@ namespace MMR_Tracker.Other_Games
                         Instance.Logic.Find(x => x.DictionaryName == $"PoesNeededForPoeHutReward").CountCheckData = $"${i.Value}";
                         break;
                     case "bombchus_in_logic":
-                        var bombchus_in_logic = Instance.Logic.Find(x => x.DictionaryName == $"bombchus_in_logic");
-                        var not_bombchus_in_logic = Instance.Logic.Find(x => x.DictionaryName == $"not bombchus_in_logic");
                         bombchus_in_logic.SpoilerRandom = i.Value ? bombchus_in_logic.ID : not_bombchus_in_logic.ID;
                         break;
                     case "bridge":
-                        var bridgeCheck = Instance.Logic.Find(x => x.DictionaryName == "bridge == vanilla");
-                        var bridgeOther = Instance.Logic.Find(x => x.DictionaryName == "bridge == other");
                         bridgeCheck.SpoilerRandom = bridgeOther.ID;
                         if (i.Value == "vanilla" || i.Value == "medallions" || i.Value == "open" || i.Value == "stones" || i.Value == "tokens" || i.Value == "dungeons")
                         {
@@ -1460,12 +1509,9 @@ namespace MMR_Tracker.Other_Games
                         }
                         break;
                     case "complete_mask_quest":
-                        var complete_mask_quest = Instance.Logic.Find(x => x.DictionaryName == $"complete_mask_quest");
-                        var not_complete_mask_quest = Instance.Logic.Find(x => x.DictionaryName == $"not complete_mask_quest");
                         complete_mask_quest.SpoilerRandom = i.Value ? complete_mask_quest.ID : not_complete_mask_quest.ID;
                         break;
                     case "damage_multiplier":
-                        var damage_multiplier = Instance.Logic.Find(x => x.DictionaryName == "damage_multiplier == normal");
                         damage_multiplier.SpoilerRandom = damage_multiplier.ID;
                         if (i.Value == "double" || i.Value == "half" || i.Value == "ohko" || i.Value == "quadruple")
                         {
@@ -1473,12 +1519,9 @@ namespace MMR_Tracker.Other_Games
                         }
                         break;
                     case "free_scarecrow":
-                        var free_scarecrow = Instance.Logic.Find(x => x.DictionaryName == $"free_scarecrow");
-                        var not_free_scarecrow = Instance.Logic.Find(x => x.DictionaryName == $"not free_scarecrow");
                         free_scarecrow.SpoilerRandom = i.Value ? free_scarecrow.ID : not_free_scarecrow.ID;
                         break;
                     case "gerudo_fortress":
-                        var gerudo_fortress = Instance.Logic.Find(x => x.DictionaryName == "gerudo_fortress == normal");
                         gerudo_fortress.SpoilerRandom = gerudo_fortress.ID;
                         if (i.Value == "fast" || i.Value == "open")
                         {
@@ -1486,8 +1529,6 @@ namespace MMR_Tracker.Other_Games
                         }
                         break;
                     case "shuffle_smallkeys":
-                        var shuffle_smallkeys = Instance.Logic.Find(x => x.DictionaryName == "keysanity");
-                        var not_shuffle_smallkeys = Instance.Logic.Find(x => x.DictionaryName == "not keysanity");
                         shuffle_smallkeys.SpoilerRandom = i.Value == "vanilla" ? not_shuffle_smallkeys.ID : shuffle_smallkeys.ID;
                         Instance.Options.Keysy["SmallKey"] = i.Value == "remove";
                         break;
@@ -1495,8 +1536,6 @@ namespace MMR_Tracker.Other_Games
                         Instance.Options.Keysy["BossKey"] = i.Value == "remove";
                         break;
                     case "lacs_condition":
-                        var lacs_conditionCheck = Instance.Logic.Find(x => x.DictionaryName == "lacs_condition == vanilla");
-                        var lacs_conditionOther = Instance.Logic.Find(x => x.DictionaryName == "lacs_condition == other");
                         lacs_conditionCheck.SpoilerRandom = lacs_conditionOther.ID;
                         if (i.Value == "vanilla" || i.Value == "medallions" || i.Value == "stones" || i.Value == "tokens" || i.Value == "dungeons")
                         {
@@ -1504,12 +1543,9 @@ namespace MMR_Tracker.Other_Games
                         }
                         break;
                     case "open_door_of_time":
-                        var open_door_of_time = Instance.Logic.Find(x => x.DictionaryName == $"open_door_of_time");
-                        var not_open_door_of_time = Instance.Logic.Find(x => x.DictionaryName == $"not open_door_of_time");
                         open_door_of_time.SpoilerRandom = i.Value ? open_door_of_time.ID : not_open_door_of_time.ID;
                         break;
                     case "open_forest":
-                        var open_forest = Instance.Logic.Find(x => x.DictionaryName == "open_forest == closed");
                         open_forest.SpoilerRandom = open_forest.ID;
                         if (i.Value == "closed_deku" || i.Value == "open")
                         {
@@ -1517,7 +1553,6 @@ namespace MMR_Tracker.Other_Games
                         }
                         break;
                     case "open_kakariko":
-                        var open_kakariko = Instance.Logic.Find(x => x.DictionaryName == "open_kakariko == closed");
                         open_kakariko.SpoilerRandom = open_kakariko.ID;
                         if (i.Value == "zelda" || i.Value == "open")
                         {
@@ -1525,42 +1560,30 @@ namespace MMR_Tracker.Other_Games
                         }
                         break;
                     case "shuffle_dungeon_entrances":
-                        var shuffle_dungeon_entrances = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_dungeon_entrances");
-                        var not_shuffle_dungeon_entrances = Instance.Logic.Find(x => x.DictionaryName == $"not shuffle_dungeon_entrances");
                         shuffle_dungeon_entrances.SpoilerRandom = i.Value ? shuffle_dungeon_entrances.ID : not_shuffle_dungeon_entrances.ID;
                         break;
                     case "shuffle_overworld_entrances":
-                        var shuffle_overworld_entrances = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_overworld_entrances");
-                        var not_shuffle_overworld_entrances = Instance.Logic.Find(x => x.DictionaryName == $"not shuffle_overworld_entrances");
                         shuffle_overworld_entrances.SpoilerRandom = i.Value ? shuffle_overworld_entrances.ID : not_shuffle_overworld_entrances.ID;
                         break;
                     case "shuffle_weird_egg":
-                        var shuffle_weird_egg = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_weird_egg");
-                        var not_shuffle_weird_egg = Instance.Logic.Find(x => x.DictionaryName == $"not shuffle_weird_egg");
                         shuffle_weird_egg.SpoilerRandom = i.Value ? shuffle_weird_egg.ID : not_shuffle_weird_egg.ID;
                         break;
                     case "shuffle_ganon_bosskey":
-                        var shuffle_ganon_bosskey = Instance.Logic.Find(x => x.DictionaryName == "shuffle_ganon_bosskey == other");
                         shuffle_ganon_bosskey.SpoilerRandom = shuffle_ganon_bosskey.ID;
                         if (i.Value == "medallions" || i.Value == "stones" || i.Value == "tokens" || i.Value == "dungeons" || i.Value == "remove")
                         {
                             shuffle_ganon_bosskey.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_ganon_bosskey == {i.Value}").ID;
                             if (i.Value != "remove")
                             {
-                                var GanonBossKey = Instance.Logic.Find(x => x.DictionaryName == $"Ganons Tower Boss Key Chest");
                                 Instance.Logic.Find(x => x.DictionaryName == $"Gift from Sages").SpoilerRandom = GanonBossKey.ID;
                                 UsedItems.Add(GanonBossKey.ID);
                             }
                         }
                         break;
                     case "shuffle_scrubs":
-                        var shuffle_scrubs = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_scrubs == on");
-                        var not_shuffle_scrubs = Instance.Logic.Find(x => x.DictionaryName == $"shuffle_scrubs == off");
                         not_shuffle_scrubs.SpoilerRandom = i.Value == "off" ? not_shuffle_scrubs.ID : shuffle_scrubs.ID;
                         break;
                     case "no_guard_stealth":
-                        var no_guard_stealth = Instance.Logic.Find(x => x.DictionaryName == $"skip_child_zelda");
-                        var not_no_guard_stealth = Instance.Logic.Find(x => x.DictionaryName == $"not skip_child_zelda");
                         no_guard_stealth.SpoilerRandom = i.Value ? no_guard_stealth.ID : not_no_guard_stealth.ID;
                         break;
                     case "starting_age":
@@ -1570,31 +1593,41 @@ namespace MMR_Tracker.Other_Games
                         }
                         break;
                     case "zora_fountain":
-                        var zora_fountain = Instance.Logic.Find(x => x.DictionaryName == "zora_fountain == closed");
                         zora_fountain.SpoilerRandom = zora_fountain.ID;
                         if (i.Value == "adult" || i.Value == "open")
                         {
                             zora_fountain.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"zora_fountain == {i.Value}").ID;
                         }
                         break;
-                }
-
-            }
-
-            foreach (var i in Log.randomized_settings)
-            {
-                switch (i.Key)
-                {
-                    case "starting_age":
-                        if (i.Value == "adult")
-                        {
-                            starting_age.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"Starting Age == adult").ID;
-                        }
+                    case "bridge_medallions":
+                        Instance.Logic.Find(x => x.DictionaryName == $"MedallionsNeededForRainbowBridge").CountCheckData = $"${i.Value}";
+                        break;
+                    case "ganon_bosskey_medallions":
+                        Instance.Logic.Find(x => x.DictionaryName == $"MedallionsNeededForGannonsBossKey").CountCheckData = $"${i.Value}";
+                        break;
+                    case "bridge_rewards":
+                        Instance.Logic.Find(x => x.DictionaryName == $"DungeonsNeededForRainbowBridge").CountCheckData = $"${i.Value}";
+                        break;
+                    case "ganon_bosskey_rewards":
+                        Instance.Logic.Find(x => x.DictionaryName == $"DungeonsNeededForGannonsBossKey").CountCheckData = $"${i.Value}";
+                        break;
+                    case "bridge_tokens":
+                        Instance.Logic.Find(x => x.DictionaryName == $"SkullTokensNeededForRainbowBridge").CountCheckData = $"${i.Value}";
+                        break;
+                    case "ganon_bosskey_tokens":
+                        Instance.Logic.Find(x => x.DictionaryName == $"SkullTokensNeededForGannonsBossKey").CountCheckData = $"${i.Value}";
+                        break;
+                    case "bridge_stones":
+                        Instance.Logic.Find(x => x.DictionaryName == $"StonesNeededForRainbowBridge").CountCheckData = $"${i.Value}";
+                        break;
+                    case "ganon_bosskey_stones":
+                        Instance.Logic.Find(x => x.DictionaryName == $"StonesNeededForGannonsBossKey").CountCheckData = $"${i.Value}";
                         break;
                 }
-
             }
+            #endregion Radnomizer Settings
 
+            #region Dungeon Layouts and Trial Status
             foreach (var i in Log.dungeons)
             {
                 var OptionVanilla = Instance.Logic.Find(x => x.DictionaryName == $"{i.Key} Vanilla");
@@ -1628,6 +1661,7 @@ namespace MMR_Tracker.Other_Games
                 Console.WriteLine($"{OptionNotSkiped.LocationName} is {Instance.Logic[OptionNotSkiped.SpoilerRandom].ItemName}");
 
             }
+            #endregion Dungeon Layouts and Trial Status
 
             #region StartingItems
             foreach (var i in Log.starting_items)
@@ -1866,7 +1900,6 @@ namespace MMR_Tracker.Other_Games
 
             #endregion Entrances
 
-            //Entrances
 
             foreach(var i in Instance.Logic.Where(x => x.AppearsInListbox() && !x.IsCountCheck()))
             {
@@ -1878,99 +1911,6 @@ namespace MMR_Tracker.Other_Games
             return true;
         }
 
-
-        //Spoiler=====================================================================================================================================================
-
-        public static void ReadDynamicValue(Dictionary<string, dynamic> Dict)
-        {
-            foreach (KeyValuePair<string, dynamic> pair in Dict)
-            {
-                Type T = pair.Value.GetType();
-                Console.WriteLine(T.GetGenericArguments()[0].ToString());
-            }
-        }
-
-        public static void OLDReadSpoiler()
-        {
-            string SpoilerLogFile = "";
-            List<string> SpoilerLogFileLocations =  new List<string> 
-            { 
-                @"D:\Games\Emulated Games\Emulator\Wii\Dolphin-x64 Ocarina of Time Randomizer\Roms\OoT_D98CE_JKI93B07ON_Spoiler.json",
-                @"C:\CodeTest\OoT_D98CE_JKI93B07ON_Spoiler.json",
-                @"C:\Users\drumm\Downloads\OOTR Logs"
-            };
-            foreach (var i in SpoilerLogFileLocations)
-            {
-                if (File.Exists(i))
-                {
-                    SpoilerLogFile = i;
-                    break;
-                }
-            }
-
-            var jsonSerializerSettings = new JsonSerializerSettings();
-            jsonSerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
-            var Log = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(SpoilerLogFile), jsonSerializerSettings);
-
-            var Entrances = Log.entrances.Keys.ToList();
-
-            foreach (var i in Log.entrances)
-            {
-                string sValue = i.Value as string;
-                if (sValue != null)
-                {
-                    string FullExitValue = sValue;
-                    foreach(var j in Entrances)
-                    {
-                        var data = j.Split(new string[] { " -> " }, StringSplitOptions.None);
-                        if (data[0].Trim() == sValue)
-                        {
-                            FullExitValue = (data[0] + " -> " + data[1] + "," + data[0] + " -> " + data[1] + "," + data[1] + " <- " + data[0] + "," + data[1] + " -> " + data[0]);
-                            break;
-                        }
-                    }
-                    //Console.WriteLine(FullExitValue);
-                }
-                else
-                {
-                    RegionExit R = i.Value.ToObject<RegionExit>();
-                    //Console.WriteLine(R.region + " -> " + R.from + "," + R.region + " -> " + R.from + "," + R.from + " <- " + R.region + "," + R.from + " -> " + R.region);
-                }
-            }
-
-            var VanillaLocations = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(@"C:\CodeTest\Vanilla_Locations.json"), jsonSerializerSettings);
-            
-            //Console.WriteLine("================================================================");
-            //Console.WriteLine("Vanilla Lcoation Not In Spoiler");
-            foreach(var i in VanillaLocations.locations)
-            {
-                if (Log.locations.Where(x => i.Key == x.Key).Count() == 0)
-                {
-                    //Console.WriteLine(i.Key);
-                }
-            }
-            //Console.WriteLine("================================================================");
-            //Console.WriteLine("Spoiler Lcoations Not in Vanilla list");
-            foreach(var i in Log.locations)
-            {
-                if (VanillaLocations.locations.Where(x => i.Key == x.Key).Count() == 0)
-                {
-                    //Console.WriteLine(i.Key);
-                }
-            }
-
-            foreach(var i in Log.item_pool)
-            {
-                int CountInVanilla = VanillaLocations.locations.Where(x => x.Value == i.Key).Count();
-                if (i.Value > CountInVanilla)
-                {
-                    Console.WriteLine($"{i.Value} {i.Key} In Spoiler, Missing {i.Value - CountInVanilla}");
-                }
-            }
-
-            string[] allowed_tricks = Log.settings["allowed_tricks"].ToObject<string[]>();
-
-        }
 
     }
 }
