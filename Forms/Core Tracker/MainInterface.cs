@@ -18,6 +18,7 @@ using System.Threading;
 using MMR_Tracker.Forms.Sub_Forms;
 using MMR_Tracker.Forms.Extra_Functionality;
 using MMR_Tracker.Forms.Core_Tracker;
+using MMR_Tracker.Other_Games;
 
 namespace MMR_Tracker_V2
 {
@@ -435,8 +436,7 @@ namespace MMR_Tracker_V2
 
         private void spoilerLogConverterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SpoilerLogConverter spoilerLogConverter = new SpoilerLogConverter();
-            spoilerLogConverter.Show();
+
         }
         #endregion Tools
         //Menu strip => Info---------------------------------------------------------------------------
@@ -1435,7 +1435,7 @@ namespace MMR_Tracker_V2
             bool ShowMMOnly = LogicObjects.MainTrackerInstance.IsMM() || Debugging.ISDebugging;
 
             //MM specific Controls
-            importSpoilerLogToolStripMenuItem.Visible = SpoilerLogConverter.SpoilerLogConvertable.Contains(LogicObjects.MainTrackerInstance.GameCode.ToUpper()) && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            importSpoilerLogToolStripMenuItem.Visible = GlobalHandeler.SpoilerLogConvertable.Contains(LogicObjects.MainTrackerInstance.GameCode.ToUpper()) && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             includeItemLocationsAsDestinationToolStripMenuItem.Visible = ShowMMOnly && LogicObjects.MainTrackerInstance.Options.EntranceRadnoEnabled;
             FilterMapToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             itemTrackerToolStripMenuItem.Visible = ShowMMOnly && (LogicObjects.MainTrackerInstance.LogicVersion > 0);

@@ -9,6 +9,7 @@ namespace MMR_Tracker.Other_Games
 {
     class GlobalHandeler
     {
+        public static string[] SpoilerLogConvertable = new string[] { "MMR", "SSR", "OOTR", "WWR" };
         public static bool HandleOtherGameSpoilerLog(LogicObjects.TrackerInstance instance, string[] Spoiler)
         {
             if (instance.GameCode == "WWR" && Spoiler[0].Contains("Wind Waker Randomizer"))

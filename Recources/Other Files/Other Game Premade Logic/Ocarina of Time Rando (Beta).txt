@@ -1631,6 +1631,12 @@
         ],
         [
           "Trade Item Cojiro"
+        ],
+        [
+          "Extra Cojiro 0"
+        ],
+        [
+          "Extra Cojiro 1"
         ]
       ],
       "TimeNeeded": "None",
@@ -32748,188 +32754,53 @@
       "IsTrick": false
     },
     {
+      "Id": "can_refill_bombchus",
+      "RequiredItems": [],
+      "ConditionalItems": [
+        [
+          "Market Bombchu Shop Item 1"
+        ],
+        [
+          "Market Bombchu Shop Item 2"
+        ],
+        [
+          "Market Bombchu Shop Item 3"
+        ],
+        [
+          "Market Bombchu Shop Item 4"
+        ],
+        [
+          "Market Bombchu Shop Item 5"
+        ],
+        [
+          "Market Bombchu Shop Item 6"
+        ],
+        [
+          "Market Bombchu Shop Item 7"
+        ],
+        [
+          "Market Bombchu Shop Item 8"
+        ],
+        [
+          "Market Bombchu Bowling Bombchus"
+        ]
+      ],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
       "Id": "has_bombchus",
       "RequiredItems": [],
       "ConditionalItems": [
         [
-          "Market Bombchu Shop Item 1",
-          "bombchus_in_logic"
-        ],
-        [
           "bombchus_in_logic",
-          "Market Bombchu Shop Item 2"
+          "found_bombchus"
         ],
         [
-          "bombchus_in_logic",
-          "Market Bombchu Shop Item 3"
-        ],
-        [
-          "bombchus_in_logic",
-          "Market Bombchu Shop Item 4"
-        ],
-        [
-          "bombchus_in_logic",
-          "Market Bombchu Shop Item 5"
-        ],
-        [
-          "bombchus_in_logic",
-          "Market Bombchu Shop Item 6"
-        ],
-        [
-          "bombchus_in_logic",
-          "Market Bombchu Shop Item 7"
-        ],
-        [
-          "bombchus_in_logic",
-          "Market Bombchu Shop Item 8"
-        ],
-        [
-          "bombchus_in_logic",
-          "Market Bombchu Bowling Bombchus"
-        ],
-        [
-          "Market Bombchu Shop Item 1",
-          "Market Bombchu Bowling First Prize"
-        ],
-        [
-          "Market Bombchu Shop Item 2",
-          "Market Bombchu Bowling First Prize"
-        ],
-        [
-          "Market Bombchu Shop Item 3",
-          "Market Bombchu Bowling First Prize"
-        ],
-        [
-          "Market Bombchu Shop Item 4",
-          "Market Bombchu Bowling First Prize"
-        ],
-        [
-          "Market Bombchu Shop Item 5",
-          "Market Bombchu Bowling First Prize"
-        ],
-        [
-          "Market Bombchu Shop Item 6",
-          "Market Bombchu Bowling First Prize"
-        ],
-        [
-          "Market Bombchu Shop Item 7",
-          "Market Bombchu Bowling First Prize"
-        ],
-        [
-          "Market Bombchu Shop Item 8",
-          "Market Bombchu Bowling First Prize"
-        ],
-        [
-          "Market Bombchu Bowling Bombchus",
-          "Market Bombchu Bowling First Prize"
-        ],
-        [
-          "Market Bombchu Shop Item 1",
-          "GC Rolling Goron as Child"
-        ],
-        [
-          "Market Bombchu Shop Item 2",
-          "GC Rolling Goron as Child"
-        ],
-        [
-          "Market Bombchu Shop Item 3",
-          "GC Rolling Goron as Child"
-        ],
-        [
-          "Market Bombchu Shop Item 4",
-          "GC Rolling Goron as Child"
-        ],
-        [
-          "Market Bombchu Shop Item 5",
-          "GC Rolling Goron as Child"
-        ],
-        [
-          "Market Bombchu Shop Item 6",
-          "GC Rolling Goron as Child"
-        ],
-        [
-          "Market Bombchu Shop Item 7",
-          "GC Rolling Goron as Child"
-        ],
-        [
-          "Market Bombchu Shop Item 8",
-          "GC Rolling Goron as Child"
-        ],
-        [
-          "Market Bombchu Bowling Bombchus",
-          "GC Rolling Goron as Child"
-        ],
-        [
-          "Market Bombchu Shop Item 1",
-          "Dodongos Cavern Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 2",
-          "Dodongos Cavern Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 3",
-          "Dodongos Cavern Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 4",
-          "Dodongos Cavern Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 5",
-          "Dodongos Cavern Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 6",
-          "Dodongos Cavern Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 7",
-          "Dodongos Cavern Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 8",
-          "Dodongos Cavern Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Bowling Bombchus",
-          "Dodongos Cavern Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 1",
-          "Dodongos Cavern MQ Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 2",
-          "Dodongos Cavern MQ Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 3",
-          "Dodongos Cavern MQ Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 4",
-          "Dodongos Cavern MQ Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 5",
-          "Dodongos Cavern MQ Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 6",
-          "Dodongos Cavern MQ Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 7",
-          "Dodongos Cavern MQ Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Shop Item 8",
-          "Dodongos Cavern MQ Bomb Bag Chest"
-        ],
-        [
-          "Market Bombchu Bowling Bombchus",
-          "Dodongos Cavern MQ Bomb Bag Chest"
+          "not bombchus_in_logic",
+          "can_refill_bombchus"
         ]
       ],
       "TimeNeeded": "None",
@@ -38330,6 +38201,12 @@
           "Bottled Item Bottle with Red Potion 1"
         ],
         [
+          "Bottled Item Bottle with Poe 1"
+        ],
+        [
+          "Bottled Item Bottle with Poe 2"
+        ],
+        [
           "Bottled Item Bottle with Poe 3"
         ],
         [
@@ -38373,6 +38250,12 @@
         ],
         [
           "Bottled Item Bottle with Green Potion 3"
+        ],
+        [
+          "Extra Bottle with Green Potion 0"
+        ],
+        [
+          "Extra Bottle with Green Potion 1"
         ],
         [
           "Bottled Item Bottle with Blue Potion 1"
@@ -38427,12 +38310,6 @@
         ],
         [
           "Bottled Item Bottle with Big Poe 3"
-        ],
-        [
-          "Bottled Item Bottle with Poe 1"
-        ],
-        [
-          "Bottled Item Bottle with Poe 2"
         ]
       ],
       "TimeNeeded": "None",
@@ -39821,6 +39698,24 @@
       "IsTrick": false
     },
     {
+      "Id": "Extra Bottle with Green Potion 0",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Bottle with Green Potion 1",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
       "Id": "Extra Bow 0",
       "RequiredItems": [],
       "ConditionalItems": [],
@@ -40065,6 +39960,24 @@
     },
     {
       "Id": "Extra Claim Check 1",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Cojiro 0",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Cojiro 1",
       "RequiredItems": [],
       "ConditionalItems": [],
       "TimeNeeded": "None",
@@ -40461,6 +40374,24 @@
     },
     {
       "Id": "Extra Hover Boots 1",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Hylian Shield 0",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Extra Hylian Shield 1",
       "RequiredItems": [],
       "ConditionalItems": [],
       "TimeNeeded": "None",

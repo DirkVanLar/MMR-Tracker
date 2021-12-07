@@ -16066,6 +16066,26 @@
       "ValidRandomizerStartingItem": false
     },
     {
+      "DictionaryName": "Extra Bottle with Green Potion 0",
+      "ItemName": "Bottle with Green Potion",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Bottle with Green Potion"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Bottle with Green Potion 1",
+      "ItemName": "Bottle with Green Potion",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Bottle with Green Potion"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
       "DictionaryName": "Extra Bow 0",
       "ItemName": "Bow",
       "ItemSubType": "Item",
@@ -16342,6 +16362,26 @@
       "FakeItem": false,
       "SpoilerItem": [
         "Claim Check"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Cojiro 0",
+      "ItemName": "Cojiro",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Cojiro"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Cojiro 1",
+      "ItemName": "Cojiro",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Cojiro"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -16782,6 +16822,26 @@
       "FakeItem": false,
       "SpoilerItem": [
         "Hover Boots"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Hylian Shield 0",
+      "ItemName": "Hylian Shield",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Hylian Shield"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Extra Hylian Shield 1",
+      "ItemName": "Hylian Shield",
+      "ItemSubType": "Item",
+      "FakeItem": false,
+      "SpoilerItem": [
+        "Hylian Shield"
       ],
       "ValidRandomizerStartingItem": false
     },

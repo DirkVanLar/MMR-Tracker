@@ -142,80 +142,13 @@ namespace MMR_Tracker.Other_Games
         //Read Data off the OOTR Github
         public static LogicObjects.LogicFile ReadOotrLogic()
         {
-            System.Net.WebClient wc = new System.Net.WebClient();
-            List<string> LogicFiles = new List<string>
-            {
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Overworld.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Bottom%20of%20the%20Well.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Deku%20Tree.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Dodongos%20Cavern.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Fire%20Temple.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Forest%20Temple.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Ganons%20Castle.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Gerudo%20Training%20Ground.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Ice%20Cavern.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Jabu%20Jabus%20Belly.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Shadow%20Temple.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Spirit%20Temple.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Water%20Temple.json"
-
-            };
-
-            List<string> MQLogicFiles = new List<string>
-            {
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Bottom%20of%20the%20Well%20MQ.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Deku%20Tree%20MQ.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Dodongos%20Cavern%20MQ.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Fire%20Temple%20MQ.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Forest%20Temple%20MQ.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Ganons%20Castle%20MQ.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Gerudo%20Training%20Ground%20MQ.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Ice%20Cavern%20MQ.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Jabu%20Jabus%20Belly%20MQ.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Shadow%20Temple%20MQ.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Spirit%20Temple%20MQ.json",
-                "https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/World/Water%20Temple%20MQ.json"
-
-            };
-
             var Logic = new List<OOTRLogicObject>();
+
+            GetDataFromWeb(Logic, "Roman971/OoT-Randomizer/Dev-R");
+
             var ParsedLogic = new List<OOTRLogicObject>();
 
             Dictionary<string, List<string>> RegionLogic = new Dictionary<string, List<string>>();
-
-            GetLogicDataFromFile(LogicFiles, false);
-            GetLogicDataFromFile(MQLogicFiles, true);
-
-            void GetLogicDataFromFile(List<string> LogicFileUrls, bool MQData)
-            {
-                foreach (var i in LogicFileUrls)
-                {
-                    Console.WriteLine(i);
-                    string ItemData = wc.DownloadString(i);
-                    string[] ItemDataLines = ItemData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                    var CleanedLogic = RemoveCommentsFromJSON(ItemDataLines);
-                    var tempLogic = JsonConvert.DeserializeObject<List<OOTRLogicObject>>(CleanedLogic, new JsonSerializerSettings() { MissingMemberHandling = MissingMemberHandling.Ignore });
-
-                    if (MQData) { foreach (var t in tempLogic) { t.MQ = true; } }
-                    Logic.AddRange(tempLogic);
-                }
-            }
-
-            string RawHelperLogic = wc.DownloadString("https://raw.githubusercontent.com/TestRunnerSRL/OoT-Randomizer/Dev/data/LogicHelpers.json");
-            string[] RawHelperLogicLines = RawHelperLogic.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-
-            var CleanedHelperLogic = RemoveCommentsFromJSON(RawHelperLogicLines);
-
-            OOTRLogicObject HelperLogic = new OOTRLogicObject() { region_name = "Logic Helper", events = JsonConvert.DeserializeObject<Dictionary<string, string>>(CleanedHelperLogic) };
-
-            Dictionary<string, string> CleanedEvents = new Dictionary<string, string>();
-            foreach (var i in HelperLogic.events)
-            {
-                CleanedEvents.Add(i.Key, i.Value.Replace("'Bugs'", "Item_Bugs").Replace("'Fish'", "Item_Fish").Replace("'Fairy'", "Item_Fairy"));
-            }
-            HelperLogic.events = CleanedEvents;
-
-            Logic.Add(HelperLogic);
 
             foreach (var i in Logic)
             {
@@ -468,6 +401,80 @@ namespace MMR_Tracker.Other_Games
             return OOTRDict;
             File.WriteAllText("OOTRDictionary.json", JsonConvert.SerializeObject(OOTRDict, new JsonSerializerSettings() { Formatting = Formatting.Indented, NullValueHandling = NullValueHandling.Ignore }));
 
+        }
+
+        public static void GetDataFromWeb(List<OOTRLogicObject> Logic, string Branch = "TestRunnerSRL/OoT-Randomizer/Dev")
+        {
+            System.Net.WebClient wc = new System.Net.WebClient();
+            List<string> LogicFiles = new List<string>
+            {
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Overworld.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Bottom%20of%20the%20Well.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Deku%20Tree.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Dodongos%20Cavern.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Fire%20Temple.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Forest%20Temple.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Ganons%20Castle.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Gerudo%20Training%20Ground.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Ice%20Cavern.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Jabu%20Jabus%20Belly.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Shadow%20Temple.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Spirit%20Temple.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Water%20Temple.json"
+
+            };
+
+            List<string> MQLogicFiles = new List<string>
+            {
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Bottom%20of%20the%20Well%20MQ.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Deku%20Tree%20MQ.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Dodongos%20Cavern%20MQ.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Fire%20Temple%20MQ.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Forest%20Temple%20MQ.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Ganons%20Castle%20MQ.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Gerudo%20Training%20Ground%20MQ.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Ice%20Cavern%20MQ.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Jabu%20Jabus%20Belly%20MQ.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Shadow%20Temple%20MQ.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Spirit%20Temple%20MQ.json",
+                $"https://raw.githubusercontent.com/{Branch}/data/World/Water%20Temple%20MQ.json"
+
+            };
+
+
+            GetLogicDataFromFile(LogicFiles, false);
+            GetLogicDataFromFile(MQLogicFiles, true);
+
+            void GetLogicDataFromFile(List<string> LogicFileUrls, bool MQData)
+            {
+                foreach (var i in LogicFileUrls)
+                {
+                    Console.WriteLine(i);
+                    string ItemData = wc.DownloadString(i);
+                    string[] ItemDataLines = ItemData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                    var CleanedLogic = RemoveCommentsFromJSON(ItemDataLines);
+                    var tempLogic = JsonConvert.DeserializeObject<List<OOTRLogicObject>>(CleanedLogic, new JsonSerializerSettings() { MissingMemberHandling = MissingMemberHandling.Ignore });
+
+                    if (MQData) { foreach (var t in tempLogic) { t.MQ = true; } }
+                    Logic.AddRange(tempLogic);
+                }
+            }
+
+            string RawHelperLogic = wc.DownloadString($"https://raw.githubusercontent.com/{Branch}/data/LogicHelpers.json");
+            string[] RawHelperLogicLines = RawHelperLogic.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+
+            var CleanedHelperLogic = RemoveCommentsFromJSON(RawHelperLogicLines);
+
+            OOTRLogicObject HelperLogic = new OOTRLogicObject() { region_name = "Logic Helper", events = JsonConvert.DeserializeObject<Dictionary<string, string>>(CleanedHelperLogic) };
+
+            Dictionary<string, string> CleanedEvents = new Dictionary<string, string>();
+            foreach (var i in HelperLogic.events)
+            {
+                CleanedEvents.Add(i.Key, i.Value.Replace("'Bugs'", "Item_Bugs").Replace("'Fish'", "Item_Fish").Replace("'Fairy'", "Item_Fairy"));
+            }
+            HelperLogic.events = CleanedEvents;
+
+            Logic.Add(HelperLogic);
         }
 
         //Add Items to logic and dictionary
