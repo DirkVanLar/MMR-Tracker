@@ -39824,42 +39824,6 @@
       "IsTrick": false
     },
     {
-      "Id": "Extra Buy Fairy's Spirit 0",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Extra Buy Fairy's Spirit 1",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Extra Buy Fairy's Spirit 2",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Extra Buy Fairy's Spirit 3",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
       "Id": "Extra Buy Goron Tunic 0",
       "RequiredItems": [],
       "ConditionalItems": [],
@@ -39888,42 +39852,6 @@
     },
     {
       "Id": "Extra Buy Hylian Shield 1",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Extra Buy Red Potion [40] 0",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Extra Buy Red Potion [40] 1",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Extra Buy Red Potion [50] 0",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Extra Buy Red Potion [50] 1",
       "RequiredItems": [],
       "ConditionalItems": [],
       "TimeNeeded": "None",
@@ -40932,42 +40860,6 @@
     },
     {
       "Id": "Extra Requiem of Spirit 2",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Extra Rupee 1 0",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Extra Rupee 1 1",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Extra Rupee Treasure Chest Game 0",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Extra Rupee Treasure Chest Game 1",
       "RequiredItems": [],
       "ConditionalItems": [],
       "TimeNeeded": "None",

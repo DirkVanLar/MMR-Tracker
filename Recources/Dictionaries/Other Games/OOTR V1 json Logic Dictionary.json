@@ -4822,7 +4822,7 @@
     {
       "DictionaryName": "SFM Deku Scrub Grotto Rear",
       "LocationName": "SFM Deku Scrub Grotto Rear",
-      "ItemName": "Buy Red Potion [30]",
+      "ItemName": "Buy Red Potion",
       "LocationArea": "Sacred Forest Meadow",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -4830,8 +4830,8 @@
         "SFM Deku Scrub Grotto Rear"
       ],
       "SpoilerItem": [
-        "Buy Red Potion [30]",
-        "Buy_Red_Potion_[30]"
+        "Buy Red Potion",
+        "Buy_Red_Potion"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -5146,7 +5146,7 @@
     {
       "DictionaryName": "Market Bazaar Item 2",
       "LocationName": "Market Bazaar Item 2",
-      "ItemName": "Buy Bombs 5 [35]",
+      "ItemName": "Buy Bombs 5",
       "LocationArea": "the Market",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -5154,8 +5154,9 @@
         "Market Bazaar Item 2"
       ],
       "SpoilerItem": [
-        "Buy Bombs 5 [35]",
-        "Buy_Bombs_5_[35]"
+        "Buy Bombs 5",
+        "Buy_Bombs_5",
+        "Buy Bombs (5)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -5295,7 +5296,7 @@
     {
       "DictionaryName": "Market Potion Shop Item 3",
       "LocationName": "Market Potion Shop Item 3",
-      "ItemName": "Buy Red Potion [30]",
+      "ItemName": "Buy Red Potion",
       "LocationArea": "the Market",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -5303,8 +5304,8 @@
         "Market Potion Shop Item 3"
       ],
       "SpoilerItem": [
-        "Buy Red Potion [30]",
-        "Buy_Red_Potion_[30]"
+        "Buy Red Potion",
+        "Buy_Red_Potion"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -5690,7 +5691,7 @@
     {
       "DictionaryName": "LLR Deku Scrub Grotto Right",
       "LocationName": "LLR Deku Scrub Grotto Right",
-      "ItemName": "Buy Bombs 5 [35]",
+      "ItemName": "Buy Bombs 5",
       "LocationArea": "Lon Lon Ranch",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -5698,8 +5699,9 @@
         "LLR Deku Scrub Grotto Right"
       ],
       "SpoilerItem": [
-        "Buy Bombs 5 [35]",
-        "Buy_Bombs_5_[35]"
+        "Buy Bombs 5",
+        "Buy_Bombs_5",
+        "Buy Bombs (5)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -6174,7 +6176,7 @@
     {
       "DictionaryName": "Kak Bazaar Item 2",
       "LocationName": "Kak Bazaar Item 2",
-      "ItemName": "Buy Bombs 5 [35]",
+      "ItemName": "Buy Bombs 5",
       "LocationArea": "Kakariko Village",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -6182,8 +6184,9 @@
         "Kak Bazaar Item 2"
       ],
       "SpoilerItem": [
-        "Buy Bombs 5 [35]",
-        "Buy_Bombs_5_[35]"
+        "Buy Bombs 5",
+        "Buy_Bombs_5",
+        "Buy Bombs (5)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -6324,7 +6327,7 @@
     {
       "DictionaryName": "Kak Potion Shop Item 3",
       "LocationName": "Kak Potion Shop Item 3",
-      "ItemName": "Buy Red Potion [30]",
+      "ItemName": "Buy Red Potion",
       "LocationArea": "Kakariko Village",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -6332,8 +6335,8 @@
         "Kak Potion Shop Item 3"
       ],
       "SpoilerItem": [
-        "Buy Red Potion [30]",
-        "Buy_Red_Potion_[30]"
+        "Buy Red Potion",
+        "Buy_Red_Potion"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -6892,7 +6895,7 @@
     {
       "DictionaryName": "GC Deku Scrub Grotto Right",
       "LocationName": "GC Deku Scrub Grotto Right",
-      "ItemName": "Buy Bombs 5 [35]",
+      "ItemName": "Buy Bombs 5",
       "LocationArea": "Goron City",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -6900,8 +6903,9 @@
         "GC Deku Scrub Grotto Right"
       ],
       "SpoilerItem": [
-        "Buy Bombs 5 [35]",
-        "Buy_Bombs_5_[35]"
+        "Buy Bombs 5",
+        "Buy_Bombs_5",
+        "Buy Bombs (5)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -6940,7 +6944,7 @@
     {
       "DictionaryName": "GC Shop Item 1",
       "LocationName": "GC Shop Item 1",
-      "ItemName": "Buy Bombs 5 [25]",
+      "ItemName": "Buy Bombs 5",
       "LocationArea": "Goron City",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -6948,8 +6952,9 @@
         "GC Shop Item 1"
       ],
       "SpoilerItem": [
-        "Buy Bombs 5 [25]",
-        "Buy_Bombs_5_[25]"
+        "Buy Bombs 5",
+        "Buy_Bombs_5",
+        "Buy Bombs (5)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -7039,7 +7044,7 @@
     {
       "DictionaryName": "GC Shop Item 7",
       "LocationName": "GC Shop Item 7",
-      "ItemName": "Buy Red Potion [40]",
+      "ItemName": "Buy Red Potion",
       "LocationArea": "Goron City",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -7047,8 +7052,8 @@
         "GC Shop Item 7"
       ],
       "SpoilerItem": [
-        "Buy Red Potion [40]",
-        "Buy_Red_Potion_[40]"
+        "Buy Red Potion",
+        "Buy_Red_Potion"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -7136,7 +7141,7 @@
     {
       "DictionaryName": "DMC Deku Scrub",
       "LocationName": "DMC Deku Scrub",
-      "ItemName": "Buy Bombs 5 [35]",
+      "ItemName": "Buy Bombs 5",
       "LocationArea": "Death Mountain Crater",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -7144,8 +7149,9 @@
         "DMC Deku Scrub"
       ],
       "SpoilerItem": [
-        "Buy Bombs 5 [35]",
-        "Buy_Bombs_5_[35]"
+        "Buy Bombs 5",
+        "Buy_Bombs_5",
+        "Buy Bombs (5)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -7186,7 +7192,7 @@
     {
       "DictionaryName": "DMC Deku Scrub Grotto Right",
       "LocationName": "DMC Deku Scrub Grotto Right",
-      "ItemName": "Buy Bombs 5 [35]",
+      "ItemName": "Buy Bombs 5",
       "LocationArea": "Death Mountain Crater",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -7194,8 +7200,9 @@
         "DMC Deku Scrub Grotto Right"
       ],
       "SpoilerItem": [
-        "Buy Bombs 5 [35]",
-        "Buy_Bombs_5_[35]"
+        "Buy Bombs 5",
+        "Buy_Bombs_5",
+        "Buy Bombs (5)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -7347,7 +7354,7 @@
     {
       "DictionaryName": "ZR Deku Scrub Grotto Rear",
       "LocationName": "ZR Deku Scrub Grotto Rear",
-      "ItemName": "Buy Red Potion [30]",
+      "ItemName": "Buy Red Potion",
       "LocationArea": "Zoras River",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -7355,8 +7362,8 @@
         "ZR Deku Scrub Grotto Rear"
       ],
       "SpoilerItem": [
-        "Buy Red Potion [30]",
-        "Buy_Red_Potion_[30]"
+        "Buy Red Potion",
+        "Buy_Red_Potion"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -7607,7 +7614,7 @@
     {
       "DictionaryName": "ZD Shop Item 8",
       "LocationName": "ZD Shop Item 8",
-      "ItemName": "Buy Red Potion [50]",
+      "ItemName": "Buy Red Potion",
       "LocationArea": "Zoras Domain",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -7615,8 +7622,8 @@
         "ZD Shop Item 8"
       ],
       "SpoilerItem": [
-        "Buy Red Potion [50]",
-        "Buy_Red_Potion_[50]"
+        "Buy Red Potion",
+        "Buy_Red_Potion"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -7849,7 +7856,7 @@
     {
       "DictionaryName": "LH Deku Scrub Grotto Right",
       "LocationName": "LH Deku Scrub Grotto Right",
-      "ItemName": "Buy Bombs 5 [35]",
+      "ItemName": "Buy Bombs 5",
       "LocationArea": "Lake Hylia",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -7857,8 +7864,9 @@
         "LH Deku Scrub Grotto Right"
       ],
       "SpoilerItem": [
-        "Buy Bombs 5 [35]",
-        "Buy_Bombs_5_[35]"
+        "Buy Bombs 5",
+        "Buy_Bombs_5",
+        "Buy Bombs (5)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -8010,7 +8018,7 @@
     {
       "DictionaryName": "GV Deku Scrub Grotto Rear",
       "LocationName": "GV Deku Scrub Grotto Rear",
-      "ItemName": "Buy Red Potion [30]",
+      "ItemName": "Buy Red Potion",
       "LocationArea": "Gerudo Valley",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -8018,8 +8026,8 @@
         "GV Deku Scrub Grotto Rear"
       ],
       "SpoilerItem": [
-        "Buy Red Potion [30]",
-        "Buy_Red_Potion_[30]"
+        "Buy Red Potion",
+        "Buy_Red_Potion"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -8365,7 +8373,7 @@
     {
       "DictionaryName": "Colossus Deku Scrub Grotto Rear",
       "LocationName": "Colossus Deku Scrub Grotto Rear",
-      "ItemName": "Buy Red Potion [30]",
+      "ItemName": "Buy Red Potion",
       "LocationArea": "Desert Colossus",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -8373,8 +8381,8 @@
         "Colossus Deku Scrub Grotto Rear"
       ],
       "SpoilerItem": [
-        "Buy Red Potion [30]",
-        "Buy_Red_Potion_[30]"
+        "Buy Red Potion",
+        "Buy_Red_Potion"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -9189,7 +9197,7 @@
     {
       "DictionaryName": "Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos",
       "LocationName": "Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos",
-      "ItemName": "Buy Red Potion [30]",
+      "ItemName": "Buy Red Potion",
       "LocationArea": "Dodongos Cavern",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -9197,8 +9205,8 @@
         "Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos"
       ],
       "SpoilerItem": [
-        "Buy Red Potion [30]",
-        "Buy_Red_Potion_[30]"
+        "Buy Red Potion",
+        "Buy_Red_Potion"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -14578,7 +14586,7 @@
     {
       "DictionaryName": "Ganons Castle Deku Scrub Center-Left",
       "LocationName": "Ganons Castle Deku Scrub Center-Left",
-      "ItemName": "Buy Bombs 5 [35]",
+      "ItemName": "Buy Bombs 5",
       "LocationArea": "Ganons Castle",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -14586,8 +14594,9 @@
         "Ganons Castle Deku Scrub Center-Left"
       ],
       "SpoilerItem": [
-        "Buy Bombs 5 [35]",
-        "Buy_Bombs_5_[35]"
+        "Buy Bombs 5",
+        "Buy_Bombs_5",
+        "Buy Bombs (5)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -14611,7 +14620,7 @@
     {
       "DictionaryName": "Ganons Castle Deku Scrub Right",
       "LocationName": "Ganons Castle Deku Scrub Right",
-      "ItemName": "Buy Red Potion [30]",
+      "ItemName": "Buy Red Potion",
       "LocationArea": "Ganons Castle",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -14619,8 +14628,8 @@
         "Ganons Castle Deku Scrub Right"
       ],
       "SpoilerItem": [
-        "Buy Red Potion [30]",
-        "Buy_Red_Potion_[30]"
+        "Buy Red Potion",
+        "Buy_Red_Potion"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -14861,7 +14870,7 @@
     {
       "DictionaryName": "Ganons Castle MQ Deku Scrub Center-Left",
       "LocationName": "Ganons Castle MQ Deku Scrub Center-Left",
-      "ItemName": "Buy Bombs 5 [35]",
+      "ItemName": "Buy Bombs 5",
       "LocationArea": "Ganons Castle",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -14869,8 +14878,9 @@
         "Ganons Castle MQ Deku Scrub Center-Left"
       ],
       "SpoilerItem": [
-        "Buy Bombs 5 [35]",
-        "Buy_Bombs_5_[35]"
+        "Buy Bombs 5",
+        "Buy_Bombs_5",
+        "Buy Bombs (5)"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -14894,7 +14904,7 @@
     {
       "DictionaryName": "Ganons Castle MQ Deku Scrub Center-Right",
       "LocationName": "Ganons Castle MQ Deku Scrub Center-Right",
-      "ItemName": "Buy Red Potion [30]",
+      "ItemName": "Buy Red Potion",
       "LocationArea": "Ganons Castle",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -14902,8 +14912,8 @@
         "Ganons Castle MQ Deku Scrub Center-Right"
       ],
       "SpoilerItem": [
-        "Buy Red Potion [30]",
-        "Buy_Red_Potion_[30]"
+        "Buy Red Potion",
+        "Buy_Red_Potion"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -16146,102 +16156,62 @@
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "Extra Buy Bombchu (10) 0",
-      "ItemName": "Buy Bombchu (10)",
+      "DictionaryName": "Extra Buy Bombchu 10 0",
+      "ItemName": "Buy Bombchu 10",
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerItem": [
-        "Buy Bombchu (10)"
+        "Buy Bombchu 10"
       ],
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "Extra Buy Bombchu (10) 1",
-      "ItemName": "Buy Bombchu (10)",
+      "DictionaryName": "Extra Buy Bombchu 10 1",
+      "ItemName": "Buy Bombchu 10",
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerItem": [
-        "Buy Bombchu (10)"
+        "Buy Bombchu 10"
       ],
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "Extra Buy Bombchu (5) 0",
-      "ItemName": "Buy Bombchu (5)",
+      "DictionaryName": "Extra Buy Bombchu 5 0",
+      "ItemName": "Buy Bombchu 5",
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerItem": [
-        "Buy Bombchu (5)"
+        "Buy Bombchu 5"
       ],
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "Extra Buy Bombchu (5) 1",
-      "ItemName": "Buy Bombchu (5)",
+      "DictionaryName": "Extra Buy Bombchu 5 1",
+      "ItemName": "Buy Bombchu 5",
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerItem": [
-        "Buy Bombchu (5)"
+        "Buy Bombchu 5"
       ],
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "Extra Buy Deku Nut (10) 0",
-      "ItemName": "Buy Deku Nut (10)",
+      "DictionaryName": "Extra Buy Deku Nut 10 0",
+      "ItemName": "Buy Deku Nut 10",
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerItem": [
-        "Buy Deku Nut (10)"
+        "Buy Deku Nut 10"
       ],
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "Extra Buy Deku Nut (10) 1",
-      "ItemName": "Buy Deku Nut (10)",
+      "DictionaryName": "Extra Buy Deku Nut 10 1",
+      "ItemName": "Buy Deku Nut 10",
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerItem": [
-        "Buy Deku Nut (10)"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Buy Fairy's Spirit 0",
-      "ItemName": "Buy Fairy's Spirit",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Buy Fairy's Spirit"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Buy Fairy's Spirit 1",
-      "ItemName": "Buy Fairy's Spirit",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Buy Fairy's Spirit"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Buy Fairy's Spirit 2",
-      "ItemName": "Buy Fairy's Spirit",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Buy Fairy's Spirit"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Buy Fairy's Spirit 3",
-      "ItemName": "Buy Fairy's Spirit",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Buy Fairy's Spirit"
+        "Buy Deku Nut 10"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -16282,46 +16252,6 @@
       "FakeItem": false,
       "SpoilerItem": [
         "Buy Hylian Shield"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Buy Red Potion [40] 0",
-      "ItemName": "Buy Red Potion [40]",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Buy Red Potion [40]"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Buy Red Potion [40] 1",
-      "ItemName": "Buy Red Potion [40]",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Buy Red Potion [40]"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Buy Red Potion [50] 0",
-      "ItemName": "Buy Red Potion [50]",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Buy Red Potion [50]"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Buy Red Potion [50] 1",
-      "ItemName": "Buy Red Potion [50]",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Buy Red Potion [50]"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -17196,22 +17126,22 @@
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "Extra Piece of Heart (Treasure Chest Game) 0",
-      "ItemName": "Piece of Heart (Treasure Chest Game)",
+      "DictionaryName": "Extra Piece of Heart Treasure Chest Game 0",
+      "ItemName": "Piece of Heart Treasure Chest Game",
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerItem": [
-        "Piece of Heart (Treasure Chest Game)"
+        "Piece of Heart Treasure Chest Game"
       ],
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "Extra Piece of Heart (Treasure Chest Game) 1",
-      "ItemName": "Piece of Heart (Treasure Chest Game)",
+      "DictionaryName": "Extra Piece of Heart Treasure Chest Game 1",
+      "ItemName": "Piece of Heart Treasure Chest Game",
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerItem": [
-        "Piece of Heart (Treasure Chest Game)"
+        "Piece of Heart Treasure Chest Game"
       ],
       "ValidRandomizerStartingItem": false
     },
@@ -17442,46 +17372,6 @@
       "FakeItem": false,
       "SpoilerItem": [
         "Requiem of Spirit"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Rupee (1) 0",
-      "ItemName": "Rupee (1)",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Rupee (1)"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Rupee (1) 1",
-      "ItemName": "Rupee (1)",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Rupee (1)"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Rupee (Treasure Chest Game) 0",
-      "ItemName": "Rupee (Treasure Chest Game)",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Rupee (Treasure Chest Game)"
-      ],
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Extra Rupee (Treasure Chest Game) 1",
-      "ItemName": "Rupee (Treasure Chest Game)",
-      "ItemSubType": "Item",
-      "FakeItem": false,
-      "SpoilerItem": [
-        "Rupee (Treasure Chest Game)"
       ],
       "ValidRandomizerStartingItem": false
     },

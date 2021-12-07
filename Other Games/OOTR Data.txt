@@ -312,7 +312,7 @@ SECTION: Locations
 //Sacred Forest Mea
 "SFM Wolfos Grotto Chest",                                      'Rupees (50)',                           ("Sacred Forest Meadow", "Forest", "Grottos")
 "SFM Deku Scrub Grotto Front",                                  'Buy Green Potion',                      ("Sacred Forest Meadow", "Forest", "Deku Scrub", "Grottos")
-"SFM Deku Scrub Grotto Rear",                                   'Buy Red Potion [30]',                   ("Sacred Forest Meadow", "Forest", "Deku Scrub", "Grottos")
+"SFM Deku Scrub Grotto Rear",                                   'Buy Red Potion',                   ("Sacred Forest Meadow", "Forest", "Deku Scrub", "Grottos")
 "SFM GS",                                                       'Gold Skulltula Token',                  ("Sacred Forest Meadow", "Skulltulas",)
 
 //Hyrule Fi
@@ -336,7 +336,7 @@ SECTION: Locations
 "Market 10 Big Poes",                                           'Bottle',                                ("the Market", "Hyrule Castle",)
 "Market GS Guard House",                                        'Gold Skulltula Token',                  ("the Market", "Skulltulas",)
 "Market Bazaar Item 1",                                         'Buy Hylian Shield',                     ("the Market", "Market", "Shops")
-"Market Bazaar Item 2",                                         'Buy Bombs (5) [35]',                    ("the Market", "Market", "Shops")
+"Market Bazaar Item 2",                                         'Buy Bombs (5)',                    ("the Market", "Market", "Shops")
 "Market Bazaar Item 3",                                         'Buy Deku Nut (5)',                      ("the Market", "Market", "Shops")
 "Market Bazaar Item 4",                                         'Buy Heart',                             ("the Market", "Market", "Shops")
 "Market Bazaar Item 5",                                         'Buy Arrows (10)',                       ("the Market", "Market", "Shops")
@@ -345,7 +345,7 @@ SECTION: Locations
 "Market Bazaar Item 8",                                         'Buy Arrows (30)',                       ("the Market", "Market", "Shops")
 "Market Potion Shop Item 1",                                    'Buy Green Potion',                      ("the Market", "Market", "Shops")
 "Market Potion Shop Item 2",                                    'Buy Blue Fire',                         ("the Market", "Market", "Shops")
-"Market Potion Shop Item 3",                                    'Buy Red Potion [30]',                   ("the Market", "Market", "Shops")
+"Market Potion Shop Item 3",                                    'Buy Red Potion',                   ("the Market", "Market", "Shops")
 "Market Potion Shop Item 4",                                    'Buy Fairys Spirit',                   ("the Market", "Market", "Shops")
 "Market Potion Shop Item 5",                                    'Buy Deku Nut (5)',                      ("the Market", "Market", "Shops")
 "Market Potion Shop Item 6",                                    'Buy Bottle Bug',                        ("the Market", "Market", "Shops")
@@ -373,7 +373,7 @@ SECTION: Locations
 "LLR Freestanding PoH",                                         'Piece of Heart',                        ("Lon Lon Ranch",)
 "LLR Deku Scrub Grotto Left",                                   'Buy Deku Nut (5)',                      ("Lon Lon Ranch", "Deku Scrub", "Grottos")
 "LLR Deku Scrub Grotto Center",                                 'Buy Deku Seeds (30)',                   ("Lon Lon Ranch", "Deku Scrub", "Grottos")
-"LLR Deku Scrub Grotto Right",                                  'Buy Bombs (5) [35]',                    ("Lon Lon Ranch", "Deku Scrub", "Grottos")
+"LLR Deku Scrub Grotto Right",                                  'Buy Bombs (5)',                    ("Lon Lon Ranch", "Deku Scrub", "Grottos")
 "LLR Stables Left Cow",                                         'Milk',                                  ("Lon Lon Ranch", "Cow",)
 "LLR Stables Right Cow",                                        'Milk',                                  ("Lon Lon Ranch", "Cow",)
 "LLR Tower Left Cow",                                           'Milk',                                  ("Lon Lon Ranch", "Cow",)
@@ -405,7 +405,7 @@ SECTION: Locations
 "Kak GS House Under Construction",                              'Gold Skulltula Token',                  ("Kakariko Village", "Skulltulas",)
 "Kak GS Above Impas House",                                     'Gold Skulltula Token',                  ("Kakariko Village", "Skulltulas",)
 "Kak Bazaar Item 1",                                            'Buy Hylian Shield',                     ("Kakariko Village", "Kakariko", "Shops")
-"Kak Bazaar Item 2",                                            'Buy Bombs (5) [35]',                    ("Kakariko Village", "Kakariko", "Shops")
+"Kak Bazaar Item 2",                                            'Buy Bombs (5)',                    ("Kakariko Village", "Kakariko", "Shops")
 "Kak Bazaar Item 3",                                            'Buy Deku Nut (5)',                      ("Kakariko Village", "Kakariko", "Shops")
 "Kak Bazaar Item 4",                                            'Buy Heart',                             ("Kakariko Village", "Kakariko", "Shops")
 "Kak Bazaar Item 5",                                            'Buy Arrows (10)',                       ("Kakariko Village", "Kakariko", "Shops")
@@ -414,7 +414,7 @@ SECTION: Locations
 "Kak Bazaar Item 8",                                            'Buy Arrows (30)',                       ("Kakariko Village", "Kakariko", "Shops")
 "Kak Potion Shop Item 1",                                       'Buy Deku Nut (5)',                      ("Kakariko Village", "Kakariko", "Shops")
 "Kak Potion Shop Item 2",                                       'Buy Fish',                              ("Kakariko Village", "Kakariko", "Shops")
-"Kak Potion Shop Item 3",                                       'Buy Red Potion [30]',                   ("Kakariko Village", "Kakariko", "Shops")
+"Kak Potion Shop Item 3",                                       'Buy Red Potion',                   ("Kakariko Village", "Kakariko", "Shops")
 "Kak Potion Shop Item 4",                                       'Buy Green Potion',                      ("Kakariko Village", "Kakariko", "Shops")
 "Kak Potion Shop Item 5",                                       'Buy Blue Fire',                         ("Kakariko Village", "Kakariko", "Shops")
 "Kak Potion Shop Item 6",                                       'Buy Bottle Bug',                        ("Kakariko Village", "Kakariko", "Shops")
@@ -455,16 +455,16 @@ SECTION: Locations
 "GC Maze Center Chest",                                         'Rupees (50)',                           ("Goron City",)
 "GC Deku Scrub Grotto Left",                                    'Buy Deku Nut (5)',                      ("Goron City", "Deku Scrub", "Grottos")
 "GC Deku Scrub Grotto Center",                                  'Buy Arrows (30)',                       ("Goron City", "Deku Scrub", "Grottos")
-"GC Deku Scrub Grotto Right",                                   'Buy Bombs (5) [35]',                    ("Goron City", "Deku Scrub", "Grottos")
+"GC Deku Scrub Grotto Right",                                   'Buy Bombs (5)',                    ("Goron City", "Deku Scrub", "Grottos")
 "GC GS Center Platform",                                        'Gold Skulltula Token',                  ("Goron City", "Skulltulas",)
 "GC GS Boulder Maze",                                           'Gold Skulltula Token',                  ("Goron City", "Skulltulas",)
-"GC Shop Item 1",                                               'Buy Bombs (5) [25]',                    ("Goron City", "Shops",)
+"GC Shop Item 1",                                               'Buy Bombs (5)',                    ("Goron City", "Shops",)
 "GC Shop Item 2",                                               'Buy Bombs (10)',                        ("Goron City", "Shops",)
 "GC Shop Item 3",                                               'Buy Bombs (20)',                        ("Goron City", "Shops",)
 "GC Shop Item 4",                                               'Buy Bombs (30)',                        ("Goron City", "Shops",)
 "GC Shop Item 5",                                               'Buy Goron Tunic',                       ("Goron City", "Shops",)
 "GC Shop Item 6",                                               'Buy Heart',                             ("Goron City", "Shops",)
-"GC Shop Item 7",                                               'Buy Red Potion [40]',                   ("Goron City", "Shops",)
+"GC Shop Item 7",                                               'Buy Red Potion',                   ("Goron City", "Shops",)
 "GC Shop Item 8",                                               'Buy Heart',                             ("Goron City", "Shops",)
 
 //Death Mountain Cra
@@ -472,10 +472,10 @@ SECTION: Locations
 "DMC Wall Freestanding PoH",                                    'Piece of Heart',                        ("Death Mountain Crater", "Death Mountain",)
 "DMC Upper Grotto Chest",                                       'Bombs (20)',                            ("Death Mountain Crater", "Death Mountain", "Grottos")
 "DMC Great Fairy Reward",                                       'Magic Meter',                           ("Death Mountain Crater", "Death Mountain", "Fairies",)
-"DMC Deku Scrub",                                               'Buy Bombs (5) [35]',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub")
+"DMC Deku Scrub",                                               'Buy Bombs (5)',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub")
 "DMC Deku Scrub Grotto Left",                                   'Buy Deku Nut (5)',                      ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos")
 "DMC Deku Scrub Grotto Center",                                 'Buy Arrows (30)',                       ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos")
-"DMC Deku Scrub Grotto Right",                                  'Buy Bombs (5) [35]',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos")
+"DMC Deku Scrub Grotto Right",                                  'Buy Bombs (5)',                    ("Death Mountain Crater", "Death Mountain", "Deku Scrub", "Grottos")
 "DMC GS Crate",                                                 'Gold Skulltula Token',                  ("Death Mountain Crater", "Skulltulas",)
 "DMC GS Bean Patch",                                            'Gold Skulltula Token',                  ("Death Mountain Crater", "Skulltulas",)
 
@@ -487,7 +487,7 @@ SECTION: Locations
 "ZR Near Open Grotto Freestanding PoH",                         'Piece of Heart',                        ("Zora's River",)
 "ZR Near Domain Freestanding PoH",                              'Piece of Heart',                        ("Zora's River",)
 "ZR Deku Scrub Grotto Front",                                   'Buy Green Potion',                      ("Zora's River", "Deku Scrub", "Grottos")
-"ZR Deku Scrub Grotto Rear",                                    'Buy Red Potion [30]',                   ("Zora's River", "Deku Scrub", "Grottos")
+"ZR Deku Scrub Grotto Rear",                                    'Buy Red Potion',                   ("Zora's River", "Deku Scrub", "Grottos")
 "ZR GS Tree",                                                   'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",)
 "ZR GS Ladder",                                                 'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",)
 "ZR GS Near Raised Grottos",                                    'Gold Skulltula Token',                  ("Zora's River", "Skulltulas",)
@@ -505,7 +505,7 @@ SECTION: Locations
 "ZD Shop Item 5",                                               'Buy Deku Nut (5)',                      ("Zora's Domain", "Shops",)
 "ZD Shop Item 6",                                               'Buy Arrows (50)',                       ("Zora's Domain", "Shops",)
 "ZD Shop Item 7",                                               'Buy Fish',                              ("Zora's Domain", "Shops",)
-"ZD Shop Item 8",                                               'Buy Red Potion [50]',                   ("Zora's Domain", "Shops",)
+"ZD Shop Item 8",                                               'Buy Red Potion',                   ("Zora's Domain", "Shops",)
 
 //Zora's Fount
 "ZF Great Fairy Reward",                                        'Farores Wind',                          ("Zora's Fountain", "Fairies",)
@@ -524,7 +524,7 @@ SECTION: Locations
 "LH Sun",                                                       'Fire Arrows',                           ("Lake Hylia",)
 "LH Deku Scrub Grotto Left",                                    'Buy Deku Nut (5)',                      ("Lake Hylia", "Deku Scrub", "Grottos")
 "LH Deku Scrub Grotto Center",                                  'Buy Deku Seeds (30)',                   ("Lake Hylia", "Deku Scrub", "Grottos")
-"LH Deku Scrub Grotto Right",                                   'Buy Bombs (5) [35]',                    ("Lake Hylia", "Deku Scrub", "Grottos")
+"LH Deku Scrub Grotto Right",                                   'Buy Bombs (5)',                    ("Lake Hylia", "Deku Scrub", "Grottos")
 "LH GS Bean Patch",                                             'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",)
 "LH GS Lab Wall",                                               'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",)
 "LH GS Small Island",                                           'Gold Skulltula Token',                  ("Lake Hylia", "Skulltulas",)
@@ -536,7 +536,7 @@ SECTION: Locations
 "GV Waterfall Freestanding PoH",                                'Piece of Heart',                        ("Gerudo Valley", "Gerudo",)
 "GV Chest",                                                     'Rupees (50)',                           ("Gerudo Valley", "Gerudo",)
 "GV Deku Scrub Grotto Front",                                   'Buy Green Potion',                      ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos")
-"GV Deku Scrub Grotto Rear",                                    'Buy Red Potion [30]',                   ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos")
+"GV Deku Scrub Grotto Rear",                                    'Buy Red Potion',                   ("Gerudo Valley", "Gerudo", "Deku Scrub", "Grottos")
 "GV Cow",                                                       'Milk',                                  ("Gerudo Valley", "Gerudo", "Cow")
 "GV GS Small Bridge",                                           'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",)
 "GV GS Bean Patch",                                             'Gold Skulltula Token',                  ("Gerudo Valley", "Skulltulas",)
@@ -566,7 +566,7 @@ SECTION: Locations
 "Colossus Great Fairy Reward",                                  'Nayrus Love',                           ("Desert Colossus", "Fairies",)
 "Colossus Freestanding PoH",                                    'Piece of Heart',                        ("Desert Colossus",)
 "Colossus Deku Scrub Grotto Front",                             'Buy Green Potion',                      ("Desert Colossus", "Deku Scrub", "Grottos")
-"Colossus Deku Scrub Grotto Rear",                              'Buy Red Potion [30]',                   ("Desert Colossus", "Deku Scrub", "Grottos")
+"Colossus Deku Scrub Grotto Rear",                              'Buy Red Potion',                   ("Desert Colossus", "Deku Scrub", "Grottos")
 "Colossus GS Bean Patch",                                       'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",)
 "Colossus GS Tree",                                             'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",)
 "Colossus GS Hill",                                             'Gold Skulltula Token',                  ("Desert Colossus", "Skulltulas",)
@@ -630,7 +630,7 @@ SECTION: Locations
 "Dodongos Cavern MQ Under Grave Chest",                         'Hylian Shield',                         ("Dodongo's Cavern", "Master Quest",)
 "Dodongos Cavern MQ Deku Scrub Lobby Front",                    'Buy Deku Seeds (30)',                   ("Dodongo's Cavern", "Master Quest", "Deku Scrub",)
 "Dodongos Cavern MQ Deku Scrub Lobby Rear",                     'Buy Deku Stick (1)',                    ("Dodongo's Cavern", "Master Quest", "Deku Scrub",)
-"Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos",  'Buy Red Potion [30]',                   ("Dodongo's Cavern", "Master Quest", "Deku Scrub",)
+"Dodongos Cavern MQ Deku Scrub Side Room Near Lower Lizalfos",  'Buy Red Potion',                   ("Dodongo's Cavern", "Master Quest", "Deku Scrub",)
 "Dodongos Cavern MQ Deku Scrub Staircase",                      'Buy Deku Shield',                       ("Dodongo's Cavern", "Master Quest", "Deku Scrub",)
 "Dodongos Cavern MQ GS Scrub Room",                             'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",)
 "Dodongos Cavern MQ GS Larvae Room",                            'Gold Skulltula Token',                  ("Dodongo's Cavern", "Master Quest", "Skulltulas",)
@@ -1004,9 +1004,9 @@ SECTION: Locations
 "Ganons Castle Spirit Trial Crystal Switch Chest",              'Bombchus (20)',                         ("Ganon's Castle", "Vanilla",)
 "Ganons Castle Spirit Trial Invisible Chest",                   'Arrows (10)',                           ("Ganon's Castle", "Vanilla",)
 "Ganons Castle Deku Scrub Left",                                'Buy Green Potion',                      ("Ganon's Castle", "Vanilla", "Deku Scrub",)
-"Ganons Castle Deku Scrub Center-Left",                         'Buy Bombs (5) [35]',                    ("Ganon's Castle", "Vanilla", "Deku Scrub",)
+"Ganons Castle Deku Scrub Center-Left",                         'Buy Bombs (5)',                    ("Ganon's Castle", "Vanilla", "Deku Scrub",)
 "Ganons Castle Deku Scrub Center-Right",                        'Buy Arrows (30)',                       ("Ganon's Castle", "Vanilla", "Deku Scrub",)
-"Ganons Castle Deku Scrub Right",                               'Buy Red Potion [30]',                   ("Ganon's Castle", "Vanilla", "Deku Scrub",)
+"Ganons Castle Deku Scrub Right",                               'Buy Red Potion',                   ("Ganon's Castle", "Vanilla", "Deku Scrub",)
 
 //Ganon's Castle
 "Ganons Castle MQ Forest Trial Freestanding Key",               'Small Key (Ganons Castle)',             ("Ganon's Castle", "Master Quest",)
@@ -1023,9 +1023,9 @@ SECTION: Locations
 "Ganons Castle MQ Spirit Trial Sun Back Right Chest",           'Recovery Heart',                        ("Ganon's Castle", "Master Quest",)
 "Ganons Castle MQ Spirit Trial Golden Gauntlets Chest",         'Progressive Strength Upgrade',          ("Ganon's Castle", "Master Quest",)
 "Ganons Castle MQ Deku Scrub Left",                             'Buy Green Potion',                      ("Ganon's Castle", "Master Quest", "Deku Scrub",)
-"Ganons Castle MQ Deku Scrub Center-Left",                      'Buy Bombs (5) [35]',                    ("Ganon's Castle", "Master Quest", "Deku Scrub",)
+"Ganons Castle MQ Deku Scrub Center-Left",                      'Buy Bombs (5)',                    ("Ganon's Castle", "Master Quest", "Deku Scrub",)
 "Ganons Castle MQ Deku Scrub Center",                           'Buy Arrows (30)',                       ("Ganon's Castle", "Master Quest", "Deku Scrub",)
-"Ganons Castle MQ Deku Scrub Center-Right",                     'Buy Red Potion [30]',                   ("Ganon's Castle", "Master Quest", "Deku Scrub",)
+"Ganons Castle MQ Deku Scrub Center-Right",                     'Buy Red Potion',                   ("Ganon's Castle", "Master Quest", "Deku Scrub",)
 "Ganons Castle MQ Deku Scrub Right",                            'Buy Deku Nut (5)',                      ("Ganon's Castle", "Master Quest", "Deku Scrub",)
 
 //Ganon's Castle sha
@@ -1103,3 +1103,96 @@ SECTION: FAKE
 "Fairy Pond",                                                   'Item Fairy',                  
 "Big Poe Kill",                                                 'Big Poe',                
 
+SECTION: AVERAGEAMOUNT
+Biggoron Sword,2
+Bolero of Fire,2
+Bomb Bag,4
+Bombchus,6
+Bombchus (5),1
+Boomerang,2
+Bottle,1
+Bottle with Big Poe,1
+Bottle with Blue Fire,1
+Bottle with Blue Potion,2
+Bottle with Bugs,2
+Bottle with Fairy,2
+Bottle with Fish,1
+Bottle with Green Potion,3
+Bottle with Milk,2
+Bottle with Poe,2
+Bottle with Red Potion,1
+Bow,4
+Broken Sword,1
+Buy Blue Fire,2
+Buy Bombchu (10),3
+Buy Bombchu (20),3
+Buy Bombchu (5),1
+Buy Bottle Bug,1
+Buy Deku Nut (10),1
+Buy Deku Nut (5),4
+Buy Deku Seeds (30),1
+Buy Deku Shield,1
+Buy Deku Stick (1),3
+Buy Fish,2
+Buy Goron Tunic,1
+Buy Hylian Shield,2
+Buy Poe,1
+Buy Red Potion,4
+Buy Zora Tunic,1
+Claim Check,1
+Cojiro,1
+Deku Nut Capacity,3
+Deku Shield,7
+Deku Stick Capacity,3
+Dins Fire,2
+Double Defense,2
+Eponas Song,2
+Eyeball Frog,1
+Eyedrops,1
+Farores Wind,1
+Fire Arrows,2
+Gerudo Membership Card,2
+Giants Knife,1
+Gold Skulltula Token,100
+Goron Tunic,2
+Heart Container,16
+Hover Boots,2
+Hylian Shield,4
+Ice Arrows,1
+Iron Boots,2
+Kokiri Sword,2
+Lens of Truth,2
+Light Arrows,2
+Magic Bean Pack,2
+Magic Meter,3
+Megaton Hammer,2
+Minuet of Forest,2
+Mirror Shield,2
+Nayrus Love,1
+Nocturne of Shadow,2
+Ocarina,3
+Odd Mushroom,1
+Piece of Heart,35
+Piece of Heart (Treasure Chest Game),1
+Poachers Saw,1
+Pocket Cucco,1
+Pocket Egg,1
+Prelude of Light,2
+Prescription,1
+Progressive Hookshot,3
+Progressive Scale,3
+Progressive Strength Upgrade,4
+Progressive Wallet,4
+Recovery Heart,17
+Requiem of Spirit,2
+Rutos Letter,2
+Sarias Song,2
+Serenade of Water,2
+Slingshot,4
+Song of Storms,2
+Song of Time,2
+Stone of Agony,1
+Suns Song,2
+Weird Egg,1
+Zeldas Lullaby,2
+Zora Tunic,2

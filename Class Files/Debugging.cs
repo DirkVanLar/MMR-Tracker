@@ -92,6 +92,7 @@ namespace MMR_Tracker_V2
 
             OcarinaOfTimeRando.CreateOOTRLogic();
 
+
             void testCountEntry()
             {
                 LogicObjects.MainTrackerInstance.Logic.Add(new LogicObjects.LogicEntry()
@@ -698,6 +699,7 @@ namespace MMR_Tracker_V2
 
             return EntAreaDict;
         }
+
         public static void BackupLoadLogic()
         {
             var file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");

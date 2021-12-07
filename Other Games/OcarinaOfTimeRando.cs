@@ -20,13 +20,19 @@ namespace MMR_Tracker.Other_Games
         public static string[] IgnoredJunk = new string[]
             {
                 "Rupees (",
+                "Rupee (",
                 "Deku Seeds (",
                 "Deku Nuts (",
                 "Buy Bombs (",
                 "Bombs (",
                 "Buy Arrows (",
                 "Arrows (",
-                "Deku Stick ("
+                "Deku Stick (",
+                "Ice Trap",
+                "Buy Fairy",
+                "Buy Green Potion",
+                "Buy Heart",
+
             };
         public static List<string> allBottles = new List<string>() { "Bottle with Red Potion", "Bottle with Green Potion", "Bottle with Blue Potion", "Bottle with Fairy", "Bottle with Fish", "Bottle with Blue Fire", "Bottle with Bugs", "Bottle with Big Poe", "Bottle with Poe", "Bottle", "Bottle with Milk" };
         public class OOTRLogicObject
@@ -479,25 +485,49 @@ namespace MMR_Tracker.Other_Games
 
         //Add Items to logic and dictionary
 
-        public static void AddExtraItems(LogicObjects.LogicDictionary dict, LogicObjects.LogicFile Logic)
+        public static void GetAverageItemAmountsFromSpoilerLog(Dictionary<string, int> ItemAmontAverages)
         {
             string LogFolder = @"C:\Users\drumm\Downloads\OOTR Logs";
 
-            Dictionary<string, int> ItemAmontAverages = new Dictionary<string, int>();
             var jsonSerializerSettings = new JsonSerializerSettings();
             jsonSerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
 
             foreach (var i in Directory.GetFiles(LogFolder))
             {
                 var Log = JsonConvert.DeserializeObject<SpoilerLog>(File.ReadAllText(i), jsonSerializerSettings);
-                foreach (var j in Log.item_pool.Keys)
+                foreach (var j in Log.item_pool.Keys.Where(ky => !IgnoredJunk.Where(ig => ky.StartsWith(ig)).Any()))
                 {
-                    if (ItemAmontAverages.ContainsKey(j))
+                    string Cleaned = j;
+
+                    if (ItemAmontAverages.ContainsKey(Cleaned))
                     {
-                        if (ItemAmontAverages[j] < Log.item_pool[j]) { ItemAmontAverages[j] = Log.item_pool[j]; }
+                        if (ItemAmontAverages[Cleaned] < Log.item_pool[Cleaned]) { ItemAmontAverages[Cleaned] = Log.item_pool[Cleaned]; }
                     }
-                    else { ItemAmontAverages.Add(j, Log.item_pool[j]); }
+                    else { ItemAmontAverages.Add(Cleaned, Log.item_pool[Cleaned]); }
                 }
+            }
+        }
+
+        public static void AddExtraItems(LogicObjects.LogicDictionary dict, LogicObjects.LogicFile Logic)
+        {
+            Dictionary<string, int> ItemAmontAverages = new Dictionary<string, int>();
+
+            string CurrentSection = "";
+            string[] RefFile = File.ReadAllLines(@"lib\Other Games\OOTR Data.txt");
+            foreach (var i in RefFile)
+            {
+                var Line = i.Trim();
+                if (Line.StartsWith("SECTION:"))
+                {
+                    CurrentSection = Line.Replace("SECTION:", "").Trim();
+                    continue;
+                }
+                if (string.IsNullOrWhiteSpace(Line) || Line.StartsWith("//") || Line.StartsWith(@"\\") || Line.StartsWith(@"#")) { continue; }
+                var Data = Line.Split(',').Select(x => x.Trim().Replace("'", "").Replace(")", "").Replace("(", "").Replace("\"", ""));
+                Data = Data.Where(x => !string.IsNullOrWhiteSpace(x));
+                if (!Data.Any()) { continue; }
+
+                if (CurrentSection == "AVERAGEAMOUNT") { ItemAmontAverages.Add(Data.ToArray()[0], Int32.Parse(Data.ToArray()[1])); }
             }
 
             foreach (var i in ItemAmontAverages.OrderBy(x => x.Key))
@@ -505,7 +535,7 @@ namespace MMR_Tracker.Other_Games
                 int CountInVanilla = dict.LogicDictionaryList.Where(x => x.SpoilerItem != null && x.SpoilerItem.Contains(i.Key)).Count();
                 if (i.Value + 1 > CountInVanilla && !IgnoredJunk.Where(x => i.Key.StartsWith(x)).Any())
                 {
-                    Console.WriteLine($"Missing {i.Value - CountInVanilla} {i.Key}. {CountInVanilla}/{i.Value} ");
+                    Console.WriteLine($"Missing {(i.Value - CountInVanilla) + 2} {i.Key}. {CountInVanilla}/{i.Value + 2} ");
                     var ammounttoadd = (i.Value) >= 5 ? Math.Ceiling((Decimal)(i.Value - CountInVanilla) / 5) * 5 : (i.Value - CountInVanilla) + 2;
                     Console.WriteLine($"Adding {(int)ammounttoadd} {i.Key}");
                     Console.WriteLine($"======================================");
@@ -1712,6 +1742,12 @@ namespace MMR_Tracker.Other_Games
                     SpoilerLogPriceData Data = j.Value.ToObject<SpoilerLogPriceData>();
                     Item = Data.item;
                     Price = Data.price;
+                }
+
+                if (Item.Contains("["))
+                {
+                    Console.WriteLine($"{Item} Was Changed to {Item.Substring(0, Item.IndexOf("[")).Trim()}");
+                    Item = Item.Substring(0, Item.IndexOf("[")).Trim();
                 }
 
                 var ValidLocation = Instance.Logic.Find(x => x.SpoilerLocation != null && x.SpoilerLocation.Contains(Locations));
