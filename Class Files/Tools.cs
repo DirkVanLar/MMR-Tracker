@@ -1026,7 +1026,7 @@ namespace MMR_Tracker.Class_Files
                 LogicObjects.MainTrackerInstance.Options.OverRideAutoEntranceRandoEnable = true;
                 foreach (var item in LogicObjects.MainTrackerInstance.Logic)
                 {
-                    if (item.IsEntrance()) { item.Options = 1; }
+                    if (item.IsEntrance()) { item.SetUnRandomized(); }
                 }
             }
             LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);

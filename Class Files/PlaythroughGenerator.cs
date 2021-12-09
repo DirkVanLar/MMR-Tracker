@@ -48,11 +48,7 @@ namespace MMR_Tracker.Class_Files
                 i.Aquired = false;
                 if (!i.IsFake && i.Unrandomized(2) && i.SpoilerRandom < 0) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; }
                 if (i.IsFake) { i.SpoilerRandom = i.ID; i.RandomizedItem = i.ID; i.LocationName = i.DictionaryName; i.ItemName = i.DictionaryName; }
-                if (i.Unrandomized(2) && i.ID == i.SpoilerRandom) 
-                {
-                    if (i.StartingItem()) { i.Options = 4; }
-                    else { i.Options = 0; }
-                }//If the item is unrandomized, Randomize it so it shows up in the correct sphere.
+                if (i.Unrandomized(2) && i.ID == i.SpoilerRandom) { i.SetRandomized(); }//If the item is unrandomized, Randomize it so it shows up in the correct sphere.
                 if (i.SpoilerRandom > -1) { i.RandomizedItem = i.SpoilerRandom; }//Make the items randomized item its spoiler item, just for consitancy sake
                 else if (i.RandomizedItem > -1) { i.SpoilerRandom = i.RandomizedItem; }//If the item doesn't have spoiler data, but does have a randomized item. set it's spoiler data to the randomized item
                 if (SpoilerToID.ContainsKey(i.SpoilerRandom) || i.SpoilerRandom < 0) { continue; }

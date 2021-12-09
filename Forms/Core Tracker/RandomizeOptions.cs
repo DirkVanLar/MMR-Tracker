@@ -203,11 +203,11 @@ namespace MMR_Tracker_V2
                     {
                         if (CustomItemList.Contains(Counter))
                         {
-                            i.Options = (i.StartingItem()) ? 4 : 0;
+                            i.SetRandomized();
                         }
                         else
                         {
-                            i.Options = (i.StartingItem()) ? 5 : 1;
+                            i.SetUnRandomized();
                         }
                         Counter++;
                     }
@@ -225,7 +225,7 @@ namespace MMR_Tracker_V2
                     {
                         if (ForceJunkList.Contains(Counter) && i.Randomized())
                         {
-                            i.Options = (i.StartingItem()) ? 7 : 3;
+                            i.SetJunk();
                         }
                         Counter++;
                     }
@@ -240,11 +240,11 @@ namespace MMR_Tracker_V2
                 {
                     if (EntranceList.Contains(i))
                     {
-                        i.Options = (i.StartingItem()) ? 4 : 0;
+                        i.SetRandomized();
                     }
                     else
                     {
-                        i.Options = (i.StartingItem()) ? 5 : 1;
+                        i.SetUnRandomized();
                     }
                 }
             }
@@ -257,11 +257,11 @@ namespace MMR_Tracker_V2
                 {
                     if (StartingList.Contains(i))
                     {
-                        i.Options = (i.StartingItem()) ? i.Options : i.Options + 4;
+                        i.ToggleStartingItem(true);
                     }
                     else
                     {
-                        i.Options = (i.StartingItem()) ? i.Options - 4 : i.Options;
+                        i.ToggleStartingItem(false);
                     }
                 }
             }
@@ -304,8 +304,7 @@ namespace MMR_Tracker_V2
                 }
                 else if (option == 4 && !entry.IsFake)
                 {
-                    if (entry.StartingItem()) { entry.Options -= 4; }
-                    else { entry.Options += 4; }
+                    entry.ToggleStartingItem();
                 }
                 else if (option < 4 && !entry.IsFake)
                 {
@@ -696,7 +695,7 @@ namespace MMR_Tracker_V2
                     if (item == null) { continue; }
                     bool Starting = item.StartingItem();
                     bool Radnomized = item.Randomized();
-                    if (Radnomized) { item.Options = (Starting) ? 7 : 3; }
+                    if (Radnomized) { item.SetJunk(); }
                 }
 
             }

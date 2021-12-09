@@ -674,10 +674,10 @@ namespace MMR_Tracker.Other_Games
             var SwordModeSwordless = Instance.Logic[Instance.DicNameToID["Option \"sword_mode\" Is \"Swordless\""]];
 
             //Static starting Items
-            WindWakerItem.Options = WindWakerItem.Options < 4 ? WindWakerItem.Options + 4 : WindWakerItem.Options;
-            WindsRequiemItem.Options = WindsRequiemItem.Options < 4 ? WindsRequiemItem.Options + 4 : WindsRequiemItem.Options;
-            SongofPassingItem.Options = SongofPassingItem.Options < 4 ? SongofPassingItem.Options + 4 : SongofPassingItem.Options;
-            BalladofGalesItem.Options = BalladofGalesItem.Options < 4 ? BalladofGalesItem.Options + 4 : BalladofGalesItem.Options;
+            WindWakerItem.ToggleStartingItem(true);
+            WindsRequiemItem.ToggleStartingItem(true);
+            SongofPassingItem.ToggleStartingItem(true);
+            BalladofGalesItem.ToggleStartingItem(true);
 
             //Options that don't appear in the spoiler log unless enabled
             EnableSkipBossRematches.SpoilerRandom = DisableSkipBossRematches.ID;
@@ -732,8 +732,7 @@ namespace MMR_Tracker.Other_Games
                 if (ValidUnusedItem.Any())
                 {
                     var validItem = ValidUnusedItem.ToArray()[0];
-                    if (validItem.StartingItem()) { return; }
-                    validItem.Options += 4;
+                    validItem.ToggleStartingItem(true);
                     UsedItems.Add(validItem.ID);
                 }
             }

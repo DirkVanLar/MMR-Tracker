@@ -1680,7 +1680,7 @@ namespace MMR_Tracker.Other_Games
                         foreach(string entry in i.Value)
                         {
                             var CurItem = Instance.Logic.Find(x => x.DictionaryName == entry);
-                            CurItem.Options = CurItem.StartingItem() ? 7 : 3;
+                            CurItem.SetJunk();
                         }
                         break;
                     case "allowed_tricks":
@@ -1750,7 +1750,7 @@ namespace MMR_Tracker.Other_Games
                     if (ValidUnusedItems != null)
                     {
                         UsedItems.Add(ValidUnusedItems.ID);
-                        ValidUnusedItems.Options = ValidUnusedItems.Options > 3 ? ValidUnusedItems.Options : ValidUnusedItems.Options + 4;
+                        ValidUnusedItems.ToggleStartingItem(true);
                     }
                     else { Console.WriteLine($"Item: {Item} Was not found in logic"); }
                 }
@@ -1983,7 +1983,7 @@ namespace MMR_Tracker.Other_Games
                 if (e.SpoilerRandom < 0)
                 {
                     e.SpoilerRandom = e.ID;
-                    e.Options = 1;
+                    e.SetUnRandomized();
                 }
             }
 

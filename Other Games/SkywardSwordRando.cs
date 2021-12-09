@@ -774,14 +774,14 @@ namespace MMR_Tracker.Other_Games
                 if (Item != null)
                 {
                     Console.WriteLine(Item.DictionaryName + " Was not randomized to a location, setting as starting Item");
-                    if (Item.Options < 4) { Item.Options += 4; }
+                    Item.ToggleStartingItem(true);
                 }
             }
 
             foreach(var i in UnrandomizedSingleGratitudeCrystals())
             {
                 var SingleCrystalLocation = Instance.Logic.Find(x => x.DictionaryName == i);
-                if (SingleCrystalLocation != null) { SingleCrystalLocation.Options = 2; }
+                if (SingleCrystalLocation != null) { SingleCrystalLocation.SetUnRandomizedManual(); }
             }
 
             return true;

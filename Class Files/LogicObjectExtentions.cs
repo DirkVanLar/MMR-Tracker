@@ -49,6 +49,37 @@ namespace MMR_Tracker.Class_Files
             if (Pairs.ContainsKey(ID) && Pairs[ID] < Instance.Logic.Count) { return Instance.Logic[Pairs[ID]]; }
             return null;
         }
+        public static void ToggleStartingItem(this LogicObjects.LogicEntry entry, bool? Forcestate = null)
+        {
+            if (Forcestate == null)
+            {
+                entry.Options = entry.StartingItem() ? entry.Options - 4 : entry.Options + 4;
+            }
+            else if ((bool)Forcestate && !entry.StartingItem())
+            {
+                entry.Options += 4;
+            }
+            else if (!(bool)Forcestate && entry.StartingItem())
+            {
+                entry.Options -= 4;
+            }
+        }
+        public static void SetRandomized(this LogicObjects.LogicEntry entry)
+        {
+            entry.Options = entry.StartingItem() ? 4 : 0;
+        }
+        public static void SetUnRandomized(this LogicObjects.LogicEntry entry)
+        {
+            entry.Options = entry.StartingItem() ? 5 : 1;
+        }
+        public static void SetUnRandomizedManual(this LogicObjects.LogicEntry entry)
+        {
+            entry.Options = entry.StartingItem() ? 6 : 2;
+        }
+        public static void SetJunk(this LogicObjects.LogicEntry entry)
+        {
+            entry.Options = entry.StartingItem() ? 7 : 3;
+        }
         public static LogicObjects.LogicEntry ClearRandomizedDungeonInThisArea(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
             //Finds the area clear related to the dungeon that is randomized to the current area.

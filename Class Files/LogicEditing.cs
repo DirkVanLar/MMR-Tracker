@@ -248,7 +248,7 @@ namespace MMR_Tracker_V2
 
         public static void MarkUniqeItemsUnrandomizedManual(LogicObjects.TrackerInstance Instance)
         {
-            foreach (var i in Instance.Logic) { if (Instance.Logic.Where(x => x.ItemSubType == i.ItemSubType).Count() < 2) { i.Options = (i.StartingItem()) ? 6 : 2; } }
+            foreach (var i in Instance.Logic) { if (Instance.Logic.Where(x => x.ItemSubType == i.ItemSubType).Count() < 2) { i.SetUnRandomizedManual(); } }
         }
 
         public static bool RequirementsMet(int[] DefaultItemlist, LogicObjects.TrackerInstance logic, List<int> usedItems = null)

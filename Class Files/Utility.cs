@@ -220,7 +220,7 @@ namespace MMR_Tracker_V2
                 {
                     foreach (var i in Instance.Logic)
                     {
-                        if (i.Unrandomized(2) && i.SpoilerRandom != i.ID && i.SpoilerRandom > -1) { i.Options = (i.StartingItem()) ? 4 : 0; }
+                        if (i.Unrandomized(2) && i.SpoilerRandom != i.ID && i.SpoilerRandom > -1) { i.SetRandomized(); }
                     }
                 }
             }
