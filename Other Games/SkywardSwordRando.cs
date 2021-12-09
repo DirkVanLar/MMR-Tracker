@@ -603,22 +603,39 @@ namespace MMR_Tracker.Other_Games
             foreach (var i in Spoiler)
             {
                 if (string.IsNullOrWhiteSpace(i)) { continue; }
-                if (i == "Options selected:") { CurrentSection = "options"; continue; }
-                if (i == "Cosmetic Options:") { CurrentSection = "cosmetic"; continue; }
-                if (i == "Starting items:") { CurrentSection = "starting"; continue; }
-                if (i.StartsWith("Required Dungeon 1:")) { CurrentSection = "req1"; }
-                if (i.StartsWith("Required Dungeon 2:")) { CurrentSection = "req2"; }
-                if (i.StartsWith("Required Dungeon 3:")) { CurrentSection = "req3"; }
-                if (i.StartsWith("Required Dungeon 4:")) { CurrentSection = "req4"; }
-                if (i.StartsWith("Required Dungeon 5:")) { CurrentSection = "req5"; }
-                if (i.StartsWith("Required Dungeon 6:")) { CurrentSection = "req6"; }
-                if (i == "SotS:") { CurrentSection = "SotS"; continue; }
-                if (i == "Barren Regions:") { CurrentSection = "Barren Regions"; continue; }
-                if (i == "Playthrough:") { CurrentSection = "Nonprogress Regions"; continue; }
-                if (i == "All item locations:") { CurrentSection = "items"; continue; }
-                if (i == "Entrances:") { CurrentSection = "entrances"; continue; }
-                if (i == "Trial Gates:") { CurrentSection = "trials"; continue; }
-                if (i == "Hints:") { CurrentSection = "hints"; continue; }
+
+                switch (i)
+                {
+                    case "Options selected:":
+                        CurrentSection = "options"; continue;
+                    case "Cosmetic Options:":
+                        CurrentSection = "cosmetic"; continue;
+                    case "Starting items:":
+                        CurrentSection = "starting"; continue;
+                    case "SotS:":
+                        CurrentSection = "SotS"; continue;
+                    case "Barren Regions:":
+                        CurrentSection = "Barren Regions"; continue;
+                    case "Playthrough:":
+                        CurrentSection = "Nonprogress Regions"; continue;
+                    case "All item locations:":
+                        CurrentSection = "items"; continue;
+                    case "Entrances:":
+                        CurrentSection = "entrances"; continue;
+                    case "Trial Gates:":
+                        CurrentSection = "trials"; continue;
+                    case "Hints:":
+                        CurrentSection = "hints"; continue;
+                    default:
+                        if (i.StartsWith("Required Dungeon 1:")) { CurrentSection = "req1"; }
+                        else if (i.StartsWith("Required Dungeon 2:")) { CurrentSection = "req2"; }
+                        else if (i.StartsWith("Required Dungeon 3:")) { CurrentSection = "req3"; }
+                        else if (i.StartsWith("Required Dungeon 4:")) { CurrentSection = "req4"; }
+                        else if (i.StartsWith("Required Dungeon 5:")) { CurrentSection = "req5"; }
+                        else if (i.StartsWith("Required Dungeon 6:")) { CurrentSection = "req6"; }
+
+                        break;
+                }
 
                 if (CurrentSection == "hints")
                 {
@@ -639,9 +656,15 @@ namespace MMR_Tracker.Other_Games
                 if (CurrentSection == "options")
                 {
                     string Line = i.Trim();
-                    if (Line == "hero-mode") { Line = "hero-mode:Enabled"; }
-                    if (Line == "skip-skykeep") { Line = "skip-skykeep:Enabled"; }
-                    if (Line == "randomize-trials") { Line = "randomize-trials:Enabled"; }
+                    switch (Line)
+                    {
+                        case "hero-mode":
+                            Line = "hero-mode:Enabled"; break;
+                        case "skip-skykeep":
+                            Line = "skip-skykeep:Enabled"; break;
+                        case "randomize-trials":
+                            Line = "randomize-trials:Enabled"; break;
+                    }
                     var Parts = Line.Split(':').Select(x => x.Trim()).ToArray();
                     if (Parts.Length < 2) { continue; }
 
@@ -664,12 +687,21 @@ namespace MMR_Tracker.Other_Games
                 if (CurrentSection.StartsWith("req"))
                 {
                     var data = i.Split(':').Select(x => x.Trim()).ToArray();
-                    if (CurrentSection == "req1") { ReqDungeons["Skyview"].SpoilerRandom = ReqDungeons[data[1]].ID; }
-                    if (CurrentSection == "req2") { ReqDungeons["Earth Temple"].SpoilerRandom = ReqDungeons[data[1]].ID;}
-                    if (CurrentSection == "req3") { ReqDungeons["Lanayru Mining Facility"].SpoilerRandom = ReqDungeons[data[1]].ID; }
-                    if (CurrentSection == "req4") { ReqDungeons["Ancient Cistern"].SpoilerRandom = ReqDungeons[data[1]].ID;}
-                    if (CurrentSection == "req5") { ReqDungeons["Sandship"].SpoilerRandom = ReqDungeons[data[1]].ID; }
-                    if (CurrentSection == "req6") { ReqDungeons["Fire Sanctuary"].SpoilerRandom = ReqDungeons[data[1]].ID;}
+                    switch (CurrentSection)
+                    {
+                        case "req1":
+                            ReqDungeons["Skyview"].SpoilerRandom = ReqDungeons[data[1]].ID; break;
+                        case "req2":
+                            ReqDungeons["Earth Temple"].SpoilerRandom = ReqDungeons[data[1]].ID; break;
+                        case "req3":
+                            ReqDungeons["Lanayru Mining Facility"].SpoilerRandom = ReqDungeons[data[1]].ID; break;
+                        case "req4":
+                            ReqDungeons["Ancient Cistern"].SpoilerRandom = ReqDungeons[data[1]].ID; break;
+                        case "req5":
+                            ReqDungeons["Sandship"].SpoilerRandom = ReqDungeons[data[1]].ID; break;
+                        case "req6":
+                            ReqDungeons["Fire Sanctuary"].SpoilerRandom = ReqDungeons[data[1]].ID; break;
+                    }
                 }
 
                 if (CurrentSection == "items" || CurrentSection == "entrances" || CurrentSection == "trials")

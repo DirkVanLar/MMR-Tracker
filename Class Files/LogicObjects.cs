@@ -143,6 +143,7 @@ namespace MMR_Tracker_V2
             public string KeyType { get; set; } //If this is a key, what type is it
             public int? WalletCapacity { get; set; } //If this Object is a wallet, how much can it hold
             public string[] SpoilerPriceLocations { get; set; } //The names of the entry that details the price of this check in the spoiler log
+            public string[] LocationCategory { get; set; } = null; //The category this location falls under, usefull for randomizers that group location by type
             public string GameClearDungeonEntrance { get; set; } //If this Object is a dungeonclear entry, this is it's dungeon entrance
             public bool ValidRandomizerStartingItem { get; set; } = false; //Can the entry be a strartingitemin the randomizer
             public ProgressiveItemData ProgressiveItemData { get; set; } = null; //Progressive Item Data

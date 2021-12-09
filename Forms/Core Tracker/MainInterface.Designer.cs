@@ -103,7 +103,6 @@ namespace MMR_Tracker_V2
             this.timedEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createDictionaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLogicObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumbStuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAsUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -431,7 +430,7 @@ namespace MMR_Tracker_V2
             this.randoSettingsToolStripMenuItem,
             this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             this.logicOptionsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.PresetDropDownOpening);
             // 
@@ -502,7 +501,7 @@ namespace MMR_Tracker_V2
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // toggleEntranceRandoFeaturesToolStripMenuItem
@@ -536,7 +535,7 @@ namespace MMR_Tracker_V2
             this.changeFontToolStripMenuItem,
             this.changeDefaultSetingsToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // horizontalLayoutToolStripMenuItem
@@ -584,7 +583,7 @@ namespace MMR_Tracker_V2
             // onlinePlayToolStripMenuItem
             // 
             this.onlinePlayToolStripMenuItem.Name = "onlinePlayToolStripMenuItem";
-            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.onlinePlayToolStripMenuItem.Text = "Online Play";
             this.onlinePlayToolStripMenuItem.Click += new System.EventHandler(this.onlinePlayToolStripMenuItem_Click);
             // 
@@ -765,7 +764,6 @@ namespace MMR_Tracker_V2
             // devToolStripMenuItem
             // 
             this.devToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createDictionaryToolStripMenuItem,
             this.printLogicObjectToolStripMenuItem,
             this.dumbStuffToolStripMenuItem,
             this.viewAsUserToolStripMenuItem});
@@ -774,31 +772,24 @@ namespace MMR_Tracker_V2
             this.devToolStripMenuItem.Text = "Dev";
             this.devToolStripMenuItem.Click += new System.EventHandler(this.devToolStripMenuItem_Click);
             // 
-            // createDictionaryToolStripMenuItem
-            // 
-            this.createDictionaryToolStripMenuItem.Name = "createDictionaryToolStripMenuItem";
-            this.createDictionaryToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.createDictionaryToolStripMenuItem.Text = "Create Dictionary";
-            this.createDictionaryToolStripMenuItem.Click += new System.EventHandler(this.CreateDictionaryToolStripMenuItem_Click);
-            // 
             // printLogicObjectToolStripMenuItem
             // 
             this.printLogicObjectToolStripMenuItem.Name = "printLogicObjectToolStripMenuItem";
-            this.printLogicObjectToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.printLogicObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.printLogicObjectToolStripMenuItem.Text = "Print Logic Object";
             this.printLogicObjectToolStripMenuItem.Click += new System.EventHandler(this.PrintLogicObjectToolStripMenuItem_Click);
             // 
             // dumbStuffToolStripMenuItem
             // 
             this.dumbStuffToolStripMenuItem.Name = "dumbStuffToolStripMenuItem";
-            this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dumbStuffToolStripMenuItem.Text = "Code Testing";
             this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.CodeTestingToolStripMenuItem_Click);
             // 
             // viewAsUserToolStripMenuItem
             // 
             this.viewAsUserToolStripMenuItem.Name = "viewAsUserToolStripMenuItem";
-            this.viewAsUserToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.viewAsUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewAsUserToolStripMenuItem.Text = "Run As User";
             this.viewAsUserToolStripMenuItem.Click += new System.EventHandler(this.viewAsUserToolStripMenuItem_Click);
             // 
@@ -914,7 +905,6 @@ namespace MMR_Tracker_V2
         private System.Windows.Forms.ToolStripMenuItem includeItemLocationsAsDestinationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem coupleEntrancesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem devToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createDictionaryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printLogicObjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumbStuffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;

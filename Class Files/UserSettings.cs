@@ -36,7 +36,7 @@ namespace MMR_Tracker.Class_Files
             int counter = 0;
 
             ImportPresetFiles();
-            AddDevPresets();
+            AddOtherGamePresets();
             ImportWebPresets();
             ApplyPresetsToMenuItems();
 
@@ -204,16 +204,34 @@ namespace MMR_Tracker.Class_Files
                     }
                 }
             }
-            void AddDevPresets()
+            void AddOtherGamePresets()
             {
-                if (!Debugging.ISDebugging || !Directory.Exists(@"Recources\Other Files\Other Game Premade Logic")) { return; }
+                bool AllowOtherGame = false;
+                JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented
+                };
+                LogicObjects.DefaultTrackerOption TrackerDefaultOptions = new LogicObjects.DefaultTrackerOption();
+                if (File.Exists("options.txt"))
+                {
+                    try 
+                    { 
+                        TrackerDefaultOptions = JsonConvert.DeserializeObject<LogicObjects.DefaultTrackerOption>(File.ReadAllText("options.txt"), _jsonSerializerOptions);
+                        AllowOtherGame = TrackerDefaultOptions.OtherGamesOK;
+                    }
+                    catch { AllowOtherGame = false; }
+                }
+
+                if (Debugging.ISDebugging) { AllowOtherGame = true; }
+
+                if (!AllowOtherGame || !Directory.Exists(@"Recources\Other Files\Other Game Premade Logic")) { return; }
                 foreach (var i in Directory.GetFiles(@"Recources\Other Files\Other Game Premade Logic").Where(x => x.EndsWith(".txt") && !x.Contains("Web Presets.txt")))
                 {
                     ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
                     {
                         Name = $"PresetNewLogic{counter}",
                         Size = new System.Drawing.Size(180, 22),
-                        Text = Path.GetFileName(i).Replace(".txt", "") + " DEV"
+                        Text = Path.GetFileName(i).Replace(".txt", "")
                     };
                     counter++;
                     CustomLogicPreset.Click += (s, ee) => LoadMainLogicPreset(i, "", s, ee, "");
@@ -223,7 +241,7 @@ namespace MMR_Tracker.Class_Files
                     {
                         Name = $"PresetChangeLogic{counter}",
                         Size = new System.Drawing.Size(180, 22),
-                        Text = Path.GetFileName(i).Replace(".txt", "") + " DEV"
+                        Text = Path.GetFileName(i).Replace(".txt", "")
                     };
                     counter++;
                     CustomLogicPresetRecreate.Click += (s, ee) => LoadMainLogicPreset(i, "", s, ee, "", false);
@@ -233,7 +251,7 @@ namespace MMR_Tracker.Class_Files
                     {
                         Name = $"PresetChangeLogic{counter}",
                         Size = new System.Drawing.Size(180, 22),
-                        Text = Path.GetFileName(i).Replace(".txt", "") + " DEV"
+                        Text = Path.GetFileName(i).Replace(".txt", "")
                     };
                     counter++;
                     CustomLogicPresetEditor.Click += (s, ee) => LoadEditorLogicPreset(i, "", s, ee);

@@ -51,76 +51,6 @@ namespace MMR_Tracker.Class_Files
             return new LogicObjects.ItemUnlockData {Playthrough = playthrough, FakeItems = FakeItems, ResolvedRealItems = NeededItems, UsedItems =UsedItems };
         }
 
-        public static void CreateDictionary()
-        {
-            string file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt)|*.txt");
-            if (file == "") { return; }
-
-            LogicObjects.TrackerInstance CDLogic = new LogicObjects.TrackerInstance();
-            int LogicVersion = VersionHandeling.GetVersionDataFromLogicFile(File.ReadAllLines(file)).Version;
-            LogicEditing.PopulateTrackerInstance(CDLogic);
-
-            List<LogicObjects.SpoilerData> SpoilerLog = Tools.ReadHTMLSpoilerLog("", CDLogic).SpoilerDatas;
-            if (SpoilerLog.Count == 0) { return; }
-
-            //For each entry in your logic list, check each entry in your spoiler log to find the rest of the data
-            foreach (LogicObjects.LogicEntry entry in CDLogic.Logic)
-            {
-                foreach (LogicObjects.SpoilerData spoiler in SpoilerLog)
-                {
-                    if (spoiler.LocationID == entry.ID)
-                    {
-                        entry.IsFake = false;
-                        entry.LocationName = spoiler.LocationName;
-                        entry.SpoilerLocation = new List<string> { spoiler.LocationName };
-                        entry.LocationArea = spoiler.LocationArea;
-                        entry.ItemSubType = "Item";
-                        if (entry.DictionaryName.Contains("Bottle:")) { entry.ItemSubType = "Bottle"; }
-                        if (entry.DictionaryName.StartsWith("Entrance")) { entry.ItemSubType = "Entrance"; }
-
-                        if (!CDLogic.EntranceRando)
-                        {
-                            if (entry.DictionaryName == "Woodfall Temple access")
-                            { entry.LocationArea = "Dungeon Entrance"; entry.ItemSubType = "Dungeon Entrance"; }
-                            if (entry.DictionaryName == "Snowhead Temple access")
-                            { entry.LocationArea = "Dungeon Entrance"; entry.ItemSubType = "Dungeon Entrance"; }
-                            if (entry.DictionaryName == "Great Bay Temple access")
-                            { entry.LocationArea = "Dungeon Entrance"; entry.ItemSubType = "Dungeon Entrance"; }
-                            if (entry.DictionaryName == "Inverted Stone Tower Temple access")
-                            { entry.LocationArea = "Dungeon Entrance"; entry.ItemSubType = "Dungeon Entrance"; }
-                        } //Dungeon Entrance Rando is dumb
-                    }
-                    if (spoiler.ItemID == entry.ID)
-                    {
-                        entry.IsFake = false; //Not necessary, might cause problem but also might fix them ¯\_(ツ)_/¯
-                        entry.ItemName = spoiler.ItemName;
-                        entry.SpoilerItem = new List<string> { spoiler.ItemName };
-                    }
-                }
-            }
-
-            List<string> csv = new List<string> { "DictionaryName,LocationName,ItemName,LocationArea,ItemSubType,SpoilerLocation,SpoilerItem" };
-            //Write this data to list of strings formated as lines of csv and write that to a text file
-            foreach (LogicObjects.LogicEntry entry in CDLogic.Logic)
-            {
-                if (!entry.IsFake)
-                {
-                    csv.Add(string.Format("{0},{1},{2},{3},{4},{5},{6}",
-                         entry.DictionaryName, entry.LocationName, entry.ItemName, entry.LocationArea,
-                         entry.ItemSubType, entry.SpoilerLocation, entry.SpoilerItem));
-                }
-            }
-
-            SaveFileDialog saveDic = new SaveFileDialog
-            {
-                Filter = "CSV File (*.csv)|*.csv",
-                Title = "Save Dictionary File",
-                FileName = "MMRDICTIONARYV" + LogicVersion + ".csv"
-            };
-            saveDic.ShowDialog();
-            File.WriteAllLines(saveDic.FileName, csv);
-        }
-
         public static LogicObjects.SpoilerLogData ReadTextSpoilerlog(LogicObjects.TrackerInstance instance, string[] Spoiler = null)
         {
             LogicObjects.SpoilerLogData SpoilerData = new LogicObjects.SpoilerLogData();
@@ -178,7 +108,8 @@ namespace MMR_Tracker.Class_Files
                     {
                         SpoilerData.SettingString = JsonConvert.DeserializeObject<LogicObjects.Configuration>(line).GameplaySettings;
                     }
-                    catch {
+                    catch 
+                    {
                         SpoilerData.SettingString  = ParseSpoilerLogSettingsWithLineBreak(Spoiler, text: true);
                     }
                 }

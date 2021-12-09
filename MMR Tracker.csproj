@@ -249,6 +249,7 @@
     </Compile>
     <Compile Include="Other Games\Outdated\WindWakerTools.cs" />
     <Compile Include="Other Games\SkywardSwordRando.cs" />
+    <Compile Include="Other Games\WindWakerRando.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Core Tracker\RandomizeOptions.cs">
       <SubType>Form</SubType>
@@ -352,6 +353,9 @@
     <None Include="Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Recources\Dictionaries\Other Games\WWR V1 json Logic Dictionary.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Recources\Dictionaries\Pre Json Logic\MMR V15 txt Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -409,8 +413,15 @@
     <Content Include="Recources\Other Files\Other Game Premade Logic\Ocarina of Time Rando %28Beta%29.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Recources\Other Files\Other Game Premade Logic\Skyward Sword Rando Casual %28Beta%29.txt" />
-    <Content Include="Recources\Other Files\Other Game Premade Logic\Skyward Sword Rando Glitched %28Beta%29.txt" />
+    <Content Include="Recources\Other Files\Other Game Premade Logic\Skyward Sword Rando Casual %28Beta%29.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Recources\Other Files\Other Game Premade Logic\Skyward Sword Rando Glitched %28Beta%29.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Recources\Other Files\Other Game Premade Logic\Wind Waker Rando %28Beta%29.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Recources\Other Files\README Information for files in this folder.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

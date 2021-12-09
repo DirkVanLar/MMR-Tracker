@@ -14,7 +14,7 @@ namespace MMR_Tracker.Other_Games
         {
             if (instance.GameCode == "WWR" && Spoiler[0].Contains("Wind Waker Randomizer"))
             {
-                return false;
+                return WindWakerRando.HandleWWRSpoilerLog(instance, Spoiler);
             }
             else if (instance.GameCode == "OOTR" && Spoiler[1].Contains(":version"))
             {

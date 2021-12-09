@@ -306,10 +306,6 @@ namespace MMR_Tracker_V2
         #endregion Entrance Rando
         //Menu Strip => Options => Dev---------------------------------------------------------------------------
         #region Dev
-        private void CreateDictionaryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Tools.CreateDictionary();
-        }
 
         private void PrintLogicObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
