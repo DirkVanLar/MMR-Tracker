@@ -754,6 +754,24 @@ namespace MMR_Tracker.Other_Games
                         MakeStartingItem(Instance.Logic.Where(x => x.SpoilerItem != null && x.SpoilerItem.Contains($"Triforce Shard {t + 1}")));
                     }
                 }
+                if (i.Trim().StartsWith("starting_pohs"))
+                {
+                    var data = i.Trim().Split(':');
+                    int Count = Int32.Parse(data[1]);
+                    for (var t = 0; t < Count; t++)
+                    {
+                        MakeStartingItem(Instance.Logic.Where(x => x.SpoilerItem != null && x.SpoilerItem.Contains($"Piece of Heart")));
+                    }
+                }
+                if (i.Trim().StartsWith("starting_hcs"))
+                {
+                    var data = i.Trim().Split(':');
+                    int Count = Int32.Parse(data[1]);
+                    for (var t = 0; t < Count; t++)
+                    {
+                        MakeStartingItem(Instance.Logic.Where(x => x.SpoilerItem != null && x.SpoilerItem.Contains($"Heart Container")));
+                    }
+                }
                 if (i.Trim() == "skip_rematch_bosses")
                 {
                     EnableSkipBossRematches.SpoilerRandom = EnableSkipBossRematches.ID;
