@@ -351,6 +351,7 @@ namespace MMR_Tracker_V2
             Size.Parent = fontSelect;
             Size.DecimalPlaces = 2;
             Size.Value = (decimal)LogicObjects.MainTrackerInstance.Options.FormFont.Size;
+            Size.Minimum = 1;
             Size.ValueChanged += (s, ea) =>
             {
                 var currentFont = LogicObjects.MainTrackerInstance.Options.FormFont;

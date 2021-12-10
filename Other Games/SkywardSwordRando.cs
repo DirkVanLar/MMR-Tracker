@@ -831,35 +831,21 @@ namespace MMR_Tracker.Other_Games
                 }
             }
 
-            foreach(var i in UnrandomizedSingleGratitudeCrystals())
+            var SingleGratitudeCrystals = 
+                Instance.LogicDictionary.LogicDictionaryList
+                .Where(x => x.LocationCategory != null && x.LocationCategory.Contains("crystal"))
+                .Select(x => x.DictionaryName);
+            foreach (var i in SingleGratitudeCrystals)
             {
                 var SingleCrystalLocation = Instance.Logic.Find(x => x.DictionaryName == i);
                 if (SingleCrystalLocation != null) { SingleCrystalLocation.SetUnRandomizedManual(); }
             }
 
-            return true;
-        }
+            Tools.CheckAllItemsByLocation("%Options%");
+            Tools.CheckAllItemsByLocation("%Required Dungeons%");
 
-        public static List<string> UnrandomizedSingleGratitudeCrystals()
-        {
-            return new List<string>()
-            {
-                "Knight Academy - Crystal in Link's Room",
-                "Knight Academy - Crystal in Knight Academy Plant",
-                "Knight Academy - Crystal in Zelda's Room",
-                "Knight Academy - Crystal in Sparring Hall",
-                "Central Skyloft - Crystal between Wooden Planks",
-                "Central Skyloft - Crystal on West Cliff",
-                "Central Skyloft - Crystal in Orielle and Parrow's House",
-                "Central Skyloft - Crystal on Light Tower",
-                "Skyloft Village - Crystal near Pumpkin Patch",
-                "Central Skyloft - Crystal after Waterfall Cave",
-                "Central Skyloft - Crystal in Loftwing Prison",
-                "Central Skyloft - Crystal on Waterfall Island",
-                "Sky - Crystal outside Lumpy Pumpkin",
-                "Sky - Crystal inside Lumpy Pumpkin",
-                "Sky - Crystal on Beedle's Ship"
-            };
+
+            return true;
         }
 
         public static Dictionary<string, LogicObjects.LogicEntry> SetuprequiredDungeons(LogicObjects.TrackerInstance Instance)

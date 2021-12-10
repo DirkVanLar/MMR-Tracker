@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using MMR_Tracker.Forms;
 using MMR_Tracker.Class_Files;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace MMR_Tracker.Other_Games
 {
@@ -914,6 +915,9 @@ namespace MMR_Tracker.Other_Games
                     UsedItems.Add(ValidUnusedItem.ToArray()[0].ID);
                 }
             }
+
+            Tools.CheckAllItemsByLocation("%Randomizer Options%");
+
             return true;
         }
     }

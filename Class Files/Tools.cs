@@ -1150,5 +1150,17 @@ namespace MMR_Tracker.Class_Files
             return UndoList;
         }
 
+        public static void CheckAllItemsByLocation(string LA)
+        {
+            LogicObjects.TrackerInstance Instance = LogicObjects.MainTrackerInstance;
+            ListBox AutoCheckItems = new ListBox();
+            foreach (var i in Instance.Logic.Where(x => x.LocationArea != null && (x.LocationArea == LA) && x.Available && !x.Checked && (x.SpoilerRandom > -1 || !string.IsNullOrWhiteSpace(x.CountCheckData))))
+            {
+                var LBItem = new LogicObjects.ListItem() { LocationEntry = i };
+                AutoCheckItems.Items.Add(LBItem);
+                AutoCheckItems.SetSelected(AutoCheckItems.Items.Count - 1, true);
+            }
+            MainInterface.CurrentProgram.CheckItemSelected(AutoCheckItems, true);
+        }
     }
 }

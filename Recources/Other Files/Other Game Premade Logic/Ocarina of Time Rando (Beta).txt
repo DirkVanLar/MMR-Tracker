@@ -39559,7 +39559,7 @@
     {
       "Id": "AdultWallet",
       "RequiredItems": [
-        "Progressive Wallet x2"
+        "Progressive Wallet x1"
       ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
@@ -39570,7 +39570,7 @@
     {
       "Id": "GiantWallet",
       "RequiredItems": [
-        "Progressive Wallet x3"
+        "Progressive Wallet x2"
       ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
@@ -39581,7 +39581,7 @@
     {
       "Id": "TycoonWallet",
       "RequiredItems": [
-        "Progressive Wallet x4"
+        "Progressive Wallet x3"
       ],
       "ConditionalItems": [],
       "TimeNeeded": "None",
@@ -49772,6 +49772,34 @@
       "IsTrick": false
     },
     {
+      "Id": "Progressive Wallet x1",
+      "RequiredItems": [],
+      "ConditionalItems": [
+        [
+          "Kak 10 Gold Skulltula Reward"
+        ],
+        [
+          "Kak 30 Gold Skulltula Reward"
+        ],
+        [
+          "Extra Progressive Wallet 0"
+        ],
+        [
+          "Extra Progressive Wallet 1"
+        ],
+        [
+          "Extra Progressive Wallet 2"
+        ],
+        [
+          "Extra Progressive Wallet 3"
+        ]
+      ],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
       "Id": "Progressive Wallet x2",
       "RequiredItems": [
         "MMRTCombinations2"
@@ -49805,36 +49833,6 @@
       "Id": "Progressive Wallet x3",
       "RequiredItems": [
         "MMRTCombinations3"
-      ],
-      "ConditionalItems": [
-        [
-          "Kak 10 Gold Skulltula Reward"
-        ],
-        [
-          "Kak 30 Gold Skulltula Reward"
-        ],
-        [
-          "Extra Progressive Wallet 0"
-        ],
-        [
-          "Extra Progressive Wallet 1"
-        ],
-        [
-          "Extra Progressive Wallet 2"
-        ],
-        [
-          "Extra Progressive Wallet 3"
-        ]
-      ],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": false
-    },
-    {
-      "Id": "Progressive Wallet x4",
-      "RequiredItems": [
-        "MMRTCombinations4"
       ],
       "ConditionalItems": [
         [

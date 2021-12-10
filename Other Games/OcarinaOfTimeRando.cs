@@ -1,5 +1,6 @@
 ﻿using MMR_Tracker.Class_Files;
 using MMR_Tracker.Forms;
+using MMR_Tracker.Forms.Sub_Forms;
 using MMR_Tracker_V2;
 using Newtonsoft.Json;
 using System;
@@ -35,7 +36,20 @@ namespace MMR_Tracker.Other_Games
                 "Buy Heart",
 
             };
-        public static List<string> allBottles = new List<string>() { "Bottle with Red Potion", "Bottle with Green Potion", "Bottle with Blue Potion", "Bottle with Fairy", "Bottle with Fish", "Bottle with Blue Fire", "Bottle with Bugs", "Bottle with Big Poe", "Bottle with Poe", "Bottle", "Bottle with Milk" };
+        public static List<string> allBottles = new List<string>() 
+        { 
+            "Bottle with Red Potion", 
+            "Bottle with Green Potion", 
+            "Bottle with Blue Potion", 
+            "Bottle with Fairy", 
+            "Bottle with Fish", 
+            "Bottle with Blue Fire", 
+            "Bottle with Bugs", 
+            "Bottle with Big Poe", 
+            "Bottle with Poe", 
+            "Bottle", 
+            "Bottle with Milk" 
+        };
         public static List<string> Dungeons = new List<string>()
             {
                 "Bottom of the Well",
@@ -751,7 +765,7 @@ namespace MMR_Tracker.Other_Games
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"AdultWallet",
-                ConditionalItems = new List<List<string>> { new List<string> { "Progressive Wallet x2" } }
+                ConditionalItems = new List<List<string>> { new List<string> { "Progressive Wallet x1" } }
             });
             dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
             {
@@ -762,7 +776,7 @@ namespace MMR_Tracker.Other_Games
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"GiantWallet",
-                ConditionalItems = new List<List<string>> { new List<string> { "Progressive Wallet x3" } }
+                ConditionalItems = new List<List<string>> { new List<string> { "Progressive Wallet x2" } }
             });
             dict.LogicDictionaryList.Add(new LogicObjects.LogicDictionaryEntry
             {
@@ -773,7 +787,7 @@ namespace MMR_Tracker.Other_Games
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"TycoonWallet",
-                ConditionalItems = new List<List<string>> { new List<string> { "Progressive Wallet x4" } }
+                ConditionalItems = new List<List<string>> { new List<string> { "Progressive Wallet x3" } }
             });
 
             //The number of Gerudo fortress keys in the game is not listed under the item pool in he spoiler log
@@ -1535,10 +1549,15 @@ namespace MMR_Tracker.Other_Games
             var not_skip_child_zelda = Instance.Logic.Find(x => x.DictionaryName == $"not skip_child_zelda");
             var zora_fountain = Instance.Logic.Find(x => x.DictionaryName == "zora_fountain == closed");
             var starting_age = Instance.Logic.Find(x => x.DictionaryName == "Starting Age == child");
+            var Master_Sword_Pedestal = Instance.Logic.Find(x => x.DictionaryName == "Master Sword Pedestal");
 
             //Set Defaults for some settings that don't always appear in the Spoiler
             starting_age.SpoilerRandom = starting_age.ID;
             skip_child_zelda.SpoilerRandom = not_skip_child_zelda.ID;
+
+            //This check is nevr randomized and is only needed for the pathfinder to function
+            Master_Sword_Pedestal.SetUnRandomized();
+            UsedItems.Add(Master_Sword_Pedestal.ID);
 
             #endregion OptionPrep
 
@@ -2009,6 +2028,10 @@ namespace MMR_Tracker.Other_Games
                     Console.WriteLine($"{i.LocationName ?? i.DictionaryName} Needs Spoiler Data");
                 }
             }
+
+            Tools.CheckAllItemsByLocation("%Randomizer Options%");
+            Tools.CheckAllItemsByLocation("%End Game Requirements%");
+
             return true;
         }
 
