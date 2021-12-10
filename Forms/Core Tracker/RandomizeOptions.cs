@@ -308,8 +308,7 @@ namespace MMR_Tracker_V2
                 }
                 else if (option < 4 && !entry.IsFake)
                 {
-                    if (entry.StartingItem()) { entry.Options = option + 4; }
-                    else { entry.Options = option; }
+                    entry.Options = entry.isStartingItem() ? option + 4 : option;
                 }
             }
             CheckedItems = new List<LogicObjects.LogicEntry>();
@@ -342,7 +341,7 @@ namespace MMR_Tracker_V2
                     || x.ItemSubType.Contains("Setting") 
                     || string.IsNullOrWhiteSpace(x.ItemSubType)) { return false; }
                 if (!Utility.FilterSearch(x, txtSearch.Text, Displayname)) { return false; }
-                if (x.StartingItem() && chkShowStartingItems.Checked) { return true; }
+                if (x.isStartingItem() && chkShowStartingItems.Checked) { return true; }
                 if (x.RandomizedState() == 0 && !chkShowRandom.Checked) { return false; }
                 if (x.RandomizedState() == 1 && !chkShowUnrand.Checked) { return false; }
                 if (x.RandomizedState() == 2 && !chkShowUnrandMan.Checked) { return false; }
@@ -360,7 +359,7 @@ namespace MMR_Tracker_V2
                     if (!string.IsNullOrWhiteSpace(entry.ItemName)) { Disname += $" ({entry.ItemName})"; }
                 }
                 if (!isValid(entry, Disname)) { continue; }
-                string[] row = { Disname, randomizedOptions[entry.RandomizedState()], entry.StartingItem().ToString(), "" };
+                string[] row = { Disname, randomizedOptions[entry.RandomizedState()], entry.isStartingItem().ToString(), "" };
                 ListViewItem listViewItem = new ListViewItem(row) { Tag = entry.ID };
                 TempList.Add(listViewItem);
             }
@@ -439,7 +438,7 @@ namespace MMR_Tracker_V2
             var CountUnRand = logic.Where(x => !x.IsFake && x.RandomizedState() == 1).Count();
             var CountUnRandMan = logic.Where(x => !x.IsFake && x.RandomizedState() == 2).Count();
             var CountJunk = logic.Where(x => !x.IsFake && x.RandomizedState() == 3).Count();
-            var CountStarting = logic.Where(x => !x.IsFake && x.StartingItem()).Count();
+            var CountStarting = logic.Where(x => !x.IsFake && x.isStartingItem()).Count();
 
             var CountEnabledTricks = logic.Where(x => x.IsFake && x.IsTrick && x.TrickEnabled).Count();
             var CountDisabledTricks = logic.Where(x => x.IsFake && x.IsTrick && !x.TrickEnabled).Count();
@@ -472,7 +471,7 @@ namespace MMR_Tracker_V2
                 if (entry.RandomizedState() == 1 && chkShowUnrand.Checked) { chkValid = true; }
                 if (entry.RandomizedState() == 2 && chkShowUnrandMan.Checked) { chkValid = true; }
                 if (entry.RandomizedState() == 3 && chkShowJunk.Checked) { chkValid = true; }
-                if (entry.StartingItem() && chkShowStartingItems.Checked) { chkValid = true; }
+                if (entry.isStartingItem() && chkShowStartingItems.Checked) { chkValid = true; }
 
                 if (!entry.IsFake && chkValid && Utility.FilterSearch(entry, txtSearch.Text, entry.DictionaryName))
                 {
@@ -693,7 +692,7 @@ namespace MMR_Tracker_V2
                 {
                     var item = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == i);
                     if (item == null) { continue; }
-                    bool Starting = item.StartingItem();
+                    bool Starting = item.isStartingItem();
                     bool Radnomized = item.Randomized();
                     if (Radnomized) { item.SetJunk(); }
                 }
@@ -715,7 +714,7 @@ namespace MMR_Tracker_V2
                 for (var i = StartingItem.ID; i <= EndingItem.ID; i++)
                 {
                     int O = (Randomized) ? 0 : 1;
-                    O = (LogicObjects.MainTrackerInstance.Logic[i].StartingItem()) ? O + 4 : O;
+                    O = (LogicObjects.MainTrackerInstance.Logic[i].isStartingItem()) ? O + 4 : O;
                     LogicObjects.MainTrackerInstance.Logic[i].Options = O;
                 }
 
@@ -740,7 +739,7 @@ namespace MMR_Tracker_V2
                 foreach (var i in LogicSet)
                 {
                     int O = (SettingActive) ? 0 : 1;
-                    O = (i.StartingItem()) ? O + 4 : O;
+                    O = (i.isStartingItem()) ? O + 4 : O;
                     i.Options = O;
                 }
             }
@@ -820,7 +819,7 @@ namespace MMR_Tracker_V2
 
             int[] n = new int[EntranceGroupCount];
             string[] ns = new string[EntranceGroupCount];
-            foreach (var item in EntranceLogic.Where(x => x.StartingItem()))
+            foreach (var item in EntranceLogic.Where(x => x.isStartingItem()))
             {
                 var i = EntranceLogic.ToList().IndexOf(item);
                 int j = i / 32;

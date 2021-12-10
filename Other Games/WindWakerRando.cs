@@ -44,6 +44,37 @@ namespace MMR_Tracker.Other_Games
             "Necklace"
         };
 
+        public static Dictionary<string, string> CategoryOptionDict = new Dictionary<string, string>()
+        {
+            {"Dungeon",                "progression_dungeons"},
+            {"Great Fairy",            "progression_great_fairies"},
+            {"Puzzle Secret Cave",     "progression_puzzle_secret_caves"},
+            {"Combat Secret Cave",     "progression_combat_secret_caves"},
+            {"Short Sidequest",        "progression_short_sidequests"},
+            {"Long Sidequest",         "progression_long_sidequests"},
+            {"Spoils Trading",         "progression_spoils_trading"},
+            {"Minigame",               "progression_minigames"},
+            {"Free Gift",              "progression_free_gifts"},
+            {"Mail",                   "progression_mail"},
+            {"Raft",                   "progression_platforms_rafts"},
+            {"Platform",               "progression_platforms_rafts"},
+            {"Submarine",              "progression_submarines"},
+            {"Eye Reef Chest",         "progression_eye_reef_chests"},
+            {"Gunboat",                "progression_big_octos_gunboats"},
+            {"Big Octo",               "progression_big_octos_gunboats"},
+            {"Expensive Purchase",     "progression_expensive_purchases"},
+            {"Island Puzzle",          "progression_island_puzzles"},
+            {"Other Chest",            "progression_misc"},
+            {"Misc",                   "progression_misc"},
+            {"Tingle Chest",           "progression_tingle_chests"},
+            {"Battlesquid",            "progression_battlesquid"},
+            {"Savage Labyrinth",       "progression_savage_labyrinth"},
+            {"Sunken Treasure",        "progression_triforce_charts"},
+            {"Sunken Treasure Triforce",   "progression_treasure_charts"},
+            {"Consumables only",        "Never_enabled"},
+            {"No progression",          "Never_enabled" }
+        };
+
         public static void TestWWR()
         {
             LogicParser Parser = new LogicParser();
@@ -166,6 +197,7 @@ namespace MMR_Tracker.Other_Games
                     dictentry.LocationArea = Area.Trim();
                     dictentry.LocationName = i.Key.Trim();
                     dictentry.SpoilerLocation = new string[] { i.Key.Trim() };
+                    dictentry.LocationCategory = i.Value.types.Split(',').Select(x => x.Trim()).ToArray();
                 }
 
                 WWRDictionary.LogicDictionaryList.Add(dictentry);
@@ -657,7 +689,7 @@ namespace MMR_Tracker.Other_Games
             int OptionLine = Array.IndexOf(Spoiler, "Options selected:") + 1;
             var pattern = @"\,(?![^[]*\])";
             var query = Spoiler[OptionLine];
-            var matches = Regex.Split(query, pattern);
+            var OptionLines = Regex.Split(query, pattern);
             List<int> UsedLocations = new List<int>();
             List<int> UsedItems = new List<int>();
 
@@ -682,8 +714,26 @@ namespace MMR_Tracker.Other_Games
             //Options that don't appear in the spoiler log unless enabled
             EnableSkipBossRematches.SpoilerRandom = DisableSkipBossRematches.ID;
 
+            foreach(var i in Instance.LogicDictionary.LogicDictionaryList)
+            {
+                if (string.IsNullOrWhiteSpace(i.LocationName) || !Instance.DicNameToID.ContainsKey(i.DictionaryName)) { continue; }
+                var LogicEntry = Instance.Logic[Instance.DicNameToID[i.DictionaryName]];
+                if (i.LocationCategory != null && i.LocationCategory.Any())
+                {
+                    foreach(var c in i.LocationCategory) { if (!OptionLines.Select(x => x.Trim()).Contains(CategoryOptionDict[c])) { LogicEntry.SetJunk(); } }
+                }
+            }
+            if (!OptionLines.Select(x => x.Trim()).Contains("randomize_charts")) 
+            {
+                foreach (var entry in Instance.Logic.Where(x => x.DictionaryName.StartsWith("Chart for Island "))) 
+                {
+                    entry.SetUnRandomized();
+                }
+            }
+
+
             Console.WriteLine("Options===========================");
-            foreach (var i in matches)
+            foreach (var i in OptionLines)
             {
                 Console.WriteLine(i.Trim());
 
@@ -721,6 +771,17 @@ namespace MMR_Tracker.Other_Games
                             SwordModeStartWith.SpoilerRandom = SwordModeStartWith.ID;
                             MakeStartingItem(Instance.Logic.Where(x => x.SpoilerItem != null && x.SpoilerItem.Contains($"Progressive Sword")));
                             break;
+                    }
+                }
+                if (i.Trim().StartsWith("randomize_entrances"))
+                {
+                    if (!i.Trim().Contains("Dungeons"))
+                    {
+                        foreach(var entry in Instance.Logic.Where(x => x.IsEntrance() && x.DictionaryName.StartsWith("Can Access Dungeon Entrance"))) { entry.SetUnRandomized(); }
+                    }
+                    else if (!i.Trim().Contains("Secret Caves"))
+                    {
+                        foreach (var entry in Instance.Logic.Where(x => x.IsEntrance() && x.DictionaryName.StartsWith("Can Access Secret Cave Entrance"))) { entry.SetUnRandomized(); }
                     }
                 }
 

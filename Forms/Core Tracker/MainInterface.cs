@@ -1052,7 +1052,7 @@ namespace MMR_Tracker_V2
             foreach(var entry in LogicObjects.MainTrackerInstance.Logic)
             {
                 //Add starting items to Checked Items
-                if (entry.StartingItem())
+                if (entry.isStartingItem())
                 {
                     var MultiWorldEntry = new LogicObjects.LogicEntry
                     {

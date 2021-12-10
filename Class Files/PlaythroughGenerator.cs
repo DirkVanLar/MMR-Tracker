@@ -81,7 +81,7 @@ namespace MMR_Tracker.Class_Files
             var GameClearPlaythroughItem = Playthrough.Find(x => x.Check.ID == GameClear);
             if (GameClearPlaythroughItem == null)
             {
-                container.Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenByDescending(x => container.PlaythroughInstance.Logic[x.Check.RandomizedItem].StartingItem()).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
+                container.Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenByDescending(x => container.PlaythroughInstance.Logic[x.Check.RandomizedItem].isStartingItem()).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
                 return container;
             }
 
@@ -91,7 +91,7 @@ namespace MMR_Tracker.Class_Files
             importantItems.Add(GameClearPlaythroughItem.Check.ID);
             FindImportantItems(GameClearPlaythroughItem, importantItems, Playthrough, SpoilerToID);
 
-            container.Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenByDescending(x => container.PlaythroughInstance.Logic[x.Check.RandomizedItem].StartingItem()).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
+            container.Playthrough = Playthrough.OrderBy(x => x.SphereNumber).ThenByDescending(x => container.PlaythroughInstance.Logic[x.Check.RandomizedItem].isStartingItem()).ThenBy(x => x.Check.ItemSubType).ThenBy(x => x.Check.LocationArea).ThenBy(x => x.Check.LocationName).ToList();
 
             container.RealItemPlaythrough = JsonConvert.DeserializeObject<List<LogicObjects.PlaythroughItem>>(JsonConvert.SerializeObject(container.Playthrough));
             //Replace all fake items with the real items used to unlock those fake items
@@ -130,7 +130,7 @@ namespace MMR_Tracker.Class_Files
                 if (i.Check.ID == GameclearItem) { PlaythroughString.Add(FinalTask); }
                 else
                 {
-                    var ObtainLine = "Check \"" + ( MainLogic[i.Check.RandomizedItem].StartingItem() ? "Starting items" : i.Check.LocationName) + "\" to obtain \"" + CopyInstance.Logic[i.Check.RandomizedItem].ItemName + "\"";
+                    var ObtainLine = "Check \"" + ( MainLogic[i.Check.RandomizedItem].isStartingItem() ? "Starting items" : i.Check.LocationName) + "\" to obtain \"" + CopyInstance.Logic[i.Check.RandomizedItem].ItemName + "\"";
                     if (MainLogic.Count() > i.Check.ID && MainLogic[i.Check.ID].Checked) { ObtainLine += " ✅"; }
                     PlaythroughString.Add(ObtainLine);
                 }
@@ -207,7 +207,7 @@ namespace MMR_Tracker.Class_Files
             {
                 if (item.SpoilerRandom < 0) { continue; }
                 List<int> UsedItems = new List<int>();
-                if (Instance.Logic[item.SpoilerRandom].StartingItem()) 
+                if (Instance.Logic[item.SpoilerRandom].isStartingItem()) 
                 { 
                     item.Available = true; 
                 }

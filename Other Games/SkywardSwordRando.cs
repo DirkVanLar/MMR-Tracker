@@ -770,7 +770,7 @@ namespace MMR_Tracker.Other_Games
             foreach(var i in StartingItems)
             {
                 Console.WriteLine(i + " Was Marked as a starting Item");
-                var Item = Instance.Logic.Find(x => x.SpoilerItem.Contains(i) && x.GetItemsSpoilerLocation(Instance.Logic) == null && !x.StartingItem());
+                var Item = Instance.Logic.Find(x => x.SpoilerItem.Contains(i) && x.GetItemsSpoilerLocation(Instance.Logic) == null && !x.isStartingItem());
                 if (Item != null)
                 {
                     Console.WriteLine(Item.DictionaryName + " Was not randomized to a location, setting as starting Item");

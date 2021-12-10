@@ -53,32 +53,32 @@ namespace MMR_Tracker.Class_Files
         {
             if (Forcestate == null)
             {
-                entry.Options = entry.StartingItem() ? entry.Options - 4 : entry.Options + 4;
+                entry.Options = entry.isStartingItem() ? entry.Options - 4 : entry.Options + 4;
             }
-            else if ((bool)Forcestate && !entry.StartingItem())
+            else if ((bool)Forcestate && !entry.isStartingItem())
             {
                 entry.Options += 4;
             }
-            else if (!(bool)Forcestate && entry.StartingItem())
+            else if (!(bool)Forcestate && entry.isStartingItem())
             {
                 entry.Options -= 4;
             }
         }
         public static void SetRandomized(this LogicObjects.LogicEntry entry)
         {
-            entry.Options = entry.StartingItem() ? 4 : 0;
+            entry.Options = entry.isStartingItem() ? 4 : 0;
         }
         public static void SetUnRandomized(this LogicObjects.LogicEntry entry)
         {
-            entry.Options = entry.StartingItem() ? 5 : 1;
+            entry.Options = entry.isStartingItem() ? 5 : 1;
         }
         public static void SetUnRandomizedManual(this LogicObjects.LogicEntry entry)
         {
-            entry.Options = entry.StartingItem() ? 6 : 2;
+            entry.Options = entry.isStartingItem() ? 6 : 2;
         }
         public static void SetJunk(this LogicObjects.LogicEntry entry)
         {
-            entry.Options = entry.StartingItem() ? 7 : 3;
+            entry.Options = entry.isStartingItem() ? 7 : 3;
         }
         public static LogicObjects.LogicEntry ClearRandomizedDungeonInThisArea(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
@@ -109,9 +109,9 @@ namespace MMR_Tracker.Class_Files
         public static int RandomizedState(this LogicObjects.LogicEntry entry)
         {
             int option = entry.Options;
-            return (entry.StartingItem()) ? option - 4 : option;
+            return (entry.isStartingItem()) ? option - 4 : option;
         }
-        public static bool StartingItem(this LogicObjects.LogicEntry entry)
+        public static bool isStartingItem(this LogicObjects.LogicEntry entry)
         {
             return (entry.Options > 3);
         }
@@ -125,7 +125,7 @@ namespace MMR_Tracker.Class_Files
         }
         public static bool ActualItemAquired(this LogicObjects.LogicEntry entry)
         {
-            return (entry.Aquired || entry.StartingItem() || (entry.Unrandomized() && entry.Available));
+            return (entry.Aquired || entry.isStartingItem() || (entry.Unrandomized() && entry.Available));
         }
         public static LogicObjects.LogicEntry GetItemsNewLocation(this LogicObjects.LogicEntry entry, List<LogicObjects.LogicEntry> Logic)
         {
