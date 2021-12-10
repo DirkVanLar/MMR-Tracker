@@ -165,7 +165,8 @@ namespace MMR_Tracker.Other_Games
                     KeyType = i.Value.original_item.EndsWith("Boss Key") ? "boss" : (i.Value.original_item.EndsWith("Small Key") ? "small" : null),
                     SpoilerItem = new string[] { i.Value.original_item },
                     SpoilerLocation = new string[] { i.Key },
-                    LocationArea = i.Value.type.Split(',')[0]
+                    LocationArea = i.Value.type.Split(',')[0],
+                    LocationCategory = i.Value.type.Split(',').Select(x => x.Trim()).ToArray()
                 };
                 MasterDictionary.LogicDictionaryList.Add(entry);
 
@@ -600,6 +601,11 @@ namespace MMR_Tracker.Other_Games
             Dictionary<string, LogicObjects.LogicEntry> ReqDungeons = SetuprequiredDungeons(Instance);
             SetBinaryOptionsDefault(Instance);
 
+            foreach(var i in Instance.Logic.Where(x => x.IsTrick))
+            {
+                i.TrickEnabled = false;
+            }
+
             foreach (var i in Spoiler)
             {
                 if (string.IsNullOrWhiteSpace(i)) { continue; }
@@ -656,6 +662,53 @@ namespace MMR_Tracker.Other_Games
                 if (CurrentSection == "options")
                 {
                     string Line = i.Trim();
+
+                    if (Line.StartsWith("enabled-tricks"))
+                    {
+                        var data = i.Trim().Split(':');
+                        var EnabledTricks = data[1].Replace("'", "").Replace("[", "").Replace("]", "").Split(',').Select(x => x.Trim());
+                        foreach(var e in EnabledTricks)
+                        {
+                            Instance.Logic[Instance.DicNameToID[e + " Trick"]].TrickEnabled = true;
+                        }
+                        continue;
+                    }
+                    if (Line.StartsWith("banned-types"))
+                    {
+                        var data = i.Trim().Split(':');
+                        var BannedTypes = data[1].Replace("'", "").Replace("[", "").Replace("]", "").Split(',').Select(x => x.Trim());
+                        foreach (var e in BannedTypes)
+                        {
+                            foreach (var entry in Instance.Logic)
+                            {
+                                var DictData = Instance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == entry.DictionaryName);
+                                if (DictData == null) { continue; }
+                                if (DictData.LocationCategory != null && DictData.LocationCategory.Contains(e))
+                                {
+                                    entry.SetJunk();
+                                }
+                            }
+                        }
+                        continue;
+                    }
+                    if (Line.StartsWith("randomize-entrances"))
+                    {
+                        var data = i.Trim().Split(':');
+                        var Entrances = data[1].Split(',');
+                        if (!data[1].Contains("Dungeons"))
+                        {
+                            foreach(var e in Instance.Logic.Where(x => x.ItemSubType == "Dungeon Entrance"))
+                            {
+                                e.SetUnRandomized();
+                            }
+                        }
+                        else if (!data[1].Contains("Sky Keep"))
+                        {
+                            Instance.Logic[Instance.DicNameToID["Can Access Sky Keep"]].SetUnRandomized();
+                        }
+                        continue;
+                    }
+
                     switch (Line)
                     {
                         case "hero-mode":

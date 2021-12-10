@@ -87,12 +87,11 @@ namespace MMR_Tracker_V2
 
             //remakeLogicDict();
 
-            //SkywardSwordRando.SkywardSwordTesting(false, true, "https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitchless%20Requirements.yaml", "Skyward Sword Rando Casual (Beta)");
+            SkywardSwordRando.SkywardSwordTesting(false, true, "https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitchless%20Requirements.yaml", "Skyward Sword Rando Casual (Beta)");
             //SkywardSwordRando.SkywardSwordTesting(false, false, "https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitched%20Requirements.yaml", "Skyward Sword Rando Glitched (Beta)");
 
             //WindWakerRando.TestWWR();
 
-            OcarinaOfTimeRando.CreateOOTRLogic();
 
 
             void testCountEntry()
