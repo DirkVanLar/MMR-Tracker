@@ -14951,354 +14951,27 @@
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "DMC Gossip Stone",
-      "LocationName": "DMC Gossip Stone",
-      "ItemName": "DMC Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip DMC Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "DMT Gossip Stone",
-      "LocationName": "DMT Gossip Stone",
-      "ItemName": "DMT Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip DMT Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
       "DictionaryName": "Colossus Gossip Stone",
       "LocationName": "Colossus Gossip Stone",
       "ItemName": "Colossus Gossip Stone",
       "LocationArea": "Gossip Stones",
       "ItemSubType": "Gossip Colossus Gossip Stone",
       "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone Colossus Spirit Temple"
+      ],
       "ValidRandomizerStartingItem": false
     },
     {
-      "DictionaryName": "Dodongos Cavern Gossip Stone",
-      "LocationName": "Dodongos Cavern Gossip Stone",
-      "ItemName": "Dodongos Cavern Gossip Stone",
+      "DictionaryName": "DMC Gossip Stone",
+      "LocationName": "DMC Gossip Stone",
+      "ItemName": "DMC Gossip Stone",
       "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip Dodongos Cavern Gossip Stone",
+      "ItemSubType": "Gossip DMC Gossip Stone",
       "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "GV Gossip Stone",
-      "LocationName": "GV Gossip Stone",
-      "ItemName": "GV Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip GV Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "GC Maze Gossip Stone",
-      "LocationName": "GC Maze Gossip Stone",
-      "ItemName": "GC Maze Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip GC Maze Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "GC Medigoron Gossip Stone",
-      "LocationName": "GC Medigoron Gossip Stone",
-      "ItemName": "GC Medigoron Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip GC Medigoron Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Graveyard Gossip Stone",
-      "LocationName": "Graveyard Gossip Stone",
-      "ItemName": "Graveyard Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip Graveyard Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "HC Malon Gossip Stone",
-      "LocationName": "HC Malon Gossip Stone",
-      "ItemName": "HC Malon Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip HC Malon Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "HC Rock Wall Gossip Stone",
-      "LocationName": "HC Rock Wall Gossip Stone",
-      "ItemName": "HC Rock Wall Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip HC Rock Wall Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "HC Storms Grotto Gossip Stone",
-      "LocationName": "HC Storms Grotto Gossip Stone",
-      "ItemName": "HC Storms Grotto Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip HC Storms Grotto Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "HF Cow Grotto Gossip Stone",
-      "LocationName": "HF Cow Grotto Gossip Stone",
-      "ItemName": "HF Cow Grotto Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip HF Cow Grotto Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "KF Deku Tree Gossip Stone Left",
-      "LocationName": "KF Deku Tree Gossip Stone Left",
-      "ItemName": "KF Deku Tree Gossip Stone Left",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip KF Deku Tree Gossip Stone Left",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "KF Deku Tree Gossip Stone Right",
-      "LocationName": "KF Deku Tree Gossip Stone Right",
-      "ItemName": "KF Deku Tree Gossip Stone Right",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip KF Deku Tree Gossip Stone Right",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "KF Gossip Stone",
-      "LocationName": "KF Gossip Stone",
-      "ItemName": "KF Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip KF Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "LH Lab Gossip Stone",
-      "LocationName": "LH Lab Gossip Stone",
-      "ItemName": "LH Lab Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip LH Lab Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "LH Gossip Stone Southeast",
-      "LocationName": "LH Gossip Stone Southeast",
-      "ItemName": "LH Gossip Stone Southeast",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip LH Gossip Stone Southeast",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "LH Gossip Stone Southwest",
-      "LocationName": "LH Gossip Stone Southwest",
-      "ItemName": "LH Gossip Stone Southwest",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip LH Gossip Stone Southwest",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "LW Gossip Stone",
-      "LocationName": "LW Gossip Stone",
-      "ItemName": "LW Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip LW Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "SFM Maze Gossip Stone Lower",
-      "LocationName": "SFM Maze Gossip Stone Lower",
-      "ItemName": "SFM Maze Gossip Stone Lower",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip SFM Maze Gossip Stone Lower",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "SFM Maze Gossip Stone Upper",
-      "LocationName": "SFM Maze Gossip Stone Upper",
-      "ItemName": "SFM Maze Gossip Stone Upper",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip SFM Maze Gossip Stone Upper",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "SFM Saria Gossip Stone",
-      "LocationName": "SFM Saria Gossip Stone",
-      "ItemName": "SFM Saria Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip SFM Saria Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "ToT Gossip Stone Left",
-      "LocationName": "ToT Gossip Stone Left",
-      "ItemName": "ToT Gossip Stone Left",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip ToT Gossip Stone Left",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "ToT Gossip Stone Left-Center",
-      "LocationName": "ToT Gossip Stone Left-Center",
-      "ItemName": "ToT Gossip Stone Left-Center",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip ToT Gossip Stone Left-Center",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "ToT Gossip Stone Right",
-      "LocationName": "ToT Gossip Stone Right",
-      "ItemName": "ToT Gossip Stone Right",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip ToT Gossip Stone Right",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "ToT Gossip Stone Right-Center",
-      "LocationName": "ToT Gossip Stone Right-Center",
-      "ItemName": "ToT Gossip Stone Right-Center",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip ToT Gossip Stone Right-Center",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "ZD Gossip Stone",
-      "LocationName": "ZD Gossip Stone",
-      "ItemName": "ZD Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip ZD Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "ZF Fairy Gossip Stone",
-      "LocationName": "ZF Fairy Gossip Stone",
-      "ItemName": "ZF Fairy Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip ZF Fairy Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "ZF Jabu Gossip Stone",
-      "LocationName": "ZF Jabu Gossip Stone",
-      "ItemName": "ZF Jabu Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip ZF Jabu Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "ZR Near Grottos Gossip Stone",
-      "LocationName": "ZR Near Grottos Gossip Stone",
-      "ItemName": "ZR Near Grottos Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip ZR Near Grottos Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "ZR Near Domain Gossip Stone",
-      "LocationName": "ZR Near Domain Gossip Stone",
-      "ItemName": "ZR Near Domain Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip ZR Near Domain Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "HF Near Market Grotto Gossip Stone",
-      "LocationName": "HF Near Market Grotto Gossip Stone",
-      "ItemName": "HF Near Market Grotto Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip HF Near Market Grotto Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "HF Southeast Grotto Gossip Stone",
-      "LocationName": "HF Southeast Grotto Gossip Stone",
-      "ItemName": "HF Southeast Grotto Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip HF Southeast Grotto Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "HF Open Grotto Gossip Stone",
-      "LocationName": "HF Open Grotto Gossip Stone",
-      "ItemName": "HF Open Grotto Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip HF Open Grotto Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "Kak Open Grotto Gossip Stone",
-      "LocationName": "Kak Open Grotto Gossip Stone",
-      "ItemName": "Kak Open Grotto Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip Kak Open Grotto Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "ZR Open Grotto Gossip Stone",
-      "LocationName": "ZR Open Grotto Gossip Stone",
-      "ItemName": "ZR Open Grotto Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip ZR Open Grotto Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "KF Storms Grotto Gossip Stone",
-      "LocationName": "KF Storms Grotto Gossip Stone",
-      "ItemName": "KF Storms Grotto Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip KF Storms Grotto Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "LW Near Shortcuts Grotto Gossip Stone",
-      "LocationName": "LW Near Shortcuts Grotto Gossip Stone",
-      "ItemName": "LW Near Shortcuts Grotto Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip LW Near Shortcuts Grotto Gossip Stone",
-      "FakeItem": false,
-      "ValidRandomizerStartingItem": false
-    },
-    {
-      "DictionaryName": "DMT Storms Grotto Gossip Stone",
-      "LocationName": "DMT Storms Grotto Gossip Stone",
-      "ItemName": "DMT Storms Grotto Gossip Stone",
-      "LocationArea": "Gossip Stones",
-      "ItemSubType": "Gossip DMT Storms Grotto Gossip Stone",
-      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone DMC Bombable Wall"
+      ],
       "ValidRandomizerStartingItem": false
     },
     {
@@ -15308,6 +14981,453 @@
       "LocationArea": "Gossip Stones",
       "ItemSubType": "Gossip DMC Upper Grotto Gossip Stone",
       "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone DMC Upper Grotto"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "DMT Gossip Stone",
+      "LocationName": "DMT Gossip Stone",
+      "ItemName": "DMT Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip DMT Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone DMT Biggoron"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "DMT Storms Grotto Gossip Stone",
+      "LocationName": "DMT Storms Grotto Gossip Stone",
+      "ItemName": "DMT Storms Grotto Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip DMT Storms Grotto Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone DMT Storms Grotto"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Dodongos Cavern Gossip Stone",
+      "LocationName": "Dodongos Cavern Gossip Stone",
+      "ItemName": "Dodongos Cavern Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip Dodongos Cavern Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone Dodongos Cavern Bombable Wall"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "GC Maze Gossip Stone",
+      "LocationName": "GC Maze Gossip Stone",
+      "ItemName": "GC Maze Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip GC Maze Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone GC Maze"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "GC Medigoron Gossip Stone",
+      "LocationName": "GC Medigoron Gossip Stone",
+      "ItemName": "GC Medigoron Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip GC Medigoron Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone GC Medigoron"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "GV Gossip Stone",
+      "LocationName": "GV Gossip Stone",
+      "ItemName": "GV Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip GV Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone GV Waterfall"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Graveyard Gossip Stone",
+      "LocationName": "Graveyard Gossip Stone",
+      "ItemName": "Graveyard Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip Graveyard Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone Graveyard Shadow Temple"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "HC Malon Gossip Stone",
+      "LocationName": "HC Malon Gossip Stone",
+      "ItemName": "HC Malon Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip HC Malon Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone HC Malon"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "HC Rock Wall Gossip Stone",
+      "LocationName": "HC Rock Wall Gossip Stone",
+      "ItemName": "HC Rock Wall Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip HC Rock Wall Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone HC Rock Wall"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "HC Storms Grotto Gossip Stone",
+      "LocationName": "HC Storms Grotto Gossip Stone",
+      "ItemName": "HC Storms Grotto Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip HC Storms Grotto Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone HC Storms Grotto"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "HF Cow Grotto Gossip Stone",
+      "LocationName": "HF Cow Grotto Gossip Stone",
+      "ItemName": "HF Cow Grotto Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip HF Cow Grotto Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone HF Cow Grotto"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "HF Near Market Grotto Gossip Stone",
+      "LocationName": "HF Near Market Grotto Gossip Stone",
+      "ItemName": "HF Near Market Grotto Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip HF Near Market Grotto Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone HF Near Market Grotto"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "HF Open Grotto Gossip Stone",
+      "LocationName": "HF Open Grotto Gossip Stone",
+      "ItemName": "HF Open Grotto Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip HF Open Grotto Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone HF Open Grotto"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "HF Southeast Grotto Gossip Stone",
+      "LocationName": "HF Southeast Grotto Gossip Stone",
+      "ItemName": "HF Southeast Grotto Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip HF Southeast Grotto Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone HF Southeast Grotto"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "KF Deku Tree Gossip Stone Left",
+      "LocationName": "KF Deku Tree Gossip Stone Left",
+      "ItemName": "KF Deku Tree Gossip Stone Left",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip KF Deku Tree Gossip Stone Left",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone KF Deku Tree Left"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "KF Deku Tree Gossip Stone Right",
+      "LocationName": "KF Deku Tree Gossip Stone Right",
+      "ItemName": "KF Deku Tree Gossip Stone Right",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip KF Deku Tree Gossip Stone Right",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone KF Deku Tree Right"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "KF Gossip Stone",
+      "LocationName": "KF Gossip Stone",
+      "ItemName": "KF Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip KF Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone KF Outside Storms"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "KF Storms Grotto Gossip Stone",
+      "LocationName": "KF Storms Grotto Gossip Stone",
+      "ItemName": "KF Storms Grotto Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip KF Storms Grotto Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone KF Storms Grotto"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "Kak Open Grotto Gossip Stone",
+      "LocationName": "Kak Open Grotto Gossip Stone",
+      "ItemName": "Kak Open Grotto Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip Kak Open Grotto Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone Kak Open Grotto"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "LH Lab Gossip Stone",
+      "LocationName": "LH Lab Gossip Stone",
+      "ItemName": "LH Lab Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip LH Lab Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone LH Lab"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "LH Gossip Stone Southeast",
+      "LocationName": "LH Gossip Stone Southeast",
+      "ItemName": "LH Gossip Stone Southeast",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip LH Gossip Stone Southeast",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone LH Southeast Corner"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "LH Gossip Stone Southwest",
+      "LocationName": "LH Gossip Stone Southwest",
+      "ItemName": "LH Gossip Stone Southwest",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip LH Gossip Stone Southwest",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone LH Southwest Corner"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "LW Gossip Stone",
+      "LocationName": "LW Gossip Stone",
+      "ItemName": "LW Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip LW Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone LW Bridge"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "LW Near Shortcuts Grotto Gossip Stone",
+      "LocationName": "LW Near Shortcuts Grotto Gossip Stone",
+      "ItemName": "LW Near Shortcuts Grotto Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip LW Near Shortcuts Grotto Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone LW Near Shortcuts Grotto"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "SFM Maze Gossip Stone Lower",
+      "LocationName": "SFM Maze Gossip Stone Lower",
+      "ItemName": "SFM Maze Gossip Stone Lower",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip SFM Maze Gossip Stone Lower",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone SFM Maze Lower"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "SFM Maze Gossip Stone Upper",
+      "LocationName": "SFM Maze Gossip Stone Upper",
+      "ItemName": "SFM Maze Gossip Stone Upper",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip SFM Maze Gossip Stone Upper",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone SFM Maze Upper"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "SFM Saria Gossip Stone",
+      "LocationName": "SFM Saria Gossip Stone",
+      "ItemName": "SFM Saria Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip SFM Saria Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone SFM Saria"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "ToT Gossip Stone Left",
+      "LocationName": "ToT Gossip Stone Left",
+      "ItemName": "ToT Gossip Stone Left",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip ToT Gossip Stone Left",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone ToT Left"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "ToT Gossip Stone Left-Center",
+      "LocationName": "ToT Gossip Stone Left-Center",
+      "ItemName": "ToT Gossip Stone Left-Center",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip ToT Gossip Stone Left-Center",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone ToT Left-Center"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "ToT Gossip Stone Right",
+      "LocationName": "ToT Gossip Stone Right",
+      "ItemName": "ToT Gossip Stone Right",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip ToT Gossip Stone Right",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone ToT Right"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "ToT Gossip Stone Right-Center",
+      "LocationName": "ToT Gossip Stone Right-Center",
+      "ItemName": "ToT Gossip Stone Right-Center",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip ToT Gossip Stone Right-Center",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone ToT Right-Center"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "ZD Gossip Stone",
+      "LocationName": "ZD Gossip Stone",
+      "ItemName": "ZD Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip ZD Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone ZD Mweep"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "ZF Fairy Gossip Stone",
+      "LocationName": "ZF Fairy Gossip Stone",
+      "ItemName": "ZF Fairy Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip ZF Fairy Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone ZF Fairy"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "ZF Jabu Gossip Stone",
+      "LocationName": "ZF Jabu Gossip Stone",
+      "ItemName": "ZF Jabu Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip ZF Jabu Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone ZF Jabu"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "ZR Near Domain Gossip Stone",
+      "LocationName": "ZR Near Domain Gossip Stone",
+      "ItemName": "ZR Near Domain Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip ZR Near Domain Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone ZR Near Domain"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "ZR Near Grottos Gossip Stone",
+      "LocationName": "ZR Near Grottos Gossip Stone",
+      "ItemName": "ZR Near Grottos Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip ZR Near Grottos Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone ZR Near Grottos"
+      ],
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "ZR Open Grotto Gossip Stone",
+      "LocationName": "ZR Open Grotto Gossip Stone",
+      "ItemName": "ZR Open Grotto Gossip Stone",
+      "LocationArea": "Gossip Stones",
+      "ItemSubType": "Gossip ZR Open Grotto Gossip Stone",
+      "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone ZR Open Grotto"
+      ],
       "ValidRandomizerStartingItem": false
     },
     {
@@ -15317,6 +15437,9 @@
       "LocationArea": "Gossip Stones",
       "ItemSubType": "Gossip Ganondorf Hint",
       "FakeItem": false,
+      "SpoilerLocation": [
+        "Gossip Stone Ganondorf Hint"
+      ],
       "ValidRandomizerStartingItem": false
     },
     {
@@ -18247,6 +18370,31 @@
       "ItemName": "open",
       "LocationArea": "%Randomizer Options%",
       "ItemSubType": "Option_zora_fountain",
+      "FakeItem": false,
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "logic_rules == glitchless",
+      "LocationName": "Logicrules",
+      "ItemName": "glitchless",
+      "LocationArea": "%Randomizer Options%",
+      "ItemSubType": "Option_logic_rules",
+      "FakeItem": false,
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "logic_rules == glitched",
+      "ItemName": "glitched",
+      "LocationArea": "%Randomizer Options%",
+      "ItemSubType": "Option_logic_rules",
+      "FakeItem": false,
+      "ValidRandomizerStartingItem": false
+    },
+    {
+      "DictionaryName": "logic_rules == none",
+      "ItemName": "none",
+      "LocationArea": "%Randomizer Options%",
+      "ItemSubType": "Option_logic_rules",
       "FakeItem": false,
       "ValidRandomizerStartingItem": false
     },

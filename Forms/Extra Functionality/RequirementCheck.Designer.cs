@@ -45,6 +45,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.chkShowUnaltered = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.SD3 = new System.Windows.Forms.CheckBox();
+            this.SN3 = new System.Windows.Forms.CheckBox();
+            this.SD2 = new System.Windows.Forms.CheckBox();
+            this.SN2 = new System.Windows.Forms.CheckBox();
+            this.SD1 = new System.Windows.Forms.CheckBox();
+            this.SN1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // listBox1
@@ -65,7 +72,8 @@
             this.listBox2.HorizontalScrollbar = true;
             this.listBox2.Location = new System.Drawing.Point(200, 26);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(397, 355);
+            this.listBox2.ScrollAlwaysVisible = true;
+            this.listBox2.Size = new System.Drawing.Size(639, 420);
             this.listBox2.TabIndex = 1;
             this.listBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.listBox2_DrawItem);
             this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
@@ -209,7 +217,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(545, 9);
+            this.label4.Location = new System.Drawing.Point(787, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 14;
@@ -221,7 +229,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(517, 9);
+            this.label5.Location = new System.Drawing.Point(759, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 15;
@@ -233,7 +241,7 @@
             this.chkShowUnaltered.AutoSize = true;
             this.chkShowUnaltered.BackColor = System.Drawing.Color.Transparent;
             this.chkShowUnaltered.ForeColor = System.Drawing.SystemColors.Control;
-            this.chkShowUnaltered.Location = new System.Drawing.Point(386, 8);
+            this.chkShowUnaltered.Location = new System.Drawing.Point(628, 8);
             this.chkShowUnaltered.Name = "chkShowUnaltered";
             this.chkShowUnaltered.Size = new System.Drawing.Size(125, 17);
             this.chkShowUnaltered.TabIndex = 16;
@@ -241,13 +249,104 @@
             this.chkShowUnaltered.UseVisualStyleBackColor = false;
             this.chkShowUnaltered.CheckedChanged += new System.EventHandler(this.chkShowUnaltered_CheckedChanged);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(14, 382);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Setup On";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SD3
+            // 
+            this.SD3.AutoSize = true;
+            this.SD3.BackColor = System.Drawing.Color.Transparent;
+            this.SD3.ForeColor = System.Drawing.SystemColors.Control;
+            this.SD3.Location = new System.Drawing.Point(134, 402);
+            this.SD3.Name = "SD3";
+            this.SD3.Size = new System.Drawing.Size(54, 17);
+            this.SD3.TabIndex = 22;
+            this.SD3.Text = "Day 3";
+            this.SD3.UseVisualStyleBackColor = false;
+            // 
+            // SN3
+            // 
+            this.SN3.AutoSize = true;
+            this.SN3.BackColor = System.Drawing.Color.Transparent;
+            this.SN3.ForeColor = System.Drawing.SystemColors.Control;
+            this.SN3.Location = new System.Drawing.Point(134, 425);
+            this.SN3.Name = "SN3";
+            this.SN3.Size = new System.Drawing.Size(60, 17);
+            this.SN3.TabIndex = 21;
+            this.SN3.Text = "Night 3";
+            this.SN3.UseVisualStyleBackColor = false;
+            // 
+            // SD2
+            // 
+            this.SD2.AutoSize = true;
+            this.SD2.BackColor = System.Drawing.Color.Transparent;
+            this.SD2.ForeColor = System.Drawing.SystemColors.Control;
+            this.SD2.Location = new System.Drawing.Point(74, 402);
+            this.SD2.Name = "SD2";
+            this.SD2.Size = new System.Drawing.Size(54, 17);
+            this.SD2.TabIndex = 20;
+            this.SD2.Text = "Day 2";
+            this.SD2.UseVisualStyleBackColor = false;
+            // 
+            // SN2
+            // 
+            this.SN2.AutoSize = true;
+            this.SN2.BackColor = System.Drawing.Color.Transparent;
+            this.SN2.ForeColor = System.Drawing.SystemColors.Control;
+            this.SN2.Location = new System.Drawing.Point(74, 425);
+            this.SN2.Name = "SN2";
+            this.SN2.Size = new System.Drawing.Size(60, 17);
+            this.SN2.TabIndex = 19;
+            this.SN2.Text = "Night 2";
+            this.SN2.UseVisualStyleBackColor = false;
+            // 
+            // SD1
+            // 
+            this.SD1.AutoSize = true;
+            this.SD1.BackColor = System.Drawing.Color.Transparent;
+            this.SD1.ForeColor = System.Drawing.SystemColors.Control;
+            this.SD1.Location = new System.Drawing.Point(14, 402);
+            this.SD1.Name = "SD1";
+            this.SD1.Size = new System.Drawing.Size(54, 17);
+            this.SD1.TabIndex = 18;
+            this.SD1.Text = "Day 1";
+            this.SD1.UseVisualStyleBackColor = false;
+            // 
+            // SN1
+            // 
+            this.SN1.AutoSize = true;
+            this.SN1.BackColor = System.Drawing.Color.Transparent;
+            this.SN1.ForeColor = System.Drawing.SystemColors.Control;
+            this.SN1.Location = new System.Drawing.Point(14, 425);
+            this.SN1.Name = "SN1";
+            this.SN1.Size = new System.Drawing.Size(60, 17);
+            this.SN1.TabIndex = 17;
+            this.SN1.Text = "Night 1";
+            this.SN1.UseVisualStyleBackColor = false;
+            // 
             // RequirementCheck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(610, 392);
+            this.ClientSize = new System.Drawing.Size(851, 457);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.SD3);
+            this.Controls.Add(this.SN3);
+            this.Controls.Add(this.SD2);
+            this.Controls.Add(this.SN2);
+            this.Controls.Add(this.SD1);
+            this.Controls.Add(this.SN1);
             this.Controls.Add(this.chkShowUnaltered);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -291,5 +390,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkShowUnaltered;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox SD3;
+        private System.Windows.Forms.CheckBox SN3;
+        private System.Windows.Forms.CheckBox SD2;
+        private System.Windows.Forms.CheckBox SN2;
+        private System.Windows.Forms.CheckBox SD1;
+        private System.Windows.Forms.CheckBox SN1;
     }
 }

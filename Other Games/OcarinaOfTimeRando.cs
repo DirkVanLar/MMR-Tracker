@@ -65,6 +65,7 @@ namespace MMR_Tracker.Other_Games
                 "Spirit Temple",
                 "Water Temple"
             };
+
         public class OOTRLogicObject
         {
             public string region_name { get; set; } = "";
@@ -302,9 +303,8 @@ namespace MMR_Tracker.Other_Games
         {
             List<string[]> Entrances = new List<string[]>();
             List<string[]> Locations = new List<string[]>();
-            List<string> GossipStones = new List<string>();
+            List<string[]> GossipStones = new List<string[]>();
             List<string[]> FakeITems = new List<string[]>();
-
 
             string CurrentSection = "";
             string[] RefFile = File.ReadAllLines(@"lib\Other Games\OOTR Data.txt");
@@ -323,7 +323,7 @@ namespace MMR_Tracker.Other_Games
 
                 if (CurrentSection == "Entrances") { Entrances.Add(Data.ToArray()); }
                 if (CurrentSection == "Locations") { Locations.Add(Data.ToArray()); }
-                if (CurrentSection == "GOSSIP") { GossipStones.Add(Data.ToArray()[0]); }
+                if (CurrentSection == "GOSSIP") { GossipStones.Add(Data.ToArray()); }
                 if (CurrentSection == "FAKE") { FakeITems.Add(Data.ToArray()); }
             }
 
@@ -402,23 +402,23 @@ namespace MMR_Tracker.Other_Games
             {
                 LogicObjects.LogicDictionaryEntry entry = new LogicObjects.LogicDictionaryEntry()
                 {
-                    DictionaryName = i,
+                    DictionaryName = i[0],
                     EntrancePair = null,
                     FakeItem = false,
                     GameClearDungeonEntrance = null,
                     GossipItem = null,
                     GossipLocation = null,
-                    ItemName = i,
-                    ItemSubType = "Gossip " + i,
+                    ItemName = i[0],
+                    ItemSubType = "Gossip " + i[0],
                     ProgressiveItemData = null,
                     KeyType = null,
                     LocationArea = "Gossip Stones",
-                    LocationName = i,
+                    LocationName = i[0],
                     RandoOnlyRequiredLogic = null,
                     ValidRandomizerStartingItem = false,
                     WalletCapacity = null,
                     SpoilerItem = null,
-                    SpoilerLocation = null
+                    SpoilerLocation = new string[] { "Gossip Stone " + i[1] }
                 };
                 OOTRDict.LogicDictionaryList.Add(entry);
             }
@@ -820,6 +820,7 @@ namespace MMR_Tracker.Other_Games
                 {
                     foreach (var i in cond.Where(x => x.StartsWith("logic_")))
                     {
+                        if(i == "logic_rules != glitchless") { continue; }
                         var LogicEntries = Logic.Logic.Where(x => x.Id == i);
                         if (!LogicEntries.Any() && !AddedTricks.Contains(i))
                         {
@@ -892,6 +893,11 @@ namespace MMR_Tracker.Other_Games
                 Id = $"zora_fountain != open",
                 ConditionalItems = parser.ConvertLogicToConditionalString("zora_fountain == closed | zora_fountain == adult")
             });
+            Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
+            {
+                Id = $"logic_rules != glitchless",
+                ConditionalItems = parser.ConvertLogicToConditionalString("logic_rules == none | logic_rules == glitched")
+            });
 
         }
 
@@ -952,6 +958,7 @@ namespace MMR_Tracker.Other_Games
             StageOption("shuffle_scrubs", "off", new string[] { "on" });
             StageOption("Starting Age", "child", new string[] { "adult" });
             StageOption("zora_fountain", "closed", new string[] { "adult", "open" });
+            StageOption("logic_rules", "glitchless", new string[] { "glitched", "none" });
 
             void StageOption(string DictNameBase, string DefaultOption, string[] OtherOptions)
             {
@@ -1549,11 +1556,16 @@ namespace MMR_Tracker.Other_Games
             var not_skip_child_zelda = Instance.Logic.Find(x => x.DictionaryName == $"not skip_child_zelda");
             var zora_fountain = Instance.Logic.Find(x => x.DictionaryName == "zora_fountain == closed");
             var starting_age = Instance.Logic.Find(x => x.DictionaryName == "Starting Age == child");
+            var logic_rules = Instance.Logic.Find(x => x.DictionaryName == "logic_rules == glitchless");
             var Master_Sword_Pedestal = Instance.Logic.Find(x => x.DictionaryName == "Master Sword Pedestal");
+
+            string Lightarrowlocation = "";
 
             //Set Defaults for some settings that don't always appear in the Spoiler
             starting_age.SpoilerRandom = starting_age.ID;
             skip_child_zelda.SpoilerRandom = not_skip_child_zelda.ID;
+            shuffle_dungeon_entrances.SpoilerRandom = not_shuffle_dungeon_entrances.ID;
+            shuffle_overworld_entrances.SpoilerRandom = not_shuffle_overworld_entrances.ID;
 
             //This check is nevr randomized and is only needed for the pathfinder to function
             Master_Sword_Pedestal.SetUnRandomized();
@@ -1641,6 +1653,13 @@ namespace MMR_Tracker.Other_Games
                         if (i.Value == "zelda" || i.Value == "open")
                         {
                             open_kakariko.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"open_kakariko == {i.Value}").ID;
+                        }
+                        break;
+                    case "logic_rules":
+                        logic_rules.SpoilerRandom = logic_rules.ID;
+                        if (i.Value == "glitched" || i.Value == "none")
+                        {
+                            logic_rules.SpoilerRandom = Instance.Logic.Find(x => x.DictionaryName == $"logic_rules == {i.Value}").ID;
                         }
                         break;
                     case "shuffle_dungeon_entrances":
@@ -1830,6 +1849,7 @@ namespace MMR_Tracker.Other_Games
                     {
                         UsedItems.Add(ValidUnusedItems.ID);
                         ValidLocation.SpoilerRandom = ValidUnusedItems.ID;
+                        if (ValidUnusedItems.ItemName == "Light Arrows") { Lightarrowlocation += (ValidLocation.LocationArea + ", " ); }
                     }
                     else if (IgnoredJunk.Where(x => Item.StartsWith(x)).Any()) //There are way more junk items (ruppes, ammo etc) than what exist in the dictionary.
                     {
@@ -2020,8 +2040,22 @@ namespace MMR_Tracker.Other_Games
 
             #endregion Entrances
 
+            #region GossipStones
 
-            foreach(var i in Instance.Logic.Where(x => x.AppearsInListbox() && !x.IsCountCheck() && !x.IsGossipStone()))
+            foreach (var i in Log.gossip_stones)
+            {
+                var Cleanedname = i.Key.Replace("(", "").Replace(")", "");
+                Console.WriteLine($"Finding Gossip Stone {Cleanedname}");
+                var GosipStoneEntry = Instance.Logic.Find(x => x.IsGossipStone() && x.SpoilerLocation != null && x.SpoilerLocation.Contains($"Gossip Stone {Cleanedname}"));
+                GosipStoneEntry.GossipHint = $"${i.Value.text}";
+            }
+
+            var GanonHint = $"You'll never beat me by unleashing the arrows from {Lightarrowlocation}";
+            Instance.Logic[Instance.DicNameToID["Ganondorf Hint"]].GossipHint = $"${GanonHint}";
+
+            #endregion GossipStones
+
+            foreach (var i in Instance.Logic.Where(x => x.AppearsInListbox() && !x.IsCountCheck() && !x.IsGossipStone()))
             {
                 if (i.SpoilerRandom < -1 && i.Randomized())
                 {

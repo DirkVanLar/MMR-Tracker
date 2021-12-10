@@ -47,8 +47,11 @@ namespace MMR_Tracker.Forms.Extra_Functionality
                         test += e.Graphics.MeasureString(",", F).Width;
                     }
 
+                    bool EntryAvailable = true;
+                    if (!i.ItemUseable(Instance)) { EntryAvailable = false; }
+                    if (i.IsTrick && !i.TrickEnabled) { EntryAvailable = false; }
+                    if (EntryAvailable) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
 
-                    if (i.ItemUseable(Instance)) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
                     var Printname = i.DictionaryName;
                     if (i.ItemName != null && !string.IsNullOrWhiteSpace(i.ItemName)) { Printname = i.ItemName; }
                     e.Graphics.DrawString(Printname, F, brush, test, e.Bounds.Y, StringFormat.GenericDefault);
@@ -80,7 +83,11 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             {
                 LogicObjects.LogicEntry entry = listBox1.Items[e.Index] as LogicObjects.LogicEntry;
 
-                if (entry.ItemUseable(Instance)) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
+                bool EntryAvailable = true;
+                if (!entry.ItemUseable(Instance)) { EntryAvailable = false; }
+                if (entry.IsTrick && !entry.TrickEnabled) { EntryAvailable = false; }
+
+                if (EntryAvailable)  { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
                 var Printname = entry.DictionaryName;
                 if (entry.ItemName != null && !string.IsNullOrWhiteSpace(entry.ItemName)) { Printname = entry.ItemName; }
 
@@ -95,7 +102,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
 
         private void RequirementCheck_Load(object sender, EventArgs e)
         {
-            if (Instance.Logic.All(x => x.NeededBy == 0 && x.AvailableOn == 0)) { HideTimeData(); }
+            if (Instance.Logic.All(x => x.TimeSetup == 0 && x.AvailableOn == 0)) { HideTimeData(); }
             WriteEntry();
         }
 
@@ -108,6 +115,13 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             NN2.Visible = false;
             NN3.Visible = false;
             label3.Visible = false;
+            SD1.Visible = false;
+            SD2.Visible = false;
+            SD3.Visible = false;
+            SN1.Visible = false;
+            SN2.Visible = false;
+            SN3.Visible = false;
+            label6.Visible = false;
 
             int buttonOldY = button1.Location.Y;
             button1.Location = new Point { X = button1.Location.X, Y = listBox2.Location.Y + listBox2.Height - button1.Height + 1 };
@@ -171,6 +185,12 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             NN1.Checked = (((entry.AvailableOn >> 1) & 1) == 1);
             NN2.Checked = (((entry.AvailableOn >> 3) & 1) == 1);
             NN3.Checked = (((entry.AvailableOn >> 5) & 1) == 1);
+            SD1.Checked = (((entry.TimeSetup >> 0) & 1) == 1);
+            SD2.Checked = (((entry.TimeSetup >> 2) & 1) == 1);
+            SD3.Checked = (((entry.TimeSetup >> 4) & 1) == 1);
+            SN1.Checked = (((entry.TimeSetup >> 1) & 1) == 1);
+            SN2.Checked = (((entry.TimeSetup >> 3) & 1) == 1);
+            SN3.Checked = (((entry.TimeSetup >> 5) & 1) == 1);
         }
 
         private void CheckedChanged(object sender, EventArgs e)
@@ -181,6 +201,12 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             NN1.Checked = (((entry.AvailableOn >> 1) & 1) == 1);
             NN2.Checked = (((entry.AvailableOn >> 3) & 1) == 1);
             NN3.Checked = (((entry.AvailableOn >> 5) & 1) == 1);
+            SD1.Checked = (((entry.TimeSetup >> 0) & 1) == 1);
+            SD2.Checked = (((entry.TimeSetup >> 2) & 1) == 1);
+            SD3.Checked = (((entry.TimeSetup >> 4) & 1) == 1);
+            SN1.Checked = (((entry.TimeSetup >> 1) & 1) == 1);
+            SN2.Checked = (((entry.TimeSetup >> 3) & 1) == 1);
+            SN3.Checked = (((entry.TimeSetup >> 5) & 1) == 1);
         }
 
         private void button2_Click(object sender, EventArgs e)

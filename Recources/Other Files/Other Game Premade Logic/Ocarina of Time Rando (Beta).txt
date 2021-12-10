@@ -42653,16 +42653,6 @@
       "TrickTooltip": "logic_water_mq_locked_gs"
     },
     {
-      "Id": "logic_rules != glitchless",
-      "RequiredItems": [],
-      "ConditionalItems": [],
-      "TimeNeeded": "None",
-      "TimeAvailable": "None",
-      "TimeSetup": "None",
-      "IsTrick": true,
-      "TrickTooltip": "logic_rules != glitchless"
-    },
-    {
       "Id": "logic_grottos_without_agony",
       "RequiredItems": [],
       "ConditionalItems": [],
@@ -42861,6 +42851,22 @@
         ],
         [
           "zora_fountain == adult"
+        ]
+      ],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "logic_rules != glitchless",
+      "RequiredItems": [],
+      "ConditionalItems": [
+        [
+          "logic_rules == none"
+        ],
+        [
+          "logic_rules == glitched"
         ]
       ],
       "TimeNeeded": "None",
@@ -43461,6 +43467,33 @@
     },
     {
       "Id": "zora_fountain == open",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "logic_rules == glitchless",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "logic_rules == glitched",
+      "RequiredItems": [],
+      "ConditionalItems": [],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "logic_rules == none",
       "RequiredItems": [],
       "ConditionalItems": [],
       "TimeNeeded": "None",
