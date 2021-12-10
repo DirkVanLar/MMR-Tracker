@@ -15333,8 +15333,11 @@
     },
     {
       "DictionaryName": "Master Sword Pedestal",
-      "ItemName": "Time_Travel",
-      "FakeItem": true,
+      "LocationName": "Master Sword Pedestal",
+      "ItemName": "Master Sword",
+      "LocationArea": "Temple of Time",
+      "ItemSubType": "Master Sword Pedestal",
+      "FakeItem": false,
       "ValidRandomizerStartingItem": false
     },
     {

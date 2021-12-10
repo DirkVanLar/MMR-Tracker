@@ -118,6 +118,18 @@ namespace MMR_Tracker.Other_Games
                 i.KeyType = null;
             }
 
+            //Convert the Master sword pedestal entry to a real item
+            //It is already initialized as a fake item in the dictionary, so logic knows to map "Time_Travel" logic entries to it
+            //Its always unrandomized, but we ned it to be a real item so once we have it (along with the ability to change ages)
+            //The pathfinder will always consider it available when finding entrance connections.
+            //Otherwise we would only be able to find entrance paths that our starting age could access.
+            var MasterSwordItem = dict.LogicDictionaryList.Find(x => x.DictionaryName == "Master Sword Pedestal");
+            MasterSwordItem.LocationName = "Master Sword Pedestal";
+            MasterSwordItem.ItemName = "Master Sword";
+            MasterSwordItem.LocationArea = "Temple of Time";
+            MasterSwordItem.ItemSubType = "Master Sword Pedestal";
+            MasterSwordItem.FakeItem = false;
+
             //FinalLogicCheck(Logic);
             JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
             {
