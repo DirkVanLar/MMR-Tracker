@@ -139,7 +139,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             this.Text = $"Requirements for {entry.LocationName ?? entry.DictionaryName}";
 
             var NewEntry = new LogicObjects.LogicEntry() { ID = entry.ID, DictionaryName = entry.DictionaryName, IsFake = entry.IsFake, Price = entry.Price, Required = entry.Required, Conditionals = entry.Conditionals };
-            NewEntry = LogicEditing.PerformLogicEdits(NewEntry, Instance);
+            NewEntry = LogicEditing.PerformLogicEdits(NewEntry, Instance)??NewEntry;
             if (NewEntry.LogicWasEdited)
             {
                 LogicEditor.CleanLogicEntry(NewEntry, Instance);

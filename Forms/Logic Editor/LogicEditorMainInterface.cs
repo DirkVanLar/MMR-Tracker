@@ -69,7 +69,7 @@ namespace MMR_Tracker.Forms
                 EditorInstance = new LogicObjects.TrackerInstance();
                 FormatForm();
             }
-            useLocationItemNamesToolStripMenuItem.Checked = (UseDictionaryNameInSearch);
+            useLocationItemNamesToolStripMenuItem.Checked = (!UseDictionaryNameInSearch);
             displaySpoilerLogNamesToolStripMenuItem.Checked = (UseSpoilerInDisplay);
             AssignUniqueItemnames(EditorInstance.Logic);
             CreateContextMenus();
@@ -453,7 +453,7 @@ namespace MMR_Tracker.Forms
         private void UseLocationItemNamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UseDictionaryNameInSearch = !UseDictionaryNameInSearch;
-            useLocationItemNamesToolStripMenuItem.Checked = (UseDictionaryNameInSearch);
+            useLocationItemNamesToolStripMenuItem.Checked = !UseDictionaryNameInSearch;
             WriteCurentItem(currentEntry.ID);
         }
 

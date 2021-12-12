@@ -685,9 +685,14 @@ namespace MMR_Tracker_V2
                     "Starting Shield",
                     "Starting Heart 1",
                     "Starting Heart 2",
-                    "Deku Mask"
+                    "Deku Mask",
+                    "StartingSword",
+                    "StartingShield",
+                    "StartingHeartContainer1",
+                    "StartingHeartContainer2",
+                    "MaskDeku",
                 };
-                if (Settings.AddSongs) { StartingItems.Add("Song of Healing"); }
+                if (Settings.AddSongs) { StartingItems.Add("Song of Healing"); StartingItems.Add("SongHealing"); }
                 foreach (var i in StartingItems)
                 {
                     var item = LogicObjects.MainTrackerInstance.Logic.Find(x => x.DictionaryName == i);

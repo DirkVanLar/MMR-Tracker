@@ -219,8 +219,10 @@ namespace MMR_Tracker.Class_Files
                 var NewEntry = new LogicObjects.LogicEntry() { ID = entry.ID, DictionaryName = entry.DictionaryName, IsFake = entry.IsFake, Price = entry.Price, Required = entry.Required, Conditionals = entry.Conditionals };
                 NewEntry = LogicEditing.PerformLogicEdits(NewEntry, Instance);
 
-                //Disable skipping entry if Strictlogic is enable or logic is being calculated from scratch such as firsy run
+                //Dungeon Clear logic returns null if the randomized dungon is unknown
+                if (NewEntry == null) { return false; }
 
+                //Disable skipping entry if Strictlogic is enable or logic is being calculated from scratch such as first run
                 if (FromScratch == false && ForceStrictLogicHendeling == false && Instance.Options.StrictLogicHandeling == false && !entry.LogicWasEdited)
                 {
                     bool shouldupdate = false;

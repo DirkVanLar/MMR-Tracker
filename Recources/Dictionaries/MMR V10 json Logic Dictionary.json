@@ -2555,7 +2555,8 @@
     {
       "DictionaryName": "AreaWoodFallTempleClear",
       "FakeItem": true,
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "GameClearDungeonEntrance": "AreaWoodFallTempleAccess"
     },
     {
       "DictionaryName": "AreaNorthAccess",
@@ -2580,7 +2581,8 @@
     {
       "DictionaryName": "AreaSnowheadTempleClear",
       "FakeItem": true,
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "GameClearDungeonEntrance": "AreaSnowheadTempleAccess"
     },
     {
       "DictionaryName": "OtherEpona",
@@ -2615,7 +2617,8 @@
     {
       "DictionaryName": "AreaGreatBayTempleClear",
       "FakeItem": true,
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "GameClearDungeonEntrance": "AreaGreatBayTempleAccess"
     },
     {
       "DictionaryName": "AreaEastAccess",
@@ -2650,7 +2653,8 @@
     {
       "DictionaryName": "AreaStoneTowerClear",
       "FakeItem": true,
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "GameClearDungeonEntrance": "AreaInvertedStoneTowerTempleAccess"
     },
     {
       "DictionaryName": "OtherExplosive",

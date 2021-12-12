@@ -722,12 +722,15 @@ namespace MMR_Tracker_V2
             var dungeonEntranceObject = Instance.Logic[Instance.EntranceAreaDic[entry.ID]];
             var RandClearLogic = entry.ClearRandomizedDungeonInThisArea(Instance);
             if (dungeonEntranceObject.Unrandomized(2)) { RandClearLogic = entry; }
-            if (RandClearLogic != null)
-            {
-                //Console.WriteLine($"Checking Logic for {RandClearLogic.DictionaryName} instead of {entry.DictionaryName}");
-                entry.Required = RandClearLogic.Required;
-                entry.Conditionals = RandClearLogic.Conditionals;
+            if (RandClearLogic == null) 
+            { 
+                Console.WriteLine($"Logic for {entry.DictionaryName} was unknown because {dungeonEntranceObject.LocationName} is not checked"); 
+                return null; 
             }
+
+            Console.WriteLine($"Assigning logic from {RandClearLogic.DictionaryName} to {entry.DictionaryName}");
+            entry.Required = RandClearLogic.Required;
+            entry.Conditionals = RandClearLogic.Conditionals;
             return entry;
         }
 
@@ -789,6 +792,7 @@ namespace MMR_Tracker_V2
             if (Instance.IsMM() && NewEntry.IsFake && Instance.EntranceAreaDic.Count > 0 && Instance.EntranceAreaDic.ContainsKey(NewEntry.ID))
             {
                 NewEntry = LogicEditing.HandleMMRTDungeonClearLogic(NewEntry, Instance);
+                if (NewEntry == null) { return null; }
                 //Console.WriteLine($"{NewEntry.DictionaryName} Had it's Dungeon Logic Swapped");
                 NewEntry.LogicWasEdited = true;
             }

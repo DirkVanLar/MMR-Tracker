@@ -109,7 +109,7 @@ namespace MMR_Tracker_V2
                     }
                     if (subterm == "") { continue; }
 
-                    if (subterm[0] == '_' && RandomizedItem == null) { subterm = subterm.Substring(1); }
+                    if (subterm[0] == '_' && RandomizedItem == null) { valid = false; continue; }
                     if (subterm == "") { continue; }
 
                     switch (subterm[0])

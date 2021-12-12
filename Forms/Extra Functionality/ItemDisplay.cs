@@ -127,7 +127,7 @@ namespace MMR_Tracker.Forms
             Images.Add("GreatFairySword", GetImage(4, 4));
             Images.Add("AdultWallet", GetImage(5, 3));
             Images.Add("GiantWallet", GetImage(5, 4));
-            Images.Add("RoyalWallet", GetImage(5, 2));
+            Images.Add("RoyalWallet", GetImage(5, 1));
             //Trade Items
             Images.Add("MoonTear", GetImage(0, 6));
             Images.Add("LandDeed", GetImage(1, 6));
@@ -1086,15 +1086,15 @@ namespace MMR_Tracker.Forms
             if (e == null) { return; }
             var itemLocation = e.GetItemsNewLocation(LogicObjects.MainTrackerInstance.Logic);
             if (itemLocation == null) { return; }
-            if (itemLocation.Checked && e.Aquired)
+            if (itemLocation.Checked)
             {
-                if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTCheckedSearch.Text = $"_{e.ItemName}"; }
-                else { MainInterfaceInstance.TXTCheckedSearch.Text += (MainInterfaceInstance.TXTCheckedSearch.Text == "" ? "" : "|") + $"_{e.ItemName}"; }
+                if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTCheckedSearch.Text = $"_${e.ItemName}"; }
+                else { MainInterfaceInstance.TXTCheckedSearch.Text += (MainInterfaceInstance.TXTCheckedSearch.Text == "" ? "" : "|") + $"_${e.ItemName}"; }
             }
             else
             {
-                if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTLocSearch.Text = $"_{e.ItemName}"; }
-                else { MainInterfaceInstance.TXTLocSearch.Text += (MainInterfaceInstance.TXTLocSearch.Text == "" ? "" : "|") + $"_{e.ItemName}"; }
+                if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTLocSearch.Text = $"_${e.ItemName}"; }
+                else { MainInterfaceInstance.TXTLocSearch.Text += (MainInterfaceInstance.TXTLocSearch.Text == "" ? "" : "|") + $"_${e.ItemName}"; }
 
             }
         }
@@ -1109,8 +1109,8 @@ namespace MMR_Tracker.Forms
                 var itemLocation = i.GetItemsNewLocation(LogicObjects.MainTrackerInstance.Logic);
                 if (itemLocation != null)
                 {
-                    if (itemLocation.Checked && i.Aquired) { CheckedListFilter += (CheckedListFilter == "" ? "" : "|") + $"_{i.ItemName}"; }
-                    else { ItemListFilter += (ItemListFilter == "" ? "" : "|") + $"_{i.ItemName}"; }
+                    if (itemLocation.Checked) { CheckedListFilter += (CheckedListFilter == "" ? "" : "|") + $"_${i.ItemName}"; }
+                    else { ItemListFilter += (ItemListFilter == "" ? "" : "|") + $"_${i.ItemName}"; }
                 }
             }
             if (ItemListFilter != "")
@@ -1138,7 +1138,7 @@ namespace MMR_Tracker.Forms
                 foreach (var i in Marked)
                 {
                     if (Used.Contains(i.RandomizedEntry(log).ItemName)) { continue; }
-                    itemFilter += (itemFilter == "" ? "" : "|") + $"_{i.RandomizedEntry(log).ItemName}";
+                    itemFilter += (itemFilter == "" ? "" : "|") + $"_${i.RandomizedEntry(log).ItemName}";
                     Used.Add(i.RandomizedEntry(log).ItemName);
                 }
                 if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTLocSearch.Text = itemFilter; }
@@ -1150,7 +1150,7 @@ namespace MMR_Tracker.Forms
                 foreach (var i in Checked)
                 {
                     if (Used.Contains(i.RandomizedEntry(log).ItemName)) { continue; }
-                    CheckedFilter += (CheckedFilter == "" ? "" : "|") + $"_{i.RandomizedEntry(log).ItemName}";
+                    CheckedFilter += (CheckedFilter == "" ? "" : "|") + $"_${i.RandomizedEntry(log).ItemName}";
                     Used.Add(i.RandomizedEntry(log).ItemName);
                 }
                 if ((ModifierKeys & Keys.Control) != Keys.Control) { MainInterfaceInstance.TXTCheckedSearch.Text = CheckedFilter; }
@@ -1196,6 +1196,7 @@ namespace MMR_Tracker.Forms
             CreatePictureBoxes();
             UpdateScreen();
             Console.WriteLine(Position[0]);
+            this.TopMost = true;
         }
         private void UpdateScreen()
         {
