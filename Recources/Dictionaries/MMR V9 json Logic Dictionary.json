@@ -2511,7 +2511,7 @@
     {
       "DictionaryName": "AreaWoodFallTempleAccess",
       "LocationName": "Woodfall Temple Entrance",
-      "ItemName": "Woodfall  Temple",
+      "ItemName": "Woodfall Temple",
       "LocationArea": "Dungeon Entrance",
       "ItemSubType": "Dungeon Entrance",
       "FakeItem": false,
@@ -2536,8 +2536,8 @@
     },
     {
       "DictionaryName": "AreaSnowheadTempleAccess",
-      "LocationName": "Snowhead  Temple  Entrance",
-      "ItemName": "Snowhead  Temple",
+      "LocationName": "Snowhead Temple Entrance",
+      "ItemName": "Snowhead Temple",
       "LocationArea": "Dungeon Entrance",
       "ItemSubType": "Dungeon Entrance",
       "FakeItem": false,
@@ -2572,8 +2572,8 @@
     },
     {
       "DictionaryName": "AreaGreatBayTempleAccess",
-      "LocationName": "Great Bay  Temple  Entrance",
-      "ItemName": "Great Bay  Temple",
+      "LocationName": "Great Bay Temple Entrance",
+      "ItemName": "Great Bay Temple",
       "LocationArea": "Dungeon Entrance",
       "ItemSubType": "Dungeon Entrance",
       "FakeItem": false,
@@ -2608,8 +2608,8 @@
     },
     {
       "DictionaryName": "AreaInvertedStoneTowerTempleAccess",
-      "LocationName": "Inverted Stone Tower  Temple  Entrance",
-      "ItemName": "Inverted Stone Tower  Temple",
+      "LocationName": "Inverted Stone Tower Temple Entrance",
+      "ItemName": "Inverted Stone Tower Temple",
       "LocationArea": "Dungeon Entrance",
       "ItemSubType": "Dungeon Entrance",
       "FakeItem": false,
