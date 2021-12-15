@@ -363,7 +363,6 @@ namespace MMR_Tracker.Class_Files
                 LogicEditor.EditorInstance.LogicDictionary = DicOverride;
                 Tools.CreateTrackerInstance(LogicEditor.EditorInstance, Lines.ToArray());
 
-                LogicEditor.AssignUniqueItemnames(LogicEditor.EditorInstance.Logic);
                 if (LogicEditor.EditorInstance.Logic.Count < Convert.ToInt32(LEditorForm.nudIndex.Value)) 
                 { LEditorForm.nudIndex.Value = LogicEditor.EditorInstance.Logic.Count - 1; }
                 LogicEditor.EditorForm.FormatForm(Convert.ToInt32(LEditorForm.nudIndex.Value));

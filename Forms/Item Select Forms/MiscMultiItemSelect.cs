@@ -52,7 +52,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                         ListItem.DisplayName = i.LocationName ?? i.DictionaryName;
                         break;
                     case 2:
-                        ListItem.DisplayName = i.ItemName ?? i.DictionaryName;
+                        ListItem.DisplayName = i.GetDistinctItemName(UsedInstance);
                         break;
                     case 3:
                         ListItem.DisplayName = i.SpoilerLocation[0] ?? i.LocationName ?? i.DictionaryName;
@@ -69,7 +69,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                         ListItem.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? i.DictionaryName : ListItem.DisplayName;
                         break;
                     case 7:
-                        ListItem.DisplayName = i.ItemName ?? i.DictionaryName;
+                        ListItem.DisplayName = i.GetDistinctItemName(UsedInstance);
                         ListItem.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (i.SpoilerItem[0] ?? ListItem.DisplayName) : ListItem.DisplayName;
                         ListItem.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? i.DictionaryName : ListItem.DisplayName;
                         break;

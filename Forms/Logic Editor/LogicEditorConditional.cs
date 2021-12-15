@@ -77,7 +77,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                         ListItem.DisplayName = i.LocationName ?? i.DictionaryName;
                         break;
                     case 2:
-                        ListItem.DisplayName = i.ItemName ?? i.DictionaryName;
+                        ListItem.DisplayName = i.GetDistinctItemName(LogicEditor.EditorInstance);
                         break;
                     case 3:
                         ListItem.DisplayName = i.SpoilerLocation[0] ?? i.LocationName ?? i.DictionaryName;
@@ -94,7 +94,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                         ListItem.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? i.DictionaryName : ListItem.DisplayName;
                         break;
                     case 7:
-                        ListItem.DisplayName = i.ItemName ?? i.DictionaryName;
+                        ListItem.DisplayName = i.GetDistinctItemName(LogicEditor.EditorInstance);
                         ListItem.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (i.SpoilerItem[0] ?? ListItem.DisplayName) : ListItem.DisplayName;
                         ListItem.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? i.DictionaryName : ListItem.DisplayName;
                         break;
@@ -186,7 +186,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
             {
                 foreach (var i in SelectedItems)
                 {
-                    var entry = new LogicEditor.RequiementConditional { DisplayName = (i.ItemName ?? i.DictionaryName), ItemIDs = new List<LogicObjects.LogicEntry> { i } };
+                    var entry = new LogicEditor.RequiementConditional { DisplayName = (i.GetDistinctItemName(LogicEditor.EditorInstance)), ItemIDs = new List<LogicObjects.LogicEntry> { i } };
                     if (LogicEditor.EditorForm.LBConditional.Items.Contains(entry)) { continue; }
                     LogicEditor.EditorForm.LBConditional.Items.Add(entry);
                 }
@@ -198,7 +198,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 string addComma = "";
                 foreach (var i in SelectedItems)
                 {
-                    Display = Display + addComma + (i.ItemName ?? i.DictionaryName);
+                    Display = Display + addComma + (i.GetDistinctItemName(LogicEditor.EditorInstance));
                     addComma = ", ";
                     entry.ItemIDs.Add(i);
                 }

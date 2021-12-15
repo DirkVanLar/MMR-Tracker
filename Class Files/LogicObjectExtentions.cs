@@ -265,11 +265,19 @@ namespace MMR_Tracker.Class_Files
             }
             return false;
         }
-        //TODO make this list a config file
+
         public static bool CanBeStartingItem(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
-
             return Instance.LogicDictionary.LogicDictionaryList.Where(x => x.DictionaryName == entry.DictionaryName && x.ValidRandomizerStartingItem).Any();
+        }
+        public static string GetDistinctItemName(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
+        {
+            string UniqueItemname = entry.ItemName ?? entry.DictionaryName;
+            if (!string.IsNullOrWhiteSpace(entry.ItemName) && Instance.Logic.Where(x => x.ItemName != null && x.ItemName == entry.ItemName).Count() > 1)
+            {
+                UniqueItemname = $"{entry.ItemName} ({entry.LocationName ?? entry.DictionaryName})";
+            }
+            return UniqueItemname;
         }
         //Logic Instance Extentions
         public static void RefreshFakeItems(this LogicObjects.TrackerInstance Instance)

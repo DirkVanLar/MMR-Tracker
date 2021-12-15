@@ -543,7 +543,6 @@ namespace MMR_Tracker_V2
             LogicEditor.EditorForm.nudIndex.Value = 0;
             LogicEditor.EditorInstance = Instance;
             LogicEditor.EditorForm.FormatForm();
-            LogicEditor.AssignUniqueItemnames(LogicEditor.EditorInstance.Logic);
             LogicEditor.EditorForm.CreateContextMenus();
 
         }

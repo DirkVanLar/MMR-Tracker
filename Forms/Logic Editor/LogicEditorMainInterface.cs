@@ -71,7 +71,6 @@ namespace MMR_Tracker.Forms
             }
             useLocationItemNamesToolStripMenuItem.Checked = (!UseDictionaryNameInSearch);
             displaySpoilerLogNamesToolStripMenuItem.Checked = (UseSpoilerInDisplay);
-            AssignUniqueItemnames(EditorInstance.Logic);
             CreateContextMenus();
         }
 
@@ -193,7 +192,6 @@ namespace MMR_Tracker.Forms
             EditorInstance.RawLogicFile = Lines;
             LogicEditing.PopulateTrackerInstance(EditorInstance);
 
-            AssignUniqueItemnames(EditorInstance.Logic);
             if (EditorInstance.Logic.Count < Convert.ToInt32(nudIndex.Value)) { nudIndex.Value = EditorInstance.Logic.Count - 1; }
             FormatForm(Convert.ToInt32(nudIndex.Value));
         }
@@ -592,7 +590,7 @@ namespace MMR_Tracker.Forms
             {
                 var ReqEntry = EditorInstance.Logic[i];
 
-                ReqEntry.DisplayName = ReqEntry.ItemName ?? ReqEntry.DictionaryName;
+                ReqEntry.DisplayName = ReqEntry.GetDistinctItemName(EditorInstance);
                 ReqEntry.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem[0] ?? ReqEntry.DisplayName) : ReqEntry.DisplayName;
                 ReqEntry.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? ReqEntry.DictionaryName : ReqEntry.DisplayName;
                 LBRequired.Items.Add(ReqEntry);
@@ -614,7 +612,7 @@ namespace MMR_Tracker.Forms
                     {
                         var ReqEntry = EditorInstance.Logic[i];
 
-                        string disName = ReqEntry.ItemName ?? ReqEntry.DictionaryName;
+                        string disName = ReqEntry.GetDistinctItemName(EditorInstance);
                         disName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem[0] ?? disName) : disName;
                         disName = (LogicEditor.UseDictionaryNameInSearch) ? ReqEntry.DictionaryName : disName;
 
