@@ -301,22 +301,25 @@ namespace MMR_Tracker_V2
                 Utility.nullEmptyLogicItems(Instance.Logic);
                 if ((Instance.Options.StrictLogicHandeling || ForceStrictLogicHendeling)) { Instance.RefreshFakeItems(); }
             }
-            //Calculate all fake items. If the fake item is available, set it to aquired
+            CalculateFakeItems(Instance, ForceStrictLogicHendeling, fromScratch);
+            //Once all the fake items are unlocked, see what real items are available.
+            foreach (var item in Instance.Logic.Where(x => !x.IsFake && !x.Unrandomized()))
+            {
+                item.Available = item.CheckAvailability(Instance, FromScratch: fromScratch, ForceStrictLogicHendeling: ForceStrictLogicHendeling);
+            }
+        }
+
+        public static void CalculateFakeItems(LogicObjects.TrackerInstance Instance, bool ForceStrictLogicHendeling = false, bool fromScratch = true)
+        {
             bool recalculate = false;
+            //Calculate all fake items. If the fake item is available, set it to aquired
             foreach (var item in Instance.Logic.Where(x => x.IsFake || x.Unrandomized()))
             {
                 item.Available = item.CheckAvailability(Instance, FromScratch: fromScratch, ForceStrictLogicHendeling: ForceStrictLogicHendeling);
                 if (item.FakeItemStatusChange()) { recalculate = true; }
             }
-            if (recalculate) { CalculateItems(Instance, false, false, fromScratch); } //If any fake items are unlocked run this funtion again to check if they unlock any more.
-            //Once all the fake items are unlocked, see what real items are available.
-            if (InitialRun)
-            {
-                foreach (var item in Instance.Logic.Where(x => !x.IsFake && !x.Unrandomized()))
-                {
-                    item.Available = item.CheckAvailability(Instance, FromScratch: fromScratch, ForceStrictLogicHendeling: ForceStrictLogicHendeling);
-                }
-            }
+            //If any fake items are unlocked run this funtion again to check if any fake items were unlocked as a result.
+            if (recalculate) { CalculateFakeItems(Instance, ForceStrictLogicHendeling, fromScratch); } 
         }
 
         public static void WriteSpoilerLogToLogic(LogicObjects.TrackerInstance Instance, string path, bool ApplySetting = true)

@@ -124,7 +124,7 @@ namespace MMR_Tracker.Other_Games
             //FindAmbiguosLogicNames(dict, Logic);
             ConvertItemnamesinLogicToDictname(dict, Logic);
             //CheckFormissingLogicItems(dict, Logic);
-
+            
             //Ganons castle boss key and gerudo keys are not part of kysy since they are their own setting.
             dict.LogicDictionaryList.Find(x => x.DictionaryName == "Ganons Tower Boss Key Chest").KeyType = null;
             var GerudoKeys = dict.LogicDictionaryList.Where(x => x.ItemName == "Small Key Thieves Hideout");
@@ -356,7 +356,8 @@ namespace MMR_Tracker.Other_Games
                     ValidRandomizerStartingItem = false,
                     WalletCapacity = null,
                     SpoilerItem = new string[] { $"{Data[1]} <- {Data[0]}" },
-                    SpoilerLocation = new string[] { i[0] }
+                    SpoilerLocation = new string[] { i[0] },
+                    IsWarpSong = (i[0].Contains("Spawn ->") || i[0].Contains("Warp ->")) && i[1] == "OneWay"
                 };
                 OOTRDict.LogicDictionaryList.Add(entry);
             }
@@ -590,7 +591,7 @@ namespace MMR_Tracker.Other_Games
                             FakeItem = false,
                             ItemName = i.Key,
                             ItemSubType = "Item",
-                            SpoilerItem = new string[] { i.Key }
+                            SpoilerItem = new string[] { i.Key, i.Key.Replace(" ", "_") }
                         });
                         Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
                         {
@@ -1290,6 +1291,9 @@ namespace MMR_Tracker.Other_Games
 
         public static void ConvertItemnamesinLogicToDictname(LogicObjects.LogicDictionary dict, LogicObjects.LogicFile Logic)
         {
+            LogicParser Parser = new LogicParser();
+            Dictionary<string, string> LogicToAdd = new Dictionary<string, string>();
+
             foreach (var DictName in Logic.Logic.Select(x => x.Id).ToList())
             {
                 var Entry = Logic.Logic.Find(x => x.Id == DictName);
@@ -1330,8 +1334,20 @@ namespace MMR_Tracker.Other_Games
                                     var validItemNameEntries = Logic.Logic.Where(x => entries.Contains(x.Id));
                                     if (validItemNameEntries.Any())
                                     {
-                                        string NewLine = $"({string.Join(" | ", validItemNameEntries.Select(x => x.Id))})";
-                                        newCondictional.Add(NewLine); return true;
+                                        if (validItemNameEntries.Count() > 1)
+                                        {
+                                            if (!LogicToAdd.ContainsKey($"any_item_{i}"))
+                                            {
+                                                LogicToAdd.Add($"any_item_{i}", $"({string.Join(" | ", validItemNameEntries.Select(x => x.Id))})");
+                                            }
+                                            newCondictional.Add($"any_item_{i}");
+                                        }
+                                        else
+                                        {
+                                            string NewLine = $"({string.Join(" | ", validItemNameEntries.Select(x => x.Id))})";
+                                            newCondictional.Add(NewLine);
+                                        }
+                                        return true;
                                     }
                                 }
                                 return false;
@@ -1341,13 +1357,9 @@ namespace MMR_Tracker.Other_Games
                     }
                     newCondictionalSet.Add(newCondictional);
                 }
-                if (false)
+
+                if (newCondictionalSet.Any())
                 {
-                    Entry.ConditionalItems = newCondictionalSet;
-                }
-                else if (newCondictionalSet.Any())
-                {
-                    LogicParser Parser = new LogicParser();
                     var NewCondString = $"({string.Join(") | (", newCondictionalSet.Select(x => string.Join(" & ", x)))})";
                     Console.WriteLine("===========================================================");
                     Console.WriteLine(Entry.Id);
@@ -1358,6 +1370,14 @@ namespace MMR_Tracker.Other_Games
                 {
                     Entry.ConditionalItems = null;
                 }
+            }
+            foreach(var i in LogicToAdd)
+            {
+                Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
+                {
+                    Id = i.Key,
+                    ConditionalItems = Parser.ConvertLogicToConditionalString(i.Value)
+                });
             }
         }
 

@@ -91,13 +91,7 @@ namespace MMR_Tracker_V2
             //SkywardSwordRando.SkywardSwordTesting(false, false, "https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitched%20Requirements.yaml", "Skyward Sword Rando Glitched (Beta)");
 
             //WindWakerRando.TestWWR();
-
-            foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.IsWarpSong(LogicObjects.MainTrackerInstance)))
-            {
-                Console.WriteLine(i.LocationName);
-            }
-
-            //OcarinaOfTimeRando.CreateOOTRLogic();
+            OcarinaOfTimeRando.CreateOOTRLogic();
 
             void testCountEntry()
             {
