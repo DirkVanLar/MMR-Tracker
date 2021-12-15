@@ -115,9 +115,11 @@ namespace MMR_Tracker.Class_Files
         {
             return (entry.Options > 3);
         }
-        public static bool IsWarpSong(this LogicObjects.LogicEntry entry)
+        public static bool IsWarpSong(this LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance)
         {
-            return (entry.LocationArea == "Owl Warp");
+            var dictEntry = Instance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == entry.DictionaryName);
+            if (dictEntry == null) { return false; }
+            return dictEntry.IsWarpSong;
         }
         public static bool AppearsInListbox(this LogicObjects.LogicEntry entry)
         {

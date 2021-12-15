@@ -148,6 +148,7 @@ namespace MMR_Tracker_V2
             public bool ValidRandomizerStartingItem { get; set; } = false; //Can the entry be a strartingitemin the randomizer
             public ProgressiveItemData ProgressiveItemData { get; set; } = null; //Progressive Item Data
             public string EntrancePair { get; set; } //The Paired entrance for this entry
+            public bool IsWarpSong { get; set; } = false;
             public string[] RandoOnlyRequiredLogic { get; set; } //The Paired entrance for this entry
         }
 

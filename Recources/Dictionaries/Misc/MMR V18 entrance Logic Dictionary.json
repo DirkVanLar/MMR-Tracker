@@ -8777,7 +8777,8 @@
       ],
       "SpoilerItem": [
         "EntranceSouthernSwampFromOwlStatue"
-      ]
+      ],
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceCuriosityShopFromWestClockTown",
@@ -9103,7 +9104,8 @@
       ],
       "SpoilerItem": [
         "EntranceIkanaCanyonFromOwlStatue"
-      ]
+      ],
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceIkanaCanyonFromBeneaththeWell",
@@ -9767,7 +9769,8 @@
       ],
       "SpoilerItem": [
         "EntranceMilkRoadFromOwlStatue"
-      ]
+      ],
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntrancePiratesFortressHookshotRoomFromLowerDoor",
@@ -10866,7 +10869,8 @@
       ],
       "SpoilerItem": [
         "EntranceGreatBayCoastFromOwlStatue"
-      ]
+      ],
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceGreatBayCoastFromPiratesFortressThrownOut",
@@ -10975,7 +10979,8 @@
       ],
       "SpoilerItem": [
         "EntranceZoraCapeFromOwlStatue"
-      ]
+      ],
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceZoraCapeFromGreatBayTemple",
@@ -11404,7 +11409,8 @@
       ],
       "SpoilerItem": [
         "EntranceWoodfallFromOwlStatue"
-      ]
+      ],
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceZoraTrialFromTheMoon",
@@ -11736,7 +11742,8 @@
       ],
       "SpoilerItem": [
         "EntranceMountainVillageFromOwlStatue"
-      ]
+      ],
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntrancePoeHutFromIkanaCanyon",
@@ -11903,7 +11910,8 @@
       ],
       "SpoilerItem": [
         "EntranceStoneTowerFromOwlStatue"
-      ]
+      ],
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntrancePathtoSnowheadFromMountainVillage",
@@ -11986,7 +11994,8 @@
       ],
       "SpoilerItem": [
         "EntranceSnowheadFromOwlStatue"
-      ]
+      ],
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntrancePathtoGoronVillageFromMountainVillage",
@@ -12767,7 +12776,8 @@
       ],
       "SpoilerItem": [
         "EntranceSouthClockTownFromOwlStatue"
-      ]
+      ],
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceLaundryPoolFromSouthClockTown",

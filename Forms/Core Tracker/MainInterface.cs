@@ -789,6 +789,11 @@ namespace MMR_Tracker_V2
             RemoveSpoiler.Click += (sender, e) => { RunMenuItems(7, LBValidLocations); };
             ToolStripItem SetItemPrice = LocationContextMenu.Items.Add("Set Check Price");
             SetItemPrice.Click += (sender, e) => { RunMenuItems(10, LBValidLocations); };
+            if (Debugging.ISDebugging)
+            {
+                ToolStripItem DevData = LocationContextMenu.Items.Add("Dev Data");
+                DevData.Click += (sender, e) => { RunMenuItems(11, LBValidLocations); };
+            }
             LBValidLocations.ContextMenuStrip = LocationContextMenu;
 
             //LBValidEntrances List Box
@@ -815,6 +820,11 @@ namespace MMR_Tracker_V2
             EStar.Click += (sender, e) => { StarItemSelected(LBValidEntrances); };
             ToolStripItem ERemoveSpoiler = EntranceContextMenu.Items.Add("Remove Spoiler Data");
             ERemoveSpoiler.Click += (sender, e) => { RunMenuItems(7, LBValidEntrances); };
+            if (Debugging.ISDebugging)
+            {
+                ToolStripItem DevData = EntranceContextMenu.Items.Add("Dev Data");
+                DevData.Click += (sender, e) => { RunMenuItems(11, LBValidEntrances); };
+            }
             LBValidEntrances.ContextMenuStrip = EntranceContextMenu;
 
             //LBCheckedLocations List Box
@@ -841,6 +851,11 @@ namespace MMR_Tracker_V2
             CStar.Click += (sender, e) => { StarItemSelected(LBCheckedLocations); };
             ToolStripItem CReCheck = CheckContextMenu.Items.Add("Change Checked Item");
             CReCheck.Click += (sender, e) => { RunMenuItems(8, LBCheckedLocations); };
+            if (Debugging.ISDebugging)
+            {
+                ToolStripItem DevData = CheckContextMenu.Items.Add("Dev Data");
+                DevData.Click += (sender, e) => { RunMenuItems(11, LBCheckedLocations); };
+            }
             LBCheckedLocations.ContextMenuStrip = CheckContextMenu;
 
             //Set Item Button
@@ -995,6 +1010,14 @@ namespace MMR_Tracker_V2
                     }
                     LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance);
                     PrintToListBox();
+                    break;
+                case 11:
+                    if (ActiveListBox.SelectedItem is LogicObjects.ListItem)
+                    {
+                        Console.WriteLine("===============================================");
+                        string ParsedObject = JsonConvert.SerializeObject(ActiveListBox.SelectedItem, new JsonSerializerSettings { Formatting = Formatting.Indented });
+                        Console.WriteLine(ParsedObject);
+                    }
                     break;
             }
 

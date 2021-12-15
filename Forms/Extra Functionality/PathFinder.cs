@@ -32,6 +32,7 @@ namespace MMR_Tracker.Forms
             Console.WriteLine($"Use SOT {UseSOT}");
 
             LB.Items.Clear();
+            LB.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
 
             if (!(cmbStart.SelectedItem is KeyValuePair<int, string>) || !(cmbEnd.SelectedItem is KeyValuePair<int, string>)) { return; }
             var Startindex = Int32.Parse(cmbStart.SelectedValue.ToString());
@@ -258,7 +259,7 @@ namespace MMR_Tracker.Forms
             AddConditionalsToInsideClockTower(logicTemplate, useSOT);
 
             //Add all available owl warps as valid exits from our starting point.
-            foreach (LogicObjects.LogicEntry OwlEntry in Instance.Logic.Where(x => x.IsWarpSong() && x.Available))
+            foreach (LogicObjects.LogicEntry OwlEntry in Instance.Logic.Where(x => x.IsWarpSong(Instance) && x.Available))
             {
                 var newEntry = new LogicObjects.MapPoint
                 {
@@ -308,7 +309,7 @@ namespace MMR_Tracker.Forms
 
         public bool EntranceConnectionValid(LogicObjects.LogicEntry x, LogicObjects.LogicEntry ExitToCheck, LogicObjects.TrackerInstance lt)
         {
-            return (x.Available && !x.IsFake && !x.IsWarpSong() && (x.IsEntrance() || lt.Options.IncludeItemLocations));
+            return (x.Available && !x.IsFake && !x.IsWarpSong(lt) && (x.IsEntrance() || lt.Options.IncludeItemLocations));
         }
 
         public void Findpath(LogicObjects.TrackerInstance Instance, List<LogicObjects.MapPoint> map, List<LogicObjects.MapPoint> FullMap, int startinglocation, int destination, List<int> ExitsKnown, List<int> ExitsVisited, List<LogicObjects.MapPoint> Path, bool InitialRun = false)

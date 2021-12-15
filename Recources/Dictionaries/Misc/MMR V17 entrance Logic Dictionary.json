@@ -7049,7 +7049,8 @@
         "EntranceSouthernSwampFromOwlStatue"
       ],
       "ValidRandomizerStartingItem": false,
-      "EntrancePair": ""
+      "EntrancePair": "",
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceCuriosityShopFromWestClockTown",
@@ -7429,7 +7430,8 @@
         "EntranceIkanaCanyonFromOwlStatue"
       ],
       "ValidRandomizerStartingItem": false,
-      "EntrancePair": ""
+      "EntrancePair": "",
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceIkanaCanyonFromBeneaththeWell",
@@ -8197,7 +8199,8 @@
         "EntranceMilkRoadFromOwlStatue"
       ],
       "ValidRandomizerStartingItem": false,
-      "EntrancePair": ""
+      "EntrancePair": "",
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntrancePiratesFortressHookshotRoomFromLowerDoor",
@@ -9461,7 +9464,8 @@
         "EntranceGreatBayCoastFromOwlStatue"
       ],
       "ValidRandomizerStartingItem": false,
-      "EntrancePair": ""
+      "EntrancePair": "",
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceGreatBayCoastFromPiratesFortressThrownOut",
@@ -9589,7 +9593,8 @@
         "EntranceZoraCapeFromOwlStatue"
       ],
       "ValidRandomizerStartingItem": false,
-      "EntrancePair": ""
+      "EntrancePair": "",
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceZoraCapeFromGreatBayTemple",
@@ -10084,7 +10089,8 @@
         "EntranceWoodfallFromOwlStatue"
       ],
       "ValidRandomizerStartingItem": false,
-      "EntrancePair": ""
+      "EntrancePair": "",
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceZoraTrialFromTheMoon",
@@ -10468,7 +10474,8 @@
         "EntranceMountainVillageFromOwlStatue"
       ],
       "ValidRandomizerStartingItem": false,
-      "EntrancePair": ""
+      "EntrancePair": "",
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntrancePoeHutFromIkanaCanyon",
@@ -10660,7 +10667,8 @@
         "EntranceStoneTowerFromOwlStatue"
       ],
       "ValidRandomizerStartingItem": false,
-      "EntrancePair": ""
+      "EntrancePair": "",
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntrancePathtoSnowheadFromMountainVillage",
@@ -10756,7 +10764,8 @@
         "EntranceSnowheadFromOwlStatue"
       ],
       "ValidRandomizerStartingItem": false,
-      "EntrancePair": ""
+      "EntrancePair": "",
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntrancePathtoGoronVillageFromMountainVillage",
@@ -11651,7 +11660,8 @@
         "EntranceSouthClockTownFromOwlStatue"
       ],
       "ValidRandomizerStartingItem": false,
-      "EntrancePair": ""
+      "EntrancePair": "",
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "EntranceLaundryPoolFromSouthClockTown",

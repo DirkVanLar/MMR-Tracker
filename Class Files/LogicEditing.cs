@@ -467,6 +467,9 @@ namespace MMR_Tracker_V2
                 logicEntry.Options = entry.Options;
                 logicEntry.TrickEnabled = entry.TrickEnabled;
                 logicEntry.PlayerData = entry.PlayerData;
+                logicEntry.CountCheckData = entry.CountCheckData;
+                logicEntry.JunkItemType = entry.JunkItemType;
+                logicEntry.Price = entry.Price;
             }
 
             if (Instance.CurrentSpoilerLog.Log != null)

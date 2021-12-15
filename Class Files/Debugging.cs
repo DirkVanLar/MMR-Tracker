@@ -92,7 +92,12 @@ namespace MMR_Tracker_V2
 
             //WindWakerRando.TestWWR();
 
-            OcarinaOfTimeRando.CreateOOTRLogic();
+            foreach (var i in LogicObjects.MainTrackerInstance.Logic.Where(x => x.IsWarpSong(LogicObjects.MainTrackerInstance)))
+            {
+                Console.WriteLine(i.LocationName);
+            }
+
+            //OcarinaOfTimeRando.CreateOOTRLogic();
 
             void testCountEntry()
             {

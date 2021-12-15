@@ -3727,7 +3727,8 @@
       "SpoilerItem": [
         " KF Links House <- Child Spawn "
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "Adult Spawn -> Temple of Time",
@@ -3742,7 +3743,8 @@
       "SpoilerItem": [
         " Temple of Time <- Adult Spawn "
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "Minuet of Forest Warp -> Sacred Forest Meadow",
@@ -3757,7 +3759,8 @@
       "SpoilerItem": [
         " Sacred Forest Meadow <- Minuet of Forest Warp "
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "Bolero of Fire Warp -> DMC Central Local",
@@ -3772,7 +3775,8 @@
       "SpoilerItem": [
         " DMC Central Local <- Bolero of Fire Warp "
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "Serenade of Water Warp -> Lake Hylia",
@@ -3787,7 +3791,8 @@
       "SpoilerItem": [
         " Lake Hylia <- Serenade of Water Warp "
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "Requiem of Spirit Warp -> Desert Colossus",
@@ -3802,7 +3807,8 @@
       "SpoilerItem": [
         " Desert Colossus <- Requiem of Spirit Warp "
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "Nocturne of Shadow Warp -> Graveyard Warp Pad Region",
@@ -3817,7 +3823,8 @@
       "SpoilerItem": [
         " Graveyard Warp Pad Region <- Nocturne of Shadow Warp "
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "Prelude of Light Warp -> Temple of Time",
@@ -3832,7 +3839,8 @@
       "SpoilerItem": [
         " Temple of Time <- Prelude of Light Warp "
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": true
     },
     {
       "DictionaryName": "ZD Eyeball Frog Timeout -> Zoras Domain",
