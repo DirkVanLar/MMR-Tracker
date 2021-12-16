@@ -76,10 +76,21 @@ namespace MMR_Tracker_V2
 
         private void MainInterface_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.S)
+            if (e.Modifiers == Keys.Control)
             {
-                SaveToolStripMenuItem_Click(sender, e);
-            }
+                switch (e.KeyCode)
+                {
+                    case Keys.S:
+                        SaveToolStripMenuItem_Click(sender, e);
+                        break;
+                    case Keys.Z:
+                        UndoToolStripMenuItem_Click(sender, e);
+                        break;
+                    case Keys.Y:
+                        RedoToolStripMenuItem_Click(sender, e);
+                        break;
+                }
+            }        
         }
         #endregion Form Events
         //Menu Strip---------------------------------------------------------------------------
@@ -1644,14 +1655,28 @@ namespace MMR_Tracker_V2
 
         private void LB_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.A && Control.ModifierKeys == Keys.Control)
+            if (Control.ModifierKeys == Keys.Control)
             {
-                (sender as ListBox).BeginUpdate();
-                for (int i = 0; i < (sender as ListBox).Items.Count; i++)
+                switch (e.KeyCode)
                 {
-                    (sender as ListBox).SetSelected(i, true);
+                    case Keys.A:
+                        (sender as ListBox).BeginUpdate();
+                        for (int i = 0; i < (sender as ListBox).Items.Count; i++) { (sender as ListBox).SetSelected(i, true); }
+                        (sender as ListBox).EndUpdate();
+                        break;
+                    case Keys.C:
+                    case Keys.X:
+                        string ClipboardText = "";
+                        foreach(var i in (sender as ListBox).SelectedItems) 
+                        { 
+                            if (e.KeyCode == Keys.X || i is LogicObjects.ListItem)
+                                ClipboardText += i.ToString() + "\n"; 
+                        }
+                        if (ClipboardText == "") { return; }
+                        else { Clipboard.SetText(ClipboardText); }
+                        Console.WriteLine(ClipboardText);
+                        break;
                 }
-                (sender as ListBox).EndUpdate();
             }
         }
 

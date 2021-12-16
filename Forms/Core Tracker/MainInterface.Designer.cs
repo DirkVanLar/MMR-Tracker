@@ -217,7 +217,7 @@ namespace MMR_Tracker_V2
             this.BTNSetItem.Name = "BTNSetItem";
             this.BTNSetItem.Size = new System.Drawing.Size(80, 20);
             this.BTNSetItem.TabIndex = 11;
-            this.BTNSetItem.Text = "Set Item";
+            this.BTNSetItem.Text = "Mark Item";
             this.BTNSetItem.UseVisualStyleBackColor = false;
             this.BTNSetItem.Click += new System.EventHandler(this.BTNSetItem_Click);
             // 
@@ -228,7 +228,7 @@ namespace MMR_Tracker_V2
             this.BTNSetEntrance.Name = "BTNSetEntrance";
             this.BTNSetEntrance.Size = new System.Drawing.Size(80, 20);
             this.BTNSetEntrance.TabIndex = 12;
-            this.BTNSetEntrance.Text = "Set Entrance";
+            this.BTNSetEntrance.Text = "Mark Entrance";
             this.BTNSetEntrance.UseVisualStyleBackColor = false;
             this.BTNSetEntrance.Click += new System.EventHandler(this.BTNSetEntrance_Click);
             // 
@@ -775,21 +775,21 @@ namespace MMR_Tracker_V2
             // printLogicObjectToolStripMenuItem
             // 
             this.printLogicObjectToolStripMenuItem.Name = "printLogicObjectToolStripMenuItem";
-            this.printLogicObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printLogicObjectToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.printLogicObjectToolStripMenuItem.Text = "Print Logic Object";
             this.printLogicObjectToolStripMenuItem.Click += new System.EventHandler(this.PrintLogicObjectToolStripMenuItem_Click);
             // 
             // dumbStuffToolStripMenuItem
             // 
             this.dumbStuffToolStripMenuItem.Name = "dumbStuffToolStripMenuItem";
-            this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dumbStuffToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.dumbStuffToolStripMenuItem.Text = "Code Testing";
             this.dumbStuffToolStripMenuItem.Click += new System.EventHandler(this.CodeTestingToolStripMenuItem_Click);
             // 
             // viewAsUserToolStripMenuItem
             // 
             this.viewAsUserToolStripMenuItem.Name = "viewAsUserToolStripMenuItem";
-            this.viewAsUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewAsUserToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.viewAsUserToolStripMenuItem.Text = "Run As User";
             this.viewAsUserToolStripMenuItem.Click += new System.EventHandler(this.viewAsUserToolStripMenuItem_Click);
             // 
@@ -866,6 +866,7 @@ namespace MMR_Tracker_V2
             this.Load += new System.EventHandler(this.MainInterface_Load);
             this.ResizeEnd += new System.EventHandler(this.MainInterface_ResizeEnd);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainInterface_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.preventKeyShortcuts);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

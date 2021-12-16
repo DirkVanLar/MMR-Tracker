@@ -66,6 +66,10 @@ namespace MMR_Tracker_V2
                     DebugScreen.DebugFunction = 5;
                     DebugScreen.Show();
                 }
+                if (listBox1.SelectedItem.ToString().Contains("https://wiki.ootrandomizer.com/index.php?title=Glossary"))
+                {
+                    System.Diagnostics.Process.Start("https://wiki.ootrandomizer.com/index.php?title=Glossary");
+                }
 
             }
             if (this.Text == "Online Play Help")
@@ -132,7 +136,7 @@ namespace MMR_Tracker_V2
             Lines.Add("Importing Logic:");
             Lines.Add("You will start by importing the logic you used to generate your rom.");
             Lines.Add("You can import a logic file or use the default Causal or Glitched Logic as they are found in the dev branch of the github repository.");
-            Lines.Add("You can also select a Save file (.MMRSAV) from a previous run. This will apply the logic used in that saved file and give you the option to import it's settings. (Progress will not be imported)");
+            Lines.Add("You can also import the (HTML) spoiler log generated with your seed. This is recomended as it will automatically apply the Spoiler data and settings found in the spoiler log.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Using The Tracker:");
             Lines.Add("The tracker will show you all available locations based on your logic and obtained items.");
@@ -153,29 +157,32 @@ namespace MMR_Tracker_V2
             }
             Lines.Add("List Filtering:");
             Lines.Add("Typing in the text box above a list will filter the items in the list.");
-            Lines.Add("You can use certain symbols to further refine your search. Only one symbol can be used per search term.");
-            Lines.Add("You can filter by area by typing # at the beggining of your filter.");
-            Lines.Add("You can filter by logic name (The name used in the logic file) by typing ~ at the beggining of your filter.");
-            Lines.Add("You can filter by Item Name by typing % at the beggining of your filter.");
-            Lines.Add("You can filter by Location Name by typing $ at the beggining of your filter.");
-            Lines.Add("You can filter by Item Type (Bottle, Entrance, item etc) by typing @ at the beggining of your filter.");
-            Lines.Add("You can filter by The Item Name of the randomized Item found in a location by typing _ at the beggining of your filter.");
-            Lines.Add("Typing * at the beggining of your search will show things that match your search and are starred. Typing ** as your search will show you all starred entries.");
-            Lines.Add("Typing ! at the beggining of your search will invert the filter, showing only things that don't match the search.");
-            Lines.Add("Typing = at the beggining of your search will show only things that match your search exactly.");
-            Lines.Add("Unlike other symbols ! and = can be used alongside other symbols as long as they are at the beggining of a term. ! and = do nothing when used together.");
-            Lines.Add("Adding ^ to the begging of your search string will cause the corrisopnding list box to show all checks reguardless of whether they are available as long as they match the filter.");
+            Lines.Add("You can use certain symbols at the beggining of your search term to further refine your search.");
+            Lines.Add("# Will filter you search by location name (\"#woodfall\" will show checks with the location area \"Woodfall\".");
+            Lines.Add("~ Will fiter by the name the location uses in the logic file.");
+            Lines.Add("% Will filter by the item name associated with the check.");
+            Lines.Add("$ Will filter by the location name associated with your check.");
+            Lines.Add("@ Will filter the item by its type (Bottle, Entrance, item etc)(Item type is typically only used internally).");
+            Lines.Add("The search can further be refined with certain modifier symbols. These can be used along with the modifiers above but must go before them in the serach.");
+            Lines.Add("_ Will apply your search term to the object randomized at the selected location rather than the location. So for example if \"Old Lady\" contained the \"Goron Mask\", typing \"$searchterm\" would compare your search term to location name of the old lady check while typing \"_$searchterm\" would compare your search term to the goron mask check.");
+            Lines.Add("! will invert your search, showing only things that don't match your search term.");
+            Lines.Add("= will only show results that match your search term exactly.");
+            Lines.Add("Certain global modifiers can also be added to the search, but must olnly be used at the very beggining of the search box and can only be used once.");
+            Lines.Add("^ will cause the corrisopnding list box to show all checks reguardless of whether they are available as long as they match the filter. IT functions similar to checking the \"show all\" check box");
+            Lines.Add("* Will restrict your search to only items that have been starred. unlike other terms, it will have an effect even when used by it's self with no search term.");
             Lines.Add("You can filter multiple things at once by seperating them with a |. (Pipe, located below the backspace key on most keyboards)");
+            Lines.Add("This funtions similar to an OR logic statement.");
             Lines.Add("For example typing \"Clock|Wood\" will show all checks that contain the word \"Clock\" as well as all checks that contain \"Wood\".");
             Lines.Add("You can also filter by multiple words by seperating them with a &.");
+            Lines.Add("This funtions similar to an AND logic statement.");
             Lines.Add("For example typing \"Clock&Wood\" will show only checks that contain both. the word \"clock\" and the word \"wood\".");
             Lines.Add("These methods can be combined in the same search.");
             Lines.Add("For example typing \"#Clock|Wood&fairy\" in the search box will show all entries who area contains the word \"Clock\" or display name contains both the words \"Wood\" and \"Fairy\".");
             Lines.Add(Utility.CreateDivider(listBox1));
-            Lines.Add("Setting a Location vs Checking a Location:");
-            Lines.Add("The set item and set entrance button will mark an item/entrance as being at a location without actually marking that item/entrance as being obtained.");
+            Lines.Add("Setting a Location vs Marking a Location:");
+            Lines.Add("The Mark item and Mark entrance button will mark an item/entrance as being at a location without actually marking that item/entrance as being obtained.");
             Lines.Add("This is usefull when you know what item is in a location but haven't actually obtianed it such as if you see it in a shop or read about it in a hint.");
-            Lines.Add("Set items (Also reffered to as Marked Items) will always appear in your list even if they aren't available. If they aren't available, the text will have a strike through.");
+            Lines.Add("Marked items will always appear in your list even if they aren't available. If they aren't available, the text will have a strike through.");
             Lines.Add("You can middle click an item to set it quickly as long as the middle click function is set to set item in Options -> Misc Options.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Starring an item:");
@@ -206,23 +213,24 @@ namespace MMR_Tracker_V2
             Lines.Add("Loading a save file in the Radnomization options page will import the setting from that save file without importing progress.");
             Lines.Add("You can save a template save file that will only conatin your current radnomization options.");
             Lines.Add("You can import the settings json file created by the randomizer to import those settings into the tracker.");
-            Lines.Add("You can also import setting strings for randomized locations/entrances and junk locations from the randomizer (Starting item setting string not currently supported).");
-            Lines.Add(Utility.CreateDivider(listBox1));
-            Lines.Add("Importing Spoiler log:");
-            Lines.Add("This will allow you to import the spoiler log generated with your rom.");
-            Lines.Add("After you have imoprted the spoiler log checking/marking a location will automatically Fill in the appropriate item based on your spoiler log.");
+            Lines.Add("You can also import setting strings for randomized locations/entrances and junk locations from the randomizer.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Strict Logic Handeling:");
-            Lines.Add("This option might make your logic calculations a bit slower, but will prevent rare bugs that occur involvolving circular dependencies in logic.");
-            Lines.Add("You should amost never need to enable this, but it's worth a try if logic is being buggy.");
+            Lines.Add("This option might make your logic calculations a bit slower, but will prevent rare bugs that occur involving circular dependencies in logic.");
+            Lines.Add("It is recomended you keep this enabled in most cases.");
+            Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Rando Options:");
+            Lines.Add("This allows you to enable or disable options from the radnomizer that effect logic.");
+            Lines.Add("If these options are enable, logic will be patch to mimic the logic changes the randomizer makes.");
+            Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Change Logic:");
+            Lines.Add("This will let you swap the logic you're currently using.");
+            Lines.Add("The tracker will attempt to preserve your check location/entrances and what they contained, however this may not always work if the changes in logic are to drastic.");
             Lines.Add(Utility.CreateDivider(listBox1));
             if ((instance.EntranceRando && instance.Options.EntranceRadnoEnabled) || instance.LogicVersion == 0)
             {
                 Lines.Add("ENTRANCE RADNO:");
                 if (instance.LogicVersion == 0) { Lines.Add("(These options are only available if entrances are randomized.)"); }
-                Lines.Add(Utility.CreateDivider(listBox1));
-                Lines.Add("Use Song Of Time In Path finder:");
-                Lines.Add("By default using song of time is not considered in the pathfinder. Clicking this will toggle Using Song Of time in the Pathfinder");
                 Lines.Add(Utility.CreateDivider(listBox1));
                 Lines.Add("Include Item locations as destination:");
                 Lines.Add("This option will add Item locations to the destination Combo box.");
@@ -241,27 +249,53 @@ namespace MMR_Tracker_V2
             }
             Lines.Add("MISC OPTIONS:");
             Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Horizontal Layout:");
+            Lines.Add("This option will display the available locations and checked locations boxes beside each other instead of above and below each other.");
+            Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Show Entry Name Tooltip:");
             Lines.Add("This will toggle the tooltip that displays the full name of an item when you mouse over an item in a list.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Seperate marked items:");
             Lines.Add("If this option is enabled, set/marked items will be moved to the bottom of the list box.");
             Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Middle click function:");
+            Lines.Add("This will toggle the functionality of the middle mouse button.");
+            Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Change font:");
+            Lines.Add("Changes the font used in a majority of list boxes.");
+            Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Change Default Options:");
+            Lines.Add("This opens the default option box that was available when the tracker was firts launched, allowing you to change those settings.");
+            Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("ONLINE PLAY:");
+            Lines.Add("Online play allows you to sync items you check and mark in your tracker with others over the internet.");
+            Lines.Add("This is usefull for co-op or online playthroughs where items and knowlege are shared.");
+            Lines.Add("More information can be found in the Online play help page.");
+            Lines.Add("(Click here to open the online play help page)");
+            Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Tools:");
             Lines.Add(Utility.CreateDivider(listBox1));
-            Lines.Add("Seed Checker:");
+            Lines.Add("Importing Spoiler log:");
+            Lines.Add("This will allow you to import the spoiler log generated with your rom.");
+            Lines.Add("After you have imported the spoiler log checking/marking a location will automatically Fill in the appropriate item based on your spoiler log.");
+            Lines.Add("Your randomizer settings will also be imported along with the spoiler log including things like Force junk locations, starting items and other logic effecting options such as (Remove Keys).");
+            Lines.Add(Utility.CreateDivider(listBox1));
+            Lines.Add("Spoiler Log tools:");
+            Lines.Add("The spoiler log tools provides you with a number of utilities if a spoiler log is imported");
             Lines.Add("The seed checker will tell you if your seed can reach the selected items using your current logic.");
-            Lines.Add("You will be asked to provide the spoiler log for the seed you want to check");
-            Lines.Add("If a spoiler log is already imported into the tracker it will use that data.");
             Lines.Add("Adding a location to the Checks Ignored list will check if the selected items are obtainable assuming you never do the selected checks. ");
             Lines.Add("The seed checker will not reveal what items are on what checks.");
-            Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Playthorugh Generator:");
             Lines.Add("The play through generator will show you all of the items you need to obtain to beat the game along with what order you need to obtain them.");
-            Lines.Add("You will be asked to provide the spoiler log which will be used to generate the playthrough");
-            Lines.Add("If a spoiler log is already imported into the tracker it will use that data.");
-            Lines.Add("The playthrough generator will use the logic entry \"MMRTGameClear\" to determine what constitutes beating the game. If this entry does not exist in your logic it will be created using default rquirements");
+            Lines.Add("The playthrough generator will default to use the logic entry \"MMRTGameClear\" to determine what constitutes beating the game. If this entry does not exist in your logic it will be created using default requirements");
+            Lines.Add("You can select an alternative playthrough goal from the provided list box.");
             Lines.Add("This will spoil your seed! only use this if you already know where items are or don't care to be spoiled.");
+            Lines.Add("Spoiler log Lookup:");
+            Lines.Add("This will allow you to lookup the location of an item without needing to open your spoiler log.");
+            Lines.Add("You can also look up the general area of the item. It won't tell you where exactly the item is located, but will give you the area it's located in.");
+            Lines.Add("You can also look up the sphere an item is obtaniable.");
+            Lines.Add("A sphere is best defined under the \"Spheres\" section on this web page.");
+            Lines.Add("https://wiki.ootrandomizer.com/index.php?title=Glossary");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("What Unlocked This:");
             Lines.Add("This will show what items you have obtained that made this check available in your tracker.");
@@ -278,13 +312,16 @@ namespace MMR_Tracker_V2
             Lines.Add("-Copy / Pasting entries.");
             Lines.Add("-The ability to reorder fake items while auto updating values in other entries.");
             Lines.Add("-The ability to rename fake items.");
+            Lines.Add("-The ability to quickly add \"any X amount of Y item\" entries.");
+            Lines.Add("-The ability to parse advanced logical expressions into the randomizr format.");
+            Lines.Add("[Example: item1 & (item2 | (item3 & item4) | (item7 | item8))]");
             Lines.Add("When the logic editor loads it will automatically import the logic used by the tracker.");
             Lines.Add("If no Logic is present you can load logic from a logic file or create logic from scratch by adding new items.");
             Lines.Add("Once you've made your changes you can save the logic to a file or apply it directly to the tracker.");
             Lines.Add(Utility.CreateDivider(listBox1));
-            Lines.Add("Update Logic:");
-            Lines.Add("This will let you swap the logic you're currently using.");
-            Lines.Add("The tracker will attempt to preserve your check location/entrances and what they contained, however this may not always work if the changes in logic are to drastic.");
+            Lines.Add("Popout Pathfinder:");
+            Lines.Add("This will open a new window containing the pathfinder.");
+            Lines.Add("Multiple of these pathfinders can be open at once allowing you to keep track of multiple paths.");
             Lines.Add(Utility.CreateDivider(listBox1));
             Lines.Add("Filter Map:");
             Lines.Add("This will display a map of termina that can be clicked on to filter the tracker by the selected area.");
@@ -297,16 +334,6 @@ namespace MMR_Tracker_V2
             Lines.Add("Items will be greyed out until they are obtained. Some items such as boss remains will become active once they become available.");
             Lines.Add("The moon icon in the bottom left will become active when the Game is beatable (Go mode). This is determined the same way the pathfinder determined game clear.");
             Lines.Add("NOTE: you may notice some slight slowdown when using this feature.");
-            Lines.Add(Utility.CreateDivider(listBox1));
-            Lines.Add("Popout Pathfinder:");
-            Lines.Add("This will open a new window containing the pathfinder.");
-            Lines.Add("Multiple of these pathfinders can be open at once allowing you to keep track of multiple paths.");
-            Lines.Add(Utility.CreateDivider(listBox1));
-            Lines.Add("Online Play:");
-            Lines.Add("Online play allows you to sync items you check and mark in your tracker with others over the internet.");
-            Lines.Add("This is usefull for co-op or online playthroughs where items and knowlege are shared.");
-            Lines.Add("More information can be found in the Online play help page.");
-            Lines.Add("(Click here to open the online play help page)");
             Lines.Add(Utility.CreateDivider(listBox1));
 
             foreach (var i in Lines)

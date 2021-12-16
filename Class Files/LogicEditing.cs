@@ -795,7 +795,7 @@ namespace MMR_Tracker_V2
             var BYOAData = Utility.BYOAmmoData();
 
             //Check for a MMR Dungeon clear Entry
-            if (Instance.IsMM() && NewEntry.IsFake && Instance.EntranceAreaDic.Count > 0 && Instance.EntranceAreaDic.ContainsKey(NewEntry.ID))
+            if (NewEntry.IsFake && Instance.EntranceAreaDic.Count > 0 && Instance.EntranceAreaDic.ContainsKey(NewEntry.ID))
             {
                 NewEntry = LogicEditing.HandleMMRTDungeonClearLogic(NewEntry, Instance);
                 if (NewEntry == null) { return null; }
