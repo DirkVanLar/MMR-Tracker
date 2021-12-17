@@ -85,7 +85,7 @@ namespace MMR_Tracker_V2
             public int RandomizedItem { get; set; } = -2; //The random Item that was placed at the location
             public string JunkItemType { get; set; } = "Junk"; //if the item is a junk item, what kind of junk item if applicable
             public bool IsFake { get; set; } = true; //Whether or not the entry is a logic shortcut aka "Fake Item"
-            public bool RandomizerStaticFakeItem { get; set; } = true; //I fthe entry was fake, was it a static fake item created by the randomizer
+            public bool RandomizerStaticFakeItem { get; set; } = false; //If the entry was fake, was it a static fake item created by the randomizer
             public int Options { get; set; } = 0; //Whether or not the location is randomized, unrandomized or forced Junk and whether or not it's a starting Item
             public bool Starred { get; set; } = false; //Whether the check has been starred
             public string LocationArea { get; set; } = ""; //The General Area the location is in

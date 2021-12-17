@@ -66,30 +66,32 @@ namespace MMR_Tracker_V2
                 DicCounter++;
             }
 
-            LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry();
             foreach (var i in NewformatLogicFile.Logic)
             {
-                LogicEntry1.ID = NewformatLogicFile.Logic.IndexOf(i);
-                LogicEntry1.DictionaryName = i.Id;
-                LogicEntry1.Checked = false;
-                LogicEntry1.RandomizedItem = -2;
-                LogicEntry1.RandomizerStaticFakeItem = false;
-                LogicEntry1.SpoilerRandom = -2;
-                LogicEntry1.Required = i.RequiredItems == null ? null : i.RequiredItems.Select(x => LogicNametoId[x]).ToArray();
-                LogicEntry1.Conditionals = i.ConditionalItems == null ? null : i.ConditionalItems.Select(x => x.Select(y => LogicNametoId[y]).ToArray()).ToArray();
-                LogicEntry1.NeededBy = (int)i.TimeNeeded;
-                LogicEntry1.AvailableOn = (int)i.TimeAvailable;
-                LogicEntry1.TimeSetup = (int)i.TimeSetup;
-                LogicEntry1.IsTrick = i.IsTrick;
-                LogicEntry1.TrickEnabled = i.IsTrick;
-                LogicEntry1.TrickToolTip = i.TrickTooltip;
+                LogicObjects.LogicEntry LogicEntry1 = new LogicObjects.LogicEntry
+                {
+                    ID = NewformatLogicFile.Logic.IndexOf(i),
+                    DictionaryName = i.Id,
+                    Checked = false,
+                    RandomizedItem = -2,
+                    RandomizerStaticFakeItem = false,
+                    SpoilerRandom = -2,
+                    Required = i.RequiredItems?.Select(x => LogicNametoId[x]).ToArray(),
+                    Conditionals = i.ConditionalItems?.Select(x => x.Select(y => LogicNametoId[y]).ToArray()).ToArray(),
+                    NeededBy = (int)i.TimeNeeded,
+                    AvailableOn = (int)i.TimeAvailable,
+                    TimeSetup = (int)i.TimeSetup,
+                    IsTrick = i.IsTrick,
+                    TrickEnabled = i.IsTrick,
+                    TrickToolTip = i.TrickTooltip
+                };
 
                 var DicEntry = instance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
                 if (DicEntry != null)
                 {
                     LogicEntry1.IsFake = DicEntry.FakeItem;
                     LogicEntry1.RandomizerStaticFakeItem = DicEntry.FakeItem;
-                    LogicEntry1.SpoilerPriceName = DicEntry.SpoilerPriceLocations == null ? null : DicEntry.SpoilerPriceLocations.ToList();
+                    LogicEntry1.SpoilerPriceName = DicEntry.SpoilerPriceLocations?.ToList();
 
                     LogicEntry1.ItemName = (string.IsNullOrWhiteSpace(DicEntry.ItemName)) ? null : DicEntry.ItemName;
                     LogicEntry1.LocationName = (string.IsNullOrWhiteSpace(DicEntry.LocationName)) ? null : DicEntry.LocationName;
@@ -106,7 +108,6 @@ namespace MMR_Tracker_V2
 
                 //Push Data to the instance
                 instance.Logic.Add(LogicEntry1);
-                LogicEntry1 = new LogicObjects.LogicEntry();
             }
 
             instance.EntranceRando = instance.IsEntranceRando();
