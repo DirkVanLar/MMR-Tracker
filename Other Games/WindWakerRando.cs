@@ -70,8 +70,8 @@ namespace MMR_Tracker.Other_Games
             {"Tingle Chest",           "progression_tingle_chests"},
             {"Battlesquid",            "progression_battlesquid"},
             {"Savage Labyrinth",       "progression_savage_labyrinth"},
-            {"Sunken Treasure",        "progression_triforce_charts"},
-            {"Sunken Treasure Triforce",   "progression_treasure_charts"},
+            {"Sunken Treasure Triforce", "progression_triforce_charts"},
+            {"Sunken Treasure",         "progression_treasure_charts"},
             {"Consumables only",        "Never_enabled"},
             {"No progression",          "Never_enabled" }
         };
@@ -721,7 +721,19 @@ namespace MMR_Tracker.Other_Games
                 var LogicEntry = Instance.Logic[Instance.DicNameToID[i.DictionaryName]];
                 if (i.LocationCategory != null && i.LocationCategory.Any())
                 {
-                    foreach(var c in i.LocationCategory) { if (!OptionLines.Select(x => x.Trim()).Contains(CategoryOptionDict[c])) { LogicEntry.SetJunk(); } }
+                    foreach(var c in i.LocationCategory) 
+                    {
+                        var Category = c;
+                        if (c == "Sunken Treasure" && i.ItemName.StartsWith("Triforce Shard "))
+                        {
+                            Category = c + " Triforce";
+                        }
+                        if (!OptionLines.Select(x => x.Trim()).Contains(CategoryOptionDict[Category])) 
+                        { 
+                            LogicEntry.SetJunk(); 
+                        } 
+
+                    }
                 }
             }
             if (!OptionLines.Select(x => x.Trim()).Contains("randomize_charts")) 
