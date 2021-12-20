@@ -355,8 +355,9 @@ namespace MMR_Tracker.Forms.Sub_Forms
             else if (Item.CountCheckData == null || Item.CountCheckData.Count() < 1)
             {
                 Form fontSelect = new Form();
+                fontSelect.Text = Item.LocationName ?? Item.DictionaryName;
+                fontSelect.ControlBox = false;
                 fontSelect.FormBorderStyle = FormBorderStyle.FixedSingle;
-                fontSelect.Text = "Count";
                 fontSelect.Width = (220);
                 fontSelect.Height = (112);
                 try { fontSelect.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon()); } catch { }

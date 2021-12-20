@@ -751,12 +751,7 @@ namespace MMR_Tracker.Class_Files
         public static bool SameItemMultipleChecks(int item, LogicObjects.TrackerInstance Instance)
         {
             if (item < 0 || (!Instance.Options.StrictLogicHandeling && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld)) { return false; }
-            int count = 0;
-            foreach (var entry in Instance.Logic)
-            {
-                if (entry.RandomizedItem == item && entry.Checked && entry.ItemBelongsToMe()) { count += 1; }
-            }
-            return count > 1;
+            return Instance.Logic.Where(entry => entry.RandomizedItem == item && entry.Checked && entry.ItemBelongsToMe()).Count() > 1;
         }
 
         public static void CreateTrackerInstance(LogicObjects.TrackerInstance Instance, string[] RawLogic)

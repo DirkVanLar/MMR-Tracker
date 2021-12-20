@@ -1038,7 +1038,7 @@ namespace MMR_Tracker_V2
         // List/combo Box Functions---------------------------------------------------------------------------
         #region List/combo Box
 
-        public void PrintToListBox(int Container = 0)
+        public void PrintToListBox(int ContainerToUpdate = 0)
         {
             if (!LogicObjects.MainTrackerInstance.Logic.Any(x => x.AppearsInListbox())) { return; }
             LBValidLocations.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
@@ -1173,13 +1173,9 @@ namespace MMR_Tracker_V2
             int AvalableEntrances = 0;
             int CheckedLocations = 0;
 
-            if (Container == 0 || Container == 1) { LBValidLocations.Items.Clear(); }
-            if (Container == 0 || Container == 2) { LBValidEntrances.Items.Clear(); }
-            if (Container == 0 || Container == 3) { LBCheckedLocations.Items.Clear(); }
-
-            LBValidLocations.BeginUpdate();
-            LBValidEntrances.BeginUpdate();
-            LBCheckedLocations.BeginUpdate();
+            if (ContainerToUpdate == 0 || ContainerToUpdate == 1) { LBValidLocations.Items.Clear(); }
+            if (ContainerToUpdate == 0 || ContainerToUpdate == 2) { LBValidEntrances.Items.Clear(); }
+            if (ContainerToUpdate == 0 || ContainerToUpdate == 3) { LBCheckedLocations.Items.Clear(); }
 
             Dictionary<string, int[]> LocAreaData = new Dictionary<string, int[]>();
 
@@ -1189,25 +1185,35 @@ namespace MMR_Tracker_V2
                 {
                     if (!LocAreaData.ContainsKey(entry.LocationEntry.LocationArea.ToUpper()))
                     {
-                        var ChecksInThisArea = LogicObjects.MainTrackerInstance.Logic.Where(x => x.LocationArea == entry.LocationEntry.LocationArea && entry.LocationEntry.AppearsInListbox());
-                        var UncheckedChecksInThisArea = ChecksInThisArea.Where(x => !x.Checked).Count();
-                        var checkedChecksInThisArea = ChecksInThisArea.Where(x => x.Checked).Count();
-                        LocAreaData.Add(entry.LocationEntry.LocationArea.ToUpper(), new int[] { UncheckedChecksInThisArea, 0, ChecksInThisArea.Count(), checkedChecksInThisArea });
+                        var ItemChecksInThisArea = LogicObjects.MainTrackerInstance.Logic.Where(x => x.LocationArea == entry.LocationEntry.LocationArea && x.AppearsInListbox() && !x.IsEntrance());
+                        var EntranceChecksInThisArea = LogicObjects.MainTrackerInstance.Logic.Where(x => x.LocationArea == entry.LocationEntry.LocationArea && x.AppearsInListbox() && x.IsEntrance());
+
+                        LocAreaData.Add(entry.LocationEntry.LocationArea.ToUpper(), new int[] {
+                            ItemChecksInThisArea.Where(x => !x.Checked).Count(), 0,
+                            EntranceChecksInThisArea.Where(x => !x.Checked).Count(), 0,
+                            ItemChecksInThisArea.Count(), ItemChecksInThisArea.Where(x => x.Checked).Count(),
+                            EntranceChecksInThisArea.Count(), EntranceChecksInThisArea.Where(x => x.Checked).Count()
+                        });
                     }
                     if (entry.Container == 1 || entry.Container == 2)
                     {
-                        LocAreaData[entry.LocationEntry.LocationArea.ToUpper()][1]++;
+                        if (entry.LocationEntry.IsEntrance()) { LocAreaData[entry.LocationEntry.LocationArea.ToUpper()][3]++; }
+                        else { LocAreaData[entry.LocationEntry.LocationArea.ToUpper()][1]++; }
                     }
                 }
             }
 
+            LBValidLocations.BeginUpdate();
+            LBValidEntrances.BeginUpdate();
+            LBCheckedLocations.BeginUpdate();
+
             foreach (var entry in ListItems)
             {
-                if (entry.Container == 1 && (Container == 0 || Container == 1)) 
+                if (entry.Container == 1 && (ContainerToUpdate == 0 || ContainerToUpdate == 1)) 
                 { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.LocationEntry.HasRandomItem(false), LocAreaData); AvalableLocations++; }
-                if (entry.Container == 2 && (Container == 0 || Container == 2)) 
+                if (entry.Container == 2 && (ContainerToUpdate == 0 || ContainerToUpdate == 2)) 
                 { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.LocationEntry.HasRandomItem(false), LocAreaData); AvalableEntrances++; }
-                if (entry.Container == 3 && (Container == 0 || Container == 3)) 
+                if (entry.Container == 3 && (ContainerToUpdate == 0 || ContainerToUpdate == 3)) 
                 { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false, LocAreaData); CheckedLocations++; }
             }
 
@@ -1215,9 +1221,9 @@ namespace MMR_Tracker_V2
             LBValidEntrances.EndUpdate();
             LBCheckedLocations.EndUpdate();
 
-            if (Container == 0 || Container == 1) { LBValidLocations.TopIndex = lbLocTop; }
-            if (Container == 0 || Container == 2) { LBValidEntrances.TopIndex = lbEntTop; }
-            if (Container == 0 || Container == 3) { LBCheckedLocations.TopIndex = lbCheckTop; }
+            if (ContainerToUpdate == 0 || ContainerToUpdate == 1) { LBValidLocations.TopIndex = lbLocTop; }
+            if (ContainerToUpdate == 0 || ContainerToUpdate == 2) { LBValidEntrances.TopIndex = lbEntTop; }
+            if (ContainerToUpdate == 0 || ContainerToUpdate == 3) { LBCheckedLocations.TopIndex = lbCheckTop; }
 
             label1.Text = "Available Locations: " + ((AvalableLocations == TotalLoc) ? AvalableLocations.ToString() : (AvalableLocations.ToString() + "/" + TotalLoc.ToString()));
             label2.Text = "Checked locations: " + ((CheckedLocations == totalchk) ? CheckedLocations.ToString() : (CheckedLocations.ToString() + "/" + totalchk.ToString()));
@@ -1238,17 +1244,21 @@ namespace MMR_Tracker_V2
                 else if (ShowMarked && !entry.IsEntrance()) { Header += " SET ITEMS"; }
                 else if (entry.IsEntrance()) { Header += " ENTRANCES"; }
                 string HeaderString = $"{Header}:";
-                if (LogicObjects.MainTrackerInstance.Options.ShowAdditionalStats && LocAreaData[Header][2] > 0)
+
+                if (LogicObjects.MainTrackerInstance.Options.ShowAdditionalStats &&
+                    LocAreaData.ContainsKey(entry.LocationArea.ToUpper()) &&
+                    (LocAreaData[entry.LocationArea.ToUpper()][1] > 0 || LocAreaData[entry.LocationArea.ToUpper()][3] > 0) &&
+                    !entry.LocationArea.ToUpper().StartsWith("%"))
                 {
-                    var locData = LocAreaData[Header];
+                    var locData = LocAreaData[entry.LocationArea.ToUpper()];
                     switch (ListEntry.Container)
                     {
                         case 1:
                         case 2:
-                            HeaderString += $" ({locData[1]}/{locData[0]})";
+                            HeaderString += entry.IsEntrance() ? $" ({locData[3]}/{locData[2]})" : $" ({locData[1]}/{locData[0]})";
                             break;
                         case 3:
-                            HeaderString += $" ({locData[3]}/{locData[2]})";
+                            HeaderString += entry.IsEntrance() ? $" ({locData[7]}/{locData[6]})" : $" ({locData[5]}/{locData[4]})";
                             break;
                     }
                 }

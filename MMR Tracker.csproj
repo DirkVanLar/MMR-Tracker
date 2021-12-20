@@ -247,7 +247,6 @@
     <Compile Include="Forms\Item Select Forms\MiscMultiItemSelect.Designer.cs">
       <DependentUpon>MiscMultiItemSelect.cs</DependentUpon>
     </Compile>
-    <Compile Include="Other Games\Outdated\WindWakerTools.cs" />
     <Compile Include="Other Games\SkywardSwordRando.cs" />
     <Compile Include="Other Games\WindWakerRando.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -437,9 +436,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Misc\OOTRTestFiles\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>; Move all assemblies and related files to lib folder
