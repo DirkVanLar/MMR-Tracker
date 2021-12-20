@@ -763,6 +763,7 @@ namespace MMR_Tracker_V2
             }
             catch { }
         }
+
         private void PresetDropDownOpening(object sender, EventArgs e)
         {
             UserSettings.HandleUserPreset(sender, e);
@@ -1180,14 +1181,34 @@ namespace MMR_Tracker_V2
             LBValidEntrances.BeginUpdate();
             LBCheckedLocations.BeginUpdate();
 
+            Dictionary<string, int[]> LocAreaData = new Dictionary<string, int[]>();
+
+            if (LogicObjects.MainTrackerInstance.Options.ShowAdditionalStats)
+            {
+                foreach (var entry in ListItems)
+                {
+                    if (!LocAreaData.ContainsKey(entry.LocationEntry.LocationArea.ToUpper()))
+                    {
+                        var ChecksInThisArea = LogicObjects.MainTrackerInstance.Logic.Where(x => x.LocationArea == entry.LocationEntry.LocationArea && entry.LocationEntry.AppearsInListbox());
+                        var UncheckedChecksInThisArea = ChecksInThisArea.Where(x => !x.Checked).Count();
+                        var checkedChecksInThisArea = ChecksInThisArea.Where(x => x.Checked).Count();
+                        LocAreaData.Add(entry.LocationEntry.LocationArea.ToUpper(), new int[] { UncheckedChecksInThisArea, 0, ChecksInThisArea.Count(), checkedChecksInThisArea });
+                    }
+                    if (entry.Container == 1 || entry.Container == 2)
+                    {
+                        LocAreaData[entry.LocationEntry.LocationArea.ToUpper()][1]++;
+                    }
+                }
+            }
+
             foreach (var entry in ListItems)
             {
                 if (entry.Container == 1 && (Container == 0 || Container == 1)) 
-                { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.LocationEntry.HasRandomItem(false)); AvalableLocations++; }
+                { lastLocArea = WriteObject(entry, LBValidLocations, lastLocArea, entry.LocationEntry.HasRandomItem(false), LocAreaData); AvalableLocations++; }
                 if (entry.Container == 2 && (Container == 0 || Container == 2)) 
-                { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.LocationEntry.HasRandomItem(false)); AvalableEntrances++; }
+                { lastEntArea = WriteObject(entry, LBValidEntrances, lastEntArea, entry.LocationEntry.HasRandomItem(false), LocAreaData); AvalableEntrances++; }
                 if (entry.Container == 3 && (Container == 0 || Container == 3)) 
-                { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false); CheckedLocations++; }
+                { lastChkArea = WriteObject(entry, LBCheckedLocations, lastChkArea, false, LocAreaData); CheckedLocations++; }
             }
 
             LBValidLocations.EndUpdate();
@@ -1203,7 +1224,7 @@ namespace MMR_Tracker_V2
             label3.Text = "Available Entrances: " + ((AvalableEntrances == TotalEnt) ? AvalableEntrances.ToString() : (AvalableEntrances.ToString() + "/" + TotalEnt.ToString()));
         }
 
-        private string WriteObject(LogicObjects.ListItem ListEntry, ListBox lb, string lastArea, bool Marked)
+        private string WriteObject(LogicObjects.ListItem ListEntry, ListBox lb, string lastArea, bool Marked, Dictionary<string, int[]> LocAreaData)
         {
             var entry = ListEntry.LocationEntry;
             bool ShowMarked = (Marked && LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom);
@@ -1216,7 +1237,22 @@ namespace MMR_Tracker_V2
                 if (ShowMarked && entry.IsEntrance()) { Header += " SET EXITS"; }
                 else if (ShowMarked && !entry.IsEntrance()) { Header += " SET ITEMS"; }
                 else if (entry.IsEntrance()) { Header += " ENTRANCES"; }
-                lb.Items.Add(Header + ":");
+                string HeaderString = $"{Header}:";
+                if (LogicObjects.MainTrackerInstance.Options.ShowAdditionalStats && LocAreaData[Header][2] > 0)
+                {
+                    var locData = LocAreaData[Header];
+                    switch (ListEntry.Container)
+                    {
+                        case 1:
+                        case 2:
+                            HeaderString += $" ({locData[1]}/{locData[0]})";
+                            break;
+                        case 3:
+                            HeaderString += $" ({locData[3]}/{locData[2]})";
+                            break;
+                    }
+                }
+                lb.Items.Add(HeaderString);
                 returnLastArea = entry.LocationArea;
             }
             lb.Items.Add(ListEntry);
@@ -1425,6 +1461,7 @@ namespace MMR_Tracker_V2
             enableBringYourOwnAmmoToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.BringYourOwnAmmo);
             stricterLogicHandelingToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.StrictLogicHandeling);
             showEntryNameToolTipToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip);
+            showAdditionalStatsToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.ShowAdditionalStats);
             includeItemLocationsAsDestinationToolStripMenuItem.Checked = (LogicObjects.MainTrackerInstance.Options.IncludeItemLocations);
             changeMiddleClickToStarToolStripMenuItem.Text = (LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark) ? "Make Middle Click Set Item" : "Make Middle Click Star Item";
             entranceRandoToolStripMenuItem.Visible = LogicObjects.MainTrackerInstance.EntranceRando;
@@ -1727,6 +1764,13 @@ namespace MMR_Tracker_V2
                 CMBEnd.SelectedIndex = 0;
             }
             catch { }
+        }
+
+        private void showAdditionalStatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicObjects.MainTrackerInstance.Options.ShowAdditionalStats = !LogicObjects.MainTrackerInstance.Options.ShowAdditionalStats;
+            FormatMenuItems();
+            PrintToListBox();
         }
     }
 }

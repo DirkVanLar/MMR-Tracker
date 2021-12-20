@@ -56,6 +56,7 @@ namespace MMR_Tracker_V2
             public bool ShowEntryNameTooltip { get; set; } = true;
             public bool MiddleClickStarNotMark { get; set; } = false;
             public bool HorizontalLayout { get; set; } = false;
+            public bool ShowAdditionalStats { get; set; } = false;
             public string BomberCode { get; set; } = "";
             public string LotteryNumber { get; set; } = "";
             public Font FormFont { get; set; } = SystemFonts.DefaultFont;
@@ -181,6 +182,7 @@ namespace MMR_Tracker_V2
             public bool CheckForUpdates { get; set; } = true;
             public bool HorizontalLayout { get; set; } = false;
             public bool OtherGamesOK { get; set; } = false;
+            public bool ShowAdditionalStats { get; set; } = false;
             public string MiddleClickFunction { get; set; } = "Set";
             public Font FormFont { get; set; } = SystemFonts.DefaultFont;
         }

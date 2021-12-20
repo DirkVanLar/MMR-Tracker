@@ -55,6 +55,9 @@ namespace MMR_Tracker.Forms.Core_Tracker
             this.nudFontSize = new System.Windows.Forms.NumericUpDown();
             this.cmbFontStyle = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.chkAdditionalStats = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudFontSize)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,7 +95,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             this.cmbMiddle.Items.AddRange(new object[] {
             "Set",
             "Star"});
-            this.cmbMiddle.Location = new System.Drawing.Point(176, 101);
+            this.cmbMiddle.Location = new System.Drawing.Point(176, 122);
             this.cmbMiddle.Name = "cmbMiddle";
             this.cmbMiddle.Size = new System.Drawing.Size(52, 21);
             this.cmbMiddle.TabIndex = 6;
@@ -103,7 +106,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             this.label4.BackColor = System.Drawing.SystemColors.Control;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(33, 103);
+            this.label4.Location = new System.Drawing.Point(33, 124);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(129, 13);
             this.label4.TabIndex = 7;
@@ -240,7 +243,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.label12.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(12, 100);
+            this.label12.Location = new System.Drawing.Point(12, 121);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(15, 19);
             this.label12.TabIndex = 21;
@@ -249,7 +252,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(12, 174);
+            this.btnSave.Location = new System.Drawing.Point(12, 195);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(57, 23);
             this.btnSave.TabIndex = 22;
@@ -259,7 +262,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(75, 174);
+            this.btnApply.Location = new System.Drawing.Point(75, 195);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(153, 23);
             this.btnApply.TabIndex = 23;
@@ -279,7 +282,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.label13.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(12, 135);
+            this.label13.Location = new System.Drawing.Point(12, 156);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(15, 19);
             this.label13.TabIndex = 28;
@@ -292,7 +295,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             this.label3.BackColor = System.Drawing.SystemColors.Control;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(33, 126);
+            this.label3.Location = new System.Drawing.Point(33, 147);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 24;
@@ -304,7 +307,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             this.label10.BackColor = System.Drawing.SystemColors.Control;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label10.Location = new System.Drawing.Point(33, 149);
+            this.label10.Location = new System.Drawing.Point(33, 170);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(71, 13);
             this.label10.TabIndex = 25;
@@ -313,7 +316,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             // nudFontSize
             // 
             this.nudFontSize.DecimalPlaces = 2;
-            this.nudFontSize.Location = new System.Drawing.Point(176, 124);
+            this.nudFontSize.Location = new System.Drawing.Point(176, 145);
             this.nudFontSize.Minimum = new decimal(new int[] {
             1,
             0,
@@ -337,7 +340,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             this.cmbFontStyle.Items.AddRange(new object[] {
             "Set",
             "Star"});
-            this.cmbFontStyle.Location = new System.Drawing.Point(110, 146);
+            this.cmbFontStyle.Location = new System.Drawing.Point(110, 167);
             this.cmbFontStyle.Name = "cmbFontStyle";
             this.cmbFontStyle.Size = new System.Drawing.Size(118, 21);
             this.cmbFontStyle.TabIndex = 27;
@@ -347,19 +350,59 @@ namespace MMR_Tracker.Forms.Core_Tracker
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(110, 126);
+            this.textBox1.Location = new System.Drawing.Point(110, 147);
             this.textBox1.MaximumSize = new System.Drawing.Size(60, 60);
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(60, 13);
             this.textBox1.TabIndex = 29;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.label14.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(12, 98);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(15, 19);
+            this.label14.TabIndex = 32;
+            this.label14.Text = "?";
+            this.toolTip1.SetToolTip(this.label14, "Should the tracker display additional statistics about locations?");
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.SystemColors.Control;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label15.Location = new System.Drawing.Point(33, 102);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(131, 13);
+            this.label15.TabIndex = 31;
+            this.label15.Text = "Show Additional Stats";
+            // 
+            // chkAdditionalStats
+            // 
+            this.chkAdditionalStats.AutoSize = true;
+            this.chkAdditionalStats.BackColor = System.Drawing.SystemColors.Control;
+            this.chkAdditionalStats.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkAdditionalStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkAdditionalStats.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.chkAdditionalStats.Location = new System.Drawing.Point(176, 102);
+            this.chkAdditionalStats.Name = "chkAdditionalStats";
+            this.chkAdditionalStats.Size = new System.Drawing.Size(15, 14);
+            this.chkAdditionalStats.TabIndex = 30;
+            this.chkAdditionalStats.UseVisualStyleBackColor = false;
+            // 
             // DefaultOptionSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(237, 206);
+            this.ClientSize = new System.Drawing.Size(237, 247);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.chkAdditionalStats);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.cmbFontStyle);
@@ -419,5 +462,8 @@ namespace MMR_Tracker.Forms.Core_Tracker
         private System.Windows.Forms.ComboBox cmbFontStyle;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.CheckBox chkAdditionalStats;
     }
 }

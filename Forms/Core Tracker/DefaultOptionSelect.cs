@@ -30,6 +30,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             chkSeperate.Checked = Options.Seperatemarked;
             chkShowTooltips.Checked = Options.ToolTips;
             chkUpdates.Checked = Options.CheckForUpdates;
+            chkAdditionalStats.Checked = Options.ShowAdditionalStats;
             cmbMiddle.Text = Options.MiddleClickFunction;
             int counter = 0;
             foreach (FontFamily font in System.Drawing.FontFamily.Families)
@@ -54,6 +55,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
             Options.Seperatemarked = chkSeperate.Checked;
             Options.ToolTips = chkShowTooltips.Checked;
             Options.CheckForUpdates = chkUpdates.Checked;
+            Options.ShowAdditionalStats = chkAdditionalStats.Checked;
             Options.MiddleClickFunction = cmbMiddle.Text;
             Options.FormFont = new Font(familyName: cmbFontStyle.SelectedItem.ToString(), (float)nudFontSize.Value, FontStyle.Regular);
             if (ApplyToTracker)
@@ -62,6 +64,7 @@ namespace MMR_Tracker.Forms.Core_Tracker
                 LogicObjects.MainTrackerInstance.Options.MoveMarkedToBottom = Options.Seperatemarked;
                 LogicObjects.MainTrackerInstance.Options.ShowEntryNameTooltip = Options.ToolTips;
                 LogicObjects.MainTrackerInstance.Options.CheckForUpdate = Options.CheckForUpdates;
+                LogicObjects.MainTrackerInstance.Options.ShowAdditionalStats = Options.ShowAdditionalStats;
                 LogicObjects.MainTrackerInstance.Options.MiddleClickStarNotMark = Options.MiddleClickFunction == "Star";
                 LogicObjects.MainTrackerInstance.Options.FormFont = Options.FormFont;
             }
