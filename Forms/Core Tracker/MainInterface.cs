@@ -1247,7 +1247,12 @@ namespace MMR_Tracker_V2
 
                 if (LogicObjects.MainTrackerInstance.Options.ShowAdditionalStats &&
                     LocAreaData.ContainsKey(entry.LocationArea.ToUpper()) &&
-                    (LocAreaData[entry.LocationArea.ToUpper()][1] > 0 || LocAreaData[entry.LocationArea.ToUpper()][3] > 0) &&
+                    (
+                        LocAreaData[entry.LocationArea.ToUpper()][1] > 0 || 
+                        LocAreaData[entry.LocationArea.ToUpper()][3] > 0 || 
+                        LocAreaData[entry.LocationArea.ToUpper()][5] > 0 ||
+                        LocAreaData[entry.LocationArea.ToUpper()][7] > 0
+                    ) &&
                     !entry.LocationArea.ToUpper().StartsWith("%"))
                 {
                     var locData = LocAreaData[entry.LocationArea.ToUpper()];

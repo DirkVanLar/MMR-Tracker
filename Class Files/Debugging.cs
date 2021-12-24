@@ -25,6 +25,7 @@ using static MMR_Tracker.Class_Files.MMR_Code_Reference.items;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using MMR_Tracker.Class_Files.MMR_Code_Reference;
+using System.Xml;
 
 namespace MMR_Tracker_V2
 {
@@ -41,7 +42,7 @@ namespace MMR_Tracker_V2
         {
             JsonSerializerSettings _jsonSerializerOptions = new JsonSerializerSettings
             {
-                Formatting = Formatting.Indented
+                Formatting = Newtonsoft.Json.Formatting.Indented
             };
             string LogicPrint = JsonConvert.SerializeObject(Logic, _jsonSerializerOptions);
 
@@ -91,7 +92,10 @@ namespace MMR_Tracker_V2
             //SkywardSwordRando.SkywardSwordTesting(false, false, "https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitched%20Requirements.yaml", "Skyward Sword Rando Glitched (Beta)");
 
             //WindWakerRando.TestWWR();
-            OcarinaOfTimeRando.CreateOOTRLogic();
+            //OcarinaOfTimeRando.CreateOOTRLogic();
+
+            OOT3DR.GetSpoilerLog();
+
 
             void testCountEntry()
             {
@@ -473,6 +477,7 @@ namespace MMR_Tracker_V2
             LogicObjects.MainTrackerInstance.RawLogicFile = Lines;
             BackupPopulatePre115TrackerInstance(LogicObjects.MainTrackerInstance);
         }
+
 
     }
 }
