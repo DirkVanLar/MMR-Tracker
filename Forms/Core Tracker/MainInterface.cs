@@ -53,7 +53,7 @@ namespace MMR_Tracker_V2
             
             DateTime date = DateTime.Now;
             string DateString = date.ToString("dd-MM-yy-HH-mm-ss-ff");
-            Debugging.LogFile = @"Recources\Logs\Log-" + DateString + ".txt";
+            Debugging.LogFile = VersionHandeling.BaseProgramPath + @"Recources\Logs\Log-" + DateString + ".txt";
 
             Debugging.ISDebugging = ((Control.ModifierKeys != Keys.Control) && Debugger.IsAttached);
             Debugging.ViewAsUserMode = ((Control.ModifierKeys == Keys.Control) && Debugger.IsAttached);
@@ -145,7 +145,7 @@ namespace MMR_Tracker_V2
 
         public void presetsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start(@"Recources\Other Files\Custom Logic Presets");
+            Process.Start(VersionHandeling.BaseLogicPresetPath);
         }
         #endregion File
         //Menu Strip => Options---------------------------------------------------------------------------
@@ -470,7 +470,7 @@ namespace MMR_Tracker_V2
                 form.Height = 500;
                 form.BackgroundImageLayout = ImageLayout.Stretch;
                 form.Text = "Showing Web page: " + link;
-                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(VersionHandeling.BaseProgramPath + @"Recources\Images\Moon.ico") as Bitmap).GetHicon());
                 form.Show();
             }
             catch
@@ -492,7 +492,7 @@ namespace MMR_Tracker_V2
                 form.Height = 500;
                 form.BackgroundImageLayout = ImageLayout.Stretch;
                 form.Text = "Showing Web page: " + link;
-                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(VersionHandeling.BaseProgramPath + @"Recources\Images\Moon.ico") as Bitmap).GetHicon());
                 form.Show();
             }
             catch
@@ -508,7 +508,7 @@ namespace MMR_Tracker_V2
                     form.Height = 500;
                     form.BackgroundImageLayout = ImageLayout.Stretch;
                     form.Text = "Showing Web page: " + link;
-                    form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                    form.Icon = Icon.FromHandle((Bitmap.FromFile(VersionHandeling.BaseProgramPath + @"Recources\Images\Moon.ico") as Bitmap).GetHicon());
                     form.Show();
                 }
                 catch
@@ -538,12 +538,12 @@ namespace MMR_Tracker_V2
             {
                 Form form = new Form
                 {
-                    BackgroundImage = Bitmap.FromFile(@"Recources\Images\Ocarina Songs.PNG"),
+                    BackgroundImage = Bitmap.FromFile(VersionHandeling.BaseProgramPath + @"Recources\Images\Ocarina Songs.PNG"),
                     Width = 500,
                     Height = 500,
                     BackgroundImageLayout = ImageLayout.Stretch
                 };
-                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(VersionHandeling.BaseProgramPath + @"Recources\Images\Moon.ico") as Bitmap).GetHicon());
                 form.Show();
             }
             catch
@@ -564,12 +564,12 @@ namespace MMR_Tracker_V2
             {
                 Form form = new Form
                 {
-                    BackgroundImage = Bitmap.FromFile(@"Recources\Images\IndexWarp.PNG"),
+                    BackgroundImage = Bitmap.FromFile(VersionHandeling.BaseProgramPath + @"Recources\Images\IndexWarp.PNG"),
                     Width = 250,
                     Height = 400,
                     BackgroundImageLayout = ImageLayout.Stretch
                 };
-                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(VersionHandeling.BaseProgramPath + @"Recources\Images\Moon.ico") as Bitmap).GetHicon());
                 form.Show();
             }
             catch
@@ -591,7 +591,7 @@ namespace MMR_Tracker_V2
                 form.Height = 500;
                 form.BackgroundImageLayout = ImageLayout.Stretch;
                 form.Text = "Showing Web page: " + link;
-                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(VersionHandeling.BaseProgramPath + @"Recources\Images\Moon.ico") as Bitmap).GetHicon());
                 form.Show();
             }
             catch
@@ -613,7 +613,7 @@ namespace MMR_Tracker_V2
                 form.Height = 500;
                 form.BackgroundImageLayout = ImageLayout.Stretch;
                 form.Text = "Showing Web page: " + link;
-                form.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon());
+                form.Icon = Icon.FromHandle((Bitmap.FromFile(VersionHandeling.BaseProgramPath + @"Recources\Images\Moon.ico") as Bitmap).GetHicon());
                 form.Show();
             }
             catch
@@ -1052,7 +1052,7 @@ namespace MMR_Tracker_V2
             int totalchk = 0;
 
             Dictionary<string, int> Groups = new Dictionary<string, int>();
-            if (File.Exists(@"Recources\Other Files\Categories.txt"))
+            if (File.Exists(VersionHandeling.BaseProgramPath + @"Recources\Other Files\Categories.txt"))
             {
                 //Groups = File.ReadAllLines(@"Recources\Other Files\Categories.txt")
                 //    .Select(x => x.ToLower().Trim()).Distinct()
@@ -1060,7 +1060,7 @@ namespace MMR_Tracker_V2
                 //    .ToDictionary(pair => pair.value, pair => pair.index);
 
                 bool AtGame = true;
-                foreach (var i in File.ReadAllLines(@"Recources\Other Files\Categories.txt"))
+                foreach (var i in File.ReadAllLines(VersionHandeling.BaseProgramPath + @"Recources\Other Files\Categories.txt"))
                 {
                     var x = i.ToLower().Trim();
                     if (string.IsNullOrWhiteSpace(x) || x.StartsWith("//")) { continue; }

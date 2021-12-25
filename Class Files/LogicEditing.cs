@@ -15,17 +15,27 @@ namespace MMR_Tracker_V2
         public static List<int> LastUpdated = new List<int>();
         public static bool PopulateTrackerInstance(LogicObjects.TrackerInstance instance)
         {
+            Console.WriteLine($"Determining Logic Type");
             LogicObjects.LogicFile NewformatLogicFile = null;
-            try { NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile)); }
-            catch { Console.WriteLine("Json Logic parse Failed"); }
+            try
+            {
+                NewformatLogicFile = JsonConvert.DeserializeObject<LogicObjects.LogicFile>(string.Join("", instance.RawLogicFile));
+                //NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile)); 
+            }
+            catch
+            {
+                Console.WriteLine($"JSON Parse Failed, assuming old Logic Format");
+            }
 
             if (NewformatLogicFile == null)
             {
+                Console.WriteLine($"Logic Type Was txt, Parsing...");
                 instance.LogicFormat = "txt";
                 return PopulateTXTTrackerInstance(instance);
             }
             else
             {
+                Console.WriteLine($"Logic Type Was json, Parsing...");
                 instance.LogicFormat = "json";
                 return PopulateJSONTrackerInstance(instance);
             }
@@ -34,7 +44,8 @@ namespace MMR_Tracker_V2
 
         public static bool PopulateJSONTrackerInstance(LogicObjects.TrackerInstance instance)
         {
-            LogicObjects.LogicFile NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile));
+            LogicObjects.LogicFile NewformatLogicFile = JsonConvert.DeserializeObject<LogicObjects.LogicFile>(string.Join("", instance.RawLogicFile));
+            //LogicObjects.LogicFile NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile));
             instance.Logic.Clear();
             instance.DicNameToID.Clear();
             instance.EntrancePairs.Clear();
@@ -45,13 +56,16 @@ namespace MMR_Tracker_V2
 
             if (instance.LogicDictionary == null || instance.LogicDictionary.LogicDictionaryList.Count < 1)
             {
+                Console.WriteLine($"Attempting to Find Dictionary matching \nGamecode:{instance.GameCode}\nLogic Version: {instance.LogicVersion}");
                 string DictionaryPath = VersionHandeling.GetJSONDictionaryPath(instance);
                 if (!string.IsNullOrWhiteSpace(DictionaryPath))
                 {
                     try
                     {
+                        Console.WriteLine($"Attempting to Parse Dictionary at {DictionaryPath}");
                         MasterDic = JsonConvert.DeserializeObject<LogicObjects.LogicDictionary>(File.ReadAllText(DictionaryPath));
                         instance.LogicDictionary = MasterDic;
+                        Console.WriteLine($"Dictionary Parsed");
                     }
                     catch { MessageBox.Show($"The Dictionary File \"{DictionaryPath}\" has been corrupted. The tracker will not function correctly."); }
                 }

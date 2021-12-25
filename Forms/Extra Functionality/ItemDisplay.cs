@@ -99,7 +99,7 @@ namespace MMR_Tracker.Forms
 
         public static Bitmap GetImage(int Column, int Row)
         {
-            Bitmap source = new Bitmap(@"Recources\Images\Nintendo 64 - The Legend of Zelda Majoras Mask - Item Icons.png");
+            Bitmap source = new Bitmap(VersionHandeling.BaseProgramPath + @"Recources\Images\Nintendo 64 - The Legend of Zelda Majoras Mask - Item Icons.png");
             return source.Clone(new System.Drawing.Rectangle(Column * 32, Row * 32, 32, 32), PixelFormat.Format32bppPArgb);
         }
         public Point PostionItem(int Row, int Columb, int Spacing)
@@ -223,7 +223,7 @@ namespace MMR_Tracker.Forms
             Images.Add("Oath", ReshadeImage(GetImage(3, 24), 20, -50, 100));
             //Misc
             Images.Add("Error", GetImage(2, 24));
-            Images.Add("Moon", new Bitmap(@"Recources\Images\Moon.ico"));
+            Images.Add("Moon", new Bitmap(VersionHandeling.BaseProgramPath + @"Recources\Images\Moon.ico"));
 
         }
 

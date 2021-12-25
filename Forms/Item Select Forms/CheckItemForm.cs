@@ -360,7 +360,7 @@ namespace MMR_Tracker.Forms.Sub_Forms
                 fontSelect.FormBorderStyle = FormBorderStyle.FixedSingle;
                 fontSelect.Width = (220);
                 fontSelect.Height = (112);
-                try { fontSelect.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon()); } catch { }
+                try { fontSelect.Icon = Icon.FromHandle((Bitmap.FromFile(VersionHandeling.BaseProgramPath + @"Recources\Images\Moon.ico") as Bitmap).GetHicon()); } catch { }
                 //Font Size lable
                 NumericUpDown lbSize = new NumericUpDown();
                 lbSize.Value = 1;

@@ -42,17 +42,17 @@ namespace MMR_Tracker.Class_Files
 
             void ImportPresetFiles()
             {
-                if (!Directory.Exists(@"Recources\Other Files\Custom Logic Presets"))
+                if (!Directory.Exists(VersionHandeling.BaseLogicPresetPath))
                 {
                     try
                     {
-                        Directory.CreateDirectory((@"Recources\Other Files\Custom Logic Presets"));
+                        Directory.CreateDirectory(VersionHandeling.BaseLogicPresetPath);
                     }
                     catch { }
                 }
                 else
                 {
-                    foreach (var i in Directory.GetFiles(@"Recources\Other Files\Custom Logic Presets").Where(x => x.EndsWith(".txt") && !x.Contains("Web Presets.txt")))
+                    foreach (var i in Directory.GetFiles(VersionHandeling.BaseLogicPresetPath).Where(x => x.EndsWith(".txt") && !x.Contains("Web Presets.txt")))
                     {
                         ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
                         {
@@ -88,9 +88,9 @@ namespace MMR_Tracker.Class_Files
             }
             void ImportWebPresets()
             {
-                if (File.Exists(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt"))
+                if (File.Exists(VersionHandeling.BaseLogicPresetPath + @"\Web Presets.txt"))
                 {
-                    var TextFile = File.ReadAllLines(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt");
+                    var TextFile = File.ReadAllLines(VersionHandeling.BaseLogicPresetPath + @"\Web Presets.txt");
                     AddPersonalPresets(TextFile);
 
                     WebPresetData WebEntry = null;
@@ -194,13 +194,13 @@ namespace MMR_Tracker.Class_Files
                 {
                     if (!TextFile.Contains("Name: Thedrummonger Glitched Logic"))
                     {
-                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Glitched Logic");
-                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/master/Logic%20File.txt");
+                        File.AppendAllText(VersionHandeling.BaseLogicPresetPath + @"\Web Presets.txt", "\nName: Thedrummonger Glitched Logic");
+                        File.AppendAllText(VersionHandeling.BaseLogicPresetPath + @"\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/master/Logic%20File.txt");
                     }
                     if (!TextFile.Contains("Name: Thedrummonger Entrance Rando"))
                     {
-                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nName: Thedrummonger Entrance Rando");
-                        File.AppendAllText(@"Recources\Other Files\Custom Logic Presets\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/Entrance-Radno-Logic/Logic%20File.txt");
+                        File.AppendAllText(VersionHandeling.BaseLogicPresetPath + @"\Web Presets.txt", "\nName: Thedrummonger Entrance Rando");
+                        File.AppendAllText(VersionHandeling.BaseLogicPresetPath + @"\Web Presets.txt", "\nAddress: https://raw.githubusercontent.com/Thedrummonger/MMR-Logic/Entrance-Radno-Logic/Logic%20File.txt");
                     }
                 }
             }
@@ -212,11 +212,11 @@ namespace MMR_Tracker.Class_Files
                     Formatting = Formatting.Indented
                 };
                 LogicObjects.DefaultTrackerOption TrackerDefaultOptions = new LogicObjects.DefaultTrackerOption();
-                if (File.Exists("options.txt"))
+                if (File.Exists(VersionHandeling.BaseProgramPath + "options.txt"))
                 {
                     try 
                     { 
-                        TrackerDefaultOptions = JsonConvert.DeserializeObject<LogicObjects.DefaultTrackerOption>(File.ReadAllText("options.txt"), _jsonSerializerOptions);
+                        TrackerDefaultOptions = JsonConvert.DeserializeObject<LogicObjects.DefaultTrackerOption>(File.ReadAllText(VersionHandeling.BaseProgramPath + "options.txt"), _jsonSerializerOptions);
                         AllowOtherGame = TrackerDefaultOptions.OtherGamesOK;
                     }
                     catch { AllowOtherGame = false; }
@@ -224,8 +224,8 @@ namespace MMR_Tracker.Class_Files
 
                 if (Debugging.ISDebugging) { AllowOtherGame = true; }
 
-                if (!AllowOtherGame || !Directory.Exists(@"Recources\Other Files\Other Game Premade Logic")) { return; }
-                foreach (var i in Directory.GetFiles(@"Recources\Other Files\Other Game Premade Logic").Where(x => x.EndsWith(".txt") && !x.Contains("Web Presets.txt")))
+                if (!AllowOtherGame || !Directory.Exists(VersionHandeling.BaseOtherGameLogic)) { return; }
+                foreach (var i in Directory.GetFiles(VersionHandeling.BaseOtherGameLogic).Where(x => x.EndsWith(".txt") && !x.Contains("Web Presets.txt")))
                 {
                     ToolStripMenuItem CustomLogicPreset = new ToolStripMenuItem
                     {
@@ -288,8 +288,7 @@ namespace MMR_Tracker.Class_Files
                         System.Net.WebClient wc = new System.Net.WebClient();
                         string webData = wc.DownloadString(WebDicOverride);
                         var DicLines = webData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                        var csv = Utility.ConvertCsvFileToJsonObject(DicLines);
-                        DicOverride = JsonConvert.DeserializeObject<LogicObjects.LogicDictionary>(csv);
+                        DicOverride = JsonConvert.DeserializeObject<LogicObjects.LogicDictionary>(string.Join("", DicLines));
                         Debugging.Log(WebDicOverride);
                     }
                     catch (Exception j)
@@ -315,9 +314,16 @@ namespace MMR_Tracker.Class_Files
                 MainInterface.FireEvents(sender, e);
                 Tools.UpdateTrackerTitle();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Preset File Invalid! If you have not tampered with the preset files in \"Recources\\Other Files\\\" Please report this issue. Otherwise, redownload or delete those files.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex is System.Net.WebException)
+                {
+                    MessageBox.Show("Could not make Web Request to obtain web preset. Ensure internet access is available.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Preset File Invalid! If you have not tampered with the preset files in \"Recources\\Other Files\\\" Please report this issue. Otherwise, redownload or delete those files.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

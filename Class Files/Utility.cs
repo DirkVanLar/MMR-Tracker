@@ -336,7 +336,7 @@ namespace MMR_Tracker_V2
             fontSelect.Text = "Font";
             fontSelect.Width = (220);
             fontSelect.Height = (112);
-            try { fontSelect.Icon = Icon.FromHandle((Bitmap.FromFile(@"Recources\Images\Moon.ico") as Bitmap).GetHicon()); } catch { }
+            try { fontSelect.Icon = Icon.FromHandle((Bitmap.FromFile(VersionHandeling.BaseProgramPath + @"Recources\Images\Moon.ico") as Bitmap).GetHicon()); } catch { }
             //Font Size lable
             Label lbSize = new Label();
             lbSize.Text = "Font Size:";

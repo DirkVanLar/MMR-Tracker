@@ -667,11 +667,11 @@ namespace MMR_Tracker.Class_Files
                 Formatting = Formatting.Indented
             };
 
-            if (!File.Exists("options.txt"))
+            if (!File.Exists(VersionHandeling.BaseProgramPath + "options.txt"))
             {
                 try
                 {
-                    var file = File.Create("options.txt");
+                    var file = File.Create(VersionHandeling.BaseProgramPath + "options.txt");
                     file.Close();
                 }
                 catch
@@ -695,14 +695,14 @@ namespace MMR_Tracker.Class_Files
                     if (DefaultSetting == DialogResult.Yes) { PromptForUserOptions(); }
                 }
 
-                File.WriteAllText("options.txt", JsonConvert.SerializeObject(options, _jsonSerializerOptions));
+                File.WriteAllText(VersionHandeling.BaseProgramPath + "options.txt", JsonConvert.SerializeObject(options, _jsonSerializerOptions));
             }
             else if (Recreate)
             {
-                try { options = JsonConvert.DeserializeObject<LogicObjects.DefaultTrackerOption>(File.ReadAllText("options.txt"), _jsonSerializerOptions); }
+                try { options = JsonConvert.DeserializeObject<LogicObjects.DefaultTrackerOption>(File.ReadAllText(VersionHandeling.BaseProgramPath + "options.txt"), _jsonSerializerOptions); }
                 catch { Console.WriteLine("could not parse options.txt"); }
                 PromptForUserOptions();
-                File.WriteAllText("options.txt", JsonConvert.SerializeObject(options, _jsonSerializerOptions));
+                File.WriteAllText(VersionHandeling.BaseProgramPath + "options.txt", JsonConvert.SerializeObject(options, _jsonSerializerOptions));
             }
 
             void PromptForUserOptions()
@@ -766,9 +766,9 @@ namespace MMR_Tracker.Class_Files
             LogicEditing.CalculateItems(Instance);
 
             LogicObjects.DefaultTrackerOption TrackerDefaultOptions = new LogicObjects.DefaultTrackerOption();
-            if (File.Exists("options.txt"))
+            if (File.Exists(VersionHandeling.BaseProgramPath + "options.txt"))
             {
-                try { TrackerDefaultOptions = JsonConvert.DeserializeObject<LogicObjects.DefaultTrackerOption>(File.ReadAllText("options.txt"), _jsonSerializerOptions); }
+                try { TrackerDefaultOptions = JsonConvert.DeserializeObject<LogicObjects.DefaultTrackerOption>(File.ReadAllText(VersionHandeling.BaseProgramPath + "options.txt"), _jsonSerializerOptions); }
                 catch { Console.WriteLine("could not parse options.txt"); }
                 Instance.Options.ShowEntryNameTooltip = TrackerDefaultOptions.ToolTips;
                 Instance.Options.MoveMarkedToBottom = TrackerDefaultOptions.Seperatemarked;
@@ -786,7 +786,7 @@ namespace MMR_Tracker.Class_Files
                 TrackerDefaultOptions.OtherGamesOK = true;
                 try 
                 {
-                    if (File.Exists("options.txt")) { File.WriteAllText("options.txt", JsonConvert.SerializeObject(TrackerDefaultOptions, _jsonSerializerOptions)); }
+                    if (File.Exists(VersionHandeling.BaseProgramPath + "options.txt")) { File.WriteAllText(VersionHandeling.BaseProgramPath + "options.txt", JsonConvert.SerializeObject(TrackerDefaultOptions, _jsonSerializerOptions)); }
                 }
                 catch { }
 
@@ -1150,6 +1150,18 @@ namespace MMR_Tracker.Class_Files
             LogicObjects.TrackerInstance Instance = LogicObjects.MainTrackerInstance;
             ListBox AutoCheckItems = new ListBox();
             foreach (var i in Instance.Logic.Where(x => x.LocationArea != null && (x.LocationArea == LA) && x.Available && !x.Checked && (x.SpoilerRandom > -1 || !string.IsNullOrWhiteSpace(x.CountCheckData))))
+            {
+                var LBItem = new LogicObjects.ListItem() { LocationEntry = i };
+                AutoCheckItems.Items.Add(LBItem);
+                AutoCheckItems.SetSelected(AutoCheckItems.Items.Count - 1, true);
+            }
+            MainInterface.CurrentProgram.CheckItemSelected(AutoCheckItems, true);
+        }
+        public static void CheckAllItemsByIDList(int[] ID)
+        {
+            LogicObjects.TrackerInstance Instance = LogicObjects.MainTrackerInstance;
+            ListBox AutoCheckItems = new ListBox();
+            foreach (var i in Instance.Logic.Where(x => ID.Contains(x.ID)))
             {
                 var LBItem = new LogicObjects.ListItem() { LocationEntry = i };
                 AutoCheckItems.Items.Add(LBItem);

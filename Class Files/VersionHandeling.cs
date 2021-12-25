@@ -17,6 +17,11 @@ namespace MMR_Tracker_V2
         public static string trackerVersion = "V1.11";
         public static int TrackerVersionStatus = 0;
 
+        public static string BaseProgramPath = AppDomain.CurrentDomain.BaseDirectory;
+        public static string BaseDictionaryPath = BaseProgramPath + @"Recources\Dictionaries";
+        public static string BaseLogicPresetPath = BaseProgramPath + @"Recources\Other Files\Custom Logic Presets";
+        public static string BaseOtherGameLogic = BaseProgramPath + @"Recources\Other Files\Other Game Premade Logic";
+
         //Rando Versions
         //Rando Version 1.5 = Logic Version 3
         //Rando Version 1.6 = Logic Version 5
@@ -75,7 +80,7 @@ namespace MMR_Tracker_V2
         {
             string currentdictionary = "";
             int Versionoffset = -1;
-            foreach (var i in Directory.GetFiles(@"Recources\Dictionaries", "*", SearchOption.AllDirectories).ToArray())
+            foreach (var i in Directory.GetFiles(BaseDictionaryPath, "*", SearchOption.AllDirectories).ToArray())
             {
                 LogicObjects.LogicDictionary LogicDic = new LogicObjects.LogicDictionary();
                 try 
@@ -130,7 +135,7 @@ namespace MMR_Tracker_V2
         //Tracker Version Handeling
         public static bool GetLatestTrackerVersion()
         {
-            var CheckForUpdate = File.Exists("options.txt") && File.ReadAllLines("options.txt").Any(x => x.Contains("CheckForUpdates:1"));
+            var CheckForUpdate = File.Exists(VersionHandeling.BaseProgramPath + "options.txt") && File.ReadAllLines(VersionHandeling.BaseProgramPath + "options.txt").Any(x => x.Contains("CheckForUpdates:1"));
             if (!CheckForUpdate && (Control.ModifierKeys != Keys.Shift)) { return false; }
 
             var client = new GitHubClient(new ProductHeaderValue("MMR-Tracker"));

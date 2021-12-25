@@ -26,6 +26,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using MMR_Tracker.Class_Files.MMR_Code_Reference;
 using System.Xml;
+using System.Data;
 
 namespace MMR_Tracker_V2
 {
@@ -71,7 +72,7 @@ namespace MMR_Tracker_V2
             //0 = Print to Console, 1 = Print to LogFile, 2 = Print to Both
             if (LogLevel == 0 || LogLevel == 2) { Console.WriteLine(Data); }
             if (LogLevel == 0) { return; }
-            if (!Directory.Exists(@"Recources\Logs")) { Directory.CreateDirectory(@"Recources\Logs"); }
+            if (!Directory.Exists(VersionHandeling.BaseProgramPath + @"Recources\Logs")) { Directory.CreateDirectory(VersionHandeling.BaseProgramPath + @"Recources\Logs"); }
             if (!File.Exists(Debugging.LogFile)) { File.Create(Debugging.LogFile); }
             try
             {
@@ -94,7 +95,139 @@ namespace MMR_Tracker_V2
             //WindWakerRando.TestWWR();
             //OcarinaOfTimeRando.CreateOOTRLogic();
 
-            OOT3DR.GetSpoilerLog();
+            //OOT3DR.GetSpoilerLog();
+
+            string Path1 = @"Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
+            Console.WriteLine(Path1);
+            Console.WriteLine(File.Exists(Path1));
+            string Path2 = Path.GetDirectoryName(Application.ExecutablePath) + @"\Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
+            Console.WriteLine(Path2);
+            Console.WriteLine(File.Exists(Path2));
+            string Path3 = AppDomain.CurrentDomain.BaseDirectory + @"Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
+            Console.WriteLine(Path3);
+            Console.WriteLine(File.Exists(Path3));
+            string Path4 = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
+            Console.WriteLine(Path4);
+            Console.WriteLine(File.Exists(Path4));
+            string Path5 = Directory.GetCurrentDirectory() + @"\Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
+            Console.WriteLine(Path5);
+            Console.WriteLine(File.Exists(Path5));
+            string Path6 = Environment.CurrentDirectory + @"\Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
+            Console.WriteLine(Path6);
+            Console.WriteLine(File.Exists(Path6));
+
+            bool ParseALogicalExpression()
+            {
+                //A function to parse a logic expression in the form of a string
+
+                //This is an example string with static True/False Values
+                string Expression = "T & (T | F | T) & (F | (T & (F | T | ( T & F | F & T))))";
+                Console.WriteLine(Expression);
+
+                //Break the expression into an array containing the individual logic items as well as the logic operators
+                //We can now loop through each operator and replace it as needed.
+                List<string> ExpandedExptression = GetEntries(Expression);
+
+                for (var i = 0; i < ExpandedExptression.Count(); i++)
+                {
+                    switch (ExpandedExptression[i])
+                    {
+                        //Replace the Logical operatiors with Math operators. & operators translate to * and | operators translate to +
+                        //This will convert the expression to a math problem which can then be solved
+                        case "&":
+                            ExpandedExptression[i] = "*";
+                            break;
+                        case "|":
+                            ExpandedExptression[i] = "+";
+                            break;
+                        default:
+                            //Convert the items in the logic string to 1s and 0s.
+                            //In an actual use case the "PerformLogicCheck" function would determin whether the item meets certain conditions.
+                            //If it does meet those conditions it is replaced in the string with a 1 and if not it is replaced with a 0.
+                            ExpandedExptression[i] = PerformLogicCheck(ExpandedExptression[i]);
+                            break;
+                    }
+                }
+                //Join the array back into a string
+                Expression = string.Join("", ExpandedExptression);
+                Console.WriteLine(Expression);
+
+                //Solve the newly created equation
+                DataTable dt = new DataTable();
+                var Solution = dt.Compute(Expression, "");
+
+                //The equation should always return a number, so we can parse it to an int.
+                int Result = (int)Solution;
+                Console.WriteLine(Result);
+
+                //If the result is 0, availablility is false. If its greater than zero, availablility is true 
+                return Result > 0;
+
+                string PerformLogicCheck(string i)
+                {
+                    //Code to determine if the item meets the necessary criteria will go here
+                    if (i == "T")
+                    {
+                        return "1";
+                    }
+                    else if (i == "F")
+                    {
+                        return "0";
+                    }
+                    return i;
+                }
+
+                List<string> GetEntries(string input)
+                {
+                    List<string> BrokenString = new List<string>();
+                    string currentItem = "";
+                    foreach (var i in input)
+                    {
+                        if (char.IsWhiteSpace(i)) { continue; }
+                        if (ISLogicChar(i))
+                        {
+                            if (currentItem != "")
+                            {
+                                BrokenString.Add(currentItem);
+                                currentItem = "";
+                            }
+                            BrokenString.Add(i.ToString());
+                        }
+                        else { currentItem += i.ToString(); }
+                    }
+                    if (currentItem != "") { BrokenString.Add(currentItem); }
+                    return BrokenString;
+                }
+
+                bool ISLogicChar(char i)
+                {
+                    switch (i)
+                    {
+                        case '&': case '|': case '+': case '*': case '(': case ')':
+                            return true;
+                        default:
+                            return false;
+                    }
+
+                }
+            }
+
+            void BackupRestoreChecks()
+            {
+                string ClipBoardText = Clipboard.GetText();
+                if (ClipBoardText.StartsWith("BackupData:"))
+                {
+                    int[] Checks = JsonConvert.DeserializeObject<int[]>(Clipboard.GetText().Substring(11));
+                    Tools.CheckAllItemsByIDList(Checks);
+                    Clipboard.Clear();
+                }
+                else
+                {
+                    int[] CheckedLocations = LogicObjects.MainTrackerInstance.Logic.Where(x => x.Checked).Select(x => x.ID).ToArray();
+                    Clipboard.SetText($"BackupData:{JsonConvert.SerializeObject(CheckedLocations)}");
+                    Console.WriteLine(Clipboard.GetText().Substring(11));
+                }
+            }
 
 
             void testCountEntry()
