@@ -111,24 +111,26 @@
             // 
             // btnAddNeeded
             // 
+            this.btnAddNeeded.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAddNeeded.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnAddNeeded.Location = new System.Drawing.Point(98, 21);
             this.btnAddNeeded.Name = "btnAddNeeded";
             this.btnAddNeeded.Size = new System.Drawing.Size(34, 19);
             this.btnAddNeeded.TabIndex = 5;
             this.btnAddNeeded.Text = "Add";
-            this.btnAddNeeded.UseVisualStyleBackColor = true;
+            this.btnAddNeeded.UseVisualStyleBackColor = false;
             this.btnAddNeeded.Click += new System.EventHandler(this.BtnAddNeeded_Click);
             // 
             // btnAddIgnored
             // 
+            this.btnAddIgnored.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAddIgnored.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnAddIgnored.Location = new System.Drawing.Point(98, 202);
             this.btnAddIgnored.Name = "btnAddIgnored";
             this.btnAddIgnored.Size = new System.Drawing.Size(37, 19);
             this.btnAddIgnored.TabIndex = 6;
             this.btnAddIgnored.Text = "Add";
-            this.btnAddIgnored.UseVisualStyleBackColor = true;
+            this.btnAddIgnored.UseVisualStyleBackColor = false;
             this.btnAddIgnored.Click += new System.EventHandler(this.BtnAddIgnored_Click);
             // 
             // label3
@@ -215,24 +217,26 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button1.Location = new System.Drawing.Point(6, 22);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(233, 23);
             this.button1.TabIndex = 13;
             this.button1.Text = "Generate Playthrough";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnLocationLookup
             // 
+            this.btnLocationLookup.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnLocationLookup.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnLocationLookup.Location = new System.Drawing.Point(6, 234);
             this.btnLocationLookup.Name = "btnLocationLookup";
             this.btnLocationLookup.Size = new System.Drawing.Size(77, 23);
             this.btnLocationLookup.TabIndex = 14;
             this.btnLocationLookup.Text = "Location";
-            this.btnLocationLookup.UseVisualStyleBackColor = true;
+            this.btnLocationLookup.UseVisualStyleBackColor = false;
             this.btnLocationLookup.Click += new System.EventHandler(this.spoilerLogLookupToolStripMenuItem_Click);
             // 
             // listBox1
@@ -256,13 +260,14 @@
             // 
             // btnShpereLookup
             // 
+            this.btnShpereLookup.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnShpereLookup.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnShpereLookup.Location = new System.Drawing.Point(164, 234);
             this.btnShpereLookup.Name = "btnShpereLookup";
             this.btnShpereLookup.Size = new System.Drawing.Size(75, 23);
             this.btnShpereLookup.TabIndex = 17;
             this.btnShpereLookup.Text = "Sphere";
-            this.btnShpereLookup.UseVisualStyleBackColor = true;
+            this.btnShpereLookup.UseVisualStyleBackColor = false;
             this.btnShpereLookup.Click += new System.EventHandler(this.button3_Click);
             // 
             // groupBox2
@@ -338,13 +343,14 @@
             // 
             // btnAreaLookup
             // 
+            this.btnAreaLookup.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAreaLookup.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnAreaLookup.Location = new System.Drawing.Point(85, 234);
             this.btnAreaLookup.Name = "btnAreaLookup";
             this.btnAreaLookup.Size = new System.Drawing.Size(77, 23);
             this.btnAreaLookup.TabIndex = 19;
             this.btnAreaLookup.Text = "Area";
-            this.btnAreaLookup.UseVisualStyleBackColor = true;
+            this.btnAreaLookup.UseVisualStyleBackColor = false;
             this.btnAreaLookup.Click += new System.EventHandler(this.btnAreaLookup_Click);
             // 
             // label4

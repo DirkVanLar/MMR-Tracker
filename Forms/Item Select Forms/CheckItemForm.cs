@@ -186,7 +186,16 @@ namespace MMR_Tracker.Forms.Sub_Forms
             Ammo.Click += (sender, e) => { HandleItemJunkType(sender, e, "Ammo"); };
             ToolStripItem IceTrap = JunkMenu.Items.Add("Ice Trap");
             IceTrap.Click += (sender, e) => { HandleItemJunkType(sender, e, "Ice Trap"); };
+            ToolStripItem Custom = JunkMenu.Items.Add("Custom");
+            Custom.Click += (sender, e) => { HandleCustomItemJunkType(sender, e); };
             btnJunk.ContextMenuStrip = JunkMenu;
+        }
+        private void HandleCustomItemJunkType(object sender, EventArgs e)
+        {
+            GlobalJunkType = "Junk";
+            string name = Interaction.InputBox("Enter Junk Type", "Junk Type", "");
+            if (name != "") { GlobalJunkType = name; }
+            HandleSelectedItem(sender, e);
         }
 
         private void HandleItemJunkType(object sender, EventArgs e, string JunkType)
