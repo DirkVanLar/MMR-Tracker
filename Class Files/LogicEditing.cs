@@ -19,8 +19,7 @@ namespace MMR_Tracker_V2
             LogicObjects.LogicFile NewformatLogicFile = null;
             try
             {
-                NewformatLogicFile = JsonConvert.DeserializeObject<LogicObjects.LogicFile>(string.Join("", instance.RawLogicFile));
-                //NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile)); 
+                NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile)); 
             }
             catch
             {
@@ -44,8 +43,7 @@ namespace MMR_Tracker_V2
 
         public static bool PopulateJSONTrackerInstance(LogicObjects.TrackerInstance instance)
         {
-            LogicObjects.LogicFile NewformatLogicFile = JsonConvert.DeserializeObject<LogicObjects.LogicFile>(string.Join("", instance.RawLogicFile));
-            //LogicObjects.LogicFile NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile));
+            LogicObjects.LogicFile NewformatLogicFile = LogicObjects.LogicFile.FromJson(string.Join("", instance.RawLogicFile));
             instance.Logic.Clear();
             instance.DicNameToID.Clear();
             instance.EntrancePairs.Clear();

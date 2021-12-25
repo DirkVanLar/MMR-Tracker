@@ -34,6 +34,8 @@ namespace MMR_Tracker_V2
 
         public static PathFinder MainInterfacePathfinderInsance;
 
+        private bool FormIsMaximized = false;
+
         //Event Triggers
 
         public static event EventHandler LogicStateUpdated = delegate { };
@@ -69,6 +71,22 @@ namespace MMR_Tracker_V2
 
         private void MainInterface_ResizeEnd(object sender, EventArgs e) { ResizeObject(); }
 
+        private void MainInterface_Resize(object sender, EventArgs e)
+        {
+            //Maximizing and unmaximizing does not trigger ResizeEnd which should be used normally since it doesn't constantly run while resizing.
+            //so run this code only if the form becomes maximized or becomes un maximized.
+            if (WindowState == FormWindowState.Maximized)
+            {
+                ResizeObject();
+                FormIsMaximized = true;
+            }
+            else if (FormIsMaximized)
+            {
+                ResizeObject();
+                FormIsMaximized = false;
+            }
+        }
+
         private void MainInterface_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = !Tools.PromptSave(LogicObjects.MainTrackerInstance);
@@ -90,7 +108,11 @@ namespace MMR_Tracker_V2
                         RedoToolStripMenuItem_Click(sender, e);
                         break;
                 }
-            }        
+            }  
+            if (e.KeyCode == Keys.F5)
+            {
+                refreshStripMenuItem_Click(sender, e);
+            }
         }
         #endregion Form Events
         //Menu Strip---------------------------------------------------------------------------
@@ -1483,6 +1505,7 @@ namespace MMR_Tracker_V2
             optionsToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             undoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             redoToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
+            refreshStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             saveToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
             seedCheckerToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0) && !LogicObjects.MainTrackerInstance.Options.IsMultiWorld && Utility.CheckforSpoilerLog(LogicObjects.MainTrackerInstance.Logic);
             whatUnlockedThisToolStripMenuItem.Visible = (LogicObjects.MainTrackerInstance.LogicVersion > 0);
@@ -1787,5 +1810,14 @@ namespace MMR_Tracker_V2
             FormatMenuItems();
             PrintToListBox();
         }
+
+        private void refreshStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicEditing.CalculateItems(LogicObjects.MainTrackerInstance, fromScratch: false);
+            FormatMenuItems();
+            PrintToListBox();
+            ResizeObject();
+        }
+
     }
 }

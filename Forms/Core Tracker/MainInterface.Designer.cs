@@ -77,6 +77,7 @@ namespace MMR_Tracker_V2
             this.showEntryNameToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seperateMarkedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeMiddleClickToStarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showAdditionalStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeDefaultSetingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onlinePlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,7 +111,7 @@ namespace MMR_Tracker_V2
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.lblSwapPathfinder = new System.Windows.Forms.Label();
-            this.showAdditionalStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -357,10 +358,11 @@ namespace MMR_Tracker_V2
             this.infoToolStripMenuItem,
             this.devToolStripMenuItem,
             this.undoToolStripMenuItem,
-            this.redoToolStripMenuItem});
+            this.redoToolStripMenuItem,
+            this.refreshStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(339, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(372, 24);
             this.menuStrip1.TabIndex = 21;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -431,7 +433,7 @@ namespace MMR_Tracker_V2
             this.randoSettingsToolStripMenuItem,
             this.changeLogicToolStripMenuItem});
             this.logicOptionsToolStripMenuItem.Name = "logicOptionsToolStripMenuItem";
-            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logicOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.logicOptionsToolStripMenuItem.Text = "Logic Options";
             this.logicOptionsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.PresetDropDownOpening);
             // 
@@ -502,7 +504,7 @@ namespace MMR_Tracker_V2
             this.includeItemLocationsAsDestinationToolStripMenuItem,
             this.coupleEntrancesToolStripMenuItem});
             this.entranceRandoToolStripMenuItem.Name = "entranceRandoToolStripMenuItem";
-            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entranceRandoToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.entranceRandoToolStripMenuItem.Text = "Entrance Rando";
             // 
             // toggleEntranceRandoFeaturesToolStripMenuItem
@@ -537,7 +539,7 @@ namespace MMR_Tracker_V2
             this.changeFontToolStripMenuItem,
             this.changeDefaultSetingsToolStripMenuItem});
             this.miscOptionsToolStripMenuItem.Name = "miscOptionsToolStripMenuItem";
-            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.miscOptionsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.miscOptionsToolStripMenuItem.Text = "Misc Options";
             // 
             // horizontalLayoutToolStripMenuItem
@@ -568,6 +570,13 @@ namespace MMR_Tracker_V2
             this.changeMiddleClickToStarToolStripMenuItem.Text = "Change middle click to star";
             this.changeMiddleClickToStarToolStripMenuItem.Click += new System.EventHandler(this.ChangeMiddleClickToStarToolStripMenuItem_Click);
             // 
+            // showAdditionalStatsToolStripMenuItem
+            // 
+            this.showAdditionalStatsToolStripMenuItem.Name = "showAdditionalStatsToolStripMenuItem";
+            this.showAdditionalStatsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.showAdditionalStatsToolStripMenuItem.Text = "Show Additional Stats";
+            this.showAdditionalStatsToolStripMenuItem.Click += new System.EventHandler(this.showAdditionalStatsToolStripMenuItem_Click);
+            // 
             // changeFontToolStripMenuItem
             // 
             this.changeFontToolStripMenuItem.Name = "changeFontToolStripMenuItem";
@@ -585,7 +594,7 @@ namespace MMR_Tracker_V2
             // onlinePlayToolStripMenuItem
             // 
             this.onlinePlayToolStripMenuItem.Name = "onlinePlayToolStripMenuItem";
-            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.onlinePlayToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.onlinePlayToolStripMenuItem.Text = "Online Play";
             this.onlinePlayToolStripMenuItem.Click += new System.EventHandler(this.onlinePlayToolStripMenuItem_Click);
             // 
@@ -828,12 +837,12 @@ namespace MMR_Tracker_V2
             this.lblSwapPathfinder.Text = "↑↓";
             this.lblSwapPathfinder.Click += new System.EventHandler(this.lblSwapPathfinder_Click);
             // 
-            // showAdditionalStatsToolStripMenuItem
+            // refreshStripMenuItem
             // 
-            this.showAdditionalStatsToolStripMenuItem.Name = "showAdditionalStatsToolStripMenuItem";
-            this.showAdditionalStatsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.showAdditionalStatsToolStripMenuItem.Text = "Show Additional Stats";
-            this.showAdditionalStatsToolStripMenuItem.Click += new System.EventHandler(this.showAdditionalStatsToolStripMenuItem_Click);
+            this.refreshStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("refreshStripMenuItem.Image")));
+            this.refreshStripMenuItem.Name = "refreshStripMenuItem";
+            this.refreshStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.refreshStripMenuItem.Click += new System.EventHandler(this.refreshStripMenuItem_Click);
             // 
             // MainInterface
             // 
@@ -842,7 +851,7 @@ namespace MMR_Tracker_V2
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(339, 578);
+            this.ClientSize = new System.Drawing.Size(372, 578);
             this.Controls.Add(this.lblSwapPathfinder);
             this.Controls.Add(this.BTNFindPath);
             this.Controls.Add(this.LBPathFinder);
@@ -876,6 +885,7 @@ namespace MMR_Tracker_V2
             this.ResizeEnd += new System.EventHandler(this.MainInterface_ResizeEnd);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainInterface_KeyDown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.preventKeyShortcuts);
+            this.Resize += new System.EventHandler(this.MainInterface_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -963,6 +973,7 @@ namespace MMR_Tracker_V2
         private System.Windows.Forms.ToolStripMenuItem changeDefaultSetingsToolStripMenuItem;
         private System.Windows.Forms.Label lblSwapPathfinder;
         private System.Windows.Forms.ToolStripMenuItem showAdditionalStatsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refreshStripMenuItem;
     }
 }
 

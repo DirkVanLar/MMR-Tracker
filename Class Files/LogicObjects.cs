@@ -358,13 +358,22 @@ namespace MMR_Tracker_V2
 
             public override string ToString()
             {
-                return JsonSerializer.Serialize(this, _jsonSerializerOptions);
+                return Newtonsoft.Json.JsonConvert.SerializeObject(this, _NewtonsoftJsonSerializerOptions);
+                //return JsonSerializer.Serialize(this, _jsonSerializerOptions);
             }
 
             public static LogicFile FromJson(string json)
             {
-                return JsonSerializer.Deserialize<LogicFile>(json, _jsonSerializerOptions);
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<LogicObjects.LogicFile>(json, _NewtonsoftJsonSerializerOptions);
+                //return JsonSerializer.Deserialize<LogicFile>(json, _jsonSerializerOptions);
             }
+
+            private readonly static Newtonsoft.Json.JsonSerializerSettings _NewtonsoftJsonSerializerOptions = new Newtonsoft.Json.JsonSerializerSettings
+            {
+                Formatting = Newtonsoft.Json.Formatting.Indented,
+                NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore,
+                Converters = { new Newtonsoft.Json.Converters.StringEnumConverter() }
+            };
 
             private readonly static JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
             {
@@ -374,37 +383,8 @@ namespace MMR_Tracker_V2
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 WriteIndented = true,
                 AllowTrailingCommas = true,
-                Converters =
-                {
-                    new JsonColorConverter(),
-                    new JsonStringEnumConverter(),
-                }
+                Converters = { new JsonStringEnumConverter() }
             };
-            public class JsonColorConverter : JsonConverter<Color>
-            {
-                public override Color Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-                {
-                    // TODO: Can optimize this further by using ReadOnlySpan<char> to split without allocations.
-                    var text = reader.GetString();
-                    var tokens = text.Split(new string[] { ", " }, StringSplitOptions.None);
-                    if (tokens.Length == 3)
-                    {
-                        // Assume color values.
-                        var values = tokens.Select(x => byte.Parse(x)).ToArray();
-                        return Color.FromArgb(values[0], values[1], values[2]);
-                    }
-                    else
-                    {
-                        // Assume color name.
-                        return Color.FromName(text);
-                    }
-                }
-
-                public override void Write(Utf8JsonWriter writer, Color value, JsonSerializerOptions options)
-                {
-                    writer.WriteStringValue(string.Format("{0}, {1}, {2}", value.R, value.G, value.B));
-                }
-            }
         }
     }
 
