@@ -30,36 +30,37 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             if (e.Index < 0) { return; }
             e.DrawBackground();
 
-            Font F = e.Font;
+            Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
             Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
 
             if (listBox2.Items[e.Index] is LogicEditor.RequiementConditional)
             {
-                var test = e.Graphics.MeasureString("", F).Width;
+                var StringLength = e.Graphics.MeasureString("", F).Width;
+                var ActualStringLength = e.Graphics.MeasureString("", F).Width;
                 LogicEditor.RequiementConditional entry = listBox2.Items[e.Index] as LogicEditor.RequiementConditional;
                 var drawComma = false;
                 foreach (var i in entry.ItemIDs)
                 {
+                    bool EntryAvailable = i.ItemUseable(Instance) && (!i.IsTrick || (i.IsTrick && i.TrickEnabled));
+                    F = new Font(F.FontFamily, F.Size, EntryAvailable ? FontStyle.Bold : FontStyle.Regular);
 
                     if (drawComma)
                     {
-                        e.Graphics.DrawString(",", F, brush, test, e.Bounds.Y, StringFormat.GenericDefault);
-                        test += e.Graphics.MeasureString(",", F).Width;
+                        e.Graphics.DrawString(", ", F, brush, StringLength, e.Bounds.Y, StringFormat.GenericDefault);
+                        StringLength += e.Graphics.MeasureString(", ", F).Width;
+                        ActualStringLength += e.Graphics.MeasureString(", ", F).Width;
                     }
-
-                    bool EntryAvailable = true;
-                    if (!i.ItemUseable(Instance)) { EntryAvailable = false; }
-                    if (i.IsTrick && !i.TrickEnabled) { EntryAvailable = false; }
-                    if (EntryAvailable) { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
 
                     var Printname = i.DictionaryName;
                     if (i.ItemName != null && !string.IsNullOrWhiteSpace(i.ItemName)) { Printname = i.ItemName; }
-                    e.Graphics.DrawString(Printname, F, brush, test, e.Bounds.Y, StringFormat.GenericDefault);
-                    test += e.Graphics.MeasureString(Printname, F).Width - e.Graphics.MeasureString(" ", F).Width;
-                    F = new Font(F.FontFamily, F.Size, FontStyle.Regular);
-                    
+                    e.Graphics.DrawString(Printname, F, brush, StringLength, e.Bounds.Y, StringFormat.GenericDefault);
+                    StringLength += e.Graphics.MeasureString(Printname, F).Width - e.Graphics.MeasureString(" ", F).Width;
+                    ActualStringLength += e.Graphics.MeasureString(Printname, F).Width;
+
                     drawComma = true;
                 }
+
+                if (ActualStringLength > listBox2.Width && (int)ActualStringLength + 2 > listBox2.HorizontalExtent) { listBox2.HorizontalExtent = (int)ActualStringLength + 2; }
             }
             else
             {
@@ -67,8 +68,6 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             }
             e.DrawFocusRectangle();
 
-            var Len = e.Graphics.MeasureString(listBox2.Items[e.Index].ToString(), F).Width;
-            if (Len > listBox2.Width && (int)Len + 2 > listBox2.HorizontalExtent) { listBox2.HorizontalExtent = (int)Len + 2; }
         }
 
         private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
@@ -76,7 +75,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             if (e.Index < 0) { return; }
             e.DrawBackground();
 
-            Font F = e.Font;
+            Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
             Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
 
             if (listBox1.Items[e.Index] is LogicObjects.LogicEntry)
@@ -135,6 +134,8 @@ namespace MMR_Tracker.Forms.Extra_Functionality
         {
             listBox1.Items.Clear();
             listBox2.Items.Clear();
+            listBox1.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
+            listBox2.ItemHeight = Convert.ToInt32(LogicObjects.MainTrackerInstance.Options.FormFont.Size * 1.7);
             listBox2.HorizontalExtent = 0;
             this.Text = $"Requirements for {entry.LocationName ?? entry.DictionaryName}";
 
@@ -191,6 +192,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
             SN1.Checked = (((entry.TimeSetup >> 1) & 1) == 1);
             SN2.Checked = (((entry.TimeSetup >> 3) & 1) == 1);
             SN3.Checked = (((entry.TimeSetup >> 5) & 1) == 1);
+
         }
 
         private void CheckedChanged(object sender, EventArgs e)
