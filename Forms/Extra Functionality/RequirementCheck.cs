@@ -18,6 +18,12 @@ namespace MMR_Tracker.Forms.Extra_Functionality
         public RequirementCheck()
         {
             InitializeComponent();
+            MainInterface.LogicStateUpdated += MainInterface_LocationChecked;
+        }
+
+        private void MainInterface_LocationChecked(object sender, EventArgs e)
+        {
+            WriteEntry();
         }
 
         public LogicObjects.LogicEntry entry;
@@ -51,8 +57,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
                         ActualStringLength += e.Graphics.MeasureString(", ", F).Width;
                     }
 
-                    var Printname = i.DictionaryName;
-                    if (i.ItemName != null && !string.IsNullOrWhiteSpace(i.ItemName)) { Printname = i.ItemName; }
+                    var Printname = i.GetDistinctItemName(Instance);
                     e.Graphics.DrawString(Printname, F, brush, StringLength, e.Bounds.Y, StringFormat.GenericDefault);
                     StringLength += e.Graphics.MeasureString(Printname, F).Width - e.Graphics.MeasureString(" ", F).Width;
                     ActualStringLength += e.Graphics.MeasureString(Printname, F).Width;
@@ -87,8 +92,7 @@ namespace MMR_Tracker.Forms.Extra_Functionality
                 if (entry.IsTrick && !entry.TrickEnabled) { EntryAvailable = false; }
 
                 if (EntryAvailable)  { F = new Font(F.FontFamily, F.Size, FontStyle.Bold); }
-                var Printname = entry.DictionaryName;
-                if (entry.ItemName != null && !string.IsNullOrWhiteSpace(entry.ItemName)) { Printname = entry.ItemName; }
+                var Printname = entry.GetDistinctItemName(Instance);
 
                 e.Graphics.DrawString(Printname, F, brush, e.Bounds, StringFormat.GenericDefault);
             }

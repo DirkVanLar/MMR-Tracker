@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogicEditor));
             this.LBRequired = new System.Windows.Forms.ListBox();
             this.LBConditional = new System.Windows.Forms.ListBox();
@@ -97,6 +98,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblTrickToolTip = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -852,6 +855,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Setup On";
             // 
+            // lblTrickToolTip
+            // 
+            this.lblTrickToolTip.AutoSize = true;
+            this.lblTrickToolTip.Location = new System.Drawing.Point(644, 28);
+            this.lblTrickToolTip.Name = "lblTrickToolTip";
+            this.lblTrickToolTip.Size = new System.Drawing.Size(46, 13);
+            this.lblTrickToolTip.TabIndex = 54;
+            this.lblTrickToolTip.Text = "Tool Tip";
+            this.lblTrickToolTip.DoubleClick += new System.EventHandler(this.setTrickToolTipToolStripMenuItem_Click);
+            this.lblTrickToolTip.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblTrickToolTip_MouseMove);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 50000;
+            this.toolTip1.InitialDelay = 10;
+            this.toolTip1.ReshowDelay = 100;
+            // 
             // LogicEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -859,6 +879,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(810, 500);
+            this.Controls.Add(this.lblTrickToolTip);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -976,5 +997,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label lblTrickToolTip;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

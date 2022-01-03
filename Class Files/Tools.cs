@@ -929,7 +929,7 @@ namespace MMR_Tracker.Class_Files
             if (file == "")
             {
                 if (!Tools.PromptSave(LogicObjects.MainTrackerInstance)) { return false; }
-                file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSAV;*.html)|*.txt;*.MMRTSAV;*.html");
+                file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSAV;*.html;*.json)|*.txt;*.MMRTSAV;*.html;*.json");
                 if (file == "") { return false; }
             }
 

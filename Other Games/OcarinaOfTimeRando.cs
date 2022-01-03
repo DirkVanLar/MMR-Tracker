@@ -644,7 +644,13 @@ namespace MMR_Tracker.Other_Games
                 ConditionalItems = allBottles.Select(x => new List<string>() { x }).ToList()
             });
 
-            //In the randomizer, the bottles you ind are filled with a random item. These items don't exist in the vanilla item list so add them as possibilities
+            //Rutos Letter also counts a bottle, the randomizer logic requires 2 rutos letters since any additional letters are empty bottles.
+            //But for saftey sake I am also adding "Deliver Rutos Letter" which means you have at least 1 and can empty it
+            //I have to assume the randomizer does this as well and I can't find it in code but if not it's no big deal.
+            Logic.Logic[Logic.Logic.Count() - 1].ConditionalItems.Add(new List<string> { "Deliver Rutos Letter" });
+            Logic.Logic[Logic.Logic.Count() - 1].ConditionalItems.Add(new List<string> { "Rutos Letter x2" });
+
+            //In the randomizer, the bottles you find are filled with a random item. These items don't exist in the vanilla item list so add them as possibilities
             //Also add some extra real bottles since if you start with bottles they are all empty bottles
             foreach (var i in allBottles)
             {
@@ -674,7 +680,7 @@ namespace MMR_Tracker.Other_Games
                 {"can_play_Prelude_of_Light", "Ocarina and Prelude_of_Light"},
                 {"can_play_Requiem_of_Spirit", "Ocarina and Requiem_of_Spirit"},
                 {"can_play_Sarias_Song", "Ocarina and Sarias_Song"},
-                {"can_play_Scarecrow_Song", "Ocarina and Scarecrow_Song"},
+                {"can_play_Scarecrow_Song", "Ocarina and (Scarecrow_Song or free_scarecrow)"},
                 {"can_play_Serenade_of_Water", "Ocarina and Serenade_of_Water"},
                 {"can_play_Song_of_Storms", "Ocarina and Song_of_Storms"},
                 {"can_play_Song_of_Time", "Ocarina and Song_of_Time"},
@@ -714,7 +720,7 @@ namespace MMR_Tracker.Other_Games
                 Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
                 {
                     Id = i.Key,
-                    ConditionalItems = parser.ConvertLogicToConditionalString(i.Value.Replace(" and ", " & "))
+                    ConditionalItems = parser.ConvertLogicToConditionalString(i.Value.Replace(" and ", " & ").Replace(" or ", " | "))
                 });
             }
 

@@ -105,13 +105,13 @@ namespace MMR_Tracker
                 bool Spoil = false;
                 var ListItem = item as LogicObjects.ListItem;
                 var iteminLogic = logicCopy.Logic[ListItem.PathID];
-                string ItemName = iteminLogic.ItemName ?? iteminLogic.DictionaryName;
+                string ItemName = iteminLogic.GetDistinctItemName(logicCopy);
                 var ItemsLocation = iteminLogic.GetItemsNewLocation(logicCopy.Logic);
                 string LocationFoundAt = (ItemsLocation != null) ? ItemsLocation.LocationName ?? ItemsLocation.DictionaryName : "";
                 string DisplayName = (Spoil) ? ItemName + ": " + LocationFoundAt : ItemName;
 
                 Debugging.Log(logicCopy.Logic[ListItem.PathID].DictionaryName + " " + logicCopy.Logic[ListItem.PathID].Aquired);
-                if (logicCopy.Logic[ListItem.PathID].Aquired) { obtainable.Add(DisplayName); }
+                if (logicCopy.Logic[ListItem.PathID].ActualItemAquired()) { obtainable.Add(DisplayName); }
                 else { unobtainable.Add(DisplayName); }
             }
             if (unobtainable.Count > 0 && chkShowUnobtainable.Checked)

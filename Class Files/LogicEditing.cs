@@ -270,6 +270,7 @@ namespace MMR_Tracker_V2
             if (DefaultItemlist == null || DefaultItemlist.Count() < 1) { return true; }
             foreach (var i in DefaultItemlist)
             {
+                if (logic.Logic[i].IsTrick && !logic.Logic[i].TrickEnabled) { return false; }//There should never be tricks in the requirements, but this is a good fallback
                 if (!logic.Logic[i].ItemUseable(logic, usedItems)) { return false; }
             }
             return true;
@@ -296,8 +297,8 @@ namespace MMR_Tracker_V2
             #region Conditional with only tricks
             /*This function will return false if there are no conditional entries left after disabled tricks have been removed.
             The randomizer does the opposite, returning true if the conditional only contained tricks and all those tricks were removed.
-            This works for the randomizer because it assumes the conditional will always have at least one entry with no tricks to fall back on.
-            In the randomizer, if a check is unobtainable it is given moon access as a requirement, or conditinal if tricks can make it obtainable.
+            This works for the randomizer because it requires there be at least one entry with no tricks to fall back on.
+            In the randomizer, if a check is unobtainable it is given moon access as a requirement, or conditional if tricks can make it obtainable.
             It has to do this since, while moon access does make sure the location can't contain something needed to beat the game, it is eventually obtainable.
             The randomizer errors if any check is unobtainable, even if the check is not needed to beat the game. The tracker doesn't care.
             By having the tracker return false if all conditionals are inavlid tricks it gives the tracker an option to make checks unobtainable.
@@ -743,11 +744,11 @@ namespace MMR_Tracker_V2
             if (dungeonEntranceObject.Unrandomized(2)) { RandClearLogic = entry; }
             if (RandClearLogic == null) 
             { 
-                Console.WriteLine($"Logic for {entry.DictionaryName} was unknown because {dungeonEntranceObject.LocationName} is not checked"); 
+               // Console.WriteLine($"Logic for {entry.DictionaryName} was unknown because {dungeonEntranceObject.LocationName} is not checked"); 
                 return null; 
             }
 
-            Console.WriteLine($"Assigning logic from {RandClearLogic.DictionaryName} to {entry.DictionaryName}");
+            //Console.WriteLine($"Assigning logic from {RandClearLogic.DictionaryName} to {entry.DictionaryName}");
             entry.Required = RandClearLogic.Required;
             entry.Conditionals = RandClearLogic.Conditionals;
             return entry;

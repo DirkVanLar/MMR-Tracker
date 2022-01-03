@@ -1161,16 +1161,7 @@ namespace MMR_Tracker.Forms
         //Misc Functions
         private void MainInterface_LocationChecked(object sender, EventArgs e)
         {
-            FormCollection fc = Application.OpenForms;
-
-            foreach (Form frm in fc)
-            {
-                if (frm.Name == "ItemDisplay")
-                {
-                    UpdateScreen();
-                    break;
-                }
-            }
+            UpdateScreen();
         }
         private void RefreshPage()
         {

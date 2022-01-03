@@ -28732,6 +28732,12 @@
         ],
         [
           "any_item_Bottle with Milk"
+        ],
+        [
+          "Deliver Rutos Letter"
+        ],
+        [
+          "Rutos Letter x2"
         ]
       ],
       "TimeNeeded": "None",
@@ -29123,10 +29129,16 @@
     {
       "Id": "can_play_Scarecrow_Song",
       "RequiredItems": [
-        "any_item_Ocarina",
-        "Pierre"
+        "any_item_Ocarina"
       ],
-      "ConditionalItems": [],
+      "ConditionalItems": [
+        [
+          "Pierre"
+        ],
+        [
+          "free_scarecrow"
+        ]
+      ],
       "TimeNeeded": "None",
       "TimeAvailable": "None",
       "TimeSetup": "None",
@@ -39793,6 +39805,30 @@
         ],
         [
           "Extra_Small_Key_Thieves_Hideout 2"
+        ]
+      ],
+      "TimeNeeded": "None",
+      "TimeAvailable": "None",
+      "TimeSetup": "None",
+      "IsTrick": false
+    },
+    {
+      "Id": "Rutos Letter x2",
+      "RequiredItems": [
+        "MMRTCombinations2"
+      ],
+      "ConditionalItems": [
+        [
+          "LH Underwater Item"
+        ],
+        [
+          "Extra Rutos Letter 0"
+        ],
+        [
+          "Extra Rutos Letter 1"
+        ],
+        [
+          "Extra Rutos Letter 2"
         ]
       ],
       "TimeNeeded": "None",

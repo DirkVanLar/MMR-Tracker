@@ -111,13 +111,21 @@ namespace MMR_Tracker.Forms
             groupBox1.Enabled = enabled;
             groupBox2.Enabled = enabled;
             groupBox3.Enabled = enabled;
+            chkIsTrick.Enabled = enabled;
+            btnEditSelected.Enabled = enabled;
+            btnUp.Enabled = enabled;
+            btnDown.Enabled = enabled;
 
             undoToolStripMenuItem.Visible = enabled;
             redoToolStripMenuItem.Visible = enabled;
             renameCurrentItemToolStripMenuItem.Visible = enabled;
             reorderLogicToolStripMenuItem.Visible = enabled;
             whatIsThisUsedInToolStripMenuItem.Visible = enabled;
-            btnEditSelected.Enabled = enabled;
+            lblTrickToolTip.Visible = enabled;
+            deleteCurrentItemToolStripMenuItem.Visible = enabled;
+            setTrickToolTipToolStripMenuItem.Visible = enabled;
+            cleanLogicEntryToolStripMenuItem.Visible = enabled;
+            showAllFakeToolStripMenuItem.Visible = enabled;
             lblDicName.Text = "";
             lblLocName.Text = "";
             lblItemName.Text = "";
@@ -132,7 +140,7 @@ namespace MMR_Tracker.Forms
         private void LogicEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!PromptSave()) { e.Cancel = true; }
-            EditorForm = null;
+            else { EditorForm = null; }
         }
 
         //Button
@@ -147,7 +155,7 @@ namespace MMR_Tracker.Forms
             if (!PromptSave()) { return; }
             if (Lines == null)
             {
-                var file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET)|*.txt;*.MMRTSET");
+                var file = Utility.FileSelect("Select A Logic File", "Logic File (*.txt;*.MMRTSET;*.json)|*.txt;*.MMRTSET;*.json");
                 if (file == "") { return; }
                 bool SettingsFile = file.EndsWith(".MMRTSET");
                 Lines = (SettingsFile) ? File.ReadAllLines(file).Skip(2).ToArray() : File.ReadAllLines(file).ToArray();
@@ -665,6 +673,8 @@ namespace MMR_Tracker.Forms
 
             nudIndex.Value = currentEntry.ID;
 
+            lblTrickToolTip.Visible = entry.IsTrick;
+
             PrintingItem = false;
         }
 
@@ -946,6 +956,7 @@ namespace MMR_Tracker.Forms
             Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
             currentEntry.IsTrick = chkIsTrick.Checked;
             setTrickToolTipToolStripMenuItem.Visible = currentEntry.IsTrick;
+            WriteCurentItem(currentEntry.ID);
         }
 
         private void setTrickToolTipToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1350,6 +1361,15 @@ namespace MMR_Tracker.Forms
         private void lblLocName_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(lblLocName.Text);
+        }
+
+        private void lblTrickToolTip_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!currentEntry.IsTrick) { return; }
+            var ToolTip = string.IsNullOrWhiteSpace(currentEntry.TrickToolTip) ? "No Tool Available\n\n(Double Click to set)" : currentEntry.TrickToolTip;
+            var CurrentToolTipText = toolTip1.GetToolTip(lblTrickToolTip);
+            if (CurrentToolTipText == ToolTip) { return; }
+            toolTip1.SetToolTip(lblTrickToolTip, ToolTip);
         }
     }
 }

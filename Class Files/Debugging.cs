@@ -83,11 +83,6 @@ namespace MMR_Tracker_V2
 
         public static void TestDumbStuff()
         {
-            //BackupLoadLogic();
-
-            //CreateJsonLogicDicWithTxtLogic
-
-            //remakeLogicDict();
 
             //SkywardSwordRando.SkywardSwordTesting(false, true, "https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitchless%20Requirements.yaml", "Skyward Sword Rando Casual (Beta)");
             //SkywardSwordRando.SkywardSwordTesting(false, false, "https://raw.githubusercontent.com/ssrando/ssrando/master/SS%20Rando%20Logic%20-%20Glitched%20Requirements.yaml", "Skyward Sword Rando Glitched (Beta)");
@@ -97,24 +92,81 @@ namespace MMR_Tracker_V2
 
             //OOT3DR.GetSpoilerLog();
 
-            string Path1 = @"Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
-            Console.WriteLine(Path1);
-            Console.WriteLine(File.Exists(Path1));
-            string Path2 = Path.GetDirectoryName(Application.ExecutablePath) + @"\Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
-            Console.WriteLine(Path2);
-            Console.WriteLine(File.Exists(Path2));
-            string Path3 = AppDomain.CurrentDomain.BaseDirectory + @"Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
-            Console.WriteLine(Path3);
-            Console.WriteLine(File.Exists(Path3));
-            string Path4 = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
-            Console.WriteLine(Path4);
-            Console.WriteLine(File.Exists(Path4));
-            string Path5 = Directory.GetCurrentDirectory() + @"\Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
-            Console.WriteLine(Path5);
-            Console.WriteLine(File.Exists(Path5));
-            string Path6 = Environment.CurrentDirectory + @"\Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json";
-            Console.WriteLine(Path6);
-            Console.WriteLine(File.Exists(Path6));
+            //CheckForLocationsHardRequireingTempItems();
+
+            BackupRestoreChecks();
+
+            void CheckForLocationsHardRequireingTempItems()
+            {
+                var itemPool = Enum.GetValues(typeof(Item)).Cast<Item>();
+                var TestLogic = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
+
+                var TempItems = new List<int>();
+
+                foreach (var i in TestLogic.Logic)
+                {
+                    var MMRItems = itemPool.Where(x => i.DictionaryName == x.ToString());
+                    if (MMRItems.Any())
+                    {
+                        var MMRItem = MMRItems.First();
+
+                        if (MMRItem.HasAttribute<Definitions.TemporaryAttribute>())
+                        {
+                            TempItems.Add(i.ID);
+                        }
+                    }
+                }
+
+                var ChecksRequireingSingleTempItem = new List<int>();
+                foreach(var i in TempItems)
+                {
+                    var copyInstance = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
+                    foreach(var j in copyInstance.Logic)
+                    {
+                        if (j.ItemSubType == "Dungeon Entrance")
+                        {
+                            j.SetUnRandomized();
+                        }
+                        j.Available = false;
+                        j.Aquired = !j.IsFake && j.ID != i;
+                    }
+                    LogicEditing.CalculateItems(copyInstance, true, true, true);
+                    var ChecksHardRequireingASingleTempItem = copyInstance.Logic.Where(x => !x.Available && !x.IsFake && !string.IsNullOrWhiteSpace(x.LocationName) && x.AvailableOn > 0);
+                    if (ChecksHardRequireingASingleTempItem.Any())
+                    {
+                        Console.WriteLine($"Checks Hard Requireing {copyInstance.Logic[i].ItemName ?? copyInstance.Logic[i].DictionaryName} ======================================");
+                        foreach (var j in ChecksHardRequireingASingleTempItem)
+                        {
+                            Console.WriteLine($"{j.LocationName ?? j.DictionaryName}");
+                            ChecksRequireingSingleTempItem.Add(j.ID);
+                        }
+                    }
+                }
+                var copyInstance2 = Utility.CloneTrackerInstance(LogicObjects.MainTrackerInstance);
+                foreach (var j in copyInstance2.Logic)
+                {
+                    if (j.ItemSubType == "Dungeon Entrance")
+                    {
+                        j.SetUnRandomized();
+                    }
+                    j.Available = false;
+                    j.Aquired = !j.IsFake && !TempItems.Contains(j.ID);
+                }
+                LogicEditing.CalculateItems(copyInstance2, true, true, true);
+                var ChecksRequiringMultipleTempItems = copyInstance2.Logic.Where(x => !x.Available && !x.IsFake && !ChecksRequireingSingleTempItem.Contains(x.ID) && !string.IsNullOrWhiteSpace(x.LocationName) && x.AvailableOn > 0);
+                if (ChecksRequiringMultipleTempItems.Any())
+                {
+                    Console.WriteLine($"Checks Hard Requireing a temp item ======================================");
+                    foreach (var j in ChecksRequiringMultipleTempItems)
+                    {
+                        Console.WriteLine($"{j.LocationName ?? j.DictionaryName}");
+                        ChecksRequireingSingleTempItem.Add(j.ID);
+                    }
+                }
+
+
+
+            }
 
             bool ParseALogicalExpression()
             {
