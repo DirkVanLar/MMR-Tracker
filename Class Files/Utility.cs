@@ -3,6 +3,7 @@ using MMR_Tracker.Forms;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -72,10 +73,21 @@ namespace MMR_Tracker_V2
             if (SelectedFile.ShowDialog() != DialogResult.OK) { return ""; }
             return SelectedFile.FileName;
         }
+
+        private static string CurrentString = "";
+        private static bool CurrentStringIsError = false;
         public static bool FilterSearch(LogicObjects.LogicEntry logic, string searchTerm, string NameToCompare, LogicObjects.LogicEntry RandomizedItem = null)
         {
-            if (NameToCompare == null) { NameToCompare = logic.DictionaryName; }
-            if (searchTerm == "") { return true; }
+            //Since filter search is usually called a large number of times at once, we can cut down on lag by checking first if we've already compared against the given string
+            //If we have and that string was a malformed term, skip all subsequent searches until the text changes.
+            if (searchTerm != CurrentString)
+            {
+                CurrentString = searchTerm;
+                CurrentStringIsError = false;
+            }
+            else if (CurrentStringIsError) { return true; }
+
+            if (string.IsNullOrWhiteSpace(searchTerm)) { return true; }
 
             bool StarredOnly = false;
             char[] GlobalModifiers = new char[] { '^', '*' };
@@ -85,79 +97,130 @@ namespace MMR_Tracker_V2
                 searchTerm = searchTerm.Substring(1);
             }
             if (StarredOnly && !logic.Starred) { return false; }
-            if (searchTerm == "") { return true; }
+            if (string.IsNullOrWhiteSpace(searchTerm)) { return true; }
 
-            string[] searchTerms = searchTerm.Split('|');
-            foreach (string term in searchTerms)
+            List<string> ExpandedExptression = GetEntries(searchTerm);
+
+            for (var i = 0; i < ExpandedExptression.Count(); i++)
             {
-                string[] subTerms = term.Split('&');
-                bool valid = true;
-                foreach (string i in subTerms)
-                {
-                    bool Inverse = false;
-                    bool Perfect = false;
-                    var subterm = i;
-                    if (subterm == "") { continue; }
-                    char[] Modifiers = new char[] { '!', '=' };
-
-                    if (subterm == "") { continue; }
-                    while (subterm.Count() > 0 && Modifiers.Contains(subterm[0]))
-                    {
-                        if (subterm[0] == '!') { Inverse = true; }
-                        if (subterm[0] == '=') { Perfect = true; }
-                        subterm = subterm.Substring(1);
-                    }
-                    if (subterm == "") { continue; }
-
-                    if (subterm[0] == '_' && RandomizedItem == null) { valid = false; continue; }
-                    if (subterm == "") { continue; }
-
-                    switch (subterm[0])
-                    {
-                        case '_': //Search By Randomized Item
-                            if (subterm.Substring(1) == "") { continue; }
-                            if (RandomizedItem == null) { valid = false; }
-                            else
-                            {
-                                string NewTerm = Perfect ? "=" + subterm.Substring(1) : subterm.Substring(1);
-                                if (FilterSearch(RandomizedItem, NewTerm, NameToCompare) == Inverse) { valid = false; }
-                            }
-                            break;
-                        case '#'://Search By Location Area
-                            if (subterm.Substring(1) == "" || logic.LocationArea == null) { continue; }
-                            if (Perfect && logic.LocationArea.ToLower() == subterm.Substring(1).ToLower() == Inverse) { valid = false; }
-                            else if (!Perfect && logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
-                            break;
-                        case '@'://Search By Item Type
-                            if (subterm.Substring(1) == "" || logic.ItemSubType == null) { continue; }
-                            if (Perfect && logic.ItemSubType.ToLower() == subterm.Substring(1).ToLower() == Inverse) { valid = false; }
-                            else if ((!Perfect && logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
-                            break;
-                        case '~'://Search By Dictionary Name
-                            if (subterm.Substring(1) == "" || logic.DictionaryName == null) { continue; }
-                            if (Perfect && logic.DictionaryName.ToLower() == subterm.Substring(1).ToLower() == Inverse) { valid = false; }
-                            else if ((!Perfect && logic.DictionaryName.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { valid = false; }
-                            break;
-                        case '$'://Search By Item Name
-                            if (subterm.Substring(1) == "" || logic.ItemName == null) { continue; }
-                            if (Perfect && logic.ItemName.ToLower() == subterm.Substring(1).ToLower() == Inverse) { valid = false; }
-                            else if (!Perfect && logic.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
-                            break;
-                        case '%'://Search By Location Name
-                            if (subterm.Substring(1) == "" || logic.LocationName == null) { continue; }
-                            if (Perfect && logic.LocationName.ToLower() == subterm.Substring(1).ToLower() == Inverse) { valid = false; }
-                            else if (!Perfect && logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { valid = false; }
-                            break;
-                        default: //Search By "NameToCompare" variable
-                            if (Perfect && NameToCompare.ToLower() == subterm.ToLower() == Inverse) { valid = false; }
-                            else if (!Perfect && (NameToCompare.ToLower().Contains(subterm.ToLower()) == Inverse)) { valid = false; }
-                            break;
-                    }
-                    if (valid == false) { break; }
-                }
-                if (valid) { return true; }
+                ExpandedExptression[i] = PerformLogicCheck(ExpandedExptression[i]);
             }
-            return false;
+
+            string Expression = string.Join("", ExpandedExptression);
+            //Console.WriteLine($"Expression = {Expression}");
+            try
+            {
+                int Result;
+                DataTable dt = new DataTable();
+                var Solution = dt.Compute(Expression, "");
+                if (!int.TryParse(Solution.ToString(), out Result)) { return true; }
+                return Result > 0;
+            }
+            catch { CurrentStringIsError = true; return true; }
+
+            string PerformLogicCheck(string i)
+            {
+                if (ISLogicChar(i[0])) { return i; }
+
+                char[] Modifiers = new char[] { '!', '=' };
+
+                bool Inverse = false;
+                bool Perfect = false;
+                var subterm = i;
+                if (subterm == "") { return "1"; }
+                while (subterm.Count() > 0 && Modifiers.Contains(subterm[0]))
+                {
+                    if (subterm[0] == '!') { Inverse = true; }
+                    if (subterm[0] == '=') { Perfect = true; }
+                    subterm = subterm.Substring(1);
+                }
+                if (subterm == "") { return "1"; }
+                if (string.IsNullOrWhiteSpace(subterm)) { return ""; }
+
+                subterm = subterm.Trim();
+
+                switch (subterm[0])
+                {
+                    case '_': //Search By Randomized Item
+                        if (subterm.Substring(1) == "") { return "1"; }
+                        if (RandomizedItem == null) { return "0"; }
+                        else
+                        {
+                            string NewTerm = Perfect ? "=" + subterm.Substring(1) : subterm.Substring(1);
+                            if (FilterSearch(RandomizedItem, NewTerm, NameToCompare) == Inverse) { return "0"; }
+                        }
+                        break;
+                    case '#'://Search By Location Area
+                        if (subterm.Substring(1) == "") { return "1"; }
+                        if (logic.LocationArea == null) { return "0"; }
+                        if (Perfect && logic.LocationArea.ToLower() == subterm.Substring(1).ToLower() == Inverse) { return "0"; }
+                        else if (!Perfect && logic.LocationArea.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { return "0"; }
+                        break;
+                    case '@'://Search By Item Type
+                        if (subterm.Substring(1) == "") { return "1"; }
+                        if (logic.ItemSubType == null) { return "0"; }
+                        if (Perfect && logic.ItemSubType.ToLower() == subterm.Substring(1).ToLower() == Inverse) { return "0"; }
+                        else if ((!Perfect && logic.ItemSubType.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { return "0"; }
+                        break;
+                    case '~'://Search By Dictionary Name
+                        if (subterm.Substring(1) == "") { return "1"; }
+                        if (logic.DictionaryName == null) { return "0"; }
+                        if (Perfect && logic.DictionaryName.ToLower() == subterm.Substring(1).ToLower() == Inverse) { return "0"; }
+                        else if ((!Perfect && logic.DictionaryName.ToLower().Contains(subterm.Substring(1).ToLower())) == Inverse) { return "0"; }
+                        break;
+                    case '$'://Search By Item Name
+                        if (subterm.Substring(1) == "") { return "1"; }
+                        if (logic.ItemName == null) { return "0"; }
+                        if (Perfect && logic.ItemName.ToLower() == subterm.Substring(1).ToLower() == Inverse) { return "0"; }
+                        else if (!Perfect && logic.ItemName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { return "0"; }
+                        break;
+                    case '%'://Search By Location Name
+                        if (subterm.Substring(1) == "") { return "1"; }
+                        if (logic.LocationName == null) { return "0"; }
+                        if (Perfect && logic.LocationName.ToLower() == subterm.Substring(1).ToLower() == Inverse) { return "0"; }
+                        else if (!Perfect && logic.LocationName.ToLower().Contains(subterm.Substring(1).ToLower()) == Inverse) { return "0"; }
+                        break;
+                    default: //Search By "NameToCompare" variable
+                        if (Perfect && NameToCompare.ToLower() == subterm.ToLower() == Inverse) { return "0"; }
+                        else if (!Perfect && (NameToCompare.ToLower().Contains(subterm.ToLower()) == Inverse)) { return "0"; }
+                        break;
+                }
+                return "1";
+            }
+            List<string> GetEntries(string input)
+            {
+                List<string> BrokenString = new List<string>();
+                string currentItem = "";
+                foreach (var i in input)
+                {
+                    if (ISLogicChar(i))
+                    {
+                        if (currentItem != "")
+                        {
+                            BrokenString.Add(currentItem);
+                            currentItem = "";
+                        }
+                        if (i == '&') { BrokenString.Add("*"); }
+                        else if (i == '|') { BrokenString.Add("+"); }
+                        else { BrokenString.Add(i.ToString()); }
+                    }
+                    else { currentItem += i.ToString(); }
+                }
+                if (currentItem != "") { BrokenString.Add(currentItem); }
+                return BrokenString;
+            }
+
+            bool ISLogicChar(char i)
+            {
+                switch (i)
+                {
+                    case '&': case '|': case '+': case '*': case '(':  case ')':
+                        return true;
+                    default:
+                        return false;
+                }
+
+            }
         }
         public static bool CheckforSpoilerLog(List<LogicObjects.LogicEntry> Logic, bool full = false, bool FakeAllowed = true, bool Log = false)
         {
