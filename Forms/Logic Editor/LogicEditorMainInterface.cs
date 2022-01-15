@@ -35,7 +35,6 @@ namespace MMR_Tracker.Forms
 
         //Other Variables
         public static bool PrintingItem = false;
-        public static bool UseSpoilerInDisplay = false;
         public static bool UseDictionaryNameInSearch = false;
         public static bool AddCondSeperatly = false;
         public static bool NudUpdateing = false;
@@ -70,7 +69,6 @@ namespace MMR_Tracker.Forms
                 FormatForm();
             }
             useLocationItemNamesToolStripMenuItem.Checked = (!UseDictionaryNameInSearch);
-            displaySpoilerLogNamesToolStripMenuItem.Checked = (UseSpoilerInDisplay);
             CreateContextMenus();
         }
 
@@ -122,8 +120,10 @@ namespace MMR_Tracker.Forms
             reorderLogicToolStripMenuItem.Visible = enabled;
             whatIsThisUsedInToolStripMenuItem.Visible = enabled;
             lblTrickToolTip.Visible = enabled;
+            lblCategory.Visible = enabled;
             deleteCurrentItemToolStripMenuItem.Visible = enabled;
             setTrickToolTipToolStripMenuItem.Visible = enabled;
+            setTrickCategoryToolStripMenuItem.Visible = enabled;
             cleanLogicEntryToolStripMenuItem.Visible = enabled;
             showAllFakeToolStripMenuItem.Visible = enabled;
             lblDicName.Text = "";
@@ -261,7 +261,6 @@ namespace MMR_Tracker.Forms
             {
                 if (LBRequired.Items.Contains(i)) { continue; }
                 i.DisplayName = i.ItemName ?? i.DictionaryName;
-                i.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (i.SpoilerItem[0] ?? i.DisplayName) : i.DisplayName;
                 i.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? i.DictionaryName : i.DisplayName;
                 LBRequired.Items.Add(i);
             }
@@ -429,7 +428,6 @@ namespace MMR_Tracker.Forms
                     foreach (var i in Selector.SelectedItems)
                     {
                         string ItemName = i.ItemName ?? i.DictionaryName;
-                        ItemName = (LogicEditor.UseSpoilerInDisplay) ? (i.SpoilerItem[0] ?? ItemName) : ItemName;
                         ItemName = (LogicEditor.UseDictionaryNameInSearch) ? i.DictionaryName : ItemName;
                         Display = Display + addComma + ItemName;
                         addComma = ", ";
@@ -463,13 +461,6 @@ namespace MMR_Tracker.Forms
             WriteCurentItem(currentEntry.ID);
         }
 
-        private void DisplaySpoilerLogNamesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UseSpoilerInDisplay = !UseSpoilerInDisplay;
-            displaySpoilerLogNamesToolStripMenuItem.Checked = (UseSpoilerInDisplay);
-            WriteCurentItem(currentEntry.ID);
-        }
-
         private void BtnUp_Click(object sender, EventArgs e)
         {
             MoveItem(-1);
@@ -478,6 +469,280 @@ namespace MMR_Tracker.Forms
         private void BtnDown_Click(object sender, EventArgs e)
         {
             MoveItem(1);
+        }
+
+        private void ReorderLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LogicEditorReorder Selector = new LogicEditorReorder();
+            Selector.ListContent = Utility.CloneLogicList(EditorInstance.Logic);
+            Selector.ShowDialog();
+            if (Selector.DialogResult != DialogResult.OK) { return; }
+            EditorInstance.UnsavedChanges = true;
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
+            int counter = 0;
+            Dictionary<int, int> newOrder = new Dictionary<int, int>();
+            foreach (var i in Selector.SelectedItems)
+            {
+                if (i.ID != counter)
+                {
+                    newOrder.Add(i.ID, counter);
+                }
+                counter++;
+            }
+            foreach (var i in Selector.SelectedItems)
+            {
+                if (newOrder.ContainsKey(i.ID))
+                {
+                    Debugging.Log("Item ID " + i.ID + " Became " + newOrder[i.ID]);
+                    i.ID = newOrder[i.ID];
+                }
+                if (i.Required != null)
+                {
+                    for (var j = 0; j < i.Required.Length; j++)
+                    {
+                        if (newOrder.ContainsKey(i.Required[j]))
+                        {
+                            Debugging.Log("Requirment " + i.Required[j] + " Became " + newOrder[i.Required[j]]);
+                            i.Required[j] = newOrder[i.Required[j]];
+                        }
+                    }
+                }
+                if (i.Conditionals != null)
+                {
+                    for (var j = 0; j < i.Conditionals.Length; j++)
+                    {
+                        for (var k = 0; k < i.Conditionals[j].Length; k++)
+                        {
+                            if (newOrder.ContainsKey(i.Conditionals[j][k]))
+                            {
+                                Debugging.Log("Conditional " + i.Conditionals[j][k] + " Became " + newOrder[i.Conditionals[j][k]]);
+                                i.Conditionals[j][k] = newOrder[i.Conditionals[j][k]];
+                            }
+                        }
+                    }
+                }
+            }
+            EditorInstance.Logic = Utility.CloneLogicList(Selector.SelectedItems);
+            WriteCurentItem(currentEntry.ID);
+        }
+
+        private void RenameCurrentItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!currentEntry.IsFake) { MessageBox.Show("Only fake Items Can be Renamed"); return; }
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
+            string name = Interaction.InputBox("Input New Item Name", "New Item", currentEntry.DictionaryName);
+            if (name == "") { return; }
+            EditorInstance.UnsavedChanges = true;
+            currentEntry.DictionaryName = name;
+            WriteCurentItem(currentEntry.ID);
+        }
+
+        private void setTrickToolTipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string CurTT = (currentEntry.TrickToolTip == "No Tooltip Available") ? "" : currentEntry.TrickToolTip;
+            var text = (CurTT == "") ? "No tooltip set, enter tooltip below." : "Current Tooltip: \n\"" + CurTT + "\"\nEnter a new tooltip below to change it.";
+            string name = Interaction.InputBox(text, $"{currentEntry.DictionaryName} Trick Tooltip", CurTT);
+            if (name != "") { currentEntry.TrickToolTip = name; }
+        }
+
+        private void deleteCurrentItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<LogicObjects.LogicEntry> Inuse = new List<LogicObjects.LogicEntry>();
+            foreach (var i in EditorInstance.Logic)
+            {
+                if (i.Required != null)
+                {
+                    for (var j = 0; j < i.Required.Length; j++)
+                    {
+                        if (i.Required[j] == currentEntry.ID) { Inuse.Add(i); }
+                    }
+                }
+                if (i.Conditionals != null)
+                {
+                    for (var j = 0; j < i.Conditionals.Length; j++)
+                    {
+                        for (var k = 0; k < i.Conditionals[j].Length; k++)
+                        {
+                            if (i.Conditionals[j][k] == currentEntry.ID && !Array.Exists(Inuse.ToArray(), x => x.ID == i.ID)) { Inuse.Add(i); }
+                        }
+                    }
+                }
+            }
+
+            if (Inuse.Count() > 0)
+            {
+                string Usage = $"Unable to delete {currentEntry.DictionaryName} Because it is a requirement or conditional in the following entries:\n\n";
+                foreach (var i in Inuse) { Usage = Usage + $"{i.DictionaryName}\n"; }
+                MessageBox.Show(Usage, "Item In Use", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var Confirm = MessageBox.Show($"Are you sure you wish to delete the {currentEntry.DictionaryName} entry?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (Confirm == DialogResult.No) { return; }
+
+            EditorInstance.Logic.RemoveAt(currentEntry.ID);
+            int counter = 0;
+            Dictionary<int, int> newOrder = new Dictionary<int, int>();
+            foreach (var i in EditorInstance.Logic)
+            {
+                if (i.ID != counter)
+                {
+                    newOrder.Add(i.ID, counter);
+                }
+                counter++;
+            }
+            foreach (var i in EditorInstance.Logic)
+            {
+                if (newOrder.ContainsKey(i.ID))
+                {
+                    Debugging.Log("Item ID " + i.ID + " Became " + newOrder[i.ID]);
+                    i.ID = newOrder[i.ID];
+                }
+                if (i.Required != null)
+                {
+                    for (var j = 0; j < i.Required.Length; j++)
+                    {
+                        if (newOrder.ContainsKey(i.Required[j]))
+                        {
+                            Debugging.Log("Requirment " + i.Required[j] + " Became " + newOrder[i.Required[j]]);
+                            i.Required[j] = newOrder[i.Required[j]];
+                        }
+                    }
+                }
+                if (i.Conditionals != null)
+                {
+                    for (var j = 0; j < i.Conditionals.Length; j++)
+                    {
+                        for (var k = 0; k < i.Conditionals[j].Length; k++)
+                        {
+                            if (newOrder.ContainsKey(i.Conditionals[j][k]))
+                            {
+                                Debugging.Log("Conditional " + i.Conditionals[j][k] + " Became " + newOrder[i.Conditionals[j][k]]);
+                                i.Conditionals[j][k] = newOrder[i.Conditionals[j][k]];
+                            }
+                        }
+                    }
+                }
+            }
+            WriteCurentItem((currentEntry.ID >= EditorInstance.Logic.Count) ? EditorInstance.Logic.Count - 1 : currentEntry.ID);
+        }
+
+        private void saveLogicWothoutTrickDataLegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.fileToolStripMenuItem.HideDropDown();
+            SaveInstance(false);
+        }
+
+        private void whatIsThisUsedInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<LogicObjects.LogicEntry> Inuse = new List<LogicObjects.LogicEntry>();
+            foreach (var i in EditorInstance.Logic)
+            {
+                if (i.Required != null)
+                {
+                    for (var j = 0; j < i.Required.Length; j++)
+                    {
+                        if (i.Required[j] == currentEntry.ID) { Inuse.Add(i); }
+                    }
+                }
+                if (i.Conditionals != null)
+                {
+                    for (var j = 0; j < i.Conditionals.Length; j++)
+                    {
+                        for (var k = 0; k < i.Conditionals[j].Length; k++)
+                        {
+                            if (i.Conditionals[j][k] == currentEntry.ID && !Array.Exists(Inuse.ToArray(), x => x.ID == i.ID)) { Inuse.Add(i); }
+                        }
+                    }
+                }
+            }
+
+            if (Inuse.Count() > 0)
+            {
+                try
+                {
+                    MiscSingleItemSelect Selector = new MiscSingleItemSelect
+                    {
+                        ListContent = Inuse,
+                        Display = 6,
+                        Text = $"{currentEntry.DictionaryName} Is used in the following entries:\n\n"
+                    };
+                    Selector.ShowDialog();
+                    if (Selector.DialogResult != DialogResult.OK) { return; }
+                    var index = Selector.SelectedObject.ID;
+                    //GoBackList.Add(currentEntry.ID);
+                    nudIndex.Value = index;
+                    WriteCurentItem(index);
+                    return;
+                }
+                catch { }
+            }
+            MessageBox.Show($"{currentEntry.DictionaryName} Is not used in any entries", "No entries found", MessageBoxButtons.OK);
+        }
+
+        private void clearLogicDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearLogicData();
+        }
+
+        private void cleanLogicEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cleanLogicEntryToolStripMenuItem.HideDropDown();
+            CleanLogicEntry(currentEntry, EditorInstance);
+            WriteCurentItem(currentEntry.ID);
+        }
+
+        private void extractRequiredItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
+            CleanLogicEntry(currentEntry, EditorInstance, false);
+            WriteCurentItem(currentEntry.ID);
+        }
+
+        private void removeRedundantConditionalsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
+            CleanLogicEntry(currentEntry, EditorInstance, true, false);
+            WriteCurentItem(currentEntry.ID);
+        }
+
+        private void showAllFakeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<LogicObjects.LogicEntry> Fake = new List<LogicObjects.LogicEntry>();
+            foreach (var i in EditorInstance.Logic)
+            {
+                if (i.IsFake) { Fake.Add(i); }
+            }
+
+            if (Fake.Count() > 0)
+            {
+                try
+                {
+                    MiscSingleItemSelect Selector = new MiscSingleItemSelect
+                    {
+                        ListContent = Fake,
+                        Display = 6,
+                        Text = $"Fake Items:\n\n"
+                    };
+                    Selector.ShowDialog();
+                    if (Selector.DialogResult != DialogResult.OK) { return; }
+                    var index = Selector.SelectedObject.ID;
+                    //GoBackList.Add(currentEntry.ID);
+                    nudIndex.Value = index;
+                    WriteCurentItem(index);
+                    return;
+                }
+                catch { }
+            }
+            MessageBox.Show($"No fake items found", "No entries found", MessageBoxButtons.OK);
+        }
+
+        private void setTrickCategoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string CurTT = (currentEntry.TrickCategory == "No Category Available") ? "" : currentEntry.TrickCategory;
+            var text = (CurTT == "") ? "No Category set, enter Category below." : "Current Category: \n\"" + CurTT + "\"\nEnter a new Category below to change it.";
+            string name = Interaction.InputBox(text, $"{currentEntry.DictionaryName} Trick Category", CurTT);
+            if (name != "") { currentEntry.TrickCategory = name; }
         }
 
         //Other
@@ -564,6 +829,177 @@ namespace MMR_Tracker.Forms
             LastSelectedListBox = LBRequired;
         }
 
+        private void LBConditional_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.C && Control.ModifierKeys == Keys.Control)
+            {
+                if (LBConditional.SelectedItems.Count < 1) { return; }
+                CopiedConditional = new List<RequiementConditional>();
+                foreach (RequiementConditional i in LBConditional.SelectedItems)
+                {
+                    CopiedConditional.Add(i);
+                }
+                Clipboard.SetText(JsonConvert.SerializeObject(CopiedConditional));
+            }
+
+            if (e.KeyCode == Keys.V && Control.ModifierKeys == Keys.Control)
+            {
+                if (CopiedConditional.Count < 1) { return; }
+                EditorInstance.UnsavedChanges = true;
+                foreach (RequiementConditional i in CopiedConditional)
+                {
+                    LBConditional.Items.Add(i);
+                }
+                UpdateReqAndCond();
+            }
+        }
+
+        private void LBRequired_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.C && Control.ModifierKeys == Keys.Control)
+            {
+                if (LBRequired.SelectedItems.Count < 1) { return; }
+                CopiedRequirement = new List<LogicObjects.LogicEntry>();
+                foreach (LogicObjects.LogicEntry i in LBRequired.SelectedItems)
+                {
+                    CopiedRequirement.Add(i);
+                }
+                Clipboard.SetText(JsonConvert.SerializeObject(CopiedRequirement));
+            }
+
+            if (e.KeyCode == Keys.V && Control.ModifierKeys == Keys.Control)
+            {
+                if (CopiedRequirement.Count < 1) { return; }
+                EditorInstance.UnsavedChanges = true;
+                foreach (LogicObjects.LogicEntry i in CopiedRequirement)
+                {
+                    LBRequired.Items.Add(i);
+                }
+                UpdateReqAndCond();
+            }
+        }
+
+        private void preventKeyShortcuts(object sender, KeyPressEventArgs e)
+        {
+            if (Control.ModifierKeys == Keys.Control) { e.Handled = true; }
+        }
+
+        private void LogicEditor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.PageUp && nudIndex.Value + 1 < EditorInstance.Logic.Count()) { nudIndex.Value += 1; }
+            if (e.KeyCode == Keys.PageDown && nudIndex.Value > 0) { nudIndex.Value -= 1; }
+        }
+
+        private void chkIsTrick_CheckedChanged(object sender, EventArgs e)
+        {
+            if (PrintingItem) { return; }
+            EditorInstance.UnsavedChanges = true;
+            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
+            currentEntry.IsTrick = chkIsTrick.Checked;
+            setTrickToolTipToolStripMenuItem.Visible = currentEntry.IsTrick;
+            setTrickCategoryToolStripMenuItem.Visible = currentEntry.IsTrick;
+            WriteCurentItem(currentEntry.ID);
+        }
+
+        public void RunLogicParser()
+        {
+            LogicParser PArser = new LogicParser();
+            var result = PArser.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                EditorInstance.UnsavedChanges = true;
+                Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
+                if (currentEntry.Conditionals == null)
+                {
+                    currentEntry.Conditionals = LogicParser.Conditionals;
+                }
+                else
+                {
+                    currentEntry.Conditionals = currentEntry.Conditionals.Concat(LogicParser.Conditionals).ToArray();
+                }
+            }
+            LogicParser.Conditionals = null;
+            WriteCurentItem((int)nudIndex.Value);
+        }
+
+        public void ClearLogicData(bool YOLO = false)
+        {
+            if (!YOLO)
+            {
+                var Clear = MessageBox.Show("WARNING, this will clear all requirements and conditionals from your logic data, are you sure you wish to continue?", "Clear Logic Data", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (Clear != DialogResult.Yes) { return; }
+            }
+
+            foreach (var i in EditorInstance.Logic)
+            {
+                i.Required = null;
+                i.Conditionals = null;
+            }
+            WriteCurentItem(currentEntry.ID);
+        }
+
+        private void LBRequired_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) { return; }
+            e.DrawBackground();
+            Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
+            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
+            e.Graphics.DrawString(LBRequired.Items[e.Index].ToString(), F, brush, e.Bounds);
+            e.DrawFocusRectangle();
+        }
+
+        private void LBConditional_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) { return; }
+            e.DrawBackground();
+            Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
+            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
+            e.Graphics.DrawString(LBConditional.Items[e.Index].ToString(), F, brush, e.Bounds);
+            e.DrawFocusRectangle();
+
+            var Len = e.Graphics.MeasureString(LBConditional.Items[e.Index].ToString(), F).Width;
+            if (Len > LBConditional.Width && (int)Len + 2 > LBConditional.HorizontalExtent) { LBConditional.HorizontalExtent = (int)Len + 2; }
+
+        }
+
+        private void fileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            UserSettings.HandleUserPreset(sender, e);
+        }
+
+        private void lblDicName_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lblDicName.Text);
+        }
+
+        private void lblItemName_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lblItemName.Text);
+        }
+
+        private void lblLocName_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(lblLocName.Text);
+        }
+
+        private void lblTrickToolTip_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!currentEntry.IsTrick) { return; }
+            var ToolTip = string.IsNullOrWhiteSpace(currentEntry.TrickToolTip) ? "No Tool Available\n\n(Double Click to set)" : currentEntry.TrickToolTip;
+            var CurrentToolTipText = toolTip1.GetToolTip(lblTrickToolTip);
+            if (CurrentToolTipText == ToolTip) { return; }
+            toolTip1.SetToolTip(lblTrickToolTip, ToolTip);
+        }
+
+        private void lblCategory_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!currentEntry.IsTrick) { return; }
+            var ToolTip = string.IsNullOrWhiteSpace(currentEntry.TrickCategory) ? "No Category Available\n\n(Double Click to set)" : currentEntry.TrickCategory;
+            var CurrentToolTipText = toolTip1.GetToolTip(lblCategory);
+            if (CurrentToolTipText == ToolTip) { return; }
+            toolTip1.SetToolTip(lblCategory, ToolTip);
+        }
+
         //Functions
 
         public void WriteCurentItem(int Index)
@@ -589,7 +1025,8 @@ namespace MMR_Tracker.Forms
             currentEntry = entry;
             renameCurrentItemToolStripMenuItem.Visible = currentEntry.UserCreatedFakeItem();
             deleteCurrentItemToolStripMenuItem.Visible = currentEntry.UserCreatedFakeItem();
-            setTrickToolTipToolStripMenuItem.Visible = currentEntry.UserCreatedFakeItem();
+            setTrickToolTipToolStripMenuItem.Visible = currentEntry.UserCreatedFakeItem() && currentEntry.IsTrick;
+            setTrickCategoryToolStripMenuItem.Visible = currentEntry.UserCreatedFakeItem() && currentEntry.IsTrick;
 
             LBRequired.BeginUpdate();
             LBConditional.BeginUpdate();
@@ -599,7 +1036,6 @@ namespace MMR_Tracker.Forms
                 var ReqEntry = EditorInstance.Logic[i];
 
                 ReqEntry.DisplayName = ReqEntry.GetDistinctItemName(EditorInstance);
-                ReqEntry.DisplayName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem[0] ?? ReqEntry.DisplayName) : ReqEntry.DisplayName;
                 ReqEntry.DisplayName = (LogicEditor.UseDictionaryNameInSearch) ? ReqEntry.DictionaryName : ReqEntry.DisplayName;
                 LBRequired.Items.Add(ReqEntry);
             }
@@ -621,7 +1057,6 @@ namespace MMR_Tracker.Forms
                         var ReqEntry = EditorInstance.Logic[i];
 
                         string disName = ReqEntry.GetDistinctItemName(EditorInstance);
-                        disName = (LogicEditor.UseSpoilerInDisplay) ? (ReqEntry.SpoilerItem[0] ?? disName) : disName;
                         disName = (LogicEditor.UseDictionaryNameInSearch) ? ReqEntry.DictionaryName : disName;
 
                         Display = Display + addComma + disName;
@@ -640,9 +1075,6 @@ namespace MMR_Tracker.Forms
             string DictionaryName = entry.DictionaryName.ToString();
             string LocationName = entry.LocationName ?? "Fake Location";
             string ItemName = entry.ItemName ?? "Fake Item";
-
-            LocationName = (UseSpoilerInDisplay) ? (entry.SpoilerLocation[0] ?? LocationName) : LocationName;
-            ItemName = (UseSpoilerInDisplay) ? (entry.SpoilerItem[0] ?? ItemName) : ItemName;
 
             lblDicName.Text = DictionaryName;
             this.Text = (String.IsNullOrWhiteSpace(lblDicName.Text)) ? "Logic Editor" : $"Logic Editor: {lblDicName.Text}";
@@ -674,6 +1106,7 @@ namespace MMR_Tracker.Forms
             nudIndex.Value = currentEntry.ID;
 
             lblTrickToolTip.Visible = entry.IsTrick;
+            lblCategory.Visible = entry.IsTrick;
 
             PrintingItem = false;
         }
@@ -822,355 +1255,12 @@ namespace MMR_Tracker.Forms
             }
         }
 
-        private void LBConditional_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.C && Control.ModifierKeys == Keys.Control)
-            {
-                if (LBConditional.SelectedItems.Count < 1) { return; }
-                CopiedConditional = new List<RequiementConditional>();
-                foreach (RequiementConditional i in LBConditional.SelectedItems)
-                {
-                    CopiedConditional.Add(i);
-                }
-                Clipboard.SetText(JsonConvert.SerializeObject(CopiedConditional));
-            }
-
-            if (e.KeyCode == Keys.V && Control.ModifierKeys == Keys.Control)
-            {
-                if (CopiedConditional.Count < 1) { return; }
-                EditorInstance.UnsavedChanges = true;
-                foreach (RequiementConditional i in CopiedConditional)
-                {
-                    LBConditional.Items.Add(i);
-                }
-                UpdateReqAndCond();
-            }
-        }
-
-        private void LBRequired_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.C && Control.ModifierKeys == Keys.Control)
-            {
-                if (LBRequired.SelectedItems.Count < 1) { return; }
-                CopiedRequirement = new List<LogicObjects.LogicEntry>();
-                foreach (LogicObjects.LogicEntry i in LBRequired.SelectedItems)
-                {
-                    CopiedRequirement.Add(i);
-                }
-                Clipboard.SetText(JsonConvert.SerializeObject(CopiedRequirement));
-            }
-
-            if (e.KeyCode == Keys.V && Control.ModifierKeys == Keys.Control)
-            {
-                if (CopiedRequirement.Count < 1) { return; }
-                EditorInstance.UnsavedChanges = true;
-                foreach (LogicObjects.LogicEntry i in CopiedRequirement)
-                {
-                    LBRequired.Items.Add(i);
-                }
-                UpdateReqAndCond();
-            }
-        }
-
-        private void preventKeyShortcuts(object sender, KeyPressEventArgs e)
-        {
-            if (Control.ModifierKeys == Keys.Control) { e.Handled = true; }
-        }
-
-        private void ReorderLogicToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LogicEditorReorder Selector = new LogicEditorReorder();
-            Selector.ListContent = Utility.CloneLogicList(EditorInstance.Logic);
-            Selector.ShowDialog();
-            if(Selector.DialogResult != DialogResult.OK) { return; }
-            EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
-            int counter = 0;
-            Dictionary<int, int> newOrder = new Dictionary<int, int>();
-            foreach(var i in Selector.SelectedItems)
-            {
-                if (i.ID != counter)
-                {
-                    newOrder.Add(i.ID, counter);
-                }
-                counter++;
-            }
-            foreach (var i in Selector.SelectedItems)
-            {
-                if (newOrder.ContainsKey(i.ID))
-                {
-                    Debugging.Log("Item ID " + i.ID + " Became " + newOrder[i.ID]);
-                    i.ID = newOrder[i.ID];
-                }
-                if (i.Required != null)
-                {
-                    for (var j = 0; j < i.Required.Length; j++)
-                    {
-                        if (newOrder.ContainsKey(i.Required[j]))
-                        {
-                            Debugging.Log("Requirment " + i.Required[j] + " Became " + newOrder[i.Required[j]]);
-                            i.Required[j] = newOrder[i.Required[j]];
-                        }
-                    }
-                }
-                if (i.Conditionals != null)
-                {
-                    for (var j = 0; j < i.Conditionals.Length; j++)
-                    {
-                        for (var k = 0; k < i.Conditionals[j].Length; k++)
-                        {
-                            if (newOrder.ContainsKey(i.Conditionals[j][k]))
-                            {
-                                Debugging.Log("Conditional " + i.Conditionals[j][k] + " Became " + newOrder[i.Conditionals[j][k]]);
-                                i.Conditionals[j][k] = newOrder[i.Conditionals[j][k]];
-                            }
-                        }
-                    }
-                }
-            }
-            EditorInstance.Logic = Utility.CloneLogicList(Selector.SelectedItems);
-            WriteCurentItem(currentEntry.ID);
-        }
-
-        private void RenameCurrentItemToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!currentEntry.IsFake) { MessageBox.Show("Only fake Items Can be Renamed"); return; }
-            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
-            string name = Interaction.InputBox("Input New Item Name", "New Item", currentEntry.DictionaryName);
-            if (name == "") { return; }
-            EditorInstance.UnsavedChanges = true;
-            currentEntry.DictionaryName = name;
-            WriteCurentItem(currentEntry.ID);
-        }
-
-        private void LogicEditor_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.PageUp && nudIndex.Value + 1 < EditorInstance.Logic.Count()) { nudIndex.Value += 1; }
-            if (e.KeyCode == Keys.PageDown && nudIndex.Value > 0) { nudIndex.Value -= 1; }
-        }
-
-        private void chkIsTrick_CheckedChanged(object sender, EventArgs e)
-        {
-            if (PrintingItem) { return; }
-            EditorInstance.UnsavedChanges = true;
-            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
-            currentEntry.IsTrick = chkIsTrick.Checked;
-            setTrickToolTipToolStripMenuItem.Visible = currentEntry.IsTrick;
-            WriteCurentItem(currentEntry.ID);
-        }
-
-        private void setTrickToolTipToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string CurTT = (currentEntry.TrickToolTip == "No Tooltip Available") ? "" : currentEntry.TrickToolTip;
-            var text = (CurTT == "") ? "No tooltip set, enter tooltip below." : "Current Tooltip: \n\"" + CurTT + "\"\nEnter a new tooltip below to change it.";
-            string name = Interaction.InputBox(text, $"{currentEntry.DictionaryName} Trick Tooltip", CurTT);
-            if (name != "") { currentEntry.TrickToolTip = name; }
-        }
-
-        private void deleteCurrentItemToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<LogicObjects.LogicEntry> Inuse = new List<LogicObjects.LogicEntry>();
-            foreach (var i in EditorInstance.Logic)
-            {
-                if (i.Required != null)
-                {
-                    for (var j = 0; j < i.Required.Length; j++)
-                    {
-                        if (i.Required[j] == currentEntry.ID) { Inuse.Add(i); }
-                    }
-                }
-                if (i.Conditionals != null)
-                {
-                    for (var j = 0; j < i.Conditionals.Length; j++)
-                    {
-                        for (var k = 0; k < i.Conditionals[j].Length; k++)
-                        {
-                            if (i.Conditionals[j][k] == currentEntry.ID && !Array.Exists(Inuse.ToArray(), x => x.ID == i.ID)) { Inuse.Add(i); }
-                        }
-                    }
-                }
-            }
-
-            if (Inuse.Count() > 0)
-            {
-                string Usage = $"Unable to delete {currentEntry.DictionaryName} Because it is a requirement or conditional in the following entries:\n\n";
-                foreach(var i in Inuse) { Usage = Usage + $"{i.DictionaryName}\n"; }
-                MessageBox.Show(Usage, "Item In Use", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var Confirm = MessageBox.Show($"Are you sure you wish to delete the {currentEntry.DictionaryName} entry?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (Confirm == DialogResult.No) { return; }
-
-            EditorInstance.Logic.RemoveAt(currentEntry.ID);
-            int counter = 0;
-            Dictionary<int, int> newOrder = new Dictionary<int, int>();
-            foreach (var i in EditorInstance.Logic)
-            {
-                if (i.ID != counter)
-                {
-                    newOrder.Add(i.ID, counter);
-                }
-                counter++;
-            }
-            foreach (var i in EditorInstance.Logic)
-            {
-                if (newOrder.ContainsKey(i.ID))
-                {
-                    Debugging.Log("Item ID " + i.ID + " Became " + newOrder[i.ID]);
-                    i.ID = newOrder[i.ID];
-                }
-                if (i.Required != null)
-                {
-                    for (var j = 0; j < i.Required.Length; j++)
-                    {
-                        if (newOrder.ContainsKey(i.Required[j]))
-                        {
-                            Debugging.Log("Requirment " + i.Required[j] + " Became " + newOrder[i.Required[j]]);
-                            i.Required[j] = newOrder[i.Required[j]];
-                        }
-                    }
-                }
-                if (i.Conditionals != null)
-                {
-                    for (var j = 0; j < i.Conditionals.Length; j++)
-                    {
-                        for (var k = 0; k < i.Conditionals[j].Length; k++)
-                        {
-                            if (newOrder.ContainsKey(i.Conditionals[j][k]))
-                            {
-                                Debugging.Log("Conditional " + i.Conditionals[j][k] + " Became " + newOrder[i.Conditionals[j][k]]);
-                                i.Conditionals[j][k] = newOrder[i.Conditionals[j][k]];
-                            }
-                        }
-                    }
-                }
-            }
-            WriteCurentItem((currentEntry.ID >= EditorInstance.Logic.Count) ? EditorInstance.Logic.Count - 1 : currentEntry.ID);
-        }
-
-        private void saveLogicWothoutTrickDataLegacyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.fileToolStripMenuItem.HideDropDown();
-            SaveInstance(false);
-        }
-
-        private void whatIsThisUsedInToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<LogicObjects.LogicEntry> Inuse = new List<LogicObjects.LogicEntry>();
-            foreach (var i in EditorInstance.Logic)
-            {
-                if (i.Required != null)
-                {
-                    for (var j = 0; j < i.Required.Length; j++)
-                    {
-                        if (i.Required[j] == currentEntry.ID) { Inuse.Add(i); }
-                    }
-                }
-                if (i.Conditionals != null)
-                {
-                    for (var j = 0; j < i.Conditionals.Length; j++)
-                    {
-                        for (var k = 0; k < i.Conditionals[j].Length; k++)
-                        {
-                            if (i.Conditionals[j][k] == currentEntry.ID && !Array.Exists(Inuse.ToArray(), x => x.ID == i.ID)) { Inuse.Add(i); }
-                        }
-                    }
-                }
-            }
-
-            if (Inuse.Count() > 0)
-            {
-                try
-                {
-                    MiscSingleItemSelect Selector = new MiscSingleItemSelect
-                    {
-                        ListContent = Inuse,
-                        Display = 6,
-                        Text = $"{currentEntry.DictionaryName} Is used in the following entries:\n\n"
-                    };
-                    Selector.ShowDialog();
-                    if (Selector.DialogResult != DialogResult.OK) { return; }
-                    var index = Selector.SelectedObject.ID;
-                    //GoBackList.Add(currentEntry.ID);
-                    nudIndex.Value = index;
-                    WriteCurentItem(index);
-                    return;
-                }
-                catch { }
-            }
-            MessageBox.Show($"{currentEntry.DictionaryName} Is not used in any entries", "No entries found", MessageBoxButtons.OK);
-        }
-
-        public static int[][] CreatePermiations(int[] List, int numb)
-        {
-            var EnumList = List.Select(x => x);
-            IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> items, int count)
-            {
-                int i = 0;
-                foreach (var item in items)
-                {
-                    if (count == 1)
-                        yield return new T[] { item };
-                    else
-                    {
-                        foreach (var result in GetPermutations(items.Skip(i + 1), count - 1))
-                            yield return new T[] { item }.Concat(result);
-                    }
-                    ++i;
-                }
-            }
-            return GetPermutations(List, numb).Select(x => x.ToArray()).ToArray();
-        }
-
-        public void RunLogicParser()
-        {
-            LogicParser PArser = new LogicParser();
-            var result = PArser.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                EditorInstance.UnsavedChanges = true;
-                Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
-                if (currentEntry.Conditionals == null)
-                {
-                    currentEntry.Conditionals = LogicParser.Conditionals;
-                }
-                else
-                {
-                    currentEntry.Conditionals = currentEntry.Conditionals.Concat(LogicParser.Conditionals).ToArray();
-                }
-            }
-            LogicParser.Conditionals = null;
-            WriteCurentItem((int)nudIndex.Value);
-        }
-
-        private void clearLogicDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ClearLogicData();
-        }
-
-        public void ClearLogicData(bool YOLO = false)
-        {
-            if (!YOLO)
-            {
-                var Clear = MessageBox.Show("WARNING, this will clear all requirements and conditionals from your logic data, are you sure you wish to continue?", "Clear Logic Data", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (Clear != DialogResult.Yes) { return; }
-            }
-
-            foreach(var i in EditorInstance.Logic)
-            {
-                i.Required = null;
-                i.Conditionals = null;
-            }
-            WriteCurentItem(currentEntry.ID);
-        }
-
         public static void CleanLogicEntry(LogicObjects.LogicEntry entry, LogicObjects.TrackerInstance Instance, bool RemoveRedundant = true, bool Extractreq = true)
         {
             Utility.nullEmptyLogicItems(Instance.Logic);
             if (entry.Required == null && entry.Conditionals == null) { return; }
             var l = Instance.Logic;
-            if (entry.Required != null && 
+            if (entry.Required != null &&
                 (entry.Required.Where(x => l[x].DictionaryName.StartsWith("MMRTCombinations") || l[x].DictionaryName.StartsWith("MMRTCheckContains")).Any()))
             { return; }
 
@@ -1267,109 +1357,25 @@ namespace MMR_Tracker.Forms
             return ChangesMade;
         }
 
-        private void cleanLogicEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        public static int[][] CreatePermiations(int[] List, int numb)
         {
-            cleanLogicEntryToolStripMenuItem.HideDropDown();
-            CleanLogicEntry(currentEntry, EditorInstance);
-            WriteCurentItem(currentEntry.ID);
-        }
-
-        private void extractRequiredItemsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
-            CleanLogicEntry(currentEntry, EditorInstance, false);
-            WriteCurentItem(currentEntry.ID);
-        }
-
-        private void removeRedundantConditionalsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Tools.SaveState(EditorInstance, new LogicObjects.SaveState() { Logic = EditorInstance.Logic }, EditorInstanceUndoRedoData);
-            CleanLogicEntry(currentEntry, EditorInstance, true, false);
-            WriteCurentItem(currentEntry.ID);
-        }
-
-        private void LBRequired_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if (e.Index < 0) { return; }
-            e.DrawBackground();
-            Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
-            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
-            e.Graphics.DrawString(LBRequired.Items[e.Index].ToString(), F, brush, e.Bounds);
-            e.DrawFocusRectangle();
-        }
-
-        private void LBConditional_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if (e.Index < 0) { return; }
-            e.DrawBackground();
-            Font F = LogicObjects.MainTrackerInstance.Options.FormFont;
-            Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : Brushes.Black;
-            e.Graphics.DrawString(LBConditional.Items[e.Index].ToString(), F, brush, e.Bounds);
-            e.DrawFocusRectangle();
-
-            var Len = e.Graphics.MeasureString(LBConditional.Items[e.Index].ToString(), F).Width;
-            if (Len > LBConditional.Width && (int)Len + 2 > LBConditional.HorizontalExtent) { LBConditional.HorizontalExtent = (int)Len + 2; }
-
-        }
-
-        private void fileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            UserSettings.HandleUserPreset(sender, e);
-        }
-
-        private void showAllFakeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<LogicObjects.LogicEntry> Fake = new List<LogicObjects.LogicEntry>();
-            foreach (var i in EditorInstance.Logic)
+            var EnumList = List.Select(x => x);
+            IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> items, int count)
             {
-                if (i.IsFake) { Fake.Add(i); }
-            }
-
-            if (Fake.Count() > 0)
-            {
-                try
+                int i = 0;
+                foreach (var item in items)
                 {
-                    MiscSingleItemSelect Selector = new MiscSingleItemSelect
+                    if (count == 1)
+                        yield return new T[] { item };
+                    else
                     {
-                        ListContent = Fake,
-                        Display = 6,
-                        Text = $"Fake Items:\n\n"
-                    };
-                    Selector.ShowDialog();
-                    if (Selector.DialogResult != DialogResult.OK) { return; }
-                    var index = Selector.SelectedObject.ID;
-                    //GoBackList.Add(currentEntry.ID);
-                    nudIndex.Value = index;
-                    WriteCurentItem(index);
-                    return;
+                        foreach (var result in GetPermutations(items.Skip(i + 1), count - 1))
+                            yield return new T[] { item }.Concat(result);
+                    }
+                    ++i;
                 }
-                catch { }
             }
-            MessageBox.Show($"No fake items found", "No entries found", MessageBoxButtons.OK);
-        }
-
-        private void lblDicName_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(lblDicName.Text);
-        }
-
-        private void lblItemName_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(lblItemName.Text);
-        }
-
-        private void lblLocName_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(lblLocName.Text);
-        }
-
-        private void lblTrickToolTip_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (!currentEntry.IsTrick) { return; }
-            var ToolTip = string.IsNullOrWhiteSpace(currentEntry.TrickToolTip) ? "No Tool Available\n\n(Double Click to set)" : currentEntry.TrickToolTip;
-            var CurrentToolTipText = toolTip1.GetToolTip(lblTrickToolTip);
-            if (CurrentToolTipText == ToolTip) { return; }
-            toolTip1.SetToolTip(lblTrickToolTip, ToolTip);
+            return GetPermutations(List, numb).Select(x => x.ToArray()).ToArray();
         }
     }
 }

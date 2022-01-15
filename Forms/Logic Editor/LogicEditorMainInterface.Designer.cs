@@ -72,11 +72,11 @@
             this.newItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLocationItemNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.displaySpoilerLogNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reorderLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameCurrentItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteCurrentItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setTrickToolTipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setTrickCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whatIsThisUsedInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cleanLogicEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extractRequiredItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,6 +100,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblTrickToolTip = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lblCategory = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudIndex)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -560,11 +561,11 @@
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useLocationItemNamesToolStripMenuItem,
-            this.displaySpoilerLogNamesToolStripMenuItem,
             this.reorderLogicToolStripMenuItem,
             this.renameCurrentItemToolStripMenuItem,
             this.deleteCurrentItemToolStripMenuItem,
             this.setTrickToolTipToolStripMenuItem,
+            this.setTrickCategoryToolStripMenuItem,
             this.whatIsThisUsedInToolStripMenuItem,
             this.cleanLogicEntryToolStripMenuItem,
             this.showAllFakeToolStripMenuItem});
@@ -575,49 +576,49 @@
             // useLocationItemNamesToolStripMenuItem
             // 
             this.useLocationItemNamesToolStripMenuItem.Name = "useLocationItemNamesToolStripMenuItem";
-            this.useLocationItemNamesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.useLocationItemNamesToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.useLocationItemNamesToolStripMenuItem.Text = "Use Location/Item Names";
             this.useLocationItemNamesToolStripMenuItem.Click += new System.EventHandler(this.UseLocationItemNamesToolStripMenuItem_Click);
-            // 
-            // displaySpoilerLogNamesToolStripMenuItem
-            // 
-            this.displaySpoilerLogNamesToolStripMenuItem.Name = "displaySpoilerLogNamesToolStripMenuItem";
-            this.displaySpoilerLogNamesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.displaySpoilerLogNamesToolStripMenuItem.Text = "Display Spoiler Log Names";
-            this.displaySpoilerLogNamesToolStripMenuItem.Click += new System.EventHandler(this.DisplaySpoilerLogNamesToolStripMenuItem_Click);
             // 
             // reorderLogicToolStripMenuItem
             // 
             this.reorderLogicToolStripMenuItem.Name = "reorderLogicToolStripMenuItem";
-            this.reorderLogicToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.reorderLogicToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.reorderLogicToolStripMenuItem.Text = "Reorder Logic";
             this.reorderLogicToolStripMenuItem.Click += new System.EventHandler(this.ReorderLogicToolStripMenuItem_Click);
             // 
             // renameCurrentItemToolStripMenuItem
             // 
             this.renameCurrentItemToolStripMenuItem.Name = "renameCurrentItemToolStripMenuItem";
-            this.renameCurrentItemToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.renameCurrentItemToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.renameCurrentItemToolStripMenuItem.Text = "Rename Current Item";
             this.renameCurrentItemToolStripMenuItem.Click += new System.EventHandler(this.RenameCurrentItemToolStripMenuItem_Click);
             // 
             // deleteCurrentItemToolStripMenuItem
             // 
             this.deleteCurrentItemToolStripMenuItem.Name = "deleteCurrentItemToolStripMenuItem";
-            this.deleteCurrentItemToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.deleteCurrentItemToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.deleteCurrentItemToolStripMenuItem.Text = "Delete Current Item";
             this.deleteCurrentItemToolStripMenuItem.Click += new System.EventHandler(this.deleteCurrentItemToolStripMenuItem_Click);
             // 
             // setTrickToolTipToolStripMenuItem
             // 
             this.setTrickToolTipToolStripMenuItem.Name = "setTrickToolTipToolStripMenuItem";
-            this.setTrickToolTipToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.setTrickToolTipToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.setTrickToolTipToolStripMenuItem.Text = "Set Trick ToolTip";
             this.setTrickToolTipToolStripMenuItem.Click += new System.EventHandler(this.setTrickToolTipToolStripMenuItem_Click);
+            // 
+            // setTrickCategoryToolStripMenuItem
+            // 
+            this.setTrickCategoryToolStripMenuItem.Name = "setTrickCategoryToolStripMenuItem";
+            this.setTrickCategoryToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.setTrickCategoryToolStripMenuItem.Text = "Set Trick Category";
+            this.setTrickCategoryToolStripMenuItem.Click += new System.EventHandler(this.setTrickCategoryToolStripMenuItem_Click);
             // 
             // whatIsThisUsedInToolStripMenuItem
             // 
             this.whatIsThisUsedInToolStripMenuItem.Name = "whatIsThisUsedInToolStripMenuItem";
-            this.whatIsThisUsedInToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.whatIsThisUsedInToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.whatIsThisUsedInToolStripMenuItem.Text = "What is this used in?";
             this.whatIsThisUsedInToolStripMenuItem.Click += new System.EventHandler(this.whatIsThisUsedInToolStripMenuItem_Click);
             // 
@@ -627,7 +628,7 @@
             this.extractRequiredItemsToolStripMenuItem,
             this.removeRedundantConditionalsToolStripMenuItem});
             this.cleanLogicEntryToolStripMenuItem.Name = "cleanLogicEntryToolStripMenuItem";
-            this.cleanLogicEntryToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.cleanLogicEntryToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.cleanLogicEntryToolStripMenuItem.Text = "Clean Logic Entry";
             this.cleanLogicEntryToolStripMenuItem.Click += new System.EventHandler(this.cleanLogicEntryToolStripMenuItem_Click);
             // 
@@ -648,7 +649,7 @@
             // showAllFakeToolStripMenuItem
             // 
             this.showAllFakeToolStripMenuItem.Name = "showAllFakeToolStripMenuItem";
-            this.showAllFakeToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.showAllFakeToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.showAllFakeToolStripMenuItem.Text = "Show all Fake";
             this.showAllFakeToolStripMenuItem.Click += new System.EventHandler(this.showAllFakeToolStripMenuItem_Click);
             // 
@@ -872,6 +873,17 @@
             this.toolTip1.InitialDelay = 10;
             this.toolTip1.ReshowDelay = 100;
             // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Location = new System.Drawing.Point(589, 28);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(49, 13);
+            this.lblCategory.TabIndex = 55;
+            this.lblCategory.Text = "Category";
+            this.lblCategory.Click += new System.EventHandler(this.setTrickCategoryToolStripMenuItem_Click);
+            this.lblCategory.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblCategory_MouseMove);
+            // 
             // LogicEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -879,6 +891,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(810, 500);
+            this.Controls.Add(this.lblCategory);
             this.Controls.Add(this.lblTrickToolTip);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -963,7 +976,6 @@
         private System.Windows.Forms.ToolStripMenuItem newItemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useLocationItemNamesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem displaySpoilerLogNamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
         private System.Windows.Forms.Label label6;
@@ -999,5 +1011,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lblTrickToolTip;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label lblCategory;
+        private System.Windows.Forms.ToolStripMenuItem setTrickCategoryToolStripMenuItem;
     }
 }

@@ -100,6 +100,7 @@ namespace MMR_Tracker_V2
             public bool IsTrick { get; set; } = false; //Whether or not the entry is a trick
             public bool TrickEnabled { get; set; } = false; //Whether or not the trick is enabled
             public string TrickToolTip { get; set; } = null; //The tool tip describing what the trick is
+            public string TrickCategory { get; set; } = null; //The category this trick belongs to, allows for sorting of tricks
             public string GossipHint { get; set; } = ""; //The text assigned to this gossip stone. Only applicable if the check is a gossip stone.
             public int Price { get; set; } = -1; //The price to purchase the item at a shop, used in Price Randomizer.
             public List<string> SpoilerPriceName { get; set; } = new List<string>(); //The names the spoiler log will use when refering to the price of this location
@@ -326,6 +327,7 @@ namespace MMR_Tracker_V2
             public bool IsTrick { get; set; }
 
             private string _trickTooltip;
+            private string _trickCategory;
             public string TrickTooltip
             {
                 get
@@ -335,6 +337,17 @@ namespace MMR_Tracker_V2
                 set
                 {
                     _trickTooltip = value;
+                }
+            }
+            public string TrickCategory
+            {
+                get
+                {
+                    return IsTrick ? _trickCategory : null;
+                }
+                set
+                {
+                    _trickCategory = value;
                 }
             }
         }

@@ -210,6 +210,7 @@ namespace MMR_Tracker.Forms
         private void btnParseExpression_Click(object sender, EventArgs e)
         {
             string TextBoxNewText = Utility.RemoveCommentLines(textBox1.Text);
+            TextBoxNewText = ConvertDicNameToID(TextBoxNewText);
 
             foreach (var i in ExtractNumbers(TextBoxNewText))
             {
@@ -329,7 +330,7 @@ namespace MMR_Tracker.Forms
             int InsertLength = 0;
             if (listView1.SelectedItems.Count > 0)
             {
-                if ((Control.ModifierKeys & Keys.Control) == Keys.Control && int.TryParse(listView1.SelectedItems[0].Tag.ToString(), out int x) && LogicEditor.EditorInstance.ItemInRange(x))
+                if ((Control.ModifierKeys & Keys.Control) != Keys.Control && int.TryParse(listView1.SelectedItems[0].Tag.ToString(), out int x) && LogicEditor.EditorInstance.ItemInRange(x))
                 {
                     InsertLength = LogicEditor.EditorInstance.Logic[x].DictionaryName.Count();
                     textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart, LogicEditor.EditorInstance.Logic[x].DictionaryName);

@@ -95,7 +95,8 @@ namespace MMR_Tracker_V2
                     TimeSetup = (int)i.TimeSetup,
                     IsTrick = i.IsTrick,
                     TrickEnabled = i.IsTrick,
-                    TrickToolTip = i.TrickTooltip
+                    TrickToolTip = i.TrickTooltip,
+                    TrickCategory = i.TrickCategory
                 };
 
                 var DicEntry = instance.LogicDictionary.LogicDictionaryList.Find(x => x.DictionaryName == LogicEntry1.DictionaryName);
@@ -613,6 +614,7 @@ namespace MMR_Tracker_V2
                 Newentry.TimeSetup = (LogicObjects.TimeOfDay)i.TimeSetup;
                 Newentry.IsTrick = i.IsTrick;
                 Newentry.TrickTooltip = i.TrickToolTip == "No Tooltip Available" ? null : i.TrickToolTip;
+                Newentry.TrickCategory = i.TrickCategory == "No category Available" ? null : i.TrickCategory;
                 LogicFile.Logic.Add(Newentry);
             }
             return new string[] { LogicFile.ToString() };
