@@ -14,7 +14,7 @@ namespace MMR_Tracker_V2
     class VersionHandeling
     {
         //Logic Version Handeling
-        public static string trackerVersion = "V1.11";
+        public static string trackerVersion = "V1.13";
         public static int TrackerVersionStatus = 0;
 
         public static string BaseProgramPath = AppDomain.CurrentDomain.BaseDirectory;
@@ -135,8 +135,13 @@ namespace MMR_Tracker_V2
         //Tracker Version Handeling
         public static bool GetLatestTrackerVersion()
         {
-            var CheckForUpdate = File.Exists(VersionHandeling.BaseProgramPath + "options.txt") && File.ReadAllLines(VersionHandeling.BaseProgramPath + "options.txt").Any(x => x.Contains("CheckForUpdates:1"));
-            if (!CheckForUpdate && (Control.ModifierKeys != Keys.Shift)) { return false; }
+            if (File.Exists(BaseProgramPath + "options.txt"))
+            {
+                LogicObjects.DefaultTrackerOption options;
+                try { options = JsonConvert.DeserializeObject<LogicObjects.DefaultTrackerOption>(File.ReadAllText(VersionHandeling.BaseProgramPath + "options.txt")); }
+                catch { Console.WriteLine("could not parse options.txt"); return false; }
+                if (!options.CheckForUpdates && (Control.ModifierKeys != Keys.Shift)) { return false; }
+            }
 
             var client = new GitHubClient(new ProductHeaderValue("MMR-Tracker"));
             var lateset = client.Repository.Release.GetLatest("Thedrummonger", "MMR-Tracker").Result;
@@ -151,7 +156,7 @@ namespace MMR_Tracker_V2
                 if (Debugging.ISDebugging && (Control.ModifierKeys != Keys.Shift)) { Debugging.Log($"Using Outdated Version"); }
                 else
                 {
-                    var Download = MessageBox.Show($"Your tracker version { trackerVersion } is out of Date. Would you like to download the latest version { lateset.TagName }?", "Tracker Out of Date", MessageBoxButtons.YesNo);
+                    var Download = MessageBox.Show($"Your tracker version { trackerVersion } is out of Date. Would you like to download the latest version { lateset.TagName }?\n\nYou can disable this message by disabling \"Check of Updates\" in the options file", "Tracker Out of Date", MessageBoxButtons.YesNo);
                     if (Download == DialogResult.Yes) { { Process.Start(lateset.HtmlUrl); return true; } }
                 }
                 TrackerVersionStatus = -1;
