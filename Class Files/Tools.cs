@@ -260,7 +260,7 @@ namespace MMR_Tracker.Class_Files
             LogicObjects.SpoilerData entry = new LogicObjects.SpoilerData();
             foreach (string line in File.ReadAllLines(Path))
             {
-                if (line.StartsWith("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">") && Instance.IsMM())
+                if (line.StartsWith("<label><b>Settings: </b></label><code style=\"word-break: break-all") && Instance.IsMM())
                 {
                     var newLine = line.Replace("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">", "{\"GameplaySettings\":");
                     newLine = newLine.Replace("</code><br/>", "}");
@@ -956,7 +956,7 @@ namespace MMR_Tracker.Class_Files
             {
                 foreach (var line in RawLogicFile)
                 {
-                    if (line.StartsWith("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">"))
+                    if (line.StartsWith("<label><b>Settings: </b></label><code style=\"word-break: break-all;"))
                     {
                         var newLine = line.Replace("<label><b>Settings: </b></label><code style=\"word-break: break-all;\">", "{\"GameplaySettings\":");
                         newLine = newLine.Replace("</code><br/>", "}");
@@ -1086,7 +1086,7 @@ namespace MMR_Tracker.Class_Files
         public static LogicObjects.GameplaySettings ParseSpoilerLogSettingsWithLineBreak(string[] RawLogicFile, bool text = false)
         {
             string SettingStart = text ? "Settings:" : "<label><b>Settings:";
-            string SettingEnd = text ? "Seed:" : "}</code><br/>";
+            string SettingEnd = text ? "Seed:" : "}</code>";
 
             LogicObjects.GameplaySettings SettingFile = null;
             bool inSettings = false;
