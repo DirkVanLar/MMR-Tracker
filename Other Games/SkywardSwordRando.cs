@@ -87,6 +87,8 @@ namespace MMR_Tracker.Other_Games
             {
                 if (i.Value.original_item == "Bottle") { i.Value.original_item = "Empty Bottle"; }
                 if (i.Value.original_item == "Baby's Rattle") { i.Value.original_item = "Baby Rattle"; }
+                //Levias doesn't actually give a real item in game, he just unlocks the ability to learn the three song of the hearo parts
+                if (i.Key == "Thunderhead - Song from Levias") { i.Value.original_item = "Red Rupee"; }
             }
 
             //Add "X amount of Y Item" Logic Entries. Add neccesary MMRTCombinations entries.

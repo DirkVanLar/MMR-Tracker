@@ -1183,7 +1183,7 @@
     {
       "Id": "Can Open Trial Gate on Skyloft",
       "RequiredItems": [
-        "Thunderhead - Song from Levias",
+        "Song of the Hero",
         "Lanayru Mining Facility - Goddess Harp"
       ],
       "TimeNeeded": 0,

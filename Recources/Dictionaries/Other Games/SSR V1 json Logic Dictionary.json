@@ -21,7 +21,8 @@
         "skyloft",
         "free gift"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Owlan's Gift",
@@ -40,7 +41,8 @@
         "skyloft",
         "free gift"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Sparring Hall Chest",
@@ -59,7 +61,8 @@
         "skyloft",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Potion Lady's Gift",
@@ -78,7 +81,8 @@
         "skyloft",
         "free gift"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Waterfall Cave First Chest",
@@ -97,7 +101,8 @@
         "skyloft",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Waterfall Cave Second Chest",
@@ -116,7 +121,8 @@
         "skyloft",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Chest near Goddess Statue",
@@ -135,7 +141,8 @@
         "skyloft",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Chest in Goddess Statue",
@@ -154,7 +161,8 @@
         "skyloft",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Bazaar Goddess Chest",
@@ -174,7 +182,8 @@
         "goddess",
         "sand sea goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Shed Chest",
@@ -193,7 +202,8 @@
         "skyloft",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Shed Goddess Chest",
@@ -213,7 +223,8 @@
         "goddess",
         "eldin goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - West Cliff Goddess Chest",
@@ -233,7 +244,8 @@
         "goddess",
         "faron goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Floating Island Goddess Chest",
@@ -253,7 +265,8 @@
         "goddess",
         "floria goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Waterfall Goddess Chest",
@@ -274,7 +287,8 @@
         "sand sea goddess",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Pumpkin Archery - 600 Points",
@@ -293,7 +307,8 @@
         "skyloft",
         "minigame"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - In Zelda's Closet",
@@ -312,7 +327,8 @@
         "skyloft",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Item in Bird Nest",
@@ -331,7 +347,8 @@
         "skyloft",
         "freestanding"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Parrow's Gift",
@@ -351,7 +368,8 @@
         "free gift",
         "short"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Cawlin's Letter",
@@ -370,7 +388,8 @@
         "skyloft",
         "short"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Wryna's Crystals",
@@ -390,7 +409,8 @@
         "free gift",
         "crystal quest"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Peater/Peatrice's Crystals",
@@ -411,7 +431,8 @@
         "crystal quest",
         "peatrice"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Parrow's Crystals",
@@ -432,7 +453,8 @@
         "short",
         "crystal quest"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Fledge's Crystals",
@@ -454,7 +476,8 @@
         "crystal quest",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyloft Village - Bertie's Crystals",
@@ -474,7 +497,8 @@
         "fetch",
         "crystal quest"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Ghost/Pipit's Crystals",
@@ -494,7 +518,8 @@
         "fetch",
         "crystal quest"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyloft Village - Sparrot's Crystals",
@@ -516,7 +541,8 @@
         "scrapper",
         "crystal quest"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyloft Village - Mallara's Crystals",
@@ -536,7 +562,8 @@
         "short",
         "crystal quest"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Owlan's Crystals",
@@ -559,7 +586,8 @@
         "crystal quest",
         "combat"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Batreaux - 5 Crystals",
@@ -577,7 +605,8 @@
       "LocationCategory": [
         "skyloft"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Batreaux - 10 Crystals",
@@ -595,7 +624,8 @@
       "LocationCategory": [
         "skyloft"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Batreaux - 30 Crystals",
@@ -613,7 +643,8 @@
       "LocationCategory": [
         "skyloft"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Batreaux - 30 Crystals Chest",
@@ -631,7 +662,8 @@
       "LocationCategory": [
         "skyloft"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Batreaux - 40 Crystals",
@@ -649,7 +681,8 @@
       "LocationCategory": [
         "skyloft"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Batreaux - 50 Crystals",
@@ -667,7 +700,8 @@
       "LocationCategory": [
         "skyloft"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Batreaux - 70 Crystals",
@@ -685,7 +719,8 @@
       "LocationCategory": [
         "skyloft"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Batreaux - 70 Crystals Second Reward",
@@ -703,7 +738,8 @@
       "LocationCategory": [
         "skyloft"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Batreaux - 80 Crystals",
@@ -721,7 +757,8 @@
       "LocationCategory": [
         "skyloft"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Beedle - 300 Rupee Item",
@@ -741,7 +778,8 @@
         "beedle",
         "cheap"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Beedle - 600 Rupee Item",
@@ -761,7 +799,8 @@
         "beedle",
         "medium"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Beedle - 1200 Rupee Item",
@@ -781,7 +820,8 @@
         "beedle",
         "expensive"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Beedle - 800 Rupee Item",
@@ -801,7 +841,8 @@
         "beedle",
         "medium"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Beedle - 1600 Rupee Item",
@@ -821,7 +862,8 @@
         "beedle",
         "expensive"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Beedle - First 100 Rupee Item",
@@ -841,7 +883,8 @@
         "beedle",
         "cheap"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Beedle - Second 100 Rupee Item",
@@ -861,7 +904,8 @@
         "beedle",
         "cheap"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Beedle - Third 100 Rupee Item",
@@ -881,7 +925,8 @@
         "beedle",
         "cheap"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Beedle - 50 Rupee Item",
@@ -901,7 +946,8 @@
         "beedle",
         "cheap"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Beedle - 1000 Rupee Item",
@@ -921,7 +967,8 @@
         "beedle",
         "medium"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Crystal in Link's Room",
@@ -939,7 +986,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Crystal on Light Tower",
@@ -957,7 +1005,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyloft Village - Crystal near Pumpkin Patch",
@@ -975,7 +1024,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Crystal in Orielle and Parrow's House",
@@ -993,7 +1043,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Crystal between Wooden Planks",
@@ -1011,7 +1062,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Crystal in Knight Academy Plant",
@@ -1029,7 +1081,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Crystal on West Cliff",
@@ -1047,7 +1100,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Crystal after Waterfall Cave",
@@ -1065,7 +1119,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Crystal in Loftwing Prison",
@@ -1083,7 +1138,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Crystal in Sparring Hall",
@@ -1101,7 +1157,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Crystal on Waterfall Island",
@@ -1119,7 +1176,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Knight Academy - Crystal in Zelda's Room",
@@ -1137,7 +1195,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Lumpy Pumpkin - Chandelier",
@@ -1156,7 +1215,8 @@
         "sky",
         "freestanding"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Lumpy Pumpkin - Goddess Chest on the Roof",
@@ -1177,7 +1237,8 @@
         "faron goddess",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Lumpy Pumpkin - Outside Goddess Chest",
@@ -1197,7 +1258,8 @@
         "goddess",
         "faron goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Lumpy Pumpkin Harp Minigame",
@@ -1217,7 +1279,8 @@
         "long",
         "minigame"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Bamboo Island Goddess Chest",
@@ -1238,7 +1301,8 @@
         "eldin goddess",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Goddess Chest on Island next to Bamboo Island",
@@ -1258,7 +1322,8 @@
         "goddess",
         "eldin goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Goddess Chest in Cave on Island Next to Bamboo Island",
@@ -1279,7 +1344,8 @@
         "lanayru goddess",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Beedle's Island Goddess Chest",
@@ -1300,7 +1366,8 @@
         "lanayru goddess",
         "combat"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Beedle's Island Cage Goddess Chest",
@@ -1320,7 +1387,8 @@
         "goddess",
         "faron goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Northeast Island Goddess Chest behind Bombable Rocks",
@@ -1340,7 +1408,8 @@
         "goddess",
         "lanayru goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Northeast Island Cage Goddess Chest",
@@ -1360,7 +1429,8 @@
         "goddess",
         "eldin goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Goddess Chest on Island Closest to Faron Pillar",
@@ -1380,7 +1450,8 @@
         "goddess",
         "faron goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Goddess Chest outside Volcanic Island",
@@ -1400,7 +1471,8 @@
         "goddess",
         "lanayru goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Goddess Chest inside Volcanic Island",
@@ -1420,7 +1492,8 @@
         "goddess",
         "faron goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Goddess Chest under Fun Fun Island",
@@ -1440,7 +1513,8 @@
         "goddess",
         "floria goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Southwest Triple Island Upper Goddess Chest",
@@ -1460,7 +1534,8 @@
         "goddess",
         "eldin goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Southwest Triple Island Lower Goddess Chest",
@@ -1480,7 +1555,8 @@
         "goddess",
         "lanayru goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Southwest Triple Island Cage Goddess Chest",
@@ -1500,7 +1576,8 @@
         "goddess",
         "sand sea goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Dodoh's Crystals",
@@ -1521,7 +1598,8 @@
         "long",
         "scrapper"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Fun Fun Island Minigame - 500 Rupees",
@@ -1543,7 +1621,8 @@
         "long",
         "scrapper"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Orielle's Crystals",
@@ -1563,7 +1642,8 @@
         "short",
         "crystal quest"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Kina's Crystals",
@@ -1586,7 +1666,8 @@
         "long",
         "crystal quest"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Beedle's Crystals",
@@ -1606,7 +1687,8 @@
         "fetch",
         "crystal quest"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Chest in Breakable Boulder near Fun Fun Island",
@@ -1625,7 +1707,8 @@
         "sky",
         "spiral charge"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Chest in Breakable Boulder near Lumpy Pumpkin",
@@ -1644,7 +1727,8 @@
         "sky",
         "spiral charge"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Crystal outside Lumpy Pumpkin",
@@ -1662,7 +1746,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Crystal inside Lumpy Pumpkin",
@@ -1680,7 +1765,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Crystal on Beedle's Ship",
@@ -1698,7 +1784,8 @@
       "LocationCategory": [
         "crystal"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - Goddess Chest outside Isle of Songs",
@@ -1718,7 +1805,8 @@
         "goddess",
         "eldin goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - Goddess Chest on top of Isle of Songs",
@@ -1738,7 +1826,8 @@
         "goddess",
         "summit goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - East Island Goddess Chest",
@@ -1758,7 +1847,8 @@
         "goddess",
         "faron goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - East Island Chest",
@@ -1777,7 +1867,8 @@
         "thunderhead",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - Bug Heaven Goddess Chest",
@@ -1797,7 +1888,8 @@
         "goddess",
         "summit goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - First Goddess Chest on Mogma Mitts Island",
@@ -1817,7 +1909,8 @@
         "goddess",
         "summit goddess"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - Bug Heaven - 10 Bugs in 3 Minutes",
@@ -1836,12 +1929,13 @@
         "thunderhead",
         "minigame"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - Song from Levias",
       "LocationName": "Thunderhead - Song from Levias",
-      "ItemName": "Song of the Hero",
+      "ItemName": "Red Rupee",
       "LocationArea": "thunderhead",
       "ItemSubType": "Item",
       "FakeItem": false,
@@ -1849,7 +1943,7 @@
         "Thunderhead - Song from Levias"
       ],
       "SpoilerItem": [
-        "Song of the Hero"
+        "Red Rupee"
       ],
       "LocationCategory": [
         "thunderhead",
@@ -1858,7 +1952,8 @@
         "combat",
         "song"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - Isle of Songs - Farore's Courage",
@@ -1877,7 +1972,8 @@
         "thunderhead",
         "song"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - Isle of Songs - Nayru's Wisdom",
@@ -1896,7 +1992,8 @@
         "thunderhead",
         "song"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - Isle of Songs - Din's Power",
@@ -1915,7 +2012,8 @@
         "thunderhead",
         "song"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sealed Grounds - Chest inside Sealed Temple",
@@ -1934,7 +2032,8 @@
         "faron",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sealed Grounds - Song from Impa",
@@ -1953,7 +2052,8 @@
         "faron",
         "song"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sealed Grounds - Gorko's Goddess Wall Reward",
@@ -1973,7 +2073,8 @@
         "long",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sealed Grounds - Zelda's Blessing",
@@ -1991,7 +2092,8 @@
       "LocationCategory": [
         "faron"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Faron Woods - Item on Tree",
@@ -2010,7 +2112,8 @@
         "faron",
         "freestanding"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Faron Woods - Slingshot",
@@ -2030,7 +2133,8 @@
         "long",
         "combat"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Faron Woods - Deep Woods Chest",
@@ -2049,7 +2153,8 @@
         "faron",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Faron Woods - Item behind Bombable Rock",
@@ -2069,7 +2174,8 @@
         "freestanding",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Faron Woods - Chest behind Bombable Rocks near Erla",
@@ -2088,7 +2194,8 @@
         "faron",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Faron Woods - Chest inside Great Tree",
@@ -2107,7 +2214,8 @@
         "faron",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lake Floria - Lake Floria Chest",
@@ -2126,7 +2234,8 @@
         "faron",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lake Floria - Dragon Lair East Chest",
@@ -2145,7 +2254,8 @@
         "faron",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lake Floria - Dragon Lair South Chest",
@@ -2164,7 +2274,8 @@
         "faron",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Chest behind Bombable Wall in First Room",
@@ -2183,7 +2294,8 @@
         "eldin",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Chest after Crawlspace",
@@ -2202,7 +2314,8 @@
         "eldin",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Chest behind Bombable Wall near Cliff",
@@ -2221,7 +2334,8 @@
         "eldin",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Item on Cliff",
@@ -2240,7 +2354,8 @@
         "eldin",
         "freestanding"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Chest behind Bombable Wall near Volcano Ascent",
@@ -2259,7 +2374,8 @@
         "eldin",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Digging Spot in front of Earth Temple",
@@ -2278,7 +2394,8 @@
         "eldin",
         "digging"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Digging Spot below Tower",
@@ -2298,7 +2415,8 @@
         "bombable",
         "digging"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Digging Spot behind Boulder on Sandy Slope",
@@ -2318,7 +2436,8 @@
         "bombable",
         "digging"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Digging Spot after Vents",
@@ -2337,7 +2456,8 @@
         "eldin",
         "digging"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Digging Spot after Draining Lava",
@@ -2356,7 +2476,8 @@
         "eldin",
         "digging"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Mogma Turf - Free Fall Chest",
@@ -2375,7 +2496,8 @@
         "eldin",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Mogma Turf - Chest behind Bombable Wall at Entrance",
@@ -2394,7 +2516,8 @@
         "eldin",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Mogma Turf - Sand Slide Chest",
@@ -2413,7 +2536,8 @@
         "eldin",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Mogma Turf - Digging Mitts Fight",
@@ -2432,7 +2556,8 @@
         "eldin",
         "combat"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Mogma Turf - Chest behind Bombable Wall in Fire Maze",
@@ -2451,7 +2576,8 @@
         "eldin",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Volcano Summit - Small Chest in Volcano Summit",
@@ -2470,7 +2596,8 @@
         "eldin",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Volcano Summit - Boko Base Pouch Chest",
@@ -2489,7 +2616,8 @@
         "eldin",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Volcano Summit - Item behind Digging",
@@ -2508,7 +2636,8 @@
         "eldin",
         "freestanding"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Volcano Summit - Chest behind Bombable Wall in Waterfall Area",
@@ -2527,7 +2656,8 @@
         "eldin",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mines - Chest behind First Landing",
@@ -2546,7 +2676,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mines - Chest near First Timeshift Stone",
@@ -2565,7 +2696,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mines - Chest behind Statue",
@@ -2584,7 +2716,8 @@
         "lanayru",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mines - Chest at the End of Mines",
@@ -2603,7 +2736,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Chest near Party Wheel",
@@ -2622,7 +2756,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Chest near Hook Beetle Fight",
@@ -2641,7 +2776,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Hook Beetle Fight",
@@ -2660,7 +2796,8 @@
         "lanayru",
         "combat"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Secret Passageway Chest",
@@ -2679,7 +2816,8 @@
         "lanayru",
         "bombable"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Chest on top of Lanayru Mining Facility",
@@ -2699,7 +2837,8 @@
         "miscellaneous",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Chest on Platform near Lightning Node",
@@ -2718,7 +2857,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Chest on Platform near Fire Node",
@@ -2737,7 +2877,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Chest near Sand Oasis",
@@ -2756,7 +2897,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Lightning Node - First Chest",
@@ -2775,7 +2917,8 @@
         "lanayru",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Lightning Node - Second Chest",
@@ -2794,7 +2937,8 @@
         "lanayru",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Lightning Node - Raised Chest near Generator",
@@ -2813,7 +2957,8 @@
         "lanayru",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Fire Node - Shortcut Chest",
@@ -2832,7 +2977,8 @@
         "lanayru",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Fire Node - First Small Chest",
@@ -2851,7 +2997,8 @@
         "lanayru",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Fire Node - Second Small Chest",
@@ -2870,7 +3017,8 @@
         "lanayru",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Fire Node - Left Ending Chest",
@@ -2889,7 +3037,8 @@
         "lanayru",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Fire Node - Right Ending Chest",
@@ -2908,7 +3057,8 @@
         "lanayru",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Caves - Chest",
@@ -2927,7 +3077,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Caves - Golo's Gift",
@@ -2947,7 +3098,8 @@
         "lanayru",
         "free gift"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Sand Sea - Skipper's Retreat - Chest after Moblin",
@@ -2966,7 +3118,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Sand Sea - Skipper's Retreat - Chest on top of Cacti Pillar",
@@ -2985,7 +3138,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Sand Sea - Skipper's Retreat - Chest in Shack",
@@ -3004,7 +3158,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Sand Sea - Skipper's Retreat - Skydive Chest",
@@ -3023,7 +3178,8 @@
         "lanayru",
         "miscellaneous"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Sand Sea - Rickety Coaster - Heart Stopping Track in 1'05",
@@ -3043,7 +3199,8 @@
         "minigame",
         "combat"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Sand Sea - Pirate Stronghold - First Chest",
@@ -3062,7 +3219,8 @@
         "lanayru",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Sand Sea - Pirate Stronghold - Second Chest",
@@ -3081,7 +3239,8 @@
         "lanayru",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Sand Sea - Pirate Stronghold - Third Chest",
@@ -3100,7 +3259,8 @@
         "lanayru",
         "mini dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyview - Chest on Tree Branch",
@@ -3119,7 +3279,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyview - Digging Spot in Crawlspace",
@@ -3140,7 +3301,8 @@
         "dungeon",
         "digging"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyview - Chest behind Two Eyes",
@@ -3160,7 +3322,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyview - Beetle",
@@ -3179,7 +3342,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyview - Item behind Bars",
@@ -3198,7 +3362,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyview - Chest behind Three Eyes",
@@ -3218,7 +3383,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyview - Chest near Boss Door",
@@ -3237,7 +3403,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyview - Boss Key Chest",
@@ -3257,7 +3424,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyview - Ghirahim Heart Container",
@@ -3276,7 +3444,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyview - Ruby Tablet",
@@ -3295,7 +3464,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Earth Temple - Vent Chest",
@@ -3315,7 +3485,8 @@
         "dungeon",
         "digging"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Earth Temple - Chest behind Bombable Rock",
@@ -3334,7 +3505,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Earth Temple - Chest Left of Main Room Bridge",
@@ -3353,7 +3525,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Earth Temple - Chest in West Room",
@@ -3372,7 +3545,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Earth Temple - Bomb Bag",
@@ -3391,7 +3565,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Earth Temple - Ledd's Gift",
@@ -3410,7 +3585,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Earth Temple - Chest Guarded by Lizalfos",
@@ -3429,7 +3605,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Earth Temple - Boss Key Chest",
@@ -3449,7 +3626,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Earth Temple - Scaldera Heart Container",
@@ -3468,7 +3646,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Earth Temple - Amber Tablet",
@@ -3487,7 +3666,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Chest behind Bars",
@@ -3506,7 +3686,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - First Chest in Hub Room",
@@ -3526,7 +3707,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Chest in Key Locked Room",
@@ -3545,7 +3727,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Gust Bellows",
@@ -3564,7 +3747,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Chest inside Gust Bellows Room",
@@ -3583,7 +3767,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Chest in First West Room",
@@ -3602,7 +3787,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Chest after Armos Fight",
@@ -3621,7 +3807,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Chest behind First Crawlspace",
@@ -3640,7 +3827,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Chest in Spike Maze",
@@ -3659,7 +3847,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Boss Key Chest",
@@ -3679,7 +3868,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Shortcut Chest in Main Hub",
@@ -3698,7 +3888,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Molderach Heart Container",
@@ -3717,7 +3908,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Mining Facility - Goddess Harp",
@@ -3736,7 +3928,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Ancient Cistern - Chest in East Part",
@@ -3756,7 +3949,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Ancient Cistern - Whip",
@@ -3775,7 +3969,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Ancient Cistern - Chest after Whip Hooks",
@@ -3794,7 +3989,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Ancient Cistern - Chest near Vines",
@@ -3813,7 +4009,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Ancient Cistern - Chest behind the Waterfall",
@@ -3832,7 +4029,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Ancient Cistern - Bokoblin",
@@ -3852,7 +4050,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Ancient Cistern - Boss Key Chest",
@@ -3872,7 +4071,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Ancient Cistern - Koloktos Heart Container",
@@ -3891,7 +4091,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Ancient Cistern - Farore's Flame",
@@ -3910,7 +4111,8 @@
         "faron",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Chest behind Combination Lock",
@@ -3930,7 +4132,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Bow",
@@ -3949,7 +4152,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Chest at the Stern",
@@ -3968,7 +4172,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Chest before 4-Door Corridor",
@@ -3987,7 +4192,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Treasure Room First Chest",
@@ -4006,7 +4212,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Treasure Room Second Chest",
@@ -4025,7 +4232,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Treasure Room Third Chest",
@@ -4044,7 +4252,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Treasure Room Fourth Chest",
@@ -4063,7 +4272,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Treasure Room Fifth Chest",
@@ -4082,7 +4292,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Robot in Brig's Reward",
@@ -4102,7 +4313,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Boss Key Chest",
@@ -4122,7 +4334,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Tentalus Heart Container",
@@ -4141,7 +4354,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sandship - Nayru's Flame",
@@ -4160,7 +4374,8 @@
         "lanayru",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Chest in First Room",
@@ -4180,7 +4395,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Chest in Second Room",
@@ -4199,7 +4415,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Chest near First Trapped Mogma",
@@ -4219,7 +4436,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - First Chest in Water Fruit Room",
@@ -4238,7 +4456,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Second Chest in Water Fruit Room",
@@ -4257,7 +4476,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Mogma Mitts",
@@ -4276,7 +4496,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Chest on Balcony",
@@ -4295,7 +4516,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Chest after Second Trapped Mogma",
@@ -4314,7 +4536,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Chest after Bombable Wall",
@@ -4334,7 +4557,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Plats' Chest",
@@ -4353,7 +4577,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Chest in Staircase Room",
@@ -4372,7 +4597,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Boss Key Chest",
@@ -4392,7 +4618,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Ghirahim Heart Container",
@@ -4411,7 +4638,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Fire Sanctuary - Din's Flame",
@@ -4430,7 +4658,8 @@
         "eldin",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky Keep - First Chest",
@@ -4449,7 +4678,8 @@
         "skyloft",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky Keep - Chest after Dreadfuse",
@@ -4469,7 +4699,8 @@
         "skyloft",
         "dungeon"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Skyloft Silent Realm - Stone of Trials",
@@ -4488,7 +4719,8 @@
         "skyloft",
         "silent realm"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Faron Silent Realm - Water Scale",
@@ -4507,7 +4739,8 @@
         "faron",
         "silent realm"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Silent Realm - Clawshots",
@@ -4526,7 +4759,8 @@
         "lanayru",
         "silent realm"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Silent Realm - Fireshield Earrings",
@@ -4545,7 +4779,8 @@
         "eldin",
         "silent realm"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Central Skyloft - Gossip Stone on Floating Island",
@@ -4557,7 +4792,8 @@
       "SpoilerLocation": [
         "Central Skyloft - Gossip Stone on Floating Island"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Gossip Stone in Volcanic Island",
@@ -4569,7 +4805,8 @@
       "SpoilerLocation": [
         "Sky - Gossip Stone in Volcanic Island"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Gossip Stone on Lumpy Pumpkin",
@@ -4581,7 +4818,8 @@
       "SpoilerLocation": [
         "Sky - Gossip Stone on Lumpy Pumpkin"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sky - Gossip Stone in Bamboo Island",
@@ -4593,7 +4831,8 @@
       "SpoilerLocation": [
         "Sky - Gossip Stone in Bamboo Island"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Thunderhead - Gossip Stone near Bug Heaven",
@@ -4605,7 +4844,8 @@
       "SpoilerLocation": [
         "Thunderhead - Gossip Stone near Bug Heaven"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sealed Grounds - Gossip Stone behind the Temple",
@@ -4617,7 +4857,8 @@
       "SpoilerLocation": [
         "Sealed Grounds - Gossip Stone behind the Temple"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Faron Woods - Gossip Stone in Deep Woods",
@@ -4629,7 +4870,8 @@
       "SpoilerLocation": [
         "Faron Woods - Gossip Stone in Deep Woods"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lake Floria - Gossip Stone outside Ancient Cistern",
@@ -4641,7 +4883,8 @@
       "SpoilerLocation": [
         "Lake Floria - Gossip Stone outside Ancient Cistern"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Gossip Stone in Thrill Digger Cave",
@@ -4653,7 +4896,8 @@
       "SpoilerLocation": [
         "Eldin Volcano - Gossip Stone in Thrill Digger Cave"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Volcano - Gossip Stone next to Earth Temple",
@@ -4665,7 +4909,8 @@
       "SpoilerLocation": [
         "Eldin Volcano - Gossip Stone next to Earth Temple"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Volcano Summit - Gossip Stone in Waterfall Area",
@@ -4677,7 +4922,8 @@
       "SpoilerLocation": [
         "Volcano Summit - Gossip Stone in Waterfall Area"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Volcano Summit - Gossip Stone near Second Thirsty Frog",
@@ -4689,7 +4935,8 @@
       "SpoilerLocation": [
         "Volcano Summit - Gossip Stone near Second Thirsty Frog"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Desert - Gossip Stone in Temple of Time Area",
@@ -4701,7 +4948,8 @@
       "SpoilerLocation": [
         "Lanayru Desert - Gossip Stone in Temple of Time Area"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Caves - Gossip Stone in Center",
@@ -4713,7 +4961,8 @@
       "SpoilerLocation": [
         "Lanayru Caves - Gossip Stone in Center"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Sand Sea - Gossip Stone in Shipyard",
@@ -4725,7 +4974,8 @@
       "SpoilerLocation": [
         "Sand Sea - Gossip Stone in Shipyard"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube on West Great Tree near Exit",
@@ -4737,7 +4987,8 @@
       "SpoilerLocation": [
         "Goddess Cube on West Great Tree near Exit"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube on East Great Tree with Rope",
@@ -4749,7 +5000,8 @@
       "SpoilerLocation": [
         "Goddess Cube on East Great Tree with Rope"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube on East Great Tree with Clawshot Target",
@@ -4761,7 +5013,8 @@
       "SpoilerLocation": [
         "Goddess Cube on East Great Tree with Clawshot Target"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Initial Goddess Cube",
@@ -4773,7 +5026,8 @@
       "SpoilerLocation": [
         "Initial Goddess Cube"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Deep Woods",
@@ -4785,7 +5039,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Deep Woods"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube on top of Skyview",
@@ -4797,7 +5052,8 @@
       "SpoilerLocation": [
         "Goddess Cube on top of Skyview"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Lake Floria",
@@ -4809,7 +5065,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Lake Floria"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Floria Waterfall",
@@ -4821,7 +5078,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Floria Waterfall"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube at Eldin Entrance",
@@ -4833,7 +5091,8 @@
       "SpoilerLocation": [
         "Goddess Cube at Eldin Entrance"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube near Mogma Turf Entrance",
@@ -4845,7 +5104,8 @@
       "SpoilerLocation": [
         "Goddess Cube near Mogma Turf Entrance"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube West of Earth Temple Entrance",
@@ -4857,7 +5117,8 @@
       "SpoilerLocation": [
         "Goddess Cube West of Earth Temple Entrance"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube East of Earth Temple Entrance",
@@ -4869,7 +5130,8 @@
       "SpoilerLocation": [
         "Goddess Cube East of Earth Temple Entrance"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Eldin Slide",
@@ -4881,7 +5143,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Eldin Slide"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Mogma Turf",
@@ -4893,7 +5156,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Mogma Turf"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube inside Volcano Summit",
@@ -4905,7 +5169,8 @@
       "SpoilerLocation": [
         "Goddess Cube inside Volcano Summit"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Summit Waterfall",
@@ -4917,7 +5182,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Summit Waterfall"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube near FS Entrance",
@@ -4929,7 +5195,8 @@
       "SpoilerLocation": [
         "Goddess Cube near FS Entrance"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube at Lanayru Mines Entrance",
@@ -4941,7 +5208,8 @@
       "SpoilerLocation": [
         "Goddess Cube at Lanayru Mines Entrance"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube near Hook Beetle Fight",
@@ -4953,7 +5221,8 @@
       "SpoilerLocation": [
         "Goddess Cube near Hook Beetle Fight"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Sand Oasis",
@@ -4965,7 +5234,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Sand Oasis"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube at Ride near Temple of Time",
@@ -4977,7 +5247,8 @@
       "SpoilerLocation": [
         "Goddess Cube at Ride near Temple of Time"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Secret Passageway in Desert",
@@ -4989,7 +5260,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Secret Passageway in Desert"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Ancient Harbour",
@@ -5001,7 +5273,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Ancient Harbour"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Skipper's Retreat",
@@ -5013,7 +5286,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Skipper's Retreat"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Pirate Stronghold",
@@ -5025,7 +5299,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Pirate Stronghold"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Skyview Spring",
@@ -5037,7 +5312,8 @@
       "SpoilerLocation": [
         "Goddess Cube in Skyview Spring"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Faron Song of the Hero Part",
@@ -5047,7 +5323,8 @@
       "SpoilerItem": [
         "Faron Song of the Hero Part"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Eldin Song of the Hero Part",
@@ -5057,7 +5334,8 @@
       "SpoilerItem": [
         "Eldin Song of the Hero Part"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Lanayru Song of the Hero Part",
@@ -5067,7 +5345,8 @@
       "SpoilerItem": [
         "Lanayru Song of the Hero Part"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Emerald Tablet",
@@ -5077,7 +5356,8 @@
       "SpoilerItem": [
         "Emerald Tablet"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Spiral Charge",
@@ -5087,7 +5367,8 @@
       "SpoilerItem": [
         "Spiral Charge"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Goddess Cube in Lanayru Gorge",
@@ -5097,7 +5378,8 @@
       "SpoilerItem": [
         "Goddess Cube in Lanayru Gorge"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Hylian Shield",
@@ -5107,7 +5389,8 @@
       "SpoilerItem": [
         "Hylian Shield"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Extra Bottle",
@@ -5117,7 +5400,8 @@
       "SpoilerItem": [
         "Empty Bottle"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Extra Quiver",
@@ -5127,7 +5411,8 @@
       "SpoilerItem": [
         "Small Quiver"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Extra HP",
@@ -5137,7 +5422,8 @@
       "SpoilerItem": [
         "Heart Piece"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Access Ancient Cistern",
@@ -5151,7 +5437,8 @@
       "SpoilerItem": [
         "Ancient Cistern"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Access Earth Temple",
@@ -5165,7 +5452,8 @@
       "SpoilerItem": [
         "Earth Temple"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Access Fire Sanctuary",
@@ -5179,7 +5467,8 @@
       "SpoilerItem": [
         "Fire Sanctuary"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Access Lanayru Mining Facility",
@@ -5193,7 +5482,8 @@
       "SpoilerItem": [
         "Lanayru Mining Facility"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Access Sandship",
@@ -5207,7 +5497,8 @@
       "SpoilerItem": [
         "Sandship"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Access Sky Keep",
@@ -5221,7 +5512,8 @@
       "SpoilerItem": [
         "Sky Keep"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Access Skyview",
@@ -5235,49 +5527,57 @@
       "SpoilerItem": [
         "Skyview"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Beat Dungeon Entrance in Lake Floria",
       "FakeItem": true,
       "GameClearDungeonEntrance": "Can Access Ancient Cistern",
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Beat Dungeon Entrance in Eldin Volcano",
       "FakeItem": true,
       "GameClearDungeonEntrance": "Can Access Earth Temple",
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Beat Dungeon Entrance in Volcano Summit",
       "FakeItem": true,
       "GameClearDungeonEntrance": "Can Access Fire Sanctuary",
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Beat Dungeon Entrance in Lanayru Desert",
       "FakeItem": true,
       "GameClearDungeonEntrance": "Can Access Lanayru Mining Facility",
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Beat Dungeon Entrance in Sand Sea",
       "FakeItem": true,
       "GameClearDungeonEntrance": "Can Access Sandship",
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Beat Dungeon Entrance on Skyloft",
       "FakeItem": true,
       "GameClearDungeonEntrance": "Can Access Sky Keep",
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Beat Dungeon Entrance in Deep Woods",
       "FakeItem": true,
       "GameClearDungeonEntrance": "Can Access Skyview",
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Access Skyloft Silent Realm",
@@ -5291,7 +5591,8 @@
       "SpoilerItem": [
         "Skyloft Silent Realm"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Access Lanayru Silent Realm",
@@ -5305,7 +5606,8 @@
       "SpoilerItem": [
         "Lanayru Silent Realm"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Access Faron Silent Realm",
@@ -5319,7 +5621,8 @@
       "SpoilerItem": [
         "Faron Silent Realm"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Can Access Eldin Silent Realm",
@@ -5333,7 +5636,8 @@
       "SpoilerItem": [
         "Eldin Silent Realm"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"got-sword-requirement\" Is \"Requires Goddess Longsword\"",
@@ -5348,7 +5652,8 @@
       "SpoilerItem": [
         "Option got-sword-requirement Is Requires Goddess Longsword"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"got-sword-requirement\" Is \"Requires Goddess Sword\"",
@@ -5359,7 +5664,8 @@
       "SpoilerItem": [
         "Option got-sword-requirement Is Requires Goddess Sword"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"got-sword-requirement\" Is \"Requires Goddess Whitesword\"",
@@ -5370,7 +5676,8 @@
       "SpoilerItem": [
         "Option got-sword-requirement Is Requires Goddess Whitesword"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"got-sword-requirement\" Is \"Requires Master Sword\"",
@@ -5381,7 +5688,8 @@
       "SpoilerItem": [
         "Option got-sword-requirement Is Requires Master Sword"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"got-sword-requirement\" Is \"Requires True Master Sword\"",
@@ -5392,7 +5700,8 @@
       "SpoilerItem": [
         "Option got-sword-requirement Is Requires True Master Sword"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"hero-mode\" Is \"Enabled\"",
@@ -5407,7 +5716,8 @@
       "SpoilerItem": [
         "Option hero-mode Is Enabled"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"hero-mode\" Is \"Disabled\"",
@@ -5418,7 +5728,8 @@
       "SpoilerItem": [
         "Option hero-mode Is Disabled"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"open-lmf\" Is \"Nodes\"",
@@ -5433,7 +5744,8 @@
       "SpoilerItem": [
         "Option open-lmf Is Nodes"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"open-lmf\" Is \"Open\"",
@@ -5444,7 +5756,8 @@
       "SpoilerItem": [
         "Option open-lmf Is Open"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"open-thunderhead\" Is \"Ballad\"",
@@ -5459,7 +5772,8 @@
       "SpoilerItem": [
         "Option open-thunderhead Is Ballad"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"open-thunderhead\" Is \"Open\"",
@@ -5470,7 +5784,8 @@
       "SpoilerItem": [
         "Option open-thunderhead Is Open"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon1\" Is \"Skyview\"",
@@ -5485,7 +5800,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon1 Is Skyview"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon1\" Is \"None\"",
@@ -5496,7 +5812,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon1 Is None"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon2\" Is \"Earth Temple\"",
@@ -5511,7 +5828,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon2 Is Earth Temple"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon2\" Is \"None\"",
@@ -5522,7 +5840,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon2 Is None"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon3\" Is \"Sandship\"",
@@ -5537,7 +5856,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon3 Is Sandship"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon3\" Is \"None\"",
@@ -5548,7 +5868,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon3 Is None"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon4\" Is \"Ancient Cistern\"",
@@ -5563,7 +5884,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon4 Is Ancient Cistern"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon4\" Is \"None\"",
@@ -5574,7 +5896,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon4 Is None"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon5\" Is \"Lanayru Mining Facility\"",
@@ -5589,7 +5912,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon5 Is Lanayru Mining Facility"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon5\" Is \"None\"",
@@ -5600,7 +5924,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon5 Is None"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon6\" Is \"Fire Sanctuary\"",
@@ -5615,7 +5940,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon6 Is Fire Sanctuary"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"RequiredDungeon6\" Is \"None\"",
@@ -5626,7 +5952,8 @@
       "SpoilerItem": [
         "Option RequiredDungeon6 Is None"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"shop-mode\" Is \"Randomized\"",
@@ -5641,7 +5968,8 @@
       "SpoilerItem": [
         "Option shop-mode Is Randomized"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"shop-mode\" Is \"Vanilla\"",
@@ -5652,7 +5980,8 @@
       "SpoilerItem": [
         "Option shop-mode Is Vanilla"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"shop-mode\" Is \"Always Junk\"",
@@ -5663,7 +5992,8 @@
       "SpoilerItem": [
         "Option shop-mode Is Always Junk"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"skip-skykeep\" Is \"Enabled\"",
@@ -5678,7 +6008,8 @@
       "SpoilerItem": [
         "Option skip-skykeep Is Enabled"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"skip-skykeep\" Is \"Disabled\"",
@@ -5689,7 +6020,8 @@
       "SpoilerItem": [
         "Option skip-skykeep Is Disabled"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"randomize-trials\" Is \"Enabled\"",
@@ -5704,7 +6036,8 @@
       "SpoilerItem": [
         "Option randomize-trials Is Enabled"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     },
     {
       "DictionaryName": "Option \"randomize-trials\" Is \"Disabled\"",
@@ -5715,7 +6048,8 @@
       "SpoilerItem": [
         "Option randomize-trials Is Disabled"
       ],
-      "ValidRandomizerStartingItem": false
+      "ValidRandomizerStartingItem": false,
+      "IsWarpSong": false
     }
   ]
 }

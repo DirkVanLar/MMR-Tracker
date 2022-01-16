@@ -1973,7 +1973,7 @@
           "Can Access Lumpy Pumpkin BiT"
         ],
         [
-          "Thunderhead - Song from Levias",
+          "Song of the Hero",
           "Lanayru Mining Facility - Goddess Harp"
         ]
       ],
