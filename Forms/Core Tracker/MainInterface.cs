@@ -1757,7 +1757,11 @@ namespace MMR_Tracker_V2
 
         private void preventKeyShortcuts(object sender, KeyPressEventArgs e)
         {
-            if (Control.ModifierKeys == Keys.Control) { e.Handled = true; }
+            if (Control.ModifierKeys == Keys.Control && 
+                this.ActiveControl != TXTLocSearch &&
+                this.ActiveControl != TXTEntSearch &&
+                this.ActiveControl != TXTCheckedSearch) 
+            { e.Handled = true; }
         }
 
         private void changeDefaultSetingsToolStripMenuItem_Click(object sender, EventArgs e)
