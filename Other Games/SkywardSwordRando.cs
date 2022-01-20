@@ -146,7 +146,7 @@ namespace MMR_Tracker.Other_Games
                 Logicentry.Id = i.Key;
                 Logicentry.IsTrick = false;
 
-                var Parsedlogic = Parser.ConvertLogicToConditionalString(i.Value);
+                var Parsedlogic = Parser.ConvertLogicToConditional(i.Value);
 
                 Logicentry.ConditionalItems = Parsedlogic == null ? new List<List<string>>() : Parsedlogic.Select(x => x.Select(y => y.Trim()).ToList()).ToList();
                 Logicentry.RequiredItems = null;
@@ -310,7 +310,7 @@ namespace MMR_Tracker.Other_Games
 
                 for (var i = 0; i < entries.Count(); i++)
                 {
-                    if (string.IsNullOrEmpty(entries[i]) || LogicParser.ISLogicChar(entries[i][0]) || LogicParser.ISComment(entries[i])) { continue; }
+                    if (string.IsNullOrEmpty(entries[i]) || LogicParser.ISLogicChar(entries[i][0])) { continue; }
                     string CleanEntry = entries[i].Trim();
 
                     if (string.IsNullOrWhiteSpace(CleanEntry)) { continue; }
@@ -345,7 +345,7 @@ namespace MMR_Tracker.Other_Games
                 Console.WriteLine($"Name Corrected logic");
                 Console.WriteLine($"([{NewLogic}])");
                 Console.WriteLine($"---------------------------------------");
-                var Parsedlogic = Parser.ConvertLogicToConditionalString(NewLogic);
+                var Parsedlogic = Parser.ConvertLogicToConditional(NewLogic);
 
                 if (Parsedlogic != null)
                 {

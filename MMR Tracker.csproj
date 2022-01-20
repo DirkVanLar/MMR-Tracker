@@ -218,7 +218,6 @@
     <Compile Include="Other Games\GlobalHandeler.cs" />
     <Compile Include="Other Games\OcarinaOfTimeRando.cs" />
     <Compile Include="Other Games\OOT3DR.cs" />
-    <Compile Include="Other Games\Outdated\MInishCapTools.cs" />
     <Compile Include="Forms\Item Select Forms\CheckItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -438,7 +437,9 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Other Games\Outdated\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>; Move all assemblies and related files to lib folder

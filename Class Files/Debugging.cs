@@ -18,7 +18,6 @@ using System.Text.RegularExpressions;
 using Microsoft.VisualBasic.Logging;
 using Microsoft.JScript;
 using System.Windows.Documents;
-using MMR_Tracker.Forms.Other_Games;
 using MMR_Tracker.Other_Games;
 using MMR_Tracker.Forms.Extra_Functionality;
 using static MMR_Tracker.Class_Files.MMR_Code_Reference.items;

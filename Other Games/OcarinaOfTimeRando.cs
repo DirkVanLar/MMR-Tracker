@@ -291,7 +291,7 @@ namespace MMR_Tracker.Other_Games
 
             foreach (var i in MasterLogic)
             {
-                FormatedLogic.Logic.Add(new LogicObjects.JsonFormatLogicItem() { Id = i.Key, ConditionalItems = Parser.ConvertLogicToConditionalString(i.Value) });
+                FormatedLogic.Logic.Add(new LogicObjects.JsonFormatLogicItem() { Id = i.Key, ConditionalItems = Parser.ConvertLogicToConditional(i.Value) });
             }
 
             return FormatedLogic;
@@ -720,7 +720,7 @@ namespace MMR_Tracker.Other_Games
                 Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
                 {
                     Id = i.Key,
-                    ConditionalItems = parser.ConvertLogicToConditionalString(i.Value.Replace(" and ", " & ").Replace(" or ", " | "))
+                    ConditionalItems = parser.ConvertLogicToConditional(i.Value.Replace(" and ", " & ").Replace(" or ", " | "))
                 });
             }
 
@@ -729,34 +729,34 @@ namespace MMR_Tracker.Other_Games
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"age == adult",
-                ConditionalItems = parser.ConvertLogicToConditionalString("Starting Age == adult | Time_Travel")
+                ConditionalItems = parser.ConvertLogicToConditional("Starting Age == adult | Time_Travel")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"age == child",
-                ConditionalItems = parser.ConvertLogicToConditionalString("Starting Age == child | Time_Travel")
+                ConditionalItems = parser.ConvertLogicToConditional("Starting Age == child | Time_Travel")
             });
 
             //More of the Can_use style logic, but these are mush easier to define
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"has_projectile_adult",
-                ConditionalItems = parser.ConvertLogicToConditionalString("Bow | Hookshot")
+                ConditionalItems = parser.ConvertLogicToConditional("Bow | Hookshot")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"has_projectile_child",
-                ConditionalItems = parser.ConvertLogicToConditionalString("Slingshot | Boomerang")
+                ConditionalItems = parser.ConvertLogicToConditional("Slingshot | Boomerang")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"has_projectile_both",
-                ConditionalItems = parser.ConvertLogicToConditionalString("has_projectile_adult & has_projectile_child")
+                ConditionalItems = parser.ConvertLogicToConditional("has_projectile_adult & has_projectile_child")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"has_projectile_either",
-                ConditionalItems = parser.ConvertLogicToConditionalString("has_projectile_adult | has_projectile_child")
+                ConditionalItems = parser.ConvertLogicToConditional("has_projectile_adult | has_projectile_child")
             });
 
             //Since wallets are always progressive we can't really assign a price value to a specific wallet
@@ -853,57 +853,57 @@ namespace MMR_Tracker.Other_Games
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"damage_multiplier != ohko",
-                ConditionalItems = parser.ConvertLogicToConditionalString("damage_multiplier == half | damage_multiplier == normal | damage_multiplier == double | damage_multiplier == quadruple")
+                ConditionalItems = parser.ConvertLogicToConditional("damage_multiplier == half | damage_multiplier == normal | damage_multiplier == double | damage_multiplier == quadruple")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"damage_multiplier != quadruple",
-                ConditionalItems = parser.ConvertLogicToConditionalString("damage_multiplier == half | damage_multiplier == normal | damage_multiplier == double | damage_multiplier == ohko")
+                ConditionalItems = parser.ConvertLogicToConditional("damage_multiplier == half | damage_multiplier == normal | damage_multiplier == double | damage_multiplier == ohko")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"gerudo_fortress != fast",
-                ConditionalItems = parser.ConvertLogicToConditionalString("gerudo_fortress == normal | gerudo_fortress == open")
+                ConditionalItems = parser.ConvertLogicToConditional("gerudo_fortress == normal | gerudo_fortress == open")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"gerudo_fortress != normal",
-                ConditionalItems = parser.ConvertLogicToConditionalString("gerudo_fortress == fast | gerudo_fortress == open")
+                ConditionalItems = parser.ConvertLogicToConditional("gerudo_fortress == fast | gerudo_fortress == open")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"open_forest != closed",
-                ConditionalItems = parser.ConvertLogicToConditionalString("open_forest == closed_deku | open_forest == open")
+                ConditionalItems = parser.ConvertLogicToConditional("open_forest == closed_deku | open_forest == open")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"shuffle_ganon_bosskey != dungeons",
-                ConditionalItems = parser.ConvertLogicToConditionalString("shuffle_ganon_bosskey == other | shuffle_ganon_bosskey == medallions | shuffle_ganon_bosskey == stones | shuffle_ganon_bosskey == tokens")
+                ConditionalItems = parser.ConvertLogicToConditional("shuffle_ganon_bosskey == other | shuffle_ganon_bosskey == medallions | shuffle_ganon_bosskey == stones | shuffle_ganon_bosskey == tokens")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"shuffle_ganon_bosskey != medallions",
-                ConditionalItems = parser.ConvertLogicToConditionalString("shuffle_ganon_bosskey == other | shuffle_ganon_bosskey == dungeons | shuffle_ganon_bosskey == stones | shuffle_ganon_bosskey == tokens")
+                ConditionalItems = parser.ConvertLogicToConditional("shuffle_ganon_bosskey == other | shuffle_ganon_bosskey == dungeons | shuffle_ganon_bosskey == stones | shuffle_ganon_bosskey == tokens")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"shuffle_ganon_bosskey != stones",
-                ConditionalItems = parser.ConvertLogicToConditionalString("shuffle_ganon_bosskey == other | shuffle_ganon_bosskey == dungeons | shuffle_ganon_bosskey == medallions | shuffle_ganon_bosskey == tokens")
+                ConditionalItems = parser.ConvertLogicToConditional("shuffle_ganon_bosskey == other | shuffle_ganon_bosskey == dungeons | shuffle_ganon_bosskey == medallions | shuffle_ganon_bosskey == tokens")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"shuffle_ganon_bosskey != tokens",
-                ConditionalItems = parser.ConvertLogicToConditionalString("shuffle_ganon_bosskey == other | shuffle_ganon_bosskey == dungeons | shuffle_ganon_bosskey == medallions | shuffle_ganon_bosskey == stones")
+                ConditionalItems = parser.ConvertLogicToConditional("shuffle_ganon_bosskey == other | shuffle_ganon_bosskey == dungeons | shuffle_ganon_bosskey == medallions | shuffle_ganon_bosskey == stones")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"zora_fountain != open",
-                ConditionalItems = parser.ConvertLogicToConditionalString("zora_fountain == closed | zora_fountain == adult")
+                ConditionalItems = parser.ConvertLogicToConditional("zora_fountain == closed | zora_fountain == adult")
             });
             Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
             {
                 Id = $"logic_rules != glitchless",
-                ConditionalItems = parser.ConvertLogicToConditionalString("logic_rules == none | logic_rules == glitched")
+                ConditionalItems = parser.ConvertLogicToConditional("logic_rules == none | logic_rules == glitched")
             });
 
         }
@@ -1370,7 +1370,7 @@ namespace MMR_Tracker.Other_Games
                     Console.WriteLine("===========================================================");
                     Console.WriteLine(Entry.Id);
                     Console.WriteLine(NewCondString);
-                    Entry.ConditionalItems = Parser.ConvertLogicToConditionalString(NewCondString).Select(i => i.Where(x => x != "2").ToList()).ToList();
+                    Entry.ConditionalItems = Parser.ConvertLogicToConditional(NewCondString).Select(i => i.Where(x => x != "2").ToList()).ToList();
                 }
                 else
                 {
@@ -1382,7 +1382,7 @@ namespace MMR_Tracker.Other_Games
                 Logic.Logic.Add(new LogicObjects.JsonFormatLogicItem
                 {
                     Id = i.Key,
-                    ConditionalItems = Parser.ConvertLogicToConditionalString(i.Value)
+                    ConditionalItems = Parser.ConvertLogicToConditional(i.Value)
                 });
             }
         }

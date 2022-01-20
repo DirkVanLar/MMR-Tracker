@@ -208,7 +208,7 @@ namespace MMR_Tracker.Other_Games
                 if (i.Value.types != "ItemOnly" && !string.IsNullOrWhiteSpace(i.Value.Need) && i.Value.Need.Trim() != "Nothing")
                 {
 
-                    LogicEntry.ConditionalItems = Parser.ConvertLogicToConditionalString(i.Value.Need).Select(v => v.Where(x => x != "2").ToList()).ToList();
+                    LogicEntry.ConditionalItems = Parser.ConvertLogicToConditional(i.Value.Need).Select(v => v.Where(x => x != "2").ToList()).ToList();
                 }
 
                 WWRLogic.Logic.Add(LogicEntry);
@@ -223,7 +223,7 @@ namespace MMR_Tracker.Other_Games
                 {
                     string Logic = i.Value;
 
-                    LogicEntry.ConditionalItems = Parser.ConvertLogicToConditionalString(Logic).Select(v => v.Where(x => x != "2").ToList()).ToList();
+                    LogicEntry.ConditionalItems = Parser.ConvertLogicToConditional(Logic).Select(v => v.Where(x => x != "2").ToList()).ToList();
                 }
                 WWRLogic.Logic.Add(LogicEntry);
             }
@@ -422,7 +422,7 @@ namespace MMR_Tracker.Other_Games
                     if (RecompileConditionals)
                     {
                         string ConditionalToString = $"({string.Join(") | (", WWRLogic.Logic[i].ConditionalItems.Select(x => string.Join(" & ", x)))})";
-                        WWRLogic.Logic[i].ConditionalItems = Parser.ConvertLogicToConditionalString(ConditionalToString);
+                        WWRLogic.Logic[i].ConditionalItems = Parser.ConvertLogicToConditional(ConditionalToString);
                         ActionLog = ActionLog + ($"\nRecompiling Conditional [{ConditionalToString}]");
                     }
                     if (ActionLog != "")
