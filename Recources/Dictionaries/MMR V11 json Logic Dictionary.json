@@ -1,5 +1,5 @@
 {
-  "LogicVersion": 10,
+  "LogicVersion": 11,
   "LogicFormat": "json",
   "GameCode": "MMR",
   "DefaultWalletCapacity": 99,
@@ -8726,13 +8726,13 @@
     },
     {
       "DictionaryName": "CollectibleStrayFairyStoneTower6",
-      "LocationName": "Stone Tower Boss Warp",
+      "LocationName": "Stone Tower Entrance Sun Switch",
       "ItemName": "Stone Tower Stray Fairy",
       "LocationArea": "Stone Tower Temple",
       "ItemSubType": "Item",
       "FakeItem": false,
       "SpoilerLocation": [
-        "Stone Tower Boss Warp"
+        "Stone Tower Entrance Sun Switch"
       ],
       "SpoilerItem": [
         "Stone Tower Stray Fairy"

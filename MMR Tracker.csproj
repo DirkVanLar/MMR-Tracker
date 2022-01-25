@@ -350,6 +350,9 @@
     <None Include="Recources\Dictionaries\Legacy\OOTRDICTIONARYV5.csv" />
     <None Include="Recources\Dictionaries\Legacy\SSRDICTIONARYV1.csv" />
     <None Include="Recources\Dictionaries\Legacy\WWRDICTIONARYV170.csv" />
+    <None Include="Recources\Dictionaries\MMR V11 json Logic Dictionary.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Recources\Dictionaries\Other Games\OOTR V1 json Logic Dictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
